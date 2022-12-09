@@ -1,0 +1,19 @@
+{
+    "name": "jolicode/json-ld",
+    "description": "A library to convert JSON-LD from one format to another",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Jolicode\\JsonLd\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hédic Guibert",
+            "email": "guiberthedic@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    }
+}
