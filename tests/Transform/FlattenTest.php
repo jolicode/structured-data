@@ -2,7 +2,7 @@
 
 namespace Tests\Transform;
 
-use Jolicode\JsonLd\Flatten\Flatten;
+use Jolicode\JsonLd\Flatten\Flattener;
 use Symfony\Component\Finder\Finder;
 
 class FlattenTest extends AbstractTransformTest
@@ -13,7 +13,8 @@ class FlattenTest extends AbstractTransformTest
     /** @dataProvider provideInputsAndOutputs */
     public function testFlatten(string $jsonToFlatten, string $expected)
     {
-        $actual = Flatten::flatten(json_decode($jsonToFlatten));
+        $flattener = new Flattener();
+        $actual = $flattener->flatten(json_decode($jsonToFlatten));
 
         $this->assertSame($expected, $actual);
     }
