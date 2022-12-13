@@ -16,19 +16,9 @@ abstract class AbstractJsonLdTest extends TestCase
      */
     abstract protected function getAlgorithmName(): string;
 
-    protected function setUp(): void
-    {
-        if (is_dir(self::VAR_DIR)) {
-            // We only need to download the tests once ;D.
-            // Use the reset command if you have issues with the installed test suite.
-            return;
-        }
-
-        FixturesManager::installFixtures();
-    }
-
     protected function getInputFiles(): iterable
     {
+        $this->installTestSuite();
         $finder = new Finder();
 
         return $finder
@@ -42,11 +32,24 @@ abstract class AbstractJsonLdTest extends TestCase
 
     protected function getOutputFile(string $filename): string
     {
+        $this->installTestSuite();
+
         return sprintf(
             '%s/%s/output/%s',
             self::FIXTURES_PATH,
             $this->getAlgorithmName(),
             $filename,
         );
+    }
+
+    private function installTestSuite(): void
+    {
+        if (is_dir(self::VAR_DIR)) {
+            // We only need to download the tests once ;D.
+            // Use the reset command if you have issues with the installed test suite.
+            return;
+        }
+
+        FixturesManager::installFixtures();
     }
 }

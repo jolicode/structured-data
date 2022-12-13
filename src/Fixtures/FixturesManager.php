@@ -24,6 +24,7 @@ class FixturesManager
 
     public static function installFixtures(): void
     {
+        // TODO:  Add a logger probably, or at least write something in the console ?
         self::downloadW3CArchive();
         self::assignTestFiles();
     }
@@ -33,6 +34,7 @@ class FixturesManager
      */
     public static function resetFixtures(bool $generateAnew = false): void
     {
+        // TODO:  Add a logger probably, or at least write something in the console ?
         $finder = new Finder();
         $filesystem = new Filesystem();
 

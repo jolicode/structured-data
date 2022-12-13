@@ -5,7 +5,7 @@ namespace Tests;
 use Jolicode\JsonLd\Fixtures\FixturesManager;
 use Jolicode\JsonLd\Flatten\Flattener;
 
-class FlattenTest extends AbstractJsonLdTest
+class FlattenerTest extends AbstractJsonLdTest
 {
     /** @dataProvider provideInputsAndOutputs */
     public function testFlatten(string $jsonToFlatten, string $expected): void

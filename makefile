@@ -10,6 +10,12 @@ install: ## Install dependencies
 test: ## Run the tests
 	php -d memory_limit=-1 vendor/bin/phpunit tests
 
+reset_test: ## Delete the test files and reinstall them
+	bin/json-ld reset-fixtures --reset
+
+delete_test: ## Delete all test files
+	bin/json-ld reset-fixtures
+
 .PHONY: help
 
 help: ## Display this help
