@@ -39,7 +39,7 @@ class Flattener
 
         if ($this->isCollection($input)) {
             foreach ($input as $node) {
-                $result[] = $this->buildNode($node, $input, $activeSubject, $activeProperty, $list);
+                $result[] = $this->buildNode($node, $activeSubject, $activeProperty, $list);
             }
 
             return $result;
@@ -47,7 +47,7 @@ class Flattener
 
         if (!is_array($input)) {
             // TODO : implement real exceptions and catch them
-            throw new \Exception('Incorrect input');
+            throw new \Exception('Incorrect JSON input. Your JSON may have incorrect syntax or you may have forgotten to json_decode it.');
         }
 
         if (null !== $activeSubject) {
@@ -55,7 +55,7 @@ class Flattener
         }
 
         if (array_key_exists('@type', $input) && $input['@type']) {
-            if ($newId = $this->blankNodeIdentifierUtil->replaceBlankNodeIdentifiers($input['@type'], $input)) {
+            if ($newId = $this->blankNodeIdentifierUtil->replaceBlankNodeIdentifiers($input['@type'])) {
                 $input['@type'] = $newId;
             }
         }

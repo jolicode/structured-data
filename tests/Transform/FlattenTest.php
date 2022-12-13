@@ -11,7 +11,7 @@ class FlattenTest extends AbstractTransformTest
     private const OUTPUT_FILES = self::FIXTURES_PATH . '/flatten/output';
 
     /** @dataProvider provideInputsAndOutputs */
-    public function testFlatten(string $jsonToFlatten, string $expected)
+    public function testFlatten(string $jsonToFlatten, string $expected): never
     {
         $flattener = new Flattener();
         $actual = $flattener->flatten(json_decode($jsonToFlatten));
