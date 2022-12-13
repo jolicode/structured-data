@@ -1,13 +1,14 @@
 <?php
 
-namespace Tests\Transform;
+namespace Tests;
 
+use Jolicode\JsonLd\Fixtures\FixturesManager;
 use Jolicode\JsonLd\Flatten\Flattener;
 
-class FlattenTest extends AbstractTransformTest
+class FlattenTest extends AbstractJsonLdTest
 {
     /** @dataProvider provideInputsAndOutputs */
-    public function testFlatten(string $jsonToFlatten, string $expected): never
+    public function testFlatten(string $jsonToFlatten, string $expected): void
     {
         $flattener = new Flattener();
         $actual = $flattener->flatten(json_decode($jsonToFlatten));
@@ -20,7 +21,6 @@ class FlattenTest extends AbstractTransformTest
         foreach ($this->getInputFiles() as $inputFile) {
             $outputFile = $this->getOutputFile(
                 preg_replace('/-in/', '-out', $inputFile->getFilename())
-
             );
 
             yield [
@@ -32,6 +32,6 @@ class FlattenTest extends AbstractTransformTest
 
     protected function getAlgorithmName(): string
     {
-        return self::ALGO_FLATTEN;
+        return FixturesManager::ALGO_FLATTEN;
     }
 }
