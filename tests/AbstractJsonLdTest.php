@@ -18,7 +18,6 @@ abstract class AbstractJsonLdTest extends TestCase
 
     protected function getInputFiles(): iterable
     {
-        $this->installTestSuite();
         $finder = new Finder();
 
         return $finder
@@ -30,10 +29,8 @@ abstract class AbstractJsonLdTest extends TestCase
             ));
     }
 
-    protected function getOutputFile(string $filename): string
+    protected function getOutputFileName(string $filename): string
     {
-        $this->installTestSuite();
-
         return sprintf(
             '%s/%s/output/%s',
             self::FIXTURES_PATH,
@@ -42,7 +39,7 @@ abstract class AbstractJsonLdTest extends TestCase
         );
     }
 
-    private function installTestSuite(): void
+    protected function installTestSuite(): void
     {
         if (is_dir(self::VAR_DIR)) {
             // We only need to download the tests once ;D.
