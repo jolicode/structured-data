@@ -2,69 +2,61 @@
 
 namespace Jolicode\JsonLd\Flatten;
 
-use Jolicode\JsonLd\Utils\BlankNodeIdentifierUtil;
+use Jolicode\JsonLd\Utils\IdentifierGenerator;
 use stdClass;
 
 class Flattener
 {
-    private array $graph;
-    private array $context;
-
-    private BlankNodeIdentifierUtil $blankNodeIdentifierUtil;
+    private IdentifierGenerator $identifierGenerator;
 
     public function __construct()
     {
-        $this->graph = [
-            '@default' => [],
-        ];
-
-        $this->blankNodeIdentifierUtil = new BlankNodeIdentifierUtil();
+        $this->identifierGenerator = new IdentifierGenerator();
+        $this->nodeMapGenerator = new NodeMapGenerator($this->identifierGenerator);
     }
 
     /**
      * Takes a json_decoded JSON string as input and returns a flattened JSON string
+     *
+     * This is a PHP implementation of https://www.w3.org/TR/json-ld11-api/#algorithm-9. It is based on the 16th July 2020 recommendation.
      */
     public function flatten(stdClass $input): string
     {
-        return json_encode($this->buildNode((array) $input));
-    }
+        $this->nodeMapGenerator->buildNode((array) $input);
+        $map = $this->nodeMapGenerator->getMap();
+        $defaultGraph = $map['@default'];
 
-    private function buildNode(
-        array|stdClass $input,
-        $activeSubject = null,
-        $activeProperty = null,
-        $list = null
-    ): array|stdClass {
-        $result = [];
-
-        if ($this->isCollection($input)) {
-            foreach ($input as $node) {
-                $result[] = $this->buildNode($node, $activeSubject, $activeProperty, $list);
+        foreach ($map as $graphName => $graph) {
+            if ('@default' === $graphName) {
+                continue;
             }
 
-            return $result;
-        }
+            if (!array_key_exists($graphName, $defaultGraph)) {
+                $defaultGraph[$graphName] = ['@id' => $graphName];
+            }
 
-        if (!is_array($input)) {
-            // TODO : implement real exceptions and catch them
-            throw new \Exception('Incorrect JSON input. Your JSON may have incorrect syntax or you may have forgotten to json_decode it.');
-        }
+            $entry = $defaultGraph[$graphName];
+            $entry['@graph'] = [];
 
-        if (null !== $activeSubject) {
-            $subjectNode = $this->graph[$activeSubject];
-        }
+            foreach ($graph as $node) {
+                if (1 === \count($node) && array_key_exists('@id', $node)) {
+                    continue;
+                }
 
-        if (array_key_exists('@type', $input) && $input['@type']) {
-            if ($newId = $this->blankNodeIdentifierUtil->replaceBlankNodeIdentifiers($input['@type'])) {
-                $input['@type'] = $newId;
+                $entry['@graph'][] = $node;
             }
         }
 
-        return $result;
-    }
+        $flattened = [];
 
-    private function isCollection($input)
-    {
-        return is_object($input) && stdClass::class === get_class($input);
+        foreach ($defaultGraph as $id => $node) {
+            if (1 === \count($node) && array_key_exists('@id', $node)) {
+                continue;
+            }
+
+            $flattened[] = $node;
+        }
+
+        return json_encode($flattened);
     }
 }
