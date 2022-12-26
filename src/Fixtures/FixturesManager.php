@@ -1,18 +1,29 @@
 <?php
 
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Jolicode\JsonLd\Fixtures;
 
-use Symfony\Component\Finder\Finder;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 
 class FixturesManager
 {
-    // All these directories are located in the /tests/fixtures directory
+    public const ALGO_PROCESS_CONTEXT = 'context';
     public const ALGO_FLATTEN = 'flatten';
     public const ALGO_COMPACT = 'compact';
     public const ALGO_EXPAND = 'expand';
 
-    public const ALGORITHMS = [
+    // This constant only include algorithms with a directory in the official test suite : https://github.com/w3c/json-ld-api/tree/main/tests
+    // Other algorithms are handled in a different way.
+    private const ALGORITHMS = [
         self::ALGO_FLATTEN => self::ALGO_FLATTEN,
         self::ALGO_COMPACT => self::ALGO_COMPACT,
         self::ALGO_EXPAND => self::ALGO_EXPAND,
@@ -30,7 +41,7 @@ class FixturesManager
     }
 
     /**
-     * @param bool $generateAnew If set to true, will reinstall the test suite.
+     * @param bool $generateAnew if set to true, will reinstall the test suite
      */
     public static function resetFixtures(bool $generateAnew = false): void
     {

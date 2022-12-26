@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Jolicode\JsonLd\Utils;
 
 class IdentifierGenerator
@@ -9,7 +18,7 @@ class IdentifierGenerator
     private int $counter = 1;
 
     /**
-     * A utility method to get the correct identifier for a given identifier key
+     * A utility method to get the correct identifier for a given identifier key.
      *
      * Will return :
      *      - a string with the generated identifier if one is generated
@@ -46,6 +55,8 @@ class IdentifierGenerator
             // Return original string : we only replace blank node identifiers
             return $identifier;
         }
+        // Do nothing : we only replace blank node identifiers
+        return false;
     }
 
     private function handleArrayIdentifier(array $identifiers): array

@@ -1,0 +1,80 @@
+<?php
+
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Tests;
+
+use Jolicode\JsonLd\ContextProcessing\ContextProcesser;
+use Jolicode\JsonLd\Fixtures\FixturesManager;
+use Jolicode\JsonLd\JsonLd\Keyword;
+use Jolicode\JsonLd\TermDefinition\CreateTermDefinition;
+
+/** @group context */
+class ContextProcesserTest extends AbstractJsonLdTest
+{
+    /** @dataProvider provideInputsAndOutputs */
+    public function testProcessContext(string $json, string $expected): void
+    {
+        $processer = new ContextProcesser();
+        $actual = $processer->fromJsonLd(json_decode($json));
+
+        $this->assertSame(json_decode($expected), $actual);
+    }
+
+    /** @dataProvider provideContainerEntries */
+    public function testValidateContainerEntry(string|array $container, bool $expected): void
+    {
+        $this->assertSame($expected, CreateTermDefinition::validateContainerEntry($container));
+    }
+
+    protected function getAlgorithmName(): string
+    {
+        return FixturesManager::ALGO_PROCESS_CONTEXT;
+    }
+
+    protected function shouldSkipThisTest(string $filename): bool
+    {
+        $testsToSkip = [];
+
+        return \in_array($filename, $testsToSkip, true);
+    }
+
+    private function provideContainerEntries(): iterable
+    {
+        yield 'correct keyword returns true' => [
+            'container' => Keyword::GRAPH->value,
+            'expected' => true,
+        ];
+        yield 'wrong keyword returns false' => [
+            'container' => Keyword::IMPORT->value,
+            'expected' => false,
+        ];
+        yield 'array with exactly 1 correct keyword returns true' => [
+            'container' => [Keyword::GRAPH->value],
+            'expected' => true,
+        ];
+        yield 'array with more than 1 entry returns false even with good keyword' => [
+            'container' => [Keyword::GRAPH->value, 'I should return false'],
+            'expected' => false,
+        ];
+        yield 'array with graph entry and good keyword returns true' => [
+            'container' => [Keyword::GRAPH->value, Keyword::INDEX->value],
+            'expected' => true,
+        ];
+        yield 'array with set entry and good keyword returns true' => [
+            'container' => [Keyword::SET->value, Keyword::INDEX->value],
+            'expected' => true,
+        ];
+        yield 'array with set entry and list keyword returns false' => [
+            'container' => [Keyword::SET->value, Keyword::LIST->value],
+            'expected' => false,
+        ];
+    }
+}
