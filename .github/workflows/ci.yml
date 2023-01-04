@@ -1,0 +1,30 @@
+name: Run tests
+
+on:
+    push:
+        branches: [ main ]
+    pull_request:
+
+jobs:
+    ci:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Setup PHP 8.1
+              uses: shivammathur/setup-php@v2
+              with:
+                php-version: '8.1'
+
+            - name: Validate composer.json and composer.lock
+              run: composer validate --strict
+
+            - name: Install dependencies
+              run: composer install --prefer-dist --no-progress
+
+            - name: Run the tests
+              run: make test
+
+            - name: Check CS
+              run: make cs_dry_run

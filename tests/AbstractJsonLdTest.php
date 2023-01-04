@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Tests;
 
 use Jolicode\JsonLd\Fixtures\FixturesManager;
@@ -8,8 +17,8 @@ use Symfony\Component\Finder\Finder;
 
 abstract class AbstractJsonLdTest extends TestCase
 {
-    private const FIXTURES_PATH = __DIR__ . '/fixtures';
-    private const VAR_DIR = self::FIXTURES_PATH . '/var';
+    private const FIXTURES_PATH = __DIR__.'/fixtures';
+    private const VAR_DIR = self::FIXTURES_PATH.'/var';
 
     /**
      * This function must return the name of the algorithm the child class is testing.
@@ -60,9 +69,9 @@ abstract class AbstractJsonLdTest extends TestCase
                 continue;
             }
 
-            yield [
-                $inputFile->getContents(),
-                file_get_contents($outputFileName)
+            yield $inputFile->getFilename() => [
+                'json' => $inputFile->getContents(),
+                'expected' => file_get_contents($outputFileName),
             ];
         }
     }

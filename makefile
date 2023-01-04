@@ -1,8 +1,8 @@
 cs: ## Fix CS violations
-	vendor/php-cs-fixer/vendor/bin/php-cs-fixer fix src --verbose
+	vendor/bin/php-cs-fixer fix src --verbose
 
 cs_dry_run: ## Display CS violations without fixing it
-	vendor/php-cs-fixer/vendor/bin/php-cs-fixer fix src --verbose --dry-run
+	vendor/bin/php-cs-fixer fix src --verbose --dry-run
 
 install: ## Install dependencies
 	composer install

@@ -1,9 +1,18 @@
 <?php
 
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Jolicode\JsonLd\Expand;
 
-use Jolicode\JsonLd\JsonLd\Keywords;
-use stdClass;
+use Jolicode\JsonLd\ContextProcessing\Context;
+use Jolicode\JsonLd\JsonLd\Keyword;
 
 class Expander
 {
@@ -17,10 +26,10 @@ class Expander
      * This is a PHP implementation of https://www.w3.org/TR/json-ld-api/#expansion-algorithm. It is based on the 16th July 2020 recommendation.
      */
     public function expand(
-        stdClass $element,
-        string $baseUrl = '',
-        array $activeContext = [],
-        string $activeProperty = Keywords::DEFAULT,
+        \stdClass $element,
+        ?string $baseUrl = null,
+        Context $activeContext = new Context(),
+        string $activeProperty = '@default',
         bool $frameExpansion = false,
         bool $ordered = false,
         bool $fromMap = false,
@@ -29,19 +38,19 @@ class Expander
             return null;
         }
 
-        if (Keywords::DEFAULT === $activeProperty) {
+        if ('@default' === $activeProperty) {
             $frameExpansion = false;
         }
 
         if (
-            array_key_exists($activeProperty, $activeContext) &&
-            array_key_exists(Keywords::CONTEXT, $activeContext[$activeProperty])
+            property_exists($activeContext, $activeProperty) &&
+            \array_key_exists(Keyword::CONTEXT->value, $activeContext[$activeProperty])
         ) {
-            $propertyScopedContext = $activeContext[$activeProperty][Keywords::CONTEXT];
+            $propertyScopedContext = $activeContext[$activeProperty][Keyword::CONTEXT->value];
         }
 
-        if (is_scalar($element)) {
-            if (in_array($activeProperty, [null, Keywords::GRAPH])) {
+        if (\is_scalar($element)) {
+            if (\in_array($activeProperty, [null, Keyword::GRAPH->value], true)) {
                 return null;
             }
 
@@ -50,6 +59,6 @@ class Expander
             }
         }
 
-        return json_encode(((array) $element));
+        return json_encode((array) $element);
     }
 }

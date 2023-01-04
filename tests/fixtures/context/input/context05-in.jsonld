@@ -1,0 +1,27 @@
+{
+    "@id": "https://schema.org/Muscle",
+    "@type": [
+        "http://www.w3.org/2000/01/rdf-schema#Class",
+        "http://www.w3.org/2000/01/rdf-schema#Property"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+        {
+            "@value": "A muscle is an anatomical structure consisting of a contractile form of tissue that animals use to effect movement."
+        }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+        {
+            "@value": "Muscle"
+        }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+        {
+            "@id": "https://schema.org/AnatomicalStructure"
+        }
+    ],
+    "https://schema.org/isPartOf": [
+        {
+            "@id": "https://health-lifesci.schema.org"
+        }
+    ]
+}

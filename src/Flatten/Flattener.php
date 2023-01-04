@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Jolicode\JsonLd\Flatten;
 
 use Jolicode\JsonLd\Utils\IdentifierGenerator;
@@ -20,7 +29,7 @@ class Flattener
      *
      * This is a PHP implementation of https://www.w3.org/TR/json-ld11-api/#algorithm-9. It is based on the 16th July 2020 recommendation.
      */
-    public function flatten(stdClass $input): string
+    public function flatten(\stdClass $input): string
     {
         $this->nodeMapGenerator->buildNode((array) $input);
         $map = $this->nodeMapGenerator->getMap();
