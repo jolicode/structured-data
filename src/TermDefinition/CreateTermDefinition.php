@@ -13,8 +13,8 @@ namespace Jolicode\JsonLd\TermDefinition;
 
 use Jolicode\JsonLd\ContextProcessing\Context;
 use Jolicode\JsonLd\ContextProcessing\ContextProcesser;
+use Jolicode\JsonLd\Http\IriResolver;
 use Jolicode\JsonLd\JsonLd\Keyword;
-use Jolicode\JsonLd\Utils\IriUtil;
 
 class CreateTermDefinition
 {
@@ -108,18 +108,19 @@ class CreateTermDefinition
             // 12.1
             $type = $value->{Keyword::TYPE->value};
             // 12.2
-            $type = IriUtil::expand($activeContext, $type, localContext: $localContext, defined: $defined);
+            $type = IriResolver::expand($activeContext, $type, localContext: $localContext, defined: $defined);
 
             // TODO: 12.3
 
             // 12.4
             if (
-                !IriUtil::isIri($type) &&
+                !IriResolver::isIri($type) &&
                 !\in_array(
                     $type,
                     [
                         Keyword::ID->value, Keyword::NONE->value, Keyword::JSON->value, Keyword::VOCAB->value,
-                    ], true
+                    ],
+                    true
                 )
             ) {
                 // TODO: implement real exceptions and catch them.
@@ -156,7 +157,7 @@ class CreateTermDefinition
             }
 
             // 13.4
-            $definition->iriMapping = IriUtil::expand(
+            $definition->iriMapping = IriResolver::expand(
                 $activeContext,
                 $value->{Keyword::REVERSE->value},
                 defined: $defined,
@@ -164,7 +165,7 @@ class CreateTermDefinition
             );
 
             // 13.4
-            if (!IriUtil::isAbsoluteIriOrBlankNode($definition->iriMapping)) {
+            if (!IriResolver::isAbsoluteIriOrBlankNode($definition->iriMapping)) {
                 // TODO: implement real exceptions and catch them.
                 throw new \Exception('invalid IRI mapping');
             }
@@ -214,7 +215,7 @@ class CreateTermDefinition
                     return;
                 }
 
-                $definition->iriMapping = IriUtil::expand(
+                $definition->iriMapping = IriResolver::expand(
                     $activeContext,
                     $value->{Keyword::ID->value},
                     defined: $defined,
@@ -223,7 +224,7 @@ class CreateTermDefinition
 
                 if (
                     !Keyword::tryFrom($definition->iriMapping) &&
-                    !IriUtil::isAbsoluteIriOrBlankNode($definition->iriMapping)
+                    !IriResolver::isAbsoluteIriOrBlankNode($definition->iriMapping)
                 ) {
                     // TODO: implement real exceptions and catch them.
                     throw new \Exception('invalid IRI mapping');
@@ -241,7 +242,7 @@ class CreateTermDefinition
                     $defined[$term] = true;
 
                     if (
-                        IriUtil::expand(
+                        IriResolver::expand(
                             $activeContext,
                             $term,
                             defined: $defined,
@@ -260,7 +261,7 @@ class CreateTermDefinition
                 if (
                     str_starts_with('_:', $definition->iriMapping) ||
                     (\in_array($definition->iriMapping[\strlen($definition->iriMapping) - 1], [':', ',', '?', '#', '[', ']', '@'], true) &&
-                        IriUtil::isIri($definition->iriMapping)
+                        IriResolver::isIri($definition->iriMapping)
                     )
                 ) {
                     $definition->prefixFlag = true;
@@ -289,7 +290,7 @@ class CreateTermDefinition
         // 16
         } elseif (str_contains($term, '/')) {
             // 16.2
-            if (IriUtil::isIri($mapping = IriUtil::expand($activeContext, $term))) {
+            if (IriResolver::isIri($mapping = IriResolver::expand($activeContext, $term))) {
                 $definition->iriMapping = $mapping;
             } else {
                 // TODO: implement real exceptions and catch them.
@@ -346,7 +347,7 @@ class CreateTermDefinition
             // 20.2
             $index = $value->{Keyword::INDEX};
 
-            if (!IriUtil::expand($activeContext, $index)) {
+            if (!IriResolver::expand($activeContext, $index)) {
                 // TODO: implement real exceptions and catch them.
                 throw new \Exception('invalid term defnition');
             }
@@ -383,7 +384,7 @@ class CreateTermDefinition
             // Needs further investigation
             // 21.4
             $definition->localContext = $context;
-            $definition->baseURL = $baseUrl;
+            $definition->baseUrl = $baseUrl;
         }
 
         // 22

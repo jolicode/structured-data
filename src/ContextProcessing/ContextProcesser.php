@@ -11,12 +11,14 @@
 
 namespace Jolicode\JsonLd\ContextProcessing;
 
+use Jolicode\JsonLd\Http\DocumentLoader;
+use Jolicode\JsonLd\Http\IriResolver;
 use Jolicode\JsonLd\JsonLd\Keyword;
 use Jolicode\JsonLd\TermDefinition\CreateTermDefinition;
 
 class ContextProcesser
 {
-    public function fromJsonLd(\stdClass|array $json): \stdClass
+    public function fromJsonLd(\stdClass|array $json): Context
     {
         $activeContext = new Context();
         $localContext = new Context($this->extractContext($json));
@@ -37,7 +39,7 @@ class ContextProcesser
         bool $overrideProtected = false,
         bool $propagate = true,
         bool $validateScopedContext = true
-    ): \stdClass {
+    ): Context {
         // 1
         $result = clone $activeContext;
         $result->options->inverseContext = null;
@@ -73,21 +75,43 @@ class ContextProcesser
                 }
 
                 $options = new ContextOptions(
-                    baseIRI: $activeContext->options->baseURL,
-                    baseURL: $activeContext->options->baseURL,
+                    baseIri: $activeContext->options->baseUrl,
+                    baseUrl: $activeContext->options->baseUrl,
                     previousContext: false === $propagate ? $result : null
                 );
 
                 $result = new Context(options: $options);
 
                 continue;
-                // 5.2
             }
 
+            // 5.2
             if (\is_string($context)) {
-                // Context is a remote reference.
-                // It requires us to do some HTTP calls, HTML parsing and other things.
-                // We skip it for now, it will be implemented later.
+                if (!IriResolver::isIri($baseUrl) && !IriResolver::isIri($context)) {
+                    // TODO: implement real exceptions and catch them
+                    throw new \Exception('Loading document failed');
+                }
+
+                $context = IriResolver::resolveIri($baseUrl, $context);
+
+                if (!$validateScopedContext && \in_array($context, $remoteContexts, true)) {
+                    continue;
+                }
+
+                // TODO: throw a context overflow error if length of remote contexts > defined limit
+
+                // TODO: probably add a cache system to prevent processing the same URL multiple times
+                $documentLoader = new DocumentLoader($context);
+                $loadedContext = $documentLoader->load()[Keyword::CONTEXT->value];
+
+                $result = $this->processContext(
+                    $result,
+                    $loadedContext,
+                    $context,
+                    $remoteContexts,
+                    $validateScopedContext
+                );
+
                 continue;
             }
 
@@ -112,7 +136,24 @@ class ContextProcesser
                     throw new \Exception('Invalid @import value.');
                 }
 
-                // Again, it requires to do HTTP calls : skipping for now.
+                $import = IriResolver::resolveIri($baseUrl, $context[Keyword::IMPORT->value]);
+
+                $documentLoader = new DocumentLoader($import);
+                $response = $documentLoader->load();
+
+                if (!count($response) || !array_key_exists(Keyword::CONTEXT->value, $response)) {
+                    // TODO: implement real exceptions and catch them
+                    throw new \Exception('Invalid remote context.');
+                }
+
+                $importContext = $response[Keyword::CONTEXT->value];
+
+                if (array_key_exists(Keyword::IMPORT->value, $importContext)) {
+                    // TODO: implement real exceptions and catch them
+                    throw new \Exception('Invalid context entry.');
+                }
+
+                $context = array_replace($importContext, $context);
             }
 
             // 5.12
@@ -133,21 +174,17 @@ class ContextProcesser
             }
         }
 
-        $context = new \stdClass();
-
         if (1 === \count($localContext->context)) {
             if (null === $localContext->context[0]) {
-                return new \stdClass();
+                $localContext->context = new \stdClass();
+
+                return $localContext;
             }
 
-            $context->{Keyword::CONTEXT->value} = $localContext->context[0];
+            $localContext->{Keyword::CONTEXT->value} = $localContext->context[0];
         }
 
-        if (1 < \count($localContext->context)) {
-            $context->{Keyword::CONTEXT->value} = $localContext->context;
-        }
-
-        return $context;
+        return $localContext;
     }
 
     private function extractContext(\stdClass|array $json): mixed

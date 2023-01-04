@@ -12,7 +12,6 @@
 namespace Jolicode\JsonLd\Http;
 
 use Jolicode\JsonLd\ContextProcessing\Context;
-use Jolicode\JsonLd\Http\Url;
 use Jolicode\JsonLd\JsonLd\Keyword;
 use Jolicode\JsonLd\TermDefinition\CreateTermDefinition;
 
@@ -101,7 +100,7 @@ class IriResolver
 
         // 8
         if ($documentRelative) {
-            $value = self::resolveIri($value, $activeContext->baseIRI, false);
+            $value = self::resolveIri($value, $activeContext->baseIri, false);
         }
 
         // 9
@@ -128,7 +127,7 @@ class IriResolver
             return $iri;
         }
 
-        if (!$base || is_string($base)) {
+        if (!$base || \is_string($base)) {
             $base = new Url($base, $normalize);
         }
 
@@ -149,7 +148,7 @@ class IriResolver
                 } else {
                     $path = substr($base->path, 0, strrpos($base->path, '/') + 1);
 
-                    if ((strlen($path) || $base->authority) && $path[strlen($path) - 1] !== '/') {
+                    if ((\strlen($path) || $base->authority) && '/' !== $path[\strlen($path) - 1]) {
                         $path .= '/';
                     }
 
@@ -181,7 +180,7 @@ class IriResolver
             $resolved .= '#' . $url->fragment;
         }
 
-        if ($resolved === '') {
+        if ('' === $resolved) {
             $resolved .= './';
         }
 

@@ -18,7 +18,7 @@ class TermDefinition
         public bool $protected,
         public bool $reverseProperty,
         public ?string $iriMapping = null,
-        public ?string $baseURL = null,
+        public ?string $baseUrl = null,
         public mixed $context = null,
         public ?array $containerMapping = null,
         public ?string $directionMapping = null,

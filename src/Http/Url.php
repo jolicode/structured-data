@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Jolicode\JsonLd\Http;
 
 /**
@@ -11,7 +20,7 @@ class Url
     private const REGEX = '/^(([^:\/?#]+):)?(?:\/\/((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?))?(?:(((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/';
     private const KEYS = [
         'href', 'protocol', 'scheme', 'authority', 'auth', 'user', 'password',
-        'hostname', 'port', 'path', 'directory', 'file', 'query', 'fragment'
+        'hostname', 'port', 'path', 'directory', 'file', 'query', 'fragment',
     ];
 
     public ?string $href = null;
@@ -59,9 +68,9 @@ class Url
         $input = explode('/', $this->path);
         $output = [];
 
-        while (count($input)) {
+        while (\count($input)) {
             $next = array_shift($input);
-            $done = !count($input);
+            $done = !\count($input);
 
             if ('.' === $next) {
                 if ($done) {
@@ -84,11 +93,11 @@ class Url
             $output[] = $next;
         }
 
-        if ('/' === $this->path[0] && count($output) && $output[0] !== '') {
+        if ('/' === $this->path[0] && \count($output) && '' !== $output[0]) {
             array_unshift($output, '');
         }
 
-        if (1 === count($output) && '' === $output[0]) {
+        if (1 === \count($output) && '' === $output[0]) {
             $this->normalizedPath = '/';
 
             return;

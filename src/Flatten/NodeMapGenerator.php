@@ -1,16 +1,24 @@
 <?php
 
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Jolicode\JsonLd\Flatten;
 
-use Jolicode\JsonLd\Utils\IdentifierGenerator;
-use stdClass;
+use Jolicode\JsonLd\Identifier\IdentifierGenerator;
 
 class NodeMapGenerator
 {
     public function __construct(
         private IdentifierGenerator $identifierGenerator,
         private array $map = [
-            '@default' => []
+            '@default' => [],
         ],
     ) {
     }
@@ -50,9 +58,9 @@ class NodeMapGenerator
         }
 
         // 3
-        if (array_key_exists('@type', $element)) {
+        if (\array_key_exists('@type', $element)) {
             // 3.1
-            if (is_array($element['@type'])) {
+            if (\is_array($element['@type'])) {
                 foreach ($element['@type'] as $type) {
                     $type = $this->identifierGenerator->getIdentifier($type);
                 }
@@ -62,22 +70,22 @@ class NodeMapGenerator
         }
 
         // 4
-        if (array_key_exists('@value', $element)) {
+        if (\array_key_exists('@value', $element)) {
             // 4.1
             if (null === $list) {
-                if (!array_key_exists($activeProperty, $activeSubject)) {
+                if (!\array_key_exists($activeProperty, $activeSubject)) {
                     $subjectNode[$activeProperty] = [$element];
                 } else {
-                    if (!array_search($element, $subjectNode[$activeProperty])) {
+                    if (!array_search($element, $subjectNode[$activeProperty], true)) {
                         $subjectNode[$activeProperty][] = $element;
                     }
                 }
-                // 4.2
+            // 4.2
             } else {
                 $list['@list'][] = $element;
             }
-            // 5
-        } elseif (array_key_exists('@list', $element)) {
+        // 5
+        } elseif (\array_key_exists('@list', $element)) {
             // 5.1
             $result = ['@list' => []];
 
@@ -87,23 +95,23 @@ class NodeMapGenerator
             // 5.3
             if (null === $list) {
                 $subjectNode[$activeProperty][] = $result;
-                // 5.4
+            // 5.4
             } else {
                 $list['@list'][] = $result;
             }
-            // 6
+        // 6
         } else {
             // 6.1
-            if (array_key_exists('@id', $element)) {
+            if (\array_key_exists('@id', $element)) {
                 $id = $this->identifierGenerator->getIdentifier($element['@id']);
                 unset($element['@id']);
-                // 6.2
+            // 6.2
             } else {
                 $id = $this->identifierGenerator->getIdentifier(null);
             }
 
             // 6.3
-            if (!array_key_exists($id, $graph)) {
+            if (!\array_key_exists($id, $graph)) {
                 $graph[$id] = ['@id' => $id];
             }
 
@@ -111,20 +119,20 @@ class NodeMapGenerator
             $node = &$graph[$id];
 
             // 6.5
-            if (is_array($activeSubject)) {
-                if (!array_key_exists($activeProperty, $node)) {
+            if (\is_array($activeSubject)) {
+                if (!\array_key_exists($activeProperty, $node)) {
                     $node[$activeProperty] = [$activeSubject];
-                } elseif (!array_search($activeSubject, $node[$activeProperty])) {
+                } elseif (!array_search($activeSubject, $node[$activeProperty], true)) {
                     $node[$activeProperty][] = $activeSubject;
                 }
-                // 6.6
+            // 6.6
             } elseif (null !== $activeProperty) {
                 $reference = ['@id' => $id];
 
                 if (null === $list) {
-                    if (null === $subjectNode || !array_key_exists($activeProperty, $subjectNode)) {
+                    if (null === $subjectNode || !\array_key_exists($activeProperty, $subjectNode)) {
                         $subjectNode[$activeProperty] = $reference;
-                    } elseif (!array_search($reference, $subjectNode[$activeProperty])) {
+                    } elseif (!array_search($reference, $subjectNode[$activeProperty], true)) {
                         $subjectNode[$activeProperty][] = $reference;
                     }
                 } else {
@@ -133,13 +141,13 @@ class NodeMapGenerator
             }
 
             // 6.7
-            if (array_key_exists('@type', $element)) {
+            if (\array_key_exists('@type', $element)) {
                 foreach ((array) $element['@type'] as $type) {
-                    if (!array_key_exists('@type', $node)) {
+                    if (!\array_key_exists('@type', $node)) {
                         $node['@type'] = [];
                     }
 
-                    if (!array_search($type, $node['@type'])) {
+                    if (!array_search($type, $node['@type'], true)) {
                         $node['@type'][] = $type;
                     }
                 }
@@ -148,8 +156,8 @@ class NodeMapGenerator
             }
 
             // 6.8
-            if (array_key_exists('@index', $element)) {
-                if (array_key_exists('@index', $node) && $node['@index'] !== $element['@index']) {
+            if (\array_key_exists('@index', $element)) {
+                if (\array_key_exists('@index', $node) && $node['@index'] !== $element['@index']) {
                     // TODO : implement real exceptions and catch them
                     throw new \Exception('Conflicting Index Exception : aborting processing');
                 }
@@ -159,7 +167,7 @@ class NodeMapGenerator
             }
 
             // 6.9
-            if (array_key_exists('@reverse', $element)) {
+            if (\array_key_exists('@reverse', $element)) {
                 $referencedNode = ['@id' => $id];
                 $reverseMap = $element['@reverse'];
 
@@ -173,13 +181,13 @@ class NodeMapGenerator
             }
 
             // 6.10
-            if (array_key_exists('@graph', $element)) {
+            if (\array_key_exists('@graph', $element)) {
                 $this->buildNode($element['@graph'], $id);
                 unset($element['@graph']);
             }
 
             // 6.11
-            if (array_key_exists('@included', $element)) {
+            if (\array_key_exists('@included', $element)) {
                 $this->buildNode($element['@included'], $activeGraph);
                 unset($element['@included']);
             }
@@ -188,8 +196,7 @@ class NodeMapGenerator
             foreach ($element as $property => $value) {
                 $property = $this->identifierGenerator->getIdentifier($property);
 
-
-                if (!array_key_exists($property, $node)) {
+                if (!\array_key_exists($property, $node)) {
                     $node[$property] = [$value];
                 }
 
@@ -203,6 +210,6 @@ class NodeMapGenerator
 
     private function isCollection($element): bool
     {
-        return is_object($element) && stdClass::class === get_class($element);
+        return \is_object($element) && \stdClass::class === \get_class($element);
     }
 }

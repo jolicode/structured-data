@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Utils;
+namespace Jolicode\JsonLd\Identifier;
 
 class IdentifierGenerator
 {
@@ -28,19 +28,16 @@ class IdentifierGenerator
      */
     public function getIdentifier(array|string|null $identifier): string|array
     {
-        if ($identifier && array_key_exists($identifier, $this->existing)) {
+        if ($identifier && \array_key_exists($identifier, $this->existing)) {
             return $this->existing[$identifier];
         }
 
-        return match (gettype($identifier)) {
+        return match (\gettype($identifier)) {
             'string' => $this->handleStringIdentifier($identifier),
             'array' => $this->handleArrayIdentifier($identifier),
             'NULL' => $this->createNewIdentifier(),
-                // TODO : use real exceptions and catch them
-            default => throw new \Exception(sprintf(
-                'Wrong value found for the @type key : it should be a string or an array, %s provided',
-                gettype($identifier)
-            )),
+            // TODO : use real exceptions and catch them
+            default => throw new \Exception(sprintf('Wrong value found for the @type key : it should be a string or an array, %s provided', \gettype($identifier))),
         };
     }
 
@@ -51,10 +48,9 @@ class IdentifierGenerator
             $this->existing[$identifier] = $newIdentifier;
 
             return $newIdentifier;
-        } else {
-            // Return original string : we only replace blank node identifiers
-            return $identifier;
         }
+        // Return original string : we only replace blank node identifiers
+        return $identifier;
         // Do nothing : we only replace blank node identifiers
         return false;
     }
@@ -73,7 +69,7 @@ class IdentifierGenerator
     private function createNewIdentifier(): string
     {
         $newIdentifier = $this->prefix . (string) $this->counter;
-        $this->counter++;
+        ++$this->counter;
 
         return $newIdentifier;
     }

@@ -11,8 +11,7 @@
 
 namespace Jolicode\JsonLd\Flatten;
 
-use Jolicode\JsonLd\Utils\IdentifierGenerator;
-use stdClass;
+use Jolicode\JsonLd\Identifier\IdentifierGenerator;
 
 class Flattener
 {
@@ -25,7 +24,7 @@ class Flattener
     }
 
     /**
-     * Takes a json_decoded JSON string as input and returns a flattened JSON string
+     * Takes a json_decoded JSON element as input and returns a flattened JSON string.
      *
      * This is a PHP implementation of https://www.w3.org/TR/json-ld11-api/#algorithm-9. It is based on the 16th July 2020 recommendation.
      */
@@ -40,7 +39,7 @@ class Flattener
                 continue;
             }
 
-            if (!array_key_exists($graphName, $defaultGraph)) {
+            if (!\array_key_exists($graphName, $defaultGraph)) {
                 $defaultGraph[$graphName] = ['@id' => $graphName];
             }
 
@@ -48,7 +47,7 @@ class Flattener
             $entry['@graph'] = [];
 
             foreach ($graph as $node) {
-                if (1 === \count($node) && array_key_exists('@id', $node)) {
+                if (1 === \count($node) && \array_key_exists('@id', $node)) {
                     continue;
                 }
 
@@ -59,7 +58,7 @@ class Flattener
         $flattened = [];
 
         foreach ($defaultGraph as $id => $node) {
-            if (1 === \count($node) && array_key_exists('@id', $node)) {
+            if (1 === \count($node) && \array_key_exists('@id', $node)) {
                 continue;
             }
 

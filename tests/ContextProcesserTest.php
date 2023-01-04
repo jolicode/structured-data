@@ -11,9 +11,9 @@
 
 namespace Tests;
 
-use Jolicode\JsonLd\ContextProcessing\ContextProcesser;
-use Jolicode\JsonLd\Fixtures\FixturesManager;
 use Jolicode\JsonLd\JsonLd\Keyword;
+use Jolicode\JsonLd\Fixtures\FixturesManager;
+use Jolicode\JsonLd\ContextProcessing\ContextProcesser;
 use Jolicode\JsonLd\TermDefinition\CreateTermDefinition;
 
 /** @group context */
@@ -23,7 +23,9 @@ class ContextProcesserTest extends AbstractJsonLdTest
     public function testProcessContext(string $json, string $expected): void
     {
         $processer = new ContextProcesser();
-        $actual = $processer->fromJsonLd(json_decode($json));
+        $actual = $processer
+            ->fromJsonLd(json_decode($json))
+            ->context;
 
         $this->assertSame(json_decode($expected), $actual);
     }

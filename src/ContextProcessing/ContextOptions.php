@@ -11,13 +11,15 @@
 
 namespace Jolicode\JsonLd\ContextProcessing;
 
+use Jolicode\JsonLd\TermDefinition\TermDefinition;
+
 class ContextOptions
 {
     public function __construct(
         /** @var TermDefinition[] $termDefinitions */
         public array $termDefinitions = [],
-        public ?string $baseIRI = null,
-        public ?string $baseURL = null,
+        public ?string $baseIri = null,
+        public ?string $baseUrl = null,
         public ?Context $inverseContext = null,
         public ?string $vocabularyMapping = null,
         public ?string $defaultLangage = null,
