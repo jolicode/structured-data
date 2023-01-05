@@ -23,11 +23,17 @@ class ContextProcesserTest extends AbstractJsonLdTest
     public function testProcessContext(string $json, string $expected): void
     {
         $processer = new ContextProcesser();
-        $actual = $processer
+        $context = $processer
             ->fromJsonLd(json_decode($json))
             ->context;
 
-        $this->assertSame(json_decode($expected), $actual);
+        $actual = new \stdClass();
+
+        if ($context != $actual) {
+            $actual->{Keyword::CONTEXT->value} = $context;
+        }
+
+        $this->assertEquals(json_decode($expected), $actual);
     }
 
     /** @dataProvider provideContainerEntries */

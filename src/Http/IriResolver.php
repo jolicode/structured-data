@@ -50,8 +50,11 @@ class IriResolver
         }
 
         // 4
-        if (isset($activeContext->$value) && Keyword::tryFrom($activeContext->$value)) {
-            return Keyword::from($activeContext->$value);
+        if (
+            \array_key_exists($value, $activeContext->options->termDefinitions) &&
+            ($keyword = Keyword::tryFrom($activeContext->options->termDefinitions[$value]->iriMapping))
+        ) {
+            return $keyword->value;
         }
 
         // 5
@@ -107,8 +110,12 @@ class IriResolver
         return $value;
     }
 
-    public static function isIri(string $iri): bool
+    public static function isIri(?string $iri): bool
     {
+        if (!$iri) {
+            return false;
+        }
+
         return preg_match('/^https?:\/\/[^\s]*$/', $iri);
     }
 
@@ -143,7 +150,7 @@ class IriResolver
                     $base->query = $url->query;
                 }
             } else {
-                if (str_starts_with('/', $url->path)) {
+                if (str_starts_with($url->path, '/')) {
                     $base->path = $url->path;
                 } else {
                     $path = substr($base->path, 0, strrpos($base->path, '/') + 1);

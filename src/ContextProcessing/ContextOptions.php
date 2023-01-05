@@ -11,8 +11,6 @@
 
 namespace Jolicode\JsonLd\ContextProcessing;
 
-use Jolicode\JsonLd\TermDefinition\TermDefinition;
-
 class ContextOptions
 {
     public function __construct(

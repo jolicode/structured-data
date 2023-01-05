@@ -64,10 +64,12 @@ class DocumentLoader
                     // A response MUST NOT contain more than one HTTP Link Header using the alternate link relation with type="application/ld+json".
                     throw new \LogicException('A response MUST NOT contain more than one HTTP Link Header using the alternate link relation with type="application/ld+json".');
                 } elseif (1 === \count($alternateLocationHeader)) {
-                    return $this->load(IriResolver::resolveIri(
+                    $this->url = IriResolver::resolveIri(
+                        $this->url,
                         $alternateLocationHeader[0]['uri'],
-                        $this->url
-                    ));
+                    );
+
+                    return $this->load();
                 }
 
                 if (
@@ -87,11 +89,12 @@ class DocumentLoader
                         // A response MUST NOT contain more than one HTTP Link Header using the http://www.w3.org/ns/json-ld#context link relation.
                         throw new \LogicException('A response MUST NOT contain more than one HTTP Link Header using the http://www.w3.org/ns/json-ld#context link relation.');
                     } elseif (1 === \count($externalContextURLs)) {
-                        // inject this context
-                        $externalContextNode = $this->load(IriResolver::resolveIri(
+                        $this->url = IriResolver::resolveIri(
                             $externalContextURLs[0]['uri'],
                             $this->url
-                        ));
+                        );
+                        // inject this context
+                        $externalContextNode = $this->load();
 
                         if (isset($externalContextNode[Keyword::CONTEXT->value][Keyword::BASE->value])) {
                             // see https://www.w3.org/TR/json-ld/#base-iri

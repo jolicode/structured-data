@@ -66,7 +66,7 @@ class ContextProcesser
         }
 
         // 5
-        foreach ($localContext->context as $index => $context) {
+        foreach ($localContext->context as $context) {
             // 5.1
             if (null === $context) {
                 if (!$overrideProtected && $activeContext->hasProtectedTermDefinitions()) {
@@ -103,6 +103,7 @@ class ContextProcesser
                 // TODO: probably add a cache system to prevent processing the same URL multiple times
                 $documentLoader = new DocumentLoader($context);
                 $loadedContext = $documentLoader->load()[Keyword::CONTEXT->value];
+                $loadedContext = new Context((object) $loadedContext);
 
                 $result = $this->processContext(
                     $result,
@@ -175,13 +176,14 @@ class ContextProcesser
         }
 
         if (1 === \count($localContext->context)) {
-            if (null === $localContext->context[0]) {
-                $localContext->context = new \stdClass();
+            $context = $localContext->context[0];
+            $localContext->context = new \stdClass();
 
+            if (null === $context) {
                 return $localContext;
             }
 
-            $localContext->{Keyword::CONTEXT->value} = $localContext->context[0];
+            $localContext->context = $context;
         }
 
         return $localContext;

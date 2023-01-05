@@ -72,15 +72,18 @@ class CreateTermDefinition
         // 7
         if (null === $value) {
             $value = (object) [Keyword::ID->value => null];
-        // 8
+            // 8
         } elseif (\is_string($value)) {
             $value = (object) [Keyword::ID->value => $value];
             $simpleTerm = true;
-        // 9
+            // 9
         } elseif (!\is_object($value)) {
-            // TODO: implement real exceptions and catch them.
-            throw new \Exception('invalid term definition');
-        } else {
+            if (!array_key_exists(Keyword::ID->value, $value)) {
+                // TODO: implement real exceptions and catch them.
+                throw new \Exception('invalid term definition');
+            }
+
+            $value = (object) [Keyword::ID->value => $value[Keyword::ID->value]];
             $simpleTerm = false;
         }
 
@@ -102,11 +105,12 @@ class CreateTermDefinition
             // 12.1
             if (!\is_string($value->{Keyword::TYPE->value})) {
                 // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid @protected value');
+                throw new \Exception('invalid @type value');
             }
 
             // 12.1
             $type = $value->{Keyword::TYPE->value};
+
             // 12.2
             $type = IriResolver::expand($activeContext, $type, localContext: $localContext, defined: $defined);
 
@@ -267,7 +271,7 @@ class CreateTermDefinition
                     $definition->prefixFlag = true;
                 }
             }
-        // 15
+            // 15
         } elseif (preg_match('/[^^]:/', $term)) {
             [$prefix, $suffix] = explode(':', $term, 2);
 
@@ -278,16 +282,15 @@ class CreateTermDefinition
 
             // 15.2
             if (\array_key_exists($prefix, $activeContext->options->termDefinitions)) {
-                // Not sure here, doc is not very clear. Will probably need to look at it again.
                 $definition->iriMapping = $activeContext
                     ->options
                     ->termDefinitions[$prefix]
                     ->iriMapping . $suffix;
-            // 15.3
+                // 15.3
             } else {
                 $definition->iriMapping = $term;
             }
-        // 16
+            // 16
         } elseif (str_contains($term, '/')) {
             // 16.2
             if (IriResolver::isIri($mapping = IriResolver::expand($activeContext, $term))) {
@@ -296,10 +299,10 @@ class CreateTermDefinition
                 // TODO: implement real exceptions and catch them.
                 throw new \Exception('invalid IRI mapping');
             }
-        // 17
+            // 17
         } elseif (Keyword::TYPE->value === $term) {
             $definition->iriMapping = Keyword::TYPE->value;
-        // 18
+            // 18
         } elseif ($activeContext->options->vocabularyMapping) {
             $definition->iriMapping = $activeContext->options->vocabularyMapping . $term;
         }
@@ -314,7 +317,6 @@ class CreateTermDefinition
             }
 
             // 19.2
-            // Might need to double check the &&
             if (
                 \in_array($container, [Keyword::GRAPH->value, Keyword::ID->value, Keyword::TYPE->value], true) ||
                 !\is_string($container)
@@ -380,10 +382,8 @@ class CreateTermDefinition
                 throw new \Exception('invalid scoped context');
             }
 
-            // Does not exist in our class but the doc says to set it.
-            // Needs further investigation
             // 21.4
-            $definition->localContext = $context;
+            $definition->context = $context;
             $definition->baseUrl = $baseUrl;
         }
 
@@ -393,7 +393,7 @@ class CreateTermDefinition
             $language = $value->{Keyword::LANGUAGE->value};
 
             if (null !== $language || !\is_string($language)) {
-                // TODO: Ass the language check
+                // TODO: Add the language check
                 // TODO: implement real exceptions and catch them.
                 throw new \Exception('invalid language mapping');
             }
@@ -467,12 +467,32 @@ class CreateTermDefinition
             }
         }
 
-        // 26 is a bit painful, will do later
+        // 26
+        foreach ($value as $entry => $value) {
+            if (!in_array(
+                $entry,
+                [
+                    Keyword::ID->value,
+                    Keyword::REVERSE->value,
+                    Keyword::CONTAINER->value,
+                    Keyword::CONTEXT->value,
+                    Keyword::DIRECTION->value,
+                    Keyword::INDEX->value,
+                    Keyword::LANGUAGE->value,
+                    Keyword::NEST->value,
+                    Keyword::PREFIX->value,
+                    Keyword::PROTECTED->value,
+                    Keyword::TYPE->value,
+                ]
+            )) {
+                // TODO: implement real exceptions and catch them.
+                throw new \Exception('invalid term definition');
+            }
+        }
 
         // 27
         if (!$overrideProtected && isset($previousDefinition) && $previousDefinition->protected) {
             // 27.1
-            // TODO: Double check the ===
             if (
                 $definition !== $previousDefinition &&
                 $definition->protected === $previousDefinition->protected
