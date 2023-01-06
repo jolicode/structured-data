@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Identifier;
+namespace Jolicode\JsonLd\Services;
 
 class IdentifierGenerator
 {

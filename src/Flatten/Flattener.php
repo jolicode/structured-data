@@ -11,11 +11,13 @@
 
 namespace Jolicode\JsonLd\Flatten;
 
-use Jolicode\JsonLd\Identifier\IdentifierGenerator;
+use Jolicode\JsonLd\JsonLd\FramingKeyword;
+use Jolicode\JsonLd\Services\IdentifierGenerator;
 
 class Flattener
 {
     private IdentifierGenerator $identifierGenerator;
+    private NodeMapGenerator $nodeMapGenerator;
 
     public function __construct()
     {
@@ -32,10 +34,10 @@ class Flattener
     {
         $this->nodeMapGenerator->buildNode((array) $input);
         $map = $this->nodeMapGenerator->getMap();
-        $defaultGraph = $map['@default'];
+        $defaultGraph = $map[FramingKeyword::DEFAULT->value];
 
         foreach ($map as $graphName => $graph) {
-            if ('@default' === $graphName) {
+            if (FramingKeyword::DEFAULT->value === $graphName) {
                 continue;
             }
 

@@ -142,14 +142,14 @@ class ContextProcesser
                 $documentLoader = new DocumentLoader($import);
                 $response = $documentLoader->load();
 
-                if (!count($response) || !array_key_exists(Keyword::CONTEXT->value, $response)) {
+                if (!\count($response) || !\array_key_exists(Keyword::CONTEXT->value, $response)) {
                     // TODO: implement real exceptions and catch them
                     throw new \Exception('Invalid remote context.');
                 }
 
                 $importContext = $response[Keyword::CONTEXT->value];
 
-                if (array_key_exists(Keyword::IMPORT->value, $importContext)) {
+                if (\array_key_exists(Keyword::IMPORT->value, $importContext)) {
                     // TODO: implement real exceptions and catch them
                     throw new \Exception('Invalid context entry.');
                 }

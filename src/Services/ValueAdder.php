@@ -1,0 +1,52 @@
+<?php
+
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Jolicode\JsonLd\Services;
+
+class ValueAdder
+{
+    /**
+     * This is a PHP implementation of the W3C add value macro described at https://www.w3.org/TR/json-ld-api/#algorithm-terms. It is based on the 16th July 2020 recommendation.
+     */
+    public static function addValue(mixed $value, mixed $key, \stdClass|array $object, bool $asArray = false): void
+    {
+        $object = (object) $object;
+
+        // 1
+        if ($asArray) {
+            if (!property_exists($object, $key) || !\is_array($object->$key)) {
+                $object->$key = [$object->$key];
+            }
+        }
+
+        // 2
+        if (\is_array($value)) {
+            foreach ($value as $element) {
+                self::addValue($element, $key, $object);
+            }
+        // 3
+        } else {
+            // 3.1
+            if (!property_exists($object, $key)) {
+                $object->$key = $value;
+            // 3.2
+            } else {
+                // 3.2.1
+                if (!\is_array($object->$key)) {
+                    $object->$key = [$object->$key];
+                }
+
+                // 3.2.2
+                $object->$key[] = $value;
+            }
+        }
+    }
+}

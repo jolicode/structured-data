@@ -22,7 +22,7 @@ class ContextOptions
         public ?string $vocabularyMapping = null,
         public ?string $defaultLangage = null,
         public ?string $defaultBaseDirection = null,
-        public ?array $previousContext = null,
+        public ?Context $previousContext = null,
     ) {
     }
 }

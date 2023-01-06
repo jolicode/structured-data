@@ -11,14 +11,15 @@
 
 namespace Jolicode\JsonLd\Flatten;
 
-use Jolicode\JsonLd\Identifier\IdentifierGenerator;
+use Jolicode\JsonLd\JsonLd\FramingKeyword;
+use Jolicode\JsonLd\Services\IdentifierGenerator;
 
 class NodeMapGenerator
 {
     public function __construct(
         private IdentifierGenerator $identifierGenerator,
         private array $map = [
-            '@default' => [],
+            FramingKeyword::DEFAULT->value => [],
         ],
     ) {
     }
@@ -36,7 +37,7 @@ class NodeMapGenerator
      */
     public function buildNode(
         mixed $element,
-        string $activeGraph = '@default',
+        string $activeGraph = FramingKeyword::DEFAULT->value,
         mixed $activeSubject = null,
         string $activeProperty = null,
         array &$list = null
