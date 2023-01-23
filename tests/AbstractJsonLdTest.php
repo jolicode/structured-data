@@ -17,8 +17,8 @@ use Symfony\Component\Finder\Finder;
 
 abstract class AbstractJsonLdTest extends TestCase
 {
-    private const FIXTURES_PATH = __DIR__.'/fixtures';
-    private const VAR_DIR = self::FIXTURES_PATH.'/var';
+    private const FIXTURES_PATH = __DIR__ . '/fixtures';
+    private const VAR_DIR = self::FIXTURES_PATH . '/var';
 
     /**
      * This function must return the name of the algorithm the child class is testing.

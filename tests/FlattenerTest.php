@@ -32,11 +32,6 @@ class FlattenerTest extends AbstractJsonLdTest
         return FixturesManager::ALGO_FLATTEN;
     }
 
-    /**
-     * There are a lot of tests available in the W3C test suite and some have a behaviour that (curently) break the tests.
-     * Some input files, for example, are split in two and only have one output counterpart.
-     * For now we skip them but this is a TODO : we should take care of them.
-     */
     protected function shouldSkipThisTest(string $filename): bool
     {
         $testsToSkip = [

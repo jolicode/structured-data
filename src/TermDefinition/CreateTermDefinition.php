@@ -72,11 +72,11 @@ class CreateTermDefinition
         // 7
         if (null === $value) {
             $value = (object) [Keyword::ID->value => null];
-        // 8
+            // 8
         } elseif (\is_string($value)) {
             $value = (object) [Keyword::ID->value => $value];
             $simpleTerm = true;
-        // 9
+            // 9
         } elseif (!\is_object($value)) {
             if (!\array_key_exists(Keyword::ID->value, $value)) {
                 // TODO: implement real exceptions and catch them.
@@ -271,7 +271,7 @@ class CreateTermDefinition
                     $definition->prefixFlag = true;
                 }
             }
-        // 15
+            // 15
         } elseif (preg_match('/[^^]:/', $term)) {
             [$prefix, $suffix] = explode(':', $term, 2);
 
@@ -286,11 +286,11 @@ class CreateTermDefinition
                     ->options
                     ->termDefinitions[$prefix]
                     ->iriMapping . $suffix;
-            // 15.3
+                // 15.3
             } else {
                 $definition->iriMapping = $term;
             }
-        // 16
+            // 16
         } elseif (str_contains($term, '/')) {
             // 16.2
             if (IriResolver::isIri($mapping = IriResolver::expand($activeContext, $term))) {
@@ -299,10 +299,10 @@ class CreateTermDefinition
                 // TODO: implement real exceptions and catch them.
                 throw new \Exception('invalid IRI mapping');
             }
-        // 17
+            // 17
         } elseif (Keyword::TYPE->value === $term) {
             $definition->iriMapping = Keyword::TYPE->value;
-        // 18
+            // 18
         } elseif ($activeContext->options->vocabularyMapping) {
             $definition->iriMapping = $activeContext->options->vocabularyMapping . $term;
         }
@@ -483,7 +483,8 @@ class CreateTermDefinition
                     Keyword::PREFIX->value,
                     Keyword::PROTECTED->value,
                     Keyword::TYPE->value,
-                ], true
+                ],
+                true
             )) {
                 // TODO: implement real exceptions and catch them.
                 throw new \Exception('invalid term definition');

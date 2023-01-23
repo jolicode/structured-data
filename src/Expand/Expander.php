@@ -29,7 +29,7 @@ class Expander
     ) {
     }
 
-    public function expand(mixed $element, ProcessorOptions $options = new ProcessorOptions()): ?string
+    public function fromJsonLd(mixed $element, ProcessorOptions $options = new ProcessorOptions()): ?string
     {
         $baseUrl = $options->base;
 
@@ -52,21 +52,21 @@ class Expander
             $this->contextProcesser->processContext($activeContext, $localContext, $activeContext->options->baseUrl);
         }
 
-        return $this->process(
+        return json_encode($this->expand(
             $element,
             $options,
             activeContext: $activeContext,
             activeProperty: null,
             baseUrl: $baseUrl,
-        );
+        ));
     }
 
     /**
-     * Takes a json_decoded JSON element as input and returns an expanded JSON string.
+     * Takes a json_decoded JSON element as input and returns it expanded.
      *
      * This is a PHP implementation of https://www.w3.org/TR/json-ld-api/#expansion-algorithm. It is based on the 16th July 2020 recommendation.
      */
-    private function process(
+    private function expand(
         mixed $element,
         ProcessorOptions $options,
         ?string $baseUrl = null,
@@ -116,7 +116,7 @@ class Expander
 
             // 5.2
             foreach ($element as $item) {
-                $expandedItem = $this->process(
+                $expandedItem = $this->expand(
                     $item,
                     $options,
                     $baseUrl,
@@ -167,7 +167,7 @@ class Expander
         }
 
         // 8
-        if ($propertyScopedContext) {
+        if (isset($propertyScopedContext)) {
             $activeContext = $this->contextProcesser->processContext(
                 $activeContext,
                 $propertyScopedContext,
@@ -180,7 +180,7 @@ class Expander
         if (property_exists($element, Keyword::CONTEXT->value)) {
             $activeContext = $this->contextProcesser->processContext(
                 $activeContext,
-                $element->{Keyword::CONTEXT->value},
+                new Context($element->{Keyword::CONTEXT->value}),
                 $baseUrl
             );
         }
@@ -188,13 +188,10 @@ class Expander
         // 10
         $typeScopedContext = $activeContext;
 
-        $sortedElement = (array) clone $element;
-        sort($sortedElement, \SORT_STRING);
-
         $expandingToTypeEntries = [];
 
         // 11
-        foreach ($sortedElement as $key => $value) {
+        foreach ($element as $key => $value) {
             if (Keyword::TYPE->value !== ($expandedKey = IriResolver::expand($activeContext, $key))) {
                 continue;
             }
@@ -226,7 +223,7 @@ class Expander
         $inputType = $expandingToTypeEntries[0] ?? null;
 
         // 13
-        foreach (($options->ordered ? $sortedElement : $element) as $key => $value) {
+        foreach ($element as $key => $value) {
             // 13.1
             if (Keyword::CONTEXT->value === $key) {
                 continue;
@@ -285,11 +282,11 @@ class Expander
                     // 13.4.4.2
                     if (\is_object($value) && !\count((array) $value)) {
                         $expandedValue = $value;
-                    // 13.4.4.3
+                        // 13.4.4.3
                     } elseif (\is_object($value) && property_exists($value, FramingKeyword::DEFAULT->value)) {
                         $expandedValue = new \stdClass();
                         $expandedValue->{FramingKeyword::DEFAULT->value} = IriResolver::expand($typeScopedContext, $value, true);
-                    // 13.4.4.4
+                        // 13.4.4.4
                     } else {
                         foreach ((array) $value as $valueEntry) {
                             $expandedValue[] = IriResolver::expand($typeScopedContext, $valueEntry, true);
@@ -304,7 +301,7 @@ class Expander
 
                 // 13.4.5
                 if (Keyword::GRAPH->value === $expandedProperty) {
-                    $expandedValue = (array) $this->process(
+                    $expandedValue = (array) $this->expand(
                         $value,
                         $options,
                         $baseUrl,
@@ -319,7 +316,7 @@ class Expander
                     // TODO: json-ld-1.0 processing mode
 
                     // 13.4.6.2
-                    $expandedValue = (array) $this->process(
+                    $expandedValue = (array) $this->expand(
                         $value,
                         $options,
                         $baseUrl,
@@ -347,7 +344,7 @@ class Expander
                     // 13.4.7.1
                     if (Keyword::JSON->value === $inputType) {
                         $expandedValue = $value;
-                    // TODO: json-ld-1.0 processing mode
+                        // TODO: json-ld-1.0 processing mode
                     } else {
                         // 13.4.7.2
                         $this->validateValueForValue($value, $options);
@@ -412,7 +409,7 @@ class Expander
                         }
 
                         // 13.4.11.2
-                        $expandedValue = $this->process(
+                        $expandedValue = $this->expand(
                             $value,
                             $options,
                             $baseUrl,
@@ -423,7 +420,7 @@ class Expander
 
                     // 13.4.12
                     if (Keyword::SET->value === $expandedProperty) {
-                        $expandedValue = $this->process(
+                        $expandedValue = $this->expand(
                             $value,
                             $options,
                             $baseUrl,
@@ -441,7 +438,7 @@ class Expander
                         }
 
                         // 13.4.13.2
-                        $expandedValue = $this->process(
+                        $expandedValue = $this->expand(
                             $value,
                             $options,
                             $baseUrl,
@@ -496,7 +493,7 @@ class Expander
                     // 13.4.15
                     if ($options->frameExpansion) {
                         if (FramingKeyword::tryFrom($expandedProperty)) {
-                            $expandedValue = $this->process(
+                            $expandedValue = $this->expand(
                                 $value,
                                 $options,
                                 $baseUrl,
@@ -587,7 +584,7 @@ class Expander
                                 $expandedValue[] = $newValue;
                             }
                         }
-                    // 13.8
+                        // 13.8
                     } elseif (
                         \is_object($value) &&
                         \count(array_intersect_key($containerMapping, [
@@ -613,7 +610,7 @@ class Expander
                                         $mapContext->options->termDefinitions[$index]->context,
                                         $mapContext->options->termDefinitions[$index]->baseUrl
                                     );
-                                // 13.8.3.3
+                                    // 13.8.3.3
                                 } else {
                                     $mapContext = $activeContext;
                                 }
@@ -627,7 +624,7 @@ class Expander
                                 }
 
                                 // 13.8.3.6
-                                $indexValue = $this->process(
+                                $indexValue = $this->expand(
                                     $indexValue,
                                     $options,
                                     $baseUrl,
@@ -707,7 +704,7 @@ class Expander
                         }
                     } else {
                         // 13.9
-                        $expandedValue = $this->process(
+                        $expandedValue = $this->expand(
                             $value,
                             $options,
                             $baseUrl,
@@ -729,11 +726,160 @@ class Expander
 
                         $expandedValue = (object) [Keyword::LIST->value => $expandedValue];
                     }
+
+                    // 13.12
+                    if (
+                        \array_key_exists(Keyword::GRAPH->value, $containerMapping) &&
+                        !\array_key_exists(Keyword::ID->value, $containerMapping) &&
+                        !\array_key_exists(Keyword::INDEX->value, $containerMapping)
+                    ) {
+                        $graphExpandedValue = [];
+
+                        // 13.12.1
+                        foreach ($expandedValue as $expandedEntry) {
+                            $graphExpandedValue[] = [Keyword::GRAPH->value => (array) $expandedEntry];
+                        }
+                    }
+
+                    // 13.13
+                    if ($keyDefinition->reverseProperty) {
+                        // 13.13.1
+                        if (!\array_key_exists(Keyword::REVERSE->value, $result)) {
+                            $result[Keyword::REVERSE->value] = [];
+                        }
+
+                        // 13.13.2
+                        $reverseMap = $result[Keyword::REVERSE->value];
+
+                        // 13.13.3
+                        if (!\is_array($expandedValue)) {
+                            $expandedValue = [$expandedValue];
+                        }
+
+                        // 13.13.4
+                        foreach ($expandedValue as $item) {
+                            if ($this->isValueObject($item) || $this->isListObject($item)) {
+                                // 13.13.4.1
+                                // TODO: implement real exceptions and catch them
+                                throw new \Exception('invalid reverse property value');
+                            }
+
+                            // 13.13.4.2
+                            if (!\array_key_exists($expandedProperty, $reverseMap)) {
+                                $reverseMap[$expandedProperty] = [];
+                            }
+
+                            // 13.13.4.3
+                            ValueAdder::addValue($item, $expandedProperty, $reverseMap, true);
+                        }
+                    } else {
+                        // 13.14
+                        ValueAdder::addValue($expandedValue, $expandedProperty, $result, true);
+                    }
                 }
             }
         }
 
-        return (array) $element;
+        // 14
+        foreach ($nests as $nestingKey => $nestingValue) {
+            // 14.1
+            $nestedValues = \is_array($element[$nestingKey]) ? $element[$nestingKey] : (array) $element[$nestingKey];
+
+            // 14.2
+            foreach ($nestedValues as $nestedValue) {
+                // 14.2.1
+                // TODO: check is_object vs is_array
+                if (!\is_object($nestedValue)) {
+                    // TODO: implement real exceptions and catch them
+                    throw new \Exception('invalid @nest value');
+                }
+
+                // 14.2.1
+                foreach ($nestedValue as $key => $value) {
+                    if (Keyword::NEST->value === IriResolver::expand($activeContext, $key)) {
+                        // TODO: implement real exceptions and catch them
+                        throw new \Exception('invalid @nest value');
+                    }
+                }
+
+                // 14.2.2
+                // TODO: use methods to be able to repeat steps 13 and 14
+            }
+        }
+
+        // 15
+        if (\in_array(Keyword::VALUE->value, $result, true)) {
+            // 15.1
+            $this->validateResultValue($result);
+
+            // 15.2
+            if (Keyword::JSON->value === $result[Keyword::TYPE->value]) {
+                // TODO: not sure how to treat value as a JSON litteral. Do nothing ? json_encode ?
+                // 15.3
+            } elseif (null === $result[Keyword::VALUE->value] || [] === $result[Keyword::VALUE->value]) {
+                return null;
+                // 15.4
+            } elseif (!\is_string($result[Keyword::VALUE->value]) && \array_key_exists(Keyword::LANGUAGE->value, $result)) {
+                // TODO: implement real exceptions and catch them
+                throw new \Exception('invalid language-tagged value');
+                // 15.5
+            } elseif (\array_key_exists(Keyword::TYPE->value, $result) && !IriResolver::isIri($result[Keyword::TYPE->value])) {
+                // TODO: implement real exceptions and catch them
+                throw new \Exception('invalid typed value');
+            }
+            // 16
+        } elseif (\array_key_exists(Keyword::TYPE->value, $result) && !\is_array($result[Keyword::TYPE->value])) {
+            $result[Keyword::TYPE->value] = [$result[Keyword::TYPE->value]];
+            // 17
+        } elseif (
+            \array_key_exists(Keyword::SET->value, $result) ||
+            \array_key_exists(Keyword::LIST->value, $result)
+        ) {
+            // 17.1
+            if (2 !== \count($result) || !\array_key_exists($result[Keyword::INDEX->value], $result)) {
+                // TODO: implement real exceptions and catch them
+                throw new \Exception('invalid set or list object');
+            }
+
+            // 17.2
+            if (\array_key_exists(Keyword::SET->value, $result)) {
+                $result = $result[Keyword::SET->value];
+            }
+        }
+
+        // 18
+        if (\is_object($result) && 1 === \count((array) $result) && property_exists($result, Keyword::LANGUAGE->value)) {
+            return null;
+        }
+
+        // 19
+        if (null === $activeProperty || Keyword::GRAPH->value === $activeProperty) {
+            // 19.1
+            if (\is_object($result)) {
+                if (0 === \count((array) $result)) {
+                    $result = null;
+                }
+
+                if (
+                    1 === \count((array) $result) &&
+                    (property_exists($result, Keyword::VALUE->value) || property_exists($result, Keyword::LIST->value))
+                ) {
+                    $result = null;
+                }
+
+                // 19.2
+                if (1 === \count((array) $result) && property_exists($result, Keyword::ID->value)) {
+                    $result = null;
+
+                    if ($options->frameExpansion) {
+                        $result = (object) [Keyword::ID->value => null];
+                    }
+                }
+            }
+        }
+
+        // 20
+        return $result;
     }
 
     /**
@@ -899,6 +1045,30 @@ class Expander
 
         // TODO: implement real exceptions and catch them
         throw new \Exception('invalid language-tagged string');
+    }
+
+    private function validateResultValue(array $result): bool
+    {
+        if (
+            (\array_key_exists(Keyword::LANGUAGE->value, $result) || \array_key_exists(Keyword::DIRECTION->value, $result)) &&
+            !\array_key_exists(Keyword::TYPE->value, $result)
+        ) {
+            // TODO: implement real exceptions and catch them
+            throw new \Exception('invalid value object');
+        }
+
+        foreach ($result as $resultEntry) {
+            if (!\in_array(
+                $resultEntry,
+                [Keyword::DIRECTION->value, Keyword::INDEX->value, Keyword::LANGUAGE->value, Keyword::TYPE->value, Keyword::VALUE->value],
+                true
+            )) {
+                // TODO: implement real exceptions and catch them
+                throw new \Exception('invalid value object');
+            }
+        }
+
+        return true;
     }
 
     private function isGraphObject(mixed $object): bool

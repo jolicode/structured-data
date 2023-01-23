@@ -15,16 +15,15 @@ use Jolicode\JsonLd\Expand\Expander;
 use Jolicode\JsonLd\Fixtures\FixturesManager;
 
 /** @group expand */
-abstract class ExpanderTest extends AbstractJsonLdTest
+class ExpanderTest extends AbstractJsonLdTest
 {
     /** @dataProvider provideInputsAndOutputs */
     public function testExpand(string $json, string $expected): void
     {
-        $this->assertTrue(true);
-        // $expander = new Expander();
-        // $actual = $expander->expand(json_decode($json));
+        $expander = new Expander();
+        $actual = $expander->fromJsonLd(json_decode($json));
 
-        // $this->assertSame($expected, $actual);
+        $this->assertSame($expected, $actual);
     }
 
     protected function getAlgorithmName(): string

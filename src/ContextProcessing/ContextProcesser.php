@@ -67,6 +67,7 @@ class ContextProcesser
 
         // 5
         foreach ($localContext->context as $context) {
+            dump($context);
             // 5.1
             if (null === $context) {
                 if (!$overrideProtected && $activeContext->hasProtectedTermDefinitions()) {
@@ -157,6 +158,97 @@ class ContextProcesser
                 $context = array_replace($importContext, $context);
             }
 
+            // TODO: handle 5.7 to 5.11 you dummy !
+
+            // 5.7
+            if (property_exists($context, Keyword::BASE->value) && !count($remoteContexts)) {
+                // 5.7.1
+                $value = $context->{Keyword::BASE->value};
+
+                // 5.7.2
+                if (null === $value) {
+                    $result->options->baseIri = null;
+                    // 5.7.3
+                } elseif (IriResolver::isIri($value)) {
+                    $result->options->baseIri = $value;
+                    // 5.7.4
+                    // } elseif (isRelativeIriRefenference) {
+                    // TODO: add 5.7.4. It requires to know how to check if value is a relative IRI reference
+                    // }
+                    // 5.7.5
+                } else {
+                    // TODO: implement real exceptions and catch them
+                    throw new \Exception('invalid base IRI');
+                }
+            }
+
+            // 5.8
+            if (property_exists($context, Keyword::VOCAB->value)) {
+                // 5.8.1
+                $value = $context->{Keyword::VOCAB->value};
+
+                // 5.8.2
+                if (null === $value) {
+                    $result->options->vocabularyMapping = null;
+                    // 5.8.3
+                } elseif (IriResolver::isAbsoluteIriOrBlankNode($value)) {
+                    $result->options->vocabularyMapping = IriResolver::expand($activeContext, $value, true);
+                } else {
+                    // TODO: implement real exceptions and catch them
+                    throw new \Exception('invalid vocab mapping');
+                }
+            }
+
+            // 5.9
+            if (property_exists($context, Keyword::LANGUAGE->value)) {
+                // 5.9.1
+                $value = $context->{Keyword::LANGUAGE->value};
+
+                // 5.9.2
+                if (null === $value) {
+                    $result->options->defaultLangage = null;
+                    // 5.9.3
+                } elseif (is_string($value)) {
+                    $result->options->defaultLangage = $value;
+                } else {
+                    // TODO: implement real exceptions and catch them
+                    throw new \Exception('invalid default language');
+                    // TODO: add language check
+                }
+            }
+
+            // 5.10
+            if (property_exists($context, Keyword::DIRECTION->value)) {
+                // 5.10.1
+                // TODO: json-ld-1.0 processing mode
+
+                // 5.10.2
+                $value = $context->{Keyword::DIRECTION->value};
+
+                // 5.10.3
+                if (null === $value) {
+                    $result->options->defaultBaseDirection = null;
+                    // 5.10.4
+                } elseif (is_string($value)) {
+                    $result->options->defaultBaseDirection = $value;
+                } else {
+                    // TODO: implement real exceptions and catch them
+                    throw new \Exception('invalid base direction');
+                }
+            }
+
+            // 5.11
+            if (property_exists($context, Keyword::PROPAGATE->value)) {
+                // 5.11.1
+                // TODO: json-ld-1.0 processing mode
+
+                // 5.11.2
+                if (!is_bool($context->{Keyword::PROPAGATE->value})) {
+                    // TODO: implement real exceptions and catch them
+                    throw new \Exception('invalid @propagate value');
+                }
+            }
+
             // 5.12
             $defined = [];
 
@@ -175,18 +267,20 @@ class ContextProcesser
             }
         }
 
-        if (1 === \count($localContext->context)) {
-            $context = $localContext->context[0];
-            $localContext->context = new \stdClass();
+        // I have no idea why I did this in the first place ^__^
+        // if (1 === \count($localContext->context)) {
+        //     $context = $localContext->context[0];
+        //     $localContext->context = new \stdClass();
 
-            if (null === $context) {
-                return $localContext;
-            }
+        //     if (null === $context) {
+        //         return $localContext;
+        //     }
 
-            $localContext->context = $context;
-        }
+        //     $localContext->context = $context;
+        // }
 
-        return $localContext;
+        // 6
+        return $result;
     }
 
     private function extractContext(\stdClass|array $json): mixed

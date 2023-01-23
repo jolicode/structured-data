@@ -25,7 +25,7 @@ class IriResolver
         Context $activeContext,
         mixed $value,
         bool $documentRelative = false,
-        bool $vocab = false,
+        bool $vocab = true,
         ?\stdClass $localContext = null,
         ?array $defined = null
     ): ?string {
@@ -37,6 +37,8 @@ class IriResolver
         // 2
         if (preg_match('/^@\w+/', $value)) {
             // TODO: add a warning
+            dump('WARNING: a value has the form of a keyword. Skipping. Value is : ' . $value);
+
             return null;
         }
 
@@ -103,7 +105,7 @@ class IriResolver
 
         // 8
         if ($documentRelative) {
-            $value = self::resolveIri($value, $activeContext->baseIri, false);
+            $value = self::resolveIri($value, $activeContext->options->baseIri, false);
         }
 
         // 9
