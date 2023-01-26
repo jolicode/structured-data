@@ -75,7 +75,7 @@ class Expander
         bool $fromMap = false,
     ): ?array {
         // 1
-        if (!$element) {
+        if (null === $element) {
             return null;
         }
 
@@ -85,7 +85,7 @@ class Expander
         }
 
         // 3
-        if (\array_key_exists($activeProperty, $activeContext->options->termDefinitions)) {
+        if (\array_key_exists($activeProperty, $activeContext->options->termDefinitions) && $activeContext->context) {
             $propertyScopedContext = $activeContext->context[$activeProperty][Keyword::CONTEXT->value];
         }
 
@@ -126,10 +126,11 @@ class Expander
                 );
 
                 if (
+                    array_key_exists($activeProperty, $activeContext->options->termDefinitions) &&
                     \in_array(Keyword::LIST->value, $activeContext->options->termDefinitions[$activeProperty]->containerMapping, true) &&
                     \is_array($expandedItem)
                 ) {
-                    $expandedItem = [Keyword::LIST->value => $expandedItem];
+                    $expandedItem = (object) [Keyword::LIST->value => $expandedItem];
                 }
 
                 if (\is_array($expandedItem)) {
@@ -192,11 +193,9 @@ class Expander
 
         // 11
         foreach ($element as $key => $value) {
-            if (Keyword::TYPE->value !== ($expandedKey = IriResolver::expand($activeContext, $key))) {
+            if (Keyword::TYPE->value !== IriResolver::expand($activeContext, $key)) {
                 continue;
             }
-
-            $expandingToTypeEntries[$expandedKey] = IriResolver::expand($activeContext, $value);
 
             // 11.1
             $value = (array) $value;
@@ -205,12 +204,13 @@ class Expander
             foreach ($value as $term) {
                 if (
                     \is_string($term) &&
+                    array_key_exists($term, $typeScopedContext->options->termDefinitions) &&
                     $typeScopedContext->options->termDefinitions[$term]->context
                 ) {
                     $activeContext = $this->contextProcesser->processContext(
                         $activeContext,
-                        $typeScopedContext->options->termDefinitions[$term]->context,
-                        $activeContext->options->termDefinitions[$value]->baseUrl,
+                        new Context($typeScopedContext->options->termDefinitions[$term]->context),
+                        $typeScopedContext->options->termDefinitions[$term]->baseUrl,
                         propagate: false
                     );
                 }
@@ -232,8 +232,12 @@ class Expander
             // 13.2
             $expandedProperty = $expandingToTypeEntries[$key] ?? IriResolver::expand($activeContext, $key);
 
+            if ('myproperty' === $activeContext) {
+                dd($element, $value, $activeContext, $expandedProperty);
+            }
+
             // 13.3
-            if (!$expandedProperty || !str_contains($expandedProperty, ':') || !Keyword::tryFrom($expandedProperty)) {
+            if (!$expandedProperty && !str_contains(':', $expandedProperty) && !Keyword::tryFrom($expandedProperty)) {
                 continue;
             }
 
@@ -285,7 +289,11 @@ class Expander
                         // 13.4.4.3
                     } elseif (\is_object($value) && property_exists($value, FramingKeyword::DEFAULT->value)) {
                         $expandedValue = new \stdClass();
-                        $expandedValue->{FramingKeyword::DEFAULT->value} = IriResolver::expand($typeScopedContext, $value, true);
+                        $expandedValue->{FramingKeyword::DEFAULT->value} = IriResolver::expand(
+                            $typeScopedContext,
+                            $value->{FramingKeyword::DEFAULT->value},
+                            true
+                        );
                         // 13.4.4.4
                     } else {
                         foreach ((array) $value as $valueEntry) {
@@ -515,267 +523,282 @@ class Expander
                     // 13.4.17
                     continue;
                 }
+            }
 
+            if (!array_key_exists($key, $activeContext->options->termDefinitions)) {
+                $containerMapping = null;
+            } else {
                 /** @var TermDefinition $keyDefinition */
                 $keyDefinition = $activeContext->options->termDefinitions[$key];
 
                 // 13.5
                 $containerMapping = $keyDefinition->containerMapping;
+            }
 
-                // 13.6
-                if (Keyword::JSON->value === $keyDefinition->typeMapping) {
-                    $expandedValue = new \stdClass();
-                    $expandedValue->{Keyword::VALUE->value} = $value;
-                    $expandedValue->{Keyword::TYPE->value} = Keyword::JSON->value;
-                } else {
-                    $sortedValue = (array) clone $value;
-                    sort($sortedValue, \SORT_STRING);
 
-                    // 13.7
-                    if (\array_key_exists(Keyword::LANGUAGE->value, $containerMapping) && \is_object($value)) {
-                        // 13.7.1
-                        $expandedValue = [];
+            // 13.6
+            if (
+                $containerMapping &&
+                Keyword::JSON->value === $keyDefinition->typeMapping
+            ) {
+                $expandedValue = new \stdClass();
+                $expandedValue->{Keyword::VALUE->value} = $value;
+                $expandedValue->{Keyword::TYPE->value} = Keyword::JSON->value;
+                // 13.7
+            } elseif ($containerMapping && \in_array(Keyword::LANGUAGE->value, $containerMapping) && \is_object($value)) {
+                // 13.7.1
+                $expandedValue = [];
 
-                        // 13.7.2
-                        $direction = $activeContext->options->defaultBaseDirection;
+                // 13.7.2
+                $direction = $activeContext->options->defaultBaseDirection;
 
-                        // 13.7.3
-                        if ($keyDefinition->directionMapping) {
-                            $direction = $keyDefinition->directionMapping;
+                // 13.7.3
+                if ($keyDefinition->directionMapping) {
+                    $direction = $keyDefinition->directionMapping;
+                }
+
+                // 13.7.4
+                foreach ($value as $language => $languageValue) {
+                    // 13.7.4.1
+                    if (!\is_array($languageValue)) {
+                        $languageValue = [$languageValue];
+                    }
+
+                    // 13.7.4.2
+                    foreach ($languageValue as $item) {
+                        // 13.7.4.2.1
+                        if (null === $item) {
+                            continue;
                         }
 
-                        // 13.7.4
-                        foreach (($options->ordered ? $sortedValue : $value) as $language => $languageValue) {
-                            // 13.7.4.1
-                            if (!\is_array($languageValue)) {
-                                $languageValue = [$languageValue];
-                            }
-
-                            // 13.7.4.2
-                            foreach ($languageValue as $item) {
-                                // 13.7.4.2.1
-                                if (null === $item) {
-                                    continue;
-                                }
-
-                                // 13.7.4.2.2
-                                if (!\is_string($item)) {
-                                    // TODO: implement real exceptions and catch them
-                                    throw new \Exception('invalid language map');
-                                }
-
-                                // 13.7.4.2.3
-                                // TODO: Add check that language is correctly formed.
-                                $newValue = (object) [
-                                    Keyword::VALUE->value => $item,
-                                    Keyword::LANGUAGE->value => $language,
-                                ];
-
-                                // 13.7.4.2.4
-                                if (Keyword::NONE->value === $language || Keyword::NONE->value === IriResolver::expand($activeContext, $language)) {
-                                    unset($newValue->{Keyword::LANGUAGE->value});
-                                }
-
-                                // 13.7.4.2.5
-                                if (null !== $direction) {
-                                    $newValue[Keyword::DIRECTION->value] = $direction;
-                                }
-
-                                $expandedValue[] = $newValue;
-                            }
+                        // 13.7.4.2.2
+                        if (!\is_string($item)) {
+                            // TODO: implement real exceptions and catch them
+                            throw new \Exception('invalid language map');
                         }
-                        // 13.8
-                    } elseif (
-                        \is_object($value) &&
-                        \count(array_intersect_key($containerMapping, [
-                            Keyword::INDEX->value, Keyword::TYPE->value, Keyword::ID->value,
-                        ]))
-                    ) {
-                        // 13.8.1
-                        $expandedValue = [];
 
-                        // 13.8.2
-                        $indexKey = $keyDefinition->indexMapping ?: Keyword::INDEX->value;
+                        // 13.7.4.2.3
+                        // TODO: Add check that language is correctly formed.
+                        $newValue = (object) [
+                            Keyword::VALUE->value => $item,
+                            Keyword::LANGUAGE->value => $language,
+                        ];
 
-                        // 13.8.3
-                        foreach (($options->ordered ? $sortedValue : $value) as $index => $indexValue) {
-                            // 13.8.3.1
-                            if (\in_array(Keyword::ID->value, $containerMapping, true) || \in_array(Keyword::TYPE->value, $containerMapping, true)) {
-                                $mapContext = $activeContext->options->previousContext ?: $activeContext;
-
-                                // 13.8.3.2
-                                if (\in_array(Keyword::TYPE->value, $containerMapping, true) && $mapContext->options->termDefinitions[$index]->context) {
-                                    $mapContext = $this->contextProcesser->processContext(
-                                        $mapContext,
-                                        $mapContext->options->termDefinitions[$index]->context,
-                                        $mapContext->options->termDefinitions[$index]->baseUrl
-                                    );
-                                    // 13.8.3.3
-                                } else {
-                                    $mapContext = $activeContext;
-                                }
-
-                                // 13.8.3.4
-                                $expandedIndex = IriResolver::expand($activeContext, $index);
-
-                                // 13.8.3.5
-                                if (!\is_array($indexValue)) {
-                                    $indexValue = [$indexValue];
-                                }
-
-                                // 13.8.3.6
-                                $indexValue = $this->expand(
-                                    $indexValue,
-                                    $options,
-                                    $baseUrl,
-                                    $mapContext,
-                                    $key,
-                                    true
-                                );
-
-                                // 13.8.3.7
-                                foreach ($indexValue as $item) {
-                                    // 13.8.3.7.1
-                                    if (\in_array(Keyword::GRAPH->value, $containerMapping, true) && !$this->isGraphObject($item)) {
-                                        $item = (object) [Keyword::GRAPH->value => (array) $item];
-                                    }
-
-                                    // 13.8.3.7.2
-                                    if (
-                                        \array_key_exists(Keyword::INDEX->value, $containerMapping) &&
-                                        Keyword::INDEX->value !== $indexKey &&
-                                        Keyword::NONE->value !== $expandedIndex
-                                    ) {
-                                        // 13.8.3.7.2.1
-                                        $reExpandedIndex = $this->expandValue($activeContext, $indexKey, $index);
-
-                                        // 13.8.3.7.2.2
-                                        $expandedIndexKey = IriResolver::expand($activeContext, $indexKey);
-
-                                        // 13.8.3.7.2.3
-                                        // The doc is quite hard to understand here, this is probably wrong
-                                        $indexPropertyValues = [
-                                            $reExpandedIndex,
-                                            $expandedIndexKey . $item,
-                                        ];
-
-                                        // 13.8.3.7.2.4
-                                        $item->$expandedIndexKey = $indexPropertyValues;
-
-                                        // 13.8.3.7.2.5
-                                        if ($this->isValueObject($item)) {
-                                            if (1 < \count((array) $item)) {
-                                                // TODO: implement real exceptions and catch them
-                                                throw new \Exception('invalid value object');
-                                            }
-                                        }
-                                    } elseif (
-                                        // 13.8.3.7.3
-                                        \array_key_exists(Keyword::INDEX->value, $containerMapping) &&
-                                        !property_exists($item, Keyword::INDEX->value) &&
-                                        Keyword::NONE->value !== $expandedIndex
-                                    ) {
-                                        $item->{Keyword::INDEX->value} = $index;
-                                    } elseif (
-                                        // 13.8.3.7.4
-                                        \array_key_exists(Keyword::ID->value, $containerMapping) &&
-                                        !property_exists($item, Keyword::ID->value) &&
-                                        Keyword::NONE->value !== $expandedIndex
-                                    ) {
-                                        $expandedIndex = IriResolver::expand($activeContext, $index, true);
-                                        $item->{Keyword::ID->value} = $expandedIndex;
-                                    } elseif (
-                                        // 13.8.3.7.5
-                                        \array_key_exists(Keyword::TYPE->value, $containerMapping) &&
-                                        Keyword::NONE->value !== $expandedIndex
-                                    ) {
-                                        $types = [
-                                            $expandedIndex,
-                                            ...$item[Keyword::TYPE->value],
-                                        ];
-
-                                        $item->{Keyword::TYPE->value} = $types;
-                                    }
-
-                                    // 13.8.3.7.6
-                                    $expandedValue[] = $item;
-                                }
-                            }
+                        // 13.7.4.2.4
+                        if (Keyword::NONE->value === $language || Keyword::NONE->value === IriResolver::expand($activeContext, $language)) {
+                            unset($newValue->{Keyword::LANGUAGE->value});
                         }
-                    } else {
-                        // 13.9
-                        $expandedValue = $this->expand(
-                            $value,
-                            $options,
-                            $baseUrl,
-                            $activeContext,
-                            $key
+
+                        // 13.7.4.2.5
+                        if (null !== $direction) {
+                            $newValue[Keyword::DIRECTION->value] = $direction;
+                        }
+
+                        $expandedValue[] = $newValue;
+                    }
+                }
+                // 13.8
+            } elseif (
+                \is_object($value) &&
+                $containerMapping &&
+                \count(array_intersect($containerMapping, [
+                    Keyword::INDEX->value, Keyword::TYPE->value, Keyword::ID->value,
+                ]))
+            ) {
+                // 13.8.1
+                $expandedValue = [];
+
+                // 13.8.2
+                $indexKey = $keyDefinition->indexMapping ?: Keyword::INDEX->value;
+
+                // 13.8.3
+                foreach ($value as $index => $indexValue) {
+                    // 13.8.3.1
+                    if (\in_array(Keyword::ID->value, $containerMapping, true) || \in_array(Keyword::TYPE->value, $containerMapping, true)) {
+                        $mapContext = $activeContext->options->previousContext ?: $activeContext;
+                    }
+
+                    // 13.8.3.2
+                    if (\in_array(Keyword::TYPE->value, $containerMapping, true) && $mapContext->options->termDefinitions[$index]->context) {
+                        $mapContext = $this->contextProcesser->processContext(
+                            $mapContext,
+                            $mapContext->options->termDefinitions[$index]->context,
+                            $mapContext->options->termDefinitions[$index]->baseUrl
                         );
-                    }
-
-                    // 13.10
-                    if (null === $expandedValue) {
-                        continue;
-                    }
-
-                    // 13.11
-                    if (\array_key_exists(Keyword::LIST->value, $containerMapping) && !$this->isListObject($expandedValue)) {
-                        if (!\is_array($expandedValue)) {
-                            $expandedValue = [$expandedValue];
-                        }
-
-                        $expandedValue = (object) [Keyword::LIST->value => $expandedValue];
-                    }
-
-                    // 13.12
-                    if (
-                        \array_key_exists(Keyword::GRAPH->value, $containerMapping) &&
-                        !\array_key_exists(Keyword::ID->value, $containerMapping) &&
-                        !\array_key_exists(Keyword::INDEX->value, $containerMapping)
-                    ) {
-                        $graphExpandedValue = [];
-
-                        // 13.12.1
-                        foreach ($expandedValue as $expandedEntry) {
-                            $graphExpandedValue[] = [Keyword::GRAPH->value => (array) $expandedEntry];
-                        }
-                    }
-
-                    // 13.13
-                    if ($keyDefinition->reverseProperty) {
-                        // 13.13.1
-                        if (!\array_key_exists(Keyword::REVERSE->value, $result)) {
-                            $result[Keyword::REVERSE->value] = [];
-                        }
-
-                        // 13.13.2
-                        $reverseMap = $result[Keyword::REVERSE->value];
-
-                        // 13.13.3
-                        if (!\is_array($expandedValue)) {
-                            $expandedValue = [$expandedValue];
-                        }
-
-                        // 13.13.4
-                        foreach ($expandedValue as $item) {
-                            if ($this->isValueObject($item) || $this->isListObject($item)) {
-                                // 13.13.4.1
-                                // TODO: implement real exceptions and catch them
-                                throw new \Exception('invalid reverse property value');
-                            }
-
-                            // 13.13.4.2
-                            if (!\array_key_exists($expandedProperty, $reverseMap)) {
-                                $reverseMap[$expandedProperty] = [];
-                            }
-
-                            // 13.13.4.3
-                            ValueAdder::addValue($item, $expandedProperty, $reverseMap, true);
-                        }
+                        // 13.8.3.3
                     } else {
-                        // 13.14
-                        ValueAdder::addValue($expandedValue, $expandedProperty, $result, true);
+                        $mapContext = $activeContext;
                     }
+
+                    // 13.8.3.4
+                    $expandedIndex = IriResolver::expand($activeContext, $index);
+
+                    // 13.8.3.5
+                    if (!\is_array($indexValue)) {
+                        $indexValue = [$indexValue];
+                    }
+
+                    // 13.8.3.6
+                    $indexValue = $this->expand(
+                        $indexValue,
+                        $options,
+                        $baseUrl,
+                        $mapContext,
+                        $key,
+                        true
+                    );
+
+                    // 13.8.3.7
+                    foreach ($indexValue as $item) {
+                        // 13.8.3.7.1
+                        if (\in_array(Keyword::GRAPH->value, $containerMapping, true) && !$this->isGraphObject($item)) {
+                            $item = (object) [Keyword::GRAPH->value => (array) $item];
+                        }
+
+                        // 13.8.3.7.2
+                        if (
+                            \in_array(Keyword::INDEX->value, $containerMapping) &&
+                            Keyword::INDEX->value !== $indexKey &&
+                            Keyword::NONE->value !== $expandedIndex
+                        ) {
+                            // 13.8.3.7.2.1
+                            $reExpandedIndex = $this->expandValue($activeContext, $indexKey, $index);
+
+                            // 13.8.3.7.2.2
+                            $expandedIndexKey = IriResolver::expand($activeContext, $indexKey);
+
+                            // 13.8.3.7.2.3
+                            // The doc is quite hard to understand here, this is probably wrong
+                            $indexPropertyValues = [
+                                $reExpandedIndex,
+                                $expandedIndexKey . $item,
+                            ];
+
+                            // 13.8.3.7.2.4
+                            $item->$expandedIndexKey = $indexPropertyValues;
+
+                            // 13.8.3.7.2.5
+                            if ($this->isValueObject($item)) {
+                                if (1 < \count((array) $item)) {
+                                    // TODO: implement real exceptions and catch them
+                                    throw new \Exception('invalid value object');
+                                }
+                            }
+                        } elseif (
+                            // 13.8.3.7.3
+                            \in_array(Keyword::INDEX->value, $containerMapping) &&
+                            !property_exists($item, Keyword::INDEX->value) &&
+                            Keyword::NONE->value !== $expandedIndex
+                        ) {
+                            $item->{Keyword::INDEX->value} = $index;
+                        } elseif (
+                            // 13.8.3.7.4
+                            \in_array(Keyword::ID->value, $containerMapping) &&
+                            !property_exists($item, Keyword::ID->value) &&
+                            Keyword::NONE->value !== $expandedIndex
+                        ) {
+                            $expandedIndex = IriResolver::expand($activeContext, $index, true);
+                            $item->{Keyword::ID->value} = $expandedIndex;
+                        } elseif (
+                            // 13.8.3.7.5
+                            \in_array(Keyword::TYPE->value, $containerMapping) &&
+                            Keyword::NONE->value !== $expandedIndex
+                        ) {
+                            $types = [
+                                $expandedIndex,
+                                ...$item[Keyword::TYPE->value],
+                            ];
+
+                            $item->{Keyword::TYPE->value} = $types;
+                        }
+
+                        // 13.8.3.7.6
+                        $expandedValue[] = $item;
+                    }
+                }
+            } else {
+                // 13.9
+                $expandedValue = $this->expand(
+                    $value,
+                    $options,
+                    $baseUrl,
+                    $activeContext,
+                    $key
+                );
+            }
+
+            // 13.10
+            if (null === $expandedValue) {
+                continue;
+            }
+
+            // 13.11
+            if (
+                $containerMapping &&
+                \in_array(Keyword::LIST->value, $containerMapping) &&
+                !$this->isListObject($expandedValue)
+            ) {
+                if (!\is_array($expandedValue)) {
+                    $expandedValue = [$expandedValue];
+                }
+
+                $expandedValue = (object) [Keyword::LIST->value => $expandedValue];
+            }
+
+            // 13.12
+            if (
+                $containerMapping &&
+                \in_array(Keyword::GRAPH->value, $containerMapping) &&
+                !\in_array(Keyword::ID->value, $containerMapping) &&
+                !\in_array(Keyword::INDEX->value, $containerMapping)
+            ) {
+                $graphExpandedValue = [];
+
+                // 13.12.1
+                foreach ($expandedValue as $expandedEntry) {
+                    $graphExpandedValue[] = [Keyword::GRAPH->value => (array) $expandedEntry];
+                }
+            }
+
+            // 13.13
+            if ($keyDefinition->reverseProperty) {
+                // 13.13.1
+                if (!\array_key_exists(Keyword::REVERSE->value, $result)) {
+                    $result[Keyword::REVERSE->value] = [];
+                }
+
+                // 13.13.2
+                $reverseMap = $result[Keyword::REVERSE->value];
+
+                // 13.13.3
+                if (!\is_array($expandedValue)) {
+                    $expandedValue = [$expandedValue];
+                }
+
+                // 13.13.4
+                foreach ($expandedValue as $item) {
+                    if ($this->isValueObject($item) || $this->isListObject($item)) {
+                        // 13.13.4.1
+                        // TODO: implement real exceptions and catch them
+                        throw new \Exception('invalid reverse property value');
+                    }
+
+                    // 13.13.4.2
+                    if (!\array_key_exists($expandedProperty, $reverseMap)) {
+                        $reverseMap[$expandedProperty] = [];
+                    }
+
+                    // 13.13.4.3
+                    ValueAdder::addValue($item, $expandedProperty, $reverseMap, true);
+                }
+            } else {
+                if ('myproperty' === $key) {
+                    dump($result);
+                }
+                // 13.14
+                ValueAdder::addValue($expandedValue, $expandedProperty, $result, true);
+                if ('myproperty' === $key) {
+                    dd($result);
                 }
             }
         }
@@ -805,6 +828,10 @@ class Expander
                 // 14.2.2
                 // TODO: use methods to be able to repeat steps 13 and 14
             }
+        }
+
+        if ('myproperty' === $key) {
+            dd($value, $key, $activeContext, $expandedValue, $result);
         }
 
         // 15
@@ -936,7 +963,7 @@ class Expander
             }
 
             // 5.1
-            if (null === $language) {
+            if (isset($language) && null === $language) {
                 $language = $activeContext->options->defaultLangage;
             }
 

@@ -23,8 +23,12 @@ class ValueAdder
         // 1
         if ($asArray) {
             if (!property_exists($object, $key) || !\is_array($object->$key)) {
-                $object->$key = [$object->$key];
+                $object->$key = [$value];
             }
+        }
+
+        if ('http://example.com/myproperty' === $key) {
+            dd($value, $object);
         }
 
         // 2
@@ -32,12 +36,12 @@ class ValueAdder
             foreach ($value as $element) {
                 self::addValue($element, $key, $object);
             }
-        // 3
+            // 3
         } else {
             // 3.1
             if (!property_exists($object, $key)) {
                 $object->$key = $value;
-            // 3.2
+                // 3.2
             } else {
                 // 3.2.1
                 if (!\is_array($object->$key)) {
@@ -45,8 +49,10 @@ class ValueAdder
                 }
 
                 // 3.2.2
-                $object->$key[] = $value;
+                $object->$key = [$value];
             }
         }
+
+        // $object = [$object];
     }
 }

@@ -32,6 +32,15 @@ abstract class AbstractJsonLdTest extends TestCase
      */
     abstract protected function shouldSkipThisTest(string $filename): bool;
 
+    protected function getInputDir(): string
+    {
+        return sprintf(
+            '%s/%s/input/',
+            self::FIXTURES_PATH,
+            $this->getAlgorithmName()
+        );
+    }
+
     protected function getInputFiles(): iterable
     {
         $this->installTestSuite();
@@ -40,11 +49,7 @@ abstract class AbstractJsonLdTest extends TestCase
 
         return $finder
             ->files()
-            ->in(sprintf(
-                '%s/%s/input',
-                self::FIXTURES_PATH,
-                $this->getAlgorithmName()
-            ));
+            ->in($this->getInputDir());
     }
 
     protected function provideInputsAndOutputs(): iterable

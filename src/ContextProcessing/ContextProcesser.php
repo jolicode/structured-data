@@ -67,7 +67,6 @@ class ContextProcesser
 
         // 5
         foreach ($localContext->context as $context) {
-            dump($context);
             // 5.1
             if (null === $context) {
                 if (!$overrideProtected && $activeContext->hasProtectedTermDefinitions()) {
@@ -133,12 +132,12 @@ class ContextProcesser
 
             // 5.6
             if (property_exists($context, Keyword::IMPORT->value)) {
-                if (!\is_string($context[Keyword::IMPORT->value])) {
+                if (!\is_string($context->{Keyword::IMPORT->value})) {
                     // TODO: implement real exceptions and catch them
                     throw new \Exception('Invalid @import value.');
                 }
 
-                $import = IriResolver::resolveIri($baseUrl, $context[Keyword::IMPORT->value]);
+                $import = IriResolver::resolveIri($baseUrl, $context->{Keyword::IMPORT->value});
 
                 $documentLoader = new DocumentLoader($import);
                 $response = $documentLoader->load();
@@ -166,15 +165,14 @@ class ContextProcesser
                 $value = $context->{Keyword::BASE->value};
 
                 // 5.7.2
-                if (null === $value) {
+                if (!$value) {
                     $result->options->baseIri = null;
                     // 5.7.3
                 } elseif (IriResolver::isIri($value)) {
                     $result->options->baseIri = $value;
                     // 5.7.4
-                    // } elseif (isRelativeIriRefenference) {
-                    // TODO: add 5.7.4. It requires to know how to check if value is a relative IRI reference
-                    // }
+                } elseif (IriResolver::isRelativeIri($value) && $result->options->baseIri) {
+                    $result->options->baseIri = IriResolver::resolveIri($result->options->baseIri, $value);
                     // 5.7.5
                 } else {
                     // TODO: implement real exceptions and catch them
@@ -188,10 +186,10 @@ class ContextProcesser
                 $value = $context->{Keyword::VOCAB->value};
 
                 // 5.8.2
-                if (null === $value) {
+                if (!$value) {
                     $result->options->vocabularyMapping = null;
                     // 5.8.3
-                } elseif (IriResolver::isAbsoluteIriOrBlankNode($value)) {
+                } elseif (IriResolver::isIri($value)) {
                     $result->options->vocabularyMapping = IriResolver::expand($activeContext, $value, true);
                 } else {
                     // TODO: implement real exceptions and catch them
@@ -205,7 +203,7 @@ class ContextProcesser
                 $value = $context->{Keyword::LANGUAGE->value};
 
                 // 5.9.2
-                if (null === $value) {
+                if (!$value) {
                     $result->options->defaultLangage = null;
                     // 5.9.3
                 } elseif (is_string($value)) {
@@ -226,7 +224,7 @@ class ContextProcesser
                 $value = $context->{Keyword::DIRECTION->value};
 
                 // 5.10.3
-                if (null === $value) {
+                if (!$value) {
                     $result->options->defaultBaseDirection = null;
                     // 5.10.4
                 } elseif (is_string($value)) {

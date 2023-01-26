@@ -36,6 +36,10 @@ class DocumentLoader
             throw new \LogicException(sprintf('Cannot load more than %s documents.', self::MAX_DOCUMENTS));
         }
 
+        if (is_file($this->url)) {
+            return (array) file_get_contents($this->url);
+        }
+
         $response = $this->httpClient->request(
             'GET',
             $this->url,

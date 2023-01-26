@@ -23,11 +23,11 @@ class IriResolver
      */
     public static function expand(
         Context $activeContext,
-        mixed $value,
+        string $value,
         bool $documentRelative = false,
         bool $vocab = true,
         ?\stdClass $localContext = null,
-        ?array $defined = null
+        array $defined = []
     ): ?string {
         // 1
         if (null === $value || Keyword::tryFrom($value)) {
@@ -46,7 +46,8 @@ class IriResolver
         if (
             $localContext &&
             property_exists($localContext, $value) &&
-            $localContext->$value !== true
+            array_key_exists($value, $defined) &&
+            !$defined[$value]
         ) {
             CreateTermDefinition::create($activeContext, $localContext, $value, $defined);
         }
@@ -61,7 +62,7 @@ class IriResolver
 
         // 5
         if ($vocab && \array_key_exists($value, $activeContext->options->termDefinitions)) {
-            return $activeContext->options->termDefinitions[$value];
+            return $activeContext->options->termDefinitions[$value]->iriMapping;
         }
 
         // 6
@@ -70,7 +71,7 @@ class IriResolver
             [$prefix, $suffix] = explode(':', $value, 2);
 
             // 6.2
-            if ('_' === $prefix || str_starts_with('//', $suffix)) {
+            if ('_' === $prefix || str_starts_with($suffix, '//')) {
                 return $value;
             }
 
@@ -118,12 +119,27 @@ class IriResolver
             return false;
         }
 
-        return preg_match('/^https?:\/\/[^\s]*$/', $iri);
+        return self::isRelativeIri($iri) || self::isAbsoluteIri($iri);
     }
 
-    public static function isAbsoluteIriOrBlankNode(string $url): bool
+    public static function isRelativeIri(string $iri): bool
     {
-        return preg_match('/^([A-Za-z][A-Za-z0-9+-.]*|_):[^\s]*$/', $url);
+        return preg_match('/^(?:(?:[^\s]+\/)+)|(?:..|.)\/?/', $iri);
+    }
+
+    public static function isAbsoluteIri(string $iri): bool
+    {
+        return preg_match('/^[A-Za-z][A-Za-z0-9+-.]*:[^\s]*$/', $iri);
+    }
+
+    public static function isBlankNodeIdentifier(string $iri): bool
+    {
+        return preg_match('/^_:[^\s]+$/', $iri);
+    }
+
+    public static function isAbsoluteIriOrBlankNode(string $iri): bool
+    {
+        return self::isAbsoluteIri($iri) || self::isBlankNodeIdentifier($iri);
     }
 
     public static function resolveIri(?string $base, string $iri, bool $normalize = true): string
