@@ -25,11 +25,12 @@ class ExpanderTest extends AbstractJsonLdTest
         $options = new ProcessorOptions($this->getInputDir());
         $actual = $expander->fromJsonLd(json_decode($json), $options);
 
-        try {
-            $this->assertEquals(json_decode($expected), json_decode($actual));
-        } catch (\Exception) {
-            dd('aaa', json_decode($expected), json_decode($actual));
-        }
+        $this->assertEquals(json_decode($expected), json_decode($actual));
+        // try {
+        //     $this->assertEquals(json_decode($expected), json_decode($actual));
+        // } catch (\Exception) {
+        //     dd('aaa', json_decode($expected), json_decode($actual));
+        // }
     }
 
     protected function getAlgorithmName(): string

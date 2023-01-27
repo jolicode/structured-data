@@ -127,6 +127,7 @@ class Expander
 
                 if (
                     array_key_exists($activeProperty, $activeContext->options->termDefinitions) &&
+                    $activeContext->options->termDefinitions[$activeProperty]->containerMapping &&
                     \in_array(Keyword::LIST->value, $activeContext->options->termDefinitions[$activeProperty]->containerMapping, true) &&
                     \is_array($expandedItem)
                 ) {
@@ -761,7 +762,7 @@ class Expander
             }
 
             // 13.13
-            if ($keyDefinition->reverseProperty) {
+            if ($activeContext->options->termDefinitions[$key]->reverseProperty) {
                 // 13.13.1
                 if (!\array_key_exists(Keyword::REVERSE->value, $result)) {
                     $result[Keyword::REVERSE->value] = [];
@@ -792,14 +793,8 @@ class Expander
                     ValueAdder::addValue($item, $expandedProperty, $reverseMap, true);
                 }
             } else {
-                if ('myproperty' === $key) {
-                    dump($result);
-                }
                 // 13.14
                 ValueAdder::addValue($expandedValue, $expandedProperty, $result, true);
-                if ('myproperty' === $key) {
-                    dd($result);
-                }
             }
         }
 
@@ -828,10 +823,6 @@ class Expander
                 // 14.2.2
                 // TODO: use methods to be able to repeat steps 13 and 14
             }
-        }
-
-        if ('myproperty' === $key) {
-            dd($value, $key, $activeContext, $expandedValue, $result);
         }
 
         // 15
@@ -916,7 +907,7 @@ class Expander
      */
     private function expandValue(Context $activeContext, string $activeProperty, mixed $value): array
     {
-        // 3: we start by 3 to prevent looping over the termDefinitions twice
+        // 3 : we start by initializing the result, the loop will add entries to it.
         $result = [Keyword::VALUE->value => $value];
 
         foreach ($activeContext->options->termDefinitions as $definition) {
@@ -926,7 +917,7 @@ class Expander
                 Keyword::ID->value === $activeProperty &&
                 \is_string($value)
             ) {
-                return [Keyword::ID->value => IriResolver::expand($activeContext, $value, true)];
+                return (object) [Keyword::ID->value => IriResolver::expand($activeContext, $value, true)];
             }
 
             // 2
@@ -935,53 +926,37 @@ class Expander
                 Keyword::VOCAB->value === $activeProperty &&
                 \is_string($value)
             ) {
-                return [Keyword::ID->value => IriResolver::expand($activeContext, $value, true)];
+                return (object) [Keyword::ID->value => IriResolver::expand($activeContext, $value, true)];
             }
 
             // 4
             if (
                 $activeProperty === $definition->typeMapping &&
-                !\in_array($activeProperty, [Keyword::ID->value, Keyword::VOCAB->value, Keyword::NONE->value], true) &&
-                \is_string($value)
+                !\in_array($activeProperty, [Keyword::ID->value, Keyword::VOCAB->value, Keyword::NONE->value], true)
             ) {
                 $result[Keyword::TYPE->value] = $definition->typeMapping;
-            }
-        }
-
-        // 5
-        if (!\array_key_exists(Keyword::TYPE->value, $result) && \is_string($value)) {
-            foreach ($activeContext->options->termDefinitions as $definition) {
+                // 5
+            } elseif (\is_string($value)) {
                 // 5.1
                 if ($activeProperty === $definition->languageMapping) {
-                    $language = $definition->languageMapping;
+                    $language = $definition->languageMapping ?: $activeContext->options->defaultLangage;
+
+                    if ($language) {
+                        $result[Keyword::LANGUAGE->value] = $language;
+                    }
                 }
 
                 // 5.2
                 if ($activeProperty === $definition->directionMapping) {
-                    $direction = $definition->directionMapping;
+                    $direction = $definition->directionMapping ?: $activeContext->options->defaultLangage;
+
+                    if ($direction) {
+                        $result[Keyword::LANGUAGE->value] = $direction;
+                    }
                 }
             }
-
-            // 5.1
-            if (isset($language) && null === $language) {
-                $language = $activeContext->options->defaultLangage;
-            }
-
-            // 5.2
-            if (null === $direction) {
-                $direction = $activeContext->options->defaultBaseDirection;
-            }
-
-            // 5.3
-            if (null !== $language) {
-                $result[Keyword::LANGUAGE->value] = $language;
-            }
-
-            // 5.4
-            if (null !== $direction) {
-                $result[Keyword::DIRECTION->value] = $language;
-            }
         }
+
 
         // 6
         return $result;
