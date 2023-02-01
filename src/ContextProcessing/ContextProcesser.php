@@ -154,10 +154,8 @@ class ContextProcesser
                     throw new \Exception('Invalid context entry.');
                 }
 
-                $context = array_replace($importContext, $context);
+                $context = (object) array_replace($importContext, $context);
             }
-
-            // TODO: handle 5.7 to 5.11 you dummy !
 
             // 5.7
             if (property_exists($context, Keyword::BASE->value) && !count($remoteContexts)) {

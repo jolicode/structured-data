@@ -4,6 +4,9 @@ cs: ## Fix CS violations
 cs_dry_run: ## Display CS violations without fixing it
 	vendor/bin/php-cs-fixer fix src --verbose --dry-run
 
+phpstan: ## Run phpstan
+	vendor/bin/phpstan analyse -c phpstan.neon
+
 install: ## Install dependencies
 	composer install
 

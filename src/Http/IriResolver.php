@@ -27,7 +27,7 @@ class IriResolver
         bool $documentRelative = false,
         bool $vocab = true,
         ?\stdClass $localContext = null,
-        array $defined = []
+        array &$defined = []
     ): ?string {
         // 1
         if (null === $value || Keyword::tryFrom($value)) {
@@ -52,17 +52,19 @@ class IriResolver
             CreateTermDefinition::create($activeContext, $localContext, $value, $defined);
         }
 
+        $activeDefinitions = &$activeContext->options->termDefinitions;
+
         // 4
         if (
-            \array_key_exists($value, $activeContext->options->termDefinitions) &&
-            ($keyword = Keyword::tryFrom($activeContext->options->termDefinitions[$value]->iriMapping))
+            \array_key_exists($value, $activeDefinitions) &&
+            ($keyword = Keyword::tryFrom($activeDefinitions[$value]->iriMapping))
         ) {
             return $keyword->value;
         }
 
         // 5
-        if ($vocab && \array_key_exists($value, $activeContext->options->termDefinitions)) {
-            return $activeContext->options->termDefinitions[$value]->iriMapping;
+        if ($vocab && \array_key_exists($value, $activeDefinitions)) {
+            return $activeDefinitions[$value]->iriMapping;
         }
 
         // 6
@@ -85,8 +87,8 @@ class IriResolver
             }
 
             // 6.4
-            if (\array_key_exists($prefix, $activeContext->options->termDefinitions)) {
-                $termDefinition = $activeContext->options->termDefinitions[$prefix];
+            if (\array_key_exists($prefix, $activeDefinitions)) {
+                $termDefinition = $activeDefinitions[$prefix];
 
                 if (null !== $termDefinition->iriMapping && $termDefinition->prefixFlag) {
                     return $termDefinition->iriMapping . $suffix;
@@ -106,7 +108,7 @@ class IriResolver
 
         // 8
         if ($documentRelative) {
-            $value = self::resolveIri($value, $activeContext->options->baseIri, false);
+            $value = self::resolveIri($activeContext->options->baseIri, $value, false);
         }
 
         // 9

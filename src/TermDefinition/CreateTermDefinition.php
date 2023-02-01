@@ -26,7 +26,7 @@ class CreateTermDefinition
         Context $activeContext,
         \stdClass $localContext,
         string $term,
-        array $defined,
+        array &$defined,
         ?string $baseUrl = null,
         bool $protected = false,
         bool $overrideProtected = false,
@@ -48,6 +48,7 @@ class CreateTermDefinition
             // TODO: implement real exceptions and catch them.
             throw new \Exception('invalid term definition');
         }
+
         $defined[$term] = false;
 
         // 3
@@ -155,7 +156,7 @@ class CreateTermDefinition
             // 13.3
             if (preg_match('/^@\w+/', $value->{Keyword::REVERSE->value})) {
                 // TODO: use a logger
-                dump('WARNING: a value has the form of a keyword. Skipping. Value is : ' . $term);
+                // dump('WARNING: a value has the form of a keyword. Skipping. Value is : ' . $term);
 
                 return;
             }
@@ -246,31 +247,32 @@ class CreateTermDefinition
                     $defined[$term] = true;
 
                     if (
-                        ($resultaa = IriResolver::expand(
+                        (IriResolver::expand(
                             $activeContext,
                             $term,
                             defined: $defined,
                             localContext: $localContext
                         )) !== $definition->iriMapping
                     ) {
-                        // This seems to not be working as expected and to throw errors when it shouldn't.
-                        // Commenting for now.
-                        // // TODO: implement real exceptions and catch them.
-                        // throw new \Exception('invalid IRI mapping');
+                        // TODO: implement real exceptions and catch them.
+                        throw new \Exception('invalid IRI mapping');
                     }
                 }
 
-                if (!str_contains(':', $term) && !str_contains('/', $term)) {
-                    $simpleTerm = true;
-                }
-
                 if (
-                    str_starts_with('_:', $definition->iriMapping) ||
-                    (\in_array($definition->iriMapping[\strlen($definition->iriMapping) - 1], [':', ',', '?', '#', '[', ']', '@'], true) &&
-                        IriResolver::isIri($definition->iriMapping)
-                    )
+                    !str_contains(':', $term) &&
+                    !str_contains('/', $term) &&
+                    isset($simpleTerm) &&
+                    $simpleTerm
                 ) {
-                    $definition->prefixFlag = true;
+                    if (
+                        IriResolver::isBlankNodeIdentifier($definition->iriMapping) ||
+                        (\in_array($definition->iriMapping[\strlen($definition->iriMapping) - 1], [':', ',', '?', '#', '[', ']', '@'], true) &&
+                            IriResolver::isIri($definition->iriMapping)
+                        )
+                    ) {
+                        $definition->prefixFlag = true;
+                    }
                 }
             }
             // 15
@@ -282,12 +284,12 @@ class CreateTermDefinition
                 self::create($activeContext, $localContext, $prefix, $defined);
             }
 
+            /** @var TermDefinition $activeDefinitions */
+            $activeDefinitions = &$activeContext->options->termDefinitions;
+
             // 15.2
             if (\array_key_exists($prefix, $activeContext->options->termDefinitions)) {
-                $definition->iriMapping = $activeContext
-                    ->options
-                    ->termDefinitions[$prefix]
-                    ->iriMapping . $suffix;
+                $definition->iriMapping = $activeDefinitions[$prefix]->iriMapping . $suffix;
                 // 15.3
             } else {
                 $definition->iriMapping = $term;
@@ -373,6 +375,7 @@ class CreateTermDefinition
             // 21.2
             $context = $value->{Keyword::CONTEXT->value};
             $nextContext = new Context($context);
+
             // 21.3
             try {
                 $contextProcesser = new ContextProcesser();
@@ -501,12 +504,16 @@ class CreateTermDefinition
         // 27
         if (!$overrideProtected && isset($previousDefinition) && $previousDefinition->protected) {
             // 27.1
-            if (
-                $definition != $previousDefinition &&
-                $definition->protected === $previousDefinition->protected
-            ) {
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('protected term redefinition');
+            foreach ($definition as $property => $value) {
+                if ('protected' === $property) {
+                    continue;
+                }
+
+                if (!property_exists($previousDefinition, $property) || $previousDefinition->$property !== $value) {
+                    // 27.1
+                    // TODO: implement real exceptions and catch them.
+                    throw new \Exception('protected term redefinition');
+                }
             }
 
             // 27.2

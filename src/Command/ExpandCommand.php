@@ -35,7 +35,7 @@ class ExpandCommand extends Command
         $file = $input->getArgument('file');
 
         $expander = new Expander();
-        $result = $expander->expand(json_decode(file_get_contents($file)));
+        $result = $expander->fromJsonLd(json_decode(file_get_contents($file)));
 
         $output->writeln($result);
 

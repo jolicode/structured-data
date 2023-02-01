@@ -11,6 +11,8 @@
 
 namespace Jolicode\JsonLd\ContextProcessing;
 
+use Jolicode\JsonLd\TermDefinition\TermDefinition;
+
 class Context
 {
     public function __construct(
@@ -21,6 +23,7 @@ class Context
 
     public function hasProtectedTermDefinitions(): bool
     {
+        /** @var TermDefinition $termDefinition */
         foreach ($this->options->termDefinitions as $termDefinition) {
             if ($termDefinition->protected) {
                 return true;

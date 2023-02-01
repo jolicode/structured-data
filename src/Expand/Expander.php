@@ -73,7 +73,7 @@ class Expander
         Context $activeContext = new Context(),
         ?string $activeProperty = FramingKeyword::DEFAULT->value,
         bool $fromMap = false,
-    ): ?array {
+    ): \stdClass|array|null {
         // 1
         if (null === $element) {
             return null;
@@ -84,8 +84,11 @@ class Expander
             $options->frameExpansion = false;
         }
 
+        /** @var TermDefinition[] $activeDefinitions */
+        $activeDefinitions = &$activeContext->options->termDefinitions;
+
         // 3
-        if (\array_key_exists($activeProperty, $activeContext->options->termDefinitions) && $activeContext->context) {
+        if (\array_key_exists($activeProperty, $activeDefinitions) && $activeContext->context) {
             $propertyScopedContext = $activeContext->context[$activeProperty][Keyword::CONTEXT->value];
         }
 
@@ -101,7 +104,7 @@ class Expander
                 $activeContext = $this->contextProcesser->processContext(
                     $activeContext,
                     $propertyScopedContext,
-                    $activeContext->options->termDefinitions[$activeProperty]->baseUrl
+                    $activeDefinitions[$activeProperty]->baseUrl
                 );
             }
 
@@ -126,9 +129,9 @@ class Expander
                 );
 
                 if (
-                    array_key_exists($activeProperty, $activeContext->options->termDefinitions) &&
-                    $activeContext->options->termDefinitions[$activeProperty]->containerMapping &&
-                    \in_array(Keyword::LIST->value, $activeContext->options->termDefinitions[$activeProperty]->containerMapping, true) &&
+                    array_key_exists($activeProperty, $activeDefinitions) &&
+                    $activeDefinitions[$activeProperty]->containerMapping &&
+                    \in_array(Keyword::LIST->value, $activeDefinitions[$activeProperty]->containerMapping, true) &&
                     \is_array($expandedItem)
                 ) {
                     $expandedItem = (object) [Keyword::LIST->value => $expandedItem];
@@ -139,10 +142,10 @@ class Expander
                 } elseif (null !== $expandedItem) {
                     $result[] = $expandedItem;
                 }
-
-                // 5.3
-                return $result;
             }
+
+            // 5.3
+            return $result;
         }
 
         // 6
@@ -158,6 +161,8 @@ class Expander
             ) {
                 $activeContext = $activeContext->options->previousContext;
             } else {
+                $expandedEntries = [];
+
                 foreach ($arrayElement as $entry) {
                     $expandedEntries[] = IriResolver::expand($activeContext->options->previousContext, $entry);
                 }
@@ -173,7 +178,7 @@ class Expander
             $activeContext = $this->contextProcesser->processContext(
                 $activeContext,
                 $propertyScopedContext,
-                $activeContext->options->termDefinitions[$activeProperty]->baseUrl,
+                $activeDefinitions[$activeProperty]->baseUrl,
                 overrideProtected: true
             );
         }
@@ -190,12 +195,17 @@ class Expander
         // 10
         $typeScopedContext = $activeContext;
 
-        $expandingToTypeEntries = [];
-
         // 11
         foreach ($element as $key => $value) {
             if (Keyword::TYPE->value !== IriResolver::expand($activeContext, $key)) {
                 continue;
+            }
+
+            // 12 : we do 12 here, so we don't loop twice over $element
+            if (!isset($inputType)) {
+                $inputType = [
+                    IriResolver::expand($activeContext, $key) => IriResolver::expand($activeContext, $value)
+                ];
             }
 
             // 11.1
@@ -221,7 +231,10 @@ class Expander
         // 12
         $result = [];
         $nests = [];
-        $inputType = $expandingToTypeEntries[0] ?? null;
+
+        if (!isset($inputType)) {
+            $inputType = null;
+        }
 
         // 13
         foreach ($element as $key => $value) {
@@ -231,11 +244,7 @@ class Expander
             }
 
             // 13.2
-            $expandedProperty = $expandingToTypeEntries[$key] ?? IriResolver::expand($activeContext, $key);
-
-            if ('myproperty' === $activeContext) {
-                dd($element, $value, $activeContext, $expandedProperty);
-            }
+            $expandedProperty = IriResolver::expand($activeContext, $key);
 
             // 13.3
             if (!$expandedProperty && !str_contains(':', $expandedProperty) && !Keyword::tryFrom($expandedProperty)) {
@@ -249,6 +258,8 @@ class Expander
                     // TODO: implement real exceptions and catch them
                     throw new \Exception('invalid reverse property map');
                 }
+
+                $expandedValue = [];
 
                 // 13.4.2
                 if (
@@ -272,10 +283,10 @@ class Expander
                     // 13.4.3.2
                     if ($options->frameExpansion) {
                         foreach ((array) $value as $valueEntry) {
-                            $expandedValue[] = IriResolver::expand($activeContext, $valueEntry, true);
+                            $expandedValue[] = IriResolver::expand($activeContext, $valueEntry, true, false);
                         }
                     } else {
-                        $expandedValue = IriResolver::expand($activeContext, $value, true);
+                        $expandedValue = IriResolver::expand($activeContext, $value, true, false);
                     }
                 }
 
@@ -304,7 +315,7 @@ class Expander
 
                     // 13.4.4.5
                     if (\array_key_exists(Keyword::TYPE->value, $result)) {
-                        array_unshift((array) $expandedValue, $result[Keyword::TYPE->value]);
+                        array_unshift($expandedValue, $result[Keyword::TYPE->value]);
                     }
                 }
 
@@ -526,20 +537,19 @@ class Expander
                 }
             }
 
-            if (!array_key_exists($key, $activeContext->options->termDefinitions)) {
+            if (!array_key_exists($key, $activeDefinitions)) {
                 $containerMapping = null;
+                $keyDefinition = null;
             } else {
                 /** @var TermDefinition $keyDefinition */
-                $keyDefinition = $activeContext->options->termDefinitions[$key];
+                $keyDefinition = $activeDefinitions[$key];
 
                 // 13.5
                 $containerMapping = $keyDefinition->containerMapping;
             }
 
-
             // 13.6
             if (
-                $containerMapping &&
                 Keyword::JSON->value === $keyDefinition->typeMapping
             ) {
                 $expandedValue = new \stdClass();
@@ -616,7 +626,9 @@ class Expander
                 foreach ($value as $index => $indexValue) {
                     // 13.8.3.1
                     if (\in_array(Keyword::ID->value, $containerMapping, true) || \in_array(Keyword::TYPE->value, $containerMapping, true)) {
-                        $mapContext = $activeContext->options->previousContext ?: $activeContext;
+                        $mapContext = $activeContext->options->previousContext;
+                    } else {
+                        $mapContext = $activeContext;
                     }
 
                     // 13.8.3.2
@@ -753,16 +765,14 @@ class Expander
                 !\in_array(Keyword::ID->value, $containerMapping) &&
                 !\in_array(Keyword::INDEX->value, $containerMapping)
             ) {
-                $graphExpandedValue = [];
-
                 // 13.12.1
-                foreach ($expandedValue as $expandedEntry) {
-                    $graphExpandedValue[] = [Keyword::GRAPH->value => (array) $expandedEntry];
+                foreach ((array) $expandedValue as $key => $expandedEntry) {
+                    $graphExpandedValue[] = [Keyword::GRAPH->value => [(object) $expandedEntry]];
                 }
             }
 
             // 13.13
-            if ($activeContext->options->termDefinitions[$key]->reverseProperty) {
+            if ($activeDefinitions[$key]->reverseProperty) {
                 // 13.13.1
                 if (!\array_key_exists(Keyword::REVERSE->value, $result)) {
                     $result[Keyword::REVERSE->value] = [];
@@ -788,7 +798,6 @@ class Expander
                     if (!\array_key_exists($expandedProperty, $reverseMap)) {
                         $reverseMap[$expandedProperty] = [];
                     }
-
                     // 13.13.4.3
                     ValueAdder::addValue($item, $expandedProperty, $reverseMap, true);
                 }
@@ -826,7 +835,7 @@ class Expander
         }
 
         // 15
-        if (\in_array(Keyword::VALUE->value, $result, true)) {
+        if (\array_key_exists(Keyword::VALUE->value, $result)) {
             // 15.1
             $this->validateResultValue($result);
 
@@ -905,70 +914,70 @@ class Expander
      *
      * This is a PHP implementation of https://www.w3.org/TR/json-ld11-api/#value-expansion. It is based on the 16th July 2020 recommendation.
      */
-    private function expandValue(Context $activeContext, string $activeProperty, mixed $value): array
+    private function expandValue(Context $activeContext, string $activeProperty, mixed $value): \stdClass|array
     {
-        // 3 : we start by initializing the result, the loop will add entries to it.
+        /** @var TermDefinition $definition */
+        $definition = $activeContext->options->termDefinitions[$activeProperty];
+
+        // 1
+        if (
+            Keyword::ID->value === $definition->typeMapping &&
+            \is_string($value)
+        ) {
+            return (object) [Keyword::ID->value => IriResolver::expand($activeContext, $value, true)];
+        }
+
+        // 2
+        if (
+            Keyword::VOCAB->value === $definition->typeMapping &&
+            \is_string($value)
+        ) {
+            return (object) [Keyword::ID->value => IriResolver::expand($activeContext, $value, true)];
+        }
+
+        // 3
         $result = [Keyword::VALUE->value => $value];
 
-        foreach ($activeContext->options->termDefinitions as $definition) {
-            // 1
-            if (
-                $activeProperty === $definition->typeMapping &&
-                Keyword::ID->value === $activeProperty &&
-                \is_string($value)
-            ) {
-                return (object) [Keyword::ID->value => IriResolver::expand($activeContext, $value, true)];
+        // 4
+        if (
+            $definition->typeMapping &&
+            !\in_array($definition->typeMapping, [Keyword::ID->value, Keyword::VOCAB->value, Keyword::NONE->value], true)
+        ) {
+            $result[Keyword::TYPE->value] = $definition->typeMapping;
+            // 5
+        } elseif (\is_string($value)) {
+            // 5.1
+            $language = $definition->languageMapping ?: $activeContext->options->defaultLangage;
+
+            // 5.3
+            if (!is_null($language)) {
+                $result[Keyword::LANGUAGE->value] = $language;
             }
 
-            // 2
-            if (
-                $activeProperty === $definition->typeMapping &&
-                Keyword::VOCAB->value === $activeProperty &&
-                \is_string($value)
-            ) {
-                return (object) [Keyword::ID->value => IriResolver::expand($activeContext, $value, true)];
-            }
+            // 5.2
+            $direction = $definition->directionMapping ?: $activeContext->options->defaultBaseDirection;
 
-            // 4
-            if (
-                $activeProperty === $definition->typeMapping &&
-                !\in_array($activeProperty, [Keyword::ID->value, Keyword::VOCAB->value, Keyword::NONE->value], true)
-            ) {
-                $result[Keyword::TYPE->value] = $definition->typeMapping;
-                // 5
-            } elseif (\is_string($value)) {
-                // 5.1
-                if ($activeProperty === $definition->languageMapping) {
-                    $language = $definition->languageMapping ?: $activeContext->options->defaultLangage;
-
-                    if ($language) {
-                        $result[Keyword::LANGUAGE->value] = $language;
-                    }
-                }
-
-                // 5.2
-                if ($activeProperty === $definition->directionMapping) {
-                    $direction = $definition->directionMapping ?: $activeContext->options->defaultLangage;
-
-                    if ($direction) {
-                        $result[Keyword::LANGUAGE->value] = $direction;
-                    }
-                }
+            // 5.4
+            if (!is_null($direction)) {
+                $result[Keyword::DIRECTION->value] = $direction;
             }
         }
 
-
         // 6
-        return $result;
+        return (object) $result;
     }
 
     // 13.4.4.1
     private function validateValueForType(mixed $value, ProcessorOptions $options): bool
     {
-        if ($options->frameExpansion) {
+        if ($options->frameExpansion && \is_object($value)) {
+            if (new \stdClass() == $value) {
+                return true;
+            }
+
             if (
-                \is_object($value) &&
-                (property_exists($value, FramingKeyword::DEFAULT->value) && IriResolver::isIri($value->{FramingKeyword::DEFAULT->value}))
+                property_exists($value, FramingKeyword::DEFAULT->value) &&
+                IriResolver::isIri($value->{FramingKeyword::DEFAULT->value})
             ) {
                 return true;
             }

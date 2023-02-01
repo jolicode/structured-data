@@ -18,19 +18,29 @@ class ValueAdder
      */
     public static function addValue(mixed $value, mixed $key, \stdClass|array &$object, bool $asArray = false): void
     {
+        if (is_array($object) && \count($object) && array_key_exists(0, $object)) {
+            // We don't want to convert 0 keys to objects so we directly access the object itself.
+            $object = $object[0];
+        }
+
         $object = (object) $object;
 
         // 1
         if ($asArray) {
-            if (!property_exists($object, $key) || !\is_array($object->$key)) {
-                $object->$key = (array) $value;
+            if ((!property_exists($object, $key) || !\is_array($object->$key))) {
+                $object->$key = [$value];
             }
+        }
+
+        if (is_array($value) && \count($value) && array_key_exists(0, $value)) {
+            // We don't want to convert 0 keys to objects so we directly access the value itself.
+            $value = $value[0];
         }
 
         // 2
         if (\is_array($value)) {
             foreach ($value as $elementKey => $element) {
-                self::addValue($element, $elementKey, $object->$key);
+                self::addValue($element, $elementKey, $object);
             }
             // 3
         } else {
@@ -39,16 +49,9 @@ class ValueAdder
                 $object->$key = $value;
                 // 3.2
             } else {
-                // 3.2.1
-                if (!\is_array($object->$key)) {
-                    $object->$key = [$value];
-                }
-
-                // 3.2.2
-                $object->$key = $value;
+                // 3.2.1 && 3.2.2 : we always set it to an array, the result should be an object in an array.
+                $object->$key = [$value];
             }
         }
-
-        $object = $object;
     }
 }

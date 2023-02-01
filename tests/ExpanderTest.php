@@ -22,15 +22,10 @@ class ExpanderTest extends AbstractJsonLdTest
     public function testExpand(string $json, string $expected): void
     {
         $expander = new Expander();
-        $options = new ProcessorOptions($this->getInputDir());
+        $options = new ProcessorOptions($this->getBaseUrlForW3CTests());
         $actual = $expander->fromJsonLd(json_decode($json), $options);
 
         $this->assertEquals(json_decode($expected), json_decode($actual));
-        // try {
-        //     $this->assertEquals(json_decode($expected), json_decode($actual));
-        // } catch (\Exception) {
-        //     dd('aaa', json_decode($expected), json_decode($actual));
-        // }
     }
 
     protected function getAlgorithmName(): string
