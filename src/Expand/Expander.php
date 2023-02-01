@@ -470,7 +470,7 @@ class Expander
                         if (\array_key_exists(Keyword::REVERSE->value, $expandedValue)) {
                             // 13.4.13.3.1
                             foreach ($expandedValue[Keyword::REVERSE->value] as $property => $item) {
-                                ValueAdder::addValue($item, $property, $result, true);
+                                $result = ValueAdder::addValue($item, $property, $result, true);
                             }
                         }
 
@@ -494,7 +494,7 @@ class Expander
                                     }
 
                                     // 13.4.13.4.2.1.2
-                                    ValueAdder::addValue($item, $property, $reverseMap, true);
+                                    $reverseMap = ValueAdder::addValue($item, $property, $reverseMap, true);
                                 }
                             }
                         }
@@ -550,6 +550,7 @@ class Expander
 
             // 13.6
             if (
+                $keyDefinition &&
                 Keyword::JSON->value === $keyDefinition->typeMapping
             ) {
                 $expandedValue = new \stdClass();
@@ -799,11 +800,11 @@ class Expander
                         $reverseMap[$expandedProperty] = [];
                     }
                     // 13.13.4.3
-                    ValueAdder::addValue($item, $expandedProperty, $reverseMap, true);
+                    $result = ValueAdder::addValue($item, $expandedProperty, $reverseMap, true);
                 }
             } else {
                 // 13.14
-                ValueAdder::addValue($expandedValue, $expandedProperty, $result, true);
+                $result = ValueAdder::addValue($expandedValue, $expandedProperty, $result, true);
             }
         }
 
@@ -835,42 +836,42 @@ class Expander
         }
 
         // 15
-        if (\array_key_exists(Keyword::VALUE->value, $result)) {
+        if (\property_exists($result, Keyword::VALUE->value)) {
             // 15.1
             $this->validateResultValue($result);
 
             // 15.2
-            if (Keyword::JSON->value === $result[Keyword::TYPE->value]) {
+            if (Keyword::JSON->value === $result->{Keyword::TYPE->value}) {
                 // TODO: not sure how to treat value as a JSON litteral. Do nothing ? json_encode ?
                 // 15.3
-            } elseif (null === $result[Keyword::VALUE->value] || [] === $result[Keyword::VALUE->value]) {
+            } elseif (null === $result->{Keyword::VALUE->value} || [] === $result->{Keyword::VALUE->value}) {
                 return null;
                 // 15.4
-            } elseif (!\is_string($result[Keyword::VALUE->value]) && \array_key_exists(Keyword::LANGUAGE->value, $result)) {
+            } elseif (!\is_string($result->{Keyword::VALUE->value}) && \property_exists($result, Keyword::LANGUAGE->value)) {
                 // TODO: implement real exceptions and catch them
                 throw new \Exception('invalid language-tagged value');
                 // 15.5
-            } elseif (\array_key_exists(Keyword::TYPE->value, $result) && !IriResolver::isIri($result[Keyword::TYPE->value])) {
+            } elseif (\property_exists($result, Keyword::TYPE->value) && !IriResolver::isIri($result->{Keyword::TYPE->value})) {
                 // TODO: implement real exceptions and catch them
                 throw new \Exception('invalid typed value');
             }
             // 16
-        } elseif (\array_key_exists(Keyword::TYPE->value, $result) && !\is_array($result[Keyword::TYPE->value])) {
-            $result[Keyword::TYPE->value] = [$result[Keyword::TYPE->value]];
+        } elseif (\property_exists($result, Keyword::TYPE->value) && !\is_array($result->{Keyword::TYPE->value})) {
+            $result->{Keyword::TYPE->value} = [$result->{Keyword::TYPE->value}];
             // 17
         } elseif (
-            \array_key_exists(Keyword::SET->value, $result) ||
-            \array_key_exists(Keyword::LIST->value, $result)
+            \property_exists($result, Keyword::SET->value) ||
+            \property_exists($result, Keyword::LIST->value)
         ) {
             // 17.1
-            if (2 !== \count($result) || !\array_key_exists($result[Keyword::INDEX->value], $result)) {
+            if (2 !== \count($result) || !\property_exists($result->{Keyword::INDEX->value}, $result)) {
                 // TODO: implement real exceptions and catch them
                 throw new \Exception('invalid set or list object');
             }
 
             // 17.2
-            if (\array_key_exists(Keyword::SET->value, $result)) {
-                $result = $result[Keyword::SET->value];
+            if (\property_exists($result, Keyword::SET->value)) {
+                $result = $result->{Keyword::SET->value};
             }
         }
 
@@ -906,7 +907,7 @@ class Expander
         }
 
         // 20
-        return $result;
+        return [$result];
     }
 
     /**

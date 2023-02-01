@@ -25,6 +25,7 @@ class ExpanderTest extends AbstractJsonLdTest
         $options = new ProcessorOptions($this->getBaseUrlForW3CTests());
         $actual = $expander->fromJsonLd(json_decode($json), $options);
 
+        dump('failed :(', json_decode($expected), json_decode($actual));
         $this->assertEquals(json_decode($expected), json_decode($actual));
     }
 

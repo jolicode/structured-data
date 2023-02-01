@@ -16,7 +16,7 @@ class ValueAdder
     /**
      * This is a PHP implementation of the W3C add value macro described at https://www.w3.org/TR/json-ld-api/#algorithm-terms. It is based on the 16th July 2020 recommendation.
      */
-    public static function addValue(mixed $value, mixed $key, \stdClass|array &$object, bool $asArray = false): void
+    public static function addValue(mixed $value, mixed $key, \stdClass|array $object, bool $asArray = false): \stdClass
     {
         if (is_array($object) && \count($object) && array_key_exists(0, $object)) {
             // We don't want to convert 0 keys to objects so we directly access the object itself.
@@ -53,5 +53,7 @@ class ValueAdder
                 $object->$key = [$value];
             }
         }
+
+        return $object;
     }
 }
