@@ -88,8 +88,8 @@ class Expander
         $activeDefinitions = &$activeContext->options->termDefinitions;
 
         // 3
-        if (\array_key_exists($activeProperty, $activeDefinitions) && $activeContext->context) {
-            $propertyScopedContext = $activeContext->context[$activeProperty][Keyword::CONTEXT->value];
+        if (\array_key_exists($activeProperty, $activeDefinitions) && $activeDefinitions[$activeProperty]->context) {
+            $propertyScopedContext = $activeDefinitions[$activeProperty]->context;
         }
 
         // 4
@@ -221,7 +221,7 @@ class Expander
                     $activeContext = $this->contextProcesser->processContext(
                         $activeContext,
                         new Context($typeScopedContext->options->termDefinitions[$term]->context),
-                        $typeScopedContext->options->termDefinitions[$term]->baseUrl,
+                        $activeContext->options->termDefinitions[$term]->baseUrl,
                         propagate: false
                     );
                 }
@@ -383,158 +383,159 @@ class Expander
 
                         continue;
                     }
+                }
 
-                    // 13.4.8
-                    if (Keyword::LANGUAGE->value === $expandedProperty) {
-                        // 13.4.8.1
-                        $this->validateValueForLanguage($value, $options);
+                // 13.4.8
+                if (Keyword::LANGUAGE->value === $expandedProperty) {
+                    // 13.4.8.1
+                    $this->validateValueForLanguage($value, $options);
 
-                        // 13.4.8.2
-                        // TODO: Add check that language is correctly formed.
-                        $expandedValue = $options->frameExpansion ? (array) $value : $value;
+                    // 13.4.8.2
+                    // TODO: Add check that language is correctly formed.
+                    $expandedValue = $options->frameExpansion ? (array) $value : $value;
+                }
+
+                // 13.4.9
+                if (Keyword::DIRECTION->value === $expandedProperty) {
+                    // 13.4.9.1
+                    // TODO: json-ld-1.0 processing mode
+
+                    // 13.4.9.2
+                    if (!\in_array($value, ['ltr', 'rtl'], true)) {
+                        // TODO: implement real exceptions and catch them
+                        throw new \Exception('invalid base direction');
                     }
 
                     // 13.4.9
-                    if (Keyword::DIRECTION->value === $expandedProperty) {
-                        // 13.4.9.1
-                        // TODO: json-ld-1.0 processing mode
+                    $expandedValue = $options->frameExpansion ? (array) $value : $value;
+                }
 
-                        // 13.4.9.2
-                        if (!\in_array($value, ['ltr', 'rtl'], true)) {
-                            // TODO: implement real exceptions and catch them
-                            throw new \Exception('invalid base direction');
-                        }
-
-                        // 13.4.9
-                        $expandedValue = $options->frameExpansion ? (array) $value : $value;
+                // 13.4.10
+                if (Keyword::INDEX->value === $expandedProperty) {
+                    // 13.4.10.1
+                    if (!\is_string($value)) {
+                        // TODO: implement real exceptions and catch them
+                        throw new \Exception('invalid @index value');
                     }
 
-                    // 13.4.10
-                    if (Keyword::INDEX->value === $expandedProperty) {
-                        // 13.4.10.1
-                        if (!\is_string($value)) {
-                            // TODO: implement real exceptions and catch them
-                            throw new \Exception('invalid @index value');
-                        }
+                    // 13.4.10.2
+                    $expandedValue = $value;
+                }
 
-                        // 13.4.10.2
-                        $expandedValue = $value;
-                    }
-
-                    // 13.4.11
-                    if (Keyword::LIST->value === $expandedProperty) {
-                        // 13.4.11.1
-                        if (null === $activeProperty || Keyword::GRAPH->value === $activeProperty) {
-                            continue;
-                        }
-
-                        // 13.4.11.2
-                        $expandedValue = $this->expand(
-                            $value,
-                            $options,
-                            $baseUrl,
-                            $activeContext,
-                            $activeProperty,
-                        );
-                    }
-
-                    // 13.4.12
-                    if (Keyword::SET->value === $expandedProperty) {
-                        $expandedValue = $this->expand(
-                            $value,
-                            $options,
-                            $baseUrl,
-                            $activeContext,
-                            $activeProperty,
-                        );
-                    }
-
-                    // 13.4.13
-                    if (Keyword::REVERSE->value === $expandedProperty) {
-                        // 13.4.13.1
-                        if (!\is_object($value)) {
-                            // TODO: implement real exceptions and catch them
-                            throw new \Exception('invalid @reverse value');
-                        }
-
-                        // 13.4.13.2
-                        $expandedValue = $this->expand(
-                            $value,
-                            $options,
-                            $baseUrl,
-                            $activeContext,
-                            $activeProperty,
-                        );
-
-                        // 13.4.13.3
-                        if (\array_key_exists(Keyword::REVERSE->value, $expandedValue)) {
-                            // 13.4.13.3.1
-                            foreach ($expandedValue[Keyword::REVERSE->value] as $property => $item) {
-                                $result = ValueAdder::addValue($item, $property, $result, true);
-                            }
-                        }
-
-                        // 13.4.13.4
-                        if (\count($expandedValue) && !\array_key_exists(Keyword::REVERSE->value, $expandedValue)) {
-                            // 13.4.13.4.1
-                            $reverseMap = $result[Keyword::REVERSE->value] ?: new \stdClass();
-
-                            // 13.4.13.4.2
-                            foreach ($expandedValue as $property => $items) {
-                                if (Keyword::REVERSE->value === $property) {
-                                    continue;
-                                }
-
-                                // 13.4.13.4.2.1
-                                foreach ($items as $item) {
-                                    // 13.4.13.4.2.1.1
-                                    if (property_exists((object) $item, Keyword::VALUE->value) || property_exists((object) $item, Keyword::VALUE->value)) {
-                                        // TODO: implement real exceptions and catch them
-                                        throw new \Exception('invalid @reverse property value');
-                                    }
-
-                                    // 13.4.13.4.2.1.2
-                                    $reverseMap = ValueAdder::addValue($item, $property, $reverseMap, true);
-                                }
-                            }
-                        }
-
-                        // 13.4.13.5
+                // 13.4.11
+                if (Keyword::LIST->value === $expandedProperty) {
+                    // 13.4.11.1
+                    if (null === $activeProperty || Keyword::GRAPH->value === $activeProperty) {
                         continue;
                     }
 
-                    // 13.4.14
-                    if (Keyword::NEST->value === $expandedProperty) {
-                        $nests[] = $key ?: [];
+                    // 13.4.11.2
+                    $expandedValue = $this->expand(
+                        $value,
+                        $options,
+                        $baseUrl,
+                        $activeContext,
+                        $activeProperty,
+                    );
+                }
 
-                        continue;
+                // 13.4.12
+                if (Keyword::SET->value === $expandedProperty) {
+                    $expandedValue = $this->expand(
+                        $value,
+                        $options,
+                        $baseUrl,
+                        $activeContext,
+                        $activeProperty,
+                    );
+                }
+
+                // 13.4.13
+                if (Keyword::REVERSE->value === $expandedProperty) {
+                    // 13.4.13.1
+                    if (!\is_object($value)) {
+                        // TODO: implement real exceptions and catch them
+                        throw new \Exception('invalid @reverse value');
                     }
 
-                    // 13.4.15
-                    if ($options->frameExpansion) {
-                        if (FramingKeyword::tryFrom($expandedProperty)) {
-                            $expandedValue = $this->expand(
-                                $value,
-                                $options,
-                                $baseUrl,
-                                $activeContext,
-                                $activeProperty,
-                            );
+                    // 13.4.13.2
+                    $expandedValue = $this->expand(
+                        $value,
+                        $options,
+                        $baseUrl,
+                        $activeContext,
+                        $activeProperty,
+                    );
+
+                    // 13.4.13.3
+                    if (\array_key_exists(Keyword::REVERSE->value, $expandedValue)) {
+                        // 13.4.13.3.1
+                        foreach ($expandedValue[Keyword::REVERSE->value] as $property => $item) {
+                            $result = ValueAdder::addValue($item, $property, $result, true);
                         }
                     }
 
-                    // 13.4.16
-                    if (
-                        null !== $expandedValue &&
-                        Keyword::VALUE->value !== $expandedProperty &&
-                        Keyword::JSON->value !== $inputType
-                    ) {
-                        $result[$expandedProperty] = $expandedValue;
+                    // 13.4.13.4
+                    if (\count($expandedValue) && !\array_key_exists(Keyword::REVERSE->value, $expandedValue)) {
+                        // 13.4.13.4.1
+                        $reverseMap = $result[Keyword::REVERSE->value] ?: new \stdClass();
+
+                        // 13.4.13.4.2
+                        foreach ($expandedValue as $property => $items) {
+                            if (Keyword::REVERSE->value === $property) {
+                                continue;
+                            }
+
+                            // 13.4.13.4.2.1
+                            foreach ($items as $item) {
+                                // 13.4.13.4.2.1.1
+                                if (property_exists((object) $item, Keyword::VALUE->value) || property_exists((object) $item, Keyword::VALUE->value)) {
+                                    // TODO: implement real exceptions and catch them
+                                    throw new \Exception('invalid @reverse property value');
+                                }
+
+                                // 13.4.13.4.2.1.2
+                                $reverseMap = ValueAdder::addValue($item, $property, $reverseMap, true);
+                            }
+                        }
                     }
 
-                    // 13.4.17
+                    // 13.4.13.5
                     continue;
                 }
+
+                // 13.4.14
+                if (Keyword::NEST->value === $expandedProperty) {
+                    $nests[] = $key ?: [];
+
+                    continue;
+                }
+
+                // 13.4.15
+                if ($options->frameExpansion) {
+                    if (FramingKeyword::tryFrom($expandedProperty)) {
+                        $expandedValue = $this->expand(
+                            $value,
+                            $options,
+                            $baseUrl,
+                            $activeContext,
+                            $activeProperty,
+                        );
+                    }
+                }
+
+
+                // 13.4.16
+                if (
+                    null !== $expandedValue &&
+                    Keyword::VALUE->value !== $expandedProperty &&
+                    Keyword::JSON->value !== $inputType
+                ) {
+                    $result[$expandedProperty] = $expandedValue;
+                }
+
+                // 13.4.17
+                continue;
             }
 
             if (!array_key_exists($key, $activeDefinitions)) {
@@ -622,18 +623,19 @@ class Expander
 
                 // 13.8.2
                 $indexKey = $keyDefinition->indexMapping ?: Keyword::INDEX->value;
-
                 // 13.8.3
                 foreach ($value as $index => $indexValue) {
                     // 13.8.3.1
                     if (\in_array(Keyword::ID->value, $containerMapping, true) || \in_array(Keyword::TYPE->value, $containerMapping, true)) {
-                        $mapContext = $activeContext->options->previousContext;
-                    } else {
-                        $mapContext = $activeContext;
+                        $mapContext = $activeContext->options->previousContext ?: $activeContext;
                     }
 
                     // 13.8.3.2
-                    if (\in_array(Keyword::TYPE->value, $containerMapping, true) && $mapContext->options->termDefinitions[$index]->context) {
+                    if (
+                        \in_array(Keyword::TYPE->value, $containerMapping, true) &&
+                        array_key_exists($index, $mapContext->options->termDefinitions) &&
+                        $mapContext->options->termDefinitions[$index]->context
+                    ) {
                         $mapContext = $this->contextProcesser->processContext(
                             $mapContext,
                             $mapContext->options->termDefinitions[$index]->context,
@@ -676,7 +678,7 @@ class Expander
                             Keyword::NONE->value !== $expandedIndex
                         ) {
                             // 13.8.3.7.2.1
-                            $reExpandedIndex = $this->expandValue($activeContext, $indexKey, $index);
+                            $reExpandedIndex = $this->expandValue($activeContext, $key, $index);
 
                             // 13.8.3.7.2.2
                             $expandedIndexKey = IriResolver::expand($activeContext, $indexKey);
@@ -720,17 +722,23 @@ class Expander
                         ) {
                             $types = [
                                 $expandedIndex,
-                                ...$item[Keyword::TYPE->value],
+                                ...$item->{Keyword::TYPE->value},
                             ];
 
                             $item->{Keyword::TYPE->value} = $types;
                         }
 
-                        // 13.8.3.7.6
-                        $expandedValue[] = $item;
+                        // 13.8.3.7.6 : the docs say to append item but the tests want us to actually prepend item.
+                        array_unshift($expandedValue, $item);
                     }
                 }
             } else {
+                // We had issues where the key would not exist in the term definitions if it was not present in a @context object
+                // In this case, we use active property instead which should be defined
+                if (!array_key_exists($key, $activeContext->options->termDefinitions)) {
+                    $key = $activeProperty;
+                }
+
                 // 13.9
                 $expandedValue = $this->expand(
                     $value,
@@ -773,7 +781,7 @@ class Expander
             }
 
             // 13.13
-            if ($activeDefinitions[$key]->reverseProperty) {
+            if (array_key_exists($key, $activeDefinitions) && $activeDefinitions[$key]->reverseProperty) {
                 // 13.13.1
                 if (!\array_key_exists(Keyword::REVERSE->value, $result)) {
                     $result[Keyword::REVERSE->value] = [];
@@ -864,7 +872,7 @@ class Expander
             \property_exists($result, Keyword::LIST->value)
         ) {
             // 17.1
-            if (2 !== \count($result) || !\property_exists($result->{Keyword::INDEX->value}, $result)) {
+            if (2 !== \count($result) || !\property_exists($result, $result->{Keyword::INDEX->value})) {
                 // TODO: implement real exceptions and catch them
                 throw new \Exception('invalid set or list object');
             }

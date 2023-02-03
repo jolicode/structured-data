@@ -263,18 +263,6 @@ class ContextProcesser
             }
         }
 
-        // I have no idea why I did this in the first place ^__^
-        // if (1 === \count($localContext->context)) {
-        //     $context = $localContext->context[0];
-        //     $localContext->context = new \stdClass();
-
-        //     if (null === $context) {
-        //         return $localContext;
-        //     }
-
-        //     $localContext->context = $context;
-        // }
-
         // 6
         return $result;
     }

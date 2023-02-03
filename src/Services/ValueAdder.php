@@ -32,9 +32,15 @@ class ValueAdder
             }
         }
 
-        if (is_array($value) && \count($value) && array_key_exists(0, $value)) {
-            // We don't want to convert 0 keys to objects so we directly access the value itself.
-            $value = $value[0];
+        if (is_array($value)) {
+            if (\count($value) === 1) {
+                // We don't want to convert 0 keys to objects so we directly access the value itself.
+                $value = $value[0];
+            } else {
+                $object->$key = $value;
+
+                return $object;
+            }
         }
 
         // 2
