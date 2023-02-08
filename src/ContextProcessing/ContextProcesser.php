@@ -176,20 +176,20 @@ class ContextProcesser
             }
 
             // 5.7
-            if (property_exists($context, Keyword::BASE->value) && !count($remoteContexts)) {
+            if (property_exists($context, Keyword::BASE->value) && !\count($remoteContexts)) {
                 // 5.7.1
                 $value = $context->{Keyword::BASE->value};
 
                 // 5.7.2
                 if (!$value) {
                     $result->options->baseIri = null;
-                    // 5.7.3
+                // 5.7.3
                 } elseif (IriResolver::isIri($value)) {
                     $result->options->baseIri = $value;
-                    // 5.7.4
+                // 5.7.4
                 } elseif (IriResolver::isRelativeIri($value) && $result->options->baseIri) {
                     $result->options->baseIri = IriResolver::resolveIri($result->options->baseIri, $value);
-                    // 5.7.5
+                // 5.7.5
                 } else {
                     // TODO: implement real exceptions and catch them
                     throw new \Exception('invalid base IRI');
@@ -204,7 +204,7 @@ class ContextProcesser
                 // 5.8.2
                 if (!$value) {
                     $result->options->vocabularyMapping = null;
-                    // 5.8.3
+                // 5.8.3
                 } elseif (IriResolver::isAbsoluteIriOrBlankNode($value)) {
                     $result->options->vocabularyMapping = IriResolver::expand($result, $value, true);
                 } else {
@@ -221,8 +221,8 @@ class ContextProcesser
                 // 5.9.2
                 if (!$value) {
                     $result->options->defaultLangage = null;
-                    // 5.9.3
-                } elseif (is_string($value)) {
+                // 5.9.3
+                } elseif (\is_string($value)) {
                     $result->options->defaultLangage = $value;
                 } else {
                     // TODO: implement real exceptions and catch them
@@ -242,8 +242,8 @@ class ContextProcesser
                 // 5.10.3
                 if (!$value) {
                     $result->options->defaultBaseDirection = null;
-                    // 5.10.4
-                } elseif (is_string($value)) {
+                // 5.10.4
+                } elseif (\is_string($value)) {
                     $result->options->defaultBaseDirection = $value;
                 } else {
                     // TODO: implement real exceptions and catch them
@@ -257,7 +257,7 @@ class ContextProcesser
                 // TODO: json-ld-1.0 processing mode
 
                 // 5.11.2
-                if (!is_bool($context->{Keyword::PROPAGATE->value})) {
+                if (!\is_bool($context->{Keyword::PROPAGATE->value})) {
                     // TODO: implement real exceptions and catch them
                     throw new \Exception('invalid @propagate value');
                 }
@@ -267,7 +267,7 @@ class ContextProcesser
 
             // 5.13
             foreach ($context as $key => $value) {
-                if (in_array(
+                if (\in_array(
                     $key,
                     [
                         Keyword::BASE->value,
@@ -278,7 +278,7 @@ class ContextProcesser
                         Keyword::PROTECTED->value,
                         Keyword::VERSION->value,
                         Keyword::VOCAB->value,
-                    ]
+                    ], true
                 )) {
                     continue;
                 }

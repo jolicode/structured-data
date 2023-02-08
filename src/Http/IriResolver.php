@@ -46,7 +46,7 @@ class IriResolver
         if (
             $localContext &&
             property_exists($localContext, $value) &&
-            array_key_exists($value, $defined) &&
+            \array_key_exists($value, $defined) &&
             !$defined[$value]
         ) {
             TermDefinitionCreator::create($activeContext, $localContext, $value, $defined);
