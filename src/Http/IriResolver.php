@@ -13,7 +13,7 @@ namespace Jolicode\JsonLd\Http;
 
 use Jolicode\JsonLd\ContextProcessing\Context;
 use Jolicode\JsonLd\JsonLd\Keyword;
-use Jolicode\JsonLd\TermDefinition\CreateTermDefinition;
+use Jolicode\JsonLd\TermDefinition\TermDefinitionCreator;
 
 class IriResolver
 {
@@ -49,10 +49,10 @@ class IriResolver
             array_key_exists($value, $defined) &&
             !$defined[$value]
         ) {
-            CreateTermDefinition::create($activeContext, $localContext, $value, $defined);
+            TermDefinitionCreator::create($activeContext, $localContext, $value, $defined);
         }
 
-        $activeDefinitions = &$activeContext->options->termDefinitions;
+        $activeDefinitions = $activeContext->options->termDefinitions;
 
         // 4
         if (
@@ -83,7 +83,7 @@ class IriResolver
                 property_exists($localContext, $prefix) &&
                 (!\array_key_exists($prefix, $defined) || true !== $defined[$prefix])
             ) {
-                CreateTermDefinition::create($activeContext, $localContext, $prefix, $defined);
+                TermDefinitionCreator::create($activeContext, $localContext, $prefix, $defined);
             }
 
             // 6.4

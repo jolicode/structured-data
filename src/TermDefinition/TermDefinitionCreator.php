@@ -16,7 +16,7 @@ use Jolicode\JsonLd\ContextProcessing\ContextProcesser;
 use Jolicode\JsonLd\Http\IriResolver;
 use Jolicode\JsonLd\JsonLd\Keyword;
 
-class CreateTermDefinition
+class TermDefinitionCreator
 {
     /**
      * Implementation of the W3C Create Term Definition algorithm : https://www.w3.org/TR/json-ld-api/#create-term-definition
@@ -84,7 +84,6 @@ class CreateTermDefinition
                 throw new \Exception('invalid term definition');
             }
 
-            $value = (object) [Keyword::ID->value => $value[Keyword::ID->value]];
             $simpleTerm = false;
         }
 
@@ -285,7 +284,7 @@ class CreateTermDefinition
             }
 
             /** @var TermDefinition $activeDefinitions */
-            $activeDefinitions = &$activeContext->options->termDefinitions;
+            $activeDefinitions = $activeContext->options->termDefinitions;
 
             // 15.2
             if (\array_key_exists($prefix, $activeContext->options->termDefinitions)) {
@@ -309,6 +308,9 @@ class CreateTermDefinition
             // 18
         } elseif ($activeContext->options->vocabularyMapping) {
             $definition->iriMapping = $activeContext->options->vocabularyMapping . $term;
+        } else {
+            // TODO: implement real exceptions and catch them.
+            throw new \Exception('invalid IRI mapping');
         }
 
         // 19
@@ -373,27 +375,13 @@ class CreateTermDefinition
             // TODO: json-ld-1.0 processing mode stuff
 
             // 21.2
-            $context = $value->{Keyword::CONTEXT->value};
-            $nextContext = new Context($context);
+            $context = new Context($value->{Keyword::CONTEXT->value});
 
-            // 21.3
-            try {
-                $contextProcesser = new ContextProcesser();
-                $contextProcesser->processContext(
-                    $activeContext,
-                    $nextContext,
-                    $baseUrl,
-                    $remoteContexts,
-                    true,
-                    validateScopedContext: false
-                );
-            } catch (\Exception) {
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid scoped context');
-            }
+            // 21.3 : we skip 21.3 because it actually updates the activeContext, which it should not (see the note).
+            // Maybe in the future we will implement a "dry run" for context processing, which would make it possible to just validate the context
 
             // 21.4
-            $definition->context = $context;
+            $definition->context = $context->context;
             $definition->baseUrl = $baseUrl;
         }
 
@@ -478,7 +466,7 @@ class CreateTermDefinition
         }
 
         // 26
-        foreach ($value as $entry => $value) {
+        foreach ($value as $entry => $v) {
             if (!\in_array(
                 $entry,
                 [

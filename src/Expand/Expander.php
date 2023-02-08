@@ -150,24 +150,27 @@ class Expander
 
         // 6
         $element = (object) $element;
-        $arrayElement = (array) $element;
 
         // 7
         // The doc is a nightmare here so I'm not sure about this. This is what I could understand but this may be wrong.
-        if ($activeContext->options->previousContext && !$activeContext->options->$fromMap) {
-            if (
-                1 === \count($arrayElement) &&
-                Keyword::ID->value !== IriResolver::expand($activeContext->options->previousContext, array_key_first($arrayElement))
-            ) {
-                $activeContext = $activeContext->options->previousContext;
-            } else {
-                $expandedEntries = [];
+        if ($activeContext->options->previousContext) {
+            if (!$fromMap) {
+                $switchToPreviousContext = true;
 
-                foreach ($arrayElement as $entry) {
-                    $expandedEntries[] = IriResolver::expand($activeContext->options->previousContext, $entry);
+                if (
+                    1 === count((array) $element) &&
+                    Keyword::ID->value === IriResolver::expand($activeContext, array_keys(get_object_vars($element))[0])
+                ) {
+                    $switchToPreviousContext = false;
                 }
 
-                if (!\in_array(Keyword::VALUE->value, $expandedEntries, true)) {
+                foreach ($element as $elementEntry) {
+                    if (Keyword::VALUE->value === IriResolver::expand($activeContext, $elementEntry)) {
+                        $switchToPreviousContext = false;
+                    }
+                }
+
+                if ($switchToPreviousContext) {
                     $activeContext = $activeContext->options->previousContext;
                 }
             }
@@ -201,15 +204,15 @@ class Expander
                 continue;
             }
 
+            // 11.1
+            $value = (array) $value;
+
             // 12 : we do 12 here, so we don't loop twice over $element
             if (!isset($inputType)) {
                 $inputType = [
-                    IriResolver::expand($activeContext, $key) => IriResolver::expand($activeContext, $value)
+                    IriResolver::expand($activeContext, $key) => IriResolver::expand($activeContext, $value[array_key_last($value)])
                 ];
             }
-
-            // 11.1
-            $value = (array) $value;
 
             // 11.2
             foreach ($value as $term) {
@@ -623,6 +626,7 @@ class Expander
 
                 // 13.8.2
                 $indexKey = $keyDefinition->indexMapping ?: Keyword::INDEX->value;
+
                 // 13.8.3
                 foreach ($value as $index => $indexValue) {
                     // 13.8.3.1
@@ -678,7 +682,7 @@ class Expander
                             Keyword::NONE->value !== $expandedIndex
                         ) {
                             // 13.8.3.7.2.1
-                            $reExpandedIndex = $this->expandValue($activeContext, $key, $index);
+                            $reExpandedIndex = $this->expandValue($activeContext, $indexKey, $index);
 
                             // 13.8.3.7.2.2
                             $expandedIndexKey = IriResolver::expand($activeContext, $indexKey);
@@ -733,12 +737,6 @@ class Expander
                     }
                 }
             } else {
-                // We had issues where the key would not exist in the term definitions if it was not present in a @context object
-                // In this case, we use active property instead which should be defined
-                if (!array_key_exists($key, $activeContext->options->termDefinitions)) {
-                    $key = $activeProperty;
-                }
-
                 // 13.9
                 $expandedValue = $this->expand(
                     $value,
@@ -925,50 +923,54 @@ class Expander
      */
     private function expandValue(Context $activeContext, string $activeProperty, mixed $value): \stdClass|array
     {
-        /** @var TermDefinition $definition */
-        $definition = $activeContext->options->termDefinitions[$activeProperty];
+        if (array_key_exists($activeProperty, $activeContext->options->termDefinitions)) {
+            /** @var TermDefinition $definition */
+            $definition = $activeContext->options->termDefinitions[$activeProperty];
 
-        // 1
-        if (
-            Keyword::ID->value === $definition->typeMapping &&
-            \is_string($value)
-        ) {
-            return (object) [Keyword::ID->value => IriResolver::expand($activeContext, $value, true)];
-        }
+            // 1
+            if (
+                Keyword::ID->value === $definition->typeMapping &&
+                \is_string($value)
+            ) {
+                return (object) [Keyword::ID->value => IriResolver::expand($activeContext, $value, true)];
+            }
 
-        // 2
-        if (
-            Keyword::VOCAB->value === $definition->typeMapping &&
-            \is_string($value)
-        ) {
-            return (object) [Keyword::ID->value => IriResolver::expand($activeContext, $value, true)];
+            // 2
+            if (
+                Keyword::VOCAB->value === $definition->typeMapping &&
+                \is_string($value)
+            ) {
+                return (object) [Keyword::ID->value => IriResolver::expand($activeContext, $value, true)];
+            }
         }
 
         // 3
         $result = [Keyword::VALUE->value => $value];
 
-        // 4
-        if (
-            $definition->typeMapping &&
-            !\in_array($definition->typeMapping, [Keyword::ID->value, Keyword::VOCAB->value, Keyword::NONE->value], true)
-        ) {
-            $result[Keyword::TYPE->value] = $definition->typeMapping;
-            // 5
-        } elseif (\is_string($value)) {
-            // 5.1
-            $language = $definition->languageMapping ?: $activeContext->options->defaultLangage;
+        if (array_key_exists($activeProperty, $activeContext->options->termDefinitions)) {
+            // 4
+            if (
+                $definition->typeMapping &&
+                !\in_array($definition->typeMapping, [Keyword::ID->value, Keyword::VOCAB->value, Keyword::NONE->value], true)
+            ) {
+                $result[Keyword::TYPE->value] = $definition->typeMapping;
+                // 5
+            } elseif (\is_string($value)) {
+                // 5.1
+                $language = $definition->languageMapping ?: $activeContext->options->defaultLangage;
 
-            // 5.3
-            if (!is_null($language)) {
-                $result[Keyword::LANGUAGE->value] = $language;
-            }
+                // 5.3
+                if (!is_null($language)) {
+                    $result[Keyword::LANGUAGE->value] = $language;
+                }
 
-            // 5.2
-            $direction = $definition->directionMapping ?: $activeContext->options->defaultBaseDirection;
+                // 5.2
+                $direction = $definition->directionMapping ?: $activeContext->options->defaultBaseDirection;
 
-            // 5.4
-            if (!is_null($direction)) {
-                $result[Keyword::DIRECTION->value] = $direction;
+                // 5.4
+                if (!is_null($direction)) {
+                    $result[Keyword::DIRECTION->value] = $direction;
+                }
             }
         }
 

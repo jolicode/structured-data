@@ -14,7 +14,7 @@ namespace Tests;
 use Jolicode\JsonLd\JsonLd\Keyword;
 use Jolicode\JsonLd\Fixtures\FixturesManager;
 use Jolicode\JsonLd\ContextProcessing\ContextProcesser;
-use Jolicode\JsonLd\TermDefinition\CreateTermDefinition;
+use Jolicode\JsonLd\TermDefinition\TermDefinitionCreator;
 
 /** @group context */
 class ContextProcesserTest extends AbstractJsonLdTest
@@ -39,7 +39,7 @@ class ContextProcesserTest extends AbstractJsonLdTest
     /** @dataProvider provideContainerEntries */
     public function testValidateContainerEntry(string|array $container, bool $expected): void
     {
-        $this->assertSame($expected, CreateTermDefinition::validateContainerEntry($container));
+        $this->assertSame($expected, TermDefinitionCreator::validateContainerEntry($container));
     }
 
     protected function getAlgorithmName(): string

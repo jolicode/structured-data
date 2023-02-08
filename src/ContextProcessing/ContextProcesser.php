@@ -14,10 +14,15 @@ namespace Jolicode\JsonLd\ContextProcessing;
 use Jolicode\JsonLd\Http\DocumentLoader;
 use Jolicode\JsonLd\Http\IriResolver;
 use Jolicode\JsonLd\JsonLd\Keyword;
-use Jolicode\JsonLd\TermDefinition\CreateTermDefinition;
+use Jolicode\JsonLd\TermDefinition\TermDefinitionCreator;
 
 class ContextProcesser
 {
+    public function __construct(
+        private ?array $defined = [],
+    ) {
+    }
+
     public function fromJsonLd(\stdClass|array $json): Context
     {
         $activeContext = new Context();
@@ -41,7 +46,7 @@ class ContextProcesser
         bool $validateScopedContext = true
     ): Context {
         // 1
-        $result = clone $activeContext;
+        $result = new Context(options: clone $activeContext->options);
         $result->options->inverseContext = null;
 
         // 2
@@ -53,7 +58,20 @@ class ContextProcesser
 
         // 3
         if (!$propagate && !$activeContext->options->previousContext) {
-            $result->options->previousContext = $activeContext;
+            // The termDefinitions is a reference and not just a regular array, so we have to copy it without the reference
+            $previousContextOptions = new ContextOptions();
+
+            foreach ($activeContext->options as $option => $value) {
+                if ('termDefinitions' === $option) {
+                    foreach ($value as $term => $definition) {
+                        $previousContextOptions->termDefinitions[$term] = $definition;
+                    }
+                } else {
+                    $previousContextOptions->{$option} = $value;
+                }
+            }
+
+            $result->options->previousContext = new Context(options: $previousContextOptions);
         }
 
         // 4
@@ -187,8 +205,8 @@ class ContextProcesser
                 if (!$value) {
                     $result->options->vocabularyMapping = null;
                     // 5.8.3
-                } elseif (IriResolver::isIri($value)) {
-                    $result->options->vocabularyMapping = IriResolver::expand($activeContext, $value, true);
+                } elseif (IriResolver::isAbsoluteIriOrBlankNode($value)) {
+                    $result->options->vocabularyMapping = IriResolver::expand($result, $value, true);
                 } else {
                     // TODO: implement real exceptions and catch them
                     throw new \Exception('invalid vocab mapping');
@@ -245,20 +263,35 @@ class ContextProcesser
                 }
             }
 
-            // 5.12
-            $defined = [];
+            // 5.12 : we set $defined as a class property
 
             // 5.13
             foreach ($context as $key => $value) {
-                CreateTermDefinition::create(
+                if (in_array(
+                    $key,
+                    [
+                        Keyword::BASE->value,
+                        Keyword::DIRECTION->value,
+                        Keyword::IMPORT->value,
+                        Keyword::LANGUAGE->value,
+                        Keyword::PROPAGATE->value,
+                        Keyword::PROTECTED->value,
+                        Keyword::VERSION->value,
+                        Keyword::VOCAB->value,
+                    ]
+                )) {
+                    continue;
+                }
+
+                TermDefinitionCreator::create(
                     $result,
                     $context,
                     $key,
-                    $defined,
+                    $this->defined,
                     $baseUrl,
                     $context->{Keyword::PROTECTED->value} ?? false,
                     $overrideProtected,
-                    $remoteContexts,
+                    $remoteContexts
                 );
             }
         }
