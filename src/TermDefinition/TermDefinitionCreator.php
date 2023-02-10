@@ -72,11 +72,11 @@ class TermDefinitionCreator
         // 7
         if (null === $value) {
             $value = (object) [Keyword::ID->value => null];
-        // 8
+            // 8
         } elseif (\is_string($value)) {
             $value = (object) [Keyword::ID->value => $value];
             $simpleTerm = true;
-        // 9
+            // 9
         } else {
             if (!\is_object($value)) {
                 // TODO: implement real exceptions and catch them.
@@ -273,7 +273,7 @@ class TermDefinitionCreator
                     }
                 }
             }
-        // 15
+            // 15
         } elseif (preg_match('/[^^]:/', $term)) {
             [$prefix, $suffix] = explode(':', $term, 2);
 
@@ -288,11 +288,11 @@ class TermDefinitionCreator
             // 15.2
             if (\array_key_exists($prefix, $activeContext->options->termDefinitions)) {
                 $definition->iriMapping = $activeDefinitions[$prefix]->iriMapping . $suffix;
-            // 15.3
+                // 15.3
             } else {
                 $definition->iriMapping = $term;
             }
-        // 16
+            // 16
         } elseif (str_contains($term, '/')) {
             // 16.2
             if (IriResolver::isIri($mapping = IriResolver::expand($activeContext, $term))) {
@@ -301,10 +301,10 @@ class TermDefinitionCreator
                 // TODO: implement real exceptions and catch them.
                 throw new \Exception('invalid IRI mapping');
             }
-        // 17
+            // 17
         } elseif (Keyword::TYPE->value === $term) {
             $definition->iriMapping = Keyword::TYPE->value;
-        // 18
+            // 18
         } elseif ($activeContext->options->vocabularyMapping) {
             $definition->iriMapping = $activeContext->options->vocabularyMapping . $term;
         } else {
@@ -315,6 +315,7 @@ class TermDefinitionCreator
         // 19
         if (property_exists($value, Keyword::CONTAINER->value)) {
             $container = $value->{Keyword::CONTAINER->value};
+
             // 19.1
             if (!self::validateContainerEntry($container)) {
                 // TODO: implement real exceptions and catch them.

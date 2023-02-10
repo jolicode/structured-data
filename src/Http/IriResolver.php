@@ -182,11 +182,12 @@ class IriResolver
                     $path .= $url->path;
                     $base->path = $path;
                 }
+
                 $base->query = $url->query;
             }
         }
 
-        if (!$url->path && $normalize) {
+        if ($url->path && $normalize) {
             $base->removeDotSegments();
             $base->path = $base->getNormalizedPath();
         }

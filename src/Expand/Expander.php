@@ -152,7 +152,6 @@ class Expander
         $element = (object) $element;
 
         // 7
-        // The doc is a nightmare here so I'm not sure about this. This is what I could understand but this may be wrong.
         if ($activeContext->options->previousContext) {
             if (!$fromMap) {
                 $switchToPreviousContext = true;
@@ -180,7 +179,7 @@ class Expander
         if (isset($propertyScopedContext)) {
             $activeContext = $this->contextProcesser->processContext(
                 $activeContext,
-                $propertyScopedContext,
+                new Context($propertyScopedContext),
                 $activeDefinitions[$activeProperty]->baseUrl,
                 overrideProtected: true
             );
@@ -197,7 +196,7 @@ class Expander
 
         // 10
         $typeScopedContext = $activeContext;
-        $inputType = null;
+        $inputType = [];
 
         // 11
         foreach ($element as $key => $value) {
@@ -209,11 +208,11 @@ class Expander
             $value = (array) $value;
 
             // 12 : we do 12 here, so we don't loop twice over $element
-            if (!$inputType) {
-                $inputType = [
-                    IriResolver::expand($activeContext, $key) => IriResolver::expand($activeContext, $value[array_key_last($value)]),
-                ];
-            }
+            $inputType = [
+                IriResolver::expand($activeContext, $key) => IriResolver::expand($activeContext, $value[array_key_last($value)]),
+            ];
+
+            sort($value);
 
             // 11.2
             foreach ($value as $term) {
@@ -247,7 +246,7 @@ class Expander
             $expandedProperty = IriResolver::expand($activeContext, $key);
 
             // 13.3
-            if (!$expandedProperty && !str_contains(':', $expandedProperty) && !Keyword::tryFrom($expandedProperty)) {
+            if (!$expandedProperty || (!str_contains($expandedProperty, ':') && !Keyword::tryFrom($expandedProperty))) {
                 continue;
             }
 
@@ -264,8 +263,8 @@ class Expander
                 // 13.4.2
                 if (
                     \array_key_exists($expandedProperty, $result) &&
-                    $result[$expandedProperty] !== Keyword::INCLUDED->value &&
-                    $result[$expandedProperty] !== Keyword::TYPE->value
+                    $expandedProperty !== Keyword::INCLUDED->value &&
+                    $expandedProperty !== Keyword::TYPE->value
                 ) {
                     // TODO: json-ld-1.0 processing mode
                     // TODO: implement real exceptions and catch them
@@ -298,7 +297,7 @@ class Expander
                     // 13.4.4.2
                     if (\is_object($value) && !\count((array) $value)) {
                         $expandedValue = $value;
-                    // 13.4.4.3
+                        // 13.4.4.3
                     } elseif (\is_object($value) && property_exists($value, FramingKeyword::DEFAULT->value)) {
                         $expandedValue = new \stdClass();
                         $expandedValue->{FramingKeyword::DEFAULT->value} = IriResolver::expand(
@@ -306,7 +305,7 @@ class Expander
                             $value->{FramingKeyword::DEFAULT->value},
                             true
                         );
-                    // 13.4.4.4
+                        // 13.4.4.4
                     } else {
                         foreach ((array) $value as $valueEntry) {
                             $expandedValue[] = IriResolver::expand($typeScopedContext, $valueEntry, true);
@@ -315,19 +314,29 @@ class Expander
 
                     // 13.4.4.5
                     if (\array_key_exists(Keyword::TYPE->value, $result)) {
-                        array_unshift($expandedValue, $result[Keyword::TYPE->value]);
+                        $expandedValue = [...$expandedValue, ...$result[Keyword::TYPE->value]];
                     }
                 }
 
                 // 13.4.5
                 if (Keyword::GRAPH->value === $expandedProperty) {
-                    $expandedValue = (array) $this->expand(
+                    $expandedValue = $this->expand(
                         $value,
                         $options,
                         $baseUrl,
                         $activeContext,
                         Keyword::GRAPH->value
                     );
+
+                    if (!is_array($expandedValue)) {
+                        $expandedValue = (array) $expandedValue;
+                    }
+
+                    foreach ($expandedValue as $valueEntry) {
+                        if (!is_object($valueEntry)) {
+                            $valueEntry = (object) $valueEntry;
+                        }
+                    }
                 }
 
                 // 13.4.6
@@ -362,9 +371,9 @@ class Expander
                 // 13.4.7
                 if (Keyword::VALUE->value === $expandedProperty) {
                     // 13.4.7.1
-                    if (Keyword::JSON->value === $inputType) {
+                    if (in_array(Keyword::JSON->value, $inputType)) {
                         $expandedValue = $value;
-                    // TODO: json-ld-1.0 processing mode
+                        // TODO: json-ld-1.0 processing mode
                     } else {
                         // 13.4.7.2
                         $this->validateValueForValue($value, $options);
@@ -528,7 +537,7 @@ class Expander
                 if (
                     null !== $expandedValue &&
                     Keyword::VALUE->value !== $expandedProperty &&
-                    Keyword::JSON->value !== $inputType
+                    !in_array(Keyword::JSON->value, $inputType)
                 ) {
                     $result[$expandedProperty] = $expandedValue;
                 }
@@ -556,7 +565,7 @@ class Expander
                 $expandedValue = new \stdClass();
                 $expandedValue->{Keyword::VALUE->value} = $value;
                 $expandedValue->{Keyword::TYPE->value} = Keyword::JSON->value;
-            // 13.7
+                // 13.7
             } elseif ($containerMapping && \in_array(Keyword::LANGUAGE->value, $containerMapping, true) && \is_object($value)) {
                 // 13.7.1
                 $expandedValue = [];
@@ -609,7 +618,7 @@ class Expander
                         $expandedValue[] = $newValue;
                     }
                 }
-            // 13.8
+                // 13.8
             } elseif (
                 \is_object($value) &&
                 $containerMapping &&
@@ -643,7 +652,7 @@ class Expander
                             $mapContext->options->termDefinitions[$index]->context,
                             $mapContext->options->termDefinitions[$index]->baseUrl
                         );
-                    // 13.8.3.3
+                        // 13.8.3.3
                     } else {
                         $mapContext = $activeContext;
                     }
@@ -686,11 +695,11 @@ class Expander
                             $expandedIndexKey = IriResolver::expand($activeContext, $indexKey);
 
                             // 13.8.3.7.2.3
-                            // The doc is quite hard to understand here, this is probably wrong
-                            $indexPropertyValues = [
-                                $reExpandedIndex,
-                                $expandedIndexKey . $item,
-                            ];
+                            $indexPropertyValues = [$reExpandedIndex];
+
+                            if (property_exists($item, $expandedIndexKey)) {
+                                $indexPropertyValues[] = $item->$expandedIndexKey[0];
+                            }
 
                             // 13.8.3.7.2.4
                             $item->$expandedIndexKey = $indexPropertyValues;
@@ -708,7 +717,12 @@ class Expander
                             !property_exists($item, Keyword::INDEX->value) &&
                             Keyword::NONE->value !== $expandedIndex
                         ) {
+                            // This looks weird but this is because the index entry should be above the graph entry
+                            $graphValue = $item->{Keyword::GRAPH->value};
+                            unset($item->{Keyword::GRAPH->value});
+
                             $item->{Keyword::INDEX->value} = $index;
+                            $item->{Keyword::GRAPH->value} = $graphValue;
                         } elseif (
                             // 13.8.3.7.4
                             \in_array(Keyword::ID->value, $containerMapping, true) &&
@@ -724,15 +738,20 @@ class Expander
                         ) {
                             $types = [
                                 $expandedIndex,
-                                ...$item->{Keyword::TYPE->value},
                             ];
+
+                            if (property_exists($item, Keyword::TYPE->value)) {
+                                $types = [...$types, ...$item->{Keyword::TYPE->value}];
+                            }
 
                             $item->{Keyword::TYPE->value} = $types;
                         }
-
-                        // 13.8.3.7.6 : the docs say to append item but the tests want us to actually prepend item.
-                        array_unshift($expandedValue, $item);
                     }
+
+                    // 13.8.3.7.6
+                    // There is some conflicting tests here : some want the value to be appended, some others want the value to be prepended.
+                    // Most of the time it seems we want it prepended so we prepend it, even though the docs say to append it.
+                    array_unshift($expandedValue, ...$indexValue);
                 }
             } else {
                 // 13.9
@@ -803,6 +822,7 @@ class Expander
                     if (!\array_key_exists($expandedProperty, $reverseMap)) {
                         $reverseMap[$expandedProperty] = [];
                     }
+
                     // 13.13.4.3
                     $result = ValueAdder::addValue($item, $expandedProperty, $reverseMap, true);
                 }
@@ -852,25 +872,31 @@ class Expander
                 // 15.3
             } elseif (null === $result->{Keyword::VALUE->value} || [] === $result->{Keyword::VALUE->value}) {
                 return null;
-            // 15.4
+                // 15.4
             } elseif (!\is_string($result->{Keyword::VALUE->value}) && property_exists($result, Keyword::LANGUAGE->value)) {
                 // TODO: implement real exceptions and catch them
                 throw new \Exception('invalid language-tagged value');
-            // 15.5
+                // 15.5
             } elseif (property_exists($result, Keyword::TYPE->value) && !IriResolver::isIri($result->{Keyword::TYPE->value})) {
                 // TODO: implement real exceptions and catch them
                 throw new \Exception('invalid typed value');
             }
-        // 16
+            // 16
         } elseif (property_exists($result, Keyword::TYPE->value) && !\is_array($result->{Keyword::TYPE->value})) {
             $result->{Keyword::TYPE->value} = [$result->{Keyword::TYPE->value}];
-        // 17
+            // 17
         } elseif (
             property_exists($result, Keyword::SET->value) ||
             property_exists($result, Keyword::LIST->value)
         ) {
             // 17.1
-            if (2 !== \count($result) || !property_exists($result, $result->{Keyword::INDEX->value})) {
+            if (2 < \count((array) $result)) {
+                // TODO: implement real exceptions and catch them
+                throw new \Exception('invalid set or list object');
+            }
+
+            // 17.1
+            if (2 === \count((array) $result) && !property_exists($result, $result->{Keyword::INDEX->value})) {
                 // TODO: implement real exceptions and catch them
                 throw new \Exception('invalid set or list object');
             }
@@ -891,29 +917,40 @@ class Expander
             // 19.1
             if (\is_object($result)) {
                 if (0 === \count((array) $result)) {
-                    $result = null;
+                    return null;
                 }
 
                 if (
                     1 === \count((array) $result) &&
                     (property_exists($result, Keyword::VALUE->value) || property_exists($result, Keyword::LIST->value))
                 ) {
-                    $result = null;
+                    return null;
                 }
 
                 // 19.2
                 if (1 === \count((array) $result) && property_exists($result, Keyword::ID->value)) {
-                    $result = null;
-
                     if ($options->frameExpansion) {
                         $result = (object) [Keyword::ID->value => null];
+                    } else {
+                        return null;
                     }
                 }
             }
         }
 
+        if (null === $activeProperty) {
+            if (
+                is_object($result) &&
+                property_exists($result, Keyword::GRAPH->value) &&
+                1 === count(get_object_vars($result))
+            ) {
+                // As written in https://www.w3.org/TR/json-ld11/#dfn-graph-object, a top-level object consisting of @graph is not a graph object, so we remove the @graph entry
+                $result = $result->{Keyword::GRAPH->value};
+            }
+        }
+
         // 20
-        return [$result];
+        return is_array($result) ? $result : [$result];
     }
 
     /**
@@ -952,7 +989,7 @@ class Expander
                 !\in_array($definition->typeMapping, [Keyword::ID->value, Keyword::VOCAB->value, Keyword::NONE->value], true)
             ) {
                 $result[Keyword::TYPE->value] = $definition->typeMapping;
-            // 5
+                // 5
             } elseif (\is_string($value)) {
                 // 5.1
                 $language = $definition->languageMapping ?: $activeContext->options->defaultLangage;
@@ -1097,10 +1134,7 @@ class Expander
             return false;
         }
 
-        if (
-            property_exists($object, Keyword::GRAPH->value) &&
-            property_exists($object, Keyword::INDEX->value)
-        ) {
+        if (property_exists($object, Keyword::GRAPH->value)) {
             return true;
         }
 
