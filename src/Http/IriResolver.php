@@ -37,7 +37,7 @@ class IriResolver
         // 2
         if (preg_match('/^@\w+/', $value)) {
             // TODO: add a warning
-            dump('WARNING: a value has the form of a keyword. Skipping. Value is : ' . $value);
+            // dump('WARNING: a value has the form of a keyword. Skipping. Value is : ' . $value);
 
             return null;
         }
@@ -175,7 +175,7 @@ class IriResolver
                 } else {
                     $path = substr($base->path, 0, strrpos($base->path, '/') + 1);
 
-                    if ((\strlen($path) || $base->authority) && '/' !== $path[\strlen($path) - 1]) {
+                    if ((\strlen($path) && $base->authority) && '/' !== $path[\strlen($path) - 1]) {
                         $path .= '/';
                     }
 

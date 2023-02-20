@@ -178,13 +178,13 @@ class ContextProcesser
                 // 5.7.2
                 if (!$value) {
                     $result->options->baseIri = null;
-                    // 5.7.3
+                // 5.7.3
                 } elseif (IriResolver::isIri($value)) {
                     $result->options->baseIri = $value;
-                    // 5.7.4
+                // 5.7.4
                 } elseif (IriResolver::isRelativeIri($value) && $result->options->baseIri) {
                     $result->options->baseIri = IriResolver::resolveIri($result->options->baseIri, $value);
-                    // 5.7.5
+                // 5.7.5
                 } else {
                     // TODO: implement real exceptions and catch them
                     throw new \Exception('invalid base IRI');
@@ -199,8 +199,8 @@ class ContextProcesser
                 // 5.8.2
                 if (!$value) {
                     $result->options->vocabularyMapping = null;
-                    // 5.8.3
-                } elseif (IriResolver::isAbsoluteIriOrBlankNode($value)) {
+                // 5.8.3
+                } elseif (IriResolver::isIri($value) || IriResolver::isBlankNodeIdentifier($value)) {
                     $result->options->vocabularyMapping = IriResolver::expand($result, $value, true);
                 } else {
                     // TODO: implement real exceptions and catch them
@@ -216,7 +216,7 @@ class ContextProcesser
                 // 5.9.2
                 if (!$value) {
                     $result->options->defaultLangage = null;
-                    // 5.9.3
+                // 5.9.3
                 } elseif (\is_string($value)) {
                     $result->options->defaultLangage = $value;
                 } else {
@@ -237,7 +237,7 @@ class ContextProcesser
                 // 5.10.3
                 if (!$value) {
                     $result->options->defaultBaseDirection = null;
-                    // 5.10.4
+                // 5.10.4
                 } elseif (\is_string($value)) {
                     $result->options->defaultBaseDirection = $value;
                 } else {

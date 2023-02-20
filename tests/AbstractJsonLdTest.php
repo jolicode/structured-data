@@ -68,11 +68,11 @@ abstract class AbstractJsonLdTest extends TestCase
 
             if (!is_file($outputFileName)) {
                 // TODO : log a warning/an error instead
-                dump(sprintf(
-                    'A file could not be found. Input filename is %s, output filename is %s',
-                    $inputFileName,
-                    $outputFileName,
-                ));
+                // dump(sprintf(
+                //     'A file could not be found. Input filename is %s, output filename is %s',
+                //     $inputFileName,
+                //     $outputFileName,
+                // ));
 
                 continue;
             }
