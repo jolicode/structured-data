@@ -14,6 +14,7 @@ namespace Jolicode\JsonLd\Http;
 use Jolicode\JsonLd\ContextProcessing\Context;
 use Jolicode\JsonLd\JsonLd\Keyword;
 use Jolicode\JsonLd\TermDefinition\TermDefinitionCreator;
+use League\Uri\Uri;
 
 class IriResolver
 {
@@ -108,7 +109,7 @@ class IriResolver
 
         // 8
         if ($documentRelative) {
-            $value = self::resolveIri($activeContext->options->baseIri, $value, false);
+            $value = self::resolveIri($activeContext->options->baseIri, $value);
         }
 
         // 9
@@ -124,29 +125,45 @@ class IriResolver
         return self::isRelativeIri($iri) || self::isAbsoluteIri($iri);
     }
 
-    public static function isRelativeIri(string $iri): bool
+    public static function isRelativeIri(?string $iri): bool
     {
+        if (!$iri) {
+            return false;
+        }
+
         return preg_match('/^(?:(?:[^\s]+\/)+)|(?:..|.)\/?/', $iri);
     }
 
-    public static function isAbsoluteIri(string $iri): bool
+    public static function isAbsoluteIri(?string $iri): bool
     {
+        if (!$iri) {
+            return false;
+        }
+
         return preg_match('/^[A-Za-z][A-Za-z0-9+-.]*:[^\s]*$/', $iri);
     }
 
-    public static function isBlankNodeIdentifier(string $iri): bool
+    public static function isBlankNodeIdentifier(?string $iri): bool
     {
+        if (!$iri) {
+            return false;
+        }
+
         return preg_match('/^_:[^\s]+$/', $iri);
     }
 
-    public static function isAbsoluteIriOrBlankNode(string $iri): bool
+    public static function isAbsoluteIriOrBlankNode(?string $iri): bool
     {
+        if (!$iri) {
+            return false;
+        }
+
         return self::isAbsoluteIri($iri) || self::isBlankNodeIdentifier($iri);
     }
 
-    public static function resolveIri(?string $base, string $iri, bool $normalize = true): string
+    public static function resolveIri(?string $base, string $iri): string
     {
-        if (null === $base) {
+        if (!$base) {
             return $iri;
         }
 
@@ -154,64 +171,6 @@ class IriResolver
             return $iri;
         }
 
-        if (!$base || \is_string($base)) {
-            $base = new Url($base, $normalize);
-        }
-
-        $url = new Url($iri, $normalize);
-
-        if ($url->authority) {
-            $base->authority = $url->authority;
-            $base->path = $url->path;
-            $base->query = $url->query;
-        } else {
-            if (!$url->path) {
-                if ($url->query) {
-                    $base->query = $url->query;
-                }
-            } else {
-                if (str_starts_with($url->path, '/')) {
-                    $base->path = $url->path;
-                } else {
-                    $path = substr($base->path, 0, strrpos($base->path, '/') + 1);
-
-                    if ((\strlen($path) && $base->authority) && '/' !== $path[\strlen($path) - 1]) {
-                        $path .= '/';
-                    }
-
-                    $path .= $url->path;
-                    $base->path = $path;
-                }
-
-                $base->query = $url->query;
-            }
-        }
-
-        if ($url->path && $normalize) {
-            $base->removeDotSegments();
-            $base->path = $base->getNormalizedPath();
-        }
-
-        $resolved = $base->protocol;
-
-        if ($base->authority) {
-            $resolved .= '//' . $base->authority;
-        }
-
-        $resolved .= $base->path;
-
-        if ($base->query) {
-            $resolved .= '?' . $base->query;
-        }
-
-        if ($url->fragment) {
-            $resolved .= '#' . $url->fragment;
-        }
-
-        if ('' === $resolved) {
-            $resolved .= './';
-        }
-
-        return $resolved;
+        return (string) Uri::createFromBaseUri($iri, $base);
     }
 }

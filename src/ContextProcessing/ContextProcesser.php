@@ -178,12 +178,12 @@ class ContextProcesser
                 // 5.7.2
                 if (!$value) {
                     $result->options->baseIri = null;
+                // 5.7.4 : we invert 5.7.3 and 5.7.4 because it doesn't make sense to do it the other way around
+                } elseif (IriResolver::isRelativeIri($value) && $result->options->baseIri) {
+                    $result->options->baseIri = IriResolver::resolveIri($result->options->baseIri, $value);
                 // 5.7.3
                 } elseif (IriResolver::isIri($value)) {
                     $result->options->baseIri = $value;
-                // 5.7.4
-                } elseif (IriResolver::isRelativeIri($value) && $result->options->baseIri) {
-                    $result->options->baseIri = IriResolver::resolveIri($result->options->baseIri, $value);
                 // 5.7.5
                 } else {
                     // TODO: implement real exceptions and catch them
