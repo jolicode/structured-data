@@ -19,17 +19,20 @@ use Jolicode\JsonLd\TermDefinition\TermDefinitionCreator;
 /** @group context */
 class ContextProcesserTest extends AbstractJsonLdTest
 {
-    /** @dataProvider provideInputsAndOutputs */
+    /**
+     * The files provided by the W3C only test that the context is correctly extracted, it doesn't test the processing algorithm in itself
+     * The algorithm doesn't have its own proper tests : its validity is tested in the other algorithms tests
+     *
+     * @dataProvider provideInputsAndOutputs
+     * */
     public function testProcessContext(string $json, string $expected): void
     {
         $processer = new ContextProcesser();
-        $context = $processer
-            ->parseJson($json);
-
         $actual = new \stdClass();
+        $extractedContext = $processer->extractContext(json_decode($json));
 
-        if ($context != $actual) {
-            $actual->{Keyword::CONTEXT->value} = $context;
+        if ($extractedContext) {
+            $actual->{Keyword::CONTEXT->value} = $extractedContext;
         }
 
         $this->assertEquals(json_decode($expected), $actual);

@@ -112,7 +112,7 @@ class ContextProcesser
 
                 // TODO: probably add a cache system to prevent processing the same URL multiple times
                 $documentLoader = new DocumentLoader($context);
-                $loadedContext = $documentLoader->load()[Keyword::CONTEXT->value];
+                $loadedContext = $documentLoader->load()->{Keyword::CONTEXT->value};
 
                 $result = $this->processContext(
                     $result,
@@ -151,7 +151,7 @@ class ContextProcesser
                 $documentLoader = new DocumentLoader($import);
                 $response = $documentLoader->load();
 
-                if (!\count($response) || !\array_key_exists(Keyword::CONTEXT->value, $response)) {
+                if (!\count(get_object_vars($response)) || !property_exists($response, Keyword::CONTEXT->value)) {
                     // TODO: implement real exceptions and catch them
                     throw new \Exception('Invalid remote context.');
                 }
@@ -293,7 +293,7 @@ class ContextProcesser
         return $result;
     }
 
-    private function extractContext(\stdClass|array $json): mixed
+    public function extractContext(\stdClass|array $json): mixed
     {
         if (\is_array($json)) {
             // TODO : For now we don't handle inlined contexts, like in context04-in.jsonld, so we are skipping.

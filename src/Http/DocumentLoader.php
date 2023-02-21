@@ -28,7 +28,7 @@ class DocumentLoader
         $this->httpClient = HttpClient::create();
     }
 
-    public function load(): array
+    public function load(): \stdClass
     {
         ++$this->documentsCount;
 
@@ -51,8 +51,12 @@ class DocumentLoader
             ]
         );
 
+        if (400 <= $response->getStatusCode()) {
+            return [Keyword::CONTEXT->value => null];
+        }
+
         if ('application/ld+json' !== $response->getHeaders()['content-type'][0]) {
-            if (\count($response->getHeaders()['link']) > 0) {
+            if (\array_key_exists('link', $response->getHeaders()) && \count($response->getHeaders()['link']) > 0) {
                 $parsedLinkHeaders = $this->parseLinkHeaders($response->getHeaders()['link']);
 
                 // try to see at an alternate location https://www.w3.org/TR/json-ld/#alternate-document-location
@@ -110,15 +114,15 @@ class DocumentLoader
             }
         }
 
-        $response = $response->toArray();
+        $response = json_decode($response->getContent());
 
         if (isset($externalContextNode)) {
-            if (\array_key_exists(Keyword::CONTEXT->value, $response)) {
-                $response[Keyword::CONTEXT->value] = $externalContextNode[Keyword::CONTEXT->value];
+            if (property_exists($response, Keyword::CONTEXT->value)) {
+                $response->{Keyword::CONTEXT->value} = $externalContextNode[Keyword::CONTEXT->value];
             } else {
                 foreach ($response as $key => $node) {
                     if (\is_array($node)) {
-                        $response[$key][Keyword::CONTEXT->value] = $externalContextNode[Keyword::CONTEXT->value];
+                        $response->$key->{Keyword::CONTEXT->value} = $externalContextNode[Keyword::CONTEXT->value];
                     }
                 }
             }
