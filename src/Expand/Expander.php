@@ -12,7 +12,6 @@
 namespace Jolicode\JsonLd\Expand;
 
 use Jolicode\JsonLd\ContextProcessing\Context;
-use Jolicode\JsonLd\ContextProcessing\ContextOptions;
 use Jolicode\JsonLd\ContextProcessing\ContextProcesser;
 use Jolicode\JsonLd\Http\DocumentLoader;
 use Jolicode\JsonLd\Http\IriResolver;
@@ -29,8 +28,10 @@ class Expander
     ) {
     }
 
-    public function fromJsonLd(mixed $element, ProcessorOptions $options = new ProcessorOptions()): ?string
+    public function parseJson(string $json, ProcessorOptions $options = new ProcessorOptions()): ?string
     {
+        $element = json_decode($json);
+
         $baseUrl = $options->base;
 
         if (\is_string($element)) {
@@ -40,16 +41,13 @@ class Expander
             $element = $documentLoader->load();
         }
 
-        $contextOptions = new ContextOptions(
+        $activeContext = new Context(
             baseIri: $baseUrl,
             baseUrl: $baseUrl,
         );
 
-        $activeContext = new Context(options: $contextOptions);
-
         if ($options->expandContext) {
-            $localContext = new Context($options->expandContext);
-            $this->contextProcesser->processContext($activeContext, $localContext, $activeContext->options->baseUrl);
+            $this->contextProcesser->processContext($activeContext, $options->expandContext, $activeContext->baseUrl);
         }
 
         return json_encode($this->expand(
@@ -85,7 +83,7 @@ class Expander
         }
 
         /** @var TermDefinition[] $activeDefinitions */
-        $activeDefinitions = &$activeContext->options->termDefinitions;
+        $activeDefinitions = &$activeContext->termDefinitions;
 
         // 3
         if (\array_key_exists($activeProperty, $activeDefinitions) && $activeDefinitions[$activeProperty]->context) {
@@ -103,7 +101,7 @@ class Expander
             if (isset($propertyScopedContext)) {
                 $activeContext = $this->contextProcesser->processContext(
                     $activeContext,
-                    new Context($propertyScopedContext),
+                    $propertyScopedContext,
                     $activeDefinitions[$activeProperty]->baseUrl
                 );
             }
@@ -152,7 +150,7 @@ class Expander
         $element = (object) $element;
 
         // 7
-        if ($activeContext->options->previousContext) {
+        if ($activeContext->previousContext) {
             if (!$fromMap) {
                 $switchToPreviousContext = true;
 
@@ -170,7 +168,7 @@ class Expander
                 }
 
                 if ($switchToPreviousContext) {
-                    $activeContext = $activeContext->options->previousContext;
+                    $activeContext = $activeContext->previousContext;
                 }
             }
         }
@@ -179,7 +177,7 @@ class Expander
         if (isset($propertyScopedContext)) {
             $activeContext = $this->contextProcesser->processContext(
                 $activeContext,
-                new Context($propertyScopedContext),
+                $propertyScopedContext,
                 $activeDefinitions[$activeProperty]->baseUrl,
                 overrideProtected: true
             );
@@ -189,7 +187,7 @@ class Expander
         if (property_exists($element, Keyword::CONTEXT->value)) {
             $activeContext = $this->contextProcesser->processContext(
                 $activeContext,
-                new Context($element->{Keyword::CONTEXT->value}),
+                $element->{Keyword::CONTEXT->value},
                 $baseUrl
             );
         }
@@ -218,13 +216,13 @@ class Expander
             foreach ($value as $term) {
                 if (
                     \is_string($term) &&
-                    \array_key_exists($term, $typeScopedContext->options->termDefinitions) &&
-                    $typeScopedContext->options->termDefinitions[$term]->context
+                    \array_key_exists($term, $typeScopedContext->termDefinitions) &&
+                    $typeScopedContext->termDefinitions[$term]->context
                 ) {
                     $activeContext = $this->contextProcesser->processContext(
                         $activeContext,
-                        new Context($typeScopedContext->options->termDefinitions[$term]->context),
-                        $typeScopedContext->options->termDefinitions[$term]->baseUrl,
+                        $typeScopedContext->termDefinitions[$term]->context,
+                        $typeScopedContext->termDefinitions[$term]->baseUrl,
                         propagate: false
                     );
                 }
@@ -573,7 +571,7 @@ class Expander
                 $expandedValue = [];
 
                 // 13.7.2
-                $direction = $activeContext->options->defaultBaseDirection;
+                $direction = $activeContext->defaultBaseDirection;
 
                 // 13.7.3
                 if ($keyDefinition->directionMapping) {
@@ -638,7 +636,7 @@ class Expander
                 foreach ($value as $index => $indexValue) {
                     // 13.8.3.1
                     if (\in_array(Keyword::ID->value, $containerMapping, true) || \in_array(Keyword::TYPE->value, $containerMapping, true)) {
-                        $mapContext = $activeContext->options->previousContext ?: $activeContext;
+                        $mapContext = $activeContext->previousContext ?: $activeContext;
                     } else {
                         $mapContext = $activeContext;
                     }
@@ -646,13 +644,13 @@ class Expander
                     // 13.8.3.2
                     if (
                         \in_array(Keyword::TYPE->value, $containerMapping, true) &&
-                        \array_key_exists($index, $mapContext->options->termDefinitions) &&
-                        $mapContext->options->termDefinitions[$index]->context
+                        \array_key_exists($index, $mapContext->termDefinitions) &&
+                        $mapContext->termDefinitions[$index]->context
                     ) {
                         $mapContext = $this->contextProcesser->processContext(
                             $mapContext,
-                            new Context($mapContext->options->termDefinitions[$index]->context),
-                            $mapContext->options->termDefinitions[$index]->baseUrl
+                            $mapContext->termDefinitions[$index]->context,
+                            $mapContext->termDefinitions[$index]->baseUrl
                         );
                     // 13.8.3.3
                     } else {
@@ -720,8 +718,6 @@ class Expander
                             Keyword::NONE->value !== $expandedIndex
                         ) {
                             // This looks weird but this is because the index entry should be above the graph entry
-                            // TODO: find a way to sort JSON instead ?
-
                             if (property_exists($item, Keyword::GRAPH->value)) {
                                 $graphValue = $item->{Keyword::GRAPH->value};
                                 unset($item->{Keyword::GRAPH->value});
@@ -979,9 +975,9 @@ class Expander
         // 3 : we start by initializing result
         $result = [Keyword::VALUE->value => $value];
 
-        if (\array_key_exists($activeProperty, $activeContext->options->termDefinitions)) {
+        if (\array_key_exists($activeProperty, $activeContext->termDefinitions)) {
             /** @var TermDefinition $definition */
-            $definition = $activeContext->options->termDefinitions[$activeProperty];
+            $definition = $activeContext->termDefinitions[$activeProperty];
 
             // 1
             if (
@@ -1008,7 +1004,7 @@ class Expander
             // 5
             } elseif (\is_string($value)) {
                 // 5.1
-                $language = $definition->languageMapping ?: $activeContext->options->defaultLangage;
+                $language = $definition->languageMapping ?: $activeContext->defaultLangage;
 
                 // 5.3
                 if (null !== $language) {
@@ -1016,7 +1012,7 @@ class Expander
                 }
 
                 // 5.2
-                $direction = $definition->directionMapping ?: $activeContext->options->defaultBaseDirection;
+                $direction = $definition->directionMapping ?: $activeContext->defaultBaseDirection;
 
                 // 5.4
                 if (null !== $direction) {

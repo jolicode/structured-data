@@ -24,8 +24,7 @@ class ContextProcesserTest extends AbstractJsonLdTest
     {
         $processer = new ContextProcesser();
         $context = $processer
-            ->fromJsonLd(json_decode($json))
-            ->context;
+            ->parseJson($json);
 
         $actual = new \stdClass();
 

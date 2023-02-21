@@ -53,7 +53,7 @@ class IriResolver
             TermDefinitionCreator::create($activeContext, $localContext, $value, $defined);
         }
 
-        $activeDefinitions = $activeContext->options->termDefinitions;
+        $activeDefinitions = $activeContext->termDefinitions;
 
         // 4
         if (
@@ -103,13 +103,13 @@ class IriResolver
         }
 
         // 7
-        if ($vocab && $activeContext->options->vocabularyMapping) {
-            return $activeContext->options->vocabularyMapping . $value;
+        if ($vocab && $activeContext->vocabularyMapping) {
+            return $activeContext->vocabularyMapping . $value;
         }
 
         // 8
         if ($documentRelative) {
-            $value = self::resolveIri($activeContext->options->baseIri, $value);
+            $value = self::resolveIri($activeContext->baseIri, $value);
         }
 
         // 9

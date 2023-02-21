@@ -64,9 +64,9 @@ class TermDefinitionCreator
         }
 
         // 6
-        if (\array_key_exists($term, $activeContext->options->termDefinitions)) {
-            $previousDefinition = $activeContext->options->termDefinitions[$term];
-            unset($activeContext->options->termDefinitions[$term]);
+        if (\array_key_exists($term, $activeContext->termDefinitions)) {
+            $previousDefinition = $activeContext->termDefinitions[$term];
+            unset($activeContext->termDefinitions[$term]);
         }
 
         // 7
@@ -190,7 +190,7 @@ class TermDefinitionCreator
             // 13.6
             $definition->reverseProperty = true;
             // 13.7
-            $activeContext->options->termDefinitions[$term] = $definition;
+            $activeContext->termDefinitions[$term] = $definition;
             $defined[$term] = true;
 
             return;
@@ -285,10 +285,10 @@ class TermDefinitionCreator
             }
 
             /** @var TermDefinition $activeDefinitions */
-            $activeDefinitions = $activeContext->options->termDefinitions;
+            $activeDefinitions = $activeContext->termDefinitions;
 
             // 15.2
-            if (\array_key_exists($prefix, $activeContext->options->termDefinitions)) {
+            if (\array_key_exists($prefix, $activeContext->termDefinitions)) {
                 $definition->iriMapping = $activeDefinitions[$prefix]->iriMapping . $suffix;
             // 15.3
             } else {
@@ -307,8 +307,8 @@ class TermDefinitionCreator
         } elseif (Keyword::TYPE->value === $term) {
             $definition->iriMapping = Keyword::TYPE->value;
         // 18
-        } elseif ($activeContext->options->vocabularyMapping) {
-            $definition->iriMapping = $activeContext->options->vocabularyMapping . $term;
+        } elseif ($activeContext->vocabularyMapping) {
+            $definition->iriMapping = $activeContext->vocabularyMapping . $term;
         } else {
             // TODO: implement real exceptions and catch them.
             throw new \Exception('invalid IRI mapping');
@@ -376,14 +376,13 @@ class TermDefinitionCreator
             // 21.1
             // TODO: json-ld-1.0 processing mode stuff
 
-            // 21.2
-            $context = new Context($value->{Keyword::CONTEXT->value});
+            // 21.2 : No need to do anything
 
             // 21.3 : we skip 21.3 because it actually updates the activeContext, which it should not (see the note).
             // Maybe in the future we will implement a "dry run" for context processing, which would make it possible to just validate the context
 
             // 21.4
-            $definition->context = $context->context;
+            $definition->context = $value->{Keyword::CONTEXT->value};
             $definition->baseUrl = $baseUrl;
         }
 
@@ -512,7 +511,7 @@ class TermDefinitionCreator
         }
 
         // 28
-        $activeContext->options->termDefinitions[$term] = $definition;
+        $activeContext->termDefinitions[$term] = $definition;
         $defined[$term] = true;
     }
 

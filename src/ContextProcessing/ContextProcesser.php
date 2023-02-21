@@ -18,12 +18,11 @@ use Jolicode\JsonLd\TermDefinition\TermDefinitionCreator;
 
 class ContextProcesser
 {
-    public function fromJsonLd(\stdClass|array $json): Context
+    public function parseJson(string $json): Context
     {
-        $activeContext = new Context();
-        $localContext = new Context($this->extractContext($json));
+        $element = json_decode($json);
 
-        return $this->processContext($activeContext, $localContext);
+        return $this->processContext(new Context(), $this->extractContext($element));
     }
 
     /**
@@ -33,7 +32,7 @@ class ContextProcesser
      */
     public function processContext(
         Context $activeContext,
-        Context $localContext,
+        array|\stdClass|null|string $localContext,
         ?string $baseUrl = null,
         array $remoteContexts = [],
         bool $overrideProtected = false,
@@ -41,45 +40,45 @@ class ContextProcesser
         bool $validateScopedContext = true
     ): Context {
         // 1
-        $result = new Context(options: clone $activeContext->options);
-        $result->options->inverseContext = null;
+        $result = clone $activeContext;
+        $result->inverseContext = null;
 
         // 2
-        if (\is_object($localContext->context) && property_exists($localContext->context, Keyword::PROPAGATE->value)) {
-            $propagate = $localContext->context->{Keyword::PROPAGATE->value};
-        } elseif (\is_array($localContext->context) && \array_key_exists(Keyword::PROPAGATE->value, $localContext->context)) {
-            $propagate = $localContext->context[Keyword::PROPAGATE->value];
+        if (\is_object($localContext) && property_exists($localContext, Keyword::PROPAGATE->value)) {
+            $propagate = $localContext->{Keyword::PROPAGATE->value};
+        } elseif (\is_array($localContext) && \array_key_exists(Keyword::PROPAGATE->value, $localContext)) {
+            $propagate = $localContext[Keyword::PROPAGATE->value];
         }
 
         // 3
-        if (!$propagate && !$activeContext->options->previousContext) {
+        if (!$propagate && !$activeContext->previousContext) {
             // The termDefinitions is a reference and not just a regular array, so we have to copy it without the reference
-            $previousContextOptions = new ContextOptions();
+            $previousContext = new Context();
 
-            foreach ($activeContext->options as $option => $value) {
+            foreach ($activeContext as $option => $value) {
                 if ('termDefinitions' === $option) {
                     foreach ($value as $term => $definition) {
-                        $previousContextOptions->termDefinitions[$term] = $definition;
+                        $previousContext->termDefinitions[$term] = $definition;
                     }
                 } else {
-                    $previousContextOptions->{$option} = $value;
+                    $previousContext->{$option} = $value;
                 }
             }
 
-            $result->options->previousContext = new Context(options: $previousContextOptions);
+            $result->previousContext = $previousContext;
         }
 
         // 4
-        if (!\is_array($localContext->context)) {
-            $localContext->context = [$localContext->context];
+        if (!\is_array($localContext)) {
+            $localContext = [$localContext];
         }
 
-        if (!\count($localContext->context)) {
+        if (!\count($localContext)) {
             return $activeContext;
         }
 
         // 5
-        foreach ($localContext->context as $context) {
+        foreach ($localContext as $context) {
             // 5.1
             if (null === $context) {
                 if (!$overrideProtected && $activeContext->hasProtectedTermDefinitions()) {
@@ -87,13 +86,11 @@ class ContextProcesser
                     throw new \Exception('Invalid context nullification');
                 }
 
-                $options = new ContextOptions(
-                    baseIri: $activeContext->options->baseUrl,
-                    baseUrl: $activeContext->options->baseUrl,
+                $result = new Context(
+                    baseIri: $activeContext->baseUrl,
+                    baseUrl: $activeContext->baseUrl,
                     previousContext: false === $propagate ? $result : null
                 );
-
-                $result = new Context(options: $options);
 
                 continue;
             }
@@ -116,7 +113,6 @@ class ContextProcesser
                 // TODO: probably add a cache system to prevent processing the same URL multiple times
                 $documentLoader = new DocumentLoader($context);
                 $loadedContext = $documentLoader->load()[Keyword::CONTEXT->value];
-                $loadedContext = new Context((object) $loadedContext);
 
                 $result = $this->processContext(
                     $result,
@@ -177,13 +173,13 @@ class ContextProcesser
 
                 // 5.7.2
                 if (!$value) {
-                    $result->options->baseIri = null;
+                    $result->baseIri = null;
                 // 5.7.4 : we invert 5.7.3 and 5.7.4 because it doesn't make sense to do it the other way around
-                } elseif (IriResolver::isRelativeIri($value) && $result->options->baseIri) {
-                    $result->options->baseIri = IriResolver::resolveIri($result->options->baseIri, $value);
+                } elseif (IriResolver::isRelativeIri($value) && $result->baseIri) {
+                    $result->baseIri = IriResolver::resolveIri($result->baseIri, $value);
                 // 5.7.3
                 } elseif (IriResolver::isIri($value)) {
-                    $result->options->baseIri = $value;
+                    $result->baseIri = $value;
                 // 5.7.5
                 } else {
                     // TODO: implement real exceptions and catch them
@@ -198,10 +194,10 @@ class ContextProcesser
 
                 // 5.8.2
                 if (!$value) {
-                    $result->options->vocabularyMapping = null;
+                    $result->vocabularyMapping = null;
                 // 5.8.3
                 } elseif (IriResolver::isIri($value) || IriResolver::isBlankNodeIdentifier($value)) {
-                    $result->options->vocabularyMapping = IriResolver::expand($result, $value, true);
+                    $result->vocabularyMapping = IriResolver::expand($result, $value, true);
                 } else {
                     // TODO: implement real exceptions and catch them
                     throw new \Exception('invalid vocab mapping');
@@ -215,10 +211,10 @@ class ContextProcesser
 
                 // 5.9.2
                 if (!$value) {
-                    $result->options->defaultLangage = null;
+                    $result->defaultLangage = null;
                 // 5.9.3
                 } elseif (\is_string($value)) {
-                    $result->options->defaultLangage = $value;
+                    $result->defaultLangage = $value;
                 } else {
                     // TODO: implement real exceptions and catch them
                     throw new \Exception('invalid default language');
@@ -236,10 +232,10 @@ class ContextProcesser
 
                 // 5.10.3
                 if (!$value) {
-                    $result->options->defaultBaseDirection = null;
+                    $result->defaultBaseDirection = null;
                 // 5.10.4
                 } elseif (\is_string($value)) {
-                    $result->options->defaultBaseDirection = $value;
+                    $result->defaultBaseDirection = $value;
                 } else {
                     // TODO: implement real exceptions and catch them
                     throw new \Exception('invalid base direction');

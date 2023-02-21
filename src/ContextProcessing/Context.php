@@ -16,15 +16,22 @@ use Jolicode\JsonLd\TermDefinition\TermDefinition;
 class Context
 {
     public function __construct(
-        public mixed $context = [],
-        public ContextOptions $options = new ContextOptions(),
+        /** @var TermDefinition[] $termDefinitions */
+        public array $termDefinitions = [],
+        public ?string $baseIri = null,
+        public ?string $baseUrl = null,
+        public ?self $inverseContext = null,
+        public ?string $vocabularyMapping = null,
+        public ?string $defaultLangage = null,
+        public ?string $defaultBaseDirection = null,
+        public ?self $previousContext = null,
     ) {
     }
 
     public function hasProtectedTermDefinitions(): bool
     {
         /** @var TermDefinition $termDefinition */
-        foreach ($this->options->termDefinitions as $termDefinition) {
+        foreach ($this->termDefinitions as $termDefinition) {
             if ($termDefinition->protected) {
                 return true;
             }
