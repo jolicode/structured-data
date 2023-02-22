@@ -193,14 +193,16 @@ class ContextProcesser
                 $value = $context->{Keyword::VOCAB->value};
 
                 // 5.8.2
-                if (!$value) {
+                if (null === $value) {
                     $result->vocabularyMapping = null;
                 // 5.8.3
-                } elseif (IriResolver::isIri($value) || IriResolver::isBlankNodeIdentifier($value)) {
-                    $result->vocabularyMapping = IriResolver::expand($result, $value, true);
-                } else {
+                // We don't follow the W3C documentation as it is not working with empty @vocab keys (like in the 0092 test).
+                // Instead we follow the JS library documentation, which works
+                } elseif (!IriResolver::isAbsoluteIri($value) && Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
                     // TODO: implement real exceptions and catch them
                     throw new \Exception('invalid vocab mapping');
+                } else {
+                    $result->vocabularyMapping = IriResolver::expand($result, $value, true);
                 }
             }
 

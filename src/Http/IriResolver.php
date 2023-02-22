@@ -118,7 +118,7 @@ class IriResolver
 
     public static function isIri(?string $iri): bool
     {
-        if (!$iri) {
+        if (null === $iri) {
             return false;
         }
 
@@ -127,7 +127,7 @@ class IriResolver
 
     public static function isRelativeIri(?string $iri): bool
     {
-        if (!$iri) {
+        if (null === $iri) {
             return false;
         }
 
@@ -136,7 +136,7 @@ class IriResolver
 
     public static function isAbsoluteIri(?string $iri): bool
     {
-        if (!$iri) {
+        if (null === $iri) {
             return false;
         }
 
@@ -145,7 +145,7 @@ class IriResolver
 
     public static function isBlankNodeIdentifier(?string $iri): bool
     {
-        if (!$iri) {
+        if (null === $iri) {
             return false;
         }
 
@@ -154,7 +154,7 @@ class IriResolver
 
     public static function isAbsoluteIriOrBlankNode(?string $iri): bool
     {
-        if (!$iri) {
+        if (null === $iri) {
             return false;
         }
 

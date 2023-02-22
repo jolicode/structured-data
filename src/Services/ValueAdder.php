@@ -28,7 +28,7 @@ class ValueAdder
         // 1
         if ($asArray) {
             if (!property_exists($object, $key) || !\is_array($object->$key)) {
-                $object->$key = [$value];
+                $object->$key = $object->$key ?? [];
             }
         }
 
@@ -56,7 +56,7 @@ class ValueAdder
             // 3.2
             } else {
                 // 3.2.1 && 3.2.2 : we always set it to an array, the result should be an object in an array.
-                $object->$key = [$value];
+                $object->$key[] = $value;
             }
         }
 

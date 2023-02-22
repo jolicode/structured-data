@@ -15,6 +15,9 @@ use Jolicode\JsonLd\TermDefinition\TermDefinition;
 
 class Context
 {
+    public const PROCESSING_MODE_10 = '1.0';
+    public const PROCESSING_MODE_11 = '1.1';
+
     public function __construct(
         /** @var TermDefinition[] $termDefinitions */
         public array $termDefinitions = [],
@@ -25,6 +28,7 @@ class Context
         public ?string $defaultLangage = null,
         public ?string $defaultBaseDirection = null,
         public ?self $previousContext = null,
+        public ?string $processingMode = self::PROCESSING_MODE_11,
     ) {
     }
 

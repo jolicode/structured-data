@@ -234,6 +234,201 @@ class Expander
         $nests = [];
 
         // 13
+        $this->processElementEntries(
+            $element,
+            $activeContext,
+            $result,
+            $nests,
+            $activeProperty,
+            $options,
+            $typeScopedContext,
+            $baseUrl,
+            $inputType,
+            $activeDefinitions
+        );
+
+        // 14
+        $this->processNestEntries(
+            $element,
+            $activeContext,
+            $result,
+            $nests,
+            $activeProperty,
+            $options,
+            $typeScopedContext,
+            $baseUrl,
+            $inputType,
+            $activeDefinitions
+        );
+
+        $result = (object) $result;
+
+        // 15
+        if (property_exists($result, Keyword::VALUE->value)) {
+            // 15.1
+            $this->validateResultValue($result);
+
+            // 15.2
+            if (property_exists($result, Keyword::TYPE->value) && Keyword::JSON->value === $result->{Keyword::TYPE->value}) {
+                // TODO: not sure how to treat value as a JSON litteral. Do nothing ? json_encode ?
+                // 15.3
+            } elseif (null === $result->{Keyword::VALUE->value} || [] === $result->{Keyword::VALUE->value}) {
+                return null;
+            // 15.4
+            } elseif (!\is_string($result->{Keyword::VALUE->value}) && property_exists($result, Keyword::LANGUAGE->value)) {
+                // TODO: implement real exceptions and catch them
+                throw new \Exception('invalid language-tagged value');
+            // 15.5
+            } elseif (property_exists($result, Keyword::TYPE->value) && !IriResolver::isIri($result->{Keyword::TYPE->value})) {
+                // TODO: implement real exceptions and catch them
+                throw new \Exception('invalid typed value');
+            }
+        // 16
+        } elseif (property_exists($result, Keyword::TYPE->value) && !\is_array($result->{Keyword::TYPE->value})) {
+            $result->{Keyword::TYPE->value} = [$result->{Keyword::TYPE->value}];
+        // 17
+        } elseif (
+            property_exists($result, Keyword::SET->value) ||
+            property_exists($result, Keyword::LIST->value)
+        ) {
+            // 17.1
+            if (2 < \count(get_object_vars($result))) {
+                // TODO: implement real exceptions and catch them
+                throw new \Exception('invalid set or list object');
+            }
+
+            // 17.1
+            if (2 === \count(get_object_vars($result)) && !property_exists($result, $result->{Keyword::INDEX->value})) {
+                // TODO: implement real exceptions and catch them
+                throw new \Exception('invalid set or list object');
+            }
+
+            // 17.2
+            if (property_exists($result, Keyword::SET->value)) {
+                $result = $result->{Keyword::SET->value};
+            }
+        }
+
+        // 18
+        if (\is_object($result) && 1 === \count(get_object_vars($result)) && property_exists($result, Keyword::LANGUAGE->value)) {
+            return null;
+        }
+
+        // 19
+        if (null === $activeProperty || Keyword::GRAPH->value === $activeProperty) {
+            // 19.1
+            if (\is_object($result)) {
+                if (0 === \count(get_object_vars($result))) {
+                    return null;
+                }
+
+                if (
+                    1 === \count(get_object_vars($result)) &&
+                    (property_exists($result, Keyword::VALUE->value) || property_exists($result, Keyword::LIST->value))
+                ) {
+                    return null;
+                }
+
+                // 19.2
+                if (1 === \count(get_object_vars($result)) && property_exists($result, Keyword::ID->value)) {
+                    if ($options->frameExpansion) {
+                        $result = (object) [Keyword::ID->value => null];
+                    } else {
+                        return null;
+                    }
+                }
+            }
+        }
+
+        if (null === $activeProperty) {
+            if (
+                \is_object($result) &&
+                property_exists($result, Keyword::GRAPH->value) &&
+                1 === \count(get_object_vars($result))
+            ) {
+                // As written in https://www.w3.org/TR/json-ld11/#dfn-graph-object, a top-level object consisting of @graph is not a graph object, so we remove the @graph entry
+                $result = $result->{Keyword::GRAPH->value};
+            }
+        }
+
+        // 20
+        return \is_array($result) ? $result : [$result];
+    }
+
+    /**
+     * Expand compacted values.
+     *
+     * This is a PHP implementation of https://www.w3.org/TR/json-ld11-api/#value-expansion. It is based on the 16th July 2020 recommendation.
+     */
+    private function expandValue(Context $activeContext, string $activeProperty, mixed $value): \stdClass|array
+    {
+        // 3 : we start by initializing result
+        $result = [Keyword::VALUE->value => $value];
+
+        if (\array_key_exists($activeProperty, $activeContext->termDefinitions)) {
+            /** @var TermDefinition $definition */
+            $definition = $activeContext->termDefinitions[$activeProperty];
+
+            // 1
+            if (
+                Keyword::ID->value === $definition->typeMapping &&
+                \is_string($value)
+            ) {
+                return (object) [Keyword::ID->value => IriResolver::expand($activeContext, $value, true)];
+            }
+
+            // 2
+            if (
+                Keyword::VOCAB->value === $definition->typeMapping &&
+                \is_string($value)
+            ) {
+                return (object) [Keyword::ID->value => IriResolver::expand($activeContext, $value, true)];
+            }
+
+            // 4
+            if (
+                $definition->typeMapping &&
+                !\in_array($definition->typeMapping, [Keyword::ID->value, Keyword::VOCAB->value, Keyword::NONE->value], true)
+            ) {
+                $result[Keyword::TYPE->value] = $definition->typeMapping;
+            // 5
+            } elseif (\is_string($value)) {
+                // 5.1
+                $language = $definition->languageMapping ?: $activeContext->defaultLangage;
+
+                // 5.3
+                if (null !== $language) {
+                    $result[Keyword::LANGUAGE->value] = $language;
+                }
+
+                // 5.2
+                $direction = $definition->directionMapping ?: $activeContext->defaultBaseDirection;
+
+                // 5.4
+                if (null !== $direction) {
+                    $result[Keyword::DIRECTION->value] = $direction;
+                }
+            }
+        }
+
+        // 6
+        return (object) $result;
+    }
+
+    private function processElementEntries(
+        mixed $element,
+        Context $activeContext,
+        array|\stdClass &$result,
+        array &$nests,
+        ?string $activeProperty,
+        ProcessorOptions $options,
+        Context $typeScopedContext,
+        string $baseUrl,
+        array $inputType,
+        array $activeDefinitions,
+    ): void {
+        $nests = [];
+
         foreach ($element as $key => $value) {
             // 13.1
             if (Keyword::CONTEXT->value === $key) {
@@ -256,9 +451,8 @@ class Expander
                     throw new \Exception('invalid reverse property map');
                 }
 
-                $expandedValue = [];
-
                 $result = (array) $result;
+                $expandedValue = [];
 
                 // 13.4.2
                 if (
@@ -314,7 +508,7 @@ class Expander
 
                     // 13.4.4.5
                     if (\array_key_exists(Keyword::TYPE->value, $result)) {
-                        $expandedValue = [...$expandedValue, ...$result[Keyword::TYPE->value]];
+                        $expandedValue = [...$result[Keyword::TYPE->value], ...$expandedValue];
                     }
                 }
 
@@ -679,7 +873,7 @@ class Expander
                     foreach ($indexValue as $item) {
                         // 13.8.3.7.1
                         if (\in_array(Keyword::GRAPH->value, $containerMapping, true) && !$this->isGraphObject($item)) {
-                            $item = (object) [Keyword::GRAPH->value => (array) $item];
+                            $item = (object) [Keyword::GRAPH->value => [$item]];
                         }
 
                         // 13.8.3.7.2
@@ -750,12 +944,10 @@ class Expander
 
                             $item->{Keyword::TYPE->value} = $types;
                         }
-                    }
 
-                    // 13.8.3.7.6
-                    // There is some conflicting tests here : some want the value to be appended, some others want the value to be prepended.
-                    // Most of the time it seems we want it prepended so we prepend it, even though the docs say to append it.
-                    array_unshift($expandedValue, ...$indexValue);
+                        // 13.8.3.7.6
+                        $expandedValue[] = $item;
+                    }
                 }
             } else {
                 // 13.9
@@ -795,8 +987,10 @@ class Expander
             ) {
                 // 13.12.1
                 foreach ((array) $expandedValue as $key => $expandedEntry) {
-                    $graphExpandedValue[] = [Keyword::GRAPH->value => [(object) $expandedEntry]];
+                    $graphExpandedValue[] = (object) [Keyword::GRAPH->value => [(object) $expandedEntry]];
                 }
+
+                $expandedValue = $graphExpandedValue;
             }
 
             $result = (array) $result;
@@ -805,7 +999,7 @@ class Expander
             if (\array_key_exists($key, $activeDefinitions) && $activeDefinitions[$key]->reverseProperty) {
                 // 13.13.1
                 if (!\array_key_exists(Keyword::REVERSE->value, $result)) {
-                    $result[Keyword::REVERSE->value] = [];
+                    $result[Keyword::REVERSE->value] = new \stdClass();
                 }
 
                 // 13.13.2
@@ -825,20 +1019,32 @@ class Expander
                     }
 
                     // 13.13.4.2
-                    if (!\array_key_exists($expandedProperty, $reverseMap)) {
-                        $reverseMap[$expandedProperty] = [];
+                    if (!property_exists($reverseMap, $expandedProperty)) {
+                        $reverseMap->$expandedProperty = [];
                     }
 
                     // 13.13.4.3
-                    $result = ValueAdder::addValue($item, $expandedProperty, $reverseMap, true);
+                    ValueAdder::addValue($item, $expandedProperty, $reverseMap, true);
                 }
             } else {
                 // 13.14
                 $result = ValueAdder::addValue($expandedValue, $expandedProperty, $result, true);
             }
         }
+    }
 
-        // 14
+    private function processNestEntries(
+        mixed $element,
+        Context $activeContext,
+        array|\stdClass &$result,
+        array $nests,
+        ?string $activeProperty,
+        ProcessorOptions $options,
+        Context $typeScopedContext,
+        string $baseUrl,
+        array $inputType,
+        array $activeDefinitions,
+    ): void {
         foreach ($nests as $nestingKey) {
             $element = (array) $element;
 
@@ -867,162 +1073,33 @@ class Expander
                 }
 
                 // 14.2.2
-                // TODO: use methods to be able to repeat steps 13 and 14
+                $this->processElementEntries(
+                    $nestedValue,
+                    $activeContext,
+                    $result,
+                    $nests,
+                    $activeProperty,
+                    $options,
+                    $typeScopedContext,
+                    $baseUrl,
+                    $inputType,
+                    $activeDefinitions
+                );
+
+                $this->processNestEntries(
+                    $nestedValue,
+                    $activeContext,
+                    $result,
+                    $nests,
+                    $activeProperty,
+                    $options,
+                    $typeScopedContext,
+                    $baseUrl,
+                    $inputType,
+                    $activeDefinitions
+                );
             }
         }
-
-        $result = (object) $result;
-
-        // 15
-        if (property_exists($result, Keyword::VALUE->value)) {
-            // 15.1
-            $this->validateResultValue($result);
-
-            // 15.2
-            if (property_exists($result, Keyword::TYPE->value) && Keyword::JSON->value === $result->{Keyword::TYPE->value}) {
-                // TODO: not sure how to treat value as a JSON litteral. Do nothing ? json_encode ?
-                // 15.3
-            } elseif (null === $result->{Keyword::VALUE->value} || [] === $result->{Keyword::VALUE->value}) {
-                return null;
-            // 15.4
-            } elseif (!\is_string($result->{Keyword::VALUE->value}) && property_exists($result, Keyword::LANGUAGE->value)) {
-                // TODO: implement real exceptions and catch them
-                throw new \Exception('invalid language-tagged value');
-            // 15.5
-            } elseif (property_exists($result, Keyword::TYPE->value) && !IriResolver::isIri($result->{Keyword::TYPE->value})) {
-                // TODO: implement real exceptions and catch them
-                throw new \Exception('invalid typed value');
-            }
-        // 16
-        } elseif (property_exists($result, Keyword::TYPE->value) && !\is_array($result->{Keyword::TYPE->value})) {
-            $result->{Keyword::TYPE->value} = [$result->{Keyword::TYPE->value}];
-        // 17
-        } elseif (
-            property_exists($result, Keyword::SET->value) ||
-            property_exists($result, Keyword::LIST->value)
-        ) {
-            // 17.1
-            if (2 < \count((array) $result)) {
-                // TODO: implement real exceptions and catch them
-                throw new \Exception('invalid set or list object');
-            }
-
-            // 17.1
-            if (2 === \count((array) $result) && !property_exists($result, $result->{Keyword::INDEX->value})) {
-                // TODO: implement real exceptions and catch them
-                throw new \Exception('invalid set or list object');
-            }
-
-            // 17.2
-            if (property_exists($result, Keyword::SET->value)) {
-                $result = $result->{Keyword::SET->value};
-            }
-        }
-
-        // 18
-        if (\is_object($result) && 1 === \count((array) $result) && property_exists($result, Keyword::LANGUAGE->value)) {
-            return null;
-        }
-
-        // 19
-        if (null === $activeProperty || Keyword::GRAPH->value === $activeProperty) {
-            // 19.1
-            if (\is_object($result)) {
-                if (0 === \count((array) $result)) {
-                    return null;
-                }
-
-                if (
-                    1 === \count((array) $result) &&
-                    (property_exists($result, Keyword::VALUE->value) || property_exists($result, Keyword::LIST->value))
-                ) {
-                    return null;
-                }
-
-                // 19.2
-                if (1 === \count((array) $result) && property_exists($result, Keyword::ID->value)) {
-                    if ($options->frameExpansion) {
-                        $result = (object) [Keyword::ID->value => null];
-                    } else {
-                        return null;
-                    }
-                }
-            }
-        }
-
-        if (null === $activeProperty) {
-            if (
-                \is_object($result) &&
-                property_exists($result, Keyword::GRAPH->value) &&
-                1 === \count(get_object_vars($result))
-            ) {
-                // As written in https://www.w3.org/TR/json-ld11/#dfn-graph-object, a top-level object consisting of @graph is not a graph object, so we remove the @graph entry
-                $result = $result->{Keyword::GRAPH->value};
-            }
-        }
-
-        // 20
-        return \is_array($result) ? $result : [$result];
-    }
-
-    /**
-     * Expand compacted values.
-     *
-     * This is a PHP implementation of https://www.w3.org/TR/json-ld11-api/#value-expansion. It is based on the 16th July 2020 recommendation.
-     */
-    private function expandValue(Context $activeContext, string $activeProperty, mixed $value): \stdClass|array
-    {
-        // 3 : we start by initializing result
-        $result = [Keyword::VALUE->value => $value];
-
-        if (\array_key_exists($activeProperty, $activeContext->termDefinitions)) {
-            /** @var TermDefinition $definition */
-            $definition = $activeContext->termDefinitions[$activeProperty];
-
-            // 1
-            if (
-                Keyword::ID->value === $definition->typeMapping &&
-                \is_string($value)
-            ) {
-                return (object) [Keyword::ID->value => IriResolver::expand($activeContext, $value, true)];
-            }
-
-            // 2
-            if (
-                Keyword::VOCAB->value === $definition->typeMapping &&
-                \is_string($value)
-            ) {
-                return (object) [Keyword::ID->value => IriResolver::expand($activeContext, $value, true)];
-            }
-
-            // 4
-            if (
-                $definition->typeMapping &&
-                !\in_array($definition->typeMapping, [Keyword::ID->value, Keyword::VOCAB->value, Keyword::NONE->value], true)
-            ) {
-                $result[Keyword::TYPE->value] = $definition->typeMapping;
-            // 5
-            } elseif (\is_string($value)) {
-                // 5.1
-                $language = $definition->languageMapping ?: $activeContext->defaultLangage;
-
-                // 5.3
-                if (null !== $language) {
-                    $result[Keyword::LANGUAGE->value] = $language;
-                }
-
-                // 5.2
-                $direction = $definition->directionMapping ?: $activeContext->defaultBaseDirection;
-
-                // 5.4
-                if (null !== $direction) {
-                    $result[Keyword::DIRECTION->value] = $direction;
-                }
-            }
-        }
-
-        // 6
-        return (object) $result;
     }
 
     // 13.4.4.1

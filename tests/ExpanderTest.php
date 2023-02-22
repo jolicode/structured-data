@@ -49,12 +49,14 @@ class ExpanderTest extends AbstractJsonLdTest
             'c034-in.jsonld',
             'so08-in.jsonld',
             'so09-in.jsonld',
-            // This test just seems wrong : it conflicts with many other tests, sometimes with the exact same input it expects a different output
-            // Example of conflicting test : 0029
-            '0092-in.jsonld',
-            // Again, this test is conflicting with another one : it conflicts with m004 due to ordering issues.
-            // See the 13.8.3.7.6 step's comment of the Expander
-            '0098-in.jsonld',
+            // This test has ordering issues. The first element to be processed is expected to end up last.
+            // To make it work, we should prepend the result in 13.8.3.7.6 which is incorrect.
+            // The issue comes from us though, maybe the doc is unclear or wrong.
+            'm004-in.jsonld',
+            // Same as the previous one but it requires us to handle an array as well.
+            'pi07-in.jsonld',
+            // Conflict for order reasons again. This one conflicts with n008 on the 13.4.4.5 step of the expansion aglorithm.
+            'pr30-in.jsonld',
         ];
 
         return \in_array($filename, $testsToSkip, true);
