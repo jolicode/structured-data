@@ -36,7 +36,7 @@ class IriResolver
         }
 
         // 2
-        if (preg_match('/^@\w+/', $value)) {
+        if (preg_match('/^@[a-zA-Z]+$/', $value)) {
             // TODO: add a warning
             // dump('WARNING: a value has the form of a keyword. Skipping. Value is : ' . $value);
 

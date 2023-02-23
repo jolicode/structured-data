@@ -56,7 +56,7 @@ class TermDefinitionCreator
         // TODO: 4
 
         // 5
-        if (preg_match('/^@\w+/', $term)) {
+        if (preg_match('/^@[a-zA-Z]+$/', $term)) {
             // TODO: use a logger
             // dump('WARNING: a value has the form of a keyword. Skipping. Value is : ' . $term);
 
@@ -152,7 +152,7 @@ class TermDefinitionCreator
             }
 
             // 13.3
-            if (preg_match('/^@\w+/', $value->{Keyword::REVERSE->value})) {
+            if (preg_match('/^@[a-zA-Z]+$/', $value->{Keyword::REVERSE->value})) {
                 // TODO: use a logger
                 // dump('WARNING: a value has the form of a keyword. Skipping. Value is : ' . $term);
 
@@ -211,7 +211,7 @@ class TermDefinitionCreator
                     throw new \Exception('invalid IRI mapping');
                 }
 
-                if (!Keyword::tryFrom($id) && preg_match('/^@\w+/', $id)) {
+                if (!Keyword::tryFrom($id) && preg_match('/^@[a-zA-Z]+$/', $id)) {
                     // TODO: use a logger
                     // dump('WARNING: a value has the form of a keyword. Skipping. Value is : ' . $term);
 
@@ -265,12 +265,7 @@ class TermDefinitionCreator
                     isset($simpleTerm) &&
                     $simpleTerm
                 ) {
-                    if (
-                        IriResolver::isBlankNodeIdentifier($definition->iriMapping) ||
-                        (\in_array($definition->iriMapping[\strlen($definition->iriMapping) - 1], [':', ',', '?', '#', '[', ']', '@'], true) &&
-                            IriResolver::isIri($definition->iriMapping)
-                        )
-                    ) {
+                    if (IriResolver::isBlankNodeIdentifier($definition->iriMapping) || IriResolver::isIri($definition->iriMapping)) {
                         $definition->prefixFlag = true;
                     }
                 }

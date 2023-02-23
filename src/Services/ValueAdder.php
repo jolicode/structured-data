@@ -32,21 +32,10 @@ class ValueAdder
             }
         }
 
-        if (\is_array($value)) {
-            if (1 === \count($value)) {
-                // We don't want to convert 0 keys to objects so we directly access the value itself.
-                $value = $value[0];
-            } else {
-                $object->$key = $value;
-
-                return $object;
-            }
-        }
-
         // 2
         if (\is_array($value)) {
-            foreach ($value as $elementKey => $element) {
-                self::addValue($element, $elementKey, $object);
+            foreach ($value as $element) {
+                self::addValue($element, $key, $object);
             }
         // 3
         } else {
