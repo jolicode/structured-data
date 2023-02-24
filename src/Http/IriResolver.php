@@ -53,19 +53,17 @@ class IriResolver
             TermDefinitionCreator::create($activeContext, $localContext, $value, $defined);
         }
 
-        $activeDefinitions = $activeContext->termDefinitions;
-
         // 4
         if (
-            \array_key_exists($value, $activeDefinitions) &&
-            ($keyword = Keyword::tryFrom($activeDefinitions[$value]->iriMapping))
+            \array_key_exists($value, $activeContext->termDefinitions) &&
+            ($keyword = Keyword::tryFrom($activeContext->termDefinitions[$value]->iriMapping))
         ) {
             return $keyword->value;
         }
 
         // 5
-        if ($vocab && \array_key_exists($value, $activeDefinitions)) {
-            return $activeDefinitions[$value]->iriMapping;
+        if ($vocab && \array_key_exists($value, $activeContext->termDefinitions)) {
+            return $activeContext->termDefinitions[$value]->iriMapping;
         }
 
         // 6
@@ -88,8 +86,8 @@ class IriResolver
             }
 
             // 6.4
-            if (\array_key_exists($prefix, $activeDefinitions)) {
-                $termDefinition = $activeDefinitions[$prefix];
+            if (\array_key_exists($prefix, $activeContext->termDefinitions)) {
+                $termDefinition = $activeContext->termDefinitions[$prefix];
 
                 if (null !== $termDefinition->iriMapping && $termDefinition->prefixFlag) {
                     return $termDefinition->iriMapping . $suffix;

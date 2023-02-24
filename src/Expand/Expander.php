@@ -311,7 +311,7 @@ class Expander
 
         // 18
         if (\is_object($result) && 1 === \count(get_object_vars($result)) && property_exists($result, Keyword::LANGUAGE->value)) {
-            return null;
+            return [];
         }
 
         // 19
@@ -319,14 +319,14 @@ class Expander
             // 19.1
             if (\is_object($result)) {
                 if (0 === \count(get_object_vars($result))) {
-                    return null;
+                    return [];
                 }
 
                 if (
                     1 === \count(get_object_vars($result)) &&
                     (property_exists($result, Keyword::VALUE->value) || property_exists($result, Keyword::LIST->value))
                 ) {
-                    return null;
+                    return [];
                 }
 
                 // 19.2
@@ -334,7 +334,7 @@ class Expander
                     if ($options->frameExpansion) {
                         $result = (object) [Keyword::ID->value => null];
                     } else {
-                        return null;
+                        return [];
                     }
                 }
             }
@@ -362,9 +362,6 @@ class Expander
      */
     private function expandValue(Context $activeContext, string $activeProperty, mixed $value): \stdClass|array
     {
-        // 3 : we start by initializing result
-        $result = [Keyword::VALUE->value => $value];
-
         if (\array_key_exists($activeProperty, $activeContext->termDefinitions)) {
             /** @var TermDefinition $definition */
             $definition = $activeContext->termDefinitions[$activeProperty];
@@ -384,30 +381,42 @@ class Expander
             ) {
                 return (object) [Keyword::ID->value => IriResolver::expand($activeContext, $value, true)];
             }
+        }
 
-            // 4
-            if (
-                $definition->typeMapping &&
-                !\in_array($definition->typeMapping, [Keyword::ID->value, Keyword::VOCAB->value, Keyword::NONE->value], true)
-            ) {
-                $result[Keyword::TYPE->value] = $definition->typeMapping;
-            // 5
-            } elseif (\is_string($value)) {
-                // 5.1
-                $language = $definition->languageMapping ?: $activeContext->defaultLangage;
+        // 3
+        $result = [Keyword::VALUE->value => $value];
 
-                // 5.3
-                if (null !== $language) {
-                    $result[Keyword::LANGUAGE->value] = $language;
-                }
+        // 4
+        if (
+            isset($definition) &&
+            $definition->typeMapping &&
+            !\in_array($definition->typeMapping, [Keyword::ID->value, Keyword::VOCAB->value, Keyword::NONE->value], true)
+        ) {
+            $result[Keyword::TYPE->value] = $definition->typeMapping;
+        // 5
+        } elseif (\is_string($value)) {
+            // 5.1
+            if (isset($definition)) {
+                $language = $definition->languageMapping;
+            } else {
+                $language = $activeContext->defaultLangage;
+            }
 
-                // 5.2
-                $direction = $definition->directionMapping ?: $activeContext->defaultBaseDirection;
+            // 5.3
+            if (null !== $language) {
+                $result[Keyword::LANGUAGE->value] = $language;
+            }
 
-                // 5.4
-                if (null !== $direction) {
-                    $result[Keyword::DIRECTION->value] = $direction;
-                }
+            // 5.2
+            if (isset($definition)) {
+                $direction = $definition->directionMapping;
+            } else {
+                $direction = $activeContext->defaultBaseDirection;
+            }
+
+            // 5.4
+            if (null !== $direction) {
+                $result[Keyword::DIRECTION->value] = $direction;
             }
         }
 
