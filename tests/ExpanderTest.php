@@ -62,8 +62,6 @@ class ExpanderTest extends AbstractJsonLdTest
             // Ordering issues again, these ones seem to be on us again.
             'm009-in.jsonld',
             'm010-in.jsonld',
-            // Temporarily commented for arbitrary reasons : this one is annoying. Maybe this is beacause we initialize $activeDefinitions as a reference ?
-            'c005-in.jsonld',
         ];
 
         return \in_array($filename, $testsToSkip, true);

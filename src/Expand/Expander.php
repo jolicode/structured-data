@@ -82,12 +82,9 @@ class Expander
             $options->frameExpansion = false;
         }
 
-        /** @var TermDefinition[] $activeDefinitions */
-        $activeDefinitions = &$activeContext->termDefinitions;
-
         // 3
-        if (\array_key_exists($activeProperty, $activeDefinitions) && $activeDefinitions[$activeProperty]->context) {
-            $propertyScopedContext = $activeDefinitions[$activeProperty]->context;
+        if (\array_key_exists($activeProperty, $activeContext->termDefinitions) && $activeContext->termDefinitions[$activeProperty]->context) {
+            $propertyScopedContext = $activeContext->termDefinitions[$activeProperty]->context;
         }
 
         // 4
@@ -102,7 +99,7 @@ class Expander
                 $activeContext = $this->contextProcesser->processContext(
                     $activeContext,
                     $propertyScopedContext,
-                    $activeDefinitions[$activeProperty]->baseUrl
+                    $activeContext->termDefinitions[$activeProperty]->baseUrl
                 );
             }
 
@@ -127,9 +124,9 @@ class Expander
                 );
 
                 if (
-                    \array_key_exists($activeProperty, $activeDefinitions) &&
-                    $activeDefinitions[$activeProperty]->containerMapping &&
-                    \in_array(Keyword::LIST->value, $activeDefinitions[$activeProperty]->containerMapping, true) &&
+                    \array_key_exists($activeProperty, $activeContext->termDefinitions) &&
+                    $activeContext->termDefinitions[$activeProperty]->containerMapping &&
+                    \in_array(Keyword::LIST->value, $activeContext->termDefinitions[$activeProperty]->containerMapping, true) &&
                     \is_array($expandedItem)
                 ) {
                     $expandedItem = (object) [Keyword::LIST->value => $expandedItem];
@@ -161,9 +158,11 @@ class Expander
                     $switchToPreviousContext = false;
                 }
 
-                foreach ($element as $elementEntry) {
-                    if (\is_string($elementEntry) && Keyword::VALUE->value === IriResolver::expand($activeContext, $elementEntry)) {
+                foreach ($element as $elementKey => $elementEntry) {
+                    if (\is_string($elementEntry) && Keyword::VALUE->value === IriResolver::expand($activeContext, $elementKey)) {
                         $switchToPreviousContext = false;
+
+                        break;
                     }
                 }
 
@@ -178,7 +177,7 @@ class Expander
             $activeContext = $this->contextProcesser->processContext(
                 $activeContext,
                 $propertyScopedContext,
-                $activeDefinitions[$activeProperty]->baseUrl,
+                $baseUrl,
                 overrideProtected: true
             );
         }
@@ -244,7 +243,7 @@ class Expander
             $typeScopedContext,
             $baseUrl,
             $inputType,
-            $activeDefinitions
+            $activeContext->termDefinitions
         );
 
         // 14
@@ -258,7 +257,7 @@ class Expander
             $typeScopedContext,
             $baseUrl,
             $inputType,
-            $activeDefinitions
+            $activeContext->termDefinitions
         );
 
         $result = (object) $result;
