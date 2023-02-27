@@ -337,7 +337,7 @@ class TermDefinitionCreator
             $definition->containerMapping = (array) $container;
 
             // 19.4
-            if (\array_key_exists(Keyword::TYPE->value, $definition->containerMapping)) {
+            if (\in_array(Keyword::TYPE->value, $definition->containerMapping, true)) {
                 if (!$definition->typeMapping) {
                     $definition->typeMapping = Keyword::ID->value;
                 }

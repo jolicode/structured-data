@@ -47,17 +47,18 @@ abstract class AbstractJsonLdTest extends TestCase
             ));
     }
 
-    protected function getBaseUrlForW3CTests(): string
+    protected function getBaseUrlForW3CTests(string $filename): string
     {
         return sprintf(
-            'https://w3c.github.io/json-ld-api/tests/%s/',
-            $this->getAlgorithmName()
+            'https://w3c.github.io/json-ld-api/tests/%s/%s',
+            $this->getAlgorithmName(),
+            $filename
         );
     }
 
     protected function provideInputsAndOutputs(): iterable
     {
-        foreach ($this->getInputFiles() as $inputFileName => $inputFile) {
+        foreach ($this->getInputFiles() as $inputFile) {
             if ($this->shouldSkipThisTest($inputFile->getFilename())) {
                 continue;
             }
@@ -73,6 +74,7 @@ abstract class AbstractJsonLdTest extends TestCase
             yield $inputFile->getFilename() => [
                 'json' => $inputFile->getContents(),
                 'expected' => file_get_contents($outputFileName),
+                'filename' => $inputFile->getFilename(),
             ];
         }
     }

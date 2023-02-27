@@ -114,12 +114,14 @@ class ContextProcesser
                 $documentLoader = new DocumentLoader($context);
                 $loadedContext = $documentLoader->load()->{Keyword::CONTEXT->value};
 
+                // TODO: we are missing quite a lot of stuff here
+
                 $result = $this->processContext(
                     $result,
                     $loadedContext,
                     $context,
                     $remoteContexts,
-                    $validateScopedContext
+                    validateScopedContext: $validateScopedContext
                 );
 
                 continue;

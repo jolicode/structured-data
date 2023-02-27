@@ -187,7 +187,8 @@ class Expander
             $activeContext = $this->contextProcesser->processContext(
                 $activeContext,
                 $element->{Keyword::CONTEXT->value},
-                $baseUrl
+                $baseUrl,
+                overrideProtected: true,
             );
         }
 
@@ -202,17 +203,17 @@ class Expander
             }
 
             // 11.1
-            $value = (array) $value;
+            $arrayValue = (array) $value;
 
             // 12 : we do 12 here, so we don't loop twice over $element
             $inputType = [
-                IriResolver::expand($activeContext, $key) => IriResolver::expand($activeContext, $value[array_key_last($value)]),
+                IriResolver::expand($activeContext, $key) => IriResolver::expand($activeContext, $arrayValue[array_key_last($arrayValue)]),
             ];
 
-            sort($value);
+            sort($arrayValue);
 
             // 11.2
-            foreach ($value as $term) {
+            foreach ($arrayValue as $term) {
                 if (
                     \is_string($term) &&
                     \array_key_exists($term, $typeScopedContext->termDefinitions) &&
@@ -370,7 +371,7 @@ class Expander
                 Keyword::ID->value === $definition->typeMapping &&
                 \is_string($value)
             ) {
-                return (object) [Keyword::ID->value => IriResolver::expand($activeContext, $value, true)];
+                return (object) [Keyword::ID->value => IriResolver::expand($activeContext, $value, true, false)];
             }
 
             // 2
@@ -516,7 +517,15 @@ class Expander
 
                     // 13.4.4.5
                     if (\array_key_exists(Keyword::TYPE->value, $result)) {
-                        $expandedValue = [...$result[Keyword::TYPE->value], ...$expandedValue];
+                        if (\is_array($result[Keyword::TYPE->value])) {
+                            $expandedValue = [...$result[Keyword::TYPE->value], ...$expandedValue];
+                        } else {
+                            $expandedValue = [$result[Keyword::TYPE->value], ...$expandedValue];
+                        }
+                    }
+
+                    if (1 === \count($expandedValue)) {
+                        $expandedValue = $expandedValue[0];
                     }
                 }
 
@@ -566,7 +575,7 @@ class Expander
 
                     // 13.4.6.4
                     if (\array_key_exists(Keyword::INCLUDED->value, $result)) {
-                        array_unshift($expandedValue, $result[Keyword::INCLUDED->value]);
+                        $expandedValue = [...$result[Keyword::INCLUDED->value], ...$expandedValue];
                     }
                 }
 
@@ -675,19 +684,21 @@ class Expander
                         $options,
                         $baseUrl,
                         $activeContext,
-                        $activeProperty,
+                        Keyword::REVERSE->value,
                     );
 
+                    $expandedValue = $expandedValue[0];
+
                     // 13.4.13.3
-                    if (\array_key_exists(Keyword::REVERSE->value, $expandedValue)) {
+                    if (property_exists($expandedValue, Keyword::REVERSE->value)) {
                         // 13.4.13.3.1
-                        foreach ($expandedValue[Keyword::REVERSE->value] as $property => $item) {
+                        foreach ($expandedValue->{Keyword::REVERSE->value} as $property => $item) {
                             $result = ValueAdder::addValue($item, $property, $result, true);
                         }
                     }
 
                     // 13.4.13.4
-                    if (\count($expandedValue) && !\array_key_exists(Keyword::REVERSE->value, $expandedValue)) {
+                    if (!property_exists($expandedValue, Keyword::REVERSE->value)) {
                         // 13.4.13.4.1
                         $reverseMap = $result[Keyword::REVERSE->value] ?? new \stdClass();
 
@@ -698,17 +709,19 @@ class Expander
                             }
 
                             // 13.4.13.4.2.1
-                            foreach ($items as $item) {
+                            foreach ($items as $itemKey => $itemValue) {
                                 // 13.4.13.4.2.1.1
-                                if (property_exists((object) $item, Keyword::VALUE->value) || property_exists((object) $item, Keyword::VALUE->value)) {
+                                if (property_exists((object) $itemValue, Keyword::VALUE->value) || property_exists((object) $itemValue, Keyword::VALUE->value)) {
                                     // TODO: implement real exceptions and catch them
                                     throw new \Exception('invalid @reverse property value');
                                 }
 
                                 // 13.4.13.4.2.1.2
-                                $reverseMap = ValueAdder::addValue($item, $property, $reverseMap, true);
+                                $reverseMap = ValueAdder::addValue($itemValue, $property, $reverseMap, true);
                             }
                         }
+
+                        $result[$expandedProperty] = $reverseMap;
                     }
 
                     // 13.4.13.5
@@ -737,8 +750,8 @@ class Expander
 
                 // 13.4.16
                 if (
-                    null !== $expandedValue &&
-                    Keyword::VALUE->value !== $expandedProperty &&
+                    null !== $expandedValue ||
+                    Keyword::VALUE->value !== $expandedProperty ||
                     !\in_array(Keyword::JSON->value, $inputType, true)
                 ) {
                     $result[$expandedProperty] = $expandedValue;
@@ -1205,7 +1218,7 @@ class Expander
     {
         if (
             (property_exists($result, Keyword::LANGUAGE->value) || property_exists($result, Keyword::DIRECTION->value)) &&
-            !property_exists($result, Keyword::TYPE->value)
+            property_exists($result, Keyword::TYPE->value)
         ) {
             // TODO: implement real exceptions and catch them
             throw new \Exception('invalid value object');
