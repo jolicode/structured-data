@@ -12,7 +12,9 @@
 namespace Jolicode\JsonLd\Http;
 
 use Jolicode\JsonLd\JsonLd\Keyword;
+use Symfony\Component\HttpClient\CachingHttpClient;
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpKernel\HttpCache\Store;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class DocumentLoader
@@ -25,7 +27,10 @@ class DocumentLoader
     public function __construct(
         private string $url
     ) {
-        $this->httpClient = HttpClient::create();
+        $this->httpClient = new CachingHttpClient(
+            new FakeCacheHeaderClient(HttpClient::create()),
+            new Store(__DIR__ . '/../../var/cache/http')
+        );
     }
 
     public function load(): \stdClass
@@ -52,7 +57,8 @@ class DocumentLoader
         );
 
         if (400 <= $response->getStatusCode()) {
-            return [Keyword::CONTEXT->value => null];
+            // TODO: Hmmm... Throw an error no ?
+            return (object) [Keyword::CONTEXT->value => null];
         }
 
         if ('application/ld+json' !== $response->getHeaders()['content-type'][0]) {

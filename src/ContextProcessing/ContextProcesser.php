@@ -158,14 +158,14 @@ class ContextProcesser
                     throw new \Exception('Invalid remote context.');
                 }
 
-                $importContext = $response[Keyword::CONTEXT->value];
+                $importContext = $response->{Keyword::CONTEXT->value};
 
-                if (\array_key_exists(Keyword::IMPORT->value, $importContext)) {
+                if (property_exists($importContext, Keyword::IMPORT->value)) {
                     // TODO: implement real exceptions and catch them
                     throw new \Exception('Invalid context entry.');
                 }
 
-                $context = (object) array_replace($importContext, $context);
+                $context = (object) array_replace((array) $importContext, (array) $context);
             }
 
             // 5.7

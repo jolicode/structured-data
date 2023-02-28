@@ -37,18 +37,8 @@ class ExpanderTest extends AbstractJsonLdTest
     protected function shouldSkipThisTest(string $filename): bool
     {
         $testsToSkip = [
-            // All these tests use an external context, located in a separate file that needs to be imported.
-            // We don't handle these cases yet
-            'so05-in.jsonld',
-            'so06-in.jsonld',
-            'so08-in.jsonld',
-            'so09-in.jsonld',
-            'so11-in.jsonld',
-            '0126-in.jsonld',
-            '0127-in.jsonld',
-            '0128-in.jsonld',
+            // This test uses an import URL that is wrong.
             'c031-in.jsonld',
-            'c034-in.jsonld',
             // This test has ordering issues. The first element to be processed is expected to end up last.
             // To make it work, we should prepend the result in 13.8.3.7.6 which is incorrect.
             // The issue comes from us though, maybe the doc is unclear or wrong.
@@ -74,6 +64,9 @@ class ExpanderTest extends AbstractJsonLdTest
             'n004-in.jsonld',
             '0030-in.jsonld',
             '0035-in.jsonld',
+
+
+
             // For some (yet) unknow reason we add a @list entry
             // According to the docs and even the JS library, we seem fine.
             // Skipping for now since I have no explanation
@@ -81,6 +74,9 @@ class ExpanderTest extends AbstractJsonLdTest
             'li04-in.jsonld',
             // Same list issue + in one spot we should add an array
             '0004-in.jsonld',
+
+
+
             // These tests seem wrong. If we paste the input JSON in the JSON-LD playground (https://json-ld.org/playground/) the result is not the one expected
             // Instead we have the same result as when running our implementation
             // Maybe this is because they should have "http://example" as a base URL instead of the W3C file URL ? To check
