@@ -83,8 +83,10 @@ class Expander
         }
 
         // 3
-        if (\array_key_exists($activeProperty, $activeContext->termDefinitions) && $activeContext->termDefinitions[$activeProperty]->context) {
+        if (\array_key_exists($activeProperty, $activeContext->termDefinitions) && false !== $activeContext->termDefinitions[$activeProperty]->context) {
             $propertyScopedContext = $activeContext->termDefinitions[$activeProperty]->context;
+        } else {
+            $propertyScopedContext = false;
         }
 
         // 4
@@ -95,7 +97,7 @@ class Expander
             }
 
             // 4.2
-            if (isset($propertyScopedContext)) {
+            if (false !== $propertyScopedContext) {
                 $activeContext = $this->contextProcesser->processContext(
                     $activeContext,
                     $propertyScopedContext,
@@ -173,7 +175,7 @@ class Expander
         }
 
         // 8
-        if (isset($propertyScopedContext)) {
+        if (false !== $propertyScopedContext) {
             $activeContext = $this->contextProcesser->processContext(
                 $activeContext,
                 $propertyScopedContext,
@@ -217,7 +219,7 @@ class Expander
                 if (
                     \is_string($term) &&
                     \array_key_exists($term, $typeScopedContext->termDefinitions) &&
-                    $typeScopedContext->termDefinitions[$term]->context
+                    false !== $typeScopedContext->termDefinitions[$term]->context
                 ) {
                     $activeContext = $this->contextProcesser->processContext(
                         $activeContext,
@@ -311,26 +313,25 @@ class Expander
 
         // 18
         if (\is_object($result) && 1 === \count(get_object_vars($result)) && property_exists($result, Keyword::LANGUAGE->value)) {
-            return [];
+            return null;
         }
 
         // 19
         if (null === $activeProperty || Keyword::GRAPH->value === $activeProperty) {
             // 19.1
             if (\is_object($result)) {
-                if (0 === \count(get_object_vars($result))) {
+                $objectPropertiesCount = \count(get_object_vars($result));
+
+                if (0 === $objectPropertiesCount) {
                     return [];
                 }
 
-                if (
-                    1 === \count(get_object_vars($result)) &&
-                    (property_exists($result, Keyword::VALUE->value) || property_exists($result, Keyword::LIST->value))
-                ) {
+                if (property_exists($result, Keyword::VALUE->value) || property_exists($result, Keyword::LIST->value)) {
                     return [];
                 }
 
                 // 19.2
-                if (1 === \count(get_object_vars($result)) && property_exists($result, Keyword::ID->value)) {
+                if (1 === $objectPropertiesCount && property_exists($result, Keyword::ID->value)) {
                     if ($options->frameExpansion) {
                         $result = (object) [Keyword::ID->value => null];
                     } else {
@@ -396,7 +397,7 @@ class Expander
         // 5
         } elseif (\is_string($value)) {
             // 5.1
-            if (isset($definition)) {
+            if (isset($definition) && false !== $definition->languageMapping) {
                 $language = $definition->languageMapping;
             } else {
                 $language = $activeContext->defaultLangage;
@@ -408,7 +409,7 @@ class Expander
             }
 
             // 5.2
-            if (isset($definition)) {
+            if (isset($definition) && false !== $definition->directionMapping) {
                 $direction = $definition->directionMapping;
             } else {
                 $direction = $activeContext->defaultBaseDirection;
@@ -860,7 +861,7 @@ class Expander
                     if (
                         \in_array(Keyword::TYPE->value, $containerMapping, true) &&
                         \array_key_exists($index, $mapContext->termDefinitions) &&
-                        $mapContext->termDefinitions[$index]->context
+                        false !== $mapContext->termDefinitions[$index]->context
                     ) {
                         $mapContext = $this->contextProcesser->processContext(
                             $mapContext,

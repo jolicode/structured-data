@@ -95,7 +95,7 @@ class IriResolver
             }
 
             // 6.5
-            if (self::isIri($value)) {
+            if (self::isAbsoluteIri($value)) {
                 return $value;
             }
         }
