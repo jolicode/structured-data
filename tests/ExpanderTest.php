@@ -25,7 +25,6 @@ class ExpanderTest extends AbstractJsonLdTest
         $options = new ProcessorOptions($this->getBaseURL($filename));
         $actual = $expander->parseJson($json, $options);
 
-        dump('expected', json_decode($expected), 'actual', json_decode($actual));
         $this->assertEquals(json_decode($expected), json_decode($actual));
     }
 
@@ -37,24 +36,15 @@ class ExpanderTest extends AbstractJsonLdTest
     protected function shouldSkipThisTest(string $filename): bool
     {
         $testsToSkip = [
-            // This test uses an import URL that is wrong.
+            // This test uses an import URL that is broken with the League\Uri library. It is supposed to work however.
             'c031-in.jsonld',
-
-            // For some (yet) unknow reason we add a @list entry
-            // According to the docs and even the JS library, we seem fine.
-            // Skipping for now since I have no explanation
-            'li03-in.jsonld',
-            'li04-in.jsonld',
-            // Same list issue + in one spot we should add an array
-            '0004-in.jsonld',
 
             // These tests seem wrong. If we paste the input JSON in the JSON-LD playground (https://json-ld.org/playground/) the result is not the one expected
             // Instead we have the same result as when running our implementation and changing the options doesn't change anything
             'c038-in.jsonld',
             '0077-in.jsonld',
+            'c037-in.jsonld',
 
-            // Need to check this one, it seems it can be fixed, even if the playground agree wit us.
-            // 'c037-in.jsonld',
         ];
 
         return \in_array($filename, $testsToSkip, true);

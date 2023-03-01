@@ -129,7 +129,8 @@ class Expander
                     \array_key_exists($activeProperty, $activeContext->termDefinitions) &&
                     $activeContext->termDefinitions[$activeProperty]->containerMapping &&
                     \in_array(Keyword::LIST->value, $activeContext->termDefinitions[$activeProperty]->containerMapping, true) &&
-                    \is_array($expandedItem)
+                    \is_array($expandedItem) &&
+                    !$this->isListObject($item)
                 ) {
                     $expandedItem = (object) [Keyword::LIST->value => $expandedItem];
                 }
@@ -663,6 +664,10 @@ class Expander
                         $activeContext,
                         $activeProperty,
                     );
+
+                    if (!\is_array($expandedValue)) {
+                        $expandedValue = [$expandedValue];
+                    }
                 }
 
                 // 13.4.12
@@ -1002,7 +1007,8 @@ class Expander
             if (
                 $containerMapping &&
                 \in_array(Keyword::LIST->value, $containerMapping, true) &&
-                !$this->isListObject($expandedValue)
+                !$this->isListObject($expandedValue) &&
+                !$this->isListObject($value)
             ) {
                 if (!\is_array($expandedValue)) {
                     $expandedValue = [$expandedValue];
