@@ -42,30 +42,6 @@ class ExpanderTest extends AbstractJsonLdTest
             // This test has ordering issues. The first element to be processed is expected to end up last.
             // To make it work, we should prepend the result in 13.8.3.7.6 which is incorrect.
             // The issue comes from us though, maybe the doc is unclear or wrong.
-            'm004-in.jsonld',
-            // Same
-            'pi06-in.jsonld',
-            // Same as the previous one but it requires us to handle an array as well.
-            'pi07-in.jsonld',
-            // Conflict for order reasons again. This one conflicts with n008 on the 13.4.4.5 step of the expansion aglorithm.
-            'pr30-in.jsonld',
-            // Ordering issues again, these ones seem to be on us again.
-            'm001-in.jsonld',
-            'm002-in.jsonld',
-            'm003-in.jsonld',
-            'm009-in.jsonld',
-            'm010-in.jsonld',
-            'pi08-in.jsonld',
-            'pi09-in.jsonld',
-            'di04-in.jsonld',
-            'di05-in.jsonld',
-            'di06-in.jsonld',
-            'di07-in.jsonld',
-            'n004-in.jsonld',
-            '0030-in.jsonld',
-            '0035-in.jsonld',
-
-
 
             // For some (yet) unknow reason we add a @list entry
             // According to the docs and even the JS library, we seem fine.

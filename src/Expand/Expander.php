@@ -439,7 +439,10 @@ class Expander
     ): void {
         $nests = [];
 
-        foreach ($element as $key => $value) {
+        $arrayElement = (array) $element;
+        ksort($arrayElement);
+
+        foreach ($arrayElement as $key => $value) {
             // 13.1
             if (Keyword::CONTEXT->value === $key) {
                 continue;
@@ -523,6 +526,8 @@ class Expander
                         } else {
                             $expandedValue = [$result[Keyword::TYPE->value], ...$expandedValue];
                         }
+
+                        sort($expandedValue);
                     }
 
                     if (1 === \count($expandedValue)) {
@@ -790,12 +795,15 @@ class Expander
                 $direction = $activeContext->defaultBaseDirection;
 
                 // 13.7.3
-                if ($keyDefinition->directionMapping) {
+                if (false !== $keyDefinition->directionMapping) {
                     $direction = $keyDefinition->directionMapping;
                 }
 
+                $arrayValue = (array) $value;
+                ksort($arrayValue);
+
                 // 13.7.4
-                foreach ($value as $language => $languageValue) {
+                foreach ($arrayValue as $language => $languageValue) {
                     // 13.7.4.1
                     if (!\is_array($languageValue)) {
                         $languageValue = [$languageValue];
@@ -848,8 +856,11 @@ class Expander
                 // 13.8.2
                 $indexKey = $keyDefinition->indexMapping ?: Keyword::INDEX->value;
 
+                $arrayValue = (array) $value;
+                ksort($arrayValue);
+
                 // 13.8.3
-                foreach ($value as $index => $indexValue) {
+                foreach ($arrayValue as $index => $indexValue) {
                     // 13.8.3.1
                     if (\in_array(Keyword::ID->value, $containerMapping, true) || \in_array(Keyword::TYPE->value, $containerMapping, true)) {
                         $mapContext = $activeContext->previousContext ?: $activeContext;
