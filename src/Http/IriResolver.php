@@ -107,7 +107,11 @@ class IriResolver
 
         // 8
         if ($documentRelative) {
-            $value = self::resolveIri($activeContext->baseIri, $value);
+            if ('' === $activeContext->baseIri && $activeContext->baseUrl) {
+                $value = self::resolveIri($activeContext->baseUrl, $value);
+            } else {
+                $value = self::resolveIri($activeContext->baseIri, $value);
+            }
         }
 
         // 9

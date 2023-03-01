@@ -175,7 +175,7 @@ class ContextProcesser
 
                 // 5.7.2
                 if (!$value) {
-                    $result->baseIri = null;
+                    $result->baseIri = $value;
                 // 5.7.4 : we invert 5.7.3 and 5.7.4 because it doesn't make sense to do it the other way around
                 } elseif (IriResolver::isRelativeIri($value) && $result->baseIri) {
                     $result->baseIri = IriResolver::resolveIri($result->baseIri, $value);

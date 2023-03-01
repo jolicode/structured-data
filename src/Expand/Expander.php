@@ -960,7 +960,7 @@ class Expander
                             !property_exists($item, Keyword::ID->value) &&
                             Keyword::NONE->value !== $expandedIndex
                         ) {
-                            $expandedIndex = IriResolver::expand($activeContext, $index, true);
+                            $expandedIndex = IriResolver::expand($activeContext, $index, true, false);
                             $item->{Keyword::ID->value} = $expandedIndex;
                         } elseif (
                             // 13.8.3.7.5
