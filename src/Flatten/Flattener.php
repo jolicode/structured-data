@@ -28,7 +28,8 @@ class Flattener
     /**
      * Takes a json_decoded JSON element as input and returns a flattened JSON string.
      *
-     * This is a PHP implementation of https://www.w3.org/TR/json-ld11-api/#algorithm-9. It is based on the 16th July 2020 recommendation.
+     * Implementation of the Flattening Algorithm algorithm : https://www.w3.org/TR/json-ld11-api/#algorithm-9
+     * It is based on the 16th July 2020 recommendation.
      */
     public function flatten(\stdClass $input): string
     {

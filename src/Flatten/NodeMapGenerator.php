@@ -30,10 +30,8 @@ class NodeMapGenerator
     }
 
     /**
-     * This is PHP implementation of https://www.w3.org/TR/json-ld11-api/#algorithm-10. It is based on the 16th July 2020 recommendation.
-     * The numbers in comments represent the different steps in the documentation.
-     * Because of PHP's data structures, we had to swap arrays and maps : an array in the doc is here a collection,
-     * and a map in the doc is here an array.
+     * Implementation of the Node Map Generation algorithm : https://www.w3.org/TR/json-ld11-api/#algorithm-10
+     * It is based on the 16th July 2020 recommendation.
      */
     public function buildNode(
         mixed $element,
@@ -84,11 +82,11 @@ class NodeMapGenerator
                         $subjectNode[$activeProperty][] = $element;
                     }
                 }
-                // 4.2
+            // 4.2
             } else {
                 $list['@list'][] = $element;
             }
-            // 5
+        // 5
         } elseif (\array_key_exists('@list', $element)) {
             // 5.1
             $result = ['@list' => []];
@@ -99,17 +97,17 @@ class NodeMapGenerator
             // 5.3
             if (null === $list) {
                 $subjectNode[$activeProperty][] = $result;
-                // 5.4
+            // 5.4
             } else {
                 $list['@list'][] = $result;
             }
-            // 6
+        // 6
         } else {
             // 6.1
             if (\array_key_exists('@id', $element)) {
                 $id = $this->identifierGenerator->getIdentifier($element['@id']);
                 unset($element['@id']);
-                // 6.2
+            // 6.2
             } else {
                 $id = $this->identifierGenerator->getIdentifier(null);
             }
@@ -129,7 +127,7 @@ class NodeMapGenerator
                 } elseif (!array_search($activeSubject, $node[$activeProperty], true)) {
                     $node[$activeProperty][] = $activeSubject;
                 }
-                // 6.6
+            // 6.6
             } elseif (null !== $activeProperty) {
                 $reference = ['@id' => $id];
 
@@ -203,10 +201,12 @@ class NodeMapGenerator
                     $node[$property] = [$value];
                 }
 
+                // TODO: hmmm really ?
                 // $this->buildNode($value, $activeGraph, $id, $property);
             }
         }
 
+        // TODO: hmmm really ?
         // $this->map[] = $graph;
         // $this->map[$graph[$id]['@id']] = $graph[$id];
     }

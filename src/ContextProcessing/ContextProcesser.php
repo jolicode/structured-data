@@ -32,7 +32,7 @@ class ContextProcesser
     /**
      * Takes a json_decoded JSON-LD context as input and returns a processed context.
      *
-     * This is a PHP implementation of https://www.w3.org/TR/json-ld-api/#context-processing-algorithms. It is based on the 16th July 2020 recommendation.
+     * This is a PHP implementation of the Context Processing algorithm https://www.w3.org/TR/json-ld-api/#context-processing-algorithms. It is based on the 16th July 2020 recommendation.
      */
     public function processContext(
         Context $activeContext,

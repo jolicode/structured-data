@@ -276,17 +276,17 @@ class Expander
                 // 15.3
             } elseif (null === $result->{Keyword::VALUE->value} || [] === $result->{Keyword::VALUE->value}) {
                 return null;
-                // 15.4
+            // 15.4
             } elseif (!\is_string($result->{Keyword::VALUE->value}) && property_exists($result, Keyword::LANGUAGE->value)) {
                 throw new ExpansionException('invalid language-tagged value');
-                // 15.5
+            // 15.5
             } elseif (property_exists($result, Keyword::TYPE->value) && !IriResolver::isIri($result->{Keyword::TYPE->value})) {
                 throw new ExpansionException('invalid typed value');
             }
-            // 16
+        // 16
         } elseif (property_exists($result, Keyword::TYPE->value) && !\is_array($result->{Keyword::TYPE->value})) {
             $result->{Keyword::TYPE->value} = [$result->{Keyword::TYPE->value}];
-            // 17
+        // 17
         } elseif (
             property_exists($result, Keyword::SET->value) ||
             property_exists($result, Keyword::LIST->value)
@@ -390,7 +390,7 @@ class Expander
             !\in_array($definition->typeMapping, [Keyword::ID->value, Keyword::VOCAB->value, Keyword::NONE->value], true)
         ) {
             $result[Keyword::TYPE->value] = $definition->typeMapping;
-            // 5
+        // 5
         } elseif (\is_string($value)) {
             // 5.1
             if (isset($definition) && false !== $definition->languageMapping) {
@@ -497,7 +497,7 @@ class Expander
                     // 13.4.4.2
                     if (\is_object($value) && !\count((array) $value)) {
                         $expandedValue = $value;
-                        // 13.4.4.3
+                    // 13.4.4.3
                     } elseif (\is_object($value) && property_exists($value, FramingKeyword::DEFAULT->value)) {
                         $expandedValue = new \stdClass();
                         $expandedValue->{FramingKeyword::DEFAULT->value} = IriResolver::expand(
@@ -505,7 +505,7 @@ class Expander
                             $value->{FramingKeyword::DEFAULT->value},
                             true
                         );
-                        // 13.4.4.4
+                    // 13.4.4.4
                     } else {
                         foreach ((array) $value as $valueEntry) {
                             $expandedValue[] = IriResolver::expand($typeScopedContext, $valueEntry, true);
@@ -783,7 +783,7 @@ class Expander
                 $expandedValue = new \stdClass();
                 $expandedValue->{Keyword::VALUE->value} = $value;
                 $expandedValue->{Keyword::TYPE->value} = Keyword::JSON->value;
-                // 13.7
+            // 13.7
             } elseif ($containerMapping && \in_array(Keyword::LANGUAGE->value, $containerMapping, true) && \is_object($value)) {
                 // 13.7.1
                 $expandedValue = [];
@@ -837,7 +837,7 @@ class Expander
                         $expandedValue[] = $newValue;
                     }
                 }
-                // 13.8
+            // 13.8
             } elseif (
                 \is_object($value) &&
                 $containerMapping &&
@@ -874,7 +874,7 @@ class Expander
                             $mapContext->termDefinitions[$index]->context,
                             $mapContext->termDefinitions[$index]->baseUrl
                         );
-                        // 13.8.3.3
+                    // 13.8.3.3
                     } else {
                         $mapContext = $activeContext;
                     }
@@ -1266,7 +1266,7 @@ class Expander
 
     private function isNodeObject(mixed $object): bool
     {
-        if (!is_object($object)) {
+        if (!\is_object($object)) {
             return false;
         }
 
@@ -1279,7 +1279,7 @@ class Expander
         }
 
         if (
-            2 === count(get_object_vars($object)) &&
+            2 === \count(get_object_vars($object)) &&
             property_exists($object, Keyword::GRAPH->value) &&
             property_exists($object, Keyword::CONTEXT->value)
         ) {
