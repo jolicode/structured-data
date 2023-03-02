@@ -68,233 +68,17 @@ class ContextProcesser
             return $activeContext;
         }
 
-        // 5
-        foreach ($localContext as $context) {
-            // 5.1
-            if (null === $context) {
-                // 5.1.1
-                if (!$overrideProtected && $activeContext->hasProtectedTermDefinitions()) {
-                    throw new ContextProcessingException('Invalid context nullification');
-                }
-
-                // 5.1.2
-                $result = new Context(
-                    baseIri: $activeContext->baseUrl,
-                    baseUrl: $activeContext->baseUrl,
-                    previousContext: false === $propagate ? $result : null
-                );
-
-                // 5.1.3
-                continue;
-            }
-
-            // 5.2
-            if (\is_string($context)) {
-                // 5.2.1
-                if (!IriResolver::isIri($baseUrl) && !IriResolver::isIri($context)) {
-                    throw new ContextProcessingException('Loading document failed');
-                }
-
-                // 5.2.1
-                $context = IriResolver::resolveIri($baseUrl, $context);
-
-                // 5.2.2
-                if (!$validateScopedContext && \in_array($context, $remoteContexts, true)) {
-                    continue;
-                }
-
-                // 5.2.3
-                if (\count($remoteContexts) >= self::MAX_CONTEXTS) {
-                    throw new ContextProcessingException('context overflow');
-                }
-
-                // 5.2.4 && 5.2.5 are done by the loadRemoteContext method
-                $loadedContext = $this->loadRemoteContext($context);
-
-                // 5.2.6
-                $result = $this->processContext(
-                    $result,
-                    $loadedContext,
-                    $context,
-                    $remoteContexts,
-                    validateScopedContext: $validateScopedContext
-                );
-
-                // 5.2.7
-                continue;
-            }
-
-            // 5.3 & 5.4
-            if (!\is_object($context)) {
-                throw new ContextProcessingException('Invalid local context.');
-            }
-
-            // 5.5
-            if (property_exists($context, Keyword::VERSION->value)) {
-                // 5.5.1
-                if (1.1 !== (float) $context->{Keyword::VERSION->value}) {
-                    throw new ContextProcessingException('Invalid @version value.');
-                }
-
-                // 5.5.2
-                if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
-                    throw new ContextProcessingException('processing mode conflict.');
-                }
-            }
-
-            // 5.6
-            if (property_exists($context, Keyword::IMPORT->value)) {
-                // 5.6.1
-                if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
-                    throw new ContextProcessingException('invalid context entry.');
-                }
-
-                // 5.6.2
-                if (!\is_string($context->{Keyword::IMPORT->value})) {
-                    throw new ContextProcessingException('Invalid @import value.');
-                }
-
-                // 5.6.3
-                $import = IriResolver::resolveIri($baseUrl, $context->{Keyword::IMPORT->value});
-
-                // 5.6.4, 5.6.5 && 5.6.6 are done by the loadRemoteContext method
-
-                $loadedContext = $this->loadRemoteContext($import);
-
-                // 5.6.7
-                if (property_exists($loadedContext, Keyword::IMPORT->value)) {
-                    throw new ContextProcessingException('Invalid context entry.');
-                }
-
-                // 5.6.8
-                $context = (object) array_replace((array) $loadedContext, (array) $context);
-            }
-
-            // 5.7
-            if (property_exists($context, Keyword::BASE->value) && !\count($remoteContexts)) {
-                // 5.7.1
-                $value = $context->{Keyword::BASE->value};
-
-                // 5.7.2
-                if (!$value) {
-                    $result->baseIri = $value;
-                // 5.7.4 : we invert 5.7.3 and 5.7.4 because it doesn't make sense to do it the other way around
-                } elseif (IriResolver::isRelativeIri($value) && $result->baseIri) {
-                    $result->baseIri = IriResolver::resolveIri($result->baseIri, $value);
-                // 5.7.3
-                } elseif (IriResolver::isIri($value)) {
-                    $result->baseIri = $value;
-                // 5.7.5
-                } else {
-                    throw new ContextProcessingException('invalid base IRI');
-                }
-            }
-
-            // 5.8
-            if (property_exists($context, Keyword::VOCAB->value)) {
-                // 5.8.1
-                $value = $context->{Keyword::VOCAB->value};
-
-                // 5.8.2
-                if (null === $value) {
-                    $result->vocabularyMapping = null;
-                // 5.8.3
-                // We don't follow the W3C documentation as it is not working with empty @vocab keys (like in the 0092 test).
-                // Instead we follow the JS library documentation, which works
-                } elseif (!IriResolver::isAbsoluteIri($value) && Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
-                    throw new ContextProcessingException('invalid vocab mapping');
-                } else {
-                    $result->vocabularyMapping = IriResolver::expand($result, $value, true);
-                }
-            }
-
-            // 5.9
-            if (property_exists($context, Keyword::LANGUAGE->value)) {
-                // 5.9.1
-                $value = $context->{Keyword::LANGUAGE->value};
-
-                // 5.9.2
-                if (!$value) {
-                    $result->defaultLangage = null;
-                // 5.9.3
-                } elseif (\is_string($value)) {
-                    $result->defaultLangage = $value;
-                } else {
-                    throw new ContextProcessingException('invalid default language');
-                }
-            }
-
-            // 5.10
-            if (property_exists($context, Keyword::DIRECTION->value)) {
-                // 5.10.1
-                if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
-                    throw new ContextProcessingException('invalid context entry.');
-                }
-
-                // 5.10.2
-                $value = $context->{Keyword::DIRECTION->value};
-
-                // 5.10.3
-                if (!$value) {
-                    $result->defaultBaseDirection = null;
-                // 5.10.4
-                } elseif (\is_string($value)) {
-                    $result->defaultBaseDirection = $value;
-                } else {
-                    throw new ContextProcessingException('invalid base direction');
-                }
-            }
-
-            // 5.11
-            if (property_exists($context, Keyword::PROPAGATE->value)) {
-                // 5.11.1
-                if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
-                    throw new ContextProcessingException('invalid context entry.');
-                }
-
-                // 5.11.2
-                if (!\is_bool($context->{Keyword::PROPAGATE->value})) {
-                    throw new ContextProcessingException('invalid @propagate value');
-                }
-            }
-
-            // 5.12
-            $defined = [];
-
-            // 5.13
-            foreach ($context as $key => $value) {
-                if (\in_array(
-                    $key,
-                    [
-                        Keyword::BASE->value,
-                        Keyword::DIRECTION->value,
-                        Keyword::IMPORT->value,
-                        Keyword::LANGUAGE->value,
-                        Keyword::PROPAGATE->value,
-                        Keyword::PROTECTED->value,
-                        Keyword::VERSION->value,
-                        Keyword::VOCAB->value,
-                    ],
-                    true
-                )) {
-                    continue;
-                }
-
-                TermDefinitionCreator::create(
-                    $result,
-                    $context,
-                    $key,
-                    $defined,
-                    $baseUrl,
-                    $context->{Keyword::PROTECTED->value} ?? false,
-                    $overrideProtected,
-                    $remoteContexts
-                );
-            }
-        }
-
-        // 6
-        return $result;
+        // 5 && 6
+        return $this->updateContext(
+            $activeContext,
+            $localContext,
+            $result,
+            $baseUrl,
+            $remoteContexts,
+            $overrideProtected,
+            $propagate,
+            $validateScopedContext,
+        );
     }
 
     public function extractContext(\stdClass|array $json): mixed
@@ -338,5 +122,291 @@ class ContextProcesser
         }
 
         return $loadedContext;
+    }
+
+    private function updateContext(
+        Context $activeContext,
+        array|\stdClass|null|string $localContext,
+        Context $result,
+        ?string $baseUrl = null,
+        array $remoteContexts = [],
+        bool $overrideProtected = false,
+        bool $propagate = true,
+        bool $validateScopedContext = true
+
+    ): Context {
+        foreach ($localContext as $context) {
+            // 5.1
+            if (null === $context) {
+                $this->handleNullContext($activeContext, $result, $overrideProtected, $propagate);
+
+                // 5.1.3
+                continue;
+            }
+
+            // 5.2
+            if (\is_string($context)) {
+                $this->handleStringContext($result, $context, $baseUrl, $validateScopedContext, $remoteContexts);
+
+                // 5.2.7
+                continue;
+            }
+
+            // 5.3 & 5.4
+            if (!\is_object($context)) {
+                throw new ContextProcessingException('Invalid local context.');
+            }
+
+            // 5.5
+            if (property_exists($context, Keyword::VERSION->value)) {
+                $this->handleVersionEntry($activeContext, $context);
+            }
+
+            // 5.6
+            if (property_exists($context, Keyword::IMPORT->value)) {
+                $this->handleImportEntry($activeContext, $context, $baseUrl);
+            }
+
+            // 5.7
+            if (property_exists($context, Keyword::BASE->value) && !\count($remoteContexts)) {
+                $this->handleBaseEntry($result, $context);
+            }
+
+            // 5.8
+            if (property_exists($context, Keyword::VOCAB->value)) {
+                $this->handleVocabEntry($activeContext, $result, $context);
+            }
+
+            // 5.9
+            if (property_exists($context, Keyword::LANGUAGE->value)) {
+                $this->handleLanguageEntry($result, $context);
+            }
+
+            // 5.10
+            if (property_exists($context, Keyword::DIRECTION->value)) {
+                $this->handleDirectionEntry($activeContext, $result, $context);
+            }
+
+            // 5.11
+            if (property_exists($context, Keyword::PROPAGATE->value)) {
+                $this->handlePropagateEntry($activeContext, $context);
+            }
+
+            // 5.12
+            $defined = [];
+
+            // 5.13
+            foreach ($context as $key => $value) {
+                if (\in_array(
+                    $key,
+                    [
+                        Keyword::BASE->value,
+                        Keyword::DIRECTION->value,
+                        Keyword::IMPORT->value,
+                        Keyword::LANGUAGE->value,
+                        Keyword::PROPAGATE->value,
+                        Keyword::PROTECTED->value,
+                        Keyword::VERSION->value,
+                        Keyword::VOCAB->value,
+                    ],
+                    true
+                )) {
+                    continue;
+                }
+
+                TermDefinitionCreator::create(
+                    $result,
+                    $context,
+                    $key,
+                    $defined,
+                    $baseUrl,
+                    $context->{Keyword::PROTECTED->value} ?? false,
+                    $overrideProtected,
+                    $remoteContexts
+                );
+            }
+        }
+
+        return $result;
+    }
+
+    private function handleNullContext(Context $activeContext, Context &$result, bool $overrideProtected, bool $propagate): void
+    {
+        // 5.1.1
+        if (!$overrideProtected && $activeContext->hasProtectedTermDefinitions()) {
+            throw new ContextProcessingException('Invalid context nullification');
+        }
+
+        // 5.1.2
+        $result = new Context(
+            baseIri: $activeContext->baseUrl,
+            baseUrl: $activeContext->baseUrl,
+            previousContext: false === $propagate ? $result : null
+        );
+    }
+
+    private function handleStringContext(
+        Context &$result,
+        string $context,
+        string $baseUrl,
+        bool $validateScopedContext,
+        array $remoteContexts,
+    ): void {
+        // 5.2.1
+        if (!IriResolver::isIri($baseUrl) && !IriResolver::isIri($context)) {
+            throw new ContextProcessingException('Loading document failed');
+        }
+
+        // 5.2.1
+        $context = IriResolver::resolveIri($baseUrl, $context);
+
+        // 5.2.2
+        if (!$validateScopedContext && \in_array($context, $remoteContexts, true)) {
+            return;
+        }
+
+        // 5.2.3
+        if (\count($remoteContexts) >= self::MAX_CONTEXTS) {
+            throw new ContextProcessingException('context overflow');
+        }
+
+        // 5.2.4 && 5.2.5 are done by the loadRemoteContext method
+        $loadedContext = $this->loadRemoteContext($context);
+
+        // 5.2.6
+        $result = $this->processContext(
+            $result,
+            $loadedContext,
+            $context,
+            $remoteContexts,
+            validateScopedContext: $validateScopedContext
+        );
+    }
+
+    private function handleVersionEntry(Context $activeContext, \stdClass $context): void
+    {
+        // 5.5.1
+        if (1.1 !== (float) $context->{Keyword::VERSION->value}) {
+            throw new ContextProcessingException('Invalid @version value.');
+        }
+
+        // 5.5.2
+        if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
+            throw new ContextProcessingException('processing mode conflict.');
+        }
+    }
+
+    private function handleImportEntry(Context $activeContext, \stdClass &$context, ?string $baseUrl): void
+    {
+        // 5.6.1
+        if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
+            throw new ContextProcessingException('invalid context entry.');
+        }
+
+        // 5.6.2
+        if (!\is_string($context->{Keyword::IMPORT->value})) {
+            throw new ContextProcessingException('Invalid @import value.');
+        }
+
+        // 5.6.3
+        $import = IriResolver::resolveIri($baseUrl, $context->{Keyword::IMPORT->value});
+
+        // 5.6.4, 5.6.5 && 5.6.6 are done by the loadRemoteContext method
+        $loadedContext = $this->loadRemoteContext($import);
+
+        // 5.6.7
+        if (property_exists($loadedContext, Keyword::IMPORT->value)) {
+            throw new ContextProcessingException('Invalid context entry.');
+        }
+
+        // 5.6.8
+        $context = (object) array_replace((array) $loadedContext, (array) $context);
+    }
+
+    private function handleBaseEntry(Context &$result, \stdClass $context): void
+    {
+        $value = $context->{Keyword::BASE->value};
+
+        // 5.7.2
+        if (!$value) {
+            $result->baseIri = $value;
+            // 5.7.4 : we invert 5.7.3 and 5.7.4 because it doesn't make sense to do it the other way around
+        } elseif (IriResolver::isRelativeIri($value) && $result->baseIri) {
+            $result->baseIri = IriResolver::resolveIri($result->baseIri, $value);
+            // 5.7.3
+        } elseif (IriResolver::isIri($value)) {
+            $result->baseIri = $value;
+            // 5.7.5
+        } else {
+            throw new ContextProcessingException('invalid base IRI');
+        }
+    }
+
+    private function handleVocabEntry(Context $activeContext,  Context &$result, \stdClass $context): void
+    {
+        // 5.8.1
+        $value = $context->{Keyword::VOCAB->value};
+
+        // 5.8.2
+        if (null === $value) {
+            $result->vocabularyMapping = null;
+            // 5.8.3
+            // We don't follow the W3C documentation as it is not working with empty @vocab keys (like in the 0092 test).
+            // Instead we follow the JS library documentation, which works
+        } elseif (!IriResolver::isAbsoluteIri($value) && Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
+            throw new ContextProcessingException('invalid vocab mapping');
+        } else {
+            $result->vocabularyMapping = IriResolver::expand($result, $value, true);
+        }
+    }
+
+    private function handleLanguageEntry(Context &$result, \stdClass $context): void
+    {
+        // 5.9.1
+        $value = $context->{Keyword::LANGUAGE->value};
+
+        // 5.9.2
+        if (!$value) {
+            $result->defaultLangage = null;
+            // 5.9.3
+        } elseif (\is_string($value)) {
+            $result->defaultLangage = $value;
+        } else {
+            throw new ContextProcessingException('invalid default language');
+        }
+    }
+
+    private function handleDirectionEntry(Context $activeContext, Context &$result, \stdClass $context): void
+    {
+        // 5.10.1
+        if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
+            throw new ContextProcessingException('invalid context entry.');
+        }
+
+        // 5.10.2
+        $value = $context->{Keyword::DIRECTION->value};
+
+        // 5.10.3
+        if (!$value) {
+            $result->defaultBaseDirection = null;
+            // 5.10.4
+        } elseif (\is_string($value)) {
+            $result->defaultBaseDirection = $value;
+        } else {
+            throw new ContextProcessingException('invalid base direction');
+        }
+    }
+
+    private function handlePropagateEntry(Context $activeContext, \stdClass $context): void
+    {
+        // 5.11.1
+        if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
+            throw new ContextProcessingException('invalid context entry.');
+        }
+
+        // 5.11.2
+        if (!\is_bool($context->{Keyword::PROPAGATE->value})) {
+            throw new ContextProcessingException('invalid @propagate value');
+        }
     }
 }
