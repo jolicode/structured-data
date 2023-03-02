@@ -36,7 +36,6 @@ class IdentifierGenerator
             'string' => $this->handleStringIdentifier($identifier),
             'array' => $this->handleArrayIdentifier($identifier),
             'NULL' => $this->createNewIdentifier(),
-            // TODO : use real exceptions and catch them
             default => throw new \Exception(sprintf('Wrong value found for the @type key : it should be a string or an array, %s provided', \gettype($identifier))),
         };
     }
@@ -51,8 +50,6 @@ class IdentifierGenerator
         }
         // Return original string : we only replace blank node identifiers
         return $identifier;
-        // Do nothing : we only replace blank node identifiers
-        return false;
     }
 
     private function handleArrayIdentifier(array $identifiers): array

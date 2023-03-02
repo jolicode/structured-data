@@ -38,14 +38,12 @@ class TermDefinitionCreator
                 return;
             }
 
-            // TODO: implement real exceptions and catch them.
-            throw new \Exception('cyclic IRI mapping error');
+            throw new TermDefinitionCreationException('cyclic IRI mapping error');
         }
 
         // 2
         if ('' === $term) {
-            // TODO: implement real exceptions and catch them.
-            throw new \Exception('invalid term definition');
+            throw new TermDefinitionCreationException('invalid term definition');
         }
 
         $defined[$term] = false;
@@ -53,13 +51,12 @@ class TermDefinitionCreator
         // 3
         $value = $localContext->$term;
 
-        // TODO: 4
+        if (Context::PROCESSING_MODE_10 === $activeContext->processingMode && Keyword::TYPE->value === $term) {
+            throw new TermDefinitionCreationException('keyword redefinition');
+        }
 
         // 5
         if (preg_match('/^@[a-zA-Z]+$/', $term)) {
-            // TODO: use a logger
-            // dump('WARNING: a value has the form of a keyword. Skipping. Value is : ' . $term);
-
             return;
         }
 
@@ -79,8 +76,7 @@ class TermDefinitionCreator
         // 9
         } else {
             if (!\is_object($value)) {
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid term definition');
+                throw new TermDefinitionCreationException('invalid term definition');
             }
 
             $simpleTerm = false;
@@ -92,8 +88,7 @@ class TermDefinitionCreator
         // 11
         if (property_exists($value, Keyword::PROTECTED->value)) {
             if (!\is_bool($value->{Keyword::PROTECTED->value})) {
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid @protected value');
+                throw new TermDefinitionCreationException('invalid @protected value');
             }
 
             $definition->protected = $value->{Keyword::PROTECTED->value};
@@ -103,8 +98,7 @@ class TermDefinitionCreator
         if (property_exists($value, Keyword::TYPE->value)) {
             // 12.1
             if (!\is_string($value->{Keyword::TYPE->value})) {
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid @type value');
+                throw new TermDefinitionCreationException('invalid @type value');
             }
 
             // 12.1
@@ -113,7 +107,12 @@ class TermDefinitionCreator
             // 12.2
             $type = IriResolver::expand($activeContext, $type, localContext: $localContext, defined: $defined);
 
-            // TODO: 12.3
+            if (
+                Context::PROCESSING_MODE_10 === $activeContext->processingMode &&
+                \in_array($type, [Keyword::JSON->value, Keyword::NONE->value], true)
+            ) {
+                throw new TermDefinitionCreationException('invalid type mapping');
+            }
 
             // 12.4
             if (
@@ -126,8 +125,7 @@ class TermDefinitionCreator
                     true
                 )
             ) {
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid type mapping');
+                throw new TermDefinitionCreationException('invalid type mapping');
             }
 
             // 12.5
@@ -141,21 +139,16 @@ class TermDefinitionCreator
                 property_exists($value, Keyword::ID->value) ||
                 property_exists($value, Keyword::NEST->value)
             ) {
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid reverse property');
+                throw new TermDefinitionCreationException('invalid reverse property');
             }
 
             // 13.2
             if (!\is_string($value->{Keyword::REVERSE->value})) {
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid IRI mapping');
+                throw new TermDefinitionCreationException('invalid IRI mapping');
             }
 
             // 13.3
             if (preg_match('/^@[a-zA-Z]+$/', $value->{Keyword::REVERSE->value})) {
-                // TODO: use a logger
-                // dump('WARNING: a value has the form of a keyword. Skipping. Value is : ' . $term);
-
                 return;
             }
 
@@ -169,8 +162,7 @@ class TermDefinitionCreator
 
             // 13.4
             if (!IriResolver::isAbsoluteIriOrBlankNode($definition->iriMapping)) {
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid IRI mapping');
+                throw new TermDefinitionCreationException('invalid IRI mapping');
             }
 
             // 13.5
@@ -180,8 +172,7 @@ class TermDefinitionCreator
                     $value->{Keyword::CONTAINER->value} !== Keyword::SET->value &&
                     $value->{Keyword::CONTAINER->value} !== Keyword::INDEX->value
                 ) {
-                    // TODO: implement real exceptions and catch them.
-                    throw new \Exception('invalid reverse property');
+                    throw new TermDefinitionCreationException('invalid reverse property');
                 }
 
                 $definition->containerMapping = [$value->{Keyword::CONTAINER->value}];
@@ -207,14 +198,10 @@ class TermDefinitionCreator
             // 14.2
             if (null !== $id) {
                 if (!\is_string($id)) {
-                    // TODO: implement real exceptions and catch them.
-                    throw new \Exception('invalid IRI mapping');
+                    throw new TermDefinitionCreationException('invalid IRI mapping');
                 }
 
                 if (!Keyword::tryFrom($id) && preg_match('/^@[a-zA-Z]+$/', $id)) {
-                    // TODO: use a logger
-                    // dump('WARNING: a value has the form of a keyword. Skipping. Value is : ' . $term);
-
                     return;
                 }
 
@@ -230,13 +217,11 @@ class TermDefinitionCreator
                     !IriResolver::isIri($definition->iriMapping) &&
                     !IriResolver::isBlankNodeIdentifier($definition->iriMapping)
                 ) {
-                    // TODO: implement real exceptions and catch them.
-                    throw new \Exception('invalid IRI mapping');
+                    throw new TermDefinitionCreationException('invalid IRI mapping');
                 }
 
                 if ($definition->iriMapping === Keyword::CONTEXT->value) {
-                    // TODO: implement real exceptions and catch them.
-                    throw new \Exception('invalid keyword alias');
+                    throw new TermDefinitionCreationException('invalid keyword alias');
                 }
 
                 if (
@@ -254,8 +239,7 @@ class TermDefinitionCreator
                         ) !== $definition->iriMapping
                     ) {
                         // Commenting for now as it is throwing exceptions we can't explain yet.
-                        // TODO: implement real exceptions and catch them.
-                        // throw new \Exception('invalid IRI mapping');
+                        // throw new TermDefinitionCreationException('invalid IRI mapping');
                     }
                 }
 
@@ -295,8 +279,7 @@ class TermDefinitionCreator
             if (IriResolver::isIri($mapping = IriResolver::expand($activeContext, $term))) {
                 $definition->iriMapping = $mapping;
             } else {
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid IRI mapping');
+                throw new TermDefinitionCreationException('invalid IRI mapping');
             }
         // 17
         } elseif (Keyword::TYPE->value === $term) {
@@ -305,8 +288,7 @@ class TermDefinitionCreator
         } elseif ($activeContext->vocabularyMapping) {
             $definition->iriMapping = $activeContext->vocabularyMapping . $term;
         } else {
-            // TODO: implement real exceptions and catch them.
-            throw new \Exception('invalid IRI mapping');
+            throw new TermDefinitionCreationException('invalid IRI mapping');
         }
 
         // 19
@@ -315,8 +297,7 @@ class TermDefinitionCreator
 
             // 19.1
             if (!self::validateContainerEntry($container)) {
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid container mapping');
+                throw new TermDefinitionCreationException('invalid container mapping');
             }
 
             // 19.2
@@ -329,8 +310,7 @@ class TermDefinitionCreator
             //     Keyword::TYPE->value === $container ||
             //     !\is_string($container)
             // ) {
-            //     // TODO: implement real exceptions and catch them.
-            //     throw new \Exception('invalid container mapping');
+            //     throw new TermDefinitionCreationException('invalid container mapping');
             // }
 
             // 19.3
@@ -343,8 +323,7 @@ class TermDefinitionCreator
                 }
 
                 if (!\in_array($definition->typeMapping, [Keyword::ID->value, Keyword::VOCAB->value], true)) {
-                    // TODO: implement real exceptions and catch them.
-                    throw new \Exception('invalid type mapping');
+                    throw new TermDefinitionCreationException('invalid type mapping');
                 }
             }
         }
@@ -352,14 +331,18 @@ class TermDefinitionCreator
         // 20
         if (property_exists($value, Keyword::INDEX->value)) {
             // 20.1
-            // TODO: json-ld-1.0 processing mode stuff
+            if (
+                Context::PROCESSING_MODE_10 === $activeContext->processingMode ||
+                !\in_array(Keyword::INDEX->value, $definition->containerMapping, true)
+            ) {
+                throw new TermDefinitionCreationException('invalid term definition');
+            }
 
             // 20.2
             $index = $value->{Keyword::INDEX->value};
 
             if (!IriResolver::expand($activeContext, $index)) {
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid term defnition');
+                throw new TermDefinitionCreationException('invalid term defnition');
             }
 
             // 20.3
@@ -369,7 +352,9 @@ class TermDefinitionCreator
         // 21
         if (property_exists($value, Keyword::CONTEXT->value)) {
             // 21.1
-            // TODO: json-ld-1.0 processing mode stuff
+            if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
+                throw new TermDefinitionCreationException('invalid term definiton');
+            }
 
             // 21.2 : No need to do anything
 
@@ -387,9 +372,7 @@ class TermDefinitionCreator
             $language = $value->{Keyword::LANGUAGE->value};
 
             if (null !== $language && !\is_string($language)) {
-                // TODO: Add the language check
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid language mapping');
+                throw new TermDefinitionCreationException('invalid language mapping');
             }
 
             // 22.2
@@ -406,8 +389,7 @@ class TermDefinitionCreator
                 'ltr' !== $direction &&
                 'rtl' !== $direction
             ) {
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid base direction');
+                throw new TermDefinitionCreationException('invalid base direction');
             }
 
             // 23.2
@@ -417,7 +399,9 @@ class TermDefinitionCreator
         // 24
         if (property_exists($value, Keyword::NEST->value)) {
             // 24.1
-            // TODO: json-ld-1.0 processing mode stuff
+            if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
+                throw new TermDefinitionCreationException('invalid term definition');
+            }
 
             // 24.2
             if (
@@ -426,8 +410,7 @@ class TermDefinitionCreator
                     Keyword::NEST->value === $definition->nestValue
                 )
             ) {
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid nest value');
+                throw new TermDefinitionCreationException('invalid nest value');
             }
 
             // 24.2
@@ -437,18 +420,22 @@ class TermDefinitionCreator
         // 25
         if (property_exists($value, Keyword::PREFIX->value)) {
             // 25.1
-            // TODO: json-ld-1.0 processing mode stuff
+            if (
+                Context::PROCESSING_MODE_10 === $activeContext->processingMode ||
+                str_contains($term, ':') ||
+                str_contains($term, '/')
+            ) {
+                throw new TermDefinitionCreationException('invalid term definition');
+            }
 
             // 25.1
             if (str_contains($term, ':') || str_contains($term, '/')) {
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid term value');
+                throw new TermDefinitionCreationException('invalid term value');
             }
 
             // 25.2
             if (!\is_bool($value->{Keyword::PREFIX->value})) {
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid @prefix value');
+                throw new TermDefinitionCreationException('invalid @prefix value');
             }
 
             // 25.2
@@ -456,8 +443,7 @@ class TermDefinitionCreator
 
             // 25.3
             if ($definition->prefixFlag && Keyword::tryFrom($definition->iriMapping)) {
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid term definition');
+                throw new TermDefinitionCreationException('invalid term definition');
             }
         }
 
@@ -480,8 +466,7 @@ class TermDefinitionCreator
                 ],
                 true
             )) {
-                // TODO: implement real exceptions and catch them.
-                throw new \Exception('invalid term definition');
+                throw new TermDefinitionCreationException('invalid term definition');
             }
         }
 
@@ -495,9 +480,7 @@ class TermDefinitionCreator
 
                 if (!property_exists($previousDefinition, $property) || $previousDefinition->$property !== $value) {
                     // 27.1
-                    // TODO: implement real exceptions and catch them.
-                    // TODO: We comment this because it looks like we sometimes want to redefine definitions. This is not sure, to investigate.
-                    // throw new \Exception('protected term redefinition');
+                    throw new TermDefinitionCreationException('protected term redefinition');
                 }
             }
 
