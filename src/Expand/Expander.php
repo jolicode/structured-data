@@ -155,7 +155,7 @@ class Expander
                 $switchToPreviousContext = true;
 
                 if (
-                    1 === \count((array) $element) &&
+                    1 === \count(get_object_vars($element)) &&
                     Keyword::ID->value === IriResolver::expand($activeContext, array_keys(get_object_vars($element))[0])
                 ) {
                     $switchToPreviousContext = false;
@@ -495,7 +495,7 @@ class Expander
                     $this->validateValueForType($value, $options);
 
                     // 13.4.4.2
-                    if (\is_object($value) && !\count((array) $value)) {
+                    if (\is_object($value) && !\count(get_object_vars($value))) {
                         $expandedValue = $value;
                     // 13.4.4.3
                     } elseif (\is_object($value) && property_exists($value, FramingKeyword::DEFAULT->value)) {
@@ -928,7 +928,7 @@ class Expander
 
                             // 13.8.3.7.2.5
                             if ($this->isValueObject($item)) {
-                                if (1 < \count((array) $item)) {
+                                if (1 < \count(get_object_vars($item))) {
                                     throw new ExpansionException('invalid value object');
                                 }
                             }
@@ -1258,10 +1258,10 @@ class Expander
         }
 
         if (property_exists($object, Keyword::INDEX->value)) {
-            return 2 === \count((array) $object);
+            return 2 === \count(get_object_vars($object));
         }
 
-        return 1 === \count((array) $object);
+        return 1 === \count(get_object_vars($object));
     }
 
     private function isNodeObject(mixed $object): bool
