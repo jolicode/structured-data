@@ -44,7 +44,6 @@ class ExpanderTest extends AbstractJsonLdTest
             'c038-in.jsonld',
             '0077-in.jsonld',
             'c037-in.jsonld',
-
         ];
 
         return \in_array($filename, $testsToSkip, true);

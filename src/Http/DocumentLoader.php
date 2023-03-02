@@ -57,8 +57,12 @@ class DocumentLoader
         );
 
         if (400 <= $response->getStatusCode()) {
-            // TODO: Hmmm... Throw an error no ?
-            return (object) [Keyword::CONTEXT->value => null];
+            // An exception will be thrown by the ContextProcessor
+            return (object) [
+                Keyword::CONTEXT->value => null,
+                'statusCode' => $response->getStatusCode(),
+                'content' => $response->getContent(),
+            ];
         }
 
         if ('application/ld+json' !== $response->getHeaders()['content-type'][0]) {
