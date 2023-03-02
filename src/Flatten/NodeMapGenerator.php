@@ -84,11 +84,11 @@ class NodeMapGenerator
                         $subjectNode[$activeProperty][] = $element;
                     }
                 }
-            // 4.2
+                // 4.2
             } else {
                 $list['@list'][] = $element;
             }
-        // 5
+            // 5
         } elseif (\array_key_exists('@list', $element)) {
             // 5.1
             $result = ['@list' => []];
@@ -99,17 +99,17 @@ class NodeMapGenerator
             // 5.3
             if (null === $list) {
                 $subjectNode[$activeProperty][] = $result;
-            // 5.4
+                // 5.4
             } else {
                 $list['@list'][] = $result;
             }
-        // 6
+            // 6
         } else {
             // 6.1
             if (\array_key_exists('@id', $element)) {
                 $id = $this->identifierGenerator->getIdentifier($element['@id']);
                 unset($element['@id']);
-            // 6.2
+                // 6.2
             } else {
                 $id = $this->identifierGenerator->getIdentifier(null);
             }
@@ -129,7 +129,7 @@ class NodeMapGenerator
                 } elseif (!array_search($activeSubject, $node[$activeProperty], true)) {
                     $node[$activeProperty][] = $activeSubject;
                 }
-            // 6.6
+                // 6.6
             } elseif (null !== $activeProperty) {
                 $reference = ['@id' => $id];
 
@@ -162,8 +162,7 @@ class NodeMapGenerator
             // 6.8
             if (\array_key_exists('@index', $element)) {
                 if (\array_key_exists('@index', $node) && $node['@index'] !== $element['@index']) {
-                    // TODO : implement real exceptions and catch them
-                    throw new \Exception('Conflicting Index Exception : aborting processing');
+                    throw new FlatteningException('Conflicting Index Exception : aborting processing');
                 }
 
                 $node['@index'] = $element['@index'];

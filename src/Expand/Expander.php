@@ -273,37 +273,32 @@ class Expander
 
             // 15.2
             if (property_exists($result, Keyword::TYPE->value) && Keyword::JSON->value === $result->{Keyword::TYPE->value}) {
-                // TODO: not sure how to treat value as a JSON litteral. Do nothing ? json_encode ?
                 // 15.3
             } elseif (null === $result->{Keyword::VALUE->value} || [] === $result->{Keyword::VALUE->value}) {
                 return null;
-            // 15.4
+                // 15.4
             } elseif (!\is_string($result->{Keyword::VALUE->value}) && property_exists($result, Keyword::LANGUAGE->value)) {
-                // TODO: implement real exceptions and catch them
-                throw new \Exception('invalid language-tagged value');
-            // 15.5
+                throw new ExpansionException('invalid language-tagged value');
+                // 15.5
             } elseif (property_exists($result, Keyword::TYPE->value) && !IriResolver::isIri($result->{Keyword::TYPE->value})) {
-                // TODO: implement real exceptions and catch them
-                throw new \Exception('invalid typed value');
+                throw new ExpansionException('invalid typed value');
             }
-        // 16
+            // 16
         } elseif (property_exists($result, Keyword::TYPE->value) && !\is_array($result->{Keyword::TYPE->value})) {
             $result->{Keyword::TYPE->value} = [$result->{Keyword::TYPE->value}];
-        // 17
+            // 17
         } elseif (
             property_exists($result, Keyword::SET->value) ||
             property_exists($result, Keyword::LIST->value)
         ) {
             // 17.1
             if (2 < \count(get_object_vars($result))) {
-                // TODO: implement real exceptions and catch them
-                throw new \Exception('invalid set or list object');
+                throw new ExpansionException('invalid set or list object');
             }
 
             // 17.1
             if (2 === \count(get_object_vars($result)) && !property_exists($result, $result->{Keyword::INDEX->value})) {
-                // TODO: implement real exceptions and catch them
-                throw new \Exception('invalid set or list object');
+                throw new ExpansionException('invalid set or list object');
             }
 
             // 17.2
@@ -395,7 +390,7 @@ class Expander
             !\in_array($definition->typeMapping, [Keyword::ID->value, Keyword::VOCAB->value, Keyword::NONE->value], true)
         ) {
             $result[Keyword::TYPE->value] = $definition->typeMapping;
-        // 5
+            // 5
         } elseif (\is_string($value)) {
             // 5.1
             if (isset($definition) && false !== $definition->languageMapping) {
@@ -461,8 +456,7 @@ class Expander
             if (Keyword::tryFrom($expandedProperty)) {
                 // 13.4.1
                 if (Keyword::REVERSE->value === $activeProperty) {
-                    // TODO: implement real exceptions and catch them
-                    throw new \Exception('invalid reverse property map');
+                    throw new ExpansionException('invalid reverse property map');
                 }
 
                 $result = (array) $result;
@@ -472,19 +466,17 @@ class Expander
                 if (
                     \array_key_exists($expandedProperty, $result) &&
                     $expandedProperty !== Keyword::INCLUDED->value &&
-                    $expandedProperty !== Keyword::TYPE->value
+                    $expandedProperty !== Keyword::TYPE->value &&
+                    Context::PROCESSING_MODE_10 !== $activeContext->processingMode
                 ) {
-                    // TODO: json-ld-1.0 processing mode
-                    // TODO: implement real exceptions and catch them
-                    throw new \Exception('colliding keywords');
+                    throw new ExpansionException('colliding keywords');
                 }
 
                 // 13.4.3
                 if (Keyword::ID->value === $expandedProperty) {
                     // 13.4.3.1
                     if (!\is_string($value) && !$options->frameExpansion) {
-                        // TODO: implement real exceptions and catch them
-                        throw new \Exception('invalid @id value');
+                        throw new ExpansionException('invalid @id value');
                     }
 
                     // 13.4.3.2
@@ -505,7 +497,7 @@ class Expander
                     // 13.4.4.2
                     if (\is_object($value) && !\count((array) $value)) {
                         $expandedValue = $value;
-                    // 13.4.4.3
+                        // 13.4.4.3
                     } elseif (\is_object($value) && property_exists($value, FramingKeyword::DEFAULT->value)) {
                         $expandedValue = new \stdClass();
                         $expandedValue->{FramingKeyword::DEFAULT->value} = IriResolver::expand(
@@ -513,7 +505,7 @@ class Expander
                             $value->{FramingKeyword::DEFAULT->value},
                             true
                         );
-                    // 13.4.4.4
+                        // 13.4.4.4
                     } else {
                         foreach ((array) $value as $valueEntry) {
                             $expandedValue[] = IriResolver::expand($typeScopedContext, $valueEntry, true);
@@ -560,7 +552,9 @@ class Expander
                 // 13.4.6
                 if (Keyword::INCLUDED->value === $expandedProperty) {
                     // 13.4.6.1
-                    // TODO: json-ld-1.0 processing mode
+                    if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
+                        continue;
+                    }
 
                     // 13.4.6.2
                     $expandedValue = (array) $this->expand(
@@ -573,10 +567,8 @@ class Expander
 
                     // 13.4.6.3
                     foreach ($expandedValue as $expandedElement) {
-                        if (!\is_object($expandedElement)) {
-                            // TODO: The if is probably wrong. Check how to validate a node object.
-                            // TODO: implement real exceptions and catch them
-                            throw new \Exception('invalid @included value');
+                        if (!$this->isNodeObject($expandedElement)) {
+                            throw new ExpansionException('invalid @included value');
                         }
                     }
 
@@ -591,7 +583,10 @@ class Expander
                     // 13.4.7.1
                     if (\in_array(Keyword::JSON->value, $inputType, true)) {
                         $expandedValue = $value;
-                    // TODO: json-ld-1.0 processing mode
+
+                        if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
+                            throw new ExpansionException('invalid term definition');
+                        }
                     } else {
                         // 13.4.7.2
                         $this->validateValueForValue($value, $options);
@@ -618,19 +613,19 @@ class Expander
                     $this->validateValueForLanguage($value, $options);
 
                     // 13.4.8.2
-                    // TODO: Add check that language is correctly formed.
                     $expandedValue = $options->frameExpansion ? (array) $value : $value;
                 }
 
                 // 13.4.9
                 if (Keyword::DIRECTION->value === $expandedProperty) {
                     // 13.4.9.1
-                    // TODO: json-ld-1.0 processing mode
+                    if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
+                        continue;
+                    }
 
                     // 13.4.9.2
                     if (!\in_array($value, ['ltr', 'rtl'], true)) {
-                        // TODO: implement real exceptions and catch them
-                        throw new \Exception('invalid base direction');
+                        throw new ExpansionException('invalid base direction');
                     }
 
                     // 13.4.9
@@ -641,8 +636,7 @@ class Expander
                 if (Keyword::INDEX->value === $expandedProperty) {
                     // 13.4.10.1
                     if (!\is_string($value)) {
-                        // TODO: implement real exceptions and catch them
-                        throw new \Exception('invalid @index value');
+                        throw new ExpansionException('invalid @index value');
                     }
 
                     // 13.4.10.2
@@ -685,8 +679,7 @@ class Expander
                 if (Keyword::REVERSE->value === $expandedProperty) {
                     // 13.4.13.1
                     if (!\is_object($value)) {
-                        // TODO: implement real exceptions and catch them
-                        throw new \Exception('invalid @reverse value');
+                        throw new ExpansionException('invalid @reverse value');
                     }
 
                     // 13.4.13.2
@@ -723,8 +716,7 @@ class Expander
                             foreach ($items as $itemKey => $itemValue) {
                                 // 13.4.13.4.2.1.1
                                 if (property_exists((object) $itemValue, Keyword::VALUE->value) || property_exists((object) $itemValue, Keyword::VALUE->value)) {
-                                    // TODO: implement real exceptions and catch them
-                                    throw new \Exception('invalid @reverse property value');
+                                    throw new ExpansionException('invalid @reverse property value');
                                 }
 
                                 // 13.4.13.4.2.1.2
@@ -791,7 +783,7 @@ class Expander
                 $expandedValue = new \stdClass();
                 $expandedValue->{Keyword::VALUE->value} = $value;
                 $expandedValue->{Keyword::TYPE->value} = Keyword::JSON->value;
-            // 13.7
+                // 13.7
             } elseif ($containerMapping && \in_array(Keyword::LANGUAGE->value, $containerMapping, true) && \is_object($value)) {
                 // 13.7.1
                 $expandedValue = [];
@@ -823,12 +815,10 @@ class Expander
 
                         // 13.7.4.2.2
                         if (!\is_string($item)) {
-                            // TODO: implement real exceptions and catch them
-                            throw new \Exception('invalid language map');
+                            throw new ExpansionException('invalid language map');
                         }
 
                         // 13.7.4.2.3
-                        // TODO: Add check that language is correctly formed.
                         $newValue = (object) [
                             Keyword::VALUE->value => $item,
                             Keyword::LANGUAGE->value => $language,
@@ -847,7 +837,7 @@ class Expander
                         $expandedValue[] = $newValue;
                     }
                 }
-            // 13.8
+                // 13.8
             } elseif (
                 \is_object($value) &&
                 $containerMapping &&
@@ -884,7 +874,7 @@ class Expander
                             $mapContext->termDefinitions[$index]->context,
                             $mapContext->termDefinitions[$index]->baseUrl
                         );
-                    // 13.8.3.3
+                        // 13.8.3.3
                     } else {
                         $mapContext = $activeContext;
                     }
@@ -939,8 +929,7 @@ class Expander
                             // 13.8.3.7.2.5
                             if ($this->isValueObject($item)) {
                                 if (1 < \count((array) $item)) {
-                                    // TODO: implement real exceptions and catch them
-                                    throw new \Exception('invalid value object');
+                                    throw new ExpansionException('invalid value object');
                                 }
                             }
                         } elseif (
@@ -1053,8 +1042,7 @@ class Expander
                 foreach ($expandedValue as $item) {
                     if ($this->isValueObject($item) || $this->isListObject($item)) {
                         // 13.13.4.1
-                        // TODO: implement real exceptions and catch them
-                        throw new \Exception('invalid reverse property value');
+                        throw new ExpansionException('invalid reverse property value');
                     }
 
                     // 13.13.4.2
@@ -1097,17 +1085,14 @@ class Expander
             // 14.2
             foreach ($nestedValues as $nestedValue) {
                 // 14.2.1
-                // TODO: check is_object vs is_array
                 if (!\is_object($nestedValue)) {
-                    // TODO: implement real exceptions and catch them
-                    throw new \Exception('invalid @nest value');
+                    throw new ExpansionException('invalid @nest value');
                 }
 
                 // 14.2.1
                 foreach ($nestedValue as $key => $value) {
                     if (Keyword::VALUE->value === IriResolver::expand($activeContext, $key)) {
-                        // TODO: implement real exceptions and catch them
-                        throw new \Exception('invalid @nest value');
+                        throw new ExpansionException('invalid @nest value');
                     }
                 }
 
@@ -1160,8 +1145,7 @@ class Expander
         if (\is_array($value)) {
             foreach ($value as $valueEntry) {
                 if (!\is_string($valueEntry)) {
-                    // TODO: implement real exceptions and catch them
-                    throw new \Exception('invalid type value');
+                    throw new ExpansionException('invalid type value');
                 }
             }
 
@@ -1172,8 +1156,7 @@ class Expander
             return true;
         }
 
-        // TODO: implement real exceptions and catch them
-        throw new \Exception('invalid type value');
+        throw new ExpansionException('invalid type value');
     }
 
     // 13.4.7.2
@@ -1187,8 +1170,7 @@ class Expander
             if (\is_array($value)) {
                 foreach ($value as $valueEntry) {
                     if (!\is_scalar($valueEntry)) {
-                        // TODO: implement real exceptions and catch them
-                        throw new \Exception('invalid type value');
+                        throw new ExpansionException('invalid type value');
                     }
                 }
 
@@ -1200,8 +1182,7 @@ class Expander
             return true;
         }
 
-        // TODO: implement real exceptions and catch them
-        throw new \Exception('invalid value object value');
+        throw new ExpansionException('invalid value object value');
     }
 
     // 13.4.8.1
@@ -1215,8 +1196,7 @@ class Expander
             if (\is_array($value)) {
                 foreach ($value as $valueEntry) {
                     if (!\is_string($valueEntry)) {
-                        // TODO: implement real exceptions and catch them
-                        throw new \Exception('invalid type value');
+                        throw new ExpansionException('invalid type value');
                     }
                 }
 
@@ -1228,8 +1208,7 @@ class Expander
             return true;
         }
 
-        // TODO: implement real exceptions and catch them
-        throw new \Exception('invalid language-tagged string');
+        throw new ExpansionException('invalid language-tagged string');
     }
 
     private function validateResultValue(\stdClass $result): bool
@@ -1238,8 +1217,7 @@ class Expander
             (property_exists($result, Keyword::LANGUAGE->value) || property_exists($result, Keyword::DIRECTION->value)) &&
             property_exists($result, Keyword::TYPE->value)
         ) {
-            // TODO: implement real exceptions and catch them
-            throw new \Exception('invalid value object');
+            throw new ExpansionException('invalid value object');
         }
 
         foreach ($result as $resultKey => $resultEntry) {
@@ -1248,8 +1226,7 @@ class Expander
                 [Keyword::DIRECTION->value, Keyword::INDEX->value, Keyword::LANGUAGE->value, Keyword::TYPE->value, Keyword::VALUE->value],
                 true
             )) {
-                // TODO: implement real exceptions and catch them
-                throw new \Exception('invalid value object');
+                throw new ExpansionException('invalid value object');
             }
         }
 
@@ -1285,5 +1262,30 @@ class Expander
         }
 
         return 1 === \count((array) $object);
+    }
+
+    private function isNodeObject(mixed $object): bool
+    {
+        if (!is_object($object)) {
+            return false;
+        }
+
+        if (
+            property_exists($object, Keyword::VALUE->value) ||
+            property_exists($object, Keyword::LIST->value) ||
+            property_exists($object, Keyword::SET->value)
+        ) {
+            return false;
+        }
+
+        if (
+            2 === count(get_object_vars($object)) &&
+            property_exists($object, Keyword::GRAPH->value) &&
+            property_exists($object, Keyword::CONTEXT->value)
+        ) {
+            return false;
+        }
+
+        return true;
     }
 }
