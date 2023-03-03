@@ -53,6 +53,7 @@ class IriResolver
         // 4
         if (
             \array_key_exists($value, $activeContext->termDefinitions) &&
+            $activeContext->termDefinitions[$value]->iriMapping &&
             ($keyword = Keyword::tryFrom($activeContext->termDefinitions[$value]->iriMapping))
         ) {
             return $keyword->value;

@@ -15,7 +15,7 @@ use Jolicode\JsonLd\Fixtures\FixturesManager;
 use Jolicode\JsonLd\Flatten\Flattener;
 
 /** @group flatten */
-class FlattenerTest extends AbstractJsonLdTest
+class FlattenerTest extends AbstractJsonLdTestCase
 {
     /** @dataProvider provideInputsAndOutputs */
     public function testFlatten(string $json, string $expected): void

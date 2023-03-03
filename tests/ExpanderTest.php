@@ -16,7 +16,7 @@ use Jolicode\JsonLd\Fixtures\FixturesManager;
 use Jolicode\JsonLd\JsonLd\ProcessorOptions;
 
 /** @group expand */
-class ExpanderTest extends AbstractJsonLdTest
+class ExpanderTest extends AbstractJsonLdTestCase
 {
     /** @dataProvider provideInputsAndOutputs */
     public function testExpand(string $json, string $expected, string $filename): void

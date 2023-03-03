@@ -15,7 +15,7 @@ use Jolicode\JsonLd\Fixtures\FixturesManager;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 
-abstract class AbstractJsonLdTest extends TestCase
+abstract class AbstractJsonLdTestCase extends TestCase
 {
     private const FIXTURES_PATH = __DIR__ . '/fixtures';
     private const VAR_DIR = self::FIXTURES_PATH . '/var';

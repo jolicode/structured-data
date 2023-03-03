@@ -17,7 +17,7 @@ use Jolicode\JsonLd\ContextProcessing\ContextProcesser;
 use Jolicode\JsonLd\TermDefinition\TermDefinitionCreator;
 
 /** @group context */
-class ContextProcesserTest extends AbstractJsonLdTest
+class ContextProcesserTest extends AbstractJsonLdTestCase
 {
     /**
      * The files provided by the W3C only test that the context is correctly extracted, it doesn't test the processing algorithm in itself
