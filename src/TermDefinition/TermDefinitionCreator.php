@@ -592,11 +592,6 @@ class TermDefinitionCreator
             throw new TermDefinitionCreationException('invalid term definition');
         }
 
-        // 25.1
-        if (str_contains($term, ':') || str_contains($term, '/')) {
-            throw new TermDefinitionCreationException('invalid term value');
-        }
-
         // 25.2
         if (!\is_bool($value->{Keyword::PREFIX->value})) {
             throw new TermDefinitionCreationException('invalid @prefix value');
@@ -616,7 +611,7 @@ class TermDefinitionCreator
         TermDefinition $previousDefinition,
     ): void {
         // 27.1
-        foreach ($definition as $property => $value) {
+        foreach (get_object_vars($definition) as $property => $value) {
             if ('protected' === $property) {
                 continue;
             }

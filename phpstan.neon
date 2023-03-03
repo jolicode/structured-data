@@ -1,4 +1,8 @@
 parameters:
-	level: 2
+	level: 5
+
 	paths:
 		- src
+
+	ignoreErrors:
+		- '#Argument of an invalid type stdClass supplied for foreach, only iterables are supported.#'

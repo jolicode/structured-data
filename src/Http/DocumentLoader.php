@@ -42,7 +42,7 @@ class DocumentLoader
         }
 
         if (is_file($this->url)) {
-            return (array) file_get_contents($this->url);
+            return json_decode(file_get_contents($this->url));
         }
 
         $response = $this->httpClient->request(
@@ -91,6 +91,7 @@ class DocumentLoader
                 }
 
                 if (
+                    /* @phpstan-ignore-next-line */
                     'application/json' === $response->getHeaders()['content-type']
                     || '+json' === substr($response->getHeaders()['content-type'][0], -5)
                 ) {

@@ -31,7 +31,7 @@ class IriResolver
         array &$defined = []
     ): ?string {
         // 1
-        if (null === $value || Keyword::tryFrom($value)) {
+        if (Keyword::tryFrom($value)) {
             return $value;
         }
 

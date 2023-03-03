@@ -216,7 +216,7 @@ class Expander
      *
      * This is a PHP implementation of https://www.w3.org/TR/json-ld11-api/#value-expansion. It is based on the 16th July 2020 recommendation.
      */
-    private function expandValue(Context $activeContext, string $activeProperty, mixed $value): \stdClass|array
+    private function expandValue(Context $activeContext, string $activeProperty, mixed $value): \stdClass
     {
         if (\array_key_exists($activeProperty, $activeContext->termDefinitions)) {
             /** @var TermDefinition $definition */
@@ -796,14 +796,14 @@ class Expander
                 }
 
                 // 13.4.13.4.2.1
-                foreach ($items as $itemKey => $itemValue) {
+                foreach ($items as $item) {
                     // 13.4.13.4.2.1.1
-                    if (property_exists((object) $itemValue, Keyword::VALUE->value) || property_exists((object) $itemValue, Keyword::VALUE->value)) {
+                    if ($this->isValueObject($item) || $this->isListObject($item)) {
                         throw new ExpansionException('invalid @reverse property value');
                     }
 
                     // 13.4.13.4.2.1.2
-                    $reverseMap = ValueAdder::addValue($itemValue, $property, $reverseMap, true);
+                    $reverseMap = ValueAdder::addValue($item, $property, $reverseMap, true);
                 }
             }
 
@@ -1125,8 +1125,12 @@ class Expander
         }
     }
 
-    private function handleScalarElement(Context $activeContext, int|float|string|bool $element, ?string $activeProperty, mixed $propertyScopedContext): \stdClass|array|null
-    {
+    private function handleScalarElement(
+        Context $activeContext,
+        int|float|string|bool $element,
+        ?string $activeProperty,
+        mixed $propertyScopedContext
+    ): \stdClass|null {
         // 4.1
         if (\in_array($activeProperty, [null, Keyword::GRAPH->value], true)) {
             return null;
