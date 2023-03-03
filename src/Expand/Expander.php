@@ -333,27 +333,27 @@ class Expander
 
                 // 13.4.3
                 if (Keyword::ID->value === $expandedProperty) {
-                    $expandedValue = $this->processIdKeyword($activeContext, $value, $options);
+                    $expandedValue = $this->processIdKeyword($activeContext, $value, $options, $expandedValue);
                 }
 
                 // 13.4.4
                 if (Keyword::TYPE->value === $expandedProperty) {
-                    $expandedValue = $this->processTypeKeyword($typeScopedContext, $result, $value, $options);
+                    $expandedValue = $this->processTypeKeyword($typeScopedContext, $result, $value, $options, $expandedValue);
                 }
 
                 // 13.4.5
                 if (Keyword::GRAPH->value === $expandedProperty) {
-                    $expandedValue = $this->processGraphKeyword($activeContext, $value, $baseUrl, $options);
+                    $expandedValue = $this->processGraphKeyword($activeContext, $value, $baseUrl, $options, $expandedValue);
                 }
 
                 // 13.4.6
                 if (Keyword::INCLUDED->value === $expandedProperty) {
-                    $expandedValue = $this->processIncludedKeyword($activeContext, $value, $result, $baseUrl, $options);
+                    $expandedValue = $this->processIncludedKeyword($activeContext, $value, $result, $baseUrl, $options, $expandedValue);
                 }
 
                 // 13.4.7
                 if (Keyword::VALUE->value === $expandedProperty) {
-                    $expandedValue = $this->processValueKeyword($activeContext, $value, $result, $inputType, $options);
+                    $expandedValue = $this->processValueKeyword($activeContext, $value, $result, $inputType, $options, $expandedValue);
                 }
 
                 // 13.4.8
@@ -373,7 +373,7 @@ class Expander
 
                 // 13.4.11
                 if (Keyword::LIST->value === $expandedProperty) {
-                    $expandedValue = $this->processListKeyword($activeContext, $activeProperty, $value, $baseUrl, $options);
+                    $expandedValue = $this->processListKeyword($activeContext, $activeProperty, $value, $baseUrl, $options, $expandedValue);
                 }
 
                 // 13.4.12
@@ -502,6 +502,8 @@ class Expander
                 !\in_array(Keyword::ID->value, $containerMapping, true) &&
                 !\in_array(Keyword::INDEX->value, $containerMapping, true)
             ) {
+                $graphExpandedValue = [];
+
                 // 13.12.1
                 foreach ((array) $expandedValue as $key => $expandedEntry) {
                     $graphExpandedValue[] = (object) [Keyword::GRAPH->value => [(object) $expandedEntry]];
@@ -522,8 +524,12 @@ class Expander
         }
     }
 
-    private function processIdKeyword(Context $activeContext, mixed $value, ProcessorOptions $options): array|string|null
-    {
+    private function processIdKeyword(
+        Context $activeContext,
+        mixed $value,
+        ProcessorOptions $options,
+        array $expandedValue
+    ): array|string|null {
         // 13.4.3.1
         if (!\is_string($value) && !$options->frameExpansion) {
             throw new ExpansionException('invalid @id value');
@@ -545,7 +551,8 @@ class Expander
         Context $typeScopedContext,
         array &$result,
         mixed $value,
-        ProcessorOptions $options
+        ProcessorOptions $options,
+        array $expandedValue
     ): mixed {
         // 13.4.4.1
         $this->validateValueForType($value, $options);
@@ -586,8 +593,13 @@ class Expander
         return $expandedValue;
     }
 
-    private function processGraphKeyword(Context $activeContext, mixed $value, ?string $baseUrl, ProcessorOptions $options): array
-    {
+    private function processGraphKeyword(
+        Context $activeContext,
+        mixed $value,
+        ?string $baseUrl,
+        ProcessorOptions $options,
+        array $expandedValue
+    ): array {
         $expandedValue = $this->expand(
             $value,
             $options,
@@ -609,8 +621,14 @@ class Expander
         return $expandedValue;
     }
 
-    private function processIncludedKeyword(Context $activeContext, mixed $value, array &$result, ?string $baseUrl, ProcessorOptions $options): array
-    {
+    private function processIncludedKeyword(
+        Context $activeContext,
+        mixed $value,
+        array &$result,
+        ?string $baseUrl,
+        ProcessorOptions $options,
+        array $expandedValue
+    ): array {
         // 13.4.6.1
         if (Context::PROCESSING_MODE_11 === $activeContext->processingMode) {
             // 13.4.6.2
@@ -633,13 +651,19 @@ class Expander
             if (\array_key_exists(Keyword::INCLUDED->value, $result)) {
                 $expandedValue = [...$result[Keyword::INCLUDED->value], ...$expandedValue];
             }
-
-            return $expandedValue;
         }
+
+        return $expandedValue;
     }
 
-    private function processValueKeyword(Context $activeContext, mixed $value, array &$result, array $inputType, ProcessorOptions $options): mixed
-    {
+    private function processValueKeyword(
+        Context $activeContext,
+        mixed $value,
+        array &$result,
+        array $inputType,
+        ProcessorOptions $options,
+        array $expandedValue
+    ): mixed {
         // 13.4.7.1
         if (\in_array(Keyword::JSON->value, $inputType, true)) {
             $expandedValue = $value;
@@ -684,10 +708,10 @@ class Expander
             if (!\in_array($value, ['ltr', 'rtl'], true)) {
                 throw new ExpansionException('invalid base direction');
             }
-
-            // 13.4.9
-            return $options->frameExpansion ? (array) $value : $value;
         }
+
+        // 13.4.9
+        return $options->frameExpansion ? (array) $value : $value;
     }
 
     private function processIndexKeyword(mixed $value): string
@@ -707,6 +731,7 @@ class Expander
         mixed $value,
         ?string $baseUrl,
         ProcessorOptions $options,
+        array $expandedValue
     ): array {
         // 13.4.11.1
         if (null !== $activeProperty || Keyword::GRAPH->value !== $activeProperty) {
@@ -722,9 +747,9 @@ class Expander
             if (!\is_array($expandedValue)) {
                 $expandedValue = [$expandedValue];
             }
-
-            return $expandedValue;
         }
+
+        return $expandedValue;
     }
 
     private function processReverseKeyword(

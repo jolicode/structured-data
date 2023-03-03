@@ -220,8 +220,7 @@ class ContextProcesser
                     $defined,
                     $baseUrl,
                     $context->{Keyword::PROTECTED->value} ?? false,
-                    $overrideProtected,
-                    $remoteContexts
+                    $overrideProtected
                 );
             }
         }
