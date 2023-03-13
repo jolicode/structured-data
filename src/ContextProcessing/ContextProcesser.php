@@ -255,6 +255,8 @@ class ContextProcesser
             throw new ContextProcessingException('Loading document failed');
         }
 
+        dump($result, $context, $baseUrl);
+
         // 5.2.1
         $context = IriResolver::resolveIri($baseUrl, $context);
 
