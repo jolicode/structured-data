@@ -518,6 +518,7 @@ class TermDefinitionCreator
         // 21.4
         $definition->context = $value->{Keyword::CONTEXT->value};
         $definition->baseUrl = $baseUrl;
+        $activeContext->baseUrl = $baseUrl;
     }
 
     private static function handleLanguageValue(

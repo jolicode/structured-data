@@ -145,7 +145,7 @@ class ContextProcesser
 
             // 5.2
             if (\is_string($context)) {
-                $this->handleStringContext($result, $context, $baseUrl, $validateScopedContext, $remoteContexts);
+                $this->handleStringContext($result, $context, $validateScopedContext, $remoteContexts);
 
                 // 5.2.7
                 continue;
@@ -246,19 +246,18 @@ class ContextProcesser
     private function handleStringContext(
         Context &$result,
         string $context,
-        string $baseUrl,
         bool $validateScopedContext,
         array $remoteContexts,
     ): void {
         // 5.2.1
-        if (!IriResolver::isIri($baseUrl) && !IriResolver::isIri($context)) {
+        if (!IriResolver::isIri($result->baseUrl) && !IriResolver::isIri($context)) {
             throw new ContextProcessingException('Loading document failed');
         }
 
-        dump($result, $context, $baseUrl);
-
         // 5.2.1
-        $context = IriResolver::resolveIri($baseUrl, $context);
+        // The doc says to instead pass $baseUrl and to use it. However, if we do so, we don't retain the new imported context.
+        // To do so, we added the newfound baseUrl to the term definition in the TermDefinitionCreator, which is not written in the doc as well.
+        $context = IriResolver::resolveIri($result->baseUrl, $context);
 
         // 5.2.2
         if (!$validateScopedContext && \in_array($context, $remoteContexts, true)) {

@@ -36,10 +36,6 @@ class ExpanderTest extends AbstractJsonLdTestCase
     protected function shouldSkipThisTest(string $filename): bool
     {
         $testsToSkip = [
-            // This test uses an import URL that is broken with the League\Uri library. It is supposed to work however.
-            // Actually, the issue is because we don't update $baseUrl when seeing an import statement : this is BAD.
-            // 'c031-in.jsonld',
-
             // These tests seem wrong. If we paste the input JSON in the JSON-LD playground (https://json-ld.org/playground/) the result is not the one expected
             // Instead we have the same result as when running our implementation and changing the options doesn't change anything
             'c038-in.jsonld',
