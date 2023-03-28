@@ -28,3 +28,6 @@ jobs:
 
             - name: Check CS
               run: make cs_dry_run
+
+            - name: Run PHPStan
+              run: make phpstan

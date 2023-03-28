@@ -11,6 +11,8 @@
 
 namespace Jolicode\JsonLd\Fixtures;
 
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
@@ -30,14 +32,23 @@ class FixturesManager
     ];
 
     private const FIXTURES_PATH = __DIR__ . '/../../tests/fixtures';
+    private const ABSOLUTE_FIXTURES_PATH = '/home/hedic/Dev/JoliCode/json-ld-projects/json-ld/tests/fixtures';
     private const VAR_DIR = self::FIXTURES_PATH . '/var';
     private const W3C_ARCHIVE = self::VAR_DIR . '/w3c-tests.zip';
 
+    private static ?Logger $logger = null;
+
     public static function installFixtures(): void
     {
-        // TODO:  Add a logger probably, or at least write something in the console ?
+        $logger = self::getLogger();
+
+        $logger->notice('Starting the download of the W3C test suite.');
         self::downloadW3CArchive();
+        $logger->notice('Successfully downloaded the W3C test suite. It is located here : ' . self::ABSOLUTE_FIXTURES_PATH . '/var');
+
+        $logger->notice('Starting assigning the tests files to their location.');
         self::assignTestFiles();
+        $logger->notice('Successfully assigned the tests files to their location.');
     }
 
     /**
@@ -45,9 +56,11 @@ class FixturesManager
      */
     public static function resetFixtures(bool $generateAnew = false): void
     {
-        // TODO:  Add a logger probably, or at least write something in the console ?
         $finder = new Finder();
         $filesystem = new Filesystem();
+        $logger = self::getLogger();
+
+        $logger->notice('Starting removing the W3C test suite.');
 
         foreach (self::ALGORITHMS as $algorithm) {
             $inputFiles = $finder
@@ -64,6 +77,8 @@ class FixturesManager
         }
 
         $filesystem->remove(self::VAR_DIR);
+
+        $logger->notice('Successfully removed the W3C test suite.');
 
         if ($generateAnew) {
             self::installFixtures();
@@ -87,11 +102,20 @@ class FixturesManager
 
     private static function assignTestFiles(): void
     {
+        $logger = self::getLogger();
+
         foreach (self::ALGORITHMS as $algorithm) {
             // First we copy all the input files to the input directory
             self::copyW3CFiles($algorithm, '/-in.jsonld/', 'input');
             // Then the output files to the output directory ^___^
             self::copyW3CFiles($algorithm, '/-out.jsonld/', 'output');
+
+            $logger->notice(sprintf(
+                'Copied the %s files to their location : %s/%s',
+                $algorithm,
+                self::ABSOLUTE_FIXTURES_PATH,
+                $algorithm,
+            ));
         }
     }
 
@@ -120,5 +144,15 @@ class FixturesManager
                 true
             );
         }
+    }
+
+    private static function getLogger(): Logger
+    {
+        if (!self::$logger) {
+            self::$logger = new Logger('FixturesLogger');
+            self::$logger->pushHandler(new StreamHandler('php://stdout'));
+        }
+
+        return self::$logger;
     }
 }

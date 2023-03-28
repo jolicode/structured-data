@@ -12,9 +12,9 @@
 namespace Jolicode\JsonLd\Http;
 
 use Jolicode\JsonLd\ContextProcessing\Context;
-use Jolicode\JsonLd\Http\Url;
 use Jolicode\JsonLd\JsonLd\Keyword;
-use Jolicode\JsonLd\TermDefinition\CreateTermDefinition;
+use Jolicode\JsonLd\TermDefinition\TermDefinitionCreator;
+use League\Uri\Uri;
 
 class IriResolver
 {
@@ -24,20 +24,19 @@ class IriResolver
      */
     public static function expand(
         Context $activeContext,
-        mixed $value,
+        string $value,
         bool $documentRelative = false,
-        bool $vocab = false,
+        bool $vocab = true,
         ?\stdClass $localContext = null,
-        ?array $defined = null
+        array &$defined = []
     ): ?string {
         // 1
-        if (null === $value || Keyword::tryFrom($value)) {
+        if (Keyword::tryFrom($value)) {
             return $value;
         }
 
         // 2
-        if (preg_match('/^@\w+/', $value)) {
-            // TODO: add a warning
+        if (preg_match('/^@[a-zA-Z]+$/', $value)) {
             return null;
         }
 
@@ -45,19 +44,24 @@ class IriResolver
         if (
             $localContext &&
             property_exists($localContext, $value) &&
-            $localContext->$value !== true
+            \array_key_exists($value, $defined) &&
+            !$defined[$value]
         ) {
-            CreateTermDefinition::create($activeContext, $localContext, $value, $defined);
+            TermDefinitionCreator::create($activeContext, $localContext, $value, $defined);
         }
 
         // 4
-        if (isset($activeContext->$value) && Keyword::tryFrom($activeContext->$value)) {
-            return Keyword::from($activeContext->$value);
+        if (
+            \array_key_exists($value, $activeContext->termDefinitions) &&
+            $activeContext->termDefinitions[$value]->iriMapping &&
+            ($keyword = Keyword::tryFrom($activeContext->termDefinitions[$value]->iriMapping))
+        ) {
+            return $keyword->value;
         }
 
         // 5
-        if ($vocab && \array_key_exists($value, $activeContext->options->termDefinitions)) {
-            return $activeContext->options->termDefinitions[$value];
+        if ($vocab && \array_key_exists($value, $activeContext->termDefinitions)) {
+            return $activeContext->termDefinitions[$value]->iriMapping;
         }
 
         // 6
@@ -66,7 +70,7 @@ class IriResolver
             [$prefix, $suffix] = explode(':', $value, 2);
 
             // 6.2
-            if ('_' === $prefix || str_starts_with('//', $suffix)) {
+            if ('_' === $prefix || str_starts_with($suffix, '//')) {
                 return $value;
             }
 
@@ -76,12 +80,12 @@ class IriResolver
                 property_exists($localContext, $prefix) &&
                 (!\array_key_exists($prefix, $defined) || true !== $defined[$prefix])
             ) {
-                CreateTermDefinition::create($activeContext, $localContext, $prefix, $defined);
+                TermDefinitionCreator::create($activeContext, $localContext, $prefix, $defined);
             }
 
             // 6.4
-            if (\array_key_exists($prefix, $activeContext->options->termDefinitions)) {
-                $termDefinition = $activeContext->options->termDefinitions[$prefix];
+            if (\array_key_exists($prefix, $activeContext->termDefinitions)) {
+                $termDefinition = $activeContext->termDefinitions[$prefix];
 
                 if (null !== $termDefinition->iriMapping && $termDefinition->prefixFlag) {
                     return $termDefinition->iriMapping . $suffix;
@@ -89,38 +93,77 @@ class IriResolver
             }
 
             // 6.5
-            if (self::isIri($value)) {
+            if (self::isAbsoluteIri($value)) {
                 return $value;
             }
         }
 
         // 7
-        if ($vocab && $activeContext->options->vocabularyMapping) {
-            return $activeContext->options->vocabularyMapping . $value;
+        if ($vocab && $activeContext->vocabularyMapping) {
+            return $activeContext->vocabularyMapping . $value;
         }
 
         // 8
         if ($documentRelative) {
-            $value = self::resolveIri($value, $activeContext->baseIRI, false);
+            if ('' === $activeContext->baseIri && $activeContext->baseUrl) {
+                $value = self::resolveIri($activeContext->baseUrl, $value);
+            } else {
+                $value = self::resolveIri($activeContext->baseIri, $value);
+            }
         }
 
         // 9
         return $value;
     }
 
-    public static function isIri(string $iri): bool
+    public static function isIri(?string $iri): bool
     {
-        return preg_match('/^https?:\/\/[^\s]*$/', $iri);
+        if (null === $iri) {
+            return false;
+        }
+
+        return self::isRelativeIri($iri) || self::isAbsoluteIri($iri);
     }
 
-    public static function isAbsoluteIriOrBlankNode(string $url): bool
+    public static function isRelativeIri(?string $iri): bool
     {
-        return preg_match('/^([A-Za-z][A-Za-z0-9+-.]*|_):[^\s]*$/', $url);
+        if (null === $iri) {
+            return false;
+        }
+
+        return preg_match('/^(?:(?:[^\s]+\/)+)|(?:..|.)\/?/', $iri);
     }
 
-    public static function resolveIri(?string $base, string $iri, bool $normalize = true): string
+    public static function isAbsoluteIri(?string $iri): bool
     {
-        if (null === $base) {
+        if (null === $iri) {
+            return false;
+        }
+
+        return preg_match('/^[A-Za-z][A-Za-z0-9+-.]*:[^\s]*$/', $iri);
+    }
+
+    public static function isBlankNodeIdentifier(?string $iri): bool
+    {
+        if (null === $iri) {
+            return false;
+        }
+
+        return preg_match('/^_:[^\s]+$/', $iri);
+    }
+
+    public static function isAbsoluteIriOrBlankNode(?string $iri): bool
+    {
+        if (null === $iri) {
+            return false;
+        }
+
+        return self::isAbsoluteIri($iri) || self::isBlankNodeIdentifier($iri);
+    }
+
+    public static function resolveIri(?string $base, string $iri): string
+    {
+        if (!$base) {
             return $iri;
         }
 
@@ -128,63 +171,6 @@ class IriResolver
             return $iri;
         }
 
-        if (!$base || is_string($base)) {
-            $base = new Url($base, $normalize);
-        }
-
-        $url = new Url($iri, $normalize);
-
-        if ($url->authority) {
-            $base->authority = $url->authority;
-            $base->path = $url->path;
-            $base->query = $url->query;
-        } else {
-            if (!$url->path) {
-                if ($url->query) {
-                    $base->query = $url->query;
-                }
-            } else {
-                if (str_starts_with('/', $url->path)) {
-                    $base->path = $url->path;
-                } else {
-                    $path = substr($base->path, 0, strrpos($base->path, '/') + 1);
-
-                    if ((strlen($path) || $base->authority) && $path[strlen($path) - 1] !== '/') {
-                        $path .= '/';
-                    }
-
-                    $path .= $url->path;
-                    $base->path = $path;
-                }
-                $base->query = $url->query;
-            }
-        }
-
-        if (!$url->path && $normalize) {
-            $base->removeDotSegments();
-            $base->path = $base->getNormalizedPath();
-        }
-
-        $resolved = $base->protocol;
-
-        if ($base->authority) {
-            $resolved .= '//' . $base->authority;
-        }
-
-        $resolved .= $base->path;
-
-        if ($base->query) {
-            $resolved .= '?' . $base->query;
-        }
-
-        if ($url->fragment) {
-            $resolved .= '#' . $url->fragment;
-        }
-
-        if ($resolved === '') {
-            $resolved .= './';
-        }
-
-        return $resolved;
+        return (string) Uri::createFromBaseUri($iri, $base);
     }
 }

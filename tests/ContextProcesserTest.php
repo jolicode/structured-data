@@ -11,27 +11,37 @@
 
 namespace Tests;
 
-use Jolicode\JsonLd\ContextProcessing\ContextProcesser;
-use Jolicode\JsonLd\Fixtures\FixturesManager;
 use Jolicode\JsonLd\JsonLd\Keyword;
-use Jolicode\JsonLd\TermDefinition\CreateTermDefinition;
+use Jolicode\JsonLd\Fixtures\FixturesManager;
+use Jolicode\JsonLd\ContextProcessing\ContextProcesser;
+use Jolicode\JsonLd\TermDefinition\TermDefinitionCreator;
 
 /** @group context */
-class ContextProcesserTest extends AbstractJsonLdTest
+class ContextProcesserTest extends AbstractJsonLdTestCase
 {
-    /** @dataProvider provideInputsAndOutputs */
+    /**
+     * The files provided by the W3C only test that the context is correctly extracted, it doesn't test the processing algorithm in itself
+     * The algorithm doesn't have its own proper tests : its validity is tested in the other algorithms tests
+     *
+     * @dataProvider provideInputsAndOutputs
+     * */
     public function testProcessContext(string $json, string $expected): void
     {
         $processer = new ContextProcesser();
-        $actual = $processer->fromJsonLd(json_decode($json));
+        $actual = new \stdClass();
+        $extractedContext = $processer->extractContext(json_decode($json));
 
-        $this->assertSame(json_decode($expected), $actual);
+        if ($extractedContext) {
+            $actual->{Keyword::CONTEXT->value} = $extractedContext;
+        }
+
+        $this->assertEquals(json_decode($expected), $actual);
     }
 
     /** @dataProvider provideContainerEntries */
     public function testValidateContainerEntry(string|array $container, bool $expected): void
     {
-        $this->assertSame($expected, CreateTermDefinition::validateContainerEntry($container));
+        $this->assertSame($expected, TermDefinitionCreator::validateContainerEntry($container));
     }
 
     protected function getAlgorithmName(): string

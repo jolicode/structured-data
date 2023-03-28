@@ -11,17 +11,31 @@
 
 namespace Jolicode\JsonLd\ContextProcessing;
 
+use Jolicode\JsonLd\TermDefinition\TermDefinition;
+
 class Context
 {
+    public const PROCESSING_MODE_10 = '1.0';
+    public const PROCESSING_MODE_11 = '1.1';
+
     public function __construct(
-        public mixed $context = [],
-        public ContextOptions $options = new ContextOptions(),
+        /** @var TermDefinition[] $termDefinitions */
+        public array $termDefinitions = [],
+        public ?string $baseIri = null,
+        public ?string $baseUrl = null,
+        public ?self $inverseContext = null,
+        public ?string $vocabularyMapping = null,
+        public ?string $defaultLangage = null,
+        public ?string $defaultBaseDirection = null,
+        public ?self $previousContext = null,
+        public ?string $processingMode = self::PROCESSING_MODE_11,
     ) {
     }
 
     public function hasProtectedTermDefinitions(): bool
     {
-        foreach ($this->options->termDefinitions as $termDefinition) {
+        /** @var TermDefinition $termDefinition */
+        foreach ($this->termDefinitions as $termDefinition) {
             if ($termDefinition->protected) {
                 return true;
             }

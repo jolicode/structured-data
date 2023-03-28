@@ -15,10 +15,10 @@ use Jolicode\JsonLd\Fixtures\FixturesManager;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 
-abstract class AbstractJsonLdTest extends TestCase
+abstract class AbstractJsonLdTestCase extends TestCase
 {
-    private const FIXTURES_PATH = __DIR__.'/fixtures';
-    private const VAR_DIR = self::FIXTURES_PATH.'/var';
+    private const FIXTURES_PATH = __DIR__ . '/fixtures';
+    private const VAR_DIR = self::FIXTURES_PATH . '/var';
 
     /**
      * This function must return the name of the algorithm the child class is testing.
@@ -41,15 +41,24 @@ abstract class AbstractJsonLdTest extends TestCase
         return $finder
             ->files()
             ->in(sprintf(
-                '%s/%s/input',
+                '%s/%s/input/',
                 self::FIXTURES_PATH,
                 $this->getAlgorithmName()
             ));
     }
 
+    protected function getBaseUrlForW3CTests(string $filename): string
+    {
+        return sprintf(
+            'https://w3c.github.io/json-ld-api/tests/%s/%s',
+            $this->getAlgorithmName(),
+            $filename
+        );
+    }
+
     protected function provideInputsAndOutputs(): iterable
     {
-        foreach ($this->getInputFiles() as $inputFileName => $inputFile) {
+        foreach ($this->getInputFiles() as $inputFile) {
             if ($this->shouldSkipThisTest($inputFile->getFilename())) {
                 continue;
             }
@@ -59,19 +68,13 @@ abstract class AbstractJsonLdTest extends TestCase
             );
 
             if (!is_file($outputFileName)) {
-                // TODO : log a warning/an error instead
-                dump(sprintf(
-                    'A file could not be found. Input filename is %s, output filename is %s',
-                    $inputFileName,
-                    $outputFileName,
-                ));
-
                 continue;
             }
 
             yield $inputFile->getFilename() => [
                 'json' => $inputFile->getContents(),
                 'expected' => file_get_contents($outputFileName),
+                'filename' => $inputFile->getFilename(),
             ];
         }
     }
