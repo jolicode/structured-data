@@ -19,6 +19,9 @@ reset_test: ## Delete the test files and reinstall them
 delete_test: ## Delete all test files
 	bin/json-ld reset-fixtures
 
+bench: ## Run the benchmark
+	vendor/bin/phpbench run tests/Benchmark --report=aggregate
+
 .PHONY: help
 
 help: ## Display this help

@@ -70,6 +70,8 @@ abstract class AbstractJsonLdTestCase extends TestCase
             );
 
             if (!is_file($outputFileName)) {
+                // TODO: This is wrong. Some tests don't have an output file : this is because they should throw an error.
+                // TODO: We are not testing these tests at all ATM : we need to handle them.
                 continue;
             }
 
