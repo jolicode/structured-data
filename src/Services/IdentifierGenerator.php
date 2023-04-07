@@ -14,8 +14,9 @@ namespace Jolicode\JsonLd\Services;
 class IdentifierGenerator
 {
     private array $existing = [];
-    private string $prefix = '_:';
-    private int $counter = 1;
+    private string $generalPrefix = '_:';
+    private string $prefix = '_:b';
+    private int $counter = 0;
 
     /**
      * A utility method to get the correct identifier for a given identifier key.
@@ -42,7 +43,7 @@ class IdentifierGenerator
 
     private function handleStringIdentifier(string $identifier): string
     {
-        if (str_starts_with($this->prefix, $identifier)) {
+        if (str_starts_with($identifier, $this->generalPrefix)) {
             $newIdentifier = $this->createNewIdentifier();
             $this->existing[$identifier] = $newIdentifier;
 

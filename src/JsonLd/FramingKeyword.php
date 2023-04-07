@@ -18,4 +18,12 @@ enum FramingKeyword: string
     case EXPLICIT = '@explicit';
     case OMIT_DEFAULT = '@omitDefault';
     case REQUIRE_ALL = '@requireAll';
+    case TYPE = '@type';
+    case VALUE = '@value';
+    case LIST = '@list';
+    case ID = '@id';
+    case INDEX = '@index';
+    case REVERSE = '@reverse';
+    case GRAPH = '@graph';
+    case INCLUDED = '@included';
 }

@@ -15,8 +15,8 @@ class ProcessorOptions
 {
     public function __construct(
         public ?string $base = null,
-        public bool $compactArrays = false,
-        public bool $compactToRelative = false,
+        public bool $compactArrays = true,
+        public bool $compactToRelative = true,
         public ?string $expandContext = null,
         public bool $extractAllScripts = false,
         public bool $frameExpansion = false,

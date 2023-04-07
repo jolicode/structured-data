@@ -35,7 +35,7 @@ class FlattenCommand extends Command
         $file = $input->getArgument('file');
 
         $flattener = new Flattener();
-        $result = $flattener->flatten(json_decode(file_get_contents($file)));
+        $result = $flattener->parseJson(file_get_contents($file));
 
         $output->writeln($result);
 
