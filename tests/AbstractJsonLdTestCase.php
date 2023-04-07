@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests;
+namespace Jolicode\JsonLd\Tests;
 
 use Jolicode\JsonLd\Fixtures\FixturesManager;
 use PHPUnit\Framework\TestCase;
@@ -17,8 +17,8 @@ use Symfony\Component\Finder\Finder;
 
 abstract class AbstractJsonLdTestCase extends TestCase
 {
-    private const FIXTURES_PATH = __DIR__ . '/fixtures';
-    private const VAR_DIR = self::FIXTURES_PATH . '/var';
+    public const FIXTURES_PATH = __DIR__ . '/fixtures';
+    public const VAR_DIR = self::FIXTURES_PATH . '/var';
 
     /**
      * This function must return the name of the algorithm the child class is testing.
@@ -26,9 +26,11 @@ abstract class AbstractJsonLdTestCase extends TestCase
     abstract protected function getAlgorithmName(): string;
 
     /**
-     * There are a lot of tests available in the W3C test suite and some have a behaviour that (curently) break the tests.
-     * Some input files, for example, are split in two and only have one output counterpart.
-     * For now we skip them but this is a TODO : we should take care of them.
+     * There are a lot of tests available in the W3C test suite and some just seem wrong.
+     * To prevent them from breaking the tests, we just skip them.
+     *
+     * This method is also helpful for developping and debugging purposes : sometimes you know a test is broken,
+     * but you don't want to fix it yet because you are working on another one.
      */
     abstract protected function shouldSkipThisTest(string $filename): bool;
 

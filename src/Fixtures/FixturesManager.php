@@ -15,6 +15,7 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
+use Jolicode\JsonLd\Tests\AbstractJsonLdTestCase;
 
 class FixturesManager
 {
@@ -31,10 +32,7 @@ class FixturesManager
         self::ALGO_EXPAND => self::ALGO_EXPAND,
     ];
 
-    private const FIXTURES_PATH = __DIR__ . '/../../tests/fixtures';
-    private const ABSOLUTE_FIXTURES_PATH = '/home/hedic/Dev/JoliCode/json-ld-projects/json-ld/tests/fixtures';
-    private const VAR_DIR = self::FIXTURES_PATH . '/var';
-    private const W3C_ARCHIVE = self::VAR_DIR . '/w3c-tests.zip';
+    private const W3C_ARCHIVE = AbstractJsonLdTestCase::VAR_DIR . '/w3c-tests.zip';
 
     private static ?Logger $logger = null;
 
@@ -44,7 +42,7 @@ class FixturesManager
 
         $logger->notice('Starting the download of the W3C test suite.');
         self::downloadW3CArchive();
-        $logger->notice('Successfully downloaded the W3C test suite. It is located here : ' . self::ABSOLUTE_FIXTURES_PATH . '/var');
+        $logger->notice('Successfully downloaded the W3C test suite. It is located here : ' . AbstractJsonLdTestCase::VAR_DIR);
 
         $logger->notice('Starting assigning the tests files to their location.');
         self::assignTestFiles();
@@ -64,19 +62,19 @@ class FixturesManager
 
         foreach (self::ALGORITHMS as $algorithm) {
             $inputFiles = $finder
-                ->in(sprintf('%s/%s/input', self::FIXTURES_PATH, $algorithm))
+                ->in(sprintf('%s/%s/input', AbstractJsonLdTestCase::FIXTURES_PATH, $algorithm))
                 ->files()
                 ->ignoreDotFiles(true);
             $filesystem->remove($inputFiles);
 
             $outputFiles = $finder
-                ->in(sprintf('%s/%s/output', self::FIXTURES_PATH, $algorithm))
+                ->in(sprintf('%s/%s/output', AbstractJsonLdTestCase::FIXTURES_PATH, $algorithm))
                 ->files()
                 ->ignoreDotFiles(true);
             $filesystem->remove($outputFiles);
         }
 
-        $filesystem->remove(self::VAR_DIR);
+        $filesystem->remove(AbstractJsonLdTestCase::VAR_DIR);
 
         $logger->notice('Successfully removed the W3C test suite.');
 
@@ -87,7 +85,7 @@ class FixturesManager
 
     private static function downloadW3CArchive(): void
     {
-        mkdir(self::VAR_DIR);
+        mkdir(AbstractJsonLdTestCase::VAR_DIR);
 
         file_put_contents(
             self::W3C_ARCHIVE,
@@ -96,7 +94,7 @@ class FixturesManager
 
         $zip = new \ZipArchive();
         $zip->open(self::W3C_ARCHIVE);
-        $zip->extractTo(self::VAR_DIR);
+        $zip->extractTo(AbstractJsonLdTestCase::VAR_DIR);
         $zip->close();
     }
 
@@ -113,7 +111,7 @@ class FixturesManager
             $logger->notice(sprintf(
                 'Copied the %s files to their location : %s/%s',
                 $algorithm,
-                self::ABSOLUTE_FIXTURES_PATH,
+                AbstractJsonLdTestCase::FIXTURES_PATH,
                 $algorithm,
             ));
         }
@@ -125,7 +123,7 @@ class FixturesManager
         $filesystem = new Filesystem();
 
         $files = $finder
-            ->in(sprintf('%s/json-ld-api-main/tests/%s', self::VAR_DIR, $algorithm))
+            ->in(sprintf('%s/json-ld-api-main/tests/%s', AbstractJsonLdTestCase::VAR_DIR, $algorithm))
             ->files()
             ->filter(
                 fn (\SplFileInfo $file) => preg_match($regex, $file->getFilename()) ? $file : false
@@ -136,7 +134,7 @@ class FixturesManager
                 $file->getPathname(),
                 sprintf(
                     '%s/%s/%s/%s',
-                    self::FIXTURES_PATH,
+                    AbstractJsonLdTestCase::FIXTURES_PATH,
                     $algorithm,
                     $directory,
                     $file->getFilename()
