@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests;
+namespace Jolicode\JsonLd\Tests;
 
 use Jolicode\JsonLd\Flatten\Flattener;
 use Jolicode\JsonLd\JsonLd\ProcessorOptions;
@@ -40,7 +40,7 @@ class FlattenerTest extends AbstractJsonLdTestCase
             // The result of our test seem completely fine. The JSON-LD playground has the same result than us, so we skip.
             '0014-in.jsonld',
             // This one is juste false : it expects to keep the @context entry in the result, but this is wrong, the expander is supposed to remove it.
-            // The playground agrees with us and everything else is fine
+            // The playground agrees with us and everything else is fine.
             '0044-in.jsonld',
         ];
 

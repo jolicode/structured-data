@@ -7,6 +7,11 @@
             "Jolicode\\JsonLd\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Jolicode\\JsonLd\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Hédic Guibert",

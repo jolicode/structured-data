@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests;
+namespace Jolicode\JsonLd\Tests;
 
 use Jolicode\JsonLd\JsonLd\Keyword;
 use Jolicode\JsonLd\Fixtures\FixturesManager;
@@ -20,8 +20,8 @@ use Jolicode\JsonLd\TermDefinition\TermDefinitionCreator;
 class ContextProcesserTest extends AbstractJsonLdTestCase
 {
     /**
-     * The files provided by the W3C only test that the context is correctly extracted, it doesn't test the processing algorithm in itself
-     * The algorithm doesn't have its own proper tests : its validity is tested in the other algorithms tests
+     * The files provided by the W3C only test that the context is correctly extracted, it doesn't test the processing algorithm in itself.
+     * The algorithm doesn't have its own proper tests : its validity is tested in the other algorithms tests.
      *
      * @dataProvider provideInputsAndOutputs
      * */

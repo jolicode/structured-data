@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests;
+namespace Jolicode\JsonLd\Tests;
 
 use Jolicode\JsonLd\Expand\Expander;
 use Jolicode\JsonLd\Fixtures\FixturesManager;
@@ -36,8 +36,8 @@ class ExpanderTest extends AbstractJsonLdTestCase
     protected function shouldSkipThisTest(string $filename): bool
     {
         $testsToSkip = [
-            // These tests seem wrong. If we paste the input JSON in the JSON-LD playground (https://json-ld.org/playground/) the result is not the one expected
-            // Instead we have the same result as when running our implementation and changing the options doesn't change anything
+            // These tests seem wrong. If we paste the input JSON in the JSON-LD playground (https://json-ld.org/playground/) the result is not the one expected.
+            // Instead we have the same result as when running our implementation and changing the options doesn't change anything.
             'c038-in.jsonld',
             '0077-in.jsonld',
             'c037-in.jsonld',
