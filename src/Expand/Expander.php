@@ -64,7 +64,7 @@ class Expander
      *
      * This is a PHP implementation of https://www.w3.org/TR/json-ld-api/#expansion-algorithm. It is based on the 16th July 2020 recommendation.
      */
-    private function expand(
+    public function expand(
         mixed $element,
         ProcessorOptions $options,
         ?string $baseUrl = null,
@@ -196,7 +196,7 @@ class Expander
             }
         }
 
-        if (null === $activeProperty) {
+        if (null === $activeProperty || FramingKeyword::DEFAULT->value === $activeProperty) {
             if (
                 \is_object($result) &&
                 property_exists($result, Keyword::GRAPH->value) &&
@@ -288,7 +288,7 @@ class Expander
         ?string $activeProperty,
         ProcessorOptions $options,
         Context $typeScopedContext,
-        string $baseUrl,
+        ?string $baseUrl,
         array $inputType,
         array $activeDefinitions,
     ): void {
@@ -1067,7 +1067,7 @@ class Expander
         ?string $activeProperty,
         ProcessorOptions $options,
         Context $typeScopedContext,
-        string $baseUrl,
+        ?string $baseUrl,
         array $inputType,
         array $activeDefinitions,
     ): void {
@@ -1162,6 +1162,7 @@ class Expander
 
         // 5.2
         foreach ($element as $item) {
+            // 5.2.1
             $expandedItem = $this->expand(
                 $item,
                 $options,
@@ -1171,17 +1172,20 @@ class Expander
                 $fromMap
             );
 
+            // 5.2.2
             if (
                 \array_key_exists($activeProperty, $activeContext->termDefinitions) &&
                 $activeContext->termDefinitions[$activeProperty]->containerMapping &&
                 \in_array(Keyword::LIST->value, $activeContext->termDefinitions[$activeProperty]->containerMapping, true) &&
                 \is_array($expandedItem) &&
+                \is_array($item) &&
                 !$this->isListObject($item)
             ) {
                 $expandedItem = (object) [Keyword::LIST->value => $expandedItem];
             }
 
-            if (\is_array($expandedItem)) {
+            // 5.2.3
+            if (\is_array($expandedItem) && !\is_array($item)) {
                 $result = [...$result, ...$expandedItem];
             } elseif (null !== $expandedItem) {
                 $result[] = $expandedItem;

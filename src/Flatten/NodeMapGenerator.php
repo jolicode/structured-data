@@ -18,15 +18,7 @@ class NodeMapGenerator
 {
     public function __construct(
         private IdentifierGenerator $identifierGenerator,
-        private array $map = [
-            FramingKeyword::DEFAULT->value => [],
-        ],
     ) {
-    }
-
-    public function getMap(): array
-    {
-        return $this->map;
     }
 
     /**
@@ -35,184 +27,233 @@ class NodeMapGenerator
      */
     public function buildNode(
         mixed $element,
+        array &$nodeMap,
         string $activeGraph = FramingKeyword::DEFAULT->value,
         mixed $activeSubject = null,
         string $activeProperty = null,
         array &$list = null
     ): void {
         // 1
-        if ($this->isCollection($element)) {
-            foreach ($element as $key => $item) {
+        if (\is_array($element)) {
+            foreach ($element as $item) {
                 // 1.1
-                $this->buildNode($item, $activeGraph, $activeSubject, $activeProperty, $list);
-                // $this->buildNode([$key => $item], $activeGraph, $activeSubject, $activeProperty, $list);
+                $this->buildNode($item, $nodeMap, $activeGraph, $activeSubject, $activeProperty, $list);
             }
+
+            return;
         }
 
         // 2
-        $graph = $this->map[$activeGraph];
+        $graph = &$nodeMap[$activeGraph];
 
         // 2
         if (null === $activeSubject) {
-            $subjectNode = [];
+            $subjectNode = null;
+        } elseif (\is_object($activeSubject)) {
+            $subjectNode = [FramingKeyword::ID->value => $activeSubject];
         } else {
             $subjectNode = &$graph[$activeSubject];
         }
 
         // 3
-        if (\array_key_exists('@type', $element)) {
+        if (property_exists($element, FramingKeyword::TYPE->value)) {
             // 3.1
-            if (\is_array($element['@type'])) {
-                foreach ($element['@type'] as $type) {
-                    $type = $this->identifierGenerator->getIdentifier($type);
+            if (\is_array($element->{FramingKeyword::TYPE->value}) || \is_object($element->{FramingKeyword::TYPE->value})) {
+                foreach ($element->{FramingKeyword::TYPE->value} as &$item) {
+                    $item = $this->identifierGenerator->getIdentifier($item);
                 }
             } else {
-                $element['@type'] = $this->identifierGenerator->getIdentifier($element['@type']);
+                $element->{FramingKeyword::TYPE->value} = $this->identifierGenerator->getIdentifier($element->{FramingKeyword::TYPE->value});
             }
         }
 
         // 4
-        if (\array_key_exists('@value', $element)) {
+        if (property_exists($element, FramingKeyword::VALUE->value)) {
             // 4.1
             if (null === $list) {
-                if (!\array_key_exists($activeProperty, $activeSubject)) {
+                if (null === $subjectNode || !\array_key_exists($activeProperty, $subjectNode)) {
                     $subjectNode[$activeProperty] = [$element];
+                    // 4.1.2
                 } else {
-                    if (!array_search($element, $subjectNode[$activeProperty], true)) {
+                    if (!$this->objectAlreadyInArray($element, $subjectNode[$activeProperty])) {
                         $subjectNode[$activeProperty][] = $element;
                     }
                 }
-            // 4.2
+                // 4.2
             } else {
-                $list['@list'][] = $element;
+                $list[FramingKeyword::LIST->value][] = $element;
             }
-        // 5
-        } elseif (\array_key_exists('@list', $element)) {
+            // 5
+        } elseif (property_exists($element, FramingKeyword::LIST->value)) {
             // 5.1
-            $result = ['@list' => []];
+            $result = [FramingKeyword::LIST->value => []];
 
             // 5.2
-            $this->buildNode($element['@list'], $activeGraph, $activeSubject, $activeProperty, $result);
+            $this->buildNode($element->{FramingKeyword::LIST->value}, $nodeMap, $activeGraph, $activeSubject, $activeProperty, $result);
+
+            if (\is_object($result[FramingKeyword::LIST->value])) {
+                $result[FramingKeyword::LIST->value] = [$result[FramingKeyword::LIST->value]];
+            }
 
             // 5.3
             if (null === $list) {
                 $subjectNode[$activeProperty][] = $result;
-            // 5.4
+                // 5.4
             } else {
-                $list['@list'][] = $result;
+                $list[FramingKeyword::LIST->value][] = $result;
             }
-        // 6
+            // 6
         } else {
+            if (null === $graph) {
+                $graph = [];
+            }
+
             // 6.1
-            if (\array_key_exists('@id', $element)) {
-                $id = $this->identifierGenerator->getIdentifier($element['@id']);
-                unset($element['@id']);
-            // 6.2
+            if (property_exists($element, FramingKeyword::ID->value)) {
+                $id = $this->identifierGenerator->getIdentifier($element->{FramingKeyword::ID->value});
+                unset($element->{FramingKeyword::ID->value});
+                // 6.2
             } else {
                 $id = $this->identifierGenerator->getIdentifier(null);
             }
 
             // 6.3
             if (!\array_key_exists($id, $graph)) {
-                $graph[$id] = ['@id' => $id];
+                $graph[$id] = [FramingKeyword::ID->value => $id];
             }
 
             // 6.4
             $node = &$graph[$id];
 
             // 6.5
-            if (\is_array($activeSubject)) {
+            if (\is_object($activeSubject)) {
+                // 6.5.1
                 if (!\array_key_exists($activeProperty, $node)) {
                     $node[$activeProperty] = [$activeSubject];
-                } elseif (!array_search($activeSubject, $node[$activeProperty], true)) {
+                    // 6.5.2
+                } elseif (!$this->objectAlreadyInArray($activeSubject, $node[$activeProperty])) {
                     $node[$activeProperty][] = $activeSubject;
                 }
-            // 6.6
+                // 6.6
             } elseif (null !== $activeProperty) {
-                $reference = ['@id' => $id];
+                // 6.6.1
+                $reference = (object) [FramingKeyword::ID->value => $id];
 
+                // 6.6.2
                 if (null === $list) {
-                    if (null === $subjectNode || !\array_key_exists($activeProperty, $subjectNode)) {
-                        $subjectNode[$activeProperty] = $reference;
-                    } elseif (!array_search($reference, $subjectNode[$activeProperty], true)) {
+                    if (null === $subjectNode) {
+                        $subjectNode = [];
+                    }
+
+                    // 6.6.2.1
+                    if (!\array_key_exists($activeProperty, $subjectNode)) {
+                        $subjectNode[$activeProperty] = [$reference];
+                        // 6.6.2.2
+                    } elseif (!$this->objectAlreadyInArray($reference, $subjectNode[$activeProperty])) {
                         $subjectNode[$activeProperty][] = $reference;
                     }
+                    // 6.6.3
                 } else {
-                    $list['@list'] = $reference;
+                    $list[FramingKeyword::LIST->value][] = $reference;
                 }
             }
 
             // 6.7
-            if (\array_key_exists('@type', $element)) {
-                foreach ((array) $element['@type'] as $type) {
-                    if (!\array_key_exists('@type', $node)) {
-                        $node['@type'] = [];
+            if (property_exists($element, FramingKeyword::TYPE->value)) {
+                foreach ((array) $element->{FramingKeyword::TYPE->value} as $type) {
+                    if (!\array_key_exists(FramingKeyword::TYPE->value, $node)) {
+                        $node[FramingKeyword::TYPE->value] = [];
                     }
 
-                    if (!array_search($type, $node['@type'], true)) {
-                        $node['@type'][] = $type;
+                    if (!\in_array($type, $node[FramingKeyword::TYPE->value], true)) {
+                        $node[FramingKeyword::TYPE->value][] = $type;
                     }
                 }
 
-                unset($element['@type']);
+                unset($element->{FramingKeyword::TYPE->value});
             }
 
             // 6.8
-            if (\array_key_exists('@index', $element)) {
-                if (\array_key_exists('@index', $node) && $node['@index'] !== $element['@index']) {
+            if (property_exists($element, FramingKeyword::INDEX->value)) {
+                if (\array_key_exists(FramingKeyword::INDEX->value, $node) && $node[FramingKeyword::INDEX->value] !== $element->{FramingKeyword::INDEX->value}) {
                     throw new FlatteningException('Conflicting Index Exception : aborting processing');
                 }
 
-                $node['@index'] = $element['@index'];
-                unset($element['@index']);
+                $node[FramingKeyword::INDEX->value] = $element->{FramingKeyword::INDEX->value};
+                unset($element->{FramingKeyword::INDEX->value});
             }
 
             // 6.9
-            if (\array_key_exists('@reverse', $element)) {
-                $referencedNode = ['@id' => $id];
-                $reverseMap = $element['@reverse'];
+            if (property_exists($element, FramingKeyword::REVERSE->value)) {
+                // 6.9.1
+                $referencedNode = (object) [FramingKeyword::ID->value => $id];
+                // 6.9.2
+                $reverseMap = $element->{FramingKeyword::REVERSE->value};
 
+                // 6.9.3
                 foreach ($reverseMap as $property => $values) {
+                    // 6.9.3.1
                     foreach ($values as $value) {
-                        $this->buildNode($value, $activeGraph, $referencedNode, $property);
+                        // 6.9.3.1.1
+                        $this->buildNode($value, $nodeMap, $activeGraph, $referencedNode, $property);
                     }
                 }
 
-                unset($element['@reverse']);
+                // 6.9.3.4
+                unset($element->{FramingKeyword::REVERSE->value});
             }
 
             // 6.10
-            if (\array_key_exists('@graph', $element)) {
-                $this->buildNode($element['@graph'], $id);
-                unset($element['@graph']);
+            if (property_exists($element, FramingKeyword::GRAPH->value)) {
+                $this->buildNode($element->{FramingKeyword::GRAPH->value}, $nodeMap, $id);
+                unset($element->{FramingKeyword::GRAPH->value});
             }
 
             // 6.11
-            if (\array_key_exists('@included', $element)) {
-                $this->buildNode($element['@included'], $activeGraph);
-                unset($element['@included']);
+            if (property_exists($element, FramingKeyword::INCLUDED->value)) {
+                $this->buildNode($element->{FramingKeyword::INCLUDED->value}, $nodeMap, $activeGraph);
+                unset($element->{FramingKeyword::INCLUDED->value});
             }
 
+            $sortedElementProperties = (array) $element;
+            ksort($sortedElementProperties);
+
             // 6.12
-            foreach ($element as $property => $value) {
+            foreach ($sortedElementProperties as $property => $value) {
+                // 6.12.1
                 $property = $this->identifierGenerator->getIdentifier($property);
 
+                // 6.12.2
                 if (!\array_key_exists($property, $node)) {
-                    $node[$property] = [$value];
+                    $node[$property] = [];
                 }
 
-                // TODO: hmmm really ?
-                // $this->buildNode($value, $activeGraph, $id, $property);
+                // 6.12.3
+                $this->buildNode($value, $nodeMap, $activeGraph, $id, $property);
+            }
+        }
+    }
+
+    /**
+     * This method is used to know if an object exists in an array of objects
+     * PHP native methods like in_array will compare them using == or ===, which doesn't work.
+     * We want a strict comparison on the properties of the object, but not on the object itself.
+     */
+    private function objectAlreadyInArray(\stdClass $object, array $array): bool
+    {
+        foreach ($array as $arrayObject) {
+            if ($object === $arrayObject) {
+                return true;
+            }
+
+            $objectVars = get_object_vars($object);
+            $arrayObjectVars = get_object_vars($arrayObject);
+
+            if ($objectVars === $arrayObjectVars) {
+                return true;
             }
         }
 
-        // TODO: hmmm really ?
-        // $this->map[] = $graph;
-        // $this->map[$graph[$id]['@id']] = $graph[$id];
-    }
-
-    private function isCollection($element): bool
-    {
-        return \is_object($element) && \stdClass::class === \get_class($element);
+        return false;
     }
 }
