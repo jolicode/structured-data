@@ -11,7 +11,9 @@
 
 namespace Jolicode\JsonLd\Tests;
 
+use Jolicode\JsonLd\Exception\JsonLdException;
 use Jolicode\JsonLd\Fixtures\FixturesManager;
+use Jolicode\JsonLd\JsonLd\ProcessorOptions;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 
@@ -33,6 +35,19 @@ abstract class AbstractJsonLdTestCase extends TestCase
      * but you don't want to fix it yet because you are working on another one.
      */
     abstract protected function shouldSkipThisTest(string $filename): bool;
+
+    /**
+     * Some tests are expected to fail and to throw an error.
+     * This method must return the error message associated with the given filename.
+     * A default error message saying that something went wrong should be added as well.
+     */
+    abstract protected function getExpectedErrorMessage(string $filename): string;
+
+    /**
+     * Some tests require some special options to work.
+     * This method must return the corresponding options for this test, available at https://w3c.github.io/json-ld-api/tests.
+     */
+    abstract protected function getOptions(string $filename): ProcessorOptions;
 
     protected function getInputFiles(): iterable
     {
@@ -61,24 +76,26 @@ abstract class AbstractJsonLdTestCase extends TestCase
     protected function provideInputsAndOutputs(): iterable
     {
         foreach ($this->getInputFiles() as $inputFile) {
-            if ($this->shouldSkipThisTest($inputFile->getFilename())) {
+            $filename = $inputFile->getFilename();
+
+            if ($this->shouldSkipThisTest($filename)) {
                 continue;
             }
 
             $outputFileName = $this->getOutputFileName(
-                preg_replace('/-in/', '-out', $inputFile->getFilename()),
+                preg_replace('/-in/', '-out', $filename),
             );
 
-            if (!is_file($outputFileName)) {
-                // TODO: This is wrong. Some tests don't have an output file : this is because they should throw an error.
-                // TODO: We are not testing these tests at all ATM : we need to handle them.
-                continue;
+            if (is_file($outputFileName)) {
+                $expected = file_get_contents($outputFileName);
+            } else {
+                $expected = new JsonLdException($this->getExpectedErrorMessage($filename));
             }
 
-            yield $inputFile->getFilename() => [
+            yield $filename => [
                 'json' => $inputFile->getContents(),
-                'expected' => file_get_contents($outputFileName),
-                'filename' => $inputFile->getFilename(),
+                'expected' => $expected,
+                'filename' => $filename,
             ];
         }
     }

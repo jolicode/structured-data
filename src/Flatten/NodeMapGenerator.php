@@ -11,7 +11,9 @@
 
 namespace Jolicode\JsonLd\Flatten;
 
+use Jolicode\JsonLd\Exception\FlatteningException;
 use Jolicode\JsonLd\JsonLd\FramingKeyword;
+use Jolicode\JsonLd\Services\DataStructureComparator;
 use Jolicode\JsonLd\Services\IdentifierGenerator;
 
 class NodeMapGenerator
@@ -73,17 +75,17 @@ class NodeMapGenerator
             if (null === $list) {
                 if (null === $subjectNode || !\array_key_exists($activeProperty, $subjectNode)) {
                     $subjectNode[$activeProperty] = [$element];
-                    // 4.1.2
+                // 4.1.2
                 } else {
-                    if (!$this->objectAlreadyInArray($element, $subjectNode[$activeProperty])) {
+                    if (!DataStructureComparator::objectAlreadyInArray($element, $subjectNode[$activeProperty])) {
                         $subjectNode[$activeProperty][] = $element;
                     }
                 }
-                // 4.2
+            // 4.2
             } else {
                 $list[FramingKeyword::LIST->value][] = $element;
             }
-            // 5
+        // 5
         } elseif (property_exists($element, FramingKeyword::LIST->value)) {
             // 5.1
             $result = [FramingKeyword::LIST->value => []];
@@ -98,11 +100,11 @@ class NodeMapGenerator
             // 5.3
             if (null === $list) {
                 $subjectNode[$activeProperty][] = $result;
-                // 5.4
+            // 5.4
             } else {
                 $list[FramingKeyword::LIST->value][] = $result;
             }
-            // 6
+        // 6
         } else {
             if (null === $graph) {
                 $graph = [];
@@ -112,7 +114,7 @@ class NodeMapGenerator
             if (property_exists($element, FramingKeyword::ID->value)) {
                 $id = $this->identifierGenerator->getIdentifier($element->{FramingKeyword::ID->value});
                 unset($element->{FramingKeyword::ID->value});
-                // 6.2
+            // 6.2
             } else {
                 $id = $this->identifierGenerator->getIdentifier(null);
             }
@@ -130,11 +132,11 @@ class NodeMapGenerator
                 // 6.5.1
                 if (!\array_key_exists($activeProperty, $node)) {
                     $node[$activeProperty] = [$activeSubject];
-                    // 6.5.2
-                } elseif (!$this->objectAlreadyInArray($activeSubject, $node[$activeProperty])) {
+                // 6.5.2
+                } elseif (!DataStructureComparator::objectAlreadyInArray($activeSubject, $node[$activeProperty])) {
                     $node[$activeProperty][] = $activeSubject;
                 }
-                // 6.6
+            // 6.6
             } elseif (null !== $activeProperty) {
                 // 6.6.1
                 $reference = (object) [FramingKeyword::ID->value => $id];
@@ -148,11 +150,11 @@ class NodeMapGenerator
                     // 6.6.2.1
                     if (!\array_key_exists($activeProperty, $subjectNode)) {
                         $subjectNode[$activeProperty] = [$reference];
-                        // 6.6.2.2
-                    } elseif (!$this->objectAlreadyInArray($reference, $subjectNode[$activeProperty])) {
+                    // 6.6.2.2
+                    } elseif (!DataStructureComparator::objectAlreadyInArray($reference, $subjectNode[$activeProperty])) {
                         $subjectNode[$activeProperty][] = $reference;
                     }
-                    // 6.6.3
+                // 6.6.3
                 } else {
                     $list[FramingKeyword::LIST->value][] = $reference;
                 }
@@ -232,28 +234,5 @@ class NodeMapGenerator
                 $this->buildNode($value, $nodeMap, $activeGraph, $id, $property);
             }
         }
-    }
-
-    /**
-     * This method is used to know if an object exists in an array of objects
-     * PHP native methods like in_array will compare them using == or ===, which doesn't work.
-     * We want a strict comparison on the properties of the object, but not on the object itself.
-     */
-    private function objectAlreadyInArray(\stdClass $object, array $array): bool
-    {
-        foreach ($array as $arrayObject) {
-            if ($object === $arrayObject) {
-                return true;
-            }
-
-            $objectVars = get_object_vars($object);
-            $arrayObjectVars = get_object_vars($arrayObject);
-
-            if ($objectVars === $arrayObjectVars) {
-                return true;
-            }
-        }
-
-        return false;
     }
 }

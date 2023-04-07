@@ -9,8 +9,8 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Expand;
+namespace Jolicode\JsonLd\Exception;
 
-class ExpansionException extends \Exception
+class ExpansionException extends JsonLdException
 {
 }

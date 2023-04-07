@@ -12,8 +12,12 @@
 namespace Jolicode\JsonLd\TermDefinition;
 
 use Jolicode\JsonLd\ContextProcessing\Context;
+use Jolicode\JsonLd\ContextProcessing\ContextProcesser;
+use Jolicode\JsonLd\Exception\ContextProcessingException;
+use Jolicode\JsonLd\Exception\TermDefinitionCreationException;
 use Jolicode\JsonLd\Http\IriResolver;
 use Jolicode\JsonLd\JsonLd\Keyword;
+use Jolicode\JsonLd\Services\DataStructureComparator;
 
 class TermDefinitionCreator
 {
@@ -29,6 +33,7 @@ class TermDefinitionCreator
         ?string $baseUrl = null,
         bool $protected = false,
         bool $overrideProtected = false,
+        array &$remoteContexts = [],
     ) {
         // 1
         if (\array_key_exists($term, $defined)) {
@@ -36,7 +41,7 @@ class TermDefinitionCreator
                 return;
             }
 
-            throw new TermDefinitionCreationException('cyclic IRI mapping error');
+            throw new TermDefinitionCreationException('cyclic IRI mapping');
         }
 
         // 2
@@ -50,13 +55,19 @@ class TermDefinitionCreator
         $value = $localContext->$term;
 
         // 4
-        if (Context::PROCESSING_MODE_10 === $activeContext->processingMode && Keyword::TYPE->value === $term) {
-            throw new TermDefinitionCreationException('keyword redefinition');
-        }
+        if (Keyword::TYPE->value === $term) {
+            if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
+                throw new TermDefinitionCreationException('keyword redefinition');
+            }
 
-        // 5
-        if (preg_match('/^@[a-zA-Z]+$/', $term)) {
-            return;
+            if (!self::validateTypeValue($value)) {
+                throw new TermDefinitionCreationException('keyword redefinition');
+            }
+        } else {
+            // 5
+            if (preg_match('/^@[a-zA-Z]+$/', $term)) {
+                return;
+            }
         }
 
         // 6
@@ -138,7 +149,7 @@ class TermDefinitionCreator
 
         // 19
         if (property_exists($value, Keyword::CONTAINER->value)) {
-            self::handleContainerValue($definition, $value);
+            self::handleContainerValue($activeContext, $definition, $value);
         }
 
         // 20
@@ -148,7 +159,7 @@ class TermDefinitionCreator
 
         // 21
         if (property_exists($value, Keyword::CONTEXT->value)) {
-            self::handleContextValue($activeContext, $definition, $value, $baseUrl);
+            self::handleContextValue($activeContext, $value, $definition, $value, $baseUrl, $remoteContexts);
         }
 
         // 22
@@ -244,6 +255,24 @@ class TermDefinitionCreator
         return false;
     }
 
+    private static function validateTypeValue(mixed $value): bool
+    {
+        if (\is_object($value) && \count(get_object_vars($value)) < 3) {
+            if (property_exists($value, Keyword::PROTECTED->value)) {
+                return true;
+            }
+
+            if (
+                property_exists($value, Keyword::CONTAINER->value) &&
+                $value->{Keyword::CONTAINER->value} === Keyword::SET->value
+            ) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private static function setTypeMapping(
         Context $activeContext,
         TermDefinition $definition,
@@ -252,12 +281,9 @@ class TermDefinitionCreator
         array $defined,
     ): void {
         // 12.1
-        if (!\is_string($value->{Keyword::TYPE->value})) {
-            throw new TermDefinitionCreationException('invalid @type value');
+        if (!\is_string($type = $value->{Keyword::TYPE->value})) {
+            throw new TermDefinitionCreationException('invalid type mapping');
         }
-
-        // 12.1
-        $type = $value->{Keyword::TYPE->value};
 
         // 12.2
         $type = IriResolver::expand($activeContext, $type, localContext: $localContext, defined: $defined);
@@ -272,7 +298,8 @@ class TermDefinitionCreator
 
         // 12.4
         if (
-            !IriResolver::isIri($type) &&
+            // Docs write Iri but tests manifest write absolute Iri
+            !IriResolver::isAbsoluteIri($type) &&
             !\in_array(
                 $type,
                 [
@@ -361,6 +388,7 @@ class TermDefinitionCreator
 
         // 14.2
         if (null !== $id) {
+            // 14.2.1
             if (!\is_string($id)) {
                 throw new TermDefinitionCreationException('invalid IRI mapping');
             }
@@ -369,6 +397,7 @@ class TermDefinitionCreator
                 return true;
             }
 
+            // 14.2.3
             $definition->iriMapping = IriResolver::expand(
                 $activeContext,
                 $id,
@@ -388,12 +417,15 @@ class TermDefinitionCreator
                 throw new TermDefinitionCreationException('invalid keyword alias');
             }
 
+            // 14.2.4
             if (
-                str_contains('/', $term) ||
+                str_contains($term, '/') ||
                 preg_match('/[^^]:[^$]/', $term)
             ) {
+                // 14.2.4.1
                 $defined[$term] = true;
 
+                // 14.2.4.2
                 if (
                     IriResolver::expand(
                         $activeContext,
@@ -402,11 +434,11 @@ class TermDefinitionCreator
                         localContext: $localContext
                     ) !== $definition->iriMapping
                 ) {
-                    // Commenting for now as it is throwing exceptions we can't explain yet.
-                    // throw new TermDefinitionCreationException('invalid IRI mapping');
+                    throw new TermDefinitionCreationException('invalid IRI mapping');
                 }
             }
 
+            // 14.2.5
             if (
                 !str_contains(':', $term) &&
                 !str_contains('/', $term) &&
@@ -447,6 +479,7 @@ class TermDefinitionCreator
     }
 
     private static function handleContainerValue(
+        Context $activeContext,
         TermDefinition $definition,
         mixed $value,
     ) {
@@ -458,7 +491,12 @@ class TermDefinitionCreator
         }
 
         // 19.2
-        // The documentation is obviously wrong here, 19.1 and 19.2 exclude each other on several points.
+        if (
+            \in_array($container, [Keyword::GRAPH->value, Keyword::ID->value, Keyword::TYPE->value], true) &&
+            Context::PROCESSING_MODE_10 === $activeContext->processingMode
+        ) {
+            throw new TermDefinitionCreationException('invalid container mapping');
+        }
 
         // 19.3
         $definition->containerMapping = (array) $container;
@@ -483,6 +521,7 @@ class TermDefinitionCreator
         // 20.1
         if (
             Context::PROCESSING_MODE_10 === $activeContext->processingMode ||
+            !$definition->containerMapping ||
             !\in_array(Keyword::INDEX->value, $definition->containerMapping, true)
         ) {
             throw new TermDefinitionCreationException('invalid term definition');
@@ -491,8 +530,15 @@ class TermDefinitionCreator
         // 20.2
         $index = $value->{Keyword::INDEX->value};
 
-        if (!IriResolver::expand($activeContext, $index)) {
-            throw new TermDefinitionCreationException('invalid term defnition');
+        // This is not in the docs but :
+        //  - the pi03-in.jsonld explicitely say that an exception should be thrown if @index is a keyword
+        //  - the pi04-in.jsonld explicitely say that an exception should be thrown if @index is not a string
+        if (!\is_string($index) || Keyword::INDEX->value === $index) {
+            throw new TermDefinitionCreationException('invalid term definition');
+        }
+
+        if (!IriResolver::isIri(IriResolver::expand($activeContext, $index))) {
+            throw new TermDefinitionCreationException('invalid term definition');
         }
 
         // 20.3
@@ -501,24 +547,40 @@ class TermDefinitionCreator
 
     private static function handleContextValue(
         Context $activeContext,
+        array|\stdClass $localContext,
         TermDefinition $definition,
         mixed $value,
         ?string $baseUrl,
+        array &$remoteContexts,
     ): void {
         // 21.1
         if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
-            throw new TermDefinitionCreationException('invalid term definiton');
+            throw new TermDefinitionCreationException('invalid term definition');
         }
 
-        // 21.2 : No need to do anything
-
-        // 21.3 : we skip 21.3 because it actually updates the activeContext, which it should not (see the note).
-        // Maybe in the future we will implement a "dry run" for context processing, which would make it possible to just validate the context
+        // 21.2
+        $context = $localContext->{Keyword::CONTEXT->value};
+        $processer = new ContextProcesser();
 
         // 21.4
+        // We swap 21.3 and 21.4 because the $activeContext needs the $baseUrl.
         $definition->context = $value->{Keyword::CONTEXT->value};
         $definition->baseUrl = $baseUrl;
         $activeContext->baseUrl = $baseUrl;
+
+        // 21.3
+        try {
+            $processer->processContext(
+                $activeContext,
+                $context,
+                $baseUrl,
+                $remoteContexts,
+                overrideProtected: true,
+                validateScopedContext: false
+            );
+        } catch (ContextProcessingException|TermDefinitionCreationException $exception) {
+            throw new TermDefinitionCreationException('invalid scoped context');
+        }
     }
 
     private static function handleLanguageValue(
@@ -559,7 +621,8 @@ class TermDefinitionCreator
         Context $activeContext,
         TermDefinition $definition,
         mixed $value,
-    ): void {            // 24.1
+    ): void {
+        // 24.1
         if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
             throw new TermDefinitionCreationException('invalid term definition');
         }
@@ -571,7 +634,7 @@ class TermDefinitionCreator
                 Keyword::NEST->value === $definition->nestValue
             )
         ) {
-            throw new TermDefinitionCreationException('invalid nest value');
+            throw new TermDefinitionCreationException('invalid @nest value');
         }
 
         // 24.2
@@ -612,15 +675,8 @@ class TermDefinitionCreator
         TermDefinition $previousDefinition,
     ): void {
         // 27.1
-        foreach (get_object_vars($definition) as $property => $value) {
-            if ('protected' === $property) {
-                continue;
-            }
-
-            if (!property_exists($previousDefinition, $property) || $previousDefinition->$property !== $value) {
-                // 27.1
-                throw new TermDefinitionCreationException('protected term redefinition');
-            }
+        if (!DataStructureComparator::objectsHaveSameProperties($previousDefinition, $definition, 'protected')) {
+            throw new TermDefinitionCreationException('protected term redefinition');
         }
 
         // 27.2

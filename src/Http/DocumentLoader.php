@@ -11,10 +11,12 @@
 
 namespace Jolicode\JsonLd\Http;
 
+use Jolicode\JsonLd\Exception\ContextProcessingException;
 use Jolicode\JsonLd\JsonLd\Keyword;
 use Symfony\Component\HttpClient\CachingHttpClient;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpKernel\HttpCache\Store;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class DocumentLoader
@@ -33,7 +35,7 @@ class DocumentLoader
         );
     }
 
-    public function load(): \stdClass
+    public function load(): \stdClass|array
     {
         ++$this->documentsCount;
 
@@ -45,16 +47,20 @@ class DocumentLoader
             return json_decode(file_get_contents($this->url));
         }
 
-        $response = $this->httpClient->request(
-            'GET',
-            $this->url,
-            [
-                'headers' => [
-                    'Accept' => 'application/ld+json,application/json,*/*;q=0.1',
-                    'User-Agent' => 'Mozilla/5.0 (compatible; redirection-io/1.0; +https://redirection.io/)',
-                ],
-            ]
-        );
+        try {
+            $response = $this->httpClient->request(
+                'GET',
+                $this->url,
+                [
+                    'headers' => [
+                        'Accept' => 'application/ld+json,application/json,*/*;q=0.1',
+                        'User-Agent' => 'Mozilla/5.0 (compatible; redirection-io/1.0; +https://redirection.io/)',
+                    ],
+                ]
+            );
+        } catch (TransportExceptionInterface $exception) {
+            throw new ContextProcessingException('loading remote context failed');
+        }
 
         if (400 <= $response->getStatusCode()) {
             // An exception will be thrown by the ContextProcessor

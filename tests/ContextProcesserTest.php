@@ -12,6 +12,7 @@
 namespace Jolicode\JsonLd\Tests;
 
 use Jolicode\JsonLd\JsonLd\Keyword;
+use Jolicode\JsonLd\JsonLd\ProcessorOptions;
 use Jolicode\JsonLd\Fixtures\FixturesManager;
 use Jolicode\JsonLd\ContextProcessing\ContextProcesser;
 use Jolicode\JsonLd\TermDefinition\TermDefinitionCreator;
@@ -49,11 +50,29 @@ class ContextProcesserTest extends AbstractJsonLdTestCase
         return FixturesManager::ALGO_PROCESS_CONTEXT;
     }
 
+    protected function getExpectedErrorMessage(string $filename): string
+    {
+        $failedTestsErrorMessages = [];
+
+        $defaultErrorMessage = <<<ERROR
+            Something went wrong with this test : it does not have an output file, which implies it expects an error to be thrown.
+            However, there is no expected error message in the tests. Maybe the output file was deleted, or the ContextProcesser is actually broken.
+        ERROR;
+
+        return $failedTestsErrorMessages[$filename] ?? $defaultErrorMessage;
+    }
+
     protected function shouldSkipThisTest(string $filename): bool
     {
         $testsToSkip = [];
 
         return \in_array($filename, $testsToSkip, true);
+    }
+
+    protected function getOptions(string $filename): ProcessorOptions
+    {
+        // contexts don't use options
+        return new ProcessorOptions();
     }
 
     private function provideContainerEntries(): iterable

@@ -9,8 +9,8 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\ContextProcessing;
+namespace Jolicode\JsonLd\Exception;
 
-class ContextProcessingException extends \Exception
+class JsonLdException extends \Exception
 {
 }

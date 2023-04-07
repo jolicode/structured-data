@@ -13,6 +13,7 @@ namespace Jolicode\JsonLd\Expand;
 
 use Jolicode\JsonLd\ContextProcessing\Context;
 use Jolicode\JsonLd\ContextProcessing\ContextProcesser;
+use Jolicode\JsonLd\Exception\ExpansionException;
 use Jolicode\JsonLd\Http\DocumentLoader;
 use Jolicode\JsonLd\Http\IriResolver;
 use Jolicode\JsonLd\JsonLd\FramingKeyword;
@@ -44,6 +45,7 @@ class Expander
         $activeContext = new Context(
             baseIri: $baseUrl,
             baseUrl: $baseUrl,
+            processingMode: $options->processingMode,
         );
 
         if ($options->expandContext) {
@@ -123,7 +125,6 @@ class Expander
                 $activeContext,
                 $element->{Keyword::CONTEXT->value},
                 $baseUrl,
-                overrideProtected: true,
             );
         }
 
@@ -631,14 +632,21 @@ class Expander
     ): array {
         // 13.4.6.1
         if (Context::PROCESSING_MODE_11 === $activeContext->processingMode) {
+            // This is not in the docs but the in08-in.jsonld test explicitely say that a value/list object @included is invalid
+            if ($this->isValueObject($value) || $this->isListObject($value)) {
+                throw new ExpansionException('invalid @included value');
+            }
+
             // 13.4.6.2
-            $expandedValue = (array) $this->expand(
-                $value,
-                $options,
-                $baseUrl,
-                $activeContext,
-                null
+            $expandedValue = $this->expand(
+                element: $value,
+                options: $options,
+                baseUrl: $baseUrl,
+                activeContext: $activeContext,
+                activeProperty: null
             );
+
+            $expandedValue = \is_array($expandedValue) ? $expandedValue : [$expandedValue];
 
             // 13.4.6.3
             foreach ($expandedValue as $expandedElement) {
@@ -677,10 +685,6 @@ class Expander
 
             // 13.4.7.3
             $expandedValue = $value;
-
-            if ($options->frameExpansion) {
-                $expandedValue = (array) $expandedValue;
-            }
         }
 
         // 13.4.7.4
@@ -857,7 +861,7 @@ class Expander
 
                 // 13.7.4.2.2
                 if (!\is_string($item)) {
-                    throw new ExpansionException('invalid language map');
+                    throw new ExpansionException('invalid language map value');
                 }
 
                 // 13.7.4.2.3
@@ -1273,7 +1277,7 @@ class Expander
         } elseif (!\is_string($result->{Keyword::VALUE->value}) && property_exists($result, Keyword::LANGUAGE->value)) {
             throw new ExpansionException('invalid language-tagged value');
         // 15.5
-        } elseif (property_exists($result, Keyword::TYPE->value) && !IriResolver::isIri($result->{Keyword::TYPE->value})) {
+        } elseif (property_exists($result, Keyword::TYPE->value) && !IriResolver::isAbsoluteIri($result->{Keyword::TYPE->value})) {
             throw new ExpansionException('invalid typed value');
         }
 
@@ -1288,7 +1292,7 @@ class Expander
         }
 
         // 17.1
-        if (2 === \count(get_object_vars($result)) && !property_exists($result, $result->{Keyword::INDEX->value})) {
+        if (2 === \count(get_object_vars($result)) && !property_exists($result, Keyword::INDEX->value)) {
             throw new ExpansionException('invalid set or list object');
         }
 
