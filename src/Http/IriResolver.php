@@ -116,48 +116,48 @@ class IriResolver
         return $value;
     }
 
-    public static function isIri(?string $iri): bool
+    public static function isIri(mixed $iri): bool
     {
-        if (null === $iri) {
+        if (!\is_string($iri)) {
+            return false;
+        }
+
+        if (preg_match('/^.*[\s].*?/', $iri)) {
             return false;
         }
 
         return self::isRelativeIri($iri) || self::isAbsoluteIri($iri);
     }
 
-    public static function isRelativeIri(?string $iri): bool
+    public static function isRelativeIri(mixed $iri): bool
     {
-        if (null === $iri) {
+        if (!\is_string($iri)) {
             return false;
         }
 
-        return preg_match('/^(?:(?:[^\s]+\/)+)|(?:..|.)\/?/', $iri);
+        return preg_match('/^(?:[^\s]*)|(?:\.\.|\.)\/?/', $iri);
     }
 
-    public static function isAbsoluteIri(?string $iri): bool
+    public static function isAbsoluteIri(mixed $iri): bool
     {
-        if (null === $iri) {
+        if (!\is_string($iri)) {
             return false;
         }
 
         return preg_match('/^[A-Za-z][A-Za-z0-9+-.]*:[^\s]*$/', $iri);
     }
 
-    public static function isBlankNodeIdentifier(?string $iri): bool
+    public static function isBlankNodeIdentifier(mixed $iri): bool
     {
-        if (null === $iri) {
+        if (!\is_string($iri)) {
             return false;
         }
 
-        return preg_match('/^_:[^\s]+$/', $iri);
+        return preg_match('/^_:[^\s]*$/', $iri);
     }
 
-    public static function isAbsoluteIriOrBlankNode(?string $iri): bool
+    public static function isAbsoluteIriOrBlankNode(mixed $iri): bool
     {
-        if (null === $iri) {
-            return false;
-        }
-
         return self::isAbsoluteIri($iri) || self::isBlankNodeIdentifier($iri);
     }
 

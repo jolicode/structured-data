@@ -11,11 +11,11 @@
 
 namespace Jolicode\JsonLd\Fixtures;
 
+use Jolicode\JsonLd\Tests\AbstractJsonLdTestCase;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
-use Jolicode\JsonLd\Tests\AbstractJsonLdTestCase;
 
 class FixturesManager
 {

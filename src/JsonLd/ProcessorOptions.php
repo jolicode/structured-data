@@ -11,6 +11,8 @@
 
 namespace Jolicode\JsonLd\JsonLd;
 
+use Jolicode\JsonLd\ContextProcessing\Context;
+
 class ProcessorOptions
 {
     public function __construct(
@@ -21,7 +23,7 @@ class ProcessorOptions
         public bool $extractAllScripts = false,
         public bool $frameExpansion = false,
         public bool $ordered = false,
-        public string $processingMode = 'json-ld-1.1',
+        public string $processingMode = Context::PROCESSING_MODE_11,
         public bool $produceGeneralizedRdf = true,
         public ?string $rdfDirection = null,
         public bool $useNativeTypes = false,

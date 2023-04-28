@@ -9,8 +9,8 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\TermDefinition;
+namespace Jolicode\JsonLd\Exception;
 
-class TermDefinitionCreationException extends \Exception
+class ContextProcessingException extends JsonLdException
 {
 }

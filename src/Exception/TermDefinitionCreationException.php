@@ -9,8 +9,8 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Flatten;
+namespace Jolicode\JsonLd\Exception;
 
-class FlatteningException extends \Exception
+class TermDefinitionCreationException extends JsonLdException
 {
 }
