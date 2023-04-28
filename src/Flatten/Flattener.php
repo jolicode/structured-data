@@ -56,7 +56,7 @@ class Flattener
         // TODO: if context is not null, use the compaction algorithm.
         // See https://www.w3.org/TR/json-ld-api/#the-jsonldprocessor-interface in flatten() 6.1
 
-        return json_encode($this->flatten($expandedInput, $options->ordered));
+        return json_encode($this->flatten($expandedInput, $options->ordered), \JSON_PRETTY_PRINT);
     }
 
     /**

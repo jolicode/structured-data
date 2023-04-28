@@ -58,7 +58,7 @@ class Expander
             activeContext: $activeContext,
             activeProperty: null,
             baseUrl: $baseUrl,
-        ));
+        ), \JSON_PRETTY_PRINT);
     }
 
     /**
