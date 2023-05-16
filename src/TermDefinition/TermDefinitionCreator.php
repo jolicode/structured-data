@@ -298,7 +298,7 @@ class TermDefinitionCreator
 
         // 12.4
         if (
-            // Docs write Iri but tests manifest write absolute Iri
+            // Specs write Iri but tests manifest write absolute Iri
             !IriResolver::isAbsoluteIri($type) &&
             !\in_array(
                 $type,
@@ -530,7 +530,7 @@ class TermDefinitionCreator
         // 20.2
         $index = $value->{Keyword::INDEX->value};
 
-        // This is not in the docs but :
+        // This is not in the specs but :
         //  - the pi03-in.jsonld explicitely say that an exception should be thrown if @index is a keyword
         //  - the pi04-in.jsonld explicitely say that an exception should be thrown if @index is not a string
         if (!\is_string($index) || Keyword::INDEX->value === $index) {

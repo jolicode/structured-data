@@ -47,7 +47,7 @@ class Flattener
             baseUrl: $baseUrl,
         );
 
-        // The docs say to set ordered to false but the tests expect it to be true so...
+        // The specs say to set ordered to false but the tests expect it to be true so...
         $options->ordered = true;
 
         $expander = new Expander();

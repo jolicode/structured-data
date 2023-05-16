@@ -632,7 +632,7 @@ class Expander
     ): array {
         // 13.4.6.1
         if (Context::PROCESSING_MODE_11 === $activeContext->processingMode) {
-            // This is not in the docs but the in08-in.jsonld test explicitely say that a value/list object @included is invalid
+            // This is not in the specs but the in08-in.jsonld test explicitely say that a value/list object @included is invalid
             if ($this->isValueObject($value) || $this->isListObject($value)) {
                 throw new ExpansionException('invalid @included value');
             }

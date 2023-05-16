@@ -55,6 +55,8 @@ class ExpanderTest extends AbstractJsonLdTestCase
             'pi04-in.jsonld' => 'invalid term definition',
             'pi05-in.jsonld' => 'invalid value object',
             'er01-in.jsonld' => 'keyword redefinition',
+            // The doc says to expect a "recursive context inclusion" exception, but as written here https://www.w3.org/TR/json-ld-api/#changes-from-cg
+            // It now expects a context overflow
             'er02-in.jsonld' => 'context overflow',
             'er04-in.jsonld' => 'loading remote context failed',
             'er05-in.jsonld' => 'invalid remote context',
@@ -145,8 +147,6 @@ class ExpanderTest extends AbstractJsonLdTestCase
             'en04-in.jsonld' => 'invalid @nest value',
             'en05-in.jsonld' => 'invalid @nest value',
             'en06-in.jsonld' => 'invalid reverse property',
-            // The doc says to expect a "recursive context inclusion" exception, but as written here https://www.w3.org/TR/json-ld-api/#changes-from-cg
-            // It now expects a context overflow
             'm020-in.jsonld' => 'invalid type mapping',
             'em01-in.jsonld' => 'invalid container mapping',
             'in07-in.jsonld' => 'invalid @included value',
