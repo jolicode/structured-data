@@ -3,14 +3,16 @@
 
 $loader = require __DIR__ . '/../vendor/autoload.php';
 
-use Jolicode\JsonLd\Command\ExpandCommand;
 use Symfony\Component\Console\Application;
-use Jolicode\JsonLd\Command\FlattenCommand;
-use Jolicode\JsonLd\Command\ResetFixturesCommand;
+use Jolicode\JsonLd\Command\Algorithms\ExpandCommand;
+use Jolicode\JsonLd\Command\Algorithms\FlattenCommand;
+use Jolicode\JsonLd\Command\Generator\GenerateCommand;
+use Jolicode\JsonLd\Command\Algorithms\ResetFixturesCommand;
 
 $application = new Application('structured-data-validator');
 $application->add(new FlattenCommand());
 $application->add(new ExpandCommand());
 $application->add(new ResetFixturesCommand());
+$application->add(new GenerateCommand());
 
 $application->run();

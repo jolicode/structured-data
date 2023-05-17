@@ -9,30 +9,35 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Command;
+namespace Jolicode\JsonLd\Command\Algorithms;
 
-use Jolicode\JsonLd\Fixtures\FixturesManager;
+use Jolicode\JsonLd\Expand\Expander;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
-    name: 'reset-fixtures',
-    description: 'Remove all existing tests fixtures'
+    name: 'expand',
+    description: 'Take a raw JSON-LD input and expand it'
 )]
-class ResetFixturesCommand extends Command
+class ExpandCommand extends Command
 {
     public function configure()
     {
         $this
-            ->addOption('reset', mode: InputOption::VALUE_NONE, description: 'Reinstall the test suite after having removed it');
+            ->addArgument('file', InputArgument::REQUIRED, 'File to expand');
     }
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        FixturesManager::resetFixtures($input->getOption('reset'));
+        $file = $input->getArgument('file');
+
+        $expander = new Expander();
+        $result = $expander->parseJson(file_get_contents($file));
+
+        $output->writeln($result);
 
         return Command::SUCCESS;
     }

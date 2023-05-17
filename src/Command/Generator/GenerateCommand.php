@@ -9,35 +9,32 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Command;
+namespace Jolicode\JsonLd\Command\Generator;
 
-use Jolicode\JsonLd\Expand\Expander;
+use Jolicode\JsonLd\Generator\RegisteredSourcesEnum;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
-    name: 'expand',
-    description: 'Take a raw JSON-LD input and expand it'
+    name: 'generate',
+    description: 'Extract types from the given sources and generate the PHP classes'
 )]
-class ExpandCommand extends Command
+class GenerateCommand extends Command
 {
     public function configure()
     {
-        $this
-            ->addArgument('file', InputArgument::REQUIRED, 'File to expand');
+        $this->addOption('refresh', 'r', InputOption::VALUE_NONE, 'Download and overwrite the source files');
     }
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $file = $input->getArgument('file');
-
-        $expander = new Expander();
-        $result = $expander->parseJson(file_get_contents($file));
-
-        $output->writeln($result);
+        foreach (RegisteredSourcesEnum::cases() as $generator) {
+            $generator = new $generator->value();
+            $generator->generate($input->getOption('refresh'));
+        }
 
         return Command::SUCCESS;
     }

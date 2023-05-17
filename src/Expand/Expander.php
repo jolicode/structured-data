@@ -1438,15 +1438,7 @@ class Expander
 
     private function isGraphObject(mixed $object): bool
     {
-        if (!\is_object($object)) {
-            return false;
-        }
-
-        if (property_exists($object, Keyword::GRAPH->value)) {
-            return true;
-        }
-
-        return false;
+        return \is_object($object) && property_exists($object, Keyword::GRAPH->value);
     }
 
     private function isValueObject(mixed $object): bool
