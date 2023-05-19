@@ -11,24 +11,34 @@
 
 namespace Jolicode\JsonLd\Generator\SchemaOrg;
 
+use Jolicode\JsonLd\Generator\SchemaOrg\Metadata\MetadataGenerator;
+use Jolicode\JsonLd\Generator\SchemaOrg\Types\ElementsContainer;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\EnumerationMember;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\Property;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\SchemaOrgTypeInterface;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\Type;
+use PhpParser\PrettyPrinter\Standard;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpClient\HttpClient;
 
-class Generator
+class Extractor
 {
     // We use class constants instead of enum here because there are not so many keywords
     // plus enums are sometimes a pain
     public const KEY_GRAPH = '@graph';
     public const KEY_TYPE = '@type';
     public const KEY_ID = '@id';
+    public const KEY_VALUE = '@value';
+
     public const RDFS_CLASS = 'rdfs:Class';
     public const RDFS_COMMENT = 'rdfs:comment';
+    public const RDFS_LABEL = 'rdfs:label';
     public const RDFS_SUB_CLASS_OF = 'rdfs:subClassOf';
     public const RDF_PROPERTY = 'rdf:Property';
+    public const OWL_EQUIVALENT_CLASS = 'owl:equivalentClass';
+
+    public const NAMESPACE = 'SchemaOrg';
+
+    public const GENERATED_DIR = __DIR__ . '/../../../generated/SchemaOrg';
 
     // Bump this version with care! Sometimes a version is released but not yet available on GitHub.
     // Moreover, bumping it will very likely modify the source file, sometimes with breaking changes.
@@ -38,20 +48,14 @@ class Generator
     private const SOURCE_URL = 'https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/releases/' . self::CURRENT_VERSION . '/schemaorg-current-https.jsonld';
     private const CACHE_FILE = __DIR__ . '/../../../var/cache/schema-org/schemaorg-current-https.jsonld';
 
-    /**
-     * @var array<string,SchemaOrgTypeInterface>
-     */
-    private array $types = [];
-
     public function __construct(
         private Filesystem $filesystem = new Filesystem(),
+        private MetadataGenerator $metadataGenerator = new MetadataGenerator(),
+        private Standard $printer = new Standard(),
     ) {
     }
 
-    /**
-     * @return array<string,SchemaOrgTypeInterface>
-     */
-    public function generate(bool $refresh): void
+    public function extract(bool $refresh): void
     {
         if ($refresh || !$this->filesystem->exists(self::CACHE_FILE)) {
             $client = HttpClient::create();
@@ -61,39 +65,33 @@ class Generator
         }
 
         $schemaOrgData = json_decode(file_get_contents(self::CACHE_FILE), true);
-        $graph = $schemaOrgData[self::KEY_GRAPH];
+        $container = $this->createContainer($schemaOrgData[self::KEY_GRAPH]);
 
-        $this->extractTypes($graph);
+        $this->metadataGenerator->writeFile(
+            $container,
+            $this->filesystem,
+            $this->printer,
+        );
     }
 
-    /**
-     * @return array<string,SchemaOrgTypeInterface>
-     */
-    private function extractTypes(array $graph): array
+    private function createContainer(array $graph): ElementsContainer
     {
+        $container = new ElementsContainer();
+
         foreach ($graph as $type) {
-            $type = match (true) {
-                $this->isClassType($type) => Type::fromRawType($type),
-                $this->isPropertyType($type) => Property::fromRawType($type),
-                $this->isEnumerationType($type) => EnumerationMember::fromRawType($type),
+            match (true) {
+                $this->isClassType($type) => $container->addType(Type::fromRawData($type)),
+                $this->isPropertyType($type) => $container->addProperty(Property::fromRawData($type)),
+                $this->isEnumerationType($type) => $container->addEnumerationMember(EnumerationMember::fromRawData($type)),
                 default => null,
             };
-
-            if ($type instanceof SchemaOrgTypeInterface) {
-                $this->addType($type);
-            }
         }
 
-        ksort($this->types);
+        $container->sort();
+        $container->mapPropertiesToTypes();
+        $container->mapEnumerationMembersToTypes();
 
-        return $this->types;
-    }
-
-    private function addType(SchemaOrgTypeInterface $type): void
-    {
-        if (property_exists($type, 'name') && !\array_key_exists($type->name, $this->types)) {
-            $this->types[$type->name] = $type;
-        }
+        return $container;
     }
 
     private function isClassType(array $type): bool

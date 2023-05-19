@@ -11,9 +11,9 @@
 
 namespace Jolicode\JsonLd\Generator;
 
-use Jolicode\JsonLd\Generator\SchemaOrg\Generator as SchemaOrgGenerator;
+use Jolicode\JsonLd\Generator\SchemaOrg\Extractor as SchemaOrgExtractor;
 
 enum RegisteredSourcesEnum: string
 {
-    case SCHEMA_ORG = SchemaOrgGenerator::class;
+    case SCHEMA_ORG = SchemaOrgExtractor::class;
 }

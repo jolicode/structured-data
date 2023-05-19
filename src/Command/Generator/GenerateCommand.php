@@ -31,9 +31,9 @@ class GenerateCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        foreach (RegisteredSourcesEnum::cases() as $generator) {
-            $generator = new $generator->value();
-            $generator->generate($input->getOption('refresh'));
+        foreach (RegisteredSourcesEnum::cases() as $extractor) {
+            $extractor = new $extractor->value();
+            $extractor->extract($input->getOption('refresh'));
         }
 
         return Command::SUCCESS;

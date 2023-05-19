@@ -11,9 +11,9 @@
 
 namespace Jolicode\JsonLd\Generator\SchemaOrg\Types;
 
-use Jolicode\JsonLd\Generator\SchemaOrg\Generator;
+use Jolicode\JsonLd\Generator\SchemaOrg\Extractor;
 
-class Property implements SchemaOrgTypeInterface
+class Property extends AsbtractSchemaOrgElement
 {
     private const INCLUDE_DOMAIN = 'schema:domainIncludes';
     private const INCLUDE_RANGE = 'schema:rangeIncludes';
@@ -21,56 +21,68 @@ class Property implements SchemaOrgTypeInterface
     public function __construct(
         public string $name,
         public string|array $description,
-        public array $possibleTypes,
-        public array $possibleDomains,
+        public string $label,
+
+        /**
+         * @var array<string>
+         */
+        public array $possibleParent,
+
+        /**
+         * @var array<string>
+         */
+        public array $inType,
     ) {
     }
 
-    public static function fromRawType(array $rawType): SchemaOrgTypeInterface
+    public static function fromRawData(array $rawType): self
     {
+        AsbtractSchemaOrgElement::removeLanguageKeys($rawType);
+
         $property = new self(
-            name: $rawType[Generator::KEY_ID],
-            description: $rawType[Generator::RDFS_COMMENT],
-            possibleTypes: self::getPossibleTypes($rawType),
-            possibleDomains: self::getPossibleDomains($rawType),
+            name: $rawType[Extractor::KEY_ID],
+            description: $rawType[Extractor::RDFS_COMMENT],
+            label: $rawType[Extractor::RDFS_LABEL],
+            possibleParent: self::getPossibleParents($rawType),
+            inType: self::getIncludedTypes($rawType),
         );
 
         return $property;
     }
 
-    private static function getPossibleTypes(array $rawType): array
+    private static function getPossibleParents(array $rawType): array
     {
         if (\array_key_exists(self::INCLUDE_RANGE, $rawType)) {
-            if (\array_key_exists(Generator::KEY_ID, $rawType[self::INCLUDE_RANGE])) {
-                return [$rawType[self::INCLUDE_RANGE][Generator::KEY_ID]];
+            if (\array_key_exists(Extractor::KEY_ID, $rawType[self::INCLUDE_RANGE])) {
+                return [$rawType[self::INCLUDE_RANGE][Extractor::KEY_ID]];
             }
 
-            $possibleTypes = [];
+            $possibleParent = [];
 
             foreach ($rawType[self::INCLUDE_RANGE] as $type) {
-                $possibleTypes[] = $type[Generator::KEY_ID];
+                $possibleParent[] = $type[Extractor::KEY_ID];
             }
 
-            return $possibleTypes;
+            return $possibleParent;
         }
 
         return [];
     }
 
-    private static function getPossibleDomains(array $rawType): array
+    private static function getIncludedTypes(array $rawType): array
     {
         if (\array_key_exists(self::INCLUDE_DOMAIN, $rawType)) {
-            if (\array_key_exists(Generator::KEY_ID, $rawType[self::INCLUDE_DOMAIN])) {
-                return [$rawType[self::INCLUDE_DOMAIN][Generator::KEY_ID]];
+            if (\array_key_exists(Extractor::KEY_ID, $rawType[self::INCLUDE_DOMAIN])) {
+                return [$rawType[self::INCLUDE_DOMAIN][Extractor::KEY_ID]];
             }
 
-            $possibleDomains = [];
+            $inType = [];
 
             foreach ($rawType[self::INCLUDE_DOMAIN] as $domain) {
-                $possibleDomains[] = $domain[Generator::KEY_ID];
+                $inType[] = $domain[Extractor::KEY_ID];
             }
 
-            return $possibleDomains;
+            return $inType;
         }
 
         return [];

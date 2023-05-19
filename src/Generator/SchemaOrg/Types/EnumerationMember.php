@@ -11,23 +11,27 @@
 
 namespace Jolicode\JsonLd\Generator\SchemaOrg\Types;
 
-use Jolicode\JsonLd\Generator\SchemaOrg\Generator;
+use Jolicode\JsonLd\Generator\SchemaOrg\Extractor;
 
-class EnumerationMember implements SchemaOrgTypeInterface
+class EnumerationMember extends AsbtractSchemaOrgElement
 {
     public function __construct(
         public string $name,
-        public string|array $description,
-        public array $enumerationMembers,
+        public string $description,
+        public string $label,
+        public array $inTypes,
     ) {
     }
 
-    public static function fromRawType(array $rawType): SchemaOrgTypeInterface
+    public static function fromRawData(array $rawType): self
     {
+        AsbtractSchemaOrgElement::removeLanguageKeys($rawType);
+
         return new self(
-            name: $rawType[Generator::KEY_ID],
-            description: $rawType[Generator::RDFS_COMMENT],
-            enumerationMembers: (array) $rawType[Generator::KEY_TYPE],
+            name: $rawType[Extractor::KEY_ID],
+            description: $rawType[Extractor::RDFS_COMMENT],
+            label: $rawType[Extractor::RDFS_LABEL],
+            inTypes: (array) $rawType[Extractor::KEY_TYPE],
         );
     }
 }

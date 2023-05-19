@@ -11,34 +11,66 @@
 
 namespace Jolicode\JsonLd\Generator\SchemaOrg\Types;
 
-use Jolicode\JsonLd\Generator\SchemaOrg\Generator;
+use Jolicode\JsonLd\Generator\SchemaOrg\Extractor;
 
-class Type implements SchemaOrgTypeInterface
+class Type extends AsbtractSchemaOrgElement
 {
     public function __construct(
         public string $name,
         public string|array $description,
+        public string $label,
+        public array $equivalentClass = [],
+
+        /**
+         * @var array<string>
+         */
         public array $parents = [],
+
+        /**
+         * @var array<Property>
+         */
+        public array $properties = [],
+
+        /**
+         * @var array<EnumerationMember>
+         */
+        public array $enumerationMembers = [],
     ) {
     }
 
-    public static function fromRawType(array $rawType): SchemaOrgTypeInterface
+    public static function fromRawData(array $rawType): self
     {
+        AsbtractSchemaOrgElement::removeLanguageKeys($rawType);
+
         $type = new self(
-            name: $rawType[Generator::KEY_ID],
-            description: $rawType[Generator::RDFS_COMMENT],
+            name: $rawType[Extractor::KEY_ID],
+            description: $rawType[Extractor::RDFS_COMMENT],
+            label: $rawType[Extractor::RDFS_LABEL],
+            equivalentClass: $rawType[Extractor::OWL_EQUIVALENT_CLASS] ?? [],
         );
 
-        if ($parents = $rawType[Generator::RDFS_SUB_CLASS_OF] ?? null) {
-            if (\array_key_exists(Generator::KEY_ID, $parents)) {
-                $type->parents[] = $parents[Generator::KEY_ID];
+        $parents = $rawType[Extractor::RDFS_SUB_CLASS_OF] ?? null;
+
+        if ($parents) {
+            if (\is_array($parents) && \array_key_exists(Extractor::KEY_ID, $parents)) {
+                $type->parents[$parents[Extractor::KEY_ID]] = $parents[Extractor::KEY_ID];
             } else {
                 foreach ($parents as $parent) {
-                    $type->$parents[] = $parent[Generator::KEY_ID];
+                    $type->parents[$parent[Extractor::KEY_ID]] = $parent[Extractor::KEY_ID];
                 }
             }
         }
 
         return $type;
+    }
+
+    public function addProperty(Property $property): void
+    {
+        $this->properties[$property->name] = $property;
+    }
+
+    public function addEnumerationMember(EnumerationMember $enumerationMember): void
+    {
+        $this->enumerationMembers[$enumerationMember->name] = $enumerationMember;
     }
 }

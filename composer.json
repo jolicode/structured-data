@@ -33,6 +33,7 @@
         "symfony/http-client": "^6.2",
         "league/uri": "^6.8",
         "symfony/http-kernel": "^6.2",
-        "monolog/monolog": "^3.3"
+        "monolog/monolog": "^3.3",
+        "nikic/php-parser": "^4.15"
     }
 }
