@@ -4,6 +4,12 @@ cs: ## Fix CS violations
 cs_dry_run: ## Display CS violations without fixing it
 	vendor/bin/php-cs-fixer fix src --verbose --dry-run
 
+# Constructor promoted properties are all on line, which is quite annoying
+# We could use https://github.com/kubawerlos/php-cs-fixer-custom-fixers/blob/main/src/Fixer/MultilinePromotedPropertiesFixer.php
+# Configuration in this comment https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues/6325#issuecomment-1058183314
+cs_generated: ## Fix CS violations in generated files. Use with caution! Very SLOW!
+	vendor/bin/php-cs-fixer fix generated
+
 phpstan: ## Run phpstan
 	vendor/bin/phpstan analyse -c phpstan.neon
 

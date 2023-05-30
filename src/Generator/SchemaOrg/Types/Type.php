@@ -19,7 +19,7 @@ class Type extends AsbtractSchemaOrgElement
         public string $name,
         public string $description,
         public string $label,
-        public array $equivalentClass = [],
+        public array $equivalentClass,
         public string $className,
 
         /**

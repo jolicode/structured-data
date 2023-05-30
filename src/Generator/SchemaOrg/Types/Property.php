@@ -27,7 +27,7 @@ class Property extends AsbtractSchemaOrgElement
         /**
          * @var array<string>
          */
-        public array $possibleParent,
+        public array $parents,
 
         /**
          * @var array<string>
@@ -40,16 +40,14 @@ class Property extends AsbtractSchemaOrgElement
     {
         self::sanitizeEntries($rawType);
 
-        $property = new self(
+        return new self(
             name: $rawType[Extractor::KEY_ID],
             description: $rawType[Extractor::RDFS_COMMENT],
             label: $rawType[Extractor::RDFS_LABEL],
-            possibleParent: self::getPossibleParents($rawType),
+            parents: self::getPossibleParents($rawType),
             inType: self::getIncludedTypes($rawType),
             className: self::getClassName($rawType[Extractor::RDFS_LABEL]),
         );
-
-        return $property;
     }
 
     private static function getPossibleParents(array $rawType): array
@@ -59,13 +57,13 @@ class Property extends AsbtractSchemaOrgElement
                 return [$rawType[self::INCLUDE_RANGE][Extractor::KEY_ID]];
             }
 
-            $possibleParent = [];
+            $parents = [];
 
             foreach ($rawType[self::INCLUDE_RANGE] as $type) {
-                $possibleParent[] = $type[Extractor::KEY_ID];
+                $parents[] = $type[Extractor::KEY_ID];
             }
 
-            return $possibleParent;
+            return $parents;
         }
 
         return [];

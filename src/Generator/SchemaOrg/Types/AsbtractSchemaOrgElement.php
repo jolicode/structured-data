@@ -17,6 +17,11 @@ abstract class AsbtractSchemaOrgElement
 {
     abstract public static function fromRawData(array $rawType): self;
 
+    public static function getClassName(string $label): string
+    {
+        return ucfirst(self::replaceStartNumbers(str_replace('schema:', '', $label))) . 'Model';
+    }
+
     /**
      * The comment and label keys may be an array with a language key, which we don't need.
      *
@@ -31,11 +36,6 @@ abstract class AsbtractSchemaOrgElement
         if (\is_array($rawType[Extractor::RDFS_LABEL])) {
             $rawType[Extractor::RDFS_LABEL] = $rawType[Extractor::RDFS_LABEL][Extractor::KEY_VALUE];
         }
-    }
-
-    protected static function getClassName(string $label): string
-    {
-        return ucfirst(self::replaceStartNumbers(str_replace('schema:', '', $label)));
     }
 
     private static function replaceStartNumbers(string $name): string

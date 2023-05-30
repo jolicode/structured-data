@@ -153,7 +153,7 @@ class DocumentLoader
         $parsed = [];
 
         foreach ($headers as $key => $header) {
-            if (false !== strpos($header, ',')) {
+            if (str_contains($header, ',')) {
                 foreach (preg_split('/,(?=\s*<.*>([^"]*"[^"]*")*[^"]*$)/', $header) as $part) {
                     $headers[] = trim($part);
                 }

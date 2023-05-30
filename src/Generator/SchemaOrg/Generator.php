@@ -11,27 +11,23 @@
 
 namespace Jolicode\JsonLd\Generator\SchemaOrg;
 
-use PhpParser\Node\Name;
+use Jolicode\JsonLd\Generator\SchemaOrg\Types\AsbtractSchemaOrgElement;
+use Jolicode\JsonLd\Generator\SchemaOrg\Types\ElementsContainer;
+use Jolicode\JsonLd\Generator\SchemaOrg\Types\EnumerationMember;
+use Jolicode\JsonLd\Generator\SchemaOrg\Types\Property;
+use Jolicode\JsonLd\Generator\SchemaOrg\Types\Type;
+use PhpParser\BuilderFactory;
+use PhpParser\Node\Expr;
+use PhpParser\Node\Scalar;
 use PhpParser\Node\Stmt;
 use PhpParser\PrettyPrinter\Standard;
 use Symfony\Component\Filesystem\Filesystem;
-use Jolicode\JsonLd\Generator\SchemaOrg\Extractor;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\Type;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\Property;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\ElementsContainer;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\EnumerationMember;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\AsbtractSchemaOrgElement;
-use PhpParser\BuilderFactory;
 
 class Generator
 {
     public function writeFile(ElementsContainer $container, Filesystem $filesystem, Standard $printer): void
     {
         foreach ($container->getAllElements() as $element) {
-            if (\count($element->enumerationMembers) > 0 && \count($element->properties) < 30) {
-                dd($element);
-            }
-
             $classDirectory = match (true) {
                 $element instanceof Type => 'Type',
                 $element instanceof Property => 'Property',
@@ -49,8 +45,6 @@ class Generator
                 $fileName,
                 $printer->prettyPrintFile([$this->generate($element)])
             );
-
-            die();
         }
     }
 
@@ -71,14 +65,13 @@ class Generator
             ->namespace('SchemaOrg\\Type')
             ->addStmt($factory->use('SchemaOrg\\Property'));
 
+        $constructor = $factory->method('__construct')
+            ->makePublic();
+
         $class = $factory
             ->class($type->className)
             ->makeFinal()
             ->makeReadonly()
-            ->addStmt(
-                $factory->classConst('NAME', $type->name)
-                    ->makePublic()
-            )
             ->addStmt(
                 $factory->classConst('DESCRIPTION', $type->description)
                     ->makePublic()
@@ -86,21 +79,40 @@ class Generator
             ->addStmt(
                 $factory->classConst('LABEL', $type->label)
                     ->makePublic()
+            )
+            ->addStmt(
+                $factory->classConst('NAME', $type->name)
+                    ->makePublic()
             );
 
         usort($type->properties, fn (Property $a, Property $b) => $a->label <=> $b->label);
 
-        $constructor = $factory->method('__construct')
-            ->makePublic();
-
         foreach ($type->properties as $property) {
             $constructor->addParam(
-                $factory->property($property->label)
+                $factory->param($property->label)
                     ->makePublic()
-                    ->setType(sprintf('Property\\%s', $property->className))
+                    ->setType(sprintf('?Property\\%s', $property->className))
+                    ->setDefault(null)
             );
         }
 
+        $enumerationMembers = [];
+
+        foreach ($type->enumerationMembers as $enumerationMember) {
+            $enumerationMembers[] = new Expr\ArrayItem(
+                new Scalar\String_(sprintf('EnumerationMember\\%s', $enumerationMember->className)),
+                new Scalar\String_($enumerationMember->className),
+            );
+        }
+
+        usort($enumerationMembers, fn ($a, $b) => $a->value->value <=> $b->value->value);
+
+        $class->addStmt(
+            $factory->classConst('ENUMERATION_MEMBERS', new Expr\Array_($enumerationMembers))
+                ->makePublic()
+        );
+
+        $class->addStmt($constructor);
         $node->addStmt($class);
 
         return $node->getNode();
@@ -108,31 +120,79 @@ class Generator
 
     private function generateProperty(Property $property): Stmt\Namespace_
     {
-        $statements = [];
-        $extends = [];
+        $namespace = 'SchemaOrg\\Property';
+        $factory = new BuilderFactory();
 
-        $subNodes = [
-            'stmts' => $statements,
-            'extends' => $extends,
-        ];
+        $node = $factory
+            ->namespace($namespace);
 
-        $class = new Stmt\Class_(new Name($property->label), $subNodes);
+        $class = $factory
+            ->class($property->className)
+            ->makeFinal()
+            ->makeReadonly()
+            ->addStmt(
+                $factory->classConst('DESCRIPTION', $property->description)
+                    ->makePublic()
+            )
+            ->addStmt(
+                $factory->classConst('LABEL', $property->label)
+                    ->makePublic()
+            )
+            ->addStmt(
+                $factory->classConst('NAME', $property->name)
+                    ->makePublic()
+            );
 
-        return new Stmt\Namespace_(new Name('SchemaOrg\\Property'), [$class]);
+        $parents = [];
+
+        foreach ($property->parents as $parent) {
+            $className = AsbtractSchemaOrgElement::getClassName($parent);
+            $fqcn = sprintf('%s\\%s', $namespace, $className);
+            $parents[] = new Expr\ArrayItem(
+                new Scalar\String_($fqcn),
+                new Scalar\String_($className),
+            );
+        }
+
+        usort($parents, fn ($a, $b) => $a->value->value <=> $b->value->value);
+
+        $class->addStmt(
+            $factory->classConst('POSSIBLE_PARENTS', $parents)
+                ->makePublic()
+        );
+
+        $node->addStmt($class);
+
+        return $node->getNode();
     }
 
     private function generateEnumerationMember(EnumerationMember $enumerationMember): Stmt\Namespace_
     {
-        $statements = [];
-        $extends = [];
+        $namespace = 'SchemaOrg\\EnumerationMember';
+        $factory = new BuilderFactory();
 
-        $subNodes = [
-            'stmts' => $statements,
-            'extends' => $extends,
-        ];
+        $node = $factory
+            ->namespace($namespace);
 
-        $class = new Stmt\Class_(new Name($enumerationMember->label), $subNodes);
+        $class = $factory
+            ->class($enumerationMember->className)
+            ->makeFinal()
+            ->makeReadonly()
+            ->addStmt(
+                $factory->classConst('DESCRIPTION', $enumerationMember->description)
+                    ->makePublic()
+            )
+            ->addStmt(
+                $factory->classConst('LABEL', $enumerationMember->label)
+                    ->makePublic()
+            )
+            ->addStmt(
+                $factory->classConst('NAME', $enumerationMember->name)
+                    ->makePublic()
+            );
 
-        return new Stmt\Namespace_(new Name('SchemaOrg\\EnumerationMember'), [$class]);
+        $node->addStmt($class);
+
+        return $node->getNode();
     }
 }

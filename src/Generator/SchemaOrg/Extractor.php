@@ -84,7 +84,6 @@ class Extractor
             };
         }
 
-        $container->sort();
         $container->mapPropertiesToTypes();
         $container->mapEnumerationMembersToTypes();
 

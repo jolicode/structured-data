@@ -77,7 +77,7 @@ class ElementsContainer
 
     public function getType(string $name): Type
     {
-        if (!array_key_exists($name, $this->types)) {
+        if (!\array_key_exists($name, $this->types)) {
             return $this->typesAliases[$name];
         }
 
@@ -116,13 +116,6 @@ class ElementsContainer
     public function getAllElements(): array
     {
         return [...$this->types, ...$this->properties, ...$this->enumerationMembers];
-    }
-
-    public function sort(): void
-    {
-        ksort($this->types);
-        ksort($this->properties);
-        ksort($this->enumerationMembers);
     }
 
     public function mapPropertiesToTypes(): void
