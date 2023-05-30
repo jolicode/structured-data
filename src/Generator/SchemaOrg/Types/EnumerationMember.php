@@ -15,23 +15,25 @@ use Jolicode\JsonLd\Generator\SchemaOrg\Extractor;
 
 class EnumerationMember extends AsbtractSchemaOrgElement
 {
-    public function __construct(
+    private function __construct(
         public string $name,
         public string $description,
         public string $label,
         public array $inTypes,
+        public string $className,
     ) {
     }
 
     public static function fromRawData(array $rawType): self
     {
-        AsbtractSchemaOrgElement::removeLanguageKeys($rawType);
+        self::sanitizeEntries($rawType);
 
         return new self(
             name: $rawType[Extractor::KEY_ID],
             description: $rawType[Extractor::RDFS_COMMENT],
             label: $rawType[Extractor::RDFS_LABEL],
             inTypes: (array) $rawType[Extractor::KEY_TYPE],
+            className: self::getClassName($rawType[Extractor::RDFS_LABEL]),
         );
     }
 }

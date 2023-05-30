@@ -15,11 +15,12 @@ use Jolicode\JsonLd\Generator\SchemaOrg\Extractor;
 
 class Type extends AsbtractSchemaOrgElement
 {
-    public function __construct(
+    private function __construct(
         public string $name,
-        public string|array $description,
+        public string $description,
         public string $label,
         public array $equivalentClass = [],
+        public string $className,
 
         /**
          * @var array<string>
@@ -27,12 +28,12 @@ class Type extends AsbtractSchemaOrgElement
         public array $parents = [],
 
         /**
-         * @var array<Property>
+         * @var array<string, Property>
          */
         public array $properties = [],
 
         /**
-         * @var array<EnumerationMember>
+         * @var array<string, EnumerationMember>
          */
         public array $enumerationMembers = [],
     ) {
@@ -40,13 +41,14 @@ class Type extends AsbtractSchemaOrgElement
 
     public static function fromRawData(array $rawType): self
     {
-        AsbtractSchemaOrgElement::removeLanguageKeys($rawType);
+        self::sanitizeEntries($rawType);
 
         $type = new self(
             name: $rawType[Extractor::KEY_ID],
             description: $rawType[Extractor::RDFS_COMMENT],
             label: $rawType[Extractor::RDFS_LABEL],
             equivalentClass: $rawType[Extractor::OWL_EQUIVALENT_CLASS] ?? [],
+            className: self::getClassName($rawType[Extractor::RDFS_LABEL]),
         );
 
         $parents = $rawType[Extractor::RDFS_SUB_CLASS_OF] ?? null;

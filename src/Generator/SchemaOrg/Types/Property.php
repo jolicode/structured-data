@@ -18,10 +18,11 @@ class Property extends AsbtractSchemaOrgElement
     private const INCLUDE_DOMAIN = 'schema:domainIncludes';
     private const INCLUDE_RANGE = 'schema:rangeIncludes';
 
-    public function __construct(
+    private function __construct(
         public string $name,
-        public string|array $description,
+        public string $description,
         public string $label,
+        public string $className,
 
         /**
          * @var array<string>
@@ -37,7 +38,7 @@ class Property extends AsbtractSchemaOrgElement
 
     public static function fromRawData(array $rawType): self
     {
-        AsbtractSchemaOrgElement::removeLanguageKeys($rawType);
+        self::sanitizeEntries($rawType);
 
         $property = new self(
             name: $rawType[Extractor::KEY_ID],
@@ -45,6 +46,7 @@ class Property extends AsbtractSchemaOrgElement
             label: $rawType[Extractor::RDFS_LABEL],
             possibleParent: self::getPossibleParents($rawType),
             inType: self::getIncludedTypes($rawType),
+            className: self::getClassName($rawType[Extractor::RDFS_LABEL]),
         );
 
         return $property;

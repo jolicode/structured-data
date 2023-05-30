@@ -110,6 +110,9 @@ class ElementsContainer
         return $this->enumerationMembers[$name];
     }
 
+    /**
+     * @return array<string, Type|Property|EnumerationMember>
+     */
     public function getAllElements(): array
     {
         return [...$this->types, ...$this->properties, ...$this->enumerationMembers];

@@ -11,7 +11,6 @@
 
 namespace Jolicode\JsonLd\Generator\SchemaOrg;
 
-use Jolicode\JsonLd\Generator\SchemaOrg\Metadata\MetadataGenerator;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\ElementsContainer;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\EnumerationMember;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\Property;
@@ -36,8 +35,6 @@ class Extractor
     public const RDF_PROPERTY = 'rdf:Property';
     public const OWL_EQUIVALENT_CLASS = 'owl:equivalentClass';
 
-    public const NAMESPACE = 'SchemaOrg';
-
     public const GENERATED_DIR = __DIR__ . '/../../../generated/SchemaOrg';
 
     // Bump this version with care! Sometimes a version is released but not yet available on GitHub.
@@ -46,11 +43,11 @@ class Extractor
     private const CURRENT_VERSION = '15.0';
 
     private const SOURCE_URL = 'https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/releases/' . self::CURRENT_VERSION . '/schemaorg-current-https.jsonld';
-    private const CACHE_FILE = __DIR__ . '/../../../var/cache/schema-org/schemaorg-current-https.jsonld';
+    private const CACHE_FILE = __DIR__ . '/../../../var/cache/schema-org/schemaorg-' . self::CURRENT_VERSION . '-https.jsonld';
 
     public function __construct(
         private Filesystem $filesystem = new Filesystem(),
-        private MetadataGenerator $metadataGenerator = new MetadataGenerator(),
+        private Generator $Generator = new Generator(),
         private Standard $printer = new Standard(),
     ) {
     }
@@ -67,7 +64,7 @@ class Extractor
         $schemaOrgData = json_decode(file_get_contents(self::CACHE_FILE), true);
         $container = $this->createContainer($schemaOrgData[self::KEY_GRAPH]);
 
-        $this->metadataGenerator->writeFile(
+        $this->Generator->writeFile(
             $container,
             $this->filesystem,
             $this->printer,

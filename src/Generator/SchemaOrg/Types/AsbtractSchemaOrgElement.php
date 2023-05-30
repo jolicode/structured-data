@@ -22,7 +22,7 @@ abstract class AsbtractSchemaOrgElement
      *
      * @param array<string, string|array> $rawType
      */
-    protected static function removeLanguageKeys(array &$rawType): void
+    protected static function sanitizeEntries(array &$rawType): void
     {
         if (\is_array($rawType[Extractor::RDFS_COMMENT])) {
             $rawType[Extractor::RDFS_COMMENT] = $rawType[Extractor::RDFS_COMMENT][Extractor::KEY_VALUE];
@@ -31,5 +31,30 @@ abstract class AsbtractSchemaOrgElement
         if (\is_array($rawType[Extractor::RDFS_LABEL])) {
             $rawType[Extractor::RDFS_LABEL] = $rawType[Extractor::RDFS_LABEL][Extractor::KEY_VALUE];
         }
+    }
+
+    protected static function getClassName(string $label): string
+    {
+        return ucfirst(self::replaceStartNumbers(str_replace('schema:', '', $label)));
+    }
+
+    private static function replaceStartNumbers(string $name): string
+    {
+        if (preg_match('/^(\d+).*$/', $name)) {
+            $name = strtr($name, [
+                '0' => 'Zero',
+                '1' => 'One',
+                '2' => 'Two',
+                '3' => 'Three',
+                '4' => 'Four',
+                '5' => 'Five',
+                '6' => 'Six',
+                '7' => 'Seven',
+                '8' => 'Eight',
+                '9' => 'Nine',
+            ]);
+        }
+
+        return $name;
     }
 }
