@@ -75,17 +75,17 @@ class NodeMapGenerator
             if (null === $list) {
                 if (null === $subjectNode || !\array_key_exists($activeProperty, $subjectNode)) {
                     $subjectNode[$activeProperty] = [$element];
-                // 4.1.2
+                    // 4.1.2
                 } else {
                     if (!DataStructureComparator::objectAlreadyInArray($element, $subjectNode[$activeProperty])) {
                         $subjectNode[$activeProperty][] = $element;
                     }
                 }
-            // 4.2
+                // 4.2
             } else {
                 $list[FramingKeyword::LIST->value][] = $element;
             }
-        // 5
+            // 5
         } elseif (property_exists($element, FramingKeyword::LIST->value)) {
             // 5.1
             $result = [FramingKeyword::LIST->value => []];
@@ -100,11 +100,11 @@ class NodeMapGenerator
             // 5.3
             if (null === $list) {
                 $subjectNode[$activeProperty][] = $result;
-            // 5.4
+                // 5.4
             } else {
                 $list[FramingKeyword::LIST->value][] = $result;
             }
-        // 6
+            // 6
         } else {
             if (null === $graph) {
                 $graph = [];
@@ -114,7 +114,7 @@ class NodeMapGenerator
             if (property_exists($element, FramingKeyword::ID->value)) {
                 $id = $this->identifierGenerator->getIdentifier($element->{FramingKeyword::ID->value});
                 unset($element->{FramingKeyword::ID->value});
-            // 6.2
+                // 6.2
             } else {
                 $id = $this->identifierGenerator->getIdentifier(null);
             }
@@ -132,11 +132,11 @@ class NodeMapGenerator
                 // 6.5.1
                 if (!\array_key_exists($activeProperty, $node)) {
                     $node[$activeProperty] = [$activeSubject];
-                // 6.5.2
+                    // 6.5.2
                 } elseif (!DataStructureComparator::objectAlreadyInArray($activeSubject, $node[$activeProperty])) {
                     $node[$activeProperty][] = $activeSubject;
                 }
-            // 6.6
+                // 6.6
             } elseif (null !== $activeProperty) {
                 // 6.6.1
                 $reference = (object) [FramingKeyword::ID->value => $id];
@@ -150,11 +150,11 @@ class NodeMapGenerator
                     // 6.6.2.1
                     if (!\array_key_exists($activeProperty, $subjectNode)) {
                         $subjectNode[$activeProperty] = [$reference];
-                    // 6.6.2.2
+                        // 6.6.2.2
                     } elseif (!DataStructureComparator::objectAlreadyInArray($reference, $subjectNode[$activeProperty])) {
                         $subjectNode[$activeProperty][] = $reference;
                     }
-                // 6.6.3
+                    // 6.6.3
                 } else {
                     $list[FramingKeyword::LIST->value][] = $reference;
                 }

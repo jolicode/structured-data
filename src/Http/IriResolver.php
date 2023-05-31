@@ -27,7 +27,7 @@ class IriResolver
         string $value,
         bool $documentRelative = false,
         bool $vocab = true,
-        ?\stdClass $localContext = null,
+        \stdClass $localContext = null,
         array &$defined = []
     ): ?string {
         // 1
@@ -42,19 +42,19 @@ class IriResolver
 
         // 3
         if (
-            $localContext &&
-            property_exists($localContext, $value) &&
-            \array_key_exists($value, $defined) &&
-            !$defined[$value]
+            $localContext
+            && property_exists($localContext, $value)
+            && \array_key_exists($value, $defined)
+            && !$defined[$value]
         ) {
             TermDefinitionCreator::create($activeContext, $localContext, $value, $defined);
         }
 
         // 4
         if (
-            \array_key_exists($value, $activeContext->termDefinitions) &&
-            $activeContext->termDefinitions[$value]->iriMapping &&
-            ($keyword = Keyword::tryFrom($activeContext->termDefinitions[$value]->iriMapping))
+            \array_key_exists($value, $activeContext->termDefinitions)
+            && $activeContext->termDefinitions[$value]->iriMapping
+            && ($keyword = Keyword::tryFrom($activeContext->termDefinitions[$value]->iriMapping))
         ) {
             return $keyword->value;
         }
@@ -76,9 +76,9 @@ class IriResolver
 
             // 6.3
             if (
-                $localContext &&
-                property_exists($localContext, $prefix) &&
-                (!\array_key_exists($prefix, $defined) || true !== $defined[$prefix])
+                $localContext
+                && property_exists($localContext, $prefix)
+                && (!\array_key_exists($prefix, $defined) || true !== $defined[$prefix])
             ) {
                 TermDefinitionCreator::create($activeContext, $localContext, $prefix, $defined);
             }

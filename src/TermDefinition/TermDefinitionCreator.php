@@ -30,7 +30,7 @@ class TermDefinitionCreator
         \stdClass $localContext,
         string $term,
         array &$defined,
-        ?string $baseUrl = null,
+        string $baseUrl = null,
         bool $protected = false,
         bool $overrideProtected = false,
         array &$remoteContexts = [],
@@ -79,11 +79,11 @@ class TermDefinitionCreator
         // 7
         if (null === $value) {
             $value = (object) [Keyword::ID->value => null];
-        // 8
+            // 8
         } elseif (\is_string($value)) {
             $value = (object) [Keyword::ID->value => $value];
             $simpleTerm = true;
-        // 9
+            // 9
         } else {
             if (!\is_object($value)) {
                 throw new TermDefinitionCreationException('invalid term definition');
@@ -118,18 +118,18 @@ class TermDefinitionCreator
 
         // 14
         if (
-            property_exists($value, Keyword::ID->value) &&
-            $value->{Keyword::ID->value} !== $term
+            property_exists($value, Keyword::ID->value)
+            && $value->{Keyword::ID->value} !== $term
         ) {
             $shouldReturn = self::handleIdValue($activeContext, $definition, $term, $value, $localContext, $defined, isset($simpleTerm) ? $simpleTerm : false);
 
             if ($shouldReturn) {
                 return;
             }
-        // 15
+            // 15
         } elseif (preg_match('/[^^]:/', $term)) {
             self::handleTermWithColons($activeContext, $definition, $localContext, $term);
-        // 16
+            // 16
         } elseif (str_contains($term, '/')) {
             // 16.2
             if (IriResolver::isIri($mapping = IriResolver::expand($activeContext, $term))) {
@@ -137,10 +137,10 @@ class TermDefinitionCreator
             } else {
                 throw new TermDefinitionCreationException('invalid IRI mapping');
             }
-        // 17
+            // 17
         } elseif (Keyword::TYPE->value === $term) {
             $definition->iriMapping = Keyword::TYPE->value;
-        // 18
+            // 18
         } elseif ($activeContext->vocabularyMapping) {
             $definition->iriMapping = $activeContext->vocabularyMapping . $term;
         } else {
@@ -263,8 +263,8 @@ class TermDefinitionCreator
             }
 
             if (
-                property_exists($value, Keyword::CONTAINER->value) &&
-                $value->{Keyword::CONTAINER->value} === Keyword::SET->value
+                property_exists($value, Keyword::CONTAINER->value)
+                && $value->{Keyword::CONTAINER->value} === Keyword::SET->value
             ) {
                 return true;
             }
@@ -290,8 +290,8 @@ class TermDefinitionCreator
 
         // 12.3
         if (
-            Context::PROCESSING_MODE_10 === $activeContext->processingMode &&
-            \in_array($type, [Keyword::JSON->value, Keyword::NONE->value], true)
+            Context::PROCESSING_MODE_10 === $activeContext->processingMode
+            && \in_array($type, [Keyword::JSON->value, Keyword::NONE->value], true)
         ) {
             throw new TermDefinitionCreationException('invalid type mapping');
         }
@@ -299,8 +299,8 @@ class TermDefinitionCreator
         // 12.4
         if (
             // Specs write Iri but tests manifest write absolute Iri
-            !IriResolver::isAbsoluteIri($type) &&
-            !\in_array(
+            !IriResolver::isAbsoluteIri($type)
+            && !\in_array(
                 $type,
                 [
                     Keyword::ID->value, Keyword::NONE->value, Keyword::JSON->value, Keyword::VOCAB->value,
@@ -325,8 +325,8 @@ class TermDefinitionCreator
     ): void {
         // 13.1
         if (
-            property_exists($value, Keyword::ID->value) ||
-            property_exists($value, Keyword::NEST->value)
+            property_exists($value, Keyword::ID->value)
+            || property_exists($value, Keyword::NEST->value)
         ) {
             throw new TermDefinitionCreationException('invalid reverse property');
         }
@@ -357,9 +357,9 @@ class TermDefinitionCreator
         // 13.5
         if (property_exists($value, Keyword::CONTAINER->value)) {
             if (
-                null !== $value->{Keyword::CONTAINER->value} &&
-                $value->{Keyword::CONTAINER->value} !== Keyword::SET->value &&
-                $value->{Keyword::CONTAINER->value} !== Keyword::INDEX->value
+                null !== $value->{Keyword::CONTAINER->value}
+                && $value->{Keyword::CONTAINER->value} !== Keyword::SET->value
+                && $value->{Keyword::CONTAINER->value} !== Keyword::INDEX->value
             ) {
                 throw new TermDefinitionCreationException('invalid reverse property');
             }
@@ -406,9 +406,9 @@ class TermDefinitionCreator
             );
 
             if (
-                !Keyword::tryFrom($definition->iriMapping) &&
-                !IriResolver::isIri($definition->iriMapping) &&
-                !IriResolver::isBlankNodeIdentifier($definition->iriMapping)
+                !Keyword::tryFrom($definition->iriMapping)
+                && !IriResolver::isIri($definition->iriMapping)
+                && !IriResolver::isBlankNodeIdentifier($definition->iriMapping)
             ) {
                 throw new TermDefinitionCreationException('invalid IRI mapping');
             }
@@ -419,8 +419,8 @@ class TermDefinitionCreator
 
             // 14.2.4
             if (
-                str_contains($term, '/') ||
-                preg_match('/[^^]:[^$]/', $term)
+                str_contains($term, '/')
+                || preg_match('/[^^]:[^$]/', $term)
             ) {
                 // 14.2.4.1
                 $defined[$term] = true;
@@ -440,9 +440,9 @@ class TermDefinitionCreator
 
             // 14.2.5
             if (
-                !str_contains(':', $term) &&
-                !str_contains('/', $term) &&
-                $simpleTerm
+                !str_contains(':', $term)
+                && !str_contains('/', $term)
+                && $simpleTerm
             ) {
                 if (IriResolver::isBlankNodeIdentifier($definition->iriMapping) || IriResolver::isIri($definition->iriMapping)) {
                     $definition->prefixFlag = true;
@@ -472,7 +472,7 @@ class TermDefinitionCreator
         // 15.2
         if (\array_key_exists($prefix, $activeContext->termDefinitions)) {
             $definition->iriMapping = $activeDefinitions[$prefix]->iriMapping . $suffix;
-        // 15.3
+            // 15.3
         } else {
             $definition->iriMapping = $term;
         }
@@ -492,8 +492,8 @@ class TermDefinitionCreator
 
         // 19.2
         if (
-            \in_array($container, [Keyword::GRAPH->value, Keyword::ID->value, Keyword::TYPE->value], true) &&
-            Context::PROCESSING_MODE_10 === $activeContext->processingMode
+            \in_array($container, [Keyword::GRAPH->value, Keyword::ID->value, Keyword::TYPE->value], true)
+            && Context::PROCESSING_MODE_10 === $activeContext->processingMode
         ) {
             throw new TermDefinitionCreationException('invalid container mapping');
         }
@@ -520,9 +520,9 @@ class TermDefinitionCreator
     ): void {
         // 20.1
         if (
-            Context::PROCESSING_MODE_10 === $activeContext->processingMode ||
-            !$definition->containerMapping ||
-            !\in_array(Keyword::INDEX->value, $definition->containerMapping, true)
+            Context::PROCESSING_MODE_10 === $activeContext->processingMode
+            || !$definition->containerMapping
+            || !\in_array(Keyword::INDEX->value, $definition->containerMapping, true)
         ) {
             throw new TermDefinitionCreationException('invalid term definition');
         }
@@ -606,9 +606,9 @@ class TermDefinitionCreator
         $direction = $value->{Keyword::DIRECTION->value};
 
         if (
-            null !== $direction &&
-            'ltr' !== $direction &&
-            'rtl' !== $direction
+            null !== $direction
+            && 'ltr' !== $direction
+            && 'rtl' !== $direction
         ) {
             throw new TermDefinitionCreationException('invalid base direction');
         }
@@ -629,9 +629,9 @@ class TermDefinitionCreator
 
         // 24.2
         if (
-            !\is_string($definition->nestValue) &&
-            (!\in_array($definition->nestValue, Keyword::cases(), true) ||
-                Keyword::NEST->value === $definition->nestValue
+            !\is_string($definition->nestValue)
+            && (!\in_array($definition->nestValue, Keyword::cases(), true)
+                || Keyword::NEST->value === $definition->nestValue
             )
         ) {
             throw new TermDefinitionCreationException('invalid @nest value');
@@ -649,9 +649,9 @@ class TermDefinitionCreator
     ): void {
         // 25.1
         if (
-            Context::PROCESSING_MODE_10 === $activeContext->processingMode ||
-            str_contains($term, ':') ||
-            str_contains($term, '/')
+            Context::PROCESSING_MODE_10 === $activeContext->processingMode
+            || str_contains($term, ':')
+            || str_contains($term, '/')
         ) {
             throw new TermDefinitionCreationException('invalid term definition');
         }
