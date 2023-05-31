@@ -11,7 +11,7 @@
 
 namespace Jolicode\JsonLd\Command\Algorithms;
 
-use Jolicode\JsonLd\Expand\Expander;
+use Jolicode\JsonLd\Algorithms\Expand\Expander;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;

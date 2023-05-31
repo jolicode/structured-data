@@ -28,10 +28,11 @@ class Generator
     public function writeFile(ElementsContainer $container, Filesystem $filesystem, Standard $printer): void
     {
         foreach ($container->getAllElements() as $element) {
-            $classDirectory = match (true) {
-                $element instanceof Type => 'Type',
-                $element instanceof Property => 'Property',
-                $element instanceof EnumerationMember => 'EnumerationMember',
+            $classDirectory = match ($element::class) {
+                Type::class => 'Type',
+                Property::class => 'Property',
+                EnumerationMember::class => 'EnumerationMember',
+                default => throw new \RuntimeException(sprintf('Unknown class %s', $element::class)),
             };
 
             $fileName = sprintf(
@@ -48,12 +49,13 @@ class Generator
         }
     }
 
-    private function generate(AsbtractSchemaOrgElement $element): Stmt\Namespace_
+    private function generate(Type|Property|EnumerationMember $element): Stmt\Namespace_
     {
-        return match (true) {
-            $element instanceof Type => $this->generateType($element),
-            $element instanceof Property => $this->generateProperty($element),
-            $element instanceof EnumerationMember => $this->generateEnumerationMember($element),
+        return match ($element::class) {
+            Type::class => $this->generateType($element),
+            Property::class => $this->generateProperty($element),
+            EnumerationMember::class => $this->generateEnumerationMember($element),
+            default => throw new \RuntimeException(sprintf('Unknown class %s', $element::class)),
         };
     }
 
@@ -105,6 +107,7 @@ class Generator
             );
         }
 
+        /* @phpstan-ignore-next-line */
         usort($enumerationMembers, fn ($a, $b) => $a->value->value <=> $b->value->value);
 
         $class->addStmt(
@@ -154,6 +157,7 @@ class Generator
             );
         }
 
+        /* @phpstan-ignore-next-line */
         usort($parents, fn ($a, $b) => $a->value->value <=> $b->value->value);
 
         $class->addStmt(

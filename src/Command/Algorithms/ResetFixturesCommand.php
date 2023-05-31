@@ -11,7 +11,7 @@
 
 namespace Jolicode\JsonLd\Command\Algorithms;
 
-use Jolicode\JsonLd\Fixtures\FixturesManager;
+use Jolicode\JsonLd\Algorithms\Fixtures\FixturesManager;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
