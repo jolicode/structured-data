@@ -18,26 +18,6 @@ class SourceMap
 
     public function __construct(
         public Type $type,
-
-        /**
-         * @var array<string, Range>
-         */
-        public array $keyRanges = [],
-
-        /**
-         * @var array<string, Range>
-         */
-        public array $valueRanges = [],
     ) {
-    }
-
-    public function addKeyRange(string $key, Range $range): void
-    {
-        $this->keyRanges[$key] = $range;
-    }
-
-    public function addValueRange(string $key, Range $range): void
-    {
-        $this->valueRanges[$key] = $range;
     }
 }

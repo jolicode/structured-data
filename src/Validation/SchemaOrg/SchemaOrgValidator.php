@@ -25,7 +25,7 @@ class SchemaOrgValidator
      */
     public function validate(array $expandedJson, SourceMap $sourceMap): ValidationResult
     {
-        dd(expandedJson: $expandedJson, sourceMap: $sourceMap->keyRanges);
+        dd(sourceMap: $sourceMap->type);
 
         $validationResult = new ValidationResult();
 

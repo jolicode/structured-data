@@ -1,21 +1,40 @@
-{
-  "@context": "https://schema.org",
-  "@type": "NewsArticle",
-  "headline": "Title of a News Article",
-  "image": [
-    "https://example.com/photos/1x1/photo.jpg",
-    "https://example.com/photos/4x3/photo.jpg",
-    "https://example.com/photos/16x9/photo.jpg"
-   ],
-  "datePublished": "2015-02-05T08:00:00+08:00",
-  "dateModified": "2015-02-05T09:20:00+08:00",
-  "author": [{
-      "@type": "Person",
-      "name": "Jane Doe",
-      "url": "https://example.com/profile/janedoe123"
-    },{
-      "@type": "Person",
-      "name": "John Doe",
-      "url": "https://example.com/profile/johndoe123"
-  }]
-}
+[
+  {
+    "@type": [
+      "http://schema.org/Recipe"
+    ],
+    "http://schema.org/author": [
+      {
+        "@type": [
+          "http://schema.org/Person"
+        ],
+        "http://schema.org/name": [
+          {
+            "@value": "Mary Stone"
+          }
+        ]
+      }
+    ],
+    "http://schema.org/datePublished": [
+      {
+        "@type": "http://schema.org/Date",
+        "@value": "2018-03-10"
+      }
+    ],
+    "http://schema.org/description": [
+      {
+        "@value": "This coffee cake is awesome and perfect for parties."
+      }
+    ],
+    "http://schema.org/name": [
+      {
+        "@value": "Party Coffee Cake"
+      }
+    ],
+    "http://schema.org/prepTime": [
+      {
+        "@value": "PT20M"
+      }
+    ]
+  }
+]
