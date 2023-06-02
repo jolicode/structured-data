@@ -4,7 +4,8 @@
     "type": "library",
     "autoload": {
         "psr-4": {
-            "Jolicode\\JsonLd\\": "src/"
+            "Jolicode\\JsonLd\\": "src/",
+            "SchemaOrg\\": "generated/SchemaOrg/"
         }
     },
     "autoload-dev": {
@@ -35,6 +36,6 @@
         "symfony/http-kernel": "^6.2",
         "monolog/monolog": "^3.3",
         "nikic/php-parser": "^4.15",
-        "symfony/validator": "^6.3"
+        "salsify/json-streaming-parser": "^8.3"
     }
 }

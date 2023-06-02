@@ -73,7 +73,6 @@ class Generator
         $class = $factory
             ->class($type->className)
             ->makeFinal()
-            ->makeReadonly()
             ->addStmt(
                 $factory->classConst('DESCRIPTION', $type->description)
                     ->makePublic()
@@ -132,7 +131,6 @@ class Generator
         $class = $factory
             ->class($property->className)
             ->makeFinal()
-            ->makeReadonly()
             ->addStmt(
                 $factory->classConst('DESCRIPTION', $property->description)
                     ->makePublic()
@@ -181,7 +179,6 @@ class Generator
         $class = $factory
             ->class($enumerationMember->className)
             ->makeFinal()
-            ->makeReadonly()
             ->addStmt(
                 $factory->classConst('DESCRIPTION', $enumerationMember->description)
                     ->makePublic()

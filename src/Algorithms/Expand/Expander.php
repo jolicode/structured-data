@@ -29,10 +29,9 @@ class Expander
     ) {
     }
 
-    public function parseJson(string $json, ProcessorOptions $options = new ProcessorOptions()): ?string
+    public function parseJson(string|\stdClass $json, ProcessorOptions $options = new ProcessorOptions(), bool $encodeResult = true): \stdClass|array|null|string
     {
-        $element = json_decode($json);
-
+        $element = \is_string($json) ? json_decode($json) : $json;
         $baseUrl = $options->base;
 
         if (\is_string($element)) {
@@ -52,13 +51,19 @@ class Expander
             $this->contextProcesser->processContext($activeContext, $options->expandContext, $activeContext->baseUrl);
         }
 
-        return json_encode($this->expand(
+        $element = $this->expand(
             $element,
             $options,
             activeContext: $activeContext,
             activeProperty: null,
             baseUrl: $baseUrl,
-        ), \JSON_PRETTY_PRINT);
+        );
+
+        if ($encodeResult) {
+            return json_encode($element, \JSON_PRETTY_PRINT);
+        }
+
+        return $element;
     }
 
     /**
