@@ -16,7 +16,6 @@ use Jolicode\JsonLd\Parser\Range;
 class TypeNode
 {
     public function __construct(
-        public ?KeywordNode $context = null,
         public ?KeywordNode $type = null,
         public ?KeywordNode $value = null,
 
@@ -32,12 +31,6 @@ class TypeNode
          */
         public array $attributes = [],
     ) {
-    }
-
-    public function updateContext(Range $range, string $value): void
-    {
-        $this->context->valueRange = $range;
-        $this->context->value = $value;
     }
 
     public function updateType(Range $range, string $value): void

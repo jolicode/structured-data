@@ -11,19 +11,22 @@
 
 namespace Jolicode\JsonLd\Parser;
 
+use Jolicode\JsonLd\Algorithms\Expand\Expander;
 use Jolicode\JsonLd\Parser\Nodes\TypeNode;
-use Jolicode\JsonLd\Parser\PointerListener\ExpandedPointerListener;
 use JsonStreamingParser\Parser;
 
 class UserEntryParser
 {
     public function parse(string $json, int $startLineNumber = 0): TypeNode
     {
-        $listener = new ExpandedPointerListener($startLineNumber);
+        $expander = new Expander();
+        $expandedEntry = $expander->parseJson($json);
+
+        $listener = new PointerListener($startLineNumber);
 
         try {
             $stream = fopen('php://memory', 'r+');
-            fwrite($stream, $json);
+            fwrite($stream, $expandedEntry);
             rewind($stream);
 
             $parser = new Parser($stream, $listener);

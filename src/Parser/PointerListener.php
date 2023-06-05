@@ -9,18 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Parser\PointerListener;
+namespace Jolicode\JsonLd\Parser;
 
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Parser\Nodes\AttributeNode;
 use Jolicode\JsonLd\Parser\Nodes\KeywordNode;
 use Jolicode\JsonLd\Parser\Nodes\TypeNode;
-use Jolicode\JsonLd\Parser\Position;
-use Jolicode\JsonLd\Parser\Range;
 use JsonStreamingParser\Listener\IdleListener;
 use JsonStreamingParser\Listener\PositionAwareInterface;
 
-class ExpandedPointerListener extends IdleListener implements PositionAwareInterface
+class PointerListener extends IdleListener implements PositionAwareInterface
 {
     public function __construct(
         private int $startLineNumber = 0,

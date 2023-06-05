@@ -30,12 +30,8 @@ class ValidateSchemaOrgCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $json = json_decode(file_get_contents($input->getArgument('document')));
-
-        krsort($json);
-
         $sourceMapper = new UserEntryParser();
-        $sourceMapper->parse(json_encode($json));
+        $sourceMapper->parse(file_get_contents($input->getArgument('document')));
 
         return Command::SUCCESS;
     }

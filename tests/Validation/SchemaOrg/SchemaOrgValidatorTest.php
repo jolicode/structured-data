@@ -12,7 +12,6 @@
 namespace Jolicode\JsonLd\Tests\Validation\SchemaOrg;
 
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
-use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use Jolicode\JsonLd\Parser\UserEntryParser;
 use Jolicode\JsonLd\Validation\SchemaOrg\SchemaOrgValidator;
 use PHPUnit\Framework\TestCase;
@@ -39,15 +38,11 @@ class SchemaOrgValidatorTest extends TestCase
         $json = file_get_contents($document);
 
         $sourceMapper = new UserEntryParser();
-        $sourceMap = $sourceMapper->parse($json);
-        $options = new ProcessorOptions(
-            base: 'http://schema.org/',
-        );
+        $result = $sourceMapper->parse($json);
 
-        $expanded = $this->expander->parseJson($json, $options, encodeResult: false);
-        $result = $this->validator->validate($expanded, $sourceMap);
+        dd($result);
 
-        $this->assertSame($expected, $result->getErrorMessages());
+        $this->assertSame($expected, $result);
     }
 
     public function provideFilesToValidate(): \Generator
