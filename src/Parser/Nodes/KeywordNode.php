@@ -9,15 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Parser;
+namespace Jolicode\JsonLd\Parser\Nodes;
 
-use Jolicode\JsonLd\Parser\Elements\Type;
+use Jolicode\JsonLd\Parser\Range;
 
-class SourceMap
+class KeywordNode
 {
-
     public function __construct(
-        public Type $type,
+        public ?Range $keyRange = null,
+        public ?Range $valueRange = null,
+        public ?string $value = null,
+        public bool $isValid = true,
     ) {
     }
 }

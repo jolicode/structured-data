@@ -2,8 +2,9 @@
 
 namespace Jolicode\JsonLd\Tests\Algorithms\Benchmark;
 
-use Jolicode\JsonLd\ContextProcessing\ContextProcesser;
-use Jolicode\JsonLd\Fixtures\FixturesManager;
+use Jolicode\JsonLd\Algorithms\Fixtures\FixturesManager;
+use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
+use Jolicode\JsonLd\Tests\Algorithms\Benchmark\AbstractJsonLdBench;
 
 class ContextProcesserBench extends AbstractJsonLdBench
 {

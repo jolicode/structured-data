@@ -13,18 +13,9 @@ namespace Jolicode\JsonLd\Parser;
 
 class Range
 {
-    public Position $start;
-
-    public Position $end;
-
-    public function __construct(Position $start = null, Position $end = null)
-    {
-        if (null !== $start) {
-            $this->start = $start;
-        }
-
-        if (null !== $end) {
-            $this->end = $end;
-        }
+    public function __construct(
+        public ?Position $start = null,
+        public ?Position $end = null,
+    ) {
     }
 }

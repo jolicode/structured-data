@@ -20,7 +20,7 @@ use Jolicode\JsonLd\Parser\Range;
 use JsonStreamingParser\Listener\IdleListener;
 use JsonStreamingParser\Listener\PositionAwareInterface;
 
-class CompactedPointerListener extends IdleListener implements PositionAwareInterface
+class ExpandedPointerListener extends IdleListener implements PositionAwareInterface
 {
     public function __construct(
         private int $startLineNumber = 0,
@@ -29,6 +29,7 @@ class CompactedPointerListener extends IdleListener implements PositionAwareInte
         private ?TypeNode $rootType = null,
         private ?TypeNode $currentType = null,
         private string|int|null $currentKey = null,
+        private TypeNode|string|null $currentNode = null,
     ) {
     }
 
@@ -45,17 +46,18 @@ class CompactedPointerListener extends IdleListener implements PositionAwareInte
         $this->currentType = $this->rootType;
     }
 
-    public function startObject(): void
+    public function endDocument(): void
     {
-        if ($this->currentKey) {
-            $this->currentType->children[$this->currentKey] = $nestedType = new TypeNode(parent: $this->currentType);
-            $this->currentType = $nestedType;
-        }
+        $this->rootType = end($this->rootType->children);
     }
 
     public function endObject(): void
     {
-        $this->currentType = $this->currentType->parent;
+        if ($this->currentNode === $this->currentType) {
+            $this->currentType = $this->currentType->parent;
+        } else {
+            $this->currentNode = $this->currentType;
+        }
     }
 
     public function setFilePosition(int $lineNumber, int $charNumber): void
@@ -66,13 +68,13 @@ class CompactedPointerListener extends IdleListener implements PositionAwareInte
 
     public function key(string|int $key): void
     {
-        $endPosition = $this->getCurrentPosition();
-        $startPosition = clone $endPosition;
-        $startPosition->column -= \strlen($key);
+        $end = $this->getCurrentPosition();
+        $start = clone $end;
+        $start->column -= \strlen($key);
 
         $this->currentKey = $key;
 
-        $this->handleNewKey(new Range($startPosition, $endPosition));
+        $this->handleNewKey(new Range($start, $end));
     }
 
     public function value(mixed $value): void
@@ -92,21 +94,51 @@ class CompactedPointerListener extends IdleListener implements PositionAwareInte
     private function handleNewKey(Range $range): void
     {
         match ($this->currentKey) {
-            is_numeric($this->currentKey) => null,
-            Keyword::CONTEXT->value => $this->currentType->context = new KeywordNode($range),
-            'type' => $this->currentType->type = new KeywordNode($range),
-            Keyword::VALUE->value => $this->currentType->value = new KeywordNode($range),
-            default => $this->currentType->attributes[$this->currentKey] = new AttributeNode($range),
+            Keyword::TYPE->value => $this->addChild($range),
+            Keyword::VALUE->value => $this->handleKeyValue($range),
+            default => $this->addAttribute($range),
         };
     }
 
     private function handleNewValue(string $value, Range $range): void
     {
         match ($this->currentKey) {
-            Keyword::CONTEXT->value => $this->currentType->updateContext($range, $value),
-            'type' => $this->currentType->updateType($range, $value),
-            Keyword::VALUE->value => $this->currentType->updateValue($range, $value),
+            Keyword::TYPE->value => $this->currentType->updateType($range, $value),
+            Keyword::VALUE->value => $this->handleEntryValue($range, $value),
             default => $this->currentType->attributes[$this->currentKey]->valueRange = $range,
         };
+    }
+
+    private function addChild(Range $range): void
+    {
+        $this->currentType->children[$this->currentNode] = $nestedType = new TypeNode(parent: $this->currentType);
+        $nestedType->type = new KeywordNode($range);
+
+        $this->currentType = $nestedType;
+        $this->currentNode = $nestedType;
+    }
+
+    private function addAttribute(Range $range): void
+    {
+        $this->currentType->attributes[$this->currentKey] = new AttributeNode($range);
+        $this->currentNode = $this->currentKey;
+    }
+
+    private function handleKeyValue(Range $range): void
+    {
+        if ($this->currentNode instanceof TypeNode) {
+            $this->currentType->value = new KeywordNode($range);
+        } else {
+            $this->currentType->attributes[$this->currentNode] = new AttributeNode($range);
+        }
+    }
+
+    private function handleEntryValue(Range $range, mixed $value): void
+    {
+        if ($this->currentNode instanceof TypeNode) {
+            $this->currentType->updateValue($range, $value);
+        } else {
+            $this->currentType->attributes[$this->currentNode]->valueRange = $range;
+        }
     }
 }

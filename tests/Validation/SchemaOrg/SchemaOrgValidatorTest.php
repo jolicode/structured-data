@@ -11,11 +11,11 @@
 
 namespace Jolicode\JsonLd\Tests\Validation\SchemaOrg;
 
-use PHPUnit\Framework\TestCase;
-use Jolicode\JsonLd\Parser\SourceMapper;
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use Jolicode\JsonLd\Parser\UserEntryParser;
 use Jolicode\JsonLd\Validation\SchemaOrg\SchemaOrgValidator;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @covers \Jolicode\JsonLd\Validation\JsonLdValidator
@@ -38,7 +38,7 @@ class SchemaOrgValidatorTest extends TestCase
     {
         $json = file_get_contents($document);
 
-        $sourceMapper = new SourceMapper();
+        $sourceMapper = new UserEntryParser();
         $sourceMap = $sourceMapper->parse($json);
         $options = new ProcessorOptions(
             base: 'http://schema.org/',

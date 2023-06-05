@@ -9,14 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Parser;
+namespace Jolicode\JsonLd\Parser\Nodes;
 
-class Position
+use Jolicode\JsonLd\Parser\Range;
+
+class AttributeNode
 {
     public function __construct(
-        public int $line = 0,
-        public int $column = 0,
-        public bool $approximative = false,
+        public ?Range $keyRange = null,
+        public ?Range $valueRange = null,
     ) {
     }
 }

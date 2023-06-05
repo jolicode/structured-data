@@ -2,9 +2,10 @@
 
 namespace Jolicode\JsonLd\Tests\Algorithms\Benchmark;
 
-use Jolicode\JsonLd\Expand\Expander;
-use Jolicode\JsonLd\Fixtures\FixturesManager;
-use Jolicode\JsonLd\JsonLd\ProcessorOptions;
+use Jolicode\JsonLd\Algorithms\Expand\Expander;
+use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use Jolicode\JsonLd\Algorithms\Fixtures\FixturesManager;
+use Jolicode\JsonLd\Tests\Algorithms\Benchmark\AbstractJsonLdBench;
 
 class ExpanderBench extends AbstractJsonLdBench
 {

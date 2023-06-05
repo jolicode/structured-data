@@ -2,9 +2,10 @@
 
 namespace Jolicode\JsonLd\Tests\Algorithms\Benchmark;
 
-use Jolicode\JsonLd\Fixtures\FixturesManager;
-use Jolicode\JsonLd\Flatten\Flattener;
-use Jolicode\JsonLd\JsonLd\ProcessorOptions;
+use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
+use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use Jolicode\JsonLd\Algorithms\Fixtures\FixturesManager;
+use Jolicode\JsonLd\Tests\Algorithms\Benchmark\AbstractJsonLdBench;
 
 class FlattenerBench extends AbstractJsonLdBench
 {

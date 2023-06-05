@@ -11,14 +11,15 @@
 
 namespace Jolicode\JsonLd\Parser;
 
+use Jolicode\JsonLd\Parser\Nodes\TypeNode;
+use Jolicode\JsonLd\Parser\PointerListener\ExpandedPointerListener;
 use JsonStreamingParser\Parser;
-use Jolicode\JsonLd\Parser\PointerListener\CompactedPointerListener;
 
-class SourceMapper
+class UserEntryParser
 {
-    public function parse(string $json, int $startLineNumber = 0): SourceMap
+    public function parse(string $json, int $startLineNumber = 0): TypeNode
     {
-        $listener = new CompactedPointerListener($startLineNumber);
+        $listener = new ExpandedPointerListener($startLineNumber);
 
         try {
             $stream = fopen('php://memory', 'r+');
@@ -31,6 +32,6 @@ class SourceMapper
             throw $e;
         }
 
-        return $listener->getSourceMap();
+        return $listener->getRootType();
     }
 }

@@ -1,16 +1,21 @@
 <?php
 
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Jolicode\JsonLd\Command\Validation;
 
-use Jolicode\JsonLd\Parser\SourceMapper;
-use Symfony\Component\Console\Command\Command;
-use Jolicode\JsonLd\Algorithms\Expand\Expander;
+use Jolicode\JsonLd\Parser\UserEntryParser;
 use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Jolicode\JsonLd\FormatGuesser\JsonLdFormatGuesser;
-use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
-use Jolicode\JsonLd\Validation\SchemaOrg\SchemaOrgValidator;
 
 #[AsCommand(
     name: 'validate',
@@ -25,16 +30,12 @@ class ValidateSchemaOrgCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $json = \json_decode(file_get_contents($input->getArgument('document')));
+        $json = json_decode(file_get_contents($input->getArgument('document')));
 
-        $formatGuesser = new JsonLdFormatGuesser($json);
-        $sourceMapper = $formatGuesser->get
+        krsort($json);
 
-        $expander = new Expander();
-        $expanded = $expander->parseJson($json, $options, encodeResult: false);
-
-        $validator = new SchemaOrgValidator();
-        $validator->validate($expanded);
+        $sourceMapper = new UserEntryParser();
+        $sourceMapper->parse(json_encode($json));
 
         return Command::SUCCESS;
     }
