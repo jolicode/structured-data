@@ -1,0 +1,239 @@
+{
+  "@graph": [
+    {
+      "@type": "http://schema.org/Dataset",
+      "http://schema.org/creator": {
+        "@id": "_:b1",
+        "@type": "http://schema.org/Organization",
+        "http://schema.org/contactPoint": {
+          "@id": "_:b2",
+          "@type": "http://schema.org/ContactPoint",
+          "http://schema.org/contactType": "customer service",
+          "http://schema.org/email": "ncei.orders@noaa.gov",
+          "http://schema.org/telephone": "+1-828-271-4800"
+        },
+        "http://schema.org/name": "OC/NOAA/NESDIS/NCEI > National Centers for Environmental Information, NESDIS, NOAA, U.S. Department of Commerce",
+        "http://schema.org/url": {
+          "@id": "https://www.ncei.noaa.gov/"
+        }
+      },
+      "http://schema.org/description": "Storm Data is provided by the National Weather Service (NWS) and contain statistics on...",
+      "http://schema.org/distribution": [
+        {
+          "@id": "_:b3",
+          "@type": "http://schema.org/DataDownload",
+          "http://schema.org/contentUrl": {
+            "@id": "https://www.ncdc.noaa.gov/stormevents/ftp.jsp"
+          },
+          "http://schema.org/encodingFormat": "CSV"
+        },
+        {
+          "@id": "_:b4",
+          "@type": "http://schema.org/DataDownload",
+          "http://schema.org/contentUrl": {
+            "@id": "https://gis.ncdc.noaa.gov/all-records/catalog/search/resource/details.page?id=gov.noaa.ncdc:C00510"
+          },
+          "http://schema.org/encodingFormat": "XML"
+        }
+      ],
+      "http://schema.org/funder": {
+        "@id": "_:b5",
+        "@type": "http://schema.org/Organization",
+        "http://schema.org/name": "National Weather Service",
+        "http://schema.org/sameAs": {
+          "@id": "https://ror.org/00tgqzw13"
+        }
+      },
+      "http://schema.org/hasPart": [
+        {
+          "@id": "_:b6",
+          "@type": "http://schema.org/Dataset",
+          "http://schema.org/creator": {
+            "@id": "_:b7",
+            "@type": "http://schema.org/Organization",
+            "http://schema.org/name": "Sub dataset 01 creator"
+          },
+          "http://schema.org/description": "Informative description of the first subdataset...",
+          "http://schema.org/license": {
+            "@id": "https://creativecommons.org/publicdomain/zero/1.0/"
+          },
+          "http://schema.org/name": "Sub dataset 01"
+        },
+        {
+          "@id": "_:b8",
+          "@type": "http://schema.org/Dataset",
+          "http://schema.org/creator": {
+            "@id": "_:b9",
+            "@type": "http://schema.org/Organization",
+            "http://schema.org/name": "Sub dataset 02 creator"
+          },
+          "http://schema.org/description": "Informative description of the second subdataset...",
+          "http://schema.org/license": {
+            "@id": "https://creativecommons.org/publicdomain/zero/1.0/"
+          },
+          "http://schema.org/name": "Sub dataset 02"
+        }
+      ],
+      "http://schema.org/identifier": [
+        "https://doi.org/10.1000/182",
+        "https://identifiers.org/ark:/12345/fk1234"
+      ],
+      "http://schema.org/includedInDataCatalog": {
+        "@id": "_:b10",
+        "@type": "http://schema.org/DataCatalog",
+        "http://schema.org/name": "data.gov"
+      },
+      "http://schema.org/isAccessibleForFree": true,
+      "http://schema.org/keywords": [
+        "ATMOSPHERE > ATMOSPHERIC PHENOMENA > CYCLONES",
+        "ATMOSPHERE > ATMOSPHERIC PHENOMENA > DROUGHT",
+        "ATMOSPHERE > ATMOSPHERIC PHENOMENA > FOG",
+        "ATMOSPHERE > ATMOSPHERIC PHENOMENA > FREEZE"
+      ],
+      "http://schema.org/license": {
+        "@id": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      "http://schema.org/name": "NCDC Storm Events Database",
+      "http://schema.org/sameAs": {
+        "@id": "https://gis.ncdc.noaa.gov/geoportal/catalog/search/resource/details.page?id=gov.noaa.ncdc:C00510"
+      },
+      "http://schema.org/spatialCoverage": {
+        "@id": "_:b11",
+        "@type": "http://schema.org/Place",
+        "http://schema.org/geo": {
+          "@id": "_:b12",
+          "@type": "http://schema.org/GeoShape",
+          "http://schema.org/box": "18.0 -65.0 72.0 172.0"
+        }
+      },
+      "http://schema.org/temporalCoverage": "1950-01-01/2013-12-18",
+      "http://schema.org/url": {
+        "@id": "https://catalog.data.gov/dataset/ncdc-storm-events-database"
+      }
+    },
+    {
+      "@id": "_:b1",
+      "@type": "http://schema.org/Organization",
+      "http://schema.org/contactPoint": {
+        "@id": "_:b2",
+        "@type": "http://schema.org/ContactPoint",
+        "http://schema.org/contactType": "customer service",
+        "http://schema.org/email": "ncei.orders@noaa.gov",
+        "http://schema.org/telephone": "+1-828-271-4800"
+      },
+      "http://schema.org/name": "OC/NOAA/NESDIS/NCEI > National Centers for Environmental Information, NESDIS, NOAA, U.S. Department of Commerce",
+      "http://schema.org/url": {
+        "@id": "https://www.ncei.noaa.gov/"
+      }
+    },
+    {
+      "@id": "_:b10",
+      "@type": "http://schema.org/DataCatalog",
+      "http://schema.org/name": "data.gov"
+    },
+    {
+      "@id": "_:b11",
+      "@type": "http://schema.org/Place",
+      "http://schema.org/geo": {
+        "@id": "_:b12",
+        "@type": "http://schema.org/GeoShape",
+        "http://schema.org/box": "18.0 -65.0 72.0 172.0"
+      }
+    },
+    {
+      "@id": "_:b12",
+      "@type": "http://schema.org/GeoShape",
+      "http://schema.org/box": "18.0 -65.0 72.0 172.0"
+    },
+    {
+      "@id": "_:b2",
+      "@type": "http://schema.org/ContactPoint",
+      "http://schema.org/contactType": "customer service",
+      "http://schema.org/email": "ncei.orders@noaa.gov",
+      "http://schema.org/telephone": "+1-828-271-4800"
+    },
+    {
+      "@id": "_:b3",
+      "@type": "http://schema.org/DataDownload",
+      "http://schema.org/contentUrl": {
+        "@id": "https://www.ncdc.noaa.gov/stormevents/ftp.jsp"
+      },
+      "http://schema.org/encodingFormat": "CSV"
+    },
+    {
+      "@id": "_:b4",
+      "@type": "http://schema.org/DataDownload",
+      "http://schema.org/contentUrl": {
+        "@id": "https://gis.ncdc.noaa.gov/all-records/catalog/search/resource/details.page?id=gov.noaa.ncdc:C00510"
+      },
+      "http://schema.org/encodingFormat": "XML"
+    },
+    {
+      "@id": "_:b5",
+      "@type": "http://schema.org/Organization",
+      "http://schema.org/name": "National Weather Service",
+      "http://schema.org/sameAs": {
+        "@id": "https://ror.org/00tgqzw13"
+      }
+    },
+    {
+      "@id": "_:b6",
+      "@type": "http://schema.org/Dataset",
+      "http://schema.org/creator": {
+        "@id": "_:b7",
+        "@type": "http://schema.org/Organization",
+        "http://schema.org/name": "Sub dataset 01 creator"
+      },
+      "http://schema.org/description": "Informative description of the first subdataset...",
+      "http://schema.org/license": {
+        "@id": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      "http://schema.org/name": "Sub dataset 01"
+    },
+    {
+      "@id": "_:b7",
+      "@type": "http://schema.org/Organization",
+      "http://schema.org/name": "Sub dataset 01 creator"
+    },
+    {
+      "@id": "_:b8",
+      "@type": "http://schema.org/Dataset",
+      "http://schema.org/creator": {
+        "@id": "_:b9",
+        "@type": "http://schema.org/Organization",
+        "http://schema.org/name": "Sub dataset 02 creator"
+      },
+      "http://schema.org/description": "Informative description of the second subdataset...",
+      "http://schema.org/license": {
+        "@id": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      "http://schema.org/name": "Sub dataset 02"
+    },
+    {
+      "@id": "_:b9",
+      "@type": "http://schema.org/Organization",
+      "http://schema.org/name": "Sub dataset 02 creator"
+    },
+    {
+      "@id": "https://catalog.data.gov/dataset/ncdc-storm-events-database"
+    },
+    {
+      "@id": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    {
+      "@id": "https://gis.ncdc.noaa.gov/all-records/catalog/search/resource/details.page?id=gov.noaa.ncdc:C00510"
+    },
+    {
+      "@id": "https://gis.ncdc.noaa.gov/geoportal/catalog/search/resource/details.page?id=gov.noaa.ncdc:C00510"
+    },
+    {
+      "@id": "https://ror.org/00tgqzw13"
+    },
+    {
+      "@id": "https://www.ncdc.noaa.gov/stormevents/ftp.jsp"
+    },
+    {
+      "@id": "https://www.ncei.noaa.gov/"
+    }
+  ]
+}

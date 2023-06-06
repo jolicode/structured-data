@@ -14,7 +14,6 @@ namespace Jolicode\JsonLd\Validation\SchemaOrg;
 use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Jolicode\JsonLd\Parser\UserEntryParser;
 use Jolicode\JsonLd\Validation\ValidationError;
 use Jolicode\JsonLd\Validation\ValidationResult;
 
@@ -33,7 +32,6 @@ class SchemaOrgValidator
     public function validate(string $json): ValidationResult
     {
         $expander = new Expander();
-        $userEntryParser = new UserEntryParser();
 
         try {
             $expansionResult = $expander->parseJson($json, encodeResult: false);
@@ -49,8 +47,6 @@ class SchemaOrgValidator
         foreach ($expansionResult as $type) {
             $this->validateJsonLdType($type);
         }
-
-        dump($expansionResult, $this->validationResult->getErrors());
 
         return $this->validationResult;
     }
@@ -78,25 +74,22 @@ class SchemaOrgValidator
     private function getTypeModel(\stdClass $type): false|object
     {
         if (!property_exists($type, Keyword::TYPE->value)) {
-            $this->validationResult->addError('This type misses a @type property.', $type);
+            $this->validationResult->addError('This type misses a @type property', $type);
 
             return false;
         }
 
-        $typeModel = \is_array($type->{Keyword::TYPE->value}) ? $type->{Keyword::TYPE->value}[0] : $type->{Keyword::TYPE->value};
-        $typeModel = str_replace(self::SCHEMA_ORG_DOMAIN, '', $typeModel);
+        $typeShortName = \is_array($type->{Keyword::TYPE->value}) ? $type->{Keyword::TYPE->value}[0] : $type->{Keyword::TYPE->value};
+        $typeShortName = str_replace(self::SCHEMA_ORG_DOMAIN, '', $typeShortName);
+        $typeFqcn = sprintf('SchemaOrg\\Type\\%sModel', $typeShortName);
 
-        if (!class_exists(sprintf('SchemaOrg\\Type\\%sModel', $typeModel))) {
-            if (class_exists(sprintf('SchemaOrg\\Type\\%sModel', ucfirst($typeModel)))) {
-                $this->validationResult->addError(sprintf('This type misses an uppercased first letter: %s', $typeModel), $type);
-            } else {
-                $this->validationResult->addError(sprintf('This type is not a valid Schema.org type: %s', $typeModel), $type);
-            }
+        if (!class_exists($typeFqcn)) {
+            $this->validationResult->addError(sprintf('This type is not a valid Schema.org type: %s', $typeShortName), $type);
 
             return false;
         }
 
-        return new $typeModel();
+        return new $typeFqcn();
     }
 
     private function validatePropertyExists(string $keyProperty, object $typeModel): void
