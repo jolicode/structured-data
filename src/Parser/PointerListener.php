@@ -21,7 +21,6 @@ use JsonStreamingParser\Listener\PositionAwareInterface;
 class PointerListener extends IdleListener implements PositionAwareInterface
 {
     public function __construct(
-        private int $startLineNumber = 0,
         private ?int $currentColumn = null,
         private ?int $currentLine = null,
         private ?TypeNode $rootType = null,
@@ -38,7 +37,6 @@ class PointerListener extends IdleListener implements PositionAwareInterface
 
     public function startDocument(): void
     {
-        $this->currentLine = 0;
         $this->currentColumn = 0;
         $this->rootType = new TypeNode();
         $this->currentType = $this->rootType;
@@ -86,14 +84,15 @@ class PointerListener extends IdleListener implements PositionAwareInterface
 
     private function getCurrentPosition(): Position
     {
-        return new Position($this->currentLine + $this->startLineNumber, $this->currentColumn, $this->startLineNumber < 0);
+        return new Position($this->currentLine, $this->currentColumn);
     }
 
     private function handleNewKey(Range $range): void
     {
         match ($this->currentKey) {
             Keyword::TYPE->value => $this->addChild($range),
-            Keyword::VALUE->value => $this->handleKeyValue($range),
+            Keyword::VALUE->value => $this->handleValueKey($range),
+            Keyword::ID->value => $this->handleIdKey($range),
             default => $this->addAttribute($range),
         };
     }
@@ -102,16 +101,43 @@ class PointerListener extends IdleListener implements PositionAwareInterface
     {
         match ($this->currentKey) {
             Keyword::TYPE->value => $this->currentType->updateType($range, $value),
-            Keyword::VALUE->value => $this->handleEntryValue($range, $value),
+            Keyword::VALUE->value => $this->handleValueEntry($range, $value),
+            Keyword::ID->value => $this->handleIdEntry($range, $value),
             default => $this->currentType->attributes[$this->currentKey]->valueRange = $range,
         };
     }
 
     private function addChild(Range $range): void
     {
-        $this->currentType->children[$this->currentNode] = $nestedType = new TypeNode(parent: $this->currentType);
-        $nestedType->type = new KeywordNode($range);
+        // TODO: handle ID keys: they will come BEFORE the type key, so the child will not be created. We need to get the ID, set it on the child, and unset it.
 
+        // If current node is an instance of TypeNode, this means the property holds a list of types.
+        if ($this->currentNode instanceof TypeNode) {
+            // Current node might be a TypeNode with no children yet.
+            if (!\count($this->currentType->children)) {
+                $this->currentType->children[] = $nestedType = new TypeNode(parent: $this->currentType);
+            } else {
+                $this->currentNode = array_key_last($this->currentType->children);
+
+                // Check if the value is already an array.
+                if (\is_array($this->currentType->children[$this->currentNode])) {
+                    $this->currentType->children[$this->currentNode] = [
+                        ...$this->currentType->children[$this->currentNode],
+                        $nestedType = new TypeNode(parent: $this->currentType),
+                    ];
+                } else {
+                    // If not, convert it to an array.
+                    $this->currentType->children[$this->currentNode] = [
+                        $this->currentType->children[$this->currentNode],
+                        $nestedType = new TypeNode(parent: $this->currentType),
+                    ];
+                }
+            }
+        } else {
+            $this->currentType->children[$this->currentNode] = $nestedType = new TypeNode(parent: $this->currentType);
+        }
+
+        $nestedType->type = new KeywordNode($range);
         $this->currentType = $nestedType;
         $this->currentNode = $nestedType;
     }
@@ -122,7 +148,7 @@ class PointerListener extends IdleListener implements PositionAwareInterface
         $this->currentNode = $this->currentKey;
     }
 
-    private function handleKeyValue(Range $range): void
+    private function handleValueKey(Range $range): void
     {
         if ($this->currentNode instanceof TypeNode) {
             $this->currentType->value = new KeywordNode($range);
@@ -131,10 +157,28 @@ class PointerListener extends IdleListener implements PositionAwareInterface
         }
     }
 
-    private function handleEntryValue(Range $range, mixed $value): void
+    private function handleIdKey(Range $range): void
+    {
+        if ($this->currentNode instanceof TypeNode) {
+            $this->currentType->id = new KeywordNode($range);
+        } else {
+            $this->currentType->attributes[$this->currentNode] = new AttributeNode($range);
+        }
+    }
+
+    private function handleValueEntry(Range $range, mixed $value): void
     {
         if ($this->currentNode instanceof TypeNode) {
             $this->currentType->updateValue($range, $value);
+        } else {
+            $this->currentType->attributes[$this->currentNode]->valueRange = $range;
+        }
+    }
+
+    private function handleIdEntry(Range $range, mixed $value): void
+    {
+        if ($this->currentNode instanceof TypeNode) {
+            $this->currentType->updateId($range, $value);
         } else {
             $this->currentType->attributes[$this->currentNode]->valueRange = $range;
         }

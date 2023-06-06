@@ -19,7 +19,6 @@ class KeywordNode
         public ?Range $keyRange = null,
         public ?Range $valueRange = null,
         public ?string $value = null,
-        public bool $isValid = true,
     ) {
     }
 }

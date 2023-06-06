@@ -1,40 +1,30 @@
-[
-  {
-    "@type": [
-      "http://schema.org/Recipe"
-    ],
-    "http://schema.org/author": [
-      {
-        "@type": [
-          "http://schema.org/Person"
-        ],
-        "http://schema.org/name": [
-          {
-            "@value": "Mary Stone"
-          }
-        ]
-      }
-    ],
-    "http://schema.org/datePublished": [
-      {
-        "@type": "http://schema.org/Date",
-        "@value": "2018-03-10"
-      }
-    ],
-    "http://schema.org/description": [
-      {
-        "@value": "This coffee cake is awesome and perfect for parties."
-      }
-    ],
-    "http://schema.org/name": [
-      {
-        "@value": "Party Coffee Cake"
-      }
-    ],
-    "http://schema.org/prepTime": [
-      {
-        "@value": "PT20M"
-      }
-    ]
-  }
-]
+{
+  "@context": {
+    "dc11": "http://purl.org/dc/elements/1.1/",
+    "ex": "http://example.org/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "ex:contains": {
+      "@type": "@id"
+    }
+  },
+  "@graph": [
+    {
+      "@id": "http://example.org/library",
+      "@type": "ex:Library",
+      "ex:contains": "http://example.org/library/the-republic"
+    },
+    {
+      "@id": "http://example.org/library/the-republic",
+      "@type": "ex:Book",
+      "ex:contains": "http://example.org/library/the-republic#introduction",
+      "dc11:creator": "Plato",
+      "dc11:title": "The Republic"
+    },
+    {
+      "@id": "http://example.org/library/the-republic#introduction",
+      "@type": "ex:Chapter",
+      "dc11:description": "An introductory chapter on The Republic.",
+      "dc11:title": "The Introduction"
+    }
+  ]
+}

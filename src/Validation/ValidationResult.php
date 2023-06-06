@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Jolicode\JsonLd\Validation;
 
 class ValidationResult
@@ -9,19 +18,12 @@ class ValidationResult
          * @var ValidationError|array<ValidationError>
          */
         private ValidationError|array $errors = [],
-
-        private ?object $type = null,
     ) {
-    }
-
-    public function setType(object $type): void
-    {
-        $this->type = $type;
     }
 
     public function isValid(): bool
     {
-        return count($this->errors) === 0;
+        return 0 === \count((array) $this->errors);
     }
 
     /**
@@ -32,9 +34,9 @@ class ValidationResult
         return (array) $this->errors;
     }
 
-    public function addError(string $message): void
+    public function addError(string $message, object $type): void
     {
-        $this->errors[] = new ValidationError($message);
+        $this->errors[] = new ValidationError($message, $type);
     }
 
     public function getErrorMessages(): array

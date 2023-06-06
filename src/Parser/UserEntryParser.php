@@ -11,30 +11,36 @@
 
 namespace Jolicode\JsonLd\Parser;
 
-use Jolicode\JsonLd\Algorithms\Expand\Expander;
-use Jolicode\JsonLd\Parser\Nodes\TypeNode;
 use JsonStreamingParser\Parser;
 
 class UserEntryParser
 {
-    public function parse(string $json, int $startLineNumber = 0): TypeNode
+    /**
+     * This method takes an expanded json string and builds a PHP representation of the JSON-LD document.
+     *
+     * @return array<TypeNode>
+     */
+    public function parse(array $expandedResult, int $startLineNumber = 0): array
     {
-        $expander = new Expander();
-        $expandedEntry = $expander->parseJson($json);
-
         $listener = new PointerListener($startLineNumber);
+        $typesRepresentations = [];
 
-        try {
-            $stream = fopen('php://memory', 'r+');
-            fwrite($stream, $expandedEntry);
-            rewind($stream);
+        foreach ($expandedResult as $type) {
+            try {
+                $stream = fopen('php://memory', 'r+');
+                fwrite($stream, json_encode($type, \JSON_PRETTY_PRINT));
+                rewind($stream);
 
-            $parser = new Parser($stream, $listener);
-            $parser->parse();
-        } catch (\Exception $e) {
-            throw $e;
+                $parser = new Parser($stream, $listener);
+                $parser->parse();
+            } catch (\Exception $e) {
+                throw $e;
+            }
+
+            $typesRepresentations[] = $listener->getRootType();
+            fclose($stream);
         }
 
-        return $listener->getRootType();
+        return $typesRepresentations;
     }
 }

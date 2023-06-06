@@ -18,6 +18,7 @@ class TypeNode
     public function __construct(
         public ?KeywordNode $type = null,
         public ?KeywordNode $value = null,
+        public ?KeywordNode $id = null,
 
         public ?self $parent = null,
 
@@ -43,5 +44,11 @@ class TypeNode
     {
         $this->value->valueRange = $range;
         $this->value->value = $value;
+    }
+
+    public function updateId(Range $range, string $value): void
+    {
+        $this->id->valueRange = $range;
+        $this->id->value = $value;
     }
 }

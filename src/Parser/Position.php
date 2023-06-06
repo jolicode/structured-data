@@ -16,7 +16,6 @@ class Position
     public function __construct(
         public int $line = 0,
         public int $column = 0,
-        public bool $approximative = false,
     ) {
     }
 }
