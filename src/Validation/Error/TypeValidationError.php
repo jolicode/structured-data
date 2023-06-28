@@ -9,18 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Validation;
+namespace Jolicode\JsonLd\Validation\Error;
 
-readonly class ValidationError
+readonly class TypeValidationError extends AbstractValidationError
 {
     public function __construct(
         public string $message,
-        private ?object $type = null,
-    ) {
-    }
+        public ?string $key,
 
-    public function setType(object $type): void
-    {
-        $this->type = $type;
+        /**
+         * @var array<string>
+         */
+        public array $parents = []
+    ) {
     }
 }

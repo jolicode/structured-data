@@ -11,7 +11,7 @@
 
 namespace Jolicode\JsonLd\Command\Validation;
 
-use Jolicode\JsonLd\Parser\UserEntryParser;
+use Jolicode\JsonLd\Validation\SchemaOrg\SchemaOrgValidator;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -19,7 +19,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
     name: 'validate',
-    description: 'Validate a JSON-LD file or string',
+    description: 'Validate that a JSON-LD file or string complies to Schema.org',
 )]
 class ValidateSchemaOrgCommand extends Command
 {
@@ -30,8 +30,8 @@ class ValidateSchemaOrgCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $sourceMapper = new UserEntryParser();
-        $sourceMapper->parse(file_get_contents($input->getArgument('document')));
+        $validator = new SchemaOrgValidator();
+        $validator->validate($input->getArgument('document'));
 
         return Command::SUCCESS;
     }

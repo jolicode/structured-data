@@ -118,10 +118,16 @@ class ElementsContainer
         return [...$this->types, ...$this->properties, ...$this->enumerationMembers];
     }
 
+    public function finish(): void
+    {
+        $this->mapPropertiesToTypes();
+        $this->mapEnumerationMembersToTypes();
+    }
+
     public function mapPropertiesToTypes(): void
     {
         foreach ($this->getProperties() as $property) {
-            foreach ($property->inType as $typeName) {
+            foreach ($property->possibleTypes as $typeName) {
                 $this->getType($typeName)->addProperty($property);
             }
         }

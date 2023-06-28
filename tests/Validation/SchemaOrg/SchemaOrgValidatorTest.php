@@ -34,11 +34,13 @@ class SchemaOrgValidatorTest extends TestCase
         $json = file_get_contents($document);
         $validationResult = $this->validator->validate($json);
 
+        if (!$validationResult->isValid()) {
+            dump($validationResult->getErrors());
+        }
+
         $this->assertSame($isValid, $validationResult->isValid());
 
         if (!$isValid) {
-            dump($validationResult->getErrorMessages());
-
             foreach ($messages as $expectedMessage) {
                 $this->assertContains($expectedMessage, $validationResult->getErrorMessages());
             }
@@ -110,6 +112,16 @@ class SchemaOrgValidatorTest extends TestCase
             'document' => __DIR__ . '/fixtures/no-type.jsonld',
             'isValid' => false,
             'messages' => ['This type misses a @type property'],
+        ];
+        yield 'Test parent attributes are working' => [
+            'document' => __DIR__ . '/fixtures/valid-parent-attribute.jsonld',
+            'isValid' => true,
+            'messages' => [],
+        ];
+        yield 'Test wrong parent attribute' => [
+            'document' => __DIR__ . '/fixtures/wrong-parent-attribute.jsonld',
+            'isValid' => false,
+            'messages' => ['The "makesOffer" attribute does not accept the "Intangible" type as a value'],
         ];
     }
 }

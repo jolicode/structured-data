@@ -47,7 +47,7 @@ class Extractor
 
     public function __construct(
         private Filesystem $filesystem = new Filesystem(),
-        private Generator $Generator = new Generator(),
+        private Generator $generator = new Generator(),
         private Standard $printer = new Standard(),
     ) {
     }
@@ -64,7 +64,7 @@ class Extractor
         $schemaOrgData = json_decode(file_get_contents(self::CACHE_FILE), true);
         $container = $this->createContainer($schemaOrgData[self::KEY_GRAPH]);
 
-        $this->Generator->writeFile(
+        $this->generator->writeFile(
             $container,
             $this->filesystem,
             $this->printer,
@@ -84,8 +84,7 @@ class Extractor
             };
         }
 
-        $container->mapPropertiesToTypes();
-        $container->mapEnumerationMembersToTypes();
+        $container->finish();
 
         return $container;
     }

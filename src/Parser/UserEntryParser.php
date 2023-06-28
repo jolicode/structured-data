@@ -11,6 +11,7 @@
 
 namespace Jolicode\JsonLd\Parser;
 
+use Jolicode\JsonLd\Parser\Nodes\TypeNode;
 use JsonStreamingParser\Parser;
 
 class UserEntryParser

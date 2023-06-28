@@ -27,12 +27,12 @@ class Property extends AsbtractSchemaOrgElement
         /**
          * @var array<string>
          */
-        public array $parents,
+        public array $possibleTypes,
 
         /**
          * @var array<string>
          */
-        public array $inType,
+        public array $possibleValues,
     ) {
     }
 
@@ -44,45 +44,26 @@ class Property extends AsbtractSchemaOrgElement
             name: $rawType[Extractor::KEY_ID],
             description: $rawType[Extractor::RDFS_COMMENT],
             label: $rawType[Extractor::RDFS_LABEL],
-            parents: self::getPossibleParents($rawType),
-            inType: self::getIncludedTypes($rawType),
+            possibleTypes: self::findPossibleEntries($rawType, self::INCLUDE_DOMAIN),
+            possibleValues: self::findPossibleEntries($rawType, self::INCLUDE_RANGE),
             className: self::getClassName($rawType[Extractor::RDFS_LABEL]),
         );
     }
 
-    private static function getPossibleParents(array $rawType): array
+    private static function findPossibleEntries(array $rawType, string $keyword): array
     {
-        if (\array_key_exists(self::INCLUDE_RANGE, $rawType)) {
-            if (\array_key_exists(Extractor::KEY_ID, $rawType[self::INCLUDE_RANGE])) {
-                return [$rawType[self::INCLUDE_RANGE][Extractor::KEY_ID]];
+        if (\array_key_exists($keyword, $rawType)) {
+            if (\array_key_exists(Extractor::KEY_ID, $rawType[$keyword])) {
+                return [$rawType[$keyword][Extractor::KEY_ID]];
             }
 
-            $parents = [];
+            $values = [];
 
-            foreach ($rawType[self::INCLUDE_RANGE] as $type) {
-                $parents[] = $type[Extractor::KEY_ID];
+            foreach ($rawType[$keyword] as $type) {
+                $values[] = $type[Extractor::KEY_ID];
             }
 
-            return $parents;
-        }
-
-        return [];
-    }
-
-    private static function getIncludedTypes(array $rawType): array
-    {
-        if (\array_key_exists(self::INCLUDE_DOMAIN, $rawType)) {
-            if (\array_key_exists(Extractor::KEY_ID, $rawType[self::INCLUDE_DOMAIN])) {
-                return [$rawType[self::INCLUDE_DOMAIN][Extractor::KEY_ID]];
-            }
-
-            $inType = [];
-
-            foreach ($rawType[self::INCLUDE_DOMAIN] as $domain) {
-                $inType[] = $domain[Extractor::KEY_ID];
-            }
-
-            return $inType;
+            return $values;
         }
 
         return [];

@@ -44,7 +44,7 @@ class PointerListener extends IdleListener implements PositionAwareInterface
 
     public function endDocument(): void
     {
-        $this->rootType = end($this->rootType->children);
+        $this->rootType = end($this->rootType->children) ?: null;
     }
 
     public function endObject(): void
@@ -119,19 +119,10 @@ class PointerListener extends IdleListener implements PositionAwareInterface
             } else {
                 $this->currentNode = array_key_last($this->currentType->children);
 
-                // Check if the value is already an array.
-                if (\is_array($this->currentType->children[$this->currentNode])) {
-                    $this->currentType->children[$this->currentNode] = [
-                        ...$this->currentType->children[$this->currentNode],
-                        $nestedType = new TypeNode(parent: $this->currentType),
-                    ];
-                } else {
-                    // If not, convert it to an array.
-                    $this->currentType->children[$this->currentNode] = [
-                        $this->currentType->children[$this->currentNode],
-                        $nestedType = new TypeNode(parent: $this->currentType),
-                    ];
-                }
+                $this->currentType->children[$this->currentNode] = [
+                    $this->currentType->children[$this->currentNode],
+                    $nestedType = new TypeNode(parent: $this->currentType),
+                ];
             }
         } else {
             $this->currentType->children[$this->currentNode] = $nestedType = new TypeNode(parent: $this->currentType);

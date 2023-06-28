@@ -11,13 +11,16 @@
 
 namespace Jolicode\JsonLd\Validation;
 
+use Jolicode\JsonLd\Validation\Error\AbstractValidationError;
+use Jolicode\JsonLd\Validation\Error\TypeValidationError;
+
 class ValidationResult
 {
     public function __construct(
         /**
-         * @var ValidationError|array<ValidationError>
+         * @var AbstractValidationError|array<AbstractValidationError>
          */
-        private ValidationError|array $errors = [],
+        private AbstractValidationError|array $errors = [],
     ) {
     }
 
@@ -27,22 +30,22 @@ class ValidationResult
     }
 
     /**
-     * @return array<ValidationError>
+     * @return array<AbstractValidationError>
      */
     public function getErrors(): array
     {
         return (array) $this->errors;
     }
 
-    public function addError(string $message, object $type): void
+    public function addTypeError(string $message, ?string $key, array $parents = []): void
     {
-        $this->errors[] = new ValidationError($message, $type);
+        $this->errors[] = new TypeValidationError($message, $key, $parents);
     }
 
     public function getErrorMessages(): array
     {
         return array_map(
-            fn (ValidationError $error) => $error->message,
+            fn (AbstractValidationError $error) => $error->message,
             $this->getErrors()
         );
     }

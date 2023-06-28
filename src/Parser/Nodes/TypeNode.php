@@ -23,7 +23,7 @@ class TypeNode
         public ?self $parent = null,
 
         /**
-         * @var array<string, Type>
+         * @var array<string, TypeNode>
          */
         public array $children = [],
 

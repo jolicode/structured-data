@@ -25,6 +25,10 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class Generator
 {
+    private const NAMESPACE_TYPE = 'SchemaOrg\\Type';
+    private const NAMESPACE_PROPERTY = 'SchemaOrg\\Property';
+    private const NAMESPACE_ENUMERATION_MEMBER = 'SchemaOrg\\EnumerationMember';
+
     public function writeFile(ElementsContainer $container, Filesystem $filesystem, Standard $printer): void
     {
         foreach ($container->getAllElements() as $element) {
@@ -64,7 +68,7 @@ class Generator
         $factory = new BuilderFactory();
 
         $node = $factory
-            ->namespace('SchemaOrg\\Type')
+            ->namespace(self::NAMESPACE_TYPE)
             ->addStmt($factory->use('SchemaOrg\\Property'));
 
         $constructor = $factory->method('__construct')
@@ -86,6 +90,7 @@ class Generator
                     ->makePublic()
             );
 
+        /* ADD THE PROPERTIES */
         usort($type->properties, fn (Property $a, Property $b) => $a->label <=> $b->label);
 
         foreach ($type->properties as $property) {
@@ -97,6 +102,27 @@ class Generator
             );
         }
 
+        /** ADD THE PARENTS */
+        $parents = [];
+
+        foreach ($type->parents as $parent) {
+            $className = AsbtractSchemaOrgElement::getClassName($parent);
+            $fqcn = sprintf('%s\\%s', self::NAMESPACE_TYPE, $className);
+            $parents[] = new Expr\ArrayItem(
+                new Scalar\String_($fqcn),
+                new Scalar\String_($className),
+            );
+        }
+
+        /* @phpstan-ignore-next-line */
+        usort($parents, fn ($a, $b) => $a->value->value <=> $b->value->value);
+
+        $class->addStmt(
+            $factory->classConst('PARENTS', $parents)
+                ->makePublic()
+        );
+
+        /** ADD THE ENUMERATION MEMBERS */
         $enumerationMembers = [];
 
         foreach ($type->enumerationMembers as $enumerationMember) {
@@ -122,11 +148,10 @@ class Generator
 
     private function generateProperty(Property $property): Stmt\Namespace_
     {
-        $namespace = 'SchemaOrg\\Property';
         $factory = new BuilderFactory();
 
         $node = $factory
-            ->namespace($namespace);
+            ->namespace(self::NAMESPACE_PROPERTY);
 
         $class = $factory
             ->class($property->className)
@@ -144,22 +169,22 @@ class Generator
                     ->makePublic()
             );
 
-        $parents = [];
+        $possibleValues = [];
 
-        foreach ($property->parents as $parent) {
-            $className = AsbtractSchemaOrgElement::getClassName($parent);
-            $fqcn = sprintf('%s\\%s', $namespace, $className);
-            $parents[] = new Expr\ArrayItem(
+        foreach ($property->possibleValues as $value) {
+            $className = AsbtractSchemaOrgElement::getClassName($value);
+            $fqcn = sprintf('%s\\%s', self::NAMESPACE_TYPE, $className);
+            $possibleValues[] = new Expr\ArrayItem(
                 new Scalar\String_($fqcn),
                 new Scalar\String_($className),
             );
         }
 
         /* @phpstan-ignore-next-line */
-        usort($parents, fn ($a, $b) => $a->value->value <=> $b->value->value);
+        usort($possibleValues, fn ($a, $b) => $a->value->value <=> $b->value->value);
 
         $class->addStmt(
-            $factory->classConst('POSSIBLE_PARENTS', $parents)
+            $factory->classConst('VALUES', $possibleValues)
                 ->makePublic()
         );
 
@@ -170,11 +195,10 @@ class Generator
 
     private function generateEnumerationMember(EnumerationMember $enumerationMember): Stmt\Namespace_
     {
-        $namespace = 'SchemaOrg\\EnumerationMember';
         $factory = new BuilderFactory();
 
         $node = $factory
-            ->namespace($namespace);
+            ->namespace(self::NAMESPACE_ENUMERATION_MEMBER);
 
         $class = $factory
             ->class($enumerationMember->className)
