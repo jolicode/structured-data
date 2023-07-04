@@ -16,6 +16,7 @@ use Jolicode\JsonLd\Command\Algorithms\ExpandCommand;
 use Jolicode\JsonLd\Command\Algorithms\FlattenCommand;
 use Jolicode\JsonLd\Command\Algorithms\ResetFixturesCommand;
 use Jolicode\JsonLd\Command\Generator\GenerateCommand;
+use Jolicode\JsonLd\Command\Validation\TestRioPointerListenerCommand;
 use Symfony\Component\Console\Application;
 
 $application = new Application('structured-data-validator');
@@ -23,5 +24,6 @@ $application->add(new FlattenCommand());
 $application->add(new ExpandCommand());
 $application->add(new ResetFixturesCommand());
 $application->add(new GenerateCommand());
+$application->add(new TestRioPointerListenerCommand());
 
 $application->run();

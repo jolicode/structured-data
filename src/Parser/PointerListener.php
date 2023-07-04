@@ -11,49 +11,42 @@
 
 namespace Jolicode\JsonLd\Parser;
 
-use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Jolicode\JsonLd\Parser\Nodes\AttributeNode;
-use Jolicode\JsonLd\Parser\Nodes\KeywordNode;
-use Jolicode\JsonLd\Parser\Nodes\TypeNode;
+use Jolicode\JsonLd\Parser\DataStructures\AbstractStructure;
+use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
+use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
 use JsonStreamingParser\Listener\IdleListener;
 use JsonStreamingParser\Listener\PositionAwareInterface;
 
 class PointerListener extends IdleListener implements PositionAwareInterface
 {
     public function __construct(
-        private ?int $currentColumn = null,
-        private ?int $currentLine = null,
-        private ?TypeNode $rootType = null,
-        private ?TypeNode $currentType = null,
-        private string|int|null $currentKey = null,
-        private TypeNode|string|null $currentNode = null,
+        private int $startLineNumber = 0,
+        private int $currentColumn = 0,
+        private int $currentLine = 0,
+
+        private ?AbstractStructure $currentStructure = null,
     ) {
     }
 
-    public function getRootType(): TypeNode
+    public function getResult(): AbstractStructure
     {
-        return $this->rootType;
+        return $this->currentStructure;
     }
 
-    public function startDocument(): void
+    public function startObject(): void
     {
-        $this->currentColumn = 0;
-        $this->rootType = new TypeNode();
-        $this->currentType = $this->rootType;
-    }
+        $newObject = new ObjectStructure($this->currentStructure);
 
-    public function endDocument(): void
-    {
-        $this->rootType = end($this->rootType->children) ?: null;
+        if ($this->currentStructure) {
+            $this->currentStructure->addValue($newObject, new Range($this->getCurrentPosition(), null));
+        }
+
+        $this->currentStructure = $newObject;
     }
 
     public function endObject(): void
     {
-        if ($this->currentNode === $this->currentType) {
-            $this->currentType = $this->currentType->parent;
-        } else {
-            $this->currentNode = $this->currentType;
-        }
+        $this->endStructure();
     }
 
     public function setFilePosition(int $lineNumber, int $charNumber): void
@@ -62,116 +55,52 @@ class PointerListener extends IdleListener implements PositionAwareInterface
         $this->currentColumn = $charNumber;
     }
 
-    public function key(string|int $key): void
+    public function startArray(): void
     {
-        $end = $this->getCurrentPosition();
-        $start = clone $end;
-        $start->column -= \strlen($key);
+        $newArray = new ArrayStructure($this->currentStructure);
 
-        $this->currentKey = $key;
+        if ($this->currentStructure) {
+            $this->currentStructure->addValue($newArray, new Range($this->getCurrentPosition(), null));
+        }
 
-        $this->handleNewKey(new Range($start, $end));
+        $this->currentStructure = $newArray;
     }
 
-    public function value(mixed $value): void
+    public function endArray(): void
+    {
+        $this->endStructure();
+    }
+
+    public function key(string $key): void
+    {
+        if ($this->currentStructure instanceof ObjectStructure) {
+            $endPosition = $this->getCurrentPosition();
+            $startPosition = clone $endPosition;
+            $startPosition->column -= \strlen($key);
+
+            $this->currentStructure->addKey($key, new Range($startPosition, $endPosition));
+        }
+    }
+
+    public function value($value): void
     {
         $end = $this->getCurrentPosition();
         $start = clone $end;
         $start->column -= \strlen($value);
 
-        $this->handleNewValue($value, new Range($start, $end));
+        $this->currentStructure->addValue($value, new Range($start, $end));
     }
 
-    private function getCurrentPosition(): Position
+    private function endStructure(): void
     {
-        return new Position($this->currentLine, $this->currentColumn);
-    }
-
-    private function handleNewKey(Range $range): void
-    {
-        match ($this->currentKey) {
-            Keyword::TYPE->value => $this->addChild($range),
-            Keyword::VALUE->value => $this->handleValueKey($range),
-            Keyword::ID->value => $this->handleIdKey($range),
-            default => $this->addAttribute($range),
-        };
-    }
-
-    private function handleNewValue(string $value, Range $range): void
-    {
-        match ($this->currentKey) {
-            Keyword::TYPE->value => $this->currentType->updateType($range, $value),
-            Keyword::VALUE->value => $this->handleValueEntry($range, $value),
-            Keyword::ID->value => $this->handleIdEntry($range, $value),
-            default => $this->currentType->attributes[$this->currentKey]->valueRange = $range,
-        };
-    }
-
-    private function addChild(Range $range): void
-    {
-        // TODO: handle ID keys: they will come BEFORE the type key, so the child will not be created. We need to get the ID, set it on the child, and unset it.
-
-        // If current node is an instance of TypeNode, this means the property holds a list of types.
-        if ($this->currentNode instanceof TypeNode) {
-            // Current node might be a TypeNode with no children yet.
-            if (!\count($this->currentType->children)) {
-                $this->currentType->children[] = $nestedType = new TypeNode(parent: $this->currentType);
-            } else {
-                $this->currentNode = array_key_last($this->currentType->children);
-
-                $this->currentType->children[$this->currentNode] = [
-                    $this->currentType->children[$this->currentNode],
-                    $nestedType = new TypeNode(parent: $this->currentType),
-                ];
-            }
-        } else {
-            $this->currentType->children[$this->currentNode] = $nestedType = new TypeNode(parent: $this->currentType);
-        }
-
-        $nestedType->type = new KeywordNode($range);
-        $this->currentType = $nestedType;
-        $this->currentNode = $nestedType;
-    }
-
-    private function addAttribute(Range $range): void
-    {
-        $this->currentType->attributes[$this->currentKey] = new AttributeNode($range);
-        $this->currentNode = $this->currentKey;
-    }
-
-    private function handleValueKey(Range $range): void
-    {
-        if ($this->currentNode instanceof TypeNode) {
-            $this->currentType->value = new KeywordNode($range);
-        } else {
-            $this->currentType->attributes[$this->currentNode] = new AttributeNode($range);
+        if ($this->currentStructure->belongsTo) {
+            $this->currentStructure->belongsTo->getLastValue()->range->end = $this->getCurrentPosition();
+            $this->currentStructure = $this->currentStructure->belongsTo;
         }
     }
 
-    private function handleIdKey(Range $range): void
+    private function getCurrentPosition()
     {
-        if ($this->currentNode instanceof TypeNode) {
-            $this->currentType->id = new KeywordNode($range);
-        } else {
-            $this->currentType->attributes[$this->currentNode] = new AttributeNode($range);
-        }
-    }
-
-    private function handleValueEntry(Range $range, mixed $value): void
-    {
-        if ($this->currentNode instanceof TypeNode) {
-            $this->currentType->updateValue($range, $value);
-        } else {
-            $this->currentType->attributes[$this->currentNode]->valueRange = $range;
-        }
-    }
-
-    private function handleIdEntry(Range $range, mixed $value): void
-    {
-        if ($this->currentNode instanceof TypeNode) {
-            $this->currentType->updateId($range, $value);
-        } else {
-            $this->currentType->attributes[$this->currentNode]->valueRange = $range;
-        }
+        return new Position($this->currentLine + $this->startLineNumber, $this->currentColumn, $this->startLineNumber < 0);
     }
 }

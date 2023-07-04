@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Parser\Nodes;
+namespace Jolicode\JsonLd\Parser\KeyValues;
 
+use Jolicode\JsonLd\Parser\DataStructures\AbstractStructure;
 use Jolicode\JsonLd\Parser\Range;
 
-class KeywordNode
+class Value
 {
     public function __construct(
-        public ?Range $keyRange = null,
-        public ?Range $valueRange = null,
-        public ?string $value = null,
+        public readonly AbstractStructure|string|bool|null $content,
+        public readonly Range $range,
     ) {
     }
 }

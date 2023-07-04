@@ -11,37 +11,32 @@
 
 namespace Jolicode\JsonLd\Parser;
 
+use Jolicode\JsonLd\Parser\DataStructures\AbstractStructure;
 use Jolicode\JsonLd\Parser\Nodes\TypeNode;
 use JsonStreamingParser\Parser;
 
 class UserEntryParser
 {
     /**
-     * This method takes an expanded json string and builds a PHP representation of the JSON-LD document.
+     * This method takes a json_encoded user input and builds a PHP representation of the JSON-LD document.
      *
      * @return array<TypeNode>
      */
-    public function parse(array $expandedResult, int $startLineNumber = 0): array
+    public function parse(string $json): AbstractStructure
     {
-        $listener = new PointerListener($startLineNumber);
-        $typesRepresentations = [];
+        $listener = new PointerListener();
 
-        foreach ($expandedResult as $type) {
-            try {
-                $stream = fopen('php://memory', 'r+');
-                fwrite($stream, json_encode($type, \JSON_PRETTY_PRINT));
-                rewind($stream);
+        try {
+            $stream = fopen('php://memory', 'r+');
+            fwrite($stream, $json);
+            rewind($stream);
 
-                $parser = new Parser($stream, $listener);
-                $parser->parse();
-            } catch (\Exception $e) {
-                throw $e;
-            }
-
-            $typesRepresentations[] = $listener->getRootType();
-            fclose($stream);
+            $parser = new Parser($stream, $listener);
+            $parser->parse();
+        } catch (\Exception $e) {
+            throw $e;
         }
 
-        return $typesRepresentations;
+        return $listener->getResult();
     }
 }

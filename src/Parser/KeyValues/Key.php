@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Parser\Nodes;
+namespace Jolicode\JsonLd\Parser\KeyValues;
 
 use Jolicode\JsonLd\Parser\Range;
 
-class AttributeNode
+class Key
 {
     public function __construct(
-        public ?Range $keyRange = null,
-        public ?Range $valueRange = null,
+        public readonly string $name,
+        public readonly Range $range,
     ) {
     }
 }
