@@ -27,7 +27,7 @@ class SchemaOrgValidator
     /**
      * @var string[]
      */
-    private array $ascendantsKeys = [];
+    private array $typesStack = [];
 
     public function __construct(
         readonly private ValidationResult $validationResult = new ValidationResult(),
@@ -50,17 +50,19 @@ class SchemaOrgValidator
         }
 
         foreach ($expansionResult as $type) {
-            $this->validateJsonLdType($type);
+            $this->validateSchemaOrgType($type);
         }
 
         return $this->validationResult;
     }
 
-    private function validateJsonLdType(\stdClass $type, string $attributeKey = null): void
+    private function validateSchemaOrgType(\stdClass $type, string $attributeKey = null): void
     {
-        if (!$typeModel = $this->getTypeModel($type, validateType: true)) {
+        if (!$typeModel = $this->getTypeModel($type, throwErrors: true)) {
             return;
         }
+
+        // dd($typeModel::LABEL, $type);
 
         $ascendantAlreadyDeclared = false;
 
@@ -72,15 +74,15 @@ class SchemaOrgValidator
             $propertyName = $this->getPropertyName($key);
             $propertyClass = sprintf('SchemaOrg\\Property\\%sModel', ucfirst($propertyName));
 
-            $this->validateProperty($propertyName, $propertyClass, $typeModel, $value[0]);
+            $this->validateSchemaOrgProperty($propertyName, $propertyClass, $typeModel, $value[0]);
 
             if ($this->isTypeObject($value[0])) {
                 if ($attributeKey && !$ascendantAlreadyDeclared) {
                     $ascendantAlreadyDeclared = true;
-                    array_unshift($this->ascendantsKeys, $this->getPropertyName($attributeKey));
+                    array_unshift($this->typesStack, $this->getPropertyName($attributeKey));
                 }
 
-                $this->validateJsonLdType($value[0], $key);
+                $this->validateSchemaOrgType($value[0], $key);
             }
         }
     }
@@ -95,11 +97,11 @@ class SchemaOrgValidator
         return property_exists($entry, Keyword::TYPE->value);
     }
 
-    private function getTypeModel(\stdClass $type, bool $validateType = false): false|object
+    private function getTypeModel(\stdClass $type, bool $throwErrors = false): false|object
     {
         if (!$this->isTypeObject($type)) {
-            if ($validateType) {
-                $this->validationResult->addTypeError('This type misses a @type property', Keyword::TYPE->value, $this->ascendantsKeys);
+            if ($throwErrors) {
+                $this->validationResult->addTypeError('This type misses a @type property', Keyword::TYPE->value, $this->typesStack);
             }
 
             return false;
@@ -110,8 +112,8 @@ class SchemaOrgValidator
         $typeFqcn = sprintf('SchemaOrg\\Type\\%sModel', $typeShortName);
 
         if (!class_exists($typeFqcn)) {
-            if ($validateType) {
-                $this->validationResult->addTypeError(sprintf('This type is not a valid Schema.org type: %s', $typeShortName), Keyword::TYPE->value, $this->ascendantsKeys);
+            if ($throwErrors) {
+                $this->validationResult->addTypeError(sprintf('This type is not a valid Schema.org type: %s', $typeShortName), Keyword::TYPE->value, $this->typesStack);
             }
 
             return false;
@@ -120,27 +122,27 @@ class SchemaOrgValidator
         return new $typeFqcn();
     }
 
-    private function validateProperty(string $propertyName, string $propertyClass, object $typeModel, \stdClass $propertyValue): void
+    private function validateSchemaOrgProperty(string $propertyName, string $propertyClass, object $typeModel, \stdClass $propertyValue): void
     {
         if ($this->isTypeObject($propertyValue)) {
-            // If the type is invalid, we cannot validate it. We do nothing here because the validation errors will be added by the validateJsonLdType method.
+            // If the type is invalid, we cannot validate it. We do nothing here because the validation errors will be added by the validateSchemaOrgType method.
             if ($nestedType = $this->getTypeModel($propertyValue)) {
                 if (!$this->propertyTypeIsValid($propertyClass, $nestedType)) {
                     $this->validationResult->addTypeError(
                         sprintf('The "%s" attribute does not accept the "%s" type as a value', $propertyName, $nestedType::LABEL),
                         $propertyName,
-                        $this->ascendantsKeys
+                        $this->typesStack
                     );
                 }
             }
         }
 
         if (!class_exists($propertyClass)) {
-            $this->validationResult->addTypeError(sprintf('This property does not exist in Schema.org: %s', $propertyName), $propertyName, $this->ascendantsKeys);
+            $this->validationResult->addTypeError(sprintf('This property does not exist in Schema.org: %s', $propertyName), $propertyName, $this->typesStack);
         }
 
         if (!$this->propertyExistsOnType($propertyName, $typeModel)) {
-            $this->validationResult->addTypeError(sprintf('The property "%s" does not exist on the type "%s"', $propertyName, $typeModel::LABEL), $propertyName, $this->ascendantsKeys);
+            $this->validationResult->addTypeError(sprintf('The property "%s" does not exist on the type "%s"', $propertyName, $typeModel::LABEL), $propertyName, $this->typesStack);
         }
     }
 
