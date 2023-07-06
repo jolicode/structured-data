@@ -13,7 +13,7 @@ namespace Jolicode\JsonLd\Tests\Algorithms;
 
 use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesManager;
+use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
 use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
 
 /**
@@ -42,7 +42,7 @@ class FlattenerTest extends AbstractJsonLdTestCase
 
     protected function getAlgorithmName(): string
     {
-        return FixturesManager::ALGO_FLATTEN;
+        return FixturesInstaller::ALGO_FLATTEN;
     }
 
     protected function getExpectedErrorMessage(string $filename): string

@@ -19,11 +19,11 @@ install: ## Install dependencies
 test: ## Run the tests
 	php -d memory_limit=-1 vendor/bin/phpunit tests
 
-reset_test: ## Delete the test files and reinstall them
-	bin/json-ld reset-fixtures --reset
+reset_fixtures: ## Delete the test files and reinstall them
+	bin/json-ld remove-fixtures --reset
 
-delete_test: ## Delete all test files
-	bin/json-ld reset-fixtures
+delete_fixtures: ## Delete all test files
+	bin/json-ld remove-fixtures
 
 bench: ## Run the benchmark
 	vendor/bin/phpbench run tests/Benchmark --report=aggregate

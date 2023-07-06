@@ -4,7 +4,7 @@ namespace Jolicode\JsonLd\Tests\Algorithms\Benchmark;
 
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesManager;
+use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
 use Jolicode\JsonLd\Tests\Algorithms\Benchmark\AbstractJsonLdBench;
 
 class ExpanderBench extends AbstractJsonLdBench
@@ -47,7 +47,7 @@ class ExpanderBench extends AbstractJsonLdBench
 
     protected function getAlgorithmName(): string
     {
-        return FixturesManager::ALGO_EXPAND;
+        return FixturesInstaller::ALGO_EXPAND;
     }
 
     private function expandJsonFile(string $filename): void

@@ -59,10 +59,10 @@ make test
 We also provide a way of removing or resetting the test files if you have issues with them.
 To remove them, run
 ```bash
-make delete_test
+make delete_fixtures
 ```
 
 To reset them, run
 ```bash
-make reset_test
+make reset_fixtures
 ```

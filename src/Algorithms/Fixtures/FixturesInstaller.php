@@ -17,7 +17,7 @@ use Monolog\Logger;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
-class FixturesManager
+class FixturesInstaller
 {
     public const ALGO_PROCESS_CONTEXT = 'context';
     public const ALGO_FLATTEN = 'flatten';

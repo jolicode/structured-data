@@ -29,6 +29,11 @@ class Generator
     private const NAMESPACE_PROPERTY = 'SchemaOrg\\Property';
     private const NAMESPACE_ENUMERATION_MEMBER = 'SchemaOrg\\EnumerationMember';
 
+    public function __construct(
+        private BuilderFactory $factory = new BuilderFactory(),
+    ) {
+    }
+
     public function writeFile(ElementsContainer $container, Filesystem $filesystem, Standard $printer): void
     {
         foreach ($container->getAllElements() as $element) {
@@ -65,28 +70,26 @@ class Generator
 
     private function generateType(Type $type): Stmt\Namespace_
     {
-        $factory = new BuilderFactory();
-
-        $node = $factory
+        $node = $this->factory
             ->namespace(self::NAMESPACE_TYPE)
-            ->addStmt($factory->use('SchemaOrg\\Property'));
+            ->addStmt($this->factory->use('SchemaOrg\\Property'));
 
-        $constructor = $factory->method('__construct')
+        $constructor = $this->factory->method('__construct')
             ->makePublic();
 
-        $class = $factory
+        $class = $this->factory
             ->class($type->className)
             ->makeFinal()
             ->addStmt(
-                $factory->classConst('DESCRIPTION', $type->description)
+                $this->factory->classConst('DESCRIPTION', $type->description)
                     ->makePublic()
             )
             ->addStmt(
-                $factory->classConst('LABEL', $type->label)
+                $this->factory->classConst('LABEL', $type->label)
                     ->makePublic()
             )
             ->addStmt(
-                $factory->classConst('NAME', $type->name)
+                $this->factory->classConst('NAME', $type->name)
                     ->makePublic()
             );
 
@@ -95,7 +98,7 @@ class Generator
 
         foreach ($type->properties as $property) {
             $constructor->addParam(
-                $factory->param($property->label)
+                $this->factory->param($property->label)
                     ->makePublic()
                     ->setType(sprintf('?Property\\%s', $property->className))
                     ->setDefault(null)
@@ -118,7 +121,7 @@ class Generator
         usort($parents, fn ($a, $b) => $a->value->value <=> $b->value->value);
 
         $class->addStmt(
-            $factory->classConst('PARENTS', $parents)
+            $this->factory->classConst('PARENTS', $parents)
                 ->makePublic()
         );
 
@@ -136,7 +139,7 @@ class Generator
         usort($enumerationMembers, fn ($a, $b) => $a->value->value <=> $b->value->value);
 
         $class->addStmt(
-            $factory->classConst('ENUMERATION_MEMBERS', new Expr\Array_($enumerationMembers))
+            $this->factory->classConst('ENUMERATION_MEMBERS', new Expr\Array_($enumerationMembers))
                 ->makePublic()
         );
 
@@ -148,24 +151,22 @@ class Generator
 
     private function generateProperty(Property $property): Stmt\Namespace_
     {
-        $factory = new BuilderFactory();
-
-        $node = $factory
+        $node = $this->factory
             ->namespace(self::NAMESPACE_PROPERTY);
 
-        $class = $factory
+        $class = $this->factory
             ->class($property->className)
             ->makeFinal()
             ->addStmt(
-                $factory->classConst('DESCRIPTION', $property->description)
+                $this->factory->classConst('DESCRIPTION', $property->description)
                     ->makePublic()
             )
             ->addStmt(
-                $factory->classConst('LABEL', $property->label)
+                $this->factory->classConst('LABEL', $property->label)
                     ->makePublic()
             )
             ->addStmt(
-                $factory->classConst('NAME', $property->name)
+                $this->factory->classConst('NAME', $property->name)
                     ->makePublic()
             );
 
@@ -184,7 +185,7 @@ class Generator
         usort($possibleValues, fn ($a, $b) => $a->value->value <=> $b->value->value);
 
         $class->addStmt(
-            $factory->classConst('VALUES', $possibleValues)
+            $this->factory->classConst('VALUES', $possibleValues)
                 ->makePublic()
         );
 
@@ -195,24 +196,22 @@ class Generator
 
     private function generateEnumerationMember(EnumerationMember $enumerationMember): Stmt\Namespace_
     {
-        $factory = new BuilderFactory();
-
-        $node = $factory
+        $node = $this->factory
             ->namespace(self::NAMESPACE_ENUMERATION_MEMBER);
 
-        $class = $factory
+        $class = $this->factory
             ->class($enumerationMember->className)
             ->makeFinal()
             ->addStmt(
-                $factory->classConst('DESCRIPTION', $enumerationMember->description)
+                $this->factory->classConst('DESCRIPTION', $enumerationMember->description)
                     ->makePublic()
             )
             ->addStmt(
-                $factory->classConst('LABEL', $enumerationMember->label)
+                $this->factory->classConst('LABEL', $enumerationMember->label)
                     ->makePublic()
             )
             ->addStmt(
-                $factory->classConst('NAME', $enumerationMember->name)
+                $this->factory->classConst('NAME', $enumerationMember->name)
                     ->makePublic()
             );
 

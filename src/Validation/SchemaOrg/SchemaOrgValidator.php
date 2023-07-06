@@ -62,8 +62,6 @@ class SchemaOrgValidator
             return;
         }
 
-        // dd($typeModel::LABEL, $type);
-
         $ascendantAlreadyDeclared = false;
 
         foreach ($type as $key => $value) {

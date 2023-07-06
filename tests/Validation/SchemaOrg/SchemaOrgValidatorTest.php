@@ -111,7 +111,7 @@ class SchemaOrgValidatorTest extends TestCase
         yield 'Test nested bad attribute is invalid bis' => [
             'document' => __DIR__ . '/fixtures/bad-attribute-nested-2.jsonld',
             'isValid' => false,
-            'messages' => ['todo...'],
+            'messages' => [],
         ];
         yield 'Test missing type entry is invalid' => [
             'document' => __DIR__ . '/fixtures/no-type.jsonld',

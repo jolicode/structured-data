@@ -13,7 +13,7 @@ namespace Jolicode\JsonLd\Tests\Algorithms;
 
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesManager;
+use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
 use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
 
@@ -43,7 +43,7 @@ class ExpanderTest extends AbstractJsonLdTestCase
 
     protected function getAlgorithmName(): string
     {
-        return FixturesManager::ALGO_EXPAND;
+        return FixturesInstaller::ALGO_EXPAND;
     }
 
     protected function getExpectedErrorMessage(string $filename): string

@@ -12,7 +12,7 @@
 namespace Jolicode\JsonLd\Tests\Algorithms;
 
 use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesManager;
+use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
@@ -118,6 +118,6 @@ abstract class AbstractJsonLdTestCase extends TestCase
             return;
         }
 
-        FixturesManager::installFixtures();
+        FixturesInstaller::installFixtures();
     }
 }

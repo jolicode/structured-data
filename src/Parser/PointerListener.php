@@ -33,15 +33,15 @@ class PointerListener extends IdleListener implements PositionAwareInterface
         return $this->currentStructure;
     }
 
+    public function setFilePosition(int $lineNumber, int $charNumber): void
+    {
+        $this->currentLine = $lineNumber;
+        $this->currentColumn = $charNumber;
+    }
+
     public function startObject(): void
     {
-        $newObject = new ObjectStructure($this->currentStructure);
-
-        if ($this->currentStructure) {
-            $this->currentStructure->addValue($newObject, new Range($this->getCurrentPosition(), null));
-        }
-
-        $this->currentStructure = $newObject;
+        $this->startStructure(ObjectStructure::class);
     }
 
     public function endObject(): void
@@ -49,21 +49,9 @@ class PointerListener extends IdleListener implements PositionAwareInterface
         $this->endStructure();
     }
 
-    public function setFilePosition(int $lineNumber, int $charNumber): void
-    {
-        $this->currentLine = $lineNumber;
-        $this->currentColumn = $charNumber;
-    }
-
     public function startArray(): void
     {
-        $newArray = new ArrayStructure($this->currentStructure);
-
-        if ($this->currentStructure) {
-            $this->currentStructure->addValue($newArray, new Range($this->getCurrentPosition(), null));
-        }
-
-        $this->currentStructure = $newArray;
+        $this->startStructure(ArrayStructure::class);
     }
 
     public function endArray(): void
@@ -89,6 +77,17 @@ class PointerListener extends IdleListener implements PositionAwareInterface
         $start->column -= \strlen($value);
 
         $this->currentStructure->addValue($value, new Range($start, $end));
+    }
+
+    private function startStructure(string $structureClass): void
+    {
+        $newStructure = new $structureClass($this->currentStructure);
+
+        if ($this->currentStructure) {
+            $this->currentStructure->addValue($newStructure, new Range($this->getCurrentPosition(), null));
+        }
+
+        $this->currentStructure = $newStructure;
     }
 
     private function endStructure(): void
