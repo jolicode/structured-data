@@ -41,8 +41,8 @@ class SchemaOrgValidatorTest extends TestCase
         $this->assertSame($isValid, $validationResult->isValid());
 
         if (!$isValid) {
-            foreach ($messages as $expectedMessage) {
-                $this->assertContains($expectedMessage, $validationResult->getErrorMessages());
+            foreach ($validationResult->getErrorMessages() as $actualMessage) {
+                $this->assertContains($actualMessage, $messages);
             }
         }
     }
@@ -111,7 +111,11 @@ class SchemaOrgValidatorTest extends TestCase
         yield 'Test nested bad attribute is invalid bis' => [
             'document' => __DIR__ . '/fixtures/bad-attribute-nested-2.jsonld',
             'isValid' => false,
-            'messages' => [],
+            'messages' => [
+                'This property does not exist in Schema.org: wrongOne',
+                'This property does not exist in Schema.org: badAgain',
+                'The property "telephone" does not exist on the type "DataDownload"',
+            ],
         ];
         yield 'Test missing type entry is invalid' => [
             'document' => __DIR__ . '/fixtures/no-type.jsonld',

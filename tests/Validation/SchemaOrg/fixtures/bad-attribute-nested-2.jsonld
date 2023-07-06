@@ -69,7 +69,7 @@
           "@type":"DataDownload",
           "encodingFormat":"XML",
           "contentUrl":"https://gis.ncdc.noaa.gov/all-records/catalog/search/resource/details.page?id=gov.noaa.ncdc:C00510",
-          "aaandWrongAgain": "This property is not allowed in this context"
+          "telephone": "This property is not allowed for this type"
        }
     ],
     "temporalCoverage":"1950-01-01/2013-12-18",

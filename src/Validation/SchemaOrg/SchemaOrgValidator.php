@@ -72,15 +72,17 @@ class SchemaOrgValidator
             $propertyName = $this->getPropertyName($key);
             $propertyClass = sprintf('SchemaOrg\\Property\\%sModel', ucfirst($propertyName));
 
-            $this->validateSchemaOrgProperty($propertyName, $propertyClass, $typeModel, $value[0]);
+            foreach ($value as $entry) {
+                $this->validateSchemaOrgProperty($propertyName, $propertyClass, $typeModel, $entry);
 
-            if ($this->isTypeObject($value[0])) {
-                if ($attributeKey && !$ascendantAlreadyDeclared) {
-                    $ascendantAlreadyDeclared = true;
-                    array_unshift($this->typesStack, $this->getPropertyName($attributeKey));
+                if ($this->isTypeObject($entry)) {
+                    if ($attributeKey && !$ascendantAlreadyDeclared) {
+                        $ascendantAlreadyDeclared = true;
+                        array_unshift($this->typesStack, $this->getPropertyName($attributeKey));
+                    }
+
+                    $this->validateSchemaOrgType($entry, $key);
                 }
-
-                $this->validateSchemaOrgType($value[0], $key);
             }
         }
     }
@@ -137,6 +139,8 @@ class SchemaOrgValidator
 
         if (!class_exists($propertyClass)) {
             $this->validationResult->addTypeError(sprintf('This property does not exist in Schema.org: %s', $propertyName), $propertyName, $this->typesStack);
+
+            return;
         }
 
         if (!$this->propertyExistsOnType($propertyName, $typeModel)) {
