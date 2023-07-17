@@ -24,10 +24,7 @@ class SchemaOrgValidator
 {
     private const SCHEMA_ORG_DOMAIN = 'http://schema.org/';
 
-    /**
-     * @var string[]
-     */
-    private array $typesStack = [];
+    private Type $currentType;
 
     public function __construct(
         readonly private ValidationResult $validationResult = new ValidationResult(),
@@ -50,38 +47,50 @@ class SchemaOrgValidator
         }
 
         foreach ($expansionResult as $type) {
+            $this->currentType = new Type();
             $this->validateSchemaOrgType($type);
         }
 
         return $this->validationResult;
     }
 
-    private function validateSchemaOrgType(\stdClass $type, string $attributeKey = null): void
+    private function validateSchemaOrgType(\stdClass $type, string $typeShortName = null, string $typeFqcn = null): void
     {
-        if (!$typeModel = $this->getTypeModel($type, throwErrors: true)) {
+        if (null === $typeShortName) {
+            $typeShortName = $this->getTypeShortName($type);
+        }
+
+        if (null === $typeFqcn) {
+            $typeFqcn = $this->getTypeFqcn($typeShortName);
+        }
+
+        if (!$this->validateTypeObject($type, $typeShortName, $typeFqcn)) {
             return;
         }
 
-        $ascendantAlreadyDeclared = false;
+        $typeModel = new $typeFqcn();
+        $this->currentType->label = $typeModel::LABEL;
 
-        foreach ($type as $key => $value) {
-            if (Keyword::tryFrom($key)) {
+        foreach ($type as $property => $value) {
+            if (Keyword::tryFrom($property)) {
                 continue;
             }
 
-            $propertyName = $this->getPropertyName($key);
+            $propertyName = $this->getPropertyName($property);
             $propertyClass = sprintf('SchemaOrg\\Property\\%sModel', ucfirst($propertyName));
 
-            foreach ($value as $entry) {
-                $this->validateSchemaOrgProperty($propertyName, $propertyClass, $typeModel, $entry);
+            foreach ($value as $valueEntry) {
+                $this->validateSchemaOrgProperty($propertyName, $propertyClass, $typeModel, $valueEntry);
 
-                if ($this->isTypeObject($entry)) {
-                    if ($attributeKey && !$ascendantAlreadyDeclared) {
-                        $ascendantAlreadyDeclared = true;
-                        array_unshift($this->typesStack, $this->getPropertyName($attributeKey));
-                    }
+                if ($this->isTypeObject($valueEntry)) {
+                    $typeShortName = $this->getTypeShortName($valueEntry);
+                    $typeFqcn = $this->getTypeFqcn($typeShortName);
 
-                    $this->validateSchemaOrgType($entry, $key);
+                    $propertyType = new Type(belongsTo: $this->currentType);
+                    $this->currentType = $propertyType;
+
+                    $this->validateSchemaOrgPropertyType($propertyClass, $typeFqcn, $propertyName);
+                    $this->validateSchemaOrgType($valueEntry, $typeShortName, $typeFqcn);
                 }
             }
         }
@@ -97,65 +106,37 @@ class SchemaOrgValidator
         return property_exists($entry, Keyword::TYPE->value);
     }
 
-    private function getTypeModel(\stdClass $type, bool $throwErrors = false): false|object
+    private function getTypeShortName(\stdClass $type): ?string
     {
         if (!$this->isTypeObject($type)) {
-            if ($throwErrors) {
-                $this->validationResult->addTypeError('This type misses a @type property', Keyword::TYPE->value, $this->typesStack);
-            }
-
-            return false;
+            return null;
         }
 
         $typeShortName = \is_array($type->{Keyword::TYPE->value}) ? $type->{Keyword::TYPE->value}[0] : $type->{Keyword::TYPE->value};
         $typeShortName = str_replace(self::SCHEMA_ORG_DOMAIN, '', $typeShortName);
-        $typeFqcn = sprintf('SchemaOrg\\Type\\%sModel', $typeShortName);
 
-        if (!class_exists($typeFqcn)) {
-            if ($throwErrors) {
-                $this->validationResult->addTypeError(sprintf('This type is not a valid Schema.org type: %s', $typeShortName), Keyword::TYPE->value, $this->typesStack);
-            }
+        return $typeShortName;
+    }
+
+    private function getTypeFqcn(?string $typeShortName): ?string
+    {
+        if (null === $typeShortName) {
+            return null;
+        }
+
+        return sprintf('SchemaOrg\\Type\\%sModel', $typeShortName);
+    }
+
+    private function validateTypeObject(\stdClass $type, ?string $typeShortName, ?string $typeFqcn): bool
+    {
+        if (!$this->isTypeObject($type)) {
+            $this->validationResult->addTypeError('This type misses a @type property', Keyword::TYPE->value, $this->currentType);
 
             return false;
         }
 
-        return new $typeFqcn();
-    }
-
-    private function validateSchemaOrgProperty(string $propertyName, string $propertyClass, object $typeModel, \stdClass $propertyValue): void
-    {
-        if ($this->isTypeObject($propertyValue)) {
-            // If the type is invalid, we cannot validate it. We do nothing here because the validation errors will be added by the validateSchemaOrgType method.
-            if ($nestedType = $this->getTypeModel($propertyValue)) {
-                if (!$this->propertyTypeIsValid($propertyClass, $nestedType)) {
-                    $this->validationResult->addTypeError(
-                        sprintf('The "%s" attribute does not accept the "%s" type as a value', $propertyName, $nestedType::LABEL),
-                        $propertyName,
-                        $this->typesStack
-                    );
-                }
-            }
-        }
-
-        if (!class_exists($propertyClass)) {
-            $this->validationResult->addTypeError(sprintf('This property does not exist in Schema.org: %s', $propertyName), $propertyName, $this->typesStack);
-
-            return;
-        }
-
-        if (!$this->propertyExistsOnType($propertyName, $typeModel)) {
-            $this->validationResult->addTypeError(sprintf('The property "%s" does not exist on the type "%s"', $propertyName, $typeModel::LABEL), $propertyName, $this->typesStack);
-        }
-    }
-
-    private function propertyTypeIsValid(string $propertyClass, object $typeModel): bool
-    {
-        if (!\in_array($typeModel::class, $propertyClass::VALUES, true)) {
-            foreach ($typeModel::PARENTS as $parent) {
-                if ($this->propertyTypeIsValid($propertyClass, new $parent())) {
-                    return true;
-                }
-            }
+        if (!class_exists($typeFqcn)) {
+            $this->validationResult->addTypeError(sprintf('This type is not a valid Schema.org type: %s', $typeShortName), Keyword::TYPE->value, $this->currentType);
 
             return false;
         }
@@ -163,11 +144,35 @@ class SchemaOrgValidator
         return true;
     }
 
-    private function propertyExistsOnType(string $propertyName, object $typeModel): bool
+    private function validateSchemaOrgProperty(string $propertyName, string $propertyClass, object $typeModel): void
     {
+        if (!class_exists($propertyClass)) {
+            $this->validationResult->addTypeError(sprintf('This property does not exist in Schema.org: %s', $propertyName), $propertyName, $this->currentType);
+
+            return;
+        }
+
         if (!property_exists($typeModel, $propertyName)) {
-            foreach ($typeModel::PARENTS as $parent) {
-                if ($this->propertyExistsOnType($propertyName, new $parent())) {
+            $this->validationResult->addTypeError(sprintf('The property "%s" does not exist on the type "%s"', $propertyName, $typeModel::LABEL), $propertyName, $this->currentType);
+        }
+    }
+
+    private function validateSchemaOrgPropertyType(string $propertyClass, string $typeFqcn, string $propertyName): void
+    {
+        if (!$this->propertyTypeIsValid($propertyClass, $typeFqcn)) {
+            $this->validationResult->addTypeError(
+                sprintf('The "%s" attribute does not accept the "%s" type as a value', $propertyName, $typeFqcn::LABEL),
+                $propertyName,
+                $this->currentType
+            );
+        }
+    }
+
+    private function propertyTypeIsValid(string $propertyClass, string $typeFqcn): bool
+    {
+        if (!\in_array($typeFqcn, $propertyClass::VALUES, true)) {
+            foreach ($typeFqcn::PARENTS as $parentType) {
+                if ($this->propertyTypeIsValid($propertyClass, $parentType)) {
                     return true;
                 }
             }

@@ -13,6 +13,7 @@ namespace Jolicode\JsonLd\Validation;
 
 use Jolicode\JsonLd\Validation\Error\AbstractValidationError;
 use Jolicode\JsonLd\Validation\Error\TypeValidationError;
+use Jolicode\JsonLd\Validation\SchemaOrg\Type;
 
 class ValidationResult
 {
@@ -37,9 +38,9 @@ class ValidationResult
         return (array) $this->errors;
     }
 
-    public function addTypeError(string $message, ?string $key, array $parents = []): void
+    public function addTypeError(string $message, ?string $key, Type $type): void
     {
-        $this->errors[] = new TypeValidationError($message, $key, $parents);
+        $this->errors[] = new TypeValidationError($message, $key, $type);
     }
 
     public function getErrorMessages(): array

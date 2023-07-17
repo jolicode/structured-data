@@ -9,16 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Validation\Error;
+namespace Jolicode\JsonLd\Validation\SchemaOrg;
 
-use Jolicode\JsonLd\Validation\SchemaOrg\Type;
-
-readonly class TypeValidationError extends AbstractValidationError
+class Type
 {
     public function __construct(
-        public string $message,
-        public ?string $key,
-        public Type $type,
+        public ?string $label = null,
+        public ?self $belongsTo = null,
     ) {
     }
 }
