@@ -11,11 +11,12 @@
 
 namespace Jolicode\JsonLd\Tests\Validation\SchemaOrg;
 
+use Jolicode\JsonLd\Validation\JsonLdValidator;
 use Jolicode\JsonLd\Validation\SchemaOrg\SchemaOrgValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Jolicode\JsonLd\Validation\JsonLdValidator
+ * @covers \Jolicode\JsonLd\Validation\SchemaOrg\SchemaOrgValidator
  *
  * @group validation
  */
@@ -32,11 +33,9 @@ class SchemaOrgValidatorTest extends TestCase
     public function testValidate(string $document, bool $isValid, array $messages): void
     {
         $json = file_get_contents($document);
+        $aaa = new JsonLdValidator();
+        $aaa->validate($json);
         $validationResult = $this->validator->validate($json);
-
-        if (!$validationResult->isValid()) {
-            dump($validationResult->getErrors());
-        }
 
         $this->assertSame($isValid, $validationResult->isValid());
 
@@ -114,7 +113,7 @@ class SchemaOrgValidatorTest extends TestCase
             'messages' => [
                 'This property does not exist in Schema.org: wrongOne',
                 'This property does not exist in Schema.org: badAgain',
-                'The property "telephone" does not exist on the type "DataDownload"',
+                'The property "telephone" does not exist on the type "DataDownload" in Schema.org',
             ],
         ];
         yield 'Test missing type entry is invalid' => [
@@ -130,7 +129,7 @@ class SchemaOrgValidatorTest extends TestCase
         yield 'Test wrong parent attribute' => [
             'document' => __DIR__ . '/fixtures/wrong-parent-attribute.jsonld',
             'isValid' => false,
-            'messages' => ['The "makesOffer" attribute does not accept the "Intangible" type as a value'],
+            'messages' => ['The "makesOffer" attribute does not accept the "Intangible" type as a value in Schema.org'],
         ];
     }
 }

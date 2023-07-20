@@ -11,14 +11,19 @@
 
 namespace Jolicode\JsonLd\Validation\Error;
 
-use Jolicode\JsonLd\Validation\SchemaOrg\Type;
-
 readonly class TypeValidationError extends AbstractValidationError
 {
     public function __construct(
         public string $message,
-        public ?string $key,
-        public Type $type,
+        public ?string $key = null,
+
+        /**
+         * @var array<string|int>
+         */
+        public array $parents = [],
+
+        public bool $onGraph = false,
+        public int $graphKey = 0,
     ) {
     }
 }

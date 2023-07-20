@@ -9,15 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Parser\KeyValues;
+namespace Jolicode\JsonLd\Validation\Mapper;
 
 use Jolicode\JsonLd\Parser\Range;
 
-class Key
+readonly class MappedError
 {
     public function __construct(
-        public readonly string $name,
-        public readonly Range $range,
+        public string $message,
+        public string $key,
+        public Range $range,
     ) {
     }
 }

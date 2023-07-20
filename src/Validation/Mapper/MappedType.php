@@ -9,16 +9,20 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Parser\KeyValues;
+namespace Jolicode\JsonLd\Validation\Mapper;
 
-use Jolicode\JsonLd\Parser\DataStructures\AbstractStructure;
-use Jolicode\JsonLd\Parser\Range;
-
-class Value
+class MappedType
 {
     public function __construct(
-        public readonly AbstractStructure|string|bool|null $content,
-        public readonly Range $range,
+        public ?string $type,
+        public ?string $name,
+        public bool $isValid = true,
+        public int $errors = 0,
+
+        /**
+         * @var array<MappedProperty>
+         */
+        public array $properties = [],
     ) {
     }
 }

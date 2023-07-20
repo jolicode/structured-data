@@ -11,22 +11,35 @@
 
 namespace Jolicode\JsonLd\Parser\DataStructures;
 
-use Jolicode\JsonLd\Parser\KeyValues\Value;
+use Jolicode\JsonLd\Parser\Properties\Value;
 use Jolicode\JsonLd\Parser\Range;
 
-class ArrayStructure extends AbstractStructure
+class ArrayStructure implements StructureInterface
 {
     public function __construct(
-        public readonly ?AbstractStructure $belongsTo = null,
+        public ?StructureInterface $belongsTo = null,
 
         /**
-         * @var array<Value>
+         * @var Value[]
          */
         private array $values = [],
     ) {
     }
 
-    public function addValue(AbstractStructure|string|bool|null $value, Range $range): void
+    public function getValue(int $key): Value
+    {
+        return $this->values[$key];
+    }
+
+    /**
+     * @return Value[]
+     */
+    public function getValues(): array
+    {
+        return $this->values;
+    }
+
+    public function addValue(StructureInterface|string|bool|null $value, Range $range): void
     {
         $this->values[] = new Value($value, $range);
     }

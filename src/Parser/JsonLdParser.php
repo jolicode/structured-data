@@ -11,18 +11,15 @@
 
 namespace Jolicode\JsonLd\Parser;
 
-use Jolicode\JsonLd\Parser\DataStructures\AbstractStructure;
-use Jolicode\JsonLd\Parser\Nodes\TypeNode;
+use Jolicode\JsonLd\Parser\DataStructures\StructureInterface;
 use JsonStreamingParser\Parser;
 
-class UserEntryParser
+class JsonLdParser
 {
     /**
      * This method takes a json_encoded user input and builds a PHP representation of the JSON-LD document.
-     *
-     * @return array<TypeNode>
      */
-    public function parse(string $json): AbstractStructure
+    public function parse(string $json): StructureInterface
     {
         $listener = new PointerListener();
 

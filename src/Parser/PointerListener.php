@@ -11,9 +11,9 @@
 
 namespace Jolicode\JsonLd\Parser;
 
-use Jolicode\JsonLd\Parser\DataStructures\AbstractStructure;
 use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
 use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
+use Jolicode\JsonLd\Parser\DataStructures\StructureInterface;
 use JsonStreamingParser\Listener\IdleListener;
 use JsonStreamingParser\Listener\PositionAwareInterface;
 
@@ -24,11 +24,11 @@ class PointerListener extends IdleListener implements PositionAwareInterface
         private int $currentColumn = 0,
         private int $currentLine = 0,
 
-        private ?AbstractStructure $currentStructure = null,
+        private ?StructureInterface $currentStructure = null,
     ) {
     }
 
-    public function getResult(): AbstractStructure
+    public function getResult(): StructureInterface
     {
         return $this->currentStructure;
     }
@@ -94,7 +94,9 @@ class PointerListener extends IdleListener implements PositionAwareInterface
     {
         if ($this->currentStructure->belongsTo) {
             $this->currentStructure->belongsTo->getLastValue()->range->end = $this->getCurrentPosition();
-            $this->currentStructure = $this->currentStructure->belongsTo;
+            $parent = $this->currentStructure->belongsTo;
+            unset($this->currentStructure->belongsTo);
+            $this->currentStructure = $parent;
         }
     }
 

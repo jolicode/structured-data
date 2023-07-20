@@ -9,13 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Validation\SchemaOrg;
+namespace Jolicode\JsonLd\Parser\Properties;
 
-class Type
+use Jolicode\JsonLd\Parser\Range;
+
+class Key
 {
     public function __construct(
-        public ?string $label = null,
-        public ?self $belongsTo = null,
+        public readonly string $name,
+        public readonly Range $range,
     ) {
     }
 }

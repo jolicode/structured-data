@@ -13,7 +13,6 @@ namespace Jolicode\JsonLd\Validation;
 
 use Jolicode\JsonLd\Validation\Error\AbstractValidationError;
 use Jolicode\JsonLd\Validation\Error\TypeValidationError;
-use Jolicode\JsonLd\Validation\SchemaOrg\Type;
 
 class ValidationResult
 {
@@ -22,6 +21,9 @@ class ValidationResult
          * @var AbstractValidationError|array<AbstractValidationError>
          */
         private AbstractValidationError|array $errors = [],
+
+        private bool $hasAGraph = false,
+        private int $graphKey = 0,
     ) {
     }
 
@@ -38,9 +40,9 @@ class ValidationResult
         return (array) $this->errors;
     }
 
-    public function addTypeError(string $message, ?string $key, Type $type): void
+    public function addTypeError(string $message, ?string $key, array $parents = []): void
     {
-        $this->errors[] = new TypeValidationError($message, $key, $type);
+        $this->errors[] = new TypeValidationError($message, $key, $parents, $this->hasAGraph, $this->graphKey);
     }
 
     public function getErrorMessages(): array
@@ -49,5 +51,20 @@ class ValidationResult
             fn (AbstractValidationError $error) => $error->message,
             $this->getErrors()
         );
+    }
+
+    public function hasAGraph(): bool
+    {
+        return $this->hasAGraph;
+    }
+
+    public function setHasAGraph(bool $hasAGraph): void
+    {
+        $this->hasAGraph = $hasAGraph;
+    }
+
+    public function incrementGraphKey(): void
+    {
+        ++$this->graphKey;
     }
 }

@@ -9,13 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Parser\KeyValues;
+namespace Jolicode\JsonLd\Validation\Mapper;
 
-class KeyValue
+readonly class MappedProperty
 {
     public function __construct(
-        public readonly Key $key,
-        public ?Value $value = null,
+        public string $key,
+        public mixed $value,
+        public bool $hasError,
+        public string $message,
     ) {
     }
 }

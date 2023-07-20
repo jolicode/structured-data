@@ -11,17 +11,12 @@
 
 namespace Jolicode\JsonLd\Parser\DataStructures;
 
-use Jolicode\JsonLd\Parser\KeyValues\Value;
+use Jolicode\JsonLd\Parser\Properties\Value;
 use Jolicode\JsonLd\Parser\Range;
 
-abstract class AbstractStructure
+interface StructureInterface
 {
-    public function __construct(
-        public readonly ?self $belongsTo = null,
-    ) {
-    }
+    public function addValue(self|string|bool|null $value, Range $range): void;
 
-    abstract public function addValue(self|string|bool|null $value, Range $range): void;
-
-    abstract public function getLastValue(): Value;
+    public function getLastValue(): Value;
 }
