@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Validation;
+namespace Jolicode\JsonLd\Validation\Error;
 
-use Jolicode\JsonLd\Validation\SchemaOrg\SchemaOrgValidator;
-
-enum RegisteredValidatorsEnum: string
+/**
+ * This error is raised when a property has one or more type(s) as a value but this type is not accepted for this property.
+ */
+readonly class TypePropertyValidationError extends ValidationError
 {
-    case SCHEMA_ORG = SchemaOrgValidator::class;
 }

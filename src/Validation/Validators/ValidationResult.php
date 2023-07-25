@@ -9,12 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Validation\Error;
+namespace Jolicode\JsonLd\Validation\Validators;
 
-abstract readonly class AbstractValidationError
+readonly class ValidationResult
 {
     public function __construct(
-        public string $message,
+        public bool $isValid,
+        public ?string $message = null,
     ) {
     }
 }

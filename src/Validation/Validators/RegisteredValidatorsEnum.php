@@ -9,8 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Validation\Error;
+namespace Jolicode\JsonLd\Validation\Validators;
 
-readonly class DocumentValidationError extends ValidationError
+use Jolicode\JsonLd\Validation\Validators\SchemaOrg\SchemaOrgValidator;
+
+enum RegisteredValidatorsEnum: string
 {
+    case SCHEMA_ORG = SchemaOrgValidator::class;
 }

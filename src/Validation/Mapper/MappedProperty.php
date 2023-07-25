@@ -11,13 +11,13 @@
 
 namespace Jolicode\JsonLd\Validation\Mapper;
 
-readonly class MappedProperty
+class MappedProperty
 {
     public function __construct(
-        public string $key,
+        readonly public string $key,
         public mixed $value,
-        public bool $hasError,
-        public string $message,
+        public bool $isValid = true,
+        public ?string $errorMessage = null,
     ) {
     }
 }

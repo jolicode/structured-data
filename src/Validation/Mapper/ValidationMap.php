@@ -22,13 +22,13 @@ class ValidationMap
         /**
          * MappedType[].
          */
-        private array $types = [],
+        private array $tree = [],
     ) {
     }
 
-    public function hasErrors(): bool
+    public function isValid(): bool
     {
-        return \count($this->errors) > 0;
+        return 0 === \count($this->errors);
     }
 
     public function getErrors(): array
@@ -36,18 +36,33 @@ class ValidationMap
         return $this->errors;
     }
 
+    public function getErrorMessages(): array
+    {
+        return array_map(
+            fn (MappedError $error) => $error->message,
+            $this->errors
+        );
+    }
+
     public function addError(MappedError $error): void
     {
         $this->errors[] = $error;
     }
 
-    public function getTypes(): array
+    public function addErrors(MappedError ...$errors): void
     {
-        return $this->types;
+        foreach ($errors as $error) {
+            $this->errors[] = $error;
+        }
+    }
+
+    public function getTree(): array
+    {
+        return $this->tree;
     }
 
     public function addType(MappedType $type): void
     {
-        $this->types[] = $type;
+        $this->tree[] = $type;
     }
 }

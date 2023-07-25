@@ -11,92 +11,276 @@
 
 namespace Jolicode\JsonLd\Validation\Mapper;
 
+use Jolicode\JsonLd\Algorithms\Http\IriResolver;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
 use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
 use Jolicode\JsonLd\Parser\DataStructures\StructureInterface;
+use Jolicode\JsonLd\Parser\Properties\Property;
 use Jolicode\JsonLd\Validation\Error\AbstractValidationError;
 use Jolicode\JsonLd\Validation\Error\DocumentValidationError;
-use Jolicode\JsonLd\Validation\Error\TypeValidationError;
+use Jolicode\JsonLd\Validation\Error\ValidationError;
 
 class ValidationMapper
 {
+    private const SCHEMA_ORG_DOMAIN = 'http://schema.org/';
+
     public function __construct(
+        private readonly ValidationMap $map = new ValidationMap(),
+
         /**
-         * @var array<AbstractValidationError>
+         * @var array<MappedError>
          */
-        private array $errors = [],
+        private MappedError|array $mappedErrors = [],
 
-        private ValidationMap $map = new ValidationMap(),
+        /**
+         * @var array<string,mappedType>
+         */
+        private array $flattenedTypeReferences = [],
+
+        /**
+         * @var array<string,MappedProperty>
+         */
+        private array $propertiesWithReferences = [],
     ) {
-    }
-
-    public function isValid(): bool
-    {
-        return 0 === \count($this->errors);
-    }
-
-    public function addErrors(AbstractValidationError ...$errors): void
-    {
-        foreach ($errors as $error) {
-            $this->errors[] = $error;
-        }
     }
 
     /**
      * @return array<AbstractValidationError>
      */
-    public function getErrors(): array
+    public function getMappedErrors(): array
     {
-        return $this->errors;
+        return (array) $this->mappedErrors;
     }
 
-    public function mapErrorsOnTypes(StructureInterface $parsedJsonLd): void
+    /**
+     * This method takes an expanded JsonLd input and will transform it into an easier to manipulate, more user friendly object.
+     */
+    public function map(array $expandedJsonLd): ValidationMap
     {
-        if ($parsedJsonLd instanceof ArrayStructure) {
-            return;
-        }
+        foreach ($expandedJsonLd as $type) {
+            $type = $this->mapType($type);
 
-        foreach ($this->getErrors() as $error) {
-            if ($error instanceof DocumentValidationError) {
-                $parsedJsonLd->error = $error;
+            // This prevents adding the flattened types to the final result
+            if (\count($this->flattenedTypeReferences) > 1) {
+                continue;
             }
 
-            if ($error instanceof TypeValidationError) {
-                $typeWithViolation = $this->getTypeWithViolation($error, $parsedJsonLd);
+            $this->map->addType($type);
+        }
 
-                if (null === $error->key) {
-                    $typeWithViolation->addError($error);
-                } else {
-                    $propertyWithViolation = $error->onGraph ?
-                        $typeWithViolation->getGraphProperty($error->key, $error->graphKey) :
-                        $typeWithViolation->getProperty($error->key);
+        $this->mapFlattenedTypes();
+        unset($this->flattenedTypeReferences, $this->propertiesWithReferences);
 
-                    $propertyWithViolation->addError($error);
+        return $this->map;
+    }
+
+    public function getMap(): ValidationMap
+    {
+        return $this->map;
+    }
+
+    /**
+     * @param array<ValidationError> $validationErrors
+     */
+    public function mapErrorsRanges(array $validationErrors, StructureInterface $parsedJsonLd, bool $hasAGraph = false): void
+    {
+        foreach ($validationErrors as $error) {
+            if ($error instanceof DocumentValidationError) {
+                // $parsedJsonLd->error = $error;
+            }
+
+            $typeWithViolation = $this->getTypeWithError($error, $parsedJsonLd, $hasAGraph);
+
+            $propertyWithError = $hasAGraph ?
+                $typeWithViolation->getGraphProperty($error->key, $error->graphKey) :
+                $typeWithViolation->getProperty($error->key);
+
+            $this->addMappedError($error, $propertyWithError);
+        }
+    }
+
+    /**
+     * Since we are expanding the user input, all properties will be prefixed with the schema.org domain.
+     * This is not really frontend friendly, plus users would not necessarilly understand why their input has changed.
+     * For these reasons, we strip the schema.org domain from the properties keys.
+     */
+    public function removeSchemaOrgDomain(string ...$typesEntry): string|array
+    {
+        $typeShortNames = [];
+
+        foreach ($typesEntry as $typeName) {
+            $typeShortNames[] = str_replace(self::SCHEMA_ORG_DOMAIN, '', $typeName);
+        }
+
+        return 1 === \count($typeShortNames) ? $typeShortNames[0] : $typeShortNames;
+    }
+
+    private function mapType(\stdClass $expandedType): MappedType
+    {
+        $type = new MappedType();
+
+        if (property_exists($expandedType, Keyword::TYPE->value)) {
+            $type->type = $this->removeSchemaOrgDomain(...$expandedType->{Keyword::TYPE->value});
+        }
+
+        if (property_exists($expandedType, 'http://schema.org/name')) {
+            $type->name = $expandedType->{'http://schema.org/name'}[0]->{Keyword::VALUE->value};
+        } elseif (property_exists($expandedType, 'https://schema.org/name')) {
+            $type->name = $expandedType->{'https://schema.org/name'}[0]->{Keyword::VALUE->value};
+        }
+
+        foreach ($expandedType as $property => $value) {
+            if (Keyword::TYPE->value === $property) {
+                continue;
+            }
+
+            if (
+                Keyword::ID->value === $property
+                && IriResolver::isBlankNodeIdentifier($value)
+            ) {
+                $this->saveFlattenedTypeReference($value, $type);
+
+                continue;
+            }
+
+            $type->properties[] = $this->mapProperty($property, $value);
+        }
+
+        if (null === $type->type) {
+            $type->type = $this->guessTypeFromProperties($type->properties);
+        }
+
+        return $type;
+    }
+
+    private function mapProperty(string $expandedLabel, mixed $value): MappedProperty
+    {
+        $property = new MappedProperty($this->removeSchemaOrgDomain($expandedLabel), []);
+
+        if (\is_string($value)) {
+            $property->value = $value;
+
+            return $property;
+        }
+
+        foreach ($value as $valueEntry) {
+            if ($this->isTypeProperty($valueEntry)) {
+                $valueEntry = $this->mapType($valueEntry);
+            }
+
+            $property->value[] = $valueEntry;
+
+            if ($this->isFlattenedTypeReference($valueEntry)) {
+                $this->savePropertyWithReference($valueEntry, $property);
+            }
+        }
+
+        if (1 === \count($property->value)) {
+            $propertyValue = $property->value[0];
+
+            if ($this->isValueOrId($propertyValue)) {
+                $property->value = $this->retrieveValueOrId($propertyValue);
+            } else {
+                $property->value = $propertyValue;
+            }
+        }
+
+        return $property;
+    }
+
+    private function saveFlattenedTypeReference(string $identifier, MappedType $type): void
+    {
+        $this->flattenedTypeReferences[$identifier] = $type;
+    }
+
+    private function savePropertyWithReference(\stdClass $valueEntry, MappedProperty $property): void
+    {
+        $this->propertiesWithReferences[$valueEntry->{Keyword::ID->value}] = $property;
+    }
+
+    private function isFlattenedTypeReference(\stdClass|MappedType $valueEntry): bool
+    {
+        return $valueEntry instanceof \stdClass
+            && property_exists($valueEntry, Keyword::ID->value)
+            && IriResolver::isBlankNodeIdentifier($valueEntry->{Keyword::ID->value})
+            && 1 === \count(get_object_vars($valueEntry));
+    }
+
+    private function getFlattenedTypeReference(string $identifier): MappedType
+    {
+        return $this->flattenedTypeReferences[$identifier];
+    }
+
+    private function mapFlattenedTypes(): void
+    {
+        foreach ($this->propertiesWithReferences as $property) {
+            if (\is_string($property->value)) {
+                $property->value = $this->getFlattenedTypeReference($property->value);
+
+                continue;
+            }
+
+            if (\is_array($property->value)) {
+                foreach ($property->value as $propertyTypeEntry) {
+                    if ($propertyTypeEntry instanceof MappedType) {
+                        continue;
+                    }
+
+                    $property->value[] = $this->getFlattenedTypeReference($propertyTypeEntry->{Keyword::ID->value});
                 }
             }
         }
     }
 
-    public function getMap(StructureInterface $parsedJson): ValidationMap
+    private function isTypeProperty(\stdClass $valueEntry): bool
     {
-        if (!$this->isValid()) {
-            dd($parsedJson);
-        }
-
-        return $this->map;
+        return property_exists($valueEntry, Keyword::TYPE->value);
     }
 
-    private function getTypeWithViolation(TypeValidationError $error, ObjectStructure $parsedJsonLd): ObjectStructure
+    private function isValueOrId(\stdClass|MappedType $valueEntry): bool
     {
-        if (0 === \count($error->parents)) {
+        if ($valueEntry instanceof MappedType) {
+            return false;
+        }
+
+        return property_exists($valueEntry, Keyword::VALUE->value) || property_exists($valueEntry, Keyword::ID->value);
+    }
+
+    /**
+     * Both values will not be present at the same time.
+     * Value is used for regular values, while ID is used for URIs.
+     */
+    private function retrieveValueOrId(\stdClass $basicProperty): string
+    {
+        if (property_exists($basicProperty, Keyword::VALUE->value)) {
+            return $basicProperty->{Keyword::VALUE->value};
+        }
+
+        return $basicProperty->{Keyword::ID->value};
+    }
+
+    private function guessTypeFromProperties(): string
+    {
+        // TODO: guess the type for real.
+        return 'Thing';
+    }
+
+    private function addMappedError(ValidationError $error, Property $property): void
+    {
+        $this->map->addError(new MappedError($error->message, $property->key->name, $property->key->range));
+    }
+
+    private function getTypeWithError(ValidationError $error, ObjectStructure $parsedJsonLd, bool $hasAGraph): ObjectStructure
+    {
+        if (0 === \count($error->propertiesChain)) {
             return $parsedJsonLd;
         }
 
         $rootType = $parsedJsonLd;
         $currentType = $rootType;
 
-        if ($error->onGraph) {
+        if ($hasAGraph) {
             /**
              * @var ArrayStructure $graph
              */
@@ -105,13 +289,19 @@ class ValidationMapper
             $currentType = $graphEntries[$error->graphKey]->content;
         }
 
-        foreach ($error->parents as $parent) {
-            $currentType = $this->retrieveTypeFromProperty($parent, $currentType);
+        foreach ($error->propertiesChain as $property) {
+            $currentType = $this->retrieveTypeFromProperty($property, $currentType);
         }
 
         return $currentType;
     }
 
+    /**
+     * If property is an array, this means it is a property holding multiple types as a value.
+     * The array will be filled with the property name, only its length matter: it is used to know which of its types is the one with an error.
+     *
+     * @param string|array $property The invalid property
+     */
     private function retrieveTypeFromProperty(string|array $property, ObjectStructure $currentType): ObjectStructure
     {
         $properties = $currentType->getProperties();

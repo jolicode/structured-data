@@ -14,15 +14,25 @@ namespace Jolicode\JsonLd\Validation\Mapper;
 class MappedType
 {
     public function __construct(
-        public ?string $type,
-        public ?string $name,
+        public string|array|null $type = null,
+        public ?string $name = null,
         public bool $isValid = true,
-        public int $errors = 0,
 
         /**
          * @var array<MappedProperty>
          */
         public array $properties = [],
+
+        /**
+         * @var array<string>
+         */
+        public array $errors = [],
     ) {
+    }
+
+    public function addError($message): void
+    {
+        $this->errors[] = $message;
+        $this->isValid = false;
     }
 }

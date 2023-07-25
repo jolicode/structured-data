@@ -11,19 +11,23 @@
 
 namespace Jolicode\JsonLd\Validation\Error;
 
-readonly class TypeValidationError extends AbstractValidationError
+readonly class ValidationError
 {
     public function __construct(
         public string $message,
-        public ?string $key = null,
+
+        public ?string $key,
 
         /**
+         * Since a type may have other types as property values, we need to know the properties names of all the nested types.
+         *
          * @var array<string|int>
          */
-        public array $parents = [],
+        public array $propertiesChain,
 
-        public bool $onGraph = false,
-        public int $graphKey = 0,
+        public bool $onGraph,
+
+        public int $graphKey,
     ) {
     }
 }
