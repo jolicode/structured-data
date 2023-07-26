@@ -11,10 +11,12 @@
 
 namespace Jolicode\JsonLd\Generator;
 
-interface ExtractorInterface
+interface GeneratorInterface
 {
     /**
-     * Extracts the data from the related source and generates the needed files.
+     * Extracts all the needed data and generates the corresponding files.
+     *
+     * @param bool $refresh if true, the generator will refresh the data from the source. Otherwise, it will use a cached file.
      */
-    public function extract(bool $refresh): void;
+    public function generate(bool $refresh): void;
 }

@@ -11,25 +11,25 @@
 
 namespace Jolicode\JsonLd\Generator;
 
-use Jolicode\JsonLd\Generator\SchemaOrg\Extractor as SchemaOrgExtractor;
+use Jolicode\JsonLd\Generator\SchemaOrg\Generator as SchemaOrgGenerator;
 
-readonly class RegisteredExtractorsContainer
+readonly class RegisteredGeneratorsContainer
 {
     public function __construct(
         /**
-         * @var ExtractorInterface[]
+         * @var GeneratorInterface[]
          */
-        private array $extractors = [
-            SchemaOrgExtractor::class => new SchemaOrgExtractor(),
+        private array $generators = [
+            SchemaOrgGenerator::class => new SchemaOrgGenerator(),
         ],
     ) {
     }
 
     /**
-     * @return ExtractorInterface[]
+     * @return GeneratorInterface[]
      */
-    public function getExtractors(): array
+    public function getGenerators(): array
     {
-        return $this->extractors;
+        return $this->generators;
     }
 }

@@ -11,7 +11,6 @@
 
 namespace Jolicode\JsonLd\Generator\SchemaOrg;
 
-use Jolicode\JsonLd\Generator\ExtractorInterface;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\ElementsContainer;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\EnumerationMember;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\Property;
@@ -20,7 +19,7 @@ use PhpParser\PrettyPrinter\Standard;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpClient\HttpClient;
 
-readonly class Extractor implements ExtractorInterface
+readonly class Extractor
 {
     // We use class constants instead of enum here because there are not so many keywords
     // plus enums are sometimes a pain
@@ -48,12 +47,11 @@ readonly class Extractor implements ExtractorInterface
 
     public function __construct(
         private Filesystem $filesystem = new Filesystem(),
-        private Generator $generator = new Generator(),
         private Standard $printer = new Standard(),
     ) {
     }
 
-    public function extract(bool $refresh): void
+    public function extract(bool $refresh): ElementsContainer
     {
         if ($refresh || !$this->filesystem->exists(self::CACHE_FILE)) {
             $client = HttpClient::create();
@@ -63,13 +61,8 @@ readonly class Extractor implements ExtractorInterface
         }
 
         $schemaOrgData = json_decode(file_get_contents(self::CACHE_FILE), true);
-        $container = $this->createContainer($schemaOrgData[self::KEY_GRAPH]);
 
-        $this->generator->writeFile(
-            $container,
-            $this->filesystem,
-            $this->printer,
-        );
+        return $this->createContainer($schemaOrgData[self::KEY_GRAPH]);
     }
 
     private function createContainer(array $graph): ElementsContainer

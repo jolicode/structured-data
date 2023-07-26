@@ -11,7 +11,7 @@
 
 namespace Jolicode\JsonLd\Command\Generator;
 
-use Jolicode\JsonLd\Generator\RegisteredExtractorsContainer;
+use Jolicode\JsonLd\Generator\RegisteredGeneratorsContainer;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -25,8 +25,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 class GenerateCommand extends Command
 {
     public function __construct(
-        private readonly RegisteredExtractorsContainer $container = new RegisteredExtractorsContainer(),
+        private readonly RegisteredGeneratorsContainer $container = new RegisteredGeneratorsContainer(),
     ) {
+        parent::__construct();
     }
 
     public function configure()
@@ -36,8 +37,8 @@ class GenerateCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        foreach ($this->container->getExtractors() as $extractor) {
-            $extractor->extract($input->getOption('refresh'));
+        foreach ($this->container->getGenerators() as $generator) {
+            $generator->generate($input->getOption('refresh'));
         }
 
         return Command::SUCCESS;

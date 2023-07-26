@@ -11,6 +11,7 @@
 
 namespace Jolicode\JsonLd\Generator\SchemaOrg;
 
+use Jolicode\JsonLd\Generator\GeneratorInterface;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\AsbtractSchemaOrgElement;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\ElementsContainer;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\EnumerationMember;
@@ -23,7 +24,7 @@ use PhpParser\Node\Stmt;
 use PhpParser\PrettyPrinter\Standard;
 use Symfony\Component\Filesystem\Filesystem;
 
-readonly class Generator
+readonly class Generator implements GeneratorInterface
 {
     private const NAMESPACE_TYPE = 'SchemaOrg\\Type';
     private const NAMESPACE_PROPERTY = 'SchemaOrg\\Property';
@@ -31,10 +32,22 @@ readonly class Generator
 
     public function __construct(
         private BuilderFactory $factory = new BuilderFactory(),
+        private Filesystem $filesystem = new Filesystem(),
+        private Standard $printer = new Standard(),
     ) {
     }
 
-    public function writeFile(ElementsContainer $container, Filesystem $filesystem, Standard $printer): void
+    public function generate(bool $refresh): void
+    {
+        $extractor = new Extractor(
+            $this->filesystem,
+            $this->printer,
+        );
+
+        $this->writeFile($extractor->extract($refresh));
+    }
+
+    private function writeFile(ElementsContainer $container): void
     {
         foreach ($container->getAllElements() as $element) {
             $classDirectory = match ($element::class) {
@@ -51,14 +64,14 @@ readonly class Generator
                 $element->className
             );
 
-            $filesystem->dumpFile(
+            $this->filesystem->dumpFile(
                 $fileName,
-                $printer->prettyPrintFile([$this->generate($element)])
+                $this->printer->prettyPrintFile([$this->generateElement($element)])
             );
         }
     }
 
-    private function generate(Type|Property|EnumerationMember $element): Stmt\Namespace_
+    private function generateElement(Type|Property|EnumerationMember $element): Stmt\Namespace_
     {
         return match ($element::class) {
             Type::class => $this->generateType($element),
