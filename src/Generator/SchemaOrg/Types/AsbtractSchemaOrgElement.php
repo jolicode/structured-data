@@ -15,6 +15,9 @@ use Jolicode\JsonLd\Generator\SchemaOrg\Extractor;
 
 abstract class AsbtractSchemaOrgElement
 {
+    /**
+     * Instantiates a new object from a fetched Schema.org raw type.
+     */
     abstract public static function fromRawData(array $rawType): self;
 
     public static function getClassName(string $label): string

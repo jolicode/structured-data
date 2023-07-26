@@ -36,6 +36,9 @@
         "symfony/http-kernel": "^6.2",
         "monolog/monolog": "^3.3",
         "nikic/php-parser": "^4.15",
-        "salsify/json-streaming-parser": "^8.3"
+        "salsify/json-streaming-parser": "^8.3",
+        "symfony/dom-crawler": "^6.3",
+        "symfony/translation-contracts": "^3.3",
+        "symfony/css-selector": "^6.3"
     }
 }

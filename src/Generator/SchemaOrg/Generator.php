@@ -13,7 +13,7 @@ namespace Jolicode\JsonLd\Generator\SchemaOrg;
 
 use Jolicode\JsonLd\Generator\GeneratorInterface;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\AsbtractSchemaOrgElement;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\ElementsContainer;
+use Jolicode\JsonLd\Generator\SchemaOrg\Types\ClassesContainer;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\EnumerationMember;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\Property;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\Type;
@@ -22,6 +22,7 @@ use PhpParser\Node\Expr;
 use PhpParser\Node\Scalar;
 use PhpParser\Node\Stmt;
 use PhpParser\PrettyPrinter\Standard;
+use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Filesystem\Filesystem;
 
 readonly class Generator implements GeneratorInterface
@@ -29,6 +30,8 @@ readonly class Generator implements GeneratorInterface
     private const NAMESPACE_TYPE = 'SchemaOrg\\Type';
     private const NAMESPACE_PROPERTY = 'SchemaOrg\\Property';
     private const NAMESPACE_ENUMERATION_MEMBER = 'SchemaOrg\\EnumerationMember';
+
+    private const EXAMPLES_DIRECTORY = __DIR__ . '/../../../ressources/SchemaOrg/examples';
 
     public function __construct(
         private BuilderFactory $factory = new BuilderFactory(),
@@ -39,15 +42,68 @@ readonly class Generator implements GeneratorInterface
 
     public function generate(bool $refresh): void
     {
-        $extractor = new Extractor(
-            $this->filesystem,
-            $this->printer,
-        );
+        $extractor = new Extractor($this->filesystem);
 
-        $this->writeFile($extractor->extract($refresh));
+        $this->generateExamples($extractor->extractExamples($refresh));
+        $this->generateClasses($extractor->extractClasses($refresh));
     }
 
-    private function writeFile(ElementsContainer $container): void
+    private function generateExamples(string $schemaOrgExamples): void
+    {
+        $crawler = new Crawler($schemaOrgExamples);
+
+        $crawler
+            ->filter('script[type^=application]')
+            ->each(function (Crawler $example, $i) {
+                $example = trim($example->outerHtml());
+                $this->saveExample('https-schema-org', $example);
+            });
+    }
+
+    private function saveExample(string $prefix, string $example): void
+    {
+        if (preg_match('/\<script type\=\"application\/ld\+json\"\>(.*)\<\/script\>/s', $example, $matches)) {
+            $content = $this->removeComments($matches[1]);
+            $this->saveSingleExample($content, $prefix);
+        } elseif ($this->maybeJsonString($example)) {
+            $this->saveSingleExample($example, $prefix);
+        }
+    }
+
+    private function removeComments(string $example): string
+    {
+        $example = explode("\n", $example);
+
+        foreach ($example as $line => $content) {
+            if (str_starts_with(trim($content), '//')) {
+                unset($example[$line]);
+            }
+        }
+
+        return trim(implode("\n", $example));
+    }
+
+    private function saveSingleExample(string $content, string $prefix): void
+    {
+        if (json_decode($content)) {
+            $key = md5($content);
+            $filename = sprintf(
+                '%s%s-%s.json-ld',
+                self::EXAMPLES_DIRECTORY,
+                $prefix,
+                $key
+            );
+
+            $this->filesystem->dumpFile($filename, $content);
+        }
+    }
+
+    private function maybeJsonString(string $body): bool
+    {
+        return \in_array(substr(trim($body), 0, 1), ['[', '{'], true);
+    }
+
+    private function generateClasses(ClassesContainer $container): void
     {
         foreach ($container->getAllElements() as $element) {
             $classDirectory = match ($element::class) {

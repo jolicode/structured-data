@@ -13,7 +13,7 @@ namespace Jolicode\JsonLd\Generator\SchemaOrg\Types;
 
 use Jolicode\JsonLd\Generator\SchemaOrg\Extractor;
 
-class ElementsContainer
+class ClassesContainer
 {
     public function __construct(
         /**
