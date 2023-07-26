@@ -11,9 +11,10 @@
 
 namespace Jolicode\JsonLd\Generator;
 
-use Jolicode\JsonLd\Generator\SchemaOrg\Extractor as SchemaOrgExtractor;
-
-enum RegisteredSourcesEnum: string
+interface ExtractorInterface
 {
-    case SCHEMA_ORG = SchemaOrgExtractor::class;
+    /**
+     * Extracts the data from the related source and generates the needed files.
+     */
+    public function extract(bool $refresh): void;
 }

@@ -23,7 +23,7 @@ use PhpParser\Node\Stmt;
 use PhpParser\PrettyPrinter\Standard;
 use Symfony\Component\Filesystem\Filesystem;
 
-class Generator
+readonly class Generator
 {
     private const NAMESPACE_TYPE = 'SchemaOrg\\Type';
     private const NAMESPACE_PROPERTY = 'SchemaOrg\\Property';

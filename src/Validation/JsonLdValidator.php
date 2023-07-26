@@ -22,7 +22,7 @@ use Jolicode\JsonLd\Validation\Mapper\MappedProperty;
 use Jolicode\JsonLd\Validation\Mapper\MappedType;
 use Jolicode\JsonLd\Validation\Mapper\ValidationMap;
 use Jolicode\JsonLd\Validation\Mapper\ValidationMapper;
-use Jolicode\JsonLd\Validation\Validators\RegisteredValidatorsEnum;
+use Jolicode\JsonLd\Validation\Validators\RegisteredValidatorsContainer;
 
 class JsonLdValidator
 {
@@ -42,8 +42,8 @@ class JsonLdValidator
         private array $validationErrors = [],
 
         private readonly ValidationMapper $validationMapper = new ValidationMapper(),
-
         private readonly JsonLdParser $parser = new JsonLdParser(),
+        private readonly RegisteredValidatorsContainer $container = new RegisteredValidatorsContainer(),
     ) {
     }
 
@@ -147,8 +147,8 @@ class JsonLdValidator
 
     private function validateTypeProperty(MappedProperty $property, MappedType $type): void
     {
-        foreach (RegisteredValidatorsEnum::cases() as $validator) {
-            $validationResult = $validator->value::validateTypeProperty($property->key, $type->type);
+        foreach ($this->container->getValidators() as $validator) {
+            $validationResult = $validator::validateTypeProperty($property->key, $type->type);
 
             if (!$validationResult->isValid) {
                 $this->addTypePropertyError($validationResult->message, $property->key);
@@ -159,8 +159,8 @@ class JsonLdValidator
 
     private function validateRegularProperty(MappedProperty $property, MappedType $type): void
     {
-        foreach (RegisteredValidatorsEnum::cases() as $validator) {
-            $validationResult = $validator->value::validateRegularProperty($property->key, $type->type);
+        foreach ($this->container->getValidators() as $validator) {
+            $validationResult = $validator::validateRegularProperty($property->key, $type->type);
 
             if (!$validationResult->isValid) {
                 $this->addRegularPropertyError($validationResult->message, $property->key);

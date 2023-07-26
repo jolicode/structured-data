@@ -31,7 +31,7 @@ class ValidationMapper
         /**
          * @var array<MappedError>
          */
-        private MappedError|array $mappedErrors = [],
+        private array $mappedErrors = [],
 
         /**
          * @var array<string,mappedType>
@@ -50,7 +50,7 @@ class ValidationMapper
      */
     public function getMappedErrors(): array
     {
-        return (array) $this->mappedErrors;
+        return $this->mappedErrors;
     }
 
     /**

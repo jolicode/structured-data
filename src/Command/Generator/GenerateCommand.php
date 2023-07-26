@@ -11,7 +11,7 @@
 
 namespace Jolicode\JsonLd\Command\Generator;
 
-use Jolicode\JsonLd\Generator\RegisteredSourcesEnum;
+use Jolicode\JsonLd\Generator\RegisteredExtractorsContainer;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -24,6 +24,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 class GenerateCommand extends Command
 {
+    public function __construct(
+        private readonly RegisteredExtractorsContainer $container = new RegisteredExtractorsContainer(),
+    ) {
+    }
+
     public function configure()
     {
         $this->addOption('refresh', 'r', InputOption::VALUE_NONE, 'Download and overwrite the source files');
@@ -31,8 +36,7 @@ class GenerateCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        foreach (RegisteredSourcesEnum::cases() as $extractor) {
-            $extractor = new $extractor->value();
+        foreach ($this->container->getExtractors() as $extractor) {
             $extractor->extract($input->getOption('refresh'));
         }
 

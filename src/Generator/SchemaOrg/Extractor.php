@@ -11,6 +11,7 @@
 
 namespace Jolicode\JsonLd\Generator\SchemaOrg;
 
+use Jolicode\JsonLd\Generator\ExtractorInterface;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\ElementsContainer;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\EnumerationMember;
 use Jolicode\JsonLd\Generator\SchemaOrg\Types\Property;
@@ -19,7 +20,7 @@ use PhpParser\PrettyPrinter\Standard;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpClient\HttpClient;
 
-class Extractor
+readonly class Extractor implements ExtractorInterface
 {
     // We use class constants instead of enum here because there are not so many keywords
     // plus enums are sometimes a pain
