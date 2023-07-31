@@ -14,7 +14,8 @@ namespace Jolicode\JsonLd\Validation\Validators;
 readonly class ValidationResult
 {
     public function __construct(
-        public bool $isValid,
+        public bool $hasErrors = false,
+        public bool $hasWarnings = false,
         public ?string $message = null,
     ) {
     }

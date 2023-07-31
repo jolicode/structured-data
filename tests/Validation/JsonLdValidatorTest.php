@@ -9,17 +9,18 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Validation\SchemaOrg;
+namespace Jolicode\JsonLd\Tests\Validation;
 
 use Jolicode\JsonLd\Validation\JsonLdValidator;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Finder\Finder;
 
 /**
  * @covers \Jolicode\JsonLd\Validation\JsonLdValidator
  *
  * @group validation
  */
-class SchemaOrgValidatorTest extends TestCase
+class JsonLdValidatorTest extends TestCase
 {
     private JsonLdValidator $validator;
 
@@ -37,11 +38,32 @@ class SchemaOrgValidatorTest extends TestCase
         $this->assertSame($isValid, $map->isValid());
 
         if (!$isValid) {
-            // dump($map->getErrorMessages(), $messages);
-
             foreach ($map->getErrorMessages() as $actualMessage) {
                 $this->assertContains($actualMessage, $messages);
             }
+        }
+    }
+
+    /** @dataProvider provideExamples */
+    // public function testValidateBis(string $document): void
+    // {
+    //     $json = file_get_contents($document);
+    //     $map = $this->validator->validate($json);
+
+    //     if (!$map->isValid()) {
+    //         dump($document, $map->getErrorMessages());
+    //     }
+
+    //     $this->assertTrue(true);
+    // }
+
+    public function provideExamples(): \Generator
+    {
+        $finder = new Finder();
+        $finder->files()->in(__DIR__ . '/../../ressources/SchemaOrg/examples');
+
+        foreach ($finder as $file) {
+            yield $file->getFilename() => [$file->getPathname()];
         }
     }
 
@@ -103,28 +125,27 @@ class SchemaOrgValidatorTest extends TestCase
         yield 'Test bad attribute is invalid' => [
             'document' => __DIR__ . '/fixtures/bad-attribute.jsonld',
             'isValid' => false,
-            'messages' => ['This property does not exist in Schema.org: imABadAttribute'],
+            'messages' => ['This property does not exist: imABadAttribute'],
         ];
         yield 'Test nested bad attribute is invalid' => [
             'document' => __DIR__ . '/fixtures/bad-attribute-nested-1.jsonld',
             'isValid' => false,
-            'messages' => ['This property does not exist in Schema.org: imABadAttribute'],
+            'messages' => ['This property does not exist: imABadAttribute'],
         ];
         yield 'Test nested bad attribute is invalid bis' => [
             'document' => __DIR__ . '/fixtures/bad-attribute-nested-2.jsonld',
             'isValid' => false,
             'messages' => [
-                'This property does not exist in Schema.org: wrongOne',
-                'This property does not exist in Schema.org: badAgain',
-                'The property "telephone" does not exist on the type "DataDownload" in Schema.org',
+                'This property does not exist: wrongOne',
+                'This property does not exist: badAgain',
+                'The property "telephone" does not exist on the type "DataDownload"',
             ],
         ];
-        // TODO: Commenting for now because the type guessing is not implemented yet. Plus, a missing type should not be invalid in itself.
-        // yield 'Test missing type entry is invalid' => [
-        //     'document' => __DIR__ . '/fixtures/no-type.jsonld',
-        //     'isValid' => false,
-        //     'messages' => ['This type misses a @type property'],
-        // ];
+        yield 'Test missing type entry is invalid' => [
+            'document' => __DIR__ . '/fixtures/no-type.jsonld',
+            'isValid' => true,
+            'messages' => [],
+        ];
         yield 'Test parent attributes are working' => [
             'document' => __DIR__ . '/fixtures/valid-parent-attribute.jsonld',
             'isValid' => true,
@@ -133,7 +154,7 @@ class SchemaOrgValidatorTest extends TestCase
         yield 'Test wrong parent attribute' => [
             'document' => __DIR__ . '/fixtures/wrong-parent-attribute.jsonld',
             'isValid' => false,
-            'messages' => ['The "makesOffer" property does not accept the "Intangible" type as a value in Schema.org'],
+            'messages' => ['The "makesOffer" property does not accept the "Intangible" type as a value'],
         ];
     }
 }

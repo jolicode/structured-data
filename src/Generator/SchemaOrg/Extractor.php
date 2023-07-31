@@ -40,7 +40,7 @@ readonly class Extractor
     // Bump this version with care! Sometimes a version is released but not yet available on GitHub.
     // Moreover, bumping it will very likely modify the source file, sometimes with breaking changes.
     // Be sure to check https://schema.org/docs/releases.html first.
-    private const CURRENT_VERSION = '15.0';
+    private const CURRENT_VERSION = '22.0';
 
     private const CACHE_DIRECTORY = __DIR__ . '/../../../var/cache/schema-org/';
 
@@ -48,7 +48,6 @@ readonly class Extractor
     private const TYPES_CACHE_FILE = self::CACHE_DIRECTORY . 'schemaorg-' . self::CURRENT_VERSION . '-https.jsonld';
 
     private const EXAMPLES_SOURCE_URL = 'https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/examples.txt';
-    private const EXAMPLES_CACHE_FILE = self::CACHE_DIRECTORY . 'examples.txt';
 
     public function __construct(
         private Filesystem $filesystem,

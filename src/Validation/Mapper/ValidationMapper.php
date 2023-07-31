@@ -18,8 +18,8 @@ use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
 use Jolicode\JsonLd\Parser\DataStructures\StructureInterface;
 use Jolicode\JsonLd\Parser\Properties\Property;
 use Jolicode\JsonLd\Validation\Error\AbstractValidationError;
-use Jolicode\JsonLd\Validation\Error\DocumentValidationError;
 use Jolicode\JsonLd\Validation\Error\ValidationError;
+use Jolicode\JsonLd\Validation\Validators\SchemaOrg\SchemaOrgValidator;
 
 class ValidationMapper
 {
@@ -86,10 +86,6 @@ class ValidationMapper
     public function mapErrorsRanges(array $validationErrors, StructureInterface $parsedJsonLd, bool $hasAGraph = false): void
     {
         foreach ($validationErrors as $error) {
-            if ($error instanceof DocumentValidationError) {
-                // $parsedJsonLd->error = $error;
-            }
-
             $typeWithViolation = $this->getTypeWithError($error, $parsedJsonLd, $hasAGraph);
 
             $propertyWithError = $hasAGraph ?
@@ -121,7 +117,7 @@ class ValidationMapper
         $type = new MappedType();
 
         if (property_exists($expandedType, Keyword::TYPE->value)) {
-            $type->type = $this->removeSchemaOrgDomain(...$expandedType->{Keyword::TYPE->value});
+            $type->type = $this->removeSchemaOrgDomain(...(array) $expandedType->{Keyword::TYPE->value});
         }
 
         if (property_exists($expandedType, 'http://schema.org/name')) {
@@ -148,7 +144,8 @@ class ValidationMapper
         }
 
         if (null === $type->type) {
-            $type->type = $this->guessTypeFromProperties($type->properties);
+            // Maybe we don't want to guess the type sometimes. For now, we always use the SchemaOrg validator so this is fine.
+            $type->type = SchemaOrgValidator::guessTypeFromProperties($type->properties);
         }
 
         return $type;
@@ -260,12 +257,6 @@ class ValidationMapper
         return $basicProperty->{Keyword::ID->value};
     }
 
-    private function guessTypeFromProperties(): string
-    {
-        // TODO: guess the type for real.
-        return 'Thing';
-    }
-
     private function addMappedError(ValidationError $error, Property $property): void
     {
         $this->map->addError(new MappedError($error->message, $property->key->name, $property->key->range));
@@ -302,7 +293,7 @@ class ValidationMapper
      *
      * @param string|array $property The invalid property
      */
-    private function retrieveTypeFromProperty(string|array $property, ObjectStructure $currentType): ObjectStructure
+    private function retrieveTypeFromProperty(string|array $property, ObjectStructure $currentType): ObjectStructure|string
     {
         $properties = $currentType->getProperties();
 

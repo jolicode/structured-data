@@ -16,7 +16,7 @@ class MappedType
     public function __construct(
         public string|array|null $type = null,
         public ?string $name = null,
-        public bool $isValid = true,
+        public bool $hasErrors = true,
 
         /**
          * @var array<MappedProperty>
@@ -33,6 +33,6 @@ class MappedType
     public function addError($message): void
     {
         $this->errors[] = $message;
-        $this->isValid = false;
+        $this->hasErrors = false;
     }
 }

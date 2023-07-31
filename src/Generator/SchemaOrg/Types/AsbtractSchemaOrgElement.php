@@ -22,7 +22,12 @@ abstract class AsbtractSchemaOrgElement
 
     public static function getClassName(string $label): string
     {
-        return ucfirst(self::replaceStartNumbers(str_replace('schema:', '', $label))) . 'Model';
+        return ucfirst(self::replaceStartNumbers(self::removeSchemaPrefix($label))) . 'Model';
+    }
+
+    public static function removeSchemaPrefix(string $name): string
+    {
+        return str_replace('schema:', '', $name);
     }
 
     /**

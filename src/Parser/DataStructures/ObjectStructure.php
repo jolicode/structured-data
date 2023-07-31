@@ -16,7 +16,6 @@ use Jolicode\JsonLd\Parser\Properties\Key;
 use Jolicode\JsonLd\Parser\Properties\Property;
 use Jolicode\JsonLd\Parser\Properties\Value;
 use Jolicode\JsonLd\Parser\Range;
-use Jolicode\JsonLd\Validation\Error\AbstractValidationError;
 
 class ObjectStructure implements StructureInterface
 {
@@ -27,11 +26,6 @@ class ObjectStructure implements StructureInterface
          * @var Property[]
          */
         private array $properties = [],
-
-        /**
-         * @var AbstractValidationError[]
-         */
-        private array $errors = [],
     ) {
     }
 
@@ -78,23 +72,5 @@ class ObjectStructure implements StructureInterface
     public function getLastValue(): Value
     {
         return end($this->properties)->value;
-    }
-
-    public function isValid(): bool
-    {
-        return 0 === \count($this->errors);
-    }
-
-    public function addError(AbstractValidationError $error): void
-    {
-        $this->errors[] = $error;
-    }
-
-    /**
-     * @return AbstractValidationError[]
-     */
-    public function getErrors(): array
-    {
-        return $this->errors;
     }
 }

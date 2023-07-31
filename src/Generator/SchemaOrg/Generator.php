@@ -31,7 +31,7 @@ readonly class Generator implements GeneratorInterface
     private const NAMESPACE_PROPERTY = 'SchemaOrg\\Property';
     private const NAMESPACE_ENUMERATION_MEMBER = 'SchemaOrg\\EnumerationMember';
 
-    private const EXAMPLES_DIRECTORY = __DIR__ . '/../../../ressources/SchemaOrg/examples';
+    private const EXAMPLES_DIRECTORY = __DIR__ . '/../../../ressources/SchemaOrg/examples/';
 
     public function __construct(
         private BuilderFactory $factory = new BuilderFactory(),
@@ -255,6 +255,25 @@ readonly class Generator implements GeneratorInterface
 
         $class->addStmt(
             $this->factory->classConst('VALUES', $possibleValues)
+                ->makePublic()
+        );
+
+        $possibleTypes = [];
+
+        foreach ($property->possibleTypes as $type) {
+            $className = AsbtractSchemaOrgElement::removeSchemaPrefix($type);
+            $fqcn = sprintf('%s\\%s%s', self::NAMESPACE_TYPE, $className, 'Model');
+            $possibleTypes[] = new Expr\ArrayItem(
+                new Scalar\String_($fqcn),
+                new Scalar\String_($className),
+            );
+        }
+
+        /* @phpstan-ignore-next-line */
+        usort($possibleTypes, fn ($a, $b) => $a->value->value <=> $b->value->value);
+
+        $class->addStmt(
+            $this->factory->classConst('TYPES', $possibleTypes)
                 ->makePublic()
         );
 

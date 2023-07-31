@@ -11,36 +11,11 @@
 
 namespace Jolicode\JsonLd\Parser\Properties;
 
-use Jolicode\JsonLd\Validation\Error\AbstractValidationError;
-
 class Property
 {
     public function __construct(
         public readonly Key $key,
         public ?Value $value = null,
-
-        /**
-         * @var AbstractValidationError[]
-         */
-        private array $errors = [],
     ) {
-    }
-
-    public function isValid(): bool
-    {
-        return 0 === \count($this->errors);
-    }
-
-    public function addError(AbstractValidationError $error): void
-    {
-        $this->errors[] = $error;
-    }
-
-    /**
-     * @return AbstractValidationError[]
-     */
-    public function getErrors(): array
-    {
-        return $this->errors;
     }
 }

@@ -16,7 +16,7 @@ class MappedProperty
     public function __construct(
         readonly public string $key,
         public mixed $value,
-        public bool $isValid = true,
+        public bool $hasErrors = true,
         public ?string $errorMessage = null,
     ) {
     }

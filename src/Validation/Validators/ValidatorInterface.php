@@ -21,5 +21,5 @@ interface ValidatorInterface
     /**
      * This method must validate a generic property, like a string or a boolean.
      */
-    public static function validateRegularProperty(string $propertyLabel, string $typeLabel): ValidationResult;
+    public static function validateRegularProperty(string $propertyLabel, string|array $typeLabels): ValidationResult;
 }

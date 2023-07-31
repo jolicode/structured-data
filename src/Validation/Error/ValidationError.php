@@ -13,6 +13,9 @@ namespace Jolicode\JsonLd\Validation\Error;
 
 readonly class ValidationError
 {
+    public const SEVERITY_WARNING = 'warning';
+    public const SEVERITY_ERROR = 'error';
+
     public function __construct(
         public string $message,
 
@@ -28,6 +31,8 @@ readonly class ValidationError
         public bool $onGraph,
 
         public int $graphKey,
+
+        public string $severity,
     ) {
     }
 }

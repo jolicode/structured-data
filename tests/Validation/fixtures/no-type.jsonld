@@ -1,0 +1,10 @@
+{
+  "@context": "https://schema.org",
+  "name": "Introduction to Computer Science and Programming",
+  "description": "Introductory CS course laying out the basics.",
+  "provider": {
+    "@type": "Organization",
+    "name": "University of Technology - Eureka",
+    "sameAs": "https://www.example.com"
+  }
+}

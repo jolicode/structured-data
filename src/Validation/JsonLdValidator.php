@@ -13,6 +13,7 @@ namespace Jolicode\JsonLd\Validation;
 
 use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
+use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Parser\JsonLdParser;
 use Jolicode\JsonLd\Validation\Error\DocumentValidationError;
 use Jolicode\JsonLd\Validation\Error\RegularPropertyValidationError;
@@ -67,7 +68,8 @@ class JsonLdValidator
                 null,
                 [],
                 false,
-                0
+                0,
+                ValidationError::SEVERITY_ERROR
             );
         }
 
@@ -150,21 +152,25 @@ class JsonLdValidator
         foreach ($this->container->getValidators() as $validator) {
             $validationResult = $validator::validateTypeProperty($property->key, $type->type);
 
-            if (!$validationResult->isValid) {
+            if ($validationResult->hasErrors) {
                 $this->addTypePropertyError($validationResult->message, $property->key);
-                $property->isValid = false;
+                $property->hasErrors = true;
             }
         }
     }
 
     private function validateRegularProperty(MappedProperty $property, MappedType $type): void
     {
+        if (\in_array($property->key, [Keyword::VALUE->value, Keyword::ID->value], true)) {
+            return;
+        }
+
         foreach ($this->container->getValidators() as $validator) {
             $validationResult = $validator::validateRegularProperty($property->key, $type->type);
 
-            if (!$validationResult->isValid) {
+            if ($validationResult->hasErrors) {
                 $this->addRegularPropertyError($validationResult->message, $property->key);
-                $property->isValid = false;
+                $property->hasErrors = true;
             }
         }
     }
@@ -175,11 +181,25 @@ class JsonLdValidator
         $typesStackClone = [...$this->typesStack];
         array_pop($typesStackClone);
 
-        $this->validationErrors[] = new TypePropertyValidationError($message, $key, $typesStackClone, $this->hasAGraph, $this->graphKey);
+        $this->validationErrors[] = new TypePropertyValidationError(
+            $message,
+            $key,
+            $typesStackClone,
+            $this->hasAGraph,
+            $this->graphKey,
+            ValidationError::SEVERITY_ERROR
+        );
     }
 
     private function addRegularPropertyError(string $message, string $key): void
     {
-        $this->validationErrors[] = new RegularPropertyValidationError($message, $key, $this->typesStack, $this->hasAGraph, $this->graphKey);
+        $this->validationErrors[] = new RegularPropertyValidationError(
+            $message,
+            $key,
+            $this->typesStack,
+            $this->hasAGraph,
+            $this->graphKey,
+            ValidationError::SEVERITY_ERROR,
+        );
     }
 }
