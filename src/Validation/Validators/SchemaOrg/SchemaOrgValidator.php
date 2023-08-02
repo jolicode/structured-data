@@ -11,6 +11,7 @@
 
 namespace Jolicode\JsonLd\Validation\Validators\SchemaOrg;
 
+use Jolicode\JsonLd\Validation\Error\ValidationError;
 use Jolicode\JsonLd\Validation\Validators\ValidationResult;
 use Jolicode\JsonLd\Validation\Validators\ValidatorInterface;
 
@@ -18,36 +19,42 @@ class SchemaOrgValidator implements ValidatorInterface
 {
     public static function validateTypeProperty(string $propertyLabel, string|array $typeLabel): ValidationResult
     {
+        $errors = [];
+
         // @see https://www.w3.org/TR/json-ld/#specifying-the-type
         if (\is_array($typeLabel) && \count($typeLabel) > 1) {
-            $message = sprintf('A value object may only have one type, %d provided', \count($typeLabel));
+            $message = sprintf('A typed value may only have one type, %d provided.', \count($typeLabel));
 
-            return new ValidationResult(hasErrors: true, message: $message);
+            $errors[] = [ValidationError::SEVERITY_ERROR, $message];
         }
 
-        $typeFqcn = self::getTypeFqcn($typeLabel);
+        foreach ((array) $typeLabel as $label) {
+            $typeFqcn = self::getTypeFqcn($label);
 
-        if (!class_exists($typeFqcn)) {
-            $message = sprintf('This type is not a valid Schema.org type: %s', $typeLabel);
+            if (!class_exists($typeFqcn)) {
+                $message = sprintf('The "%s" type is not a valid Schema.org type.', $label);
 
-            return new ValidationResult(hasErrors: true, message: $message);
+                $errors[] = [ValidationError::SEVERITY_ERROR, $message];
+            }
+
+            if (!self::propertyTypeIsValid($propertyLabel, $typeFqcn)) {
+                $message = sprintf('The "%s" property does not accept the "%s" type as a value.', $propertyLabel, $typeFqcn::LABEL);
+
+                $errors[] = [ValidationError::SEVERITY_ERROR, $message];
+            }
         }
 
-        if (!self::propertyTypeIsValid($propertyLabel, $typeFqcn)) {
-            $message = sprintf('The "%s" property does not accept the "%s" type as a value', $propertyLabel, $typeFqcn::LABEL);
-
-            return new ValidationResult(hasErrors: true, message: $message);
-        }
-
-        return new ValidationResult(hasErrors: false);
+        return new ValidationResult($errors);
     }
 
     public static function validateRegularProperty(string $propertyLabel, string|array $typeLabels): ValidationResult
     {
         if (!class_exists(self::getPropertyFqcn($propertyLabel))) {
-            $message = sprintf('This property does not exist: %s', $propertyLabel);
+            $message = sprintf('This property does not exist: %s.', $propertyLabel);
 
-            return new ValidationResult(hasErrors: true, message: $message);
+            $errors[] = [ValidationError::SEVERITY_ERROR, $message];
+
+            return new ValidationResult(errors: $errors);
         }
 
         $typeFqcns = [];
@@ -66,15 +73,17 @@ class SchemaOrgValidator implements ValidatorInterface
 
         if (!$propertyIsValid) {
             if (\is_string($typeLabels)) {
-                $message = sprintf('The property "%s" does not exist on the type "%s"', $propertyLabel, $typeLabels);
+                $message = sprintf('The property "%s" does not exist on the type "%s".', $propertyLabel, $typeLabels);
             } else {
-                $message = sprintf('The property "%s" does not exist on any of these types: "%s"', $propertyLabel, implode(', ', $typeLabels));
+                $message = sprintf('The property "%s" does not exist on any of these types: "%s".', $propertyLabel, implode(', ', $typeLabels));
             }
 
-            return new ValidationResult(hasErrors: true, message: $message);
+            $errors[] = [ValidationError::SEVERITY_ERROR, $message];
+
+            return new ValidationResult(errors: $errors);
         }
 
-        return new ValidationResult(hasErrors: false);
+        return new ValidationResult();
     }
 
     /**

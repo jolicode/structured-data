@@ -14,9 +14,13 @@ namespace Jolicode\JsonLd\Validation\Validators;
 readonly class ValidationResult
 {
     public function __construct(
+        /**
+         * @var array<array<string,string>>
+         */
+        public array $errors = [],
+
         public bool $hasErrors = false,
         public bool $hasWarnings = false,
-        public ?string $message = null,
     ) {
     }
 }

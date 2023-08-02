@@ -16,7 +16,6 @@ class MappedType
     public function __construct(
         public string|array|null $type = null,
         public ?string $name = null,
-        public bool $hasErrors = true,
 
         /**
          * @var array<MappedProperty>
@@ -24,15 +23,14 @@ class MappedType
         public array $properties = [],
 
         /**
-         * @var array<string>
+         * @var array<MappedError>
          */
         public array $errors = [],
-    ) {
-    }
 
-    public function addError($message): void
-    {
-        $this->errors[] = $message;
-        $this->hasErrors = false;
+        /**
+         * @var array<MappedWarning>
+         */
+        public array $warnings = [],
+    ) {
     }
 }

@@ -13,13 +13,12 @@ namespace Jolicode\JsonLd\Validation\Mapper;
 
 use Jolicode\JsonLd\Parser\Range;
 
-readonly class MappedError
+readonly class MappedWarning
 {
     public function __construct(
         public string $message,
         public string $key,
         public Range $range,
-        public string $severity,
     ) {
     }
 }

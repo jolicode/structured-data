@@ -1,5 +1,6 @@
 {
     "@context": "http://schema.org/",
+    "@type": ["Person", "Organization"],
     "name": "Jane Doe",
     "jobTitle": "Professor",
     "telephone": "(425) 123-4567",

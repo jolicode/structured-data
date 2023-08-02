@@ -1,7 +1,11 @@
 {
     "@context": "http://schema.org/",
+    "@type": "Person",
     "name": "Jane Doe",
-    "jobTitle": "Professor",
+    "birthPlace": {
+      "@type": ["Landform", "Place"],
+      "description": "Mount Fuji"
+    },
     "telephone": "(425) 123-4567",
     "url": "http://www.janedoe.com"
   }

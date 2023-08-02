@@ -19,7 +19,6 @@ use Jolicode\JsonLd\Parser\DataStructures\StructureInterface;
 use Jolicode\JsonLd\Parser\Properties\Property;
 use Jolicode\JsonLd\Validation\Error\AbstractValidationError;
 use Jolicode\JsonLd\Validation\Error\ValidationError;
-use Jolicode\JsonLd\Validation\Validators\SchemaOrg\SchemaOrgValidator;
 
 class ValidationMapper
 {
@@ -140,12 +139,9 @@ class ValidationMapper
                 continue;
             }
 
-            $type->properties[] = $this->mapProperty($property, $value);
-        }
-
-        if (null === $type->type) {
-            // Maybe we don't want to guess the type sometimes. For now, we always use the SchemaOrg validator so this is fine.
-            $type->type = SchemaOrgValidator::guessTypeFromProperties($type->properties);
+            if (null !== $value) {
+                $type->properties[] = $this->mapProperty($property, $value);
+            }
         }
 
         return $type;
@@ -232,7 +228,9 @@ class ValidationMapper
 
     private function isTypeProperty(\stdClass $valueEntry): bool
     {
-        return property_exists($valueEntry, Keyword::TYPE->value);
+        return !property_exists($valueEntry, Keyword::VALUE->value)
+            && !property_exists($valueEntry, Keyword::ID->value)
+        ;
     }
 
     private function isValueOrId(\stdClass|MappedType $valueEntry): bool
@@ -259,7 +257,12 @@ class ValidationMapper
 
     private function addMappedError(ValidationError $error, Property $property): void
     {
-        $this->map->addError(new MappedError($error->message, $property->key->name, $property->key->range));
+        $this->map->addError(new MappedError(
+            $error->message,
+            $property->key->name,
+            $property->key->range,
+            $error->severity
+        ));
     }
 
     private function getTypeWithError(ValidationError $error, ObjectStructure $parsedJsonLd, bool $hasAGraph): ObjectStructure

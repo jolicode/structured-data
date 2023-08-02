@@ -125,26 +125,31 @@ class JsonLdValidatorTest extends TestCase
         yield 'Test bad attribute is invalid' => [
             'document' => __DIR__ . '/fixtures/bad-attribute.jsonld',
             'isValid' => false,
-            'messages' => ['This property does not exist: imABadAttribute'],
+            'messages' => ['This property does not exist: imABadAttribute.'],
         ];
         yield 'Test nested bad attribute is invalid' => [
             'document' => __DIR__ . '/fixtures/bad-attribute-nested-1.jsonld',
             'isValid' => false,
-            'messages' => ['This property does not exist: imABadAttribute'],
+            'messages' => ['This property does not exist: imABadAttribute.'],
         ];
         yield 'Test nested bad attribute is invalid bis' => [
             'document' => __DIR__ . '/fixtures/bad-attribute-nested-2.jsonld',
             'isValid' => false,
             'messages' => [
-                'This property does not exist: wrongOne',
-                'This property does not exist: badAgain',
-                'The property "telephone" does not exist on the type "DataDownload"',
+                'This property does not exist: wrongOne.',
+                'This property does not exist: badAgain.',
+                'The property "telephone" does not exist on the type "DataDownload".',
             ],
         ];
         yield 'Test missing type entry is invalid' => [
             'document' => __DIR__ . '/fixtures/no-type.jsonld',
-            'isValid' => true,
-            'messages' => [],
+            'isValid' => false,
+            'messages' => ['The @type entry of this type is missing.'],
+        ];
+        yield 'Test missing typed value type entry generates warning' => [
+            'document' => __DIR__ . '/fixtures/no-type-nested.jsonld',
+            'isValid' => false,
+            'messages' => ['The @type entry of this typed value was not set. We had to guess it from its properties.'],
         ];
         yield 'Test parent attributes are working' => [
             'document' => __DIR__ . '/fixtures/valid-parent-attribute.jsonld',
@@ -154,7 +159,17 @@ class JsonLdValidatorTest extends TestCase
         yield 'Test wrong parent attribute' => [
             'document' => __DIR__ . '/fixtures/wrong-parent-attribute.jsonld',
             'isValid' => false,
-            'messages' => ['The "makesOffer" property does not accept the "Intangible" type as a value'],
+            'messages' => ['The "makesOffer" property does not accept the "Intangible" type as a value.'],
+        ];
+        yield 'Test multiple types on node object is valid' => [
+            'document' => __DIR__ . '/fixtures/multiple-types-1.jsonld',
+            'isValid' => true,
+            'messages' => [],
+        ];
+        yield 'Test multiple types on typed value is invalid' => [
+            'document' => __DIR__ . '/fixtures/multiple-types-2.jsonld',
+            'isValid' => false,
+            'messages' => ['A typed value may only have one type, 2 provided.'],
         ];
     }
 }
