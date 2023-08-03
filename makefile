@@ -25,8 +25,15 @@ reset_fixtures: ## Delete the test files and reinstall them
 delete_fixtures: ## Delete all test files
 	bin/json-ld remove-fixtures
 
-bench: ## Run the benchmark
-	vendor/bin/phpbench run tests/Benchmark --report=aggregate
+bench: ## Run all the benchmarks
+	make bench_algorithms
+	make bench_validation
+
+bench_algorithms: ## Run the algorithms benchmark
+	vendor/bin/phpbench run tests/Algorithms/Benchmark --report=aggregate
+
+bench_validation: ## Run the validator benchmark
+	vendor/bin/phpbench run tests/Validation/Benchmark --report=aggregate
 
 .PHONY: help
 

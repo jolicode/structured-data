@@ -15,16 +15,19 @@ use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Parser\JsonLdParser;
-use Jolicode\JsonLd\Validation\Error\DocumentValidationError;
+use Jolicode\JsonLd\Parser\Position;
+use Jolicode\JsonLd\Parser\Range;
 use Jolicode\JsonLd\Validation\Error\RegularPropertyValidationError;
 use Jolicode\JsonLd\Validation\Error\TypePropertyValidationError;
 use Jolicode\JsonLd\Validation\Error\ValidationError;
+use Jolicode\JsonLd\Validation\Mapper\MappedError;
 use Jolicode\JsonLd\Validation\Mapper\MappedProperty;
 use Jolicode\JsonLd\Validation\Mapper\MappedType;
 use Jolicode\JsonLd\Validation\Mapper\ValidationMap;
 use Jolicode\JsonLd\Validation\Mapper\ValidationMapper;
 use Jolicode\JsonLd\Validation\Validators\RegisteredValidatorsContainer;
 use Jolicode\JsonLd\Validation\Validators\SchemaOrg\SchemaOrgValidator;
+use JsonStreamingParser\Exception\ParsingException;
 
 class JsonLdValidator
 {
@@ -56,23 +59,20 @@ class JsonLdValidator
      */
     public function validate(string $jsonLd): ValidationMap
     {
-        // TODO: catch the JsonStreamingException and handle it (return a DocumentValidationError maybe ?)
-        $parsedJsonLd = $this->parser->parse($jsonLd);
+        $this->reset();
+
+        try {
+            $parsedJsonLd = $this->parser->parse($jsonLd);
+        } catch (ParsingException $exception) {
+            return $this->createMapWithInvalidDocument($exception->getMessage());
+        }
 
         $expander = new Expander();
 
         try {
             $expansionResult = $expander->parseJson($jsonLd, encodeResult: false);
         } catch (JsonLdException $exception) {
-            // TODO : We should not return a ValidationError directly. We should return a DocumentValidationError instead.
-            return new DocumentValidationError(
-                sprintf('The JSON-LD document seems invalid. Thrown exception is: %s', $exception),
-                null,
-                [],
-                false,
-                0,
-                ValidationError::SEVERITY_ERROR
-            );
+            return $this->createMapWithInvalidDocument($exception->getMessage());
         }
 
         $map = $this->validationMapper->map($expansionResult);
@@ -80,6 +80,30 @@ class JsonLdValidator
         $this->validationMapper->mapErrorsRanges($this->validationErrors, $parsedJsonLd, $this->hasAGraph);
 
         return $this->validationMapper->getMap();
+    }
+
+    private function reset(): void
+    {
+        $this->hasAGraph = false;
+        $this->graphKey = 0;
+        $this->typesStack = [];
+        $this->validationErrors = [];
+        $this->validationMapper->reset();
+    }
+
+    private function createMapWithInvalidDocument(string $message): ValidationMap
+    {
+        $error = new MappedError(
+            $message,
+            null,
+            new Range(
+                new Position(0, 0),
+                new Position(0, 0)
+            ),
+            ValidationError::SEVERITY_ERROR
+        );
+
+        return new ValidationMap([$error], []);
     }
 
     /**
@@ -154,7 +178,6 @@ class JsonLdValidator
                 continue;
             }
 
-            // TODO : still validate that no bad value is passed ? Like `false` for a `telephoneNumber` property
             $this->validateRegularProperty($property, $type);
         }
 

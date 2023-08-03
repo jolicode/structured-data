@@ -11,6 +11,8 @@
 
 namespace Jolicode\JsonLd\Tests\Validation;
 
+use Jolicode\JsonLd\Algorithms\Http\IriResolver;
+use Jolicode\JsonLd\Validation\Extraction\JsonLdExtractor;
 use Jolicode\JsonLd\Validation\JsonLdValidator;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
@@ -23,25 +25,44 @@ use Symfony\Component\Finder\Finder;
 class JsonLdValidatorTest extends TestCase
 {
     private JsonLdValidator $validator;
+    private JsonLdExtractor $extractor;
 
     protected function setUp(): void
     {
         $this->validator = new JsonLdValidator();
+        $this->extractor = new JsonLdExtractor();
     }
 
     /** @dataProvider provideFilesToValidate */
-    public function testValidate(string $document, bool $isValid, array $messages): void
+    public function testValidate(string $filePath, bool $isValid, array $messages): void
     {
-        $json = file_get_contents($document);
-        $map = $this->validator->validate($json);
+        $maps = [];
 
-        $this->assertSame($isValid, $map->isValid());
+        if (IriResolver::isAbsoluteIri($filePath)) {
+            $jsonLd = $this->extractor->extractJsonLd($filePath);
 
-        if (!$isValid) {
-            foreach ($map->getErrorMessages() as $actualMessage) {
-                $this->assertContains($actualMessage, $messages);
+            foreach ($jsonLd as $jsonLdItem) {
+                $maps[] = $this->validator->validate($jsonLdItem);
+            }
+        } else {
+            $maps[] = $this->validator->validate(file_get_contents($filePath));
+        }
+
+        $containsErrors = false;
+
+        foreach ($maps as $map) {
+            if (!$map->isValid()) {
+                $containsErrors = true;
+            }
+
+            if (!$isValid) {
+                foreach ($map->getErrorMessages() as $actualMessage) {
+                    $this->assertContains($actualMessage, $messages);
+                }
             }
         }
+
+        $this->assertSame($isValid, !$containsErrors);
     }
 
     /** @dataProvider provideExamples */
@@ -170,6 +191,31 @@ class JsonLdValidatorTest extends TestCase
             'document' => __DIR__ . '/fixtures/multiple-types-2.jsonld',
             'isValid' => false,
             'messages' => ['A typed value may only have one type, 2 provided.'],
+        ];
+        yield 'Test invalid JSON document' => [
+            'document' => __DIR__ . '/fixtures/invalid-json.jsonld',
+            'isValid' => false,
+            'messages' => ['Parsing error in [3:5]. Expected \',\' or \'}\' while parsing object. Got: "'],
+        ];
+        yield 'Test expansion exceptions are correctly sent' => [
+            'document' => __DIR__ . '/fixtures/expansion-exception.jsonld',
+            'isValid' => false,
+            'messages' => ['invalid type mapping'],
+        ];
+        yield 'Test extracting a valid JSON-LD document from a web page' => [
+            'document' => 'https://jolicode.com/blog/jouer-de-la-musique-dans-le-navigateur-avec-la-web-audio-api',
+            'isValid' => true,
+            'messages' => [],
+        ];
+        yield 'Test validating a page with A LOT of JSON-LD tags' => [
+            'document' => 'https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/examples.txt',
+            'isValid' => false,
+            'messages' => [
+                'The "member" property does not accept the "OrganizationRole" type as a value.',
+                'The "alumniOf" property does not accept the "OrganizationRole" type as a value.',
+                'The "actor" property does not accept the "PerformanceRole" type as a value.',
+                'The "member" property does not accept the "OrganizationRole" type as a value.',
+            ],
         ];
     }
 }

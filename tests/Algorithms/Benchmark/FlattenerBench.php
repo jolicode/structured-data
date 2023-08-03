@@ -1,23 +1,33 @@
 <?php
 
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Jolicode\JsonLd\Tests\Algorithms\Benchmark;
 
+use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
 use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
-use Jolicode\JsonLd\Tests\Algorithms\Benchmark\AbstractJsonLdBench;
 
 class FlattenerBench extends AbstractJsonLdBench
 {
     public function __construct(
-        private Flattener $flattener = new Flattener(),
-        private ProcessorOptions $options = new ProcessorOptions()
+        private readonly Flattener $flattener = new Flattener(),
+        private readonly ProcessorOptions $options = new ProcessorOptions()
     ) {
     }
 
     /**
      * @Revs(500)
+     *
      * @Iterations(5)
+     *
      * @RetryThreshold(2.0)
      */
     public function benchSimpleFlattening()
@@ -27,7 +37,9 @@ class FlattenerBench extends AbstractJsonLdBench
 
     /**
      * @Revs(500)
+     *
      * @Iterations(5)
+     *
      * @RetryThreshold(2.0)
      */
     public function benchComplexFlattening()

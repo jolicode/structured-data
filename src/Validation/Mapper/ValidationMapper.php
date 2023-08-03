@@ -25,7 +25,7 @@ class ValidationMapper
     private const SCHEMA_ORG_DOMAIN = 'http://schema.org/';
 
     public function __construct(
-        private readonly ValidationMap $map = new ValidationMap(),
+        private ValidationMap $map = new ValidationMap(),
 
         /**
          * @var array<MappedError>
@@ -42,6 +42,14 @@ class ValidationMapper
          */
         private array $propertiesWithReferences = [],
     ) {
+    }
+
+    public function reset(): void
+    {
+        $this->map = new ValidationMap();
+        $this->mappedErrors = [];
+        $this->flattenedTypeReferences = [];
+        $this->propertiesWithReferences = [];
     }
 
     /**

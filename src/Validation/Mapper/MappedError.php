@@ -17,7 +17,7 @@ readonly class MappedError
 {
     public function __construct(
         public string $message,
-        public string $key,
+        public ?string $key,
         public Range $range,
         public string $severity,
     ) {
