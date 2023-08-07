@@ -11,6 +11,7 @@
 
 namespace Jolicode\JsonLd\Generator;
 
+use Jolicode\JsonLd\Generator\Google\Generator as GoogleGenerator;
 use Jolicode\JsonLd\Generator\SchemaOrg\Generator as SchemaOrgGenerator;
 
 readonly class RegisteredGeneratorsContainer
@@ -20,7 +21,8 @@ readonly class RegisteredGeneratorsContainer
          * @var GeneratorInterface[]
          */
         private array $generators = [
-            SchemaOrgGenerator::class => new SchemaOrgGenerator(),
+            'schemaorg' => new SchemaOrgGenerator(),
+            'google' => new GoogleGenerator(),
         ],
     ) {
     }
@@ -31,5 +33,10 @@ readonly class RegisteredGeneratorsContainer
     public function getGenerators(): array
     {
         return $this->generators;
+    }
+
+    public function getGenerator(string $generatorClass): GeneratorInterface
+    {
+        return $this->generators[$generatorClass];
     }
 }

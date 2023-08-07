@@ -12,7 +12,7 @@
 namespace Jolicode\JsonLd\Tests\Validation;
 
 use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Validation\Extraction\JsonLdExtractor;
+use Jolicode\JsonLd\Validation\Extraction\JsonLdNodeExtractor;
 use Jolicode\JsonLd\Validation\JsonLdValidator;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
@@ -25,12 +25,12 @@ use Symfony\Component\Finder\Finder;
 class JsonLdValidatorTest extends TestCase
 {
     private JsonLdValidator $validator;
-    private JsonLdExtractor $extractor;
+    private JsonLdNodeExtractor $extractor;
 
     protected function setUp(): void
     {
         $this->validator = new JsonLdValidator();
-        $this->extractor = new JsonLdExtractor();
+        $this->extractor = new JsonLdNodeExtractor();
     }
 
     /** @dataProvider provideFilesToValidate */

@@ -11,10 +11,10 @@
 
 namespace Jolicode\JsonLd\Generator\SchemaOrg;
 
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\ClassesContainer;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\EnumerationMember;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\Property;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\Type;
+use Jolicode\JsonLd\Generator\SchemaOrg\Objects\ClassesContainer;
+use Jolicode\JsonLd\Generator\SchemaOrg\Objects\EnumerationMember;
+use Jolicode\JsonLd\Generator\SchemaOrg\Objects\Property;
+use Jolicode\JsonLd\Generator\SchemaOrg\Objects\Type;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\String\Slugger\AsciiSlugger;

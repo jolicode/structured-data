@@ -25,6 +25,9 @@ reset_fixtures: ## Delete the test files and reinstall them
 delete_fixtures: ## Delete all test files
 	bin/json-ld remove-fixtures
 
+generate: ## Generate the PHP classes used to validate JSON-LD
+	bin/json-ld generate -r
+
 bench: ## Run all the benchmarks
 	make bench_algorithms
 	make bench_validation

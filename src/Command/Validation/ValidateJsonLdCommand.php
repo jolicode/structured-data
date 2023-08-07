@@ -13,7 +13,7 @@ namespace Jolicode\JsonLd\Command\Validation;
 
 use Jolicode\JsonLd\Algorithms\Http\IriResolver;
 use Jolicode\JsonLd\Validation\Error\ValidationError;
-use Jolicode\JsonLd\Validation\Extraction\JsonLdExtractor;
+use Jolicode\JsonLd\Validation\Extraction\JsonLdNodeExtractor;
 use Jolicode\JsonLd\Validation\JsonLdValidator;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -28,7 +28,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class ValidateJsonLdCommand extends Command
 {
     public function __construct(
-        private readonly JsonLdExtractor $extractor = new JsonLdExtractor(),
+        private readonly JsonLdNodeExtractor $extractor = new JsonLdNodeExtractor(),
         private readonly JsonLdValidator $validator = new JsonLdValidator(),
     ) {
         return parent::__construct();

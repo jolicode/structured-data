@@ -11,14 +11,14 @@
 
 namespace Jolicode\JsonLd\Tests\Validation\Benchmark;
 
-use Jolicode\JsonLd\Validation\Extraction\JsonLdExtractor;
+use Jolicode\JsonLd\Validation\Extraction\JsonLdNodeExtractor;
 use Jolicode\JsonLd\Validation\JsonLdValidator;
 
 class JsonLdValidatorBench
 {
     public function __construct(
         private readonly JsonLdValidator $validator = new JsonLdValidator(),
-        private readonly JsonLdExtractor $extractor = new JsonLdExtractor(),
+        private readonly JsonLdNodeExtractor $extractor = new JsonLdNodeExtractor(),
     ) {
     }
 

@@ -12,11 +12,11 @@
 namespace Jolicode\JsonLd\Generator\SchemaOrg;
 
 use Jolicode\JsonLd\Generator\GeneratorInterface;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\AsbtractSchemaOrgElement;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\ClassesContainer;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\EnumerationMember;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\Property;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\Type;
+use Jolicode\JsonLd\Generator\SchemaOrg\Objects\AbstractSchemaOrgElement;
+use Jolicode\JsonLd\Generator\SchemaOrg\Objects\ClassesContainer;
+use Jolicode\JsonLd\Generator\SchemaOrg\Objects\EnumerationMember;
+use Jolicode\JsonLd\Generator\SchemaOrg\Objects\Property;
+use Jolicode\JsonLd\Generator\SchemaOrg\Objects\Type;
 use PhpParser\BuilderFactory;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Scalar;
@@ -178,7 +178,7 @@ readonly class Generator implements GeneratorInterface
         $parents = [];
 
         foreach ($type->parents as $parent) {
-            $className = AsbtractSchemaOrgElement::getClassName($parent);
+            $className = AbstractSchemaOrgElement::getClassName($parent);
             $fqcn = sprintf('%s\\%s', self::NAMESPACE_TYPE, $className);
             $parents[] = new Expr\ArrayItem(
                 new Scalar\String_($fqcn),
@@ -242,7 +242,7 @@ readonly class Generator implements GeneratorInterface
         $possibleValues = [];
 
         foreach ($property->possibleValues as $value) {
-            $className = AsbtractSchemaOrgElement::getClassName($value);
+            $className = AbstractSchemaOrgElement::getClassName($value);
             $fqcn = sprintf('%s\\%s', self::NAMESPACE_TYPE, $className);
             $possibleValues[] = new Expr\ArrayItem(
                 new Scalar\String_($fqcn),
@@ -261,7 +261,7 @@ readonly class Generator implements GeneratorInterface
         $possibleTypes = [];
 
         foreach ($property->possibleTypes as $type) {
-            $className = AsbtractSchemaOrgElement::removeSchemaPrefix($type);
+            $className = AbstractSchemaOrgElement::removeSchemaPrefix($type);
             $fqcn = sprintf('%s\\%s%s', self::NAMESPACE_TYPE, $className, 'Model');
             $possibleTypes[] = new Expr\ArrayItem(
                 new Scalar\String_($fqcn),

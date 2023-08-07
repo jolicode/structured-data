@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Generator\SchemaOrg\Types;
+namespace Jolicode\JsonLd\Generator\SchemaOrg\Objects;
 
 use Jolicode\JsonLd\Generator\SchemaOrg\Extractor;
 
-abstract class AsbtractSchemaOrgElement
+abstract class AbstractSchemaOrgElement
 {
     /**
      * Instantiates a new object from a fetched Schema.org raw type.

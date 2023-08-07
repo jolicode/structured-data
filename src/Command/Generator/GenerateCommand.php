@@ -33,10 +33,21 @@ class GenerateCommand extends Command
     public function configure()
     {
         $this->addOption('refresh', 'r', InputOption::VALUE_NONE, 'Download and overwrite the source files');
+        $this->addOption('source', 's', InputOption::VALUE_REQUIRED, 'Only download from a specific source. Accepted values are "schemaorg" and "google"');
     }
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
+        if ($source = $input->getOption('source')) {
+            if (!\in_array($source, ['schemaorg', 'google'], true)) {
+                throw new \InvalidArgumentException(sprintf('Invalid source "%s". Accepted values are "schemaorg" and "google"', $source));
+            }
+
+            $this->container->getGenerator($source)->generate($input->getOption('refresh'));
+
+            return Command::SUCCESS;
+        }
+
         foreach ($this->container->getGenerators() as $generator) {
             $generator->generate($input->getOption('refresh'));
         }

@@ -14,7 +14,7 @@ namespace Jolicode\JsonLd\Validation\Extraction;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class JsonLdExtractor
+class JsonLdNodeExtractor
 {
     public function __construct(
         private ?HttpClientInterface $httpClient = null,

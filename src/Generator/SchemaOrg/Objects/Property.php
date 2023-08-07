@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Generator\SchemaOrg\Types;
+namespace Jolicode\JsonLd\Generator\SchemaOrg\Objects;
 
 use Jolicode\JsonLd\Generator\SchemaOrg\Extractor;
 
-class Property extends AsbtractSchemaOrgElement
+class Property extends AbstractSchemaOrgElement
 {
     private const INCLUDE_DOMAIN = 'schema:domainIncludes';
     private const INCLUDE_RANGE = 'schema:rangeIncludes';
