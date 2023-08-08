@@ -15,7 +15,31 @@ class Property
 {
     public function __construct(
         public string $name,
-        public array $value = [],
+
+        /**
+         * @var array<Property>
+         */
+        public array $values = [],
+
+        /**
+         * @var array<string>
+         */
+        public array $requiredValues = [],
+
+        /**
+         * @var array<string>
+         */
+        public array $recommendedValues = [],
     ) {
+    }
+
+    public function hasRequiredValues(): bool
+    {
+        return \count($this->requiredValues);
+    }
+
+    public function hasRecommendedValues(): bool
+    {
+        return \count($this->recommendedValues);
     }
 }

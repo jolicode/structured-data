@@ -15,6 +15,7 @@ class Type
 {
     public function __construct(
         public ?string $name = null,
+        public ?string $documentationUrl = null,
 
         /**
          * @var array<string, Type>
@@ -24,13 +25,18 @@ class Type
         /**
          * @var array<string, Property>
          */
-        public array $requiredProperties = [],
+        private array $requiredProperties = [],
 
         /**
          * @var array<string, Property>
          */
-        public array $recommendedProperties = [],
+        private array $recommendedProperties = [],
     ) {
+    }
+
+    public function isEmpty(): bool
+    {
+        return !\count($this->requiredProperties) && !\count($this->recommendedProperties);
     }
 
     public function getLastRequiredProperty(): Property
@@ -43,23 +49,81 @@ class Type
         return $this->recommendedProperties[array_key_last($this->recommendedProperties)];
     }
 
+    public function initRequiredProperty(string $name): void
+    {
+        if (!\array_key_exists($name, $this->requiredProperties)) {
+            $this->requiredProperties[$name] = new Property($name);
+        }
+    }
+
+    public function initRecommendedProperty(string $name): void
+    {
+        if (!\array_key_exists($name, $this->recommendedProperties)) {
+            $this->recommendedProperties[$name] = new Property($name);
+        }
+    }
+
     public function pushRequiredProperty(string $value): void
     {
-        $this->getLastRequiredProperty()->value[] = $value;
+        $this->getLastRequiredProperty()->values[] = $value;
     }
 
     public function pushRecommendedProperty(string $value): void
     {
-        $this->getLastRecommendedProperty()->value[] = $value;
+        $this->getLastRecommendedProperty()->values[] = $value;
     }
 
     public function cleanUpRequiredProperties(): void
     {
-        $this->requiredProperties = array_filter($this->requiredProperties, fn (Property $property) => \count($property->value));
+        foreach ($this->requiredProperties as $property) {
+            if (!\count($property->values)) {
+                unset($this->requiredProperties[$property->name]);
+            }
+
+            if (str_contains($property->name, '.')) {
+                [$propertyName, $propertyProperty] = explode('.', $property->name);
+
+                if (!\array_key_exists($propertyName, $this->requiredProperties)) {
+                    foreach ($this->requiredProperties as $property) {
+                        if ($propertyName === $property->values[0]) {
+                            $propertyToUpdate = $property;
+                        }
+                    }
+                } else {
+                    $propertyToUpdate = $this->requiredProperties[$propertyName];
+                }
+
+                $propertyToUpdate->requiredValues[] = $propertyProperty;
+
+                unset($this->requiredProperties[$property->name]);
+            }
+        }
     }
 
     public function cleanUpRecommendedProperties(): void
     {
-        $this->recommendedProperties = array_filter($this->recommendedProperties, fn (Property $property) => \count($property->value));
+        foreach ($this->recommendedProperties as $property) {
+            if (!\count($property->values)) {
+                unset($this->recommendedProperties[$property->name]);
+            }
+
+            if (str_contains($property->name, '.')) {
+                [$propertyName, $propertyProperty] = explode('.', $property->name);
+
+                if (!\array_key_exists($propertyName, $this->recommendedProperties)) {
+                    foreach ($this->recommendedProperties as $property) {
+                        if ($propertyName === $property->values[0]) {
+                            $propertyToUpdate = $property;
+                        }
+                    }
+                } else {
+                    $propertyToUpdate = $this->recommendedProperties[$propertyName];
+                }
+
+                $propertyToUpdate->recommendedProperties[] = $propertyProperty;
+
+                unset($this->recommendedProperties[$property->name]);
+            }
+        }
     }
 }

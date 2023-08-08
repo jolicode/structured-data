@@ -11,7 +11,6 @@
 
 namespace Jolicode\JsonLd\Generator\Google;
 
-use Jolicode\JsonLd\Generator\Google\Objects\Property;
 use Jolicode\JsonLd\Generator\Google\Objects\Type;
 use Jolicode\JsonLd\Generator\SchemaOrg\Objects\ClassesContainer;
 use Symfony\Component\DomCrawler\Crawler;
@@ -47,7 +46,8 @@ class Extractor
     public function extractClasses(bool $refresh): ClassesContainer
     {
         $client = HttpClient::create();
-        $this->extractTypes('https://developers.google.com/search/docs/appearance/structured-data/movie', $client);
+
+        $this->extractTypes('https://developers.google.com/search/docs/appearance/structured-data/course', $client);
 
         if ($refresh || !$this->filesystem->exists(self::CACHE_DIRECTORY)) {
             $client = HttpClient::create();
@@ -61,6 +61,7 @@ class Extractor
                 }
 
                 if (str_starts_with($typeLink, self::TYPES_SOURCE_URL)) {
+                    dump($typeLink);
                     // $this->filesystem->dumpFile(self::CACHE_DIRECTORY, $this->extractTypes($typeLink, $client));
                     $this->extractTypes($typeLink, $client);
                 }
@@ -78,30 +79,32 @@ class Extractor
         $crawler
             ->filter('[data-text*="Structured data type definitions"]')
             ->nextAll()
-            ->each(function (Crawler $node) {
-                // dump($node->text(), $node->nodeName());
-
+            ->each(function (Crawler $node) use ($typeLink) {
                 match ($node->nodeName()) {
-                    'h3' => $this->initializeType($node),
+                    'h3' => $this->initializeType($node, $typeLink),
                     'table' => $this->extractProperties($node),
                     default => null,
                 };
             });
 
-        $this->extractedTypes[$this->currentType->name] = $this->currentType;
+        $this->pushCurrentType();
         dd($this->extractedTypes);
-
-        exit;
     }
 
-    private function initializeType(Crawler $node): void
+    private function pushCurrentType(): void
     {
-        if (null !== $this->currentType) {
-            $this->extractedTypes[$this->currentType->name] = $this->currentType;
+        if ($this->currentType && !$this->currentType->isEmpty()) {
+            $this->extractedTypes[] = $this->currentType;
         }
+    }
+
+    private function initializeType(Crawler $node, string $typeLink): void
+    {
+        $this->pushCurrentType();
 
         $this->currentType = new Type();
         $this->currentType->name = $node->text();
+        $this->currentType->documentationUrl = $typeLink . '#' . $node->attr('id');
     }
 
     private function extractProperties(Crawler $table): void
@@ -125,7 +128,7 @@ class Extractor
             return self::LEVEL_RECOMMENDED;
         }
 
-        throw new \Exception('Unknown severity');
+        return '';
     }
 
     private function extractRequiredProperties(Crawler $table): void
@@ -136,8 +139,7 @@ class Extractor
                 foreach ($codeTag as $childNode) {
                     foreach ($childNode->childNodes as $nodeEntry) {
                         if ('#text' === $nodeEntry->nodeName) {
-                            $property = new Property($nodeEntry->nodeValue);
-                            $this->currentType->requiredProperties[] = $property;
+                            $this->currentType->initRequiredProperty($nodeEntry->nodeValue);
 
                             continue;
                         }
@@ -162,17 +164,12 @@ class Extractor
             ->each(function (Crawler $codeTag) {
                 foreach ($codeTag as $childNode) {
                     foreach ($childNode->childNodes as $nodeEntry) {
-                        if ('#text' === $nodeEntry->nodeName) {
-                            $property = new Property($nodeEntry->nodeValue);
-                            $this->currentType->recommendedProperties[] = $property;
-
-                            continue;
+                        if ('#text' === $nodeEntry->nodeName && 'td' === $codeTag->ancestors()->getNode(0)->nodeName) {
+                            $this->currentType->initRecommendedProperty($nodeEntry->nodeValue);
                         }
 
                         if ('a' === $nodeEntry->nodeName) {
                             $this->currentType->pushRecommendedProperty($nodeEntry->nodeValue);
-
-                            continue;
                         }
                     }
                 }
@@ -184,6 +181,8 @@ class Extractor
 
     private function createContainer(): ClassesContainer
     {
+        dd($this->extractedTypes);
+
         $container = new ClassesContainer();
 
         // foreach ($this->finder->files()->in(self::CACHE_DIRECTORY) as $googleType) {
