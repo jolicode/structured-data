@@ -58,109 +58,63 @@ class Type
             || \array_key_exists($property, $this->betaProperties);
     }
 
-    public function initRequiredProperty(string $name, bool $isBeta): void
+    public function initProperty(string $name, string $severity, bool $isBeta): void
     {
-        if (!\array_key_exists($name, $this->requiredProperties)) {
-            $this->requiredProperties[$name] = new Property($name, isBeta: $isBeta);
+        $targetProperties = "{$severity}Properties";
+
+        if (!\array_key_exists($name, $this->{$targetProperties})) {
+            $this->{$targetProperties}[$name] = new Property($name, isBeta: $isBeta);
         }
 
-        $this->currentProperty = $this->requiredProperties[$name];
+        $this->currentProperty = $this->{$targetProperties}[$name];
     }
 
-    public function initRecommendedProperty(string $name, bool $isBeta): void
-    {
-        if (!\array_key_exists($name, $this->recommendedProperties)) {
-            $this->recommendedProperties[$name] = new Property($name, isBeta: $isBeta);
-        }
-
-        $this->currentProperty = $this->recommendedProperties[$name];
-    }
-
-    public function pushRequiredProperty(string $value, bool $isBeta): void
+    public function pushProperty(string $value, bool $isBeta): void
     {
         $this->currentProperty->values[$value] = new Property($value, isBeta: $isBeta);
     }
 
-    public function pushRecommendedProperty(string $value, bool $isBeta): void
+    public function addPropertyProperty(string $name, string $propertyToUpdate, string $severity, bool $isBeta): void
     {
-        $this->currentProperty->values[$value] = new Property($value, isBeta: $isBeta);
-    }
+        $targetProperties = "{$severity}Properties";
 
-    public function addPropertyRequiredProperty(string $name, string $propertyToUpdate, bool $isBeta): void
-    {
         if (\array_key_exists($propertyToUpdate, $this->requiredProperties)) {
-            $this->requiredProperties[$propertyToUpdate]->requiredProperties[$name] = new Property($name, isBeta: $isBeta);
-            $this->currentProperty = $this->requiredProperties[$propertyToUpdate]->requiredProperties[$name];
+            $this->requiredProperties[$propertyToUpdate]->{$targetProperties}[$name] = new Property($name, isBeta: $isBeta);
+            $this->currentProperty = $this->requiredProperties[$propertyToUpdate]->{$targetProperties}[$name];
 
             if (str_contains($name, '.')) {
-                $this->handleNestedRequiredProperty($this->currentProperty);
+                $this->handleNestedProperty($this->currentProperty, $severity);
             }
         } elseif (\array_key_exists($propertyToUpdate, $this->recommendedProperties)) {
-            $this->recommendedProperties[$propertyToUpdate]->requiredProperties[$name] = new Property($name, isBeta: $isBeta);
-            $this->currentProperty = $this->recommendedProperties[$propertyToUpdate]->requiredProperties[$name];
+            $this->recommendedProperties[$propertyToUpdate]->{$targetProperties}[$name] = new Property($name, isBeta: $isBeta);
+            $this->currentProperty = $this->recommendedProperties[$propertyToUpdate]->{$targetProperties}[$name];
 
             if (str_contains($name, '.')) {
-                $this->handleNestedRequiredProperty($this->currentProperty);
+                $this->handleNestedProperty($this->currentProperty, $severity);
             }
         }
     }
 
-    public function addPropertyRecommendedProperty(string $name, string $propertyToUpdate, bool $isBeta): void
+    public function cleanUpProperties(string $severity): void
     {
-        if (\array_key_exists($propertyToUpdate, $this->requiredProperties)) {
-            $this->requiredProperties[$propertyToUpdate]->recommendedProperties[$name] = new Property($name, isBeta: $isBeta);
-            $this->currentProperty = $this->requiredProperties[$propertyToUpdate]->recommendedProperties[$name];
+        $targetProperties = "{$severity}Properties";
 
-            if (str_contains($propertyToUpdate, '.')) {
-                $this->handleNestedRecommendedProperty($this->currentProperty);
-                unset($this->requiredProperties[$propertyToUpdate]->recommendedProperties[$name]);
-            }
-        } elseif (\array_key_exists($propertyToUpdate, $this->recommendedProperties)) {
-            $this->recommendedProperties[$propertyToUpdate]->recommendedProperties[$name] = new Property($name, isBeta: $isBeta);
-            $this->currentProperty = $this->recommendedProperties[$propertyToUpdate]->recommendedProperties[$name];
-
-            if (str_contains($propertyToUpdate, '.')) {
-                $this->handleNestedRecommendedProperty($this->currentProperty);
-                unset($this->recommendedProperties[$propertyToUpdate]->recommendedProperties[$name]);
-            }
-        }
-    }
-
-    public function cleanUpRequiredProperties(): void
-    {
-        foreach ($this->requiredProperties as $property) {
+        foreach ($this->{$targetProperties} as $property) {
             if (!\count($property->values)) {
-                unset($this->requiredProperties[$property->name]);
+                unset($this->{$targetProperties}[$property->name]);
             }
 
             if (str_contains($property->name, '.')) {
-                $this->handleNestedRequiredProperty($property);
+                $this->handleNestedProperty($property, $severity);
 
-                unset($this->requiredProperties[$property->name]);
+                unset($this->{$targetProperties}[$property->name]);
             }
         }
 
         unset($this->currentProperty);
     }
 
-    public function cleanUpRecommendedProperties(): void
-    {
-        foreach ($this->recommendedProperties as $property) {
-            if (!\count($property->values)) {
-                unset($this->recommendedProperties[$property->name]);
-            }
-
-            if (str_contains($property->name, '.')) {
-                $this->handleNestedRecommendedProperty($property);
-
-                unset($this->recommendedProperties[$property->name]);
-            }
-        }
-
-        unset($this->currentProperty);
-    }
-
-    private function handleNestedRequiredProperty(Property $property): void
+    private function handleNestedProperty(Property $property, string $severity): void
     {
         $propertiesChain = explode('.', $property->name);
         [$propertyName, $propertyProperty] = $propertiesChain;
@@ -168,48 +122,24 @@ class Type
         // Hence we handle them this way.
         $propertyPropertyRequiredProperty = $propertiesChain[2] ?? null;
 
-        $propertyToUpdate = $this->findPropertyToUpdate($this->requiredProperties, $propertyName);
+        $targetProperties = "{$severity}Properties";
+
+        $propertyToUpdate = $this->findPropertyToUpdate($this->{$targetProperties}, $propertyName);
 
         if (!$propertyToUpdate) {
-            $this->initRecommendedProperty($propertyName, $property->isBeta);
+            $this->initProperty($propertyName, $severity, $property->isBeta);
             $propertyToUpdate = $this->currentProperty;
         }
 
-        if (!\array_key_exists($propertyProperty, $propertyToUpdate->requiredProperties)) {
-            $propertyToUpdate->requiredProperties[$propertyProperty] = new Property($propertyProperty, $property->values, isBeta: $property->isBeta);
+        if (!\array_key_exists($propertyProperty, $propertyToUpdate->{$targetProperties})) {
+            $propertyToUpdate->{$targetProperties}[$propertyProperty] = new Property($propertyProperty, $property->values, isBeta: $property->isBeta);
         }
 
-        $this->currentProperty = $propertyToUpdate->requiredProperties[$propertyProperty];
+        $this->currentProperty = $propertyToUpdate->{$targetProperties}[$propertyProperty];
 
         if ($propertyPropertyRequiredProperty) {
-            if ('expectsAcceptanceOf.eligibleRegion.@type' === $property->name) {
-                dump($propertyToUpdate->requiredProperties[$propertyProperty]->requiredProperties);
-            }
-
-            $propertyToUpdate->requiredProperties[$propertyProperty]->requiredProperties[$propertyPropertyRequiredProperty] = new Property($propertyProperty, $property->values, isBeta: $property->isBeta);
-            $this->currentProperty = $propertyToUpdate->requiredProperties[$propertyProperty]->requiredProperties[$propertyPropertyRequiredProperty];
-        }
-    }
-
-    private function handleNestedRecommendedProperty(Property $property): void
-    {
-        $propertiesChain = explode('.', $property->name);
-        [$propertyName, $propertyProperty] = $propertiesChain;
-        // Google may use nested recommended properties. From what I saw, they never go further than 2 levels.
-        // Hence we handle them this way.
-        $propertyPropertyRecommendedProperty = $propertiesChain[2] ?? null;
-
-        $propertyToUpdate = $this->findPropertyToUpdate($this->recommendedProperties, $propertyName) ?:
-            $this->findPropertyToUpdate($this->requiredProperties, $propertyName);
-
-        if ($propertyToUpdate) {
-            if (!\array_key_exists($propertyProperty, $propertyToUpdate->recommendedProperties)) {
-                $propertyToUpdate->recommendedProperties[$propertyProperty] = new Property($propertyProperty, $property->values, isBeta: $property->isBeta);
-            }
-
-            if ($propertyPropertyRecommendedProperty) {
-                $propertyToUpdate->recommendedProperties[$propertyProperty]->recommendedProperties[$propertyPropertyRecommendedProperty] = $property->values;
-            }
+            $propertyToUpdate->{$targetProperties}[$propertyProperty]->{$targetProperties}[$propertyPropertyRequiredProperty] = new Property($propertyProperty, $property->values, isBeta: $property->isBeta);
+            $this->currentProperty = $propertyToUpdate->{$targetProperties}[$propertyProperty]->{$targetProperties}[$propertyPropertyRequiredProperty];
         }
     }
 

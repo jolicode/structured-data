@@ -18,16 +18,23 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\String\Slugger\AsciiSlugger;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class Extractor
 {
-    private const LEVEL_RECOMMENDED = 'recommended';
-    private const LEVEL_REQUIRED = 'required';
+    public const SEVERITY_RECOMMENDED = 'recommended';
+    public const SEVERITY_REQUIRED = 'required';
 
     private const GOOGLE_DOMAIN = 'https://developers.google.com';
     private const TYPES_SOURCE_URL = self::GOOGLE_DOMAIN . '/search/docs/appearance/structured-data';
     private const CACHE_DIRECTORY = __DIR__ . '/../../../var/cache/google/';
+
+    private const SKIPPED_LINKS = [
+        'https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data',
+        'https://developers.google.com/search/docs/appearance/structured-data/sd-policies',
+        'https://developers.google.com/search/docs/appearance/structured-data/generate-structured-data-with-javascript',
+        'https://developers.google.com/search/docs/appearance/structured-data/search-gallery',
+        'https://developers.google.com/search/docs/appearance/structured-data/enriched-search-results',
+    ];
 
     public function __construct(
         private readonly Filesystem $filesystem,
@@ -47,55 +54,78 @@ class Extractor
     public function extractClasses(bool $refresh): ClassesContainer
     {
         $client = HttpClient::create();
-        $this->extractTypes('https://developers.google.com/search/docs/appearance/structured-data/book', $client);
 
         if ($refresh || !$this->filesystem->exists(self::CACHE_DIRECTORY)) {
             $client = HttpClient::create();
             $response = $client->request('GET', self::TYPES_SOURCE_URL . '/search-gallery');
 
             $crawler = new Crawler($response->getContent());
+            $navLinks = $crawler->filter('li.devsite-nav-expandable ul.devsite-nav-section a.devsite-nav-title')->extract(['href']);
+            $foundLinks = [];
 
-            foreach ($crawler->filter('article.devsite-article a.button-primary')->extract(['href']) as $typeLink) {
-                if (false === filter_var($typeLink, \FILTER_VALIDATE_URL)) {
-                    $typeLink = self::GOOGLE_DOMAIN . $typeLink;
+            foreach ($navLinks as $link) {
+                // fix relative path
+                if (false === filter_var($link, \FILTER_VALIDATE_URL)) {
+                    $link = self::GOOGLE_DOMAIN . $link;
                 }
 
-                if (str_starts_with($typeLink, self::TYPES_SOURCE_URL)) {
-                    // dump($typeLink);
-                    // $this->filesystem->dumpFile(self::CACHE_DIRECTORY, $this->extractTypes($typeLink, $client));
-                    // $this->extractTypes($typeLink, $client);
+                if (str_starts_with($link, self::TYPES_SOURCE_URL) && !\in_array($link, self::SKIPPED_LINKS, true)) {
+                    $foundLinks[] = $link;
                 }
+            }
+
+            foreach ($foundLinks as $typeLink) {
+                $fileName = explode('/', $typeLink);
+                $fileName = end($fileName);
+
+                $this->filesystem->dumpFile(
+                    sprintf('%s%s.html', self::CACHE_DIRECTORY, $fileName),
+                    $client->request('GET', $typeLink)->getContent()
+                );
             }
         }
 
-        // dump($this->extractedTypes);
-        // dd($this->extractedTypes);
+        $this->extractTypes('book.html', file_get_contents('/home/hedic/Dev/JoliCode/json-ld-projects/json-ld/var/cache/google/book.html'));
+        // $this->extractTypes('https://developers.google.com/search/docs/appearance/structured-data/math-solvers', $client);
+
+        foreach ($this->finder->files()->in(self::CACHE_DIRECTORY) as $file) {
+            // $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
+        }
+
+        dd($this->extractedTypes);
         exit;
 
         return $this->createContainer();
     }
 
-    private function extractTypes(string $typeLink, HttpClientInterface $client): void
+    private function extractTypes(string $fileName, string $document): void
     {
-        $response = $client->request('GET', $typeLink);
-        $crawler = new Crawler($response->getContent());
+        $crawler = new Crawler($document);
 
         $definitions = $crawler->filter('[data-text*="Structured data type definitions"]');
 
         if ($definitions->count()) {
             $definitions
                 ->nextAll()
-                ->each(function (Crawler $node) use ($typeLink) {
+                ->each(function (Crawler $node) use ($fileName) {
                     match ($node->nodeName()) {
-                        'h3' => $this->initializeType($node, $typeLink),
-                        'h4' => $this->initializeSubtype($node, $typeLink),
-                        'table' => $this->extractProperties($node),
+                        'h3' => $this->initializeType($node, $fileName),
+                        'h4' => $this->initializeSubtype($node, $fileName),
+                        'table' => $this->extractProperties($node, $this->getTableSeverity($node)),
                         default => null,
                     };
                 });
 
             $this->pushCurrentType();
         }
+    }
+
+    private function generateGoogleLink(string $fileName, string $anchor): string
+    {
+        $typeLink = str_replace('.html', '', $fileName);
+        $typeLink = sprintf('%s/%s', self::TYPES_SOURCE_URL, $typeLink);
+
+        return sprintf('%s#%s', $typeLink, $anchor);
     }
 
     private function pushCurrentType(): void
@@ -113,7 +143,7 @@ class Extractor
         }
     }
 
-    private function initializeType(Crawler $node, string $typeLink): void
+    private function initializeType(Crawler $node, string $fileName): void
     {
         $this->propertyToUpdate = null;
         $name = $node->text();
@@ -128,16 +158,18 @@ class Extractor
             // The book page adds a useless `entity` keyword. Other types are written in PascalCase so its fine.
             $name = explode(' ', $name);
 
+            $this->pushCurrentType();
+
             // Again the book page. Some examples are written inside h3 tags.
             if (\count($name) > 2) {
+                $this->currentType = null;
+
                 return;
             }
 
-            $this->pushCurrentType();
-
             $this->currentType = new Type();
             $this->currentType->name = $name[0];
-            $this->currentType->documentationUrl = $typeLink . '#' . $node->attr('id');
+            $this->currentType->documentationUrl = $this->generateGoogleLink($fileName, $node->attr('id'));
         }
     }
 
@@ -149,14 +181,14 @@ class Extractor
         $this->propertyToUpdate = ['property' => $targetProperty, 'values' => $targetValues];
     }
 
-    private function initializeSubtype(Crawler $node, string $typeLink): void
+    private function initializeSubtype(Crawler $node, string $fileName): void
     {
         $this->propertyToUpdate = null;
         $name = $node->text();
         preg_match('/\((.+)\)/', $name, $matches);
 
         if (!\array_key_exists(1, $matches)) {
-            $this->initializeType($node, $typeLink);
+            $this->initializeType($node, $fileName);
 
             return;
         }
@@ -167,7 +199,7 @@ class Extractor
             name: $subType,
             isASubtype: true,
             parentType: $this->currentType->isASubtype ? $this->currentType->parentType : $this->currentType,
-            documentationUrl: $typeLink . '#' . $node->attr('id'),
+            documentationUrl: $this->generateGoogleLink($fileName, $node->attr('id')),
         );
 
         if ($this->currentType->isASubtype) {
@@ -179,32 +211,31 @@ class Extractor
         $this->currentType = $subType;
     }
 
-    private function extractProperties(Crawler $table): void
-    {
-        match ($this->getTableSeverity($table)) {
-            self::LEVEL_REQUIRED => $this->extractRequiredProperties($table),
-            self::LEVEL_RECOMMENDED => $this->extractRecommendedProperties($table),
-            default => null,
-        };
-    }
-
-    private function getTableSeverity(Crawler $table): string
+    private function getTableSeverity(Crawler $table): string|false
     {
         $severity = $table->filter('tr > th')->text();
 
         if (str_contains(strtolower($severity), 'required')) {
-            return self::LEVEL_REQUIRED;
+            return self::SEVERITY_REQUIRED;
         }
 
         if (str_contains(strtolower($severity), 'recommended')) {
-            return self::LEVEL_RECOMMENDED;
+            return self::SEVERITY_RECOMMENDED;
         }
 
-        return '';
+        return false;
     }
 
-    private function extractPropertiesForSeverity(Crawler $table, string $severity): void
+    private function extractProperties(Crawler $table, string $severity): void
     {
+        if (!$this->currentType) {
+            return;
+        }
+
+        if (!$severity) {
+            return;
+        }
+
         $head = $table->filter('tr > th')->text();
         $isABetaTable = false;
 
@@ -214,36 +245,18 @@ class Extractor
 
         $table
             ->filter('tbody > tr td code')
-            ->each(function (Crawler $codeTag) use ($isABetaTable) {
+            ->each(function (Crawler $codeTag) use ($isABetaTable, $severity) {
                 foreach ($codeTag as $childNode) {
                     foreach ($childNode->childNodes as $nodeEntry) {
                         if (
                             '#text' === $nodeEntry->nodeName
                             && ('td' === $codeTag->ancestors()->getNode(0)->nodeName || 'h3' === $codeTag->ancestors()->getNode(0)->nodeName)
                         ) {
-                            if ($this->propertyToUpdate) {
-                                if ($this->currentType->isASubtype) {
-                                    foreach ($this->currentType->parentType->subTypes as $subType) {
-                                        $subType->addPropertyRequiredProperty($nodeEntry->nodeValue, $this->propertyToUpdate, $isABetaTable);
-                                    }
-                                } else {
-                                    $this->currentType->addPropertyRequiredProperty($nodeEntry->nodeValue, $this->propertyToUpdate, $isABetaTable);
-                                }
-                            } else {
-                                $this->currentType->initRequiredProperty($nodeEntry->nodeValue, $isABetaTable);
-                            }
-
-                            continue;
+                            $this->handleNewProperty($nodeEntry, $severity, $isABetaTable);
                         }
 
                         if ('a' === $nodeEntry->nodeName) {
-                            foreach ($nodeEntry->attributes as $attr) {
-                                if ('class' === $attr->nodeName && 'external-link' === $attr->nodeValue) {
-                                    $this->currentType->pushRequiredProperty($nodeEntry->nodeValue, $isABetaTable);
-
-                                    break;
-                                }
-                            }
+                            $this->handleValue($nodeEntry, $nodeEntry->attributes, $isABetaTable);
                         }
 
                         // Usually, the `a` tag is wrapped around the `code` tag. However, for the book page, it is the contrary... WEB SCRAPPING !
@@ -251,148 +264,44 @@ class Extractor
                             '#text' === $nodeEntry->nodeName
                             && 'a' === $codeTag->ancestors()->getNode(0)->nodeName
                         ) {
-                            foreach ($codeTag->ancestors()->getNode(0)->attributes as $attr) {
-                                if ('class' === $attr->nodeName && 'external-link' === $attr->nodeValue) {
-                                    $this->currentType->pushRequiredProperty($nodeEntry->nodeValue, $isABetaTable);
-
-                                    break;
-                                }
-                            }
+                            $this->handleValue($nodeEntry, $codeTag->ancestors()->getNode(0)->attributes, $isABetaTable);
                         }
                     }
                 }
             })
         ;
 
-        $this->currentType->cleanUpRequiredProperties();
+        $this->currentType->cleanUpProperties($severity);
     }
 
-    private function extractRequiredProperties(Crawler $table): void
+    private function handleNewProperty(\DOMNode $nodeEntry, string $severity, bool $isABetaTable): void
     {
-        $head = $table->filter('tr > th')->text();
-        $isABetaTable = false;
+        // if ($this->propertyToUpdate) {
+        //     if ($this->currentType->isASubtype) {
+        //         foreach ($this->currentType->parentType->subTypes as $subType) {
+        //             $subType->addPropertyProperty($nodeEntry->nodeValue, $this->propertyToUpdate, $severity, $isABetaTable);
+        //         }
+        //     } else {
+        //         $this->currentType->addPropertyProperty($nodeEntry->nodeValue, $this->propertyToUpdate, $severity, $isABetaTable);
+        //     }
+        // } else {
+        // $this->currentType->initProperty($nodeEntry->nodeValue, $severity, $isABetaTable);
+        // }
 
-        if (str_contains(strtolower($head), '(beta)')) {
-            $isABetaTable = true;
-        }
+        dump($nodeEntry->nodeValue, $this->propertyToUpdate);
 
-        $table
-            ->filter('tbody > tr td code')
-            ->each(function (Crawler $codeTag) use ($isABetaTable) {
-                foreach ($codeTag as $childNode) {
-                    foreach ($childNode->childNodes as $nodeEntry) {
-                        if (
-                            '#text' === $nodeEntry->nodeName
-                            && ('td' === $codeTag->ancestors()->getNode(0)->nodeName || 'h3' === $codeTag->ancestors()->getNode(0)->nodeName)
-                        ) {
-                            if ($this->propertyToUpdate) {
-                                if ($this->currentType->isASubtype) {
-                                    foreach ($this->currentType->parentType->subTypes as $subType) {
-                                        $subType->addPropertyRequiredProperty($nodeEntry->nodeValue, $this->propertyToUpdate, $isABetaTable);
-                                    }
-                                } else {
-                                    $this->currentType->addPropertyRequiredProperty($nodeEntry->nodeValue, $this->propertyToUpdate, $isABetaTable);
-                                }
-                            } else {
-                                $this->currentType->initRequiredProperty($nodeEntry->nodeValue, $isABetaTable);
-                            }
-
-                            continue;
-                        }
-
-                        if ('a' === $nodeEntry->nodeName) {
-                            foreach ($nodeEntry->attributes as $attr) {
-                                if ('class' === $attr->nodeName && 'external-link' === $attr->nodeValue) {
-                                    $this->currentType->pushRequiredProperty($nodeEntry->nodeValue, $isABetaTable);
-
-                                    break;
-                                }
-                            }
-                        }
-
-                        // Usually, the `a` tag is wrapped around the `code` tag. However, for the book page, it is the contrary... WEB SCRAPPING !
-                        if (
-                            '#text' === $nodeEntry->nodeName
-                            && 'a' === $codeTag->ancestors()->getNode(0)->nodeName
-                        ) {
-                            foreach ($codeTag->ancestors()->getNode(0)->attributes as $attr) {
-                                if ('class' === $attr->nodeName && 'external-link' === $attr->nodeValue) {
-                                    $this->currentType->pushRequiredProperty($nodeEntry->nodeValue, $isABetaTable);
-
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-            })
-        ;
-
-        $this->currentType->cleanUpRequiredProperties();
+        $this->currentType->initProperty($nodeEntry->nodeValue, $severity, $isABetaTable);
     }
 
-    private function extractRecommendedProperties(Crawler $table): void
+    private function handleValue(\DOMNode $nodeEntry, \DOMNamedNodeMap $attributes, bool $isABetaTable): void
     {
-        $head = $table->filter('tr > th')->text();
-        $isABetaTable = false;
+        foreach ($attributes as $attr) {
+            if ('class' === $attr->nodeName && 'external-link' === $attr->nodeValue) {
+                $this->currentType->pushProperty($nodeEntry->nodeValue, $isABetaTable);
 
-        if (str_contains(strtolower($head), '(beta)')) {
-            $isABetaTable = true;
+                break;
+            }
         }
-
-        $table
-            ->filter('tbody > tr td code')
-            ->each(function (Crawler $codeTag) use ($isABetaTable) {
-                foreach ($codeTag as $childNode) {
-                    foreach ($childNode->childNodes as $nodeEntry) {
-                        if (
-                            '#text' === $nodeEntry->nodeName
-                            && ('td' === $codeTag->ancestors()->getNode(0)->nodeName || 'h3' === $codeTag->ancestors()->getNode(0)->nodeName)
-                        ) {
-                            if ($this->propertyToUpdate) {
-                                if ($this->currentType->isASubtype) {
-                                    foreach ($this->currentType->parentType->subTypes as $subType) {
-                                        $subType->addPropertyRecommendedProperty($nodeEntry->nodeValue, $this->propertyToUpdate, $isABetaTable);
-                                    }
-                                } else {
-                                    $this->currentType->addPropertyRecommendedProperty($nodeEntry->nodeValue, $this->propertyToUpdate, $isABetaTable);
-                                }
-                            } else {
-                                $this->currentType->initRecommendedProperty($nodeEntry->nodeValue, $isABetaTable);
-                            }
-
-                            continue;
-                        }
-
-                        if ('a' === $nodeEntry->nodeName) {
-                            foreach ($nodeEntry->attributes as $attr) {
-                                if ('class' === $attr->nodeName && 'external-link' === $attr->nodeValue) {
-                                    $this->currentType->pushRecommendedProperty($nodeEntry->nodeValue, $isABetaTable);
-
-                                    break;
-                                }
-                            }
-                        }
-
-                        // Usually, the `a` tag is wrapped around the `code` tag. However, for the book page, it is the contrary... WEB SCRAPPING !
-                        if (
-                            '#text' === $nodeEntry->nodeName
-                            && 'a' === $codeTag->ancestors()->getNode(0)->nodeName
-                        ) {
-                            foreach ($codeTag->ancestors()->getNode(0)->attributes as $attr) {
-                                if ('class' === $attr->nodeName && 'external-link' === $attr->nodeValue) {
-                                    $this->currentType->pushRecommendedProperty($nodeEntry->nodeValue, $isABetaTable);
-
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-            })
-        ;
-
-        $this->currentType->cleanUpRecommendedProperties();
     }
 
     private function createContainer(): ClassesContainer
