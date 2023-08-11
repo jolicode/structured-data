@@ -22,24 +22,26 @@ class Property
         public array $values = [],
 
         /**
-         * @var array<string>
+         * @var array<Property>
          */
-        public array $requiredValues = [],
+        public array $requiredProperties = [],
 
         /**
-         * @var array<string>
+         * @var array<Property>
          */
-        public array $recommendedValues = [],
+        public array $recommendedProperties = [],
+
+        public bool $isBeta = false,
     ) {
     }
 
-    public function hasRequiredValues(): bool
+    public function hasRequiredProperties(): bool
     {
-        return \count($this->requiredValues);
+        return \count($this->requiredProperties);
     }
 
-    public function hasRecommendedValues(): bool
+    public function hasRecommendedProperties(): bool
     {
-        return \count($this->recommendedValues);
+        return \count($this->recommendedProperties);
     }
 }
