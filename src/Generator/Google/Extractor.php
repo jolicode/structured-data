@@ -92,7 +92,7 @@ class Extractor
             // $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
         }
 
-        dd($this->extractedTypes);
+        dd($this->extractedTypes[1]->subTypes[1]);
         exit;
 
         return $this->createContainer();
@@ -155,17 +155,15 @@ class Extractor
         if (preg_match('/\((.+)\)/', $name, $matches)) {
             $this->definePropertyToUpdate($name, $matches[1]);
         } else {
-            // The book page adds a useless `entity` keyword. Other types are written in PascalCase so its fine.
-            $name = explode(' ', $name);
+            // Again the book page. Some examples are written inside h3 tags.
+            if ($this->shouldSkipTitle($name)) {
+                return;
+            }
 
             $this->pushCurrentType();
 
-            // Again the book page. Some examples are written inside h3 tags.
-            if (\count($name) > 2) {
-                $this->currentType = null;
-
-                return;
-            }
+            // The book page adds a useless `entity` keyword. Other types are written in PascalCase so its fine.
+            $name = explode(' ', $name);
 
             $this->currentType = new Type();
             $this->currentType->name = $name[0];
@@ -173,12 +171,23 @@ class Extractor
         }
     }
 
+    private function shouldSkipTitle(string $name): bool
+    {
+        $wrongTitles = [
+            'Example BorrowAction Book feed JSON file',
+            'Example ReadAction Book feed JSON file',
+            'Example LibrarySystem feed JSON file',
+        ];
+
+        return \in_array($name, $wrongTitles, true);
+    }
+
     private function definePropertyToUpdate(string $fullTitle, string $targetProperty): void
     {
         $targetValues = preg_replace('/\s\((.+)\)/', '', $fullTitle);
         $targetValues = explode(' or ', $targetValues);
 
-        $this->propertyToUpdate = ['property' => $targetProperty, 'values' => $targetValues];
+        $this->propertyToUpdate = [$targetProperty, $targetValues];
     }
 
     private function initializeSubtype(Crawler $node, string $fileName): void
@@ -276,21 +285,17 @@ class Extractor
 
     private function handleNewProperty(\DOMNode $nodeEntry, string $severity, bool $isABetaTable): void
     {
-        // if ($this->propertyToUpdate) {
-        //     if ($this->currentType->isASubtype) {
-        //         foreach ($this->currentType->parentType->subTypes as $subType) {
-        //             $subType->addPropertyProperty($nodeEntry->nodeValue, $this->propertyToUpdate, $severity, $isABetaTable);
-        //         }
-        //     } else {
-        //         $this->currentType->addPropertyProperty($nodeEntry->nodeValue, $this->propertyToUpdate, $severity, $isABetaTable);
-        //     }
-        // } else {
-        // $this->currentType->initProperty($nodeEntry->nodeValue, $severity, $isABetaTable);
-        // }
-
-        dump($nodeEntry->nodeValue, $this->propertyToUpdate);
-
-        $this->currentType->initProperty($nodeEntry->nodeValue, $severity, $isABetaTable);
+        if ($this->propertyToUpdate) {
+            if ($this->currentType->isASubtype) {
+                foreach ($this->currentType->parentType->subTypes as $subType) {
+                    $subType->addPropertyProperty($nodeEntry->nodeValue, $this->propertyToUpdate, $severity, $isABetaTable);
+                }
+            } else {
+                $this->currentType->addPropertyProperty($nodeEntry->nodeValue, $this->propertyToUpdate, $severity, $isABetaTable);
+            }
+        } else {
+            $this->currentType->initProperty($nodeEntry->nodeValue, $severity, $isABetaTable);
+        }
     }
 
     private function handleValue(\DOMNode $nodeEntry, \DOMNamedNodeMap $attributes, bool $isABetaTable): void

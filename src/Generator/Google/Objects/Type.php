@@ -74,23 +74,27 @@ class Type
         $this->currentProperty->values[$value] = new Property($value, isBeta: $isBeta);
     }
 
-    public function addPropertyProperty(string $name, string $propertyToUpdate, string $severity, bool $isBeta): void
+    public function addPropertyProperty(string $name, array $propertyToUpdate, string $severity, bool $isBeta): void
     {
-        $targetProperties = "{$severity}Properties";
+        [$property, $values] = $propertyToUpdate;
 
-        if (\array_key_exists($propertyToUpdate, $this->requiredProperties)) {
-            $this->requiredProperties[$propertyToUpdate]->{$targetProperties}[$name] = new Property($name, isBeta: $isBeta);
-            $this->currentProperty = $this->requiredProperties[$propertyToUpdate]->{$targetProperties}[$name];
-
-            if (str_contains($name, '.')) {
-                $this->handleNestedProperty($this->currentProperty, $severity);
-            }
-        } elseif (\array_key_exists($propertyToUpdate, $this->recommendedProperties)) {
-            $this->recommendedProperties[$propertyToUpdate]->{$targetProperties}[$name] = new Property($name, isBeta: $isBeta);
-            $this->currentProperty = $this->recommendedProperties[$propertyToUpdate]->{$targetProperties}[$name];
-
-            if (str_contains($name, '.')) {
-                $this->handleNestedProperty($this->currentProperty, $severity);
+        foreach ($values as $targetValue) {
+            if (\array_key_exists($property, $this->requiredProperties)) {
+                $this->addNestedPropertyToValue(
+                    $this->requiredProperties[$property],
+                    $targetValue,
+                    $severity,
+                    $name,
+                    $isBeta
+                );
+            } elseif (\array_key_exists($property, $this->recommendedProperties)) {
+                $this->addNestedPropertyToValue(
+                    $this->recommendedProperties[$property],
+                    $targetValue,
+                    $severity,
+                    $name,
+                    $isBeta
+                );
             }
         }
     }
@@ -114,13 +118,56 @@ class Type
         unset($this->currentProperty);
     }
 
+    private function addNestedPropertyToValue(
+        Property $property,
+        string $targetValue,
+        string $severity,
+        string $propertyName,
+        bool $isBeta
+    ): void {
+        if (str_contains($propertyName, '.')) {
+            $propertiesChain = explode('.', $propertyName);
+            [$propertyName, $propertyProperty] = $propertiesChain;
+            $propertyPropertyNestedProperty = $propertiesChain[2] ?? null;
+        }
+
+        $targetProperties = "{$severity}Properties";
+
+        $newProperty = new Property($propertyName, isBeta: $isBeta);
+
+        $property
+            ->values[$targetValue]
+            ->{$targetProperties}[$propertyName] = $newProperty;
+
+        if (isset($propertyProperty)) {
+            $secondNewProperty = new Property($propertyProperty, isBeta: $isBeta);
+            $newProperty->{$targetProperties}[$propertyProperty] = $secondNewProperty;
+
+            if ('actionPlatform' === $propertyProperty) {
+                dd(
+                    $property
+                    ->values[$targetValue]
+                    ->{$targetProperties},
+                );
+            }
+
+            $newProperty = $secondNewProperty;
+        }
+
+        if (isset($propertyPropertyNestedProperty)) {
+            $thirdNewProperty = new Property($propertyPropertyNestedProperty, isBeta: $isBeta);
+            $newProperty->{$targetProperties}[$propertyPropertyNestedProperty] = $thirdNewProperty;
+
+            $newProperty = $thirdNewProperty;
+        }
+
+        $this->currentProperty = $newProperty;
+    }
+
     private function handleNestedProperty(Property $property, string $severity): void
     {
         $propertiesChain = explode('.', $property->name);
         [$propertyName, $propertyProperty] = $propertiesChain;
-        // Google may use nested required properties. From what I saw, they never go further than 2 levels.
-        // Hence we handle them this way.
-        $propertyPropertyRequiredProperty = $propertiesChain[2] ?? null;
 
         $targetProperties = "{$severity}Properties";
 
@@ -136,11 +183,6 @@ class Type
         }
 
         $this->currentProperty = $propertyToUpdate->{$targetProperties}[$propertyProperty];
-
-        if ($propertyPropertyRequiredProperty) {
-            $propertyToUpdate->{$targetProperties}[$propertyProperty]->{$targetProperties}[$propertyPropertyRequiredProperty] = new Property($propertyProperty, $property->values, isBeta: $property->isBeta);
-            $this->currentProperty = $propertyToUpdate->{$targetProperties}[$propertyProperty]->{$targetProperties}[$propertyPropertyRequiredProperty];
-        }
     }
 
     /**
