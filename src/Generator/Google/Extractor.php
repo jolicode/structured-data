@@ -162,6 +162,9 @@ class Extractor
             $this->pushCurrentType();
 
             // The book page adds a useless `entity` keyword. Other types are written in PascalCase so its fine.
+            // TODO: not true!
+            // On https://developers.google.com/search/docs/appearance/structured-data/learning-video
+            // There are titles with spaces and even brackets... We have to handle this as well.
             $name = explode(' ', $name);
 
             $this->currentType = new Type();
