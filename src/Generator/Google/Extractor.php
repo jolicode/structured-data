@@ -85,15 +85,12 @@ class Extractor
             }
         }
 
-        $this->extractTypes('book.html', file_get_contents('/home/hedic/Dev/JoliCode/json-ld-projects/json-ld/var/cache/google/book.html'));
-        // $this->extractTypes('https://developers.google.com/search/docs/appearance/structured-data/math-solvers', $client);
-
         foreach ($this->finder->files()->in(self::CACHE_DIRECTORY) as $file) {
-            // $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
+            dump($file->getFilename());
+            $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
         }
 
-        dd($this->extractedTypes[1]->subTypes[1]);
-        exit;
+        dump($this->extractedTypes);
 
         return $this->createContainer();
     }
@@ -153,7 +150,9 @@ class Extractor
         // And it still uses some `.` as well.
         // This causes quite a lot of issues and chaos...
         if (preg_match('/\((.+)\)/', $name, $matches)) {
-            $this->definePropertyToUpdate($name, $matches[1]);
+            if (!str_contains(strtolower($name), 'beta')) {
+                $this->definePropertyToUpdate($name, $matches[1]);
+            }
         } else {
             // Again the book page. Some examples are written inside h3 tags.
             if ($this->shouldSkipTitle($name)) {
@@ -177,6 +176,7 @@ class Extractor
             'Example BorrowAction Book feed JSON file',
             'Example ReadAction Book feed JSON file',
             'Example LibrarySystem feed JSON file',
+            'IPTC photo metadata',
         ];
 
         return \in_array($name, $wrongTitles, true);
@@ -192,6 +192,10 @@ class Extractor
 
     private function initializeSubtype(Crawler $node, string $fileName): void
     {
+        if (str_contains($node->text(), 'Beta')) {
+            return;
+        }
+
         $this->propertyToUpdate = null;
         $name = $node->text();
         preg_match('/\((.+)\)/', $name, $matches);

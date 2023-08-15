@@ -133,35 +133,37 @@ class Type
 
         $targetProperties = "{$severity}Properties";
 
-        $newProperty = new Property($propertyName, isBeta: $isBeta);
+        if (!\array_key_exists($propertyName, $property->values[$targetValue]->{$targetProperties})) {
+            $targetProperty = new Property($propertyName, isBeta: $isBeta);
 
-        $property
-            ->values[$targetValue]
-            ->{$targetProperties}[$propertyName] = $newProperty;
+            $property
+                ->values[$targetValue]
+                ->{$targetProperties}[$propertyName] = $targetProperty;
+        } else {
+            $targetProperty = $property
+                ->values[$targetValue]
+                ->{$targetProperties}[$propertyName];
+        }
 
         if (isset($propertyProperty)) {
-            $secondNewProperty = new Property($propertyProperty, isBeta: $isBeta);
-            $newProperty->{$targetProperties}[$propertyProperty] = $secondNewProperty;
-
-            if ('actionPlatform' === $propertyProperty) {
-                dd(
-                    $property
-                    ->values[$targetValue]
-                    ->{$targetProperties},
-                );
+            if (!\array_key_exists($propertyProperty, $targetProperty->{$targetProperties})) {
+                $newProperty = new Property($propertyProperty, isBeta: $isBeta);
+                $targetProperty->{$targetProperties}[$propertyProperty] = $newProperty;
+            } else {
+                $newProperty = $targetProperty->{$targetProperties}[$propertyProperty];
             }
 
-            $newProperty = $secondNewProperty;
+            $targetProperty = $newProperty;
         }
 
         if (isset($propertyPropertyNestedProperty)) {
-            $thirdNewProperty = new Property($propertyPropertyNestedProperty, isBeta: $isBeta);
-            $newProperty->{$targetProperties}[$propertyPropertyNestedProperty] = $thirdNewProperty;
+            $secondNewProperty = new Property($propertyPropertyNestedProperty, isBeta: $isBeta);
+            $targetProperty->{$targetProperties}[$propertyPropertyNestedProperty] = $secondNewProperty;
 
-            $newProperty = $thirdNewProperty;
+            $targetProperty = $secondNewProperty;
         }
 
-        $this->currentProperty = $newProperty;
+        $this->currentProperty = $targetProperty;
     }
 
     private function handleNestedProperty(Property $property, string $severity): void
