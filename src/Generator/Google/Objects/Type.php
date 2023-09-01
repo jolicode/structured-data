@@ -25,6 +25,7 @@ class Type
         public array $subTypes = [],
 
         private ?Property $currentProperty = null,
+        private int $atLeastOneOfCounter = 0,
 
         /**
          * @var array<string, Property>
@@ -58,12 +59,16 @@ class Type
             || \array_key_exists($property, $this->betaProperties);
     }
 
-    public function initProperty(string $name, string $severity, bool $isBeta): void
+    public function initProperty(string $name, string $severity, bool $isBeta, array $atLeastOneOf = []): void
     {
         $targetProperties = "{$severity}Properties";
 
+        if ($atLeastOneOf) {
+            $name = 'atLeastOneOf_' . $this->atLeastOneOfCounter++;
+        }
+
         if (!\array_key_exists($name, $this->{$targetProperties})) {
-            $this->{$targetProperties}[$name] = new Property($name, isBeta: $isBeta);
+            $this->{$targetProperties}[$name] = new Property($name, values: $atLeastOneOf, isBeta: $isBeta);
         }
 
         $this->currentProperty = $this->{$targetProperties}[$name];

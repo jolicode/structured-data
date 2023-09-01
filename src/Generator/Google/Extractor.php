@@ -11,6 +11,7 @@
 
 namespace Jolicode\JsonLd\Generator\Google;
 
+use Jolicode\JsonLd\Generator\Google\Objects\Property;
 use Jolicode\JsonLd\Generator\Google\Objects\Type;
 use Jolicode\JsonLd\Generator\SchemaOrg\Objects\ClassesContainer;
 use Symfony\Component\DomCrawler\Crawler;
@@ -43,6 +44,7 @@ class Extractor
 
         private ?Type $currentType = null,
         private ?array $propertyToUpdate = null,
+        private bool $reachedEndOfDefintions = false,
 
         /**
          * @var array<string, Type>
@@ -85,10 +87,12 @@ class Extractor
             }
         }
 
-        foreach ($this->finder->files()->in(self::CACHE_DIRECTORY) as $file) {
-            dump($file->getFilename());
-            $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
-        }
+        // foreach ($this->finder->files()->in(self::CACHE_DIRECTORY) as $file) {
+        //     dump(fileName: $file->getFilename());
+        //     $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
+        // }
+
+        $this->extractTypes('movie.html', file_get_contents('/home/hedic/Dev/JoliCode/json-ld-projects/json-ld/var/cache/google/movie.html'));
 
         dump($this->extractedTypes);
 
@@ -106,23 +110,30 @@ class Extractor
                 ->nextAll()
                 ->each(function (Crawler $node) use ($fileName) {
                     match ($node->nodeName()) {
+                        'h2' => $this->endCrawling($node),
                         'h3' => $this->initializeType($node, $fileName),
                         'h4' => $this->initializeSubtype($node, $fileName),
-                        'table' => $this->extractProperties($node, $this->getTableSeverity($node)),
+                        'table' => $this->extractProperties($node, $this->getTableSeverity($node), $fileName),
                         default => null,
                     };
                 });
 
             $this->pushCurrentType();
+            $this->currentType = null;
+            $this->reachedEndOfDefintions = false;
         }
     }
 
-    private function generateGoogleLink(string $fileName, string $anchor): string
+    private function generateGoogleLink(string $fileName, string $anchor = null): string
     {
         $typeLink = str_replace('.html', '', $fileName);
         $typeLink = sprintf('%s/%s', self::TYPES_SOURCE_URL, $typeLink);
 
-        return sprintf('%s#%s', $typeLink, $anchor);
+        if ($anchor) {
+            return sprintf('%s#%s', $typeLink, $anchor);
+        }
+
+        return $typeLink;
     }
 
     private function pushCurrentType(): void
@@ -140,8 +151,21 @@ class Extractor
         }
     }
 
+    private function endCrawling(Crawler $node): void
+    {
+        dump($node->text());
+
+        if ('Troubleshooting' === $node->text()) {
+            $this->reachedEndOfDefintions = true;
+        }
+    }
+
     private function initializeType(Crawler $node, string $fileName): void
     {
+        if ($this->reachedEndOfDefintions) {
+            return;
+        }
+
         $this->propertyToUpdate = null;
         $name = $node->text();
 
@@ -173,6 +197,25 @@ class Extractor
         }
     }
 
+    private function initializeTypeWithNoTitle(string $fileName): bool
+    {
+        $typesWithMissingTitle = [
+            'image-license-metadata.html' => 'ImageObject',
+        ];
+
+        if (\array_key_exists($fileName, $typesWithMissingTitle)) {
+            $this->pushCurrentType();
+
+            $this->currentType = new Type();
+            $this->currentType->name = $typesWithMissingTitle[$fileName];
+            $this->currentType->documentationUrl = $this->generateGoogleLink($fileName);
+
+            return true;
+        }
+
+        return false;
+    }
+
     private function shouldSkipTitle(string $name): bool
     {
         $wrongTitles = [
@@ -195,6 +238,10 @@ class Extractor
 
     private function initializeSubtype(Crawler $node, string $fileName): void
     {
+        if ($this->reachedEndOfDefintions) {
+            return;
+        }
+
         if (str_contains($node->text(), 'Beta')) {
             return;
         }
@@ -242,10 +289,16 @@ class Extractor
         return false;
     }
 
-    private function extractProperties(Crawler $table, string $severity): void
+    private function extractProperties(Crawler $table, string $severity, string $fileName): void
     {
-        if (!$this->currentType) {
+        if ($this->reachedEndOfDefintions) {
             return;
+        }
+
+        if (!$this->currentType) {
+            if (!$this->initializeTypeWithNoTitle($fileName)) {
+                return;
+            }
         }
 
         if (!$severity) {
@@ -260,48 +313,103 @@ class Extractor
         }
 
         $table
-            ->filter('tbody > tr td code')
-            ->each(function (Crawler $codeTag) use ($isABetaTable, $severity) {
-                foreach ($codeTag as $childNode) {
-                    foreach ($childNode->childNodes as $nodeEntry) {
-                        if (
-                            '#text' === $nodeEntry->nodeName
-                            && ('td' === $codeTag->ancestors()->getNode(0)->nodeName || 'h3' === $codeTag->ancestors()->getNode(0)->nodeName)
-                        ) {
-                            $this->handleNewProperty($nodeEntry, $severity, $isABetaTable);
-                        }
+            ->filter('tbody > tr')
+            ->each(function (Crawler $row) use ($isABetaTable, $severity) {
+                $keyNode = $row->filter('td')->getNode(0);
+                $valueNode = $row->filter('td')->getNode(1);
 
-                        if ('a' === $nodeEntry->nodeName) {
-                            $this->handleValue($nodeEntry, $nodeEntry->attributes, $isABetaTable);
-                        }
-
-                        // Usually, the `a` tag is wrapped around the `code` tag. However, for the book page, it is the contrary... WEB SCRAPPING !
-                        if (
-                            '#text' === $nodeEntry->nodeName
-                            && 'a' === $codeTag->ancestors()->getNode(0)->nodeName
-                        ) {
-                            $this->handleValue($nodeEntry, $codeTag->ancestors()->getNode(0)->attributes, $isABetaTable);
-                        }
-                    }
+                if (null === $keyNode || null === $valueNode) {
+                    return;
                 }
-            })
-        ;
+
+                $this->extractKeyCell($keyNode, $isABetaTable, $severity);
+                $this->extractValueCell($valueNode, $isABetaTable, $severity);
+            });
 
         $this->currentType->cleanUpProperties($severity);
     }
 
-    private function handleNewProperty(\DOMNode $nodeEntry, string $severity, bool $isABetaTable): void
+    private function extractKeyCell(\DOMNode $keyNode, bool $isABetaTable, string $severity): void
+    {
+        $codeEntries = array_filter(
+            iterator_to_array($keyNode->childNodes),
+            fn (\DOMNode $node) => 'code' === $node->nodeName,
+        );
+
+        if (1 === \count($codeEntries)) {
+            $this->handleNewProperty($codeEntries[array_key_first($codeEntries)]->nodeValue, $severity, $isABetaTable);
+        }
+
+        if (1 < \count($codeEntries)) {
+            $atLeastOneOf = array_map(
+                fn (\DOMNode $node) => new Property($node->nodeValue),
+                $codeEntries,
+            );
+
+            $this->handleNewProperty('atLeastOneOf', $severity, $isABetaTable, $atLeastOneOf);
+        }
+    }
+
+    private function extractValueCell(\DOMNode $keyNode, bool $isABetaTable, string $severity): void
+    {
+        $codeEntries = array_map(
+            function (\DOMNode $node) {
+                if ('p' === $node->nodeName) {
+                    foreach (iterator_to_array($node->childNodes) as $child) {
+                        if ('code' === $child->nodeName) {
+                            return $child;
+                        }
+                    }
+                }
+
+                if ('code' === $node->nodeName) {
+                    return $node;
+                }
+            },
+            iterator_to_array($keyNode->childNodes),
+        );
+
+        foreach ($codeEntries as $codeEntry) {
+            dump($codeEntry->nodeName, $codeEntry->nodeValue);
+        }
+
+        /**
+         * @var array<\DOMNode> $codeEntries
+         */
+        foreach (array_filter($codeEntries) as $codeTag) {
+            foreach (iterator_to_array($codeTag->childNodes) as $nodeEntry) {
+                // dump($nodeEntry->nodeValue);
+
+                if ('a' === $nodeEntry->nodeName) {
+                    $this->handleValue($nodeEntry, $nodeEntry->attributes, $isABetaTable);
+                }
+
+                // Usually, the `a` tag is wrapped around the `code` tag. However, for the book page, it is the contrary... WEB SCRAPPING !
+                if (
+                    '#text' === $nodeEntry->nodeName
+                    && 'a' === $codeTag->parentNode->nodeName
+                ) {
+                    $this->handleValue($nodeEntry, $codeTag->parentNode->attributes, $isABetaTable);
+                }
+            }
+        }
+    }
+
+    /**
+     * @param array<Property> $atLeastOneOf sometimes, Google requires at least one of a set of properties to be present
+     */
+    private function handleNewProperty(string $name, string $severity, bool $isABetaTable, array $atLeastOneOf = []): void
     {
         if ($this->propertyToUpdate) {
             if ($this->currentType->isASubtype) {
                 foreach ($this->currentType->parentType->subTypes as $subType) {
-                    $subType->addPropertyProperty($nodeEntry->nodeValue, $this->propertyToUpdate, $severity, $isABetaTable);
+                    $subType->addPropertyProperty($name, $this->propertyToUpdate, $severity, $isABetaTable);
                 }
             } else {
-                $this->currentType->addPropertyProperty($nodeEntry->nodeValue, $this->propertyToUpdate, $severity, $isABetaTable);
+                $this->currentType->addPropertyProperty($name, $this->propertyToUpdate, $severity, $isABetaTable);
             }
         } else {
-            $this->currentType->initProperty($nodeEntry->nodeValue, $severity, $isABetaTable);
+            $this->currentType->initProperty($name, $severity, $isABetaTable, $atLeastOneOf);
         }
     }
 
