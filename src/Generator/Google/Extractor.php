@@ -35,6 +35,7 @@ class Extractor
         'https://developers.google.com/search/docs/appearance/structured-data/generate-structured-data-with-javascript',
         'https://developers.google.com/search/docs/appearance/structured-data/search-gallery',
         'https://developers.google.com/search/docs/appearance/structured-data/enriched-search-results',
+        'https://developers.google.com/search/docs/appearance/structured-data/carousel',
     ];
 
     public function __construct(
@@ -44,7 +45,7 @@ class Extractor
 
         private ?Type $currentType = null,
         private ?array $propertyToUpdate = null,
-        private bool $reachedEndOfDefintions = false,
+        private bool $reachedEndOfDefinitions = false,
 
         /**
          * @var array<string, Type>
@@ -58,6 +59,10 @@ class Extractor
         $client = HttpClient::create();
 
         if ($refresh || !$this->filesystem->exists(self::CACHE_DIRECTORY)) {
+            if ($this->filesystem->exists(self::CACHE_DIRECTORY)) {
+                $this->filesystem->remove(self::CACHE_DIRECTORY);
+            }
+
             $client = HttpClient::create();
             $response = $client->request('GET', self::TYPES_SOURCE_URL . '/search-gallery');
 
@@ -76,6 +81,8 @@ class Extractor
                 }
             }
 
+            sort($foundLinks);
+
             foreach ($foundLinks as $typeLink) {
                 $fileName = explode('/', $typeLink);
                 $fileName = end($fileName);
@@ -88,13 +95,19 @@ class Extractor
         }
 
         // foreach ($this->finder->files()->in(self::CACHE_DIRECTORY) as $file) {
-        //     dump(fileName: $file->getFilename());
+        //     dump($file->getFilename());
         //     $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
         // }
 
-        $this->extractTypes('movie.html', file_get_contents('/home/hedic/Dev/JoliCode/json-ld-projects/json-ld/var/cache/google/movie.html'));
+        $this->extractTypes('movie.html', file_get_contents('/home/hedic/Dev/JoliCode/json-ld-projects/json-ld/var/cache/google/breadcrumb.html'));
 
         dump($this->extractedTypes);
+
+        // foreach ($this->extractedTypes as $type) {
+        //     if ($type->isCarouselEligible) {
+        //         dump($type);
+        //     }
+        // }
 
         return $this->createContainer();
     }
@@ -110,7 +123,7 @@ class Extractor
                 ->nextAll()
                 ->each(function (Crawler $node) use ($fileName) {
                     match ($node->nodeName()) {
-                        'h2' => $this->endCrawling($node),
+                        'h2' => $this->reachedEndOfDefinitions = true,
                         'h3' => $this->initializeType($node, $fileName),
                         'h4' => $this->initializeSubtype($node, $fileName),
                         'table' => $this->extractProperties($node, $this->getTableSeverity($node), $fileName),
@@ -120,7 +133,7 @@ class Extractor
 
             $this->pushCurrentType();
             $this->currentType = null;
-            $this->reachedEndOfDefintions = false;
+            $this->reachedEndOfDefinitions = false;
         }
     }
 
@@ -143,31 +156,34 @@ class Extractor
             && !$this->currentType->isEmpty()
             && !$this->currentType->isASubtype
         ) {
-            $this->extractedTypes[] = $this->currentType;
+            $this->extractedTypes[$this->currentType->name] = $this->currentType;
         }
 
         if ($this->currentType?->isASubtype) {
-            $this->extractedTypes[] = $this->currentType->parentType;
-        }
-    }
-
-    private function endCrawling(Crawler $node): void
-    {
-        dump($node->text());
-
-        if ('Troubleshooting' === $node->text()) {
-            $this->reachedEndOfDefintions = true;
+            $this->extractedTypes[$this->currentType->parentType->name] = $this->currentType->parentType;
         }
     }
 
     private function initializeType(Crawler $node, string $fileName): void
     {
-        if ($this->reachedEndOfDefintions) {
+        if ($this->reachedEndOfDefinitions) {
             return;
         }
 
         $this->propertyToUpdate = null;
         $name = $node->text();
+
+        if ('Restaurant carousel (limited access)' === $name || str_contains($name, 'ItemList')) {
+            $this->initializeCarousel($name, true);
+
+            return;
+        }
+
+        if (str_contains($name, 'ListItem')) {
+            $this->definePropertyToUpdate($name, 'itemListElement');
+
+            return;
+        }
 
         // Regular pages use some `.` to mark the nested properties expected values.
         // But the book page also uses new tables with `()` in the title to indicate the property.
@@ -176,6 +192,8 @@ class Extractor
         if (preg_match('/\((.+)\)/', $name, $matches)) {
             if (!str_contains(strtolower($name), 'beta')) {
                 $this->definePropertyToUpdate($name, $matches[1]);
+
+                return;
             }
         } else {
             // Again the book page. Some examples are written inside h3 tags.
@@ -189,31 +207,18 @@ class Extractor
             // TODO: not true!
             // On https://developers.google.com/search/docs/appearance/structured-data/learning-video
             // There are titles with spaces and even brackets... We have to handle this as well.
-            $name = explode(' ', $name);
+            $typeName = explode(' ', $name);
 
             $this->currentType = new Type();
-            $this->currentType->name = $name[0];
+            $this->currentType->name = $typeName[0];
             $this->currentType->documentationUrl = $this->generateGoogleLink($fileName, $node->attr('id'));
+
+            if ('Movie' === $name) {
+                $this->initializeCarousel($name);
+
+                return;
+            }
         }
-    }
-
-    private function initializeTypeWithNoTitle(string $fileName): bool
-    {
-        $typesWithMissingTitle = [
-            'image-license-metadata.html' => 'ImageObject',
-        ];
-
-        if (\array_key_exists($fileName, $typesWithMissingTitle)) {
-            $this->pushCurrentType();
-
-            $this->currentType = new Type();
-            $this->currentType->name = $typesWithMissingTitle[$fileName];
-            $this->currentType->documentationUrl = $this->generateGoogleLink($fileName);
-
-            return true;
-        }
-
-        return false;
     }
 
     private function shouldSkipTitle(string $name): bool
@@ -236,9 +241,28 @@ class Extractor
         $this->propertyToUpdate = [$targetProperty, $targetValues];
     }
 
+    private function initializeTypeWithNoTitle(string $fileName): bool
+    {
+        $typesWithMissingTitle = [
+            'image-license-metadata.html' => 'ImageObject',
+        ];
+
+        if (\array_key_exists($fileName, $typesWithMissingTitle)) {
+            $this->pushCurrentType();
+
+            $this->currentType = new Type();
+            $this->currentType->name = $typesWithMissingTitle[$fileName];
+            $this->currentType->documentationUrl = $this->generateGoogleLink($fileName);
+
+            return true;
+        }
+
+        return false;
+    }
+
     private function initializeSubtype(Crawler $node, string $fileName): void
     {
-        if ($this->reachedEndOfDefintions) {
+        if ($this->reachedEndOfDefinitions) {
             return;
         }
 
@@ -274,6 +298,34 @@ class Extractor
         $this->currentType = $subType;
     }
 
+    private function initializeCarousel(bool $replaceCurrentType = false): void
+    {
+        // TODO : should be HowToTip... The `and` is not handled in the titles
+        if ('HowToDirection' === $this->currentType->name) {
+            $this->pushCurrentType();
+            $this->currentType = $this->extractedTypes['Recipe'];
+        }
+
+        $this->currentType->isCarouselEligible = true;
+
+        $carousel = new Type();
+        $carousel->parentType = $this->currentType;
+        $carousel->isASubtype = true;
+        $carousel->initProperty('itemListElement', self::SEVERITY_REQUIRED);
+        $carousel->pushProperty('ListItem');
+        $carousel->addPropertyProperty('position', ['itemListElement', ['ListItem']], self::SEVERITY_REQUIRED);
+        $carousel->pushProperty('Integer');
+        $carousel->addPropertyProperty('url', ['itemListElement', ['ListItem']], self::SEVERITY_REQUIRED);
+        $carousel->pushProperty('URL');
+        $carousel->cleanUpProperties(self::SEVERITY_REQUIRED);
+
+        $this->currentType->carousel = $carousel;
+
+        if ($replaceCurrentType) {
+            $this->currentType = $this->currentType->carousel;
+        }
+    }
+
     private function getTableSeverity(Crawler $table): string|false
     {
         $severity = $table->filter('tr > th')->text();
@@ -291,7 +343,7 @@ class Extractor
 
     private function extractProperties(Crawler $table, string $severity, string $fileName): void
     {
-        if ($this->reachedEndOfDefintions) {
+        if ($this->reachedEndOfDefinitions) {
             return;
         }
 
@@ -333,7 +385,7 @@ class Extractor
     {
         $codeEntries = array_filter(
             iterator_to_array($keyNode->childNodes),
-            fn (\DOMNode $node) => 'code' === $node->nodeName,
+            fn (\DOMNode $node) => $this->extractKeyCellCodeEntries($node),
         );
 
         if (1 === \count($codeEntries)) {
@@ -369,19 +421,15 @@ class Extractor
             iterator_to_array($keyNode->childNodes),
         );
 
-        foreach ($codeEntries as $codeEntry) {
-            dump($codeEntry->nodeName, $codeEntry->nodeValue);
-        }
-
         /**
          * @var array<\DOMNode> $codeEntries
          */
         foreach (array_filter($codeEntries) as $codeTag) {
             foreach (iterator_to_array($codeTag->childNodes) as $nodeEntry) {
-                // dump($nodeEntry->nodeValue);
-
                 if ('a' === $nodeEntry->nodeName) {
                     $this->handleValue($nodeEntry, $nodeEntry->attributes, $isABetaTable);
+
+                    continue;
                 }
 
                 // Usually, the `a` tag is wrapped around the `code` tag. However, for the book page, it is the contrary... WEB SCRAPPING !
@@ -395,6 +443,23 @@ class Extractor
         }
     }
 
+    private function extractKeyCellCodeEntries(\DOMNode $node): ?\DOMNode
+    {
+        if ('code' === $node->nodeName) {
+            return $node;
+        }
+
+        if ('h3' === $node->nodeName) {
+            foreach (iterator_to_array($node->childNodes) as $child) {
+                if ('code' === $child->nodeName) {
+                    return $child;
+                }
+            }
+        }
+
+        return null;
+    }
+
     /**
      * @param array<Property> $atLeastOneOf sometimes, Google requires at least one of a set of properties to be present
      */
@@ -406,10 +471,15 @@ class Extractor
                     $subType->addPropertyProperty($name, $this->propertyToUpdate, $severity, $isABetaTable);
                 }
             } else {
+                dump($name, $this->propertyToUpdate);
                 $this->currentType->addPropertyProperty($name, $this->propertyToUpdate, $severity, $isABetaTable);
+                dump($this->currentType);
             }
         } else {
-            $this->currentType->initProperty($name, $severity, $isABetaTable, $atLeastOneOf);
+            // Sometimes the property name is inside a `h3` tag and has a lot of whitespace and carriage returns.
+            $cleanedPropertyName = preg_replace('/[^a-zA-Z\d.]/', '', $name);
+
+            $this->currentType->initProperty($cleanedPropertyName, $severity, $isABetaTable, $atLeastOneOf);
         }
     }
 

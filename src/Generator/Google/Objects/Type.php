@@ -17,7 +17,10 @@ class Type
         public ?string $name = null,
         public ?string $documentationUrl = null,
         public bool $isASubtype = false,
+        public bool $isCarouselEligible = false,
         public ?self $parentType = null,
+
+        public ?self $carousel = null,
 
         /**
          * @var array<string, Type>
@@ -49,7 +52,8 @@ class Type
         return !\count($this->requiredProperties)
             && !\count($this->recommendedProperties)
             && !\count($this->betaProperties)
-            && !\count($this->subTypes);
+            && !\count($this->subTypes)
+            && !$this->isCarouselEligible;
     }
 
     public function hasProperty(string $property): bool
@@ -59,7 +63,7 @@ class Type
             || \array_key_exists($property, $this->betaProperties);
     }
 
-    public function initProperty(string $name, string $severity, bool $isBeta, array $atLeastOneOf = []): void
+    public function initProperty(string $name, string $severity, bool $isBeta = false, array $atLeastOneOf = []): void
     {
         $targetProperties = "{$severity}Properties";
 
@@ -74,12 +78,12 @@ class Type
         $this->currentProperty = $this->{$targetProperties}[$name];
     }
 
-    public function pushProperty(string $value, bool $isBeta): void
+    public function pushProperty(string $value, bool $isBeta = false): void
     {
         $this->currentProperty->values[$value] = new Property($value, isBeta: $isBeta);
     }
 
-    public function addPropertyProperty(string $name, array $propertyToUpdate, string $severity, bool $isBeta): void
+    public function addPropertyProperty(string $name, array $propertyToUpdate, string $severity, bool $isBeta = false): void
     {
         [$property, $values] = $propertyToUpdate;
 
@@ -120,7 +124,7 @@ class Type
             }
         }
 
-        unset($this->currentProperty);
+        $this->currentProperty = null;
     }
 
     private function addNestedPropertyToValue(
@@ -128,7 +132,7 @@ class Type
         string $targetValue,
         string $severity,
         string $propertyName,
-        bool $isBeta
+        bool $isBeta = false
     ): void {
         if (str_contains($propertyName, '.')) {
             $propertiesChain = explode('.', $propertyName);
