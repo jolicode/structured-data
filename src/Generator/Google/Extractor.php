@@ -51,6 +51,11 @@ class Extractor
          * @var array<string, Type>
          */
         private array $extractedTypes = [],
+
+        /**
+         * @var array<string>
+         */
+        private array $typesWithSameProperties = [],
     ) {
     }
 
@@ -94,20 +99,9 @@ class Extractor
             }
         }
 
-        // foreach ($this->finder->files()->in(self::CACHE_DIRECTORY) as $file) {
-        //     dump($file->getFilename());
-        //     $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
-        // }
-
-        $this->extractTypes('movie.html', file_get_contents('/home/hedic/Dev/JoliCode/json-ld-projects/json-ld/var/cache/google/breadcrumb.html'));
-
-        dump($this->extractedTypes);
-
-        // foreach ($this->extractedTypes as $type) {
-        //     if ($type->isCarouselEligible) {
-        //         dump($type);
-        //     }
-        // }
+        foreach ($this->finder->files()->in(self::CACHE_DIRECTORY) as $file) {
+            $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
+        }
 
         return $this->createContainer();
     }
@@ -162,6 +156,17 @@ class Extractor
         if ($this->currentType?->isASubtype) {
             $this->extractedTypes[$this->currentType->parentType->name] = $this->currentType->parentType;
         }
+
+        if (\count($this->typesWithSameProperties)) {
+            foreach ($this->typesWithSameProperties as $type) {
+                $clone = clone $this->currentType;
+                $clone->name = $type;
+                $clone->types = $type;
+                $this->extractedTypes[$clone->name] = $clone;
+            }
+
+            $this->typesWithSameProperties = [];
+        }
     }
 
     private function initializeType(Crawler $node, string $fileName): void
@@ -173,16 +178,92 @@ class Extractor
         $this->propertyToUpdate = null;
         $name = $node->text();
 
-        if ('Restaurant carousel (limited access)' === $name || str_contains($name, 'ItemList')) {
-            $this->initializeCarousel($name, true);
+        if (\array_key_exists($name, $this->extractedTypes)) {
+            $this->currentType = $this->extractedTypes[$name];
 
             return;
+        }
+
+        if ($this->initializeSpecialCaseType($name, $fileName, $node)) {
+            return;
+        }
+
+        // Again the book page. Some examples are written inside h3 tags.
+        if ($this->shouldSkipTitle($name)) {
+            return;
+        }
+
+        $this->pushCurrentType();
+
+        // The book page adds a useless `entity` keyword. Other types are written in PascalCase so its fine.
+        $typeName = explode(' ', $name);
+
+        $this->currentType = new Type();
+        $this->currentType->name = $typeName[0];
+        $this->currentType->types = $typeName[0];
+        $this->currentType->documentationUrl = $this->generateGoogleLink($fileName, $node->attr('id'));
+
+        if ('Movie' === $name) {
+            $this->initializeCarousel($fileName);
+
+            return;
+        }
+    }
+
+    /**
+     * The Google documentation is not really consistent and it may do the same things in different ways.
+     * We unfortunately need to handle these special cases ourselves.
+     */
+    private function initializeSpecialCaseType(string $name, string $fileName, Crawler $node): bool
+    {
+        if ('Restaurant carousel (limited access)' === $name || str_contains($name, 'ItemList')) {
+            $this->initializeCarousel($fileName, true);
+
+            return true;
         }
 
         if (str_contains($name, 'ListItem')) {
             $this->definePropertyToUpdate($name, 'itemListElement');
 
-            return;
+            return true;
+        }
+
+        if (str_contains($name, ' and ')) {
+            $this->pushCurrentType();
+
+            $types = explode(' and ', $name);
+            $this->typesWithSameProperties = \array_slice($types, 1);
+
+            $this->currentType = new Type();
+            $this->currentType->name = $types[0];
+            $this->currentType->types = $types[0];
+            $this->currentType->documentationUrl = $this->generateGoogleLink($fileName, $node->attr('id'));
+
+            return true;
+        }
+
+        // The Learning Video type is actually a combination of 2 types. It is the only one for now but Google could add more in the future.
+        if (($openingBracket = strpos($name, '[')) && str_contains($name, ']')) {
+            $this->pushCurrentType();
+
+            $types = substr($name, $openingBracket + 1, -1);
+            $types = explode(', ', $types);
+            $name = substr($name, 0, $openingBracket - 1);
+
+            $dependsOn = $node
+                ->nextAll()
+                ->filter('p b a')
+                ->getNode(0)
+                ->nodeValue
+            ;
+
+            $this->currentType = new Type();
+            $this->currentType->name = $name;
+            $this->currentType->types = $types;
+            $this->currentType->dependsOn = $dependsOn;
+            $this->currentType->documentationUrl = $this->generateGoogleLink($fileName, $node->attr('id'));
+
+            return true;
         }
 
         // Regular pages use some `.` to mark the nested properties expected values.
@@ -193,32 +274,11 @@ class Extractor
             if (!str_contains(strtolower($name), 'beta')) {
                 $this->definePropertyToUpdate($name, $matches[1]);
 
-                return;
-            }
-        } else {
-            // Again the book page. Some examples are written inside h3 tags.
-            if ($this->shouldSkipTitle($name)) {
-                return;
-            }
-
-            $this->pushCurrentType();
-
-            // The book page adds a useless `entity` keyword. Other types are written in PascalCase so its fine.
-            // TODO: not true!
-            // On https://developers.google.com/search/docs/appearance/structured-data/learning-video
-            // There are titles with spaces and even brackets... We have to handle this as well.
-            $typeName = explode(' ', $name);
-
-            $this->currentType = new Type();
-            $this->currentType->name = $typeName[0];
-            $this->currentType->documentationUrl = $this->generateGoogleLink($fileName, $node->attr('id'));
-
-            if ('Movie' === $name) {
-                $this->initializeCarousel($name);
-
-                return;
+                return true;
             }
         }
+
+        return false;
     }
 
     private function shouldSkipTitle(string $name): bool
@@ -233,6 +293,10 @@ class Extractor
         return \in_array($name, $wrongTitles, true);
     }
 
+    /**
+     * This method is used to indicate that instead of initializing a new property on the current type,
+     * we should add the next property to an already existing property of the current type.
+     */
     private function definePropertyToUpdate(string $fullTitle, string $targetProperty): void
     {
         $targetValues = preg_replace('/\s\((.+)\)/', '', $fullTitle);
@@ -241,10 +305,14 @@ class Extractor
         $this->propertyToUpdate = [$targetProperty, $targetValues];
     }
 
+    /**
+     * Yes, Google forgot the title for some of its types.
+     */
     private function initializeTypeWithNoTitle(string $fileName): bool
     {
         $typesWithMissingTitle = [
             'image-license-metadata.html' => 'ImageObject',
+            'employer-rating.html' => 'EmployerAggregateRating',
         ];
 
         if (\array_key_exists($fileName, $typesWithMissingTitle)) {
@@ -252,6 +320,7 @@ class Extractor
 
             $this->currentType = new Type();
             $this->currentType->name = $typesWithMissingTitle[$fileName];
+            $this->currentType->types = $typesWithMissingTitle[$fileName];
             $this->currentType->documentationUrl = $this->generateGoogleLink($fileName);
 
             return true;
@@ -298,10 +367,14 @@ class Extractor
         $this->currentType = $subType;
     }
 
-    private function initializeCarousel(bool $replaceCurrentType = false): void
+    /**
+     * A type may be eligible for a carousel. Unfortunately, the documentation is not consistent at all for carousels.
+     * This method defines the base properties that must be present for a type to be eligible for a carousel.
+     */
+    private function initializeCarousel(string $fileName, bool $replaceCurrentType = false): void
     {
-        // TODO : should be HowToTip... The `and` is not handled in the titles
-        if ('HowToDirection' === $this->currentType->name) {
+        // The carousel table for the recipe type is at the bottom of document, so we need to retrieve the recipe type ourselves.
+        if ('recipe.html' === $fileName) {
             $this->pushCurrentType();
             $this->currentType = $this->extractedTypes['Recipe'];
         }
@@ -378,6 +451,7 @@ class Extractor
                 $this->extractValueCell($valueNode, $isABetaTable, $severity);
             });
 
+        $this->addSpecialCasesProperties($fileName);
         $this->currentType->cleanUpProperties($severity);
     }
 
@@ -461,6 +535,10 @@ class Extractor
     }
 
     /**
+     * When we encounter a property, most of the time we just need to initialize it on the current type.
+     * However, sometimes, this property is a subproperty of another property.
+     * And sometimes, this subproperty belongs to a subtype.
+     *
      * @param array<Property> $atLeastOneOf sometimes, Google requires at least one of a set of properties to be present
      */
     private function handleNewProperty(string $name, string $severity, bool $isABetaTable, array $atLeastOneOf = []): void
@@ -471,9 +549,7 @@ class Extractor
                     $subType->addPropertyProperty($name, $this->propertyToUpdate, $severity, $isABetaTable);
                 }
             } else {
-                dump($name, $this->propertyToUpdate);
                 $this->currentType->addPropertyProperty($name, $this->propertyToUpdate, $severity, $isABetaTable);
-                dump($this->currentType);
             }
         } else {
             // Sometimes the property name is inside a `h3` tag and has a lot of whitespace and carriage returns.
@@ -483,6 +559,9 @@ class Extractor
         }
     }
 
+    /**
+     * Extracts the value from the given node and pushes it to the current type.
+     */
     private function handleValue(\DOMNode $nodeEntry, \DOMNamedNodeMap $attributes, bool $isABetaTable): void
     {
         foreach ($attributes as $attr) {
@@ -491,6 +570,23 @@ class Extractor
 
                 break;
             }
+        }
+    }
+
+    /**
+     * Sometimes the Google documentation has issues that we need to address ourselves.
+     * This method is here to help setting the needed values ourselves when needed.
+     */
+    private function addSpecialCasesProperties(string $fileName): void
+    {
+        $typesWithIssues = [
+            // This type HTML is broken : the table misses an opening `tr` tag, so the crawler can't find the last property.
+            'Problem Walkthrough Clip',
+        ];
+
+        if (\in_array($this->currentType->name, $typesWithIssues, true) && !$this->currentType->hasProperty('text')) {
+            $this->currentType->initProperty('text', self::SEVERITY_RECOMMENDED);
+            $this->currentType->pushProperty('Text');
         }
     }
 

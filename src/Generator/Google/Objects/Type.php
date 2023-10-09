@@ -15,11 +15,21 @@ class Type
 {
     public function __construct(
         public ?string $name = null,
+
+        /**
+         * @var array<string> $types
+         */
+        public array|string $types = [],
+
+        /**
+         * @var string|array<string>|null $types
+         */
+        public string|array|null $dependsOn = null,
+
         public ?string $documentationUrl = null,
         public bool $isASubtype = false,
         public bool $isCarouselEligible = false,
         public ?self $parentType = null,
-
         public ?self $carousel = null,
 
         /**
@@ -181,8 +191,7 @@ class Type
         [$propertyName, $propertyProperty] = $propertiesChain;
 
         $targetProperties = "{$severity}Properties";
-
-        $propertyToUpdate = $this->findPropertyToUpdate($this->{$targetProperties}, $propertyName);
+        $propertyToUpdate = $this->findPropertyToUpdate($this->recommendedProperties, $propertyName) ?: $this->findPropertyToUpdate($this->requiredProperties, $propertyName);
 
         if (!$propertyToUpdate) {
             $this->initProperty($propertyName, $severity, $property->isBeta);
