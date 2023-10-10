@@ -46,6 +46,7 @@ class Extractor
         private ?Type $currentType = null,
         private ?array $propertyToUpdate = null,
         private bool $reachedEndOfDefinitions = false,
+        private bool $skipNextValueCell = false,
 
         /**
          * @var array<string, Type>
@@ -125,8 +126,6 @@ class Extractor
                     };
                 });
 
-            $this->pushCurrentType();
-            $this->currentType = null;
             $this->reachedEndOfDefinitions = false;
         }
     }
@@ -188,19 +187,15 @@ class Extractor
             return;
         }
 
-        // Again the book page. Some examples are written inside h3 tags.
         if ($this->shouldSkipTitle($name)) {
             return;
         }
 
         $this->pushCurrentType();
 
-        // The book page adds a useless `entity` keyword. Other types are written in PascalCase so its fine.
-        $typeName = explode(' ', $name);
-
         $this->currentType = new Type();
-        $this->currentType->name = $typeName[0];
-        $this->currentType->types = $typeName[0];
+        $this->currentType->name = $name = $this->extractRealTypeName($node);
+        $this->currentType->types = $name;
         $this->currentType->documentationUrl = $this->generateGoogleLink($fileName, $node->attr('id'));
 
         if ('Movie' === $name) {
@@ -216,7 +211,24 @@ class Extractor
      */
     private function initializeSpecialCaseType(string $name, string $fileName, Crawler $node): bool
     {
+        if ('employer-rating.html' === $fileName) {
+            $this->currentType = $this->extractedTypes['EmployerAggregateRating'];
+
+            $this->currentType = new Type();
+            $this->currentType->name = 'EmployerAggregateRating';
+            $this->currentType->types = 'EmployerAggregateRating';
+            $this->currentType->documentationUrl = $this->generateGoogleLink($fileName, $node->attr('id'));
+
+            return true;
+        }
+
+        if (str_contains(strtolower($name), 'beta')) {
+            // Beta properties should be added directly on the current type so we skip initializing a new type.
+            return true;
+        }
+
         if ('Restaurant carousel (limited access)' === $name || str_contains($name, 'ItemList')) {
+            $this->currentType = $this->extractedTypes[array_key_last($this->extractedTypes)];
             $this->initializeCarousel($fileName, true);
 
             return true;
@@ -271,11 +283,9 @@ class Extractor
         // And it still uses some `.` as well.
         // This causes quite a lot of issues and chaos...
         if (preg_match('/\((.+)\)/', $name, $matches)) {
-            if (!str_contains(strtolower($name), 'beta')) {
-                $this->definePropertyToUpdate($name, $matches[1]);
+            $this->definePropertyToUpdate($name, $matches[1]);
 
-                return true;
-            }
+            return true;
         }
 
         return false;
@@ -291,6 +301,30 @@ class Extractor
         ];
 
         return \in_array($name, $wrongTitles, true);
+    }
+
+    private function extractRealTypeName(Crawler $node): string
+    {
+        $codeTags = $node->filter('code');
+
+        // Most of the time, the type name is inside a `code` tag, so we just need to get its value
+        if (1 === $codeTags->count()) {
+            $name = $codeTags->getNode(0)->nodeValue;
+        }
+
+        // But sometimes, there are none...
+        if (0 === $codeTags->count()) {
+            $name = $node->text();
+        }
+
+        // We don't need to check if there are more than 1 code tag because these are special cases handled by `initializeSpecialCaseType`
+
+        // The book page adds a useless `entity` keyword. Other types are written in PascalCase so its fine.
+        if (str_contains($name, 'entity')) {
+            $name = str_replace(' entity', '', $name);
+        }
+
+        return $name;
     }
 
     /**
@@ -316,12 +350,18 @@ class Extractor
         ];
 
         if (\array_key_exists($fileName, $typesWithMissingTitle)) {
-            $this->pushCurrentType();
+            if (!\array_key_exists($typesWithMissingTitle[$fileName], $this->extractedTypes)) {
+                $this->pushCurrentType();
 
-            $this->currentType = new Type();
-            $this->currentType->name = $typesWithMissingTitle[$fileName];
-            $this->currentType->types = $typesWithMissingTitle[$fileName];
-            $this->currentType->documentationUrl = $this->generateGoogleLink($fileName);
+                $this->currentType = new Type();
+                $this->currentType->name = $typesWithMissingTitle[$fileName];
+                $this->currentType->types = $typesWithMissingTitle[$fileName];
+                $this->currentType->documentationUrl = $this->generateGoogleLink($fileName) . '#structured-data-type-definitions';
+
+                return true;
+            }
+
+            $this->currentType = $this->extractedTypes[$typesWithMissingTitle[$fileName]];
 
             return true;
         }
@@ -335,10 +375,6 @@ class Extractor
             return;
         }
 
-        if (str_contains($node->text(), 'Beta')) {
-            return;
-        }
-
         $this->propertyToUpdate = null;
         $name = $node->text();
         preg_match('/\((.+)\)/', $name, $matches);
@@ -348,6 +384,8 @@ class Extractor
 
             return;
         }
+
+        $this->currentType = $this->extractedTypes[array_key_last($this->extractedTypes)];
 
         $subType = $matches[1];
 
@@ -375,7 +413,6 @@ class Extractor
     {
         // The carousel table for the recipe type is at the bottom of document, so we need to retrieve the recipe type ourselves.
         if ('recipe.html' === $fileName) {
-            $this->pushCurrentType();
             $this->currentType = $this->extractedTypes['Recipe'];
         }
 
@@ -438,7 +475,7 @@ class Extractor
         }
 
         $table
-            ->filter('tbody > tr')
+            ->filter('tbody:not(.list) > tr')
             ->each(function (Crawler $row) use ($isABetaTable, $severity) {
                 $keyNode = $row->filter('td')->getNode(0);
                 $valueNode = $row->filter('td')->getNode(1);
@@ -448,90 +485,63 @@ class Extractor
                 }
 
                 $this->extractKeyCell($keyNode, $isABetaTable, $severity);
-                $this->extractValueCell($valueNode, $isABetaTable, $severity);
+
+                if ($this->skipNextValueCell) {
+                    $this->skipNextValueCell = false;
+
+                    return;
+                }
+
+                $this->extractValueCell($valueNode, $isABetaTable);
             });
 
-        $this->addSpecialCasesProperties($fileName);
+        // Unfortunately, some types need some fixing after having being crawled.
+        BrokenTypeFixer::fixType($this->currentType);
+
         $this->currentType->cleanUpProperties($severity);
+        $this->pushCurrentType();
+        $this->currentType = null;
     }
 
     private function extractKeyCell(\DOMNode $keyNode, bool $isABetaTable, string $severity): void
     {
-        $codeEntries = array_filter(
-            iterator_to_array($keyNode->childNodes),
-            fn (\DOMNode $node) => $this->extractKeyCellCodeEntries($node),
-        );
+        $crawler = new Crawler($keyNode);
+        $codeTags = $crawler->filter('code');
 
-        if (1 === \count($codeEntries)) {
-            $this->handleNewProperty($codeEntries[array_key_first($codeEntries)]->nodeValue, $severity, $isABetaTable);
+        if (1 === \count($codeTags)) {
+            $this->handleNewProperty($codeTags->getNode(0)->nodeValue, $severity, $isABetaTable);
+
+            return;
         }
 
-        if (1 < \count($codeEntries)) {
+        if (1 < \count($codeTags)) {
             $atLeastOneOf = array_map(
                 fn (\DOMNode $node) => new Property($node->nodeValue),
-                $codeEntries,
+                iterator_to_array($codeTags),
             );
 
             $this->handleNewProperty('atLeastOneOf', $severity, $isABetaTable, $atLeastOneOf);
+            $this->currentType->cleanUpProperties($severity);
+
+            return;
         }
+
+        // Sometimes, a key cell is just broken and should be skipped. This is why we have a BrokenTypeFixer.
+        // When this is the case, we just want to skip the next value cell, as it would otherwise just break things.
+        $this->skipNextValueCell = true;
     }
 
-    private function extractValueCell(\DOMNode $keyNode, bool $isABetaTable, string $severity): void
+    private function extractValueCell(\DOMNode $valueNode, bool $isABetaTable): void
     {
-        $codeEntries = array_map(
-            function (\DOMNode $node) {
-                if ('p' === $node->nodeName) {
-                    foreach (iterator_to_array($node->childNodes) as $child) {
-                        if ('code' === $child->nodeName) {
-                            return $child;
-                        }
-                    }
-                }
+        $crawler = new Crawler($valueNode);
+        $codeTags = $crawler->filter('p:first-child code');
+        $linkTags = $crawler->filter('p:first-child a.external-link');
 
-                if ('code' === $node->nodeName) {
-                    return $node;
-                }
-            },
-            iterator_to_array($keyNode->childNodes),
-        );
-
-        /**
-         * @var array<\DOMNode> $codeEntries
-         */
-        foreach (array_filter($codeEntries) as $codeTag) {
-            foreach (iterator_to_array($codeTag->childNodes) as $nodeEntry) {
-                if ('a' === $nodeEntry->nodeName) {
-                    $this->handleValue($nodeEntry, $nodeEntry->attributes, $isABetaTable);
-
-                    continue;
-                }
-
-                // Usually, the `a` tag is wrapped around the `code` tag. However, for the book page, it is the contrary... WEB SCRAPPING !
-                if (
-                    '#text' === $nodeEntry->nodeName
-                    && 'a' === $codeTag->parentNode->nodeName
-                ) {
-                    $this->handleValue($nodeEntry, $codeTag->parentNode->attributes, $isABetaTable);
-                }
-            }
-        }
-    }
-
-    private function extractKeyCellCodeEntries(\DOMNode $node): ?\DOMNode
-    {
-        if ('code' === $node->nodeName) {
-            return $node;
+        if (!$linkTags->count()) {
+            return;
         }
 
-        if ('h3' === $node->nodeName) {
-            foreach (iterator_to_array($node->childNodes) as $child) {
-                if ('code' === $child->nodeName) {
-                    return $child;
-                }
-            }
-        }
-
-        return null;
+        $codeTags->each(fn (Crawler $node) => $this->handleValue($node->getNode(0), $isABetaTable));
     }
 
     /**
@@ -553,7 +563,7 @@ class Extractor
             }
         } else {
             // Sometimes the property name is inside a `h3` tag and has a lot of whitespace and carriage returns.
-            $cleanedPropertyName = preg_replace('/[^a-zA-Z\d.]/', '', $name);
+            $cleanedPropertyName = preg_replace('/[^a-zA-Z\d.-@]/', '', $name);
 
             $this->currentType->initProperty($cleanedPropertyName, $severity, $isABetaTable, $atLeastOneOf);
         }
@@ -562,32 +572,15 @@ class Extractor
     /**
      * Extracts the value from the given node and pushes it to the current type.
      */
-    private function handleValue(\DOMNode $nodeEntry, \DOMNamedNodeMap $attributes, bool $isABetaTable): void
+    private function handleValue(\DOMNode $nodeEntry, bool $isABetaTable): void
     {
-        foreach ($attributes as $attr) {
-            if ('class' === $attr->nodeName && 'external-link' === $attr->nodeValue) {
-                $this->currentType->pushProperty($nodeEntry->nodeValue, $isABetaTable);
+        if (preg_match('/^\((.+)\)$/', $nodeEntry->nodeValue)) {
+            $this->currentType->setCurrentValueSubtype($nodeEntry->nodeValue);
 
-                break;
-            }
+            return;
         }
-    }
 
-    /**
-     * Sometimes the Google documentation has issues that we need to address ourselves.
-     * This method is here to help setting the needed values ourselves when needed.
-     */
-    private function addSpecialCasesProperties(string $fileName): void
-    {
-        $typesWithIssues = [
-            // This type HTML is broken : the table misses an opening `tr` tag, so the crawler can't find the last property.
-            'Problem Walkthrough Clip',
-        ];
-
-        if (\in_array($this->currentType->name, $typesWithIssues, true) && !$this->currentType->hasProperty('text')) {
-            $this->currentType->initProperty('text', self::SEVERITY_RECOMMENDED);
-            $this->currentType->pushProperty('Text');
-        }
+        $this->currentType->pushProperty($nodeEntry->nodeValue, $isABetaTable);
     }
 
     private function createContainer(): ClassesContainer

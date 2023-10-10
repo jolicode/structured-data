@@ -27,15 +27,17 @@ class Type
         public string|array|null $dependsOn = null,
 
         public ?string $documentationUrl = null,
+
         public bool $isASubtype = false,
-        public bool $isCarouselEligible = false,
         public ?self $parentType = null,
-        public ?self $carousel = null,
 
         /**
-         * @var array<string, Type>
+         * @var array<string, string>
          */
         public array $subTypes = [],
+
+        public bool $isCarouselEligible = false,
+        public ?self $carousel = null,
 
         private ?Property $currentProperty = null,
         private int $atLeastOneOfCounter = 0,
@@ -49,11 +51,6 @@ class Type
          * @var array<string, Property>
          */
         private array $recommendedProperties = [],
-
-        /**
-         * @var array<string, Property>
-         */
-        private array $betaProperties = [],
     ) {
     }
 
@@ -61,7 +58,6 @@ class Type
     {
         return !\count($this->requiredProperties)
             && !\count($this->recommendedProperties)
-            && !\count($this->betaProperties)
             && !\count($this->subTypes)
             && !$this->isCarouselEligible;
     }
@@ -69,8 +65,26 @@ class Type
     public function hasProperty(string $property): bool
     {
         return \array_key_exists($property, $this->requiredProperties)
-            || \array_key_exists($property, $this->recommendedProperties)
-            || \array_key_exists($property, $this->betaProperties);
+            || \array_key_exists($property, $this->recommendedProperties);
+    }
+
+    public function getProperty(string $name): Property
+    {
+        return $this->requiredProperties[$name]
+        ?? $this->recommendedProperties[$name];
+    }
+
+    public function setCurrentValueSubtype(string $newName): void
+    {
+        $originalValue = $this->currentProperty->values[array_key_last($this->currentProperty->values)];
+        $originalName = $originalValue->name;
+
+        unset($this->currentProperty->values[$originalName]);
+
+        $newName = sprintf('%s %s', $originalName, $newName);
+        $originalValue->name = $newName;
+
+        $this->currentProperty->values[$newName] = $originalValue;
     }
 
     public function initProperty(string $name, string $severity, bool $isBeta = false, array $atLeastOneOf = []): void
@@ -211,6 +225,10 @@ class Type
     private function findPropertyToUpdate(array $potentialProperties, string $propertyToFind, string $whereToSearch = 'values'): Property|false
     {
         foreach ($potentialProperties as $property) {
+            if (\is_string($property)) {
+                continue;
+            }
+
             if ($propertyToFind === $property->name) {
                 return $property;
             }
