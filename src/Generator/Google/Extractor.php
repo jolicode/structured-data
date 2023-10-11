@@ -100,21 +100,20 @@ class Extractor
             }
         }
 
-        // foreach ($this->finder->files()->in(self::CACHE_DIRECTORY) as $file) {
-        //     dump($file->getFilename());
+        foreach ($this->finder->files()->in(self::CACHE_DIRECTORY) as $file) {
+            dump($file->getFilename());
 
-        //     // The product page is completely different and needs to be crawled separately. Unsupported for now.
-        //     if ('product.html' === $file->getFilename()) {
-        //         continue;
-        //     }
+            // The product page is completely different and needs to be crawled separately. Unsupported for now.
+            if ('product.html' === $file->getFilename()) {
+                continue;
+            }
 
-        //     $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
-        // }
+            $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
+        }
 
-        $this->extractTypes('faqpage.html', file_get_contents(self::CACHE_DIRECTORY . 'faqpage.html'));
-        dd($this->extractedTypes['Question']);
+        // $this->extractTypes('faqpage.html', file_get_contents(self::CACHE_DIRECTORY . 'faqpage.html'));
 
-        dump($this->extractedTypes);
+        // dump($this->extractedTypes);
 
         return $this->createContainer();
     }
@@ -535,20 +534,16 @@ class Extractor
     {
         $crawler = new Crawler($valueNode);
         $codeTags = $crawler->filter('td > p:first-child code');
-        $linkTags = $crawler->filter('td > p:first-child a.external-link');
-
-        if (!$linkTags->count()) {
-            return;
-        }
-
-        dump(before: $codeTags->count());
 
         if (!$codeTags->count()) {
             $codeTags = $crawler->filter('td > code > a.external-link:first-child');
         }
 
-        dump(after: $codeTags->count());
+        if (!$codeTags->count()) {
+            return;
+        }
 
+        $codeTags->each(fn (Crawler $node) => dump($node->getNode(0)->nodeValue));
         $codeTags->each(fn (Crawler $node) => $this->handleValue($node->getNode(0), $isABetaTable));
     }
 

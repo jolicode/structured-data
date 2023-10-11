@@ -34,15 +34,15 @@ class BrokenTypeFixer
             // At least one of the recommended properties is required, but this is hard to crawl so we add it ourselves.
             'SpecialAnnouncement' => self::fixSpecialAnnouncement($type),
             // The value cells often miss an opening `p` tag, causing the crawler to miss the values.
-            'Movie' => self::fixMovie($type),
+            // 'Movie' => self::fixMovie($type),
             // Most value cells miss an opening `p` tag, causing the crawler to miss the values.
-            'Dataset' => self::fixDataset($type),
+            // 'Dataset' => self::fixDataset($type),
             // The value cell miss an opening `p` tag, causing the crawler to miss the value.
-            'DataCatalog' => self::fixDataCatalog($type),
+            // 'DataCatalog' => self::fixDataCatalog($type),
             // The value cell miss an opening `p` tag, causing the crawler to miss the value.
-            'DataDownload' => self::fixDataDownload($type),
+            // 'DataDownload' => self::fixDataDownload($type),
             // The value cell miss an opening `p` tag, causing the crawler to miss the value.
-            'FAQPage' => self::fixFAQPage($type),
+            // 'FAQPage' => self::fixFAQPage($type),
             default => null,
         };
     }
