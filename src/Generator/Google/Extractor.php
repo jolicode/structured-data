@@ -100,9 +100,21 @@ class Extractor
             }
         }
 
-        foreach ($this->finder->files()->in(self::CACHE_DIRECTORY) as $file) {
-            $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
-        }
+        // foreach ($this->finder->files()->in(self::CACHE_DIRECTORY) as $file) {
+        //     dump($file->getFilename());
+
+        //     // The product page is completely different and needs to be crawled separately. Unsupported for now.
+        //     if ('product.html' === $file->getFilename()) {
+        //         continue;
+        //     }
+
+        //     $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
+        // }
+
+        $this->extractTypes('faqpage.html', file_get_contents(self::CACHE_DIRECTORY . 'faqpage.html'));
+        dd($this->extractedTypes['Question']);
+
+        dump($this->extractedTypes);
 
         return $this->createContainer();
     }
@@ -146,7 +158,7 @@ class Extractor
     {
         if (
             $this->currentType
-            && !$this->currentType->isEmpty()
+            && !\array_key_exists($this->currentType->name, $this->extractedTypes)
             && !$this->currentType->isASubtype
         ) {
             $this->extractedTypes[$this->currentType->name] = $this->currentType;
@@ -199,9 +211,7 @@ class Extractor
         $this->currentType->documentationUrl = $this->generateGoogleLink($fileName, $node->attr('id'));
 
         if ('Movie' === $name) {
-            $this->initializeCarousel($fileName);
-
-            return;
+            $this->initializeCarousel('Movie');
         }
     }
 
@@ -212,8 +222,6 @@ class Extractor
     private function initializeSpecialCaseType(string $name, string $fileName, Crawler $node): bool
     {
         if ('employer-rating.html' === $fileName) {
-            $this->currentType = $this->extractedTypes['EmployerAggregateRating'];
-
             $this->currentType = new Type();
             $this->currentType->name = 'EmployerAggregateRating';
             $this->currentType->types = 'EmployerAggregateRating';
@@ -227,14 +235,21 @@ class Extractor
             return true;
         }
 
-        if ('Restaurant carousel (limited access)' === $name || str_contains($name, 'ItemList')) {
-            $this->currentType = $this->extractedTypes[array_key_last($this->extractedTypes)];
-            $this->initializeCarousel($fileName, true);
+        if ('Restaurant carousel (limited access)' === $name || str_contains(strtolower($name), 'itemlist')) {
+            $typeName = match ($fileName) {
+                'recipe.html' => 'Recipe',
+                'course.html' => 'Course',
+                'local-business.html' => 'LocalBusiness',
+                'video.html' => 'VideoObject',
+                default => throw new \RuntimeException(sprintf('A carousel was detected on the "%s" page, but it is not handled yet.', $fileName))
+            };
+
+            $this->initializeCarousel($typeName);
 
             return true;
         }
 
-        if (str_contains($name, 'ListItem')) {
+        if (str_contains(strtolower($name), 'listitem')) {
             $this->definePropertyToUpdate($name, 'itemListElement');
 
             return true;
@@ -298,6 +313,7 @@ class Extractor
             'Example ReadAction Book feed JSON file',
             'Example LibrarySystem feed JSON file',
             'IPTC photo metadata',
+            'Tabular datasets',
         ];
 
         return \in_array($name, $wrongTitles, true);
@@ -385,42 +401,31 @@ class Extractor
             return;
         }
 
-        $this->currentType = $this->extractedTypes[array_key_last($this->extractedTypes)];
+        $this->pushCurrentType();
 
         $subType = $matches[1];
+        $parentType = str_replace(sprintf(' (%s)', $subType), '', $name);
+        $parentType = $this->extractedTypes[$parentType];
 
         $subType = new Type(
             name: $subType,
             isASubtype: true,
-            parentType: $this->currentType->isASubtype ? $this->currentType->parentType : $this->currentType,
+            parentType: $parentType,
             documentationUrl: $this->generateGoogleLink($fileName, $node->attr('id')),
         );
 
-        if ($this->currentType->isASubtype) {
-            $this->currentType->parentType->subTypes[] = $subType;
-        } else {
-            $this->currentType->subTypes[] = $subType;
-        }
+        $parentType->subTypes[] = $subType;
 
         $this->currentType = $subType;
     }
 
-    /**
-     * A type may be eligible for a carousel. Unfortunately, the documentation is not consistent at all for carousels.
-     * This method defines the base properties that must be present for a type to be eligible for a carousel.
-     */
-    private function initializeCarousel(string $fileName, bool $replaceCurrentType = false): void
+    private function initializeCarousel(string $typeName): void
     {
-        // The carousel table for the recipe type is at the bottom of document, so we need to retrieve the recipe type ourselves.
-        if ('recipe.html' === $fileName) {
-            $this->currentType = $this->extractedTypes['Recipe'];
-        }
+        $typeWithCarousel = $this->extractedTypes[$typeName] ?? $this->currentType;
 
-        $this->currentType->isCarouselEligible = true;
+        $typeWithCarousel->carousel = $carousel = new Type();
+        $typeWithCarousel->isCarouselEligible = true;
 
-        $carousel = new Type();
-        $carousel->parentType = $this->currentType;
-        $carousel->isASubtype = true;
         $carousel->initProperty('itemListElement', self::SEVERITY_REQUIRED);
         $carousel->pushProperty('ListItem');
         $carousel->addPropertyProperty('position', ['itemListElement', ['ListItem']], self::SEVERITY_REQUIRED);
@@ -428,12 +433,6 @@ class Extractor
         $carousel->addPropertyProperty('url', ['itemListElement', ['ListItem']], self::SEVERITY_REQUIRED);
         $carousel->pushProperty('URL');
         $carousel->cleanUpProperties(self::SEVERITY_REQUIRED);
-
-        $this->currentType->carousel = $carousel;
-
-        if ($replaceCurrentType) {
-            $this->currentType = $this->currentType->carousel;
-        }
     }
 
     private function getTableSeverity(Crawler $table): string|false
@@ -453,18 +452,16 @@ class Extractor
 
     private function extractProperties(Crawler $table, string $severity, string $fileName): void
     {
-        if ($this->reachedEndOfDefinitions) {
+        if ($this->reachedEndOfDefinitions || !$severity) {
             return;
         }
 
         if (!$this->currentType) {
-            if (!$this->initializeTypeWithNoTitle($fileName)) {
+            if (self::SEVERITY_RECOMMENDED === $severity) {
+                $this->currentType = $this->extractedTypes[array_key_last($this->extractedTypes)];
+            } elseif (!$this->initializeTypeWithNoTitle($fileName)) {
                 return;
             }
-        }
-
-        if (!$severity) {
-            return;
         }
 
         $head = $table->filter('tr > th')->text();
@@ -500,7 +497,10 @@ class Extractor
 
         $this->currentType->cleanUpProperties($severity);
         $this->pushCurrentType();
-        $this->currentType = null;
+
+        if (!$this->currentType->isASubtype) {
+            $this->currentType = null;
+        }
     }
 
     private function extractKeyCell(\DOMNode $keyNode, bool $isABetaTable, string $severity): void
@@ -534,12 +534,20 @@ class Extractor
     private function extractValueCell(\DOMNode $valueNode, bool $isABetaTable): void
     {
         $crawler = new Crawler($valueNode);
-        $codeTags = $crawler->filter('p:first-child code');
-        $linkTags = $crawler->filter('p:first-child a.external-link');
+        $codeTags = $crawler->filter('td > p:first-child code');
+        $linkTags = $crawler->filter('td > p:first-child a.external-link');
 
         if (!$linkTags->count()) {
             return;
         }
+
+        dump(before: $codeTags->count());
+
+        if (!$codeTags->count()) {
+            $codeTags = $crawler->filter('td > code > a.external-link:first-child');
+        }
+
+        dump(after: $codeTags->count());
 
         $codeTags->each(fn (Crawler $node) => $this->handleValue($node->getNode(0), $isABetaTable));
     }
@@ -563,7 +571,7 @@ class Extractor
             }
         } else {
             // Sometimes the property name is inside a `h3` tag and has a lot of whitespace and carriage returns.
-            $cleanedPropertyName = preg_replace('/[^a-zA-Z\d.-@]/', '', $name);
+            $cleanedPropertyName = preg_replace('/[^a-zA-Z\d.@-]/', '', $name);
 
             $this->currentType->initProperty($cleanedPropertyName, $severity, $isABetaTable, $atLeastOneOf);
         }

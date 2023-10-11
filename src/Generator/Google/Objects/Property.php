@@ -44,4 +44,9 @@ class Property
     {
         return \count($this->recommendedProperties);
     }
+
+    public function addValue(string $name, bool $isBeta = false): void
+    {
+        $this->values[$name] = new self($name, isBeta: $isBeta);
+    }
 }
