@@ -47,6 +47,14 @@ class Property
 
     public function addValue(string $name, bool $isBeta = false): void
     {
+        if (str_starts_with($this->name, 'atLeastOneOf')) {
+            foreach ($this->values as $value) {
+                $value->addValue($name, $isBeta);
+            }
+
+            return;
+        }
+
         $this->values[$name] = new self($name, isBeta: $isBeta);
     }
 }

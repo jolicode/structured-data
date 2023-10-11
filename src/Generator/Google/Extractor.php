@@ -111,9 +111,9 @@ class Extractor
             $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
         }
 
-        // $this->extractTypes('faqpage.html', file_get_contents(self::CACHE_DIRECTORY . 'faqpage.html'));
+        // $this->extractTypes('dataset.html', file_get_contents(self::CACHE_DIRECTORY . 'dataset.html'));
 
-        // dump($this->extractedTypes);
+        dump($this->extractedTypes);
 
         return $this->createContainer();
     }
@@ -520,7 +520,7 @@ class Extractor
             );
 
             $this->handleNewProperty('atLeastOneOf', $severity, $isABetaTable, $atLeastOneOf);
-            $this->currentType->cleanUpProperties($severity);
+            // $this->currentType->cleanUpProperties($severity);
 
             return;
         }
@@ -535,6 +535,7 @@ class Extractor
         $crawler = new Crawler($valueNode);
         $codeTags = $crawler->filter('td > p:first-child code');
 
+        // Sometimes, the values are defined in the first `p` tag, and sometimes there are none.
         if (!$codeTags->count()) {
             $codeTags = $crawler->filter('td > code > a.external-link:first-child');
         }
@@ -543,7 +544,6 @@ class Extractor
             return;
         }
 
-        $codeTags->each(fn (Crawler $node) => dump($node->getNode(0)->nodeValue));
         $codeTags->each(fn (Crawler $node) => $this->handleValue($node->getNode(0), $isABetaTable));
     }
 
