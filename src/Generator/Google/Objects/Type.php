@@ -47,7 +47,7 @@ class Type
         public ?self $parentType = null,
 
         /**
-         * @var array<string, string>
+         * @var array<string, Type>
          */
         public array $subTypes = [],
 
@@ -275,10 +275,6 @@ class Type
     private function findPropertyToUpdate(array $potentialProperties, string $propertyToFind, string $whereToSearch = 'values'): Property|false
     {
         foreach ($potentialProperties as $property) {
-            if (\is_string($property)) {
-                continue;
-            }
-
             if ($propertyToFind === $property->name) {
                 return $property;
             }

@@ -18,7 +18,6 @@ use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Component\String\Slugger\AsciiSlugger;
 
 class Extractor
 {
@@ -40,7 +39,6 @@ class Extractor
 
     public function __construct(
         private readonly Filesystem $filesystem,
-        private readonly AsciiSlugger $slugger = new AsciiSlugger(),
         private readonly Finder $finder = new Finder(),
 
         private ?Type $currentType = null,
@@ -101,8 +99,6 @@ class Extractor
         }
 
         foreach ($this->finder->files()->in(self::CACHE_DIRECTORY) as $file) {
-            dump($file->getFilename());
-
             // The product page is completely different and needs to be crawled separately. Unsupported for now.
             if ('product.html' === $file->getFilename()) {
                 continue;
@@ -111,9 +107,18 @@ class Extractor
             $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
         }
 
-        // $this->extractTypes('dataset.html', file_get_contents(self::CACHE_DIRECTORY . 'dataset.html'));
+        foreach ($this->extractedTypes as $type) {
+            BrokenTypeFixer::fixType($type);
+            $type->cleanUpProperties(self::SEVERITY_REQUIRED);
+            $type->cleanUpProperties(self::SEVERITY_RECOMMENDED);
 
-        dump($this->extractedTypes);
+            if (\count($type->subTypes)) {
+                foreach ($type->subTypes as $subType) {
+                    $subType->cleanUpProperties(self::SEVERITY_REQUIRED);
+                    $subType->cleanUpProperties(self::SEVERITY_RECOMMENDED);
+                }
+            }
+        }
 
         return $this->createContainer();
     }
@@ -189,7 +194,7 @@ class Extractor
         $name = $node->text();
 
         if (\array_key_exists($name, $this->extractedTypes)) {
-            $this->currentType = $this->extractedTypes[$name];
+            $this->initializeSubtypeWithParent($name, $fileName, $node);
 
             return;
         }
@@ -362,6 +367,7 @@ class Extractor
         $typesWithMissingTitle = [
             'image-license-metadata.html' => 'ImageObject',
             'employer-rating.html' => 'EmployerAggregateRating',
+            'event.html' => 'Event',
         ];
 
         if (\array_key_exists($fileName, $typesWithMissingTitle)) {
@@ -408,14 +414,54 @@ class Extractor
 
         $subType = new Type(
             name: $subType,
+            types: $subType,
+            documentationUrl: $this->generateGoogleLink($fileName, $node->attr('id')),
             isASubtype: true,
             parentType: $parentType,
-            documentationUrl: $this->generateGoogleLink($fileName, $node->attr('id')),
         );
 
-        $parentType->subTypes[] = $subType;
+        $parentType->subTypes[$subType->name] = $subType;
 
         $this->currentType = $subType;
+    }
+
+    private function initializeSubtypeWithParent(string $name, string $fileName, Crawler $node): void
+    {
+        $this->pushCurrentType();
+
+        $previousType = $this->extractedTypes[$name];
+
+        if (\count($previousType->subTypes) > 0) {
+            $parent = $previousType;
+        } else {
+            $previousType->name = $previousTypeName = sprintf('%s%s', $this->getSubtypePrefix($previousType->documentationUrl), $name);
+            $previousType->types = $name;
+            $previousType->isASubtype = true;
+
+            $parent = new Type(
+                name: $name,
+                types: $name,
+                subTypes: [
+                    $previousTypeName => $previousType,
+                ],
+            );
+
+            $previousType->parentType = $parent;
+
+            $this->extractedTypes[$name] = $parent;
+        }
+
+        $newType = new Type(
+            name: $newTypeName = sprintf('%s%s', $this->getSubtypePrefix($fileName), $name),
+            types: $name,
+            documentationUrl: $this->generateGoogleLink($fileName, $node->attr('id')),
+            isASubtype: true,
+            parentType: $parent,
+        );
+
+        $parent->subTypes[$newTypeName] = $newType;
+
+        $this->currentType = $newType;
     }
 
     private function initializeCarousel(string $typeName): void
@@ -431,7 +477,6 @@ class Extractor
         $carousel->pushProperty('Integer');
         $carousel->addPropertyProperty('url', ['itemListElement', ['ListItem']], self::SEVERITY_REQUIRED);
         $carousel->pushProperty('URL');
-        $carousel->cleanUpProperties(self::SEVERITY_REQUIRED);
     }
 
     private function getTableSeverity(Crawler $table): string|false
@@ -456,50 +501,47 @@ class Extractor
         }
 
         if (!$this->currentType) {
+            if (!$this->initializeTypeWithNoTitle($fileName)) {
+                return;
+            }
+
             if (self::SEVERITY_RECOMMENDED === $severity) {
                 $this->currentType = $this->extractedTypes[array_key_last($this->extractedTypes)];
-            } elseif (!$this->initializeTypeWithNoTitle($fileName)) {
-                return;
             }
         }
 
         $head = $table->filter('tr > th')->text();
-        $isABetaTable = false;
-
-        if (str_contains(strtolower($head), '(beta)')) {
-            $isABetaTable = true;
-        }
+        $isABetaTable = str_contains(strtolower($head), '(beta)');
 
         $table
-            ->filter('tbody:not(.list) > tr')
-            ->each(function (Crawler $row) use ($isABetaTable, $severity) {
-                $keyNode = $row->filter('td')->getNode(0);
-                $valueNode = $row->filter('td')->getNode(1);
+            ->children()
+            ->each(function (Crawler $node) use ($isABetaTable, $severity) {
+                if ('tbody' === $node->nodeName()) {
+                    $node->children()->each(function (Crawler $row) use ($isABetaTable, $severity) {
+                        $keyNode = $row->filter('td')->getNode(0);
+                        $valueNode = $row->filter('td')->getNode(1);
 
-                if (null === $keyNode || null === $valueNode) {
-                    return;
+                        if (null === $keyNode || null === $valueNode) {
+                            return;
+                        }
+
+                        $this->extractKeyCell($keyNode, $isABetaTable, $severity);
+
+                        if ($this->skipNextValueCell) {
+                            $this->skipNextValueCell = false;
+
+                            return;
+                        }
+
+                        $this->extractValueCell($valueNode, $isABetaTable);
+                    });
                 }
-
-                $this->extractKeyCell($keyNode, $isABetaTable, $severity);
-
-                if ($this->skipNextValueCell) {
-                    $this->skipNextValueCell = false;
-
-                    return;
-                }
-
-                $this->extractValueCell($valueNode, $isABetaTable);
             });
 
         // Unfortunately, some types need some fixing after having being crawled.
-        BrokenTypeFixer::fixType($this->currentType);
-
-        $this->currentType->cleanUpProperties($severity);
         $this->pushCurrentType();
 
-        if (!$this->currentType->isASubtype) {
-            $this->currentType = null;
-        }
+        $this->currentType = null;
     }
 
     private function extractKeyCell(\DOMNode $keyNode, bool $isABetaTable, string $severity): void
@@ -520,7 +562,6 @@ class Extractor
             );
 
             $this->handleNewProperty('atLeastOneOf', $severity, $isABetaTable, $atLeastOneOf);
-            // $this->currentType->cleanUpProperties($severity);
 
             return;
         }
@@ -533,13 +574,16 @@ class Extractor
     private function extractValueCell(\DOMNode $valueNode, bool $isABetaTable): void
     {
         $crawler = new Crawler($valueNode);
-        $codeTags = $crawler->filter('td > p:first-child code');
 
-        // Sometimes, the values are defined in the first `p` tag, and sometimes there are none.
+        $firstParagraph = $crawler->children()->first();
+        $codeTags = $firstParagraph->filter('code');
+
+        // Sometimes, the values are defined in the first `p` tag, and sometimes directly in a `a` tag.
         if (!$codeTags->count()) {
-            $codeTags = $crawler->filter('td > code > a.external-link:first-child');
+            $codeTags = $firstParagraph->filter('a.external-link');
         }
 
+        // There are special cases (which are not necessarily mistakes) handled by the BrokenTypeFixer
         if (!$codeTags->count()) {
             return;
         }
@@ -595,5 +639,16 @@ class Extractor
         // }
 
         return $container;
+    }
+
+    private function getSubtypePrefix(string $urlOrFilename): string
+    {
+        return match (true) {
+            str_contains($urlOrFilename, 'education-qa') => 'EducationQA',
+            str_contains($urlOrFilename, 'qapage') => 'QA',
+            str_contains($urlOrFilename, 'faqpage') => 'FAQ',
+            str_contains($urlOrFilename, 'practice-problems') => 'PracticeProblem',
+            default => throw new \RuntimeException(sprintf('Trying to get a subtype prefix for the "%s" URL, which is not supported', $urlOrFilename))
+        };
     }
 }

@@ -20,6 +20,14 @@ use Jolicode\JsonLd\Generator\Google\Objects\Type;
  */
 class BrokenTypeFixer
 {
+    /**
+     * A method used to fix a type when it is too complicated to do it programmatically.
+     * This method will receive types *before* they get cleaned up, meaning that all nested properties will
+     * have the following notation : `baseType.firstProperty.secondProperty`.
+     *
+     * @param Type $type
+     * @return void
+     */
     public static function fixType(Type $type): void
     {
         match ($type->name) {
@@ -33,6 +41,12 @@ class BrokenTypeFixer
             'SoftwareApplication' => self::fixSoftwareApplication($type),
             // At least one of the recommended properties is required, but this is hard to crawl so we add it ourselves.
             'SpecialAnnouncement' => self::fixSpecialAnnouncement($type),
+            // Review uses a very large list of possible values
+            'Review' => self::fixReview($type),
+            // AggregateRating uses the same list than Review
+            'fixAggregateRating' => self::fixAggregateRating($type),
+            // A value is both missing a `code` tag and a `a` tag.
+            'fixBroadcastEvent' => self::fixBroadcastEvent($type),
             default => null,
         };
     }
@@ -59,8 +73,8 @@ class BrokenTypeFixer
     {
         if (!$type->hasProperty('atLeastOneOf_0')) {
             $properties = [
-                new Property('aggregateRating', ['AggregateRating']),
-                new Property('review', ['Review']),
+                new Property('aggregateRating', [new Property('AggregateRating')]),
+                new Property('review', [new Property('Review')]),
             ];
 
             $type->initProperty('atLeastOneOf', Extractor::SEVERITY_REQUIRED, atLeastOneOf: $properties);
@@ -84,5 +98,41 @@ class BrokenTypeFixer
 
             $type->initProperty('atLeastOneOf', Extractor::SEVERITY_REQUIRED, atLeastOneOf: $properties);
         }
+    }
+
+    private static function fixReview(Type $type): void
+    {
+        self::addReviewTypeValues($type);
+    }
+
+    private static function fixAggregateRating(Type $type): void
+    {
+        self::addReviewTypeValues($type);
+    }
+
+    private static function addReviewTypeValues(Type $type): void
+    {
+        $type->getProperty('itemReviewed')->addValue('Book');
+        $type->getProperty('itemReviewed')->addValue('Course');
+        $type->getProperty('itemReviewed')->addValue('CreativeWorkSeason');
+        $type->getProperty('itemReviewed')->addValue('CreativeWorkSeries');
+        $type->getProperty('itemReviewed')->addValue('Episode');
+        $type->getProperty('itemReviewed')->addValue('Event');
+        $type->getProperty('itemReviewed')->addValue('Game');
+        $type->getProperty('itemReviewed')->addValue('HowTo');
+        $type->getProperty('itemReviewed')->addValue('LocalBusiness');
+        $type->getProperty('itemReviewed')->addValue('MediaObject');
+        $type->getProperty('itemReviewed')->addValue('Movie');
+        $type->getProperty('itemReviewed')->addValue('MusicPlaylist');
+        $type->getProperty('itemReviewed')->addValue('MusicRecording');
+        $type->getProperty('itemReviewed')->addValue('Organization');
+        $type->getProperty('itemReviewed')->addValue('Product');
+        $type->getProperty('itemReviewed')->addValue('Recipe');
+        $type->getProperty('itemReviewed')->addValue('SoftwareApplication');
+    }
+
+    private static function fixBroadcastEvent(Type $type)
+    {
+        $type->getProperty('publication.isLiveBroadcast')->addValue('Boolean');
     }
 }
