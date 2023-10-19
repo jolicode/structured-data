@@ -24,9 +24,6 @@ class BrokenTypeFixer
      * A method used to fix a type when it is too complicated to do it programmatically.
      * This method will receive types *before* they get cleaned up, meaning that all nested properties will
      * have the following notation : `baseType.firstProperty.secondProperty`.
-     *
-     * @param Type $type
-     * @return void
      */
     public static function fixType(Type $type): void
     {
@@ -44,9 +41,11 @@ class BrokenTypeFixer
             // Review uses a very large list of possible values
             'Review' => self::fixReview($type),
             // AggregateRating uses the same list than Review
-            'fixAggregateRating' => self::fixAggregateRating($type),
-            // A value is both missing a `code` tag and a `a` tag.
-            'fixBroadcastEvent' => self::fixBroadcastEvent($type),
+            'AggregateRating' => self::fixAggregateRating($type),
+            // Some values are a bit hard to crawl, it is easier to handle them this way.
+            'VideoObject' => self::fixVideoObject($type),
+            // A value is missing both a `code` tag and a `a` tag.
+            'BroadcastEvent' => self::fixBroadcastEvent($type),
             default => null,
         };
     }
@@ -79,6 +78,30 @@ class BrokenTypeFixer
 
             $type->initProperty('atLeastOneOf', Extractor::SEVERITY_REQUIRED, atLeastOneOf: $properties);
         }
+
+        $type->getProperty('applicationCategory')->addValue('GameApplication');
+        $type->getProperty('applicationCategory')->addValue('SocialNetworkingApplication');
+        $type->getProperty('applicationCategory')->addValue('TravelApplication');
+        $type->getProperty('applicationCategory')->addValue('ShoppingApplication');
+        $type->getProperty('applicationCategory')->addValue('SportsApplication');
+        $type->getProperty('applicationCategory')->addValue('LifestyleApplication');
+        $type->getProperty('applicationCategory')->addValue('BusinessApplication');
+        $type->getProperty('applicationCategory')->addValue('DesignApplication');
+        $type->getProperty('applicationCategory')->addValue('DeveloperApplication');
+        $type->getProperty('applicationCategory')->addValue('DriverApplication');
+        $type->getProperty('applicationCategory')->addValue('EducationalApplication');
+        $type->getProperty('applicationCategory')->addValue('HealthApplication');
+        $type->getProperty('applicationCategory')->addValue('FinanceApplication');
+        $type->getProperty('applicationCategory')->addValue('SecurityApplication');
+        $type->getProperty('applicationCategory')->addValue('BrowserApplication');
+        $type->getProperty('applicationCategory')->addValue('CommunicationApplication');
+        $type->getProperty('applicationCategory')->addValue('DesktopEnhancementApplication');
+        $type->getProperty('applicationCategory')->addValue('EntertainmentApplication');
+        $type->getProperty('applicationCategory')->addValue('MultiMediaApplication');
+        $type->getProperty('applicationCategory')->addValue('HomeApplication');
+        $type->getProperty('applicationCategory')->addValue('UtilitiesApplication');
+        $type->getProperty('applicationCategory')->addValue('ReferenceApplication');
+        $type->getProperty('applicationCategory')->removeValue('Text');
     }
 
     private static function fixSpecialAnnouncement(Type $type): void
@@ -134,5 +157,11 @@ class BrokenTypeFixer
     private static function fixBroadcastEvent(Type $type)
     {
         $type->getProperty('publication.isLiveBroadcast')->addValue('Boolean');
+    }
+
+    private static function fixVideoObject(Type $type)
+    {
+        $type->getProperty('hasPart')->addValue('Clip');
+        $type->getProperty('publication')->addValue('BroadcastEvent');
     }
 }

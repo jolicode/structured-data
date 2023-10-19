@@ -59,7 +59,7 @@ class Type
         /**
          * Carousels have base required/recommended properties but they may use some others as well.
          */
-        public ?self $carousel = null,
+        public ?Property $carousel = null,
 
         private ?Property $currentProperty = null,
         private int $atLeastOneOfCounter = 0,
@@ -162,7 +162,21 @@ class Type
     /**
      * Removes empty properties and builds the nested properties.
      */
-    public function cleanUpProperties(string $severity): void
+    public function cleanUpProperties(): void
+    {
+        $this->cleanUpTargetProperties(Extractor::SEVERITY_REQUIRED);
+        $this->cleanUpTargetProperties(Extractor::SEVERITY_RECOMMENDED);
+
+        if (\count($this->subTypes)) {
+            foreach ($this->subTypes as $subType) {
+                $subType->cleanUpProperties();
+            }
+        }
+
+        $this->currentProperty = null;
+    }
+
+    private function cleanUpTargetProperties(string $severity): void
     {
         $targetProperties = "{$severity}Properties";
 
@@ -179,12 +193,10 @@ class Type
         }
 
         ksort($this->{$targetProperties});
-
-        $this->currentProperty = null;
     }
 
     /**
-     * A pretty dire-looking method...
+     * A pretty dire-looking method indeed...
      *
      * However, all it does is :
      *  - get the properties chain if the property is nested

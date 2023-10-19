@@ -57,4 +57,17 @@ class Property
 
         $this->values[$name] = new self($name, isBeta: $isBeta);
     }
+
+    public function removeValue(string $name, bool $isBeta = false): void
+    {
+        if (str_starts_with($this->name, 'atLeastOneOf')) {
+            foreach ($this->values as $value) {
+                $value->removeValue($name, $isBeta);
+            }
+
+            return;
+        }
+
+        unset($this->values[$name]);
+    }
 }

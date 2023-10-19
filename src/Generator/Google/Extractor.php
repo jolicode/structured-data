@@ -49,6 +49,11 @@ class Extractor
         /**
          * @var array<string, Type>
          */
+        private array $currentPageTypes = [],
+
+        /**
+         * @var array<string, Type>
+         */
         private array $extractedTypes = [],
 
         /**
@@ -107,18 +112,17 @@ class Extractor
             $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
         }
 
+        // $this->extractTypes('movie.html', file_get_contents(self::CACHE_DIRECTORY . 'movie.html'));
+
         foreach ($this->extractedTypes as $type) {
             BrokenTypeFixer::fixType($type);
-            $type->cleanUpProperties(self::SEVERITY_REQUIRED);
-            $type->cleanUpProperties(self::SEVERITY_RECOMMENDED);
-
-            if (\count($type->subTypes)) {
-                foreach ($type->subTypes as $subType) {
-                    $subType->cleanUpProperties(self::SEVERITY_REQUIRED);
-                    $subType->cleanUpProperties(self::SEVERITY_RECOMMENDED);
-                }
-            }
+            $type->cleanUpProperties();
         }
+
+        array_map(
+            fn (Type $type) => dump($type),
+            $this->extractedTypes,
+        );
 
         return $this->createContainer();
     }
@@ -143,6 +147,7 @@ class Extractor
                 });
 
             $this->reachedEndOfDefinitions = false;
+            $this->flushCurrentPageTypes();
         }
     }
 
@@ -158,18 +163,27 @@ class Extractor
         return $typeLink;
     }
 
+    private function flushCurrentPageTypes(): void
+    {
+        foreach ($this->currentPageTypes as $type) {
+            $this->extractedTypes[$type->name] = $type;
+        }
+
+        $this->currentPageTypes = [];
+    }
+
     private function pushCurrentType(): void
     {
         if (
             $this->currentType
-            && !\array_key_exists($this->currentType->name, $this->extractedTypes)
+            && !\array_key_exists($this->currentType->name, $this->currentPageTypes)
             && !$this->currentType->isASubtype
         ) {
-            $this->extractedTypes[$this->currentType->name] = $this->currentType;
+            $this->currentPageTypes[$this->currentType->name] = $this->currentType;
         }
 
         if ($this->currentType?->isASubtype) {
-            $this->extractedTypes[$this->currentType->parentType->name] = $this->currentType->parentType;
+            $this->currentPageTypes[$this->currentType->parentType->name] = $this->currentType->parentType;
         }
 
         if (\count($this->typesWithSameProperties)) {
@@ -177,7 +191,7 @@ class Extractor
                 $clone = clone $this->currentType;
                 $clone->name = $type;
                 $clone->types = $type;
-                $this->extractedTypes[$clone->name] = $clone;
+                $this->currentPageTypes[$clone->name] = $clone;
             }
 
             $this->typesWithSameProperties = [];
@@ -214,6 +228,7 @@ class Extractor
         $this->currentType->types = $name;
         $this->currentType->documentationUrl = $this->generateGoogleLink($fileName, $node->attr('id'));
 
+        // The ItemList is not specified on the movie page, so we have to add it ourselves.
         if ('Movie' === $name) {
             $this->initializeCarousel('Movie');
         }
@@ -362,7 +377,7 @@ class Extractor
     /**
      * Yes, Google forgot the title for some of its types.
      */
-    private function initializeTypeWithNoTitle(string $fileName): bool
+    private function initializeTypeWithNoTitle(string $fileName): bool|Type
     {
         $typesWithMissingTitle = [
             'image-license-metadata.html' => 'ImageObject',
@@ -371,20 +386,18 @@ class Extractor
         ];
 
         if (\array_key_exists($fileName, $typesWithMissingTitle)) {
-            if (!\array_key_exists($typesWithMissingTitle[$fileName], $this->extractedTypes)) {
+            if (!\array_key_exists($typesWithMissingTitle[$fileName], $this->currentPageTypes)) {
                 $this->pushCurrentType();
 
-                $this->currentType = new Type();
-                $this->currentType->name = $typesWithMissingTitle[$fileName];
-                $this->currentType->types = $typesWithMissingTitle[$fileName];
-                $this->currentType->documentationUrl = $this->generateGoogleLink($fileName) . '#structured-data-type-definitions';
+                $typeWithNoTitle = new Type();
+                $typeWithNoTitle->name = $typesWithMissingTitle[$fileName];
+                $typeWithNoTitle->types = $typesWithMissingTitle[$fileName];
+                $typeWithNoTitle->documentationUrl = $this->generateGoogleLink($fileName) . '#structured-data-type-definitions';
 
-                return true;
+                return $typeWithNoTitle;
             }
 
-            $this->currentType = $this->extractedTypes[$typesWithMissingTitle[$fileName]];
-
-            return true;
+            return $this->currentPageTypes[$typesWithMissingTitle[$fileName]];
         }
 
         return false;
@@ -410,7 +423,7 @@ class Extractor
 
         $subType = $matches[1];
         $parentType = str_replace(sprintf(' (%s)', $subType), '', $name);
-        $parentType = $this->extractedTypes[$parentType];
+        $parentType = $this->currentPageTypes[$parentType] ?? $this->extractedTypes[$parentType];
 
         $subType = new Type(
             name: $subType,
@@ -466,17 +479,26 @@ class Extractor
 
     private function initializeCarousel(string $typeName): void
     {
-        $typeWithCarousel = $this->extractedTypes[$typeName] ?? $this->currentType;
-
-        $typeWithCarousel->carousel = $carousel = new Type();
+        $typeWithCarousel = $this->currentPageTypes[$typeName] ?? $this->currentType;
         $typeWithCarousel->isCarouselEligible = true;
 
-        $carousel->initProperty('itemListElement', self::SEVERITY_REQUIRED);
-        $carousel->pushProperty('ListItem');
-        $carousel->addPropertyProperty('position', ['itemListElement', ['ListItem']], self::SEVERITY_REQUIRED);
-        $carousel->pushProperty('Integer');
-        $carousel->addPropertyProperty('url', ['itemListElement', ['ListItem']], self::SEVERITY_REQUIRED);
-        $carousel->pushProperty('URL');
+        // The type requiring some special properties for its carousel is LocalBusiness.
+        // Hence, we handle it that way since its quite annoying to handle it in a generic way.
+        if ('LocalBusiness' === $typeName) {
+            $carousel = new Property(
+                name: 'carousel',
+                requiredProperties: [
+                    'image' => new Property('image', ['URL', 'ImageObject']),
+                    'name' => new Property('name', ['Text']),
+                ],
+                recommendedProperties: [
+                    'address' => new Property('address', ['PostalAddress']),
+                    'servesCuisine' => new Property('servesCuisine', ['servesCuisine']),
+                ],
+            );
+
+            $typeWithCarousel->carousel = $carousel;
+        }
     }
 
     private function getTableSeverity(Crawler $table): string|false
@@ -501,12 +523,22 @@ class Extractor
         }
 
         if (!$this->currentType) {
-            if (!$this->initializeTypeWithNoTitle($fileName)) {
-                return;
-            }
+            if ($typeWithNoTitle = $this->initializeTypeWithNoTitle($fileName)) {
+                $this->currentType = $typeWithNoTitle;
+            } elseif (self::SEVERITY_RECOMMENDED === $severity) {
+                $this->currentType = $this->currentPageTypes[array_key_last($this->currentPageTypes)];
 
-            if (self::SEVERITY_RECOMMENDED === $severity) {
-                $this->currentType = $this->extractedTypes[array_key_last($this->extractedTypes)];
+                if ($this->currentType->isCarouselEligible) {
+                    $this->currentType = null;
+
+                    return;
+                }
+
+                if (\count($this->currentType->subTypes)) {
+                    $this->currentType = $this->currentType->subTypes[array_key_last($this->currentType->subTypes)];
+                }
+            } else {
+                return;
             }
         }
 
@@ -538,7 +570,6 @@ class Extractor
                 }
             });
 
-        // Unfortunately, some types need some fixing after having being crawled.
         $this->pushCurrentType();
 
         $this->currentType = null;
@@ -556,10 +587,11 @@ class Extractor
         }
 
         if (1 < \count($codeTags)) {
-            $atLeastOneOf = array_map(
-                fn (\DOMNode $node) => new Property($node->nodeValue),
-                iterator_to_array($codeTags),
-            );
+            $atLeastOneOf = [];
+
+            foreach ($codeTags as $tag) {
+                $atLeastOneOf[$tag->nodeValue] = new Property($tag->nodeValue);
+            }
 
             $this->handleNewProperty('atLeastOneOf', $severity, $isABetaTable, $atLeastOneOf);
 
@@ -574,17 +606,21 @@ class Extractor
     private function extractValueCell(\DOMNode $valueNode, bool $isABetaTable): void
     {
         $crawler = new Crawler($valueNode);
+        $firstChild = $crawler->children()->first();
 
-        $firstParagraph = $crawler->children()->first();
-        $codeTags = $firstParagraph->filter('code');
-
-        // Sometimes, the values are defined in the first `p` tag, and sometimes directly in a `a` tag.
-        if (!$codeTags->count()) {
-            $codeTags = $firstParagraph->filter('a.external-link');
-        }
+        // Unfortunately, the value cells are quite inconsistent...
+        // Most of the time, the values are located in the first paragraph
+        // But sometimes, they are not, the `code` tags are direct children of the `td` tag
+        // And sometimes, the `code` tag was forgotten
+        $codeTags = match ($firstChild->nodeName()) {
+            'p' => $firstChild->filter('a.external-link'),
+            'code' => $firstChild->ancestors()->first()->children('code'),
+            'a' => $firstChild->filter('a.external-link'),
+            default => $crawler->filter('code'),
+        };
 
         // There are special cases (which are not necessarily mistakes) handled by the BrokenTypeFixer
-        if (!$codeTags->count()) {
+        if (!\count($codeTags)) {
             return;
         }
 
