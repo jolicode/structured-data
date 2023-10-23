@@ -12,7 +12,8 @@
 namespace Jolicode\JsonLd\Generator\Google;
 
 use Jolicode\JsonLd\Generator\Google\Objects\Property;
-use Jolicode\JsonLd\Generator\Google\Objects\Type;
+use Jolicode\JsonLd\Generator\Google\Objects\PropertyType;
+use Jolicode\JsonLd\Generator\Google\Objects\RootType;
 use Jolicode\JsonLd\Generator\SchemaOrg\Objects\ClassesContainer;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Filesystem\Filesystem;
@@ -41,18 +42,18 @@ class Extractor
         private readonly Filesystem $filesystem,
         private readonly Finder $finder = new Finder(),
 
-        private ?Type $currentType = null,
+        private ?RootType $currentType = null,
         private ?array $propertyToUpdate = null,
         private bool $reachedEndOfDefinitions = false,
         private bool $skipNextValueCell = false,
 
         /**
-         * @var array<string, Type>
+         * @var array<string, RootType>
          */
         private array $currentPageTypes = [],
 
         /**
-         * @var array<string, Type>
+         * @var array<string, RootType>
          */
         private array $extractedTypes = [],
 
@@ -103,28 +104,24 @@ class Extractor
             }
         }
 
-        // foreach ($this->finder->files()->in(self::CACHE_DIRECTORY) as $file) {
-        //     // The product page is completely different and needs to be crawled separately. Unsupported for now.
-        //     if ('product.html' === $file->getFilename()) {
-        //         continue;
-        //     }
+        foreach ($this->finder->files()->in(self::CACHE_DIRECTORY) as $file) {
+            // The product page is completely different and needs to be crawled separately. Unsupported for now.
+            if ('product.html' === $file->getFilename()) {
+                continue;
+            }
 
-        //     $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
-        // }
-
-        $this->extractTypes('book.html', file_get_contents(self::CACHE_DIRECTORY . 'book.html'));
+            $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
+        }
 
         foreach ($this->extractedTypes as $type) {
             BrokenTypeFixer::fixType($type);
             $type->cleanUpProperties();
         }
 
-        // array_map(
-        //     fn (Type $type) => dump($type),
-        //     $this->extractedTypes,
-        // );
-
-        dump($this->extractedTypes['Book']);
+        array_map(
+            fn (RootType $type) => dump($type),
+            $this->extractedTypes,
+        );
 
         return $this->createContainer();
     }
@@ -168,7 +165,7 @@ class Extractor
     private function flushCurrentPageTypes(): void
     {
         foreach ($this->currentPageTypes as $type) {
-            $this->extractedTypes[$type->name] = $type;
+            $this->extractedTypes[$type->names] = $type;
         }
 
         $this->currentPageTypes = [];
@@ -178,22 +175,21 @@ class Extractor
     {
         if (
             $this->currentType
-            && !\array_key_exists($this->currentType->name, $this->currentPageTypes)
+            && !\array_key_exists($this->currentType->names, $this->currentPageTypes)
             && !$this->currentType->isASubtype
         ) {
-            $this->currentPageTypes[$this->currentType->name] = $this->currentType;
+            $this->currentPageTypes[$this->currentType->names] = $this->currentType;
         }
 
         if ($this->currentType?->isASubtype) {
-            $this->currentPageTypes[$this->currentType->parentType->name] = $this->currentType->parentType;
+            $this->currentPageTypes[$this->currentType->parentType->names] = $this->currentType->parentType;
         }
 
         if (\count($this->typesWithSameProperties)) {
             foreach ($this->typesWithSameProperties as $type) {
                 $clone = clone $this->currentType;
-                $clone->name = $type;
-                $clone->types = $type;
-                $this->currentPageTypes[$clone->name] = $clone;
+                $clone->names = $type;
+                $this->currentPageTypes[$clone->names] = $clone;
             }
 
             $this->typesWithSameProperties = [];
@@ -225,9 +221,8 @@ class Extractor
 
         $this->pushCurrentType();
 
-        $this->currentType = new Type();
-        $this->currentType->name = $name = $this->extractRealTypeName($node);
-        $this->currentType->types = $name;
+        $this->currentType = new RootType();
+        $this->currentType->names = $name = $this->extractRealTypeName($node);
         $this->currentType->documentationUrl = $this->generateGoogleLink($fileName, $node->attr('id'));
 
         // The ItemList is not specified on the movie page, so we have to add it ourselves.
@@ -243,9 +238,8 @@ class Extractor
     private function initializeSpecialCaseType(string $name, string $fileName, Crawler $node): bool
     {
         if ('employer-rating.html' === $fileName) {
-            $this->currentType = new Type();
-            $this->currentType->name = 'EmployerAggregateRating';
-            $this->currentType->types = 'EmployerAggregateRating';
+            $this->currentType = new RootType();
+            $this->currentType->names = 'EmployerAggregateRating';
             $this->currentType->documentationUrl = $this->generateGoogleLink($fileName, $node->attr('id'));
 
             return true;
@@ -282,9 +276,8 @@ class Extractor
             $types = explode(' and ', $name);
             $this->typesWithSameProperties = \array_slice($types, 1);
 
-            $this->currentType = new Type();
-            $this->currentType->name = $types[0];
-            $this->currentType->types = $types[0];
+            $this->currentType = new RootType();
+            $this->currentType->names = $types[0];
             $this->currentType->documentationUrl = $this->generateGoogleLink($fileName, $node->attr('id'));
 
             return true;
@@ -305,9 +298,8 @@ class Extractor
                 ->nodeValue
             ;
 
-            $this->currentType = new Type();
-            $this->currentType->name = $name;
-            $this->currentType->types = $types;
+            $this->currentType = new RootType();
+            $this->currentType->names = $name;
             $this->currentType->dependsOn = $dependsOn;
             $this->currentType->documentationUrl = $this->generateGoogleLink($fileName, $node->attr('id'));
 
@@ -386,7 +378,7 @@ class Extractor
     /**
      * Yes, Google forgot the title for some of its types.
      */
-    private function initializeTypeWithNoTitle(string $fileName): bool|Type
+    private function initializeTypeWithNoTitle(string $fileName): bool|RootType
     {
         $typesWithMissingTitle = [
             'image-license-metadata.html' => 'ImageObject',
@@ -398,9 +390,8 @@ class Extractor
             if (!\array_key_exists($typesWithMissingTitle[$fileName], $this->currentPageTypes)) {
                 $this->pushCurrentType();
 
-                $typeWithNoTitle = new Type();
-                $typeWithNoTitle->name = $typesWithMissingTitle[$fileName];
-                $typeWithNoTitle->types = $typesWithMissingTitle[$fileName];
+                $typeWithNoTitle = new RootType();
+                $typeWithNoTitle->names = $typesWithMissingTitle[$fileName];
                 $typeWithNoTitle->documentationUrl = $this->generateGoogleLink($fileName) . '#structured-data-type-definitions';
 
                 return $typeWithNoTitle;
@@ -434,15 +425,14 @@ class Extractor
         $parentType = str_replace(sprintf(' (%s)', $subType), '', $name);
         $parentType = $this->currentPageTypes[$parentType] ?? $this->extractedTypes[$parentType];
 
-        $subType = new Type(
-            name: $subType,
-            types: $subType,
+        $subType = new RootType(
+            names: $subType,
             documentationUrl: $this->generateGoogleLink($fileName, $node->attr('id')),
             isASubtype: true,
             parentType: $parentType,
         );
 
-        $parentType->subTypes[$subType->name] = $subType;
+        $parentType->subTypes[$subType->names] = $subType;
 
         $this->currentType = $subType;
     }
@@ -460,9 +450,8 @@ class Extractor
             $previousType->types = $name;
             $previousType->isASubtype = true;
 
-            $parent = new Type(
-                name: $name,
-                types: $name,
+            $parent = new RootType(
+                names: $name,
                 subTypes: [
                     $previousTypeName => $previousType,
                 ],
@@ -473,9 +462,8 @@ class Extractor
             $this->extractedTypes[$name] = $parent;
         }
 
-        $newType = new Type(
-            name: $newTypeName = sprintf('%s%s', $this->getSubtypePrefix($fileName), $name),
-            types: $name,
+        $newType = new RootType(
+            names: $newTypeName = sprintf('%s%s', $this->getSubtypePrefix($fileName), $name),
             documentationUrl: $this->generateGoogleLink($fileName, $node->attr('id')),
             isASubtype: true,
             parentType: $parent,
@@ -494,15 +482,15 @@ class Extractor
         // The type requiring some special properties for its carousel is LocalBusiness.
         // Hence, we handle it that way since its quite annoying to handle it in a generic way.
         if ('LocalBusiness' === $typeName) {
-            $carousel = new Property(
-                name: 'carousel',
+            $carousel = new PropertyType(
+                names: 'carousel',
                 requiredProperties: [
-                    'image' => new Property('image', ['URL', 'ImageObject']),
-                    'name' => new Property('name', ['Text']),
+                    'image' => new PropertyType('image', ['URL', 'ImageObject']),
+                    'name' => new PropertyType('name', ['Text']),
                 ],
                 recommendedProperties: [
-                    'address' => new Property('address', ['PostalAddress']),
-                    'servesCuisine' => new Property('servesCuisine', ['servesCuisine']),
+                    'address' => new PropertyType('address', ['PostalAddress']),
+                    'servesCuisine' => new PropertyType('servesCuisine', ['servesCuisine']),
                 ],
             );
 
@@ -599,7 +587,9 @@ class Extractor
             $atLeastOneOf = [];
 
             foreach ($codeTags as $tag) {
-                $atLeastOneOf[$tag->nodeValue] = new Property($tag->nodeValue);
+                $atLeastOneOf[$tag->nodeValue] = new Property(
+                    name: $tag->nodeValue,
+                );
             }
 
             $this->handleNewProperty('atLeastOneOf', $severity, $isABetaTable, $atLeastOneOf);
@@ -648,10 +638,10 @@ class Extractor
         if ($this->propertyToUpdate) {
             if ($this->currentType->isASubtype) {
                 foreach ($this->currentType->parentType->subTypes as $subType) {
-                    $subType->addPropertyProperty($name, $this->propertyToUpdate, $severity, $isABetaTable);
+                    $subType->updateTypeWithProperty($name, $this->propertyToUpdate, $severity, $isABetaTable);
                 }
             } else {
-                $this->currentType->addPropertyProperty($name, $this->propertyToUpdate, $severity, $isABetaTable);
+                $this->currentType->updateTypeWithProperty($name, $this->propertyToUpdate, $severity, $isABetaTable);
             }
         } else {
             // Sometimes the property name is inside a `h3` tag and has a lot of whitespace and carriage returns.
@@ -667,7 +657,7 @@ class Extractor
     private function handleValue(\DOMNode $nodeEntry, bool $isABetaTable): void
     {
         if (preg_match('/^\((.+)\)$/', $nodeEntry->nodeValue)) {
-            $this->currentType->setCurrentValueSubtype($nodeEntry->nodeValue);
+            $this->currentType->setCurrentTypeSubtype($nodeEntry->nodeValue);
 
             return;
         }

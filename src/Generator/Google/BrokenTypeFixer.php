@@ -12,7 +12,8 @@
 namespace Jolicode\JsonLd\Generator\Google;
 
 use Jolicode\JsonLd\Generator\Google\Objects\Property;
-use Jolicode\JsonLd\Generator\Google\Objects\Type;
+use Jolicode\JsonLd\Generator\Google\Objects\PropertyType;
+use Jolicode\JsonLd\Generator\Google\Objects\RootType;
 
 /**
  * Sometimes the Google documentation has issues that we need to address ourselves.
@@ -25,9 +26,9 @@ class BrokenTypeFixer
      * This method will receive types *before* they get cleaned up, meaning that all nested properties will
      * have the following notation : `baseType.firstProperty.secondProperty`.
      */
-    public static function fixType(Type $type): void
+    public static function fixType(RootType $type): void
     {
-        match ($type->name) {
+        match ($type->names) {
             // This type HTML is broken : the table misses an opening `tr` tag, so the crawler can't find the last property.
             'Problem Walkthrough Clip' => self::fixProblemWalkthroughClip($type),
             // The last property of the beta table properties is not wrapped in a `a` tag.
@@ -50,7 +51,7 @@ class BrokenTypeFixer
         };
     }
 
-    private static function fixProblemWalkthroughClip(Type $type): void
+    private static function fixProblemWalkthroughClip(RootType $type): void
     {
         if (!$type->hasProperty('text')) {
             $type->initProperty('text', Extractor::SEVERITY_RECOMMENDED);
@@ -58,53 +59,53 @@ class BrokenTypeFixer
         }
     }
 
-    private static function fixJobPosting(Type $type): void
+    private static function fixJobPosting(RootType $type): void
     {
-        $type->getProperty('experienceInPlaceOfEducation')?->addValue('Boolean', true);
+        $type->getProperty('experienceInPlaceOfEducation')?->addType('Boolean', true);
     }
 
-    private static function fixWebSite(Type $type): void
+    private static function fixWebSite(RootType $type): void
     {
-        $type->getProperty('potentialAction')?->addValue('SearchAction');
+        $type->getProperty('potentialAction')?->addType('SearchAction');
     }
 
-    private static function fixSoftwareApplication(Type $type): void
+    private static function fixSoftwareApplication(RootType $type): void
     {
         if (!$type->hasProperty('atLeastOneOf_0')) {
             $properties = [
-                new Property('aggregateRating', [new Property('AggregateRating')]),
-                new Property('review', [new Property('Review')]),
+                new PropertyType('aggregateRating', [new Property('AggregateRating')]),
+                new PropertyType('review', [new Property('Review')]),
             ];
 
             $type->initProperty('atLeastOneOf', Extractor::SEVERITY_REQUIRED, atLeastOneOf: $properties);
         }
 
-        $type->getProperty('applicationCategory')->addValue('GameApplication');
-        $type->getProperty('applicationCategory')->addValue('SocialNetworkingApplication');
-        $type->getProperty('applicationCategory')->addValue('TravelApplication');
-        $type->getProperty('applicationCategory')->addValue('ShoppingApplication');
-        $type->getProperty('applicationCategory')->addValue('SportsApplication');
-        $type->getProperty('applicationCategory')->addValue('LifestyleApplication');
-        $type->getProperty('applicationCategory')->addValue('BusinessApplication');
-        $type->getProperty('applicationCategory')->addValue('DesignApplication');
-        $type->getProperty('applicationCategory')->addValue('DeveloperApplication');
-        $type->getProperty('applicationCategory')->addValue('DriverApplication');
-        $type->getProperty('applicationCategory')->addValue('EducationalApplication');
-        $type->getProperty('applicationCategory')->addValue('HealthApplication');
-        $type->getProperty('applicationCategory')->addValue('FinanceApplication');
-        $type->getProperty('applicationCategory')->addValue('SecurityApplication');
-        $type->getProperty('applicationCategory')->addValue('BrowserApplication');
-        $type->getProperty('applicationCategory')->addValue('CommunicationApplication');
-        $type->getProperty('applicationCategory')->addValue('DesktopEnhancementApplication');
-        $type->getProperty('applicationCategory')->addValue('EntertainmentApplication');
-        $type->getProperty('applicationCategory')->addValue('MultiMediaApplication');
-        $type->getProperty('applicationCategory')->addValue('HomeApplication');
-        $type->getProperty('applicationCategory')->addValue('UtilitiesApplication');
-        $type->getProperty('applicationCategory')->addValue('ReferenceApplication');
-        $type->getProperty('applicationCategory')->removeValue('Text');
+        $type->getProperty('applicationCategory')->addType('GameApplication');
+        $type->getProperty('applicationCategory')->addType('SocialNetworkingApplication');
+        $type->getProperty('applicationCategory')->addType('TravelApplication');
+        $type->getProperty('applicationCategory')->addType('ShoppingApplication');
+        $type->getProperty('applicationCategory')->addType('SportsApplication');
+        $type->getProperty('applicationCategory')->addType('LifestyleApplication');
+        $type->getProperty('applicationCategory')->addType('BusinessApplication');
+        $type->getProperty('applicationCategory')->addType('DesignApplication');
+        $type->getProperty('applicationCategory')->addType('DeveloperApplication');
+        $type->getProperty('applicationCategory')->addType('DriverApplication');
+        $type->getProperty('applicationCategory')->addType('EducationalApplication');
+        $type->getProperty('applicationCategory')->addType('HealthApplication');
+        $type->getProperty('applicationCategory')->addType('FinanceApplication');
+        $type->getProperty('applicationCategory')->addType('SecurityApplication');
+        $type->getProperty('applicationCategory')->addType('BrowserApplication');
+        $type->getProperty('applicationCategory')->addType('CommunicationApplication');
+        $type->getProperty('applicationCategory')->addType('DesktopEnhancementApplication');
+        $type->getProperty('applicationCategory')->addType('EntertainmentApplication');
+        $type->getProperty('applicationCategory')->addType('MultiMediaApplication');
+        $type->getProperty('applicationCategory')->addType('HomeApplication');
+        $type->getProperty('applicationCategory')->addType('UtilitiesApplication');
+        $type->getProperty('applicationCategory')->addType('ReferenceApplication');
+        $type->getProperty('applicationCategory')->removeType('Text');
     }
 
-    private static function fixSpecialAnnouncement(Type $type): void
+    private static function fixSpecialAnnouncement(RootType $type): void
     {
         if (!$type->hasProperty('atLeastOneOf_0')) {
             $properties = [
@@ -123,45 +124,45 @@ class BrokenTypeFixer
         }
     }
 
-    private static function fixReview(Type $type): void
+    private static function fixReview(RootType $type): void
     {
         self::addReviewTypeValues($type);
     }
 
-    private static function fixAggregateRating(Type $type): void
+    private static function fixAggregateRating(RootType $type): void
     {
         self::addReviewTypeValues($type);
     }
 
-    private static function addReviewTypeValues(Type $type): void
+    private static function addReviewTypeValues(RootType $type): void
     {
-        $type->getProperty('itemReviewed')->addValue('Book');
-        $type->getProperty('itemReviewed')->addValue('Course');
-        $type->getProperty('itemReviewed')->addValue('CreativeWorkSeason');
-        $type->getProperty('itemReviewed')->addValue('CreativeWorkSeries');
-        $type->getProperty('itemReviewed')->addValue('Episode');
-        $type->getProperty('itemReviewed')->addValue('Event');
-        $type->getProperty('itemReviewed')->addValue('Game');
-        $type->getProperty('itemReviewed')->addValue('HowTo');
-        $type->getProperty('itemReviewed')->addValue('LocalBusiness');
-        $type->getProperty('itemReviewed')->addValue('MediaObject');
-        $type->getProperty('itemReviewed')->addValue('Movie');
-        $type->getProperty('itemReviewed')->addValue('MusicPlaylist');
-        $type->getProperty('itemReviewed')->addValue('MusicRecording');
-        $type->getProperty('itemReviewed')->addValue('Organization');
-        $type->getProperty('itemReviewed')->addValue('Product');
-        $type->getProperty('itemReviewed')->addValue('Recipe');
-        $type->getProperty('itemReviewed')->addValue('SoftwareApplication');
+        $type->getProperty('itemReviewed')->addType('Book');
+        $type->getProperty('itemReviewed')->addType('Course');
+        $type->getProperty('itemReviewed')->addType('CreativeWorkSeason');
+        $type->getProperty('itemReviewed')->addType('CreativeWorkSeries');
+        $type->getProperty('itemReviewed')->addType('Episode');
+        $type->getProperty('itemReviewed')->addType('Event');
+        $type->getProperty('itemReviewed')->addType('Game');
+        $type->getProperty('itemReviewed')->addType('HowTo');
+        $type->getProperty('itemReviewed')->addType('LocalBusiness');
+        $type->getProperty('itemReviewed')->addType('MediaObject');
+        $type->getProperty('itemReviewed')->addType('Movie');
+        $type->getProperty('itemReviewed')->addType('MusicPlaylist');
+        $type->getProperty('itemReviewed')->addType('MusicRecording');
+        $type->getProperty('itemReviewed')->addType('Organization');
+        $type->getProperty('itemReviewed')->addType('Product');
+        $type->getProperty('itemReviewed')->addType('Recipe');
+        $type->getProperty('itemReviewed')->addType('SoftwareApplication');
     }
 
-    private static function fixBroadcastEvent(Type $type)
+    private static function fixBroadcastEvent(RootType $type)
     {
-        $type->getProperty('publication.isLiveBroadcast')->addValue('Boolean');
+        $type->getProperty('publication.isLiveBroadcast')->addType('Boolean');
     }
 
-    private static function fixVideoObject(Type $type)
+    private static function fixVideoObject(RootType $type)
     {
-        $type->getProperty('hasPart')->addValue('Clip');
-        $type->getProperty('publication')->addValue('BroadcastEvent');
+        $type->getProperty('hasPart')->addType('Clip');
+        $type->getProperty('publication')->addType('BroadcastEvent');
     }
 }
