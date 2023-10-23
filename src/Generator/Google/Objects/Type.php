@@ -61,7 +61,11 @@ class Type
          */
         public ?Property $carousel = null,
 
-        private ?Property $currentProperty = null,
+        /**
+         * @var array<string, Property> $currentProperties
+         */
+        private array $currentProperties = [],
+
         private int $atLeastOneOfCounter = 0,
 
         /**
@@ -94,15 +98,17 @@ class Type
      */
     public function setCurrentValueSubtype(string $newName): void
     {
-        $originalValue = $this->currentProperty->values[array_key_last($this->currentProperty->values)];
-        $originalName = $originalValue->name;
+        foreach ($this->currentProperties as $currentProperty) {
+            $originalValue = $currentProperty->values[array_key_last($currentProperty->values)];
+            $originalName = $originalValue->name;
 
-        unset($this->currentProperty->values[$originalName]);
+            unset($currentProperty->values[$originalName]);
 
-        $newName = sprintf('%s %s', $originalName, $newName);
-        $originalValue->name = $newName;
+            $newName = sprintf('%s %s', $originalName, $newName);
+            $originalValue->name = $newName;
 
-        $this->currentProperty->values[$newName] = $originalValue;
+            $currentProperty->values[$newName] = $originalValue;
+        }
     }
 
     public function initProperty(string $name, string $severity, bool $isBeta = false, array $atLeastOneOf = []): void
@@ -115,7 +121,7 @@ class Type
 
         if (Extractor::SEVERITY_RECOMMENDED === $severity && \array_key_exists($name, $this->requiredProperties)) {
             $this->recommendedProperties[$name] = $this->requiredProperties[$name];
-            $this->currentProperty = $this->recommendedProperties[$name];
+            $this->currentProperties = [$this->recommendedProperties[$name]];
 
             unset($this->requiredProperties[$name]);
 
@@ -126,36 +132,38 @@ class Type
             $this->{$targetProperties}[$name] = new Property($name, values: $atLeastOneOf, isBeta: $isBeta);
         }
 
-        $this->currentProperty = $this->{$targetProperties}[$name];
+        $this->currentProperties = [$this->{$targetProperties}[$name]];
     }
 
     public function pushProperty(string $value, bool $isBeta = false): void
     {
-        $this->currentProperty->addValue($value, $isBeta);
+        foreach ($this->currentProperties as $currentProperty) {
+            $currentProperty->addValue($value, $isBeta);
+        }
     }
 
+    /**
+     * Sometimes (for now, only the book page however) a title and its table are meant to update a previous type.
+     * When this is the case, we need to find which value to update, and initalize new properties for it.
+     * And these properties may even be nested properties, which complicates things.
+     * This method is here to handle these (rare) cases.
+     */
     public function addPropertyProperty(string $name, array $propertyToUpdate, string $severity, bool $isBeta = false): void
     {
+        /**
+         * @var string        $property
+         * @var array<string> $values
+         */
         [$property, $values] = $propertyToUpdate;
 
-        foreach ($values as $targetValue) {
-            if (\array_key_exists($property, $this->requiredProperties)) {
-                $this->addNestedPropertyToValue(
-                    $this->requiredProperties[$property],
-                    $targetValue,
-                    $severity,
-                    $name,
-                    $isBeta
-                );
-            } elseif (\array_key_exists($property, $this->recommendedProperties)) {
-                $this->addNestedPropertyToValue(
-                    $this->recommendedProperties[$property],
-                    $targetValue,
-                    $severity,
-                    $name,
-                    $isBeta
-                );
-            }
+        if ($this->hasProperty($property)) {
+            $this->addNestedPropertyToValue(
+                $this->getProperty($property),
+                $values,
+                $severity,
+                $name,
+                $isBeta
+            );
         }
     }
 
@@ -173,7 +181,65 @@ class Type
             }
         }
 
-        $this->currentProperty = null;
+        $this->currentProperties = [];
+    }
+
+    /**
+     * @param Property      $property       The initial property to add the new property to
+     * @param array<string> $valuesToUpdate The initial property values we want to update
+     * @param string        $propertyName   The full name of the new property (which may contain dots, indicating a nested property)
+     * @param string        $severity       The severity of the property (recommended/required)
+     */
+    private function addNestedPropertyToValue(
+        Property $property,
+        array $valuesToUpdate,
+        string $severity,
+        string $propertyName,
+        bool $isBeta,
+    ): void {
+        $propertiesChain = explode('.', $property->name);
+        $targetProperties = "{$severity}Properties";
+
+        $this->addPropertiesToValues(
+            $propertyName,
+            $propertiesChain,
+            $property,
+            $valuesToUpdate,
+            $targetProperties,
+            $isBeta,
+        );
+
+        $this->currentProperties = [$property];
+    }
+
+    private function addPropertiesToValues(
+        string $propertyToCreate,
+        array $propertiesChain,
+        Property $propertyToUpdate,
+        array $propertyValuesToUpdate,
+        string $targetProperties,
+        bool $isBeta,
+    ): void {
+        $propertyName = array_shift($propertiesChain);
+
+        if (null === $propertyName) {
+            throw new \RuntimeException('Error while attempting to initialize a nested property : Reached end of properties chain without finding a property name.');
+        }
+
+        // If the property is not found, it means we reached the property we want to add the value to.
+        if (!$foundProperty = $propertyToUpdate->getProperty($propertyName)) {
+            foreach ($propertyValuesToUpdate as $value) {
+                $value = $propertyToUpdate->getValue($value);
+                $value->addProperty($propertyToCreate, $targetProperties, isBeta: $isBeta);
+
+                $this->currentProperties[] = $value->getProperty($propertyToCreate);
+            }
+
+            return;
+        }
+
+        // Else, recursively call this method to find the property.
+        $this->addPropertiesToValues($propertyToCreate, $propertiesChain, $foundProperty, $propertyValuesToUpdate, $targetProperties, $isBeta);
     }
 
     private function cleanUpTargetProperties(string $severity): void
@@ -196,106 +262,65 @@ class Type
     }
 
     /**
-     * A pretty dire-looking method indeed...
-     *
-     * However, all it does is :
-     *  - get the properties chain if the property is nested
-     *  - add the new property to the current property if it is not already there
-     *  - add the potential nested properties to the current property properties if needed
-     *  - set the current property to the new property
-     *
-     * @param Property $property     The initial property to add the new property to
-     * @param string   $targetValue  The initial property value we want to update
-     * @param string   $severity     The severity of the property (recommended/required)
-     * @param string   $propertyName The full name of the new property (which may contain dots, indicating a nested property)
-     */
-    private function addNestedPropertyToValue(
-        Property $property,
-        string $targetValue,
-        string $severity,
-        string $propertyName,
-        bool $isBeta = false
-    ): void {
-        if (str_contains($propertyName, '.')) {
-            $propertiesChain = explode('.', $propertyName);
-            [$propertyName, $propertyProperty] = $propertiesChain;
-            $propertyPropertyNestedProperty = $propertiesChain[2] ?? null;
-        }
-
-        $targetProperties = "{$severity}Properties";
-
-        if (!\array_key_exists($propertyName, $property->values[$targetValue]->{$targetProperties})) {
-            $targetProperty = new Property($propertyName, isBeta: $isBeta);
-
-            $property
-                ->values[$targetValue]
-                ->{$targetProperties}[$propertyName] = $targetProperty;
-        } else {
-            $targetProperty = $property
-                ->values[$targetValue]
-                ->{$targetProperties}[$propertyName];
-        }
-
-        if (isset($propertyProperty)) {
-            if (!\array_key_exists($propertyProperty, $targetProperty->{$targetProperties})) {
-                $newProperty = new Property($propertyProperty, isBeta: $isBeta);
-                $targetProperty->{$targetProperties}[$propertyProperty] = $newProperty;
-            } else {
-                $newProperty = $targetProperty->{$targetProperties}[$propertyProperty];
-            }
-
-            $targetProperty = $newProperty;
-        }
-
-        if (isset($propertyPropertyNestedProperty)) {
-            $secondNewProperty = new Property($propertyPropertyNestedProperty, isBeta: $isBeta);
-            $targetProperty->{$targetProperties}[$propertyPropertyNestedProperty] = $secondNewProperty;
-
-            $targetProperty = $secondNewProperty;
-        }
-
-        $this->currentProperty = $targetProperty;
-    }
-
-    /**
      * Nested properties are (most of the time...) indicated thanks to a dot notation, like `firstProperty.secondProperty`.
-     * This method will split the string to get the properties chain, and then update the current property accordingly.
+     * This method will split the string to get the properties chain and initialize a property on the last element of the chain.
      */
     private function handleNestedProperty(Property $property, string $severity): void
     {
         $propertiesChain = explode('.', $property->name);
-        [$propertyName, $propertyProperty] = $propertiesChain;
 
-        $targetProperties = "{$severity}Properties";
-        $propertyToUpdate = $this->findPropertyToUpdate($this->recommendedProperties, $propertyName) ?: $this->findPropertyToUpdate($this->requiredProperties, $propertyName);
-
-        if (!$propertyToUpdate) {
-            $this->initProperty($propertyName, $severity, $property->isBeta);
-            $propertyToUpdate = $this->currentProperty;
+        if (1 === \count($propertiesChain)) {
+            $firstPropertyName = $property->name;
+        } else {
+            $firstPropertyName = array_shift($propertiesChain);
         }
 
-        if (!\array_key_exists($propertyProperty, $propertyToUpdate->{$targetProperties})) {
-            $propertyToUpdate->{$targetProperties}[$propertyProperty] = new Property($propertyProperty, $property->values, isBeta: $property->isBeta);
+        if (null === $firstPropertyName) {
+            throw new \RuntimeException(sprintf('Trying to parse a nested property but the following provided string is invalid : "%s"', $property->name));
         }
 
-        $this->currentProperty = $propertyToUpdate->{$targetProperties}[$propertyProperty];
+        $actualFirstProperty = $this->getProperty($firstPropertyName);
+
+        if (null === $actualFirstProperty) {
+            $this->initProperty($firstPropertyName, $severity, isBeta: $property->isBeta);
+
+            foreach ($property->values as $value) {
+                $this->pushProperty($value->name, isBeta: $value->isBeta);
+            }
+
+            $actualFirstProperty = $this->getProperty($firstPropertyName);
+        }
+
+        if (null === $actualFirstProperty) {
+            throw new \RuntimeException('Error while attempting to initialize a nested property : The first property of the chain could not be found.');
+        }
+
+        $this->initializeNestedProperty($propertiesChain, $actualFirstProperty, $property->values, $severity);
     }
 
     /**
-     * @param array<string, Property> $potentialProperties
+     * @param array<string> $propertiesChain
+     * @param array<mixed>  $valuesToAdd
      */
-    private function findPropertyToUpdate(array $potentialProperties, string $propertyToFind, string $whereToSearch = 'values'): Property|false
-    {
-        foreach ($potentialProperties as $property) {
-            if ($propertyToFind === $property->name) {
-                return $property;
-            }
+    private function initializeNestedProperty(
+        array $propertiesChain, Property $property, array $valuesToAdd, string $severity
+    ): void {
+        $propertyName = array_shift($propertiesChain);
 
-            if ($propertyToUpdate = $this->findPropertyToUpdate($property->{$whereToSearch}, $propertyToFind, $whereToSearch)) {
-                return $propertyToUpdate;
-            }
+        if (null === $propertyName) {
+            throw new \RuntimeException('Error while attempting to initialize a nested property : Reached end of properties chain without finding a property name.');
         }
 
-        return false;
+        $targetProperties = "{$severity}Properties";
+
+        if ($foundProperty = $property->getProperty($propertyName)) {
+            $this->initializeNestedProperty($propertiesChain, $foundProperty, $valuesToAdd, $severity);
+
+            return;
+        }
+
+        $property->addProperty($propertyName, $targetProperties, isBeta: $property->isBeta);
+
+        $this->currentProperties = [$property->getProperty($propertyName)];
     }
 }

@@ -35,6 +35,18 @@ class Property
     ) {
     }
 
+    public function getValue(string $name): ?self
+    {
+        return $this->values[$name] ?? null;
+    }
+
+    public function getProperty(string $name): ?self
+    {
+        return $this->requiredProperties[$name]
+        ?? $this->recommendedProperties[$name]
+        ?? null;
+    }
+
     public function hasRequiredProperties(): bool
     {
         return \count($this->requiredProperties);
@@ -56,6 +68,19 @@ class Property
         }
 
         $this->values[$name] = new self($name, isBeta: $isBeta);
+    }
+
+    public function addProperty(string $name, string $targetProperties, bool $isBeta = false): void
+    {
+        if (str_starts_with($this->name, 'atLeastOneOf')) {
+            foreach ($this->values as $value) {
+                $value->addProperty($name, $isBeta);
+            }
+
+            return;
+        }
+
+        $this->{$targetProperties}[$name] = new self($name, isBeta: $isBeta);
     }
 
     public function removeValue(string $name, bool $isBeta = false): void

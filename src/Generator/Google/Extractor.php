@@ -103,26 +103,28 @@ class Extractor
             }
         }
 
-        foreach ($this->finder->files()->in(self::CACHE_DIRECTORY) as $file) {
-            // The product page is completely different and needs to be crawled separately. Unsupported for now.
-            if ('product.html' === $file->getFilename()) {
-                continue;
-            }
+        // foreach ($this->finder->files()->in(self::CACHE_DIRECTORY) as $file) {
+        //     // The product page is completely different and needs to be crawled separately. Unsupported for now.
+        //     if ('product.html' === $file->getFilename()) {
+        //         continue;
+        //     }
 
-            $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
-        }
+        //     $this->extractTypes($file->getFilename(), file_get_contents($file->getRealPath()));
+        // }
 
-        // $this->extractTypes('movie.html', file_get_contents(self::CACHE_DIRECTORY . 'movie.html'));
+        $this->extractTypes('book.html', file_get_contents(self::CACHE_DIRECTORY . 'book.html'));
 
         foreach ($this->extractedTypes as $type) {
             BrokenTypeFixer::fixType($type);
             $type->cleanUpProperties();
         }
 
-        array_map(
-            fn (Type $type) => dump($type),
-            $this->extractedTypes,
-        );
+        // array_map(
+        //     fn (Type $type) => dump($type),
+        //     $this->extractedTypes,
+        // );
+
+        dump($this->extractedTypes['Book']);
 
         return $this->createContainer();
     }
@@ -318,6 +320,13 @@ class Extractor
         // This causes quite a lot of issues and chaos...
         if (preg_match('/\((.+)\)/', $name, $matches)) {
             $this->definePropertyToUpdate($name, $matches[1]);
+
+            // Since only the book page has these cases we can cheat a bit
+            if (\array_key_exists('Book', $this->currentPageTypes) && \array_key_exists('Edition', $this->currentPageTypes['Book']->subTypes)) {
+                $this->currentType = $this->currentPageTypes['Book']->subTypes['Edition'];
+            } else {
+                throw new \RuntimeException(sprintf('The "%s" page seems to have a special bahevior that is not yet handled.', $fileName));
+            }
 
             return true;
         }
