@@ -35,19 +35,24 @@ class Property
      * A property may have multiple types, but they all share the same properties, so it is fine returning
      * a property of the first type.
      */
-    public function getProperty(string $name): ?self
+    public function getProperty(string $name, string $typeToSearchOn = null): ?self
     {
         if (!\count($this->types)) {
             return null;
         }
 
+        if ($typeToSearchOn) {
+            return $this->types[$typeToSearchOn]?->getProperty($name);
+        }
+
         return $this->types[array_key_first($this->types)]?->getProperty($name);
     }
 
-    public function addProperties(string $propertyName, string $targetProperties, bool $isBeta = false): void
-    {
+    public function addProperties(
+        string $propertyName, string $targetProperties, array $types = [], array $atLeastOneOf = [], bool $isBeta = false
+    ): void {
         foreach ($this->types as $type) {
-            $type->addProperty($propertyName, $targetProperties, isBeta: $isBeta);
+            $type->addProperty($propertyName, $targetProperties, $types, $atLeastOneOf, $isBeta);
         }
     }
 

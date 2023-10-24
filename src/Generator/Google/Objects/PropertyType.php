@@ -11,29 +11,33 @@
 
 namespace Jolicode\JsonLd\Generator\Google\Objects;
 
+/**
+ * @class PropertyType PropertyTypes are types found as values of properties.
+ */
 class PropertyType extends AbstractType
 {
     public function __construct(
         /**
          * The name(s) used to identify the type.
          */
-        public string|array $names = [],
+        public ?string $name = null,
 
         /**
          * @var array<string, Property>
          */
-        protected array $requiredProperties = [],
+        public array $requiredProperties = [],
 
         /**
          * @var array<string, Property>
          */
-        protected array $recommendedProperties = [],
+        public array $recommendedProperties = [],
     ) {
-        parent::__construct($names, $requiredProperties, $recommendedProperties);
+        parent::__construct($name, $requiredProperties, $recommendedProperties);
     }
 
-    public function addProperty(string $name, string $targetProperties, array $atLeastOneOf = [], bool $isBeta = false): void
-    {
-        $this->{$targetProperties}[$name] = new Property($name, atLeastOneOf: $atLeastOneOf, isBeta: $isBeta);
+    public function addProperty(
+        string $name, string $targetProperties, array $types = [], array $atLeastOneOf = [], bool $isBeta = false
+    ): void {
+        $this->{$targetProperties}[$name] = new Property($name, types: $types, atLeastOneOf: $atLeastOneOf, isBeta: $isBeta);
     }
 }

@@ -13,7 +13,7 @@ namespace Jolicode\JsonLd\Generator\Google;
 
 use Jolicode\JsonLd\Generator\Google\Objects\Property;
 use Jolicode\JsonLd\Generator\Google\Objects\PropertyType;
-use Jolicode\JsonLd\Generator\Google\Objects\RootType;
+use Jolicode\JsonLd\Generator\Google\Objects\MainType;
 
 /**
  * Sometimes the Google documentation has issues that we need to address ourselves.
@@ -26,9 +26,9 @@ class BrokenTypeFixer
      * This method will receive types *before* they get cleaned up, meaning that all nested properties will
      * have the following notation : `baseType.firstProperty.secondProperty`.
      */
-    public static function fixType(RootType $type): void
+    public static function fixType(MainType $type): void
     {
-        match ($type->names) {
+        match ($type->name) {
             // This type HTML is broken : the table misses an opening `tr` tag, so the crawler can't find the last property.
             'Problem Walkthrough Clip' => self::fixProblemWalkthroughClip($type),
             // The last property of the beta table properties is not wrapped in a `a` tag.
@@ -51,7 +51,7 @@ class BrokenTypeFixer
         };
     }
 
-    private static function fixProblemWalkthroughClip(RootType $type): void
+    private static function fixProblemWalkthroughClip(MainType $type): void
     {
         if (!$type->hasProperty('text')) {
             $type->initProperty('text', Extractor::SEVERITY_RECOMMENDED);
@@ -59,17 +59,17 @@ class BrokenTypeFixer
         }
     }
 
-    private static function fixJobPosting(RootType $type): void
+    private static function fixJobPosting(MainType $type): void
     {
         $type->getProperty('experienceInPlaceOfEducation')?->addType('Boolean', true);
     }
 
-    private static function fixWebSite(RootType $type): void
+    private static function fixWebSite(MainType $type): void
     {
         $type->getProperty('potentialAction')?->addType('SearchAction');
     }
 
-    private static function fixSoftwareApplication(RootType $type): void
+    private static function fixSoftwareApplication(MainType $type): void
     {
         if (!$type->hasProperty('atLeastOneOf_0')) {
             $properties = [
@@ -105,7 +105,7 @@ class BrokenTypeFixer
         $type->getProperty('applicationCategory')->removeType('Text');
     }
 
-    private static function fixSpecialAnnouncement(RootType $type): void
+    private static function fixSpecialAnnouncement(MainType $type): void
     {
         if (!$type->hasProperty('atLeastOneOf_0')) {
             $properties = [
@@ -124,17 +124,17 @@ class BrokenTypeFixer
         }
     }
 
-    private static function fixReview(RootType $type): void
+    private static function fixReview(MainType $type): void
     {
         self::addReviewTypeValues($type);
     }
 
-    private static function fixAggregateRating(RootType $type): void
+    private static function fixAggregateRating(MainType $type): void
     {
         self::addReviewTypeValues($type);
     }
 
-    private static function addReviewTypeValues(RootType $type): void
+    private static function addReviewTypeValues(MainType $type): void
     {
         $type->getProperty('itemReviewed')->addType('Book');
         $type->getProperty('itemReviewed')->addType('Course');
@@ -155,12 +155,12 @@ class BrokenTypeFixer
         $type->getProperty('itemReviewed')->addType('SoftwareApplication');
     }
 
-    private static function fixBroadcastEvent(RootType $type)
+    private static function fixBroadcastEvent(MainType $type)
     {
         $type->getProperty('publication.isLiveBroadcast')->addType('Boolean');
     }
 
-    private static function fixVideoObject(RootType $type)
+    private static function fixVideoObject(MainType $type)
     {
         $type->getProperty('hasPart')->addType('Clip');
         $type->getProperty('publication')->addType('BroadcastEvent');

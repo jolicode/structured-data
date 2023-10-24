@@ -19,17 +19,17 @@ abstract class AbstractType
         /**
          * The name(s) used to identify the type.
          */
-        public string|array $names = [],
+        public ?string $name = null,
 
         /**
          * @var array<string, Property>
          */
-        protected array $requiredProperties = [],
+        public array $requiredProperties = [],
 
         /**
          * @var array<string, Property>
          */
-        protected array $recommendedProperties = [],
+        public array $recommendedProperties = [],
 
         /**
          * @var array<string, Property> $currentProperties
@@ -102,7 +102,7 @@ abstract class AbstractType
         $this->cleanUpTargetProperties(Extractor::SEVERITY_REQUIRED);
         $this->cleanUpTargetProperties(Extractor::SEVERITY_RECOMMENDED);
 
-        if ($this instanceof RootType) {
+        if ($this instanceof MainType) {
             if (\count($this->subTypes)) {
                 foreach ($this->subTypes as $subType) {
                     $subType->cleanUpProperties();
@@ -113,11 +113,30 @@ abstract class AbstractType
         $this->currentProperties = [];
     }
 
+    private function cleanUpTargetProperties(string $severity): void
+    {
+        $targetProperties = "{$severity}Properties";
+
+        foreach ($this->{$targetProperties} as $property) {
+            foreach ($property->types as $type) {
+                $type->cleanUpProperties();
+            }
+
+            if (str_contains($property->name, '.')) {
+                $this->handleNestedProperty($property, $severity);
+
+                unset($this->{$targetProperties}[$property->name]);
+            }
+        }
+
+        ksort($this->{$targetProperties});
+    }
+
     /**
      * Nested properties are (most of the time...) indicated thanks to a dot notation, like `firstProperty.secondProperty`.
      * This method will split the string to get the properties chain and initialize a property on the last element of the chain.
      */
-    protected function handleNestedProperty(Property $property, string $severity): void
+    private function handleNestedProperty(Property $property, string $severity): void
     {
         $propertiesChain = explode('.', $property->name);
 
@@ -137,7 +156,7 @@ abstract class AbstractType
             $this->initProperty($firstPropertyName, $severity, isBeta: $property->isBeta);
 
             foreach ($property->types as $type) {
-                $this->pushProperty($type->names, isBeta: $property->isBeta);
+                $this->pushProperty($type->name, isBeta: $property->isBeta);
             }
 
             $actualFirstProperty = $this->getProperty($firstPropertyName);
@@ -171,27 +190,12 @@ abstract class AbstractType
             return;
         }
 
-        $property->addProperties($propertyName, $targetProperties, isBeta: $property->isBeta);
-
-        $this->currentProperties = [$property->getProperty($propertyName)];
-    }
-
-    private function cleanUpTargetProperties(string $severity): void
-    {
-        $targetProperties = "{$severity}Properties";
-
-        foreach ($this->{$targetProperties} as $property) {
-            if (!\count($property->types)) {
-                unset($this->{$targetProperties}[$property->name]);
-            }
-
-            if (str_contains($property->name, '.')) {
-                $this->handleNestedProperty($property, $severity);
-
-                unset($this->{$targetProperties}[$property->name]);
-            }
+        if (\count($propertiesChain)) {
+            throw new \RuntimeException('Error while attempting to initialize a nested property : Found a property name but the properties chain is not empty.');
         }
 
-        ksort($this->{$targetProperties});
+        $property->addProperties($propertyName, $targetProperties, $typesToAdd, isBeta: $property->isBeta);
+
+        $this->currentProperties = [$property->getProperty($propertyName)];
     }
 }
