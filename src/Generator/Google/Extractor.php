@@ -354,7 +354,7 @@ class Extractor
         // We don't need to check if there are more than 1 code tag because these are special cases handled by `initializeSpecialCaseType`
 
         // The book page adds a useless `entity` keyword. Other types are written in PascalCase so its fine.
-        if (str_contains($name, 'entity')) {
+        if (isset($name) && str_contains($name, 'entity')) {
             $name = str_replace(' entity', '', $name);
         }
 
@@ -445,7 +445,6 @@ class Extractor
             $parent = $previousType;
         } else {
             $previousType->name = $previousTypeName = sprintf('%s%s', $this->getSubtypePrefix($previousType->documentationUrl), $name);
-            $previousType->types = $name;
             $previousType->isASubtype = true;
 
             $parent = new MainType(
@@ -480,16 +479,23 @@ class Extractor
         // The type requiring some special properties for its carousel is LocalBusiness.
         // Hence, we handle it that way since its quite annoying to handle it in a generic way.
         if ('LocalBusiness' === $typeName) {
+            $image = new Property('image');
+            $image->addType('URL');
+            $image->addType('ImageObject');
+
+            $name = new Property('name');
+            $name->addType('Text');
+
+            $address = new Property('address');
+            $address->addType('PostalAddress');
+
+            $servesCuisine = new Property('servesCuisine');
+            $servesCuisine->addType('servesCuisine');
+
             $carousel = new PropertyType(
                 name: 'carousel',
-                requiredProperties: [
-                    'image' => new PropertyType('image', ['URL', 'ImageObject']),
-                    'name' => new PropertyType('name', ['Text']),
-                ],
-                recommendedProperties: [
-                    'address' => new PropertyType('address', ['PostalAddress']),
-                    'servesCuisine' => new PropertyType('servesCuisine', ['servesCuisine']),
-                ],
+                requiredProperties: ['image' => $image, 'name' => $name],
+                recommendedProperties: ['address' => $address, 'servesCuisine' => $servesCuisine],
             );
 
             $typeWithCarousel->carousel = $carousel;
@@ -560,7 +566,7 @@ class Extractor
                             return;
                         }
 
-                        $this->extractValueCell($valueNode, $isABetaTable);
+                        $this->extractValueCell($valueNode);
                     });
                 }
             });
@@ -600,7 +606,7 @@ class Extractor
         $this->skipNextValueCell = true;
     }
 
-    private function extractValueCell(\DOMNode $valueNode, bool $isABetaTable): void
+    private function extractValueCell(\DOMNode $valueNode): void
     {
         $crawler = new Crawler($valueNode);
         $firstChild = $crawler->children()->first();
@@ -621,7 +627,7 @@ class Extractor
             return;
         }
 
-        $codeTags->each(fn (Crawler $node) => $this->handleValue($node->getNode(0), $isABetaTable));
+        $codeTags->each(fn (Crawler $node) => $this->handleValue($node->getNode(0)));
     }
 
     /**
@@ -652,7 +658,7 @@ class Extractor
     /**
      * Extracts the value from the given node and pushes it to the current type.
      */
-    private function handleValue(\DOMNode $nodeEntry, bool $isABetaTable): void
+    private function handleValue(\DOMNode $nodeEntry): void
     {
         if (preg_match('/^\((.+)\)$/', $nodeEntry->nodeValue)) {
             $this->currentType->setCurrentTypeSubtype($nodeEntry->nodeValue);
@@ -660,7 +666,7 @@ class Extractor
             return;
         }
 
-        $this->currentType->pushProperty($nodeEntry->nodeValue, $isABetaTable);
+        $this->currentType->pushProperty($nodeEntry->nodeValue);
     }
 
     private function getSubtypePrefix(string $urlOrFilename): string

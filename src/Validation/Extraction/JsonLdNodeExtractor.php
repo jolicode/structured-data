@@ -50,8 +50,7 @@ class JsonLdNodeExtractor
     private function extractJsonLdNodes(string $body): array
     {
         $content = [];
-        $document = new JsonLdDOMDocument();
-        $document = $document->loadFromString($body);
+        $document = JsonLdDOMDocument::fromString($body);
 
         foreach ($document->getItems() as $item) {
             $content[] = $item->textContent;

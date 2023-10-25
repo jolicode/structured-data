@@ -92,7 +92,7 @@ class PointerListener extends IdleListener implements PositionAwareInterface
 
     private function endStructure(): void
     {
-        if ($this->currentStructure->belongsTo) {
+        if (isset($this->currentStructure->belongsTo)) {
             $this->currentStructure->belongsTo->getLastValue()->range->end = $this->getCurrentPosition();
             $parent = $this->currentStructure->belongsTo;
             unset($this->currentStructure->belongsTo);
@@ -102,6 +102,6 @@ class PointerListener extends IdleListener implements PositionAwareInterface
 
     private function getCurrentPosition()
     {
-        return new Position($this->currentLine + $this->startLineNumber, $this->currentColumn, $this->startLineNumber < 0);
+        return new Position($this->currentLine + $this->startLineNumber, $this->currentColumn);
     }
 }

@@ -35,9 +35,12 @@ class PropertyType extends AbstractType
         parent::__construct($name, $requiredProperties, $recommendedProperties);
     }
 
+    /**
+     * @param array<string, PropertyType> $types
+     */
     public function addProperty(
         string $name, string $targetProperties, array $types = [], array $atLeastOneOf = [], bool $isBeta = false
     ): void {
-        $this->{$targetProperties}[$name] = new Property($name, types: $types, atLeastOneOf: $atLeastOneOf, isBeta: $isBeta);
+        $this->{$targetProperties}[$name] = new Property($name, $isBeta, $types, $atLeastOneOf);
     }
 }

@@ -15,7 +15,7 @@ readonly class ValidationResult
 {
     public function __construct(
         /**
-         * @var array<array<string,string>>
+         * @var array<array<string>>
          */
         public array $errors = [],
 

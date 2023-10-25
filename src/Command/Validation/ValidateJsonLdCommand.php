@@ -31,7 +31,7 @@ class ValidateJsonLdCommand extends Command
         private readonly JsonLdNodeExtractor $extractor = new JsonLdNodeExtractor(),
         private readonly JsonLdValidator $validator = new JsonLdValidator(),
     ) {
-        return parent::__construct();
+        parent::__construct();
     }
 
     public function configure(): void

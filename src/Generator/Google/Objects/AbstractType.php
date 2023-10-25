@@ -32,7 +32,7 @@ abstract class AbstractType
         public array $recommendedProperties = [],
 
         /**
-         * @var array<string, Property> $currentProperties
+         * @var array<Property> $currentProperties
          */
         protected array $currentProperties = [],
 
@@ -48,12 +48,12 @@ abstract class AbstractType
 
     public function hasRequiredProperties(): bool
     {
-        return \count($this->requiredProperties);
+        return (bool) \count($this->requiredProperties);
     }
 
     public function hasRecommendedProperties(): bool
     {
-        return \count($this->recommendedProperties);
+        return (bool) \count($this->recommendedProperties);
     }
 
     public function getProperty(string $name): ?Property
@@ -81,16 +81,16 @@ abstract class AbstractType
         }
 
         if (!\array_key_exists($name, $this->{$targetProperties})) {
-            $this->{$targetProperties}[$name] = new Property($name, atLeastOneOf: $atLeastOneOf, isBeta: $isBeta);
+            $this->{$targetProperties}[$name] = new Property($name, isBeta: $isBeta);
         }
 
         $this->currentProperties = [$this->{$targetProperties}[$name]];
     }
 
-    public function pushProperty(string $type, bool $isBeta = false): void
+    public function pushProperty(string $type): void
     {
         foreach ($this->currentProperties as $currentProperty) {
-            $currentProperty->addType($type, $isBeta);
+            $currentProperty->addType($type);
         }
     }
 
@@ -146,17 +146,13 @@ abstract class AbstractType
             $firstPropertyName = array_shift($propertiesChain);
         }
 
-        if (null === $firstPropertyName) {
-            throw new \RuntimeException(sprintf('Trying to parse a nested property but the following provided string is invalid : "%s"', $property->name));
-        }
-
         $actualFirstProperty = $this->getProperty($firstPropertyName);
 
         if (null === $actualFirstProperty) {
             $this->initProperty($firstPropertyName, $severity, isBeta: $property->isBeta);
 
             foreach ($property->types as $type) {
-                $this->pushProperty($type->name, isBeta: $property->isBeta);
+                $this->pushProperty($type->name);
             }
 
             $actualFirstProperty = $this->getProperty($firstPropertyName);
@@ -170,8 +166,8 @@ abstract class AbstractType
     }
 
     /**
-     * @param array<string> $propertiesChain
-     * @param array<mixed>  $typesToAdd
+     * @param array<string>               $propertiesChain
+     * @param array<string, PropertyType> $typesToAdd
      */
     private function initializeNestedProperty(
         array $propertiesChain, Property $property, array $typesToAdd, string $severity
@@ -194,7 +190,7 @@ abstract class AbstractType
             throw new \RuntimeException('Error while attempting to initialize a nested property : Found a property name but the properties chain is not empty.');
         }
 
-        $property->addProperties($propertyName, $targetProperties, $typesToAdd, isBeta: $property->isBeta);
+        $property->addProperties($propertyName, $targetProperties, $typesToAdd);
 
         $this->currentProperties = [$property->getProperty($propertyName)];
     }

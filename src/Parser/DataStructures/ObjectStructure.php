@@ -42,7 +42,7 @@ class ObjectStructure implements StructureInterface
         return $this->properties[$name];
     }
 
-    public function getGraphType(int $graphKey): self
+    public function getGraphType(int $graphKey): mixed
     {
         /**
          * @var ArrayStructure $graph

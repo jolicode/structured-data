@@ -17,7 +17,6 @@ use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
 use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
 use Jolicode\JsonLd\Parser\DataStructures\StructureInterface;
 use Jolicode\JsonLd\Parser\Properties\Property;
-use Jolicode\JsonLd\Validation\Error\AbstractValidationError;
 use Jolicode\JsonLd\Validation\Error\ValidationError;
 
 class ValidationMapper
@@ -33,7 +32,7 @@ class ValidationMapper
         private array $mappedErrors = [],
 
         /**
-         * @var array<string,mappedType>
+         * @var array<string,MappedType>
          */
         private array $flattenedTypeReferences = [],
 
@@ -53,7 +52,7 @@ class ValidationMapper
     }
 
     /**
-     * @return array<AbstractValidationError>
+     * @return array<MappedError>
      */
     public function getMappedErrors(): array
     {
@@ -273,13 +272,17 @@ class ValidationMapper
         ));
     }
 
-    private function getTypeWithError(ValidationError $error, ObjectStructure $parsedJsonLd, bool $hasAGraph): ObjectStructure
+    private function getTypeWithError(ValidationError $error, StructureInterface $parsedJsonLd, bool $hasAGraph): ObjectStructure
     {
+        /**
+         * @var ObjectStructure $rootType
+         */
+        $rootType = $parsedJsonLd;
+
         if (0 === \count($error->propertiesChain)) {
-            return $parsedJsonLd;
+            return $rootType;
         }
 
-        $rootType = $parsedJsonLd;
         $currentType = $rootType;
 
         if ($hasAGraph) {
@@ -288,6 +291,10 @@ class ValidationMapper
              */
             $graph = $currentType->getProperty(Keyword::GRAPH->value)->value->content;
             $graphEntries = $graph->getValues();
+
+            /**
+             * @var ObjectStructure $currentType
+             */
             $currentType = $graphEntries[$error->graphKey]->content;
         }
 

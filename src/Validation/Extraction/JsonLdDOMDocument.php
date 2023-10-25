@@ -15,57 +15,41 @@ use Masterminds\HTML5;
 
 class JsonLdDOMDocument extends \DOMDocument
 {
-    protected string $source;
+    public function __construct(
+        protected ?string $source = null,
 
-    /** @var \DOMXPath */
-    protected $rawXpath;
+        /** @var ?\DOMXPath */
+        protected $rawXpath = null,
 
-    /** @var \DOMXPath */
-    protected $xpath;
+        /** @var \?DOMXPath */
+        protected $xpath = null,
 
-    public function __construct(string $version = '1.0', string $encoding = '')
-    {
+        string $version = '1.0',
+        string $encoding = ''
+    ) {
         $this->preserveWhiteSpace = true;
         $this->strictErrorChecking = false;
 
-        return parent::__construct($version, $encoding);
+        parent::__construct($version, $encoding);
     }
 
     public function getItems(): array
     {
-        $items = [];
-        $reader = new \XMLReader();
-        $reader->XML($this->source, null, \LIBXML_BIGLINES | \LIBXML_HTML_NOIMPLIED | \LIBXML_HTML_NODEFDTD | \LIBXML_NOERROR | \LIBXML_NOWARNING);
-
-        while ($reader->read()) {
-            if (\XMLReader::ELEMENT === $reader->nodeType && 'script' === $reader->name && $reader->hasAttributes) {
-                if ($reader->moveToAttribute('type') && 'application/ld+json' === $reader->value) {
-                    $reader->moveToElement();
-                    $item = @$reader->expand();
-
-                    if ($item instanceof \DOMElement) {
-                        $items[] = $item;
-                    }
-                }
-            }
-        }
-
-        if (\count($items)) {
-            return $items;
-        }
-
         return iterator_to_array($this->xpath()->query('//script[@type=\'application/ld+json\']'));
     }
 
-    public function loadFromString(string $source): self
+    public static function fromString(string $source): self
     {
-        $this->source = $source;
+        $document = new self();
+
         $html5 = new HTML5([
             'disable_html_ns' => true,
-            'target_document' => $this,
+            'target_document' => $document,
         ]);
 
-        return $html5->loadHTML($source);
+        $document->source = $html5->loadHTML($source)->textContent;
+
+        return $document;
     }
 
     private function xpath(): \DOMXPath

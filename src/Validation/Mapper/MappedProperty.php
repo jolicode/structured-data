@@ -11,6 +11,8 @@
 
 namespace Jolicode\JsonLd\Validation\Mapper;
 
+use Jolicode\JsonLd\Validation\Error\ValidationError;
+
 class MappedProperty
 {
     public function __construct(

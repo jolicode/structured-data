@@ -12,6 +12,7 @@
 namespace Jolicode\JsonLd\Validation\Validators\SchemaOrg;
 
 use Jolicode\JsonLd\Validation\Error\ValidationError;
+use Jolicode\JsonLd\Validation\Mapper\MappedProperty;
 use Jolicode\JsonLd\Validation\Validators\ValidationResult;
 use Jolicode\JsonLd\Validation\Validators\ValidatorInterface;
 

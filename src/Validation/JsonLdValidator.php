@@ -37,7 +37,7 @@ class JsonLdValidator
         private int $graphKey = 0,
 
         /**
-         * @var string[]
+         * @var array<string, string|array<string>>
          */
         private array $typesStack = [],
 
@@ -124,7 +124,7 @@ class JsonLdValidator
     }
 
     /**
-     * This method will iterate over each of a type properties and validate them.
+     * This method will iterate over each type of a property and validate them.
      * A type may contain other types as property values, so it will recursively call itself if some are found.
      */
     private function validateType(MappedType $type): void
@@ -159,9 +159,12 @@ class JsonLdValidator
 
             if (\is_array($property->value)) {
                 foreach ($property->value as $index => $multipleTypesEntry) {
-                    // We only do somehting if the value is a MappedType
+                    // We only do something if the value is a MappedType
                     // If it is not, it means it is a value we should not validate, like a string or a boolean.
                     if ($multipleTypesEntry instanceof MappedType) {
+                        /**
+                         * @var string $propertyShortName
+                         */
                         $propertyShortName = $this->validationMapper->removeSchemaOrgDomain($property->key);
 
                         $this->typesStack[$propertyShortName][] = $propertyShortName;

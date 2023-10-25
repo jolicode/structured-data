@@ -72,15 +72,15 @@ class MainType extends AbstractType
     public function setCurrentTypeSubtype(string $newName): void
     {
         foreach ($this->currentProperties as $currentProperty) {
-            $originalType = $currentProperty->values[array_key_last($currentProperty->values)];
+            $originalType = $currentProperty->types[array_key_last($currentProperty->types)];
             $originalName = $originalType->name;
 
-            unset($currentProperty->values[$originalName]);
+            unset($currentProperty->types[$originalName]);
 
             $newName = sprintf('%s %s', $originalName, $newName);
             $originalType->name = $newName;
 
-            $currentProperty->values[$newName] = $originalType;
+            $currentProperty->types[$newName] = $originalType;
         }
     }
 
@@ -90,8 +90,8 @@ class MainType extends AbstractType
      * And these properties may even be nested properties, which complicates things.
      * This method is here to handle these (rare) cases.
      *
-     * @param string                       $fullPropertyName the full property name, which may be a nested property, indicated by dots
-     * @param array<string, array<string>> $propertyToUpdate an array representing the property to update, and the types associated
+     * @param string                      $fullPropertyName the full property name, which may be a nested property, indicated by dots
+     * @param array<string|array<string>> $propertyToUpdate an array representing the property to update, and the types associated
      */
     public function updateTypeWithProperty(string $fullPropertyName, array $propertyToUpdate, string $severity, bool $isBeta = false): void
     {

@@ -11,9 +11,9 @@
 
 namespace Jolicode\JsonLd\Generator\Google;
 
+use Jolicode\JsonLd\Generator\Google\Objects\MainType;
 use Jolicode\JsonLd\Generator\Google\Objects\Property;
 use Jolicode\JsonLd\Generator\Google\Objects\PropertyType;
-use Jolicode\JsonLd\Generator\Google\Objects\MainType;
 
 /**
  * Sometimes the Google documentation has issues that we need to address ourselves.
@@ -61,7 +61,7 @@ class BrokenTypeFixer
 
     private static function fixJobPosting(MainType $type): void
     {
-        $type->getProperty('experienceInPlaceOfEducation')?->addType('Boolean', true);
+        $type->getProperty('experienceInPlaceOfEducation')->addType('Boolean');
     }
 
     private static function fixWebSite(MainType $type): void
@@ -73,8 +73,8 @@ class BrokenTypeFixer
     {
         if (!$type->hasProperty('atLeastOneOf_0')) {
             $properties = [
-                new PropertyType('aggregateRating', [new Property('AggregateRating')]),
-                new PropertyType('review', [new Property('Review')]),
+                new PropertyType('aggregateRating', ['AggregateRating' => new Property('AggregateRating')]),
+                new PropertyType('review', ['Review' => new Property('Review')]),
             ];
 
             $type->initProperty('atLeastOneOf', Extractor::SEVERITY_REQUIRED, atLeastOneOf: $properties);

@@ -42,17 +42,23 @@ class Property
         }
 
         if ($typeToSearchOn) {
-            return $this->types[$typeToSearchOn]?->getProperty($name);
+            return $this->types[$typeToSearchOn]->getProperty($name);
         }
 
-        return $this->types[array_key_first($this->types)]?->getProperty($name);
+        return $this->types[array_key_first($this->types)]->getProperty($name);
     }
 
+    /**
+     * @param array<string, PropertyType> $types
+     */
     public function addProperties(
-        string $propertyName, string $targetProperties, array $types = [], array $atLeastOneOf = [], bool $isBeta = false
+        string $propertyName, string $targetProperties, array $types = [], array $atLeastOneOf = []
     ): void {
+        /**
+         * @var PropertyType $type
+         */
         foreach ($this->types as $type) {
-            $type->addProperty($propertyName, $targetProperties, $types, $atLeastOneOf, $isBeta);
+            $type->addProperty($propertyName, $targetProperties, $types, $atLeastOneOf);
         }
     }
 
@@ -61,27 +67,19 @@ class Property
         return $this->types[$name] ?? null;
     }
 
-    public function addType(string $name, bool $isBeta = false): void
+    public function addType(string $name): void
     {
         if (str_starts_with($this->name, 'atLeastOneOf')) {
-            foreach ($this->types as $type) {
-                $type->addType($name, $isBeta);
-            }
-
-            return;
+            $this->atLeastOneOf[$name] = new PropertyType($name);
         }
 
         $this->types[$name] = new PropertyType($name);
     }
 
-    public function removeType(string $name, bool $isBeta = false): void
+    public function removeType(string $name): void
     {
         if (str_starts_with($this->name, 'atLeastOneOf')) {
-            foreach ($this->types as $type) {
-                $type->removeType($name, $isBeta);
-            }
-
-            return;
+            unset($this->atLeastOneOf[$name]);
         }
 
         unset($this->types[$name]);
