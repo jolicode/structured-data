@@ -32,10 +32,8 @@ class MainType extends AbstractType
 
         /**
          * Used to retrieve properties from another type. Only used for LearningVideos and LearningClips for now.
-         *
-         * @var string|array<string>|null $types
          */
-        public string|array|null $dependsOn = null,
+        public ?string $dependsOn = null,
 
         /**
          * The link to the type documentation.

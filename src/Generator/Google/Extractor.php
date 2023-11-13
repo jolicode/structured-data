@@ -24,6 +24,8 @@ class Extractor
     public const SEVERITY_RECOMMENDED = 'recommended';
     public const SEVERITY_REQUIRED = 'required';
 
+    public const GENERATED_DIR = __DIR__ . '/../../../generated/Google';
+
     private const GOOGLE_DOMAIN = 'https://developers.google.com';
     private const TYPES_SOURCE_URL = self::GOOGLE_DOMAIN . '/search/docs/appearance/structured-data';
     private const CACHE_DIRECTORY = __DIR__ . '/../../../var/cache/google/';
@@ -290,7 +292,7 @@ class Extractor
 
             $dependsOn = $node
                 ->nextAll()
-                ->filter('p b a')
+                ->filter('p b code')
                 ->getNode(0)
                 ->nodeValue
             ;
@@ -493,7 +495,7 @@ class Extractor
             $servesCuisine->addType('servesCuisine');
 
             $carousel = new PropertyType(
-                name: 'carousel',
+                name: 'Carousel',
                 requiredProperties: ['image' => $image, 'name' => $name],
                 recommendedProperties: ['address' => $address, 'servesCuisine' => $servesCuisine],
             );

@@ -5,7 +5,8 @@
     "autoload": {
         "psr-4": {
             "Jolicode\\JsonLd\\": "src/",
-            "SchemaOrg\\": "generated/SchemaOrg/"
+            "SchemaOrg\\": "generated/SchemaOrg/",
+            "Google\\": "generated/Google/"
         }
     },
     "autoload-dev": {
