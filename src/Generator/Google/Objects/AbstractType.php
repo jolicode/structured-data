@@ -63,6 +63,9 @@ abstract class AbstractType
         ?? null;
     }
 
+    /**
+     * @param array<string, PropertyType> $atLeastOneOf
+     */
     public function initProperty(string $name, string $severity, bool $isBeta = false, array $atLeastOneOf = []): void
     {
         $targetProperties = "{$severity}Properties";
@@ -81,7 +84,7 @@ abstract class AbstractType
         }
 
         if (!\array_key_exists($name, $this->{$targetProperties})) {
-            $this->{$targetProperties}[$name] = new Property($name, isBeta: $isBeta);
+            $this->{$targetProperties}[$name] = new Property($name, isBeta: $isBeta, atLeastOneOf: $atLeastOneOf);
         }
 
         $this->currentProperties = [$this->{$targetProperties}[$name]];

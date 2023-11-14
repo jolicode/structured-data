@@ -122,6 +122,8 @@ class Extractor
             $type->cleanUpProperties();
         }
 
+        $this->defineLeftoverTypes();
+
         return $this->extractedTypes;
     }
 
@@ -593,7 +595,7 @@ class Extractor
             $atLeastOneOf = [];
 
             foreach ($codeTags as $tag) {
-                $atLeastOneOf[$tag->nodeValue] = new Property(
+                $atLeastOneOf[$tag->nodeValue] = new PropertyType(
                     name: $tag->nodeValue,
                 );
             }
@@ -680,5 +682,54 @@ class Extractor
             str_contains($urlOrFilename, 'practice-problems') => 'PracticeProblem',
             default => throw new \RuntimeException(sprintf('Trying to get a subtype prefix for the "%s" URL, which is not supported', $urlOrFilename))
         };
+    }
+
+    /**
+     * A method used to manually define some types.
+     * This may be because they are too hard to crawl or because it is more convenient doing it this way.
+     */
+    private function defineLeftoverTypes(): void
+    {
+        $itemListElement = new Property('itemListElement');
+        $itemListElement->addType('ListItem');
+
+        $itemListElement->getType('ListItem')->addProperty('position', 'requiredProperties', ['Integer' => new PropertyType('Integer')]);
+        $itemListElement->getType('ListItem')->addProperty('url', 'requiredProperties', ['URL' => new PropertyType('URL')]);
+
+        $this->extractedTypes['SummaryCarousel'] = new MainType(
+            name: 'SummaryCarousel',
+            // We cheat a bit here. Multiple types are not intended to be used this way.
+            // However there are 2 different carousels and both use the same type.
+            // Since carousels are special and will be handled differently, we use this property to differentiate them.
+            multipleTypes: ['ItemList'],
+            documentationUrl: 'https://developers.google.com/search/docs/appearance/structured-data/carousel#structured-data-type-definitions',
+            requiredProperties: [$itemListElement],
+        );
+
+        $itemListElement = new Property('itemListElement');
+        $itemListElement->addType('ListItem');
+
+        $itemListElement->getType('ListItem')->addProperty('item', 'requiredProperties', ['Thing' => new PropertyType('Thing')]);
+        $itemListElement->getType('ListItem')->addProperty('position', 'requiredProperties', ['Integer' => new PropertyType('Integer')]);
+        $itemListElement
+            ->getType('ListItem')
+            ->getProperty('item')
+            ->getType('Thing')
+            ->addProperty('name', 'requiredProperties', [new PropertyType('Text')]);
+        $itemListElement
+            ->getType('ListItem')
+            ->getProperty('item')
+            ->getType('Thing')
+            ->addProperty('url', 'requiredProperties', [new PropertyType('URL')]);
+
+        $this->extractedTypes['AllInOneCarousel'] = new MainType(
+            name: 'AllInOneCarousel',
+            // We cheat a bit here. Multiple types are not intended to be used this way.
+            // However there are 2 different carousels and both use the same type.
+            // Since carousels are special and will be handled differently, we use this property to differentiate them.
+            multipleTypes: ['ItemList'],
+            documentationUrl: 'https://developers.google.com/search/docs/appearance/structured-data/carousel#structured-data-type-definitions',
+            requiredProperties: [$itemListElement],
+        );
     }
 }

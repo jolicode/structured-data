@@ -24,9 +24,9 @@ class Property
         public array $types = [],
 
         /**
-         * @var array<Property>
+         * @var array<PropertyType>
          */
-        private array $atLeastOneOf = [],
+        public array $atLeastOneOf = [],
     ) {
     }
 
@@ -50,6 +50,7 @@ class Property
 
     /**
      * @param array<string, PropertyType> $types
+     * @param array<string, PropertyType> $atLeastOneOf
      */
     public function addProperties(
         string $propertyName, string $targetProperties, array $types = [], array $atLeastOneOf = []

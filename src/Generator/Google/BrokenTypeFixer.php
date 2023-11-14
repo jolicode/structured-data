@@ -109,15 +109,15 @@ class BrokenTypeFixer
     {
         if (!$type->hasProperty('atLeastOneOf_0')) {
             $properties = [
-                new Property('diseasePreventionInfo'),
-                new Property('diseaseSpreadStatistics'),
-                new Property('gettingTestedInfo'),
-                new Property('governmentBenefitsInfo'),
-                new Property('newsUpdatesAndGuidelines'),
-                new Property('publicTransportClosuresInfo'),
-                new Property('quarantineGuidelines'),
-                new Property('schoolClosuresInfo'),
-                new Property('travelBans'),
+                'diseasePreventionInfo' => new PropertyType('diseasePreventionInfo'),
+                'diseaseSpreadStatistics' => new PropertyType('diseaseSpreadStatistics'),
+                'gettingTestedInfo' => new PropertyType('gettingTestedInfo'),
+                'governmentBenefitsInfo' => new PropertyType('governmentBenefitsInfo'),
+                'newsUpdatesAndGuidelines' => new PropertyType('newsUpdatesAndGuidelines'),
+                'publicTransportClosuresInfo' => new PropertyType('publicTransportClosuresInfo'),
+                'quarantineGuidelines' => new PropertyType('quarantineGuidelines'),
+                'schoolClosuresInfo' => new PropertyType('schoolClosuresInfo'),
+                'travelBans' => new PropertyType('travelBans'),
             ];
 
             $type->initProperty('atLeastOneOf', Extractor::SEVERITY_REQUIRED, atLeastOneOf: $properties);

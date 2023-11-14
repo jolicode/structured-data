@@ -37,6 +37,7 @@ class PropertyType extends AbstractType
 
     /**
      * @param array<string, PropertyType> $types
+     * @param array<string, PropertyType> $atLeastOneOf
      */
     public function addProperty(
         string $name, string $targetProperties, array $types = [], array $atLeastOneOf = [], bool $isBeta = false

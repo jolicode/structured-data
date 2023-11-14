@@ -89,8 +89,8 @@ class Generator implements GeneratorInterface
                 ->makePublic()
         );
 
-        $requiredProperties = $this->formatTypeProperties($type->requiredProperties);
-        $recommendedProperties = $this->formatTypeProperties($type->recommendedProperties);
+        $requiredProperties = $this->generateTypeProperties($type->requiredProperties);
+        $recommendedProperties = $this->generateTypeProperties($type->recommendedProperties);
 
         if ($type instanceof MainType) {
             if (\count($type->subTypes)) {
@@ -132,10 +132,10 @@ class Generator implements GeneratorInterface
 
             if ($type->dependsOn) {
                 $additionalRequiredProperties = $this->types[$type->dependsOn]->requiredProperties;
-                $additionalRequiredProperties = $this->formatTypeProperties($additionalRequiredProperties);
+                $additionalRequiredProperties = $this->generateTypeProperties($additionalRequiredProperties);
 
                 $additionalRecommendedProperties = $this->types[$type->dependsOn]->recommendedProperties;
-                $additionalRecommendedProperties = $this->formatTypeProperties($additionalRecommendedProperties);
+                $additionalRecommendedProperties = $this->generateTypeProperties($additionalRecommendedProperties);
 
                 $requiredProperties = array_merge($requiredProperties, $additionalRequiredProperties);
                 $recommendedProperties = array_merge($recommendedProperties, $additionalRecommendedProperties);
@@ -157,11 +157,18 @@ class Generator implements GeneratorInterface
         return $node->getNode();
     }
 
-    private function formatTypeProperties(array $properties): array
+    private function generateTypeProperties(array $properties): array
     {
         $formattedProperties = [];
 
         foreach ($properties as $property) {
+            if ($property->atLeastOneOf) {
+                $formattedProperties['atLeastOneOf'] = array_map(
+                    fn (PropertyType $type) => $type->name,
+                    $property->atLeastOneOf
+                );
+            }
+
             foreach ($property->types as $type) {
                 $formattedProperties[$property->name][] = $type->name;
 
@@ -173,7 +180,7 @@ class Generator implements GeneratorInterface
 
                     $propertyName = ucfirst($property->name);
 
-                    $this->currentNamespace = sprintf('%s\\%s\\%s', $previousNamespace, $propertyName, $type->name);
+                    $this->currentNamespace = sprintf('%s\\%s', $previousNamespace, $propertyName);
                     $this->currentFilename = sprintf('%s/%s/%s', $newFilename, $propertyName, $type->name);
 
                     $this->writeFullType($type);

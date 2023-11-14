@@ -60,8 +60,18 @@ class MainType extends AbstractType
          * Carousels have base required/recommended properties but they may use some others as well.
          */
         public ?PropertyType $carousel = null,
+
+        /**
+         * @var array<string, Property>
+         */
+        public array $requiredProperties = [],
+
+        /**
+         * @var array<string, Property>
+         */
+        public array $recommendedProperties = [],
     ) {
-        parent::__construct($name);
+        parent::__construct($name, $requiredProperties, $recommendedProperties);
     }
 
     /**
