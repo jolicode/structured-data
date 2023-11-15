@@ -14,6 +14,6 @@ namespace Jolicode\JsonLd\Validation\Error;
 /**
  * This error is raised when a regular property is not valid.
  */
-readonly class RegularPropertyValidationError extends ValidationError
+readonly class PropertyValidationError extends ValidationError
 {
 }

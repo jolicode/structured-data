@@ -17,7 +17,7 @@ class MappedProperty
 {
     public function __construct(
         readonly public string $key,
-        public mixed $value,
+        public mixed $value = [],
 
         /**
          * @var array<ValidationError>

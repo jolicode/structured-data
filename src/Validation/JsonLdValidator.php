@@ -17,8 +17,8 @@ use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Parser\JsonLdParser;
 use Jolicode\JsonLd\Parser\Position;
 use Jolicode\JsonLd\Parser\Range;
-use Jolicode\JsonLd\Validation\Error\RegularPropertyValidationError;
-use Jolicode\JsonLd\Validation\Error\TypePropertyValidationError;
+use Jolicode\JsonLd\Validation\Error\PropertyValidationError;
+use Jolicode\JsonLd\Validation\Error\TypeValidationError;
 use Jolicode\JsonLd\Validation\Error\ValidationError;
 use Jolicode\JsonLd\Validation\Mapper\MappedError;
 use Jolicode\JsonLd\Validation\Mapper\MappedProperty;
@@ -26,7 +26,6 @@ use Jolicode\JsonLd\Validation\Mapper\MappedType;
 use Jolicode\JsonLd\Validation\Mapper\ValidationMap;
 use Jolicode\JsonLd\Validation\Mapper\ValidationMapper;
 use Jolicode\JsonLd\Validation\Validators\RegisteredValidatorsContainer;
-use Jolicode\JsonLd\Validation\Validators\SchemaOrg\SchemaOrgValidator;
 use JsonStreamingParser\Exception\ParsingException;
 
 class JsonLdValidator
@@ -127,20 +126,9 @@ class JsonLdValidator
      * This method will iterate over each type of a property and validate them.
      * A type may contain other types as property values, so it will recursively call itself if some are found.
      */
-    private function validateType(MappedType $type): void
+    private function validateType(MappedType $type, MappedProperty $originalProperty = null): void
     {
-        if (null === $type->type) {
-            $message = 'The @type entry of this type is missing.';
-            $property = $type->properties[0];
-
-            $this->addTypePropertyError(
-                ValidationError::SEVERITY_ERROR,
-                $message,
-                $property->key
-            );
-
-            $property->errors[] = [ValidationError::SEVERITY_ERROR => $message];
-        }
+        $this->callValidatorsForType($type, $originalProperty);
 
         /**
          * @var MappedProperty $property
@@ -149,8 +137,7 @@ class JsonLdValidator
             if ($property->value instanceof MappedType) {
                 $this->typesStack[] = $this->validationMapper->removeSchemaOrgDomain($property->key);
 
-                $this->validateTypeProperty($property, $property->value);
-                $this->validateType($property->value);
+                $this->validateType($property->value, $property);
 
                 array_pop($this->typesStack);
 
@@ -159,8 +146,6 @@ class JsonLdValidator
 
             if (\is_array($property->value)) {
                 foreach ($property->value as $index => $multipleTypesEntry) {
-                    // We only do something if the value is a MappedType
-                    // If it is not, it means it is a value we should not validate, like a string or a boolean.
                     if ($multipleTypesEntry instanceof MappedType) {
                         /**
                          * @var string $propertyShortName
@@ -169,19 +154,20 @@ class JsonLdValidator
 
                         $this->typesStack[$propertyShortName][] = $propertyShortName;
 
-                        $this->validateTypeProperty($property, $multipleTypesEntry);
-                        $this->validateType($multipleTypesEntry);
+                        $this->validateType($multipleTypesEntry, $property);
 
                         if ($index === array_key_last($property->value)) {
                             array_pop($this->typesStack);
                         }
+
+                        continue;
                     }
                 }
 
                 continue;
             }
 
-            $this->validateRegularProperty($property, $type);
+            $this->callValidatorsForProperty($property, $type);
         }
 
         if ($this->hasAGraph) {
@@ -189,36 +175,22 @@ class JsonLdValidator
         }
     }
 
-    private function validateTypeProperty(MappedProperty $property, MappedType $type): void
+    private function callValidatorsForType(MappedType $type, ?MappedProperty $property): void
     {
-        if (null === $type->type) {
-            // Maybe we don't want to guess the type sometimes. For now, we always use the SchemaOrg validator so this is fine.
-            $type->type = SchemaOrgValidator::guessTypeFromProperties($type->properties);
-
-            $message = 'The @type entry of this typed value was not set. We had to guess it from its properties.';
-
-            $this->addTypePropertyError(
-                ValidationError::SEVERITY_WARNING,
-                $message,
-                $property->key
-            );
-
-            $property->errors[] = [ValidationError::SEVERITY_WARNING => $message];
-        }
-
         foreach ($this->container->getValidators() as $validator) {
-            $validationResult = $validator::validateTypeProperty($property->key, $type->type);
+            $errors = $validator::validateType($type, $property, $this->typesStack);
 
-            foreach ($validationResult->errors as $error) {
+            foreach ($errors as $error) {
                 [$severity, $message] = $error;
 
-                $property->errors[] = [$severity => $message];
-                $this->addTypePropertyError($severity, $message, $property->key);
+                $typeLabel = \is_string($type->type) ? $type->type : null;
+
+                $this->addTypeError($severity, $message, $typeLabel);
             }
         }
     }
 
-    private function validateRegularProperty(MappedProperty $property, MappedType $type): void
+    private function callValidatorsForProperty(MappedProperty $property, MappedType $type): void
     {
         if (null === $type->type) {
             return;
@@ -229,36 +201,32 @@ class JsonLdValidator
         }
 
         foreach ($this->container->getValidators() as $validator) {
-            $validationResult = $validator::validateRegularProperty($property->key, $type->type);
+            $errors = $validator::validateProperty($type, $property);
 
-            foreach ($validationResult->errors as $error) {
+            foreach ($errors as $error) {
                 [$severity, $message] = $error;
 
                 $property->errors[] = [$severity => $message];
-                $this->addRegularPropertyError($severity, $message, $property->key);
+                $this->addPropertyError($severity, $message, $property->key);
             }
         }
     }
 
-    private function addTypePropertyError(string $severity, string $message, string $key): void
+    private function addTypeError(string $severity, string $message, ?string $typeLabel): void
     {
-        // When an error is found on a type property, the invalid type is the type holding the property, not the property value, so we have to pop the stack.
-        $typesStackClone = [...$this->typesStack];
-        array_pop($typesStackClone);
-
-        $this->validationErrors[] = new TypePropertyValidationError(
+        $this->validationErrors[] = new TypeValidationError(
             $message,
-            $key,
-            $typesStackClone,
+            $typeLabel,
+            $this->typesStack,
             $this->hasAGraph,
             $this->graphKey,
             $severity
         );
     }
 
-    private function addRegularPropertyError(string $severity, string $message, string $key): void
+    private function addPropertyError(string $severity, string $message, string $key): void
     {
-        $this->validationErrors[] = new RegularPropertyValidationError(
+        $this->validationErrors[] = new PropertyValidationError(
             $message,
             $key,
             $this->typesStack,

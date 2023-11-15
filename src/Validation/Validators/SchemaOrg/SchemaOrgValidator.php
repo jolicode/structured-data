@@ -13,20 +13,36 @@ namespace Jolicode\JsonLd\Validation\Validators\SchemaOrg;
 
 use Jolicode\JsonLd\Validation\Error\ValidationError;
 use Jolicode\JsonLd\Validation\Mapper\MappedProperty;
-use Jolicode\JsonLd\Validation\Validators\ValidationResult;
+use Jolicode\JsonLd\Validation\Mapper\MappedType;
 use Jolicode\JsonLd\Validation\Validators\ValidatorInterface;
 
 class SchemaOrgValidator implements ValidatorInterface
 {
-    public static function validateTypeProperty(string $propertyLabel, string|array $typeLabel): ValidationResult
+    public static function validateType(MappedType $type, ?MappedProperty $property, array $typesStack): array
     {
         $errors = [];
 
-        // @see https://www.w3.org/TR/json-ld/#specifying-the-type
-        if (\is_array($typeLabel) && \count($typeLabel) > 1) {
+        $typeLabel = $type->type;
+
+        if (
+            $property
+            && \is_array($typeLabel)
+            && \count($typeLabel) > 1
+        ) {
+            // @see https://www.w3.org/TR/json-ld/#specifying-the-type
             $message = sprintf('A typed value may only have one type, %d provided.', \count($typeLabel));
 
             $errors[] = [ValidationError::SEVERITY_ERROR, $message];
+
+            return $errors;
+        }
+
+        if (null === $typeLabel) {
+            $typeLabel = self::guessTypeFromProperties($type->properties);
+
+            $message = 'The @type entry of this type was not set. We had to guess it from its properties.';
+
+            $errors[] = [ValidationError::SEVERITY_WARNING, $message];
         }
 
         foreach ((array) $typeLabel as $label) {
@@ -38,53 +54,55 @@ class SchemaOrgValidator implements ValidatorInterface
                 $errors[] = [ValidationError::SEVERITY_ERROR, $message];
             }
 
-            if (!self::propertyTypeIsValid($propertyLabel, $typeFqcn)) {
-                $message = sprintf('The "%s" property does not accept the "%s" type as a value.', $propertyLabel, $typeFqcn::LABEL);
+            if ($property) {
+                if (!self::propertyTypeIsValid($property->key, $typeFqcn)) {
+                    $message = sprintf('The "%s" property does not accept the "%s" type as a value.', $property->key, $typeFqcn::LABEL);
 
-                $errors[] = [ValidationError::SEVERITY_ERROR, $message];
+                    $errors[] = [ValidationError::SEVERITY_ERROR, $message];
+                }
             }
         }
 
-        return new ValidationResult($errors);
+        return $errors;
     }
 
-    public static function validateRegularProperty(string $propertyLabel, string|array $typeLabels): ValidationResult
+    public static function validateProperty(MappedType $type, MappedProperty $property): array
     {
-        if (!class_exists(self::getPropertyFqcn($propertyLabel))) {
-            $message = sprintf('This property does not exist: %s.', $propertyLabel);
+        $errors = [];
+
+        if (!class_exists(self::getPropertyFqcn($property->key))) {
+            $message = sprintf('This property does not exist: %s.', $property->key);
 
             $errors[] = [ValidationError::SEVERITY_ERROR, $message];
 
-            return new ValidationResult(errors: $errors);
+            return $errors;
         }
 
         $typeFqcns = [];
 
-        foreach ((array) $typeLabels as $label) {
+        foreach ((array) $type->type as $label) {
             $typeFqcns[] = self::getTypeFqcn($label);
         }
 
         $propertyIsValid = false;
 
         foreach ($typeFqcns as $typeFqcn) {
-            if (property_exists($typeFqcn, $propertyLabel)) {
+            if (property_exists($typeFqcn, $property->key)) {
                 $propertyIsValid = true;
             }
         }
 
         if (!$propertyIsValid) {
-            if (\is_string($typeLabels)) {
-                $message = sprintf('The property "%s" does not exist on the type "%s".', $propertyLabel, $typeLabels);
+            if (\is_string($type->type)) {
+                $message = sprintf('The property "%s" does not exist on the type "%s".', $property->key, $type->type);
             } else {
-                $message = sprintf('The property "%s" does not exist on any of these types: "%s".', $propertyLabel, implode(', ', $typeLabels));
+                $message = sprintf('The property "%s" does not exist on any of these types: "%s".', $property->key, implode(', ', $type->type));
             }
 
             $errors[] = [ValidationError::SEVERITY_ERROR, $message];
-
-            return new ValidationResult(errors: $errors);
         }
 
-        return new ValidationResult();
+        return $errors;
     }
 
     /**

@@ -14,6 +14,6 @@ namespace Jolicode\JsonLd\Validation\Error;
 /**
  * This error is raised when a property has one or more type(s) as a value but this type is not accepted for this property.
  */
-readonly class TypePropertyValidationError extends ValidationError
+readonly class TypeValidationError extends ValidationError
 {
 }

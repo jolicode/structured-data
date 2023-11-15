@@ -16,7 +16,10 @@ use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
 use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
 use Jolicode\JsonLd\Parser\DataStructures\StructureInterface;
+use Jolicode\JsonLd\Parser\Position;
 use Jolicode\JsonLd\Parser\Properties\Property;
+use Jolicode\JsonLd\Parser\Range;
+use Jolicode\JsonLd\Validation\Error\TypeValidationError;
 use Jolicode\JsonLd\Validation\Error\ValidationError;
 
 class ValidationMapper
@@ -94,6 +97,14 @@ class ValidationMapper
         foreach ($validationErrors as $error) {
             $typeWithViolation = $this->getTypeWithError($error, $parsedJsonLd, $hasAGraph);
 
+            if ($error instanceof TypeValidationError) {
+                if (Keyword::TYPE !== $error->key) {
+                    $this->createMappedErrorOnObjectBrackets($error, $typeWithViolation);
+
+                    continue;
+                }
+            }
+
             $propertyWithError = $hasAGraph ?
                 $typeWithViolation->getGraphProperty($error->key, $error->graphKey) :
                 $typeWithViolation->getProperty($error->key);
@@ -132,13 +143,13 @@ class ValidationMapper
             $type->name = $expandedType->{'https://schema.org/name'}[0]->{Keyword::VALUE->value};
         }
 
-        foreach ($expandedType as $property => $value) {
-            if (Keyword::TYPE->value === $property) {
+        foreach ($expandedType as $label => $value) {
+            if (Keyword::TYPE->value === $label) {
                 continue;
             }
 
             if (
-                Keyword::ID->value === $property
+                Keyword::ID->value === $label
                 && IriResolver::isBlankNodeIdentifier($value)
             ) {
                 $this->saveFlattenedTypeReference($value, $type);
@@ -147,16 +158,18 @@ class ValidationMapper
             }
 
             if (null !== $value) {
-                $type->properties[] = $this->mapProperty($property, $value);
+                $propertyKey = $this->removeSchemaOrgDomain($label);
+
+                $type->properties[$propertyKey] = $this->mapProperty($value, $propertyKey);
             }
         }
 
         return $type;
     }
 
-    private function mapProperty(string $expandedLabel, mixed $value): MappedProperty
+    private function mapProperty(mixed $value, string $key): MappedProperty
     {
-        $property = new MappedProperty($this->removeSchemaOrgDomain($expandedLabel), []);
+        $property = new MappedProperty($key);
 
         if (\is_string($value)) {
             $property->value = $value;
@@ -332,5 +345,36 @@ class ValidationMapper
         }
 
         return $typeWithError;
+    }
+
+    /**
+     * When the "@type" entry is missing, we cannot map it back to the user input since it does not exist.
+     * When this is the case, we map the error on the object brackets.
+     */
+    private function createMappedErrorOnObjectBrackets(ValidationError $error, ObjectStructure $typeWithViolation): void
+    {
+        $properties = $typeWithViolation->getProperties();
+
+        $firstProperty = reset($properties);
+        $objectStart = $firstProperty->key->range->start;
+
+        $lastProperty = end($properties);
+        $objectEnd = $lastProperty->value->range->end;
+
+        $startLine = $objectStart->line - 1;
+        $startCol = $objectStart->column - 5;
+
+        $endLine = $objectEnd->line + 1;
+        $endCol = $startCol;
+
+        $this->map->addError(new MappedError(
+            $error->message,
+            Keyword::TYPE->value,
+            new Range(
+                new Position($startLine, $startCol),
+                new Position($endLine, $endCol)
+            ),
+            $error->severity
+        ));
     }
 }

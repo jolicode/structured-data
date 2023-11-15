@@ -11,6 +11,7 @@
 
 namespace Jolicode\JsonLd\Validation\Validators;
 
+use Jolicode\JsonLd\Validation\Validators\Google\GoogleValidator;
 use Jolicode\JsonLd\Validation\Validators\SchemaOrg\SchemaOrgValidator;
 
 readonly class RegisteredValidatorsContainer
@@ -19,8 +20,9 @@ readonly class RegisteredValidatorsContainer
         /**
          * @var ValidatorInterface[]
          */
-        private array $validators = [
+        private readonly array $validators = [
             SchemaOrgValidator::class => new SchemaOrgValidator(),
+            GoogleValidator::class => new GoogleValidator(),
         ],
     ) {
     }

@@ -11,15 +11,18 @@
 
 namespace Jolicode\JsonLd\Validation\Validators;
 
+use Jolicode\JsonLd\Validation\Mapper\MappedProperty;
+use Jolicode\JsonLd\Validation\Mapper\MappedType;
+
 interface ValidatorInterface
 {
     /**
-     * This method must validate a type when it is the value of a property.
+     * This method must validate a type exists.
      */
-    public static function validateTypeProperty(string $propertyLabel, string $typeLabel): ValidationResult;
+    public static function validateType(MappedType $type, ?MappedProperty $property, array $typesStack): array;
 
     /**
      * This method must validate a generic property, like a string or a boolean.
      */
-    public static function validateRegularProperty(string $propertyLabel, string|array $typeLabels): ValidationResult;
+    public static function validateProperty(MappedType $type, MappedProperty $property): array;
 }

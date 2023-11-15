@@ -52,6 +52,8 @@ class Generator implements GeneratorInterface
     private function generateClasses(): void
     {
         foreach ($this->types as $type) {
+            $type->name = $this->toPascalCase($type->name);
+
             $this->currentNamespace = sprintf('%s\\%s', self::NAMESPACE_BASE, $type->name);
             $this->currentFilename = sprintf(
                 '%s/%s/%s',
@@ -170,6 +172,7 @@ class Generator implements GeneratorInterface
             }
 
             foreach ($property->types as $type) {
+                $property->name = $this->toPascalCase($property->name);
                 $formattedProperties[$property->name][] = $type->name;
 
                 if (\count($type->requiredProperties) || \count($type->recommendedProperties)) {
@@ -178,10 +181,10 @@ class Generator implements GeneratorInterface
 
                     $newFilename = $this->removeFilenameParentName($this->currentFilename);
 
-                    $propertyName = ucfirst($property->name);
+                    $type->name = $this->toPascalCase($type->name);
 
-                    $this->currentNamespace = sprintf('%s\\%s', $previousNamespace, $propertyName);
-                    $this->currentFilename = sprintf('%s/%s/%s', $newFilename, $propertyName, $type->name);
+                    $this->currentNamespace = sprintf('%s\\%s', $previousNamespace, $property->name);
+                    $this->currentFilename = sprintf('%s/%s/%s', $newFilename, $property->name, $type->name);
 
                     $this->writeFullType($type);
 
@@ -202,6 +205,8 @@ class Generator implements GeneratorInterface
         $previousFilename = $this->currentFilename;
 
         foreach ($type->subTypes as $subType) {
+            $subType->name = $this->toPascalCase($subType->name);
+
             $newNamespace = sprintf('%s\\Subtypes', $previousNamespace);
             $newFilename = $this->removeFilenameParentName($previousFilename);
             $newFilename = sprintf('%s/Subtypes/%s', $newFilename, $subType->name);
@@ -244,6 +249,15 @@ class Generator implements GeneratorInterface
             $this->factory->classConst('CAROUSEL', sprintf('%s\\Carousel', $newNamespace))
                 ->makePublic()
         );
+    }
+
+    private function toPascalCase(string $string): string
+    {
+        $string = explode(' ', $string);
+        array_walk($string, fn (string & $word) => $word = ucfirst($word));
+        $string = implode('', $string);
+
+        return $string;
     }
 
     private function removeFilenameParentName(string $filename): string

@@ -165,12 +165,18 @@ class JsonLdValidatorTest extends TestCase
         yield 'Test missing type entry is invalid' => [
             'document' => __DIR__ . '/fixtures/no-type.jsonld',
             'isValid' => false,
-            'messages' => ['The @type entry of this type is missing.'],
+            'messages' => [
+                'The @type entry of this type was not set. We had to guess it from its properties.',
+                'The @type entry of this type is missing. Google will ignore this type.',
+            ],
         ];
         yield 'Test missing typed value type entry generates warning' => [
             'document' => __DIR__ . '/fixtures/no-type-nested.jsonld',
             'isValid' => false,
-            'messages' => ['The @type entry of this typed value was not set. We had to guess it from its properties.'],
+            'messages' => [
+                'The @type entry of this type was not set. We had to guess it from its properties.',
+                'The @type entry of this type is missing. Google will ignore this type.',
+            ],
         ];
         yield 'Test parent attributes are working' => [
             'document' => __DIR__ . '/fixtures/valid-parent-attribute.jsonld',
@@ -215,6 +221,12 @@ class JsonLdValidatorTest extends TestCase
                 'The "alumniOf" property does not accept the "OrganizationRole" type as a value.',
                 'The "actor" property does not accept the "PerformanceRole" type as a value.',
                 'The "member" property does not accept the "OrganizationRole" type as a value.',
+            ],
+        ];
+        yield 'Google test n°1' => [
+            'document' => __DIR__ . '/fixtures/google-test-1.jsonld',
+            'isValid' => true,
+            'messages' => [
             ],
         ];
     }
