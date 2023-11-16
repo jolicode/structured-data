@@ -26,11 +26,6 @@ class MappedType
          * @var array<MappedError>
          */
         public array $errors = [],
-
-        /**
-         * @var array<MappedWarning>
-         */
-        public array $warnings = [],
     ) {
     }
 }

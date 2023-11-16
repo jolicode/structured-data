@@ -98,7 +98,7 @@ class ValidationMapper
             $typeWithViolation = $this->getTypeWithError($error, $parsedJsonLd, $hasAGraph);
 
             if ($error instanceof TypeValidationError) {
-                if (Keyword::TYPE !== $error->key) {
+                if (Keyword::TYPE->value !== $error->key) {
                     $this->createMappedErrorOnObjectBrackets($error, $typeWithViolation);
 
                     continue;

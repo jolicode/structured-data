@@ -66,7 +66,7 @@ class SchemaOrgValidator implements ValidatorInterface
         return $errors;
     }
 
-    public static function validateProperty(MappedType $type, MappedProperty $property): array
+    public static function validateProperty(MappedType $type, MappedProperty $property, array $typesStack): array
     {
         $errors = [];
 

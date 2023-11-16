@@ -24,5 +24,5 @@ interface ValidatorInterface
     /**
      * This method must validate a generic property, like a string or a boolean.
      */
-    public static function validateProperty(MappedType $type, MappedProperty $property): array;
+    public static function validateProperty(MappedType $type, MappedProperty $property, array $typesStack): array;
 }

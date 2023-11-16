@@ -52,38 +52,38 @@ class Generator implements GeneratorInterface
     private function generateClasses(): void
     {
         foreach ($this->types as $type) {
-            $type->name = $this->toPascalCase($type->name);
+            $className = $this->defineClassName($type);
 
-            $this->currentNamespace = sprintf('%s\\%s', self::NAMESPACE_BASE, $type->name);
+            $this->currentNamespace = sprintf('%s\\%s', self::NAMESPACE_BASE, $className);
             $this->currentFilename = sprintf(
                 '%s/%s/%s',
                 Extractor::GENERATED_DIR,
-                $type->name,
-                $type->name,
+                $className,
+                $className,
             );
 
-            $this->writeFullType($type);
+            $this->writeFullType($type, $className);
         }
     }
 
-    private function writeFullType(MainType|PropertyType $type): void
+    private function writeFullType(MainType|PropertyType $type, string $className): void
     {
         $namespace = $this->currentNamespace;
         $filename = $this->currentFilename . '.php';
 
         $this->filesystem->dumpFile(
             $filename,
-            $this->printer->prettyPrintFile([$this->generateType($type, $namespace)])
+            $this->printer->prettyPrintFile([$this->generateType($type, $namespace, $className)])
         );
     }
 
-    private function generateType(MainType|PropertyType $type, string $namespace): Stmt\Namespace_
+    private function generateType(MainType|PropertyType $type, string $namespace, string $className): Stmt\Namespace_
     {
         $node = $this->factory
             ->namespace($namespace);
 
         $class = $this->factory
-            ->class($type->name)
+            ->class($className)
             ->makeFinal();
 
         $class->addStmt(
@@ -98,11 +98,6 @@ class Generator implements GeneratorInterface
             if (\count($type->subTypes)) {
                 $this->generateSubTypes($type, $class);
             }
-
-            $class->addStmt(
-                $this->factory->classConst('TYPES', $type->multipleTypes)
-                    ->makePublic()
-            );
 
             $class->addStmt(
                 $this->factory->classConst('DOCUMENTATION_URL', $type->documentationUrl)
@@ -172,7 +167,6 @@ class Generator implements GeneratorInterface
             }
 
             foreach ($property->types as $type) {
-                $property->name = $this->toPascalCase($property->name);
                 $formattedProperties[$property->name][] = $type->name;
 
                 if (\count($type->requiredProperties) || \count($type->recommendedProperties)) {
@@ -182,11 +176,13 @@ class Generator implements GeneratorInterface
                     $newFilename = $this->removeFilenameParentName($this->currentFilename);
 
                     $type->name = $this->toPascalCase($type->name);
+                    $propertyName = ucfirst($property->name);
+                    $className = $this->defineClassName($type);
 
-                    $this->currentNamespace = sprintf('%s\\%s', $previousNamespace, $property->name);
-                    $this->currentFilename = sprintf('%s/%s/%s', $newFilename, $property->name, $type->name);
+                    $this->currentNamespace = sprintf('%s\\%s', $previousNamespace, $propertyName);
+                    $this->currentFilename = sprintf('%s/%s/%s', $newFilename, $propertyName, $className);
 
-                    $this->writeFullType($type);
+                    $this->writeFullType($type, $className);
 
                     $this->currentNamespace = $previousNamespace;
                     $this->currentFilename = $previousFilename;
@@ -205,18 +201,18 @@ class Generator implements GeneratorInterface
         $previousFilename = $this->currentFilename;
 
         foreach ($type->subTypes as $subType) {
-            $subType->name = $this->toPascalCase($subType->name);
+            $className = $this->defineClassName($subType);
 
             $newNamespace = sprintf('%s\\Subtypes', $previousNamespace);
             $newFilename = $this->removeFilenameParentName($previousFilename);
-            $newFilename = sprintf('%s/Subtypes/%s', $newFilename, $subType->name);
+            $newFilename = sprintf('%s/Subtypes/%s', $newFilename, $className);
 
             $this->currentNamespace = $newNamespace;
             $this->currentFilename = $newFilename;
 
-            $subTypes[$subType->name] = $newNamespace . '\\' . $subType->name;
+            $subTypes[$className] = $newNamespace . '\\' . $className;
 
-            $this->writeFullType($subType);
+            $this->writeFullType($subType, $className);
 
             $this->currentNamespace = $previousNamespace;
             $this->currentFilename = $previousFilename;
@@ -240,7 +236,7 @@ class Generator implements GeneratorInterface
         $this->currentNamespace = $newNamespace;
         $this->currentFilename = $newFilename;
 
-        $this->writeFullType($carousel);
+        $this->writeFullType($carousel, 'Carousel');
 
         $this->currentNamespace = $previousNamespace;
         $this->currentFilename = $previousFilename;
@@ -249,6 +245,20 @@ class Generator implements GeneratorInterface
             $this->factory->classConst('CAROUSEL', sprintf('%s\\Carousel', $newNamespace))
                 ->makePublic()
         );
+    }
+
+    private function defineClassName(MainType|PropertyType $type): string
+    {
+        $className = $type->name;
+
+        // For nor only main types may have multiple types, but we should keep an eye on it;
+        if ($type instanceof MainType && \count($type->multipleTypes)) {
+            // It is way easier concatenating the multiple types in the class name.
+            // The class name will be weird but the original name will be kept in $type->name and sent to the front.
+            $className = implode(' ', $type->multipleTypes);
+        }
+
+        return $this->toPascalCase($className);
     }
 
     private function toPascalCase(string $string): string

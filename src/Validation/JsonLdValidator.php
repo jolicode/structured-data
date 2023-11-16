@@ -183,7 +183,7 @@ class JsonLdValidator
             foreach ($errors as $error) {
                 [$severity, $message] = $error;
 
-                $typeLabel = \is_string($type->type) ? $type->type : null;
+                $typeLabel = \is_string($type->type) ? Keyword::TYPE->value : null;
 
                 $this->addTypeError($severity, $message, $typeLabel);
             }
@@ -201,7 +201,7 @@ class JsonLdValidator
         }
 
         foreach ($this->container->getValidators() as $validator) {
-            $errors = $validator::validateProperty($type, $property);
+            $errors = $validator::validateProperty($type, $property, $this->typesStack);
 
             foreach ($errors as $error) {
                 [$severity, $message] = $error;

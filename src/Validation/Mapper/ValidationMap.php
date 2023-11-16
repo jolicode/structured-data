@@ -49,13 +49,6 @@ class ValidationMap
         $this->errors[] = $error;
     }
 
-    public function addErrors(MappedError ...$errors): void
-    {
-        foreach ($errors as $error) {
-            $this->errors[] = $error;
-        }
-    }
-
     public function getTree(): array
     {
         return $this->tree;

@@ -11,12 +11,11 @@
 
 namespace Jolicode\JsonLd\Validation\Validators\Google;
 
+use Jolicode\JsonLd\Algorithms\Http\IriResolver;
 use Jolicode\JsonLd\Validation\Error\ValidationError;
 use Jolicode\JsonLd\Validation\Mapper\MappedProperty;
 use Jolicode\JsonLd\Validation\Mapper\MappedType;
 use Jolicode\JsonLd\Validation\Validators\ValidatorInterface;
-use League\Uri\Exceptions\SyntaxError;
-use League\Uri\Uri;
 
 class GoogleValidator implements ValidatorInterface
 {
@@ -41,48 +40,36 @@ class GoogleValidator implements ValidatorInterface
             return $errors;
         }
 
-        // "creator":{
-        //     "@type":"Organization",
-        //     "url": "https://www.ncei.noaa.gov/",
-        //     "name":"OC/NOAA/NESDIS/NCEI > National Centers for Environmental Information, NESDIS, NOAA, U.S. Department of Commerce",
-        //     "contactPoint":{
-        //        "@type":"ContactPoint",
-        //        "contactType": "customer service",
-        //        "telephone":"+1-828-271-4800",
-        //        "email":"ncei.orders@noaa.gov"
-        //     }
-        //  },
+        if (\is_array($type->type)) {
+            return self::validateMultipleTypesEntry($type, $property, $typesStack);
+        }
 
-        if (!$property && \is_string($type->type)) {
+        if (!$property) {
             self::$rootType = $type->type;
         }
 
-        if (class_exists($fqcn = self::buildFqcn($typesStack, $type))) {
-            dd($fqcn);
+        if (!class_exists($fqcn = self::buildFqcn($typesStack, $type->type))) {
+            return $errors;
         }
 
-        foreach ((array) $type->type as $label) {
-            $typeNamespace = self::getFqcn($label);
-        }
+        self::validateRequiredProperties($type, $fqcn, $errors);
+        self::validateRecommendedProperties($type, $fqcn, $errors);
 
         return $errors;
     }
 
-    public static function validateProperty(MappedType $type, MappedProperty $property): array
+    public static function validateProperty(MappedType $type, MappedProperty $property, array $typesStack): array
     {
         $errors = [];
 
         foreach ((array) $type->type as $label) {
-            $typeNamespace = self::getFqcn($label);
-            // TODO: not working ?
-            $typeFqcn = sprintf('%s\\%s', $typeNamespace, $label);
+            $typeFqcn = self::buildFqcn($typesStack, $label);
 
             if (!class_exists($typeFqcn)) {
                 continue;
             }
 
             $propertyKey = $property->key;
-            // $propertyKey = ucfirst($property->key);
 
             $foundProperty = array_filter(
                 [...$typeFqcn::RECOMMENDED_PROPERTIES, ...$typeFqcn::REQUIRED_PROPERTIES],
@@ -107,6 +94,76 @@ class GoogleValidator implements ValidatorInterface
         return $errors;
     }
 
+    private static function validateMultipleTypesEntry(MappedType $type, ?MappedProperty $property, array $typesStack): array
+    {
+        $className = self::concatenateTypeLabels($type);
+        $fqcn = sprintf(
+            '%s\\%s\\%s',
+            self::BASE_NAMESPACE,
+            $className,
+            $className,
+        );
+
+        if (class_exists($fqcn)) {
+            $clone = clone $type;
+            $clone->type = $className;
+
+            return self::validateType($clone, $property, $typesStack);
+        }
+
+        $cloneErrors = [];
+
+        foreach ($type->type as $label) {
+            $clone = clone $type;
+            $clone->type = $label;
+
+            $typeErrors = self::validateType($clone, $property, $typesStack);
+
+            if (!\count($typeErrors)) {
+                return [];
+            }
+
+            $cloneErrors[] = [...$typeErrors];
+        }
+
+        return $cloneErrors;
+    }
+
+    private static function validateRequiredProperties(MappedType $type, string $fqcn, array &$errors): void
+    {
+        $missingRequiredProperties = array_diff_key($fqcn::REQUIRED_PROPERTIES, $type->properties);
+
+        SpecialCasesHandler::handleSpecialRequiredProperties($type, $missingRequiredProperties);
+
+        foreach ($missingRequiredProperties as $label => $values) {
+            $message = sprintf('Missing required property: "%s".', $label);
+
+            $errors[] = [ValidationError::SEVERITY_ERROR, $message];
+        }
+    }
+
+    private static function validateRecommendedProperties(MappedType $type, string $fqcn, array &$errors): void
+    {
+        $missingRecommendedProperties = array_diff_key($fqcn::RECOMMENDED_PROPERTIES, $type->properties);
+
+        SpecialCasesHandler::handleSpecialRecommendedProperties($type, $missingRecommendedProperties);
+
+        foreach ($missingRecommendedProperties as $label => $values) {
+            $message = sprintf('Missing recommended property: "%s".', $label);
+
+            $errors[] = [ValidationError::SEVERITY_WARNING, $message];
+        }
+    }
+
+    private static function concatenateTypeLabels(MappedType $type): string
+    {
+        $className = $type->type;
+        array_walk($className, fn (string & $word) => $word = ucfirst($word));
+        $className = implode('', $className);
+
+        return $className;
+    }
+
     private static function typeHasInvalidValue(string $expectedType, string $givenValue): false|string
     {
         return match (true) {
@@ -129,37 +186,27 @@ class GoogleValidator implements ValidatorInterface
 
     private static function hasIncorrectUrl(string $givenValue): false|string
     {
-        try {
-            Uri::createFromString($givenValue);
-        } catch (SyntaxError $error) {
-            return sprintf('Incorrect URL: "%s" given.', $givenValue);
-        }
-
-        return false;
+        return IriResolver::isAbsoluteIri($givenValue) ? false : sprintf('Incorrect URL: "%s" given.', $givenValue);
     }
 
-    private static function buildFqcn(array $typesStack, MappedType $currentType): string
+    private static function buildFqcn(array $typesStack, string $typeName): string
     {
         $fqcn = self::BASE_NAMESPACE;
 
+        array_unshift($typesStack, self::$rootType);
+
         foreach ($typesStack as $type) {
-            // TODO : Fix this!
             if (\is_array($type)) {
-                continue;
+                // The array will be full of the same string. It is used to map the errors back to the user, it should not be used
+                // for validation.
+                $type = $type[0];
             }
 
             $fqcn .= sprintf('\\%s', ucfirst($type));
         }
 
-        if (\is_string($currentType->type)) {
-            $fqcn .= sprintf('\\%s', $currentType->type);
-        }
+        $fqcn .= sprintf('\\%s', $typeName);
 
         return $fqcn;
-    }
-
-    private static function getFqcn(string $label): string
-    {
-        return sprintf('%s\\%s', self::BASE_NAMESPACE, $label);
     }
 }
