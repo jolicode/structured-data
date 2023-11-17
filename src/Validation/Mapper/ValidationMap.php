@@ -22,7 +22,7 @@ class ValidationMap
         /**
          * MappedType[].
          */
-        private array $tree = [],
+        private array $types = [],
     ) {
     }
 
@@ -49,13 +49,13 @@ class ValidationMap
         $this->errors[] = $error;
     }
 
-    public function getTree(): array
+    public function getTypes(): array
     {
-        return $this->tree;
+        return $this->types;
     }
 
     public function addType(MappedType $type): void
     {
-        $this->tree[] = $type;
+        $this->types[] = $type;
     }
 }

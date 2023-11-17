@@ -1,0 +1,121 @@
+{
+    "@context": "https://schema.org/",
+    "@id": "https://www.example.com/advancedCpp",
+    "@type": "Course",
+    "name": "Learn Advanced C++ Topics",
+    "description": "Improve your C++ skills by learning advanced topics.",
+    "publisher": {
+    "@type": "Organization",
+    "name": "CourseWebsite",
+    "url": "www.examplecoursewebsite.com"
+    },
+    "provider": {
+    "@type": "Organization",
+    "name": "Example University",
+    "url": "www.exampleuniversity.com"
+    },
+    "image": [
+    "https://example.com/photos/1x1/photo.jpg",
+    "https://example.com/photos/4x3/photo.jpg",
+    "https://example.com/photos/16x9/photo.jpg"
+    ],
+    "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": 4,
+    "ratingCount": 1234,
+    "reviewCount": 450
+    },
+    "offers": [{
+    "@type": "Offer",
+    "category": "Paid",
+    "priceCurrency": "EUR",
+    "price": 10.99
+    }],
+    "totalHistoricalEnrollment": 12345,
+    "datePublished": "2019-03-21",
+    "educationalLevel": "Advanced",
+    "about": ["C++ Coding", "Backend Engineering"],
+    "teaches": ["Practice and apply systems thinking to plan for change",
+                "Understand how memory allocation works."],
+    "financialAidEligible": "Scholarship Available",
+    "inLanguage": "en",
+    "availableLanguage": ["fr", "es"],
+    "syllabusSections": [
+    {
+        "@type": "Syllabus",
+        "name": "Memory Allocation",
+        "description": "Learn how memory is allocated when creating C++ variables.",
+        "timeRequired": "PT6H"
+    },
+    {
+        "@type": "Syllabus",
+        "name": "C++ Pointers",
+        "description": "Learn what a C++ pointer is and when they are used.",
+        "timeRequired": "PT11H"
+    }
+    ],
+    "review": [
+    {
+    "@type": "Review",
+    "author": {
+        "@type": "Person",
+        "name": "Lou S."
+    },
+    "datePublished": "2020-08-31",
+    "reviewBody": "My C++ skills improved, but the pace was too fast.",
+    "reviewRating": {
+        "@type": "Rating",
+        "bestRating": 10,
+        "ratingValue": 6
+    }
+    }],
+    "coursePrerequisites": [
+    "Basic understanding of C++ up to arrays and functions.",
+    "https://www.example.com/beginnerCpp"
+    ],
+    "educationalCredentialAwarded": [{
+    "@type": "EducationalOccupationalCredential",
+    "name": "CourseProvider Certificate",
+    "url": "www.example.com",
+    "credentialCategory": "Certificate",
+    "offers": [{
+        "@type": "Offer",
+        "category": "Paid",
+        "price": 5,
+        "priceCurrency": "USD"
+    }]
+    }],
+    "video": {
+    "@type": "VideoObject",
+    "name": "Video name",
+    "description": "A video previewing this course.",
+    "uploadDate": "2022-03-28",
+    "contentUrl": "www.example.come/mp4",
+    "thumbnailUrl": "www.example.com/thumbnailurl.jpg"
+    },
+    "hasCourseInstance": [
+    {
+    "@type": "CourseInstance",
+    "courseMode": "Blended",
+    "location": "Example University",
+    "courseSchedule": {
+        "@type": "Schedule",
+        "duration": "PT3H",
+        "repeatFrequency": "Daily",
+        "repeatCount": 31,
+        "startDate": "2023-07-01",
+        "endDate": "2023-07-31"
+    },
+    "instructor": [{
+        "@type": "Person",
+        "name": "Ira D.",
+        "description": "Professor at X-University",
+        "image": "http://example.com/person.jpg"
+    }]
+    },
+    {
+    "@type": "CourseInstance",
+    "courseMode": "Online",
+    "courseWorkload": "P2D"
+    }]
+}

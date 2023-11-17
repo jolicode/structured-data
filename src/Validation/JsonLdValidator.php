@@ -13,7 +13,10 @@ namespace Jolicode\JsonLd\Validation;
 
 use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
+use Jolicode\JsonLd\Algorithms\Http\IriResolver;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
+use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
+use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
 use Jolicode\JsonLd\Parser\JsonLdParser;
 use Jolicode\JsonLd\Parser\Position;
 use Jolicode\JsonLd\Parser\Range;
@@ -55,15 +58,17 @@ class JsonLdValidator
      * This method takes a raw JSON-LD string and will validate it.
      * It will return a ValidationMap object, containing the validation errors found with their location in the JSON-LD document.
      * The map also contains a user friendly tree of all the types found in the JSON-LD document, used for frontend and API purposes.
+     *
+     * @return array<ValidationMap>
      */
-    public function validate(string $jsonLd): ValidationMap
+    public function validate(string $jsonLd): array
     {
         $this->reset();
 
         try {
             $parsedJsonLd = $this->parser->parse($jsonLd);
         } catch (ParsingException $exception) {
-            return $this->createMapWithInvalidDocument($exception->getMessage());
+            return [$this->createMapWithInvalidDocument($exception->getMessage())];
         }
 
         $expander = new Expander();
@@ -71,11 +76,34 @@ class JsonLdValidator
         try {
             $expansionResult = $expander->parseJson($jsonLd, encodeResult: false);
         } catch (JsonLdException $exception) {
-            return $this->createMapWithInvalidDocument($exception->getMessage());
+            return [$this->createMapWithInvalidDocument($exception->getMessage())];
         }
 
-        $map = $this->validationMapper->map($expansionResult);
-        $this->validateTypesTree($map->getTree());
+        $maps = [];
+
+        if ($parsedJsonLd instanceof ArrayStructure) {
+            foreach ($parsedJsonLd->getValues() as $index => $jsonLdNode) {
+                $maps[] = $this->createValidationMap([$expansionResult[$index]], $jsonLdNode->content);
+            }
+        } else {
+            $maps[] = $this->createValidationMap($expansionResult, $parsedJsonLd);
+        }
+
+        return $maps;
+    }
+
+    private function createValidationMap(array $expandedJsonLd, ObjectStructure $parsedJsonLd): ValidationMap
+    {
+        $this->reset();
+
+        $map = $this->validationMapper->map($expandedJsonLd);
+
+        $this->hasAGraph = \count($map->getTypes()) > 1;
+
+        foreach ($map->getTypes() as $type) {
+            $this->validateType($type);
+        }
+
         $this->validationMapper->mapErrorsRanges($this->validationErrors, $parsedJsonLd, $this->hasAGraph);
 
         return $this->validationMapper->getMap();
@@ -106,28 +134,15 @@ class JsonLdValidator
     }
 
     /**
-     * @param MappedType[] $types
-     */
-    private function validateTypesTree(array $types): void
-    {
-        if (\count($types) > 1) {
-            $this->hasAGraph = true;
-        }
-
-        /**
-         * @var MappedType $type
-         */
-        foreach ($types as $type) {
-            $this->validateType($type);
-        }
-    }
-
-    /**
      * This method will iterate over each type of a property and validate them.
      * A type may contain other types as property values, so it will recursively call itself if some are found.
      */
     private function validateType(MappedType $type, MappedProperty $originalProperty = null): void
     {
+        if (IriResolver::isAbsoluteIri($type->type)) {
+            return;
+        }
+
         $this->callValidatorsForType($type, $originalProperty);
 
         /**

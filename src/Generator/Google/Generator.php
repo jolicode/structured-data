@@ -11,6 +11,7 @@
 
 namespace Jolicode\JsonLd\Generator\Google;
 
+use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Generator\GeneratorInterface;
 use Jolicode\JsonLd\Generator\Google\Objects\MainType;
 use Jolicode\JsonLd\Generator\Google\Objects\PropertyType;
@@ -167,6 +168,11 @@ class Generator implements GeneratorInterface
             }
 
             foreach ($property->types as $type) {
+                if (Keyword::tryFrom($property->name)) {
+                    // We skip keywords... They are not Google properties.
+                    continue;
+                }
+
                 $formattedProperties[$property->name][] = $type->name;
 
                 if (\count($type->requiredProperties) || \count($type->recommendedProperties)) {

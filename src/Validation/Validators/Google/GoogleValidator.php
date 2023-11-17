@@ -48,12 +48,36 @@ class GoogleValidator implements ValidatorInterface
             self::$rootType = $type->type;
         }
 
-        if (!class_exists($fqcn = self::buildFqcn($typesStack, $type->type))) {
+        $baseType = self::buildFqcn($type->type);
+        $nestedType = self::buildFqcn($type->type, $typesStack);
+
+        if (!class_exists($baseType) && !class_exists($nestedType)) {
             return $errors;
         }
 
-        self::validateRequiredProperties($type, $fqcn, $errors);
-        self::validateRecommendedProperties($type, $fqcn, $errors);
+        $requiredProperties = [];
+        $recommendedProperties = [];
+
+        if (class_exists($baseType)) {
+            $requiredProperties = array_merge($requiredProperties, $baseType::REQUIRED_PROPERTIES);
+            $recommendedProperties = array_merge($recommendedProperties, $baseType::RECOMMENDED_PROPERTIES);
+        }
+
+        if (class_exists($nestedType)) {
+            $requiredProperties = array_merge($requiredProperties, $nestedType::REQUIRED_PROPERTIES);
+            $recommendedProperties = array_merge($recommendedProperties, $nestedType::RECOMMENDED_PROPERTIES);
+        }
+
+        self::validateRequiredProperties(
+            $type,
+            $requiredProperties,
+            $errors
+        );
+        self::validateRecommendedProperties(
+            $type,
+            $recommendedProperties,
+            $errors
+        );
 
         return $errors;
     }
@@ -63,7 +87,7 @@ class GoogleValidator implements ValidatorInterface
         $errors = [];
 
         foreach ((array) $type->type as $label) {
-            $typeFqcn = self::buildFqcn($typesStack, $label);
+            $typeFqcn = self::buildFqcn($label, $typesStack);
 
             if (!class_exists($typeFqcn)) {
                 continue;
@@ -129,27 +153,27 @@ class GoogleValidator implements ValidatorInterface
         return $cloneErrors;
     }
 
-    private static function validateRequiredProperties(MappedType $type, string $fqcn, array &$errors): void
+    private static function validateRequiredProperties(MappedType $type, array $properties, array &$errors): void
     {
-        $missingRequiredProperties = array_diff_key($fqcn::REQUIRED_PROPERTIES, $type->properties);
+        $missingRequiredProperties = array_diff_key($properties, $type->properties);
 
         SpecialCasesHandler::handleSpecialRequiredProperties($type, $missingRequiredProperties);
 
         foreach ($missingRequiredProperties as $label => $values) {
-            $message = sprintf('Missing required property: "%s".', $label);
+            $message = sprintf('Missing required property: "%s"', $label);
 
             $errors[] = [ValidationError::SEVERITY_ERROR, $message];
         }
     }
 
-    private static function validateRecommendedProperties(MappedType $type, string $fqcn, array &$errors): void
+    private static function validateRecommendedProperties(MappedType $type, array $properties, array &$errors): void
     {
-        $missingRecommendedProperties = array_diff_key($fqcn::RECOMMENDED_PROPERTIES, $type->properties);
+        $missingRecommendedProperties = array_diff_key($properties, $type->properties);
 
         SpecialCasesHandler::handleSpecialRecommendedProperties($type, $missingRecommendedProperties);
 
         foreach ($missingRecommendedProperties as $label => $values) {
-            $message = sprintf('Missing recommended property: "%s".', $label);
+            $message = sprintf('Missing recommended property: "%s"', $label);
 
             $errors[] = [ValidationError::SEVERITY_WARNING, $message];
         }
@@ -189,13 +213,17 @@ class GoogleValidator implements ValidatorInterface
         return IriResolver::isAbsoluteIri($givenValue) ? false : sprintf('Incorrect URL: "%s" given.', $givenValue);
     }
 
-    private static function buildFqcn(array $typesStack, string $typeName): string
+    private static function buildFqcn(string $typeName, array $parents = []): string
     {
         $fqcn = self::BASE_NAMESPACE;
 
-        array_unshift($typesStack, self::$rootType);
+        // When no parents are provided, this means we are trying to build a main type.
+        // Main types have no parent and their namespace is Google\TypeName.
+        if (\count($parents)) {
+            array_unshift($parents, self::$rootType);
+        }
 
-        foreach ($typesStack as $type) {
+        foreach ($parents as $type) {
             if (\is_array($type)) {
                 // The array will be full of the same string. It is used to map the errors back to the user, it should not be used
                 // for validation.

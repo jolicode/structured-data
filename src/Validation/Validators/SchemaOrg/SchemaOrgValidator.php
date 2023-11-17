@@ -11,6 +11,7 @@
 
 namespace Jolicode\JsonLd\Validation\Validators\SchemaOrg;
 
+use Jolicode\JsonLd\Algorithms\Http\IriResolver;
 use Jolicode\JsonLd\Validation\Error\ValidationError;
 use Jolicode\JsonLd\Validation\Mapper\MappedProperty;
 use Jolicode\JsonLd\Validation\Mapper\MappedType;
@@ -54,7 +55,7 @@ class SchemaOrgValidator implements ValidatorInterface
                 $errors[] = [ValidationError::SEVERITY_ERROR, $message];
             }
 
-            if ($property) {
+            if ($property && !IriResolver::isAbsoluteIri($property->key)) {
                 if (!self::propertyTypeIsValid($property->key, $typeFqcn)) {
                     $message = sprintf('The "%s" property does not accept the "%s" type as a value.', $property->key, $typeFqcn::LABEL);
 

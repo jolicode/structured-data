@@ -21,6 +21,10 @@ class SpecialCasesHandler
      */
     public static function handleSpecialRequiredProperties(MappedType $type, array &$missingRequiredProperties): void
     {
+        if (\array_key_exists('atLeastOneOf', $missingRequiredProperties)) {
+            // TODO: handle atLeastOneOf
+            unset($missingRequiredProperties['atLeastOneOf']);
+        }
     }
 
     /**
@@ -34,6 +38,11 @@ class SpecialCasesHandler
         // Even if clips are not recommended, they are present in the recommended table of the documentation.
         if (\array_key_exists('hasPart', $missingRecommendedProperties)) {
             unset($missingRecommendedProperties['hasPart']);
+        }
+
+        if (\array_key_exists('atLeastOneOf', $missingRecommendedProperties)) {
+            // TODO: handle atLeastOneOf
+            unset($missingRecommendedProperties['atLeastOneOf']);
         }
     }
 }
