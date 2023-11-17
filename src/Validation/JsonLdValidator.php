@@ -34,10 +34,6 @@ use JsonStreamingParser\Exception\ParsingException;
 class JsonLdValidator
 {
     public function __construct(
-        private bool $hasAGraph = false,
-
-        private int $graphKey = 0,
-
         /**
          * @var array<string, string|array<string>>
          */
@@ -98,21 +94,17 @@ class JsonLdValidator
 
         $map = $this->validationMapper->map($expandedJsonLd);
 
-        $this->hasAGraph = \count($map->getTypes()) > 1;
-
         foreach ($map->getTypes() as $type) {
             $this->validateType($type);
         }
 
-        $this->validationMapper->mapErrorsRanges($this->validationErrors, $parsedJsonLd, $this->hasAGraph);
+        $this->validationMapper->mapErrorsRanges($this->validationErrors, $parsedJsonLd);
 
         return $this->validationMapper->getMap();
     }
 
     private function reset(): void
     {
-        $this->hasAGraph = false;
-        $this->graphKey = 0;
         $this->typesStack = [];
         $this->validationErrors = [];
         $this->validationMapper->reset();
@@ -184,14 +176,17 @@ class JsonLdValidator
 
             $this->callValidatorsForProperty($property, $type);
         }
-
-        if ($this->hasAGraph) {
-            ++$this->graphKey;
-        }
     }
 
     private function callValidatorsForType(MappedType $type, ?MappedProperty $property): void
     {
+        $graphKey = 0;
+        $hasAGraph = false;
+
+        if (\count($this->validationMapper->flattenedTypeReferences)) {
+            $this->getGraphKey($type, $graphKey, $hasAGraph);
+        }
+
         foreach ($this->container->getValidators() as $validator) {
             $errors = $validator::validateType($type, $property, $this->typesStack);
 
@@ -200,7 +195,7 @@ class JsonLdValidator
 
                 $typeLabel = \is_string($type->type) ? Keyword::TYPE->value : null;
 
-                $this->addTypeError($severity, $message, $typeLabel);
+                $this->addTypeError($severity, $message, $typeLabel, $hasAGraph, $graphKey, $validator::VALIDATOR_NAME);
             }
         }
     }
@@ -215,6 +210,13 @@ class JsonLdValidator
             return;
         }
 
+        $graphKey = 0;
+        $hasAGraph = false;
+
+        if (\count($this->validationMapper->flattenedTypeReferences)) {
+            $this->getGraphKey($type, $graphKey, $hasAGraph);
+        }
+
         foreach ($this->container->getValidators() as $validator) {
             $errors = $validator::validateProperty($type, $property, $this->typesStack);
 
@@ -222,32 +224,62 @@ class JsonLdValidator
                 [$severity, $message] = $error;
 
                 $property->errors[] = [$severity => $message];
-                $this->addPropertyError($severity, $message, $property->key);
+                $this->addPropertyError($severity, $message, $property->key, $hasAGraph, $graphKey, $validator::VALIDATOR_NAME);
             }
         }
     }
 
-    private function addTypeError(string $severity, string $message, ?string $typeLabel): void
+    private function getGraphKey(MappedType $type, int &$graphKey, bool &$hasAGraph): void
     {
+        $hasAGraph = true;
+
+        $graphKey = array_search(
+            $type,
+            $this->validationMapper->flattenedTypeReferences,
+            true
+        );
+
+        $graphKey = array_search(
+            $graphKey,
+            array_keys($this->validationMapper->flattenedTypeReferences), true
+        );
+    }
+
+    private function addTypeError(
+        string $severity,
+        string $message,
+        ?string $typeLabel,
+        bool $hasAGraph,
+        int $graphKey,
+        string $validatorName,
+    ): void {
         $this->validationErrors[] = new TypeValidationError(
             $message,
             $typeLabel,
             $this->typesStack,
-            $this->hasAGraph,
-            $this->graphKey,
-            $severity
+            $hasAGraph,
+            $graphKey,
+            $severity,
+            $validatorName
         );
     }
 
-    private function addPropertyError(string $severity, string $message, string $key): void
-    {
+    private function addPropertyError(
+        string $severity,
+        string $message,
+        string $key,
+        bool $hasAGraph,
+        int $graphKey,
+        string $validatorName,
+    ): void {
         $this->validationErrors[] = new PropertyValidationError(
             $message,
             $key,
             $this->typesStack,
-            $this->hasAGraph,
-            $this->graphKey,
+            $hasAGraph,
+            $graphKey,
             $severity,
+            $validatorName
         );
     }
 }

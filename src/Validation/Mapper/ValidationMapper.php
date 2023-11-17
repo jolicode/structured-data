@@ -21,23 +21,24 @@ use Jolicode\JsonLd\Parser\Properties\Property;
 use Jolicode\JsonLd\Parser\Range;
 use Jolicode\JsonLd\Validation\Error\TypeValidationError;
 use Jolicode\JsonLd\Validation\Error\ValidationError;
+use Jolicode\JsonLd\Validation\Validators\Google\GoogleValidator;
 
 class ValidationMapper
 {
     private const SCHEMA_ORG_DOMAIN = 'http://schema.org/';
 
     public function __construct(
+        /**
+         * @var array<string,MappedType>
+         */
+        public array $flattenedTypeReferences = [],
+
         private ValidationMap $map = new ValidationMap(),
 
         /**
          * @var array<MappedError>
          */
         private array $mappedErrors = [],
-
-        /**
-         * @var array<string,MappedType>
-         */
-        private array $flattenedTypeReferences = [],
 
         /**
          * @var array<string,MappedProperty>
@@ -67,7 +68,7 @@ class ValidationMapper
      */
     public function map(array $expandedJsonLd): ValidationMap
     {
-        foreach ($expandedJsonLd as $type) {
+        foreach ($expandedJsonLd as $index => $type) {
             $type = $this->mapType($type);
 
             // This prevents adding the flattened types to the final result
@@ -79,7 +80,8 @@ class ValidationMapper
         }
 
         $this->mapFlattenedTypes();
-        unset($this->flattenedTypeReferences, $this->propertiesWithReferences);
+
+        unset($this->propertiesWithReferences);
 
         return $this->map;
     }
@@ -92,10 +94,10 @@ class ValidationMapper
     /**
      * @param array<ValidationError> $validationErrors
      */
-    public function mapErrorsRanges(array $validationErrors, StructureInterface $parsedJsonLd, bool $hasAGraph = false): void
+    public function mapErrorsRanges(array $validationErrors, StructureInterface $parsedJsonLd): void
     {
         foreach ($validationErrors as $error) {
-            $typeWithViolation = $this->getTypeWithError($error, $parsedJsonLd, $hasAGraph);
+            $typeWithViolation = $this->getTypeWithError($error, $parsedJsonLd);
 
             if ($error instanceof TypeValidationError) {
                 if (Keyword::TYPE->value !== $error->key) {
@@ -105,7 +107,7 @@ class ValidationMapper
                 }
             }
 
-            $propertyWithError = $hasAGraph ?
+            $propertyWithError = $error->hasAGraph ?
                 $typeWithViolation->getGraphProperty($error->key, $error->graphKey) :
                 $typeWithViolation->getProperty($error->key);
 
@@ -285,7 +287,7 @@ class ValidationMapper
         ));
     }
 
-    private function getTypeWithError(ValidationError $error, StructureInterface $parsedJsonLd, bool $hasAGraph): ObjectStructure
+    private function getTypeWithError(ValidationError $error, StructureInterface $parsedJsonLd): ObjectStructure
     {
         /**
          * @var ObjectStructure $rootType
@@ -296,9 +298,15 @@ class ValidationMapper
             return $rootType;
         }
 
+        // Google validates that a property is MISSING. Obviously it will be impossible to find it on the object properties...
+        // So we just return the root type.
+        if (GoogleValidator::VALIDATOR_NAME === $error->validatorName) {
+            return $rootType;
+        }
+
         $currentType = $rootType;
 
-        if ($hasAGraph) {
+        if ($error->graphKey) {
             /**
              * @var ArrayStructure $graph
              */
@@ -329,9 +337,20 @@ class ValidationMapper
         $properties = $currentType->getProperties();
 
         if (\is_array($property)) {
-            $propertyWithError = $properties[$property[0]];
+            $propertyName = $property[0];
         } else {
-            $propertyWithError = $properties[$property];
+            $propertyName = $property;
+        }
+
+        if (!\array_key_exists($propertyName, $properties)) {
+            // When the user provide an expanded input, all properties are prefixed with the schema.org domain.
+            // But when we validate it, we strip the schema.org domain, which are automatically added by the expander.
+            // So, when mappind back the error to the user input, we will need the schema.org domain to find the property.
+            $prefixedPropertyName = sprintf('%s%s', self::SCHEMA_ORG_DOMAIN, $propertyName);
+
+            $propertyWithError = $properties[$prefixedPropertyName];
+        } else {
+            $propertyWithError = $properties[$propertyName];
         }
 
         $typeWithError = $propertyWithError->value->content;

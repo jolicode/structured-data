@@ -35,8 +35,6 @@ abstract class AbstractType
          * @var array<Property> $currentProperties
          */
         protected array $currentProperties = [],
-
-        protected int $atLeastOneOfCounter = 0,
     ) {
     }
 
@@ -71,7 +69,7 @@ abstract class AbstractType
         $targetProperties = "{$severity}Properties";
 
         if ($atLeastOneOf) {
-            $name = 'atLeastOneOf_' . $this->atLeastOneOfCounter++;
+            $name = 'atLeastOneOf';
         }
 
         if (Extractor::SEVERITY_RECOMMENDED === $severity && \array_key_exists($name, $this->requiredProperties)) {

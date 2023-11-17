@@ -39,6 +39,14 @@ class ObjectStructure implements StructureInterface
 
     public function getProperty(?string $name): Property
     {
+        if (!\array_key_exists($name, $this->properties)) {
+            if (Keyword::tryFrom($name)) {
+                return $this->properties[str_replace('@', '', $name)];
+            }
+
+            throw new \InvalidArgumentException(sprintf('Property "%s" does not exist on this type.', $name));
+        }
+
         return $this->properties[$name];
     }
 

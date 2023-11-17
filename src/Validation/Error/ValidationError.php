@@ -28,11 +28,13 @@ readonly class ValidationError
          */
         public array $propertiesChain,
 
-        public bool $onGraph,
+        public bool $hasAGraph,
 
         public int $graphKey,
 
         public string $severity,
+
+        public string $validatorName,
     ) {
     }
 }

@@ -19,6 +19,8 @@ use Jolicode\JsonLd\Validation\Validators\ValidatorInterface;
 
 class SchemaOrgValidator implements ValidatorInterface
 {
+    public const VALIDATOR_NAME = 'SchemaOrg';
+
     public static function validateType(MappedType $type, ?MappedProperty $property, array $typesStack): array
     {
         $errors = [];

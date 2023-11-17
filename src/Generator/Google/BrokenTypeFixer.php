@@ -71,10 +71,10 @@ class BrokenTypeFixer
 
     private static function fixSoftwareApplication(MainType $type): void
     {
-        if (!$type->hasProperty('atLeastOneOf_0')) {
+        if (!$type->hasProperty('atLeastOneOf')) {
             $properties = [
-                new PropertyType('aggregateRating', ['AggregateRating' => new Property('AggregateRating')]),
-                new PropertyType('review', ['Review' => new Property('Review')]),
+                'aggregateRating' => new PropertyType('aggregateRating', ['AggregateRating' => new Property('AggregateRating')]),
+                'review' => new PropertyType('review', ['Review' => new Property('Review')]),
             ];
 
             $type->initProperty('atLeastOneOf', Extractor::SEVERITY_REQUIRED, atLeastOneOf: $properties);
@@ -107,7 +107,7 @@ class BrokenTypeFixer
 
     private static function fixSpecialAnnouncement(MainType $type): void
     {
-        if (!$type->hasProperty('atLeastOneOf_0')) {
+        if (!$type->hasProperty('atLeastOneOf')) {
             $properties = [
                 'diseasePreventionInfo' => new PropertyType('diseasePreventionInfo'),
                 'diseaseSpreadStatistics' => new PropertyType('diseaseSpreadStatistics'),

@@ -16,6 +16,8 @@ use Jolicode\JsonLd\Validation\Mapper\MappedType;
 
 interface ValidatorInterface
 {
+    public const VALIDATOR_NAME = 'ValidatorInterface';
+
     /**
      * This method must validate a type exists.
      */

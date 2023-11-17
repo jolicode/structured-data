@@ -70,19 +70,11 @@ class Property
 
     public function addType(string $name): void
     {
-        if (str_starts_with($this->name, 'atLeastOneOf')) {
-            $this->atLeastOneOf[$name] = new PropertyType($name);
-        }
-
         $this->types[$name] = new PropertyType($name);
     }
 
     public function removeType(string $name): void
     {
-        if (str_starts_with($this->name, 'atLeastOneOf')) {
-            unset($this->atLeastOneOf[$name]);
-        }
-
         unset($this->types[$name]);
     }
 }

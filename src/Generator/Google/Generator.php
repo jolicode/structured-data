@@ -160,11 +160,24 @@ class Generator implements GeneratorInterface
         $formattedProperties = [];
 
         foreach ($properties as $property) {
-            if ($property->atLeastOneOf) {
-                $formattedProperties['atLeastOneOf'] = array_map(
-                    fn (PropertyType $type) => $type->name,
-                    $property->atLeastOneOf
+            if (\count($property->atLeastOneOf)) {
+                $atLeastOneOf = [];
+
+                array_walk(
+                    $property->atLeastOneOf,
+                    function (PropertyType $type) use (&$atLeastOneOf, &$formattedProperties, $property) {
+                        $atLeastOneOf[$type->name] = array_keys($property->types);
+
+                        if (!\array_key_exists($type->name, $formattedProperties)) {
+                            $formattedProperties[$type->name] = $atLeastOneOf[$type->name];
+                        }
+                    }
                 );
+
+                $formattedProperties['atLeastOneOf'] = $atLeastOneOf;
+                unset($properties['atLeastOneOf']);
+
+                continue;
             }
 
             foreach ($property->types as $type) {

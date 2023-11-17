@@ -19,6 +19,8 @@ use Jolicode\JsonLd\Validation\Validators\ValidatorInterface;
 
 class GoogleValidator implements ValidatorInterface
 {
+    public const VALIDATOR_NAME = 'Google';
+
     private const BASE_NAMESPACE = 'Google';
 
     private const DATA_TYPE_DATE = 'Date';
@@ -153,11 +155,24 @@ class GoogleValidator implements ValidatorInterface
         return $cloneErrors;
     }
 
-    private static function validateRequiredProperties(MappedType $type, array $properties, array &$errors): void
+    private static function validateRequiredProperties(MappedType $type, array $requiredProperties, array &$errors): void
     {
-        $missingRequiredProperties = array_diff_key($properties, $type->properties);
+        $missingRequiredProperties = array_diff_key($requiredProperties, $type->properties);
 
         SpecialCasesHandler::handleSpecialRequiredProperties($type, $missingRequiredProperties);
+
+        if (\array_key_exists('atLeastOneOf', $missingRequiredProperties)) {
+            if (!\count(array_intersect_key($missingRequiredProperties['atLeastOneOf'], $type->properties))) {
+                $message = sprintf(
+                    'Missing required property: at least one of the following properties must be present "%s"',
+                    implode(', ', array_keys($missingRequiredProperties['atLeastOneOf']))
+                );
+
+                unset($missingRequiredProperties['atLeastOneOf']);
+
+                $errors[] = [ValidationError::SEVERITY_ERROR, $message];
+            }
+        }
 
         foreach ($missingRequiredProperties as $label => $values) {
             $message = sprintf('Missing required property: "%s"', $label);
@@ -166,11 +181,20 @@ class GoogleValidator implements ValidatorInterface
         }
     }
 
-    private static function validateRecommendedProperties(MappedType $type, array $properties, array &$errors): void
+    private static function validateRecommendedProperties(MappedType $type, array $recommendedProperties, array &$errors): void
     {
-        $missingRecommendedProperties = array_diff_key($properties, $type->properties);
+        $missingRecommendedProperties = array_diff_key($recommendedProperties, $type->properties);
 
         SpecialCasesHandler::handleSpecialRecommendedProperties($type, $missingRecommendedProperties);
+
+        if (\array_key_exists('atLeastOneOf', $missingRecommendedProperties)) {
+            $missingRecommendedProperties = array_merge(
+                $missingRecommendedProperties,
+                array_diff_key($missingRecommendedProperties['atLeastOneOf'], $type->properties)
+            );
+
+            unset($missingRecommendedProperties['atLeastOneOf']);
+        }
 
         foreach ($missingRecommendedProperties as $label => $values) {
             $message = sprintf('Missing recommended property: "%s"', $label);
@@ -221,6 +245,8 @@ class GoogleValidator implements ValidatorInterface
         // Main types have no parent and their namespace is Google\TypeName.
         if (\count($parents)) {
             array_unshift($parents, self::$rootType);
+        } else {
+            $fqcn .= sprintf('\\%s', $typeName);
         }
 
         foreach ($parents as $type) {
