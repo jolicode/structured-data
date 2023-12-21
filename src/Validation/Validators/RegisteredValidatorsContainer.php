@@ -27,6 +27,11 @@ readonly class RegisteredValidatorsContainer
     ) {
     }
 
+    public function getValidator(string $validator): ValidatorInterface
+    {
+        return $this->validators[$validator];
+    }
+
     /**
      * @return ValidatorInterface[]
      */

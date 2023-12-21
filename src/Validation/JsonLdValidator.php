@@ -44,6 +44,8 @@ class JsonLdValidator
          */
         private array $validationErrors = [],
 
+        private ?string $specificValidator = null,
+
         private readonly ValidationMapper $validationMapper = new ValidationMapper(),
         private readonly JsonLdParser $parser = new JsonLdParser(),
         private readonly RegisteredValidatorsContainer $container = new RegisteredValidatorsContainer(),
@@ -57,9 +59,11 @@ class JsonLdValidator
      *
      * @return array<ValidationMap>
      */
-    public function validate(string $jsonLd): array
+    public function validate(string $jsonLd, ?string $specificValidator = null): array
     {
         $this->reset();
+
+        $this->specificValidator = $specificValidator;
 
         try {
             $parsedJsonLd = $this->parser->parse($jsonLd);
@@ -187,7 +191,11 @@ class JsonLdValidator
             $this->getGraphKey($type, $graphKey, $hasAGraph);
         }
 
-        foreach ($this->container->getValidators() as $validator) {
+        $validators = $this->specificValidator
+            ? [$this->container->getValidator($this->specificValidator)]
+            : $this->container->getValidators();
+
+        foreach ($validators as $validator) {
             $errors = $validator::validateType($type, $property, $this->typesStack);
 
             foreach ($errors as $error) {
@@ -217,7 +225,11 @@ class JsonLdValidator
             $this->getGraphKey($type, $graphKey, $hasAGraph);
         }
 
-        foreach ($this->container->getValidators() as $validator) {
+        $validators = $this->specificValidator
+            ? [$this->container->getValidator($this->specificValidator)]
+            : $this->container->getValidators();
+
+        foreach ($validators as $validator) {
             $errors = $validator::validateProperty($type, $property, $this->typesStack);
 
             foreach ($errors as $error) {
