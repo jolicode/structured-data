@@ -65,9 +65,17 @@ function resetFixtures(): void
 }
 
 #[AsTask(name: 'generate', description: 'Generate the PHP classes used to validate JSON-LD')]
-function generate(): void
-{
-    run('bin/json-ld generate -r');
+function generate(
+    #[AsOption(name: 'reset', shortcut: 'r', mode: InputOption::VALUE_NONE, description: 'Reset the generated files')]
+    bool $reset
+): void {
+    $command = 'bin/json-ld generate';
+
+    if ($reset) {
+        $command .= ' -r';
+    }
+
+    run($command);
 }
 
 #[AsTask(name: 'validate', description: 'Validate a local file or a remote URL')]
@@ -75,7 +83,7 @@ function validate(
     #[AsArgument(name: 'fileOrUrl', description: 'The file or remote URL to validate')]
     string $fileOrUrl,
     #[AsOption(name: 'validator', mode: InputOption::VALUE_REQUIRED, description: 'The validator to use')]
-    string $validator = null,
+    ?string $validator = null,
 ): void {
     $command = sprintf(
         'bin/json-ld validate %s',
