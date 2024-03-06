@@ -283,7 +283,7 @@ class Generator implements GeneratorInterface
     private function toPascalCase(string $string): string
     {
         $string = explode(' ', $string);
-        array_walk($string, fn (string & $word) => $word = ucfirst($word));
+        array_walk($string, fn (string &$word) => $word = ucfirst($word));
         $string = implode('', $string);
 
         return $string;

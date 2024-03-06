@@ -37,7 +37,7 @@ class ExpanderTest extends AbstractJsonLdTestCase
                 $this->assertSame($expected->getMessage(), $exception->getMessage());
             }
         } else {
-            $this->assertSame(json_decode($expected), json_decode($expander->parseJson($json, $options)));
+            $this->assertEquals(json_decode($expected), json_decode($expander->parseJson($json, $options)));
         }
     }
 

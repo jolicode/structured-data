@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 $header = <<<'EOF'
 This file is part of JoliCode's json-ld project.
 
@@ -27,7 +36,7 @@ return (new PhpCsFixer\Config())
         'strict_param' => true,
         'no_extra_blank_lines' => [
             'tokens' => [
-                'break', 'continue', 'extra', 'return', 'throw', 'use', 'parenthesis_brace_block', 'square_brace_block', 'curly_brace_block'
+                'break', 'continue', 'extra', 'return', 'throw', 'use', 'parenthesis_brace_block', 'square_brace_block', 'curly_brace_block',
             ],
         ],
         'echo_tag_syntax' => true,
@@ -38,10 +47,11 @@ return (new PhpCsFixer\Config())
         'combine_consecutive_unsets' => true,
         'blank_line_before_statement' => [
             'statements' => [
-                'break', 'continue', 'declare', 'foreach', 'if', 'return', 'throw', 'try', 'while'
+                'break', 'continue', 'declare', 'foreach', 'if', 'return', 'throw', 'try', 'while',
             ],
         ],
         'concat_space' => ['spacing' => 'one'],
+        'php_unit_strict' => false,
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()

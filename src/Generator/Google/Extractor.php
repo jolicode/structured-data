@@ -150,7 +150,7 @@ class Extractor
         }
     }
 
-    private function generateGoogleLink(string $fileName, string $anchor = null): string
+    private function generateGoogleLink(string $fileName, ?string $anchor = null): string
     {
         $typeLink = str_replace('.html', '', $fileName);
         $typeLink = sprintf('%s/%s', self::TYPES_SOURCE_URL, $typeLink);

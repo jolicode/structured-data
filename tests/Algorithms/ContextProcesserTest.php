@@ -36,7 +36,7 @@ class ContextProcesserTest extends AbstractJsonLdTestCase
             $actual->{Keyword::CONTEXT->value} = $extractedContext;
         }
 
-        $this->assertSame(json_decode($expected), $actual);
+        $this->assertEquals(json_decode($expected), $actual);
     }
 
     /** @dataProvider provideContainerEntries */

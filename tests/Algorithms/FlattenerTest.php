@@ -36,7 +36,7 @@ class FlattenerTest extends AbstractJsonLdTestCase
                 $this->assertSame($expected->getMessage(), $exception->getMessage());
             }
         } else {
-            $this->assertSame(json_decode($expected), json_decode($flattener->parseJson($json, options: $options)));
+            $this->assertEquals(json_decode($expected), json_decode($flattener->parseJson($json, options: $options)));
         }
     }
 

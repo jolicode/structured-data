@@ -38,7 +38,7 @@ class ContextProcesser
     public function processContext(
         Context $activeContext,
         mixed $localContext,
-        string $baseUrl = null,
+        ?string $baseUrl = null,
         array &$remoteContexts = [],
         bool $overrideProtected = false,
         bool $propagate = true,
@@ -123,9 +123,9 @@ class ContextProcesser
 
     private function updateContext(
         Context $activeContext,
-        array|\stdClass|null|string $localContext,
+        array|\stdClass|string|null $localContext,
         Context $result,
-        string $baseUrl = null,
+        ?string $baseUrl = null,
         array &$remoteContexts = [],
         bool $overrideProtected = false,
         bool $propagate = true,
@@ -333,13 +333,13 @@ class ContextProcesser
         // 5.7.2
         if (!$value) {
             $result->baseIri = $value;
-            // 5.7.4 : we invert 5.7.3 and 5.7.4 because it doesn't make sense to do it the other way around
+        // 5.7.4 : we invert 5.7.3 and 5.7.4 because it doesn't make sense to do it the other way around
         } elseif (IriResolver::isRelativeIri($value) && $result->baseIri) {
             $result->baseIri = IriResolver::resolveIri($result->baseIri, $value);
-            // 5.7.3
+        // 5.7.3
         } elseif (IriResolver::isIri($value)) {
             $result->baseIri = $value;
-            // 5.7.5
+        // 5.7.5
         } else {
             throw new ContextProcessingException('invalid base IRI');
         }
@@ -353,7 +353,7 @@ class ContextProcesser
         // 5.8.2
         if (null === $value) {
             $result->vocabularyMapping = null;
-            // 5.8.3
+        // 5.8.3
         } elseif ('' !== $value && !IriResolver::isIri($value) && !IriResolver::isBlankNodeIdentifier($value)) {
             throw new ContextProcessingException('invalid vocab mapping');
         } else {
@@ -369,7 +369,7 @@ class ContextProcesser
         // 5.9.2
         if (!$value) {
             $result->defaultLangage = null;
-            // 5.9.3
+        // 5.9.3
         } elseif (\is_string($value)) {
             $result->defaultLangage = $value;
         } else {
@@ -390,7 +390,7 @@ class ContextProcesser
         // 5.10.3
         if (!$value) {
             $result->defaultBaseDirection = null;
-            // 5.10.4
+        // 5.10.4
         } elseif (!\is_string($value) || !\in_array($value, ['ltr', 'rtl'], true)) {
             throw new ContextProcessingException('invalid base direction');
         } else {

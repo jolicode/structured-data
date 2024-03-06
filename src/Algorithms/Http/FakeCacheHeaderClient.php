@@ -60,7 +60,7 @@ final class FakeCacheHeaderClient implements HttpClientInterface
                 $this->response->cancel();
             }
 
-            public function getInfo(string $type = null): mixed
+            public function getInfo(?string $type = null): mixed
             {
                 return $this->response->getInfo();
             }

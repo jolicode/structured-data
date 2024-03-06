@@ -81,7 +81,7 @@ class JsonLdValidator
      *
      * @return array<ValidationMap>
      */
-    public function validate(string $jsonLd, string $specificValidator = null): array
+    public function validate(string $jsonLd, ?string $specificValidator = null): array
     {
         $this->reset();
 
@@ -164,7 +164,7 @@ class JsonLdValidator
      * This method will iterate over each type of a property and validate them.
      * A type may contain other types as property values, so it will recursively call itself if some are found.
      */
-    private function validateType(MappedType $type, MappedProperty $originalProperty = null): void
+    private function validateType(MappedType $type, ?MappedProperty $originalProperty = null): void
     {
         if (IriResolver::isAbsoluteIri($type->type)) {
             return;

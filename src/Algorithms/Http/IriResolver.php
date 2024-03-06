@@ -27,7 +27,7 @@ class IriResolver
         string $value,
         bool $documentRelative = false,
         bool $vocab = true,
-        \stdClass $localContext = null,
+        ?\stdClass $localContext = null,
         array &$defined = []
     ): ?string {
         // 1

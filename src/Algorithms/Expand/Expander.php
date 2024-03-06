@@ -29,7 +29,7 @@ class Expander
     ) {
     }
 
-    public function parseJson(string|\stdClass $json, ProcessorOptions $options = new ProcessorOptions(), bool $encodeResult = true): \stdClass|array|null|string
+    public function parseJson(string|\stdClass $json, ProcessorOptions $options = new ProcessorOptions(), bool $encodeResult = true): \stdClass|array|string|null
     {
         $element = \is_string($json) ? json_decode($json) : $json;
         $baseUrl = $options->base;
@@ -74,7 +74,7 @@ class Expander
     public function expand(
         mixed $element,
         ProcessorOptions $options,
-        string $baseUrl = null,
+        ?string $baseUrl = null,
         Context $activeContext = new Context(),
         ?string $activeProperty = FramingKeyword::DEFAULT->value,
         bool $fromMap = false,
@@ -179,10 +179,10 @@ class Expander
             if (false === $this->handleResultValueEntry($result)) {
                 return null;
             }
-            // 16
+        // 16
         } elseif (property_exists($result, Keyword::TYPE->value) && !\is_array($result->{Keyword::TYPE->value})) {
             $result->{Keyword::TYPE->value} = [$result->{Keyword::TYPE->value}];
-            // 17
+        // 17
         } elseif (
             property_exists($result, Keyword::SET->value)
             || property_exists($result, Keyword::LIST->value)
@@ -255,7 +255,7 @@ class Expander
             && !\in_array($definition->typeMapping, [Keyword::ID->value, Keyword::VOCAB->value, Keyword::NONE->value], true)
         ) {
             $result[Keyword::TYPE->value] = $definition->typeMapping;
-            // 5
+        // 5
         } elseif (\is_string($value)) {
             // 5.1
             if (isset($definition) && false !== $definition->languageMapping) {
@@ -451,10 +451,10 @@ class Expander
                 && Keyword::JSON->value === $keyDefinition->typeMapping
             ) {
                 $expandedValue = $this->processJsonTypeMapping($value);
-                // 13.7
+            // 13.7
             } elseif ($containerMapping && \in_array(Keyword::LANGUAGE->value, $containerMapping, true) && \is_object($value)) {
                 $expandedValue = $this->processLanguageContainerMapping($activeContext, $keyDefinition, $value);
-                // 13.8
+            // 13.8
             } elseif (
                 \is_object($value)
                 && $containerMapping
@@ -566,7 +566,7 @@ class Expander
         // 13.4.4.2
         if (\is_object($value) && !\count(get_object_vars($value))) {
             $expandedValue = $value;
-            // 13.4.4.3
+        // 13.4.4.3
         } elseif (\is_object($value) && property_exists($value, FramingKeyword::DEFAULT->value)) {
             $expandedValue = new \stdClass();
             $expandedValue->{FramingKeyword::DEFAULT->value} = IriResolver::expand(
@@ -574,7 +574,7 @@ class Expander
                 $value->{FramingKeyword::DEFAULT->value},
                 true
             );
-            // 13.4.4.4
+        // 13.4.4.4
         } else {
             foreach ((array) $value as $valueEntry) {
                 $expandedValue[] = IriResolver::expand($typeScopedContext, $valueEntry, true);
@@ -930,7 +930,7 @@ class Expander
                     $mapContext->termDefinitions[$index]->context,
                     $mapContext->termDefinitions[$index]->baseUrl
                 );
-                // 13.8.3.3
+            // 13.8.3.3
             } else {
                 $mapContext = $activeContext;
             }
@@ -1139,7 +1139,7 @@ class Expander
         int|float|string|bool $element,
         ?string $activeProperty,
         mixed $propertyScopedContext
-    ): \stdClass|null {
+    ): ?\stdClass {
         // 4.1
         if (\in_array($activeProperty, [null, Keyword::GRAPH->value], true)) {
             return null;
@@ -1278,10 +1278,10 @@ class Expander
             // 15.3
         } elseif (null === $result->{Keyword::VALUE->value} || [] === $result->{Keyword::VALUE->value}) {
             return false;
-            // 15.4
+        // 15.4
         } elseif (!\is_string($result->{Keyword::VALUE->value}) && property_exists($result, Keyword::LANGUAGE->value)) {
             throw new ExpansionException('invalid language-tagged value');
-            // 15.5
+        // 15.5
         } elseif (property_exists($result, Keyword::TYPE->value) && !IriResolver::isAbsoluteIri($result->{Keyword::TYPE->value})) {
             throw new ExpansionException('invalid typed value');
         }

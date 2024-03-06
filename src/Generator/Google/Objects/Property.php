@@ -35,7 +35,7 @@ class Property
      * A property may have multiple types, but they all share the same properties, so it is fine returning
      * a property of the first type.
      */
-    public function getProperty(string $name, string $typeToSearchOn = null): ?self
+    public function getProperty(string $name, ?string $typeToSearchOn = null): ?self
     {
         if (!\count($this->types)) {
             return null;

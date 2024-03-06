@@ -206,7 +206,7 @@ class GoogleValidator implements ValidatorInterface
     private static function concatenateTypeLabels(MappedType $type): string
     {
         $className = $type->type;
-        array_walk($className, fn (string & $word) => $word = ucfirst($word));
+        array_walk($className, fn (string &$word) => $word = ucfirst($word));
         $className = implode('', $className);
 
         return $className;

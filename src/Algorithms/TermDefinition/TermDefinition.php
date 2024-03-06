@@ -21,9 +21,9 @@ class TermDefinition
         public ?string $baseUrl = null,
         public mixed $context = false,
         public ?array $containerMapping = null,
-        public string|null|false $directionMapping = false,
+        public string|false|null $directionMapping = false,
         public ?string $indexMapping = null,
-        public string|null|false $languageMapping = false,
+        public string|false|null $languageMapping = false,
         public ?string $nestValue = null,
         public ?string $typeMapping = null,
     ) {
