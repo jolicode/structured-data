@@ -7,15 +7,20 @@ on:
 
 jobs:
     ci:
+        name: Test with PHP ${{ matrix.php-version }}
+        strategy:
+            fail-fast: false
+            matrix:
+                php-version: ['8.2', '8.3']
         runs-on: ubuntu-latest
-
         steps:
             - uses: actions/checkout@v3
 
-            - name: Setup PHP 8.1
+            - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
-                php-version: '8.1'
+                  php-version: ${{ matrix.php-version }}
+                  tools: castor
 
             - name: Validate composer.json and composer.lock
               run: composer validate --strict
@@ -23,11 +28,11 @@ jobs:
             - name: Install dependencies
               run: composer install --prefer-dist --no-progress
 
-            - name: Run the tests
-              run: make test
-
-            - name: Check CS
-              run: make cs_dry_run
+            - name: Check PHP coding standards
+              run: castor cs --dry-run
 
             - name: Run PHPStan
-              run: make phpstan
+              run: castor phpstan
+
+            - name: Run the tests
+              run: castor test

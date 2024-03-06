@@ -2,6 +2,7 @@
     "name": "jolicode/json-ld",
     "description": "A library to convert JSON-LD from one format to another",
     "type": "library",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Jolicode\\JsonLd\\": "src/",
