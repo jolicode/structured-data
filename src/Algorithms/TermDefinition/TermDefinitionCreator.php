@@ -30,7 +30,7 @@ class TermDefinitionCreator
         \stdClass $localContext,
         string $term,
         array &$defined,
-        string $baseUrl = null,
+        ?string $baseUrl = null,
         bool $protected = false,
         bool $overrideProtected = false,
         array &$remoteContexts = [],
@@ -79,11 +79,11 @@ class TermDefinitionCreator
         // 7
         if (null === $value) {
             $value = (object) [Keyword::ID->value => null];
-            // 8
+        // 8
         } elseif (\is_string($value)) {
             $value = (object) [Keyword::ID->value => $value];
             $simpleTerm = true;
-            // 9
+        // 9
         } else {
             if (!\is_object($value)) {
                 throw new TermDefinitionCreationException('invalid term definition');
@@ -126,10 +126,10 @@ class TermDefinitionCreator
             if ($shouldReturn) {
                 return;
             }
-            // 15
+        // 15
         } elseif (preg_match('/[^^]:/', $term)) {
             self::handleTermWithColons($activeContext, $definition, $localContext, $term);
-            // 16
+        // 16
         } elseif (str_contains($term, '/')) {
             // 16.2
             if (IriResolver::isIri($mapping = IriResolver::expand($activeContext, $term))) {
@@ -137,10 +137,10 @@ class TermDefinitionCreator
             } else {
                 throw new TermDefinitionCreationException('invalid IRI mapping');
             }
-            // 17
+        // 17
         } elseif (Keyword::TYPE->value === $term) {
             $definition->iriMapping = Keyword::TYPE->value;
-            // 18
+        // 18
         } elseif ($activeContext->vocabularyMapping) {
             $definition->iriMapping = $activeContext->vocabularyMapping . $term;
         } else {
@@ -444,7 +444,10 @@ class TermDefinitionCreator
                 && !str_contains('/', $term)
                 && $simpleTerm
             ) {
-                if (IriResolver::isBlankNodeIdentifier($definition->iriMapping) || IriResolver::isIri($definition->iriMapping)) {
+                if (
+                    IriResolver::isBlankNodeIdentifier($definition->iriMapping)
+                    || (IriResolver::isIri($definition->iriMapping) && \in_array($definition->iriMapping, [':', '/', '?', '#', '[', ']', '@'], true))
+                ) {
                     $definition->prefixFlag = true;
                 }
             }
@@ -472,7 +475,7 @@ class TermDefinitionCreator
         // 15.2
         if (\array_key_exists($prefix, $activeContext->termDefinitions)) {
             $definition->iriMapping = $activeDefinitions[$prefix]->iriMapping . $suffix;
-            // 15.3
+        // 15.3
         } else {
             $definition->iriMapping = $term;
         }

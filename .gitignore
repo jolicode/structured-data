@@ -1,6 +1,9 @@
 /vendor/
 /var/
 /generated/
+/ressources/
 
 .php-cs-fixer.cache
 .phpunit.result.cache
+
+.castor.stub.php

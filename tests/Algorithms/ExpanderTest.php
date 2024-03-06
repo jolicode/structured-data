@@ -11,11 +11,11 @@
 
 namespace Jolicode\JsonLd\Tests\Algorithms;
 
-use Jolicode\JsonLd\Algorithms\Expand\Expander;
-use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesManager;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
 use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
+use Jolicode\JsonLd\Algorithms\Expand\Expander;
+use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
+use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 
 /**
  *  @see https://w3c.github.io/json-ld-api/tests/expand-manifest.html
@@ -43,7 +43,7 @@ class ExpanderTest extends AbstractJsonLdTestCase
 
     protected function getAlgorithmName(): string
     {
-        return FixturesManager::ALGO_EXPAND;
+        return FixturesInstaller::ALGO_EXPAND;
     }
 
     protected function getExpectedErrorMessage(string $filename): string
@@ -166,7 +166,7 @@ class ExpanderTest extends AbstractJsonLdTestCase
             'e054-in.jsonld' => 'context overflow',
         ];
 
-        $defaultErrorMessage = <<<ERROR
+        $defaultErrorMessage = <<<'ERROR'
         Something went wrong with this test : it does not have an output file, which implies it expects an error to be thrown.
         However, there is no expected error message in the tests. Maybe the output file was deleted, or the Expander is actually broken.
         ERROR;
@@ -219,7 +219,7 @@ class ExpanderTest extends AbstractJsonLdTestCase
             'tn01-in.jsonld' => ['processingMode' => Context::PROCESSING_MODE_10],
         ];
 
-        if (array_key_exists($filename, $testSpecificOptions)) {
+        if (\array_key_exists($filename, $testSpecificOptions)) {
             foreach ($testSpecificOptions[$filename] as $property => $value) {
                 $options->{$property} = $value;
             }

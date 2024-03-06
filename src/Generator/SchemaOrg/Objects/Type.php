@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Generator\SchemaOrg\Types;
+namespace Jolicode\JsonLd\Generator\SchemaOrg\Objects;
 
 use Jolicode\JsonLd\Generator\SchemaOrg\Extractor;
 
-class Type extends AsbtractSchemaOrgElement
+class Type extends AbstractSchemaOrgElement
 {
     private function __construct(
         public string $name,

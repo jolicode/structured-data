@@ -2,9 +2,12 @@
     "name": "jolicode/json-ld",
     "description": "A library to convert JSON-LD from one format to another",
     "type": "library",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Jolicode\\JsonLd\\": "src/"
+            "Jolicode\\JsonLd\\": "src/",
+            "SchemaOrg\\": "generated/SchemaOrg/",
+            "Google\\": "generated/Google/"
         }
     },
     "autoload-dev": {
@@ -35,6 +38,9 @@
         "symfony/http-kernel": "^6.2",
         "monolog/monolog": "^3.3",
         "nikic/php-parser": "^4.15",
-        "symfony/validator": "^6.3"
+        "salsify/json-streaming-parser": "^8.3",
+        "symfony/dom-crawler": "^6.3",
+        "symfony/translation-contracts": "^3.3",
+        "symfony/css-selector": "^6.3"
     }
 }

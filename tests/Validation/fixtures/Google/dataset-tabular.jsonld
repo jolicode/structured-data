@@ -1,0 +1,83 @@
+{
+    "@context": ["https://schema.org", {"csvw": "https://www.w3.org/ns/csvw#"}],
+    "@type": "Dataset",
+    "name":"AMERICAN HUMANE ASSOCIATION",
+    "description": "ProPublica's Nonprofit Explorer lets you view summaries of 2.2 million tax returns from tax-exempt organizations and see financial details such as their executive compensation and revenue and expenses. You can browse raw IRS data released since 2013 and access over 9.4 million tax filing documents going back as far as 2001.",
+    "publisher": {
+    "@type": "Organization",
+    "name": "ProPublica"
+    },
+    "mainEntity" : {
+    "@type" : "csvw:Table",
+    "csvw:tableSchema": {
+        "csvw:columns": [
+        {
+            "csvw:name": "Year",
+            "csvw:datatype": "string",
+            "csvw:cells": [
+            {
+                "csvw:value": "2016",
+                "csvw:primaryKey": "2016"
+            },
+            {
+                "csvw:value": "2015",
+                "csvw:primaryKey": "2015"
+            }]
+        },
+        {
+            "csvw:name": "Organization name",
+            "csvw:datatype": "string",
+            "csvw:cells": [
+            {
+                "csvw:value": "AMERICAN HUMANE ASSOCIATION",
+                "csvw:primaryKey": "2016"
+            },
+            {
+                "csvw:value": "AMERICAN HUMANE ASSOCIATION",
+                "csvw:primaryKey": "2015"
+            }]
+        },
+        {
+            "csvw:name": "Organization address",
+            "csvw:datatype": "string",
+            "csvw:cells": [
+            {
+                "csvw:value": "1400 16TH STREET NW",
+                "csvw:primaryKey": "2016"
+            },
+            {
+                "csvw:value": "1400 16TH STREET NW",
+                "csvw:primaryKey": "2015"
+            }]
+        },
+        {
+            "csvw:name": "Organization NTEE Code",
+            "csvw:datatype": "string",
+            "csvw:cells": [
+            {
+                "csvw:value": "D200",
+                "csvw:notes": "Animal Protection and Welfare",
+                "csvw:primaryKey": "2016"
+            },
+            {
+                "csvw:value": "D200",
+                "csvw:notes": "Animal Protection and Welfare",
+                "csvw:primaryKey": "2015"
+            }]
+        },
+        {
+            "csvw:name": "Total functional expenses ($)",
+            "csvw:datatype": "integer",
+            "csvw:cells": [
+            {
+                "csvw:value": "13800212",
+                "csvw:primaryKey": "2016"
+            },
+            {
+                "csvw:value": "13800212",
+                "csvw:primaryKey": "2015"
+            }]
+        }]
+    }
+    }
+}

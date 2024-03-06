@@ -11,7 +11,7 @@
 
 namespace Jolicode\JsonLd\Command\Algorithms;
 
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesManager;
+use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -19,7 +19,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
-    name: 'reset-fixtures',
+    name: 'remove-fixtures',
     description: 'Remove all existing tests fixtures'
 )]
 class ResetFixturesCommand extends Command
@@ -32,7 +32,7 @@ class ResetFixturesCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        FixturesManager::resetFixtures($input->getOption('reset'));
+        FixturesInstaller::resetFixtures($input->getOption('reset'));
 
         return Command::SUCCESS;
     }

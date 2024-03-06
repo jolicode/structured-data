@@ -1,20 +1,31 @@
 <?php
 
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Jolicode\JsonLd\Tests\Algorithms\Benchmark;
 
-use Jolicode\JsonLd\ContextProcessing\ContextProcesser;
-use Jolicode\JsonLd\Fixtures\FixturesManager;
+use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
+use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
 
 class ContextProcesserBench extends AbstractJsonLdBench
 {
     public function __construct(
-        private ContextProcesser $processer = new ContextProcesser(),
+        private readonly ContextProcesser $processer = new ContextProcesser(),
     ) {
     }
 
     /**
      * @Revs(500)
+     *
      * @Iterations(5)
+     *
      * @RetryThreshold(2.0)
      */
     public function benchSimpleContext()
@@ -26,7 +37,9 @@ class ContextProcesserBench extends AbstractJsonLdBench
 
     /**
      * @Revs(500)
+     *
      * @Iterations(5)
+     *
      * @RetryThreshold(2.0)
      */
     public function benchComplexContext()
@@ -38,7 +51,9 @@ class ContextProcesserBench extends AbstractJsonLdBench
 
     /**
      * @Revs(500)
+     *
      * @Iterations(5)
+     *
      * @RetryThreshold(2.0)
      */
     public function benchHttpCallContext()
@@ -50,6 +65,6 @@ class ContextProcesserBench extends AbstractJsonLdBench
 
     protected function getAlgorithmName(): string
     {
-        return FixturesManager::ALGO_PROCESS_CONTEXT;
+        return FixturesInstaller::ALGO_PROCESS_CONTEXT;
     }
 }

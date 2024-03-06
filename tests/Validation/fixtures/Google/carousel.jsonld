@@ -1,0 +1,21 @@
+{
+    "@context":"https://schema.org",
+    "@type":"ItemList",
+    "itemListElement":[
+      {
+        "@type":"ListItem",
+        "position":1,
+        "url":"https://example.com/peanut-butter-cookies.html"
+      },
+      {
+        "@type":"ListItem",
+        "position":2,
+        "url":"https://example.com/triple-chocolate-chunk.html"
+      },
+      {
+        "@type":"ListItem",
+        "position":3,
+        "url":"https://example.com/snickerdoodles.html"
+      }
+    ]
+  }

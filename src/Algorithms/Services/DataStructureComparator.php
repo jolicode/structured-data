@@ -30,7 +30,7 @@ class DataStructureComparator
         return false;
     }
 
-    public static function objectsHaveSameProperties(object $object1, object $object2, string $propertyToSkip = null): bool
+    public static function objectsHaveSameProperties(object $object1, object $object2, ?string $propertyToSkip = null): bool
     {
         if ($object1 === $object2) {
             return true;

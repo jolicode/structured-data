@@ -11,15 +11,15 @@
 
 namespace Jolicode\JsonLd\Generator\SchemaOrg;
 
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\ElementsContainer;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\EnumerationMember;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\Property;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\Type;
-use PhpParser\PrettyPrinter\Standard;
+use Jolicode\JsonLd\Generator\SchemaOrg\Objects\ClassesContainer;
+use Jolicode\JsonLd\Generator\SchemaOrg\Objects\EnumerationMember;
+use Jolicode\JsonLd\Generator\SchemaOrg\Objects\Property;
+use Jolicode\JsonLd\Generator\SchemaOrg\Objects\Type;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
-class Extractor
+readonly class Extractor
 {
     // We use class constants instead of enum here because there are not so many keywords
     // plus enums are sometimes a pain
@@ -40,40 +40,48 @@ class Extractor
     // Bump this version with care! Sometimes a version is released but not yet available on GitHub.
     // Moreover, bumping it will very likely modify the source file, sometimes with breaking changes.
     // Be sure to check https://schema.org/docs/releases.html first.
-    private const CURRENT_VERSION = '15.0';
+    private const CURRENT_VERSION = '22.0';
 
-    private const SOURCE_URL = 'https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/releases/' . self::CURRENT_VERSION . '/schemaorg-current-https.jsonld';
-    private const CACHE_FILE = __DIR__ . '/../../../var/cache/schema-org/schemaorg-' . self::CURRENT_VERSION . '-https.jsonld';
+    private const CACHE_DIRECTORY = __DIR__ . '/../../../var/cache/schema-org/';
+
+    private const TYPES_SOURCE_URL = 'https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/releases/' . self::CURRENT_VERSION . '/schemaorg-current-https.jsonld';
+    private const TYPES_CACHE_FILE = self::CACHE_DIRECTORY . 'schemaorg-' . self::CURRENT_VERSION . '-https.jsonld';
+
+    private const EXAMPLES_SOURCE_URL = 'https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/examples.txt';
 
     public function __construct(
-        private Filesystem $filesystem = new Filesystem(),
-        private Generator $Generator = new Generator(),
-        private Standard $printer = new Standard(),
+        private Filesystem $filesystem,
+        private AsciiSlugger $slugger = new AsciiSlugger(),
     ) {
     }
 
-    public function extract(bool $refresh): void
+    public function extractClasses(bool $refresh): ClassesContainer
     {
-        if ($refresh || !$this->filesystem->exists(self::CACHE_FILE)) {
+        if ($refresh || !$this->filesystem->exists(self::TYPES_CACHE_FILE)) {
             $client = HttpClient::create();
-            $response = $client->request('GET', self::SOURCE_URL);
+            $response = $client->request('GET', self::TYPES_SOURCE_URL);
 
-            $this->filesystem->dumpFile(self::CACHE_FILE, $response->getContent());
+            $this->filesystem->dumpFile(self::TYPES_CACHE_FILE, $response->getContent());
         }
 
-        $schemaOrgData = json_decode(file_get_contents(self::CACHE_FILE), true);
-        $container = $this->createContainer($schemaOrgData[self::KEY_GRAPH]);
+        $schemaOrgData = json_decode(file_get_contents(self::TYPES_CACHE_FILE), true);
 
-        $this->Generator->writeFile(
-            $container,
-            $this->filesystem,
-            $this->printer,
-        );
+        return $this->createContainer($schemaOrgData[self::KEY_GRAPH]);
     }
 
-    private function createContainer(array $graph): ElementsContainer
+    public function extractExamples(bool $refresh): string
     {
-        $container = new ElementsContainer();
+        $key = (string) $this->slugger->slug(self::EXAMPLES_SOURCE_URL);
+        $path = self::CACHE_DIRECTORY . $key . '.txt';
+
+        $this->filesystem->copy(self::EXAMPLES_SOURCE_URL, $path, $refresh);
+
+        return file_get_contents($path);
+    }
+
+    private function createContainer(array $graph): ClassesContainer
+    {
+        $container = new ClassesContainer();
 
         foreach ($graph as $type) {
             match (true) {
@@ -84,8 +92,7 @@ class Extractor
             };
         }
 
-        $container->mapPropertiesToTypes();
-        $container->mapEnumerationMembersToTypes();
+        $container->finish();
 
         return $container;
     }

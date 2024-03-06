@@ -11,13 +11,11 @@
 
 namespace Jolicode\JsonLd\Tests\Algorithms;
 
+use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
+use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesManager;
-use Jolicode\JsonLd\Tests\Algorithms\AbstractJsonLdTestCase;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
 use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinitionCreator;
-
 
 /** @group context */
 class ContextProcesserTest extends AbstractJsonLdTestCase
@@ -49,14 +47,14 @@ class ContextProcesserTest extends AbstractJsonLdTestCase
 
     protected function getAlgorithmName(): string
     {
-        return FixturesManager::ALGO_PROCESS_CONTEXT;
+        return FixturesInstaller::ALGO_PROCESS_CONTEXT;
     }
 
     protected function getExpectedErrorMessage(string $filename): string
     {
         $failedTestsErrorMessages = [];
 
-        $defaultErrorMessage = <<<ERROR
+        $defaultErrorMessage = <<<'ERROR'
             Something went wrong with this test : it does not have an output file, which implies it expects an error to be thrown.
             However, there is no expected error message in the tests. Maybe the output file was deleted, or the ContextProcesser is actually broken.
         ERROR;

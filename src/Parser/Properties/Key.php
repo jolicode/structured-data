@@ -9,11 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Generator;
+namespace Jolicode\JsonLd\Parser\Properties;
 
-use Jolicode\JsonLd\Generator\SchemaOrg\Extractor as SchemaOrgExtractor;
+use Jolicode\JsonLd\Parser\Range;
 
-enum RegisteredSourcesEnum: string
+class Key
 {
-    case SCHEMA_ORG = SchemaOrgExtractor::class;
+    public function __construct(
+        public readonly string $name,
+        public readonly Range $range,
+    ) {
+    }
 }

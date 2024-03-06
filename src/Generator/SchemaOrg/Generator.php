@@ -11,21 +11,99 @@
 
 namespace Jolicode\JsonLd\Generator\SchemaOrg;
 
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\AsbtractSchemaOrgElement;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\ElementsContainer;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\EnumerationMember;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\Property;
-use Jolicode\JsonLd\Generator\SchemaOrg\Types\Type;
+use Jolicode\JsonLd\Generator\GeneratorInterface;
+use Jolicode\JsonLd\Generator\SchemaOrg\Objects\AbstractSchemaOrgElement;
+use Jolicode\JsonLd\Generator\SchemaOrg\Objects\ClassesContainer;
+use Jolicode\JsonLd\Generator\SchemaOrg\Objects\EnumerationMember;
+use Jolicode\JsonLd\Generator\SchemaOrg\Objects\Property;
+use Jolicode\JsonLd\Generator\SchemaOrg\Objects\Type;
 use PhpParser\BuilderFactory;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Scalar;
 use PhpParser\Node\Stmt;
 use PhpParser\PrettyPrinter\Standard;
+use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\Filesystem\Filesystem;
 
-class Generator
+readonly class Generator implements GeneratorInterface
 {
-    public function writeFile(ElementsContainer $container, Filesystem $filesystem, Standard $printer): void
+    private const NAMESPACE_TYPE = 'SchemaOrg\\Type';
+    private const NAMESPACE_PROPERTY = 'SchemaOrg\\Property';
+    private const NAMESPACE_ENUMERATION_MEMBER = 'SchemaOrg\\EnumerationMember';
+
+    private const EXAMPLES_DIRECTORY = __DIR__ . '/../../../ressources/SchemaOrg/examples/';
+
+    public function __construct(
+        private BuilderFactory $factory = new BuilderFactory(),
+        private Filesystem $filesystem = new Filesystem(),
+        private Standard $printer = new Standard(),
+    ) {
+    }
+
+    public function generate(bool $refresh): void
+    {
+        $extractor = new Extractor($this->filesystem);
+
+        $this->generateExamples($extractor->extractExamples($refresh));
+        $this->generateClasses($extractor->extractClasses($refresh));
+    }
+
+    private function generateExamples(string $schemaOrgExamples): void
+    {
+        $crawler = new Crawler($schemaOrgExamples);
+
+        $crawler
+            ->filter('script[type^=application]')
+            ->each(function (Crawler $example, $i) {
+                $example = trim($example->outerHtml());
+                $this->saveExample('https-schema-org', $example);
+            });
+    }
+
+    private function saveExample(string $prefix, string $example): void
+    {
+        if (preg_match('/\<script type\=\"application\/ld\+json\"\>(.*)\<\/script\>/s', $example, $matches)) {
+            $content = $this->removeComments($matches[1]);
+            $this->saveSingleExample($content, $prefix);
+        } elseif ($this->maybeJsonString($example)) {
+            $this->saveSingleExample($example, $prefix);
+        }
+    }
+
+    private function removeComments(string $example): string
+    {
+        $example = explode("\n", $example);
+
+        foreach ($example as $line => $content) {
+            if (str_starts_with(trim($content), '//')) {
+                unset($example[$line]);
+            }
+        }
+
+        return trim(implode("\n", $example));
+    }
+
+    private function saveSingleExample(string $content, string $prefix): void
+    {
+        if (json_decode($content)) {
+            $key = md5($content);
+            $filename = sprintf(
+                '%s%s-%s.json-ld',
+                self::EXAMPLES_DIRECTORY,
+                $prefix,
+                $key
+            );
+
+            $this->filesystem->dumpFile($filename, $content);
+        }
+    }
+
+    private function maybeJsonString(string $body): bool
+    {
+        return \in_array(substr(trim($body), 0, 1), ['[', '{'], true);
+    }
+
+    private function generateClasses(ClassesContainer $container): void
     {
         foreach ($container->getAllElements() as $element) {
             $classDirectory = match ($element::class) {
@@ -42,14 +120,14 @@ class Generator
                 $element->className
             );
 
-            $filesystem->dumpFile(
+            $this->filesystem->dumpFile(
                 $fileName,
-                $printer->prettyPrintFile([$this->generate($element)])
+                $this->printer->prettyPrintFile([$this->generateElement($element)])
             );
         }
     }
 
-    private function generate(Type|Property|EnumerationMember $element): Stmt\Namespace_
+    private function generateElement(Type|Property|EnumerationMember $element): Stmt\Namespace_
     {
         return match ($element::class) {
             Type::class => $this->generateType($element),
@@ -61,43 +139,62 @@ class Generator
 
     private function generateType(Type $type): Stmt\Namespace_
     {
-        $factory = new BuilderFactory();
+        $node = $this->factory
+            ->namespace(self::NAMESPACE_TYPE)
+            ->addStmt($this->factory->use('SchemaOrg\\Property'));
 
-        $node = $factory
-            ->namespace('SchemaOrg\\Type')
-            ->addStmt($factory->use('SchemaOrg\\Property'));
-
-        $constructor = $factory->method('__construct')
+        $constructor = $this->factory->method('__construct')
             ->makePublic();
 
-        $class = $factory
+        $class = $this->factory
             ->class($type->className)
             ->makeFinal()
-            ->makeReadonly()
             ->addStmt(
-                $factory->classConst('DESCRIPTION', $type->description)
+                $this->factory->classConst('DESCRIPTION', $type->description)
                     ->makePublic()
             )
             ->addStmt(
-                $factory->classConst('LABEL', $type->label)
+                $this->factory->classConst('LABEL', $type->label)
                     ->makePublic()
             )
             ->addStmt(
-                $factory->classConst('NAME', $type->name)
+                $this->factory->classConst('NAME', $type->name)
                     ->makePublic()
             );
 
+        /* ADD THE PROPERTIES */
         usort($type->properties, fn (Property $a, Property $b) => $a->label <=> $b->label);
 
         foreach ($type->properties as $property) {
             $constructor->addParam(
-                $factory->param($property->label)
+                $this->factory->param($property->label)
                     ->makePublic()
                     ->setType(sprintf('?Property\\%s', $property->className))
                     ->setDefault(null)
             );
         }
 
+        /** ADD THE PARENTS */
+        $parents = [];
+
+        foreach ($type->parents as $parent) {
+            $className = AbstractSchemaOrgElement::getClassName($parent);
+            $fqcn = sprintf('%s\\%s', self::NAMESPACE_TYPE, $className);
+            $parents[] = new Expr\ArrayItem(
+                new Scalar\String_($fqcn),
+                new Scalar\String_($className),
+            );
+        }
+
+        /* @phpstan-ignore-next-line */
+        usort($parents, fn ($a, $b) => $a->value->value <=> $b->value->value);
+
+        $class->addStmt(
+            $this->factory->classConst('PARENTS', $parents)
+                ->makePublic()
+        );
+
+        /** ADD THE ENUMERATION MEMBERS */
         $enumerationMembers = [];
 
         foreach ($type->enumerationMembers as $enumerationMember) {
@@ -111,7 +208,7 @@ class Generator
         usort($enumerationMembers, fn ($a, $b) => $a->value->value <=> $b->value->value);
 
         $class->addStmt(
-            $factory->classConst('ENUMERATION_MEMBERS', new Expr\Array_($enumerationMembers))
+            $this->factory->classConst('ENUMERATION_MEMBERS', new Expr\Array_($enumerationMembers))
                 ->makePublic()
         );
 
@@ -123,45 +220,60 @@ class Generator
 
     private function generateProperty(Property $property): Stmt\Namespace_
     {
-        $namespace = 'SchemaOrg\\Property';
-        $factory = new BuilderFactory();
+        $node = $this->factory
+            ->namespace(self::NAMESPACE_PROPERTY);
 
-        $node = $factory
-            ->namespace($namespace);
-
-        $class = $factory
+        $class = $this->factory
             ->class($property->className)
             ->makeFinal()
-            ->makeReadonly()
             ->addStmt(
-                $factory->classConst('DESCRIPTION', $property->description)
+                $this->factory->classConst('DESCRIPTION', $property->description)
                     ->makePublic()
             )
             ->addStmt(
-                $factory->classConst('LABEL', $property->label)
+                $this->factory->classConst('LABEL', $property->label)
                     ->makePublic()
             )
             ->addStmt(
-                $factory->classConst('NAME', $property->name)
+                $this->factory->classConst('NAME', $property->name)
                     ->makePublic()
             );
 
-        $parents = [];
+        $possibleValues = [];
 
-        foreach ($property->parents as $parent) {
-            $className = AsbtractSchemaOrgElement::getClassName($parent);
-            $fqcn = sprintf('%s\\%s', $namespace, $className);
-            $parents[] = new Expr\ArrayItem(
+        foreach ($property->possibleValues as $value) {
+            $className = AbstractSchemaOrgElement::getClassName($value);
+            $fqcn = sprintf('%s\\%s', self::NAMESPACE_TYPE, $className);
+            $possibleValues[] = new Expr\ArrayItem(
                 new Scalar\String_($fqcn),
                 new Scalar\String_($className),
             );
         }
 
         /* @phpstan-ignore-next-line */
-        usort($parents, fn ($a, $b) => $a->value->value <=> $b->value->value);
+        usort($possibleValues, fn ($a, $b) => $a->value->value <=> $b->value->value);
 
         $class->addStmt(
-            $factory->classConst('POSSIBLE_PARENTS', $parents)
+            $this->factory->classConst('VALUES', $possibleValues)
+                ->makePublic()
+        );
+
+        $possibleTypes = [];
+
+        foreach ($property->possibleTypes as $type) {
+            $className = AbstractSchemaOrgElement::removeSchemaPrefix($type);
+            $fqcn = sprintf('%s\\%s%s', self::NAMESPACE_TYPE, $className, 'Model');
+            $possibleTypes[] = new Expr\ArrayItem(
+                new Scalar\String_($fqcn),
+                new Scalar\String_($className),
+            );
+        }
+
+        /* @phpstan-ignore-next-line */
+        usort($possibleTypes, fn ($a, $b) => $a->value->value <=> $b->value->value);
+
+        $class->addStmt(
+            $this->factory->classConst('TYPES', $possibleTypes)
                 ->makePublic()
         );
 
@@ -172,26 +284,22 @@ class Generator
 
     private function generateEnumerationMember(EnumerationMember $enumerationMember): Stmt\Namespace_
     {
-        $namespace = 'SchemaOrg\\EnumerationMember';
-        $factory = new BuilderFactory();
+        $node = $this->factory
+            ->namespace(self::NAMESPACE_ENUMERATION_MEMBER);
 
-        $node = $factory
-            ->namespace($namespace);
-
-        $class = $factory
+        $class = $this->factory
             ->class($enumerationMember->className)
             ->makeFinal()
-            ->makeReadonly()
             ->addStmt(
-                $factory->classConst('DESCRIPTION', $enumerationMember->description)
+                $this->factory->classConst('DESCRIPTION', $enumerationMember->description)
                     ->makePublic()
             )
             ->addStmt(
-                $factory->classConst('LABEL', $enumerationMember->label)
+                $this->factory->classConst('LABEL', $enumerationMember->label)
                     ->makePublic()
             )
             ->addStmt(
-                $factory->classConst('NAME', $enumerationMember->name)
+                $this->factory->classConst('NAME', $enumerationMember->name)
                     ->makePublic()
             );
 

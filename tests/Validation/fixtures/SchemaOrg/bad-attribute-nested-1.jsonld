@@ -1,0 +1,69 @@
+{
+    "@context":"https://schema.org/",
+    "@type":"Dataset",
+    "name":"NCDC Storm Events Database",
+    "description":"Storm Data is provided by the National Weather Service (NWS) and contain statistics on...",
+    "url":"https://catalog.data.gov/dataset/ncdc-storm-events-database",
+    "sameAs":"https://gis.ncdc.noaa.gov/geoportal/catalog/search/resource/details.page?id=gov.noaa.ncdc:C00510",
+    "identifier": ["https://doi.org/10.1000/182",
+                   "https://identifiers.org/ark:/12345/fk1234"],
+    "hasPart" : [
+      {
+        "@type": "Dataset",
+        "name": "Sub dataset 01",
+        "description": "Informative description of the first subdataset...",
+        "license" : "https://creativecommons.org/publicdomain/zero/1.0/",
+        "creator":{
+           "@type":"Organization",
+           "name": "Sub dataset 01 creator"
+        },
+        "hasPart": [
+            {
+              "@type": "Dataset",
+              "name": "Sub dataset 01",
+              "description": "Informative description of the first subdataset...",
+              "license" : "https://creativecommons.org/publicdomain/zero/1.0/",
+              "creator":{
+                 "@type":"Organization",
+                 "name": "Sub dataset 01 creator"
+              },
+              "hasPart": [
+                {
+                  "@type": "Dataset",
+                  "name": "Sub dataset 01",
+                  "description": "Informative description of the first subdataset...",
+                  "license" : "https://creativecommons.org/publicdomain/zero/1.0/",
+                  "creator":{
+                     "@type":"Organization",
+                     "name": "Sub dataset 01 creator"
+                  },
+                  "hasPart": [
+                    {
+                      "@type": "Dataset",
+                      "name": "Sub dataset 01",
+                      "description": "Informative description of the first subdataset...",
+                      "license" : "https://creativecommons.org/publicdomain/zero/1.0/",
+                      "imABadAttribute": "I don't exist!",
+                      "creator":{
+                         "@type":"Organization",
+                         "name": "Sub dataset 01 creator"
+                        }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+      },
+      {
+        "@type": "Dataset",
+        "name": "Sub dataset 02",
+        "description": "Informative description of the second subdataset...",
+        "license" : "https://creativecommons.org/publicdomain/zero/1.0/",
+        "creator":{
+           "@type":"Organization",
+           "name": "Sub dataset 02 creator"
+        }
+      }
+    ]
+  }

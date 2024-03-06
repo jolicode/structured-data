@@ -1,0 +1,16 @@
+{
+  "@graph": [
+    {
+      "@type": "http://schema.org/Person",
+      "http://schema.org/jobTitle": "Professor",
+      "http://schema.org/name": "Jane Doe",
+      "http://schema.org/telephone": "(425) 123-4567",
+      "http://schema.org/url": {
+        "@id": "http://www.janedoe.com"
+      }
+    },
+    {
+      "@id": "http://www.janedoe.com"
+    }
+  ]
+}

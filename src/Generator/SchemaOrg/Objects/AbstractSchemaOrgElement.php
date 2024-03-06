@@ -9,17 +9,25 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Generator\SchemaOrg\Types;
+namespace Jolicode\JsonLd\Generator\SchemaOrg\Objects;
 
 use Jolicode\JsonLd\Generator\SchemaOrg\Extractor;
 
-abstract class AsbtractSchemaOrgElement
+abstract class AbstractSchemaOrgElement
 {
+    /**
+     * Instantiates a new object from a fetched Schema.org raw type.
+     */
     abstract public static function fromRawData(array $rawType): self;
 
     public static function getClassName(string $label): string
     {
-        return ucfirst(self::replaceStartNumbers(str_replace('schema:', '', $label))) . 'Model';
+        return ucfirst(self::replaceStartNumbers(self::removeSchemaPrefix($label))) . 'Model';
+    }
+
+    public static function removeSchemaPrefix(string $name): string
+    {
+        return str_replace('schema:', '', $name);
     }
 
     /**
