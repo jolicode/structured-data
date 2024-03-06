@@ -41,6 +41,7 @@ class JsonLdValidatorTest extends TestCase
 
     /**
      * @group schemaOrg
+     *
      * @dataProvider provideSchemaOrgFiles
      */
     public function testSchemaOrgValidator(string $filePath, bool $isValid, array $expectedMessages): void
@@ -50,62 +51,12 @@ class JsonLdValidatorTest extends TestCase
 
     /**
      * @group google
+     *
      * @dataProvider provideGoogleFiles
      */
     public function testGoogleValidator(string $filePath, bool $isValid, array $expectedMessages): void
     {
         $this->testValidate($filePath, $isValid, $expectedMessages, GoogleValidator::class);
-    }
-
-    private function testValidate(string $filePath, bool $isValid, array $expectedMessages, string $validator): void
-    {
-        $maps = [];
-
-        if (IriResolver::isAbsoluteIri($filePath)) {
-            $jsonLd = $this->extractor->extractJsonLd($filePath);
-
-            foreach ($jsonLd as $jsonLdItem) {
-                $maps = array_merge($maps, $this->validator->validate($jsonLdItem, $validator));
-            }
-        } else {
-            $maps = $this->validator->validate(file_get_contents($filePath), $validator);
-        }
-
-        $containsErrors = false;
-
-        $foundErrorMessages = array_filter(
-            $maps,
-            fn (ValidationMap $map) => !$map->isValid()
-        );
-
-        $foundErrorMessages = array_reduce(
-            $foundErrorMessages,
-            fn (array $carry, ValidationMap $map) => array_merge($carry, $map->getErrorMessages()),
-            []
-        );
-
-        foreach ($maps as $map) {
-            if (!$map->isValid()) {
-                $containsErrors = true;
-            }
-
-            if (!$isValid) {
-                foreach ($foundErrorMessages as $actualMessage) {
-                    $this->assertSame($expectedMessages, $foundErrorMessages);
-                }
-            }
-        }
-
-        try {
-            $this->assertSame($isValid, !$containsErrors);
-        } catch (ExpectationFailedException $exception) {
-            $message = sprintf(
-                "The validation failed. The following errors were found: \n%s",
-                implode(\PHP_EOL, $foundErrorMessages)
-            );
-
-            throw new ExpectationFailedException($message, $exception->getComparisonFailure());
-        }
     }
 
     /** @dataProvider provideExamples */
@@ -262,6 +213,57 @@ class JsonLdValidatorTest extends TestCase
                 'The "member" property does not accept the "OrganizationRole" type as a value.',
             ],
         ];
+    }
+
+    private function testValidate(string $filePath, bool $isValid, array $expectedMessages, string $validator): void
+    {
+        $maps = [];
+
+        if (IriResolver::isAbsoluteIri($filePath)) {
+            $jsonLd = $this->extractor->extractJsonLd($filePath);
+
+            foreach ($jsonLd as $jsonLdItem) {
+                $maps = array_merge($maps, $this->validator->validate($jsonLdItem, $validator));
+            }
+        } else {
+            $maps = $this->validator->validate(file_get_contents($filePath), $validator);
+        }
+
+        $containsErrors = false;
+
+        $foundErrorMessages = array_filter(
+            $maps,
+            fn (ValidationMap $map) => !$map->isValid()
+        );
+
+        $foundErrorMessages = array_reduce(
+            $foundErrorMessages,
+            fn (array $carry, ValidationMap $map) => array_merge($carry, $map->getErrorMessages()),
+            []
+        );
+
+        foreach ($maps as $map) {
+            if (!$map->isValid()) {
+                $containsErrors = true;
+            }
+
+            if (!$isValid) {
+                foreach ($foundErrorMessages as $actualMessage) {
+                    $this->assertSame($expectedMessages, $foundErrorMessages);
+                }
+            }
+        }
+
+        try {
+            $this->assertSame($isValid, !$containsErrors);
+        } catch (ExpectationFailedException $exception) {
+            $message = sprintf(
+                "The validation failed. The following errors were found: \n%s",
+                implode(\PHP_EOL, $foundErrorMessages)
+            );
+
+            throw new ExpectationFailedException($message, $exception->getComparisonFailure());
+        }
     }
 
     private function provideGoogleFiles(): \Generator

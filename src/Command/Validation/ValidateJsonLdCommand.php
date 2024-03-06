@@ -15,15 +15,20 @@ use Jolicode\JsonLd\Algorithms\Http\IriResolver;
 use Jolicode\JsonLd\Validation\Error\ValidationError;
 use Jolicode\JsonLd\Validation\Extraction\JsonLdNodeExtractor;
 use Jolicode\JsonLd\Validation\JsonLdValidator;
+use Jolicode\JsonLd\Validation\Mapper\MappedError;
+use Jolicode\JsonLd\Validation\Mapper\ValidationMap;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 
 #[AsCommand(
     name: 'validate',
-    description: 'Validate that a JSON-LD file is valid',
+    description: 'Validate that a JSON-LD file or URL is valid',
 )]
 class ValidateJsonLdCommand extends Command
 {
@@ -36,7 +41,16 @@ class ValidateJsonLdCommand extends Command
 
     public function configure(): void
     {
-        $this->addArgument('file', null, 'The JSON-LD file to validate');
+        $this->addArgument('document', InputArgument::REQUIRED, 'The JSON-LD document to validate. It may be a file or an absolute URL.');
+        $this->addOption(
+            'validator',
+            null,
+            InputOption::VALUE_REQUIRED,
+            sprintf(
+                'The validator to use. Currently supported validators are : %s (default: all)',
+                implode(', ', $this->validator->getSupportedValidatorsSimpleNames())
+            )
+        );
     }
 
     public function execute(InputInterface $input, OutputInterface $output): int
@@ -44,35 +58,57 @@ class ValidateJsonLdCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $errors = [];
 
-        if (IriResolver::isIri($jsonLd = $input->getArgument('file'))) {
-            $jsonLd = $this->extractor->extractJsonLd($jsonLd);
+        $specificValidator = $input->getOption('validator');
+
+        if ($specificValidator) {
+            $specificValidator = $this->validator->getValidatorClassName($specificValidator);
+
+            if (!$specificValidator) {
+                $io->error(sprintf(
+                    'The required validator "%s" does not exist. Supported validators are : %s',
+                    $specificValidator,
+                    implode(', ', $this->validator->getSupportedValidatorsSimpleNames())
+                ));
+
+                return Command::FAILURE;
+            }
+        }
+
+        if (IriResolver::isAbsoluteIri($document = $input->getArgument('document'))) {
+            $jsonLd = $this->extractor->extractJsonLd($document);
 
             foreach ($jsonLd as $jsonLdItem) {
-                $errors = array_merge($errors, $this->validateJsonLdItem($jsonLdItem));
+                $errors = array_merge($errors, $this->validateJsonLdItem($jsonLdItem, $specificValidator));
             }
         } else {
-            $errors = $this->validateJsonLdItem($jsonLd);
+            $jsonLd = file_get_contents($document);
+
+            if (!$jsonLd) {
+                throw new FileNotFoundException(sprintf('The file "%s" does not exist.', $document));
+            }
+
+            $errors = $this->validateJsonLdItem($jsonLd, $specificValidator);
         }
 
         if ($errors) {
             foreach ($errors as $error) {
-                $io->section(sprintf('Validation %s', $error->severity));
-
                 if (ValidationError::SEVERITY_ERROR === $error->severity) {
                     $io->error($error->message);
+                    $hasErrors = true;
                 } else {
                     $io->warning($error->message);
                 }
 
-                $io->note(sprintf(
-                    'Raised on property "%s", located at line %d, column %d',
-                    $error->key,
-                    $error->range->start->line,
-                    $error->range->start->column)
-                );
+                $this->writeInfoMessage($io, $error);
             }
 
-            return Command::FAILURE;
+            if (isset($hasErrors)) {
+                $io->error('The provided JSON-LD document contains validation errors.');
+            } else {
+                $io->warning('The provided JSON-LD document contains validation warnings.');
+            }
+
+            return Command::SUCCESS;
         }
 
         $io->success('The provided JSON-LD is valid.');
@@ -80,8 +116,48 @@ class ValidateJsonLdCommand extends Command
         return Command::SUCCESS;
     }
 
-    private function validateJsonLdItem(string $jsonLd): array
+    /**
+     * @return MappedError[]
+     */
+    private function validateJsonLdItem(string $jsonLd, ?string $validator): array
     {
-        return $this->validator->validate($jsonLd)->getErrors();
+        $maps = $this->validator->validate($jsonLd, $validator);
+
+        $errors = array_filter(
+            $maps,
+            fn (ValidationMap $map) => !$map->isValid()
+        );
+
+        $errors = array_reduce(
+            $errors,
+            fn (array $carry, ValidationMap $map) => array_merge($carry, $map->getErrors()),
+            []
+        );
+
+        return $errors;
+    }
+
+    private function writeInfoMessage(SymfonyStyle $io, MappedError $error): void
+    {
+        $type = match (true) {
+            \is_string($error->type) => $error->type,
+            \is_array($error->type) => sprintf('[%s]', implode(', ', $error->type)),
+            default => null,
+        };
+
+        if (!$type) {
+            $typeText = 'an unknown type (with no @type property)';
+        } else {
+            $typeText = sprintf('the type "%s"', $type);
+        }
+
+        $io->info(sprintf(
+            'Raised by the %s validator for %s on property "%s", located at line %d, column %d',
+            $error->validatorName,
+            $typeText,
+            $error->key,
+            $error->range->start->line,
+            $error->range->start->column
+        ));
     }
 }

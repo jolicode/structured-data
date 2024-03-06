@@ -17,9 +17,11 @@ readonly class MappedError
 {
     public function __construct(
         public string $message,
+        public string|array|null $type,
         public ?string $key,
         public Range $range,
         public string $severity,
+        public ?string $validatorName = null,
     ) {
     }
 }

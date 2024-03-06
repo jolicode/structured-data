@@ -28,7 +28,9 @@ use Jolicode\JsonLd\Validation\Mapper\MappedProperty;
 use Jolicode\JsonLd\Validation\Mapper\MappedType;
 use Jolicode\JsonLd\Validation\Mapper\ValidationMap;
 use Jolicode\JsonLd\Validation\Mapper\ValidationMapper;
+use Jolicode\JsonLd\Validation\Validators\Google\GoogleValidator;
 use Jolicode\JsonLd\Validation\Validators\RegisteredValidatorsContainer;
+use Jolicode\JsonLd\Validation\Validators\SchemaOrg\SchemaOrgValidator;
 use JsonStreamingParser\Exception\ParsingException;
 
 class JsonLdValidator
@@ -52,6 +54,26 @@ class JsonLdValidator
     ) {
     }
 
+    public function getSupportedValidatorsSimpleNames(): array
+    {
+        $supportedValidators = array_map(
+            fn (string $validatorFqcn) => strtolower($validatorFqcn::VALIDATOR_NAME),
+            array_keys($this->container->getValidators())
+        );
+
+        return $supportedValidators;
+    }
+
+    public function getValidatorClassName(string $validatorCasualName): false|string
+    {
+        return match (strtolower($validatorCasualName)) {
+            'schemaorg' => SchemaOrgValidator::class,
+            'schema.org' => SchemaOrgValidator::class,
+            'google' => GoogleValidator::class,
+            default => false,
+        };
+    }
+
     /**
      * This method takes a raw JSON-LD string and will validate it.
      * It will return a ValidationMap object, containing the validation errors found with their location in the JSON-LD document.
@@ -59,13 +81,16 @@ class JsonLdValidator
      *
      * @return array<ValidationMap>
      */
-    public function validate(string $jsonLd, ?string $specificValidator = null): array
+    public function validate(string $jsonLd, string $specificValidator = null): array
     {
         $this->reset();
 
         $this->specificValidator = $specificValidator;
 
         try {
+            /**
+             * @var ArrayStructure|ObjectStructure $parsedJsonLd
+             */
             $parsedJsonLd = $this->parser->parse($jsonLd);
         } catch (ParsingException $exception) {
             return [$this->createMapWithInvalidDocument($exception->getMessage())];
@@ -83,7 +108,12 @@ class JsonLdValidator
 
         if ($parsedJsonLd instanceof ArrayStructure) {
             foreach ($parsedJsonLd->getValues() as $index => $jsonLdNode) {
-                $maps[] = $this->createValidationMap([$expansionResult[$index]], $jsonLdNode->content);
+                /**
+                 * @var ObjectStructure $objectStructure
+                 */
+                $objectStructure = $jsonLdNode->content;
+
+                $maps[] = $this->createValidationMap([$expansionResult[$index]], $objectStructure);
             }
         } else {
             $maps[] = $this->createValidationMap($expansionResult, $parsedJsonLd);
@@ -118,6 +148,7 @@ class JsonLdValidator
     {
         $error = new MappedError(
             $message,
+            null,
             null,
             new Range(
                 new Position(0, 0),

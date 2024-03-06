@@ -11,10 +11,10 @@
 
 namespace Jolicode\JsonLd\Tests\Algorithms;
 
+use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
+use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
 use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
-use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
 
 /**
  * @see https://w3c.github.io/json-ld-api/tests/flatten-manifest.html
@@ -36,7 +36,7 @@ class FlattenerTest extends AbstractJsonLdTestCase
                 $this->assertSame($expected->getMessage(), $exception->getMessage());
             }
         } else {
-            $this->assertEquals(json_decode($expected), json_decode($flattener->parseJson($json, options: $options)));
+            $this->assertSame(json_decode($expected), json_decode($flattener->parseJson($json, options: $options)));
         }
     }
 
@@ -51,7 +51,7 @@ class FlattenerTest extends AbstractJsonLdTestCase
             'e001-in.jsonld' => 'Conflicting Index Exception : aborting processing',
         ];
 
-        $defaultErrorMessage = <<<ERROR
+        $defaultErrorMessage = <<<'ERROR'
         Something went wrong with this test : it does not have an output file, which implies it expects an error to be thrown.
         However, there is no expected error message in the tests. Maybe the output file was deleted, or the Flattener is actually broken.
         ERROR;
@@ -83,7 +83,7 @@ class FlattenerTest extends AbstractJsonLdTestCase
 
         $testSpecificOptions = [];
 
-        if (array_key_exists($filename, $testSpecificOptions)) {
+        if (\array_key_exists($filename, $testSpecificOptions)) {
             foreach ($testSpecificOptions[$filename] as $property => $value) {
                 $options->{$property} = $value;
             }

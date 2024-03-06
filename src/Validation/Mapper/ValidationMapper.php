@@ -68,7 +68,7 @@ class ValidationMapper
      */
     public function map(array $expandedJsonLd): ValidationMap
     {
-        foreach ($expandedJsonLd as $index => $type) {
+        foreach ($expandedJsonLd as $type) {
             $type = $this->mapType($type);
 
             // This prevents adding the flattened types to the final result
@@ -111,7 +111,7 @@ class ValidationMapper
                 $typeWithViolation->getGraphProperty($error->key, $error->graphKey) :
                 $typeWithViolation->getProperty($error->key);
 
-            $this->addMappedError($error, $propertyWithError);
+            $this->addMappedError($error, $typeWithViolation, $propertyWithError);
         }
     }
 
@@ -277,13 +277,25 @@ class ValidationMapper
         return $basicProperty->{Keyword::ID->value};
     }
 
-    private function addMappedError(ValidationError $error, Property $property): void
+    private function addMappedError(ValidationError $error, ObjectStructure $type, Property $property): void
     {
+        $typeProperties = $type->getProperties();
+
+        if (\array_key_exists(Keyword::TYPE->value, $typeProperties)) {
+            $type = $typeProperties[Keyword::TYPE->value]->value->content;
+        } elseif (\array_key_exists('type', $typeProperties)) {
+            $type = $typeProperties['type']->value->content;
+        } else {
+            $type = null;
+        }
+
         $this->map->addError(new MappedError(
             $error->message,
+            $type,
             $property->key->name,
             $property->key->range,
-            $error->severity
+            $error->severity,
+            $error->validatorName
         ));
     }
 
@@ -388,6 +400,7 @@ class ValidationMapper
 
         $this->map->addError(new MappedError(
             $error->message,
+            null,
             Keyword::TYPE->value,
             new Range(
                 new Position($startLine, $startCol),

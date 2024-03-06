@@ -37,6 +37,7 @@ class Extractor
         'https://developers.google.com/search/docs/appearance/structured-data/search-gallery',
         'https://developers.google.com/search/docs/appearance/structured-data/enriched-search-results',
         'https://developers.google.com/search/docs/appearance/structured-data/carousel',
+        'https://developers.google.com/search/docs/appearance/structured-data/carousels-beta',
     ];
 
     public function __construct(
@@ -70,8 +71,6 @@ class Extractor
      */
     public function extractClasses(bool $refresh): array
     {
-        $client = HttpClient::create();
-
         if ($refresh || !$this->filesystem->exists(self::CACHE_DIRECTORY)) {
             if ($this->filesystem->exists(self::CACHE_DIRECTORY)) {
                 $this->filesystem->remove(self::CACHE_DIRECTORY);
@@ -319,7 +318,7 @@ class Extractor
             if (\array_key_exists('Book', $this->currentPageTypes) && \array_key_exists('Edition', $this->currentPageTypes['Book']->subTypes)) {
                 $this->currentType = $this->currentPageTypes['Book']->subTypes['Edition'];
             } else {
-                throw new \RuntimeException(sprintf('The "%s" page seems to have a special bahevior that is not yet handled.', $fileName));
+                throw new \RuntimeException(sprintf('The "%s" page seems to have a special behavior that is not handled yet.', $fileName));
             }
 
             return true;
@@ -341,9 +340,10 @@ class Extractor
         return \in_array($name, $wrongTitles, true);
     }
 
-    private function extractRealTypeName(Crawler $node): string
+    private function extractRealTypeName(Crawler $node): ?string
     {
         $codeTags = $node->filter('code');
+        $name = null;
 
         // Most of the time, the type name is inside a `code` tag, so we just need to get its value
         if (1 === $codeTags->count()) {
@@ -639,7 +639,7 @@ class Extractor
      * However, sometimes, this property is a subproperty of another property.
      * And sometimes, this subproperty belongs to a subtype.
      *
-     * @param array<Property> $atLeastOneOf sometimes, Google requires at least one of a set of properties to be present
+     * @param array<PropertyType> $atLeastOneOf sometimes, Google requires at least one of a set of properties to be present
      */
     private function handleNewProperty(string $name, string $severity, bool $isABetaTable, array $atLeastOneOf = []): void
     {
@@ -679,6 +679,7 @@ class Extractor
             str_contains($urlOrFilename, 'education-qa') => 'EducationQA',
             str_contains($urlOrFilename, 'qapage') => 'QA',
             str_contains($urlOrFilename, 'faqpage') => 'FAQ',
+            str_contains($urlOrFilename, 'course-info') => 'Course',
             str_contains($urlOrFilename, 'practice-problems') => 'PracticeProblem',
             default => throw new \RuntimeException(sprintf('Trying to get a subtype prefix for the "%s" URL, which is not supported', $urlOrFilename))
         };
@@ -703,7 +704,7 @@ class Extractor
             // Since carousels are special and will be handled differently, we use this property to differentiate them.
             multipleTypes: ['ItemList'],
             documentationUrl: 'https://developers.google.com/search/docs/appearance/structured-data/carousel#structured-data-type-definitions',
-            requiredProperties: [$itemListElement],
+            requiredProperties: ['itemListElement' => $itemListElement],
         );
 
         $itemListElement = new Property('itemListElement');
@@ -715,12 +716,12 @@ class Extractor
             ->getType('ListItem')
             ->getProperty('item')
             ->getType('Thing')
-            ->addProperty('name', 'requiredProperties', [new PropertyType('Text')]);
+            ->addProperty('name', 'requiredProperties', ['Text' => new PropertyType('Text')]);
         $itemListElement
             ->getType('ListItem')
             ->getProperty('item')
             ->getType('Thing')
-            ->addProperty('url', 'requiredProperties', [new PropertyType('URL')]);
+            ->addProperty('url', 'requiredProperties', ['URL' => new PropertyType('URL')]);
 
         $this->extractedTypes['AllInOneCarousel'] = new MainType(
             name: 'AllInOneCarousel',
@@ -729,7 +730,7 @@ class Extractor
             // Since carousels are special and will be handled differently, we use this property to differentiate them.
             multipleTypes: ['ItemList'],
             documentationUrl: 'https://developers.google.com/search/docs/appearance/structured-data/carousel#structured-data-type-definitions',
-            requiredProperties: [$itemListElement],
+            requiredProperties: ['itemListElement' => $itemListElement],
         );
     }
 }

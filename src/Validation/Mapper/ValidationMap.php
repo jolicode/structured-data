@@ -15,12 +15,12 @@ class ValidationMap
 {
     public function __construct(
         /**
-         * MappedError[].
+         * @var MappedError[]
          */
         private array $errors = [],
 
         /**
-         * MappedType[].
+         * @var MappedType[]
          */
         private array $types = [],
     ) {
@@ -31,11 +31,17 @@ class ValidationMap
         return 0 === \count($this->errors);
     }
 
+    /**
+     * @return MappedError[]
+     */
     public function getErrors(): array
     {
         return $this->errors;
     }
 
+    /**
+     * @return string[]
+     */
     public function getErrorMessages(): array
     {
         return array_map(
@@ -49,6 +55,9 @@ class ValidationMap
         $this->errors[] = $error;
     }
 
+    /**
+     * @return MappedType[]
+     */
     public function getTypes(): array
     {
         return $this->types;
