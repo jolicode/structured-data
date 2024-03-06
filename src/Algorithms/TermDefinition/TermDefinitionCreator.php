@@ -444,7 +444,10 @@ class TermDefinitionCreator
                 && !str_contains('/', $term)
                 && $simpleTerm
             ) {
-                if (IriResolver::isBlankNodeIdentifier($definition->iriMapping) || IriResolver::isIri($definition->iriMapping)) {
+                if (
+                    IriResolver::isBlankNodeIdentifier($definition->iriMapping)
+                    || (IriResolver::isIri($definition->iriMapping) && \in_array($definition->iriMapping, [':', '/', '?', '#', '[', ']', '@'], true))
+                ) {
                     $definition->prefixFlag = true;
                 }
             }
