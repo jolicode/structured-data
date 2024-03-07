@@ -49,9 +49,9 @@ function phpstan(): void
 #[AsTask(name: 'test', description: 'Run the tests', aliases: ['tests'])]
 function test(
     #[AsOption(name: 'group', shortcut: 'g', mode: InputOption::VALUE_REQUIRED, description: 'Only run tests from the specified group')]
-    ?string $group,
+    ?string $group = null,
     #[AsOption(name: 'stop-on-failure', shortcut: 's', mode: InputOption::VALUE_NONE, description: 'Stop execution upon first error or failure')]
-    bool $stopOnFailure,
+    ?bool $stopOnFailure = null,
 ): void {
     $command = 'php -d memory_limit=-1 vendor/bin/phpunit tests';
 
@@ -64,6 +64,14 @@ function test(
     }
 
     run($command);
+}
+
+#[AsTask(name: 'ci', description: 'Run all the CI checks')]
+function ci(): void
+{
+    cs();
+    phpstan();
+    test();
 }
 
 #[AsTask(name: 'delete', namespace: 'fixtures', description: 'Delete all test files')]
