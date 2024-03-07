@@ -22,7 +22,7 @@ readonly class RegisteredGeneratorsContainer
          */
         private array $generators = [
             'schemaorg' => new SchemaOrgGenerator(),
-            'google' => new GoogleGenerator(),
+            // 'google' => new GoogleGenerator(),
         ],
     ) {
     }

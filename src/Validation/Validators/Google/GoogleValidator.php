@@ -30,8 +30,6 @@ class GoogleValidator implements ValidatorInterface
 
     private static string $rootType = '';
 
-    // TODO : Type validation should intersect keys of recommended/required properties and found properties. If missing, generate corresponding errors.
-
     public static function validateType(MappedType $type, ?MappedProperty $property, array $typesStack): array
     {
         $errors = [];

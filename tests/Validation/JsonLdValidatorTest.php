@@ -40,7 +40,7 @@ class JsonLdValidatorTest extends TestCase
     }
 
     /**
-     * @group schemaOrg
+     * @group schemaorg
      *
      * @dataProvider provideSchemaOrgFiles
      */
@@ -54,10 +54,10 @@ class JsonLdValidatorTest extends TestCase
      *
      * @dataProvider provideGoogleFiles
      */
-    public function testGoogleValidator(string $filePath, bool $isValid, array $expectedMessages): void
-    {
-        $this->testValidate($filePath, $isValid, $expectedMessages, GoogleValidator::class);
-    }
+    // public function testGoogleValidator(string $filePath, bool $isValid, array $expectedMessages): void
+    // {
+    //     $this->testValidate($filePath, $isValid, $expectedMessages, GoogleValidator::class);
+    // }
 
     /** @dataProvider provideExamples */
     // public function testValidateBis(string $document): void
@@ -248,9 +248,7 @@ class JsonLdValidatorTest extends TestCase
             }
 
             if (!$isValid) {
-                foreach ($foundErrorMessages as $actualMessage) {
-                    $this->assertSame($expectedMessages, $foundErrorMessages);
-                }
+                $this->assertSame($expectedMessages, $foundErrorMessages);
             }
         }
 

@@ -111,13 +111,11 @@ class TermDefinitionCreator
 
         // 13
         if (property_exists($value, Keyword::REVERSE->value)) {
-            self::setReverseDefinition($activeContext, $definition, $localContext, $term, $value, $defined);
-
-            return;
-        }
-
+            if ($mustIgnoreTerm = self::setReverseDefinition($activeContext, $definition, $localContext, $term, $value, $defined)) {
+                return;
+            }
         // 14
-        if (
+        } elseif (
             property_exists($value, Keyword::ID->value)
             && $value->{Keyword::ID->value} !== $term
         ) {
@@ -315,6 +313,9 @@ class TermDefinitionCreator
         $definition->typeMapping = $type;
     }
 
+    /**
+     * This method should interrupt the process if the term should be ignored.
+     */
     private static function setReverseDefinition(
         Context $activeContext,
         TermDefinition $definition,
@@ -322,7 +323,7 @@ class TermDefinitionCreator
         string $term,
         mixed $value,
         array $defined,
-    ): void {
+    ): bool {
         // 13.1
         if (
             property_exists($value, Keyword::ID->value)
@@ -338,7 +339,7 @@ class TermDefinitionCreator
 
         // 13.3
         if (preg_match('/^@[a-zA-Z]+$/', $value->{Keyword::REVERSE->value})) {
-            return;
+            return true;
         }
 
         // 13.4
@@ -372,6 +373,8 @@ class TermDefinitionCreator
         // 13.7
         $activeContext->termDefinitions[$term] = $definition;
         $defined[$term] = true;
+
+        return false;
     }
 
     private static function handleIdValue(
@@ -444,10 +447,10 @@ class TermDefinitionCreator
                 && !str_contains('/', $term)
                 && $simpleTerm
             ) {
-                if (
-                    IriResolver::isBlankNodeIdentifier($definition->iriMapping)
-                    || (IriResolver::isIri($definition->iriMapping) && \in_array($definition->iriMapping, [':', '/', '?', '#', '[', ']', '@'], true))
-                ) {
+                $lastChar = mb_substr($definition->iriMapping, -1);
+                $genDelimCharacters = [':', '/', '?', '#', '[', ']', '@'];
+
+                if (IriResolver::isBlankNodeIdentifier($definition->iriMapping) || \in_array($lastChar, $genDelimCharacters, true)) {
                     $definition->prefixFlag = true;
                 }
             }

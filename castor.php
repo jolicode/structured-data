@@ -47,9 +47,23 @@ function phpstan(): void
 }
 
 #[AsTask(name: 'test', description: 'Run the tests', aliases: ['tests'])]
-function test(): void
-{
-    run('php -d memory_limit=-1 vendor/bin/phpunit tests');
+function test(
+    #[AsOption(name: 'group', shortcut: 'g', mode: InputOption::VALUE_REQUIRED, description: 'Only run tests from the specified group')]
+    ?string $group,
+    #[AsOption(name: 'stop-on-failure', shortcut: 's', mode: InputOption::VALUE_NONE, description: 'Stop execution upon first error or failure')]
+    bool $stopOnFailure,
+): void {
+    $command = 'php -d memory_limit=-1 vendor/bin/phpunit tests';
+
+    if ($group) {
+        $command .= sprintf(' --group %s', $group);
+    }
+
+    if ($stopOnFailure) {
+        $command .= ' --stop-on-failure';
+    }
+
+    run($command);
 }
 
 #[AsTask(name: 'delete', namespace: 'fixtures', description: 'Delete all test files')]
@@ -67,12 +81,18 @@ function resetFixtures(): void
 #[AsTask(name: 'generate', description: 'Generate the PHP classes used to validate JSON-LD')]
 function generate(
     #[AsOption(name: 'reset', shortcut: 'r', mode: InputOption::VALUE_NONE, description: 'Reset the generated files')]
-    bool $reset
+    bool $reset,
+    #[AsOption(name: 'source', shortcut: 's', mode: InputOption::VALUE_REQUIRED, description: 'Only download from a specific source. Accepted values are "schemaorg" and "google"')]
+    ?string $source = null
 ): void {
     $command = 'bin/json-ld generate';
 
     if ($reset) {
         $command .= ' -r';
+    }
+
+    if ($source) {
+        $command .= sprintf(' -s %s', $source);
     }
 
     run($command);
