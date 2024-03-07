@@ -31,10 +31,10 @@ Informations about the algorithms are available in the [W3C documentation](https
 This library provides an implementation of these recommendations, although we also took inspiration from [the Javascript Library](https://github.com/digitalbazaar/jsonld.js), which also follows the W3C recommendations.
 
 The algorithms currently available are the following :
-- [] [Compaction](https://www.w3.org/TR/json-ld11-api/#compaction-algorithm)
+- [ ] [Compaction](https://www.w3.org/TR/json-ld11-api/#compaction-algorithm)
 - [x] [Expansion](https://www.w3.org/TR/json-ld11-api/#expansion-algorithm)
 - [x] [Flattening](https://www.w3.org/TR/json-ld11-api/#flattening-algorithm)
-- [] [Framing](https://www.w3.org/TR/json-ld11-framing/)
+- [ ] [Framing](https://www.w3.org/TR/json-ld11-framing/)
 
 ## How to use it?
 
