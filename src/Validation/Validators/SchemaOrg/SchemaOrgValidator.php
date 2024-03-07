@@ -55,6 +55,8 @@ class SchemaOrgValidator implements ValidatorInterface
                 $message = sprintf('The "%s" type is not a valid Schema.org type.', $label);
 
                 $errors[] = [ValidationError::SEVERITY_ERROR, $message];
+
+                continue;
             }
 
             if ($property && !IriResolver::isAbsoluteIri($property->key)) {
@@ -182,6 +184,11 @@ class SchemaOrgValidator implements ValidatorInterface
 
     private static function propertyTypeIsValid(string $propertyLabel, string $typeFqcn): bool
     {
+        // Ok this may look weird but take a look at http://blog.schema.org/2014/06/introducing-role.html
+        if (str_contains($typeFqcn::LABEL, 'Role')) {
+            return true;
+        }
+
         if (!\in_array($typeFqcn, self::getPropertyFqcn($propertyLabel)::VALUES, true)) {
             foreach ($typeFqcn::PARENTS as $parentType) {
                 if (self::propertyTypeIsValid($propertyLabel, $parentType)) {

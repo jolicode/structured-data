@@ -16,6 +16,7 @@ use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
 use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use PHPUnit\Framework\AssertionFailedError;
 
 /**
  *  @see https://w3c.github.io/json-ld-api/tests/expand-manifest.html
@@ -33,6 +34,8 @@ class ExpanderTest extends AbstractJsonLdTestCase
         if ($expected instanceof JsonLdException) {
             try {
                 $expander->parseJson($json, $options);
+
+                throw new AssertionFailedError(sprintf('An exception was expected for this test but none were thrown. Expected error message was : %s', $expected->getMessage()));
             } catch (JsonLdException $exception) {
                 $this->assertSame($expected->getMessage(), $exception->getMessage());
             }
@@ -106,6 +109,7 @@ class ExpanderTest extends AbstractJsonLdTestCase
             'er53-in.jsonld' => 'invalid @prefix value',
             'er54-in.jsonld' => 'invalid typed value',
             'er55-in.jsonld' => 'invalid type mapping',
+            'er56-in.jsonld' => 'keyword redefinition',
             'ec01-in.jsonld' => 'invalid term definition',
             'ec02-in.jsonld' => 'keyword redefinition',
             'c029-in.jsonld' => 'invalid context entry',
@@ -139,6 +143,7 @@ class ExpanderTest extends AbstractJsonLdTestCase
             'pr31-in.jsonld' => 'protected term redefinition',
             'pr32-in.jsonld' => 'protected term redefinition',
             'pr33-in.jsonld' => 'invalid term definition',
+            'pr42-in.jsonld' => 'protected term redefinition',
             'es01-in.jsonld' => 'invalid container mapping',
             'es02-in.jsonld' => 'invalid container mapping',
             'en01-in.jsonld' => 'invalid @nest value',

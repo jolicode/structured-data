@@ -65,6 +65,10 @@ class TermDefinitionCreator
             }
         } else {
             // 5
+            if (Keyword::CONTEXT->value === $term) {
+                throw new TermDefinitionCreationException('keyword redefinition');
+            }
+
             if (preg_match('/^@[a-zA-Z]+$/', $term)) {
                 return;
             }
@@ -677,7 +681,7 @@ class TermDefinitionCreator
     }
 
     private static function switchToPreviousDefinition(
-        TermDefinition $definition,
+        TermDefinition &$definition,
         TermDefinition $previousDefinition,
     ): void {
         // 27.1

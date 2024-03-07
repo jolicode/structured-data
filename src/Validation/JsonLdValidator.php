@@ -201,8 +201,6 @@ class JsonLdValidator
                         if ($index === array_key_last($property->value)) {
                             array_pop($this->typesStack);
                         }
-
-                        continue;
                     }
                 }
 

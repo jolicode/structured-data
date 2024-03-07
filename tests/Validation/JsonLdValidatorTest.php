@@ -59,18 +59,15 @@ class JsonLdValidatorTest extends TestCase
     //     $this->testValidate($filePath, $isValid, $expectedMessages, GoogleValidator::class);
     // }
 
-    /** @dataProvider provideExamples */
-    // public function testValidateBis(string $document): void
-    // {
-    //     $json = file_get_contents($document);
-    //     $map = $this->validator->validate($json);
-
-    //     if (!$map->isValid()) {
-    //         dump($document, $map->getErrorMessages());
-    //     }
-
-    //     $this->assertTrue(true);
-    // }
+    /**
+     * @group schemaorg
+     *
+     * @dataProvider provideExamples
+     */
+    public function testValidateBis(string $filePath): void
+    {
+        $this->testValidate($filePath, true, [], SchemaOrgValidator::class);
+    }
 
     public function provideExamples(): \Generator
     {
@@ -205,13 +202,8 @@ class JsonLdValidatorTest extends TestCase
         ];
         yield 'Test validating a page with A LOT of JSON-LD tags' => [
             'document' => 'https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/examples.txt',
-            'isValid' => false,
-            'messages' => [
-                'The "member" property does not accept the "OrganizationRole" type as a value.',
-                'The "alumniOf" property does not accept the "OrganizationRole" type as a value.',
-                'The "actor" property does not accept the "PerformanceRole" type as a value.',
-                'The "member" property does not accept the "OrganizationRole" type as a value.',
-            ],
+            'isValid' => true,
+            'messages' => [],
         ];
     }
 
