@@ -23,7 +23,7 @@ abstract class AbstractJsonLdBench
             '%s/%s/input/%s',
             AbstractJsonLdTestCase::FIXTURES_PATH,
             $this->getAlgorithmName(),
-            $filename
+            $filename,
         ));
     }
 
@@ -32,7 +32,7 @@ abstract class AbstractJsonLdBench
         return sprintf(
             'https://w3c.github.io/json-ld-api/tests/%s/%s',
             $this->getAlgorithmName(),
-            $filename
+            $filename,
         );
     }
 }

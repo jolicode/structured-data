@@ -16,12 +16,10 @@ class MappedType
     public function __construct(
         public string|array|null $type = null,
         public ?string $name = null,
-
         /**
          * @var array<MappedProperty>
          */
         public array $properties = [],
-
         /**
          * @var array<MappedError>
          */

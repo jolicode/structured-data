@@ -48,8 +48,8 @@ class ValidateJsonLdCommand extends Command
             InputOption::VALUE_REQUIRED,
             sprintf(
                 'The validator to use. Currently supported validators are : %s (default: all)',
-                implode(', ', $this->validator->getSupportedValidatorsSimpleNames())
-            )
+                implode(', ', $this->validator->getSupportedValidatorsSimpleNames()),
+            ),
         );
     }
 
@@ -67,7 +67,7 @@ class ValidateJsonLdCommand extends Command
                 $io->error(sprintf(
                     'The required validator "%s" does not exist. Supported validators are : %s',
                     $specificValidator,
-                    implode(', ', $this->validator->getSupportedValidatorsSimpleNames())
+                    implode(', ', $this->validator->getSupportedValidatorsSimpleNames()),
                 ));
 
                 return Command::FAILURE;
@@ -125,13 +125,13 @@ class ValidateJsonLdCommand extends Command
 
         $errors = array_filter(
             $maps,
-            fn (ValidationMap $map) => !$map->isValid()
+            fn (ValidationMap $map) => !$map->isValid(),
         );
 
         $errors = array_reduce(
             $errors,
             fn (array $carry, ValidationMap $map) => array_merge($carry, $map->getErrors()),
-            []
+            [],
         );
 
         return $errors;
@@ -157,7 +157,7 @@ class ValidateJsonLdCommand extends Command
             $typeText,
             $error->key,
             $error->range->start->line,
-            $error->range->start->column
+            $error->range->start->column,
         ));
     }
 }

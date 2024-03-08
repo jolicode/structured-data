@@ -229,13 +229,13 @@ class JsonLdValidatorTest extends TestCase
 
         $foundErrorMessages = array_filter(
             $maps,
-            fn (ValidationMap $map) => !$map->isValid()
+            fn (ValidationMap $map) => !$map->isValid(),
         );
 
         $foundErrorMessages = array_reduce(
             $foundErrorMessages,
             fn (array $carry, ValidationMap $map) => array_merge($carry, $map->getErrorMessages()),
-            []
+            [],
         );
 
         foreach ($maps as $map) {

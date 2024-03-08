@@ -23,12 +23,10 @@ class Property extends AbstractSchemaOrgElement
         public string $description,
         public string $label,
         public string $className,
-
         /**
          * @var array<string>
          */
         public array $possibleTypes,
-
         /**
          * @var array<string>
          */

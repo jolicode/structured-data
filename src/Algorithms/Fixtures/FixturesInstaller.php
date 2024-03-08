@@ -88,13 +88,23 @@ class FixturesInstaller
         $filesystem = new Filesystem();
         $filesystem->dumpFile(
             self::W3C_ARCHIVE,
-            file_get_contents('https://github.com/w3c/json-ld-api/archive/main.zip')
+            file_get_contents('https://github.com/w3c/json-ld-api/archive/main.zip'),
         );
 
         $zip = new \ZipArchive();
         $zip->open(self::W3C_ARCHIVE);
         $zip->extractTo(AbstractJsonLdTestCase::VAR_DIR);
         $zip->close();
+
+        $finder = new Finder();
+        $filesystem->remove(self::W3C_ARCHIVE);
+        $filesystem->remove(
+            $finder
+                ->in(sprintf('%s/json-ld-api-main', AbstractJsonLdTestCase::VAR_DIR))
+                ->depth(0)
+                ->ignoreDotFiles(false)
+                ->notName('tests'),
+        );
     }
 
     private static function assignTestFiles(): void
@@ -125,7 +135,7 @@ class FixturesInstaller
             ->in(sprintf('%s/json-ld-api-main/tests/%s', AbstractJsonLdTestCase::VAR_DIR, $algorithm))
             ->files()
             ->filter(
-                fn (\SplFileInfo $file) => preg_match($regex, $file->getFilename()) ? $file : false
+                fn (\SplFileInfo $file) => preg_match($regex, $file->getFilename()) ? $file : false,
             );
 
         foreach ($files as $file) {
@@ -136,9 +146,9 @@ class FixturesInstaller
                     AbstractJsonLdTestCase::FIXTURES_PATH,
                     $algorithm,
                     $directory,
-                    $file->getFilename()
+                    $file->getFilename(),
                 ),
-                true
+                true,
             );
         }
     }

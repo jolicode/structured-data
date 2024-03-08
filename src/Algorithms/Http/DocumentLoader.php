@@ -27,11 +27,11 @@ class DocumentLoader
     private HttpClientInterface $httpClient;
 
     public function __construct(
-        private string $url
+        private string $url,
     ) {
         $this->httpClient = new CachingHttpClient(
             new FakeCacheHeaderClient(HttpClient::create()),
-            new Store(__DIR__ . '/../../../var/cache/http')
+            new Store(__DIR__ . '/../../../var/cache/http'),
         );
     }
 
@@ -56,7 +56,7 @@ class DocumentLoader
                         'Accept' => 'application/ld+json,application/json,*/*;q=0.1',
                         'User-Agent' => 'Mozilla/5.0 (compatible; redirection-io/1.0; +https://redirection.io/)',
                     ],
-                ]
+                ],
             );
         } catch (TransportExceptionInterface $exception) {
             throw new ContextProcessingException('loading remote context failed');
@@ -116,7 +116,7 @@ class DocumentLoader
                     } elseif (1 === \count($externalContextURLs)) {
                         $this->url = IriResolver::resolveIri(
                             $externalContextURLs[0]['uri'],
-                            $this->url
+                            $this->url,
                         );
                         // inject this context
                         $externalContextNode = $this->load();

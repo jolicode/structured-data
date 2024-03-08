@@ -20,7 +20,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
     name: 'expand',
-    description: 'Take a raw JSON-LD input and expand it'
+    description: 'Take a raw JSON-LD input and expand it',
 )]
 class ExpandCommand extends Command
 {

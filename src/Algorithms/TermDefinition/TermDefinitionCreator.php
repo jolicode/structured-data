@@ -201,7 +201,7 @@ class TermDefinitionCreator
                     Keyword::PROTECTED->value,
                     Keyword::TYPE->value,
                 ],
-                true
+                true,
             )) {
                 throw new TermDefinitionCreationException('invalid term definition');
             }
@@ -247,7 +247,7 @@ class TermDefinitionCreator
             if (\in_array(Keyword::SET->value, $container, true)) {
                 if (\count(array_intersect(
                     [Keyword::INDEX->value, Keyword::GRAPH->value, Keyword::ID->value, Keyword::TYPE->value, Keyword::LANGUAGE->value],
-                    $container
+                    $container,
                 ))) {
                     return true;
                 }
@@ -307,7 +307,7 @@ class TermDefinitionCreator
                 [
                     Keyword::ID->value, Keyword::NONE->value, Keyword::JSON->value, Keyword::VOCAB->value,
                 ],
-                true
+                true,
             )
         ) {
             throw new TermDefinitionCreationException('invalid type mapping');
@@ -351,7 +351,7 @@ class TermDefinitionCreator
             $activeContext,
             $value->{Keyword::REVERSE->value},
             defined: $defined,
-            localContext: $localContext
+            localContext: $localContext,
         );
 
         // 13.4
@@ -388,7 +388,7 @@ class TermDefinitionCreator
         mixed $value,
         \stdClass|array $localContext,
         array $defined,
-        bool $simpleTerm
+        bool $simpleTerm,
     ): bool {
         // 14.1
         $id = $value->{Keyword::ID->value};
@@ -409,7 +409,7 @@ class TermDefinitionCreator
                 $activeContext,
                 $id,
                 defined: $defined,
-                localContext: $localContext
+                localContext: $localContext,
             );
 
             if (
@@ -438,7 +438,7 @@ class TermDefinitionCreator
                         $activeContext,
                         $term,
                         defined: $defined,
-                        localContext: $localContext
+                        localContext: $localContext,
                     ) !== $definition->iriMapping
                 ) {
                     throw new TermDefinitionCreationException('invalid IRI mapping');
@@ -586,7 +586,7 @@ class TermDefinitionCreator
                 $baseUrl,
                 $remoteContexts,
                 overrideProtected: true,
-                validateScopedContext: false
+                validateScopedContext: false,
             );
         } catch (ContextProcessingException|TermDefinitionCreationException $exception) {
             throw new TermDefinitionCreationException('invalid scoped context');

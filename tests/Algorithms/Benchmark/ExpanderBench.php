@@ -19,7 +19,8 @@ class ExpanderBench extends AbstractJsonLdBench
 {
     public function __construct(
         private readonly Expander $expander = new Expander(),
-        private readonly ProcessorOptions $options = new ProcessorOptions()
+        private readonly ProcessorOptions $options = new ProcessorOptions(
+        ),
     ) {
     }
 

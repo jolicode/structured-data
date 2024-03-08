@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -19,6 +21,7 @@ file that was distributed with this source code.
 EOF;
 
 return (new PhpCsFixer\Config())
+    ->registerCustomFixers(new PhpCsFixerCustomFixers\Fixers())
     ->setRiskyAllowed(true)
     ->setRules([
         '@Symfony' => true,
@@ -52,10 +55,11 @@ return (new PhpCsFixer\Config())
         ],
         'concat_space' => ['spacing' => 'one'],
         'php_unit_strict' => false,
+        'trailing_comma_in_multiline' => ['elements' => ['arguments', 'parameters', 'arrays']],
+        PhpCsFixerCustomFixers\Fixer\MultilinePromotedPropertiesFixer::name() => true,
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()
-            ->in(__DIR__)
-            ->exclude('var')
-            ->exclude('vendor')
+            ->in(__DIR__ . '/src')
+            ->in(__DIR__ . '/tests')
     );

@@ -21,17 +21,14 @@ class Type extends AbstractSchemaOrgElement
         public string $label,
         public array $equivalentClass,
         public string $className,
-
         /**
          * @var array<string>
          */
         public array $parents = [],
-
         /**
          * @var array<string, Property>
          */
         public array $properties = [],
-
         /**
          * @var array<string, EnumerationMember>
          */

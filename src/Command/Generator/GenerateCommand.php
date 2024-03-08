@@ -20,7 +20,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
     name: 'generate',
-    description: 'Extract types from the given sources and generate the PHP classes'
+    description: 'Extract types from the given sources and generate the PHP classes',
 )]
 class GenerateCommand extends Command
 {

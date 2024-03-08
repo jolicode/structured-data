@@ -21,12 +21,10 @@ class PropertyType extends AbstractType
          * The name(s) used to identify the type.
          */
         public ?string $name = null,
-
         /**
          * @var array<string, Property>
          */
         public array $requiredProperties = [],
-
         /**
          * @var array<string, Property>
          */
@@ -40,7 +38,7 @@ class PropertyType extends AbstractType
      * @param array<string, PropertyType> $atLeastOneOf
      */
     public function addProperty(
-        string $name, string $targetProperties, array $types = [], array $atLeastOneOf = [], bool $isBeta = false
+        string $name, string $targetProperties, array $types = [], array $atLeastOneOf = [], bool $isBeta = false,
     ): void {
         $this->{$targetProperties}[$name] = new Property($name, $isBeta, $types, $atLeastOneOf);
     }

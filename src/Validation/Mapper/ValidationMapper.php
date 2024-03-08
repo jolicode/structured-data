@@ -32,14 +32,11 @@ class ValidationMapper
          * @var array<string,MappedType>
          */
         public array $flattenedTypeReferences = [],
-
         private ValidationMap $map = new ValidationMap(),
-
         /**
          * @var array<MappedError>
          */
         private array $mappedErrors = [],
-
         /**
          * @var array<string,MappedProperty>
          */
@@ -295,7 +292,7 @@ class ValidationMapper
             $property->key->name,
             $property->key->range,
             $error->severity,
-            $error->validatorName
+            $error->validatorName,
         ));
     }
 
@@ -404,9 +401,9 @@ class ValidationMapper
             Keyword::TYPE->value,
             new Range(
                 new Position($startLine, $startCol),
-                new Position($endLine, $endCol)
+                new Position($endLine, $endCol),
             ),
-            $error->severity
+            $error->severity,
         ));
     }
 }

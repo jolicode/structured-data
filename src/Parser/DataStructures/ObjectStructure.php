@@ -21,7 +21,6 @@ class ObjectStructure implements StructureInterface
 {
     public function __construct(
         public ?StructureInterface $belongsTo = null,
-
         /**
          * @var Property[]
          */

@@ -28,7 +28,7 @@ class Extractor
 
     private const GOOGLE_DOMAIN = 'https://developers.google.com';
     private const TYPES_SOURCE_URL = self::GOOGLE_DOMAIN . '/search/docs/appearance/structured-data';
-    private const CACHE_DIRECTORY = __DIR__ . '/../../../var/cache/google/';
+    private const UPLOAD_DIRECTORY = __DIR__ . '/../../../var/google/';
 
     private const SKIPPED_LINKS = [
         'https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data',
@@ -43,22 +43,18 @@ class Extractor
     public function __construct(
         private readonly Filesystem $filesystem,
         private readonly Finder $finder = new Finder(),
-
         private ?MainType $currentType = null,
         private ?array $propertyToUpdate = null,
         private bool $reachedEndOfDefinitions = false,
         private bool $skipNextValueCell = false,
-
         /**
          * @var array<string, MainType>
          */
         private array $currentPageTypes = [],
-
         /**
          * @var array<string, MainType>
          */
         private array $extractedTypes = [],
-
         /**
          * @var array<string>
          */
@@ -71,9 +67,9 @@ class Extractor
      */
     public function extractClasses(bool $refresh): array
     {
-        if ($refresh || !$this->filesystem->exists(self::CACHE_DIRECTORY)) {
-            if ($this->filesystem->exists(self::CACHE_DIRECTORY)) {
-                $this->filesystem->remove(self::CACHE_DIRECTORY);
+        if ($refresh || !$this->filesystem->exists(self::UPLOAD_DIRECTORY)) {
+            if ($this->filesystem->exists(self::UPLOAD_DIRECTORY)) {
+                $this->filesystem->remove(self::UPLOAD_DIRECTORY);
             }
 
             $client = HttpClient::create();
@@ -101,13 +97,13 @@ class Extractor
                 $fileName = end($fileName);
 
                 $this->filesystem->dumpFile(
-                    sprintf('%s%s.html', self::CACHE_DIRECTORY, $fileName),
-                    $client->request('GET', $typeLink)->getContent()
+                    sprintf('%s%s.html', self::UPLOAD_DIRECTORY, $fileName),
+                    $client->request('GET', $typeLink)->getContent(),
                 );
             }
         }
 
-        foreach ($this->finder->files()->in(self::CACHE_DIRECTORY) as $file) {
+        foreach ($this->finder->files()->in(self::UPLOAD_DIRECTORY) as $file) {
             // The product page is completely different and needs to be crawled separately. Unsupported for now.
             if ('product.html' === $file->getFilename()) {
                 continue;

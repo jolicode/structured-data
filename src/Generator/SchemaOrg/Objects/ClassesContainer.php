@@ -20,17 +20,14 @@ class ClassesContainer
          * @var array<string, Type>
          */
         private array $types = [],
-
         /**
          * @var array<string, Type>
          */
         private array $typesAliases = [],
-
         /**
          * @var array<string, Property>
          */
         private array $properties = [],
-
         /**
          * @var array<string, EnumerationMember>
          */

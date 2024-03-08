@@ -18,7 +18,6 @@ class ArrayStructure implements StructureInterface
 {
     public function __construct(
         public ?StructureInterface $belongsTo = null,
-
         /**
          * @var Value[]
          */

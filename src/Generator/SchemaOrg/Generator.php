@@ -91,7 +91,7 @@ readonly class Generator implements GeneratorInterface
                 '%s%s-%s.json-ld',
                 self::EXAMPLES_DIRECTORY,
                 $prefix,
-                $key
+                $key,
             );
 
             $this->filesystem->dumpFile($filename, $content);
@@ -117,12 +117,12 @@ readonly class Generator implements GeneratorInterface
                 '%s/%s/%s.php',
                 Extractor::GENERATED_DIR,
                 $classDirectory,
-                $element->className
+                $element->className,
             );
 
             $this->filesystem->dumpFile(
                 $fileName,
-                $this->printer->prettyPrintFile([$this->generateElement($element)])
+                $this->printer->prettyPrintFile([$this->generateElement($element)]),
             );
         }
     }
@@ -151,15 +151,15 @@ readonly class Generator implements GeneratorInterface
             ->makeFinal()
             ->addStmt(
                 $this->factory->classConst('DESCRIPTION', $type->description)
-                    ->makePublic()
+                    ->makePublic(),
             )
             ->addStmt(
                 $this->factory->classConst('LABEL', $type->label)
-                    ->makePublic()
+                    ->makePublic(),
             )
             ->addStmt(
                 $this->factory->classConst('NAME', $type->name)
-                    ->makePublic()
+                    ->makePublic(),
             );
 
         /* ADD THE PROPERTIES */
@@ -170,7 +170,7 @@ readonly class Generator implements GeneratorInterface
                 $this->factory->param($property->label)
                     ->makePublic()
                     ->setType(sprintf('?Property\\%s', $property->className))
-                    ->setDefault(null)
+                    ->setDefault(null),
             );
         }
 
@@ -191,7 +191,7 @@ readonly class Generator implements GeneratorInterface
 
         $class->addStmt(
             $this->factory->classConst('PARENTS', $parents)
-                ->makePublic()
+                ->makePublic(),
         );
 
         /** ADD THE ENUMERATION MEMBERS */
@@ -209,7 +209,7 @@ readonly class Generator implements GeneratorInterface
 
         $class->addStmt(
             $this->factory->classConst('ENUMERATION_MEMBERS', new Expr\Array_($enumerationMembers))
-                ->makePublic()
+                ->makePublic(),
         );
 
         $class->addStmt($constructor);
@@ -228,15 +228,15 @@ readonly class Generator implements GeneratorInterface
             ->makeFinal()
             ->addStmt(
                 $this->factory->classConst('DESCRIPTION', $property->description)
-                    ->makePublic()
+                    ->makePublic(),
             )
             ->addStmt(
                 $this->factory->classConst('LABEL', $property->label)
-                    ->makePublic()
+                    ->makePublic(),
             )
             ->addStmt(
                 $this->factory->classConst('NAME', $property->name)
-                    ->makePublic()
+                    ->makePublic(),
             );
 
         $possibleValues = [];
@@ -255,7 +255,7 @@ readonly class Generator implements GeneratorInterface
 
         $class->addStmt(
             $this->factory->classConst('VALUES', $possibleValues)
-                ->makePublic()
+                ->makePublic(),
         );
 
         $possibleTypes = [];
@@ -274,7 +274,7 @@ readonly class Generator implements GeneratorInterface
 
         $class->addStmt(
             $this->factory->classConst('TYPES', $possibleTypes)
-                ->makePublic()
+                ->makePublic(),
         );
 
         $node->addStmt($class);
@@ -292,15 +292,15 @@ readonly class Generator implements GeneratorInterface
             ->makeFinal()
             ->addStmt(
                 $this->factory->classConst('DESCRIPTION', $enumerationMember->description)
-                    ->makePublic()
+                    ->makePublic(),
             )
             ->addStmt(
                 $this->factory->classConst('LABEL', $enumerationMember->label)
-                    ->makePublic()
+                    ->makePublic(),
             )
             ->addStmt(
                 $this->factory->classConst('NAME', $enumerationMember->name)
-                    ->makePublic()
+                    ->makePublic(),
             );
 
         $node->addStmt($class);

@@ -40,14 +40,11 @@ class JsonLdValidator
          * @var array<string, string|array<string>>
          */
         private array $typesStack = [],
-
         /**
          * @var array<string,ValidationError>
          */
         private array $validationErrors = [],
-
         private ?string $specificValidator = null,
-
         private readonly ValidationMapper $validationMapper = new ValidationMapper(),
         private readonly JsonLdParser $parser = new JsonLdParser(),
         private readonly RegisteredValidatorsContainer $container = new RegisteredValidatorsContainer(),
@@ -58,7 +55,7 @@ class JsonLdValidator
     {
         $supportedValidators = array_map(
             fn (string $validatorFqcn) => strtolower($validatorFqcn::VALIDATOR_NAME),
-            array_keys($this->container->getValidators())
+            array_keys($this->container->getValidators()),
         );
 
         return $supportedValidators;
@@ -152,9 +149,9 @@ class JsonLdValidator
             null,
             new Range(
                 new Position(0, 0),
-                new Position(0, 0)
+                new Position(0, 0),
             ),
-            ValidationError::SEVERITY_ERROR
+            ValidationError::SEVERITY_ERROR,
         );
 
         return new ValidationMap([$error], []);
@@ -277,12 +274,12 @@ class JsonLdValidator
         $graphKey = array_search(
             $type,
             $this->validationMapper->flattenedTypeReferences,
-            true
+            true,
         );
 
         $graphKey = array_search(
             $graphKey,
-            array_keys($this->validationMapper->flattenedTypeReferences), true
+            array_keys($this->validationMapper->flattenedTypeReferences), true,
         );
     }
 
@@ -301,7 +298,7 @@ class JsonLdValidator
             $hasAGraph,
             $graphKey,
             $severity,
-            $validatorName
+            $validatorName,
         );
     }
 
@@ -320,7 +317,7 @@ class JsonLdValidator
             $hasAGraph,
             $graphKey,
             $severity,
-            $validatorName
+            $validatorName,
         );
     }
 }

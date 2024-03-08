@@ -42,7 +42,7 @@ class ContextProcesser
         array &$remoteContexts = [],
         bool $overrideProtected = false,
         bool $propagate = true,
-        bool $validateScopedContext = true
+        bool $validateScopedContext = true,
     ): Context {
         // 1
         $result = clone $activeContext;
@@ -129,7 +129,7 @@ class ContextProcesser
         array &$remoteContexts = [],
         bool $overrideProtected = false,
         bool $propagate = true,
-        bool $validateScopedContext = true
+        bool $validateScopedContext = true,
     ): Context {
         foreach ($localContext as $context) {
             // 5.1
@@ -205,7 +205,7 @@ class ContextProcesser
                         Keyword::VERSION->value,
                         Keyword::VOCAB->value,
                     ],
-                    true
+                    true,
                 )) {
                     continue;
                 }
@@ -218,7 +218,7 @@ class ContextProcesser
                     $baseUrl,
                     $context->{Keyword::PROTECTED->value} ?? false,
                     $overrideProtected,
-                    $remoteContexts
+                    $remoteContexts,
                 );
             }
         }
@@ -237,7 +237,7 @@ class ContextProcesser
         $result = new Context(
             baseIri: $activeContext->baseUrl,
             baseUrl: $activeContext->baseUrl,
-            previousContext: false === $propagate ? $result : null
+            previousContext: false === $propagate ? $result : null,
         );
     }
 
@@ -278,7 +278,7 @@ class ContextProcesser
             $loadedContext,
             $context,
             $remoteContexts,
-            validateScopedContext: $validateScopedContext
+            validateScopedContext: $validateScopedContext,
         );
     }
 

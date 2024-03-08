@@ -20,7 +20,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
     name: 'flatten',
-    description: 'Take an expanded JSON-LD input and flatten it'
+    description: 'Take an expanded JSON-LD input and flatten it',
 )]
 class FlattenCommand extends Command
 {

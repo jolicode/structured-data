@@ -60,7 +60,7 @@ abstract class AbstractJsonLdTestCase extends TestCase
             ->in(sprintf(
                 '%s/%s/input/',
                 self::FIXTURES_PATH,
-                $this->getAlgorithmName()
+                $this->getAlgorithmName(),
             ));
     }
 
@@ -69,7 +69,7 @@ abstract class AbstractJsonLdTestCase extends TestCase
         return sprintf(
             'https://w3c.github.io/json-ld-api/tests/%s/%s',
             $this->getAlgorithmName(),
-            $filename
+            $filename,
         );
     }
 

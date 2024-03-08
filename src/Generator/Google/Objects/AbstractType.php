@@ -20,17 +20,14 @@ abstract class AbstractType
          * The name(s) used to identify the type.
          */
         public ?string $name = null,
-
         /**
          * @var array<string, Property>
          */
         public array $requiredProperties = [],
-
         /**
          * @var array<string, Property>
          */
         public array $recommendedProperties = [],
-
         /**
          * @var array<Property> $currentProperties
          */
@@ -171,7 +168,7 @@ abstract class AbstractType
      * @param array<string, PropertyType> $typesToAdd
      */
     private function initializeNestedProperty(
-        array $propertiesChain, Property $property, array $typesToAdd, string $severity
+        array $propertiesChain, Property $property, array $typesToAdd, string $severity,
     ): void {
         $propertyName = array_shift($propertiesChain);
 

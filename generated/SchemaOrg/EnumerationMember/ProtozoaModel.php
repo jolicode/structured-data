@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace SchemaOrg\EnumerationMember;
+
+final class ProtozoaModel
+{
+    public const DESCRIPTION = 'Single-celled organism that causes an infection.';
+    public const LABEL = 'Protozoa';
+    public const NAME = 'schema:Protozoa';
+}

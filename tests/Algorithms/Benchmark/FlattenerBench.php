@@ -19,7 +19,8 @@ class FlattenerBench extends AbstractJsonLdBench
 {
     public function __construct(
         private readonly Flattener $flattener = new Flattener(),
-        private readonly ProcessorOptions $options = new ProcessorOptions()
+        private readonly ProcessorOptions $options = new ProcessorOptions(
+        ),
     ) {
     }
 

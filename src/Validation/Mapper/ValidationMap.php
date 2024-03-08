@@ -18,7 +18,6 @@ class ValidationMap
          * @var MappedError[]
          */
         private array $errors = [],
-
         /**
          * @var MappedType[]
          */
@@ -46,7 +45,7 @@ class ValidationMap
     {
         return array_map(
             fn (MappedError $error) => $error->message,
-            $this->errors
+            $this->errors,
         );
     }
 

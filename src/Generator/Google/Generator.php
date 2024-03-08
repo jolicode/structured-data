@@ -29,12 +29,10 @@ class Generator implements GeneratorInterface
         private readonly BuilderFactory $factory = new BuilderFactory(),
         private readonly Filesystem $filesystem = new Filesystem(),
         private readonly Standard $printer = new Standard(),
-
         /**
          * @var array<string, MainType>
          */
         private array $types = [],
-
         private ?string $currentNamespace = null,
         private ?string $currentFilename = null,
     ) {
@@ -74,7 +72,7 @@ class Generator implements GeneratorInterface
 
         $this->filesystem->dumpFile(
             $filename,
-            $this->printer->prettyPrintFile([$this->generateType($type, $namespace, $className)])
+            $this->printer->prettyPrintFile([$this->generateType($type, $namespace, $className)]),
         );
     }
 
@@ -89,7 +87,7 @@ class Generator implements GeneratorInterface
 
         $class->addStmt(
             $this->factory->classConst('NAME', $type->name)
-                ->makePublic()
+                ->makePublic(),
         );
 
         $requiredProperties = $this->generateTypeProperties($type->requiredProperties);
@@ -102,12 +100,12 @@ class Generator implements GeneratorInterface
 
             $class->addStmt(
                 $this->factory->classConst('DOCUMENTATION_URL', $type->documentationUrl)
-                    ->makePublic()
+                    ->makePublic(),
             );
 
             $class->addStmt(
                 $this->factory->classConst('IS_A_SUBTYPE', $type->isASubtype)
-                    ->makePublic()
+                    ->makePublic(),
             );
 
             if ($type->parentType) {
@@ -115,13 +113,13 @@ class Generator implements GeneratorInterface
 
                 $class->addStmt(
                     $this->factory->classConst('PARENT_TYPE', $parentFQCN)
-                        ->makePublic()
+                        ->makePublic(),
                 );
             }
 
             $class->addStmt(
                 $this->factory->classConst('IS_CAROUSEL_ELIGIBLE', $type->isCarouselEligible)
-                    ->makePublic()
+                    ->makePublic(),
             );
 
             if ($type->carousel) {
@@ -142,12 +140,12 @@ class Generator implements GeneratorInterface
 
         $class->addStmt(
             $this->factory->classConst('REQUIRED_PROPERTIES', $requiredProperties)
-                ->makePublic()
+                ->makePublic(),
         );
 
         $class->addStmt(
             $this->factory->classConst('RECOMMENDED_PROPERTIES', $recommendedProperties)
-                ->makePublic()
+                ->makePublic(),
         );
 
         $node->addStmt($class);
@@ -171,7 +169,7 @@ class Generator implements GeneratorInterface
                         if (!\array_key_exists($type->name, $formattedProperties)) {
                             $formattedProperties[$type->name] = $atLeastOneOf[$type->name];
                         }
-                    }
+                    },
                 );
 
                 $formattedProperties['atLeastOneOf'] = $atLeastOneOf;
@@ -239,7 +237,7 @@ class Generator implements GeneratorInterface
 
         $class->addStmt(
             $this->factory->classConst('SUB_TYPES', $subTypes)
-                ->makePublic()
+                ->makePublic(),
         );
     }
 
@@ -262,7 +260,7 @@ class Generator implements GeneratorInterface
 
         $class->addStmt(
             $this->factory->classConst('CAROUSEL', sprintf('%s\\Carousel', $newNamespace))
-                ->makePublic()
+                ->makePublic(),
         );
     }
 

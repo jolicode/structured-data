@@ -28,7 +28,7 @@ class IriResolver
         bool $documentRelative = false,
         bool $vocab = true,
         ?\stdClass $localContext = null,
-        array &$defined = []
+        array &$defined = [],
     ): ?string {
         // 1
         if (Keyword::tryFrom($value)) {

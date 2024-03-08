@@ -20,7 +20,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
     name: 'remove-fixtures',
-    description: 'Remove all existing tests fixtures'
+    description: 'Remove all existing tests fixtures',
 )]
 class ResetFixturesCommand extends Command
 {

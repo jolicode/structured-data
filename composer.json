@@ -26,7 +26,8 @@
         "symfony/var-dumper": "^6.2",
         "friendsofphp/php-cs-fixer": "^3.17",
         "phpstan/phpstan": "^1.9",
-        "phpbench/phpbench": "^1.2"
+        "phpbench/phpbench": "^1.2",
+        "kubawerlos/php-cs-fixer-custom-fixers": "^3.21"
     },
     "require": {
         "php": ">=8.2",

@@ -15,14 +15,11 @@ class Property
 {
     public function __construct(
         public string $name,
-
         public bool $isBeta = false,
-
         /**
          * @var array<PropertyType>
          */
         public array $types = [],
-
         /**
          * @var array<PropertyType>
          */
@@ -53,7 +50,7 @@ class Property
      * @param array<string, PropertyType> $atLeastOneOf
      */
     public function addProperties(
-        string $propertyName, string $targetProperties, array $types = [], array $atLeastOneOf = []
+        string $propertyName, string $targetProperties, array $types = [], array $atLeastOneOf = [],
     ): void {
         /**
          * @var PropertyType $type

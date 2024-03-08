@@ -17,15 +17,12 @@ class JsonLdDOMDocument extends \DOMDocument
 {
     public function __construct(
         protected ?string $source = null,
-
         /** @var ?\DOMXPath */
         protected $rawXpath = null,
-
         /** @var \?DOMXPath */
         protected $xpath = null,
-
         string $version = '1.0',
-        string $encoding = ''
+        string $encoding = '',
     ) {
         $this->preserveWhiteSpace = true;
         $this->strictErrorChecking = false;

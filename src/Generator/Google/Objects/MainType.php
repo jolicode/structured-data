@@ -21,7 +21,6 @@ class MainType extends AbstractType
          * The name(s) used to identify the type.
          */
         public ?string $name = null,
-
         /**
          * Only used for the Learning Video page.
          * Types on this page are actually a combination of 2 types.
@@ -29,43 +28,35 @@ class MainType extends AbstractType
          * @var array<string> $multipleTypes
          */
         public array $multipleTypes = [],
-
         /**
          * Used to retrieve properties from another type. Only used for LearningVideos and LearningClips for now.
          */
         public ?string $dependsOn = null,
-
         /**
          * The link to the type documentation.
          */
         public ?string $documentationUrl = null,
-
         /**
          * Used on the book page, which has 2 different types of books, and for carousels as well.
          */
         public bool $isASubtype = false,
         public ?self $parentType = null,
-
         /**
          * @var array<string, MainType>
          */
         public array $subTypes = [],
-
         /**
          * Some types are eligible for a carousel display.
          */
         public bool $isCarouselEligible = false,
-
         /**
          * Carousels have base required/recommended properties but they may use some others as well.
          */
         public ?PropertyType $carousel = null,
-
         /**
          * @var array<string, Property>
          */
         public array $requiredProperties = [],
-
         /**
          * @var array<string, Property>
          */
@@ -161,7 +152,7 @@ class MainType extends AbstractType
 
         $propertyTypesToUpdate = array_map(
             fn (PropertyType $type): string => $type->name,
-            $foundProperty->types
+            $foundProperty->types,
         );
 
         // Else, recursively call this method to find the property.

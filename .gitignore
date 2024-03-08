@@ -1,6 +1,4 @@
 /vendor/
-/var/
-/generated/
 /ressources/
 
 .php-cs-fixer.cache

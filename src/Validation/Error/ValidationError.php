@@ -18,22 +18,16 @@ readonly class ValidationError
 
     public function __construct(
         public string $message,
-
         public ?string $key,
-
         /**
          * Since a type may have other types as property values, we need to know the properties names of all the nested types.
          *
          * @var array<string|int>
          */
         public array $propertiesChain,
-
         public bool $hasAGraph,
-
         public int $graphKey,
-
         public string $severity,
-
         public string $validatorName,
     ) {
     }

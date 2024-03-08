@@ -71,12 +71,12 @@ class GoogleValidator implements ValidatorInterface
         self::validateRequiredProperties(
             $type,
             $requiredProperties,
-            $errors
+            $errors,
         );
         self::validateRecommendedProperties(
             $type,
             $recommendedProperties,
-            $errors
+            $errors,
         );
 
         return $errors;
@@ -98,7 +98,7 @@ class GoogleValidator implements ValidatorInterface
             $foundProperty = array_filter(
                 [...$typeFqcn::RECOMMENDED_PROPERTIES, ...$typeFqcn::REQUIRED_PROPERTIES],
                 fn (string $key) => $key === $propertyKey,
-                \ARRAY_FILTER_USE_KEY
+                \ARRAY_FILTER_USE_KEY,
             );
 
             if (!\count($foundProperty)) {
@@ -163,7 +163,7 @@ class GoogleValidator implements ValidatorInterface
             if (!\count(array_intersect_key($missingRequiredProperties['atLeastOneOf'], $type->properties))) {
                 $message = sprintf(
                     'Missing required property: at least one of the following properties must be present "%s"',
-                    implode(', ', array_keys($missingRequiredProperties['atLeastOneOf']))
+                    implode(', ', array_keys($missingRequiredProperties['atLeastOneOf'])),
                 );
 
                 unset($missingRequiredProperties['atLeastOneOf']);
@@ -188,7 +188,7 @@ class GoogleValidator implements ValidatorInterface
         if (\array_key_exists('atLeastOneOf', $missingRecommendedProperties)) {
             $missingRecommendedProperties = array_merge(
                 $missingRecommendedProperties,
-                array_diff_key($missingRecommendedProperties['atLeastOneOf'], $type->properties)
+                array_diff_key($missingRecommendedProperties['atLeastOneOf'], $type->properties),
             );
 
             unset($missingRecommendedProperties['atLeastOneOf']);

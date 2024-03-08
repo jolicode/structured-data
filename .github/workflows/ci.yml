@@ -28,7 +28,7 @@ jobs:
             - name: Install dependencies
               run: composer install --prefer-dist --no-progress
 
-            - name: Generate PHP classes
+            - name: Generate and import everything needed to run the project
               run: castor generate
 
             - name: Check PHP coding standards

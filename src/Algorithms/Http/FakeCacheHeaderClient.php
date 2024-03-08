@@ -26,8 +26,9 @@ final class FakeCacheHeaderClient implements HttpClientInterface
         $response->getStatusCode();
 
         return new class($response) implements ResponseInterface {
-            public function __construct(private $response)
-            {
+            public function __construct(
+                private $response,
+            ) {
             }
 
             public function getStatusCode(): int

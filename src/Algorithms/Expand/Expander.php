@@ -120,7 +120,7 @@ class Expander
                 $activeContext,
                 $propertyScopedContext,
                 $baseUrl,
-                overrideProtected: true
+                overrideProtected: true,
             );
         }
 
@@ -155,7 +155,7 @@ class Expander
             $typeScopedContext,
             $baseUrl,
             $inputType,
-            $activeContext->termDefinitions
+            $activeContext->termDefinitions,
         );
 
         // 14
@@ -169,7 +169,7 @@ class Expander
             $typeScopedContext,
             $baseUrl,
             $inputType,
-            $activeContext->termDefinitions
+            $activeContext->termDefinitions,
         );
 
         $result = (object) $result;
@@ -469,7 +469,7 @@ class Expander
                     $value,
                     $containerMapping,
                     $baseUrl,
-                    $options
+                    $options,
                 );
             } else {
                 // 13.9
@@ -478,7 +478,7 @@ class Expander
                     $options,
                     $baseUrl,
                     $activeContext,
-                    $key
+                    $key,
                 );
             }
 
@@ -534,7 +534,7 @@ class Expander
         Context $activeContext,
         mixed $value,
         ProcessorOptions $options,
-        array $expandedValue
+        array $expandedValue,
     ): array|string|null {
         // 13.4.3.1
         if (!\is_string($value) && !$options->frameExpansion) {
@@ -558,7 +558,7 @@ class Expander
         array &$result,
         mixed $value,
         ProcessorOptions $options,
-        array $expandedValue
+        array $expandedValue,
     ): mixed {
         // 13.4.4.1
         $this->validateValueForType($value, $options);
@@ -572,7 +572,7 @@ class Expander
             $expandedValue->{FramingKeyword::DEFAULT->value} = IriResolver::expand(
                 $typeScopedContext,
                 $value->{FramingKeyword::DEFAULT->value},
-                true
+                true,
             );
         // 13.4.4.4
         } else {
@@ -604,14 +604,14 @@ class Expander
         mixed $value,
         ?string $baseUrl,
         ProcessorOptions $options,
-        array $expandedValue
+        array $expandedValue,
     ): array {
         $expandedValue = $this->expand(
             $value,
             $options,
             $baseUrl,
             $activeContext,
-            Keyword::GRAPH->value
+            Keyword::GRAPH->value,
         );
 
         if (!\is_array($expandedValue)) {
@@ -633,7 +633,7 @@ class Expander
         array &$result,
         ?string $baseUrl,
         ProcessorOptions $options,
-        array $expandedValue
+        array $expandedValue,
     ): array {
         // 13.4.6.1
         if (Context::PROCESSING_MODE_11 === $activeContext->processingMode) {
@@ -648,7 +648,7 @@ class Expander
                 options: $options,
                 baseUrl: $baseUrl,
                 activeContext: $activeContext,
-                activeProperty: null
+                activeProperty: null,
             );
 
             $expandedValue = \is_array($expandedValue) ? $expandedValue : [$expandedValue];
@@ -675,7 +675,7 @@ class Expander
         array &$result,
         array $inputType,
         ProcessorOptions $options,
-        array $expandedValue
+        array $expandedValue,
     ): mixed {
         // 13.4.7.1
         if (\in_array(Keyword::JSON->value, $inputType, true)) {
@@ -740,7 +740,7 @@ class Expander
         mixed $value,
         ?string $baseUrl,
         ProcessorOptions $options,
-        array $expandedValue
+        array $expandedValue,
     ): array {
         // 13.4.11.1
         if (null !== $activeProperty || Keyword::GRAPH->value !== $activeProperty) {
@@ -928,7 +928,7 @@ class Expander
                 $mapContext = $this->contextProcesser->processContext(
                     $mapContext,
                     $mapContext->termDefinitions[$index]->context,
-                    $mapContext->termDefinitions[$index]->baseUrl
+                    $mapContext->termDefinitions[$index]->baseUrl,
                 );
             // 13.8.3.3
             } else {
@@ -950,7 +950,7 @@ class Expander
                 $baseUrl,
                 $mapContext,
                 $key,
-                true
+                true,
             );
 
             // 13.8.3.7
@@ -1115,7 +1115,7 @@ class Expander
                     $typeScopedContext,
                     $baseUrl,
                     $inputType,
-                    $activeDefinitions
+                    $activeDefinitions,
                 );
 
                 $this->processNestEntries(
@@ -1128,7 +1128,7 @@ class Expander
                     $typeScopedContext,
                     $baseUrl,
                     $inputType,
-                    $activeDefinitions
+                    $activeDefinitions,
                 );
             }
         }
@@ -1138,7 +1138,7 @@ class Expander
         Context $activeContext,
         int|float|string|bool $element,
         ?string $activeProperty,
-        mixed $propertyScopedContext
+        mixed $propertyScopedContext,
     ): ?\stdClass {
         // 4.1
         if (\in_array($activeProperty, [null, Keyword::GRAPH->value], true)) {
@@ -1150,7 +1150,7 @@ class Expander
             $activeContext = $this->contextProcesser->processContext(
                 $activeContext,
                 $propertyScopedContext,
-                $activeContext->termDefinitions[$activeProperty]->baseUrl
+                $activeContext->termDefinitions[$activeProperty]->baseUrl,
             );
         }
 
@@ -1164,7 +1164,7 @@ class Expander
         ProcessorOptions $options,
         ?string $baseUrl,
         ?string $activeProperty,
-        bool $fromMap
+        bool $fromMap,
     ): array {
         // 5.1
         $result = [];
@@ -1178,7 +1178,7 @@ class Expander
                 $baseUrl,
                 $activeContext,
                 $activeProperty,
-                $fromMap
+                $fromMap,
             );
 
             // 5.2.2
@@ -1261,7 +1261,7 @@ class Expander
                         $activeContext,
                         $typeScopedContext->termDefinitions[$term]->context,
                         $typeScopedContext->termDefinitions[$term]->baseUrl,
-                        propagate: false
+                        propagate: false,
                     );
                 }
             }
@@ -1432,7 +1432,7 @@ class Expander
             if (!\in_array(
                 $resultKey,
                 [Keyword::DIRECTION->value, Keyword::INDEX->value, Keyword::LANGUAGE->value, Keyword::TYPE->value, Keyword::VALUE->value],
-                true
+                true,
             )) {
                 throw new ExpansionException('invalid value object');
             }

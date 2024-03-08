@@ -34,10 +34,7 @@ function cs(
 #[AsTask(name: 'cs-generated', description: 'Fix CS violations in generated files. Use with caution! Very SLOW!')]
 function csGenerated(): void
 {
-    // Constructor promoted properties are all on line, which is quite annoying
-    // We could use https://github.com/kubawerlos/php-cs-fixer-custom-fixers/blob/main/src/Fixer/MultilinePromotedPropertiesFixer.php
-    // Configuration in this comment https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues/6325#issuecomment-1058183314
-    run('vendor/bin/php-cs-fixer fix generated');
+    run('php -d memory_limit=-1 vendor/bin/php-cs-fixer fix generated', timeout: 0);
 }
 
 #[AsTask(name: 'phpstan', description: 'Run phpstan')]

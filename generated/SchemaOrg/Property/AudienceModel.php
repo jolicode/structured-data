@@ -1,0 +1,23 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace SchemaOrg\Property;
+
+final class AudienceModel
+{
+    public const DESCRIPTION = 'An intended audience, i.e. a group for whom something was created.';
+    public const LABEL = 'audience';
+    public const NAME = 'schema:audience';
+    public const VALUES = ['AudienceModel' => 'SchemaOrg\\Type\\AudienceModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel', 'Event' => 'SchemaOrg\\Type\\EventModel', 'LodgingBusiness' => 'SchemaOrg\\Type\\LodgingBusinessModel', 'PlayAction' => 'SchemaOrg\\Type\\PlayActionModel', 'Product' => 'SchemaOrg\\Type\\ProductModel', 'Service' => 'SchemaOrg\\Type\\ServiceModel'];
+}

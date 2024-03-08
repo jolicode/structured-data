@@ -33,7 +33,7 @@ class NodeMapGenerator
         string $activeGraph = FramingKeyword::DEFAULT->value,
         mixed $activeSubject = null,
         ?string $activeProperty = null,
-        ?array &$list = null
+        ?array &$list = null,
     ): void {
         // 1
         if (\is_array($element)) {

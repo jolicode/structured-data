@@ -23,7 +23,6 @@ class PointerListener extends IdleListener implements PositionAwareInterface
         private int $startLineNumber = 0,
         private int $currentColumn = 0,
         private int $currentLine = 0,
-
         private ?StructureInterface $currentStructure = null,
     ) {
     }
