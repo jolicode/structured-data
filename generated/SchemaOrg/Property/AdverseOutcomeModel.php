@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AdverseOutcomeModel
     public const DESCRIPTION = 'A possible complication and/or side effect of this therapy. If it is known that an adverse outcome is serious (resulting in death, disability, or permanent damage; requiring hospitalization; or otherwise life-threatening or requiring immediate medical attention), tag it as a seriousAdverseOutcome instead.';
     public const LABEL = 'adverseOutcome';
     public const NAME = 'schema:adverseOutcome';
-    public const VALUES = ['MedicalEntityModel' => 'SchemaOrg\\Type\\MedicalEntityModel'];
-    public const TYPES = ['MedicalDevice' => 'SchemaOrg\\Type\\MedicalDeviceModel', 'TherapeuticProcedure' => 'SchemaOrg\\Type\\TherapeuticProcedureModel'];
+    public const VALUES = ['MedicalEntityModel' => 'SchemaOrg\Type\MedicalEntityModel'];
+    public const TYPES = ['MedicalDevice' => 'SchemaOrg\Type\MedicalDeviceModel', 'TherapeuticProcedure' => 'SchemaOrg\Type\TherapeuticProcedureModel'];
 }

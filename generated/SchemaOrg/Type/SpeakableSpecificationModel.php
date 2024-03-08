@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class SpeakableSpecificationModel
     public const DESCRIPTION = 'A SpeakableSpecification indicates (typically via [[xpath]] or [[cssSelector]]) sections of a document that are highlighted as particularly [[speakable]]. Instances of this type are expected to be used primarily as values of the [[speakable]] property.';
     public const LABEL = 'SpeakableSpecification';
     public const NAME = 'schema:SpeakableSpecification';
-    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\\Type\\IntangibleModel'];
+    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\Type\IntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

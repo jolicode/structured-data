@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TypeOfGoodModel
     public const DESCRIPTION = 'The product that this structured value is referring to.';
     public const LABEL = 'typeOfGood';
     public const NAME = 'schema:typeOfGood';
-    public const VALUES = ['ProductModel' => 'SchemaOrg\\Type\\ProductModel', 'ServiceModel' => 'SchemaOrg\\Type\\ServiceModel'];
-    public const TYPES = ['OwnershipInfo' => 'SchemaOrg\\Type\\OwnershipInfoModel', 'TypeAndQuantityNode' => 'SchemaOrg\\Type\\TypeAndQuantityNodeModel'];
+    public const VALUES = ['ProductModel' => 'SchemaOrg\Type\ProductModel', 'ServiceModel' => 'SchemaOrg\Type\ServiceModel'];
+    public const TYPES = ['OwnershipInfo' => 'SchemaOrg\Type\OwnershipInfoModel', 'TypeAndQuantityNode' => 'SchemaOrg\Type\TypeAndQuantityNodeModel'];
 }

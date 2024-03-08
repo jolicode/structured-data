@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class VerificationFactCheckingPolicyModel
     public const DESCRIPTION = 'Disclosure about verification and fact-checking processes for a [[NewsMediaOrganization]] or other fact-checking [[Organization]].';
     public const LABEL = 'verificationFactCheckingPolicy';
     public const NAME = 'schema:verificationFactCheckingPolicy';
-    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['NewsMediaOrganization' => 'SchemaOrg\\Type\\NewsMediaOrganizationModel'];
+    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['NewsMediaOrganization' => 'SchemaOrg\Type\NewsMediaOrganizationModel'];
 }

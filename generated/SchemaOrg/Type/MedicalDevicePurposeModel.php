@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class MedicalDevicePurposeModel
     public const DESCRIPTION = 'Categories of medical devices, organized by the purpose or intended use of the device.';
     public const LABEL = 'MedicalDevicePurpose';
     public const NAME = 'schema:MedicalDevicePurpose';
-    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\\Type\\MedicalEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['DiagnosticModel' => 'EnumerationMember\\DiagnosticModel', 'TherapeuticModel' => 'EnumerationMember\\TherapeuticModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\Type\MedicalEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['DiagnosticModel' => 'EnumerationMember\DiagnosticModel', 'TherapeuticModel' => 'EnumerationMember\TherapeuticModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

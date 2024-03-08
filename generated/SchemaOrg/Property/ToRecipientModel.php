@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ToRecipientModel
     public const DESCRIPTION = 'A sub property of recipient. The recipient who was directly sent the message.';
     public const LABEL = 'toRecipient';
     public const NAME = 'schema:toRecipient';
-    public const VALUES = ['AudienceModel' => 'SchemaOrg\\Type\\AudienceModel', 'ContactPointModel' => 'SchemaOrg\\Type\\ContactPointModel', 'OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel', 'PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['Message' => 'SchemaOrg\\Type\\MessageModel'];
+    public const VALUES = ['AudienceModel' => 'SchemaOrg\Type\AudienceModel', 'ContactPointModel' => 'SchemaOrg\Type\ContactPointModel', 'OrganizationModel' => 'SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['Message' => 'SchemaOrg\Type\MessageModel'];
 }

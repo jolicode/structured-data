@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IncludesHealthPlanNetworkModel
     public const DESCRIPTION = 'Networks covered by this plan.';
     public const LABEL = 'includesHealthPlanNetwork';
     public const NAME = 'schema:includesHealthPlanNetwork';
-    public const VALUES = ['HealthPlanNetworkModel' => 'SchemaOrg\\Type\\HealthPlanNetworkModel'];
-    public const TYPES = ['HealthInsurancePlan' => 'SchemaOrg\\Type\\HealthInsurancePlanModel'];
+    public const VALUES = ['HealthPlanNetworkModel' => 'SchemaOrg\Type\HealthPlanNetworkModel'];
+    public const TYPES = ['HealthInsurancePlan' => 'SchemaOrg\Type\HealthInsurancePlanModel'];
 }

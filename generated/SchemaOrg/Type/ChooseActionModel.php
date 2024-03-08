@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ChooseActionModel
     public const DESCRIPTION = 'The act of expressing a preference from a set of options or a large or unbounded set of choices/options.';
     public const LABEL = 'ChooseAction';
     public const NAME = 'schema:ChooseAction';
-    public const PARENTS = ['AssessActionModel' => 'SchemaOrg\\Type\\AssessActionModel'];
+    public const PARENTS = ['AssessActionModel' => 'SchemaOrg\Type\AssessActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LoanPaymentAmountModel
     public const DESCRIPTION = 'The amount of money to pay in a single payment.';
     public const LABEL = 'loanPaymentAmount';
     public const NAME = 'schema:loanPaymentAmount';
-    public const VALUES = ['MonetaryAmountModel' => 'SchemaOrg\\Type\\MonetaryAmountModel'];
-    public const TYPES = ['RepaymentSpecification' => 'SchemaOrg\\Type\\RepaymentSpecificationModel'];
+    public const VALUES = ['MonetaryAmountModel' => 'SchemaOrg\Type\MonetaryAmountModel'];
+    public const TYPES = ['RepaymentSpecification' => 'SchemaOrg\Type\RepaymentSpecificationModel'];
 }

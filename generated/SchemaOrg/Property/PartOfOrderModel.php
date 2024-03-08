@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PartOfOrderModel
     public const DESCRIPTION = 'The overall order the items in this delivery were included in.';
     public const LABEL = 'partOfOrder';
     public const NAME = 'schema:partOfOrder';
-    public const VALUES = ['OrderModel' => 'SchemaOrg\\Type\\OrderModel'];
-    public const TYPES = ['ParcelDelivery' => 'SchemaOrg\\Type\\ParcelDeliveryModel'];
+    public const VALUES = ['OrderModel' => 'SchemaOrg\Type\OrderModel'];
+    public const TYPES = ['ParcelDelivery' => 'SchemaOrg\Type\ParcelDeliveryModel'];
 }

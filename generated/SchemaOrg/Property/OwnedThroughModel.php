@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class OwnedThroughModel
     public const DESCRIPTION = 'The date and time of giving up ownership on the product.';
     public const LABEL = 'ownedThrough';
     public const NAME = 'schema:ownedThrough';
-    public const VALUES = ['DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel'];
-    public const TYPES = ['OwnershipInfo' => 'SchemaOrg\\Type\\OwnershipInfoModel'];
+    public const VALUES = ['DateTimeModel' => 'SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['OwnershipInfo' => 'SchemaOrg\Type\OwnershipInfoModel'];
 }

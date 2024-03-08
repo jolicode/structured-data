@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IndustryModel
     public const DESCRIPTION = 'The industry associated with the job position.';
     public const LABEL = 'industry';
     public const NAME = 'schema:industry';
-    public const VALUES = ['DefinedTermModel' => 'SchemaOrg\\Type\\DefinedTermModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['JobPosting' => 'SchemaOrg\\Type\\JobPostingModel'];
+    public const VALUES = ['DefinedTermModel' => 'SchemaOrg\Type\DefinedTermModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['JobPosting' => 'SchemaOrg\Type\JobPostingModel'];
 }

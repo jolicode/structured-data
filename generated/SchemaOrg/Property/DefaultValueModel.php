@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DefaultValueModel
     public const DESCRIPTION = 'The default value of the input.  For properties that expect a literal, the default is a literal value, for properties that expect an object, it\'s an ID reference to one of the current values.';
     public const LABEL = 'defaultValue';
     public const NAME = 'schema:defaultValue';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel', 'ThingModel' => 'SchemaOrg\\Type\\ThingModel'];
-    public const TYPES = ['PropertyValueSpecification' => 'SchemaOrg\\Type\\PropertyValueSpecificationModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel', 'ThingModel' => 'SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['PropertyValueSpecification' => 'SchemaOrg\Type\PropertyValueSpecificationModel'];
 }

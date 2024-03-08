@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SubStructureModel
     public const DESCRIPTION = 'Component (sub-)structure(s) that comprise this anatomical structure.';
     public const LABEL = 'subStructure';
     public const NAME = 'schema:subStructure';
-    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\\Type\\AnatomicalStructureModel'];
-    public const TYPES = ['AnatomicalStructure' => 'SchemaOrg\\Type\\AnatomicalStructureModel'];
+    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\Type\AnatomicalStructureModel'];
+    public const TYPES = ['AnatomicalStructure' => 'SchemaOrg\Type\AnatomicalStructureModel'];
 }

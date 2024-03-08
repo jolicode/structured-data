@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DanceEventModel
     public const DESCRIPTION = 'Event type: A social dance.';
     public const LABEL = 'DanceEvent';
     public const NAME = 'schema:DanceEvent';
-    public const PARENTS = ['EventModel' => 'SchemaOrg\\Type\\EventModel'];
+    public const PARENTS = ['EventModel' => 'SchemaOrg\Type\EventModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

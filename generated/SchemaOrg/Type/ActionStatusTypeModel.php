@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class ActionStatusTypeModel
     public const DESCRIPTION = 'The status of an Action.';
     public const LABEL = 'ActionStatusType';
     public const NAME = 'schema:ActionStatusType';
-    public const PARENTS = ['StatusEnumerationModel' => 'SchemaOrg\\Type\\StatusEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['ActiveActionStatusModel' => 'EnumerationMember\\ActiveActionStatusModel', 'CompletedActionStatusModel' => 'EnumerationMember\\CompletedActionStatusModel', 'FailedActionStatusModel' => 'EnumerationMember\\FailedActionStatusModel', 'PotentialActionStatusModel' => 'EnumerationMember\\PotentialActionStatusModel'];
+    public const PARENTS = ['StatusEnumerationModel' => 'SchemaOrg\Type\StatusEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['ActiveActionStatusModel' => 'EnumerationMember\ActiveActionStatusModel', 'CompletedActionStatusModel' => 'EnumerationMember\CompletedActionStatusModel', 'FailedActionStatusModel' => 'EnumerationMember\FailedActionStatusModel', 'PotentialActionStatusModel' => 'EnumerationMember\PotentialActionStatusModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

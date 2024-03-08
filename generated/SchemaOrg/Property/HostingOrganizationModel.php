@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HostingOrganizationModel
     public const DESCRIPTION = 'The organization (airline, travelers\' club, etc.) the membership is made with.';
     public const LABEL = 'hostingOrganization';
     public const NAME = 'schema:hostingOrganization';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel'];
-    public const TYPES = ['ProgramMembership' => 'SchemaOrg\\Type\\ProgramMembershipModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel'];
+    public const TYPES = ['ProgramMembership' => 'SchemaOrg\Type\ProgramMembershipModel'];
 }

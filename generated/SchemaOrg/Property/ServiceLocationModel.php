@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ServiceLocationModel
     public const DESCRIPTION = 'The location (e.g. civic structure, local business, etc.) where a person can go to access the service.';
     public const LABEL = 'serviceLocation';
     public const NAME = 'schema:serviceLocation';
-    public const VALUES = ['PlaceModel' => 'SchemaOrg\\Type\\PlaceModel'];
-    public const TYPES = ['ServiceChannel' => 'SchemaOrg\\Type\\ServiceChannelModel'];
+    public const VALUES = ['PlaceModel' => 'SchemaOrg\Type\PlaceModel'];
+    public const TYPES = ['ServiceChannel' => 'SchemaOrg\Type\ServiceChannelModel'];
 }

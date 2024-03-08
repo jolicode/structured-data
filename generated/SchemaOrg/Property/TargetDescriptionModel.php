@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TargetDescriptionModel
     public const DESCRIPTION = 'The description of a node in an established educational framework.';
     public const LABEL = 'targetDescription';
     public const NAME = 'schema:targetDescription';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['AlignmentObject' => 'SchemaOrg\\Type\\AlignmentObjectModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['AlignmentObject' => 'SchemaOrg\Type\AlignmentObjectModel'];
 }

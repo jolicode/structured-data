@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ValidForModel
     public const DESCRIPTION = 'The duration of validity of a permit or similar thing.';
     public const LABEL = 'validFor';
     public const NAME = 'schema:validFor';
-    public const VALUES = ['DurationModel' => 'SchemaOrg\\Type\\DurationModel'];
-    public const TYPES = ['EducationalOccupationalCredential' => 'SchemaOrg\\Type\\EducationalOccupationalCredentialModel', 'Permit' => 'SchemaOrg\\Type\\PermitModel'];
+    public const VALUES = ['DurationModel' => 'SchemaOrg\Type\DurationModel'];
+    public const TYPES = ['EducationalOccupationalCredential' => 'SchemaOrg\Type\EducationalOccupationalCredentialModel', 'Permit' => 'SchemaOrg\Type\PermitModel'];
 }

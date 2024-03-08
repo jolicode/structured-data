@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PermitAudienceModel
     public const DESCRIPTION = 'The target audience for this permit.';
     public const LABEL = 'permitAudience';
     public const NAME = 'schema:permitAudience';
-    public const VALUES = ['AudienceModel' => 'SchemaOrg\\Type\\AudienceModel'];
-    public const TYPES = ['Permit' => 'SchemaOrg\\Type\\PermitModel'];
+    public const VALUES = ['AudienceModel' => 'SchemaOrg\Type\AudienceModel'];
+    public const TYPES = ['Permit' => 'SchemaOrg\Type\PermitModel'];
 }

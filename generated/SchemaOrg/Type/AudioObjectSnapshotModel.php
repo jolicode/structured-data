@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class AudioObjectSnapshotModel
     public const DESCRIPTION = 'A specific and exact (byte-for-byte) version of an [[AudioObject]]. Two byte-for-byte identical files, for the purposes of this type, considered identical. If they have different embedded metadata the files will differ. Different external facts about the files, e.g. creator or dateCreated that aren\'t represented in their actual content, do not affect this notion of identity.';
     public const LABEL = 'AudioObjectSnapshot';
     public const NAME = 'schema:AudioObjectSnapshot';
-    public const PARENTS = ['AudioObjectModel' => 'SchemaOrg\\Type\\AudioObjectModel'];
+    public const PARENTS = ['AudioObjectModel' => 'SchemaOrg\Type\AudioObjectModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

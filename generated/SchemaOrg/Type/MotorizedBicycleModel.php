@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MotorizedBicycleModel
     public const DESCRIPTION = 'A motorized bicycle is a bicycle with an attached motor used to power the vehicle, or to assist with pedaling.';
     public const LABEL = 'MotorizedBicycle';
     public const NAME = 'schema:MotorizedBicycle';
-    public const PARENTS = ['VehicleModel' => 'SchemaOrg\\Type\\VehicleModel'];
+    public const PARENTS = ['VehicleModel' => 'SchemaOrg\Type\VehicleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

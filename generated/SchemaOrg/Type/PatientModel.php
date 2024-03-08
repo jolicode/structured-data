@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PatientModel
     public const DESCRIPTION = 'A patient is any person recipient of health care services.';
     public const LABEL = 'Patient';
     public const NAME = 'schema:Patient';
-    public const PARENTS = ['MedicalAudienceModel' => 'SchemaOrg\\Type\\MedicalAudienceModel', 'PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
+    public const PARENTS = ['MedicalAudienceModel' => 'SchemaOrg\Type\MedicalAudienceModel', 'PersonModel' => 'SchemaOrg\Type\PersonModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

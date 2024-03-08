@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RegionDrainedModel
     public const DESCRIPTION = 'The anatomical or organ system drained by this vessel; generally refers to a specific part of an organ.';
     public const LABEL = 'regionDrained';
     public const NAME = 'schema:regionDrained';
-    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\\Type\\AnatomicalStructureModel', 'AnatomicalSystemModel' => 'SchemaOrg\\Type\\AnatomicalSystemModel'];
-    public const TYPES = ['LymphaticVessel' => 'SchemaOrg\\Type\\LymphaticVesselModel', 'Vein' => 'SchemaOrg\\Type\\VeinModel'];
+    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\Type\AnatomicalStructureModel', 'AnatomicalSystemModel' => 'SchemaOrg\Type\AnatomicalSystemModel'];
+    public const TYPES = ['LymphaticVessel' => 'SchemaOrg\Type\LymphaticVesselModel', 'Vein' => 'SchemaOrg\Type\VeinModel'];
 }

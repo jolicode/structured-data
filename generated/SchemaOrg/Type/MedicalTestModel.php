@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MedicalTestModel
     public const DESCRIPTION = 'Any medical test, typically performed for diagnostic purposes.';
     public const LABEL = 'MedicalTest';
     public const NAME = 'schema:MedicalTest';
-    public const PARENTS = ['MedicalEntityModel' => 'SchemaOrg\\Type\\MedicalEntityModel'];
+    public const PARENTS = ['MedicalEntityModel' => 'SchemaOrg\Type\MedicalEntityModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

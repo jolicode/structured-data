@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MedicalEnumerationModel
     public const DESCRIPTION = 'Enumerations related to health and the practice of medicine: A concept that is used to attribute a quality to another concept, as a qualifier, a collection of items or a listing of all of the elements of a set in medicine practice.';
     public const LABEL = 'MedicalEnumeration';
     public const NAME = 'schema:MedicalEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

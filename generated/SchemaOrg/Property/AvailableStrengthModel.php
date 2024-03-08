@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AvailableStrengthModel
     public const DESCRIPTION = 'An available dosage strength for the drug.';
     public const LABEL = 'availableStrength';
     public const NAME = 'schema:availableStrength';
-    public const VALUES = ['DrugStrengthModel' => 'SchemaOrg\\Type\\DrugStrengthModel'];
-    public const TYPES = ['Drug' => 'SchemaOrg\\Type\\DrugModel'];
+    public const VALUES = ['DrugStrengthModel' => 'SchemaOrg\Type\DrugStrengthModel'];
+    public const TYPES = ['Drug' => 'SchemaOrg\Type\DrugModel'];
 }

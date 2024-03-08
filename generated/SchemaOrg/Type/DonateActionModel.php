@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DonateActionModel
     public const DESCRIPTION = 'The act of providing goods, services, or money without compensation, often for philanthropic reasons.';
     public const LABEL = 'DonateAction';
     public const NAME = 'schema:DonateAction';
-    public const PARENTS = ['TradeActionModel' => 'SchemaOrg\\Type\\TradeActionModel'];
+    public const PARENTS = ['TradeActionModel' => 'SchemaOrg\Type\TradeActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

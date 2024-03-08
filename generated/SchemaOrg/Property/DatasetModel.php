@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DatasetModel
     public const DESCRIPTION = 'A dataset contained in this catalog.';
     public const LABEL = 'dataset';
     public const NAME = 'schema:dataset';
-    public const VALUES = ['DatasetModel' => 'SchemaOrg\\Type\\DatasetModel'];
-    public const TYPES = ['DataCatalog' => 'SchemaOrg\\Type\\DataCatalogModel'];
+    public const VALUES = ['DatasetModel' => 'SchemaOrg\Type\DatasetModel'];
+    public const TYPES = ['DataCatalog' => 'SchemaOrg\Type\DataCatalogModel'];
 }

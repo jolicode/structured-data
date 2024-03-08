@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class SocialMediaPostingModel
     public const DESCRIPTION = 'A post to a social media platform, including blog posts, tweets, Facebook posts, etc.';
     public const LABEL = 'SocialMediaPosting';
     public const NAME = 'schema:SocialMediaPosting';
-    public const PARENTS = ['ArticleModel' => 'SchemaOrg\\Type\\ArticleModel'];
+    public const PARENTS = ['ArticleModel' => 'SchemaOrg\Type\ArticleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

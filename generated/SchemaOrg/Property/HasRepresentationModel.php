@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HasRepresentationModel
     public const DESCRIPTION = 'A common representation such as a protein sequence or chemical structure for this entity. For images use schema.org/image.';
     public const LABEL = 'hasRepresentation';
     public const NAME = 'schema:hasRepresentation';
-    public const VALUES = ['PropertyValueModel' => 'SchemaOrg\\Type\\PropertyValueModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['BioChemEntity' => 'SchemaOrg\\Type\\BioChemEntityModel'];
+    public const VALUES = ['PropertyValueModel' => 'SchemaOrg\Type\PropertyValueModel', 'TextModel' => 'SchemaOrg\Type\TextModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['BioChemEntity' => 'SchemaOrg\Type\BioChemEntityModel'];
 }

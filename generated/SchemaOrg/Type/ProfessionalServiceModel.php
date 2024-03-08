@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -17,12 +15,12 @@ use SchemaOrg\Property;
 
 final class ProfessionalServiceModel
 {
-    public const DESCRIPTION = 'Original definition: "provider of professional services."\\n\\nThe general [[ProfessionalService]] type for local businesses was deprecated due to confusion with [[Service]]. For reference, the types that it included were: [[Dentist]],
+    public const DESCRIPTION = 'Original definition: "provider of professional services."\n\nThe general [[ProfessionalService]] type for local businesses was deprecated due to confusion with [[Service]]. For reference, the types that it included were: [[Dentist]],
         [[AccountingService]], [[Attorney]], [[Notary]], as well as types for several kinds of [[HomeAndConstructionBusiness]]: [[Electrician]], [[GeneralContractor]],
         [[HousePainter]], [[Locksmith]], [[Plumber]], [[RoofingContractor]]. [[LegalService]] was introduced as a more inclusive supertype of [[Attorney]].';
     public const LABEL = 'ProfessionalService';
     public const NAME = 'schema:ProfessionalService';
-    public const PARENTS = ['LocalBusinessModel' => 'SchemaOrg\\Type\\LocalBusinessModel'];
+    public const PARENTS = ['LocalBusinessModel' => 'SchemaOrg\Type\LocalBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

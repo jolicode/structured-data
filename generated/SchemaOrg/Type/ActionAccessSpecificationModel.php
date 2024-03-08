@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ActionAccessSpecificationModel
     public const DESCRIPTION = 'A set of requirements that must be fulfilled in order to perform an Action.';
     public const LABEL = 'ActionAccessSpecification';
     public const NAME = 'schema:ActionAccessSpecification';
-    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\\Type\\IntangibleModel'];
+    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\Type\IntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

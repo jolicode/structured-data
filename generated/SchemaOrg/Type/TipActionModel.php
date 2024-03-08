@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class TipActionModel
     public const DESCRIPTION = 'The act of giving money voluntarily to a beneficiary in recognition of services rendered.';
     public const LABEL = 'TipAction';
     public const NAME = 'schema:TipAction';
-    public const PARENTS = ['TradeActionModel' => 'SchemaOrg\\Type\\TradeActionModel'];
+    public const PARENTS = ['TradeActionModel' => 'SchemaOrg\Type\TradeActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

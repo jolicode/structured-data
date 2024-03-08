@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AddOnModel
     public const DESCRIPTION = 'An additional offer that can only be obtained in combination with the first base offer (e.g. supplements and extensions that are available for a surcharge).';
     public const LABEL = 'addOn';
     public const NAME = 'schema:addOn';
-    public const VALUES = ['OfferModel' => 'SchemaOrg\\Type\\OfferModel'];
-    public const TYPES = ['Offer' => 'SchemaOrg\\Type\\OfferModel'];
+    public const VALUES = ['OfferModel' => 'SchemaOrg\Type\OfferModel'];
+    public const TYPES = ['Offer' => 'SchemaOrg\Type\OfferModel'];
 }

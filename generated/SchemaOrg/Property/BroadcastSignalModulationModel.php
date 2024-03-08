@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BroadcastSignalModulationModel
     public const DESCRIPTION = 'The modulation (e.g. FM, AM, etc) used by a particular broadcast service.';
     public const LABEL = 'broadcastSignalModulation';
     public const NAME = 'schema:broadcastSignalModulation';
-    public const VALUES = ['QualitativeValueModel' => 'SchemaOrg\\Type\\QualitativeValueModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['BroadcastFrequencySpecification' => 'SchemaOrg\\Type\\BroadcastFrequencySpecificationModel'];
+    public const VALUES = ['QualitativeValueModel' => 'SchemaOrg\Type\QualitativeValueModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['BroadcastFrequencySpecification' => 'SchemaOrg\Type\BroadcastFrequencySpecificationModel'];
 }

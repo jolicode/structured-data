@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class VesselModel
     public const DESCRIPTION = 'A component of the human body circulatory system comprised of an intricate network of hollow tubes that transport blood throughout the entire body.';
     public const LABEL = 'Vessel';
     public const NAME = 'schema:Vessel';
-    public const PARENTS = ['AnatomicalStructureModel' => 'SchemaOrg\\Type\\AnatomicalStructureModel'];
+    public const PARENTS = ['AnatomicalStructureModel' => 'SchemaOrg\Type\AnatomicalStructureModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

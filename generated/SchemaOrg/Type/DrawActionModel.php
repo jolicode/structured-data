@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DrawActionModel
     public const DESCRIPTION = 'The act of producing a visual/graphical representation of an object, typically with a pen/pencil and paper as instruments.';
     public const LABEL = 'DrawAction';
     public const NAME = 'schema:DrawAction';
-    public const PARENTS = ['CreateActionModel' => 'SchemaOrg\\Type\\CreateActionModel'];
+    public const PARENTS = ['CreateActionModel' => 'SchemaOrg\Type\CreateActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

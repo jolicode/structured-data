@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ArrivalGateModel
     public const DESCRIPTION = 'Identifier of the flight\'s arrival gate.';
     public const LABEL = 'arrivalGate';
     public const NAME = 'schema:arrivalGate';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Flight' => 'SchemaOrg\\Type\\FlightModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Flight' => 'SchemaOrg\Type\FlightModel'];
 }

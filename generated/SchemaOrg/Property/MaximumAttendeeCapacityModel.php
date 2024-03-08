@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MaximumAttendeeCapacityModel
     public const DESCRIPTION = 'The total number of individuals that may attend an event or venue.';
     public const LABEL = 'maximumAttendeeCapacity';
     public const NAME = 'schema:maximumAttendeeCapacity';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel'];
-    public const TYPES = ['Event' => 'SchemaOrg\\Type\\EventModel', 'Place' => 'SchemaOrg\\Type\\PlaceModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['Event' => 'SchemaOrg\Type\EventModel', 'Place' => 'SchemaOrg\Type\PlaceModel'];
 }

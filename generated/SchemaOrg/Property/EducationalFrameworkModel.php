@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class EducationalFrameworkModel
     public const DESCRIPTION = 'The framework to which the resource being described is aligned.';
     public const LABEL = 'educationalFramework';
     public const NAME = 'schema:educationalFramework';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['AlignmentObject' => 'SchemaOrg\\Type\\AlignmentObjectModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['AlignmentObject' => 'SchemaOrg\Type\AlignmentObjectModel'];
 }

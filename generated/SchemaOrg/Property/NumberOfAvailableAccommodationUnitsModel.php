@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class NumberOfAvailableAccommodationUnitsModel
     public const DESCRIPTION = 'Indicates the number of available accommodation units in an [[ApartmentComplex]], or the number of accommodation units for a specific [[FloorPlan]] (within its specific [[ApartmentComplex]]). See also [[numberOfAccommodationUnits]].';
     public const LABEL = 'numberOfAvailableAccommodationUnits';
     public const NAME = 'schema:numberOfAvailableAccommodationUnits';
-    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['ApartmentComplex' => 'SchemaOrg\\Type\\ApartmentComplexModel', 'FloorPlan' => 'SchemaOrg\\Type\\FloorPlanModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['ApartmentComplex' => 'SchemaOrg\Type\ApartmentComplexModel', 'FloorPlan' => 'SchemaOrg\Type\FloorPlanModel'];
 }

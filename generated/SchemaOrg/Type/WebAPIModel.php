@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class WebAPIModel
     public const DESCRIPTION = 'An application programming interface accessible over Web/Internet technologies.';
     public const LABEL = 'WebAPI';
     public const NAME = 'schema:WebAPI';
-    public const PARENTS = ['ServiceModel' => 'SchemaOrg\\Type\\ServiceModel'];
+    public const PARENTS = ['ServiceModel' => 'SchemaOrg\Type\ServiceModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

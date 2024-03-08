@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ImagingTechniqueModel
     public const DESCRIPTION = 'Imaging technique used.';
     public const LABEL = 'imagingTechnique';
     public const NAME = 'schema:imagingTechnique';
-    public const VALUES = ['MedicalImagingTechniqueModel' => 'SchemaOrg\\Type\\MedicalImagingTechniqueModel'];
-    public const TYPES = ['ImagingTest' => 'SchemaOrg\\Type\\ImagingTestModel'];
+    public const VALUES = ['MedicalImagingTechniqueModel' => 'SchemaOrg\Type\MedicalImagingTechniqueModel'];
+    public const TYPES = ['ImagingTest' => 'SchemaOrg\Type\ImagingTestModel'];
 }

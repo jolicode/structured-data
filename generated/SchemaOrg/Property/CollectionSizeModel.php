@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CollectionSizeModel
     public const DESCRIPTION = 'The number of items in the [[Collection]].';
     public const LABEL = 'collectionSize';
     public const NAME = 'schema:collectionSize';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel'];
-    public const TYPES = ['Collection' => 'SchemaOrg\\Type\\CollectionModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['Collection' => 'SchemaOrg\Type\CollectionModel'];
 }

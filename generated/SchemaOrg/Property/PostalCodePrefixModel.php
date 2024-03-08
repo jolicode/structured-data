@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PostalCodePrefixModel
     public const DESCRIPTION = 'A defined range of postal codes indicated by a common textual prefix. Used for non-numeric systems such as UK.';
     public const LABEL = 'postalCodePrefix';
     public const NAME = 'schema:postalCodePrefix';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['DefinedRegion' => 'SchemaOrg\\Type\\DefinedRegionModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['DefinedRegion' => 'SchemaOrg\Type\DefinedRegionModel'];
 }

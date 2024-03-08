@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DeliveryTimeSettingsModel
     public const DESCRIPTION = 'A DeliveryTimeSettings represents re-usable pieces of shipping information, relating to timing. It is designed for publication on an URL that may be referenced via the [[shippingSettingsLink]] property of an [[OfferShippingDetails]]. Several occurrences can be published, distinguished (and identified/referenced) by their different values for [[transitTimeLabel]].';
     public const LABEL = 'DeliveryTimeSettings';
     public const NAME = 'schema:DeliveryTimeSettings';
-    public const PARENTS = ['StructuredValueModel' => 'SchemaOrg\\Type\\StructuredValueModel'];
+    public const PARENTS = ['StructuredValueModel' => 'SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

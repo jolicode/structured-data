@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BookingTimeModel
     public const DESCRIPTION = 'The date and time the reservation was booked.';
     public const LABEL = 'bookingTime';
     public const NAME = 'schema:bookingTime';
-    public const VALUES = ['DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel'];
-    public const TYPES = ['Reservation' => 'SchemaOrg\\Type\\ReservationModel'];
+    public const VALUES = ['DateTimeModel' => 'SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['Reservation' => 'SchemaOrg\Type\ReservationModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MusicGroupModel
     public const DESCRIPTION = 'A musical group, such as a band, an orchestra, or a choir. Can also be a solo musician.';
     public const LABEL = 'MusicGroup';
     public const NAME = 'schema:MusicGroup';
-    public const PARENTS = ['PerformingGroupModel' => 'SchemaOrg\\Type\\PerformingGroupModel'];
+    public const PARENTS = ['PerformingGroupModel' => 'SchemaOrg\Type\PerformingGroupModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

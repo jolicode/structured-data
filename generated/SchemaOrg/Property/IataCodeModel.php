@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IataCodeModel
     public const DESCRIPTION = 'IATA identifier for an airline or airport.';
     public const LABEL = 'iataCode';
     public const NAME = 'schema:iataCode';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Airline' => 'SchemaOrg\\Type\\AirlineModel', 'Airport' => 'SchemaOrg\\Type\\AirportModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Airline' => 'SchemaOrg\Type\AirlineModel', 'Airport' => 'SchemaOrg\Type\AirportModel'];
 }

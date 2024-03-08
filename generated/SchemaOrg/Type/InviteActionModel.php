@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class InviteActionModel
     public const DESCRIPTION = 'The act of asking someone to attend an event. Reciprocal of RsvpAction.';
     public const LABEL = 'InviteAction';
     public const NAME = 'schema:InviteAction';
-    public const PARENTS = ['CommunicateActionModel' => 'SchemaOrg\\Type\\CommunicateActionModel'];
+    public const PARENTS = ['CommunicateActionModel' => 'SchemaOrg\Type\CommunicateActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

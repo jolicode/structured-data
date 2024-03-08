@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class BankOrCreditUnionModel
     public const DESCRIPTION = 'Bank or credit union.';
     public const LABEL = 'BankOrCreditUnion';
     public const NAME = 'schema:BankOrCreditUnion';
-    public const PARENTS = ['FinancialServiceModel' => 'SchemaOrg\\Type\\FinancialServiceModel'];
+    public const PARENTS = ['FinancialServiceModel' => 'SchemaOrg\Type\FinancialServiceModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

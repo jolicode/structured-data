@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ResponsibilitiesModel
     public const DESCRIPTION = 'Responsibilities associated with this role or Occupation.';
     public const LABEL = 'responsibilities';
     public const NAME = 'schema:responsibilities';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['JobPosting' => 'SchemaOrg\\Type\\JobPostingModel', 'Occupation' => 'SchemaOrg\\Type\\OccupationModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['JobPosting' => 'SchemaOrg\Type\JobPostingModel', 'Occupation' => 'SchemaOrg\Type\OccupationModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class NumberOfPlayersModel
     public const DESCRIPTION = 'Indicate how many people can play this game (minimum, maximum, or range).';
     public const LABEL = 'numberOfPlayers';
     public const NAME = 'schema:numberOfPlayers';
-    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['Game' => 'SchemaOrg\\Type\\GameModel', 'VideoGameSeries' => 'SchemaOrg\\Type\\VideoGameSeriesModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['Game' => 'SchemaOrg\Type\GameModel', 'VideoGameSeries' => 'SchemaOrg\Type\VideoGameSeriesModel'];
 }

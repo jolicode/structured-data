@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ServiceOperatorModel
     public const DESCRIPTION = 'The operating organization, if different from the provider.  This enables the representation of services that are provided by an organization, but operated by another organization like a subcontractor.';
     public const LABEL = 'serviceOperator';
     public const NAME = 'schema:serviceOperator';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel'];
-    public const TYPES = ['GovernmentService' => 'SchemaOrg\\Type\\GovernmentServiceModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel'];
+    public const TYPES = ['GovernmentService' => 'SchemaOrg\Type\GovernmentServiceModel'];
 }

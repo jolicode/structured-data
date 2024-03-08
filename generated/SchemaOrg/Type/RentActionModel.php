@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class RentActionModel
     public const DESCRIPTION = 'The act of giving money in return for temporary use, but not ownership, of an object such as a vehicle or property. For example, an agent rents a property from a landlord in exchange for a periodic payment.';
     public const LABEL = 'RentAction';
     public const NAME = 'schema:RentAction';
-    public const PARENTS = ['TradeActionModel' => 'SchemaOrg\\Type\\TradeActionModel'];
+    public const PARENTS = ['TradeActionModel' => 'SchemaOrg\Type\TradeActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MedicalGuidelineRecommendationModel
     public const DESCRIPTION = 'A guideline recommendation that is regarded as efficacious and where quality of the data supporting the recommendation is sound.';
     public const LABEL = 'MedicalGuidelineRecommendation';
     public const NAME = 'schema:MedicalGuidelineRecommendation';
-    public const PARENTS = ['MedicalGuidelineModel' => 'SchemaOrg\\Type\\MedicalGuidelineModel'];
+    public const PARENTS = ['MedicalGuidelineModel' => 'SchemaOrg\Type\MedicalGuidelineModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

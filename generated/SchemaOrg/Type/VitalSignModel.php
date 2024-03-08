@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class VitalSignModel
     public const DESCRIPTION = 'Vital signs are measures of various physiological functions in order to assess the most basic body functions.';
     public const LABEL = 'VitalSign';
     public const NAME = 'schema:VitalSign';
-    public const PARENTS = ['MedicalSignModel' => 'SchemaOrg\\Type\\MedicalSignModel'];
+    public const PARENTS = ['MedicalSignModel' => 'SchemaOrg\Type\MedicalSignModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SeasonNumberModel
     public const DESCRIPTION = 'Position of the season within an ordered group of seasons.';
     public const LABEL = 'seasonNumber';
     public const NAME = 'schema:seasonNumber';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['CreativeWorkSeason' => 'SchemaOrg\\Type\\CreativeWorkSeasonModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['CreativeWorkSeason' => 'SchemaOrg\Type\CreativeWorkSeasonModel'];
 }

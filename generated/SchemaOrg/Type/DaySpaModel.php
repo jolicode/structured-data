@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DaySpaModel
     public const DESCRIPTION = 'A day spa.';
     public const LABEL = 'DaySpa';
     public const NAME = 'schema:DaySpa';
-    public const PARENTS = ['HealthAndBeautyBusinessModel' => 'SchemaOrg\\Type\\HealthAndBeautyBusinessModel'];
+    public const PARENTS = ['HealthAndBeautyBusinessModel' => 'SchemaOrg\Type\HealthAndBeautyBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

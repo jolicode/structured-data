@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class EmbeddedTextCaptionModel
     public const DESCRIPTION = 'Represents textual captioning from a [[MediaObject]], e.g. text of a \'meme\'.';
     public const LABEL = 'embeddedTextCaption';
     public const NAME = 'schema:embeddedTextCaption';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['AudioObject' => 'SchemaOrg\\Type\\AudioObjectModel', 'ImageObject' => 'SchemaOrg\\Type\\ImageObjectModel', 'VideoObject' => 'SchemaOrg\\Type\\VideoObjectModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['AudioObject' => 'SchemaOrg\Type\AudioObjectModel', 'ImageObject' => 'SchemaOrg\Type\ImageObjectModel', 'VideoObject' => 'SchemaOrg\Type\VideoObjectModel'];
 }

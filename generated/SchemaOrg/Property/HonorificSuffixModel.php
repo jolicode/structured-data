@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HonorificSuffixModel
     public const DESCRIPTION = 'An honorific suffix following a Person\'s name such as M.D./PhD/MSCSW.';
     public const LABEL = 'honorificSuffix';
     public const NAME = 'schema:honorificSuffix';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Person' => 'SchemaOrg\\Type\\PersonModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Person' => 'SchemaOrg\Type\PersonModel'];
 }

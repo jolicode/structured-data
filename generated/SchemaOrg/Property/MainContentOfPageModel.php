@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MainContentOfPageModel
     public const DESCRIPTION = 'Indicates if this web page element is the main subject of the page.';
     public const LABEL = 'mainContentOfPage';
     public const NAME = 'schema:mainContentOfPage';
-    public const VALUES = ['WebPageElementModel' => 'SchemaOrg\\Type\\WebPageElementModel'];
-    public const TYPES = ['WebPage' => 'SchemaOrg\\Type\\WebPageModel'];
+    public const VALUES = ['WebPageElementModel' => 'SchemaOrg\Type\WebPageElementModel'];
+    public const TYPES = ['WebPage' => 'SchemaOrg\Type\WebPageModel'];
 }

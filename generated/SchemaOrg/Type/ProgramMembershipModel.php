@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ProgramMembershipModel
     public const DESCRIPTION = 'Used to describe membership in a loyalty programs (e.g. "StarAliance"), traveler clubs (e.g. "AAA"), purchase clubs ("Safeway Club"), etc.';
     public const LABEL = 'ProgramMembership';
     public const NAME = 'schema:ProgramMembership';
-    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\\Type\\IntangibleModel'];
+    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\Type\IntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

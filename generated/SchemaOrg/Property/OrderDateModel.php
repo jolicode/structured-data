@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class OrderDateModel
     public const DESCRIPTION = 'Date order was placed.';
     public const LABEL = 'orderDate';
     public const NAME = 'schema:orderDate';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel', 'DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel'];
-    public const TYPES = ['Order' => 'SchemaOrg\\Type\\OrderModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel', 'DateTimeModel' => 'SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['Order' => 'SchemaOrg\Type\OrderModel'];
 }

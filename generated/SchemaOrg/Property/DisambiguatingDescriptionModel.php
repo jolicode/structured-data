@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DisambiguatingDescriptionModel
     public const DESCRIPTION = 'A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.';
     public const LABEL = 'disambiguatingDescription';
     public const NAME = 'schema:disambiguatingDescription';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Thing' => 'SchemaOrg\\Type\\ThingModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Thing' => 'SchemaOrg\Type\ThingModel'];
 }

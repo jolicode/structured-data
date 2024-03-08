@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class InteractionCounterModel
     public const DESCRIPTION = 'A summary of how users have interacted with this CreativeWork. In most cases, authors will use a subtype to specify the specific type of interaction.';
     public const LABEL = 'InteractionCounter';
     public const NAME = 'schema:InteractionCounter';
-    public const PARENTS = ['StructuredValueModel' => 'SchemaOrg\\Type\\StructuredValueModel'];
+    public const PARENTS = ['StructuredValueModel' => 'SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

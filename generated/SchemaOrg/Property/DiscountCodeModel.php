@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DiscountCodeModel
     public const DESCRIPTION = 'Code used to redeem a discount.';
     public const LABEL = 'discountCode';
     public const NAME = 'schema:discountCode';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Order' => 'SchemaOrg\\Type\\OrderModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Order' => 'SchemaOrg\Type\OrderModel'];
 }

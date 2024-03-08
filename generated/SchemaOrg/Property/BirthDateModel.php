@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BirthDateModel
     public const DESCRIPTION = 'Date of birth.';
     public const LABEL = 'birthDate';
     public const NAME = 'schema:birthDate';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel'];
-    public const TYPES = ['Person' => 'SchemaOrg\\Type\\PersonModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel'];
+    public const TYPES = ['Person' => 'SchemaOrg\Type\PersonModel'];
 }

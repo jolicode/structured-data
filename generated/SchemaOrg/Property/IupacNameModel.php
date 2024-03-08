@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IupacNameModel
     public const DESCRIPTION = 'Systematic method of naming chemical compounds as recommended by the International Union of Pure and Applied Chemistry (IUPAC).';
     public const LABEL = 'iupacName';
     public const NAME = 'schema:iupacName';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MolecularEntity' => 'SchemaOrg\\Type\\MolecularEntityModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MolecularEntity' => 'SchemaOrg\Type\MolecularEntityModel'];
 }

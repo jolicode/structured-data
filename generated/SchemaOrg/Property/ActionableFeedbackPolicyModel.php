@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ActionableFeedbackPolicyModel
     public const DESCRIPTION = 'For a [[NewsMediaOrganization]] or other news-related [[Organization]], a statement about public engagement activities (for news media, the newsroom’s), including involving the public - digitally or otherwise -- in coverage decisions, reporting and activities after publication.';
     public const LABEL = 'actionableFeedbackPolicy';
     public const NAME = 'schema:actionableFeedbackPolicy';
-    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['NewsMediaOrganization' => 'SchemaOrg\\Type\\NewsMediaOrganizationModel', 'Organization' => 'SchemaOrg\\Type\\OrganizationModel'];
+    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['NewsMediaOrganization' => 'SchemaOrg\Type\NewsMediaOrganizationModel', 'Organization' => 'SchemaOrg\Type\OrganizationModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class BedDetailsModel
     public const DESCRIPTION = 'An entity holding detailed information about the available bed types, e.g. the quantity of twin beds for a hotel room. For the single case of just one bed of a certain type, you can use bed directly with a text. See also [[BedType]] (under development).';
     public const LABEL = 'BedDetails';
     public const NAME = 'schema:BedDetails';
-    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\\Type\\IntangibleModel'];
+    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\Type\IntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

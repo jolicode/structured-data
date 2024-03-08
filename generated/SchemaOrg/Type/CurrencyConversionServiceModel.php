@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class CurrencyConversionServiceModel
     public const DESCRIPTION = 'A service to convert funds from one currency to another currency.';
     public const LABEL = 'CurrencyConversionService';
     public const NAME = 'schema:CurrencyConversionService';
-    public const PARENTS = ['FinancialProductModel' => 'SchemaOrg\\Type\\FinancialProductModel'];
+    public const PARENTS = ['FinancialProductModel' => 'SchemaOrg\Type\FinancialProductModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

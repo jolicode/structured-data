@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MusicRecordingModel
     public const DESCRIPTION = 'A music recording (track), usually a single song.';
     public const LABEL = 'MusicRecording';
     public const NAME = 'schema:MusicRecording';
-    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

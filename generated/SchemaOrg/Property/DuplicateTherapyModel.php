@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DuplicateTherapyModel
     public const DESCRIPTION = 'A therapy that duplicates or overlaps this one.';
     public const LABEL = 'duplicateTherapy';
     public const NAME = 'schema:duplicateTherapy';
-    public const VALUES = ['MedicalTherapyModel' => 'SchemaOrg\\Type\\MedicalTherapyModel'];
-    public const TYPES = ['MedicalTherapy' => 'SchemaOrg\\Type\\MedicalTherapyModel'];
+    public const VALUES = ['MedicalTherapyModel' => 'SchemaOrg\Type\MedicalTherapyModel'];
+    public const TYPES = ['MedicalTherapy' => 'SchemaOrg\Type\MedicalTherapyModel'];
 }

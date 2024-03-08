@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class SeekToActionModel
     public const DESCRIPTION = 'This is the [[Action]] of navigating to a specific [[startOffset]] timestamp within a [[VideoObject]], typically represented with a URL template structure.';
     public const LABEL = 'SeekToAction';
     public const NAME = 'schema:SeekToAction';
-    public const PARENTS = ['ActionModel' => 'SchemaOrg\\Type\\ActionModel'];
+    public const PARENTS = ['ActionModel' => 'SchemaOrg\Type\ActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

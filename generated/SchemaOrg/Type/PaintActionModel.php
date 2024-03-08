@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PaintActionModel
     public const DESCRIPTION = 'The act of producing a painting, typically with paint and canvas as instruments.';
     public const LABEL = 'PaintAction';
     public const NAME = 'schema:PaintAction';
-    public const PARENTS = ['CreateActionModel' => 'SchemaOrg\\Type\\CreateActionModel'];
+    public const PARENTS = ['CreateActionModel' => 'SchemaOrg\Type\CreateActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

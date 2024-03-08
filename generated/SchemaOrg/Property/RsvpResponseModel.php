@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RsvpResponseModel
     public const DESCRIPTION = 'The response (yes, no, maybe) to the RSVP.';
     public const LABEL = 'rsvpResponse';
     public const NAME = 'schema:rsvpResponse';
-    public const VALUES = ['RsvpResponseTypeModel' => 'SchemaOrg\\Type\\RsvpResponseTypeModel'];
-    public const TYPES = ['RsvpAction' => 'SchemaOrg\\Type\\RsvpActionModel'];
+    public const VALUES = ['RsvpResponseTypeModel' => 'SchemaOrg\Type\RsvpResponseTypeModel'];
+    public const TYPES = ['RsvpAction' => 'SchemaOrg\Type\RsvpActionModel'];
 }

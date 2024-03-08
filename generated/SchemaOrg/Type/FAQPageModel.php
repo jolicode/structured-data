@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class FAQPageModel
     public const DESCRIPTION = 'A [[FAQPage]] is a [[WebPage]] presenting one or more "[Frequently asked questions](https://en.wikipedia.org/wiki/FAQ)" (see also [[QAPage]]).';
     public const LABEL = 'FAQPage';
     public const NAME = 'schema:FAQPage';
-    public const PARENTS = ['WebPageModel' => 'SchemaOrg\\Type\\WebPageModel'];
+    public const PARENTS = ['WebPageModel' => 'SchemaOrg\Type\WebPageModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

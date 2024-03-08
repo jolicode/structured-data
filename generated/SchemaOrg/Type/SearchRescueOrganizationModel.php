@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class SearchRescueOrganizationModel
     public const DESCRIPTION = 'A Search and Rescue organization of some kind.';
     public const LABEL = 'SearchRescueOrganization';
     public const NAME = 'schema:SearchRescueOrganization';
-    public const PARENTS = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel'];
+    public const PARENTS = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

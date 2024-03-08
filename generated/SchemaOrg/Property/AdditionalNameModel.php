@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AdditionalNameModel
     public const DESCRIPTION = 'An additional name for a Person, can be used for a middle name.';
     public const LABEL = 'additionalName';
     public const NAME = 'schema:additionalName';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Person' => 'SchemaOrg\\Type\\PersonModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Person' => 'SchemaOrg\Type\PersonModel'];
 }

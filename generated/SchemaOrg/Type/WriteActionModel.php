@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class WriteActionModel
     public const DESCRIPTION = 'The act of authoring written creative content.';
     public const LABEL = 'WriteAction';
     public const NAME = 'schema:WriteAction';
-    public const PARENTS = ['CreateActionModel' => 'SchemaOrg\\Type\\CreateActionModel'];
+    public const PARENTS = ['CreateActionModel' => 'SchemaOrg\Type\CreateActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

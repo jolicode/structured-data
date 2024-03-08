@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AlternateNameModel
     public const DESCRIPTION = 'An alias for the item.';
     public const LABEL = 'alternateName';
     public const NAME = 'schema:alternateName';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Thing' => 'SchemaOrg\\Type\\ThingModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Thing' => 'SchemaOrg\Type\ThingModel'];
 }

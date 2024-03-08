@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -28,7 +26,7 @@ A [[ReportageNewsArticle]] which goes deeper into analysis can also be marked wi
 ';
     public const LABEL = 'ReportageNewsArticle';
     public const NAME = 'schema:ReportageNewsArticle';
-    public const PARENTS = ['NewsArticleModel' => 'SchemaOrg\\Type\\NewsArticleModel'];
+    public const PARENTS = ['NewsArticleModel' => 'SchemaOrg\Type\NewsArticleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

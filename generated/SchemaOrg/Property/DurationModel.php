@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DurationModel
     public const DESCRIPTION = 'The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601).';
     public const LABEL = 'duration';
     public const NAME = 'schema:duration';
-    public const VALUES = ['DurationModel' => 'SchemaOrg\\Type\\DurationModel'];
-    public const TYPES = ['Audiobook' => 'SchemaOrg\\Type\\AudiobookModel', 'Episode' => 'SchemaOrg\\Type\\EpisodeModel', 'Event' => 'SchemaOrg\\Type\\EventModel', 'MediaObject' => 'SchemaOrg\\Type\\MediaObjectModel', 'Movie' => 'SchemaOrg\\Type\\MovieModel', 'MusicRecording' => 'SchemaOrg\\Type\\MusicRecordingModel', 'MusicRelease' => 'SchemaOrg\\Type\\MusicReleaseModel', 'QuantitativeValueDistribution' => 'SchemaOrg\\Type\\QuantitativeValueDistributionModel', 'Schedule' => 'SchemaOrg\\Type\\ScheduleModel'];
+    public const VALUES = ['DurationModel' => 'SchemaOrg\Type\DurationModel'];
+    public const TYPES = ['Audiobook' => 'SchemaOrg\Type\AudiobookModel', 'Episode' => 'SchemaOrg\Type\EpisodeModel', 'Event' => 'SchemaOrg\Type\EventModel', 'MediaObject' => 'SchemaOrg\Type\MediaObjectModel', 'Movie' => 'SchemaOrg\Type\MovieModel', 'MusicRecording' => 'SchemaOrg\Type\MusicRecordingModel', 'MusicRelease' => 'SchemaOrg\Type\MusicReleaseModel', 'QuantitativeValueDistribution' => 'SchemaOrg\Type\QuantitativeValueDistributionModel', 'Schedule' => 'SchemaOrg\Type\ScheduleModel'];
 }

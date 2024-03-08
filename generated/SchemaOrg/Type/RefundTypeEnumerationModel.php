@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class RefundTypeEnumerationModel
     public const DESCRIPTION = 'Enumerates several kinds of product return refund types.';
     public const LABEL = 'RefundTypeEnumeration';
     public const NAME = 'schema:RefundTypeEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['ExchangeRefundModel' => 'EnumerationMember\\ExchangeRefundModel', 'FullRefundModel' => 'EnumerationMember\\FullRefundModel', 'StoreCreditRefundModel' => 'EnumerationMember\\StoreCreditRefundModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['ExchangeRefundModel' => 'EnumerationMember\ExchangeRefundModel', 'FullRefundModel' => 'EnumerationMember\FullRefundModel', 'StoreCreditRefundModel' => 'EnumerationMember\StoreCreditRefundModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

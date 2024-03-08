@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HasMeasurementModel
     public const DESCRIPTION = 'A product measurement, for example the inseam of pants, the wheel size of a bicycle, or the gauge of a screw. Usually an exact measurement, but can also be a range of measurements for adjustable products, for example belts and ski bindings.';
     public const LABEL = 'hasMeasurement';
     public const NAME = 'schema:hasMeasurement';
-    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['Offer' => 'SchemaOrg\\Type\\OfferModel', 'Product' => 'SchemaOrg\\Type\\ProductModel', 'SizeSpecification' => 'SchemaOrg\\Type\\SizeSpecificationModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['Offer' => 'SchemaOrg\Type\OfferModel', 'Product' => 'SchemaOrg\Type\ProductModel', 'SizeSpecification' => 'SchemaOrg\Type\SizeSpecificationModel'];
 }

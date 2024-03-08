@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,6 +18,6 @@ final class ArtistModel
     	primary artwork is done in watercolors or digital paints.';
     public const LABEL = 'artist';
     public const NAME = 'schema:artist';
-    public const VALUES = ['PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['ComicIssue' => 'SchemaOrg\\Type\\ComicIssueModel', 'ComicStory' => 'SchemaOrg\\Type\\ComicStoryModel', 'VisualArtwork' => 'SchemaOrg\\Type\\VisualArtworkModel'];
+    public const VALUES = ['PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['ComicIssue' => 'SchemaOrg\Type\ComicIssueModel', 'ComicStory' => 'SchemaOrg\Type\ComicStoryModel', 'VisualArtwork' => 'SchemaOrg\Type\VisualArtworkModel'];
 }

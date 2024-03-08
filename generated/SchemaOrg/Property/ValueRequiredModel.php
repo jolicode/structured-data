@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ValueRequiredModel
     public const DESCRIPTION = 'Whether the property must be filled in to complete the action.  Default is false.';
     public const LABEL = 'valueRequired';
     public const NAME = 'schema:valueRequired';
-    public const VALUES = ['BooleanModel' => 'SchemaOrg\\Type\\BooleanModel'];
-    public const TYPES = ['PropertyValueSpecification' => 'SchemaOrg\\Type\\PropertyValueSpecificationModel'];
+    public const VALUES = ['BooleanModel' => 'SchemaOrg\Type\BooleanModel'];
+    public const TYPES = ['PropertyValueSpecification' => 'SchemaOrg\Type\PropertyValueSpecificationModel'];
 }

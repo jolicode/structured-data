@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ProficiencyLevelModel
     public const DESCRIPTION = 'Proficiency needed for this content; expected values: \'Beginner\', \'Expert\'.';
     public const LABEL = 'proficiencyLevel';
     public const NAME = 'schema:proficiencyLevel';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['TechArticle' => 'SchemaOrg\\Type\\TechArticleModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['TechArticle' => 'SchemaOrg\Type\TechArticleModel'];
 }

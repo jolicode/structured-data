@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ReactActionModel
     public const DESCRIPTION = 'The act of responding instinctively and emotionally to an object, expressing a sentiment.';
     public const LABEL = 'ReactAction';
     public const NAME = 'schema:ReactAction';
-    public const PARENTS = ['AssessActionModel' => 'SchemaOrg\\Type\\AssessActionModel'];
+    public const PARENTS = ['AssessActionModel' => 'SchemaOrg\Type\AssessActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

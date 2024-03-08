@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class VehicleModel
     public const DESCRIPTION = 'A vehicle is a device that is designed or used to transport people or cargo over land, water, air, or through space.';
     public const LABEL = 'Vehicle';
     public const NAME = 'schema:Vehicle';
-    public const PARENTS = ['ProductModel' => 'SchemaOrg\\Type\\ProductModel'];
+    public const PARENTS = ['ProductModel' => 'SchemaOrg\Type\ProductModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

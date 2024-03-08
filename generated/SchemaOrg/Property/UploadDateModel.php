@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class UploadDateModel
     public const DESCRIPTION = 'Date when this media object was uploaded to this site.';
     public const LABEL = 'uploadDate';
     public const NAME = 'schema:uploadDate';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel'];
-    public const TYPES = ['MediaObject' => 'SchemaOrg\\Type\\MediaObjectModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel'];
+    public const TYPES = ['MediaObject' => 'SchemaOrg\Type\MediaObjectModel'];
 }

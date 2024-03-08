@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -33,7 +31,7 @@ it may also sometimes prove useful to describe a longer-term series as an Event.
    ';
     public const LABEL = 'EventSeries';
     public const NAME = 'schema:EventSeries';
-    public const PARENTS = ['EventModel' => 'SchemaOrg\\Type\\EventModel', 'SeriesModel' => 'SchemaOrg\\Type\\SeriesModel'];
+    public const PARENTS = ['EventModel' => 'SchemaOrg\Type\EventModel', 'SeriesModel' => 'SchemaOrg\Type\SeriesModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

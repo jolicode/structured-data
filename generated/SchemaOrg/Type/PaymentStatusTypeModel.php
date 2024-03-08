@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class PaymentStatusTypeModel
     public const DESCRIPTION = 'A specific payment status. For example, PaymentDue, PaymentComplete, etc.';
     public const LABEL = 'PaymentStatusType';
     public const NAME = 'schema:PaymentStatusType';
-    public const PARENTS = ['StatusEnumerationModel' => 'SchemaOrg\\Type\\StatusEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['PaymentAutomaticallyAppliedModel' => 'EnumerationMember\\PaymentAutomaticallyAppliedModel', 'PaymentCompleteModel' => 'EnumerationMember\\PaymentCompleteModel', 'PaymentDeclinedModel' => 'EnumerationMember\\PaymentDeclinedModel', 'PaymentDueModel' => 'EnumerationMember\\PaymentDueModel', 'PaymentPastDueModel' => 'EnumerationMember\\PaymentPastDueModel'];
+    public const PARENTS = ['StatusEnumerationModel' => 'SchemaOrg\Type\StatusEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['PaymentAutomaticallyAppliedModel' => 'EnumerationMember\PaymentAutomaticallyAppliedModel', 'PaymentCompleteModel' => 'EnumerationMember\PaymentCompleteModel', 'PaymentDeclinedModel' => 'EnumerationMember\PaymentDeclinedModel', 'PaymentDueModel' => 'EnumerationMember\PaymentDueModel', 'PaymentPastDueModel' => 'EnumerationMember\PaymentPastDueModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RelatedStructureModel
     public const DESCRIPTION = 'Related anatomical structure(s) that are not part of the system but relate or connect to it, such as vascular bundles associated with an organ system.';
     public const LABEL = 'relatedStructure';
     public const NAME = 'schema:relatedStructure';
-    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\\Type\\AnatomicalStructureModel'];
-    public const TYPES = ['AnatomicalSystem' => 'SchemaOrg\\Type\\AnatomicalSystemModel'];
+    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\Type\AnatomicalStructureModel'];
+    public const TYPES = ['AnatomicalSystem' => 'SchemaOrg\Type\AnatomicalSystemModel'];
 }

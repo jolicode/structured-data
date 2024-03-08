@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class QuestionModel
     public const DESCRIPTION = 'A specific question - e.g. from a user seeking answers online, or collected in a Frequently Asked Questions (FAQ) document.';
     public const LABEL = 'Question';
     public const NAME = 'schema:Question';
-    public const PARENTS = ['CommentModel' => 'SchemaOrg\\Type\\CommentModel'];
+    public const PARENTS = ['CommentModel' => 'SchemaOrg\Type\CommentModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

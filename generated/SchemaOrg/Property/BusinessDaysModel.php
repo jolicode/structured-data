@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BusinessDaysModel
     public const DESCRIPTION = 'Days of the week when the merchant typically operates, indicated via opening hours markup.';
     public const LABEL = 'businessDays';
     public const NAME = 'schema:businessDays';
-    public const VALUES = ['OpeningHoursSpecificationModel' => 'SchemaOrg\\Type\\OpeningHoursSpecificationModel'];
-    public const TYPES = ['ShippingDeliveryTime' => 'SchemaOrg\\Type\\ShippingDeliveryTimeModel'];
+    public const VALUES = ['OpeningHoursSpecificationModel' => 'SchemaOrg\Type\OpeningHoursSpecificationModel'];
+    public const TYPES = ['ShippingDeliveryTime' => 'SchemaOrg\Type\ShippingDeliveryTimeModel'];
 }

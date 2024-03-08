@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AvailableServiceModel
     public const DESCRIPTION = 'A medical service available from this provider.';
     public const LABEL = 'availableService';
     public const NAME = 'schema:availableService';
-    public const VALUES = ['MedicalProcedureModel' => 'SchemaOrg\\Type\\MedicalProcedureModel', 'MedicalTestModel' => 'SchemaOrg\\Type\\MedicalTestModel', 'MedicalTherapyModel' => 'SchemaOrg\\Type\\MedicalTherapyModel'];
-    public const TYPES = ['Hospital' => 'SchemaOrg\\Type\\HospitalModel', 'MedicalClinic' => 'SchemaOrg\\Type\\MedicalClinicModel', 'Physician' => 'SchemaOrg\\Type\\PhysicianModel'];
+    public const VALUES = ['MedicalProcedureModel' => 'SchemaOrg\Type\MedicalProcedureModel', 'MedicalTestModel' => 'SchemaOrg\Type\MedicalTestModel', 'MedicalTherapyModel' => 'SchemaOrg\Type\MedicalTherapyModel'];
+    public const TYPES = ['Hospital' => 'SchemaOrg\Type\HospitalModel', 'MedicalClinic' => 'SchemaOrg\Type\MedicalClinicModel', 'Physician' => 'SchemaOrg\Type\PhysicianModel'];
 }

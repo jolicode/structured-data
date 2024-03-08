@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MaximumPhysicalAttendeeCapacityModel
     public const DESCRIPTION = 'The maximum physical attendee capacity of an [[Event]] whose [[eventAttendanceMode]] is [[OfflineEventAttendanceMode]] (or the offline aspects, in the case of a [[MixedEventAttendanceMode]]). ';
     public const LABEL = 'maximumPhysicalAttendeeCapacity';
     public const NAME = 'schema:maximumPhysicalAttendeeCapacity';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel'];
-    public const TYPES = ['Event' => 'SchemaOrg\\Type\\EventModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['Event' => 'SchemaOrg\Type\EventModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DietModel
     public const DESCRIPTION = 'A strategy of regulating the intake of food to achieve or maintain a specific health-related goal.';
     public const LABEL = 'Diet';
     public const NAME = 'schema:Diet';
-    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel', 'LifestyleModificationModel' => 'SchemaOrg\\Type\\LifestyleModificationModel'];
+    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel', 'LifestyleModificationModel' => 'SchemaOrg\Type\LifestyleModificationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CitationModel
     public const DESCRIPTION = 'A citation or reference to another creative work, such as another publication, web page, scholarly article, etc.';
     public const LABEL = 'citation';
     public const NAME = 'schema:citation';
-    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel'];
 }

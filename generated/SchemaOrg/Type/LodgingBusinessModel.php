@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class LodgingBusinessModel
     public const DESCRIPTION = 'A lodging business, such as a motel, hotel, or inn.';
     public const LABEL = 'LodgingBusiness';
     public const NAME = 'schema:LodgingBusiness';
-    public const PARENTS = ['LocalBusinessModel' => 'SchemaOrg\\Type\\LocalBusinessModel'];
+    public const PARENTS = ['LocalBusinessModel' => 'SchemaOrg\Type\LocalBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

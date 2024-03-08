@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class OrderQuantityModel
     public const DESCRIPTION = 'The number of the item ordered. If the property is not set, assume the quantity is one.';
     public const LABEL = 'orderQuantity';
     public const NAME = 'schema:orderQuantity';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
-    public const TYPES = ['OrderItem' => 'SchemaOrg\\Type\\OrderItemModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['OrderItem' => 'SchemaOrg\Type\OrderItemModel'];
 }

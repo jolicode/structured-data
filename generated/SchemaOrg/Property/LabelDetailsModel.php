@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LabelDetailsModel
     public const DESCRIPTION = 'Link to the drug\'s label details.';
     public const LABEL = 'labelDetails';
     public const NAME = 'schema:labelDetails';
-    public const VALUES = ['URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['Drug' => 'SchemaOrg\\Type\\DrugModel'];
+    public const VALUES = ['URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['Drug' => 'SchemaOrg\Type\DrugModel'];
 }

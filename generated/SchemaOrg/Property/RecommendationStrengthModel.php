@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RecommendationStrengthModel
     public const DESCRIPTION = 'Strength of the guideline\'s recommendation (e.g. \'class I\').';
     public const LABEL = 'recommendationStrength';
     public const NAME = 'schema:recommendationStrength';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MedicalGuidelineRecommendation' => 'SchemaOrg\\Type\\MedicalGuidelineRecommendationModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MedicalGuidelineRecommendation' => 'SchemaOrg\Type\MedicalGuidelineRecommendationModel'];
 }

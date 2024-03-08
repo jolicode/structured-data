@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SpecialtyModel
     public const DESCRIPTION = 'One of the domain specialities to which this web page\'s content applies.';
     public const LABEL = 'specialty';
     public const NAME = 'schema:specialty';
-    public const VALUES = ['SpecialtyModel' => 'SchemaOrg\\Type\\SpecialtyModel'];
-    public const TYPES = ['WebPage' => 'SchemaOrg\\Type\\WebPageModel'];
+    public const VALUES = ['SpecialtyModel' => 'SchemaOrg\Type\SpecialtyModel'];
+    public const TYPES = ['WebPage' => 'SchemaOrg\Type\WebPageModel'];
 }

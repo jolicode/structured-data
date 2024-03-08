@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class GuideModel
     public const DESCRIPTION = '[[Guide]] is a page or article that recommends specific products or services, or aspects of a thing for a user to consider. A [[Guide]] may represent a Buying Guide and detail aspects of products or services for a user to consider. A [[Guide]] may represent a Product Guide and recommend specific products or services. A [[Guide]] may represent a Ranked List and recommend specific products or services with ranking.';
     public const LABEL = 'Guide';
     public const NAME = 'schema:Guide';
-    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

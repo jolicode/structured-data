@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class EstimatedFlightDurationModel
     public const DESCRIPTION = 'The estimated time the flight will take.';
     public const LABEL = 'estimatedFlightDuration';
     public const NAME = 'schema:estimatedFlightDuration';
-    public const VALUES = ['DurationModel' => 'SchemaOrg\\Type\\DurationModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Flight' => 'SchemaOrg\\Type\\FlightModel'];
+    public const VALUES = ['DurationModel' => 'SchemaOrg\Type\DurationModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Flight' => 'SchemaOrg\Type\FlightModel'];
 }

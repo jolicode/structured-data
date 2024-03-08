@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class FinancialAidEligibleModel
     public const DESCRIPTION = 'A financial aid type or program which students may use to pay for tuition or fees associated with the program.';
     public const LABEL = 'financialAidEligible';
     public const NAME = 'schema:financialAidEligible';
-    public const VALUES = ['DefinedTermModel' => 'SchemaOrg\\Type\\DefinedTermModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Course' => 'SchemaOrg\\Type\\CourseModel', 'EducationalOccupationalProgram' => 'SchemaOrg\\Type\\EducationalOccupationalProgramModel'];
+    public const VALUES = ['DefinedTermModel' => 'SchemaOrg\Type\DefinedTermModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Course' => 'SchemaOrg\Type\CourseModel', 'EducationalOccupationalProgram' => 'SchemaOrg\Type\EducationalOccupationalProgramModel'];
 }

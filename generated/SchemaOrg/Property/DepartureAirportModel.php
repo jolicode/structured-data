@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DepartureAirportModel
     public const DESCRIPTION = 'The airport where the flight originates.';
     public const LABEL = 'departureAirport';
     public const NAME = 'schema:departureAirport';
-    public const VALUES = ['AirportModel' => 'SchemaOrg\\Type\\AirportModel'];
-    public const TYPES = ['Flight' => 'SchemaOrg\\Type\\FlightModel'];
+    public const VALUES = ['AirportModel' => 'SchemaOrg\Type\AirportModel'];
+    public const TYPES = ['Flight' => 'SchemaOrg\Type\FlightModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class FollowsModel
     public const DESCRIPTION = 'The most generic uni-directional social relation.';
     public const LABEL = 'follows';
     public const NAME = 'schema:follows';
-    public const VALUES = ['PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['Person' => 'SchemaOrg\\Type\\PersonModel'];
+    public const VALUES = ['PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['Person' => 'SchemaOrg\Type\PersonModel'];
 }

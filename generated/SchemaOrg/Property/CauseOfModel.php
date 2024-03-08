@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CauseOfModel
     public const DESCRIPTION = 'The condition, complication, symptom, sign, etc. caused.';
     public const LABEL = 'causeOf';
     public const NAME = 'schema:causeOf';
-    public const VALUES = ['MedicalEntityModel' => 'SchemaOrg\\Type\\MedicalEntityModel'];
-    public const TYPES = ['MedicalCause' => 'SchemaOrg\\Type\\MedicalCauseModel'];
+    public const VALUES = ['MedicalEntityModel' => 'SchemaOrg\Type\MedicalEntityModel'];
+    public const TYPES = ['MedicalCause' => 'SchemaOrg\Type\MedicalCauseModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PhysicalTherapyModel
     public const DESCRIPTION = 'A process of progressive physical care and rehabilitation aimed at improving a health condition.';
     public const LABEL = 'PhysicalTherapy';
     public const NAME = 'schema:PhysicalTherapy';
-    public const PARENTS = ['MedicalTherapyModel' => 'SchemaOrg\\Type\\MedicalTherapyModel'];
+    public const PARENTS = ['MedicalTherapyModel' => 'SchemaOrg\Type\MedicalTherapyModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

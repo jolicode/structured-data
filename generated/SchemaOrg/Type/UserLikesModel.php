@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class UserLikesModel
     public const DESCRIPTION = 'UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use [[Action]]-based vocabulary, alongside types such as [[Comment]].';
     public const LABEL = 'UserLikes';
     public const NAME = 'schema:UserLikes';
-    public const PARENTS = ['UserInteractionModel' => 'SchemaOrg\\Type\\UserInteractionModel'];
+    public const PARENTS = ['UserInteractionModel' => 'SchemaOrg\Type\UserInteractionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

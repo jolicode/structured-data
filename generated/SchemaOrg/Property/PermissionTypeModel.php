@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PermissionTypeModel
     public const DESCRIPTION = 'The type of permission granted the person, organization, or audience.';
     public const LABEL = 'permissionType';
     public const NAME = 'schema:permissionType';
-    public const VALUES = ['DigitalDocumentPermissionTypeModel' => 'SchemaOrg\\Type\\DigitalDocumentPermissionTypeModel'];
-    public const TYPES = ['DigitalDocumentPermission' => 'SchemaOrg\\Type\\DigitalDocumentPermissionModel'];
+    public const VALUES = ['DigitalDocumentPermissionTypeModel' => 'SchemaOrg\Type\DigitalDocumentPermissionTypeModel'];
+    public const TYPES = ['DigitalDocumentPermission' => 'SchemaOrg\Type\DigitalDocumentPermissionModel'];
 }

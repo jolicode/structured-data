@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class WidthModel
     public const DESCRIPTION = 'The width of the item.';
     public const LABEL = 'width';
     public const NAME = 'schema:width';
-    public const VALUES = ['DistanceModel' => 'SchemaOrg\\Type\\DistanceModel', 'QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['MediaObject' => 'SchemaOrg\\Type\\MediaObjectModel', 'OfferShippingDetails' => 'SchemaOrg\\Type\\OfferShippingDetailsModel', 'Product' => 'SchemaOrg\\Type\\ProductModel', 'VisualArtwork' => 'SchemaOrg\\Type\\VisualArtworkModel'];
+    public const VALUES = ['DistanceModel' => 'SchemaOrg\Type\DistanceModel', 'QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['MediaObject' => 'SchemaOrg\Type\MediaObjectModel', 'OfferShippingDetails' => 'SchemaOrg\Type\OfferShippingDetailsModel', 'Product' => 'SchemaOrg\Type\ProductModel', 'VisualArtwork' => 'SchemaOrg\Type\VisualArtworkModel'];
 }

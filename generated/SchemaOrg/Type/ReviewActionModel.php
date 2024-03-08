@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ReviewActionModel
     public const DESCRIPTION = 'The act of producing a balanced opinion about the object for an audience. An agent reviews an object with participants resulting in a review.';
     public const LABEL = 'ReviewAction';
     public const NAME = 'schema:ReviewAction';
-    public const PARENTS = ['AssessActionModel' => 'SchemaOrg\\Type\\AssessActionModel'];
+    public const PARENTS = ['AssessActionModel' => 'SchemaOrg\Type\AssessActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

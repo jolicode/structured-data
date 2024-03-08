@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class GovernmentPermitModel
     public const DESCRIPTION = 'A permit issued by a government agency.';
     public const LABEL = 'GovernmentPermit';
     public const NAME = 'schema:GovernmentPermit';
-    public const PARENTS = ['PermitModel' => 'SchemaOrg\\Type\\PermitModel'];
+    public const PARENTS = ['PermitModel' => 'SchemaOrg\Type\PermitModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

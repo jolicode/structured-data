@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HasDeliveryMethodModel
     public const DESCRIPTION = 'Method used for delivery or shipping.';
     public const LABEL = 'hasDeliveryMethod';
     public const NAME = 'schema:hasDeliveryMethod';
-    public const VALUES = ['DeliveryMethodModel' => 'SchemaOrg\\Type\\DeliveryMethodModel'];
-    public const TYPES = ['DeliveryEvent' => 'SchemaOrg\\Type\\DeliveryEventModel', 'ParcelDelivery' => 'SchemaOrg\\Type\\ParcelDeliveryModel'];
+    public const VALUES = ['DeliveryMethodModel' => 'SchemaOrg\Type\DeliveryMethodModel'];
+    public const TYPES = ['DeliveryEvent' => 'SchemaOrg\Type\DeliveryEventModel', 'ParcelDelivery' => 'SchemaOrg\Type\ParcelDeliveryModel'];
 }

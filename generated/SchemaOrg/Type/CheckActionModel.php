@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class CheckActionModel
     public const DESCRIPTION = 'An agent inspects, determines, investigates, inquires, or examines an object\'s accuracy, quality, condition, or state.';
     public const LABEL = 'CheckAction';
     public const NAME = 'schema:CheckAction';
-    public const PARENTS = ['FindActionModel' => 'SchemaOrg\\Type\\FindActionModel'];
+    public const PARENTS = ['FindActionModel' => 'SchemaOrg\Type\FindActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

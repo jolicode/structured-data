@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LegislationAppliesModel
     public const DESCRIPTION = 'Indicates that this legislation (or part of a legislation) somehow transfers another legislation in a different legislative context. This is an informative link, and it has no legal value. For legally-binding links of transposition, use the <a href="/legislationTransposes">legislationTransposes</a> property. For example an informative consolidated law of a European Union\'s member state "applies" the consolidated version of the European Directive implemented in it.';
     public const LABEL = 'legislationApplies';
     public const NAME = 'schema:legislationApplies';
-    public const VALUES = ['LegislationModel' => 'SchemaOrg\\Type\\LegislationModel'];
-    public const TYPES = ['Legislation' => 'SchemaOrg\\Type\\LegislationModel'];
+    public const VALUES = ['LegislationModel' => 'SchemaOrg\Type\LegislationModel'];
+    public const TYPES = ['Legislation' => 'SchemaOrg\Type\LegislationModel'];
 }

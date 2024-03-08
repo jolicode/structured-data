@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PriceComponentTypeModel
     public const DESCRIPTION = 'Identifies a price component (for example, a line item on an invoice), part of the total price for an offer.';
     public const LABEL = 'priceComponentType';
     public const NAME = 'schema:priceComponentType';
-    public const VALUES = ['PriceComponentTypeEnumerationModel' => 'SchemaOrg\\Type\\PriceComponentTypeEnumerationModel'];
-    public const TYPES = ['UnitPriceSpecification' => 'SchemaOrg\\Type\\UnitPriceSpecificationModel'];
+    public const VALUES = ['PriceComponentTypeEnumerationModel' => 'SchemaOrg\Type\PriceComponentTypeEnumerationModel'];
+    public const TYPES = ['UnitPriceSpecification' => 'SchemaOrg\Type\UnitPriceSpecificationModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BirthPlaceModel
     public const DESCRIPTION = 'The place where the person was born.';
     public const LABEL = 'birthPlace';
     public const NAME = 'schema:birthPlace';
-    public const VALUES = ['PlaceModel' => 'SchemaOrg\\Type\\PlaceModel'];
-    public const TYPES = ['Person' => 'SchemaOrg\\Type\\PersonModel'];
+    public const VALUES = ['PlaceModel' => 'SchemaOrg\Type\PlaceModel'];
+    public const TYPES = ['Person' => 'SchemaOrg\Type\PersonModel'];
 }

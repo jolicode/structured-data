@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AppliesToPaymentMethodModel
     public const DESCRIPTION = 'The payment method(s) to which the payment charge specification applies.';
     public const LABEL = 'appliesToPaymentMethod';
     public const NAME = 'schema:appliesToPaymentMethod';
-    public const VALUES = ['PaymentMethodModel' => 'SchemaOrg\\Type\\PaymentMethodModel'];
-    public const TYPES = ['PaymentChargeSpecification' => 'SchemaOrg\\Type\\PaymentChargeSpecificationModel'];
+    public const VALUES = ['PaymentMethodModel' => 'SchemaOrg\Type\PaymentMethodModel'];
+    public const TYPES = ['PaymentChargeSpecification' => 'SchemaOrg\Type\PaymentChargeSpecificationModel'];
 }

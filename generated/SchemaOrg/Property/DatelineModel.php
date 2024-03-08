@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -23,6 +21,6 @@ Dateline summaries are oriented more towards human readers than towards automate
       ';
     public const LABEL = 'dateline';
     public const NAME = 'schema:dateline';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['NewsArticle' => 'SchemaOrg\\Type\\NewsArticleModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['NewsArticle' => 'SchemaOrg\Type\NewsArticleModel'];
 }

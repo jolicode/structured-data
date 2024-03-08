@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SoftwareHelpModel
     public const DESCRIPTION = 'Software application help.';
     public const LABEL = 'softwareHelp';
     public const NAME = 'schema:softwareHelp';
-    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel'];
-    public const TYPES = ['SoftwareApplication' => 'SchemaOrg\\Type\\SoftwareApplicationModel'];
+    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel'];
+    public const TYPES = ['SoftwareApplication' => 'SchemaOrg\Type\SoftwareApplicationModel'];
 }

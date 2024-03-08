@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class UserReviewModel
     public const DESCRIPTION = 'A review created by an end-user (e.g. consumer, purchaser, attendee etc.), in contrast with [[CriticReview]].';
     public const LABEL = 'UserReview';
     public const NAME = 'schema:UserReview';
-    public const PARENTS = ['ReviewModel' => 'SchemaOrg\\Type\\ReviewModel'];
+    public const PARENTS = ['ReviewModel' => 'SchemaOrg\Type\ReviewModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

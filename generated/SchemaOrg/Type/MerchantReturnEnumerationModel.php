@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class MerchantReturnEnumerationModel
     public const DESCRIPTION = 'Enumerates several kinds of product return policies.';
     public const LABEL = 'MerchantReturnEnumeration';
     public const NAME = 'schema:MerchantReturnEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['MerchantReturnFiniteReturnWindowModel' => 'EnumerationMember\\MerchantReturnFiniteReturnWindowModel', 'MerchantReturnNotPermittedModel' => 'EnumerationMember\\MerchantReturnNotPermittedModel', 'MerchantReturnUnlimitedWindowModel' => 'EnumerationMember\\MerchantReturnUnlimitedWindowModel', 'MerchantReturnUnspecifiedModel' => 'EnumerationMember\\MerchantReturnUnspecifiedModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['MerchantReturnFiniteReturnWindowModel' => 'EnumerationMember\MerchantReturnFiniteReturnWindowModel', 'MerchantReturnNotPermittedModel' => 'EnumerationMember\MerchantReturnNotPermittedModel', 'MerchantReturnUnlimitedWindowModel' => 'EnumerationMember\MerchantReturnUnlimitedWindowModel', 'MerchantReturnUnspecifiedModel' => 'EnumerationMember\MerchantReturnUnspecifiedModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

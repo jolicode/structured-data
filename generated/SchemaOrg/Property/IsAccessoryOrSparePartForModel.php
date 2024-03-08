@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IsAccessoryOrSparePartForModel
     public const DESCRIPTION = 'A pointer to another product (or multiple products) for which this product is an accessory or spare part.';
     public const LABEL = 'isAccessoryOrSparePartFor';
     public const NAME = 'schema:isAccessoryOrSparePartFor';
-    public const VALUES = ['ProductModel' => 'SchemaOrg\\Type\\ProductModel'];
-    public const TYPES = ['Product' => 'SchemaOrg\\Type\\ProductModel'];
+    public const VALUES = ['ProductModel' => 'SchemaOrg\Type\ProductModel'];
+    public const TYPES = ['Product' => 'SchemaOrg\Type\ProductModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class WarrantyPromiseModel
     public const DESCRIPTION = 'A structured value representing the duration and scope of services that will be provided to a customer free of charge in case of a defect or malfunction of a product.';
     public const LABEL = 'WarrantyPromise';
     public const NAME = 'schema:WarrantyPromise';
-    public const PARENTS = ['StructuredValueModel' => 'SchemaOrg\\Type\\StructuredValueModel'];
+    public const PARENTS = ['StructuredValueModel' => 'SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

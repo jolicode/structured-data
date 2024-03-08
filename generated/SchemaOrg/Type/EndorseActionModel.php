@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class EndorseActionModel
     public const DESCRIPTION = 'An agent approves/certifies/likes/supports/sanctions an object.';
     public const LABEL = 'EndorseAction';
     public const NAME = 'schema:EndorseAction';
-    public const PARENTS = ['ReactActionModel' => 'SchemaOrg\\Type\\ReactActionModel'];
+    public const PARENTS = ['ReactActionModel' => 'SchemaOrg\Type\ReactActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

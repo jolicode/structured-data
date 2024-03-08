@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MolecularEntityModel
     public const DESCRIPTION = 'Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity.';
     public const LABEL = 'MolecularEntity';
     public const NAME = 'schema:MolecularEntity';
-    public const PARENTS = ['BioChemEntityModel' => 'SchemaOrg\\Type\\BioChemEntityModel'];
+    public const PARENTS = ['BioChemEntityModel' => 'SchemaOrg\Type\BioChemEntityModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class DrugCostCategoryModel
     public const DESCRIPTION = 'Enumerated categories of medical drug costs.';
     public const LABEL = 'DrugCostCategory';
     public const NAME = 'schema:DrugCostCategory';
-    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\\Type\\MedicalEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['ReimbursementCapModel' => 'EnumerationMember\\ReimbursementCapModel', 'RetailModel' => 'EnumerationMember\\RetailModel', 'WholesaleModel' => 'EnumerationMember\\WholesaleModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\Type\MedicalEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['ReimbursementCapModel' => 'EnumerationMember\ReimbursementCapModel', 'RetailModel' => 'EnumerationMember\RetailModel', 'WholesaleModel' => 'EnumerationMember\WholesaleModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

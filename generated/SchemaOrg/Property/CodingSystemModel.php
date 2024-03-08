@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CodingSystemModel
     public const DESCRIPTION = 'The coding system, e.g. \'ICD-10\'.';
     public const LABEL = 'codingSystem';
     public const NAME = 'schema:codingSystem';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MedicalCode' => 'SchemaOrg\\Type\\MedicalCodeModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MedicalCode' => 'SchemaOrg\Type\MedicalCodeModel'];
 }

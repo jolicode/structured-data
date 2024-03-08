@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PartOfSystemModel
     public const DESCRIPTION = 'The anatomical or organ system that this structure is part of.';
     public const LABEL = 'partOfSystem';
     public const NAME = 'schema:partOfSystem';
-    public const VALUES = ['AnatomicalSystemModel' => 'SchemaOrg\\Type\\AnatomicalSystemModel'];
-    public const TYPES = ['AnatomicalStructure' => 'SchemaOrg\\Type\\AnatomicalStructureModel'];
+    public const VALUES = ['AnatomicalSystemModel' => 'SchemaOrg\Type\AnatomicalSystemModel'];
+    public const TYPES = ['AnatomicalStructure' => 'SchemaOrg\Type\AnatomicalStructureModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BroadcastAffiliateOfModel
     public const DESCRIPTION = 'The media network(s) whose content is broadcast on this station.';
     public const LABEL = 'broadcastAffiliateOf';
     public const NAME = 'schema:broadcastAffiliateOf';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel'];
-    public const TYPES = ['BroadcastService' => 'SchemaOrg\\Type\\BroadcastServiceModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel'];
+    public const TYPES = ['BroadcastService' => 'SchemaOrg\Type\BroadcastServiceModel'];
 }

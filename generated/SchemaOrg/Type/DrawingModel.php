@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DrawingModel
     public const DESCRIPTION = 'A picture or diagram made with a pencil, pen, or crayon rather than paint.';
     public const LABEL = 'Drawing';
     public const NAME = 'schema:Drawing';
-    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CourseModel
     public const DESCRIPTION = 'A sub property of location. The course where this action was taken.';
     public const LABEL = 'course';
     public const NAME = 'schema:course';
-    public const VALUES = ['PlaceModel' => 'SchemaOrg\\Type\\PlaceModel'];
-    public const TYPES = ['ExerciseAction' => 'SchemaOrg\\Type\\ExerciseActionModel'];
+    public const VALUES = ['PlaceModel' => 'SchemaOrg\Type\PlaceModel'];
+    public const TYPES = ['ExerciseAction' => 'SchemaOrg\Type\ExerciseActionModel'];
 }

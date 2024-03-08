@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MusicReleaseFormatModel
     public const DESCRIPTION = 'Format of this release (the type of recording media used, i.e. compact disc, digital media, LP, etc.).';
     public const LABEL = 'musicReleaseFormat';
     public const NAME = 'schema:musicReleaseFormat';
-    public const VALUES = ['MusicReleaseFormatTypeModel' => 'SchemaOrg\\Type\\MusicReleaseFormatTypeModel'];
-    public const TYPES = ['MusicRelease' => 'SchemaOrg\\Type\\MusicReleaseModel'];
+    public const VALUES = ['MusicReleaseFormatTypeModel' => 'SchemaOrg\Type\MusicReleaseFormatTypeModel'];
+    public const TYPES = ['MusicRelease' => 'SchemaOrg\Type\MusicReleaseModel'];
 }

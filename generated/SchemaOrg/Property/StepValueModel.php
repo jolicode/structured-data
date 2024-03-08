@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class StepValueModel
     public const DESCRIPTION = 'The stepValue attribute indicates the granularity that is expected (and required) of the value in a PropertyValueSpecification.';
     public const LABEL = 'stepValue';
     public const NAME = 'schema:stepValue';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
-    public const TYPES = ['PropertyValueSpecification' => 'SchemaOrg\\Type\\PropertyValueSpecificationModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['PropertyValueSpecification' => 'SchemaOrg\Type\PropertyValueSpecificationModel'];
 }

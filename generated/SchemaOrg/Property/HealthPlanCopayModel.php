@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HealthPlanCopayModel
     public const DESCRIPTION = 'The copay amount.';
     public const LABEL = 'healthPlanCopay';
     public const NAME = 'schema:healthPlanCopay';
-    public const VALUES = ['PriceSpecificationModel' => 'SchemaOrg\\Type\\PriceSpecificationModel'];
-    public const TYPES = ['HealthPlanCostSharingSpecification' => 'SchemaOrg\\Type\\HealthPlanCostSharingSpecificationModel'];
+    public const VALUES = ['PriceSpecificationModel' => 'SchemaOrg\Type\PriceSpecificationModel'];
+    public const TYPES = ['HealthPlanCostSharingSpecification' => 'SchemaOrg\Type\HealthPlanCostSharingSpecificationModel'];
 }

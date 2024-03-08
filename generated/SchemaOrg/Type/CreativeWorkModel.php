@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class CreativeWorkModel
     public const DESCRIPTION = 'The most generic kind of creative work, including books, movies, photographs, software programs, etc.';
     public const LABEL = 'CreativeWork';
     public const NAME = 'schema:CreativeWork';
-    public const PARENTS = ['ThingModel' => 'SchemaOrg\\Type\\ThingModel'];
+    public const PARENTS = ['ThingModel' => 'SchemaOrg\Type\ThingModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PronounceableTextModel
     public const DESCRIPTION = 'Data type: PronounceableText.';
     public const LABEL = 'PronounceableText';
     public const NAME = 'schema:PronounceableText';
-    public const PARENTS = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
+    public const PARENTS = ['TextModel' => 'SchemaOrg\Type\TextModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

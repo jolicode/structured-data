@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class EventStatusTypeModel
     public const DESCRIPTION = 'EventStatusType is an enumeration type whose instances represent several states that an Event may be in.';
     public const LABEL = 'EventStatusType';
     public const NAME = 'schema:EventStatusType';
-    public const PARENTS = ['StatusEnumerationModel' => 'SchemaOrg\\Type\\StatusEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['EventCancelledModel' => 'EnumerationMember\\EventCancelledModel', 'EventMovedOnlineModel' => 'EnumerationMember\\EventMovedOnlineModel', 'EventPostponedModel' => 'EnumerationMember\\EventPostponedModel', 'EventRescheduledModel' => 'EnumerationMember\\EventRescheduledModel', 'EventScheduledModel' => 'EnumerationMember\\EventScheduledModel'];
+    public const PARENTS = ['StatusEnumerationModel' => 'SchemaOrg\Type\StatusEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['EventCancelledModel' => 'EnumerationMember\EventCancelledModel', 'EventMovedOnlineModel' => 'EnumerationMember\EventMovedOnlineModel', 'EventPostponedModel' => 'EnumerationMember\EventPostponedModel', 'EventRescheduledModel' => 'EnumerationMember\EventRescheduledModel', 'EventScheduledModel' => 'EnumerationMember\EventScheduledModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

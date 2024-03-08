@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PhotographActionModel
     public const DESCRIPTION = 'The act of capturing still images of objects using a camera.';
     public const LABEL = 'PhotographAction';
     public const NAME = 'schema:PhotographAction';
-    public const PARENTS = ['CreateActionModel' => 'SchemaOrg\\Type\\CreateActionModel'];
+    public const PARENTS = ['CreateActionModel' => 'SchemaOrg\Type\CreateActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

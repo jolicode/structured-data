@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class WebContentModel
     public const DESCRIPTION = 'WebContent is a type representing all [[WebPage]], [[WebSite]] and [[WebPageElement]] content. It is sometimes the case that detailed distinctions between Web pages, sites and their parts are not always important or obvious. The  [[WebContent]] type makes it easier to describe Web-addressable content without requiring such distinctions to always be stated. (The intent is that the existing types [[WebPage]], [[WebSite]] and [[WebPageElement]] will eventually be declared as subtypes of [[WebContent]].)';
     public const LABEL = 'WebContent';
     public const NAME = 'schema:WebContent';
-    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

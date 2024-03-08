@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -26,7 +24,7 @@ endorsement rating is particularly useful in the absence of numeric scales as it
 ';
     public const LABEL = 'EndorsementRating';
     public const NAME = 'schema:EndorsementRating';
-    public const PARENTS = ['RatingModel' => 'SchemaOrg\\Type\\RatingModel'];
+    public const PARENTS = ['RatingModel' => 'SchemaOrg\Type\RatingModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

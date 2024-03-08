@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class HealthPlanCostSharingSpecificationModel
     public const DESCRIPTION = 'A description of costs to the patient under a given network or formulary.';
     public const LABEL = 'HealthPlanCostSharingSpecification';
     public const NAME = 'schema:HealthPlanCostSharingSpecification';
-    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\\Type\\IntangibleModel'];
+    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\Type\IntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

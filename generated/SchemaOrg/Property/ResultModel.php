@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ResultModel
     public const DESCRIPTION = 'The result produced in the action. E.g. John wrote *a book*.';
     public const LABEL = 'result';
     public const NAME = 'schema:result';
-    public const VALUES = ['ThingModel' => 'SchemaOrg\\Type\\ThingModel'];
-    public const TYPES = ['Action' => 'SchemaOrg\\Type\\ActionModel'];
+    public const VALUES = ['ThingModel' => 'SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['Action' => 'SchemaOrg\Type\ActionModel'];
 }

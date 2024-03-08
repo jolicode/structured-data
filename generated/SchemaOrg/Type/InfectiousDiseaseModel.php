@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class InfectiousDiseaseModel
     public const DESCRIPTION = 'An infectious disease is a clinically evident human disease resulting from the presence of pathogenic microbial agents, like pathogenic viruses, pathogenic bacteria, fungi, protozoa, multicellular parasites, and prions. To be considered an infectious disease, such pathogens are known to be able to cause this disease.';
     public const LABEL = 'InfectiousDisease';
     public const NAME = 'schema:InfectiousDisease';
-    public const PARENTS = ['MedicalConditionModel' => 'SchemaOrg\\Type\\MedicalConditionModel'];
+    public const PARENTS = ['MedicalConditionModel' => 'SchemaOrg\Type\MedicalConditionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InBroadcastLineupModel
     public const DESCRIPTION = 'The CableOrSatelliteService offering the channel.';
     public const LABEL = 'inBroadcastLineup';
     public const NAME = 'schema:inBroadcastLineup';
-    public const VALUES = ['CableOrSatelliteServiceModel' => 'SchemaOrg\\Type\\CableOrSatelliteServiceModel'];
-    public const TYPES = ['BroadcastChannel' => 'SchemaOrg\\Type\\BroadcastChannelModel'];
+    public const VALUES = ['CableOrSatelliteServiceModel' => 'SchemaOrg\Type\CableOrSatelliteServiceModel'];
+    public const TYPES = ['BroadcastChannel' => 'SchemaOrg\Type\BroadcastChannelModel'];
 }

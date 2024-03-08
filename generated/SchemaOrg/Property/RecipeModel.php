@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RecipeModel
     public const DESCRIPTION = 'A sub property of instrument. The recipe/instructions used to perform the action.';
     public const LABEL = 'recipe';
     public const NAME = 'schema:recipe';
-    public const VALUES = ['RecipeModel' => 'SchemaOrg\\Type\\RecipeModel'];
-    public const TYPES = ['CookAction' => 'SchemaOrg\\Type\\CookActionModel'];
+    public const VALUES = ['RecipeModel' => 'SchemaOrg\Type\RecipeModel'];
+    public const TYPES = ['CookAction' => 'SchemaOrg\Type\CookActionModel'];
 }

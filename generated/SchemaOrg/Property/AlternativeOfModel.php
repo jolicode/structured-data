@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AlternativeOfModel
     public const DESCRIPTION = 'Another gene which is a variation of this one.';
     public const LABEL = 'alternativeOf';
     public const NAME = 'schema:alternativeOf';
-    public const VALUES = ['GeneModel' => 'SchemaOrg\\Type\\GeneModel'];
-    public const TYPES = ['Gene' => 'SchemaOrg\\Type\\GeneModel'];
+    public const VALUES = ['GeneModel' => 'SchemaOrg\Type\GeneModel'];
+    public const TYPES = ['Gene' => 'SchemaOrg\Type\GeneModel'];
 }

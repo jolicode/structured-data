@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -24,6 +22,6 @@ For example, if [[variableMeasured]] is: molecule concentration, [[measurementTe
 If there are several [[variableMeasured]] properties recorded for some given data object, use a [[PropertyValue]] for each [[variableMeasured]] and attach the corresponding [[measurementTechnique]]. The value can also be from an enumeration, organized as a [[MeasurementMetholdEnumeration]].';
     public const LABEL = 'measurementTechnique';
     public const NAME = 'schema:measurementTechnique';
-    public const VALUES = ['DefinedTermModel' => 'SchemaOrg\\Type\\DefinedTermModel', 'MeasurementMethodEnumModel' => 'SchemaOrg\\Type\\MeasurementMethodEnumModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['DataCatalog' => 'SchemaOrg\\Type\\DataCatalogModel', 'DataDownload' => 'SchemaOrg\\Type\\DataDownloadModel', 'Dataset' => 'SchemaOrg\\Type\\DatasetModel', 'Observation' => 'SchemaOrg\\Type\\ObservationModel', 'PropertyValue' => 'SchemaOrg\\Type\\PropertyValueModel', 'StatisticalVariable' => 'SchemaOrg\\Type\\StatisticalVariableModel'];
+    public const VALUES = ['DefinedTermModel' => 'SchemaOrg\Type\DefinedTermModel', 'MeasurementMethodEnumModel' => 'SchemaOrg\Type\MeasurementMethodEnumModel', 'TextModel' => 'SchemaOrg\Type\TextModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['DataCatalog' => 'SchemaOrg\Type\DataCatalogModel', 'DataDownload' => 'SchemaOrg\Type\DataDownloadModel', 'Dataset' => 'SchemaOrg\Type\DatasetModel', 'Observation' => 'SchemaOrg\Type\ObservationModel', 'PropertyValue' => 'SchemaOrg\Type\PropertyValueModel', 'StatisticalVariable' => 'SchemaOrg\Type\StatisticalVariableModel'];
 }

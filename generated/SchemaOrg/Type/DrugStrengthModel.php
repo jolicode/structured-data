@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DrugStrengthModel
     public const DESCRIPTION = 'A specific strength in which a medical drug is available in a specific country.';
     public const LABEL = 'DrugStrength';
     public const NAME = 'schema:DrugStrength';
-    public const PARENTS = ['MedicalIntangibleModel' => 'SchemaOrg\\Type\\MedicalIntangibleModel'];
+    public const PARENTS = ['MedicalIntangibleModel' => 'SchemaOrg\Type\MedicalIntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

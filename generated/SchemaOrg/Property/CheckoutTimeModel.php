@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CheckoutTimeModel
     public const DESCRIPTION = 'The latest someone may check out of a lodging establishment.';
     public const LABEL = 'checkoutTime';
     public const NAME = 'schema:checkoutTime';
-    public const VALUES = ['DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel', 'TimeModel' => 'SchemaOrg\\Type\\TimeModel'];
-    public const TYPES = ['LodgingBusiness' => 'SchemaOrg\\Type\\LodgingBusinessModel', 'LodgingReservation' => 'SchemaOrg\\Type\\LodgingReservationModel'];
+    public const VALUES = ['DateTimeModel' => 'SchemaOrg\Type\DateTimeModel', 'TimeModel' => 'SchemaOrg\Type\TimeModel'];
+    public const TYPES = ['LodgingBusiness' => 'SchemaOrg\Type\LodgingBusinessModel', 'LodgingReservation' => 'SchemaOrg\Type\LodgingReservationModel'];
 }

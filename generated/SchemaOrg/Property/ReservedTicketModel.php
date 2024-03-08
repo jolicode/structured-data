@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ReservedTicketModel
     public const DESCRIPTION = 'A ticket associated with the reservation.';
     public const LABEL = 'reservedTicket';
     public const NAME = 'schema:reservedTicket';
-    public const VALUES = ['TicketModel' => 'SchemaOrg\\Type\\TicketModel'];
-    public const TYPES = ['Reservation' => 'SchemaOrg\\Type\\ReservationModel'];
+    public const VALUES = ['TicketModel' => 'SchemaOrg\Type\TicketModel'];
+    public const TYPES = ['Reservation' => 'SchemaOrg\Type\ReservationModel'];
 }

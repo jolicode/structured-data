@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class AnatomicalSystemModel
     public const DESCRIPTION = 'An anatomical system is a group of anatomical structures that work together to perform a certain task. Anatomical systems, such as organ systems, are one organizing principle of anatomy, and can include circulatory, digestive, endocrine, integumentary, immune, lymphatic, muscular, nervous, reproductive, respiratory, skeletal, urinary, vestibular, and other systems.';
     public const LABEL = 'AnatomicalSystem';
     public const NAME = 'schema:AnatomicalSystem';
-    public const PARENTS = ['MedicalEntityModel' => 'SchemaOrg\\Type\\MedicalEntityModel'];
+    public const PARENTS = ['MedicalEntityModel' => 'SchemaOrg\Type\MedicalEntityModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

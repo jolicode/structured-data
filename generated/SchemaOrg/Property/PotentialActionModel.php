@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PotentialActionModel
     public const DESCRIPTION = 'Indicates a potential Action, which describes an idealized action in which this thing would play an \'object\' role.';
     public const LABEL = 'potentialAction';
     public const NAME = 'schema:potentialAction';
-    public const VALUES = ['ActionModel' => 'SchemaOrg\\Type\\ActionModel'];
-    public const TYPES = ['Thing' => 'SchemaOrg\\Type\\ThingModel'];
+    public const VALUES = ['ActionModel' => 'SchemaOrg\Type\ActionModel'];
+    public const TYPES = ['Thing' => 'SchemaOrg\Type\ThingModel'];
 }

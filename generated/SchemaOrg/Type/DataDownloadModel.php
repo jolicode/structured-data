@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DataDownloadModel
     public const DESCRIPTION = 'All or part of a [[Dataset]] in downloadable form. ';
     public const LABEL = 'DataDownload';
     public const NAME = 'schema:DataDownload';
-    public const PARENTS = ['MediaObjectModel' => 'SchemaOrg\\Type\\MediaObjectModel'];
+    public const PARENTS = ['MediaObjectModel' => 'SchemaOrg\Type\MediaObjectModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

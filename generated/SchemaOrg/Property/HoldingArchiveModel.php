@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HoldingArchiveModel
     public const DESCRIPTION = '[[ArchiveOrganization]] that holds, keeps or maintains the [[ArchiveComponent]].';
     public const LABEL = 'holdingArchive';
     public const NAME = 'schema:holdingArchive';
-    public const VALUES = ['ArchiveOrganizationModel' => 'SchemaOrg\\Type\\ArchiveOrganizationModel'];
-    public const TYPES = ['ArchiveComponent' => 'SchemaOrg\\Type\\ArchiveComponentModel'];
+    public const VALUES = ['ArchiveOrganizationModel' => 'SchemaOrg\Type\ArchiveOrganizationModel'];
+    public const TYPES = ['ArchiveComponent' => 'SchemaOrg\Type\ArchiveComponentModel'];
 }

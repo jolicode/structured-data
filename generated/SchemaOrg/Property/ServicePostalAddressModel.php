@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ServicePostalAddressModel
     public const DESCRIPTION = 'The address for accessing the service by mail.';
     public const LABEL = 'servicePostalAddress';
     public const NAME = 'schema:servicePostalAddress';
-    public const VALUES = ['PostalAddressModel' => 'SchemaOrg\\Type\\PostalAddressModel'];
-    public const TYPES = ['ServiceChannel' => 'SchemaOrg\\Type\\ServiceChannelModel'];
+    public const VALUES = ['PostalAddressModel' => 'SchemaOrg\Type\PostalAddressModel'];
+    public const TYPES = ['ServiceChannel' => 'SchemaOrg\Type\ServiceChannelModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DietarySupplementModel
     public const DESCRIPTION = 'A product taken by mouth that contains a dietary ingredient intended to supplement the diet. Dietary ingredients may include vitamins, minerals, herbs or other botanicals, amino acids, and substances such as enzymes, organ tissues, glandulars and metabolites.';
     public const LABEL = 'DietarySupplement';
     public const NAME = 'schema:DietarySupplement';
-    public const PARENTS = ['ProductModel' => 'SchemaOrg\\Type\\ProductModel', 'SubstanceModel' => 'SchemaOrg\\Type\\SubstanceModel'];
+    public const PARENTS = ['ProductModel' => 'SchemaOrg\Type\ProductModel', 'SubstanceModel' => 'SchemaOrg\Type\SubstanceModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

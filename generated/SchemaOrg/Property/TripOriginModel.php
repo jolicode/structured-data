@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TripOriginModel
     public const DESCRIPTION = 'The location of origin of the trip, prior to any destination(s).';
     public const LABEL = 'tripOrigin';
     public const NAME = 'schema:tripOrigin';
-    public const VALUES = ['PlaceModel' => 'SchemaOrg\\Type\\PlaceModel'];
-    public const TYPES = ['Trip' => 'SchemaOrg\\Type\\TripModel'];
+    public const VALUES = ['PlaceModel' => 'SchemaOrg\Type\PlaceModel'];
+    public const TYPES = ['Trip' => 'SchemaOrg\Type\TripModel'];
 }

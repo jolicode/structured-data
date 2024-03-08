@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ArrivalBoatTerminalModel
     public const DESCRIPTION = 'The terminal or port from which the boat arrives.';
     public const LABEL = 'arrivalBoatTerminal';
     public const NAME = 'schema:arrivalBoatTerminal';
-    public const VALUES = ['BoatTerminalModel' => 'SchemaOrg\\Type\\BoatTerminalModel'];
-    public const TYPES = ['BoatTrip' => 'SchemaOrg\\Type\\BoatTripModel'];
+    public const VALUES = ['BoatTerminalModel' => 'SchemaOrg\Type\BoatTerminalModel'];
+    public const TYPES = ['BoatTrip' => 'SchemaOrg\Type\BoatTripModel'];
 }

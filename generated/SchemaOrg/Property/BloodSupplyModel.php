@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BloodSupplyModel
     public const DESCRIPTION = 'The blood vessel that carries blood from the heart to the muscle.';
     public const LABEL = 'bloodSupply';
     public const NAME = 'schema:bloodSupply';
-    public const VALUES = ['VesselModel' => 'SchemaOrg\\Type\\VesselModel'];
-    public const TYPES = ['Muscle' => 'SchemaOrg\\Type\\MuscleModel'];
+    public const VALUES = ['VesselModel' => 'SchemaOrg\Type\VesselModel'];
+    public const TYPES = ['Muscle' => 'SchemaOrg\Type\MuscleModel'];
 }

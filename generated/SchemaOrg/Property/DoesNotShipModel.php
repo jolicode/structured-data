@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DoesNotShipModel
     public const DESCRIPTION = 'Indicates when shipping to a particular [[shippingDestination]] is not available.';
     public const LABEL = 'doesNotShip';
     public const NAME = 'schema:doesNotShip';
-    public const VALUES = ['BooleanModel' => 'SchemaOrg\\Type\\BooleanModel'];
-    public const TYPES = ['OfferShippingDetails' => 'SchemaOrg\\Type\\OfferShippingDetailsModel', 'ShippingRateSettings' => 'SchemaOrg\\Type\\ShippingRateSettingsModel'];
+    public const VALUES = ['BooleanModel' => 'SchemaOrg\Type\BooleanModel'];
+    public const TYPES = ['OfferShippingDetails' => 'SchemaOrg\Type\OfferShippingDetailsModel', 'ShippingRateSettings' => 'SchemaOrg\Type\ShippingRateSettingsModel'];
 }

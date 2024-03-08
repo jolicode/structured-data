@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class FuelTypeModel
     public const DESCRIPTION = 'The type of fuel suitable for the engine or engines of the vehicle. If the vehicle has only one engine, this property can be attached directly to the vehicle.';
     public const LABEL = 'fuelType';
     public const NAME = 'schema:fuelType';
-    public const VALUES = ['QualitativeValueModel' => 'SchemaOrg\\Type\\QualitativeValueModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['EngineSpecification' => 'SchemaOrg\\Type\\EngineSpecificationModel', 'Vehicle' => 'SchemaOrg\\Type\\VehicleModel'];
+    public const VALUES = ['QualitativeValueModel' => 'SchemaOrg\Type\QualitativeValueModel', 'TextModel' => 'SchemaOrg\Type\TextModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['EngineSpecification' => 'SchemaOrg\Type\EngineSpecificationModel', 'Vehicle' => 'SchemaOrg\Type\VehicleModel'];
 }

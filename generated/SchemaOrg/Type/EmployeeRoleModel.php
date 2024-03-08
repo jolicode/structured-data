@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class EmployeeRoleModel
     public const DESCRIPTION = 'A subclass of OrganizationRole used to describe employee relationships.';
     public const LABEL = 'EmployeeRole';
     public const NAME = 'schema:EmployeeRole';
-    public const PARENTS = ['OrganizationRoleModel' => 'SchemaOrg\\Type\\OrganizationRoleModel'];
+    public const PARENTS = ['OrganizationRoleModel' => 'SchemaOrg\Type\OrganizationRoleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

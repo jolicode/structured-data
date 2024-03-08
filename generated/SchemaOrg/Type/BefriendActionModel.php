@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -17,10 +15,10 @@ use SchemaOrg\Property;
 
 final class BefriendActionModel
 {
-    public const DESCRIPTION = 'The act of forming a personal connection with someone (object) mutually/bidirectionally/symmetrically.\\n\\nRelated actions:\\n\\n* [[FollowAction]]: Unlike FollowAction, BefriendAction implies that the connection is reciprocal.';
+    public const DESCRIPTION = 'The act of forming a personal connection with someone (object) mutually/bidirectionally/symmetrically.\n\nRelated actions:\n\n* [[FollowAction]]: Unlike FollowAction, BefriendAction implies that the connection is reciprocal.';
     public const LABEL = 'BefriendAction';
     public const NAME = 'schema:BefriendAction';
-    public const PARENTS = ['InteractActionModel' => 'SchemaOrg\\Type\\InteractActionModel'];
+    public const PARENTS = ['InteractActionModel' => 'SchemaOrg\Type\InteractActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

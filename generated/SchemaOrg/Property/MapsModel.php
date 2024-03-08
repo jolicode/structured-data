@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MapsModel
     public const DESCRIPTION = 'A URL to a map of the place.';
     public const LABEL = 'maps';
     public const NAME = 'schema:maps';
-    public const VALUES = ['URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['Place' => 'SchemaOrg\\Type\\PlaceModel'];
+    public const VALUES = ['URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['Place' => 'SchemaOrg\Type\PlaceModel'];
 }

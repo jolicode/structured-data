@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InkerModel
     public const DESCRIPTION = 'The individual who traces over the pencil drawings in ink after pencils are complete.';
     public const LABEL = 'inker';
     public const NAME = 'schema:inker';
-    public const VALUES = ['PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['ComicIssue' => 'SchemaOrg\\Type\\ComicIssueModel', 'ComicStory' => 'SchemaOrg\\Type\\ComicStoryModel', 'VisualArtwork' => 'SchemaOrg\\Type\\VisualArtworkModel'];
+    public const VALUES = ['PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['ComicIssue' => 'SchemaOrg\Type\ComicIssueModel', 'ComicStory' => 'SchemaOrg\Type\ComicStoryModel', 'VisualArtwork' => 'SchemaOrg\Type\VisualArtworkModel'];
 }

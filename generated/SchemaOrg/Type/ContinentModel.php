@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ContinentModel
     public const DESCRIPTION = 'One of the continents (for example, Europe or Africa).';
     public const LABEL = 'Continent';
     public const NAME = 'schema:Continent';
-    public const PARENTS = ['LandformModel' => 'SchemaOrg\\Type\\LandformModel'];
+    public const PARENTS = ['LandformModel' => 'SchemaOrg\Type\LandformModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

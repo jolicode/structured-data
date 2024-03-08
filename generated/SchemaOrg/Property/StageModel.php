@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class StageModel
     public const DESCRIPTION = 'The stage of the condition, if applicable.';
     public const LABEL = 'stage';
     public const NAME = 'schema:stage';
-    public const VALUES = ['MedicalConditionStageModel' => 'SchemaOrg\\Type\\MedicalConditionStageModel'];
-    public const TYPES = ['MedicalCondition' => 'SchemaOrg\\Type\\MedicalConditionModel'];
+    public const VALUES = ['MedicalConditionStageModel' => 'SchemaOrg\Type\MedicalConditionStageModel'];
+    public const TYPES = ['MedicalCondition' => 'SchemaOrg\Type\MedicalConditionModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SeatNumberModel
     public const DESCRIPTION = 'The location of the reserved seat (e.g., 27).';
     public const LABEL = 'seatNumber';
     public const NAME = 'schema:seatNumber';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Seat' => 'SchemaOrg\\Type\\SeatModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Seat' => 'SchemaOrg\Type\SeatModel'];
 }

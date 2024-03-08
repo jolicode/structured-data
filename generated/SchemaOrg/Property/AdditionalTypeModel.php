@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -19,6 +17,6 @@ final class AdditionalTypeModel
     use of rdf:type in RDF. Text values can be used sparingly, for cases where useful information can be added without their being an appropriate schema to reference. In the case of text values, the class label should follow the schema.org <a href="https://schema.org/docs/styleguide.html">style guide</a>';
     public const LABEL = 'additionalType';
     public const NAME = 'schema:additionalType';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['Thing' => 'SchemaOrg\\Type\\ThingModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['Thing' => 'SchemaOrg\Type\ThingModel'];
 }

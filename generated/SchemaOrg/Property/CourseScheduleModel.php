@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CourseScheduleModel
     public const DESCRIPTION = 'Represents the length and pace of a course, expressed as a [[Schedule]].';
     public const LABEL = 'courseSchedule';
     public const NAME = 'schema:courseSchedule';
-    public const VALUES = ['ScheduleModel' => 'SchemaOrg\\Type\\ScheduleModel'];
-    public const TYPES = ['CourseInstance' => 'SchemaOrg\\Type\\CourseInstanceModel'];
+    public const VALUES = ['ScheduleModel' => 'SchemaOrg\Type\ScheduleModel'];
+    public const TYPES = ['CourseInstance' => 'SchemaOrg\Type\CourseInstanceModel'];
 }

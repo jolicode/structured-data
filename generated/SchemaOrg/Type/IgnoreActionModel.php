@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class IgnoreActionModel
     public const DESCRIPTION = 'The act of intentionally disregarding the object. An agent ignores an object.';
     public const LABEL = 'IgnoreAction';
     public const NAME = 'schema:IgnoreAction';
-    public const PARENTS = ['AssessActionModel' => 'SchemaOrg\\Type\\AssessActionModel'];
+    public const PARENTS = ['AssessActionModel' => 'SchemaOrg\Type\AssessActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

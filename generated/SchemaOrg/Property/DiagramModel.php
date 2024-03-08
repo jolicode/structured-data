@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DiagramModel
     public const DESCRIPTION = 'An image containing a diagram that illustrates the structure and/or its component substructures and/or connections with other structures.';
     public const LABEL = 'diagram';
     public const NAME = 'schema:diagram';
-    public const VALUES = ['ImageObjectModel' => 'SchemaOrg\\Type\\ImageObjectModel'];
-    public const TYPES = ['AnatomicalStructure' => 'SchemaOrg\\Type\\AnatomicalStructureModel'];
+    public const VALUES = ['ImageObjectModel' => 'SchemaOrg\Type\ImageObjectModel'];
+    public const TYPES = ['AnatomicalStructure' => 'SchemaOrg\Type\AnatomicalStructureModel'];
 }

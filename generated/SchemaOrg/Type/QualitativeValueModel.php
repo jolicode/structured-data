@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class QualitativeValueModel
     public const DESCRIPTION = 'A predefined value for a product characteristic, e.g. the power cord plug type \'US\' or the garment sizes \'S\', \'M\', \'L\', and \'XL\'.';
     public const LABEL = 'QualitativeValue';
     public const NAME = 'schema:QualitativeValue';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

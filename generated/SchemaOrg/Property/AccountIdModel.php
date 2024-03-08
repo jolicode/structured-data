@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AccountIdModel
     public const DESCRIPTION = 'The identifier for the account the payment will be applied to.';
     public const LABEL = 'accountId';
     public const NAME = 'schema:accountId';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Invoice' => 'SchemaOrg\\Type\\InvoiceModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Invoice' => 'SchemaOrg\Type\InvoiceModel'];
 }

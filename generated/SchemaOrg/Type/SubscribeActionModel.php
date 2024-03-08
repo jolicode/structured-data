@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -17,10 +15,10 @@ use SchemaOrg\Property;
 
 final class SubscribeActionModel
 {
-    public const DESCRIPTION = 'The act of forming a personal connection with someone/something (object) unidirectionally/asymmetrically to get updates pushed to.\\n\\nRelated actions:\\n\\n* [[FollowAction]]: Unlike FollowAction, SubscribeAction implies that the subscriber acts as a passive agent being constantly/actively pushed for updates.\\n* [[RegisterAction]]: Unlike RegisterAction, SubscribeAction implies that the agent is interested in continuing receiving updates from the object.\\n* [[JoinAction]]: Unlike JoinAction, SubscribeAction implies that the agent is interested in continuing receiving updates from the object.';
+    public const DESCRIPTION = 'The act of forming a personal connection with someone/something (object) unidirectionally/asymmetrically to get updates pushed to.\n\nRelated actions:\n\n* [[FollowAction]]: Unlike FollowAction, SubscribeAction implies that the subscriber acts as a passive agent being constantly/actively pushed for updates.\n* [[RegisterAction]]: Unlike RegisterAction, SubscribeAction implies that the agent is interested in continuing receiving updates from the object.\n* [[JoinAction]]: Unlike JoinAction, SubscribeAction implies that the agent is interested in continuing receiving updates from the object.';
     public const LABEL = 'SubscribeAction';
     public const NAME = 'schema:SubscribeAction';
-    public const PARENTS = ['InteractActionModel' => 'SchemaOrg\\Type\\InteractActionModel'];
+    public const PARENTS = ['InteractActionModel' => 'SchemaOrg\Type\InteractActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

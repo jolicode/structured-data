@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class LocationFeatureSpecificationModel
     public const DESCRIPTION = 'Specifies a location feature by providing a structured value representing a feature of an accommodation as a property-value pair of varying degrees of formality.';
     public const LABEL = 'LocationFeatureSpecification';
     public const NAME = 'schema:LocationFeatureSpecification';
-    public const PARENTS = ['PropertyValueModel' => 'SchemaOrg\\Type\\PropertyValueModel'];
+    public const PARENTS = ['PropertyValueModel' => 'SchemaOrg\Type\PropertyValueModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

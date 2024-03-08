@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class UKNonprofitTypeModel
     public const DESCRIPTION = 'UKNonprofitType: Non-profit organization type originating from the United Kingdom.';
     public const LABEL = 'UKNonprofitType';
     public const NAME = 'schema:UKNonprofitType';
-    public const PARENTS = ['NonprofitTypeModel' => 'SchemaOrg\\Type\\NonprofitTypeModel'];
-    public const ENUMERATION_MEMBERS = ['CharitableIncorporatedOrganizationModel' => 'EnumerationMember\\CharitableIncorporatedOrganizationModel', 'LimitedByGuaranteeCharityModel' => 'EnumerationMember\\LimitedByGuaranteeCharityModel', 'UKTrustModel' => 'EnumerationMember\\UKTrustModel', 'UnincorporatedAssociationCharityModel' => 'EnumerationMember\\UnincorporatedAssociationCharityModel'];
+    public const PARENTS = ['NonprofitTypeModel' => 'SchemaOrg\Type\NonprofitTypeModel'];
+    public const ENUMERATION_MEMBERS = ['CharitableIncorporatedOrganizationModel' => 'EnumerationMember\CharitableIncorporatedOrganizationModel', 'LimitedByGuaranteeCharityModel' => 'EnumerationMember\LimitedByGuaranteeCharityModel', 'UKTrustModel' => 'EnumerationMember\UKTrustModel', 'UnincorporatedAssociationCharityModel' => 'EnumerationMember\UnincorporatedAssociationCharityModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

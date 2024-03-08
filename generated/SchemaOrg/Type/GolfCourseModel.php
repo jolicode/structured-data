@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class GolfCourseModel
     public const DESCRIPTION = 'A golf course.';
     public const LABEL = 'GolfCourse';
     public const NAME = 'schema:GolfCourse';
-    public const PARENTS = ['SportsActivityLocationModel' => 'SchemaOrg\\Type\\SportsActivityLocationModel'];
+    public const PARENTS = ['SportsActivityLocationModel' => 'SchemaOrg\Type\SportsActivityLocationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

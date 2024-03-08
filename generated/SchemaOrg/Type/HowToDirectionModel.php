@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class HowToDirectionModel
     public const DESCRIPTION = 'A direction indicating a single action to do in the instructions for how to achieve a result.';
     public const LABEL = 'HowToDirection';
     public const NAME = 'schema:HowToDirection';
-    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel', 'ListItemModel' => 'SchemaOrg\\Type\\ListItemModel'];
+    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel', 'ListItemModel' => 'SchemaOrg\Type\ListItemModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

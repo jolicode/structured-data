@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BroadcastServiceTierModel
     public const DESCRIPTION = 'The type of service required to have access to the channel (e.g. Standard or Premium).';
     public const LABEL = 'broadcastServiceTier';
     public const NAME = 'schema:broadcastServiceTier';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['BroadcastChannel' => 'SchemaOrg\\Type\\BroadcastChannelModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['BroadcastChannel' => 'SchemaOrg\Type\BroadcastChannelModel'];
 }

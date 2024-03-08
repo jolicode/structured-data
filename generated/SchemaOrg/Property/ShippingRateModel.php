@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ShippingRateModel
     public const DESCRIPTION = 'The shipping rate is the cost of shipping to the specified destination. Typically, the maxValue and currency values (of the [[MonetaryAmount]]) are most appropriate.';
     public const LABEL = 'shippingRate';
     public const NAME = 'schema:shippingRate';
-    public const VALUES = ['MonetaryAmountModel' => 'SchemaOrg\\Type\\MonetaryAmountModel'];
-    public const TYPES = ['OfferShippingDetails' => 'SchemaOrg\\Type\\OfferShippingDetailsModel', 'ShippingRateSettings' => 'SchemaOrg\\Type\\ShippingRateSettingsModel'];
+    public const VALUES = ['MonetaryAmountModel' => 'SchemaOrg\Type\MonetaryAmountModel'];
+    public const TYPES = ['OfferShippingDetails' => 'SchemaOrg\Type\OfferShippingDetailsModel', 'ShippingRateSettings' => 'SchemaOrg\Type\ShippingRateSettingsModel'];
 }

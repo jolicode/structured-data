@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class GameAvailabilityEnumerationModel
     public const DESCRIPTION = 'For a [[VideoGame]], such as used with a [[PlayGameAction]], an enumeration of the kind of game availability offered. ';
     public const LABEL = 'GameAvailabilityEnumeration';
     public const NAME = 'schema:GameAvailabilityEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['DemoGameAvailabilityModel' => 'EnumerationMember\\DemoGameAvailabilityModel', 'FullGameAvailabilityModel' => 'EnumerationMember\\FullGameAvailabilityModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['DemoGameAvailabilityModel' => 'EnumerationMember\DemoGameAvailabilityModel', 'FullGameAvailabilityModel' => 'EnumerationMember\FullGameAvailabilityModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

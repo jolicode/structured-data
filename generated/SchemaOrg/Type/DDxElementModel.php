@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DDxElementModel
     public const DESCRIPTION = 'An alternative, closely-related condition typically considered later in the differential diagnosis process along with the signs that are used to distinguish it.';
     public const LABEL = 'DDxElement';
     public const NAME = 'schema:DDxElement';
-    public const PARENTS = ['MedicalIntangibleModel' => 'SchemaOrg\\Type\\MedicalIntangibleModel'];
+    public const PARENTS = ['MedicalIntangibleModel' => 'SchemaOrg\Type\MedicalIntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TimeToCompleteModel
     public const DESCRIPTION = 'The expected length of time to complete the program if attending full-time.';
     public const LABEL = 'timeToComplete';
     public const NAME = 'schema:timeToComplete';
-    public const VALUES = ['DurationModel' => 'SchemaOrg\\Type\\DurationModel'];
-    public const TYPES = ['EducationalOccupationalProgram' => 'SchemaOrg\\Type\\EducationalOccupationalProgramModel'];
+    public const VALUES = ['DurationModel' => 'SchemaOrg\Type\DurationModel'];
+    public const TYPES = ['EducationalOccupationalProgram' => 'SchemaOrg\Type\EducationalOccupationalProgramModel'];
 }

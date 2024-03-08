@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AvailableLanguageModel
     public const DESCRIPTION = 'A language someone may use with or at the item, service or place. Please use one of the language codes from the [IETF BCP 47 standard](http://tools.ietf.org/html/bcp47). See also [[inLanguage]].';
     public const LABEL = 'availableLanguage';
     public const NAME = 'schema:availableLanguage';
-    public const VALUES = ['LanguageModel' => 'SchemaOrg\\Type\\LanguageModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['ContactPoint' => 'SchemaOrg\\Type\\ContactPointModel', 'Course' => 'SchemaOrg\\Type\\CourseModel', 'LodgingBusiness' => 'SchemaOrg\\Type\\LodgingBusinessModel', 'ServiceChannel' => 'SchemaOrg\\Type\\ServiceChannelModel', 'TouristAttraction' => 'SchemaOrg\\Type\\TouristAttractionModel'];
+    public const VALUES = ['LanguageModel' => 'SchemaOrg\Type\LanguageModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['ContactPoint' => 'SchemaOrg\Type\ContactPointModel', 'Course' => 'SchemaOrg\Type\CourseModel', 'LodgingBusiness' => 'SchemaOrg\Type\LodgingBusinessModel', 'ServiceChannel' => 'SchemaOrg\Type\ServiceChannelModel', 'TouristAttraction' => 'SchemaOrg\Type\TouristAttractionModel'];
 }

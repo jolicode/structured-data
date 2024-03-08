@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class BookFormatTypeModel
     public const DESCRIPTION = 'The publication format of the book.';
     public const LABEL = 'BookFormatType';
     public const NAME = 'schema:BookFormatType';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['AudiobookFormatModel' => 'EnumerationMember\\AudiobookFormatModel', 'EBookModel' => 'EnumerationMember\\EBookModel', 'GraphicNovelModel' => 'EnumerationMember\\GraphicNovelModel', 'HardcoverModel' => 'EnumerationMember\\HardcoverModel', 'PaperbackModel' => 'EnumerationMember\\PaperbackModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['AudiobookFormatModel' => 'EnumerationMember\AudiobookFormatModel', 'EBookModel' => 'EnumerationMember\EBookModel', 'GraphicNovelModel' => 'EnumerationMember\GraphicNovelModel', 'HardcoverModel' => 'EnumerationMember\HardcoverModel', 'PaperbackModel' => 'EnumerationMember\PaperbackModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

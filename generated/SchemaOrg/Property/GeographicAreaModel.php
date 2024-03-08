@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class GeographicAreaModel
     public const DESCRIPTION = 'The geographic area associated with the audience.';
     public const LABEL = 'geographicArea';
     public const NAME = 'schema:geographicArea';
-    public const VALUES = ['AdministrativeAreaModel' => 'SchemaOrg\\Type\\AdministrativeAreaModel'];
-    public const TYPES = ['Audience' => 'SchemaOrg\\Type\\AudienceModel'];
+    public const VALUES = ['AdministrativeAreaModel' => 'SchemaOrg\Type\AdministrativeAreaModel'];
+    public const TYPES = ['Audience' => 'SchemaOrg\Type\AudienceModel'];
 }

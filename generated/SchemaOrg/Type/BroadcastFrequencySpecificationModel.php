@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class BroadcastFrequencySpecificationModel
     public const DESCRIPTION = 'The frequency in MHz and the modulation used for a particular BroadcastService.';
     public const LABEL = 'BroadcastFrequencySpecification';
     public const NAME = 'schema:BroadcastFrequencySpecification';
-    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\\Type\\IntangibleModel'];
+    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\Type\IntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

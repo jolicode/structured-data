@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ContentLocationModel
     public const DESCRIPTION = 'The location depicted or described in the content. For example, the location in a photograph or painting.';
     public const LABEL = 'contentLocation';
     public const NAME = 'schema:contentLocation';
-    public const VALUES = ['PlaceModel' => 'SchemaOrg\\Type\\PlaceModel'];
-    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const VALUES = ['PlaceModel' => 'SchemaOrg\Type\PlaceModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel'];
 }

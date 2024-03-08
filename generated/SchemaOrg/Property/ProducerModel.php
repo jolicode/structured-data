@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ProducerModel
     public const DESCRIPTION = 'The person or organization who produced the work (e.g. music album, movie, TV/radio series etc.).';
     public const LABEL = 'producer';
     public const NAME = 'schema:producer';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel', 'PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel'];
 }

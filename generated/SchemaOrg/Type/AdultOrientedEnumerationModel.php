@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class AdultOrientedEnumerationModel
     public const DESCRIPTION = 'Enumeration of considerations that make a product relevant or potentially restricted for adults only.';
     public const LABEL = 'AdultOrientedEnumeration';
     public const NAME = 'schema:AdultOrientedEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['AlcoholConsiderationModel' => 'EnumerationMember\\AlcoholConsiderationModel', 'DangerousGoodConsiderationModel' => 'EnumerationMember\\DangerousGoodConsiderationModel', 'HealthcareConsiderationModel' => 'EnumerationMember\\HealthcareConsiderationModel', 'NarcoticConsiderationModel' => 'EnumerationMember\\NarcoticConsiderationModel', 'ReducedRelevanceForChildrenConsiderationModel' => 'EnumerationMember\\ReducedRelevanceForChildrenConsiderationModel', 'SexualContentConsiderationModel' => 'EnumerationMember\\SexualContentConsiderationModel', 'TobaccoNicotineConsiderationModel' => 'EnumerationMember\\TobaccoNicotineConsiderationModel', 'UnclassifiedAdultConsiderationModel' => 'EnumerationMember\\UnclassifiedAdultConsiderationModel', 'ViolenceConsiderationModel' => 'EnumerationMember\\ViolenceConsiderationModel', 'WeaponConsiderationModel' => 'EnumerationMember\\WeaponConsiderationModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['AlcoholConsiderationModel' => 'EnumerationMember\AlcoholConsiderationModel', 'DangerousGoodConsiderationModel' => 'EnumerationMember\DangerousGoodConsiderationModel', 'HealthcareConsiderationModel' => 'EnumerationMember\HealthcareConsiderationModel', 'NarcoticConsiderationModel' => 'EnumerationMember\NarcoticConsiderationModel', 'ReducedRelevanceForChildrenConsiderationModel' => 'EnumerationMember\ReducedRelevanceForChildrenConsiderationModel', 'SexualContentConsiderationModel' => 'EnumerationMember\SexualContentConsiderationModel', 'TobaccoNicotineConsiderationModel' => 'EnumerationMember\TobaccoNicotineConsiderationModel', 'UnclassifiedAdultConsiderationModel' => 'EnumerationMember\UnclassifiedAdultConsiderationModel', 'ViolenceConsiderationModel' => 'EnumerationMember\ViolenceConsiderationModel', 'WeaponConsiderationModel' => 'EnumerationMember\WeaponConsiderationModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

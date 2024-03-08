@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DoorTimeModel
     public const DESCRIPTION = 'The time admission will commence.';
     public const LABEL = 'doorTime';
     public const NAME = 'schema:doorTime';
-    public const VALUES = ['DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel', 'TimeModel' => 'SchemaOrg\\Type\\TimeModel'];
-    public const TYPES = ['Event' => 'SchemaOrg\\Type\\EventModel'];
+    public const VALUES = ['DateTimeModel' => 'SchemaOrg\Type\DateTimeModel', 'TimeModel' => 'SchemaOrg\Type\TimeModel'];
+    public const TYPES = ['Event' => 'SchemaOrg\Type\EventModel'];
 }

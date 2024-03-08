@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class EmployerOverviewModel
     public const DESCRIPTION = 'A description of the employer, career opportunities and work environment for this position.';
     public const LABEL = 'employerOverview';
     public const NAME = 'schema:employerOverview';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['JobPosting' => 'SchemaOrg\\Type\\JobPostingModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['JobPosting' => 'SchemaOrg\Type\JobPostingModel'];
 }

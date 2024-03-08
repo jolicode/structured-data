@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ItemShippedModel
     public const DESCRIPTION = 'Item(s) being shipped.';
     public const LABEL = 'itemShipped';
     public const NAME = 'schema:itemShipped';
-    public const VALUES = ['ProductModel' => 'SchemaOrg\\Type\\ProductModel'];
-    public const TYPES = ['ParcelDelivery' => 'SchemaOrg\\Type\\ParcelDeliveryModel'];
+    public const VALUES = ['ProductModel' => 'SchemaOrg\Type\ProductModel'];
+    public const TYPES = ['ParcelDelivery' => 'SchemaOrg\Type\ParcelDeliveryModel'];
 }

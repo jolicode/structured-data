@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PriceRangeModel
     public const DESCRIPTION = 'The price range of the business, for example ```$$$```.';
     public const LABEL = 'priceRange';
     public const NAME = 'schema:priceRange';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['LocalBusiness' => 'SchemaOrg\\Type\\LocalBusinessModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['LocalBusiness' => 'SchemaOrg\Type\LocalBusinessModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class AudiobookModel
     public const DESCRIPTION = 'An audiobook.';
     public const LABEL = 'Audiobook';
     public const NAME = 'schema:Audiobook';
-    public const PARENTS = ['AudioObjectModel' => 'SchemaOrg\\Type\\AudioObjectModel', 'BookModel' => 'SchemaOrg\\Type\\BookModel'];
+    public const PARENTS = ['AudioObjectModel' => 'SchemaOrg\Type\AudioObjectModel', 'BookModel' => 'SchemaOrg\Type\BookModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

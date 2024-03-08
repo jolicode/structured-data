@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class NerveModel
     public const DESCRIPTION = 'A common pathway for the electrochemical nerve impulses that are transmitted along each of the axons.';
     public const LABEL = 'Nerve';
     public const NAME = 'schema:Nerve';
-    public const PARENTS = ['AnatomicalStructureModel' => 'SchemaOrg\\Type\\AnatomicalStructureModel'];
+    public const PARENTS = ['AnatomicalStructureModel' => 'SchemaOrg\Type\AnatomicalStructureModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

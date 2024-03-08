@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class LifestyleModificationModel
     public const DESCRIPTION = 'A process of care involving exercise, changes to diet, fitness routines, and other lifestyle changes aimed at improving a health condition.';
     public const LABEL = 'LifestyleModification';
     public const NAME = 'schema:LifestyleModification';
-    public const PARENTS = ['MedicalEntityModel' => 'SchemaOrg\\Type\\MedicalEntityModel'];
+    public const PARENTS = ['MedicalEntityModel' => 'SchemaOrg\Type\MedicalEntityModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

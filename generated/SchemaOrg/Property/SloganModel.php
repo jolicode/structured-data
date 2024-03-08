@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SloganModel
     public const DESCRIPTION = 'A slogan or motto associated with the item.';
     public const LABEL = 'slogan';
     public const NAME = 'schema:slogan';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Brand' => 'SchemaOrg\\Type\\BrandModel', 'Organization' => 'SchemaOrg\\Type\\OrganizationModel', 'Place' => 'SchemaOrg\\Type\\PlaceModel', 'Product' => 'SchemaOrg\\Type\\ProductModel', 'Service' => 'SchemaOrg\\Type\\ServiceModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Brand' => 'SchemaOrg\Type\BrandModel', 'Organization' => 'SchemaOrg\Type\OrganizationModel', 'Place' => 'SchemaOrg\Type\PlaceModel', 'Product' => 'SchemaOrg\Type\ProductModel', 'Service' => 'SchemaOrg\Type\ServiceModel'];
 }

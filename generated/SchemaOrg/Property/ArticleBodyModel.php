@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ArticleBodyModel
     public const DESCRIPTION = 'The actual body of the article.';
     public const LABEL = 'articleBody';
     public const NAME = 'schema:articleBody';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Article' => 'SchemaOrg\\Type\\ArticleModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Article' => 'SchemaOrg\Type\ArticleModel'];
 }

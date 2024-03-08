@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DateCreatedModel
     public const DESCRIPTION = 'The date on which the CreativeWork was created or the item was added to a DataFeed.';
     public const LABEL = 'dateCreated';
     public const NAME = 'schema:dateCreated';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel', 'DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel'];
-    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel', 'DataFeedItem' => 'SchemaOrg\\Type\\DataFeedItemModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel', 'DateTimeModel' => 'SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel', 'DataFeedItem' => 'SchemaOrg\Type\DataFeedItemModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IncludedRiskFactorModel
     public const DESCRIPTION = 'A modifiable or non-modifiable risk factor included in the calculation, e.g. age, coexisting condition.';
     public const LABEL = 'includedRiskFactor';
     public const NAME = 'schema:includedRiskFactor';
-    public const VALUES = ['MedicalRiskFactorModel' => 'SchemaOrg\\Type\\MedicalRiskFactorModel'];
-    public const TYPES = ['MedicalRiskEstimator' => 'SchemaOrg\\Type\\MedicalRiskEstimatorModel'];
+    public const VALUES = ['MedicalRiskFactorModel' => 'SchemaOrg\Type\MedicalRiskFactorModel'];
+    public const TYPES = ['MedicalRiskEstimator' => 'SchemaOrg\Type\MedicalRiskEstimatorModel'];
 }

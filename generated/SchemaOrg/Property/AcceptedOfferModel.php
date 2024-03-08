@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AcceptedOfferModel
     public const DESCRIPTION = 'The offer(s) -- e.g., product, quantity and price combinations -- included in the order.';
     public const LABEL = 'acceptedOffer';
     public const NAME = 'schema:acceptedOffer';
-    public const VALUES = ['OfferModel' => 'SchemaOrg\\Type\\OfferModel'];
-    public const TYPES = ['Order' => 'SchemaOrg\\Type\\OrderModel'];
+    public const VALUES = ['OfferModel' => 'SchemaOrg\Type\OfferModel'];
+    public const TYPES = ['Order' => 'SchemaOrg\Type\OrderModel'];
 }

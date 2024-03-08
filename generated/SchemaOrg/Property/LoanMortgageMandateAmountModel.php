@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LoanMortgageMandateAmountModel
     public const DESCRIPTION = 'Amount of mortgage mandate that can be converted into a proper mortgage at a later stage.';
     public const LABEL = 'loanMortgageMandateAmount';
     public const NAME = 'schema:loanMortgageMandateAmount';
-    public const VALUES = ['MonetaryAmountModel' => 'SchemaOrg\\Type\\MonetaryAmountModel'];
-    public const TYPES = ['MortgageLoan' => 'SchemaOrg\\Type\\MortgageLoanModel'];
+    public const VALUES = ['MonetaryAmountModel' => 'SchemaOrg\Type\MonetaryAmountModel'];
+    public const TYPES = ['MortgageLoan' => 'SchemaOrg\Type\MortgageLoanModel'];
 }

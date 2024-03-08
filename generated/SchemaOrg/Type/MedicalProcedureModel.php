@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MedicalProcedureModel
     public const DESCRIPTION = 'A process of care used in either a diagnostic, therapeutic, preventive or palliative capacity that relies on invasive (surgical), non-invasive, or other techniques.';
     public const LABEL = 'MedicalProcedure';
     public const NAME = 'schema:MedicalProcedure';
-    public const PARENTS = ['MedicalEntityModel' => 'SchemaOrg\\Type\\MedicalEntityModel'];
+    public const PARENTS = ['MedicalEntityModel' => 'SchemaOrg\Type\MedicalEntityModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HasCredentialModel
     public const DESCRIPTION = 'A credential awarded to the Person or Organization.';
     public const LABEL = 'hasCredential';
     public const NAME = 'schema:hasCredential';
-    public const VALUES = ['EducationalOccupationalCredentialModel' => 'SchemaOrg\\Type\\EducationalOccupationalCredentialModel'];
-    public const TYPES = ['Organization' => 'SchemaOrg\\Type\\OrganizationModel', 'Person' => 'SchemaOrg\\Type\\PersonModel'];
+    public const VALUES = ['EducationalOccupationalCredentialModel' => 'SchemaOrg\Type\EducationalOccupationalCredentialModel'];
+    public const TYPES = ['Organization' => 'SchemaOrg\Type\OrganizationModel', 'Person' => 'SchemaOrg\Type\PersonModel'];
 }

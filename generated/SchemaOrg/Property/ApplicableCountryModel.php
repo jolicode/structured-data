@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ApplicableCountryModel
     public const DESCRIPTION = 'A country where a particular merchant return policy applies to, for example the two-letter ISO 3166-1 alpha-2 country code.';
     public const LABEL = 'applicableCountry';
     public const NAME = 'schema:applicableCountry';
-    public const VALUES = ['CountryModel' => 'SchemaOrg\\Type\\CountryModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MerchantReturnPolicy' => 'SchemaOrg\\Type\\MerchantReturnPolicyModel'];
+    public const VALUES = ['CountryModel' => 'SchemaOrg\Type\CountryModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MerchantReturnPolicy' => 'SchemaOrg\Type\MerchantReturnPolicyModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -17,10 +15,10 @@ use SchemaOrg\Property;
 
 final class FindActionModel
 {
-    public const DESCRIPTION = 'The act of finding an object.\\n\\nRelated actions:\\n\\n* [[SearchAction]]: FindAction is generally lead by a SearchAction, but not necessarily.';
+    public const DESCRIPTION = 'The act of finding an object.\n\nRelated actions:\n\n* [[SearchAction]]: FindAction is generally lead by a SearchAction, but not necessarily.';
     public const LABEL = 'FindAction';
     public const NAME = 'schema:FindAction';
-    public const PARENTS = ['ActionModel' => 'SchemaOrg\\Type\\ActionModel'];
+    public const PARENTS = ['ActionModel' => 'SchemaOrg\Type\ActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

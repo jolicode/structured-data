@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class EnergyModel
     public const DESCRIPTION = 'Properties that take Energy as values are of the form \'&lt;Number&gt; &lt;Energy unit of measure&gt;\'.';
     public const LABEL = 'Energy';
     public const NAME = 'schema:Energy';
-    public const PARENTS = ['QuantityModel' => 'SchemaOrg\\Type\\QuantityModel'];
+    public const PARENTS = ['QuantityModel' => 'SchemaOrg\Type\QuantityModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

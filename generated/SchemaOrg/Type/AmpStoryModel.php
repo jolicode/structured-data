@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class AmpStoryModel
     public const DESCRIPTION = 'A creative work with a visual storytelling format intended to be viewed online, particularly on mobile devices.';
     public const LABEL = 'AmpStory';
     public const NAME = 'schema:AmpStory';
-    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel', 'MediaObjectModel' => 'SchemaOrg\\Type\\MediaObjectModel'];
+    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel', 'MediaObjectModel' => 'SchemaOrg\Type\MediaObjectModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

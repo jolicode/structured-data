@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PayActionModel
     public const DESCRIPTION = 'An agent pays a price to a participant.';
     public const LABEL = 'PayAction';
     public const NAME = 'schema:PayAction';
-    public const PARENTS = ['TradeActionModel' => 'SchemaOrg\\Type\\TradeActionModel'];
+    public const PARENTS = ['TradeActionModel' => 'SchemaOrg\Type\TradeActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

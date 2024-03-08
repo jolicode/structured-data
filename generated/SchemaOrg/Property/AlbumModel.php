@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AlbumModel
     public const DESCRIPTION = 'A music album.';
     public const LABEL = 'album';
     public const NAME = 'schema:album';
-    public const VALUES = ['MusicAlbumModel' => 'SchemaOrg\\Type\\MusicAlbumModel'];
-    public const TYPES = ['MusicGroup' => 'SchemaOrg\\Type\\MusicGroupModel'];
+    public const VALUES = ['MusicAlbumModel' => 'SchemaOrg\Type\MusicAlbumModel'];
+    public const TYPES = ['MusicGroup' => 'SchemaOrg\Type\MusicGroupModel'];
 }

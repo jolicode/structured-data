@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InDefinedTermSetModel
     public const DESCRIPTION = 'A [[DefinedTermSet]] that contains this term.';
     public const LABEL = 'inDefinedTermSet';
     public const NAME = 'schema:inDefinedTermSet';
-    public const VALUES = ['DefinedTermSetModel' => 'SchemaOrg\\Type\\DefinedTermSetModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['DefinedTerm' => 'SchemaOrg\\Type\\DefinedTermModel'];
+    public const VALUES = ['DefinedTermSetModel' => 'SchemaOrg\Type\DefinedTermSetModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['DefinedTerm' => 'SchemaOrg\Type\DefinedTermModel'];
 }

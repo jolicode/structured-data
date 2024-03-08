@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class VideoGalleryModel
     public const DESCRIPTION = 'Web page type: Video gallery page.';
     public const LABEL = 'VideoGallery';
     public const NAME = 'schema:VideoGallery';
-    public const PARENTS = ['MediaGalleryModel' => 'SchemaOrg\\Type\\MediaGalleryModel'];
+    public const PARENTS = ['MediaGalleryModel' => 'SchemaOrg\Type\MediaGalleryModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

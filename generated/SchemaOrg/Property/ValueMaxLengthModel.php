@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ValueMaxLengthModel
     public const DESCRIPTION = 'Specifies the allowed range for number of characters in a literal value.';
     public const LABEL = 'valueMaxLength';
     public const NAME = 'schema:valueMaxLength';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
-    public const TYPES = ['PropertyValueSpecification' => 'SchemaOrg\\Type\\PropertyValueSpecificationModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['PropertyValueSpecification' => 'SchemaOrg\Type\PropertyValueSpecificationModel'];
 }

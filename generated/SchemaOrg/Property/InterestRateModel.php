@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InterestRateModel
     public const DESCRIPTION = 'The interest rate, charged or paid, applicable to the financial product. Note: This is different from the calculated annualPercentageRate.';
     public const LABEL = 'interestRate';
     public const NAME = 'schema:interestRate';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel', 'QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['FinancialProduct' => 'SchemaOrg\\Type\\FinancialProductModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['FinancialProduct' => 'SchemaOrg\Type\FinancialProductModel'];
 }

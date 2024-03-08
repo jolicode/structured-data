@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ComprisedOfModel
     public const DESCRIPTION = 'Specifying something physically contained by something else. Typically used here for the underlying anatomical structures, such as organs, that comprise the anatomical system.';
     public const LABEL = 'comprisedOf';
     public const NAME = 'schema:comprisedOf';
-    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\\Type\\AnatomicalStructureModel', 'AnatomicalSystemModel' => 'SchemaOrg\\Type\\AnatomicalSystemModel'];
-    public const TYPES = ['AnatomicalSystem' => 'SchemaOrg\\Type\\AnatomicalSystemModel'];
+    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\Type\AnatomicalStructureModel', 'AnatomicalSystemModel' => 'SchemaOrg\Type\AnatomicalSystemModel'];
+    public const TYPES = ['AnatomicalSystem' => 'SchemaOrg\Type\AnatomicalSystemModel'];
 }

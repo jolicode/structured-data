@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class OccupationalTherapyModel
     public const DESCRIPTION = 'A treatment of people with physical, emotional, or social problems, using purposeful activity to help them overcome or learn to deal with their problems.';
     public const LABEL = 'OccupationalTherapy';
     public const NAME = 'schema:OccupationalTherapy';
-    public const PARENTS = ['MedicalTherapyModel' => 'SchemaOrg\\Type\\MedicalTherapyModel'];
+    public const PARENTS = ['MedicalTherapyModel' => 'SchemaOrg\Type\MedicalTherapyModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

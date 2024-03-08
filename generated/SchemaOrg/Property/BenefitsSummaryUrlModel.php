@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BenefitsSummaryUrlModel
     public const DESCRIPTION = 'The URL that goes directly to the summary of benefits and coverage for the specific standard plan or plan variation.';
     public const LABEL = 'benefitsSummaryUrl';
     public const NAME = 'schema:benefitsSummaryUrl';
-    public const VALUES = ['URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['HealthInsurancePlan' => 'SchemaOrg\\Type\\HealthInsurancePlanModel'];
+    public const VALUES = ['URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['HealthInsurancePlan' => 'SchemaOrg\Type\HealthInsurancePlanModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class GovernmentBenefitsTypeModel
     public const DESCRIPTION = 'GovernmentBenefitsType enumerates several kinds of government benefits to support the COVID-19 situation. Note that this structure may not capture all benefits offered.';
     public const LABEL = 'GovernmentBenefitsType';
     public const NAME = 'schema:GovernmentBenefitsType';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['BasicIncomeModel' => 'EnumerationMember\\BasicIncomeModel', 'BusinessSupportModel' => 'EnumerationMember\\BusinessSupportModel', 'DisabilitySupportModel' => 'EnumerationMember\\DisabilitySupportModel', 'HealthCareModel' => 'EnumerationMember\\HealthCareModel', 'OneTimePaymentsModel' => 'EnumerationMember\\OneTimePaymentsModel', 'PaidLeaveModel' => 'EnumerationMember\\PaidLeaveModel', 'ParentalSupportModel' => 'EnumerationMember\\ParentalSupportModel', 'UnemploymentSupportModel' => 'EnumerationMember\\UnemploymentSupportModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['BasicIncomeModel' => 'EnumerationMember\BasicIncomeModel', 'BusinessSupportModel' => 'EnumerationMember\BusinessSupportModel', 'DisabilitySupportModel' => 'EnumerationMember\DisabilitySupportModel', 'HealthCareModel' => 'EnumerationMember\HealthCareModel', 'OneTimePaymentsModel' => 'EnumerationMember\OneTimePaymentsModel', 'PaidLeaveModel' => 'EnumerationMember\PaidLeaveModel', 'ParentalSupportModel' => 'EnumerationMember\ParentalSupportModel', 'UnemploymentSupportModel' => 'EnumerationMember\UnemploymentSupportModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

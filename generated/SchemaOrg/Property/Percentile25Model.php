@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class Percentile25Model
     public const DESCRIPTION = 'The 25th percentile value.';
     public const LABEL = 'percentile25';
     public const NAME = 'schema:percentile25';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
-    public const TYPES = ['QuantitativeValueDistribution' => 'SchemaOrg\\Type\\QuantitativeValueDistributionModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['QuantitativeValueDistribution' => 'SchemaOrg\Type\QuantitativeValueDistributionModel'];
 }

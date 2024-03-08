@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class OfferCatalogModel
     public const DESCRIPTION = 'An OfferCatalog is an ItemList that contains related Offers and/or further OfferCatalogs that are offeredBy the same provider.';
     public const LABEL = 'OfferCatalog';
     public const NAME = 'schema:OfferCatalog';
-    public const PARENTS = ['ItemListModel' => 'SchemaOrg\\Type\\ItemListModel'];
+    public const PARENTS = ['ItemListModel' => 'SchemaOrg\Type\ItemListModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

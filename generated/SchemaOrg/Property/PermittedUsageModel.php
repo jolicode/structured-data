@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PermittedUsageModel
     public const DESCRIPTION = 'Indications regarding the permitted usage of the accommodation.';
     public const LABEL = 'permittedUsage';
     public const NAME = 'schema:permittedUsage';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Accommodation' => 'SchemaOrg\\Type\\AccommodationModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Accommodation' => 'SchemaOrg\Type\AccommodationModel'];
 }

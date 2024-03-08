@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ActivityFrequencyModel
     public const DESCRIPTION = 'How often one should engage in the activity.';
     public const LABEL = 'activityFrequency';
     public const NAME = 'schema:activityFrequency';
-    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['ExercisePlan' => 'SchemaOrg\\Type\\ExercisePlanModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['ExercisePlan' => 'SchemaOrg\Type\ExercisePlanModel'];
 }

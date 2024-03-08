@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -19,6 +17,6 @@ final class WorkFeaturedModel
        Specific subproperties are available for workPerformed (e.g. a play), or a workPresented (a Movie at a ScreeningEvent).';
     public const LABEL = 'workFeatured';
     public const NAME = 'schema:workFeatured';
-    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel'];
-    public const TYPES = ['Event' => 'SchemaOrg\\Type\\EventModel'];
+    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel'];
+    public const TYPES = ['Event' => 'SchemaOrg\Type\EventModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class EditorModel
     public const DESCRIPTION = 'Specifies the Person who edited the CreativeWork.';
     public const LABEL = 'editor';
     public const NAME = 'schema:editor';
-    public const VALUES = ['PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const VALUES = ['PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel'];
 }

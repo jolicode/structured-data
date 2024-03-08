@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LoanPaymentFrequencyModel
     public const DESCRIPTION = 'Frequency of payments due, i.e. number of months between payments. This is defined as a frequency, i.e. the reciprocal of a period of time.';
     public const LABEL = 'loanPaymentFrequency';
     public const NAME = 'schema:loanPaymentFrequency';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
-    public const TYPES = ['RepaymentSpecification' => 'SchemaOrg\\Type\\RepaymentSpecificationModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['RepaymentSpecification' => 'SchemaOrg\Type\RepaymentSpecificationModel'];
 }

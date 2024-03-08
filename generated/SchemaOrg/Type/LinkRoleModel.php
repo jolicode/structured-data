@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class LinkRoleModel
     public const DESCRIPTION = 'A Role that represents a Web link, e.g. as expressed via the \'url\' property. Its linkRelationship property can indicate URL-based and plain textual link types, e.g. those in IANA link registry or others such as \'amphtml\'. This structure provides a placeholder where details from HTML\'s link element can be represented outside of HTML, e.g. in JSON-LD feeds.';
     public const LABEL = 'LinkRole';
     public const NAME = 'schema:LinkRole';
-    public const PARENTS = ['RoleModel' => 'SchemaOrg\\Type\\RoleModel'];
+    public const PARENTS = ['RoleModel' => 'SchemaOrg\Type\RoleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

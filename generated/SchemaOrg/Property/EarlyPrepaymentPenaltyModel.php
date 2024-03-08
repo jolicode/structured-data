@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class EarlyPrepaymentPenaltyModel
     public const DESCRIPTION = 'The amount to be paid as a penalty in the event of early payment of the loan.';
     public const LABEL = 'earlyPrepaymentPenalty';
     public const NAME = 'schema:earlyPrepaymentPenalty';
-    public const VALUES = ['MonetaryAmountModel' => 'SchemaOrg\\Type\\MonetaryAmountModel'];
-    public const TYPES = ['RepaymentSpecification' => 'SchemaOrg\\Type\\RepaymentSpecificationModel'];
+    public const VALUES = ['MonetaryAmountModel' => 'SchemaOrg\Type\MonetaryAmountModel'];
+    public const TYPES = ['RepaymentSpecification' => 'SchemaOrg\Type\RepaymentSpecificationModel'];
 }

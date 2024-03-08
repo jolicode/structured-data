@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AccountMinimumInflowModel
     public const DESCRIPTION = 'A minimum amount that has to be paid in every month.';
     public const LABEL = 'accountMinimumInflow';
     public const NAME = 'schema:accountMinimumInflow';
-    public const VALUES = ['MonetaryAmountModel' => 'SchemaOrg\\Type\\MonetaryAmountModel'];
-    public const TYPES = ['BankAccount' => 'SchemaOrg\\Type\\BankAccountModel'];
+    public const VALUES = ['MonetaryAmountModel' => 'SchemaOrg\Type\MonetaryAmountModel'];
+    public const TYPES = ['BankAccount' => 'SchemaOrg\Type\BankAccountModel'];
 }

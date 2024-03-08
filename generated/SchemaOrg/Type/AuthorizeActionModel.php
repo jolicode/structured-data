@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class AuthorizeActionModel
     public const DESCRIPTION = 'The act of granting permission to an object.';
     public const LABEL = 'AuthorizeAction';
     public const NAME = 'schema:AuthorizeAction';
-    public const PARENTS = ['AllocateActionModel' => 'SchemaOrg\\Type\\AllocateActionModel'];
+    public const PARENTS = ['AllocateActionModel' => 'SchemaOrg\Type\AllocateActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

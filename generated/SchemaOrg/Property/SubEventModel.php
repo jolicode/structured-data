@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SubEventModel
     public const DESCRIPTION = 'An Event that is part of this event. For example, a conference event includes many presentations, each of which is a subEvent of the conference.';
     public const LABEL = 'subEvent';
     public const NAME = 'schema:subEvent';
-    public const VALUES = ['EventModel' => 'SchemaOrg\\Type\\EventModel'];
-    public const TYPES = ['Event' => 'SchemaOrg\\Type\\EventModel'];
+    public const VALUES = ['EventModel' => 'SchemaOrg\Type\EventModel'];
+    public const TYPES = ['Event' => 'SchemaOrg\Type\EventModel'];
 }

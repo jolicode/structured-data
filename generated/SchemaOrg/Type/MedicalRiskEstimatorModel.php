@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MedicalRiskEstimatorModel
     public const DESCRIPTION = 'Any rule set or interactive tool for estimating the risk of developing a complication or condition.';
     public const LABEL = 'MedicalRiskEstimator';
     public const NAME = 'schema:MedicalRiskEstimator';
-    public const PARENTS = ['MedicalEntityModel' => 'SchemaOrg\\Type\\MedicalEntityModel'];
+    public const PARENTS = ['MedicalEntityModel' => 'SchemaOrg\Type\MedicalEntityModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DoseScheduleModel
     public const DESCRIPTION = 'A specific dosing schedule for a drug or supplement.';
     public const LABEL = 'DoseSchedule';
     public const NAME = 'schema:DoseSchedule';
-    public const PARENTS = ['MedicalIntangibleModel' => 'SchemaOrg\\Type\\MedicalIntangibleModel'];
+    public const PARENTS = ['MedicalIntangibleModel' => 'SchemaOrg\Type\MedicalIntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

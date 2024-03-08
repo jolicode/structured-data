@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -19,6 +17,6 @@ final class TemporalModel
 (e.g. [[temporalCoverage]], [[dateCreated]], [[dateModified]], [[datePublished]]) are not known to be appropriate.';
     public const LABEL = 'temporal';
     public const NAME = 'schema:temporal';
-    public const VALUES = ['DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const VALUES = ['DateTimeModel' => 'SchemaOrg\Type\DateTimeModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel'];
 }

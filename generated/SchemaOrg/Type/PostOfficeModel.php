@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PostOfficeModel
     public const DESCRIPTION = 'A post office.';
     public const LABEL = 'PostOffice';
     public const NAME = 'schema:PostOffice';
-    public const PARENTS = ['GovernmentOfficeModel' => 'SchemaOrg\\Type\\GovernmentOfficeModel'];
+    public const PARENTS = ['GovernmentOfficeModel' => 'SchemaOrg\Type\GovernmentOfficeModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

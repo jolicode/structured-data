@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BroadcasterModel
     public const DESCRIPTION = 'The organization owning or operating the broadcast service.';
     public const LABEL = 'broadcaster';
     public const NAME = 'schema:broadcaster';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel'];
-    public const TYPES = ['BroadcastService' => 'SchemaOrg\\Type\\BroadcastServiceModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel'];
+    public const TYPES = ['BroadcastService' => 'SchemaOrg\Type\BroadcastServiceModel'];
 }

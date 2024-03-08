@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MedicalAudienceModel
     public const DESCRIPTION = 'Medical audience for page.';
     public const LABEL = 'medicalAudience';
     public const NAME = 'schema:medicalAudience';
-    public const VALUES = ['MedicalAudienceModel' => 'SchemaOrg\\Type\\MedicalAudienceModel', 'MedicalAudienceTypeModel' => 'SchemaOrg\\Type\\MedicalAudienceTypeModel'];
-    public const TYPES = ['MedicalWebPage' => 'SchemaOrg\\Type\\MedicalWebPageModel'];
+    public const VALUES = ['MedicalAudienceModel' => 'SchemaOrg\Type\MedicalAudienceModel', 'MedicalAudienceTypeModel' => 'SchemaOrg\Type\MedicalAudienceTypeModel'];
+    public const TYPES = ['MedicalWebPage' => 'SchemaOrg\Type\MedicalWebPageModel'];
 }

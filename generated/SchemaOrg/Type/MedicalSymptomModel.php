@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MedicalSymptomModel
     public const DESCRIPTION = 'Any complaint sensed and expressed by the patient (therefore defined as subjective)  like stomachache, lower-back pain, or fatigue.';
     public const LABEL = 'MedicalSymptom';
     public const NAME = 'schema:MedicalSymptom';
-    public const PARENTS = ['MedicalSignOrSymptomModel' => 'SchemaOrg\\Type\\MedicalSignOrSymptomModel'];
+    public const PARENTS = ['MedicalSignOrSymptomModel' => 'SchemaOrg\Type\MedicalSignOrSymptomModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

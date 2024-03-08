@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ActionOptionModel
     public const DESCRIPTION = 'A sub property of object. The options subject to this action.';
     public const LABEL = 'actionOption';
     public const NAME = 'schema:actionOption';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel', 'ThingModel' => 'SchemaOrg\\Type\\ThingModel'];
-    public const TYPES = ['ChooseAction' => 'SchemaOrg\\Type\\ChooseActionModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel', 'ThingModel' => 'SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['ChooseAction' => 'SchemaOrg\Type\ChooseActionModel'];
 }

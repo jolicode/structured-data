@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class CanalModel
     public const DESCRIPTION = 'A canal, like the Panama Canal.';
     public const LABEL = 'Canal';
     public const NAME = 'schema:Canal';
-    public const PARENTS = ['BodyOfWaterModel' => 'SchemaOrg\\Type\\BodyOfWaterModel'];
+    public const PARENTS = ['BodyOfWaterModel' => 'SchemaOrg\Type\BodyOfWaterModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

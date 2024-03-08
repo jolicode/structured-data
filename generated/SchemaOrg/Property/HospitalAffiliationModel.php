@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HospitalAffiliationModel
     public const DESCRIPTION = 'A hospital with which the physician or office is affiliated.';
     public const LABEL = 'hospitalAffiliation';
     public const NAME = 'schema:hospitalAffiliation';
-    public const VALUES = ['HospitalModel' => 'SchemaOrg\\Type\\HospitalModel'];
-    public const TYPES = ['Physician' => 'SchemaOrg\\Type\\PhysicianModel'];
+    public const VALUES = ['HospitalModel' => 'SchemaOrg\Type\HospitalModel'];
+    public const TYPES = ['Physician' => 'SchemaOrg\Type\PhysicianModel'];
 }

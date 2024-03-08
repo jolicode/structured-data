@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TargetModel
     public const DESCRIPTION = 'Indicates a target EntryPoint, or url, for an Action.';
     public const LABEL = 'target';
     public const NAME = 'schema:target';
-    public const VALUES = ['EntryPointModel' => 'SchemaOrg\\Type\\EntryPointModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['Action' => 'SchemaOrg\\Type\\ActionModel'];
+    public const VALUES = ['EntryPointModel' => 'SchemaOrg\Type\EntryPointModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['Action' => 'SchemaOrg\Type\ActionModel'];
 }

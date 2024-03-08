@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MovieClipModel
     public const DESCRIPTION = 'A short segment/part of a movie.';
     public const LABEL = 'MovieClip';
     public const NAME = 'schema:MovieClip';
-    public const PARENTS = ['ClipModel' => 'SchemaOrg\\Type\\ClipModel'];
+    public const PARENTS = ['ClipModel' => 'SchemaOrg\Type\ClipModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BioChemInteractionModel
     public const DESCRIPTION = 'A BioChemEntity that is known to interact with this item.';
     public const LABEL = 'bioChemInteraction';
     public const NAME = 'schema:bioChemInteraction';
-    public const VALUES = ['BioChemEntityModel' => 'SchemaOrg\\Type\\BioChemEntityModel'];
-    public const TYPES = ['BioChemEntity' => 'SchemaOrg\\Type\\BioChemEntityModel'];
+    public const VALUES = ['BioChemEntityModel' => 'SchemaOrg\Type\BioChemEntityModel'];
+    public const TYPES = ['BioChemEntity' => 'SchemaOrg\Type\BioChemEntityModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class QuestionModel
     public const DESCRIPTION = 'A sub property of object. A question.';
     public const LABEL = 'question';
     public const NAME = 'schema:question';
-    public const VALUES = ['QuestionModel' => 'SchemaOrg\\Type\\QuestionModel'];
-    public const TYPES = ['AskAction' => 'SchemaOrg\\Type\\AskActionModel'];
+    public const VALUES = ['QuestionModel' => 'SchemaOrg\Type\QuestionModel'];
+    public const TYPES = ['AskAction' => 'SchemaOrg\Type\AskActionModel'];
 }

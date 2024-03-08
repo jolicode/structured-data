@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CodeSampleTypeModel
     public const DESCRIPTION = 'What type of code sample: full (compile ready) solution, code snippet, inline code, scripts, template.';
     public const LABEL = 'codeSampleType';
     public const NAME = 'schema:codeSampleType';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['SoftwareSourceCode' => 'SchemaOrg\\Type\\SoftwareSourceCodeModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['SoftwareSourceCode' => 'SchemaOrg\Type\SoftwareSourceCodeModel'];
 }

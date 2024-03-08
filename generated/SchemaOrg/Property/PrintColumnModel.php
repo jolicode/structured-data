@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PrintColumnModel
     public const DESCRIPTION = 'The number of the column in which the NewsArticle appears in the print edition.';
     public const LABEL = 'printColumn';
     public const NAME = 'schema:printColumn';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['NewsArticle' => 'SchemaOrg\\Type\\NewsArticleModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['NewsArticle' => 'SchemaOrg\Type\NewsArticleModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HealthPlanCopayOptionModel
     public const DESCRIPTION = 'Whether the copay is before or after deductible, etc. TODO: Is this a closed set?';
     public const LABEL = 'healthPlanCopayOption';
     public const NAME = 'schema:healthPlanCopayOption';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['HealthPlanCostSharingSpecification' => 'SchemaOrg\\Type\\HealthPlanCostSharingSpecificationModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['HealthPlanCostSharingSpecification' => 'SchemaOrg\Type\HealthPlanCostSharingSpecificationModel'];
 }

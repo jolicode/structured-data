@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LongitudeModel
     public const DESCRIPTION = 'The longitude of a location. For example ```-122.08585``` ([WGS 84](https://en.wikipedia.org/wiki/World_Geodetic_System)).';
     public const LABEL = 'longitude';
     public const NAME = 'schema:longitude';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['GeoCoordinates' => 'SchemaOrg\\Type\\GeoCoordinatesModel', 'Place' => 'SchemaOrg\\Type\\PlaceModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['GeoCoordinates' => 'SchemaOrg\Type\GeoCoordinatesModel', 'Place' => 'SchemaOrg\Type\PlaceModel'];
 }

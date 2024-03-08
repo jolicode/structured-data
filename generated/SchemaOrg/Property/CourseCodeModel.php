@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CourseCodeModel
     public const DESCRIPTION = 'The identifier for the [[Course]] used by the course [[provider]] (e.g. CS101 or 6.001).';
     public const LABEL = 'courseCode';
     public const NAME = 'schema:courseCode';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Course' => 'SchemaOrg\\Type\\CourseModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Course' => 'SchemaOrg\Type\CourseModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CarrierModel
     public const DESCRIPTION = '\'carrier\' is an out-dated term indicating the \'provider\' for parcel delivery and flights.';
     public const LABEL = 'carrier';
     public const NAME = 'schema:carrier';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel'];
-    public const TYPES = ['Flight' => 'SchemaOrg\\Type\\FlightModel', 'ParcelDelivery' => 'SchemaOrg\\Type\\ParcelDeliveryModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel'];
+    public const TYPES = ['Flight' => 'SchemaOrg\Type\FlightModel', 'ParcelDelivery' => 'SchemaOrg\Type\ParcelDeliveryModel'];
 }

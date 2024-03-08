@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SuperEventModel
     public const DESCRIPTION = 'An event that this event is a part of. For example, a collection of individual music performances might each have a music festival as their superEvent.';
     public const LABEL = 'superEvent';
     public const NAME = 'schema:superEvent';
-    public const VALUES = ['EventModel' => 'SchemaOrg\\Type\\EventModel'];
-    public const TYPES = ['Event' => 'SchemaOrg\\Type\\EventModel'];
+    public const VALUES = ['EventModel' => 'SchemaOrg\Type\EventModel'];
+    public const TYPES = ['Event' => 'SchemaOrg\Type\EventModel'];
 }

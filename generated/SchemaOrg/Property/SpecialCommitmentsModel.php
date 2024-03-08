@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SpecialCommitmentsModel
     public const DESCRIPTION = 'Any special commitments associated with this job posting. Valid entries include VeteranCommit, MilitarySpouseCommit, etc.';
     public const LABEL = 'specialCommitments';
     public const NAME = 'schema:specialCommitments';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['JobPosting' => 'SchemaOrg\\Type\\JobPostingModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['JobPosting' => 'SchemaOrg\Type\JobPostingModel'];
 }

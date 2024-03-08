@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class AnswerModel
     public const DESCRIPTION = 'An answer offered to a question; perhaps correct, perhaps opinionated or wrong.';
     public const LABEL = 'Answer';
     public const NAME = 'schema:Answer';
-    public const PARENTS = ['CommentModel' => 'SchemaOrg\\Type\\CommentModel'];
+    public const PARENTS = ['CommentModel' => 'SchemaOrg\Type\CommentModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

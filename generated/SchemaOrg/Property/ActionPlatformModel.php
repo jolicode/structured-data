@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ActionPlatformModel
     public const DESCRIPTION = 'The high level platform(s) where the Action can be performed for the given URL. To specify a specific application or operating system instance, use actionApplication.';
     public const LABEL = 'actionPlatform';
     public const NAME = 'schema:actionPlatform';
-    public const VALUES = ['DigitalPlatformEnumerationModel' => 'SchemaOrg\\Type\\DigitalPlatformEnumerationModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['EntryPoint' => 'SchemaOrg\\Type\\EntryPointModel'];
+    public const VALUES = ['DigitalPlatformEnumerationModel' => 'SchemaOrg\Type\DigitalPlatformEnumerationModel', 'TextModel' => 'SchemaOrg\Type\TextModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['EntryPoint' => 'SchemaOrg\Type\EntryPointModel'];
 }

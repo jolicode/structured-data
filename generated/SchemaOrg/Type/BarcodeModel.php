@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class BarcodeModel
     public const DESCRIPTION = 'An image of a visual machine-readable code such as a barcode or QR code.';
     public const LABEL = 'Barcode';
     public const NAME = 'schema:Barcode';
-    public const PARENTS = ['ImageObjectModel' => 'SchemaOrg\\Type\\ImageObjectModel'];
+    public const PARENTS = ['ImageObjectModel' => 'SchemaOrg\Type\ImageObjectModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

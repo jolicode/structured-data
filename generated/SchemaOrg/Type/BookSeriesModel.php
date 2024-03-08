@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class BookSeriesModel
     public const DESCRIPTION = 'A series of books. Included books can be indicated with the hasPart property.';
     public const LABEL = 'BookSeries';
     public const NAME = 'schema:BookSeries';
-    public const PARENTS = ['CreativeWorkSeriesModel' => 'SchemaOrg\\Type\\CreativeWorkSeriesModel'];
+    public const PARENTS = ['CreativeWorkSeriesModel' => 'SchemaOrg\Type\CreativeWorkSeriesModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

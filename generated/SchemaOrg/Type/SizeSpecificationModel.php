@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class SizeSpecificationModel
     public const DESCRIPTION = 'Size related properties of a product, typically a size code ([[name]]) and optionally a [[sizeSystem]], [[sizeGroup]], and product measurements ([[hasMeasurement]]). In addition, the intended audience can be defined through [[suggestedAge]], [[suggestedGender]], and suggested body measurements ([[suggestedMeasurement]]).';
     public const LABEL = 'SizeSpecification';
     public const NAME = 'schema:SizeSpecification';
-    public const PARENTS = ['QualitativeValueModel' => 'SchemaOrg\\Type\\QualitativeValueModel'];
+    public const PARENTS = ['QualitativeValueModel' => 'SchemaOrg\Type\QualitativeValueModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

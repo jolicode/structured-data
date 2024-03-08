@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class OfferCountModel
     public const DESCRIPTION = 'The number of offers for the product.';
     public const LABEL = 'offerCount';
     public const NAME = 'schema:offerCount';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel'];
-    public const TYPES = ['AggregateOffer' => 'SchemaOrg\\Type\\AggregateOfferModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['AggregateOffer' => 'SchemaOrg\Type\AggregateOfferModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PublishedOnModel
     public const DESCRIPTION = 'A broadcast service associated with the publication event.';
     public const LABEL = 'publishedOn';
     public const NAME = 'schema:publishedOn';
-    public const VALUES = ['BroadcastServiceModel' => 'SchemaOrg\\Type\\BroadcastServiceModel'];
-    public const TYPES = ['PublicationEvent' => 'SchemaOrg\\Type\\PublicationEventModel'];
+    public const VALUES = ['BroadcastServiceModel' => 'SchemaOrg\Type\BroadcastServiceModel'];
+    public const TYPES = ['PublicationEvent' => 'SchemaOrg\Type\PublicationEventModel'];
 }

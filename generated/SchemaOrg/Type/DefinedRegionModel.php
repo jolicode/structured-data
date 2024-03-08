@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -33,7 +31,7 @@ Region = state, canton, prefecture, autonomous community...
 ';
     public const LABEL = 'DefinedRegion';
     public const NAME = 'schema:DefinedRegion';
-    public const PARENTS = ['StructuredValueModel' => 'SchemaOrg\\Type\\StructuredValueModel'];
+    public const PARENTS = ['StructuredValueModel' => 'SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

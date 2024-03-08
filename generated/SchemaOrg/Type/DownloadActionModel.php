@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DownloadActionModel
     public const DESCRIPTION = 'The act of downloading an object.';
     public const LABEL = 'DownloadAction';
     public const NAME = 'schema:DownloadAction';
-    public const PARENTS = ['TransferActionModel' => 'SchemaOrg\\Type\\TransferActionModel'];
+    public const PARENTS = ['TransferActionModel' => 'SchemaOrg\Type\TransferActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

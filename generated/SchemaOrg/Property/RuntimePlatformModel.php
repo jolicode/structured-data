@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RuntimePlatformModel
     public const DESCRIPTION = 'Runtime platform or script interpreter dependencies (example: Java v1, Python 2.3, .NET Framework 3.0).';
     public const LABEL = 'runtimePlatform';
     public const NAME = 'schema:runtimePlatform';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['SoftwareSourceCode' => 'SchemaOrg\\Type\\SoftwareSourceCodeModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['SoftwareSourceCode' => 'SchemaOrg\Type\SoftwareSourceCodeModel'];
 }

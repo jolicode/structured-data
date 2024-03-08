@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class YearsInOperationModel
     public const DESCRIPTION = 'The age of the business.';
     public const LABEL = 'yearsInOperation';
     public const NAME = 'schema:yearsInOperation';
-    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['BusinessAudience' => 'SchemaOrg\\Type\\BusinessAudienceModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['BusinessAudience' => 'SchemaOrg\Type\BusinessAudienceModel'];
 }

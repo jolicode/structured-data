@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TissueSampleModel
     public const DESCRIPTION = 'The type of tissue sample required for the test.';
     public const LABEL = 'tissueSample';
     public const NAME = 'schema:tissueSample';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['PathologyTest' => 'SchemaOrg\\Type\\PathologyTestModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['PathologyTest' => 'SchemaOrg\Type\PathologyTestModel'];
 }

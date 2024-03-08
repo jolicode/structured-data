@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class TravelActionModel
     public const DESCRIPTION = 'The act of traveling from a fromLocation to a destination by a specified mode of transport, optionally with participants.';
     public const LABEL = 'TravelAction';
     public const NAME = 'schema:TravelAction';
-    public const PARENTS = ['MoveActionModel' => 'SchemaOrg\\Type\\MoveActionModel'];
+    public const PARENTS = ['MoveActionModel' => 'SchemaOrg\Type\MoveActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

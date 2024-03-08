@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SharedContentModel
     public const DESCRIPTION = 'A CreativeWork such as an image, video, or audio clip shared as part of this posting.';
     public const LABEL = 'sharedContent';
     public const NAME = 'schema:sharedContent';
-    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel'];
-    public const TYPES = ['SocialMediaPosting' => 'SchemaOrg\\Type\\SocialMediaPostingModel'];
+    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel'];
+    public const TYPES = ['SocialMediaPosting' => 'SchemaOrg\Type\SocialMediaPostingModel'];
 }

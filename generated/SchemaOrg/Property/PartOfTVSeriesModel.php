@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PartOfTVSeriesModel
     public const DESCRIPTION = 'The TV series to which this episode or season belongs.';
     public const LABEL = 'partOfTVSeries';
     public const NAME = 'schema:partOfTVSeries';
-    public const VALUES = ['TVSeriesModel' => 'SchemaOrg\\Type\\TVSeriesModel'];
-    public const TYPES = ['TVClip' => 'SchemaOrg\\Type\\TVClipModel', 'TVEpisode' => 'SchemaOrg\\Type\\TVEpisodeModel', 'TVSeason' => 'SchemaOrg\\Type\\TVSeasonModel'];
+    public const VALUES = ['TVSeriesModel' => 'SchemaOrg\Type\TVSeriesModel'];
+    public const TYPES = ['TVClip' => 'SchemaOrg\Type\TVClipModel', 'TVEpisode' => 'SchemaOrg\Type\TVEpisodeModel', 'TVSeason' => 'SchemaOrg\Type\TVSeasonModel'];
 }

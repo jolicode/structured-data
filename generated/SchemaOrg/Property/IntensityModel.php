@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IntensityModel
     public const DESCRIPTION = 'Quantitative measure gauging the degree of force involved in the exercise, for example, heartbeats per minute. May include the velocity of the movement.';
     public const LABEL = 'intensity';
     public const NAME = 'schema:intensity';
-    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['ExercisePlan' => 'SchemaOrg\\Type\\ExercisePlanModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['ExercisePlan' => 'SchemaOrg\Type\ExercisePlanModel'];
 }

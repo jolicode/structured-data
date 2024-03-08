@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HealthcareReportingDataModel
     public const DESCRIPTION = 'Indicates data describing a hospital, e.g. a CDC [[CDCPMDRecord]] or as some kind of [[Dataset]].';
     public const LABEL = 'healthcareReportingData';
     public const NAME = 'schema:healthcareReportingData';
-    public const VALUES = ['CDCPMDRecordModel' => 'SchemaOrg\\Type\\CDCPMDRecordModel', 'DatasetModel' => 'SchemaOrg\\Type\\DatasetModel'];
-    public const TYPES = ['Hospital' => 'SchemaOrg\\Type\\HospitalModel'];
+    public const VALUES = ['CDCPMDRecordModel' => 'SchemaOrg\Type\CDCPMDRecordModel', 'DatasetModel' => 'SchemaOrg\Type\DatasetModel'];
+    public const TYPES = ['Hospital' => 'SchemaOrg\Type\HospitalModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class SatiricalArticleModel
     public const DESCRIPTION = 'An [[Article]] whose content is primarily [[satirical]](https://en.wikipedia.org/wiki/Satire) in nature, i.e. unlikely to be literally true. A satirical article is sometimes but not necessarily also a [[NewsArticle]]. [[ScholarlyArticle]]s are also sometimes satirized.';
     public const LABEL = 'SatiricalArticle';
     public const NAME = 'schema:SatiricalArticle';
-    public const PARENTS = ['ArticleModel' => 'SchemaOrg\\Type\\ArticleModel'];
+    public const PARENTS = ['ArticleModel' => 'SchemaOrg\Type\ArticleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

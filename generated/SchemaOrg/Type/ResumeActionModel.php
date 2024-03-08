@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ResumeActionModel
     public const DESCRIPTION = 'The act of resuming a device or application which was formerly paused (e.g. resume music playback or resume a timer).';
     public const LABEL = 'ResumeAction';
     public const NAME = 'schema:ResumeAction';
-    public const PARENTS = ['ControlActionModel' => 'SchemaOrg\\Type\\ControlActionModel'];
+    public const PARENTS = ['ControlActionModel' => 'SchemaOrg\Type\ControlActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

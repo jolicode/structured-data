@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SuggestedMaxAgeModel
     public const DESCRIPTION = 'Maximum recommended age in years for the audience or user.';
     public const LABEL = 'suggestedMaxAge';
     public const NAME = 'schema:suggestedMaxAge';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
-    public const TYPES = ['PeopleAudience' => 'SchemaOrg\\Type\\PeopleAudienceModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['PeopleAudience' => 'SchemaOrg\Type\PeopleAudienceModel'];
 }

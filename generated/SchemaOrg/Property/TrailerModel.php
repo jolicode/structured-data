@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TrailerModel
     public const DESCRIPTION = 'The trailer of a movie or TV/radio series, season, episode, etc.';
     public const LABEL = 'trailer';
     public const NAME = 'schema:trailer';
-    public const VALUES = ['VideoObjectModel' => 'SchemaOrg\\Type\\VideoObjectModel'];
-    public const TYPES = ['CreativeWorkSeason' => 'SchemaOrg\\Type\\CreativeWorkSeasonModel', 'Episode' => 'SchemaOrg\\Type\\EpisodeModel', 'Movie' => 'SchemaOrg\\Type\\MovieModel', 'MovieSeries' => 'SchemaOrg\\Type\\MovieSeriesModel', 'RadioSeries' => 'SchemaOrg\\Type\\RadioSeriesModel', 'TVSeries' => 'SchemaOrg\\Type\\TVSeriesModel', 'VideoGame' => 'SchemaOrg\\Type\\VideoGameModel', 'VideoGameSeries' => 'SchemaOrg\\Type\\VideoGameSeriesModel'];
+    public const VALUES = ['VideoObjectModel' => 'SchemaOrg\Type\VideoObjectModel'];
+    public const TYPES = ['CreativeWorkSeason' => 'SchemaOrg\Type\CreativeWorkSeasonModel', 'Episode' => 'SchemaOrg\Type\EpisodeModel', 'Movie' => 'SchemaOrg\Type\MovieModel', 'MovieSeries' => 'SchemaOrg\Type\MovieSeriesModel', 'RadioSeries' => 'SchemaOrg\Type\RadioSeriesModel', 'TVSeries' => 'SchemaOrg\Type\TVSeriesModel', 'VideoGame' => 'SchemaOrg\Type\VideoGameModel', 'VideoGameSeries' => 'SchemaOrg\Type\VideoGameSeriesModel'];
 }

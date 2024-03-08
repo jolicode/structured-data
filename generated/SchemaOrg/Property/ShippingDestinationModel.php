@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ShippingDestinationModel
     public const DESCRIPTION = 'indicates (possibly multiple) shipping destinations. These can be defined in several ways, e.g. postalCode ranges.';
     public const LABEL = 'shippingDestination';
     public const NAME = 'schema:shippingDestination';
-    public const VALUES = ['DefinedRegionModel' => 'SchemaOrg\\Type\\DefinedRegionModel'];
-    public const TYPES = ['DeliveryTimeSettings' => 'SchemaOrg\\Type\\DeliveryTimeSettingsModel', 'OfferShippingDetails' => 'SchemaOrg\\Type\\OfferShippingDetailsModel', 'ShippingRateSettings' => 'SchemaOrg\\Type\\ShippingRateSettingsModel'];
+    public const VALUES = ['DefinedRegionModel' => 'SchemaOrg\Type\DefinedRegionModel'];
+    public const TYPES = ['DeliveryTimeSettings' => 'SchemaOrg\Type\DeliveryTimeSettingsModel', 'OfferShippingDetails' => 'SchemaOrg\Type\OfferShippingDetailsModel', 'ShippingRateSettings' => 'SchemaOrg\Type\ShippingRateSettingsModel'];
 }

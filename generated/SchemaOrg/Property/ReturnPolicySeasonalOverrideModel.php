@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ReturnPolicySeasonalOverrideModel
     public const DESCRIPTION = 'Seasonal override of a return policy.';
     public const LABEL = 'returnPolicySeasonalOverride';
     public const NAME = 'schema:returnPolicySeasonalOverride';
-    public const VALUES = ['MerchantReturnPolicySeasonalOverrideModel' => 'SchemaOrg\\Type\\MerchantReturnPolicySeasonalOverrideModel'];
-    public const TYPES = ['MerchantReturnPolicy' => 'SchemaOrg\\Type\\MerchantReturnPolicyModel'];
+    public const VALUES = ['MerchantReturnPolicySeasonalOverrideModel' => 'SchemaOrg\Type\MerchantReturnPolicySeasonalOverrideModel'];
+    public const TYPES = ['MerchantReturnPolicy' => 'SchemaOrg\Type\MerchantReturnPolicyModel'];
 }

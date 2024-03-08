@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ChildMinAgeModel
     public const DESCRIPTION = 'Minimal age of the child.';
     public const LABEL = 'childMinAge';
     public const NAME = 'schema:childMinAge';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
-    public const TYPES = ['ParentAudience' => 'SchemaOrg\\Type\\ParentAudienceModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['ParentAudience' => 'SchemaOrg\Type\ParentAudienceModel'];
 }

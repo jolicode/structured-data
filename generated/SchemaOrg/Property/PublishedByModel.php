@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PublishedByModel
     public const DESCRIPTION = 'An agent associated with the publication event.';
     public const LABEL = 'publishedBy';
     public const NAME = 'schema:publishedBy';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel', 'PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['PublicationEvent' => 'SchemaOrg\\Type\\PublicationEventModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['PublicationEvent' => 'SchemaOrg\Type\PublicationEventModel'];
 }

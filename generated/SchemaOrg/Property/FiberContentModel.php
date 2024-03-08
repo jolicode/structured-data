@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class FiberContentModel
     public const DESCRIPTION = 'The number of grams of fiber.';
     public const LABEL = 'fiberContent';
     public const NAME = 'schema:fiberContent';
-    public const VALUES = ['MassModel' => 'SchemaOrg\\Type\\MassModel'];
-    public const TYPES = ['NutritionInformation' => 'SchemaOrg\\Type\\NutritionInformationModel'];
+    public const VALUES = ['MassModel' => 'SchemaOrg\Type\MassModel'];
+    public const TYPES = ['NutritionInformation' => 'SchemaOrg\Type\NutritionInformationModel'];
 }

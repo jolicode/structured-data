@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ReplacerModel
     public const DESCRIPTION = 'A sub property of object. The object that replaces.';
     public const LABEL = 'replacer';
     public const NAME = 'schema:replacer';
-    public const VALUES = ['ThingModel' => 'SchemaOrg\\Type\\ThingModel'];
-    public const TYPES = ['ReplaceAction' => 'SchemaOrg\\Type\\ReplaceActionModel'];
+    public const VALUES = ['ThingModel' => 'SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['ReplaceAction' => 'SchemaOrg\Type\ReplaceActionModel'];
 }

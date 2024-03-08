@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SeeksModel
     public const DESCRIPTION = 'A pointer to products or services sought by the organization or person (demand).';
     public const LABEL = 'seeks';
     public const NAME = 'schema:seeks';
-    public const VALUES = ['DemandModel' => 'SchemaOrg\\Type\\DemandModel'];
-    public const TYPES = ['Organization' => 'SchemaOrg\\Type\\OrganizationModel', 'Person' => 'SchemaOrg\\Type\\PersonModel'];
+    public const VALUES = ['DemandModel' => 'SchemaOrg\Type\DemandModel'];
+    public const TYPES = ['Organization' => 'SchemaOrg\Type\OrganizationModel', 'Person' => 'SchemaOrg\Type\PersonModel'];
 }

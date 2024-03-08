@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class SellActionModel
     public const DESCRIPTION = 'The act of taking money from a buyer in exchange for goods or services rendered. An agent sells an object, product, or service to a buyer for a price. Reciprocal of BuyAction.';
     public const LABEL = 'SellAction';
     public const NAME = 'schema:SellAction';
-    public const PARENTS = ['TradeActionModel' => 'SchemaOrg\\Type\\TradeActionModel'];
+    public const PARENTS = ['TradeActionModel' => 'SchemaOrg\Type\TradeActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

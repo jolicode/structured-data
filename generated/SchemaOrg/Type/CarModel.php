@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class CarModel
     public const DESCRIPTION = 'A car is a wheeled, self-powered motor vehicle used for transportation.';
     public const LABEL = 'Car';
     public const NAME = 'schema:Car';
-    public const PARENTS = ['VehicleModel' => 'SchemaOrg\\Type\\VehicleModel'];
+    public const PARENTS = ['VehicleModel' => 'SchemaOrg\Type\VehicleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

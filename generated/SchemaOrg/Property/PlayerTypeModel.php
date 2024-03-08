@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PlayerTypeModel
     public const DESCRIPTION = 'Player type required&#x2014;for example, Flash or Silverlight.';
     public const LABEL = 'playerType';
     public const NAME = 'schema:playerType';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MediaObject' => 'SchemaOrg\\Type\\MediaObjectModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MediaObject' => 'SchemaOrg\Type\MediaObjectModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TouristTypeModel
     public const DESCRIPTION = 'Attraction suitable for type(s) of tourist. E.g. children, visitors from a particular country, etc. ';
     public const LABEL = 'touristType';
     public const NAME = 'schema:touristType';
-    public const VALUES = ['AudienceModel' => 'SchemaOrg\\Type\\AudienceModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['TouristAttraction' => 'SchemaOrg\\Type\\TouristAttractionModel', 'TouristDestination' => 'SchemaOrg\\Type\\TouristDestinationModel', 'TouristTrip' => 'SchemaOrg\\Type\\TouristTripModel'];
+    public const VALUES = ['AudienceModel' => 'SchemaOrg\Type\AudienceModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['TouristAttraction' => 'SchemaOrg\Type\TouristAttractionModel', 'TouristDestination' => 'SchemaOrg\Type\TouristDestinationModel', 'TouristTrip' => 'SchemaOrg\Type\TouristTripModel'];
 }

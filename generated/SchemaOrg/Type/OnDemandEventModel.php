@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class OnDemandEventModel
     public const DESCRIPTION = 'A publication event, e.g. catch-up TV or radio podcast, during which a program is available on-demand.';
     public const LABEL = 'OnDemandEvent';
     public const NAME = 'schema:OnDemandEvent';
-    public const PARENTS = ['PublicationEventModel' => 'SchemaOrg\\Type\\PublicationEventModel'];
+    public const PARENTS = ['PublicationEventModel' => 'SchemaOrg\Type\PublicationEventModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

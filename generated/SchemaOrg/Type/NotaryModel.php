@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class NotaryModel
     public const DESCRIPTION = 'A notary.';
     public const LABEL = 'Notary';
     public const NAME = 'schema:Notary';
-    public const PARENTS = ['LegalServiceModel' => 'SchemaOrg\\Type\\LegalServiceModel'];
+    public const PARENTS = ['LegalServiceModel' => 'SchemaOrg\Type\LegalServiceModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

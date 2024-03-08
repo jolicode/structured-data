@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ToLocationModel
     public const DESCRIPTION = 'A sub property of location. The final location of the object or the agent after the action.';
     public const LABEL = 'toLocation';
     public const NAME = 'schema:toLocation';
-    public const VALUES = ['PlaceModel' => 'SchemaOrg\\Type\\PlaceModel'];
-    public const TYPES = ['ExerciseAction' => 'SchemaOrg\\Type\\ExerciseActionModel', 'InsertAction' => 'SchemaOrg\\Type\\InsertActionModel', 'MoveAction' => 'SchemaOrg\\Type\\MoveActionModel', 'TransferAction' => 'SchemaOrg\\Type\\TransferActionModel'];
+    public const VALUES = ['PlaceModel' => 'SchemaOrg\Type\PlaceModel'];
+    public const TYPES = ['ExerciseAction' => 'SchemaOrg\Type\ExerciseActionModel', 'InsertAction' => 'SchemaOrg\Type\InsertActionModel', 'MoveAction' => 'SchemaOrg\Type\MoveActionModel', 'TransferAction' => 'SchemaOrg\Type\TransferActionModel'];
 }

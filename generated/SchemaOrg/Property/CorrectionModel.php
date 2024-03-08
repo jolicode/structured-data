@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CorrectionModel
     public const DESCRIPTION = 'Indicates a correction to a [[CreativeWork]], either via a [[CorrectionComment]], textually or in another document.';
     public const LABEL = 'correction';
     public const NAME = 'schema:correction';
-    public const VALUES = ['CorrectionCommentModel' => 'SchemaOrg\\Type\\CorrectionCommentModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const VALUES = ['CorrectionCommentModel' => 'SchemaOrg\Type\CorrectionCommentModel', 'TextModel' => 'SchemaOrg\Type\TextModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel'];
 }

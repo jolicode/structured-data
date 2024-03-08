@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ServerStatusModel
     public const DESCRIPTION = 'Status of a game server.';
     public const LABEL = 'serverStatus';
     public const NAME = 'schema:serverStatus';
-    public const VALUES = ['GameServerStatusModel' => 'SchemaOrg\\Type\\GameServerStatusModel'];
-    public const TYPES = ['GameServer' => 'SchemaOrg\\Type\\GameServerModel'];
+    public const VALUES = ['GameServerStatusModel' => 'SchemaOrg\Type\GameServerStatusModel'];
+    public const TYPES = ['GameServer' => 'SchemaOrg\Type\GameServerModel'];
 }

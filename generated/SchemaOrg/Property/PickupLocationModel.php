@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PickupLocationModel
     public const DESCRIPTION = 'Where a taxi will pick up a passenger or a rental car can be picked up.';
     public const LABEL = 'pickupLocation';
     public const NAME = 'schema:pickupLocation';
-    public const VALUES = ['PlaceModel' => 'SchemaOrg\\Type\\PlaceModel'];
-    public const TYPES = ['RentalCarReservation' => 'SchemaOrg\\Type\\RentalCarReservationModel', 'TaxiReservation' => 'SchemaOrg\\Type\\TaxiReservationModel'];
+    public const VALUES = ['PlaceModel' => 'SchemaOrg\Type\PlaceModel'];
+    public const TYPES = ['RentalCarReservation' => 'SchemaOrg\Type\RentalCarReservationModel', 'TaxiReservation' => 'SchemaOrg\Type\TaxiReservationModel'];
 }

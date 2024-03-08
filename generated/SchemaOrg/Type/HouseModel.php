@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class HouseModel
     public const DESCRIPTION = 'A house is a building or structure that has the ability to be occupied for habitation by humans or other creatures (source: Wikipedia, the free encyclopedia, see <a href="http://en.wikipedia.org/wiki/House">http://en.wikipedia.org/wiki/House</a>).';
     public const LABEL = 'House';
     public const NAME = 'schema:House';
-    public const PARENTS = ['AccommodationModel' => 'SchemaOrg\\Type\\AccommodationModel'];
+    public const PARENTS = ['AccommodationModel' => 'SchemaOrg\Type\AccommodationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

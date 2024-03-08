@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TravelBansModel
     public const DESCRIPTION = 'Information about travel bans, e.g. in the context of a pandemic.';
     public const LABEL = 'travelBans';
     public const NAME = 'schema:travelBans';
-    public const VALUES = ['URLModel' => 'SchemaOrg\\Type\\URLModel', 'WebContentModel' => 'SchemaOrg\\Type\\WebContentModel'];
-    public const TYPES = ['SpecialAnnouncement' => 'SchemaOrg\\Type\\SpecialAnnouncementModel'];
+    public const VALUES = ['URLModel' => 'SchemaOrg\Type\URLModel', 'WebContentModel' => 'SchemaOrg\Type\WebContentModel'];
+    public const TYPES = ['SpecialAnnouncement' => 'SchemaOrg\Type\SpecialAnnouncementModel'];
 }

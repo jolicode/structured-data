@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class ReturnFeesEnumerationModel
     public const DESCRIPTION = 'Enumerates several kinds of policies for product return fees.';
     public const LABEL = 'ReturnFeesEnumeration';
     public const NAME = 'schema:ReturnFeesEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['FreeReturnModel' => 'EnumerationMember\\FreeReturnModel', 'OriginalShippingFeesModel' => 'EnumerationMember\\OriginalShippingFeesModel', 'RestockingFeesModel' => 'EnumerationMember\\RestockingFeesModel', 'ReturnFeesCustomerResponsibilityModel' => 'EnumerationMember\\ReturnFeesCustomerResponsibilityModel', 'ReturnShippingFeesModel' => 'EnumerationMember\\ReturnShippingFeesModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['FreeReturnModel' => 'EnumerationMember\FreeReturnModel', 'OriginalShippingFeesModel' => 'EnumerationMember\OriginalShippingFeesModel', 'RestockingFeesModel' => 'EnumerationMember\RestockingFeesModel', 'ReturnFeesCustomerResponsibilityModel' => 'EnumerationMember\ReturnFeesCustomerResponsibilityModel', 'ReturnShippingFeesModel' => 'EnumerationMember\ReturnShippingFeesModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

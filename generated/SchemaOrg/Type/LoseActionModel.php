@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class LoseActionModel
     public const DESCRIPTION = 'The act of being defeated in a competitive activity.';
     public const LABEL = 'LoseAction';
     public const NAME = 'schema:LoseAction';
-    public const PARENTS = ['AchieveActionModel' => 'SchemaOrg\\Type\\AchieveActionModel'];
+    public const PARENTS = ['AchieveActionModel' => 'SchemaOrg\Type\AchieveActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

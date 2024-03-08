@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class GeoCoordinatesModel
     public const DESCRIPTION = 'The geographic coordinates of a place or event.';
     public const LABEL = 'GeoCoordinates';
     public const NAME = 'schema:GeoCoordinates';
-    public const PARENTS = ['StructuredValueModel' => 'SchemaOrg\\Type\\StructuredValueModel'];
+    public const PARENTS = ['StructuredValueModel' => 'SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

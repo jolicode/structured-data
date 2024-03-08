@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RecognizingAuthorityModel
     public const DESCRIPTION = 'If applicable, the organization that officially recognizes this entity as part of its endorsed system of medicine.';
     public const LABEL = 'recognizingAuthority';
     public const NAME = 'schema:recognizingAuthority';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel'];
-    public const TYPES = ['MedicalEntity' => 'SchemaOrg\\Type\\MedicalEntityModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel'];
+    public const TYPES = ['MedicalEntity' => 'SchemaOrg\Type\MedicalEntityModel'];
 }

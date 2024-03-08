@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class InvestmentFundModel
     public const DESCRIPTION = 'A company or fund that gathers capital from a number of investors to create a pool of money that is then re-invested into stocks, bonds and other assets.';
     public const LABEL = 'InvestmentFund';
     public const NAME = 'schema:InvestmentFund';
-    public const PARENTS = ['InvestmentOrDepositModel' => 'SchemaOrg\\Type\\InvestmentOrDepositModel'];
+    public const PARENTS = ['InvestmentOrDepositModel' => 'SchemaOrg\Type\InvestmentOrDepositModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class MedicalTrialDesignModel
     public const DESCRIPTION = 'Design models for medical trials. Enumerated type.';
     public const LABEL = 'MedicalTrialDesign';
     public const NAME = 'schema:MedicalTrialDesign';
-    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\\Type\\MedicalEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['DoubleBlindedTrialModel' => 'EnumerationMember\\DoubleBlindedTrialModel', 'InternationalTrialModel' => 'EnumerationMember\\InternationalTrialModel', 'MultiCenterTrialModel' => 'EnumerationMember\\MultiCenterTrialModel', 'OpenTrialModel' => 'EnumerationMember\\OpenTrialModel', 'PlaceboControlledTrialModel' => 'EnumerationMember\\PlaceboControlledTrialModel', 'RandomizedTrialModel' => 'EnumerationMember\\RandomizedTrialModel', 'SingleBlindedTrialModel' => 'EnumerationMember\\SingleBlindedTrialModel', 'SingleCenterTrialModel' => 'EnumerationMember\\SingleCenterTrialModel', 'TripleBlindedTrialModel' => 'EnumerationMember\\TripleBlindedTrialModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\Type\MedicalEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['DoubleBlindedTrialModel' => 'EnumerationMember\DoubleBlindedTrialModel', 'InternationalTrialModel' => 'EnumerationMember\InternationalTrialModel', 'MultiCenterTrialModel' => 'EnumerationMember\MultiCenterTrialModel', 'OpenTrialModel' => 'EnumerationMember\OpenTrialModel', 'PlaceboControlledTrialModel' => 'EnumerationMember\PlaceboControlledTrialModel', 'RandomizedTrialModel' => 'EnumerationMember\RandomizedTrialModel', 'SingleBlindedTrialModel' => 'EnumerationMember\SingleBlindedTrialModel', 'SingleCenterTrialModel' => 'EnumerationMember\SingleCenterTrialModel', 'TripleBlindedTrialModel' => 'EnumerationMember\TripleBlindedTrialModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

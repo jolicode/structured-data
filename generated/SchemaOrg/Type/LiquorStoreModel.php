@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class LiquorStoreModel
     public const DESCRIPTION = 'A shop that sells alcoholic drinks such as wine, beer, whisky and other spirits.';
     public const LABEL = 'LiquorStore';
     public const NAME = 'schema:LiquorStore';
-    public const PARENTS = ['StoreModel' => 'SchemaOrg\\Type\\StoreModel'];
+    public const PARENTS = ['StoreModel' => 'SchemaOrg\Type\StoreModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

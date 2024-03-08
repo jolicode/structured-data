@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class UrlModel
     public const DESCRIPTION = 'URL of the item.';
     public const LABEL = 'url';
     public const NAME = 'schema:url';
-    public const VALUES = ['URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['Thing' => 'SchemaOrg\\Type\\ThingModel'];
+    public const VALUES = ['URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['Thing' => 'SchemaOrg\Type\ThingModel'];
 }

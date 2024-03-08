@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MessageAttachmentModel
     public const DESCRIPTION = 'A CreativeWork attached to the message.';
     public const LABEL = 'messageAttachment';
     public const NAME = 'schema:messageAttachment';
-    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel'];
-    public const TYPES = ['Message' => 'SchemaOrg\\Type\\MessageModel'];
+    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel'];
+    public const TYPES = ['Message' => 'SchemaOrg\Type\MessageModel'];
 }

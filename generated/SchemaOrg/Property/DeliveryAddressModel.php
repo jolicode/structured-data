@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DeliveryAddressModel
     public const DESCRIPTION = 'Destination address.';
     public const LABEL = 'deliveryAddress';
     public const NAME = 'schema:deliveryAddress';
-    public const VALUES = ['PostalAddressModel' => 'SchemaOrg\\Type\\PostalAddressModel'];
-    public const TYPES = ['ParcelDelivery' => 'SchemaOrg\\Type\\ParcelDeliveryModel'];
+    public const VALUES = ['PostalAddressModel' => 'SchemaOrg\Type\PostalAddressModel'];
+    public const TYPES = ['ParcelDelivery' => 'SchemaOrg\Type\ParcelDeliveryModel'];
 }

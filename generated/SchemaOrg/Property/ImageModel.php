@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ImageModel
     public const DESCRIPTION = 'An image of the item. This can be a [[URL]] or a fully described [[ImageObject]].';
     public const LABEL = 'image';
     public const NAME = 'schema:image';
-    public const VALUES = ['ImageObjectModel' => 'SchemaOrg\\Type\\ImageObjectModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['Thing' => 'SchemaOrg\\Type\\ThingModel'];
+    public const VALUES = ['ImageObjectModel' => 'SchemaOrg\Type\ImageObjectModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['Thing' => 'SchemaOrg\Type\ThingModel'];
 }

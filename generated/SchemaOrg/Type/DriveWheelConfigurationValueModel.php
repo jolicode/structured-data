@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class DriveWheelConfigurationValueModel
     public const DESCRIPTION = 'A value indicating which roadwheels will receive torque.';
     public const LABEL = 'DriveWheelConfigurationValue';
     public const NAME = 'schema:DriveWheelConfigurationValue';
-    public const PARENTS = ['QualitativeValueModel' => 'SchemaOrg\\Type\\QualitativeValueModel'];
-    public const ENUMERATION_MEMBERS = ['AllWheelDriveConfigurationModel' => 'EnumerationMember\\AllWheelDriveConfigurationModel', 'FourWheelDriveConfigurationModel' => 'EnumerationMember\\FourWheelDriveConfigurationModel', 'FrontWheelDriveConfigurationModel' => 'EnumerationMember\\FrontWheelDriveConfigurationModel', 'RearWheelDriveConfigurationModel' => 'EnumerationMember\\RearWheelDriveConfigurationModel'];
+    public const PARENTS = ['QualitativeValueModel' => 'SchemaOrg\Type\QualitativeValueModel'];
+    public const ENUMERATION_MEMBERS = ['AllWheelDriveConfigurationModel' => 'EnumerationMember\AllWheelDriveConfigurationModel', 'FourWheelDriveConfigurationModel' => 'EnumerationMember\FourWheelDriveConfigurationModel', 'FrontWheelDriveConfigurationModel' => 'EnumerationMember\FrontWheelDriveConfigurationModel', 'RearWheelDriveConfigurationModel' => 'EnumerationMember\RearWheelDriveConfigurationModel'];
 
     public function __construct(
         public ?Property\AdditionalPropertyModel $additionalProperty = null,

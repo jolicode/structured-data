@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ShippingSettingsLinkModel
     public const DESCRIPTION = 'Link to a page containing [[ShippingRateSettings]] and [[DeliveryTimeSettings]] details.';
     public const LABEL = 'shippingSettingsLink';
     public const NAME = 'schema:shippingSettingsLink';
-    public const VALUES = ['URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['OfferShippingDetails' => 'SchemaOrg\\Type\\OfferShippingDetailsModel'];
+    public const VALUES = ['URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['OfferShippingDetails' => 'SchemaOrg\Type\OfferShippingDetailsModel'];
 }

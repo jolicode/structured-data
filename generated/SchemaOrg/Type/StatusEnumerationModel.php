@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class StatusEnumerationModel
     public const DESCRIPTION = 'Lists or enumerations dealing with status types.';
     public const LABEL = 'StatusEnumeration';
     public const NAME = 'schema:StatusEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

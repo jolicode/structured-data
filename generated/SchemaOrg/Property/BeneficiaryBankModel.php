@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BeneficiaryBankModel
     public const DESCRIPTION = 'A bank or bank’s branch, financial institution or international financial institution operating the beneficiary’s bank account or releasing funds for the beneficiary.';
     public const LABEL = 'beneficiaryBank';
     public const NAME = 'schema:beneficiaryBank';
-    public const VALUES = ['BankOrCreditUnionModel' => 'SchemaOrg\\Type\\BankOrCreditUnionModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MoneyTransfer' => 'SchemaOrg\\Type\\MoneyTransferModel'];
+    public const VALUES = ['BankOrCreditUnionModel' => 'SchemaOrg\Type\BankOrCreditUnionModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MoneyTransfer' => 'SchemaOrg\Type\MoneyTransferModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ReadByModel
     public const DESCRIPTION = 'A person who reads (performs) the audiobook.';
     public const LABEL = 'readBy';
     public const NAME = 'schema:readBy';
-    public const VALUES = ['PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['Audiobook' => 'SchemaOrg\\Type\\AudiobookModel'];
+    public const VALUES = ['PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['Audiobook' => 'SchemaOrg\Type\AudiobookModel'];
 }

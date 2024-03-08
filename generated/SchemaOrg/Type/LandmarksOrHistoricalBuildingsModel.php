@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class LandmarksOrHistoricalBuildingsModel
     public const DESCRIPTION = 'An historical landmark or building.';
     public const LABEL = 'LandmarksOrHistoricalBuildings';
     public const NAME = 'schema:LandmarksOrHistoricalBuildings';
-    public const PARENTS = ['PlaceModel' => 'SchemaOrg\\Type\\PlaceModel'];
+    public const PARENTS = ['PlaceModel' => 'SchemaOrg\Type\PlaceModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

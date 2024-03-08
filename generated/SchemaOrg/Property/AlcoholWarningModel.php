@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AlcoholWarningModel
     public const DESCRIPTION = 'Any precaution, guidance, contraindication, etc. related to consumption of alcohol while taking this drug.';
     public const LABEL = 'alcoholWarning';
     public const NAME = 'schema:alcoholWarning';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Drug' => 'SchemaOrg\\Type\\DrugModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Drug' => 'SchemaOrg\Type\DrugModel'];
 }

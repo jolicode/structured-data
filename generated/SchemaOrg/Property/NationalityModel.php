@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class NationalityModel
     public const DESCRIPTION = 'Nationality of the person.';
     public const LABEL = 'nationality';
     public const NAME = 'schema:nationality';
-    public const VALUES = ['CountryModel' => 'SchemaOrg\\Type\\CountryModel'];
-    public const TYPES = ['Person' => 'SchemaOrg\\Type\\PersonModel'];
+    public const VALUES = ['CountryModel' => 'SchemaOrg\Type\CountryModel'];
+    public const TYPES = ['Person' => 'SchemaOrg\Type\PersonModel'];
 }

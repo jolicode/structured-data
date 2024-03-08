@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class TechArticleModel
     public const DESCRIPTION = 'A technical article - Example: How-to (task) topics, step-by-step, procedural troubleshooting, specifications, etc.';
     public const LABEL = 'TechArticle';
     public const NAME = 'schema:TechArticle';
-    public const PARENTS = ['ArticleModel' => 'SchemaOrg\\Type\\ArticleModel'];
+    public const PARENTS = ['ArticleModel' => 'SchemaOrg\Type\ArticleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

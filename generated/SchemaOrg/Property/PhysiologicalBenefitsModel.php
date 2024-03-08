@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PhysiologicalBenefitsModel
     public const DESCRIPTION = 'Specific physiologic benefits associated to the plan.';
     public const LABEL = 'physiologicalBenefits';
     public const NAME = 'schema:physiologicalBenefits';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Diet' => 'SchemaOrg\\Type\\DietModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Diet' => 'SchemaOrg\Type\DietModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ImageObjectModel
     public const DESCRIPTION = 'An image file.';
     public const LABEL = 'ImageObject';
     public const NAME = 'schema:ImageObject';
-    public const PARENTS = ['MediaObjectModel' => 'SchemaOrg\\Type\\MediaObjectModel'];
+    public const PARENTS = ['MediaObjectModel' => 'SchemaOrg\Type\MediaObjectModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

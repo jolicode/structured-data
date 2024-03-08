@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AvailableFromModel
     public const DESCRIPTION = 'When the item is available for pickup from the store, locker, etc.';
     public const LABEL = 'availableFrom';
     public const NAME = 'schema:availableFrom';
-    public const VALUES = ['DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel'];
-    public const TYPES = ['DeliveryEvent' => 'SchemaOrg\\Type\\DeliveryEventModel'];
+    public const VALUES = ['DateTimeModel' => 'SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['DeliveryEvent' => 'SchemaOrg\Type\DeliveryEventModel'];
 }

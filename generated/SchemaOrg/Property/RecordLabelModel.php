@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RecordLabelModel
     public const DESCRIPTION = 'The label that issued the release.';
     public const LABEL = 'recordLabel';
     public const NAME = 'schema:recordLabel';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel'];
-    public const TYPES = ['MusicRelease' => 'SchemaOrg\\Type\\MusicReleaseModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel'];
+    public const TYPES = ['MusicRelease' => 'SchemaOrg\Type\MusicReleaseModel'];
 }

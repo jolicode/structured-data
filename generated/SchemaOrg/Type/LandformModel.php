@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class LandformModel
     public const DESCRIPTION = 'A landform or physical feature.  Landform elements include mountains, plains, lakes, rivers, seascape and oceanic waterbody interface features such as bays, peninsulas, seas and so forth, including sub-aqueous terrain features such as submersed mountain ranges, volcanoes, and the great ocean basins.';
     public const LABEL = 'Landform';
     public const NAME = 'schema:Landform';
-    public const PARENTS = ['PlaceModel' => 'SchemaOrg\\Type\\PlaceModel'];
+    public const PARENTS = ['PlaceModel' => 'SchemaOrg\Type\PlaceModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

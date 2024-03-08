@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class NumAdultsModel
     public const DESCRIPTION = 'The number of adults staying in the unit.';
     public const LABEL = 'numAdults';
     public const NAME = 'schema:numAdults';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel', 'QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['LodgingReservation' => 'SchemaOrg\\Type\\LodgingReservationModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel', 'QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['LodgingReservation' => 'SchemaOrg\Type\LodgingReservationModel'];
 }

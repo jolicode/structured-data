@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class WordCountModel
     public const DESCRIPTION = 'The number of words in the text of the Article.';
     public const LABEL = 'wordCount';
     public const NAME = 'schema:wordCount';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel'];
-    public const TYPES = ['Article' => 'SchemaOrg\\Type\\ArticleModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['Article' => 'SchemaOrg\Type\ArticleModel'];
 }

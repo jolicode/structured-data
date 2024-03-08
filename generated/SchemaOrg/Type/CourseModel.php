@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class CourseModel
     public const DESCRIPTION = 'A description of an educational course which may be offered as distinct instances which take place at different times or take place at different locations, or be offered through different media or modes of study. An educational course is a sequence of one or more educational events and/or creative works which aims to build knowledge, competence or ability of learners.';
     public const LABEL = 'Course';
     public const NAME = 'schema:Course';
-    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel', 'LearningResourceModel' => 'SchemaOrg\\Type\\LearningResourceModel'];
+    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel', 'LearningResourceModel' => 'SchemaOrg\Type\LearningResourceModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

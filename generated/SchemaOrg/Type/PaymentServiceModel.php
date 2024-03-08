@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PaymentServiceModel
     public const DESCRIPTION = 'A Service to transfer funds from a person or organization to a beneficiary person or organization.';
     public const LABEL = 'PaymentService';
     public const NAME = 'schema:PaymentService';
-    public const PARENTS = ['FinancialProductModel' => 'SchemaOrg\\Type\\FinancialProductModel'];
+    public const PARENTS = ['FinancialProductModel' => 'SchemaOrg\Type\FinancialProductModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

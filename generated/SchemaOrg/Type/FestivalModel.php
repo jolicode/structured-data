@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class FestivalModel
     public const DESCRIPTION = 'Event type: Festival.';
     public const LABEL = 'Festival';
     public const NAME = 'schema:Festival';
-    public const PARENTS = ['EventModel' => 'SchemaOrg\\Type\\EventModel'];
+    public const PARENTS = ['EventModel' => 'SchemaOrg\Type\EventModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

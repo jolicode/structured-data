@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -17,10 +15,10 @@ use SchemaOrg\Property;
 
 final class CancelActionModel
 {
-    public const DESCRIPTION = 'The act of asserting that a future event/action is no longer going to happen.\\n\\nRelated actions:\\n\\n* [[ConfirmAction]]: The antonym of CancelAction.';
+    public const DESCRIPTION = 'The act of asserting that a future event/action is no longer going to happen.\n\nRelated actions:\n\n* [[ConfirmAction]]: The antonym of CancelAction.';
     public const LABEL = 'CancelAction';
     public const NAME = 'schema:CancelAction';
-    public const PARENTS = ['PlanActionModel' => 'SchemaOrg\\Type\\PlanActionModel'];
+    public const PARENTS = ['PlanActionModel' => 'SchemaOrg\Type\PlanActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

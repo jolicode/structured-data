@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class WaterfallModel
     public const DESCRIPTION = 'A waterfall, like Niagara.';
     public const LABEL = 'Waterfall';
     public const NAME = 'schema:Waterfall';
-    public const PARENTS = ['BodyOfWaterModel' => 'SchemaOrg\\Type\\BodyOfWaterModel'];
+    public const PARENTS = ['BodyOfWaterModel' => 'SchemaOrg\Type\BodyOfWaterModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

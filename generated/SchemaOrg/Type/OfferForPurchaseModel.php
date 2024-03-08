@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -23,7 +21,7 @@ final class OfferForPurchaseModel
   ';
     public const LABEL = 'OfferForPurchase';
     public const NAME = 'schema:OfferForPurchase';
-    public const PARENTS = ['OfferModel' => 'SchemaOrg\\Type\\OfferModel'];
+    public const PARENTS = ['OfferModel' => 'SchemaOrg\Type\OfferModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

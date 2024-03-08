@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PaymentCardModel
     public const DESCRIPTION = 'A payment method using a credit, debit, store or other card to associate the payment with an account.';
     public const LABEL = 'PaymentCard';
     public const NAME = 'schema:PaymentCard';
-    public const PARENTS = ['FinancialProductModel' => 'SchemaOrg\\Type\\FinancialProductModel', 'PaymentMethodModel' => 'SchemaOrg\\Type\\PaymentMethodModel'];
+    public const PARENTS = ['FinancialProductModel' => 'SchemaOrg\Type\FinancialProductModel', 'PaymentMethodModel' => 'SchemaOrg\Type\PaymentMethodModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

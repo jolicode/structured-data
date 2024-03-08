@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AlumniOfModel
     public const DESCRIPTION = 'An organization that the person is an alumni of.';
     public const LABEL = 'alumniOf';
     public const NAME = 'schema:alumniOf';
-    public const VALUES = ['EducationalOrganizationModel' => 'SchemaOrg\\Type\\EducationalOrganizationModel', 'OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel'];
-    public const TYPES = ['Person' => 'SchemaOrg\\Type\\PersonModel'];
+    public const VALUES = ['EducationalOrganizationModel' => 'SchemaOrg\Type\EducationalOrganizationModel', 'OrganizationModel' => 'SchemaOrg\Type\OrganizationModel'];
+    public const TYPES = ['Person' => 'SchemaOrg\Type\PersonModel'];
 }

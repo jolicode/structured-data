@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MakesOfferModel
     public const DESCRIPTION = 'A pointer to products or services offered by the organization or person.';
     public const LABEL = 'makesOffer';
     public const NAME = 'schema:makesOffer';
-    public const VALUES = ['OfferModel' => 'SchemaOrg\\Type\\OfferModel'];
-    public const TYPES = ['Organization' => 'SchemaOrg\\Type\\OrganizationModel', 'Person' => 'SchemaOrg\\Type\\PersonModel'];
+    public const VALUES = ['OfferModel' => 'SchemaOrg\Type\OfferModel'];
+    public const TYPES = ['Organization' => 'SchemaOrg\Type\OrganizationModel', 'Person' => 'SchemaOrg\Type\PersonModel'];
 }

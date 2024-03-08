@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -23,7 +21,7 @@ A more detailed overview of [schema.org News markup](/docs/news.html) is also av
 ';
     public const LABEL = 'NewsArticle';
     public const NAME = 'schema:NewsArticle';
-    public const PARENTS = ['ArticleModel' => 'SchemaOrg\\Type\\ArticleModel'];
+    public const PARENTS = ['ArticleModel' => 'SchemaOrg\Type\ArticleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

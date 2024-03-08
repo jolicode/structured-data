@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MenuModel
     public const DESCRIPTION = 'Either the actual menu as a structured representation, as text, or a URL of the menu.';
     public const LABEL = 'menu';
     public const NAME = 'schema:menu';
-    public const VALUES = ['MenuModel' => 'SchemaOrg\\Type\\MenuModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['FoodEstablishment' => 'SchemaOrg\\Type\\FoodEstablishmentModel'];
+    public const VALUES = ['MenuModel' => 'SchemaOrg\Type\MenuModel', 'TextModel' => 'SchemaOrg\Type\TextModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['FoodEstablishment' => 'SchemaOrg\Type\FoodEstablishmentModel'];
 }

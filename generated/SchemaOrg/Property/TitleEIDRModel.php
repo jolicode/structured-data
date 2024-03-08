@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -23,6 +21,6 @@ Since schema.org types like [[Movie]], [[TVEpisode]], [[TVSeason]], and [[TVSeri
 ';
     public const LABEL = 'titleEIDR';
     public const NAME = 'schema:titleEIDR';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['Movie' => 'SchemaOrg\\Type\\MovieModel', 'TVEpisode' => 'SchemaOrg\\Type\\TVEpisodeModel', 'TVSeason' => 'SchemaOrg\\Type\\TVSeasonModel', 'TVSeries' => 'SchemaOrg\\Type\\TVSeriesModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['Movie' => 'SchemaOrg\Type\MovieModel', 'TVEpisode' => 'SchemaOrg\Type\TVEpisodeModel', 'TVSeason' => 'SchemaOrg\Type\TVSeasonModel', 'TVSeries' => 'SchemaOrg\Type\TVSeriesModel'];
 }

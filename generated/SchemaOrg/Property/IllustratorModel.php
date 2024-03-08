@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IllustratorModel
     public const DESCRIPTION = 'The illustrator of the book.';
     public const LABEL = 'illustrator';
     public const NAME = 'schema:illustrator';
-    public const VALUES = ['PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['Book' => 'SchemaOrg\\Type\\BookModel'];
+    public const VALUES = ['PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['Book' => 'SchemaOrg\Type\BookModel'];
 }

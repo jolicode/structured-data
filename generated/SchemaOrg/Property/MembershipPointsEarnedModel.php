@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MembershipPointsEarnedModel
     public const DESCRIPTION = 'The number of membership points earned by the member. If necessary, the unitText can be used to express the units the points are issued in. (E.g. stars, miles, etc.)';
     public const LABEL = 'membershipPointsEarned';
     public const NAME = 'schema:membershipPointsEarned';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel', 'QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['ProgramMembership' => 'SchemaOrg\\Type\\ProgramMembershipModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['ProgramMembership' => 'SchemaOrg\Type\ProgramMembershipModel'];
 }

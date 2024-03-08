@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MuscleActionModel
     public const DESCRIPTION = 'The movement the muscle generates.';
     public const LABEL = 'muscleAction';
     public const NAME = 'schema:muscleAction';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Muscle' => 'SchemaOrg\\Type\\MuscleModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Muscle' => 'SchemaOrg\Type\MuscleModel'];
 }

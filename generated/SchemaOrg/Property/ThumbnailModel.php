@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ThumbnailModel
     public const DESCRIPTION = 'Thumbnail image for an image or video.';
     public const LABEL = 'thumbnail';
     public const NAME = 'schema:thumbnail';
-    public const VALUES = ['ImageObjectModel' => 'SchemaOrg\\Type\\ImageObjectModel'];
-    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const VALUES = ['ImageObjectModel' => 'SchemaOrg\Type\ImageObjectModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class NonprofitTypeModel
     public const DESCRIPTION = 'NonprofitType enumerates several kinds of official non-profit types of which a non-profit organization can be.';
     public const LABEL = 'NonprofitType';
     public const NAME = 'schema:NonprofitType';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

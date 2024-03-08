@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RemainingAttendeeCapacityModel
     public const DESCRIPTION = 'The number of attendee places for an event that remain unallocated.';
     public const LABEL = 'remainingAttendeeCapacity';
     public const NAME = 'schema:remainingAttendeeCapacity';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel'];
-    public const TYPES = ['Event' => 'SchemaOrg\\Type\\EventModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['Event' => 'SchemaOrg\Type\EventModel'];
 }

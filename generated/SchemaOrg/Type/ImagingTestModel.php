@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ImagingTestModel
     public const DESCRIPTION = 'Any medical imaging modality typically used for diagnostic purposes.';
     public const LABEL = 'ImagingTest';
     public const NAME = 'schema:ImagingTest';
-    public const PARENTS = ['MedicalTestModel' => 'SchemaOrg\\Type\\MedicalTestModel'];
+    public const PARENTS = ['MedicalTestModel' => 'SchemaOrg\Type\MedicalTestModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

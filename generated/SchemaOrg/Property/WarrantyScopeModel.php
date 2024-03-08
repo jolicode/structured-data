@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class WarrantyScopeModel
     public const DESCRIPTION = 'The scope of the warranty promise.';
     public const LABEL = 'warrantyScope';
     public const NAME = 'schema:warrantyScope';
-    public const VALUES = ['WarrantyScopeModel' => 'SchemaOrg\\Type\\WarrantyScopeModel'];
-    public const TYPES = ['WarrantyPromise' => 'SchemaOrg\\Type\\WarrantyPromiseModel'];
+    public const VALUES = ['WarrantyScopeModel' => 'SchemaOrg\Type\WarrantyScopeModel'];
+    public const TYPES = ['WarrantyPromise' => 'SchemaOrg\Type\WarrantyPromiseModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class LiveBlogPostingModel
     public const DESCRIPTION = 'A [[LiveBlogPosting]] is a [[BlogPosting]] intended to provide a rolling textual coverage of an ongoing event through continuous updates.';
     public const LABEL = 'LiveBlogPosting';
     public const NAME = 'schema:LiveBlogPosting';
-    public const PARENTS = ['BlogPostingModel' => 'SchemaOrg\\Type\\BlogPostingModel'];
+    public const PARENTS = ['BlogPostingModel' => 'SchemaOrg\Type\BlogPostingModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

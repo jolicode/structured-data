@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DeleteActionModel
     public const DESCRIPTION = 'The act of editing a recipient by removing one of its objects.';
     public const LABEL = 'DeleteAction';
     public const NAME = 'schema:DeleteAction';
-    public const PARENTS = ['UpdateActionModel' => 'SchemaOrg\\Type\\UpdateActionModel'];
+    public const PARENTS = ['UpdateActionModel' => 'SchemaOrg\Type\UpdateActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

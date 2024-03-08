@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AlbumProductionTypeModel
     public const DESCRIPTION = 'Classification of the album by its type of content: soundtrack, live album, studio album, etc.';
     public const LABEL = 'albumProductionType';
     public const NAME = 'schema:albumProductionType';
-    public const VALUES = ['MusicAlbumProductionTypeModel' => 'SchemaOrg\\Type\\MusicAlbumProductionTypeModel'];
-    public const TYPES = ['MusicAlbum' => 'SchemaOrg\\Type\\MusicAlbumModel'];
+    public const VALUES = ['MusicAlbumProductionTypeModel' => 'SchemaOrg\Type\MusicAlbumProductionTypeModel'];
+    public const TYPES = ['MusicAlbum' => 'SchemaOrg\Type\MusicAlbumModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class SchoolDistrictModel
     public const DESCRIPTION = 'A School District is an administrative area for the administration of schools.';
     public const LABEL = 'SchoolDistrict';
     public const NAME = 'schema:SchoolDistrict';
-    public const PARENTS = ['AdministrativeAreaModel' => 'SchemaOrg\\Type\\AdministrativeAreaModel'];
+    public const PARENTS = ['AdministrativeAreaModel' => 'SchemaOrg\Type\AdministrativeAreaModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

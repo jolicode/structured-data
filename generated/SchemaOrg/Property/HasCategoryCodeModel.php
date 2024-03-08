@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HasCategoryCodeModel
     public const DESCRIPTION = 'A Category code contained in this code set.';
     public const LABEL = 'hasCategoryCode';
     public const NAME = 'schema:hasCategoryCode';
-    public const VALUES = ['CategoryCodeModel' => 'SchemaOrg\\Type\\CategoryCodeModel'];
-    public const TYPES = ['CategoryCodeSet' => 'SchemaOrg\\Type\\CategoryCodeSetModel'];
+    public const VALUES = ['CategoryCodeModel' => 'SchemaOrg\Type\CategoryCodeModel'];
+    public const TYPES = ['CategoryCodeSet' => 'SchemaOrg\Type\CategoryCodeSetModel'];
 }

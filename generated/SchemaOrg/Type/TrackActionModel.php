@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -17,10 +15,10 @@ use SchemaOrg\Property;
 
 final class TrackActionModel
 {
-    public const DESCRIPTION = 'An agent tracks an object for updates.\\n\\nRelated actions:\\n\\n* [[FollowAction]]: Unlike FollowAction, TrackAction refers to the interest on the location of innanimates objects.\\n* [[SubscribeAction]]: Unlike SubscribeAction, TrackAction refers to  the interest on the location of innanimate objects.';
+    public const DESCRIPTION = 'An agent tracks an object for updates.\n\nRelated actions:\n\n* [[FollowAction]]: Unlike FollowAction, TrackAction refers to the interest on the location of innanimates objects.\n* [[SubscribeAction]]: Unlike SubscribeAction, TrackAction refers to  the interest on the location of innanimate objects.';
     public const LABEL = 'TrackAction';
     public const NAME = 'schema:TrackAction';
-    public const PARENTS = ['FindActionModel' => 'SchemaOrg\\Type\\FindActionModel'];
+    public const PARENTS = ['FindActionModel' => 'SchemaOrg\Type\FindActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

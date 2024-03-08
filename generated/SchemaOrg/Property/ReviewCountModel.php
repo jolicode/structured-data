@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ReviewCountModel
     public const DESCRIPTION = 'The count of total number of reviews.';
     public const LABEL = 'reviewCount';
     public const NAME = 'schema:reviewCount';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel'];
-    public const TYPES = ['AggregateRating' => 'SchemaOrg\\Type\\AggregateRatingModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['AggregateRating' => 'SchemaOrg\Type\AggregateRatingModel'];
 }

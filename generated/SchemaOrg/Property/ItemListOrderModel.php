@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ItemListOrderModel
     public const DESCRIPTION = 'Type of ordering (e.g. Ascending, Descending, Unordered).';
     public const LABEL = 'itemListOrder';
     public const NAME = 'schema:itemListOrder';
-    public const VALUES = ['ItemListOrderTypeModel' => 'SchemaOrg\\Type\\ItemListOrderTypeModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['ItemList' => 'SchemaOrg\\Type\\ItemListModel'];
+    public const VALUES = ['ItemListOrderTypeModel' => 'SchemaOrg\Type\ItemListOrderTypeModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['ItemList' => 'SchemaOrg\Type\ItemListModel'];
 }

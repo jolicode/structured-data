@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class HowToItemModel
     public const DESCRIPTION = 'An item used as either a tool or supply when performing the instructions for how to achieve a result.';
     public const LABEL = 'HowToItem';
     public const NAME = 'schema:HowToItem';
-    public const PARENTS = ['ListItemModel' => 'SchemaOrg\\Type\\ListItemModel'];
+    public const PARENTS = ['ListItemModel' => 'SchemaOrg\Type\ListItemModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

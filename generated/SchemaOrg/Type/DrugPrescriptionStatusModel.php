@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class DrugPrescriptionStatusModel
     public const DESCRIPTION = 'Indicates whether this drug is available by prescription or over-the-counter.';
     public const LABEL = 'DrugPrescriptionStatus';
     public const NAME = 'schema:DrugPrescriptionStatus';
-    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\\Type\\MedicalEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['OTCModel' => 'EnumerationMember\\OTCModel', 'PrescriptionOnlyModel' => 'EnumerationMember\\PrescriptionOnlyModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\Type\MedicalEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['OTCModel' => 'EnumerationMember\OTCModel', 'PrescriptionOnlyModel' => 'EnumerationMember\PrescriptionOnlyModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

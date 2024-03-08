@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MountainModel
     public const DESCRIPTION = 'A mountain, like Mount Whitney or Mount Everest.';
     public const LABEL = 'Mountain';
     public const NAME = 'schema:Mountain';
-    public const PARENTS = ['LandformModel' => 'SchemaOrg\\Type\\LandformModel'];
+    public const PARENTS = ['LandformModel' => 'SchemaOrg\Type\LandformModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class ContactPointOptionModel
     public const DESCRIPTION = 'Enumerated options related to a ContactPoint.';
     public const LABEL = 'ContactPointOption';
     public const NAME = 'schema:ContactPointOption';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['HearingImpairedSupportedModel' => 'EnumerationMember\\HearingImpairedSupportedModel', 'TollFreeModel' => 'EnumerationMember\\TollFreeModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['HearingImpairedSupportedModel' => 'EnumerationMember\HearingImpairedSupportedModel', 'TollFreeModel' => 'EnumerationMember\TollFreeModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

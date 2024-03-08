@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ItemReviewedModel
     public const DESCRIPTION = 'The item that is being reviewed/rated.';
     public const LABEL = 'itemReviewed';
     public const NAME = 'schema:itemReviewed';
-    public const VALUES = ['ThingModel' => 'SchemaOrg\\Type\\ThingModel'];
-    public const TYPES = ['AggregateRating' => 'SchemaOrg\\Type\\AggregateRatingModel', 'Review' => 'SchemaOrg\\Type\\ReviewModel'];
+    public const VALUES = ['ThingModel' => 'SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['AggregateRating' => 'SchemaOrg\Type\AggregateRatingModel', 'Review' => 'SchemaOrg\Type\ReviewModel'];
 }

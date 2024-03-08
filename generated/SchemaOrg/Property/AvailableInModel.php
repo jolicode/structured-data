@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AvailableInModel
     public const DESCRIPTION = 'The location in which the strength is available.';
     public const LABEL = 'availableIn';
     public const NAME = 'schema:availableIn';
-    public const VALUES = ['AdministrativeAreaModel' => 'SchemaOrg\\Type\\AdministrativeAreaModel'];
-    public const TYPES = ['DrugStrength' => 'SchemaOrg\\Type\\DrugStrengthModel'];
+    public const VALUES = ['AdministrativeAreaModel' => 'SchemaOrg\Type\AdministrativeAreaModel'];
+    public const TYPES = ['DrugStrength' => 'SchemaOrg\Type\DrugStrengthModel'];
 }

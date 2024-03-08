@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -17,10 +15,10 @@ use SchemaOrg\Property;
 
 final class ReserveActionModel
 {
-    public const DESCRIPTION = 'Reserving a concrete object.\\n\\nRelated actions:\\n\\n* [[ScheduleAction]]: Unlike ScheduleAction, ReserveAction reserves concrete objects (e.g. a table, a hotel) towards a time slot / spatial allocation.';
+    public const DESCRIPTION = 'Reserving a concrete object.\n\nRelated actions:\n\n* [[ScheduleAction]]: Unlike ScheduleAction, ReserveAction reserves concrete objects (e.g. a table, a hotel) towards a time slot / spatial allocation.';
     public const LABEL = 'ReserveAction';
     public const NAME = 'schema:ReserveAction';
-    public const PARENTS = ['PlanActionModel' => 'SchemaOrg\\Type\\PlanActionModel'];
+    public const PARENTS = ['PlanActionModel' => 'SchemaOrg\Type\PlanActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

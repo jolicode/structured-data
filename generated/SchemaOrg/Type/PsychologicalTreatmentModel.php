@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PsychologicalTreatmentModel
     public const DESCRIPTION = 'A process of care relying upon counseling, dialogue and communication  aimed at improving a mental health condition without use of drugs.';
     public const LABEL = 'PsychologicalTreatment';
     public const NAME = 'schema:PsychologicalTreatment';
-    public const PARENTS = ['TherapeuticProcedureModel' => 'SchemaOrg\\Type\\TherapeuticProcedureModel'];
+    public const PARENTS = ['TherapeuticProcedureModel' => 'SchemaOrg\Type\TherapeuticProcedureModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

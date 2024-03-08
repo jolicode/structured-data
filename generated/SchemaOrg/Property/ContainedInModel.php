@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ContainedInModel
     public const DESCRIPTION = 'The basic containment relation between a place and one that contains it.';
     public const LABEL = 'containedIn';
     public const NAME = 'schema:containedIn';
-    public const VALUES = ['PlaceModel' => 'SchemaOrg\\Type\\PlaceModel'];
-    public const TYPES = ['Place' => 'SchemaOrg\\Type\\PlaceModel'];
+    public const VALUES = ['PlaceModel' => 'SchemaOrg\Type\PlaceModel'];
+    public const TYPES = ['Place' => 'SchemaOrg\Type\PlaceModel'];
 }

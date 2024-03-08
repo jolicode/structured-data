@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SeasonsModel
     public const DESCRIPTION = 'A season in a media series.';
     public const LABEL = 'seasons';
     public const NAME = 'schema:seasons';
-    public const VALUES = ['CreativeWorkSeasonModel' => 'SchemaOrg\\Type\\CreativeWorkSeasonModel'];
-    public const TYPES = ['RadioSeries' => 'SchemaOrg\\Type\\RadioSeriesModel', 'TVSeries' => 'SchemaOrg\\Type\\TVSeriesModel', 'VideoGameSeries' => 'SchemaOrg\\Type\\VideoGameSeriesModel'];
+    public const VALUES = ['CreativeWorkSeasonModel' => 'SchemaOrg\Type\CreativeWorkSeasonModel'];
+    public const TYPES = ['RadioSeries' => 'SchemaOrg\Type\RadioSeriesModel', 'TVSeries' => 'SchemaOrg\Type\TVSeriesModel', 'VideoGameSeries' => 'SchemaOrg\Type\VideoGameSeriesModel'];
 }

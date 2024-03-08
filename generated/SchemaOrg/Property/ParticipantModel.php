@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ParticipantModel
     public const DESCRIPTION = 'Other co-agents that participated in the action indirectly. E.g. John wrote a book with *Steve*.';
     public const LABEL = 'participant';
     public const NAME = 'schema:participant';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel', 'PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['Action' => 'SchemaOrg\\Type\\ActionModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['Action' => 'SchemaOrg\Type\ActionModel'];
 }

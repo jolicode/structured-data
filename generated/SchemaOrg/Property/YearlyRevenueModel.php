@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class YearlyRevenueModel
     public const DESCRIPTION = 'The size of the business in annual revenue.';
     public const LABEL = 'yearlyRevenue';
     public const NAME = 'schema:yearlyRevenue';
-    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['BusinessAudience' => 'SchemaOrg\\Type\\BusinessAudienceModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['BusinessAudience' => 'SchemaOrg\Type\BusinessAudienceModel'];
 }

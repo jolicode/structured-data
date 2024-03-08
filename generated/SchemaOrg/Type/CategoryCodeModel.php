@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class CategoryCodeModel
     public const DESCRIPTION = 'A Category Code.';
     public const LABEL = 'CategoryCode';
     public const NAME = 'schema:CategoryCode';
-    public const PARENTS = ['DefinedTermModel' => 'SchemaOrg\\Type\\DefinedTermModel'];
+    public const PARENTS = ['DefinedTermModel' => 'SchemaOrg\Type\DefinedTermModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

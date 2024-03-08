@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class EventModel
     public const DESCRIPTION = 'An event happening at a certain time and location, such as a concert, lecture, or festival. Ticketing information may be added via the [[offers]] property. Repeated events may be structured as separate Event objects.';
     public const LABEL = 'Event';
     public const NAME = 'schema:Event';
-    public const PARENTS = ['ThingModel' => 'SchemaOrg\\Type\\ThingModel'];
+    public const PARENTS = ['ThingModel' => 'SchemaOrg\Type\ThingModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

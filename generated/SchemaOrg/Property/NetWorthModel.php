@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class NetWorthModel
     public const DESCRIPTION = 'The total financial value of the person as calculated by subtracting assets from liabilities.';
     public const LABEL = 'netWorth';
     public const NAME = 'schema:netWorth';
-    public const VALUES = ['MonetaryAmountModel' => 'SchemaOrg\\Type\\MonetaryAmountModel', 'PriceSpecificationModel' => 'SchemaOrg\\Type\\PriceSpecificationModel'];
-    public const TYPES = ['Person' => 'SchemaOrg\\Type\\PersonModel'];
+    public const VALUES = ['MonetaryAmountModel' => 'SchemaOrg\Type\MonetaryAmountModel', 'PriceSpecificationModel' => 'SchemaOrg\Type\PriceSpecificationModel'];
+    public const TYPES = ['Person' => 'SchemaOrg\Type\PersonModel'];
 }

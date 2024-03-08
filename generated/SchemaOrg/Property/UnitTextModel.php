@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -19,6 +17,6 @@ final class UnitTextModel
 <a href=\'unitCode\'>unitCode</a>.';
     public const LABEL = 'unitText';
     public const NAME = 'schema:unitText';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['PropertyValue' => 'SchemaOrg\\Type\\PropertyValueModel', 'QuantitativeValue' => 'SchemaOrg\\Type\\QuantitativeValueModel', 'TypeAndQuantityNode' => 'SchemaOrg\\Type\\TypeAndQuantityNodeModel', 'UnitPriceSpecification' => 'SchemaOrg\\Type\\UnitPriceSpecificationModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['PropertyValue' => 'SchemaOrg\Type\PropertyValueModel', 'QuantitativeValue' => 'SchemaOrg\Type\QuantitativeValueModel', 'TypeAndQuantityNode' => 'SchemaOrg\Type\TypeAndQuantityNodeModel', 'UnitPriceSpecification' => 'SchemaOrg\Type\UnitPriceSpecificationModel'];
 }

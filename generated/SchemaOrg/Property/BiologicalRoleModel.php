@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BiologicalRoleModel
     public const DESCRIPTION = 'A role played by the BioChemEntity within a biological context.';
     public const LABEL = 'biologicalRole';
     public const NAME = 'schema:biologicalRole';
-    public const VALUES = ['DefinedTermModel' => 'SchemaOrg\\Type\\DefinedTermModel'];
-    public const TYPES = ['BioChemEntity' => 'SchemaOrg\\Type\\BioChemEntityModel'];
+    public const VALUES = ['DefinedTermModel' => 'SchemaOrg\Type\DefinedTermModel'];
+    public const TYPES = ['BioChemEntity' => 'SchemaOrg\Type\BioChemEntityModel'];
 }

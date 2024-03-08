@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -17,11 +15,11 @@ use SchemaOrg\Property;
 
 final class AccountingServiceModel
 {
-    public const DESCRIPTION = 'Accountancy business.\\n\\nAs a [[LocalBusiness]] it can be described as a [[provider]] of one or more [[Service]]\\(s).
+    public const DESCRIPTION = 'Accountancy business.\n\nAs a [[LocalBusiness]] it can be described as a [[provider]] of one or more [[Service]]\(s).
       ';
     public const LABEL = 'AccountingService';
     public const NAME = 'schema:AccountingService';
-    public const PARENTS = ['FinancialServiceModel' => 'SchemaOrg\\Type\\FinancialServiceModel'];
+    public const PARENTS = ['FinancialServiceModel' => 'SchemaOrg\Type\FinancialServiceModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

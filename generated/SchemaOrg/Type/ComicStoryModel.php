@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -22,7 +20,7 @@ final class ComicStoryModel
     	comics have at least two stories: a cover (ComicCoverArt) and an interior story.';
     public const LABEL = 'ComicStory';
     public const NAME = 'schema:ComicStory';
-    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

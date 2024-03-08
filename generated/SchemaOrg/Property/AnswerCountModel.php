@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AnswerCountModel
     public const DESCRIPTION = 'The number of answers this question has received.';
     public const LABEL = 'answerCount';
     public const NAME = 'schema:answerCount';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel'];
-    public const TYPES = ['Question' => 'SchemaOrg\\Type\\QuestionModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['Question' => 'SchemaOrg\Type\QuestionModel'];
 }

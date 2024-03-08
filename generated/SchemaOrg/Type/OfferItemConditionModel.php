@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class OfferItemConditionModel
     public const DESCRIPTION = 'A list of possible conditions for the item.';
     public const LABEL = 'OfferItemCondition';
     public const NAME = 'schema:OfferItemCondition';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['DamagedConditionModel' => 'EnumerationMember\\DamagedConditionModel', 'NewConditionModel' => 'EnumerationMember\\NewConditionModel', 'RefurbishedConditionModel' => 'EnumerationMember\\RefurbishedConditionModel', 'UsedConditionModel' => 'EnumerationMember\\UsedConditionModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['DamagedConditionModel' => 'EnumerationMember\DamagedConditionModel', 'NewConditionModel' => 'EnumerationMember\NewConditionModel', 'RefurbishedConditionModel' => 'EnumerationMember\RefurbishedConditionModel', 'UsedConditionModel' => 'EnumerationMember\UsedConditionModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

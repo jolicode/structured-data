@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class SizeGroupEnumerationModel
     public const DESCRIPTION = 'Enumerates common size groups for various product categories.';
     public const LABEL = 'SizeGroupEnumeration';
     public const NAME = 'schema:SizeGroupEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

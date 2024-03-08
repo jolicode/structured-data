@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InProductGroupWithIDModel
     public const DESCRIPTION = 'Indicates the [[productGroupID]] for a [[ProductGroup]] that this product [[isVariantOf]]. ';
     public const LABEL = 'inProductGroupWithID';
     public const NAME = 'schema:inProductGroupWithID';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Product' => 'SchemaOrg\\Type\\ProductModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Product' => 'SchemaOrg\Type\ProductModel'];
 }

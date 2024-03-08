@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TextValueModel
     public const DESCRIPTION = 'Text value being annotated.';
     public const LABEL = 'textValue';
     public const NAME = 'schema:textValue';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['PronounceableText' => 'SchemaOrg\\Type\\PronounceableTextModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['PronounceableText' => 'SchemaOrg\Type\PronounceableTextModel'];
 }

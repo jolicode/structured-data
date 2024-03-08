@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PostalCodeModel
     public const DESCRIPTION = 'The postal code. For example, 94043.';
     public const LABEL = 'postalCode';
     public const NAME = 'schema:postalCode';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['DefinedRegion' => 'SchemaOrg\\Type\\DefinedRegionModel', 'GeoCoordinates' => 'SchemaOrg\\Type\\GeoCoordinatesModel', 'GeoShape' => 'SchemaOrg\\Type\\GeoShapeModel', 'PostalAddress' => 'SchemaOrg\\Type\\PostalAddressModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['DefinedRegion' => 'SchemaOrg\Type\DefinedRegionModel', 'GeoCoordinates' => 'SchemaOrg\Type\GeoCoordinatesModel', 'GeoShape' => 'SchemaOrg\Type\GeoShapeModel', 'PostalAddress' => 'SchemaOrg\Type\PostalAddressModel'];
 }

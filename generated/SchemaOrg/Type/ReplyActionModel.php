@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -17,10 +15,10 @@ use SchemaOrg\Property;
 
 final class ReplyActionModel
 {
-    public const DESCRIPTION = 'The act of responding to a question/message asked/sent by the object. Related to [[AskAction]].\\n\\nRelated actions:\\n\\n* [[AskAction]]: Appears generally as an origin of a ReplyAction.';
+    public const DESCRIPTION = 'The act of responding to a question/message asked/sent by the object. Related to [[AskAction]].\n\nRelated actions:\n\n* [[AskAction]]: Appears generally as an origin of a ReplyAction.';
     public const LABEL = 'ReplyAction';
     public const NAME = 'schema:ReplyAction';
-    public const PARENTS = ['CommunicateActionModel' => 'SchemaOrg\\Type\\CommunicateActionModel'];
+    public const PARENTS = ['CommunicateActionModel' => 'SchemaOrg\Type\CommunicateActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ScholarlyArticleModel
     public const DESCRIPTION = 'A scholarly article.';
     public const LABEL = 'ScholarlyArticle';
     public const NAME = 'schema:ScholarlyArticle';
-    public const PARENTS = ['ArticleModel' => 'SchemaOrg\\Type\\ArticleModel'];
+    public const PARENTS = ['ArticleModel' => 'SchemaOrg\Type\ArticleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

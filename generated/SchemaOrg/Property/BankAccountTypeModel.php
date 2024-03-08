@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BankAccountTypeModel
     public const DESCRIPTION = 'The type of a bank account.';
     public const LABEL = 'bankAccountType';
     public const NAME = 'schema:bankAccountType';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['BankAccount' => 'SchemaOrg\\Type\\BankAccountModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['BankAccount' => 'SchemaOrg\Type\BankAccountModel'];
 }

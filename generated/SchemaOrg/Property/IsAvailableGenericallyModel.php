@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IsAvailableGenericallyModel
     public const DESCRIPTION = 'True if the drug is available in a generic form (regardless of name).';
     public const LABEL = 'isAvailableGenerically';
     public const NAME = 'schema:isAvailableGenerically';
-    public const VALUES = ['BooleanModel' => 'SchemaOrg\\Type\\BooleanModel'];
-    public const TYPES = ['Drug' => 'SchemaOrg\\Type\\DrugModel'];
+    public const VALUES = ['BooleanModel' => 'SchemaOrg\Type\BooleanModel'];
+    public const TYPES = ['Drug' => 'SchemaOrg\Type\DrugModel'];
 }

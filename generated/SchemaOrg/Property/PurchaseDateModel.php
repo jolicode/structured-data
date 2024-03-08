@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PurchaseDateModel
     public const DESCRIPTION = 'The date the item, e.g. vehicle, was purchased by the current owner.';
     public const LABEL = 'purchaseDate';
     public const NAME = 'schema:purchaseDate';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel'];
-    public const TYPES = ['Product' => 'SchemaOrg\\Type\\ProductModel', 'Vehicle' => 'SchemaOrg\\Type\\VehicleModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel'];
+    public const TYPES = ['Product' => 'SchemaOrg\Type\ProductModel', 'Vehicle' => 'SchemaOrg\Type\VehicleModel'];
 }

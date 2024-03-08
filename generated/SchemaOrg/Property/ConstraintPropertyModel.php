@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ConstraintPropertyModel
     public const DESCRIPTION = 'Indicates a property used as a constraint. For example, in the definition of a [[StatisticalVariable]]. The value is a property, either from within Schema.org or from other compatible (e.g. RDF) systems such as DataCommons.org or Wikidata.org. ';
     public const LABEL = 'constraintProperty';
     public const NAME = 'schema:constraintProperty';
-    public const VALUES = ['PropertyModel' => 'SchemaOrg\\Type\\PropertyModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['ConstraintNode' => 'SchemaOrg\\Type\\ConstraintNodeModel'];
+    public const VALUES = ['PropertyModel' => 'SchemaOrg\Type\PropertyModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['ConstraintNode' => 'SchemaOrg\Type\ConstraintNodeModel'];
 }

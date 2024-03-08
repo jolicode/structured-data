@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ItemConditionModel
     public const DESCRIPTION = 'A predefined value from OfferItemCondition specifying the condition of the product or service, or the products or services included in the offer. Also used for product return policies to specify the condition of products accepted for returns.';
     public const LABEL = 'itemCondition';
     public const NAME = 'schema:itemCondition';
-    public const VALUES = ['OfferItemConditionModel' => 'SchemaOrg\\Type\\OfferItemConditionModel'];
-    public const TYPES = ['Demand' => 'SchemaOrg\\Type\\DemandModel', 'MerchantReturnPolicy' => 'SchemaOrg\\Type\\MerchantReturnPolicyModel', 'Offer' => 'SchemaOrg\\Type\\OfferModel', 'Product' => 'SchemaOrg\\Type\\ProductModel'];
+    public const VALUES = ['OfferItemConditionModel' => 'SchemaOrg\Type\OfferItemConditionModel'];
+    public const TYPES = ['Demand' => 'SchemaOrg\Type\DemandModel', 'MerchantReturnPolicy' => 'SchemaOrg\Type\MerchantReturnPolicyModel', 'Offer' => 'SchemaOrg\Type\OfferModel', 'Product' => 'SchemaOrg\Type\ProductModel'];
 }

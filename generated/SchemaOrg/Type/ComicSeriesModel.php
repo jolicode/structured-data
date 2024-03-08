@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -22,7 +20,7 @@ final class ComicSeriesModel
     	Wanderer".';
     public const LABEL = 'ComicSeries';
     public const NAME = 'schema:ComicSeries';
-    public const PARENTS = ['PeriodicalModel' => 'SchemaOrg\\Type\\PeriodicalModel'];
+    public const PARENTS = ['PeriodicalModel' => 'SchemaOrg\Type\PeriodicalModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

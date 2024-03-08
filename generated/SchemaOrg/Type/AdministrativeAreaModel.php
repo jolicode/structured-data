@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class AdministrativeAreaModel
     public const DESCRIPTION = 'A geographical region, typically under the jurisdiction of a particular government.';
     public const LABEL = 'AdministrativeArea';
     public const NAME = 'schema:AdministrativeArea';
-    public const PARENTS = ['PlaceModel' => 'SchemaOrg\\Type\\PlaceModel'];
+    public const PARENTS = ['PlaceModel' => 'SchemaOrg\Type\PlaceModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

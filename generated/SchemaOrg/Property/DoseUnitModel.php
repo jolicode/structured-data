@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DoseUnitModel
     public const DESCRIPTION = 'The unit of the dose, e.g. \'mg\'.';
     public const LABEL = 'doseUnit';
     public const NAME = 'schema:doseUnit';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['DoseSchedule' => 'SchemaOrg\\Type\\DoseScheduleModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['DoseSchedule' => 'SchemaOrg\Type\DoseScheduleModel'];
 }

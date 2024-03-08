@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class NewspaperModel
     public const DESCRIPTION = 'A publication containing information about varied topics that are pertinent to general information, a geographic area, or a specific subject matter (i.e. business, culture, education). Often published daily.';
     public const LABEL = 'Newspaper';
     public const NAME = 'schema:Newspaper';
-    public const PARENTS = ['PeriodicalModel' => 'SchemaOrg\\Type\\PeriodicalModel'];
+    public const PARENTS = ['PeriodicalModel' => 'SchemaOrg\Type\PeriodicalModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

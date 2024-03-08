@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AccessCodeModel
     public const DESCRIPTION = 'Password, PIN, or access code needed for delivery (e.g. from a locker).';
     public const LABEL = 'accessCode';
     public const NAME = 'schema:accessCode';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['DeliveryEvent' => 'SchemaOrg\\Type\\DeliveryEventModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['DeliveryEvent' => 'SchemaOrg\Type\DeliveryEventModel'];
 }

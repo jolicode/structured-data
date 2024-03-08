@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MediaItemAppearanceModel
     public const DESCRIPTION = 'In the context of a [[MediaReview]], indicates specific media item(s) that are grouped using a [[MediaReviewItem]].';
     public const LABEL = 'mediaItemAppearance';
     public const NAME = 'schema:mediaItemAppearance';
-    public const VALUES = ['MediaObjectModel' => 'SchemaOrg\\Type\\MediaObjectModel'];
-    public const TYPES = ['MediaReviewItem' => 'SchemaOrg\\Type\\MediaReviewItemModel'];
+    public const VALUES = ['MediaObjectModel' => 'SchemaOrg\Type\MediaObjectModel'];
+    public const TYPES = ['MediaReviewItem' => 'SchemaOrg\Type\MediaReviewItemModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class UnsaturatedFatContentModel
     public const DESCRIPTION = 'The number of grams of unsaturated fat.';
     public const LABEL = 'unsaturatedFatContent';
     public const NAME = 'schema:unsaturatedFatContent';
-    public const VALUES = ['MassModel' => 'SchemaOrg\\Type\\MassModel'];
-    public const TYPES = ['NutritionInformation' => 'SchemaOrg\\Type\\NutritionInformationModel'];
+    public const VALUES = ['MassModel' => 'SchemaOrg\Type\MassModel'];
+    public const TYPES = ['NutritionInformation' => 'SchemaOrg\Type\NutritionInformationModel'];
 }

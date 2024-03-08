@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class WearableSizeSystemEnumerationModel
     public const DESCRIPTION = 'Enumerates common size systems specific for wearable products';
     public const LABEL = 'WearableSizeSystemEnumeration';
     public const NAME = 'schema:WearableSizeSystemEnumeration';
-    public const PARENTS = ['SizeSystemEnumerationModel' => 'SchemaOrg\\Type\\SizeSystemEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['WearableSizeSystemAUModel' => 'EnumerationMember\\WearableSizeSystemAUModel', 'WearableSizeSystemBRModel' => 'EnumerationMember\\WearableSizeSystemBRModel', 'WearableSizeSystemCNModel' => 'EnumerationMember\\WearableSizeSystemCNModel', 'WearableSizeSystemContinentalModel' => 'EnumerationMember\\WearableSizeSystemContinentalModel', 'WearableSizeSystemDEModel' => 'EnumerationMember\\WearableSizeSystemDEModel', 'WearableSizeSystemEN13402Model' => 'EnumerationMember\\WearableSizeSystemEN13402Model', 'WearableSizeSystemEuropeModel' => 'EnumerationMember\\WearableSizeSystemEuropeModel', 'WearableSizeSystemFRModel' => 'EnumerationMember\\WearableSizeSystemFRModel', 'WearableSizeSystemGS1Model' => 'EnumerationMember\\WearableSizeSystemGS1Model', 'WearableSizeSystemITModel' => 'EnumerationMember\\WearableSizeSystemITModel', 'WearableSizeSystemJPModel' => 'EnumerationMember\\WearableSizeSystemJPModel', 'WearableSizeSystemMXModel' => 'EnumerationMember\\WearableSizeSystemMXModel', 'WearableSizeSystemUKModel' => 'EnumerationMember\\WearableSizeSystemUKModel', 'WearableSizeSystemUSModel' => 'EnumerationMember\\WearableSizeSystemUSModel'];
+    public const PARENTS = ['SizeSystemEnumerationModel' => 'SchemaOrg\Type\SizeSystemEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['WearableSizeSystemAUModel' => 'EnumerationMember\WearableSizeSystemAUModel', 'WearableSizeSystemBRModel' => 'EnumerationMember\WearableSizeSystemBRModel', 'WearableSizeSystemCNModel' => 'EnumerationMember\WearableSizeSystemCNModel', 'WearableSizeSystemContinentalModel' => 'EnumerationMember\WearableSizeSystemContinentalModel', 'WearableSizeSystemDEModel' => 'EnumerationMember\WearableSizeSystemDEModel', 'WearableSizeSystemEN13402Model' => 'EnumerationMember\WearableSizeSystemEN13402Model', 'WearableSizeSystemEuropeModel' => 'EnumerationMember\WearableSizeSystemEuropeModel', 'WearableSizeSystemFRModel' => 'EnumerationMember\WearableSizeSystemFRModel', 'WearableSizeSystemGS1Model' => 'EnumerationMember\WearableSizeSystemGS1Model', 'WearableSizeSystemITModel' => 'EnumerationMember\WearableSizeSystemITModel', 'WearableSizeSystemJPModel' => 'EnumerationMember\WearableSizeSystemJPModel', 'WearableSizeSystemMXModel' => 'EnumerationMember\WearableSizeSystemMXModel', 'WearableSizeSystemUKModel' => 'EnumerationMember\WearableSizeSystemUKModel', 'WearableSizeSystemUSModel' => 'EnumerationMember\WearableSizeSystemUSModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

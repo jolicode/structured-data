@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -25,7 +23,7 @@ Examples of funding agencies include ERC, REA, NIH, Bill and Melinda Gates Found
     ';
     public const LABEL = 'FundingAgency';
     public const NAME = 'schema:FundingAgency';
-    public const PARENTS = ['ProjectModel' => 'SchemaOrg\\Type\\ProjectModel'];
+    public const PARENTS = ['ProjectModel' => 'SchemaOrg\Type\ProjectModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

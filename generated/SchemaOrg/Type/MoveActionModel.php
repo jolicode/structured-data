@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -17,10 +15,10 @@ use SchemaOrg\Property;
 
 final class MoveActionModel
 {
-    public const DESCRIPTION = 'The act of an agent relocating to a place.\\n\\nRelated actions:\\n\\n* [[TransferAction]]: Unlike TransferAction, the subject of the move is a living Person or Organization rather than an inanimate object.';
+    public const DESCRIPTION = 'The act of an agent relocating to a place.\n\nRelated actions:\n\n* [[TransferAction]]: Unlike TransferAction, the subject of the move is a living Person or Organization rather than an inanimate object.';
     public const LABEL = 'MoveAction';
     public const NAME = 'schema:MoveAction';
-    public const PARENTS = ['ActionModel' => 'SchemaOrg\\Type\\ActionModel'];
+    public const PARENTS = ['ActionModel' => 'SchemaOrg\Type\ActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -19,6 +17,6 @@ final class OffersModel
       ';
     public const LABEL = 'offers';
     public const NAME = 'schema:offers';
-    public const VALUES = ['DemandModel' => 'SchemaOrg\\Type\\DemandModel', 'OfferModel' => 'SchemaOrg\\Type\\OfferModel'];
-    public const TYPES = ['AggregateOffer' => 'SchemaOrg\\Type\\AggregateOfferModel', 'CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel', 'EducationalOccupationalProgram' => 'SchemaOrg\\Type\\EducationalOccupationalProgramModel', 'Event' => 'SchemaOrg\\Type\\EventModel', 'MenuItem' => 'SchemaOrg\\Type\\MenuItemModel', 'Product' => 'SchemaOrg\\Type\\ProductModel', 'Service' => 'SchemaOrg\\Type\\ServiceModel', 'Trip' => 'SchemaOrg\\Type\\TripModel'];
+    public const VALUES = ['DemandModel' => 'SchemaOrg\Type\DemandModel', 'OfferModel' => 'SchemaOrg\Type\OfferModel'];
+    public const TYPES = ['AggregateOffer' => 'SchemaOrg\Type\AggregateOfferModel', 'CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel', 'EducationalOccupationalProgram' => 'SchemaOrg\Type\EducationalOccupationalProgramModel', 'Event' => 'SchemaOrg\Type\EventModel', 'MenuItem' => 'SchemaOrg\Type\MenuItemModel', 'Product' => 'SchemaOrg\Type\ProductModel', 'Service' => 'SchemaOrg\Type\ServiceModel', 'Trip' => 'SchemaOrg\Type\TripModel'];
 }

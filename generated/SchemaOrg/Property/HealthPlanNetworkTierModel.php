@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HealthPlanNetworkTierModel
     public const DESCRIPTION = 'The tier(s) for this network.';
     public const LABEL = 'healthPlanNetworkTier';
     public const NAME = 'schema:healthPlanNetworkTier';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['HealthPlanNetwork' => 'SchemaOrg\\Type\\HealthPlanNetworkModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['HealthPlanNetwork' => 'SchemaOrg\Type\HealthPlanNetworkModel'];
 }

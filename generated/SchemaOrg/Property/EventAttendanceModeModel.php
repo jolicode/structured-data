@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class EventAttendanceModeModel
     public const DESCRIPTION = 'The eventAttendanceMode of an event indicates whether it occurs online, offline, or a mix.';
     public const LABEL = 'eventAttendanceMode';
     public const NAME = 'schema:eventAttendanceMode';
-    public const VALUES = ['EventAttendanceModeEnumerationModel' => 'SchemaOrg\\Type\\EventAttendanceModeEnumerationModel'];
-    public const TYPES = ['Event' => 'SchemaOrg\\Type\\EventModel'];
+    public const VALUES = ['EventAttendanceModeEnumerationModel' => 'SchemaOrg\Type\EventAttendanceModeEnumerationModel'];
+    public const TYPES = ['Event' => 'SchemaOrg\Type\EventModel'];
 }

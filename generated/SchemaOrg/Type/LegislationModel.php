@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class LegislationModel
     public const DESCRIPTION = 'A legal document such as an act, decree, bill, etc. (enforceable or not) or a component of a legal act (like an article).';
     public const LABEL = 'Legislation';
     public const NAME = 'schema:Legislation';
-    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

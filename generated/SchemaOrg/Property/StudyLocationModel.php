@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class StudyLocationModel
     public const DESCRIPTION = 'The location in which the study is taking/took place.';
     public const LABEL = 'studyLocation';
     public const NAME = 'schema:studyLocation';
-    public const VALUES = ['AdministrativeAreaModel' => 'SchemaOrg\\Type\\AdministrativeAreaModel'];
-    public const TYPES = ['MedicalStudy' => 'SchemaOrg\\Type\\MedicalStudyModel'];
+    public const VALUES = ['AdministrativeAreaModel' => 'SchemaOrg\Type\AdministrativeAreaModel'];
+    public const TYPES = ['MedicalStudy' => 'SchemaOrg\Type\MedicalStudyModel'];
 }

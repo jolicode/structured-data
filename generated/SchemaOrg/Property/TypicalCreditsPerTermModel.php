@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TypicalCreditsPerTermModel
     public const DESCRIPTION = 'The number of credits or units a full-time student would be expected to take in 1 term however \'term\' is defined by the institution.';
     public const LABEL = 'typicalCreditsPerTerm';
     public const NAME = 'schema:typicalCreditsPerTerm';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel', 'StructuredValueModel' => 'SchemaOrg\\Type\\StructuredValueModel'];
-    public const TYPES = ['EducationalOccupationalProgram' => 'SchemaOrg\\Type\\EducationalOccupationalProgramModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel', 'StructuredValueModel' => 'SchemaOrg\Type\StructuredValueModel'];
+    public const TYPES = ['EducationalOccupationalProgram' => 'SchemaOrg\Type\EducationalOccupationalProgramModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class WorkPresentedModel
     public const DESCRIPTION = 'The movie presented during this event.';
     public const LABEL = 'workPresented';
     public const NAME = 'schema:workPresented';
-    public const VALUES = ['MovieModel' => 'SchemaOrg\\Type\\MovieModel'];
-    public const TYPES = ['ScreeningEvent' => 'SchemaOrg\\Type\\ScreeningEventModel'];
+    public const VALUES = ['MovieModel' => 'SchemaOrg\Type\MovieModel'];
+    public const TYPES = ['ScreeningEvent' => 'SchemaOrg\Type\ScreeningEventModel'];
 }

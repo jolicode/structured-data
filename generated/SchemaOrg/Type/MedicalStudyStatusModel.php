@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class MedicalStudyStatusModel
     public const DESCRIPTION = 'The status of a medical study. Enumerated type.';
     public const LABEL = 'MedicalStudyStatus';
     public const NAME = 'schema:MedicalStudyStatus';
-    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\\Type\\MedicalEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['ActiveNotRecruitingModel' => 'EnumerationMember\\ActiveNotRecruitingModel', 'CompletedModel' => 'EnumerationMember\\CompletedModel', 'EnrollingByInvitationModel' => 'EnumerationMember\\EnrollingByInvitationModel', 'NotYetRecruitingModel' => 'EnumerationMember\\NotYetRecruitingModel', 'RecruitingModel' => 'EnumerationMember\\RecruitingModel', 'ResultsAvailableModel' => 'EnumerationMember\\ResultsAvailableModel', 'ResultsNotAvailableModel' => 'EnumerationMember\\ResultsNotAvailableModel', 'SuspendedModel' => 'EnumerationMember\\SuspendedModel', 'TerminatedModel' => 'EnumerationMember\\TerminatedModel', 'WithdrawnModel' => 'EnumerationMember\\WithdrawnModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\Type\MedicalEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['ActiveNotRecruitingModel' => 'EnumerationMember\ActiveNotRecruitingModel', 'CompletedModel' => 'EnumerationMember\CompletedModel', 'EnrollingByInvitationModel' => 'EnumerationMember\EnrollingByInvitationModel', 'NotYetRecruitingModel' => 'EnumerationMember\NotYetRecruitingModel', 'RecruitingModel' => 'EnumerationMember\RecruitingModel', 'ResultsAvailableModel' => 'EnumerationMember\ResultsAvailableModel', 'ResultsNotAvailableModel' => 'EnumerationMember\ResultsNotAvailableModel', 'SuspendedModel' => 'EnumerationMember\SuspendedModel', 'TerminatedModel' => 'EnumerationMember\TerminatedModel', 'WithdrawnModel' => 'EnumerationMember\WithdrawnModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

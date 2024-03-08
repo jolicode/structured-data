@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AssemblyVersionModel
     public const DESCRIPTION = 'Associated product/technology version. E.g., .NET Framework 4.5.';
     public const LABEL = 'assemblyVersion';
     public const NAME = 'schema:assemblyVersion';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['APIReference' => 'SchemaOrg\\Type\\APIReferenceModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['APIReference' => 'SchemaOrg\Type\APIReferenceModel'];
 }

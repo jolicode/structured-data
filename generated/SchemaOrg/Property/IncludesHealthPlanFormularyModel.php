@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IncludesHealthPlanFormularyModel
     public const DESCRIPTION = 'Formularies covered by this plan.';
     public const LABEL = 'includesHealthPlanFormulary';
     public const NAME = 'schema:includesHealthPlanFormulary';
-    public const VALUES = ['HealthPlanFormularyModel' => 'SchemaOrg\\Type\\HealthPlanFormularyModel'];
-    public const TYPES = ['HealthInsurancePlan' => 'SchemaOrg\\Type\\HealthInsurancePlanModel'];
+    public const VALUES = ['HealthPlanFormularyModel' => 'SchemaOrg\Type\HealthPlanFormularyModel'];
+    public const TYPES = ['HealthInsurancePlan' => 'SchemaOrg\Type\HealthInsurancePlanModel'];
 }

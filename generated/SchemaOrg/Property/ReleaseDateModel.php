@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ReleaseDateModel
     public const DESCRIPTION = 'The release date of a product or product model. This can be used to distinguish the exact variant of a product.';
     public const LABEL = 'releaseDate';
     public const NAME = 'schema:releaseDate';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel'];
-    public const TYPES = ['Product' => 'SchemaOrg\\Type\\ProductModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel'];
+    public const TYPES = ['Product' => 'SchemaOrg\Type\ProductModel'];
 }

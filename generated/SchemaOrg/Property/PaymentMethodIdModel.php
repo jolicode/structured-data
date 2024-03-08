@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PaymentMethodIdModel
     public const DESCRIPTION = 'An identifier for the method of payment used (e.g. the last 4 digits of the credit card).';
     public const LABEL = 'paymentMethodId';
     public const NAME = 'schema:paymentMethodId';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Invoice' => 'SchemaOrg\\Type\\InvoiceModel', 'Order' => 'SchemaOrg\\Type\\OrderModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Invoice' => 'SchemaOrg\Type\InvoiceModel', 'Order' => 'SchemaOrg\Type\OrderModel'];
 }

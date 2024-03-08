@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ConnectedToModel
     public const DESCRIPTION = 'Other anatomical structures to which this structure is connected.';
     public const LABEL = 'connectedTo';
     public const NAME = 'schema:connectedTo';
-    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\\Type\\AnatomicalStructureModel'];
-    public const TYPES = ['AnatomicalStructure' => 'SchemaOrg\\Type\\AnatomicalStructureModel'];
+    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\Type\AnatomicalStructureModel'];
+    public const TYPES = ['AnatomicalStructure' => 'SchemaOrg\Type\AnatomicalStructureModel'];
 }

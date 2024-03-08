@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MedicalBusinessModel
     public const DESCRIPTION = 'A particular physical or virtual business of an organization for medical purposes. Examples of MedicalBusiness include different businesses run by health professionals.';
     public const LABEL = 'MedicalBusiness';
     public const NAME = 'schema:MedicalBusiness';
-    public const PARENTS = ['LocalBusinessModel' => 'SchemaOrg\\Type\\LocalBusinessModel'];
+    public const PARENTS = ['LocalBusinessModel' => 'SchemaOrg\Type\LocalBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CvdNumVentModel
     public const DESCRIPTION = 'numvent - MECHANICAL VENTILATORS: Total number of ventilators available.';
     public const LABEL = 'cvdNumVent';
     public const NAME = 'schema:cvdNumVent';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
-    public const TYPES = ['CDCPMDRecord' => 'SchemaOrg\\Type\\CDCPMDRecordModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['CDCPMDRecord' => 'SchemaOrg\Type\CDCPMDRecordModel'];
 }

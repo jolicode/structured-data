@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RecourseLoanModel
     public const DESCRIPTION = 'The only way you get the money back in the event of default is the security. Recourse is where you still have the opportunity to go back to the borrower for the rest of the money.';
     public const LABEL = 'recourseLoan';
     public const NAME = 'schema:recourseLoan';
-    public const VALUES = ['BooleanModel' => 'SchemaOrg\\Type\\BooleanModel'];
-    public const TYPES = ['LoanOrCredit' => 'SchemaOrg\\Type\\LoanOrCreditModel'];
+    public const VALUES = ['BooleanModel' => 'SchemaOrg\Type\BooleanModel'];
+    public const TYPES = ['LoanOrCredit' => 'SchemaOrg\Type\LoanOrCreditModel'];
 }

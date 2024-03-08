@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class LakeBodyOfWaterModel
     public const DESCRIPTION = 'A lake (for example, Lake Pontrachain).';
     public const LABEL = 'LakeBodyOfWater';
     public const NAME = 'schema:LakeBodyOfWater';
-    public const PARENTS = ['BodyOfWaterModel' => 'SchemaOrg\\Type\\BodyOfWaterModel'];
+    public const PARENTS = ['BodyOfWaterModel' => 'SchemaOrg\Type\BodyOfWaterModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

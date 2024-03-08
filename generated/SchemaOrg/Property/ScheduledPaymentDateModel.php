@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ScheduledPaymentDateModel
     public const DESCRIPTION = 'The date the invoice is scheduled to be paid.';
     public const LABEL = 'scheduledPaymentDate';
     public const NAME = 'schema:scheduledPaymentDate';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel'];
-    public const TYPES = ['Invoice' => 'SchemaOrg\\Type\\InvoiceModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel'];
+    public const TYPES = ['Invoice' => 'SchemaOrg\Type\InvoiceModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AnswerExplanationModel
     public const DESCRIPTION = 'A step-by-step or full explanation about Answer. Can outline how this Answer was achieved or contain more broad clarification or statement about it. ';
     public const LABEL = 'answerExplanation';
     public const NAME = 'schema:answerExplanation';
-    public const VALUES = ['CommentModel' => 'SchemaOrg\\Type\\CommentModel', 'WebContentModel' => 'SchemaOrg\\Type\\WebContentModel'];
-    public const TYPES = ['Answer' => 'SchemaOrg\\Type\\AnswerModel'];
+    public const VALUES = ['CommentModel' => 'SchemaOrg\Type\CommentModel', 'WebContentModel' => 'SchemaOrg\Type\WebContentModel'];
+    public const TYPES = ['Answer' => 'SchemaOrg\Type\AnswerModel'];
 }

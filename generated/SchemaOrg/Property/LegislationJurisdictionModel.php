@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LegislationJurisdictionModel
     public const DESCRIPTION = 'The jurisdiction from which the legislation originates.';
     public const LABEL = 'legislationJurisdiction';
     public const NAME = 'schema:legislationJurisdiction';
-    public const VALUES = ['AdministrativeAreaModel' => 'SchemaOrg\\Type\\AdministrativeAreaModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Legislation' => 'SchemaOrg\\Type\\LegislationModel'];
+    public const VALUES = ['AdministrativeAreaModel' => 'SchemaOrg\Type\AdministrativeAreaModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Legislation' => 'SchemaOrg\Type\LegislationModel'];
 }

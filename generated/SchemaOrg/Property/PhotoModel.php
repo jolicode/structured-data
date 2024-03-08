@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PhotoModel
     public const DESCRIPTION = 'A photograph of this place.';
     public const LABEL = 'photo';
     public const NAME = 'schema:photo';
-    public const VALUES = ['ImageObjectModel' => 'SchemaOrg\\Type\\ImageObjectModel', 'PhotographModel' => 'SchemaOrg\\Type\\PhotographModel'];
-    public const TYPES = ['Place' => 'SchemaOrg\\Type\\PlaceModel'];
+    public const VALUES = ['ImageObjectModel' => 'SchemaOrg\Type\ImageObjectModel', 'PhotographModel' => 'SchemaOrg\Type\PhotographModel'];
+    public const TYPES = ['Place' => 'SchemaOrg\Type\PlaceModel'];
 }

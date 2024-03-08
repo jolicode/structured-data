@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ParentAudienceModel
     public const DESCRIPTION = 'A set of characteristics describing parents, who can be interested in viewing some content.';
     public const LABEL = 'ParentAudience';
     public const NAME = 'schema:ParentAudience';
-    public const PARENTS = ['PeopleAudienceModel' => 'SchemaOrg\\Type\\PeopleAudienceModel'];
+    public const PARENTS = ['PeopleAudienceModel' => 'SchemaOrg\Type\PeopleAudienceModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

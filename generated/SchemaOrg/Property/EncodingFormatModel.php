@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -22,6 +20,6 @@ In cases where a [[CreativeWork]] has several media type representations, [[enco
 Unregistered or niche encoding and file formats can be indicated instead via the most appropriate URL, e.g. defining Web page or a Wikipedia/Wikidata entry.';
     public const LABEL = 'encodingFormat';
     public const NAME = 'schema:encodingFormat';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel', 'MediaObject' => 'SchemaOrg\\Type\\MediaObjectModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel', 'MediaObject' => 'SchemaOrg\Type\MediaObjectModel'];
 }

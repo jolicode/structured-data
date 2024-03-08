@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LegalNameModel
     public const DESCRIPTION = 'The official name of the organization, e.g. the registered company name.';
     public const LABEL = 'legalName';
     public const NAME = 'schema:legalName';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Organization' => 'SchemaOrg\\Type\\OrganizationModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Organization' => 'SchemaOrg\Type\OrganizationModel'];
 }

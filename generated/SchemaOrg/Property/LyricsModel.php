@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LyricsModel
     public const DESCRIPTION = 'The words in the song.';
     public const LABEL = 'lyrics';
     public const NAME = 'schema:lyrics';
-    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel'];
-    public const TYPES = ['MusicComposition' => 'SchemaOrg\\Type\\MusicCompositionModel'];
+    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel'];
+    public const TYPES = ['MusicComposition' => 'SchemaOrg\Type\MusicCompositionModel'];
 }

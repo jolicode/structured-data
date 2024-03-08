@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DiscoverActionModel
     public const DESCRIPTION = 'The act of discovering/finding an object.';
     public const LABEL = 'DiscoverAction';
     public const NAME = 'schema:DiscoverAction';
-    public const PARENTS = ['FindActionModel' => 'SchemaOrg\\Type\\FindActionModel'];
+    public const PARENTS = ['FindActionModel' => 'SchemaOrg\Type\FindActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class BodyOfWaterModel
     public const DESCRIPTION = 'A body of water, such as a sea, ocean, or lake.';
     public const LABEL = 'BodyOfWater';
     public const NAME = 'schema:BodyOfWater';
-    public const PARENTS = ['LandformModel' => 'SchemaOrg\\Type\\LandformModel'];
+    public const PARENTS = ['LandformModel' => 'SchemaOrg\Type\LandformModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

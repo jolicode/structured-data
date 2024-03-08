@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InventoryLevelModel
     public const DESCRIPTION = 'The current approximate inventory level for the item or items.';
     public const LABEL = 'inventoryLevel';
     public const NAME = 'schema:inventoryLevel';
-    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['Demand' => 'SchemaOrg\\Type\\DemandModel', 'Offer' => 'SchemaOrg\\Type\\OfferModel', 'SomeProducts' => 'SchemaOrg\\Type\\SomeProductsModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['Demand' => 'SchemaOrg\Type\DemandModel', 'Offer' => 'SchemaOrg\Type\OfferModel', 'SomeProducts' => 'SchemaOrg\Type\SomeProductsModel'];
 }

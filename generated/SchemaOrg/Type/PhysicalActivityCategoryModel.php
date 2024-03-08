@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class PhysicalActivityCategoryModel
     public const DESCRIPTION = 'Categories of physical activity, organized by physiologic classification.';
     public const LABEL = 'PhysicalActivityCategory';
     public const NAME = 'schema:PhysicalActivityCategory';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['AerobicActivityModel' => 'EnumerationMember\\AerobicActivityModel', 'AnaerobicActivityModel' => 'EnumerationMember\\AnaerobicActivityModel', 'BalanceModel' => 'EnumerationMember\\BalanceModel', 'FlexibilityModel' => 'EnumerationMember\\FlexibilityModel', 'LeisureTimeActivityModel' => 'EnumerationMember\\LeisureTimeActivityModel', 'OccupationalActivityModel' => 'EnumerationMember\\OccupationalActivityModel', 'StrengthTrainingModel' => 'EnumerationMember\\StrengthTrainingModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['AerobicActivityModel' => 'EnumerationMember\AerobicActivityModel', 'AnaerobicActivityModel' => 'EnumerationMember\AnaerobicActivityModel', 'BalanceModel' => 'EnumerationMember\BalanceModel', 'FlexibilityModel' => 'EnumerationMember\FlexibilityModel', 'LeisureTimeActivityModel' => 'EnumerationMember\LeisureTimeActivityModel', 'OccupationalActivityModel' => 'EnumerationMember\OccupationalActivityModel', 'StrengthTrainingModel' => 'EnumerationMember\StrengthTrainingModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

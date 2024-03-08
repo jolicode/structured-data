@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LearningResourceTypeModel
     public const DESCRIPTION = 'The predominant type or kind characterizing the learning resource. For example, \'presentation\', \'handout\'.';
     public const LABEL = 'learningResourceType';
     public const NAME = 'schema:learningResourceType';
-    public const VALUES = ['DefinedTermModel' => 'SchemaOrg\\Type\\DefinedTermModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel', 'LearningResource' => 'SchemaOrg\\Type\\LearningResourceModel'];
+    public const VALUES = ['DefinedTermModel' => 'SchemaOrg\Type\DefinedTermModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel', 'LearningResource' => 'SchemaOrg\Type\LearningResourceModel'];
 }

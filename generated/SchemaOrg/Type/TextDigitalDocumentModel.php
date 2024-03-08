@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class TextDigitalDocumentModel
     public const DESCRIPTION = 'A file composed primarily of text.';
     public const LABEL = 'TextDigitalDocument';
     public const NAME = 'schema:TextDigitalDocument';
-    public const PARENTS = ['DigitalDocumentModel' => 'SchemaOrg\\Type\\DigitalDocumentModel'];
+    public const PARENTS = ['DigitalDocumentModel' => 'SchemaOrg\Type\DigitalDocumentModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CommentTimeModel
     public const DESCRIPTION = 'The time at which the UserComment was made.';
     public const LABEL = 'commentTime';
     public const NAME = 'schema:commentTime';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel', 'DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel'];
-    public const TYPES = ['UserComments' => 'SchemaOrg\\Type\\UserCommentsModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel', 'DateTimeModel' => 'SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['UserComments' => 'SchemaOrg\Type\UserCommentsModel'];
 }

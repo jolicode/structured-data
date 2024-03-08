@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ReviewModel
     public const DESCRIPTION = 'A review of the item.';
     public const LABEL = 'review';
     public const NAME = 'schema:review';
-    public const VALUES = ['ReviewModel' => 'SchemaOrg\\Type\\ReviewModel'];
-    public const TYPES = ['Brand' => 'SchemaOrg\\Type\\BrandModel', 'CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel', 'Event' => 'SchemaOrg\\Type\\EventModel', 'Offer' => 'SchemaOrg\\Type\\OfferModel', 'Organization' => 'SchemaOrg\\Type\\OrganizationModel', 'Place' => 'SchemaOrg\\Type\\PlaceModel', 'Product' => 'SchemaOrg\\Type\\ProductModel', 'Service' => 'SchemaOrg\\Type\\ServiceModel'];
+    public const VALUES = ['ReviewModel' => 'SchemaOrg\Type\ReviewModel'];
+    public const TYPES = ['Brand' => 'SchemaOrg\Type\BrandModel', 'CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel', 'Event' => 'SchemaOrg\Type\EventModel', 'Offer' => 'SchemaOrg\Type\OfferModel', 'Organization' => 'SchemaOrg\Type\OrganizationModel', 'Place' => 'SchemaOrg\Type\PlaceModel', 'Product' => 'SchemaOrg\Type\ProductModel', 'Service' => 'SchemaOrg\Type\ServiceModel'];
 }

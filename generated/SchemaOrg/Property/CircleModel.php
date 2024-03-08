@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CircleModel
     public const DESCRIPTION = 'A circle is the circular region of a specified radius centered at a specified latitude and longitude. A circle is expressed as a pair followed by a radius in meters.';
     public const LABEL = 'circle';
     public const NAME = 'schema:circle';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['GeoShape' => 'SchemaOrg\\Type\\GeoShapeModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['GeoShape' => 'SchemaOrg\Type\GeoShapeModel'];
 }

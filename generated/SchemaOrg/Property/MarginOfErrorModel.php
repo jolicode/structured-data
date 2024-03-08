@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MarginOfErrorModel
     public const DESCRIPTION = 'A [[marginOfError]] for an [[Observation]].';
     public const LABEL = 'marginOfError';
     public const NAME = 'schema:marginOfError';
-    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['Observation' => 'SchemaOrg\\Type\\ObservationModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['Observation' => 'SchemaOrg\Type\ObservationModel'];
 }

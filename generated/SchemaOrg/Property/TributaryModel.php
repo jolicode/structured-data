@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TributaryModel
     public const DESCRIPTION = 'The anatomical or organ system that the vein flows into; a larger structure that the vein connects to.';
     public const LABEL = 'tributary';
     public const NAME = 'schema:tributary';
-    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\\Type\\AnatomicalStructureModel'];
-    public const TYPES = ['Vein' => 'SchemaOrg\\Type\\VeinModel'];
+    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\Type\AnatomicalStructureModel'];
+    public const TYPES = ['Vein' => 'SchemaOrg\Type\VeinModel'];
 }

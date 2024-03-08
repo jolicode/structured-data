@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class NumberOfBedsModel
     public const DESCRIPTION = 'The quantity of the given bed type available in the HotelRoom, Suite, House, or Apartment.';
     public const LABEL = 'numberOfBeds';
     public const NAME = 'schema:numberOfBeds';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
-    public const TYPES = ['BedDetails' => 'SchemaOrg\\Type\\BedDetailsModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['BedDetails' => 'SchemaOrg\Type\BedDetailsModel'];
 }

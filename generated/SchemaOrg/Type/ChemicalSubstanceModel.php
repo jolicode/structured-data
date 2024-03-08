@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ChemicalSubstanceModel
     public const DESCRIPTION = 'A chemical substance is \'a portion of matter of constant composition, composed of molecular entities of the same type or of different types\' (source: [ChEBI:59999](https://www.ebi.ac.uk/chebi/searchId.do?chebiId=59999)).';
     public const LABEL = 'ChemicalSubstance';
     public const NAME = 'schema:ChemicalSubstance';
-    public const PARENTS = ['BioChemEntityModel' => 'SchemaOrg\\Type\\BioChemEntityModel'];
+    public const PARENTS = ['BioChemEntityModel' => 'SchemaOrg\Type\BioChemEntityModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

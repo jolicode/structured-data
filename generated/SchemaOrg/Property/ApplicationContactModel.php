@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ApplicationContactModel
     public const DESCRIPTION = 'Contact details for further information relevant to this job posting.';
     public const LABEL = 'applicationContact';
     public const NAME = 'schema:applicationContact';
-    public const VALUES = ['ContactPointModel' => 'SchemaOrg\\Type\\ContactPointModel'];
-    public const TYPES = ['JobPosting' => 'SchemaOrg\\Type\\JobPostingModel'];
+    public const VALUES = ['ContactPointModel' => 'SchemaOrg\Type\ContactPointModel'];
+    public const TYPES = ['JobPosting' => 'SchemaOrg\Type\JobPostingModel'];
 }

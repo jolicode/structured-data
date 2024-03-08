@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MedicalIndicationModel
     public const DESCRIPTION = 'A condition or factor that indicates use of a medical therapy, including signs, symptoms, risk factors, anatomical states, etc.';
     public const LABEL = 'MedicalIndication';
     public const NAME = 'schema:MedicalIndication';
-    public const PARENTS = ['MedicalEntityModel' => 'SchemaOrg\\Type\\MedicalEntityModel'];
+    public const PARENTS = ['MedicalEntityModel' => 'SchemaOrg\Type\MedicalEntityModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

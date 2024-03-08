@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class GuidelineDateModel
     public const DESCRIPTION = 'Date on which this guideline\'s recommendation was made.';
     public const LABEL = 'guidelineDate';
     public const NAME = 'schema:guidelineDate';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel'];
-    public const TYPES = ['MedicalGuideline' => 'SchemaOrg\\Type\\MedicalGuidelineModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel'];
+    public const TYPES = ['MedicalGuideline' => 'SchemaOrg\Type\MedicalGuidelineModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AccommodationFloorPlanModel
     public const DESCRIPTION = 'A floorplan of some [[Accommodation]].';
     public const LABEL = 'accommodationFloorPlan';
     public const NAME = 'schema:accommodationFloorPlan';
-    public const VALUES = ['FloorPlanModel' => 'SchemaOrg\\Type\\FloorPlanModel'];
-    public const TYPES = ['Accommodation' => 'SchemaOrg\\Type\\AccommodationModel', 'Residence' => 'SchemaOrg\\Type\\ResidenceModel'];
+    public const VALUES = ['FloorPlanModel' => 'SchemaOrg\Type\FloorPlanModel'];
+    public const TYPES = ['Accommodation' => 'SchemaOrg\Type\AccommodationModel', 'Residence' => 'SchemaOrg\Type\ResidenceModel'];
 }

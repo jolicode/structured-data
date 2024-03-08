@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MapTypeModel
     public const DESCRIPTION = 'Indicates the kind of Map, from the MapCategoryType Enumeration.';
     public const LABEL = 'mapType';
     public const NAME = 'schema:mapType';
-    public const VALUES = ['MapCategoryTypeModel' => 'SchemaOrg\\Type\\MapCategoryTypeModel'];
-    public const TYPES = ['Map' => 'SchemaOrg\\Type\\MapModel'];
+    public const VALUES = ['MapCategoryTypeModel' => 'SchemaOrg\Type\MapCategoryTypeModel'];
+    public const TYPES = ['Map' => 'SchemaOrg\Type\MapModel'];
 }

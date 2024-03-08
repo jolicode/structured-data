@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class CreateActionModel
     public const DESCRIPTION = 'The act of deliberately creating/producing/generating/building a result out of the agent.';
     public const LABEL = 'CreateAction';
     public const NAME = 'schema:CreateAction';
-    public const PARENTS = ['ActionModel' => 'SchemaOrg\\Type\\ActionModel'];
+    public const PARENTS = ['ActionModel' => 'SchemaOrg\Type\ActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

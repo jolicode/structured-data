@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -19,6 +17,6 @@ final class ClaimInterpreterModel
     sed to indicate a claim contained, implied or refined from the content of a [[MediaObject]].';
     public const LABEL = 'claimInterpreter';
     public const NAME = 'schema:claimInterpreter';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel', 'PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['Claim' => 'SchemaOrg\\Type\\ClaimModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['Claim' => 'SchemaOrg\Type\ClaimModel'];
 }

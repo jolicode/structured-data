@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class FunctionalClassModel
     public const DESCRIPTION = 'The degree of mobility the joint allows.';
     public const LABEL = 'functionalClass';
     public const NAME = 'schema:functionalClass';
-    public const VALUES = ['MedicalEntityModel' => 'SchemaOrg\\Type\\MedicalEntityModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Joint' => 'SchemaOrg\\Type\\JointModel'];
+    public const VALUES = ['MedicalEntityModel' => 'SchemaOrg\Type\MedicalEntityModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Joint' => 'SchemaOrg\Type\JointModel'];
 }

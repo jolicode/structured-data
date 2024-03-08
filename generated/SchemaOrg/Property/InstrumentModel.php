@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InstrumentModel
     public const DESCRIPTION = 'The object that helped the agent perform the action. E.g. John wrote a book with *a pen*.';
     public const LABEL = 'instrument';
     public const NAME = 'schema:instrument';
-    public const VALUES = ['ThingModel' => 'SchemaOrg\\Type\\ThingModel'];
-    public const TYPES = ['Action' => 'SchemaOrg\\Type\\ActionModel'];
+    public const VALUES = ['ThingModel' => 'SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['Action' => 'SchemaOrg\Type\ActionModel'];
 }

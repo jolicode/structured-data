@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MolecularFormulaModel
     public const DESCRIPTION = 'The empirical formula is the simplest whole number ratio of all the atoms in a molecule.';
     public const LABEL = 'molecularFormula';
     public const NAME = 'schema:molecularFormula';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MolecularEntity' => 'SchemaOrg\\Type\\MolecularEntityModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MolecularEntity' => 'SchemaOrg\Type\MolecularEntityModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ComicCoverArtModel
     public const DESCRIPTION = 'The artwork on the cover of a comic.';
     public const LABEL = 'ComicCoverArt';
     public const NAME = 'schema:ComicCoverArt';
-    public const PARENTS = ['ComicStoryModel' => 'SchemaOrg\\Type\\ComicStoryModel', 'CoverArtModel' => 'SchemaOrg\\Type\\CoverArtModel'];
+    public const PARENTS = ['ComicStoryModel' => 'SchemaOrg\Type\ComicStoryModel', 'CoverArtModel' => 'SchemaOrg\Type\CoverArtModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

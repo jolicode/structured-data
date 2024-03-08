@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MedicalIntangibleModel
     public const DESCRIPTION = 'A utility class that serves as the umbrella for a number of \'intangible\' things in the medical space.';
     public const LABEL = 'MedicalIntangible';
     public const NAME = 'schema:MedicalIntangible';
-    public const PARENTS = ['MedicalEntityModel' => 'SchemaOrg\\Type\\MedicalEntityModel'];
+    public const PARENTS = ['MedicalEntityModel' => 'SchemaOrg\Type\MedicalEntityModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

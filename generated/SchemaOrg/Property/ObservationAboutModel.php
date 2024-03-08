@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ObservationAboutModel
     public const DESCRIPTION = 'The [[observationAbout]] property identifies an entity, often a [[Place]], associated with an [[Observation]].';
     public const LABEL = 'observationAbout';
     public const NAME = 'schema:observationAbout';
-    public const VALUES = ['PlaceModel' => 'SchemaOrg\\Type\\PlaceModel', 'ThingModel' => 'SchemaOrg\\Type\\ThingModel'];
-    public const TYPES = ['Observation' => 'SchemaOrg\\Type\\ObservationModel'];
+    public const VALUES = ['PlaceModel' => 'SchemaOrg\Type\PlaceModel', 'ThingModel' => 'SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['Observation' => 'SchemaOrg\Type\ObservationModel'];
 }

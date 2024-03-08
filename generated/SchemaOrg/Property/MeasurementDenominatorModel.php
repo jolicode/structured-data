@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MeasurementDenominatorModel
     public const DESCRIPTION = 'Identifies the denominator variable when an observation represents a ratio or percentage.';
     public const LABEL = 'measurementDenominator';
     public const NAME = 'schema:measurementDenominator';
-    public const VALUES = ['StatisticalVariableModel' => 'SchemaOrg\\Type\\StatisticalVariableModel'];
-    public const TYPES = ['Observation' => 'SchemaOrg\\Type\\ObservationModel', 'StatisticalVariable' => 'SchemaOrg\\Type\\StatisticalVariableModel'];
+    public const VALUES = ['StatisticalVariableModel' => 'SchemaOrg\Type\StatisticalVariableModel'];
+    public const TYPES = ['Observation' => 'SchemaOrg\Type\ObservationModel', 'StatisticalVariable' => 'SchemaOrg\Type\StatisticalVariableModel'];
 }

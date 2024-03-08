@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BroadcastOfEventModel
     public const DESCRIPTION = 'The event being broadcast such as a sporting event or awards ceremony.';
     public const LABEL = 'broadcastOfEvent';
     public const NAME = 'schema:broadcastOfEvent';
-    public const VALUES = ['EventModel' => 'SchemaOrg\\Type\\EventModel'];
-    public const TYPES = ['BroadcastEvent' => 'SchemaOrg\\Type\\BroadcastEventModel'];
+    public const VALUES = ['EventModel' => 'SchemaOrg\Type\EventModel'];
+    public const TYPES = ['BroadcastEvent' => 'SchemaOrg\Type\BroadcastEventModel'];
 }

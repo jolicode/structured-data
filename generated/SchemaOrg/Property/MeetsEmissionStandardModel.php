@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MeetsEmissionStandardModel
     public const DESCRIPTION = 'Indicates that the vehicle meets the respective emission standard.';
     public const LABEL = 'meetsEmissionStandard';
     public const NAME = 'schema:meetsEmissionStandard';
-    public const VALUES = ['QualitativeValueModel' => 'SchemaOrg\\Type\\QualitativeValueModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['Vehicle' => 'SchemaOrg\\Type\\VehicleModel'];
+    public const VALUES = ['QualitativeValueModel' => 'SchemaOrg\Type\QualitativeValueModel', 'TextModel' => 'SchemaOrg\Type\TextModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['Vehicle' => 'SchemaOrg\Type\VehicleModel'];
 }

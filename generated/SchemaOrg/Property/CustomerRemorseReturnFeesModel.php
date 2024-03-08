@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CustomerRemorseReturnFeesModel
     public const DESCRIPTION = 'The type of return fees if the product is returned due to customer remorse.';
     public const LABEL = 'customerRemorseReturnFees';
     public const NAME = 'schema:customerRemorseReturnFees';
-    public const VALUES = ['ReturnFeesEnumerationModel' => 'SchemaOrg\\Type\\ReturnFeesEnumerationModel'];
-    public const TYPES = ['MerchantReturnPolicy' => 'SchemaOrg\\Type\\MerchantReturnPolicyModel'];
+    public const VALUES = ['ReturnFeesEnumerationModel' => 'SchemaOrg\Type\ReturnFeesEnumerationModel'];
+    public const TYPES = ['MerchantReturnPolicy' => 'SchemaOrg\Type\MerchantReturnPolicyModel'];
 }

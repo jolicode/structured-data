@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CharacterAttributeModel
     public const DESCRIPTION = 'A piece of data that represents a particular aspect of a fictional character (skill, power, character points, advantage, disadvantage).';
     public const LABEL = 'characterAttribute';
     public const NAME = 'schema:characterAttribute';
-    public const VALUES = ['ThingModel' => 'SchemaOrg\\Type\\ThingModel'];
-    public const TYPES = ['Game' => 'SchemaOrg\\Type\\GameModel', 'VideoGameSeries' => 'SchemaOrg\\Type\\VideoGameSeriesModel'];
+    public const VALUES = ['ThingModel' => 'SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['Game' => 'SchemaOrg\Type\GameModel', 'VideoGameSeries' => 'SchemaOrg\Type\VideoGameSeriesModel'];
 }

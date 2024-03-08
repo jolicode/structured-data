@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DatasetTimeIntervalModel
     public const DESCRIPTION = 'The range of temporal applicability of a dataset, e.g. for a 2011 census dataset, the year 2011 (in ISO 8601 time interval format).';
     public const LABEL = 'datasetTimeInterval';
     public const NAME = 'schema:datasetTimeInterval';
-    public const VALUES = ['DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel'];
-    public const TYPES = ['Dataset' => 'SchemaOrg\\Type\\DatasetModel'];
+    public const VALUES = ['DateTimeModel' => 'SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['Dataset' => 'SchemaOrg\Type\DatasetModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class SingleFamilyResidenceModel
     public const DESCRIPTION = 'Residence type: Single-family home.';
     public const LABEL = 'SingleFamilyResidence';
     public const NAME = 'schema:SingleFamilyResidence';
-    public const PARENTS = ['HouseModel' => 'SchemaOrg\\Type\\HouseModel'];
+    public const PARENTS = ['HouseModel' => 'SchemaOrg\Type\HouseModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

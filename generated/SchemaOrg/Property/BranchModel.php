@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BranchModel
     public const DESCRIPTION = 'The branches that delineate from the nerve bundle. Not to be confused with [[branchOf]].';
     public const LABEL = 'branch';
     public const NAME = 'schema:branch';
-    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\\Type\\AnatomicalStructureModel'];
-    public const TYPES = ['Nerve' => 'SchemaOrg\\Type\\NerveModel'];
+    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\Type\AnatomicalStructureModel'];
+    public const TYPES = ['Nerve' => 'SchemaOrg\Type\NerveModel'];
 }

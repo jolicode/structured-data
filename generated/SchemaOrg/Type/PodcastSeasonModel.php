@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PodcastSeasonModel
     public const DESCRIPTION = 'A single season of a podcast. Many podcasts do not break down into separate seasons. In that case, PodcastSeries should be used.';
     public const LABEL = 'PodcastSeason';
     public const NAME = 'schema:PodcastSeason';
-    public const PARENTS = ['CreativeWorkSeasonModel' => 'SchemaOrg\\Type\\CreativeWorkSeasonModel'];
+    public const PARENTS = ['CreativeWorkSeasonModel' => 'SchemaOrg\Type\CreativeWorkSeasonModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

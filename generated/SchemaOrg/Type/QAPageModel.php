@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class QAPageModel
     public const DESCRIPTION = 'A QAPage is a WebPage focussed on a specific Question and its Answer(s), e.g. in a question answering site or documenting Frequently Asked Questions (FAQs).';
     public const LABEL = 'QAPage';
     public const NAME = 'schema:QAPage';
-    public const PARENTS = ['WebPageModel' => 'SchemaOrg\\Type\\WebPageModel'];
+    public const PARENTS = ['WebPageModel' => 'SchemaOrg\Type\WebPageModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

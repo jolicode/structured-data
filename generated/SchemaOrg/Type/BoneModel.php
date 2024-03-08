@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class BoneModel
     public const DESCRIPTION = 'Rigid connective tissue that comprises up the skeletal structure of the human body.';
     public const LABEL = 'Bone';
     public const NAME = 'schema:Bone';
-    public const PARENTS = ['AnatomicalStructureModel' => 'SchemaOrg\\Type\\AnatomicalStructureModel'];
+    public const PARENTS = ['AnatomicalStructureModel' => 'SchemaOrg\Type\AnatomicalStructureModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

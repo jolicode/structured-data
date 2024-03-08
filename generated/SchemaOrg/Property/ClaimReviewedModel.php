@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ClaimReviewedModel
     public const DESCRIPTION = 'A short summary of the specific claims reviewed in a ClaimReview.';
     public const LABEL = 'claimReviewed';
     public const NAME = 'schema:claimReviewed';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['ClaimReview' => 'SchemaOrg\\Type\\ClaimReviewModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['ClaimReview' => 'SchemaOrg\Type\ClaimReviewModel'];
 }

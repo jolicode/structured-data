@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LocationModel
     public const DESCRIPTION = 'The location of, for example, where an event is happening, where an organization is located, or where an action takes place.';
     public const LABEL = 'location';
     public const NAME = 'schema:location';
-    public const VALUES = ['PlaceModel' => 'SchemaOrg\\Type\\PlaceModel', 'PostalAddressModel' => 'SchemaOrg\\Type\\PostalAddressModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel', 'VirtualLocationModel' => 'SchemaOrg\\Type\\VirtualLocationModel'];
-    public const TYPES = ['Action' => 'SchemaOrg\\Type\\ActionModel', 'Event' => 'SchemaOrg\\Type\\EventModel', 'InteractionCounter' => 'SchemaOrg\\Type\\InteractionCounterModel', 'Organization' => 'SchemaOrg\\Type\\OrganizationModel'];
+    public const VALUES = ['PlaceModel' => 'SchemaOrg\Type\PlaceModel', 'PostalAddressModel' => 'SchemaOrg\Type\PostalAddressModel', 'TextModel' => 'SchemaOrg\Type\TextModel', 'VirtualLocationModel' => 'SchemaOrg\Type\VirtualLocationModel'];
+    public const TYPES = ['Action' => 'SchemaOrg\Type\ActionModel', 'Event' => 'SchemaOrg\Type\EventModel', 'InteractionCounter' => 'SchemaOrg\Type\InteractionCounterModel', 'Organization' => 'SchemaOrg\Type\OrganizationModel'];
 }

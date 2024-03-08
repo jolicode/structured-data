@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class HowToStepModel
     public const DESCRIPTION = 'A step in the instructions for how to achieve a result. It is an ordered list with HowToDirection and/or HowToTip items.';
     public const LABEL = 'HowToStep';
     public const NAME = 'schema:HowToStep';
-    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel', 'ItemListModel' => 'SchemaOrg\\Type\\ItemListModel', 'ListItemModel' => 'SchemaOrg\\Type\\ListItemModel'];
+    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel', 'ItemListModel' => 'SchemaOrg\Type\ItemListModel', 'ListItemModel' => 'SchemaOrg\Type\ListItemModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

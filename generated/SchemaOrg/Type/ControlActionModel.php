@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ControlActionModel
     public const DESCRIPTION = 'An agent controls a device or application.';
     public const LABEL = 'ControlAction';
     public const NAME = 'schema:ControlAction';
-    public const PARENTS = ['ActionModel' => 'SchemaOrg\\Type\\ActionModel'];
+    public const PARENTS = ['ActionModel' => 'SchemaOrg\Type\ActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

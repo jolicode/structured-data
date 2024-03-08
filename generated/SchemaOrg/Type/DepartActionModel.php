@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DepartActionModel
     public const DESCRIPTION = 'The act of  departing from a place. An agent departs from a fromLocation for a destination, optionally with participants.';
     public const LABEL = 'DepartAction';
     public const NAME = 'schema:DepartAction';
-    public const PARENTS = ['MoveActionModel' => 'SchemaOrg\\Type\\MoveActionModel'];
+    public const PARENTS = ['MoveActionModel' => 'SchemaOrg\Type\MoveActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

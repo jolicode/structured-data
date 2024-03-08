@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ItemDefectReturnLabelSourceModel
     public const DESCRIPTION = 'The method (from an enumeration) by which the customer obtains a return shipping label for a defect product.';
     public const LABEL = 'itemDefectReturnLabelSource';
     public const NAME = 'schema:itemDefectReturnLabelSource';
-    public const VALUES = ['ReturnLabelSourceEnumerationModel' => 'SchemaOrg\\Type\\ReturnLabelSourceEnumerationModel'];
-    public const TYPES = ['MerchantReturnPolicy' => 'SchemaOrg\\Type\\MerchantReturnPolicyModel'];
+    public const VALUES = ['ReturnLabelSourceEnumerationModel' => 'SchemaOrg\Type\ReturnLabelSourceEnumerationModel'];
+    public const TYPES = ['MerchantReturnPolicy' => 'SchemaOrg\Type\MerchantReturnPolicyModel'];
 }

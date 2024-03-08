@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RelatedDrugModel
     public const DESCRIPTION = 'Any other drug related to this one, for example commonly-prescribed alternatives.';
     public const LABEL = 'relatedDrug';
     public const NAME = 'schema:relatedDrug';
-    public const VALUES = ['DrugModel' => 'SchemaOrg\\Type\\DrugModel'];
-    public const TYPES = ['Drug' => 'SchemaOrg\\Type\\DrugModel'];
+    public const VALUES = ['DrugModel' => 'SchemaOrg\Type\DrugModel'];
+    public const TYPES = ['Drug' => 'SchemaOrg\Type\DrugModel'];
 }

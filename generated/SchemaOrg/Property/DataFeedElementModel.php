@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DataFeedElementModel
     public const DESCRIPTION = 'An item within a data feed. Data feeds may have many elements.';
     public const LABEL = 'dataFeedElement';
     public const NAME = 'schema:dataFeedElement';
-    public const VALUES = ['DataFeedItemModel' => 'SchemaOrg\\Type\\DataFeedItemModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel', 'ThingModel' => 'SchemaOrg\\Type\\ThingModel'];
-    public const TYPES = ['DataFeed' => 'SchemaOrg\\Type\\DataFeedModel'];
+    public const VALUES = ['DataFeedItemModel' => 'SchemaOrg\Type\DataFeedItemModel', 'TextModel' => 'SchemaOrg\Type\TextModel', 'ThingModel' => 'SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['DataFeed' => 'SchemaOrg\Type\DataFeedModel'];
 }

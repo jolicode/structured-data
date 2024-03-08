@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ReservoirModel
     public const DESCRIPTION = 'A reservoir of water, typically an artificially created lake, like the Lake Kariba reservoir.';
     public const LABEL = 'Reservoir';
     public const NAME = 'schema:Reservoir';
-    public const PARENTS = ['BodyOfWaterModel' => 'SchemaOrg\\Type\\BodyOfWaterModel'];
+    public const PARENTS = ['BodyOfWaterModel' => 'SchemaOrg\Type\BodyOfWaterModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

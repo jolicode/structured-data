@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PriceComponentModel
     public const DESCRIPTION = 'This property links to all [[UnitPriceSpecification]] nodes that apply in parallel for the [[CompoundPriceSpecification]] node.';
     public const LABEL = 'priceComponent';
     public const NAME = 'schema:priceComponent';
-    public const VALUES = ['UnitPriceSpecificationModel' => 'SchemaOrg\\Type\\UnitPriceSpecificationModel'];
-    public const TYPES = ['CompoundPriceSpecification' => 'SchemaOrg\\Type\\CompoundPriceSpecificationModel'];
+    public const VALUES = ['UnitPriceSpecificationModel' => 'SchemaOrg\Type\UnitPriceSpecificationModel'];
+    public const TYPES = ['CompoundPriceSpecification' => 'SchemaOrg\Type\CompoundPriceSpecificationModel'];
 }

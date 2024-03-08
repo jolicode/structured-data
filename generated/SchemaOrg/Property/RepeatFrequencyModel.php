@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -19,6 +17,6 @@ final class RepeatFrequencyModel
       events should be defined as a [[Duration]] of time.';
     public const LABEL = 'repeatFrequency';
     public const NAME = 'schema:repeatFrequency';
-    public const VALUES = ['DurationModel' => 'SchemaOrg\\Type\\DurationModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Schedule' => 'SchemaOrg\\Type\\ScheduleModel'];
+    public const VALUES = ['DurationModel' => 'SchemaOrg\Type\DurationModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Schedule' => 'SchemaOrg\Type\ScheduleModel'];
 }

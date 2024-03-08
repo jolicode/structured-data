@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class RsvpActionModel
     public const DESCRIPTION = 'The act of notifying an event organizer as to whether you expect to attend the event.';
     public const LABEL = 'RsvpAction';
     public const NAME = 'schema:RsvpAction';
-    public const PARENTS = ['InformActionModel' => 'SchemaOrg\\Type\\InformActionModel'];
+    public const PARENTS = ['InformActionModel' => 'SchemaOrg\Type\InformActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ScreenCountModel
     public const DESCRIPTION = 'The number of screens in the movie theater.';
     public const LABEL = 'screenCount';
     public const NAME = 'schema:screenCount';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
-    public const TYPES = ['MovieTheater' => 'SchemaOrg\\Type\\MovieTheaterModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['MovieTheater' => 'SchemaOrg\Type\MovieTheaterModel'];
 }

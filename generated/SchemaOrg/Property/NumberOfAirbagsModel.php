@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class NumberOfAirbagsModel
     public const DESCRIPTION = 'The number or type of airbags in the vehicle.';
     public const LABEL = 'numberOfAirbags';
     public const NAME = 'schema:numberOfAirbags';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Vehicle' => 'SchemaOrg\\Type\\VehicleModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Vehicle' => 'SchemaOrg\Type\VehicleModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PreparationModel
     public const DESCRIPTION = 'Typical preparation that a patient must undergo before having the procedure performed.';
     public const LABEL = 'preparation';
     public const NAME = 'schema:preparation';
-    public const VALUES = ['MedicalEntityModel' => 'SchemaOrg\\Type\\MedicalEntityModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MedicalProcedure' => 'SchemaOrg\\Type\\MedicalProcedureModel'];
+    public const VALUES = ['MedicalEntityModel' => 'SchemaOrg\Type\MedicalEntityModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MedicalProcedure' => 'SchemaOrg\Type\MedicalProcedureModel'];
 }

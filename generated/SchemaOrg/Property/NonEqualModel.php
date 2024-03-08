@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class NonEqualModel
     public const DESCRIPTION = 'This ordering relation for qualitative values indicates that the subject is not equal to the object.';
     public const LABEL = 'nonEqual';
     public const NAME = 'schema:nonEqual';
-    public const VALUES = ['QualitativeValueModel' => 'SchemaOrg\\Type\\QualitativeValueModel'];
-    public const TYPES = ['QualitativeValue' => 'SchemaOrg\\Type\\QualitativeValueModel'];
+    public const VALUES = ['QualitativeValueModel' => 'SchemaOrg\Type\QualitativeValueModel'];
+    public const TYPES = ['QualitativeValue' => 'SchemaOrg\Type\QualitativeValueModel'];
 }

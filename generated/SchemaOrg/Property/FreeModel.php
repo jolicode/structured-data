@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class FreeModel
     public const DESCRIPTION = 'A flag to signal that the item, event, or place is accessible for free.';
     public const LABEL = 'free';
     public const NAME = 'schema:free';
-    public const VALUES = ['BooleanModel' => 'SchemaOrg\\Type\\BooleanModel'];
-    public const TYPES = ['PublicationEvent' => 'SchemaOrg\\Type\\PublicationEventModel'];
+    public const VALUES = ['BooleanModel' => 'SchemaOrg\Type\BooleanModel'];
+    public const TYPES = ['PublicationEvent' => 'SchemaOrg\Type\PublicationEventModel'];
 }

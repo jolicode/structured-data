@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SubTestModel
     public const DESCRIPTION = 'A component test of the panel.';
     public const LABEL = 'subTest';
     public const NAME = 'schema:subTest';
-    public const VALUES = ['MedicalTestModel' => 'SchemaOrg\\Type\\MedicalTestModel'];
-    public const TYPES = ['MedicalTestPanel' => 'SchemaOrg\\Type\\MedicalTestPanelModel'];
+    public const VALUES = ['MedicalTestModel' => 'SchemaOrg\Type\MedicalTestModel'];
+    public const TYPES = ['MedicalTestPanel' => 'SchemaOrg\Type\MedicalTestPanelModel'];
 }

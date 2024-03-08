@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ValidUntilModel
     public const DESCRIPTION = 'The date when the item is no longer valid.';
     public const LABEL = 'validUntil';
     public const NAME = 'schema:validUntil';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel'];
-    public const TYPES = ['Permit' => 'SchemaOrg\\Type\\PermitModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel'];
+    public const TYPES = ['Permit' => 'SchemaOrg\Type\PermitModel'];
 }

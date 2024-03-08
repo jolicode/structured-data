@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,7 +16,7 @@ final class IntegerModel
     public const DESCRIPTION = 'Data type: Integer.';
     public const LABEL = 'Integer';
     public const NAME = 'schema:Integer';
-    public const PARENTS = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
+    public const PARENTS = ['NumberModel' => 'SchemaOrg\Type\NumberModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct()

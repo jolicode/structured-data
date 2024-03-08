@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DrugModel
     public const DESCRIPTION = 'Specifying a drug or medicine used in a medication procedure.';
     public const LABEL = 'drug';
     public const NAME = 'schema:drug';
-    public const VALUES = ['DrugModel' => 'SchemaOrg\\Type\\DrugModel'];
-    public const TYPES = ['DrugClass' => 'SchemaOrg\\Type\\DrugClassModel', 'MedicalCondition' => 'SchemaOrg\\Type\\MedicalConditionModel', 'Patient' => 'SchemaOrg\\Type\\PatientModel', 'TherapeuticProcedure' => 'SchemaOrg\\Type\\TherapeuticProcedureModel'];
+    public const VALUES = ['DrugModel' => 'SchemaOrg\Type\DrugModel'];
+    public const TYPES = ['DrugClass' => 'SchemaOrg\Type\DrugClassModel', 'MedicalCondition' => 'SchemaOrg\Type\MedicalConditionModel', 'Patient' => 'SchemaOrg\Type\PatientModel', 'TherapeuticProcedure' => 'SchemaOrg\Type\TherapeuticProcedureModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class SpreadsheetDigitalDocumentModel
     public const DESCRIPTION = 'A spreadsheet file.';
     public const LABEL = 'SpreadsheetDigitalDocument';
     public const NAME = 'schema:SpreadsheetDigitalDocument';
-    public const PARENTS = ['DigitalDocumentModel' => 'SchemaOrg\\Type\\DigitalDocumentModel'];
+    public const PARENTS = ['DigitalDocumentModel' => 'SchemaOrg\Type\DigitalDocumentModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

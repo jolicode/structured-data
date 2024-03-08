@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IssueNumberModel
     public const DESCRIPTION = 'Identifies the issue of publication; for example, "iii" or "2".';
     public const LABEL = 'issueNumber';
     public const NAME = 'schema:issueNumber';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['PublicationIssue' => 'SchemaOrg\\Type\\PublicationIssueModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['PublicationIssue' => 'SchemaOrg\Type\PublicationIssueModel'];
 }

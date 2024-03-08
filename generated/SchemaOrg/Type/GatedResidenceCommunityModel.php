@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class GatedResidenceCommunityModel
     public const DESCRIPTION = 'Residence type: Gated community.';
     public const LABEL = 'GatedResidenceCommunity';
     public const NAME = 'schema:GatedResidenceCommunity';
-    public const PARENTS = ['ResidenceModel' => 'SchemaOrg\\Type\\ResidenceModel'];
+    public const PARENTS = ['ResidenceModel' => 'SchemaOrg\Type\ResidenceModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

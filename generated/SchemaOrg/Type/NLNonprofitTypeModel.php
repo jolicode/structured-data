@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class NLNonprofitTypeModel
     public const DESCRIPTION = 'NLNonprofitType: Non-profit organization type originating from the Netherlands.';
     public const LABEL = 'NLNonprofitType';
     public const NAME = 'schema:NLNonprofitType';
-    public const PARENTS = ['NonprofitTypeModel' => 'SchemaOrg\\Type\\NonprofitTypeModel'];
-    public const ENUMERATION_MEMBERS = ['NonprofitANBIModel' => 'EnumerationMember\\NonprofitANBIModel', 'NonprofitSBBIModel' => 'EnumerationMember\\NonprofitSBBIModel'];
+    public const PARENTS = ['NonprofitTypeModel' => 'SchemaOrg\Type\NonprofitTypeModel'];
+    public const ENUMERATION_MEMBERS = ['NonprofitANBIModel' => 'EnumerationMember\NonprofitANBIModel', 'NonprofitSBBIModel' => 'EnumerationMember\NonprofitSBBIModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

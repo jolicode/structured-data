@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ParentOrganizationModel
     public const DESCRIPTION = 'The larger organization that this organization is a [[subOrganization]] of, if any.';
     public const LABEL = 'parentOrganization';
     public const NAME = 'schema:parentOrganization';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel'];
-    public const TYPES = ['Organization' => 'SchemaOrg\\Type\\OrganizationModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel'];
+    public const TYPES = ['Organization' => 'SchemaOrg\Type\OrganizationModel'];
 }

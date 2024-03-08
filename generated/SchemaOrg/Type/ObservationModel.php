@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -25,7 +23,7 @@ In the context of a quantitative knowledge graph, typical properties could inclu
     ';
     public const LABEL = 'Observation';
     public const NAME = 'schema:Observation';
-    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\\Type\\IntangibleModel', 'QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
+    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\Type\IntangibleModel', 'QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

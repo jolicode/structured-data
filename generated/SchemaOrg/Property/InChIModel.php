@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InChIModel
     public const DESCRIPTION = 'Non-proprietary identifier for molecular entity that can be used in printed and electronic data sources thus enabling easier linking of diverse data compilations.';
     public const LABEL = 'inChI';
     public const NAME = 'schema:inChI';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MolecularEntity' => 'SchemaOrg\\Type\\MolecularEntityModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MolecularEntity' => 'SchemaOrg\Type\MolecularEntityModel'];
 }

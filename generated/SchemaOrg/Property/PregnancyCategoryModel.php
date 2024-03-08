@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PregnancyCategoryModel
     public const DESCRIPTION = 'Pregnancy category of this drug.';
     public const LABEL = 'pregnancyCategory';
     public const NAME = 'schema:pregnancyCategory';
-    public const VALUES = ['DrugPregnancyCategoryModel' => 'SchemaOrg\\Type\\DrugPregnancyCategoryModel'];
-    public const TYPES = ['Drug' => 'SchemaOrg\\Type\\DrugModel'];
+    public const VALUES = ['DrugPregnancyCategoryModel' => 'SchemaOrg\Type\DrugPregnancyCategoryModel'];
+    public const TYPES = ['Drug' => 'SchemaOrg\Type\DrugModel'];
 }

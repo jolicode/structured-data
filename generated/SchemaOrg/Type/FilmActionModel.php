@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class FilmActionModel
     public const DESCRIPTION = 'The act of capturing sound and moving images on film, video, or digitally.';
     public const LABEL = 'FilmAction';
     public const NAME = 'schema:FilmAction';
-    public const PARENTS = ['CreateActionModel' => 'SchemaOrg\\Type\\CreateActionModel'];
+    public const PARENTS = ['CreateActionModel' => 'SchemaOrg\Type\CreateActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

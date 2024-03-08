@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class CompoundPriceSpecificationModel
     public const DESCRIPTION = 'A compound price specification is one that bundles multiple prices that all apply in combination for different dimensions of consumption. Use the name property of the attached unit price specification for indicating the dimension of a price component (e.g. "electricity" or "final cleaning").';
     public const LABEL = 'CompoundPriceSpecification';
     public const NAME = 'schema:CompoundPriceSpecification';
-    public const PARENTS = ['PriceSpecificationModel' => 'SchemaOrg\\Type\\PriceSpecificationModel'];
+    public const PARENTS = ['PriceSpecificationModel' => 'SchemaOrg\Type\PriceSpecificationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

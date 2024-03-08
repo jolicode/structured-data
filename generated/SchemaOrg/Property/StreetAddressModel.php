@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class StreetAddressModel
     public const DESCRIPTION = 'The street address. For example, 1600 Amphitheatre Pkwy.';
     public const LABEL = 'streetAddress';
     public const NAME = 'schema:streetAddress';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['PostalAddress' => 'SchemaOrg\\Type\\PostalAddressModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['PostalAddress' => 'SchemaOrg\Type\PostalAddressModel'];
 }

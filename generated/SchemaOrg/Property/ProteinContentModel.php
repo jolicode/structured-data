@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ProteinContentModel
     public const DESCRIPTION = 'The number of grams of protein.';
     public const LABEL = 'proteinContent';
     public const NAME = 'schema:proteinContent';
-    public const VALUES = ['MassModel' => 'SchemaOrg\\Type\\MassModel'];
-    public const TYPES = ['NutritionInformation' => 'SchemaOrg\\Type\\NutritionInformationModel'];
+    public const VALUES = ['MassModel' => 'SchemaOrg\Type\MassModel'];
+    public const TYPES = ['NutritionInformation' => 'SchemaOrg\Type\NutritionInformationModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PerformanceRoleModel
     public const DESCRIPTION = 'A PerformanceRole is a Role that some entity places with regard to a theatrical performance, e.g. in a Movie, TVSeries etc.';
     public const LABEL = 'PerformanceRole';
     public const NAME = 'schema:PerformanceRole';
-    public const PARENTS = ['RoleModel' => 'SchemaOrg\\Type\\RoleModel'];
+    public const PARENTS = ['RoleModel' => 'SchemaOrg\Type\RoleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

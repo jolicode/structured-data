@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ShippingDetailsModel
     public const DESCRIPTION = 'Indicates information about the shipping policies and options associated with an [[Offer]].';
     public const LABEL = 'shippingDetails';
     public const NAME = 'schema:shippingDetails';
-    public const VALUES = ['OfferShippingDetailsModel' => 'SchemaOrg\\Type\\OfferShippingDetailsModel'];
-    public const TYPES = ['Offer' => 'SchemaOrg\\Type\\OfferModel'];
+    public const VALUES = ['OfferShippingDetailsModel' => 'SchemaOrg\Type\OfferShippingDetailsModel'];
+    public const TYPES = ['Offer' => 'SchemaOrg\Type\OfferModel'];
 }

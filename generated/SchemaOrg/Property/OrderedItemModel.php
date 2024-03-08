@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class OrderedItemModel
     public const DESCRIPTION = 'The item ordered.';
     public const LABEL = 'orderedItem';
     public const NAME = 'schema:orderedItem';
-    public const VALUES = ['OrderItemModel' => 'SchemaOrg\\Type\\OrderItemModel', 'ProductModel' => 'SchemaOrg\\Type\\ProductModel', 'ServiceModel' => 'SchemaOrg\\Type\\ServiceModel'];
-    public const TYPES = ['OrderItem' => 'SchemaOrg\\Type\\OrderItemModel', 'Order' => 'SchemaOrg\\Type\\OrderModel'];
+    public const VALUES = ['OrderItemModel' => 'SchemaOrg\Type\OrderItemModel', 'ProductModel' => 'SchemaOrg\Type\ProductModel', 'ServiceModel' => 'SchemaOrg\Type\ServiceModel'];
+    public const TYPES = ['OrderItem' => 'SchemaOrg\Type\OrderItemModel', 'Order' => 'SchemaOrg\Type\OrderModel'];
 }

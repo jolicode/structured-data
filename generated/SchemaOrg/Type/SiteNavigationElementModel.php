@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class SiteNavigationElementModel
     public const DESCRIPTION = 'A navigation element of the page.';
     public const LABEL = 'SiteNavigationElement';
     public const NAME = 'schema:SiteNavigationElement';
-    public const PARENTS = ['WebPageElementModel' => 'SchemaOrg\\Type\\WebPageElementModel'];
+    public const PARENTS = ['WebPageElementModel' => 'SchemaOrg\Type\WebPageElementModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

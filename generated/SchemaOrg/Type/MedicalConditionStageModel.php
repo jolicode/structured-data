@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MedicalConditionStageModel
     public const DESCRIPTION = 'A stage of a medical condition, such as \'Stage IIIa\'.';
     public const LABEL = 'MedicalConditionStage';
     public const NAME = 'schema:MedicalConditionStage';
-    public const PARENTS = ['MedicalIntangibleModel' => 'SchemaOrg\\Type\\MedicalIntangibleModel'];
+    public const PARENTS = ['MedicalIntangibleModel' => 'SchemaOrg\Type\MedicalIntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

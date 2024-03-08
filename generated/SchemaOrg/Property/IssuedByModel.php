@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IssuedByModel
     public const DESCRIPTION = 'The organization issuing the ticket or permit.';
     public const LABEL = 'issuedBy';
     public const NAME = 'schema:issuedBy';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel'];
-    public const TYPES = ['Permit' => 'SchemaOrg\\Type\\PermitModel', 'Ticket' => 'SchemaOrg\\Type\\TicketModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel'];
+    public const TYPES = ['Permit' => 'SchemaOrg\Type\PermitModel', 'Ticket' => 'SchemaOrg\Type\TicketModel'];
 }

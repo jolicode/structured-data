@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AssociatedAnatomyModel
     public const DESCRIPTION = 'The anatomy of the underlying organ system or structures associated with this entity.';
     public const LABEL = 'associatedAnatomy';
     public const NAME = 'schema:associatedAnatomy';
-    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\\Type\\AnatomicalStructureModel', 'AnatomicalSystemModel' => 'SchemaOrg\\Type\\AnatomicalSystemModel', 'SuperficialAnatomyModel' => 'SchemaOrg\\Type\\SuperficialAnatomyModel'];
-    public const TYPES = ['MedicalCondition' => 'SchemaOrg\\Type\\MedicalConditionModel', 'PhysicalActivity' => 'SchemaOrg\\Type\\PhysicalActivityModel'];
+    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\Type\AnatomicalStructureModel', 'AnatomicalSystemModel' => 'SchemaOrg\Type\AnatomicalSystemModel', 'SuperficialAnatomyModel' => 'SchemaOrg\Type\SuperficialAnatomyModel'];
+    public const TYPES = ['MedicalCondition' => 'SchemaOrg\Type\MedicalConditionModel', 'PhysicalActivity' => 'SchemaOrg\Type\PhysicalActivityModel'];
 }

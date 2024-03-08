@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MedicalGuidelineContraindicationModel
     public const DESCRIPTION = 'A guideline contraindication that designates a process as harmful and where quality of the data supporting the contraindication is sound.';
     public const LABEL = 'MedicalGuidelineContraindication';
     public const NAME = 'schema:MedicalGuidelineContraindication';
-    public const PARENTS = ['MedicalGuidelineModel' => 'SchemaOrg\\Type\\MedicalGuidelineModel'];
+    public const PARENTS = ['MedicalGuidelineModel' => 'SchemaOrg\Type\MedicalGuidelineModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

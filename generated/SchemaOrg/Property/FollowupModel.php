@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class FollowupModel
     public const DESCRIPTION = 'Typical or recommended followup care after the procedure is performed.';
     public const LABEL = 'followup';
     public const NAME = 'schema:followup';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MedicalProcedure' => 'SchemaOrg\\Type\\MedicalProcedureModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MedicalProcedure' => 'SchemaOrg\Type\MedicalProcedureModel'];
 }

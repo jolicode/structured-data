@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class KnowsModel
     public const DESCRIPTION = 'The most generic bi-directional social/work relation.';
     public const LABEL = 'knows';
     public const NAME = 'schema:knows';
-    public const VALUES = ['PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['Person' => 'SchemaOrg\\Type\\PersonModel'];
+    public const VALUES = ['PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['Person' => 'SchemaOrg\Type\PersonModel'];
 }

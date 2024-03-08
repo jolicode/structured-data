@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HasOfferCatalogModel
     public const DESCRIPTION = 'Indicates an OfferCatalog listing for this Organization, Person, or Service.';
     public const LABEL = 'hasOfferCatalog';
     public const NAME = 'schema:hasOfferCatalog';
-    public const VALUES = ['OfferCatalogModel' => 'SchemaOrg\\Type\\OfferCatalogModel'];
-    public const TYPES = ['Organization' => 'SchemaOrg\\Type\\OrganizationModel', 'Person' => 'SchemaOrg\\Type\\PersonModel', 'Service' => 'SchemaOrg\\Type\\ServiceModel'];
+    public const VALUES = ['OfferCatalogModel' => 'SchemaOrg\Type\OfferCatalogModel'];
+    public const TYPES = ['Organization' => 'SchemaOrg\Type\OrganizationModel', 'Person' => 'SchemaOrg\Type\PersonModel', 'Service' => 'SchemaOrg\Type\ServiceModel'];
 }

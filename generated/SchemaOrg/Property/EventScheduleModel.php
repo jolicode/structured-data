@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -23,6 +21,6 @@ final class EventScheduleModel
       or seasons.';
     public const LABEL = 'eventSchedule';
     public const NAME = 'schema:eventSchedule';
-    public const VALUES = ['ScheduleModel' => 'SchemaOrg\\Type\\ScheduleModel'];
-    public const TYPES = ['Event' => 'SchemaOrg\\Type\\EventModel'];
+    public const VALUES = ['ScheduleModel' => 'SchemaOrg\Type\ScheduleModel'];
+    public const TYPES = ['Event' => 'SchemaOrg\Type\EventModel'];
 }

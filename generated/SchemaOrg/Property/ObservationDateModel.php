@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ObservationDateModel
     public const DESCRIPTION = 'The observationDate of an [[Observation]].';
     public const LABEL = 'observationDate';
     public const NAME = 'schema:observationDate';
-    public const VALUES = ['DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel'];
-    public const TYPES = ['Observation' => 'SchemaOrg\\Type\\ObservationModel'];
+    public const VALUES = ['DateTimeModel' => 'SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['Observation' => 'SchemaOrg\Type\ObservationModel'];
 }

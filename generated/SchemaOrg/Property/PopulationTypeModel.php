@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PopulationTypeModel
     public const DESCRIPTION = 'Indicates the populationType common to all members of a [[StatisticalPopulation]] or all cases within the scope of a [[StatisticalVariable]].';
     public const LABEL = 'populationType';
     public const NAME = 'schema:populationType';
-    public const VALUES = ['ClassModel' => 'SchemaOrg\\Type\\ClassModel'];
-    public const TYPES = ['StatisticalPopulation' => 'SchemaOrg\\Type\\StatisticalPopulationModel', 'StatisticalVariable' => 'SchemaOrg\\Type\\StatisticalVariableModel'];
+    public const VALUES = ['ClassModel' => 'SchemaOrg\Type\ClassModel'];
+    public const TYPES = ['StatisticalPopulation' => 'SchemaOrg\Type\StatisticalPopulationModel', 'StatisticalVariable' => 'SchemaOrg\Type\StatisticalVariableModel'];
 }

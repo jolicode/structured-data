@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -17,10 +15,10 @@ use SchemaOrg\Property;
 
 final class AttorneyModel
 {
-    public const DESCRIPTION = 'Professional service: Attorney. \\n\\nThis type is deprecated - [[LegalService]] is more inclusive and less ambiguous.';
+    public const DESCRIPTION = 'Professional service: Attorney. \n\nThis type is deprecated - [[LegalService]] is more inclusive and less ambiguous.';
     public const LABEL = 'Attorney';
     public const NAME = 'schema:Attorney';
-    public const PARENTS = ['LegalServiceModel' => 'SchemaOrg\\Type\\LegalServiceModel'];
+    public const PARENTS = ['LegalServiceModel' => 'SchemaOrg\Type\LegalServiceModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

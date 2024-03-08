@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class StrengthValueModel
     public const DESCRIPTION = 'The value of an active ingredient\'s strength, e.g. 325.';
     public const LABEL = 'strengthValue';
     public const NAME = 'schema:strengthValue';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
-    public const TYPES = ['DrugStrength' => 'SchemaOrg\\Type\\DrugStrengthModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['DrugStrength' => 'SchemaOrg\Type\DrugStrengthModel'];
 }

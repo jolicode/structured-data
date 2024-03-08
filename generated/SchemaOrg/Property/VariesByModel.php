@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class VariesByModel
     public const DESCRIPTION = 'Indicates the property or properties by which the variants in a [[ProductGroup]] vary, e.g. their size, color etc. Schema.org properties can be referenced by their short name e.g. "color"; terms defined elsewhere can be referenced with their URIs.';
     public const LABEL = 'variesBy';
     public const NAME = 'schema:variesBy';
-    public const VALUES = ['DefinedTermModel' => 'SchemaOrg\\Type\\DefinedTermModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['ProductGroup' => 'SchemaOrg\\Type\\ProductGroupModel'];
+    public const VALUES = ['DefinedTermModel' => 'SchemaOrg\Type\DefinedTermModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['ProductGroup' => 'SchemaOrg\Type\ProductGroupModel'];
 }

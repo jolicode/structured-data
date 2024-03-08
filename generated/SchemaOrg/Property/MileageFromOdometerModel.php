@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -15,9 +13,9 @@ namespace SchemaOrg\Property;
 
 final class MileageFromOdometerModel
 {
-    public const DESCRIPTION = 'The total distance travelled by the particular vehicle since its initial production, as read from its odometer.\\n\\nTypical unit code(s): KMT for kilometers, SMI for statute miles';
+    public const DESCRIPTION = 'The total distance travelled by the particular vehicle since its initial production, as read from its odometer.\n\nTypical unit code(s): KMT for kilometers, SMI for statute miles';
     public const LABEL = 'mileageFromOdometer';
     public const NAME = 'schema:mileageFromOdometer';
-    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['Vehicle' => 'SchemaOrg\\Type\\VehicleModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['Vehicle' => 'SchemaOrg\Type\VehicleModel'];
 }

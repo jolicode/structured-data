@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BiomechnicalClassModel
     public const DESCRIPTION = 'The biomechanical properties of the bone.';
     public const LABEL = 'biomechnicalClass';
     public const NAME = 'schema:biomechnicalClass';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Joint' => 'SchemaOrg\\Type\\JointModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Joint' => 'SchemaOrg\Type\JointModel'];
 }

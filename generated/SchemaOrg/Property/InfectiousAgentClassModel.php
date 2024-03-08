@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InfectiousAgentClassModel
     public const DESCRIPTION = 'The class of infectious agent (bacteria, prion, etc.) that causes the disease.';
     public const LABEL = 'infectiousAgentClass';
     public const NAME = 'schema:infectiousAgentClass';
-    public const VALUES = ['InfectiousAgentClassModel' => 'SchemaOrg\\Type\\InfectiousAgentClassModel'];
-    public const TYPES = ['InfectiousDisease' => 'SchemaOrg\\Type\\InfectiousDiseaseModel'];
+    public const VALUES = ['InfectiousAgentClassModel' => 'SchemaOrg\Type\InfectiousAgentClassModel'];
+    public const TYPES = ['InfectiousDisease' => 'SchemaOrg\Type\InfectiousDiseaseModel'];
 }

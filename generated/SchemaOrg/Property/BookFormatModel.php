@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BookFormatModel
     public const DESCRIPTION = 'The format of the book.';
     public const LABEL = 'bookFormat';
     public const NAME = 'schema:bookFormat';
-    public const VALUES = ['BookFormatTypeModel' => 'SchemaOrg\\Type\\BookFormatTypeModel'];
-    public const TYPES = ['Book' => 'SchemaOrg\\Type\\BookModel'];
+    public const VALUES = ['BookFormatTypeModel' => 'SchemaOrg\Type\BookFormatTypeModel'];
+    public const TYPES = ['Book' => 'SchemaOrg\Type\BookModel'];
 }

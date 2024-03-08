@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class NextItemModel
     public const DESCRIPTION = 'A link to the ListItem that follows the current one.';
     public const LABEL = 'nextItem';
     public const NAME = 'schema:nextItem';
-    public const VALUES = ['ListItemModel' => 'SchemaOrg\\Type\\ListItemModel'];
-    public const TYPES = ['ListItem' => 'SchemaOrg\\Type\\ListItemModel'];
+    public const VALUES = ['ListItemModel' => 'SchemaOrg\Type\ListItemModel'];
+    public const TYPES = ['ListItem' => 'SchemaOrg\Type\ListItemModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AvailableDeliveryMethodModel
     public const DESCRIPTION = 'The delivery method(s) available for this offer.';
     public const LABEL = 'availableDeliveryMethod';
     public const NAME = 'schema:availableDeliveryMethod';
-    public const VALUES = ['DeliveryMethodModel' => 'SchemaOrg\\Type\\DeliveryMethodModel'];
-    public const TYPES = ['Demand' => 'SchemaOrg\\Type\\DemandModel', 'Offer' => 'SchemaOrg\\Type\\OfferModel'];
+    public const VALUES = ['DeliveryMethodModel' => 'SchemaOrg\Type\DeliveryMethodModel'];
+    public const TYPES = ['Demand' => 'SchemaOrg\Type\DemandModel', 'Offer' => 'SchemaOrg\Type\OfferModel'];
 }

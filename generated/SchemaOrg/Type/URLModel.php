@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,7 +16,7 @@ final class URLModel
     public const DESCRIPTION = 'Data type: URL.';
     public const LABEL = 'URL';
     public const NAME = 'schema:URL';
-    public const PARENTS = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
+    public const PARENTS = ['TextModel' => 'SchemaOrg\Type\TextModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct()

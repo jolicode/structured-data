@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HowPerformedModel
     public const DESCRIPTION = 'How the procedure is performed.';
     public const LABEL = 'howPerformed';
     public const NAME = 'schema:howPerformed';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MedicalProcedure' => 'SchemaOrg\\Type\\MedicalProcedureModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MedicalProcedure' => 'SchemaOrg\Type\MedicalProcedureModel'];
 }

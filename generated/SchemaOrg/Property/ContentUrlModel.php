@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ContentUrlModel
     public const DESCRIPTION = 'Actual bytes of the media object, for example the image file or video file.';
     public const LABEL = 'contentUrl';
     public const NAME = 'schema:contentUrl';
-    public const VALUES = ['URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['MediaObject' => 'SchemaOrg\\Type\\MediaObjectModel'];
+    public const VALUES = ['URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['MediaObject' => 'SchemaOrg\Type\MediaObjectModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class SearchResultsPageModel
     public const DESCRIPTION = 'Web page type: Search results page.';
     public const LABEL = 'SearchResultsPage';
     public const NAME = 'schema:SearchResultsPage';
-    public const PARENTS = ['WebPageModel' => 'SchemaOrg\\Type\\WebPageModel'];
+    public const PARENTS = ['WebPageModel' => 'SchemaOrg\Type\WebPageModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

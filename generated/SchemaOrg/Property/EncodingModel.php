@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class EncodingModel
     public const DESCRIPTION = 'A media object that encodes this CreativeWork. This property is a synonym for associatedMedia.';
     public const LABEL = 'encoding';
     public const NAME = 'schema:encoding';
-    public const VALUES = ['MediaObjectModel' => 'SchemaOrg\\Type\\MediaObjectModel'];
-    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const VALUES = ['MediaObjectModel' => 'SchemaOrg\Type\MediaObjectModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel'];
 }

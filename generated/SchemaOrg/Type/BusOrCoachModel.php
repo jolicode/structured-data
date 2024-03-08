@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class BusOrCoachModel
     public const DESCRIPTION = 'A bus (also omnibus or autobus) is a road vehicle designed to carry passengers. Coaches are luxury busses, usually in service for long distance travel.';
     public const LABEL = 'BusOrCoach';
     public const NAME = 'schema:BusOrCoach';
-    public const PARENTS = ['VehicleModel' => 'SchemaOrg\\Type\\VehicleModel'];
+    public const PARENTS = ['VehicleModel' => 'SchemaOrg\Type\VehicleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

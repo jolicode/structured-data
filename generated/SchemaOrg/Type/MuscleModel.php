@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MuscleModel
     public const DESCRIPTION = 'A muscle is an anatomical structure consisting of a contractile form of tissue that animals use to effect movement.';
     public const LABEL = 'Muscle';
     public const NAME = 'schema:Muscle';
-    public const PARENTS = ['AnatomicalStructureModel' => 'SchemaOrg\\Type\\AnatomicalStructureModel'];
+    public const PARENTS = ['AnatomicalStructureModel' => 'SchemaOrg\Type\AnatomicalStructureModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

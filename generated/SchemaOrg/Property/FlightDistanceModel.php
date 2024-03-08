@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class FlightDistanceModel
     public const DESCRIPTION = 'The distance of the flight.';
     public const LABEL = 'flightDistance';
     public const NAME = 'schema:flightDistance';
-    public const VALUES = ['DistanceModel' => 'SchemaOrg\\Type\\DistanceModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Flight' => 'SchemaOrg\\Type\\FlightModel'];
+    public const VALUES = ['DistanceModel' => 'SchemaOrg\Type\DistanceModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Flight' => 'SchemaOrg\Type\FlightModel'];
 }

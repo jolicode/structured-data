@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ExpressedInModel
     public const DESCRIPTION = 'Tissue, organ, biological sample, etc in which activity of this gene has been observed experimentally. For example brain, digestive system.';
     public const LABEL = 'expressedIn';
     public const NAME = 'schema:expressedIn';
-    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\\Type\\AnatomicalStructureModel', 'AnatomicalSystemModel' => 'SchemaOrg\\Type\\AnatomicalSystemModel', 'BioChemEntityModel' => 'SchemaOrg\\Type\\BioChemEntityModel', 'DefinedTermModel' => 'SchemaOrg\\Type\\DefinedTermModel'];
-    public const TYPES = ['Gene' => 'SchemaOrg\\Type\\GeneModel'];
+    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\Type\AnatomicalStructureModel', 'AnatomicalSystemModel' => 'SchemaOrg\Type\AnatomicalSystemModel', 'BioChemEntityModel' => 'SchemaOrg\Type\BioChemEntityModel', 'DefinedTermModel' => 'SchemaOrg\Type\DefinedTermModel'];
+    public const TYPES = ['Gene' => 'SchemaOrg\Type\GeneModel'];
 }

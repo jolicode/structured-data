@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RisksModel
     public const DESCRIPTION = 'Specific physiologic risks associated to the diet plan.';
     public const LABEL = 'risks';
     public const NAME = 'schema:risks';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Diet' => 'SchemaOrg\\Type\\DietModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Diet' => 'SchemaOrg\Type\DietModel'];
 }

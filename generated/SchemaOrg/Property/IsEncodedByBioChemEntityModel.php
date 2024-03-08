@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IsEncodedByBioChemEntityModel
     public const DESCRIPTION = 'Another BioChemEntity encoding by this one.';
     public const LABEL = 'isEncodedByBioChemEntity';
     public const NAME = 'schema:isEncodedByBioChemEntity';
-    public const VALUES = ['GeneModel' => 'SchemaOrg\\Type\\GeneModel'];
-    public const TYPES = ['BioChemEntity' => 'SchemaOrg\\Type\\BioChemEntityModel'];
+    public const VALUES = ['GeneModel' => 'SchemaOrg\Type\GeneModel'];
+    public const TYPES = ['BioChemEntity' => 'SchemaOrg\Type\BioChemEntityModel'];
 }

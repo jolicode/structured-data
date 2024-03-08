@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,6 +18,6 @@ final class VariantCoverModel
     	Variant Cover" or "2nd Printing Variant".';
     public const LABEL = 'variantCover';
     public const NAME = 'schema:variantCover';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['ComicIssue' => 'SchemaOrg\\Type\\ComicIssueModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['ComicIssue' => 'SchemaOrg\Type\ComicIssueModel'];
 }

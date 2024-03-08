@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class VoteActionModel
     public const DESCRIPTION = 'The act of expressing a preference from a fixed/finite/structured set of choices/options.';
     public const LABEL = 'VoteAction';
     public const NAME = 'schema:VoteAction';
-    public const PARENTS = ['ChooseActionModel' => 'SchemaOrg\\Type\\ChooseActionModel'];
+    public const PARENTS = ['ChooseActionModel' => 'SchemaOrg\Type\ChooseActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class MedicalEvidenceLevelModel
     public const DESCRIPTION = 'Level of evidence for a medical guideline. Enumerated type.';
     public const LABEL = 'MedicalEvidenceLevel';
     public const NAME = 'schema:MedicalEvidenceLevel';
-    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\\Type\\MedicalEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['EvidenceLevelAModel' => 'EnumerationMember\\EvidenceLevelAModel', 'EvidenceLevelBModel' => 'EnumerationMember\\EvidenceLevelBModel', 'EvidenceLevelCModel' => 'EnumerationMember\\EvidenceLevelCModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\Type\MedicalEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['EvidenceLevelAModel' => 'EnumerationMember\EvidenceLevelAModel', 'EvidenceLevelBModel' => 'EnumerationMember\EvidenceLevelBModel', 'EvidenceLevelCModel' => 'EnumerationMember\EvidenceLevelCModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

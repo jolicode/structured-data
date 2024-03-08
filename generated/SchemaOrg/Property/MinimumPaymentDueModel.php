@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MinimumPaymentDueModel
     public const DESCRIPTION = 'The minimum payment required at this time.';
     public const LABEL = 'minimumPaymentDue';
     public const NAME = 'schema:minimumPaymentDue';
-    public const VALUES = ['MonetaryAmountModel' => 'SchemaOrg\\Type\\MonetaryAmountModel', 'PriceSpecificationModel' => 'SchemaOrg\\Type\\PriceSpecificationModel'];
-    public const TYPES = ['Invoice' => 'SchemaOrg\\Type\\InvoiceModel'];
+    public const VALUES = ['MonetaryAmountModel' => 'SchemaOrg\Type\MonetaryAmountModel', 'PriceSpecificationModel' => 'SchemaOrg\Type\PriceSpecificationModel'];
+    public const TYPES = ['Invoice' => 'SchemaOrg\Type\InvoiceModel'];
 }

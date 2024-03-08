@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class VideoObjectModel
     public const DESCRIPTION = 'A video file.';
     public const LABEL = 'VideoObject';
     public const NAME = 'schema:VideoObject';
-    public const PARENTS = ['MediaObjectModel' => 'SchemaOrg\\Type\\MediaObjectModel'];
+    public const PARENTS = ['MediaObjectModel' => 'SchemaOrg\Type\MediaObjectModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

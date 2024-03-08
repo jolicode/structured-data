@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PredecessorOfModel
     public const DESCRIPTION = 'A pointer from a previous, often discontinued variant of the product to its newer variant.';
     public const LABEL = 'predecessorOf';
     public const NAME = 'schema:predecessorOf';
-    public const VALUES = ['ProductModelModel' => 'SchemaOrg\\Type\\ProductModelModel'];
-    public const TYPES = ['ProductModel' => 'SchemaOrg\\Type\\ProductModelModel'];
+    public const VALUES = ['ProductModelModel' => 'SchemaOrg\Type\ProductModelModel'];
+    public const TYPES = ['ProductModel' => 'SchemaOrg\Type\ProductModelModel'];
 }

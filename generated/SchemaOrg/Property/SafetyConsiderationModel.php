@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SafetyConsiderationModel
     public const DESCRIPTION = 'Any potential safety concern associated with the supplement. May include interactions with other drugs and foods, pregnancy, breastfeeding, known adverse reactions, and documented efficacy of the supplement.';
     public const LABEL = 'safetyConsideration';
     public const NAME = 'schema:safetyConsideration';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['DietarySupplement' => 'SchemaOrg\\Type\\DietarySupplementModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['DietarySupplement' => 'SchemaOrg\Type\DietarySupplementModel'];
 }

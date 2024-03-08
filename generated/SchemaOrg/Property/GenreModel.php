@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class GenreModel
     public const DESCRIPTION = 'Genre of the creative work, broadcast channel or group.';
     public const LABEL = 'genre';
     public const NAME = 'schema:genre';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['BroadcastChannel' => 'SchemaOrg\\Type\\BroadcastChannelModel', 'CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel', 'MusicGroup' => 'SchemaOrg\\Type\\MusicGroupModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['BroadcastChannel' => 'SchemaOrg\Type\BroadcastChannelModel', 'CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel', 'MusicGroup' => 'SchemaOrg\Type\MusicGroupModel'];
 }

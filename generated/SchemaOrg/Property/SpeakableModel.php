@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -31,6 +29,6 @@ we define a supporting type, [[SpeakableSpecification]]  which is defined to be 
          ';
     public const LABEL = 'speakable';
     public const NAME = 'schema:speakable';
-    public const VALUES = ['SpeakableSpecificationModel' => 'SchemaOrg\\Type\\SpeakableSpecificationModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['Article' => 'SchemaOrg\\Type\\ArticleModel', 'WebPage' => 'SchemaOrg\\Type\\WebPageModel'];
+    public const VALUES = ['SpeakableSpecificationModel' => 'SchemaOrg\Type\SpeakableSpecificationModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['Article' => 'SchemaOrg\Type\ArticleModel', 'WebPage' => 'SchemaOrg\Type\WebPageModel'];
 }

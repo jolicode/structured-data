@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class StructuralClassModel
     public const DESCRIPTION = 'The name given to how bone physically connects to each other.';
     public const LABEL = 'structuralClass';
     public const NAME = 'schema:structuralClass';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Joint' => 'SchemaOrg\\Type\\JointModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Joint' => 'SchemaOrg\Type\JointModel'];
 }

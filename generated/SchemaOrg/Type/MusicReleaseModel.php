@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MusicReleaseModel
     public const DESCRIPTION = 'A MusicRelease is a specific release of a music album.';
     public const LABEL = 'MusicRelease';
     public const NAME = 'schema:MusicRelease';
-    public const PARENTS = ['MusicPlaylistModel' => 'SchemaOrg\\Type\\MusicPlaylistModel'];
+    public const PARENTS = ['MusicPlaylistModel' => 'SchemaOrg\Type\MusicPlaylistModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

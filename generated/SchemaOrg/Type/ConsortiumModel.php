@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ConsortiumModel
     public const DESCRIPTION = 'A Consortium is a membership [[Organization]] whose members are typically Organizations.';
     public const LABEL = 'Consortium';
     public const NAME = 'schema:Consortium';
-    public const PARENTS = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel'];
+    public const PARENTS = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

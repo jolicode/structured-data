@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SeatingTypeModel
     public const DESCRIPTION = 'The type/class of the seat.';
     public const LABEL = 'seatingType';
     public const NAME = 'schema:seatingType';
-    public const VALUES = ['QualitativeValueModel' => 'SchemaOrg\\Type\\QualitativeValueModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Seat' => 'SchemaOrg\\Type\\SeatModel'];
+    public const VALUES = ['QualitativeValueModel' => 'SchemaOrg\Type\QualitativeValueModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Seat' => 'SchemaOrg\Type\SeatModel'];
 }

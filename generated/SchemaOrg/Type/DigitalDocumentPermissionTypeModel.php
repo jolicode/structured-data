@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class DigitalDocumentPermissionTypeModel
     public const DESCRIPTION = 'A type of permission which can be granted for accessing a digital document.';
     public const LABEL = 'DigitalDocumentPermissionType';
     public const NAME = 'schema:DigitalDocumentPermissionType';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['CommentPermissionModel' => 'EnumerationMember\\CommentPermissionModel', 'ReadPermissionModel' => 'EnumerationMember\\ReadPermissionModel', 'WritePermissionModel' => 'EnumerationMember\\WritePermissionModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['CommentPermissionModel' => 'EnumerationMember\CommentPermissionModel', 'ReadPermissionModel' => 'EnumerationMember\ReadPermissionModel', 'WritePermissionModel' => 'EnumerationMember\WritePermissionModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

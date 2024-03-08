@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ReservationStatusModel
     public const DESCRIPTION = 'The current status of the reservation.';
     public const LABEL = 'reservationStatus';
     public const NAME = 'schema:reservationStatus';
-    public const VALUES = ['ReservationStatusTypeModel' => 'SchemaOrg\\Type\\ReservationStatusTypeModel'];
-    public const TYPES = ['Reservation' => 'SchemaOrg\\Type\\ReservationModel'];
+    public const VALUES = ['ReservationStatusTypeModel' => 'SchemaOrg\Type\ReservationStatusTypeModel'];
+    public const TYPES = ['Reservation' => 'SchemaOrg\Type\ReservationModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class MusicAlbumProductionTypeModel
     public const DESCRIPTION = 'Classification of the album by its type of content: soundtrack, live album, studio album, etc.';
     public const LABEL = 'MusicAlbumProductionType';
     public const NAME = 'schema:MusicAlbumProductionType';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['CompilationAlbumModel' => 'EnumerationMember\\CompilationAlbumModel', 'DJMixAlbumModel' => 'EnumerationMember\\DJMixAlbumModel', 'DemoAlbumModel' => 'EnumerationMember\\DemoAlbumModel', 'LiveAlbumModel' => 'EnumerationMember\\LiveAlbumModel', 'MixtapeAlbumModel' => 'EnumerationMember\\MixtapeAlbumModel', 'RemixAlbumModel' => 'EnumerationMember\\RemixAlbumModel', 'SoundtrackAlbumModel' => 'EnumerationMember\\SoundtrackAlbumModel', 'SpokenWordAlbumModel' => 'EnumerationMember\\SpokenWordAlbumModel', 'StudioAlbumModel' => 'EnumerationMember\\StudioAlbumModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['CompilationAlbumModel' => 'EnumerationMember\CompilationAlbumModel', 'DJMixAlbumModel' => 'EnumerationMember\DJMixAlbumModel', 'DemoAlbumModel' => 'EnumerationMember\DemoAlbumModel', 'LiveAlbumModel' => 'EnumerationMember\LiveAlbumModel', 'MixtapeAlbumModel' => 'EnumerationMember\MixtapeAlbumModel', 'RemixAlbumModel' => 'EnumerationMember\RemixAlbumModel', 'SoundtrackAlbumModel' => 'EnumerationMember\SoundtrackAlbumModel', 'SpokenWordAlbumModel' => 'EnumerationMember\SpokenWordAlbumModel', 'StudioAlbumModel' => 'EnumerationMember\StudioAlbumModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

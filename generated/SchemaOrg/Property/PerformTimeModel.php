@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PerformTimeModel
     public const DESCRIPTION = 'The length of time it takes to perform instructions or a direction (not including time to prepare the supplies), in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).';
     public const LABEL = 'performTime';
     public const NAME = 'schema:performTime';
-    public const VALUES = ['DurationModel' => 'SchemaOrg\\Type\\DurationModel'];
-    public const TYPES = ['HowToDirection' => 'SchemaOrg\\Type\\HowToDirectionModel', 'HowTo' => 'SchemaOrg\\Type\\HowToModel'];
+    public const VALUES = ['DurationModel' => 'SchemaOrg\Type\DurationModel'];
+    public const TYPES = ['HowToDirection' => 'SchemaOrg\Type\HowToDirectionModel', 'HowTo' => 'SchemaOrg\Type\HowToModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class AppendActionModel
     public const DESCRIPTION = 'The act of inserting at the end if an ordered collection.';
     public const LABEL = 'AppendAction';
     public const NAME = 'schema:AppendAction';
-    public const PARENTS = ['InsertActionModel' => 'SchemaOrg\\Type\\InsertActionModel'];
+    public const PARENTS = ['InsertActionModel' => 'SchemaOrg\Type\InsertActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

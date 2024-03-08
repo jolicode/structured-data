@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class UnitPriceSpecificationModel
     public const DESCRIPTION = 'The price asked for a given offer by the respective organization or person.';
     public const LABEL = 'UnitPriceSpecification';
     public const NAME = 'schema:UnitPriceSpecification';
-    public const PARENTS = ['PriceSpecificationModel' => 'SchemaOrg\\Type\\PriceSpecificationModel'];
+    public const PARENTS = ['PriceSpecificationModel' => 'SchemaOrg\Type\PriceSpecificationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

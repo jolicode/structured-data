@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MedicalSignModel
     public const DESCRIPTION = 'Any physical manifestation of a person\'s medical condition discoverable by objective diagnostic tests or physical examination.';
     public const LABEL = 'MedicalSign';
     public const NAME = 'schema:MedicalSign';
-    public const PARENTS = ['MedicalSignOrSymptomModel' => 'SchemaOrg\\Type\\MedicalSignOrSymptomModel'];
+    public const PARENTS = ['MedicalSignOrSymptomModel' => 'SchemaOrg\Type\MedicalSignOrSymptomModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

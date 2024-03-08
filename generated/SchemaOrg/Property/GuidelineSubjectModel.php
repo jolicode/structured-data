@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class GuidelineSubjectModel
     public const DESCRIPTION = 'The medical conditions, treatments, etc. that are the subject of the guideline.';
     public const LABEL = 'guidelineSubject';
     public const NAME = 'schema:guidelineSubject';
-    public const VALUES = ['MedicalEntityModel' => 'SchemaOrg\\Type\\MedicalEntityModel'];
-    public const TYPES = ['MedicalGuideline' => 'SchemaOrg\\Type\\MedicalGuidelineModel'];
+    public const VALUES = ['MedicalEntityModel' => 'SchemaOrg\Type\MedicalEntityModel'];
+    public const TYPES = ['MedicalGuideline' => 'SchemaOrg\Type\MedicalGuidelineModel'];
 }

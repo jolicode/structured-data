@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class AggregateRatingModel
     public const DESCRIPTION = 'The average rating based on multiple ratings or reviews.';
     public const LABEL = 'AggregateRating';
     public const NAME = 'schema:AggregateRating';
-    public const PARENTS = ['RatingModel' => 'SchemaOrg\\Type\\RatingModel'];
+    public const PARENTS = ['RatingModel' => 'SchemaOrg\Type\RatingModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

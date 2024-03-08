@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class WearActionModel
     public const DESCRIPTION = 'The act of dressing oneself in clothing.';
     public const LABEL = 'WearAction';
     public const NAME = 'schema:WearAction';
-    public const PARENTS = ['UseActionModel' => 'SchemaOrg\\Type\\UseActionModel'];
+    public const PARENTS = ['UseActionModel' => 'SchemaOrg\Type\UseActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

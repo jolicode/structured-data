@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class GovernmentServiceModel
     public const DESCRIPTION = 'A service provided by a government organization, e.g. food stamps, veterans benefits, etc.';
     public const LABEL = 'GovernmentService';
     public const NAME = 'schema:GovernmentService';
-    public const PARENTS = ['ServiceModel' => 'SchemaOrg\\Type\\ServiceModel'];
+    public const PARENTS = ['ServiceModel' => 'SchemaOrg\Type\ServiceModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

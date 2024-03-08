@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class CommunicateActionModel
     public const DESCRIPTION = 'The act of conveying information to another person via a communication medium (instrument) such as speech, email, or telephone conversation.';
     public const LABEL = 'CommunicateAction';
     public const NAME = 'schema:CommunicateAction';
-    public const PARENTS = ['InteractActionModel' => 'SchemaOrg\\Type\\InteractActionModel'];
+    public const PARENTS = ['InteractActionModel' => 'SchemaOrg\Type\InteractActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

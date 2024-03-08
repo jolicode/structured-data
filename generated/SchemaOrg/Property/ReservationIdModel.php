@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ReservationIdModel
     public const DESCRIPTION = 'A unique identifier for the reservation.';
     public const LABEL = 'reservationId';
     public const NAME = 'schema:reservationId';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Reservation' => 'SchemaOrg\\Type\\ReservationModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Reservation' => 'SchemaOrg\Type\ReservationModel'];
 }

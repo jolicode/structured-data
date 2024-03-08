@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ReviewBodyModel
     public const DESCRIPTION = 'The actual body of the review.';
     public const LABEL = 'reviewBody';
     public const NAME = 'schema:reviewBody';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Review' => 'SchemaOrg\\Type\\ReviewModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Review' => 'SchemaOrg\Type\ReviewModel'];
 }

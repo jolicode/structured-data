@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LegislationDateModel
     public const DESCRIPTION = 'The date of adoption or signature of the legislation. This is the date at which the text is officially aknowledged to be a legislation, even though it might not even be published or in force.';
     public const LABEL = 'legislationDate';
     public const NAME = 'schema:legislationDate';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel'];
-    public const TYPES = ['Legislation' => 'SchemaOrg\\Type\\LegislationModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel'];
+    public const TYPES = ['Legislation' => 'SchemaOrg\Type\LegislationModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LayoutImageModel
     public const DESCRIPTION = 'A schematic image showing the floorplan layout.';
     public const LABEL = 'layoutImage';
     public const NAME = 'schema:layoutImage';
-    public const VALUES = ['ImageObjectModel' => 'SchemaOrg\\Type\\ImageObjectModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['FloorPlan' => 'SchemaOrg\\Type\\FloorPlanModel'];
+    public const VALUES = ['ImageObjectModel' => 'SchemaOrg\Type\ImageObjectModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['FloorPlan' => 'SchemaOrg\Type\FloorPlanModel'];
 }

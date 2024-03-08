@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class GettingTestedInfoModel
     public const DESCRIPTION = 'Information about getting tested (for a [[MedicalCondition]]), e.g. in the context of a pandemic.';
     public const LABEL = 'gettingTestedInfo';
     public const NAME = 'schema:gettingTestedInfo';
-    public const VALUES = ['URLModel' => 'SchemaOrg\\Type\\URLModel', 'WebContentModel' => 'SchemaOrg\\Type\\WebContentModel'];
-    public const TYPES = ['SpecialAnnouncement' => 'SchemaOrg\\Type\\SpecialAnnouncementModel'];
+    public const VALUES = ['URLModel' => 'SchemaOrg\Type\URLModel', 'WebContentModel' => 'SchemaOrg\Type\WebContentModel'];
+    public const TYPES = ['SpecialAnnouncement' => 'SchemaOrg\Type\SpecialAnnouncementModel'];
 }

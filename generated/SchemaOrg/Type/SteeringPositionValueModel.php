@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class SteeringPositionValueModel
     public const DESCRIPTION = 'A value indicating a steering position.';
     public const LABEL = 'SteeringPositionValue';
     public const NAME = 'schema:SteeringPositionValue';
-    public const PARENTS = ['QualitativeValueModel' => 'SchemaOrg\\Type\\QualitativeValueModel'];
-    public const ENUMERATION_MEMBERS = ['LeftHandDrivingModel' => 'EnumerationMember\\LeftHandDrivingModel', 'RightHandDrivingModel' => 'EnumerationMember\\RightHandDrivingModel'];
+    public const PARENTS = ['QualitativeValueModel' => 'SchemaOrg\Type\QualitativeValueModel'];
+    public const ENUMERATION_MEMBERS = ['LeftHandDrivingModel' => 'EnumerationMember\LeftHandDrivingModel', 'RightHandDrivingModel' => 'EnumerationMember\RightHandDrivingModel'];
 
     public function __construct(
         public ?Property\AdditionalPropertyModel $additionalProperty = null,

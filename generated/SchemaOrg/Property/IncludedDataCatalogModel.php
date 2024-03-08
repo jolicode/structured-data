@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IncludedDataCatalogModel
     public const DESCRIPTION = 'A data catalog which contains this dataset (this property was previously \'catalog\', preferred name is now \'includedInDataCatalog\').';
     public const LABEL = 'includedDataCatalog';
     public const NAME = 'schema:includedDataCatalog';
-    public const VALUES = ['DataCatalogModel' => 'SchemaOrg\\Type\\DataCatalogModel'];
-    public const TYPES = ['Dataset' => 'SchemaOrg\\Type\\DatasetModel'];
+    public const VALUES = ['DataCatalogModel' => 'SchemaOrg\Type\DataCatalogModel'];
+    public const TYPES = ['Dataset' => 'SchemaOrg\Type\DatasetModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -23,7 +21,7 @@ final class MediaReviewModel
     to combat misinformation, the specific structures for representing media objects, their versions and publication context, are still evolving. Similarly, best practices for the relationship between [[MediaReview]] and [[ClaimReview]] markup have not yet been finalized.';
     public const LABEL = 'MediaReview';
     public const NAME = 'schema:MediaReview';
-    public const PARENTS = ['ReviewModel' => 'SchemaOrg\\Type\\ReviewModel'];
+    public const PARENTS = ['ReviewModel' => 'SchemaOrg\Type\ReviewModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

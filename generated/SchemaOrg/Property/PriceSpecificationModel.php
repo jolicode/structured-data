@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PriceSpecificationModel
     public const DESCRIPTION = 'One or more detailed price specifications, indicating the unit price and delivery or payment charges.';
     public const LABEL = 'priceSpecification';
     public const NAME = 'schema:priceSpecification';
-    public const VALUES = ['PriceSpecificationModel' => 'SchemaOrg\\Type\\PriceSpecificationModel'];
-    public const TYPES = ['Demand' => 'SchemaOrg\\Type\\DemandModel', 'Offer' => 'SchemaOrg\\Type\\OfferModel', 'TradeAction' => 'SchemaOrg\\Type\\TradeActionModel'];
+    public const VALUES = ['PriceSpecificationModel' => 'SchemaOrg\Type\PriceSpecificationModel'];
+    public const TYPES = ['Demand' => 'SchemaOrg\Type\DemandModel', 'Offer' => 'SchemaOrg\Type\OfferModel', 'TradeAction' => 'SchemaOrg\Type\TradeActionModel'];
 }

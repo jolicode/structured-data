@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ArchiveComponentModel
     public const DESCRIPTION = 'An intangible type to be applied to any archive content, carrying with it a set of properties required to describe archival items and collections.';
     public const LABEL = 'ArchiveComponent';
     public const NAME = 'schema:ArchiveComponent';
-    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

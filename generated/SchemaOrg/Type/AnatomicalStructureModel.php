@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class AnatomicalStructureModel
     public const DESCRIPTION = 'Any part of the human body, typically a component of an anatomical system. Organs, tissues, and cells are all anatomical structures.';
     public const LABEL = 'AnatomicalStructure';
     public const NAME = 'schema:AnatomicalStructure';
-    public const PARENTS = ['MedicalEntityModel' => 'SchemaOrg\\Type\\MedicalEntityModel'];
+    public const PARENTS = ['MedicalEntityModel' => 'SchemaOrg\Type\MedicalEntityModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

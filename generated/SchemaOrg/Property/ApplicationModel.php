@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ApplicationModel
     public const DESCRIPTION = 'An application that can complete the request.';
     public const LABEL = 'application';
     public const NAME = 'schema:application';
-    public const VALUES = ['SoftwareApplicationModel' => 'SchemaOrg\\Type\\SoftwareApplicationModel'];
-    public const TYPES = ['EntryPoint' => 'SchemaOrg\\Type\\EntryPointModel'];
+    public const VALUES = ['SoftwareApplicationModel' => 'SchemaOrg\Type\SoftwareApplicationModel'];
+    public const TYPES = ['EntryPoint' => 'SchemaOrg\Type\EntryPointModel'];
 }

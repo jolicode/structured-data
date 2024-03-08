@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class WorkBasedProgramModel
     public const DESCRIPTION = 'A program with both an educational and employment component. Typically based at a workplace and structured around work-based learning, with the aim of instilling competencies related to an occupation. WorkBasedProgram is used to distinguish programs such as apprenticeships from school, college or other classroom based educational programs.';
     public const LABEL = 'WorkBasedProgram';
     public const NAME = 'schema:WorkBasedProgram';
-    public const PARENTS = ['EducationalOccupationalProgramModel' => 'SchemaOrg\\Type\\EducationalOccupationalProgramModel'];
+    public const PARENTS = ['EducationalOccupationalProgramModel' => 'SchemaOrg\Type\EducationalOccupationalProgramModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

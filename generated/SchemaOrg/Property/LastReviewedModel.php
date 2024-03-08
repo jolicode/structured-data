@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LastReviewedModel
     public const DESCRIPTION = 'Date on which the content on this web page was last reviewed for accuracy and/or completeness.';
     public const LABEL = 'lastReviewed';
     public const NAME = 'schema:lastReviewed';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel'];
-    public const TYPES = ['WebPage' => 'SchemaOrg\\Type\\WebPageModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel'];
+    public const TYPES = ['WebPage' => 'SchemaOrg\Type\WebPageModel'];
 }

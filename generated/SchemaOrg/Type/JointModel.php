@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class JointModel
     public const DESCRIPTION = 'The anatomical location at which two or more bones make contact.';
     public const LABEL = 'Joint';
     public const NAME = 'schema:Joint';
-    public const PARENTS = ['AnatomicalStructureModel' => 'SchemaOrg\\Type\\AnatomicalStructureModel'];
+    public const PARENTS = ['AnatomicalStructureModel' => 'SchemaOrg\Type\AnatomicalStructureModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

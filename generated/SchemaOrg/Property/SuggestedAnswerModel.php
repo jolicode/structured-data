@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SuggestedAnswerModel
     public const DESCRIPTION = 'An answer (possibly one of several, possibly incorrect) to a Question, e.g. on a Question/Answer site.';
     public const LABEL = 'suggestedAnswer';
     public const NAME = 'schema:suggestedAnswer';
-    public const VALUES = ['AnswerModel' => 'SchemaOrg\\Type\\AnswerModel', 'ItemListModel' => 'SchemaOrg\\Type\\ItemListModel'];
-    public const TYPES = ['Question' => 'SchemaOrg\\Type\\QuestionModel'];
+    public const VALUES = ['AnswerModel' => 'SchemaOrg\Type\AnswerModel', 'ItemListModel' => 'SchemaOrg\Type\ItemListModel'];
+    public const TYPES = ['Question' => 'SchemaOrg\Type\QuestionModel'];
 }

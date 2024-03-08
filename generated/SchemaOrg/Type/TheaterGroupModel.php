@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class TheaterGroupModel
     public const DESCRIPTION = 'A theater group or company, for example, the Royal Shakespeare Company or Druid Theatre.';
     public const LABEL = 'TheaterGroup';
     public const NAME = 'schema:TheaterGroup';
-    public const PARENTS = ['PerformingGroupModel' => 'SchemaOrg\\Type\\PerformingGroupModel'];
+    public const PARENTS = ['PerformingGroupModel' => 'SchemaOrg\Type\PerformingGroupModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

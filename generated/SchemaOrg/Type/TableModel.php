@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class TableModel
     public const DESCRIPTION = 'A table on a Web page.';
     public const LABEL = 'Table';
     public const NAME = 'schema:Table';
-    public const PARENTS = ['WebPageElementModel' => 'SchemaOrg\\Type\\WebPageElementModel'];
+    public const PARENTS = ['WebPageElementModel' => 'SchemaOrg\Type\WebPageElementModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

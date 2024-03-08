@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -21,6 +19,6 @@ final class ExceptDateModel
       excluded from the schedule. This allows a whole day to be excluded from the schedule without having to itemise every scheduled event.';
     public const LABEL = 'exceptDate';
     public const NAME = 'schema:exceptDate';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel', 'DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel'];
-    public const TYPES = ['Schedule' => 'SchemaOrg\\Type\\ScheduleModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel', 'DateTimeModel' => 'SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['Schedule' => 'SchemaOrg\Type\ScheduleModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class StepsModel
     public const DESCRIPTION = 'A single step item (as HowToStep, text, document, video, etc.) or a HowToSection (originally misnamed \'steps\'; \'step\' is preferred).';
     public const LABEL = 'steps';
     public const NAME = 'schema:steps';
-    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel', 'ItemListModel' => 'SchemaOrg\\Type\\ItemListModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['HowTo' => 'SchemaOrg\\Type\\HowToModel', 'HowToSection' => 'SchemaOrg\\Type\\HowToSectionModel'];
+    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel', 'ItemListModel' => 'SchemaOrg\Type\ItemListModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['HowTo' => 'SchemaOrg\Type\HowToModel', 'HowToSection' => 'SchemaOrg\Type\HowToSectionModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MedicalRiskCalculatorModel
     public const DESCRIPTION = 'A complex mathematical calculation requiring an online calculator, used to assess prognosis. Note: use the url property of Thing to record any URLs for online calculators.';
     public const LABEL = 'MedicalRiskCalculator';
     public const NAME = 'schema:MedicalRiskCalculator';
-    public const PARENTS = ['MedicalRiskEstimatorModel' => 'SchemaOrg\\Type\\MedicalRiskEstimatorModel'];
+    public const PARENTS = ['MedicalRiskEstimatorModel' => 'SchemaOrg\Type\MedicalRiskEstimatorModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

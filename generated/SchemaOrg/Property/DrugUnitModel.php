@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DrugUnitModel
     public const DESCRIPTION = 'The unit in which the drug is measured, e.g. \'5 mg tablet\'.';
     public const LABEL = 'drugUnit';
     public const NAME = 'schema:drugUnit';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['DrugCost' => 'SchemaOrg\\Type\\DrugCostModel', 'Drug' => 'SchemaOrg\\Type\\DrugModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['DrugCost' => 'SchemaOrg\Type\DrugCostModel', 'Drug' => 'SchemaOrg\Type\DrugModel'];
 }

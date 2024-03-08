@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CostCategoryModel
     public const DESCRIPTION = 'The category of cost, such as wholesale, retail, reimbursement cap, etc.';
     public const LABEL = 'costCategory';
     public const NAME = 'schema:costCategory';
-    public const VALUES = ['DrugCostCategoryModel' => 'SchemaOrg\\Type\\DrugCostCategoryModel'];
-    public const TYPES = ['DrugCost' => 'SchemaOrg\\Type\\DrugCostModel'];
+    public const VALUES = ['DrugCostCategoryModel' => 'SchemaOrg\Type\DrugCostCategoryModel'];
+    public const TYPES = ['DrugCost' => 'SchemaOrg\Type\DrugCostModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ProgrammingLanguageModel
     public const DESCRIPTION = 'The computer programming language.';
     public const LABEL = 'programmingLanguage';
     public const NAME = 'schema:programmingLanguage';
-    public const VALUES = ['ComputerLanguageModel' => 'SchemaOrg\\Type\\ComputerLanguageModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['SoftwareSourceCode' => 'SchemaOrg\\Type\\SoftwareSourceCodeModel'];
+    public const VALUES = ['ComputerLanguageModel' => 'SchemaOrg\Type\ComputerLanguageModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['SoftwareSourceCode' => 'SchemaOrg\Type\SoftwareSourceCodeModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class LibrarySystemModel
     public const DESCRIPTION = 'A [[LibrarySystem]] is a collaborative system amongst several libraries.';
     public const LABEL = 'LibrarySystem';
     public const NAME = 'schema:LibrarySystem';
-    public const PARENTS = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel'];
+    public const PARENTS = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

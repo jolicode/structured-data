@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PaymentDueModel
     public const DESCRIPTION = 'The date that payment is due.';
     public const LABEL = 'paymentDue';
     public const NAME = 'schema:paymentDue';
-    public const VALUES = ['DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel'];
-    public const TYPES = ['Invoice' => 'SchemaOrg\\Type\\InvoiceModel', 'Order' => 'SchemaOrg\\Type\\OrderModel'];
+    public const VALUES = ['DateTimeModel' => 'SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['Invoice' => 'SchemaOrg\Type\InvoiceModel', 'Order' => 'SchemaOrg\Type\OrderModel'];
 }

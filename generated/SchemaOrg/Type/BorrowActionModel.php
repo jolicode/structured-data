@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -17,10 +15,10 @@ use SchemaOrg\Property;
 
 final class BorrowActionModel
 {
-    public const DESCRIPTION = 'The act of obtaining an object under an agreement to return it at a later date. Reciprocal of LendAction.\\n\\nRelated actions:\\n\\n* [[LendAction]]: Reciprocal of BorrowAction.';
+    public const DESCRIPTION = 'The act of obtaining an object under an agreement to return it at a later date. Reciprocal of LendAction.\n\nRelated actions:\n\n* [[LendAction]]: Reciprocal of BorrowAction.';
     public const LABEL = 'BorrowAction';
     public const NAME = 'schema:BorrowAction';
-    public const PARENTS = ['TransferActionModel' => 'SchemaOrg\\Type\\TransferActionModel'];
+    public const PARENTS = ['TransferActionModel' => 'SchemaOrg\Type\TransferActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SubReservationModel
     public const DESCRIPTION = 'The individual reservations included in the package. Typically a repeated property.';
     public const LABEL = 'subReservation';
     public const NAME = 'schema:subReservation';
-    public const VALUES = ['ReservationModel' => 'SchemaOrg\\Type\\ReservationModel'];
-    public const TYPES = ['ReservationPackage' => 'SchemaOrg\\Type\\ReservationPackageModel'];
+    public const VALUES = ['ReservationModel' => 'SchemaOrg\Type\ReservationModel'];
+    public const TYPES = ['ReservationPackage' => 'SchemaOrg\Type\ReservationPackageModel'];
 }

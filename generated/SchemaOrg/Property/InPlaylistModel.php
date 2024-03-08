@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InPlaylistModel
     public const DESCRIPTION = 'The playlist to which this recording belongs.';
     public const LABEL = 'inPlaylist';
     public const NAME = 'schema:inPlaylist';
-    public const VALUES = ['MusicPlaylistModel' => 'SchemaOrg\\Type\\MusicPlaylistModel'];
-    public const TYPES = ['MusicRecording' => 'SchemaOrg\\Type\\MusicRecordingModel'];
+    public const VALUES = ['MusicPlaylistModel' => 'SchemaOrg\Type\MusicPlaylistModel'];
+    public const TYPES = ['MusicRecording' => 'SchemaOrg\Type\MusicRecordingModel'];
 }

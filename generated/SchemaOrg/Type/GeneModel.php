@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class GeneModel
     public const DESCRIPTION = 'A discrete unit of inheritance which affects one or more biological traits (Source: [https://en.wikipedia.org/wiki/Gene](https://en.wikipedia.org/wiki/Gene)). Examples include FOXP2 (Forkhead box protein P2), SCARNA21 (small Cajal body-specific RNA 21), A- (agouti genotype).';
     public const LABEL = 'Gene';
     public const NAME = 'schema:Gene';
-    public const PARENTS = ['BioChemEntityModel' => 'SchemaOrg\\Type\\BioChemEntityModel'];
+    public const PARENTS = ['BioChemEntityModel' => 'SchemaOrg\Type\BioChemEntityModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

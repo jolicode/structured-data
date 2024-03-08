@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ContraindicationModel
     public const DESCRIPTION = 'A contraindication for this therapy.';
     public const LABEL = 'contraindication';
     public const NAME = 'schema:contraindication';
-    public const VALUES = ['MedicalContraindicationModel' => 'SchemaOrg\\Type\\MedicalContraindicationModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MedicalDevice' => 'SchemaOrg\\Type\\MedicalDeviceModel', 'MedicalTherapy' => 'SchemaOrg\\Type\\MedicalTherapyModel'];
+    public const VALUES = ['MedicalContraindicationModel' => 'SchemaOrg\Type\MedicalContraindicationModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MedicalDevice' => 'SchemaOrg\Type\MedicalDeviceModel', 'MedicalTherapy' => 'SchemaOrg\Type\MedicalTherapyModel'];
 }

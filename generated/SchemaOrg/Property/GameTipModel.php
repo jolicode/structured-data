@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class GameTipModel
     public const DESCRIPTION = 'Links to tips, tactics, etc.';
     public const LABEL = 'gameTip';
     public const NAME = 'schema:gameTip';
-    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel'];
-    public const TYPES = ['VideoGame' => 'SchemaOrg\\Type\\VideoGameModel'];
+    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel'];
+    public const TYPES = ['VideoGame' => 'SchemaOrg\Type\VideoGameModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LeaseLengthModel
     public const DESCRIPTION = 'Length of the lease for some [[Accommodation]], either particular to some [[Offer]] or in some cases intrinsic to the property.';
     public const LABEL = 'leaseLength';
     public const NAME = 'schema:leaseLength';
-    public const VALUES = ['DurationModel' => 'SchemaOrg\\Type\\DurationModel', 'QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['Accommodation' => 'SchemaOrg\\Type\\AccommodationModel', 'Offer' => 'SchemaOrg\\Type\\OfferModel', 'RealEstateListing' => 'SchemaOrg\\Type\\RealEstateListingModel'];
+    public const VALUES = ['DurationModel' => 'SchemaOrg\Type\DurationModel', 'QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['Accommodation' => 'SchemaOrg\Type\AccommodationModel', 'Offer' => 'SchemaOrg\Type\OfferModel', 'RealEstateListing' => 'SchemaOrg\Type\RealEstateListingModel'];
 }

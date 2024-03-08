@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class PhysicalExamModel
     public const DESCRIPTION = 'A type of physical examination of a patient performed by a physician. ';
     public const LABEL = 'PhysicalExam';
     public const NAME = 'schema:PhysicalExam';
-    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\\Type\\MedicalEnumerationModel', 'MedicalProcedureModel' => 'SchemaOrg\\Type\\MedicalProcedureModel'];
-    public const ENUMERATION_MEMBERS = ['AbdomenModel' => 'EnumerationMember\\AbdomenModel', 'AppearanceModel' => 'EnumerationMember\\AppearanceModel', 'CardiovascularExamModel' => 'EnumerationMember\\CardiovascularExamModel', 'EarModel' => 'EnumerationMember\\EarModel', 'EyeModel' => 'EnumerationMember\\EyeModel', 'GenitourinaryModel' => 'EnumerationMember\\GenitourinaryModel', 'HeadModel' => 'EnumerationMember\\HeadModel', 'LungModel' => 'EnumerationMember\\LungModel', 'MusculoskeletalExamModel' => 'EnumerationMember\\MusculoskeletalExamModel', 'NeckModel' => 'EnumerationMember\\NeckModel', 'NeuroModel' => 'EnumerationMember\\NeuroModel', 'NoseModel' => 'EnumerationMember\\NoseModel', 'SkinModel' => 'EnumerationMember\\SkinModel', 'ThroatModel' => 'EnumerationMember\\ThroatModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\Type\MedicalEnumerationModel', 'MedicalProcedureModel' => 'SchemaOrg\Type\MedicalProcedureModel'];
+    public const ENUMERATION_MEMBERS = ['AbdomenModel' => 'EnumerationMember\AbdomenModel', 'AppearanceModel' => 'EnumerationMember\AppearanceModel', 'CardiovascularExamModel' => 'EnumerationMember\CardiovascularExamModel', 'EarModel' => 'EnumerationMember\EarModel', 'EyeModel' => 'EnumerationMember\EyeModel', 'GenitourinaryModel' => 'EnumerationMember\GenitourinaryModel', 'HeadModel' => 'EnumerationMember\HeadModel', 'LungModel' => 'EnumerationMember\LungModel', 'MusculoskeletalExamModel' => 'EnumerationMember\MusculoskeletalExamModel', 'NeckModel' => 'EnumerationMember\NeckModel', 'NeuroModel' => 'EnumerationMember\NeuroModel', 'NoseModel' => 'EnumerationMember\NoseModel', 'SkinModel' => 'EnumerationMember\SkinModel', 'ThroatModel' => 'EnumerationMember\ThroatModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

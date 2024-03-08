@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class EventAttendanceModeEnumerationModel
     public const DESCRIPTION = 'An EventAttendanceModeEnumeration value is one of potentially several modes of organising an event, relating to whether it is online or offline.';
     public const LABEL = 'EventAttendanceModeEnumeration';
     public const NAME = 'schema:EventAttendanceModeEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['MixedEventAttendanceModeModel' => 'EnumerationMember\\MixedEventAttendanceModeModel', 'OfflineEventAttendanceModeModel' => 'EnumerationMember\\OfflineEventAttendanceModeModel', 'OnlineEventAttendanceModeModel' => 'EnumerationMember\\OnlineEventAttendanceModeModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['MixedEventAttendanceModeModel' => 'EnumerationMember\MixedEventAttendanceModeModel', 'OfflineEventAttendanceModeModel' => 'EnumerationMember\OfflineEventAttendanceModeModel', 'OnlineEventAttendanceModeModel' => 'EnumerationMember\OnlineEventAttendanceModeModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

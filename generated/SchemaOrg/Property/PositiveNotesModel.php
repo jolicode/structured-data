@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -22,6 +20,6 @@ In the case of a [[Review]], the property describes the [[itemReviewed]] from th
 The property values can be expressed either as unstructured text (repeated as necessary), or if ordered, as a list (in which case the most positive is at the beginning of the list).';
     public const LABEL = 'positiveNotes';
     public const NAME = 'schema:positiveNotes';
-    public const VALUES = ['ItemListModel' => 'SchemaOrg\\Type\\ItemListModel', 'ListItemModel' => 'SchemaOrg\\Type\\ListItemModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel', 'WebContentModel' => 'SchemaOrg\\Type\\WebContentModel'];
-    public const TYPES = ['Product' => 'SchemaOrg\\Type\\ProductModel', 'Review' => 'SchemaOrg\\Type\\ReviewModel'];
+    public const VALUES = ['ItemListModel' => 'SchemaOrg\Type\ItemListModel', 'ListItemModel' => 'SchemaOrg\Type\ListItemModel', 'TextModel' => 'SchemaOrg\Type\TextModel', 'WebContentModel' => 'SchemaOrg\Type\WebContentModel'];
+    public const TYPES = ['Product' => 'SchemaOrg\Type\ProductModel', 'Review' => 'SchemaOrg\Type\ReviewModel'];
 }

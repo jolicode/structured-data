@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TotalHistoricalEnrollmentModel
     public const DESCRIPTION = 'The total number of students that have enrolled in the history of the course.';
     public const LABEL = 'totalHistoricalEnrollment';
     public const NAME = 'schema:totalHistoricalEnrollment';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel'];
-    public const TYPES = ['Course' => 'SchemaOrg\\Type\\CourseModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['Course' => 'SchemaOrg\Type\CourseModel'];
 }

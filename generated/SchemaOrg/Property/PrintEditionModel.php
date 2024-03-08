@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PrintEditionModel
     public const DESCRIPTION = 'The edition of the print product in which the NewsArticle appears.';
     public const LABEL = 'printEdition';
     public const NAME = 'schema:printEdition';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['NewsArticle' => 'SchemaOrg\\Type\\NewsArticleModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['NewsArticle' => 'SchemaOrg\Type\NewsArticleModel'];
 }

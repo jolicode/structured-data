@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class MapCategoryTypeModel
     public const DESCRIPTION = 'An enumeration of several kinds of Map.';
     public const LABEL = 'MapCategoryType';
     public const NAME = 'schema:MapCategoryType';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['ParkingMapModel' => 'EnumerationMember\\ParkingMapModel', 'SeatingMapModel' => 'EnumerationMember\\SeatingMapModel', 'TransitMapModel' => 'EnumerationMember\\TransitMapModel', 'VenueMapModel' => 'EnumerationMember\\VenueMapModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['ParkingMapModel' => 'EnumerationMember\ParkingMapModel', 'SeatingMapModel' => 'EnumerationMember\SeatingMapModel', 'TransitMapModel' => 'EnumerationMember\TransitMapModel', 'VenueMapModel' => 'EnumerationMember\VenueMapModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

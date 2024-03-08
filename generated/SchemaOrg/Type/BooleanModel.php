@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -19,7 +17,7 @@ final class BooleanModel
     public const LABEL = 'Boolean';
     public const NAME = 'schema:Boolean';
     public const PARENTS = [];
-    public const ENUMERATION_MEMBERS = ['FalseModel' => 'EnumerationMember\\FalseModel', 'TrueModel' => 'EnumerationMember\\TrueModel'];
+    public const ENUMERATION_MEMBERS = ['FalseModel' => 'EnumerationMember\FalseModel', 'TrueModel' => 'EnumerationMember\TrueModel'];
 
     public function __construct()
     {

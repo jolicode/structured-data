@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -22,6 +20,6 @@ In the case of TV and movie, this would be the country of the principle offices 
 In the case of products, the country of origin of the product. The exact interpretation of this may vary by context and product type, and cannot be fully enumerated here.';
     public const LABEL = 'countryOfOrigin';
     public const NAME = 'schema:countryOfOrigin';
-    public const VALUES = ['CountryModel' => 'SchemaOrg\\Type\\CountryModel'];
-    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel', 'Movie' => 'SchemaOrg\\Type\\MovieModel', 'Product' => 'SchemaOrg\\Type\\ProductModel', 'TVEpisode' => 'SchemaOrg\\Type\\TVEpisodeModel', 'TVSeason' => 'SchemaOrg\\Type\\TVSeasonModel', 'TVSeries' => 'SchemaOrg\\Type\\TVSeriesModel'];
+    public const VALUES = ['CountryModel' => 'SchemaOrg\Type\CountryModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel', 'Movie' => 'SchemaOrg\Type\MovieModel', 'Product' => 'SchemaOrg\Type\ProductModel', 'TVEpisode' => 'SchemaOrg\Type\TVEpisodeModel', 'TVSeason' => 'SchemaOrg\Type\TVSeasonModel', 'TVSeries' => 'SchemaOrg\Type\TVSeriesModel'];
 }

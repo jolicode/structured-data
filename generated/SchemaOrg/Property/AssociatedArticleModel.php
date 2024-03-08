@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AssociatedArticleModel
     public const DESCRIPTION = 'A NewsArticle associated with the Media Object.';
     public const LABEL = 'associatedArticle';
     public const NAME = 'schema:associatedArticle';
-    public const VALUES = ['NewsArticleModel' => 'SchemaOrg\\Type\\NewsArticleModel'];
-    public const TYPES = ['MediaObject' => 'SchemaOrg\\Type\\MediaObjectModel'];
+    public const VALUES = ['NewsArticleModel' => 'SchemaOrg\Type\NewsArticleModel'];
+    public const TYPES = ['MediaObject' => 'SchemaOrg\Type\MediaObjectModel'];
 }

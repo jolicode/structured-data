@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SignificanceModel
     public const DESCRIPTION = 'The significance associated with the superficial anatomy; as an example, how characteristics of the superficial anatomy can suggest underlying medical conditions or courses of treatment.';
     public const LABEL = 'significance';
     public const NAME = 'schema:significance';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['SuperficialAnatomy' => 'SchemaOrg\\Type\\SuperficialAnatomyModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['SuperficialAnatomy' => 'SchemaOrg\Type\SuperficialAnatomyModel'];
 }

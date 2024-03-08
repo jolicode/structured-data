@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MarryActionModel
     public const DESCRIPTION = 'The act of marrying a person.';
     public const LABEL = 'MarryAction';
     public const NAME = 'schema:MarryAction';
-    public const PARENTS = ['InteractActionModel' => 'SchemaOrg\\Type\\InteractActionModel'];
+    public const PARENTS = ['InteractActionModel' => 'SchemaOrg\Type\InteractActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class LoanOrCreditModel
     public const DESCRIPTION = 'A financial product for the loaning of an amount of money, or line of credit, under agreed terms and charges.';
     public const LABEL = 'LoanOrCredit';
     public const NAME = 'schema:LoanOrCredit';
-    public const PARENTS = ['FinancialProductModel' => 'SchemaOrg\\Type\\FinancialProductModel'];
+    public const PARENTS = ['FinancialProductModel' => 'SchemaOrg\Type\FinancialProductModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

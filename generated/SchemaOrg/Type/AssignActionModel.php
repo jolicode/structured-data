@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class AssignActionModel
     public const DESCRIPTION = 'The act of allocating an action/event/task to some destination (someone or something).';
     public const LABEL = 'AssignAction';
     public const NAME = 'schema:AssignAction';
-    public const PARENTS = ['AllocateActionModel' => 'SchemaOrg\\Type\\AllocateActionModel'];
+    public const PARENTS = ['AllocateActionModel' => 'SchemaOrg\Type\AllocateActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

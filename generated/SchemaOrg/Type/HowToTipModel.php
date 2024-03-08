@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class HowToTipModel
     public const DESCRIPTION = 'An explanation in the instructions for how to achieve a result. It provides supplementary information about a technique, supply, author\'s preference, etc. It can explain what could be done, or what should not be done, but doesn\'t specify what should be done (see HowToDirection).';
     public const LABEL = 'HowToTip';
     public const NAME = 'schema:HowToTip';
-    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel', 'ListItemModel' => 'SchemaOrg\\Type\\ListItemModel'];
+    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel', 'ListItemModel' => 'SchemaOrg\Type\ListItemModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

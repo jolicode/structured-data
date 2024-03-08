@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ArrivalTimeModel
     public const DESCRIPTION = 'The expected arrival time.';
     public const LABEL = 'arrivalTime';
     public const NAME = 'schema:arrivalTime';
-    public const VALUES = ['DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel', 'TimeModel' => 'SchemaOrg\\Type\\TimeModel'];
-    public const TYPES = ['Trip' => 'SchemaOrg\\Type\\TripModel'];
+    public const VALUES = ['DateTimeModel' => 'SchemaOrg\Type\DateTimeModel', 'TimeModel' => 'SchemaOrg\Type\TimeModel'];
+    public const TYPES = ['Trip' => 'SchemaOrg\Type\TripModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CommentTextModel
     public const DESCRIPTION = 'The text of the UserComment.';
     public const LABEL = 'commentText';
     public const NAME = 'schema:commentText';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['UserComments' => 'SchemaOrg\\Type\\UserCommentsModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['UserComments' => 'SchemaOrg\Type\UserCommentsModel'];
 }

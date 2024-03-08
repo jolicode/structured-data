@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -15,9 +13,9 @@ namespace SchemaOrg\Property;
 
 final class NumberOfAxlesModel
 {
-    public const DESCRIPTION = 'The number of axles.\\n\\nTypical unit code(s): C62';
+    public const DESCRIPTION = 'The number of axles.\n\nTypical unit code(s): C62';
     public const LABEL = 'numberOfAxles';
     public const NAME = 'schema:numberOfAxles';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel', 'QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['Vehicle' => 'SchemaOrg\\Type\\VehicleModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['Vehicle' => 'SchemaOrg\Type\VehicleModel'];
 }

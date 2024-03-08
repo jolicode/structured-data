@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PostOpModel
     public const DESCRIPTION = 'A description of the postoperative procedures, care, and/or followups for this device.';
     public const LABEL = 'postOp';
     public const NAME = 'schema:postOp';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MedicalDevice' => 'SchemaOrg\\Type\\MedicalDeviceModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MedicalDevice' => 'SchemaOrg\Type\MedicalDeviceModel'];
 }

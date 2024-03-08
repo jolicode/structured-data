@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class MedicalImagingTechniqueModel
     public const DESCRIPTION = 'Any medical imaging modality typically used for diagnostic purposes. Enumerated type.';
     public const LABEL = 'MedicalImagingTechnique';
     public const NAME = 'schema:MedicalImagingTechnique';
-    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\\Type\\MedicalEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['CTModel' => 'EnumerationMember\\CTModel', 'MRIModel' => 'EnumerationMember\\MRIModel', 'PETModel' => 'EnumerationMember\\PETModel', 'RadiographyModel' => 'EnumerationMember\\RadiographyModel', 'UltrasoundModel' => 'EnumerationMember\\UltrasoundModel', 'XRayModel' => 'EnumerationMember\\XRayModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\Type\MedicalEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['CTModel' => 'EnumerationMember\CTModel', 'MRIModel' => 'EnumerationMember\MRIModel', 'PETModel' => 'EnumerationMember\PETModel', 'RadiographyModel' => 'EnumerationMember\RadiographyModel', 'UltrasoundModel' => 'EnumerationMember\UltrasoundModel', 'XRayModel' => 'EnumerationMember\XRayModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

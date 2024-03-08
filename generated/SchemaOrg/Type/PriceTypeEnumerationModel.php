@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class PriceTypeEnumerationModel
     public const DESCRIPTION = 'Enumerates different price types, for example list price, invoice price, and sale price.';
     public const LABEL = 'PriceTypeEnumeration';
     public const NAME = 'schema:PriceTypeEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['InvoicePriceModel' => 'EnumerationMember\\InvoicePriceModel', 'ListPriceModel' => 'EnumerationMember\\ListPriceModel', 'MSRPModel' => 'EnumerationMember\\MSRPModel', 'MinimumAdvertisedPriceModel' => 'EnumerationMember\\MinimumAdvertisedPriceModel', 'SRPModel' => 'EnumerationMember\\SRPModel', 'SalePriceModel' => 'EnumerationMember\\SalePriceModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['InvoicePriceModel' => 'EnumerationMember\InvoicePriceModel', 'ListPriceModel' => 'EnumerationMember\ListPriceModel', 'MSRPModel' => 'EnumerationMember\MSRPModel', 'MinimumAdvertisedPriceModel' => 'EnumerationMember\MinimumAdvertisedPriceModel', 'SRPModel' => 'EnumerationMember\SRPModel', 'SalePriceModel' => 'EnumerationMember\SalePriceModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

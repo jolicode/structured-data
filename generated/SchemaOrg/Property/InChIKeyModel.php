@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InChIKeyModel
     public const DESCRIPTION = 'InChIKey is a hashed version of the full InChI (using the SHA-256 algorithm).';
     public const LABEL = 'inChIKey';
     public const NAME = 'schema:inChIKey';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MolecularEntity' => 'SchemaOrg\\Type\\MolecularEntityModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MolecularEntity' => 'SchemaOrg\Type\MolecularEntityModel'];
 }

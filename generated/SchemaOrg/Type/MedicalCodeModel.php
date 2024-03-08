@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MedicalCodeModel
     public const DESCRIPTION = 'A code for a medical entity.';
     public const LABEL = 'MedicalCode';
     public const NAME = 'schema:MedicalCode';
-    public const PARENTS = ['CategoryCodeModel' => 'SchemaOrg\\Type\\CategoryCodeModel', 'MedicalIntangibleModel' => 'SchemaOrg\\Type\\MedicalIntangibleModel'];
+    public const PARENTS = ['CategoryCodeModel' => 'SchemaOrg\Type\CategoryCodeModel', 'MedicalIntangibleModel' => 'SchemaOrg\Type\MedicalIntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

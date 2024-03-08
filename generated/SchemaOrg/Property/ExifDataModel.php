@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ExifDataModel
     public const DESCRIPTION = 'exif data for this object.';
     public const LABEL = 'exifData';
     public const NAME = 'schema:exifData';
-    public const VALUES = ['PropertyValueModel' => 'SchemaOrg\\Type\\PropertyValueModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['ImageObject' => 'SchemaOrg\\Type\\ImageObjectModel'];
+    public const VALUES = ['PropertyValueModel' => 'SchemaOrg\Type\PropertyValueModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['ImageObject' => 'SchemaOrg\Type\ImageObjectModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BroadcastChannelIdModel
     public const DESCRIPTION = 'The unique address by which the BroadcastService can be identified in a provider lineup. In US, this is typically a number.';
     public const LABEL = 'broadcastChannelId';
     public const NAME = 'schema:broadcastChannelId';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['BroadcastChannel' => 'SchemaOrg\\Type\\BroadcastChannelModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['BroadcastChannel' => 'SchemaOrg\Type\BroadcastChannelModel'];
 }

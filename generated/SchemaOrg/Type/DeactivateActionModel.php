@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DeactivateActionModel
     public const DESCRIPTION = 'The act of stopping or deactivating a device or application (e.g. stopping a timer or turning off a flashlight).';
     public const LABEL = 'DeactivateAction';
     public const NAME = 'schema:DeactivateAction';
-    public const PARENTS = ['ControlActionModel' => 'SchemaOrg\\Type\\ControlActionModel'];
+    public const PARENTS = ['ControlActionModel' => 'SchemaOrg\Type\ControlActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

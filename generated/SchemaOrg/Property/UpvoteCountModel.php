@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class UpvoteCountModel
     public const DESCRIPTION = 'The number of upvotes this question, answer or comment has received from the community.';
     public const LABEL = 'upvoteCount';
     public const NAME = 'schema:upvoteCount';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel'];
-    public const TYPES = ['Comment' => 'SchemaOrg\\Type\\CommentModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['Comment' => 'SchemaOrg\Type\CommentModel'];
 }

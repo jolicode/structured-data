@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -17,10 +15,10 @@ use SchemaOrg\Property;
 
 final class AcceptActionModel
 {
-    public const DESCRIPTION = 'The act of committing to/adopting an object.\\n\\nRelated actions:\\n\\n* [[RejectAction]]: The antonym of AcceptAction.';
+    public const DESCRIPTION = 'The act of committing to/adopting an object.\n\nRelated actions:\n\n* [[RejectAction]]: The antonym of AcceptAction.';
     public const LABEL = 'AcceptAction';
     public const NAME = 'schema:AcceptAction';
-    public const PARENTS = ['AllocateActionModel' => 'SchemaOrg\\Type\\AllocateActionModel'];
+    public const PARENTS = ['AllocateActionModel' => 'SchemaOrg\Type\AllocateActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

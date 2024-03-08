@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ClosesModel
     public const DESCRIPTION = 'The closing hour of the place or service on the given day(s) of the week.';
     public const LABEL = 'closes';
     public const NAME = 'schema:closes';
-    public const VALUES = ['TimeModel' => 'SchemaOrg\\Type\\TimeModel'];
-    public const TYPES = ['OpeningHoursSpecification' => 'SchemaOrg\\Type\\OpeningHoursSpecificationModel'];
+    public const VALUES = ['TimeModel' => 'SchemaOrg\Type\TimeModel'];
+    public const TYPES = ['OpeningHoursSpecification' => 'SchemaOrg\Type\OpeningHoursSpecificationModel'];
 }

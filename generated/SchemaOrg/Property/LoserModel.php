@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LoserModel
     public const DESCRIPTION = 'A sub property of participant. The loser of the action.';
     public const LABEL = 'loser';
     public const NAME = 'schema:loser';
-    public const VALUES = ['PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['WinAction' => 'SchemaOrg\\Type\\WinActionModel'];
+    public const VALUES = ['PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['WinAction' => 'SchemaOrg\Type\WinActionModel'];
 }

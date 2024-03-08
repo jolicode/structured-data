@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -22,7 +20,7 @@ Use properties from [[Organization]], [[subOrganization]]/[[parentOrganization]]
    ';
     public const LABEL = 'Project';
     public const NAME = 'schema:Project';
-    public const PARENTS = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel'];
+    public const PARENTS = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

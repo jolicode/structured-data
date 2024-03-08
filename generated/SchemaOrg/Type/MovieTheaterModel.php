@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MovieTheaterModel
     public const DESCRIPTION = 'A movie theater.';
     public const LABEL = 'MovieTheater';
     public const NAME = 'schema:MovieTheater';
-    public const PARENTS = ['CivicStructureModel' => 'SchemaOrg\\Type\\CivicStructureModel', 'EntertainmentBusinessModel' => 'SchemaOrg\\Type\\EntertainmentBusinessModel'];
+    public const PARENTS = ['CivicStructureModel' => 'SchemaOrg\Type\CivicStructureModel', 'EntertainmentBusinessModel' => 'SchemaOrg\Type\EntertainmentBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

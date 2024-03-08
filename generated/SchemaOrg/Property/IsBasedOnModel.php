@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IsBasedOnModel
     public const DESCRIPTION = 'A resource from which this work is derived or from which it is a modification or adaptation.';
     public const LABEL = 'isBasedOn';
     public const NAME = 'schema:isBasedOn';
-    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel', 'ProductModel' => 'SchemaOrg\\Type\\ProductModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel', 'ProductModel' => 'SchemaOrg\Type\ProductModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel'];
 }

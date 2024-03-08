@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class MeasurementMethodEnumModel
     public const DESCRIPTION = 'Enumeration(s) for use with [[measurementMethod]].';
     public const LABEL = 'MeasurementMethodEnum';
     public const NAME = 'schema:MeasurementMethodEnum';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['ExampleMeasurementMethodEnumModel' => 'EnumerationMember\\ExampleMeasurementMethodEnumModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['ExampleMeasurementMethodEnumModel' => 'EnumerationMember\ExampleMeasurementMethodEnumModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

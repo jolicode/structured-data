@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class WantActionModel
     public const DESCRIPTION = 'The act of expressing a desire about the object. An agent wants an object.';
     public const LABEL = 'WantAction';
     public const NAME = 'schema:WantAction';
-    public const PARENTS = ['ReactActionModel' => 'SchemaOrg\\Type\\ReactActionModel'];
+    public const PARENTS = ['ReactActionModel' => 'SchemaOrg\Type\ReactActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

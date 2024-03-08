@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SurfaceModel
     public const DESCRIPTION = 'A material used as a surface in some artwork, e.g. Canvas, Paper, Wood, Board, etc.';
     public const LABEL = 'surface';
     public const NAME = 'schema:surface';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['VisualArtwork' => 'SchemaOrg\\Type\\VisualArtworkModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['VisualArtwork' => 'SchemaOrg\Type\VisualArtworkModel'];
 }

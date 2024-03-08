@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PostalCodeRangeModel
     public const DESCRIPTION = 'A defined range of postal codes.';
     public const LABEL = 'postalCodeRange';
     public const NAME = 'schema:postalCodeRange';
-    public const VALUES = ['PostalCodeRangeSpecificationModel' => 'SchemaOrg\\Type\\PostalCodeRangeSpecificationModel'];
-    public const TYPES = ['DefinedRegion' => 'SchemaOrg\\Type\\DefinedRegionModel'];
+    public const VALUES = ['PostalCodeRangeSpecificationModel' => 'SchemaOrg\Type\PostalCodeRangeSpecificationModel'];
+    public const TYPES = ['DefinedRegion' => 'SchemaOrg\Type\DefinedRegionModel'];
 }

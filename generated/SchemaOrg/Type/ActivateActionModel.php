@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ActivateActionModel
     public const DESCRIPTION = 'The act of starting or activating a device or application (e.g. starting a timer or turning on a flashlight).';
     public const LABEL = 'ActivateAction';
     public const NAME = 'schema:ActivateAction';
-    public const PARENTS = ['ControlActionModel' => 'SchemaOrg\\Type\\ControlActionModel'];
+    public const PARENTS = ['ControlActionModel' => 'SchemaOrg\Type\ControlActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

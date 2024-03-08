@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ParcelDeliveryModel
     public const DESCRIPTION = 'The delivery of a parcel either via the postal service or a commercial service.';
     public const LABEL = 'ParcelDelivery';
     public const NAME = 'schema:ParcelDelivery';
-    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\\Type\\IntangibleModel'];
+    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\Type\IntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

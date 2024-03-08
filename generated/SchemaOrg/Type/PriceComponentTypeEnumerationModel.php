@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class PriceComponentTypeEnumerationModel
     public const DESCRIPTION = 'Enumerates different price components that together make up the total price for an offered product.';
     public const LABEL = 'PriceComponentTypeEnumeration';
     public const NAME = 'schema:PriceComponentTypeEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['ActivationFeeModel' => 'EnumerationMember\\ActivationFeeModel', 'CleaningFeeModel' => 'EnumerationMember\\CleaningFeeModel', 'DistanceFeeModel' => 'EnumerationMember\\DistanceFeeModel', 'DownpaymentModel' => 'EnumerationMember\\DownpaymentModel', 'InstallmentModel' => 'EnumerationMember\\InstallmentModel', 'SubscriptionModel' => 'EnumerationMember\\SubscriptionModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['ActivationFeeModel' => 'EnumerationMember\ActivationFeeModel', 'CleaningFeeModel' => 'EnumerationMember\CleaningFeeModel', 'DistanceFeeModel' => 'EnumerationMember\DistanceFeeModel', 'DownpaymentModel' => 'EnumerationMember\DownpaymentModel', 'InstallmentModel' => 'EnumerationMember\InstallmentModel', 'SubscriptionModel' => 'EnumerationMember\SubscriptionModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

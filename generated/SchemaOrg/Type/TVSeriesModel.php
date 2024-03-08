@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class TVSeriesModel
     public const DESCRIPTION = 'CreativeWorkSeries dedicated to TV broadcast and associated online delivery.';
     public const LABEL = 'TVSeries';
     public const NAME = 'schema:TVSeries';
-    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel', 'CreativeWorkSeriesModel' => 'SchemaOrg\\Type\\CreativeWorkSeriesModel'];
+    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel', 'CreativeWorkSeriesModel' => 'SchemaOrg\Type\CreativeWorkSeriesModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

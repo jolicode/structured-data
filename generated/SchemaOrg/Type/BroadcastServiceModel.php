@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class BroadcastServiceModel
     public const DESCRIPTION = 'A delivery service through which content is provided via broadcast over the air or online.';
     public const LABEL = 'BroadcastService';
     public const NAME = 'schema:BroadcastService';
-    public const PARENTS = ['ServiceModel' => 'SchemaOrg\\Type\\ServiceModel'];
+    public const PARENTS = ['ServiceModel' => 'SchemaOrg\Type\ServiceModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

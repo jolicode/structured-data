@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ContentTypeModel
     public const DESCRIPTION = 'The supported content type(s) for an EntryPoint response.';
     public const LABEL = 'contentType';
     public const NAME = 'schema:contentType';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['EntryPoint' => 'SchemaOrg\\Type\\EntryPointModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['EntryPoint' => 'SchemaOrg\Type\EntryPointModel'];
 }

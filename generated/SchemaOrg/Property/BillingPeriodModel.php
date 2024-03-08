@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BillingPeriodModel
     public const DESCRIPTION = 'The time interval used to compute the invoice.';
     public const LABEL = 'billingPeriod';
     public const NAME = 'schema:billingPeriod';
-    public const VALUES = ['DurationModel' => 'SchemaOrg\\Type\\DurationModel'];
-    public const TYPES = ['Invoice' => 'SchemaOrg\\Type\\InvoiceModel'];
+    public const VALUES = ['DurationModel' => 'SchemaOrg\Type\DurationModel'];
+    public const TYPES = ['Invoice' => 'SchemaOrg\Type\InvoiceModel'];
 }

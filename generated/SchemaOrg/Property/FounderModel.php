@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class FounderModel
     public const DESCRIPTION = 'A person who founded this organization.';
     public const LABEL = 'founder';
     public const NAME = 'schema:founder';
-    public const VALUES = ['PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['Organization' => 'SchemaOrg\\Type\\OrganizationModel'];
+    public const VALUES = ['PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['Organization' => 'SchemaOrg\Type\OrganizationModel'];
 }

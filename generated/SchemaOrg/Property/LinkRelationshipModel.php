@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LinkRelationshipModel
     public const DESCRIPTION = 'Indicates the relationship type of a Web link. ';
     public const LABEL = 'linkRelationship';
     public const NAME = 'schema:linkRelationship';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['LinkRole' => 'SchemaOrg\\Type\\LinkRoleModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['LinkRole' => 'SchemaOrg\Type\LinkRoleModel'];
 }

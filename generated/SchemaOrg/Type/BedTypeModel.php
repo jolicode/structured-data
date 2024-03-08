@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class BedTypeModel
     public const DESCRIPTION = 'A type of bed. This is used for indicating the bed or beds available in an accommodation.';
     public const LABEL = 'BedType';
     public const NAME = 'schema:BedType';
-    public const PARENTS = ['QualitativeValueModel' => 'SchemaOrg\\Type\\QualitativeValueModel'];
+    public const PARENTS = ['QualitativeValueModel' => 'SchemaOrg\Type\QualitativeValueModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

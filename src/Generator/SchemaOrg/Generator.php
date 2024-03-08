@@ -18,6 +18,7 @@ use Jolicode\JsonLd\Generator\SchemaOrg\Objects\EnumerationMember;
 use Jolicode\JsonLd\Generator\SchemaOrg\Objects\Property;
 use Jolicode\JsonLd\Generator\SchemaOrg\Objects\Type;
 use PhpParser\BuilderFactory;
+use PhpParser\Node\ArrayItem;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Scalar;
 use PhpParser\Node\Stmt;
@@ -180,7 +181,7 @@ readonly class Generator implements GeneratorInterface
         foreach ($type->parents as $parent) {
             $className = AbstractSchemaOrgElement::getClassName($parent);
             $fqcn = sprintf('%s\\%s', self::NAMESPACE_TYPE, $className);
-            $parents[] = new Expr\ArrayItem(
+            $parents[] = new ArrayItem(
                 new Scalar\String_($fqcn),
                 new Scalar\String_($className),
             );
@@ -190,7 +191,7 @@ readonly class Generator implements GeneratorInterface
         usort($parents, fn ($a, $b) => $a->value->value <=> $b->value->value);
 
         $class->addStmt(
-            $this->factory->classConst('PARENTS', $parents)
+            $this->factory->classConst('PARENTS', new Expr\Array_($parents))
                 ->makePublic(),
         );
 
@@ -198,7 +199,7 @@ readonly class Generator implements GeneratorInterface
         $enumerationMembers = [];
 
         foreach ($type->enumerationMembers as $enumerationMember) {
-            $enumerationMembers[] = new Expr\ArrayItem(
+            $enumerationMembers[] = new ArrayItem(
                 new Scalar\String_(sprintf('EnumerationMember\\%s', $enumerationMember->className)),
                 new Scalar\String_($enumerationMember->className),
             );
@@ -244,7 +245,7 @@ readonly class Generator implements GeneratorInterface
         foreach ($property->possibleValues as $value) {
             $className = AbstractSchemaOrgElement::getClassName($value);
             $fqcn = sprintf('%s\\%s', self::NAMESPACE_TYPE, $className);
-            $possibleValues[] = new Expr\ArrayItem(
+            $possibleValues[] = new ArrayItem(
                 new Scalar\String_($fqcn),
                 new Scalar\String_($className),
             );
@@ -254,7 +255,7 @@ readonly class Generator implements GeneratorInterface
         usort($possibleValues, fn ($a, $b) => $a->value->value <=> $b->value->value);
 
         $class->addStmt(
-            $this->factory->classConst('VALUES', $possibleValues)
+            $this->factory->classConst('VALUES', new Expr\Array_($possibleValues))
                 ->makePublic(),
         );
 
@@ -263,7 +264,7 @@ readonly class Generator implements GeneratorInterface
         foreach ($property->possibleTypes as $type) {
             $className = AbstractSchemaOrgElement::removeSchemaPrefix($type);
             $fqcn = sprintf('%s\\%s%s', self::NAMESPACE_TYPE, $className, 'Model');
-            $possibleTypes[] = new Expr\ArrayItem(
+            $possibleTypes[] = new ArrayItem(
                 new Scalar\String_($fqcn),
                 new Scalar\String_($className),
             );
@@ -273,7 +274,7 @@ readonly class Generator implements GeneratorInterface
         usort($possibleTypes, fn ($a, $b) => $a->value->value <=> $b->value->value);
 
         $class->addStmt(
-            $this->factory->classConst('TYPES', $possibleTypes)
+            $this->factory->classConst('TYPES', new Expr\Array_($possibleTypes))
                 ->makePublic(),
         );
 

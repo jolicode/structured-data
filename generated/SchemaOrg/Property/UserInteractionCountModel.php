@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class UserInteractionCountModel
     public const DESCRIPTION = 'The number of interactions for the CreativeWork using the WebSite or SoftwareApplication.';
     public const LABEL = 'userInteractionCount';
     public const NAME = 'schema:userInteractionCount';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel'];
-    public const TYPES = ['InteractionCounter' => 'SchemaOrg\\Type\\InteractionCounterModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['InteractionCounter' => 'SchemaOrg\Type\InteractionCounterModel'];
 }

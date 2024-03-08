@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RenegotiableLoanModel
     public const DESCRIPTION = 'Whether the terms for payment of interest can be renegotiated during the life of the loan.';
     public const LABEL = 'renegotiableLoan';
     public const NAME = 'schema:renegotiableLoan';
-    public const VALUES = ['BooleanModel' => 'SchemaOrg\\Type\\BooleanModel'];
-    public const TYPES = ['LoanOrCredit' => 'SchemaOrg\\Type\\LoanOrCreditModel'];
+    public const VALUES = ['BooleanModel' => 'SchemaOrg\Type\BooleanModel'];
+    public const TYPES = ['LoanOrCredit' => 'SchemaOrg\Type\LoanOrCreditModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class LegislationObjectModel
     public const DESCRIPTION = 'A specific object or file containing a Legislation. Note that the same Legislation can be published in multiple files. For example, a digitally signed PDF, a plain PDF and an HTML version.';
     public const LABEL = 'LegislationObject';
     public const NAME = 'schema:LegislationObject';
-    public const PARENTS = ['LegislationModel' => 'SchemaOrg\\Type\\LegislationModel', 'MediaObjectModel' => 'SchemaOrg\\Type\\MediaObjectModel'];
+    public const PARENTS = ['LegislationModel' => 'SchemaOrg\Type\LegislationModel', 'MediaObjectModel' => 'SchemaOrg\Type\MediaObjectModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

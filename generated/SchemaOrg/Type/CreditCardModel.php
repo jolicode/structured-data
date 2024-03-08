@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -17,11 +15,11 @@ use SchemaOrg\Property;
 
 final class CreditCardModel
 {
-    public const DESCRIPTION = 'A card payment method of a particular brand or name.  Used to mark up a particular payment method and/or the financial product/service that supplies the card account.\\n\\nCommonly used values:\\n\\n* http://purl.org/goodrelations/v1#AmericanExpress\\n* http://purl.org/goodrelations/v1#DinersClub\\n* http://purl.org/goodrelations/v1#Discover\\n* http://purl.org/goodrelations/v1#JCB\\n* http://purl.org/goodrelations/v1#MasterCard\\n* http://purl.org/goodrelations/v1#VISA
+    public const DESCRIPTION = 'A card payment method of a particular brand or name.  Used to mark up a particular payment method and/or the financial product/service that supplies the card account.\n\nCommonly used values:\n\n* http://purl.org/goodrelations/v1#AmericanExpress\n* http://purl.org/goodrelations/v1#DinersClub\n* http://purl.org/goodrelations/v1#Discover\n* http://purl.org/goodrelations/v1#JCB\n* http://purl.org/goodrelations/v1#MasterCard\n* http://purl.org/goodrelations/v1#VISA
        ';
     public const LABEL = 'CreditCard';
     public const NAME = 'schema:CreditCard';
-    public const PARENTS = ['LoanOrCreditModel' => 'SchemaOrg\\Type\\LoanOrCreditModel', 'PaymentCardModel' => 'SchemaOrg\\Type\\PaymentCardModel'];
+    public const PARENTS = ['LoanOrCreditModel' => 'SchemaOrg\Type\LoanOrCreditModel', 'PaymentCardModel' => 'SchemaOrg\Type\PaymentCardModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

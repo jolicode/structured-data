@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class GovernmentBenefitsInfoModel
     public const DESCRIPTION = 'governmentBenefitsInfo provides information about government benefits associated with a SpecialAnnouncement.';
     public const LABEL = 'governmentBenefitsInfo';
     public const NAME = 'schema:governmentBenefitsInfo';
-    public const VALUES = ['GovernmentServiceModel' => 'SchemaOrg\\Type\\GovernmentServiceModel'];
-    public const TYPES = ['SpecialAnnouncement' => 'SchemaOrg\\Type\\SpecialAnnouncementModel'];
+    public const VALUES = ['GovernmentServiceModel' => 'SchemaOrg\Type\GovernmentServiceModel'];
+    public const TYPES = ['SpecialAnnouncement' => 'SchemaOrg\Type\SpecialAnnouncementModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HasOccupationModel
     public const DESCRIPTION = 'The Person\'s occupation. For past professions, use Role for expressing dates.';
     public const LABEL = 'hasOccupation';
     public const NAME = 'schema:hasOccupation';
-    public const VALUES = ['OccupationModel' => 'SchemaOrg\\Type\\OccupationModel'];
-    public const TYPES = ['Person' => 'SchemaOrg\\Type\\PersonModel'];
+    public const VALUES = ['OccupationModel' => 'SchemaOrg\Type\OccupationModel'];
+    public const TYPES = ['Person' => 'SchemaOrg\Type\PersonModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BorrowerModel
     public const DESCRIPTION = 'A sub property of participant. The person that borrows the object being lent.';
     public const LABEL = 'borrower';
     public const NAME = 'schema:borrower';
-    public const VALUES = ['PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['LendAction' => 'SchemaOrg\\Type\\LendActionModel'];
+    public const VALUES = ['PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['LendAction' => 'SchemaOrg\Type\LendActionModel'];
 }

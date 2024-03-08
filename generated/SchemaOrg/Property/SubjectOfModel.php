@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SubjectOfModel
     public const DESCRIPTION = 'A CreativeWork or Event about this Thing.';
     public const LABEL = 'subjectOf';
     public const NAME = 'schema:subjectOf';
-    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel', 'EventModel' => 'SchemaOrg\\Type\\EventModel'];
-    public const TYPES = ['Thing' => 'SchemaOrg\\Type\\ThingModel'];
+    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel', 'EventModel' => 'SchemaOrg\Type\EventModel'];
+    public const TYPES = ['Thing' => 'SchemaOrg\Type\ThingModel'];
 }

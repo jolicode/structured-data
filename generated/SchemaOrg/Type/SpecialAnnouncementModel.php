@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -36,7 +34,7 @@ Several kinds of information can be provided:
 
 We encourage the provision of "name", "text", "datePosted", "expires" (if appropriate), "category" and
 "url" as a simple baseline. It is important to provide a value for "category" where possible, most ideally as a well known
-URL from Wikipedia or Wikidata. In the case of the 2019-2020 Coronavirus pandemic, this should be "https://en.wikipedia.org/w/index.php?title=2019-20\\_coronavirus\\_pandemic" or "https://www.wikidata.org/wiki/Q81068910".
+URL from Wikipedia or Wikidata. In the case of the 2019-2020 Coronavirus pandemic, this should be "https://en.wikipedia.org/w/index.php?title=2019-20\_coronavirus\_pandemic" or "https://www.wikidata.org/wiki/Q81068910".
 
 For many of the possible properties, values can either be simple links or an inline description, depending on whether a summary is available. For a link, provide just the URL of the appropriate page as the property\'s value. For an inline description, use a [[WebContent]] type, and provide the url as a property of that, alongside at least a simple "[[text]]" summary of the page. It is
 unlikely that a single SpecialAnnouncement will need all of the possible properties simultaneously.
@@ -55,7 +53,7 @@ media type information, e.g. "application/rss+xml" or "application/atom+xml".
 ';
     public const LABEL = 'SpecialAnnouncement';
     public const NAME = 'schema:SpecialAnnouncement';
-    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

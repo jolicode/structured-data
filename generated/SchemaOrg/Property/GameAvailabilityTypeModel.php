@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class GameAvailabilityTypeModel
     public const DESCRIPTION = 'Indicates the availability type of the game content associated with this action, such as whether it is a full version or a demo.';
     public const LABEL = 'gameAvailabilityType';
     public const NAME = 'schema:gameAvailabilityType';
-    public const VALUES = ['GameAvailabilityEnumerationModel' => 'SchemaOrg\\Type\\GameAvailabilityEnumerationModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['PlayGameAction' => 'SchemaOrg\\Type\\PlayGameActionModel'];
+    public const VALUES = ['GameAvailabilityEnumerationModel' => 'SchemaOrg\Type\GameAvailabilityEnumerationModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['PlayGameAction' => 'SchemaOrg\Type\PlayGameActionModel'];
 }

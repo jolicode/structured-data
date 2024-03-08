@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ReturnActionModel
     public const DESCRIPTION = 'The act of returning to the origin that which was previously received (concrete objects) or taken (ownership).';
     public const LABEL = 'ReturnAction';
     public const NAME = 'schema:ReturnAction';
-    public const PARENTS = ['TransferActionModel' => 'SchemaOrg\\Type\\TransferActionModel'];
+    public const PARENTS = ['TransferActionModel' => 'SchemaOrg\Type\TransferActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

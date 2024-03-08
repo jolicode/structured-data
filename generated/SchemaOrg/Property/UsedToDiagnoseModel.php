@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class UsedToDiagnoseModel
     public const DESCRIPTION = 'A condition the test is used to diagnose.';
     public const LABEL = 'usedToDiagnose';
     public const NAME = 'schema:usedToDiagnose';
-    public const VALUES = ['MedicalConditionModel' => 'SchemaOrg\\Type\\MedicalConditionModel'];
-    public const TYPES = ['MedicalTest' => 'SchemaOrg\\Type\\MedicalTestModel'];
+    public const VALUES = ['MedicalConditionModel' => 'SchemaOrg\Type\MedicalConditionModel'];
+    public const TYPES = ['MedicalTest' => 'SchemaOrg\Type\MedicalTestModel'];
 }

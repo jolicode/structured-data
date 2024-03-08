@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IsLiveBroadcastModel
     public const DESCRIPTION = 'True if the broadcast is of a live event.';
     public const LABEL = 'isLiveBroadcast';
     public const NAME = 'schema:isLiveBroadcast';
-    public const VALUES = ['BooleanModel' => 'SchemaOrg\\Type\\BooleanModel'];
-    public const TYPES = ['BroadcastEvent' => 'SchemaOrg\\Type\\BroadcastEventModel'];
+    public const VALUES = ['BooleanModel' => 'SchemaOrg\Type\BooleanModel'];
+    public const TYPES = ['BroadcastEvent' => 'SchemaOrg\Type\BroadcastEventModel'];
 }

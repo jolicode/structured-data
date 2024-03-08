@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class InfectiousAgentClassModel
     public const DESCRIPTION = 'Classes of agents or pathogens that transmit infectious diseases. Enumerated type.';
     public const LABEL = 'InfectiousAgentClass';
     public const NAME = 'schema:InfectiousAgentClass';
-    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\\Type\\MedicalEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['BacteriaModel' => 'EnumerationMember\\BacteriaModel', 'FungusModel' => 'EnumerationMember\\FungusModel', 'MulticellularParasiteModel' => 'EnumerationMember\\MulticellularParasiteModel', 'PrionModel' => 'EnumerationMember\\PrionModel', 'ProtozoaModel' => 'EnumerationMember\\ProtozoaModel', 'VirusModel' => 'EnumerationMember\\VirusModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\Type\MedicalEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['BacteriaModel' => 'EnumerationMember\BacteriaModel', 'FungusModel' => 'EnumerationMember\FungusModel', 'MulticellularParasiteModel' => 'EnumerationMember\MulticellularParasiteModel', 'PrionModel' => 'EnumerationMember\PrionModel', 'ProtozoaModel' => 'EnumerationMember\ProtozoaModel', 'VirusModel' => 'EnumerationMember\VirusModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MonetaryGrantModel
     public const DESCRIPTION = 'A monetary grant.';
     public const LABEL = 'MonetaryGrant';
     public const NAME = 'schema:MonetaryGrant';
-    public const PARENTS = ['GrantModel' => 'SchemaOrg\\Type\\GrantModel'];
+    public const PARENTS = ['GrantModel' => 'SchemaOrg\Type\GrantModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

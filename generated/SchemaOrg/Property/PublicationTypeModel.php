@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PublicationTypeModel
     public const DESCRIPTION = 'The type of the medical article, taken from the US NLM MeSH publication type catalog. See also [MeSH documentation](http://www.nlm.nih.gov/mesh/pubtypes.html).';
     public const LABEL = 'publicationType';
     public const NAME = 'schema:publicationType';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MedicalScholarlyArticle' => 'SchemaOrg\\Type\\MedicalScholarlyArticleModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MedicalScholarlyArticle' => 'SchemaOrg\Type\MedicalScholarlyArticleModel'];
 }

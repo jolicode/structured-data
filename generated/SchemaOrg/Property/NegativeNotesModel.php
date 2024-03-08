@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -23,6 +21,6 @@ tend to emphasise positive claims, it may be relatively unusual to find [[negati
 The property values can be expressed either as unstructured text (repeated as necessary), or if ordered, as a list (in which case the most negative is at the beginning of the list).';
     public const LABEL = 'negativeNotes';
     public const NAME = 'schema:negativeNotes';
-    public const VALUES = ['ItemListModel' => 'SchemaOrg\\Type\\ItemListModel', 'ListItemModel' => 'SchemaOrg\\Type\\ListItemModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel', 'WebContentModel' => 'SchemaOrg\\Type\\WebContentModel'];
-    public const TYPES = ['Product' => 'SchemaOrg\\Type\\ProductModel', 'Review' => 'SchemaOrg\\Type\\ReviewModel'];
+    public const VALUES = ['ItemListModel' => 'SchemaOrg\Type\ItemListModel', 'ListItemModel' => 'SchemaOrg\Type\ListItemModel', 'TextModel' => 'SchemaOrg\Type\TextModel', 'WebContentModel' => 'SchemaOrg\Type\WebContentModel'];
+    public const TYPES = ['Product' => 'SchemaOrg\Type\ProductModel', 'Review' => 'SchemaOrg\Type\ReviewModel'];
 }

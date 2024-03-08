@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class LegalValueLevelModel
     public const DESCRIPTION = 'A list of possible levels for the legal validity of a legislation.';
     public const LABEL = 'LegalValueLevel';
     public const NAME = 'schema:LegalValueLevel';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['AuthoritativeLegalValueModel' => 'EnumerationMember\\AuthoritativeLegalValueModel', 'DefinitiveLegalValueModel' => 'EnumerationMember\\DefinitiveLegalValueModel', 'OfficialLegalValueModel' => 'EnumerationMember\\OfficialLegalValueModel', 'UnofficialLegalValueModel' => 'EnumerationMember\\UnofficialLegalValueModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['AuthoritativeLegalValueModel' => 'EnumerationMember\AuthoritativeLegalValueModel', 'DefinitiveLegalValueModel' => 'EnumerationMember\DefinitiveLegalValueModel', 'OfficialLegalValueModel' => 'EnumerationMember\OfficialLegalValueModel', 'UnofficialLegalValueModel' => 'EnumerationMember\UnofficialLegalValueModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

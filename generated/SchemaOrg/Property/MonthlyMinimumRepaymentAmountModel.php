@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MonthlyMinimumRepaymentAmountModel
     public const DESCRIPTION = 'The minimum payment is the lowest amount of money that one is required to pay on a credit card statement each month.';
     public const LABEL = 'monthlyMinimumRepaymentAmount';
     public const NAME = 'schema:monthlyMinimumRepaymentAmount';
-    public const VALUES = ['MonetaryAmountModel' => 'SchemaOrg\\Type\\MonetaryAmountModel', 'NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
-    public const TYPES = ['PaymentCard' => 'SchemaOrg\\Type\\PaymentCardModel'];
+    public const VALUES = ['MonetaryAmountModel' => 'SchemaOrg\Type\MonetaryAmountModel', 'NumberModel' => 'SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['PaymentCard' => 'SchemaOrg\Type\PaymentCardModel'];
 }

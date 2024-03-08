@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CountryOfAssemblyModel
     public const DESCRIPTION = 'The place where the product was assembled.';
     public const LABEL = 'countryOfAssembly';
     public const NAME = 'schema:countryOfAssembly';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Product' => 'SchemaOrg\\Type\\ProductModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Product' => 'SchemaOrg\Type\ProductModel'];
 }

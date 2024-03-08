@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class CableOrSatelliteServiceModel
     public const DESCRIPTION = 'A service which provides access to media programming like TV or radio. Access may be via cable or satellite.';
     public const LABEL = 'CableOrSatelliteService';
     public const NAME = 'schema:CableOrSatelliteService';
-    public const PARENTS = ['ServiceModel' => 'SchemaOrg\\Type\\ServiceModel'];
+    public const PARENTS = ['ServiceModel' => 'SchemaOrg\Type\ServiceModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DeliveryChargeSpecificationModel
     public const DESCRIPTION = 'The price for the delivery of an offer using a particular delivery method.';
     public const LABEL = 'DeliveryChargeSpecification';
     public const NAME = 'schema:DeliveryChargeSpecification';
-    public const PARENTS = ['PriceSpecificationModel' => 'SchemaOrg\\Type\\PriceSpecificationModel'];
+    public const PARENTS = ['PriceSpecificationModel' => 'SchemaOrg\Type\PriceSpecificationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

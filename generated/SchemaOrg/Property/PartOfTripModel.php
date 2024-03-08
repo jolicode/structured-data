@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PartOfTripModel
     public const DESCRIPTION = 'Identifies that this [[Trip]] is a subTrip of another Trip.  For example Day 1, Day 2, etc. of a multi-day trip.';
     public const LABEL = 'partOfTrip';
     public const NAME = 'schema:partOfTrip';
-    public const VALUES = ['TripModel' => 'SchemaOrg\\Type\\TripModel'];
-    public const TYPES = ['Trip' => 'SchemaOrg\\Type\\TripModel'];
+    public const VALUES = ['TripModel' => 'SchemaOrg\Type\TripModel'];
+    public const TYPES = ['Trip' => 'SchemaOrg\Type\TripModel'];
 }

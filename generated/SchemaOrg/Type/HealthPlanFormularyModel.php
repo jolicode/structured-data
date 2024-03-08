@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class HealthPlanFormularyModel
     public const DESCRIPTION = 'For a given health insurance plan, the specification for costs and coverage of prescription drugs. ';
     public const LABEL = 'HealthPlanFormulary';
     public const NAME = 'schema:HealthPlanFormulary';
-    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\\Type\\IntangibleModel'];
+    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\Type\IntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

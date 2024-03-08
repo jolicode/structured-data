@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class MedicineSystemModel
     public const DESCRIPTION = 'Systems of medical practice.';
     public const LABEL = 'MedicineSystem';
     public const NAME = 'schema:MedicineSystem';
-    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\\Type\\MedicalEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['AyurvedicModel' => 'EnumerationMember\\AyurvedicModel', 'ChiropracticModel' => 'EnumerationMember\\ChiropracticModel', 'HomeopathicModel' => 'EnumerationMember\\HomeopathicModel', 'OsteopathicModel' => 'EnumerationMember\\OsteopathicModel', 'TraditionalChineseModel' => 'EnumerationMember\\TraditionalChineseModel', 'WesternConventionalModel' => 'EnumerationMember\\WesternConventionalModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\Type\MedicalEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['AyurvedicModel' => 'EnumerationMember\AyurvedicModel', 'ChiropracticModel' => 'EnumerationMember\ChiropracticModel', 'HomeopathicModel' => 'EnumerationMember\HomeopathicModel', 'OsteopathicModel' => 'EnumerationMember\OsteopathicModel', 'TraditionalChineseModel' => 'EnumerationMember\TraditionalChineseModel', 'WesternConventionalModel' => 'EnumerationMember\WesternConventionalModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

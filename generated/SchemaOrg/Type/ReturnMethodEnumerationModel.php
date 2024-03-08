@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class ReturnMethodEnumerationModel
     public const DESCRIPTION = 'Enumerates several types of product return methods.';
     public const LABEL = 'ReturnMethodEnumeration';
     public const NAME = 'schema:ReturnMethodEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['ReturnAtKioskModel' => 'EnumerationMember\\ReturnAtKioskModel', 'ReturnByMailModel' => 'EnumerationMember\\ReturnByMailModel', 'ReturnInStoreModel' => 'EnumerationMember\\ReturnInStoreModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['ReturnAtKioskModel' => 'EnumerationMember\ReturnAtKioskModel', 'ReturnByMailModel' => 'EnumerationMember\ReturnByMailModel', 'ReturnInStoreModel' => 'EnumerationMember\ReturnInStoreModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ServiceUrlModel
     public const DESCRIPTION = 'The website to access the service.';
     public const LABEL = 'serviceUrl';
     public const NAME = 'schema:serviceUrl';
-    public const VALUES = ['URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['ServiceChannel' => 'SchemaOrg\\Type\\ServiceChannelModel'];
+    public const VALUES = ['URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['ServiceChannel' => 'SchemaOrg\Type\ServiceChannelModel'];
 }

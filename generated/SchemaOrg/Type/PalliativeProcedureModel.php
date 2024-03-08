@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PalliativeProcedureModel
     public const DESCRIPTION = 'A medical procedure intended primarily for palliative purposes, aimed at relieving the symptoms of an underlying health condition.';
     public const LABEL = 'PalliativeProcedure';
     public const NAME = 'schema:PalliativeProcedure';
-    public const PARENTS = ['MedicalProcedureModel' => 'SchemaOrg\\Type\\MedicalProcedureModel', 'MedicalTherapyModel' => 'SchemaOrg\\Type\\MedicalTherapyModel'];
+    public const PARENTS = ['MedicalProcedureModel' => 'SchemaOrg\Type\MedicalProcedureModel', 'MedicalTherapyModel' => 'SchemaOrg\Type\MedicalTherapyModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

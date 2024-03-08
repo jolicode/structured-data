@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PassengerPriorityStatusModel
     public const DESCRIPTION = 'The priority status assigned to a passenger for security or boarding (e.g. FastTrack or Priority).';
     public const LABEL = 'passengerPriorityStatus';
     public const NAME = 'schema:passengerPriorityStatus';
-    public const VALUES = ['QualitativeValueModel' => 'SchemaOrg\\Type\\QualitativeValueModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['FlightReservation' => 'SchemaOrg\\Type\\FlightReservationModel'];
+    public const VALUES = ['QualitativeValueModel' => 'SchemaOrg\Type\QualitativeValueModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['FlightReservation' => 'SchemaOrg\Type\FlightReservationModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PassengerSequenceNumberModel
     public const DESCRIPTION = 'The passenger\'s sequence number as assigned by the airline.';
     public const LABEL = 'passengerSequenceNumber';
     public const NAME = 'schema:passengerSequenceNumber';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['FlightReservation' => 'SchemaOrg\\Type\\FlightReservationModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['FlightReservation' => 'SchemaOrg\Type\FlightReservationModel'];
 }

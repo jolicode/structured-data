@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PaymentChargeSpecificationModel
     public const DESCRIPTION = 'The costs of settling the payment using a particular payment method.';
     public const LABEL = 'PaymentChargeSpecification';
     public const NAME = 'schema:PaymentChargeSpecification';
-    public const PARENTS = ['PriceSpecificationModel' => 'SchemaOrg\\Type\\PriceSpecificationModel'];
+    public const PARENTS = ['PriceSpecificationModel' => 'SchemaOrg\Type\PriceSpecificationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class WeightModel
     public const DESCRIPTION = 'The weight of the product or person.';
     public const LABEL = 'weight';
     public const NAME = 'schema:weight';
-    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['OfferShippingDetails' => 'SchemaOrg\\Type\\OfferShippingDetailsModel', 'Person' => 'SchemaOrg\\Type\\PersonModel', 'Product' => 'SchemaOrg\\Type\\ProductModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['OfferShippingDetails' => 'SchemaOrg\Type\OfferShippingDetailsModel', 'Person' => 'SchemaOrg\Type\PersonModel', 'Product' => 'SchemaOrg\Type\ProductModel'];
 }

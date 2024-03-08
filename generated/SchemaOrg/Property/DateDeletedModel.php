@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DateDeletedModel
     public const DESCRIPTION = 'The datetime the item was removed from the DataFeed.';
     public const LABEL = 'dateDeleted';
     public const NAME = 'schema:dateDeleted';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel', 'DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel'];
-    public const TYPES = ['DataFeedItem' => 'SchemaOrg\\Type\\DataFeedItemModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel', 'DateTimeModel' => 'SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['DataFeedItem' => 'SchemaOrg\Type\DataFeedItemModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class FeesAndCommissionsSpecificationModel
     public const DESCRIPTION = 'Description of fees, commissions, and other terms applied either to a class of financial product, or by a financial service organization.';
     public const LABEL = 'feesAndCommissionsSpecification';
     public const NAME = 'schema:feesAndCommissionsSpecification';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['FinancialProduct' => 'SchemaOrg\\Type\\FinancialProductModel', 'FinancialService' => 'SchemaOrg\\Type\\FinancialServiceModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['FinancialProduct' => 'SchemaOrg\Type\FinancialProductModel', 'FinancialService' => 'SchemaOrg\Type\FinancialServiceModel'];
 }

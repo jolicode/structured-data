@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -22,7 +20,7 @@ final class BoatReservationModel
 Note: This type is for information about actual reservations, e.g. in confirmation emails or HTML pages with individual confirmations of reservations. For offers of tickets, use [[Offer]].';
     public const LABEL = 'BoatReservation';
     public const NAME = 'schema:BoatReservation';
-    public const PARENTS = ['ReservationModel' => 'SchemaOrg\\Type\\ReservationModel'];
+    public const PARENTS = ['ReservationModel' => 'SchemaOrg\Type\ReservationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

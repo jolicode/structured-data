@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HealthConditionModel
     public const DESCRIPTION = 'Specifying the health condition(s) of a patient, medical study, or other target audience.';
     public const LABEL = 'healthCondition';
     public const NAME = 'schema:healthCondition';
-    public const VALUES = ['MedicalConditionModel' => 'SchemaOrg\\Type\\MedicalConditionModel'];
-    public const TYPES = ['MedicalStudy' => 'SchemaOrg\\Type\\MedicalStudyModel', 'Patient' => 'SchemaOrg\\Type\\PatientModel', 'PeopleAudience' => 'SchemaOrg\\Type\\PeopleAudienceModel'];
+    public const VALUES = ['MedicalConditionModel' => 'SchemaOrg\Type\MedicalConditionModel'];
+    public const TYPES = ['MedicalStudy' => 'SchemaOrg\Type\MedicalStudyModel', 'Patient' => 'SchemaOrg\Type\PatientModel', 'PeopleAudience' => 'SchemaOrg\Type\PeopleAudienceModel'];
 }

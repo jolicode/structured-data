@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InterpretedAsClaimModel
     public const DESCRIPTION = 'Used to indicate a specific claim contained, implied, translated or refined from the content of a [[MediaObject]] or other [[CreativeWork]]. The interpreting party can be indicated using [[claimInterpreter]].';
     public const LABEL = 'interpretedAsClaim';
     public const NAME = 'schema:interpretedAsClaim';
-    public const VALUES = ['ClaimModel' => 'SchemaOrg\\Type\\ClaimModel'];
-    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel', 'MediaObject' => 'SchemaOrg\\Type\\MediaObjectModel'];
+    public const VALUES = ['ClaimModel' => 'SchemaOrg\Type\ClaimModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel', 'MediaObject' => 'SchemaOrg\Type\MediaObjectModel'];
 }

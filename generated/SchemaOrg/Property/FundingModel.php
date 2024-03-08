@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class FundingModel
     public const DESCRIPTION = 'A [[Grant]] that directly or indirectly provide funding or sponsorship for this item. See also [[ownershipFundingInfo]].';
     public const LABEL = 'funding';
     public const NAME = 'schema:funding';
-    public const VALUES = ['GrantModel' => 'SchemaOrg\\Type\\GrantModel'];
-    public const TYPES = ['BioChemEntity' => 'SchemaOrg\\Type\\BioChemEntityModel', 'CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel', 'Event' => 'SchemaOrg\\Type\\EventModel', 'MedicalEntity' => 'SchemaOrg\\Type\\MedicalEntityModel', 'Organization' => 'SchemaOrg\\Type\\OrganizationModel', 'Person' => 'SchemaOrg\\Type\\PersonModel', 'Product' => 'SchemaOrg\\Type\\ProductModel'];
+    public const VALUES = ['GrantModel' => 'SchemaOrg\Type\GrantModel'];
+    public const TYPES = ['BioChemEntity' => 'SchemaOrg\Type\BioChemEntityModel', 'CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel', 'Event' => 'SchemaOrg\Type\EventModel', 'MedicalEntity' => 'SchemaOrg\Type\MedicalEntityModel', 'Organization' => 'SchemaOrg\Type\OrganizationModel', 'Person' => 'SchemaOrg\Type\PersonModel', 'Product' => 'SchemaOrg\Type\ProductModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SalaryUponCompletionModel
     public const DESCRIPTION = 'The expected salary upon completing the training.';
     public const LABEL = 'salaryUponCompletion';
     public const NAME = 'schema:salaryUponCompletion';
-    public const VALUES = ['MonetaryAmountDistributionModel' => 'SchemaOrg\\Type\\MonetaryAmountDistributionModel'];
-    public const TYPES = ['EducationalOccupationalProgram' => 'SchemaOrg\\Type\\EducationalOccupationalProgramModel'];
+    public const VALUES = ['MonetaryAmountDistributionModel' => 'SchemaOrg\Type\MonetaryAmountDistributionModel'];
+    public const TYPES = ['EducationalOccupationalProgram' => 'SchemaOrg\Type\EducationalOccupationalProgramModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class WorstRatingModel
     public const DESCRIPTION = 'The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed.';
     public const LABEL = 'worstRating';
     public const NAME = 'schema:worstRating';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Rating' => 'SchemaOrg\\Type\\RatingModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Rating' => 'SchemaOrg\Type\RatingModel'];
 }

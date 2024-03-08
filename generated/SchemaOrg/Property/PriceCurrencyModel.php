@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -15,9 +13,9 @@ namespace SchemaOrg\Property;
 
 final class PriceCurrencyModel
 {
-    public const DESCRIPTION = 'The currency of the price, or a price component when attached to [[PriceSpecification]] and its subtypes.\\n\\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217), e.g. "USD"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies, e.g. "BTC"; well known names for [Local Exchange Trading Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types, e.g. "Ithaca HOUR".';
+    public const DESCRIPTION = 'The currency of the price, or a price component when attached to [[PriceSpecification]] and its subtypes.\n\nUse standard formats: [ISO 4217 currency format](http://en.wikipedia.org/wiki/ISO_4217), e.g. "USD"; [Ticker symbol](https://en.wikipedia.org/wiki/List_of_cryptocurrencies) for cryptocurrencies, e.g. "BTC"; well known names for [Local Exchange Trading Systems](https://en.wikipedia.org/wiki/Local_exchange_trading_system) (LETS) and other currency types, e.g. "Ithaca HOUR".';
     public const LABEL = 'priceCurrency';
     public const NAME = 'schema:priceCurrency';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Offer' => 'SchemaOrg\\Type\\OfferModel', 'PriceSpecification' => 'SchemaOrg\\Type\\PriceSpecificationModel', 'Reservation' => 'SchemaOrg\\Type\\ReservationModel', 'Ticket' => 'SchemaOrg\\Type\\TicketModel', 'TradeAction' => 'SchemaOrg\\Type\\TradeActionModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Offer' => 'SchemaOrg\Type\OfferModel', 'PriceSpecification' => 'SchemaOrg\Type\PriceSpecificationModel', 'Reservation' => 'SchemaOrg\Type\ReservationModel', 'Ticket' => 'SchemaOrg\Type\TicketModel', 'TradeAction' => 'SchemaOrg\Type\TradeActionModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class NumberOfBedroomsModel
     public const DESCRIPTION = 'The total integer number of bedrooms in a some [[Accommodation]], [[ApartmentComplex]] or [[FloorPlan]].';
     public const LABEL = 'numberOfBedrooms';
     public const NAME = 'schema:numberOfBedrooms';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel', 'QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['Accommodation' => 'SchemaOrg\\Type\\AccommodationModel', 'ApartmentComplex' => 'SchemaOrg\\Type\\ApartmentComplexModel', 'FloorPlan' => 'SchemaOrg\\Type\\FloorPlanModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['Accommodation' => 'SchemaOrg\Type\AccommodationModel', 'ApartmentComplex' => 'SchemaOrg\Type\ApartmentComplexModel', 'FloorPlan' => 'SchemaOrg\Type\FloorPlanModel'];
 }

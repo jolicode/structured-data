@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HasVariantModel
     public const DESCRIPTION = 'Indicates a [[Product]] that is a member of this [[ProductGroup]] (or [[ProductModel]]).';
     public const LABEL = 'hasVariant';
     public const NAME = 'schema:hasVariant';
-    public const VALUES = ['ProductModel' => 'SchemaOrg\\Type\\ProductModel'];
-    public const TYPES = ['ProductGroup' => 'SchemaOrg\\Type\\ProductGroupModel'];
+    public const VALUES = ['ProductModel' => 'SchemaOrg\Type\ProductModel'];
+    public const TYPES = ['ProductGroup' => 'SchemaOrg\Type\ProductGroupModel'];
 }

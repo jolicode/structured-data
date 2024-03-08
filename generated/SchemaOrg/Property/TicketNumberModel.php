@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TicketNumberModel
     public const DESCRIPTION = 'The unique identifier for the ticket.';
     public const LABEL = 'ticketNumber';
     public const NAME = 'schema:ticketNumber';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Ticket' => 'SchemaOrg\\Type\\TicketModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Ticket' => 'SchemaOrg\Type\TicketModel'];
 }

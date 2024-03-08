@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class HowToSupplyModel
     public const DESCRIPTION = 'A supply consumed when performing the instructions for how to achieve a result.';
     public const LABEL = 'HowToSupply';
     public const NAME = 'schema:HowToSupply';
-    public const PARENTS = ['HowToItemModel' => 'SchemaOrg\\Type\\HowToItemModel'];
+    public const PARENTS = ['HowToItemModel' => 'SchemaOrg\Type\HowToItemModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

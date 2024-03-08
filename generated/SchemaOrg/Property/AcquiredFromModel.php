@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AcquiredFromModel
     public const DESCRIPTION = 'The organization or person from which the product was acquired.';
     public const LABEL = 'acquiredFrom';
     public const NAME = 'schema:acquiredFrom';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel', 'PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['OwnershipInfo' => 'SchemaOrg\\Type\\OwnershipInfoModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['OwnershipInfo' => 'SchemaOrg\Type\OwnershipInfoModel'];
 }

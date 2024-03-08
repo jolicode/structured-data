@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RecipeIngredientModel
     public const DESCRIPTION = 'A single ingredient used in the recipe, e.g. sugar, flour or garlic.';
     public const LABEL = 'recipeIngredient';
     public const NAME = 'schema:recipeIngredient';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Recipe' => 'SchemaOrg\\Type\\RecipeModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Recipe' => 'SchemaOrg\Type\RecipeModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PlayModeModel
     public const DESCRIPTION = 'Indicates whether this game is multi-player, co-op or single-player.  The game can be marked as multi-player, co-op and single-player at the same time.';
     public const LABEL = 'playMode';
     public const NAME = 'schema:playMode';
-    public const VALUES = ['GamePlayModeModel' => 'SchemaOrg\\Type\\GamePlayModeModel'];
-    public const TYPES = ['VideoGame' => 'SchemaOrg\\Type\\VideoGameModel', 'VideoGameSeries' => 'SchemaOrg\\Type\\VideoGameSeriesModel'];
+    public const VALUES = ['GamePlayModeModel' => 'SchemaOrg\Type\GamePlayModeModel'];
+    public const TYPES = ['VideoGame' => 'SchemaOrg\Type\VideoGameModel', 'VideoGameSeries' => 'SchemaOrg\Type\VideoGameSeriesModel'];
 }

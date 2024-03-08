@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class RecipeModel
     public const DESCRIPTION = 'A recipe. For dietary restrictions covered by the recipe, a few common restrictions are enumerated via [[suitableForDiet]]. The [[keywords]] property can also be used to add more detail.';
     public const LABEL = 'Recipe';
     public const NAME = 'schema:Recipe';
-    public const PARENTS = ['HowToModel' => 'SchemaOrg\\Type\\HowToModel'];
+    public const PARENTS = ['HowToModel' => 'SchemaOrg\Type\HowToModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

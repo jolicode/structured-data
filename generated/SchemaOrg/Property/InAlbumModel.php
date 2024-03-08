@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InAlbumModel
     public const DESCRIPTION = 'The album to which this recording belongs.';
     public const LABEL = 'inAlbum';
     public const NAME = 'schema:inAlbum';
-    public const VALUES = ['MusicAlbumModel' => 'SchemaOrg\\Type\\MusicAlbumModel'];
-    public const TYPES = ['MusicRecording' => 'SchemaOrg\\Type\\MusicRecordingModel'];
+    public const VALUES = ['MusicAlbumModel' => 'SchemaOrg\Type\MusicAlbumModel'];
+    public const TYPES = ['MusicRecording' => 'SchemaOrg\Type\MusicRecordingModel'];
 }

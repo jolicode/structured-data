@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ReturnPolicyCategoryModel
     public const DESCRIPTION = 'Specifies an applicable return policy (from an enumeration).';
     public const LABEL = 'returnPolicyCategory';
     public const NAME = 'schema:returnPolicyCategory';
-    public const VALUES = ['MerchantReturnEnumerationModel' => 'SchemaOrg\\Type\\MerchantReturnEnumerationModel'];
-    public const TYPES = ['MerchantReturnPolicy' => 'SchemaOrg\\Type\\MerchantReturnPolicyModel', 'MerchantReturnPolicySeasonalOverride' => 'SchemaOrg\\Type\\MerchantReturnPolicySeasonalOverrideModel'];
+    public const VALUES = ['MerchantReturnEnumerationModel' => 'SchemaOrg\Type\MerchantReturnEnumerationModel'];
+    public const TYPES = ['MerchantReturnPolicy' => 'SchemaOrg\Type\MerchantReturnPolicyModel', 'MerchantReturnPolicySeasonalOverride' => 'SchemaOrg\Type\MerchantReturnPolicySeasonalOverrideModel'];
 }

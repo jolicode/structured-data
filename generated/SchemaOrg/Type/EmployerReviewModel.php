@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class EmployerReviewModel
     public const DESCRIPTION = 'An [[EmployerReview]] is a review of an [[Organization]] regarding its role as an employer, written by a current or former employee of that organization.';
     public const LABEL = 'EmployerReview';
     public const NAME = 'schema:EmployerReview';
-    public const PARENTS = ['ReviewModel' => 'SchemaOrg\\Type\\ReviewModel'];
+    public const PARENTS = ['ReviewModel' => 'SchemaOrg\Type\ReviewModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

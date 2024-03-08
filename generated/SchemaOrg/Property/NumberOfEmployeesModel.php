@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class NumberOfEmployeesModel
     public const DESCRIPTION = 'The number of employees in an organization, e.g. business.';
     public const LABEL = 'numberOfEmployees';
     public const NAME = 'schema:numberOfEmployees';
-    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['BusinessAudience' => 'SchemaOrg\\Type\\BusinessAudienceModel', 'Organization' => 'SchemaOrg\\Type\\OrganizationModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['BusinessAudience' => 'SchemaOrg\Type\BusinessAudienceModel', 'Organization' => 'SchemaOrg\Type\OrganizationModel'];
 }

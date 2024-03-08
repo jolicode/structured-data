@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LesserOrEqualModel
     public const DESCRIPTION = 'This ordering relation for qualitative values indicates that the subject is lesser than or equal to the object.';
     public const LABEL = 'lesserOrEqual';
     public const NAME = 'schema:lesserOrEqual';
-    public const VALUES = ['QualitativeValueModel' => 'SchemaOrg\\Type\\QualitativeValueModel'];
-    public const TYPES = ['QualitativeValue' => 'SchemaOrg\\Type\\QualitativeValueModel'];
+    public const VALUES = ['QualitativeValueModel' => 'SchemaOrg\Type\QualitativeValueModel'];
+    public const TYPES = ['QualitativeValue' => 'SchemaOrg\Type\QualitativeValueModel'];
 }

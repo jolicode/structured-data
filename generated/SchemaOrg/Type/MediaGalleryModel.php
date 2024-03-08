@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MediaGalleryModel
     public const DESCRIPTION = 'Web page type: Media gallery page. A mixed-media page that can contain media such as images, videos, and other multimedia.';
     public const LABEL = 'MediaGallery';
     public const NAME = 'schema:MediaGallery';
-    public const PARENTS = ['CollectionPageModel' => 'SchemaOrg\\Type\\CollectionPageModel'];
+    public const PARENTS = ['CollectionPageModel' => 'SchemaOrg\Type\CollectionPageModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

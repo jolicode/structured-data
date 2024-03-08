@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MonthsOfExperienceModel
     public const DESCRIPTION = 'Indicates the minimal number of months of experience required for a position.';
     public const LABEL = 'monthsOfExperience';
     public const NAME = 'schema:monthsOfExperience';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
-    public const TYPES = ['OccupationalExperienceRequirements' => 'SchemaOrg\\Type\\OccupationalExperienceRequirementsModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['OccupationalExperienceRequirements' => 'SchemaOrg\Type\OccupationalExperienceRequirementsModel'];
 }

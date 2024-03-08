@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DayOfWeekModel
     public const DESCRIPTION = 'The day of the week for which these opening hours are valid.';
     public const LABEL = 'dayOfWeek';
     public const NAME = 'schema:dayOfWeek';
-    public const VALUES = ['DayOfWeekModel' => 'SchemaOrg\\Type\\DayOfWeekModel'];
-    public const TYPES = ['EducationalOccupationalProgram' => 'SchemaOrg\\Type\\EducationalOccupationalProgramModel', 'OpeningHoursSpecification' => 'SchemaOrg\\Type\\OpeningHoursSpecificationModel'];
+    public const VALUES = ['DayOfWeekModel' => 'SchemaOrg\Type\DayOfWeekModel'];
+    public const TYPES = ['EducationalOccupationalProgram' => 'SchemaOrg\Type\EducationalOccupationalProgramModel', 'OpeningHoursSpecification' => 'SchemaOrg\Type\OpeningHoursSpecificationModel'];
 }

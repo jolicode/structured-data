@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BroadcastFrequencyValueModel
     public const DESCRIPTION = 'The frequency in MHz for a particular broadcast.';
     public const LABEL = 'broadcastFrequencyValue';
     public const NAME = 'schema:broadcastFrequencyValue';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel', 'QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['BroadcastFrequencySpecification' => 'SchemaOrg\\Type\\BroadcastFrequencySpecificationModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['BroadcastFrequencySpecification' => 'SchemaOrg\Type\BroadcastFrequencySpecificationModel'];
 }

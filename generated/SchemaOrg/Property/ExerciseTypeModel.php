@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ExerciseTypeModel
     public const DESCRIPTION = 'Type(s) of exercise or activity, such as strength training, flexibility training, aerobics, cardiac rehabilitation, etc.';
     public const LABEL = 'exerciseType';
     public const NAME = 'schema:exerciseType';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['ExerciseAction' => 'SchemaOrg\\Type\\ExerciseActionModel', 'ExercisePlan' => 'SchemaOrg\\Type\\ExercisePlanModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['ExerciseAction' => 'SchemaOrg\Type\ExerciseActionModel', 'ExercisePlan' => 'SchemaOrg\Type\ExercisePlanModel'];
 }

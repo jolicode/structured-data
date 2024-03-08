@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PostOfficeBoxNumberModel
     public const DESCRIPTION = 'The post office box number for PO box addresses.';
     public const LABEL = 'postOfficeBoxNumber';
     public const NAME = 'schema:postOfficeBoxNumber';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['PostalAddress' => 'SchemaOrg\\Type\\PostalAddressModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['PostalAddress' => 'SchemaOrg\Type\PostalAddressModel'];
 }

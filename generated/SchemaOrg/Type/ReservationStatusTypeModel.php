@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class ReservationStatusTypeModel
     public const DESCRIPTION = 'Enumerated status values for Reservation.';
     public const LABEL = 'ReservationStatusType';
     public const NAME = 'schema:ReservationStatusType';
-    public const PARENTS = ['StatusEnumerationModel' => 'SchemaOrg\\Type\\StatusEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['ReservationCancelledModel' => 'EnumerationMember\\ReservationCancelledModel', 'ReservationConfirmedModel' => 'EnumerationMember\\ReservationConfirmedModel', 'ReservationHoldModel' => 'EnumerationMember\\ReservationHoldModel', 'ReservationPendingModel' => 'EnumerationMember\\ReservationPendingModel'];
+    public const PARENTS = ['StatusEnumerationModel' => 'SchemaOrg\Type\StatusEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['ReservationCancelledModel' => 'EnumerationMember\ReservationCancelledModel', 'ReservationConfirmedModel' => 'EnumerationMember\ReservationConfirmedModel', 'ReservationHoldModel' => 'EnumerationMember\ReservationHoldModel', 'ReservationPendingModel' => 'EnumerationMember\ReservationPendingModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

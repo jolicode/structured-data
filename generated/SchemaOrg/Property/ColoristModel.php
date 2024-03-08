@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ColoristModel
     public const DESCRIPTION = 'The individual who adds color to inked drawings.';
     public const LABEL = 'colorist';
     public const NAME = 'schema:colorist';
-    public const VALUES = ['PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['ComicIssue' => 'SchemaOrg\\Type\\ComicIssueModel', 'ComicStory' => 'SchemaOrg\\Type\\ComicStoryModel', 'VisualArtwork' => 'SchemaOrg\\Type\\VisualArtworkModel'];
+    public const VALUES = ['PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['ComicIssue' => 'SchemaOrg\Type\ComicIssueModel', 'ComicStory' => 'SchemaOrg\Type\ComicStoryModel', 'VisualArtwork' => 'SchemaOrg\Type\VisualArtworkModel'];
 }

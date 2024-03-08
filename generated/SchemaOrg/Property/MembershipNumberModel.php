@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MembershipNumberModel
     public const DESCRIPTION = 'A unique identifier for the membership.';
     public const LABEL = 'membershipNumber';
     public const NAME = 'schema:membershipNumber';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['ProgramMembership' => 'SchemaOrg\\Type\\ProgramMembershipModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['ProgramMembership' => 'SchemaOrg\Type\ProgramMembershipModel'];
 }

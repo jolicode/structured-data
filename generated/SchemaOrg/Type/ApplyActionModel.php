@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -17,10 +15,10 @@ use SchemaOrg\Property;
 
 final class ApplyActionModel
 {
-    public const DESCRIPTION = 'The act of registering to an organization/service without the guarantee to receive it.\\n\\nRelated actions:\\n\\n* [[RegisterAction]]: Unlike RegisterAction, ApplyAction has no guarantees that the application will be accepted.';
+    public const DESCRIPTION = 'The act of registering to an organization/service without the guarantee to receive it.\n\nRelated actions:\n\n* [[RegisterAction]]: Unlike RegisterAction, ApplyAction has no guarantees that the application will be accepted.';
     public const LABEL = 'ApplyAction';
     public const NAME = 'schema:ApplyAction';
-    public const PARENTS = ['OrganizeActionModel' => 'SchemaOrg\\Type\\OrganizeActionModel'];
+    public const PARENTS = ['OrganizeActionModel' => 'SchemaOrg\Type\OrganizeActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

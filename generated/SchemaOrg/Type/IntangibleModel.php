@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class IntangibleModel
     public const DESCRIPTION = 'A utility class that serves as the umbrella for a number of \'intangible\' things such as quantities, structured values, etc.';
     public const LABEL = 'Intangible';
     public const NAME = 'schema:Intangible';
-    public const PARENTS = ['ThingModel' => 'SchemaOrg\\Type\\ThingModel'];
+    public const PARENTS = ['ThingModel' => 'SchemaOrg\Type\ThingModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

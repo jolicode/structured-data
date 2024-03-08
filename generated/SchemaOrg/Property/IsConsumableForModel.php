@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IsConsumableForModel
     public const DESCRIPTION = 'A pointer to another product (or multiple products) for which this product is a consumable.';
     public const LABEL = 'isConsumableFor';
     public const NAME = 'schema:isConsumableFor';
-    public const VALUES = ['ProductModel' => 'SchemaOrg\\Type\\ProductModel'];
-    public const TYPES = ['Product' => 'SchemaOrg\\Type\\ProductModel'];
+    public const VALUES = ['ProductModel' => 'SchemaOrg\Type\ProductModel'];
+    public const TYPES = ['Product' => 'SchemaOrg\Type\ProductModel'];
 }

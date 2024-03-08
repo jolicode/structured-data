@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ColleagueModel
     public const DESCRIPTION = 'A colleague of the person.';
     public const LABEL = 'colleague';
     public const NAME = 'schema:colleague';
-    public const VALUES = ['PersonModel' => 'SchemaOrg\\Type\\PersonModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['Person' => 'SchemaOrg\\Type\\PersonModel'];
+    public const VALUES = ['PersonModel' => 'SchemaOrg\Type\PersonModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['Person' => 'SchemaOrg\Type\PersonModel'];
 }

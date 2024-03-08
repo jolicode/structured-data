@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class TouristAttractionModel
     public const DESCRIPTION = 'A tourist attraction.  In principle any Thing can be a [[TouristAttraction]], from a [[Mountain]] and [[LandmarksOrHistoricalBuildings]] to a [[LocalBusiness]].  This Type can be used on its own to describe a general [[TouristAttraction]], or be used as an [[additionalType]] to add tourist attraction properties to any other type.  (See examples below)';
     public const LABEL = 'TouristAttraction';
     public const NAME = 'schema:TouristAttraction';
-    public const PARENTS = ['PlaceModel' => 'SchemaOrg\\Type\\PlaceModel'];
+    public const PARENTS = ['PlaceModel' => 'SchemaOrg\Type\PlaceModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

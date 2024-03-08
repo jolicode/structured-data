@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RelatedConditionModel
     public const DESCRIPTION = 'A medical condition associated with this anatomy.';
     public const LABEL = 'relatedCondition';
     public const NAME = 'schema:relatedCondition';
-    public const VALUES = ['MedicalConditionModel' => 'SchemaOrg\\Type\\MedicalConditionModel'];
-    public const TYPES = ['AnatomicalStructure' => 'SchemaOrg\\Type\\AnatomicalStructureModel', 'AnatomicalSystem' => 'SchemaOrg\\Type\\AnatomicalSystemModel', 'SuperficialAnatomy' => 'SchemaOrg\\Type\\SuperficialAnatomyModel'];
+    public const VALUES = ['MedicalConditionModel' => 'SchemaOrg\Type\MedicalConditionModel'];
+    public const TYPES = ['AnatomicalStructure' => 'SchemaOrg\Type\AnatomicalStructureModel', 'AnatomicalSystem' => 'SchemaOrg\Type\AnatomicalSystemModel', 'SuperficialAnatomy' => 'SchemaOrg\Type\SuperficialAnatomyModel'];
 }

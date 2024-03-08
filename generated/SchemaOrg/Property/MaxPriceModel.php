@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MaxPriceModel
     public const DESCRIPTION = 'The highest price if the price is a range.';
     public const LABEL = 'maxPrice';
     public const NAME = 'schema:maxPrice';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
-    public const TYPES = ['PriceSpecification' => 'SchemaOrg\\Type\\PriceSpecificationModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['PriceSpecification' => 'SchemaOrg\Type\PriceSpecificationModel'];
 }

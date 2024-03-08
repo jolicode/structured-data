@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ProcessingTimeModel
     public const DESCRIPTION = 'Estimated processing time for the service using this channel.';
     public const LABEL = 'processingTime';
     public const NAME = 'schema:processingTime';
-    public const VALUES = ['DurationModel' => 'SchemaOrg\\Type\\DurationModel'];
-    public const TYPES = ['ServiceChannel' => 'SchemaOrg\\Type\\ServiceChannelModel'];
+    public const VALUES = ['DurationModel' => 'SchemaOrg\Type\DurationModel'];
+    public const TYPES = ['ServiceChannel' => 'SchemaOrg\Type\ServiceChannelModel'];
 }

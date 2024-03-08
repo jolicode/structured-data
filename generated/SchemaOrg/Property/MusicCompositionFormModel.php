@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MusicCompositionFormModel
     public const DESCRIPTION = 'The type of composition (e.g. overture, sonata, symphony, etc.).';
     public const LABEL = 'musicCompositionForm';
     public const NAME = 'schema:musicCompositionForm';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MusicComposition' => 'SchemaOrg\\Type\\MusicCompositionModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MusicComposition' => 'SchemaOrg\Type\MusicCompositionModel'];
 }

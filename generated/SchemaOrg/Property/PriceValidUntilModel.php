@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PriceValidUntilModel
     public const DESCRIPTION = 'The date after which the price is no longer available.';
     public const LABEL = 'priceValidUntil';
     public const NAME = 'schema:priceValidUntil';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel'];
-    public const TYPES = ['Offer' => 'SchemaOrg\\Type\\OfferModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel'];
+    public const TYPES = ['Offer' => 'SchemaOrg\Type\OfferModel'];
 }

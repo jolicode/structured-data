@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ByMonthDayModel
     public const DESCRIPTION = 'Defines the day(s) of the month on which a recurring [[Event]] takes place. Specified as an [[Integer]] between 1-31.';
     public const LABEL = 'byMonthDay';
     public const NAME = 'schema:byMonthDay';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel'];
-    public const TYPES = ['Schedule' => 'SchemaOrg\\Type\\ScheduleModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['Schedule' => 'SchemaOrg\Type\ScheduleModel'];
 }

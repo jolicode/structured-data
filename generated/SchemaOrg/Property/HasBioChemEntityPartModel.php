@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HasBioChemEntityPartModel
     public const DESCRIPTION = 'Indicates a BioChemEntity that (in some sense) has this BioChemEntity as a part. ';
     public const LABEL = 'hasBioChemEntityPart';
     public const NAME = 'schema:hasBioChemEntityPart';
-    public const VALUES = ['BioChemEntityModel' => 'SchemaOrg\\Type\\BioChemEntityModel'];
-    public const TYPES = ['BioChemEntity' => 'SchemaOrg\\Type\\BioChemEntityModel'];
+    public const VALUES = ['BioChemEntityModel' => 'SchemaOrg\Type\BioChemEntityModel'];
+    public const TYPES = ['BioChemEntity' => 'SchemaOrg\Type\BioChemEntityModel'];
 }

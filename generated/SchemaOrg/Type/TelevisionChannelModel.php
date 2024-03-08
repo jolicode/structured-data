@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class TelevisionChannelModel
     public const DESCRIPTION = 'A unique instance of a television BroadcastService on a CableOrSatelliteService lineup.';
     public const LABEL = 'TelevisionChannel';
     public const NAME = 'schema:TelevisionChannel';
-    public const PARENTS = ['BroadcastChannelModel' => 'SchemaOrg\\Type\\BroadcastChannelModel'];
+    public const PARENTS = ['BroadcastChannelModel' => 'SchemaOrg\Type\BroadcastChannelModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

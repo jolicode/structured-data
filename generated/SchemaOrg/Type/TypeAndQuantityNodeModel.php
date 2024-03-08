@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class TypeAndQuantityNodeModel
     public const DESCRIPTION = 'A structured value indicating the quantity, unit of measurement, and business function of goods included in a bundle offer.';
     public const LABEL = 'TypeAndQuantityNode';
     public const NAME = 'schema:TypeAndQuantityNode';
-    public const PARENTS = ['StructuredValueModel' => 'SchemaOrg\\Type\\StructuredValueModel'];
+    public const PARENTS = ['StructuredValueModel' => 'SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

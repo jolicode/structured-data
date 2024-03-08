@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class XpathModel
     public const DESCRIPTION = 'An XPath, e.g. of a [[SpeakableSpecification]] or [[WebPageElement]]. In the latter case, multiple matches within a page can constitute a single conceptual "Web page element".';
     public const LABEL = 'xpath';
     public const NAME = 'schema:xpath';
-    public const VALUES = ['XPathTypeModel' => 'SchemaOrg\\Type\\XPathTypeModel'];
-    public const TYPES = ['SpeakableSpecification' => 'SchemaOrg\\Type\\SpeakableSpecificationModel', 'WebPageElement' => 'SchemaOrg\\Type\\WebPageElementModel'];
+    public const VALUES = ['XPathTypeModel' => 'SchemaOrg\Type\XPathTypeModel'];
+    public const TYPES = ['SpeakableSpecification' => 'SchemaOrg\Type\SpeakableSpecificationModel', 'WebPageElement' => 'SchemaOrg\Type\WebPageElementModel'];
 }

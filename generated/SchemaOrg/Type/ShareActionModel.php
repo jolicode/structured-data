@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ShareActionModel
     public const DESCRIPTION = 'The act of distributing content to people for their amusement or edification.';
     public const LABEL = 'ShareAction';
     public const NAME = 'schema:ShareAction';
-    public const PARENTS = ['CommunicateActionModel' => 'SchemaOrg\\Type\\CommunicateActionModel'];
+    public const PARENTS = ['CommunicateActionModel' => 'SchemaOrg\Type\CommunicateActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

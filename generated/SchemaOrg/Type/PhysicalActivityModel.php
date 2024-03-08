@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PhysicalActivityModel
     public const DESCRIPTION = 'Any bodily activity that enhances or maintains physical fitness and overall health and wellness. Includes activity that is part of daily living and routine, structured exercise, and exercise prescribed as part of a medical treatment or recovery plan.';
     public const LABEL = 'PhysicalActivity';
     public const NAME = 'schema:PhysicalActivity';
-    public const PARENTS = ['LifestyleModificationModel' => 'SchemaOrg\\Type\\LifestyleModificationModel'];
+    public const PARENTS = ['LifestyleModificationModel' => 'SchemaOrg\Type\LifestyleModificationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

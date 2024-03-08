@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,6 +18,6 @@ final class DiseaseSpreadStatisticsModel
   provided, the page indicated might also contain more such markup.';
     public const LABEL = 'diseaseSpreadStatistics';
     public const NAME = 'schema:diseaseSpreadStatistics';
-    public const VALUES = ['DatasetModel' => 'SchemaOrg\\Type\\DatasetModel', 'ObservationModel' => 'SchemaOrg\\Type\\ObservationModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel', 'WebContentModel' => 'SchemaOrg\\Type\\WebContentModel'];
-    public const TYPES = ['SpecialAnnouncement' => 'SchemaOrg\\Type\\SpecialAnnouncementModel'];
+    public const VALUES = ['DatasetModel' => 'SchemaOrg\Type\DatasetModel', 'ObservationModel' => 'SchemaOrg\Type\ObservationModel', 'URLModel' => 'SchemaOrg\Type\URLModel', 'WebContentModel' => 'SchemaOrg\Type\WebContentModel'];
+    public const TYPES = ['SpecialAnnouncement' => 'SchemaOrg\Type\SpecialAnnouncementModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ExecutableLibraryNameModel
     public const DESCRIPTION = 'Library file name, e.g., mscorlib.dll, system.web.dll.';
     public const LABEL = 'executableLibraryName';
     public const NAME = 'schema:executableLibraryName';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['APIReference' => 'SchemaOrg\\Type\\APIReferenceModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['APIReference' => 'SchemaOrg\Type\APIReferenceModel'];
 }

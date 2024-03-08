@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PostalCodeEndModel
     public const DESCRIPTION = 'Last postal code in the range (included). Needs to be after [[postalCodeBegin]].';
     public const LABEL = 'postalCodeEnd';
     public const NAME = 'schema:postalCodeEnd';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['PostalCodeRangeSpecification' => 'SchemaOrg\\Type\\PostalCodeRangeSpecificationModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['PostalCodeRangeSpecification' => 'SchemaOrg\Type\PostalCodeRangeSpecificationModel'];
 }

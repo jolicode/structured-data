@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SportsTeamModel
     public const DESCRIPTION = 'A sub property of participant. The sports team that participated on this action.';
     public const LABEL = 'sportsTeam';
     public const NAME = 'schema:sportsTeam';
-    public const VALUES = ['SportsTeamModel' => 'SchemaOrg\\Type\\SportsTeamModel'];
-    public const TYPES = ['ExerciseAction' => 'SchemaOrg\\Type\\ExerciseActionModel'];
+    public const VALUES = ['SportsTeamModel' => 'SchemaOrg\Type\SportsTeamModel'];
+    public const TYPES = ['ExerciseAction' => 'SchemaOrg\Type\ExerciseActionModel'];
 }

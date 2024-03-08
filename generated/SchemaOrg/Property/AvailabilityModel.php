@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AvailabilityModel
     public const DESCRIPTION = 'The availability of this item&#x2014;for example In stock, Out of stock, Pre-order, etc.';
     public const LABEL = 'availability';
     public const NAME = 'schema:availability';
-    public const VALUES = ['ItemAvailabilityModel' => 'SchemaOrg\\Type\\ItemAvailabilityModel'];
-    public const TYPES = ['Demand' => 'SchemaOrg\\Type\\DemandModel', 'Offer' => 'SchemaOrg\\Type\\OfferModel'];
+    public const VALUES = ['ItemAvailabilityModel' => 'SchemaOrg\Type\ItemAvailabilityModel'];
+    public const TYPES = ['Demand' => 'SchemaOrg\Type\DemandModel', 'Offer' => 'SchemaOrg\Type\OfferModel'];
 }

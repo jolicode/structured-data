@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RecipeCategoryModel
     public const DESCRIPTION = 'The category of the recipe—for example, appetizer, entree, etc.';
     public const LABEL = 'recipeCategory';
     public const NAME = 'schema:recipeCategory';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Recipe' => 'SchemaOrg\\Type\\RecipeModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Recipe' => 'SchemaOrg\Type\RecipeModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DislikeActionModel
     public const DESCRIPTION = 'The act of expressing a negative sentiment about the object. An agent dislikes an object (a proposition, topic or theme) with participants.';
     public const LABEL = 'DislikeAction';
     public const NAME = 'schema:DislikeAction';
-    public const PARENTS = ['ReactActionModel' => 'SchemaOrg\\Type\\ReactActionModel'];
+    public const PARENTS = ['ReactActionModel' => 'SchemaOrg\Type\ReactActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

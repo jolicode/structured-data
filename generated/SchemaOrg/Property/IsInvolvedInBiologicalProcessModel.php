@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IsInvolvedInBiologicalProcessModel
     public const DESCRIPTION = 'Biological process this BioChemEntity is involved in; please use PropertyValue if you want to include any evidence.';
     public const LABEL = 'isInvolvedInBiologicalProcess';
     public const NAME = 'schema:isInvolvedInBiologicalProcess';
-    public const VALUES = ['DefinedTermModel' => 'SchemaOrg\\Type\\DefinedTermModel', 'PropertyValueModel' => 'SchemaOrg\\Type\\PropertyValueModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['BioChemEntity' => 'SchemaOrg\\Type\\BioChemEntityModel'];
+    public const VALUES = ['DefinedTermModel' => 'SchemaOrg\Type\DefinedTermModel', 'PropertyValueModel' => 'SchemaOrg\Type\PropertyValueModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['BioChemEntity' => 'SchemaOrg\Type\BioChemEntityModel'];
 }

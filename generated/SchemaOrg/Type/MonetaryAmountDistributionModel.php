@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MonetaryAmountDistributionModel
     public const DESCRIPTION = 'A statistical distribution of monetary amounts.';
     public const LABEL = 'MonetaryAmountDistribution';
     public const NAME = 'schema:MonetaryAmountDistribution';
-    public const PARENTS = ['QuantitativeValueDistributionModel' => 'SchemaOrg\\Type\\QuantitativeValueDistributionModel'];
+    public const PARENTS = ['QuantitativeValueDistributionModel' => 'SchemaOrg\Type\QuantitativeValueDistributionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

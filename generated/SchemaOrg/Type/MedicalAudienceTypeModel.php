@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class MedicalAudienceTypeModel
     public const DESCRIPTION = 'Target audiences types for medical web pages. Enumerated type.';
     public const LABEL = 'MedicalAudienceType';
     public const NAME = 'schema:MedicalAudienceType';
-    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\\Type\\MedicalEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['ClinicianModel' => 'EnumerationMember\\ClinicianModel', 'MedicalResearcherModel' => 'EnumerationMember\\MedicalResearcherModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\Type\MedicalEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['ClinicianModel' => 'EnumerationMember\ClinicianModel', 'MedicalResearcherModel' => 'EnumerationMember\MedicalResearcherModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SourcedFromModel
     public const DESCRIPTION = 'The neurological pathway that originates the neurons.';
     public const LABEL = 'sourcedFrom';
     public const NAME = 'schema:sourcedFrom';
-    public const VALUES = ['BrainStructureModel' => 'SchemaOrg\\Type\\BrainStructureModel'];
-    public const TYPES = ['Nerve' => 'SchemaOrg\\Type\\NerveModel'];
+    public const VALUES = ['BrainStructureModel' => 'SchemaOrg\Type\BrainStructureModel'];
+    public const TYPES = ['Nerve' => 'SchemaOrg\Type\NerveModel'];
 }

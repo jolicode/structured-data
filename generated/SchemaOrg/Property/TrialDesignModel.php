@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TrialDesignModel
     public const DESCRIPTION = 'Specifics about the trial design (enumerated).';
     public const LABEL = 'trialDesign';
     public const NAME = 'schema:trialDesign';
-    public const VALUES = ['MedicalTrialDesignModel' => 'SchemaOrg\\Type\\MedicalTrialDesignModel'];
-    public const TYPES = ['MedicalTrial' => 'SchemaOrg\\Type\\MedicalTrialModel'];
+    public const VALUES = ['MedicalTrialDesignModel' => 'SchemaOrg\Type\MedicalTrialDesignModel'];
+    public const TYPES = ['MedicalTrial' => 'SchemaOrg\Type\MedicalTrialModel'];
 }

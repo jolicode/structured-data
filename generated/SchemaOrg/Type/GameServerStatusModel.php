@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class GameServerStatusModel
     public const DESCRIPTION = 'Status of a game server.';
     public const LABEL = 'GameServerStatus';
     public const NAME = 'schema:GameServerStatus';
-    public const PARENTS = ['StatusEnumerationModel' => 'SchemaOrg\\Type\\StatusEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['OfflinePermanentlyModel' => 'EnumerationMember\\OfflinePermanentlyModel', 'OfflineTemporarilyModel' => 'EnumerationMember\\OfflineTemporarilyModel', 'OnlineFullModel' => 'EnumerationMember\\OnlineFullModel', 'OnlineModel' => 'EnumerationMember\\OnlineModel'];
+    public const PARENTS = ['StatusEnumerationModel' => 'SchemaOrg\Type\StatusEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['OfflinePermanentlyModel' => 'EnumerationMember\OfflinePermanentlyModel', 'OfflineTemporarilyModel' => 'EnumerationMember\OfflineTemporarilyModel', 'OnlineFullModel' => 'EnumerationMember\OnlineFullModel', 'OnlineModel' => 'EnumerationMember\OnlineModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CaloriesModel
     public const DESCRIPTION = 'The number of calories.';
     public const LABEL = 'calories';
     public const NAME = 'schema:calories';
-    public const VALUES = ['EnergyModel' => 'SchemaOrg\\Type\\EnergyModel'];
-    public const TYPES = ['NutritionInformation' => 'SchemaOrg\\Type\\NutritionInformationModel'];
+    public const VALUES = ['EnergyModel' => 'SchemaOrg\Type\EnergyModel'];
+    public const TYPES = ['NutritionInformation' => 'SchemaOrg\Type\NutritionInformationModel'];
 }

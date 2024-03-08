@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -19,6 +17,6 @@ final class FloorSizeModel
 Typical unit code(s): MTK for square meter, FTK for square foot, or YDK for square yard ';
     public const LABEL = 'floorSize';
     public const NAME = 'schema:floorSize';
-    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['Accommodation' => 'SchemaOrg\\Type\\AccommodationModel', 'FloorPlan' => 'SchemaOrg\\Type\\FloorPlanModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['Accommodation' => 'SchemaOrg\Type\AccommodationModel', 'FloorPlan' => 'SchemaOrg\Type\FloorPlanModel'];
 }

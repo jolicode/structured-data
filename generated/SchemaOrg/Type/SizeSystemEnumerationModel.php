@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class SizeSystemEnumerationModel
     public const DESCRIPTION = 'Enumerates common size systems for different categories of products, for example "EN-13402" or "UK" for wearables or "Imperial" for screws.';
     public const LABEL = 'SizeSystemEnumeration';
     public const NAME = 'schema:SizeSystemEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['SizeSystemImperialModel' => 'EnumerationMember\\SizeSystemImperialModel', 'SizeSystemMetricModel' => 'EnumerationMember\\SizeSystemMetricModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['SizeSystemImperialModel' => 'EnumerationMember\SizeSystemImperialModel', 'SizeSystemMetricModel' => 'EnumerationMember\SizeSystemMetricModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

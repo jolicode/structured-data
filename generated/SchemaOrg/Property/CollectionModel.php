@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CollectionModel
     public const DESCRIPTION = 'A sub property of object. The collection target of the action.';
     public const LABEL = 'collection';
     public const NAME = 'schema:collection';
-    public const VALUES = ['ThingModel' => 'SchemaOrg\\Type\\ThingModel'];
-    public const TYPES = ['UpdateAction' => 'SchemaOrg\\Type\\UpdateActionModel'];
+    public const VALUES = ['ThingModel' => 'SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['UpdateAction' => 'SchemaOrg\Type\UpdateActionModel'];
 }

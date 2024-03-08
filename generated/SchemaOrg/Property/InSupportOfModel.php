@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InSupportOfModel
     public const DESCRIPTION = 'Qualification, candidature, degree, application that Thesis supports.';
     public const LABEL = 'inSupportOf';
     public const NAME = 'schema:inSupportOf';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Thesis' => 'SchemaOrg\\Type\\ThesisModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Thesis' => 'SchemaOrg\Type\ThesisModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class TransferActionModel
     public const DESCRIPTION = 'The act of transferring/moving (abstract or concrete) animate or inanimate objects from one place to another.';
     public const LABEL = 'TransferAction';
     public const NAME = 'schema:TransferAction';
-    public const PARENTS = ['ActionModel' => 'SchemaOrg\\Type\\ActionModel'];
+    public const PARENTS = ['ActionModel' => 'SchemaOrg\Type\ActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

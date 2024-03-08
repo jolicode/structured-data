@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class EmployerAggregateRatingModel
     public const DESCRIPTION = 'An aggregate rating of an Organization related to its role as an employer.';
     public const LABEL = 'EmployerAggregateRating';
     public const NAME = 'schema:EmployerAggregateRating';
-    public const PARENTS = ['AggregateRatingModel' => 'SchemaOrg\\Type\\AggregateRatingModel'];
+    public const PARENTS = ['AggregateRatingModel' => 'SchemaOrg\Type\AggregateRatingModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

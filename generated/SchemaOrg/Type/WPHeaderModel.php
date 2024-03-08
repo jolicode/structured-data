@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class WPHeaderModel
     public const DESCRIPTION = 'The header section of the page.';
     public const LABEL = 'WPHeader';
     public const NAME = 'schema:WPHeader';
-    public const PARENTS = ['WebPageElementModel' => 'SchemaOrg\\Type\\WebPageElementModel'];
+    public const PARENTS = ['WebPageElementModel' => 'SchemaOrg\Type\WebPageElementModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MortgageLoanModel
     public const DESCRIPTION = 'A loan in which property or real estate is used as collateral. (A loan securitized against some real estate.)';
     public const LABEL = 'MortgageLoan';
     public const NAME = 'schema:MortgageLoan';
-    public const PARENTS = ['LoanOrCreditModel' => 'SchemaOrg\\Type\\LoanOrCreditModel'];
+    public const PARENTS = ['LoanOrCreditModel' => 'SchemaOrg\Type\LoanOrCreditModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

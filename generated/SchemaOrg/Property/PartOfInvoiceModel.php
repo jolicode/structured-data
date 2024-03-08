@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PartOfInvoiceModel
     public const DESCRIPTION = 'The order is being paid as part of the referenced Invoice.';
     public const LABEL = 'partOfInvoice';
     public const NAME = 'schema:partOfInvoice';
-    public const VALUES = ['InvoiceModel' => 'SchemaOrg\\Type\\InvoiceModel'];
-    public const TYPES = ['Order' => 'SchemaOrg\\Type\\OrderModel'];
+    public const VALUES = ['InvoiceModel' => 'SchemaOrg\Type\InvoiceModel'];
+    public const TYPES = ['Order' => 'SchemaOrg\Type\OrderModel'];
 }

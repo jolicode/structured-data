@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LegislationDateVersionModel
     public const DESCRIPTION = 'The point-in-time at which the provided description of the legislation is valid (e.g.: when looking at the law on the 2016-04-07 (= dateVersion), I get the consolidation of 2015-04-12 of the "National Insurance Contributions Act 2015")';
     public const LABEL = 'legislationDateVersion';
     public const NAME = 'schema:legislationDateVersion';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel'];
-    public const TYPES = ['Legislation' => 'SchemaOrg\\Type\\LegislationModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel'];
+    public const TYPES = ['Legislation' => 'SchemaOrg\Type\LegislationModel'];
 }

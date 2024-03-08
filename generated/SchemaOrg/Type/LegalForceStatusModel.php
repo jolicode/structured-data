@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class LegalForceStatusModel
     public const DESCRIPTION = 'A list of possible statuses for the legal force of a legislation.';
     public const LABEL = 'LegalForceStatus';
     public const NAME = 'schema:LegalForceStatus';
-    public const PARENTS = ['StatusEnumerationModel' => 'SchemaOrg\\Type\\StatusEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['InForceModel' => 'EnumerationMember\\InForceModel', 'NotInForceModel' => 'EnumerationMember\\NotInForceModel', 'PartiallyInForceModel' => 'EnumerationMember\\PartiallyInForceModel'];
+    public const PARENTS = ['StatusEnumerationModel' => 'SchemaOrg\Type\StatusEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['InForceModel' => 'EnumerationMember\InForceModel', 'NotInForceModel' => 'EnumerationMember\NotInForceModel', 'PartiallyInForceModel' => 'EnumerationMember\PartiallyInForceModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

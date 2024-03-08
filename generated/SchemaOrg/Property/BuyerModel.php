@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BuyerModel
     public const DESCRIPTION = 'A sub property of participant. The participant/person/organization that bought the object.';
     public const LABEL = 'buyer';
     public const NAME = 'schema:buyer';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel', 'PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['SellAction' => 'SchemaOrg\\Type\\SellActionModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['SellAction' => 'SchemaOrg\Type\SellActionModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class FlightModel
     public const DESCRIPTION = 'An airline flight.';
     public const LABEL = 'Flight';
     public const NAME = 'schema:Flight';
-    public const PARENTS = ['TripModel' => 'SchemaOrg\\Type\\TripModel'];
+    public const PARENTS = ['TripModel' => 'SchemaOrg\Type\TripModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

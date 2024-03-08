@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MedicalEntityModel
     public const DESCRIPTION = 'The most generic type of entity related to health and the practice of medicine.';
     public const LABEL = 'MedicalEntity';
     public const NAME = 'schema:MedicalEntity';
-    public const PARENTS = ['ThingModel' => 'SchemaOrg\\Type\\ThingModel'];
+    public const PARENTS = ['ThingModel' => 'SchemaOrg\Type\ThingModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

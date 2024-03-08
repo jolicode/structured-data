@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ProductGroupIDModel
     public const DESCRIPTION = 'Indicates a textual identifier for a ProductGroup.';
     public const LABEL = 'productGroupID';
     public const NAME = 'schema:productGroupID';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['ProductGroup' => 'SchemaOrg\\Type\\ProductGroupModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['ProductGroup' => 'SchemaOrg\Type\ProductGroupModel'];
 }

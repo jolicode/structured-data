@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CatalogNumberModel
     public const DESCRIPTION = 'The catalog number for the release.';
     public const LABEL = 'catalogNumber';
     public const NAME = 'schema:catalogNumber';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MusicRelease' => 'SchemaOrg\\Type\\MusicReleaseModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MusicRelease' => 'SchemaOrg\Type\MusicReleaseModel'];
 }

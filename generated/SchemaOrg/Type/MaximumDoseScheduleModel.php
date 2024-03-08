@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MaximumDoseScheduleModel
     public const DESCRIPTION = 'The maximum dosing schedule considered safe for a drug or supplement as recommended by an authority or by the drug/supplement\'s manufacturer. Capture the recommending authority in the recognizingAuthority property of MedicalEntity.';
     public const LABEL = 'MaximumDoseSchedule';
     public const NAME = 'schema:MaximumDoseSchedule';
-    public const PARENTS = ['DoseScheduleModel' => 'SchemaOrg\\Type\\DoseScheduleModel'];
+    public const PARENTS = ['DoseScheduleModel' => 'SchemaOrg\Type\DoseScheduleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

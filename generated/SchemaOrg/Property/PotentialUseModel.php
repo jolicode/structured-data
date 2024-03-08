@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PotentialUseModel
     public const DESCRIPTION = 'Intended use of the BioChemEntity by humans.';
     public const LABEL = 'potentialUse';
     public const NAME = 'schema:potentialUse';
-    public const VALUES = ['DefinedTermModel' => 'SchemaOrg\\Type\\DefinedTermModel'];
-    public const TYPES = ['ChemicalSubstance' => 'SchemaOrg\\Type\\ChemicalSubstanceModel', 'MolecularEntity' => 'SchemaOrg\\Type\\MolecularEntityModel'];
+    public const VALUES = ['DefinedTermModel' => 'SchemaOrg\Type\DefinedTermModel'];
+    public const TYPES = ['ChemicalSubstance' => 'SchemaOrg\Type\ChemicalSubstanceModel', 'MolecularEntity' => 'SchemaOrg\Type\MolecularEntityModel'];
 }

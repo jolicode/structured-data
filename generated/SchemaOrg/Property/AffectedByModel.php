@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AffectedByModel
     public const DESCRIPTION = 'Drugs that affect the test\'s results.';
     public const LABEL = 'affectedBy';
     public const NAME = 'schema:affectedBy';
-    public const VALUES = ['DrugModel' => 'SchemaOrg\\Type\\DrugModel'];
-    public const TYPES = ['MedicalTest' => 'SchemaOrg\\Type\\MedicalTestModel'];
+    public const VALUES = ['DrugModel' => 'SchemaOrg\Type\DrugModel'];
+    public const TYPES = ['MedicalTest' => 'SchemaOrg\Type\MedicalTestModel'];
 }

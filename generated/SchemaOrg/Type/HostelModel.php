@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -23,7 +21,7 @@ See also the <a href="/docs/hotels.html">dedicated document on the use of schema
 ';
     public const LABEL = 'Hostel';
     public const NAME = 'schema:Hostel';
-    public const PARENTS = ['LodgingBusinessModel' => 'SchemaOrg\\Type\\LodgingBusinessModel'];
+    public const PARENTS = ['LodgingBusinessModel' => 'SchemaOrg\Type\LodgingBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

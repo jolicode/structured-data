@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ApprovedIndicationModel
     public const DESCRIPTION = 'An indication for a medical therapy that has been formally specified or approved by a regulatory body that regulates use of the therapy; for example, the US FDA approves indications for most drugs in the US.';
     public const LABEL = 'ApprovedIndication';
     public const NAME = 'schema:ApprovedIndication';
-    public const PARENTS = ['MedicalIndicationModel' => 'SchemaOrg\\Type\\MedicalIndicationModel'];
+    public const PARENTS = ['MedicalIndicationModel' => 'SchemaOrg\Type\MedicalIndicationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

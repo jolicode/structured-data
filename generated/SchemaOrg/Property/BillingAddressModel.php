@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BillingAddressModel
     public const DESCRIPTION = 'The billing address for the order.';
     public const LABEL = 'billingAddress';
     public const NAME = 'schema:billingAddress';
-    public const VALUES = ['PostalAddressModel' => 'SchemaOrg\\Type\\PostalAddressModel'];
-    public const TYPES = ['Order' => 'SchemaOrg\\Type\\OrderModel'];
+    public const VALUES = ['PostalAddressModel' => 'SchemaOrg\Type\PostalAddressModel'];
+    public const TYPES = ['Order' => 'SchemaOrg\Type\OrderModel'];
 }

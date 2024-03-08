@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class StructuredValueModel
     public const DESCRIPTION = 'Structured values are used when the value of a property has a more complex structure than simply being a textual value or a reference to another thing.';
     public const LABEL = 'StructuredValue';
     public const NAME = 'schema:StructuredValue';
-    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\\Type\\IntangibleModel'];
+    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\Type\IntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

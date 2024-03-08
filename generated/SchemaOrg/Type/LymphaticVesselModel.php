@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class LymphaticVesselModel
     public const DESCRIPTION = 'A type of blood vessel that specifically carries lymph fluid unidirectionally toward the heart.';
     public const LABEL = 'LymphaticVessel';
     public const NAME = 'schema:LymphaticVessel';
-    public const PARENTS = ['VesselModel' => 'SchemaOrg\\Type\\VesselModel'];
+    public const PARENTS = ['VesselModel' => 'SchemaOrg\Type\VesselModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

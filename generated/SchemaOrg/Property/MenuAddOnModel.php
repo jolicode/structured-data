@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MenuAddOnModel
     public const DESCRIPTION = 'Additional menu item(s) such as a side dish of salad or side order of fries that can be added to this menu item. Additionally it can be a menu section containing allowed add-on menu items for this menu item.';
     public const LABEL = 'menuAddOn';
     public const NAME = 'schema:menuAddOn';
-    public const VALUES = ['MenuItemModel' => 'SchemaOrg\\Type\\MenuItemModel', 'MenuSectionModel' => 'SchemaOrg\\Type\\MenuSectionModel'];
-    public const TYPES = ['MenuItem' => 'SchemaOrg\\Type\\MenuItemModel'];
+    public const VALUES = ['MenuItemModel' => 'SchemaOrg\Type\MenuItemModel', 'MenuSectionModel' => 'SchemaOrg\Type\MenuSectionModel'];
+    public const TYPES = ['MenuItem' => 'SchemaOrg\Type\MenuItemModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CookTimeModel
     public const DESCRIPTION = 'The time it takes to actually cook the dish, in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).';
     public const LABEL = 'cookTime';
     public const NAME = 'schema:cookTime';
-    public const VALUES = ['DurationModel' => 'SchemaOrg\\Type\\DurationModel'];
-    public const TYPES = ['Recipe' => 'SchemaOrg\\Type\\RecipeModel'];
+    public const VALUES = ['DurationModel' => 'SchemaOrg\Type\DurationModel'];
+    public const TYPES = ['Recipe' => 'SchemaOrg\Type\RecipeModel'];
 }

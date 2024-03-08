@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IsProprietaryModel
     public const DESCRIPTION = 'True if this item\'s name is a proprietary/brand name (vs. generic name).';
     public const LABEL = 'isProprietary';
     public const NAME = 'schema:isProprietary';
-    public const VALUES = ['BooleanModel' => 'SchemaOrg\\Type\\BooleanModel'];
-    public const TYPES = ['DietarySupplement' => 'SchemaOrg\\Type\\DietarySupplementModel', 'Drug' => 'SchemaOrg\\Type\\DrugModel'];
+    public const VALUES = ['BooleanModel' => 'SchemaOrg\Type\BooleanModel'];
+    public const TYPES = ['DietarySupplement' => 'SchemaOrg\Type\DietarySupplementModel', 'Drug' => 'SchemaOrg\Type\DrugModel'];
 }

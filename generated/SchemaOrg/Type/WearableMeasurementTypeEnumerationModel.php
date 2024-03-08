@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class WearableMeasurementTypeEnumerationModel
     public const DESCRIPTION = 'Enumerates common types of measurement for wearables products.';
     public const LABEL = 'WearableMeasurementTypeEnumeration';
     public const NAME = 'schema:WearableMeasurementTypeEnumeration';
-    public const PARENTS = ['MeasurementTypeEnumerationModel' => 'SchemaOrg\\Type\\MeasurementTypeEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['WearableMeasurementBackModel' => 'EnumerationMember\\WearableMeasurementBackModel', 'WearableMeasurementChestOrBustModel' => 'EnumerationMember\\WearableMeasurementChestOrBustModel', 'WearableMeasurementCollarModel' => 'EnumerationMember\\WearableMeasurementCollarModel', 'WearableMeasurementCupModel' => 'EnumerationMember\\WearableMeasurementCupModel', 'WearableMeasurementHeightModel' => 'EnumerationMember\\WearableMeasurementHeightModel', 'WearableMeasurementHipsModel' => 'EnumerationMember\\WearableMeasurementHipsModel', 'WearableMeasurementInseamModel' => 'EnumerationMember\\WearableMeasurementInseamModel', 'WearableMeasurementLengthModel' => 'EnumerationMember\\WearableMeasurementLengthModel', 'WearableMeasurementOutsideLegModel' => 'EnumerationMember\\WearableMeasurementOutsideLegModel', 'WearableMeasurementSleeveModel' => 'EnumerationMember\\WearableMeasurementSleeveModel', 'WearableMeasurementWaistModel' => 'EnumerationMember\\WearableMeasurementWaistModel', 'WearableMeasurementWidthModel' => 'EnumerationMember\\WearableMeasurementWidthModel'];
+    public const PARENTS = ['MeasurementTypeEnumerationModel' => 'SchemaOrg\Type\MeasurementTypeEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['WearableMeasurementBackModel' => 'EnumerationMember\WearableMeasurementBackModel', 'WearableMeasurementChestOrBustModel' => 'EnumerationMember\WearableMeasurementChestOrBustModel', 'WearableMeasurementCollarModel' => 'EnumerationMember\WearableMeasurementCollarModel', 'WearableMeasurementCupModel' => 'EnumerationMember\WearableMeasurementCupModel', 'WearableMeasurementHeightModel' => 'EnumerationMember\WearableMeasurementHeightModel', 'WearableMeasurementHipsModel' => 'EnumerationMember\WearableMeasurementHipsModel', 'WearableMeasurementInseamModel' => 'EnumerationMember\WearableMeasurementInseamModel', 'WearableMeasurementLengthModel' => 'EnumerationMember\WearableMeasurementLengthModel', 'WearableMeasurementOutsideLegModel' => 'EnumerationMember\WearableMeasurementOutsideLegModel', 'WearableMeasurementSleeveModel' => 'EnumerationMember\WearableMeasurementSleeveModel', 'WearableMeasurementWaistModel' => 'EnumerationMember\WearableMeasurementWaistModel', 'WearableMeasurementWidthModel' => 'EnumerationMember\WearableMeasurementWidthModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

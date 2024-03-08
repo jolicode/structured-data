@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class MusicAlbumReleaseTypeModel
     public const DESCRIPTION = 'The kind of release which this album is: single, EP or album.';
     public const LABEL = 'MusicAlbumReleaseType';
     public const NAME = 'schema:MusicAlbumReleaseType';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['AlbumReleaseModel' => 'EnumerationMember\\AlbumReleaseModel', 'BroadcastReleaseModel' => 'EnumerationMember\\BroadcastReleaseModel', 'EPReleaseModel' => 'EnumerationMember\\EPReleaseModel', 'SingleReleaseModel' => 'EnumerationMember\\SingleReleaseModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['AlbumReleaseModel' => 'EnumerationMember\AlbumReleaseModel', 'BroadcastReleaseModel' => 'EnumerationMember\BroadcastReleaseModel', 'EPReleaseModel' => 'EnumerationMember\EPReleaseModel', 'SingleReleaseModel' => 'EnumerationMember\SingleReleaseModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

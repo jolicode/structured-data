@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LodgingUnitTypeModel
     public const DESCRIPTION = 'Textual description of the unit type (including suite vs. room, size of bed, etc.).';
     public const LABEL = 'lodgingUnitType';
     public const NAME = 'schema:lodgingUnitType';
-    public const VALUES = ['QualitativeValueModel' => 'SchemaOrg\\Type\\QualitativeValueModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['LodgingReservation' => 'SchemaOrg\\Type\\LodgingReservationModel'];
+    public const VALUES = ['QualitativeValueModel' => 'SchemaOrg\Type\QualitativeValueModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['LodgingReservation' => 'SchemaOrg\Type\LodgingReservationModel'];
 }

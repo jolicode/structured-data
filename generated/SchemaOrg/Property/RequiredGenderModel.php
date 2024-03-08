@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RequiredGenderModel
     public const DESCRIPTION = 'Audiences defined by a person\'s gender.';
     public const LABEL = 'requiredGender';
     public const NAME = 'schema:requiredGender';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['PeopleAudience' => 'SchemaOrg\\Type\\PeopleAudienceModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['PeopleAudience' => 'SchemaOrg\Type\PeopleAudienceModel'];
 }

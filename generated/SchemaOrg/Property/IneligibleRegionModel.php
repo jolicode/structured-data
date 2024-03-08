@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -15,10 +13,10 @@ namespace SchemaOrg\Property;
 
 final class IneligibleRegionModel
 {
-    public const DESCRIPTION = 'The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid, e.g. a region where the transaction is not allowed.\\n\\nSee also [[eligibleRegion]].
+    public const DESCRIPTION = 'The ISO 3166-1 (ISO 3166-1 alpha-2) or ISO 3166-2 code, the place, or the GeoShape for the geo-political region(s) for which the offer or delivery charge specification is not valid, e.g. a region where the transaction is not allowed.\n\nSee also [[eligibleRegion]].
       ';
     public const LABEL = 'ineligibleRegion';
     public const NAME = 'schema:ineligibleRegion';
-    public const VALUES = ['GeoShapeModel' => 'SchemaOrg\\Type\\GeoShapeModel', 'PlaceModel' => 'SchemaOrg\\Type\\PlaceModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['ActionAccessSpecification' => 'SchemaOrg\\Type\\ActionAccessSpecificationModel', 'DeliveryChargeSpecification' => 'SchemaOrg\\Type\\DeliveryChargeSpecificationModel', 'Demand' => 'SchemaOrg\\Type\\DemandModel', 'MediaObject' => 'SchemaOrg\\Type\\MediaObjectModel', 'Offer' => 'SchemaOrg\\Type\\OfferModel'];
+    public const VALUES = ['GeoShapeModel' => 'SchemaOrg\Type\GeoShapeModel', 'PlaceModel' => 'SchemaOrg\Type\PlaceModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['ActionAccessSpecification' => 'SchemaOrg\Type\ActionAccessSpecificationModel', 'DeliveryChargeSpecification' => 'SchemaOrg\Type\DeliveryChargeSpecificationModel', 'Demand' => 'SchemaOrg\Type\DemandModel', 'MediaObject' => 'SchemaOrg\Type\MediaObjectModel', 'Offer' => 'SchemaOrg\Type\OfferModel'];
 }

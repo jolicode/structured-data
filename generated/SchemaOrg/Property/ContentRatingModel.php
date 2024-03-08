@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ContentRatingModel
     public const DESCRIPTION = 'Official rating of a piece of content&#x2014;for example, \'MPAA PG-13\'.';
     public const LABEL = 'contentRating';
     public const NAME = 'schema:contentRating';
-    public const VALUES = ['RatingModel' => 'SchemaOrg\\Type\\RatingModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const VALUES = ['RatingModel' => 'SchemaOrg\Type\RatingModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel'];
 }

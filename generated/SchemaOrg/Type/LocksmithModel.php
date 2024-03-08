@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class LocksmithModel
     public const DESCRIPTION = 'A locksmith.';
     public const LABEL = 'Locksmith';
     public const NAME = 'schema:Locksmith';
-    public const PARENTS = ['HomeAndConstructionBusinessModel' => 'SchemaOrg\\Type\\HomeAndConstructionBusinessModel'];
+    public const PARENTS = ['HomeAndConstructionBusinessModel' => 'SchemaOrg\Type\HomeAndConstructionBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

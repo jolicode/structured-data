@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TargetProductModel
     public const DESCRIPTION = 'Target Operating System / Product to which the code applies.  If applies to several versions, just the product name can be used.';
     public const LABEL = 'targetProduct';
     public const NAME = 'schema:targetProduct';
-    public const VALUES = ['SoftwareApplicationModel' => 'SchemaOrg\\Type\\SoftwareApplicationModel'];
-    public const TYPES = ['SoftwareSourceCode' => 'SchemaOrg\\Type\\SoftwareSourceCodeModel'];
+    public const VALUES = ['SoftwareApplicationModel' => 'SchemaOrg\Type\SoftwareApplicationModel'];
+    public const TYPES = ['SoftwareSourceCode' => 'SchemaOrg\Type\SoftwareSourceCodeModel'];
 }

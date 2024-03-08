@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class GamePlayModeModel
     public const DESCRIPTION = 'Indicates whether this game is multi-player, co-op or single-player.';
     public const LABEL = 'GamePlayMode';
     public const NAME = 'schema:GamePlayMode';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['CoOpModel' => 'EnumerationMember\\CoOpModel', 'MultiPlayerModel' => 'EnumerationMember\\MultiPlayerModel', 'SinglePlayerModel' => 'EnumerationMember\\SinglePlayerModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['CoOpModel' => 'EnumerationMember\CoOpModel', 'MultiPlayerModel' => 'EnumerationMember\MultiPlayerModel', 'SinglePlayerModel' => 'EnumerationMember\SinglePlayerModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

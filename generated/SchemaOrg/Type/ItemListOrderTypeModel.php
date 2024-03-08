@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class ItemListOrderTypeModel
     public const DESCRIPTION = 'Enumerated for values for itemListOrder for indicating how an ordered ItemList is organized.';
     public const LABEL = 'ItemListOrderType';
     public const NAME = 'schema:ItemListOrderType';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['ItemListOrderAscendingModel' => 'EnumerationMember\\ItemListOrderAscendingModel', 'ItemListOrderDescendingModel' => 'EnumerationMember\\ItemListOrderDescendingModel', 'ItemListUnorderedModel' => 'EnumerationMember\\ItemListUnorderedModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['ItemListOrderAscendingModel' => 'EnumerationMember\ItemListOrderAscendingModel', 'ItemListOrderDescendingModel' => 'EnumerationMember\ItemListOrderDescendingModel', 'ItemListUnorderedModel' => 'EnumerationMember\ItemListUnorderedModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

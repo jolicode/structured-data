@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SupplyToModel
     public const DESCRIPTION = 'The area to which the artery supplies blood.';
     public const LABEL = 'supplyTo';
     public const NAME = 'schema:supplyTo';
-    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\\Type\\AnatomicalStructureModel'];
-    public const TYPES = ['Artery' => 'SchemaOrg\\Type\\ArteryModel'];
+    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\Type\AnatomicalStructureModel'];
+    public const TYPES = ['Artery' => 'SchemaOrg\Type\ArteryModel'];
 }

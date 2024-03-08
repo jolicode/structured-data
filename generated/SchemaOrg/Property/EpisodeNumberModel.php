@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class EpisodeNumberModel
     public const DESCRIPTION = 'Position of the episode within an ordered group of episodes.';
     public const LABEL = 'episodeNumber';
     public const NAME = 'schema:episodeNumber';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Episode' => 'SchemaOrg\\Type\\EpisodeModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Episode' => 'SchemaOrg\Type\EpisodeModel'];
 }

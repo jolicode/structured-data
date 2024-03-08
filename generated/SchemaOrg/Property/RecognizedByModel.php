@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RecognizedByModel
     public const DESCRIPTION = 'An organization that acknowledges the validity, value or utility of a credential. Note: recognition may include a process of quality assurance or accreditation.';
     public const LABEL = 'recognizedBy';
     public const NAME = 'schema:recognizedBy';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel'];
-    public const TYPES = ['EducationalOccupationalCredential' => 'SchemaOrg\\Type\\EducationalOccupationalCredentialModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel'];
+    public const TYPES = ['EducationalOccupationalCredential' => 'SchemaOrg\Type\EducationalOccupationalCredentialModel'];
 }

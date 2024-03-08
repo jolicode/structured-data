@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InfectiousAgentModel
     public const DESCRIPTION = 'The actual infectious agent, such as a specific bacterium.';
     public const LABEL = 'infectiousAgent';
     public const NAME = 'schema:infectiousAgent';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['InfectiousDisease' => 'SchemaOrg\\Type\\InfectiousDiseaseModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['InfectiousDisease' => 'SchemaOrg\Type\InfectiousDiseaseModel'];
 }

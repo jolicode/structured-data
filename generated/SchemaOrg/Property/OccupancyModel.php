@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -19,6 +17,6 @@ final class OccupancyModel
 Typical unit code(s): C62 for person';
     public const LABEL = 'occupancy';
     public const NAME = 'schema:occupancy';
-    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['Accommodation' => 'SchemaOrg\\Type\\AccommodationModel', 'Apartment' => 'SchemaOrg\\Type\\ApartmentModel', 'HotelRoom' => 'SchemaOrg\\Type\\HotelRoomModel', 'SingleFamilyResidence' => 'SchemaOrg\\Type\\SingleFamilyResidenceModel', 'Suite' => 'SchemaOrg\\Type\\SuiteModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['Accommodation' => 'SchemaOrg\Type\AccommodationModel', 'Apartment' => 'SchemaOrg\Type\ApartmentModel', 'HotelRoom' => 'SchemaOrg\Type\HotelRoomModel', 'SingleFamilyResidence' => 'SchemaOrg\Type\SingleFamilyResidenceModel', 'Suite' => 'SchemaOrg\Type\SuiteModel'];
 }

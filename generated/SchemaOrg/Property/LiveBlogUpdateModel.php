@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LiveBlogUpdateModel
     public const DESCRIPTION = 'An update to the LiveBlog.';
     public const LABEL = 'liveBlogUpdate';
     public const NAME = 'schema:liveBlogUpdate';
-    public const VALUES = ['BlogPostingModel' => 'SchemaOrg\\Type\\BlogPostingModel'];
-    public const TYPES = ['LiveBlogPosting' => 'SchemaOrg\\Type\\LiveBlogPostingModel'];
+    public const VALUES = ['BlogPostingModel' => 'SchemaOrg\Type\BlogPostingModel'];
+    public const TYPES = ['LiveBlogPosting' => 'SchemaOrg\Type\LiveBlogPostingModel'];
 }

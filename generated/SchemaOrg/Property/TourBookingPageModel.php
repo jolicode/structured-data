@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TourBookingPageModel
     public const DESCRIPTION = 'A page providing information on how to book a tour of some [[Place]], such as an [[Accommodation]] or [[ApartmentComplex]] in a real estate setting, as well as other kinds of tours as appropriate.';
     public const LABEL = 'tourBookingPage';
     public const NAME = 'schema:tourBookingPage';
-    public const VALUES = ['URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['Accommodation' => 'SchemaOrg\\Type\\AccommodationModel', 'ApartmentComplex' => 'SchemaOrg\\Type\\ApartmentComplexModel', 'Place' => 'SchemaOrg\\Type\\PlaceModel'];
+    public const VALUES = ['URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['Accommodation' => 'SchemaOrg\Type\AccommodationModel', 'ApartmentComplex' => 'SchemaOrg\Type\ApartmentComplexModel', 'Place' => 'SchemaOrg\Type\PlaceModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DateReadModel
     public const DESCRIPTION = 'The date/time at which the message has been read by the recipient if a single recipient exists.';
     public const LABEL = 'dateRead';
     public const NAME = 'schema:dateRead';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel', 'DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel'];
-    public const TYPES = ['Message' => 'SchemaOrg\\Type\\MessageModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel', 'DateTimeModel' => 'SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['Message' => 'SchemaOrg\Type\MessageModel'];
 }

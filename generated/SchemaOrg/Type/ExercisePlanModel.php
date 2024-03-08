@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ExercisePlanModel
     public const DESCRIPTION = 'Fitness-related activity designed for a specific health-related purpose, including defined exercise routines as well as activity prescribed by a clinician.';
     public const LABEL = 'ExercisePlan';
     public const NAME = 'schema:ExercisePlan';
-    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel', 'PhysicalActivityModel' => 'SchemaOrg\\Type\\PhysicalActivityModel'];
+    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel', 'PhysicalActivityModel' => 'SchemaOrg\Type\PhysicalActivityModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

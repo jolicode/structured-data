@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class SportsOrganizationModel
     public const DESCRIPTION = 'Represents the collection of all sports organizations, including sports teams, governing bodies, and sports associations.';
     public const LABEL = 'SportsOrganization';
     public const NAME = 'schema:SportsOrganization';
-    public const PARENTS = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel'];
+    public const PARENTS = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

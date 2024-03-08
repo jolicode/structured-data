@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DrainsToModel
     public const DESCRIPTION = 'The vasculature that the vein drains into.';
     public const LABEL = 'drainsTo';
     public const NAME = 'schema:drainsTo';
-    public const VALUES = ['VesselModel' => 'SchemaOrg\\Type\\VesselModel'];
-    public const TYPES = ['Vein' => 'SchemaOrg\\Type\\VeinModel'];
+    public const VALUES = ['VesselModel' => 'SchemaOrg\Type\VesselModel'];
+    public const TYPES = ['Vein' => 'SchemaOrg\Type\VeinModel'];
 }

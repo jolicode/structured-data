@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DocumentationModel
     public const DESCRIPTION = 'Further documentation describing the Web API in more detail.';
     public const LABEL = 'documentation';
     public const NAME = 'schema:documentation';
-    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['WebAPI' => 'SchemaOrg\\Type\\WebAPIModel'];
+    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['WebAPI' => 'SchemaOrg\Type\WebAPIModel'];
 }

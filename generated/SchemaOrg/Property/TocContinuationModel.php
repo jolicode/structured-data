@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TocContinuationModel
     public const DESCRIPTION = 'A [[HyperTocEntry]] can have a [[tocContinuation]] indicated, which is another [[HyperTocEntry]] that would be the default next item to play or render.';
     public const LABEL = 'tocContinuation';
     public const NAME = 'schema:tocContinuation';
-    public const VALUES = ['HyperTocEntryModel' => 'SchemaOrg\\Type\\HyperTocEntryModel'];
-    public const TYPES = ['HyperTocEntry' => 'SchemaOrg\\Type\\HyperTocEntryModel'];
+    public const VALUES = ['HyperTocEntryModel' => 'SchemaOrg\Type\HyperTocEntryModel'];
+    public const TYPES = ['HyperTocEntry' => 'SchemaOrg\Type\HyperTocEntryModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DatePostedModel
     public const DESCRIPTION = 'Publication date of an online listing.';
     public const LABEL = 'datePosted';
     public const NAME = 'schema:datePosted';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel', 'DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel'];
-    public const TYPES = ['CDCPMDRecord' => 'SchemaOrg\\Type\\CDCPMDRecordModel', 'JobPosting' => 'SchemaOrg\\Type\\JobPostingModel', 'RealEstateListing' => 'SchemaOrg\\Type\\RealEstateListingModel', 'SpecialAnnouncement' => 'SchemaOrg\\Type\\SpecialAnnouncementModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel', 'DateTimeModel' => 'SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['CDCPMDRecord' => 'SchemaOrg\Type\CDCPMDRecordModel', 'JobPosting' => 'SchemaOrg\Type\JobPostingModel', 'RealEstateListing' => 'SchemaOrg\Type\RealEstateListingModel', 'SpecialAnnouncement' => 'SchemaOrg\Type\SpecialAnnouncementModel'];
 }

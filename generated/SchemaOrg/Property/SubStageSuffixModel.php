@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SubStageSuffixModel
     public const DESCRIPTION = 'The substage, e.g. \'a\' for Stage IIIa.';
     public const LABEL = 'subStageSuffix';
     public const NAME = 'schema:subStageSuffix';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MedicalConditionStage' => 'SchemaOrg\\Type\\MedicalConditionStageModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MedicalConditionStage' => 'SchemaOrg\Type\MedicalConditionStageModel'];
 }

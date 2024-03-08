@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MeasurementQualifierModel
     public const DESCRIPTION = 'Provides additional qualification to an observation. For example, a GDP observation measures the Nominal value.';
     public const LABEL = 'measurementQualifier';
     public const NAME = 'schema:measurementQualifier';
-    public const VALUES = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const TYPES = ['Observation' => 'SchemaOrg\\Type\\ObservationModel', 'StatisticalVariable' => 'SchemaOrg\\Type\\StatisticalVariableModel'];
+    public const VALUES = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const TYPES = ['Observation' => 'SchemaOrg\Type\ObservationModel', 'StatisticalVariable' => 'SchemaOrg\Type\StatisticalVariableModel'];
 }

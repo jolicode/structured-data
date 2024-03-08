@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ArteryModel
     public const DESCRIPTION = 'A type of blood vessel that specifically carries blood away from the heart.';
     public const LABEL = 'Artery';
     public const NAME = 'schema:Artery';
-    public const PARENTS = ['VesselModel' => 'SchemaOrg\\Type\\VesselModel'];
+    public const PARENTS = ['VesselModel' => 'SchemaOrg\Type\VesselModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

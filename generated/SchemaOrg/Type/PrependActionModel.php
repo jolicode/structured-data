@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PrependActionModel
     public const DESCRIPTION = 'The act of inserting at the beginning if an ordered collection.';
     public const LABEL = 'PrependAction';
     public const NAME = 'schema:PrependAction';
-    public const PARENTS = ['InsertActionModel' => 'SchemaOrg\\Type\\InsertActionModel'];
+    public const PARENTS = ['InsertActionModel' => 'SchemaOrg\Type\InsertActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

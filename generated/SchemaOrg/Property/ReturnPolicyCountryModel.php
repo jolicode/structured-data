@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ReturnPolicyCountryModel
     public const DESCRIPTION = 'The country where the product has to be sent to for returns, for example "Ireland" using the [[name]] property of [[Country]]. You can also provide the two-letter [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1). Note that this can be different from the country where the product was originally shipped from or sent to.';
     public const LABEL = 'returnPolicyCountry';
     public const NAME = 'schema:returnPolicyCountry';
-    public const VALUES = ['CountryModel' => 'SchemaOrg\\Type\\CountryModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MerchantReturnPolicy' => 'SchemaOrg\\Type\\MerchantReturnPolicyModel'];
+    public const VALUES = ['CountryModel' => 'SchemaOrg\Type\CountryModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MerchantReturnPolicy' => 'SchemaOrg\Type\MerchantReturnPolicyModel'];
 }

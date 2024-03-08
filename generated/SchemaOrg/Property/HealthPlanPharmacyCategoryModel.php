@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HealthPlanPharmacyCategoryModel
     public const DESCRIPTION = 'The category or type of pharmacy associated with this cost sharing.';
     public const LABEL = 'healthPlanPharmacyCategory';
     public const NAME = 'schema:healthPlanPharmacyCategory';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['HealthPlanCostSharingSpecification' => 'SchemaOrg\\Type\\HealthPlanCostSharingSpecificationModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['HealthPlanCostSharingSpecification' => 'SchemaOrg\Type\HealthPlanCostSharingSpecificationModel'];
 }

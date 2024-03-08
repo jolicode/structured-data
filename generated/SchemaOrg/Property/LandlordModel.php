@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LandlordModel
     public const DESCRIPTION = 'A sub property of participant. The owner of the real estate property.';
     public const LABEL = 'landlord';
     public const NAME = 'schema:landlord';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel', 'PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['RentAction' => 'SchemaOrg\\Type\\RentActionModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['RentAction' => 'SchemaOrg\Type\RentActionModel'];
 }

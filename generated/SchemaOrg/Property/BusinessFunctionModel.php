@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BusinessFunctionModel
     public const DESCRIPTION = 'The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.';
     public const LABEL = 'businessFunction';
     public const NAME = 'schema:businessFunction';
-    public const VALUES = ['BusinessFunctionModel' => 'SchemaOrg\\Type\\BusinessFunctionModel'];
-    public const TYPES = ['Demand' => 'SchemaOrg\\Type\\DemandModel', 'Offer' => 'SchemaOrg\\Type\\OfferModel', 'TypeAndQuantityNode' => 'SchemaOrg\\Type\\TypeAndQuantityNodeModel'];
+    public const VALUES = ['BusinessFunctionModel' => 'SchemaOrg\Type\BusinessFunctionModel'];
+    public const TYPES = ['Demand' => 'SchemaOrg\Type\DemandModel', 'Offer' => 'SchemaOrg\Type\OfferModel', 'TypeAndQuantityNode' => 'SchemaOrg\Type\TypeAndQuantityNodeModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CoachModel
     public const DESCRIPTION = 'A person that acts in a coaching role for a sports team.';
     public const LABEL = 'coach';
     public const NAME = 'schema:coach';
-    public const VALUES = ['PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['SportsTeam' => 'SchemaOrg\\Type\\SportsTeamModel'];
+    public const VALUES = ['PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['SportsTeam' => 'SchemaOrg\Type\SportsTeamModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LeiCodeModel
     public const DESCRIPTION = 'An organization identifier that uniquely identifies a legal entity as defined in ISO 17442.';
     public const LABEL = 'leiCode';
     public const NAME = 'schema:leiCode';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Organization' => 'SchemaOrg\\Type\\OrganizationModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Organization' => 'SchemaOrg\Type\OrganizationModel'];
 }

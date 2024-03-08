@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ParentItemModel
     public const DESCRIPTION = 'The parent of a question, answer or item in general.';
     public const LABEL = 'parentItem';
     public const NAME = 'schema:parentItem';
-    public const VALUES = ['CommentModel' => 'SchemaOrg\\Type\\CommentModel'];
-    public const TYPES = ['Comment' => 'SchemaOrg\\Type\\CommentModel'];
+    public const VALUES = ['CommentModel' => 'SchemaOrg\Type\CommentModel'];
+    public const TYPES = ['Comment' => 'SchemaOrg\Type\CommentModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class EngineSpecificationModel
     public const DESCRIPTION = 'Information about the engine of the vehicle. A vehicle can have multiple engines represented by multiple engine specification entities.';
     public const LABEL = 'EngineSpecification';
     public const NAME = 'schema:EngineSpecification';
-    public const PARENTS = ['StructuredValueModel' => 'SchemaOrg\\Type\\StructuredValueModel'];
+    public const PARENTS = ['StructuredValueModel' => 'SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

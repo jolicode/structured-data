@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class RsvpResponseTypeModel
     public const DESCRIPTION = 'RsvpResponseType is an enumeration type whose instances represent responding to an RSVP request.';
     public const LABEL = 'RsvpResponseType';
     public const NAME = 'schema:RsvpResponseType';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['RsvpResponseMaybeModel' => 'EnumerationMember\\RsvpResponseMaybeModel', 'RsvpResponseNoModel' => 'EnumerationMember\\RsvpResponseNoModel', 'RsvpResponseYesModel' => 'EnumerationMember\\RsvpResponseYesModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['RsvpResponseMaybeModel' => 'EnumerationMember\RsvpResponseMaybeModel', 'RsvpResponseNoModel' => 'EnumerationMember\RsvpResponseNoModel', 'RsvpResponseYesModel' => 'EnumerationMember\RsvpResponseYesModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

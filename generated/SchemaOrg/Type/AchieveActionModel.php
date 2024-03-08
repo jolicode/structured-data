@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class AchieveActionModel
     public const DESCRIPTION = 'The act of accomplishing something via previous efforts. It is an instantaneous action rather than an ongoing process.';
     public const LABEL = 'AchieveAction';
     public const NAME = 'schema:AchieveAction';
-    public const PARENTS = ['ActionModel' => 'SchemaOrg\\Type\\ActionModel'];
+    public const PARENTS = ['ActionModel' => 'SchemaOrg\Type\ActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PlanActionModel
     public const DESCRIPTION = 'The act of planning the execution of an event/task/action/reservation/plan to a future date.';
     public const LABEL = 'PlanAction';
     public const NAME = 'schema:PlanAction';
-    public const PARENTS = ['OrganizeActionModel' => 'SchemaOrg\\Type\\OrganizeActionModel'];
+    public const PARENTS = ['OrganizeActionModel' => 'SchemaOrg\Type\OrganizeActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

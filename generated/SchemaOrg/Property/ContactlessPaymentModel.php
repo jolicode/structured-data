@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ContactlessPaymentModel
     public const DESCRIPTION = 'A secure method for consumers to purchase products or services via debit, credit or smartcards by using RFID or NFC technology.';
     public const LABEL = 'contactlessPayment';
     public const NAME = 'schema:contactlessPayment';
-    public const VALUES = ['BooleanModel' => 'SchemaOrg\\Type\\BooleanModel'];
-    public const TYPES = ['PaymentCard' => 'SchemaOrg\\Type\\PaymentCardModel'];
+    public const VALUES = ['BooleanModel' => 'SchemaOrg\Type\BooleanModel'];
+    public const TYPES = ['PaymentCard' => 'SchemaOrg\Type\PaymentCardModel'];
 }

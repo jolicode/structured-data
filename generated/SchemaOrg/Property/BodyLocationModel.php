@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BodyLocationModel
     public const DESCRIPTION = 'Location in the body of the anatomical structure.';
     public const LABEL = 'bodyLocation';
     public const NAME = 'schema:bodyLocation';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['AnatomicalStructure' => 'SchemaOrg\\Type\\AnatomicalStructureModel', 'MedicalProcedure' => 'SchemaOrg\\Type\\MedicalProcedureModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['AnatomicalStructure' => 'SchemaOrg\Type\AnatomicalStructureModel', 'MedicalProcedure' => 'SchemaOrg\Type\MedicalProcedureModel'];
 }

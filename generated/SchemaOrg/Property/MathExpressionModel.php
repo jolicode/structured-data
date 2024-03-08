@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MathExpressionModel
     public const DESCRIPTION = 'A mathematical expression (e.g. \'x^2-3x=0\') that may be solved for a specific variable, simplified, or transformed. This can take many formats, e.g. LaTeX, Ascii-Math, or math as you would write with a keyboard.';
     public const LABEL = 'mathExpression';
     public const NAME = 'schema:mathExpression';
-    public const VALUES = ['SolveMathActionModel' => 'SchemaOrg\\Type\\SolveMathActionModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MathSolver' => 'SchemaOrg\\Type\\MathSolverModel'];
+    public const VALUES = ['SolveMathActionModel' => 'SchemaOrg\Type\SolveMathActionModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MathSolver' => 'SchemaOrg\Type\MathSolverModel'];
 }

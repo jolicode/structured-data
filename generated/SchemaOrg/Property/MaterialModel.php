@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MaterialModel
     public const DESCRIPTION = 'A material that something is made from, e.g. leather, wool, cotton, paper.';
     public const LABEL = 'material';
     public const NAME = 'schema:material';
-    public const VALUES = ['ProductModel' => 'SchemaOrg\\Type\\ProductModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel', 'Product' => 'SchemaOrg\\Type\\ProductModel'];
+    public const VALUES = ['ProductModel' => 'SchemaOrg\Type\ProductModel', 'TextModel' => 'SchemaOrg\Type\TextModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel', 'Product' => 'SchemaOrg\Type\ProductModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LegislationConsolidatesModel
     public const DESCRIPTION = 'Indicates another legislation taken into account in this consolidated legislation (which is usually the product of an editorial process that revises the legislation). This property should be used multiple times to refer to both the original version or the previous consolidated version, and to the legislations making the change.';
     public const LABEL = 'legislationConsolidates';
     public const NAME = 'schema:legislationConsolidates';
-    public const VALUES = ['LegislationModel' => 'SchemaOrg\\Type\\LegislationModel'];
-    public const TYPES = ['Legislation' => 'SchemaOrg\\Type\\LegislationModel'];
+    public const VALUES = ['LegislationModel' => 'SchemaOrg\Type\LegislationModel'];
+    public const TYPES = ['Legislation' => 'SchemaOrg\Type\LegislationModel'];
 }

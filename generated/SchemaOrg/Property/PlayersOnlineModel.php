@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PlayersOnlineModel
     public const DESCRIPTION = 'Number of players on the server.';
     public const LABEL = 'playersOnline';
     public const NAME = 'schema:playersOnline';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel'];
-    public const TYPES = ['GameServer' => 'SchemaOrg\\Type\\GameServerModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['GameServer' => 'SchemaOrg\Type\GameServerModel'];
 }

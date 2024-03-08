@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class VehicleEngineModel
     public const DESCRIPTION = 'Information about the engine or engines of the vehicle.';
     public const LABEL = 'vehicleEngine';
     public const NAME = 'schema:vehicleEngine';
-    public const VALUES = ['EngineSpecificationModel' => 'SchemaOrg\\Type\\EngineSpecificationModel'];
-    public const TYPES = ['Vehicle' => 'SchemaOrg\\Type\\VehicleModel'];
+    public const VALUES = ['EngineSpecificationModel' => 'SchemaOrg\Type\EngineSpecificationModel'];
+    public const TYPES = ['Vehicle' => 'SchemaOrg\Type\VehicleModel'];
 }

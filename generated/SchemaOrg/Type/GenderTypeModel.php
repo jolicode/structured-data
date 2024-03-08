@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class GenderTypeModel
     public const DESCRIPTION = 'An enumeration of genders.';
     public const LABEL = 'GenderType';
     public const NAME = 'schema:GenderType';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['FemaleModel' => 'EnumerationMember\\FemaleModel', 'MaleModel' => 'EnumerationMember\\MaleModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['FemaleModel' => 'EnumerationMember\FemaleModel', 'MaleModel' => 'EnumerationMember\MaleModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

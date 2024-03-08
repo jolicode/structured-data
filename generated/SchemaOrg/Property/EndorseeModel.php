@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class EndorseeModel
     public const DESCRIPTION = 'A sub property of participant. The person/organization being supported.';
     public const LABEL = 'endorsee';
     public const NAME = 'schema:endorsee';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel', 'PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['EndorseAction' => 'SchemaOrg\\Type\\EndorseActionModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['EndorseAction' => 'SchemaOrg\Type\EndorseActionModel'];
 }

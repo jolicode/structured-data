@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class QualificationsModel
     public const DESCRIPTION = 'Specific qualifications required for this role or Occupation.';
     public const LABEL = 'qualifications';
     public const NAME = 'schema:qualifications';
-    public const VALUES = ['EducationalOccupationalCredentialModel' => 'SchemaOrg\\Type\\EducationalOccupationalCredentialModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['JobPosting' => 'SchemaOrg\\Type\\JobPostingModel', 'Occupation' => 'SchemaOrg\\Type\\OccupationModel'];
+    public const VALUES = ['EducationalOccupationalCredentialModel' => 'SchemaOrg\Type\EducationalOccupationalCredentialModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['JobPosting' => 'SchemaOrg\Type\JobPostingModel', 'Occupation' => 'SchemaOrg\Type\OccupationModel'];
 }

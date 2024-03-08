@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class AddActionModel
     public const DESCRIPTION = 'The act of editing by adding an object to a collection.';
     public const LABEL = 'AddAction';
     public const NAME = 'schema:AddAction';
-    public const PARENTS = ['UpdateActionModel' => 'SchemaOrg\\Type\\UpdateActionModel'];
+    public const PARENTS = ['UpdateActionModel' => 'SchemaOrg\Type\UpdateActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

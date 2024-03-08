@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AreaModel
     public const DESCRIPTION = 'The area within which users can expect to reach the broadcast service.';
     public const LABEL = 'area';
     public const NAME = 'schema:area';
-    public const VALUES = ['PlaceModel' => 'SchemaOrg\\Type\\PlaceModel'];
-    public const TYPES = ['BroadcastService' => 'SchemaOrg\\Type\\BroadcastServiceModel'];
+    public const VALUES = ['PlaceModel' => 'SchemaOrg\Type\PlaceModel'];
+    public const TYPES = ['BroadcastService' => 'SchemaOrg\Type\BroadcastServiceModel'];
 }

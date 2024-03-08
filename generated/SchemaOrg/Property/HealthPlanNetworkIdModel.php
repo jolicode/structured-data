@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HealthPlanNetworkIdModel
     public const DESCRIPTION = 'Name or unique ID of network. (Networks are often reused across different insurance plans.)';
     public const LABEL = 'healthPlanNetworkId';
     public const NAME = 'schema:healthPlanNetworkId';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['HealthPlanNetwork' => 'SchemaOrg\\Type\\HealthPlanNetworkModel', 'MedicalOrganization' => 'SchemaOrg\\Type\\MedicalOrganizationModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['HealthPlanNetwork' => 'SchemaOrg\Type\HealthPlanNetworkModel', 'MedicalOrganization' => 'SchemaOrg\Type\MedicalOrganizationModel'];
 }

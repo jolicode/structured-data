@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LegislationTransposesModel
     public const DESCRIPTION = 'Indicates that this legislation (or part of legislation) fulfills the objectives set by another legislation, by passing appropriate implementation measures. Typically, some legislations of European Union\'s member states or regions transpose European Directives. This indicates a legally binding link between the 2 legislations.';
     public const LABEL = 'legislationTransposes';
     public const NAME = 'schema:legislationTransposes';
-    public const VALUES = ['LegislationModel' => 'SchemaOrg\\Type\\LegislationModel'];
-    public const TYPES = ['Legislation' => 'SchemaOrg\\Type\\LegislationModel'];
+    public const VALUES = ['LegislationModel' => 'SchemaOrg\Type\LegislationModel'];
+    public const TYPES = ['Legislation' => 'SchemaOrg\Type\LegislationModel'];
 }

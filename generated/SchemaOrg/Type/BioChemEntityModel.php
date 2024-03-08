@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class BioChemEntityModel
     public const DESCRIPTION = 'Any biological, chemical, or biochemical thing. For example: a protein; a gene; a chemical; a synthetic chemical.';
     public const LABEL = 'BioChemEntity';
     public const NAME = 'schema:BioChemEntity';
-    public const PARENTS = ['ThingModel' => 'SchemaOrg\\Type\\ThingModel'];
+    public const PARENTS = ['ThingModel' => 'SchemaOrg\Type\ThingModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

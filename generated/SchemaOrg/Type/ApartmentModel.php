@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ApartmentModel
     public const DESCRIPTION = 'An apartment (in American English) or flat (in British English) is a self-contained housing unit (a type of residential real estate) that occupies only part of a building (source: Wikipedia, the free encyclopedia, see <a href="http://en.wikipedia.org/wiki/Apartment">http://en.wikipedia.org/wiki/Apartment</a>).';
     public const LABEL = 'Apartment';
     public const NAME = 'schema:Apartment';
-    public const PARENTS = ['AccommodationModel' => 'SchemaOrg\\Type\\AccommodationModel'];
+    public const PARENTS = ['AccommodationModel' => 'SchemaOrg\Type\AccommodationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

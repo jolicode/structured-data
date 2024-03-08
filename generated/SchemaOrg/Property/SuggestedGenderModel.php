@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SuggestedGenderModel
     public const DESCRIPTION = 'The suggested gender of the intended person or audience, for example "male", "female", or "unisex".';
     public const LABEL = 'suggestedGender';
     public const NAME = 'schema:suggestedGender';
-    public const VALUES = ['GenderTypeModel' => 'SchemaOrg\\Type\\GenderTypeModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['PeopleAudience' => 'SchemaOrg\\Type\\PeopleAudienceModel', 'SizeSpecification' => 'SchemaOrg\\Type\\SizeSpecificationModel'];
+    public const VALUES = ['GenderTypeModel' => 'SchemaOrg\Type\GenderTypeModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['PeopleAudience' => 'SchemaOrg\Type\PeopleAudienceModel', 'SizeSpecification' => 'SchemaOrg\Type\SizeSpecificationModel'];
 }

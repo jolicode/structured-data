@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ContentSizeModel
     public const DESCRIPTION = 'File size in (mega/kilo)bytes.';
     public const LABEL = 'contentSize';
     public const NAME = 'schema:contentSize';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MediaObject' => 'SchemaOrg\\Type\\MediaObjectModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MediaObject' => 'SchemaOrg\Type\MediaObjectModel'];
 }

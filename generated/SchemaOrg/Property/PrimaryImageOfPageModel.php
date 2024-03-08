@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PrimaryImageOfPageModel
     public const DESCRIPTION = 'Indicates the main image on the page.';
     public const LABEL = 'primaryImageOfPage';
     public const NAME = 'schema:primaryImageOfPage';
-    public const VALUES = ['ImageObjectModel' => 'SchemaOrg\\Type\\ImageObjectModel'];
-    public const TYPES = ['WebPage' => 'SchemaOrg\\Type\\WebPageModel'];
+    public const VALUES = ['ImageObjectModel' => 'SchemaOrg\Type\ImageObjectModel'];
+    public const TYPES = ['WebPage' => 'SchemaOrg\Type\WebPageModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class EvidenceLevelModel
     public const DESCRIPTION = 'Strength of evidence of the data used to formulate the guideline (enumerated).';
     public const LABEL = 'evidenceLevel';
     public const NAME = 'schema:evidenceLevel';
-    public const VALUES = ['MedicalEvidenceLevelModel' => 'SchemaOrg\\Type\\MedicalEvidenceLevelModel'];
-    public const TYPES = ['MedicalGuideline' => 'SchemaOrg\\Type\\MedicalGuidelineModel'];
+    public const VALUES = ['MedicalEvidenceLevelModel' => 'SchemaOrg\Type\MedicalEvidenceLevelModel'];
+    public const TYPES = ['MedicalGuideline' => 'SchemaOrg\Type\MedicalGuidelineModel'];
 }

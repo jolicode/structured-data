@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ItemDefectReturnFeesModel
     public const DESCRIPTION = 'The type of return fees for returns of defect products.';
     public const LABEL = 'itemDefectReturnFees';
     public const NAME = 'schema:itemDefectReturnFees';
-    public const VALUES = ['ReturnFeesEnumerationModel' => 'SchemaOrg\\Type\\ReturnFeesEnumerationModel'];
-    public const TYPES = ['MerchantReturnPolicy' => 'SchemaOrg\\Type\\MerchantReturnPolicyModel'];
+    public const VALUES = ['ReturnFeesEnumerationModel' => 'SchemaOrg\Type\ReturnFeesEnumerationModel'];
+    public const TYPES = ['MerchantReturnPolicy' => 'SchemaOrg\Type\MerchantReturnPolicyModel'];
 }

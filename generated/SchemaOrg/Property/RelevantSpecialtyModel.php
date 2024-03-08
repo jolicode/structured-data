@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RelevantSpecialtyModel
     public const DESCRIPTION = 'If applicable, a medical specialty in which this entity is relevant.';
     public const LABEL = 'relevantSpecialty';
     public const NAME = 'schema:relevantSpecialty';
-    public const VALUES = ['MedicalSpecialtyModel' => 'SchemaOrg\\Type\\MedicalSpecialtyModel'];
-    public const TYPES = ['MedicalEntity' => 'SchemaOrg\\Type\\MedicalEntityModel'];
+    public const VALUES = ['MedicalSpecialtyModel' => 'SchemaOrg\Type\MedicalSpecialtyModel'];
+    public const TYPES = ['MedicalEntity' => 'SchemaOrg\Type\MedicalEntityModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PartOfSeriesModel
     public const DESCRIPTION = 'The series to which this episode or season belongs.';
     public const LABEL = 'partOfSeries';
     public const NAME = 'schema:partOfSeries';
-    public const VALUES = ['CreativeWorkSeriesModel' => 'SchemaOrg\\Type\\CreativeWorkSeriesModel'];
-    public const TYPES = ['Clip' => 'SchemaOrg\\Type\\ClipModel', 'CreativeWorkSeason' => 'SchemaOrg\\Type\\CreativeWorkSeasonModel', 'Episode' => 'SchemaOrg\\Type\\EpisodeModel'];
+    public const VALUES = ['CreativeWorkSeriesModel' => 'SchemaOrg\Type\CreativeWorkSeriesModel'];
+    public const TYPES = ['Clip' => 'SchemaOrg\Type\ClipModel', 'CreativeWorkSeason' => 'SchemaOrg\Type\CreativeWorkSeasonModel', 'Episode' => 'SchemaOrg\Type\EpisodeModel'];
 }

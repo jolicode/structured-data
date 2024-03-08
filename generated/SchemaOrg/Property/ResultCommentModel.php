@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ResultCommentModel
     public const DESCRIPTION = 'A sub property of result. The Comment created or sent as a result of this action.';
     public const LABEL = 'resultComment';
     public const NAME = 'schema:resultComment';
-    public const VALUES = ['CommentModel' => 'SchemaOrg\\Type\\CommentModel'];
-    public const TYPES = ['CommentAction' => 'SchemaOrg\\Type\\CommentActionModel', 'ReplyAction' => 'SchemaOrg\\Type\\ReplyActionModel'];
+    public const VALUES = ['CommentModel' => 'SchemaOrg\Type\CommentModel'];
+    public const TYPES = ['CommentAction' => 'SchemaOrg\Type\CommentActionModel', 'ReplyAction' => 'SchemaOrg\Type\ReplyActionModel'];
 }

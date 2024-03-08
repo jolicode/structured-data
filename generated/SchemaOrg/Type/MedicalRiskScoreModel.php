@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MedicalRiskScoreModel
     public const DESCRIPTION = 'A simple system that adds up the number of risk factors to yield a score that is associated with prognosis, e.g. CHAD score, TIMI risk score.';
     public const LABEL = 'MedicalRiskScore';
     public const NAME = 'schema:MedicalRiskScore';
-    public const PARENTS = ['MedicalRiskEstimatorModel' => 'SchemaOrg\\Type\\MedicalRiskEstimatorModel'];
+    public const PARENTS = ['MedicalRiskEstimatorModel' => 'SchemaOrg\Type\MedicalRiskEstimatorModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

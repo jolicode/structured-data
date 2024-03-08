@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PaymentStatusModel
     public const DESCRIPTION = 'The status of payment; whether the invoice has been paid or not.';
     public const LABEL = 'paymentStatus';
     public const NAME = 'schema:paymentStatus';
-    public const VALUES = ['PaymentStatusTypeModel' => 'SchemaOrg\\Type\\PaymentStatusTypeModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Invoice' => 'SchemaOrg\\Type\\InvoiceModel'];
+    public const VALUES = ['PaymentStatusTypeModel' => 'SchemaOrg\Type\PaymentStatusTypeModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Invoice' => 'SchemaOrg\Type\InvoiceModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class UtterancesModel
     public const DESCRIPTION = 'Text of an utterances (spoken words, lyrics etc.) that occurs at a certain section of a media object, represented as a [[HyperTocEntry]].';
     public const LABEL = 'utterances';
     public const NAME = 'schema:utterances';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['HyperTocEntry' => 'SchemaOrg\\Type\\HyperTocEntryModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['HyperTocEntry' => 'SchemaOrg\Type\HyperTocEntryModel'];
 }

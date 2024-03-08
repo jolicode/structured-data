@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PodcastSeriesModel
     public const DESCRIPTION = 'A podcast is an episodic series of digital audio or video files which a user can download and listen to.';
     public const LABEL = 'PodcastSeries';
     public const NAME = 'schema:PodcastSeries';
-    public const PARENTS = ['CreativeWorkSeriesModel' => 'SchemaOrg\\Type\\CreativeWorkSeriesModel'];
+    public const PARENTS = ['CreativeWorkSeriesModel' => 'SchemaOrg\Type\CreativeWorkSeriesModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

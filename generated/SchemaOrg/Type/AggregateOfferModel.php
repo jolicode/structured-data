@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -17,10 +15,10 @@ use SchemaOrg\Property;
 
 final class AggregateOfferModel
 {
-    public const DESCRIPTION = 'When a single product is associated with multiple offers (for example, the same pair of shoes is offered by different merchants), then AggregateOffer can be used.\\n\\nNote: AggregateOffers are normally expected to associate multiple offers that all share the same defined [[businessFunction]] value, or default to http://purl.org/goodrelations/v1#Sell if businessFunction is not explicitly defined.';
+    public const DESCRIPTION = 'When a single product is associated with multiple offers (for example, the same pair of shoes is offered by different merchants), then AggregateOffer can be used.\n\nNote: AggregateOffers are normally expected to associate multiple offers that all share the same defined [[businessFunction]] value, or default to http://purl.org/goodrelations/v1#Sell if businessFunction is not explicitly defined.';
     public const LABEL = 'AggregateOffer';
     public const NAME = 'schema:AggregateOffer';
-    public const PARENTS = ['OfferModel' => 'SchemaOrg\\Type\\OfferModel'];
+    public const PARENTS = ['OfferModel' => 'SchemaOrg\Type\OfferModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

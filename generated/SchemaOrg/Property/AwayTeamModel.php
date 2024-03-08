@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AwayTeamModel
     public const DESCRIPTION = 'The away team in a sports event.';
     public const LABEL = 'awayTeam';
     public const NAME = 'schema:awayTeam';
-    public const VALUES = ['PersonModel' => 'SchemaOrg\\Type\\PersonModel', 'SportsTeamModel' => 'SchemaOrg\\Type\\SportsTeamModel'];
-    public const TYPES = ['SportsEvent' => 'SchemaOrg\\Type\\SportsEventModel'];
+    public const VALUES = ['PersonModel' => 'SchemaOrg\Type\PersonModel', 'SportsTeamModel' => 'SchemaOrg\Type\SportsTeamModel'];
+    public const TYPES = ['SportsEvent' => 'SchemaOrg\Type\SportsEventModel'];
 }

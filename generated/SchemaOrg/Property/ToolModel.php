@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ToolModel
     public const DESCRIPTION = 'A sub property of instrument. An object used (but not consumed) when performing instructions or a direction.';
     public const LABEL = 'tool';
     public const NAME = 'schema:tool';
-    public const VALUES = ['HowToToolModel' => 'SchemaOrg\\Type\\HowToToolModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['HowToDirection' => 'SchemaOrg\\Type\\HowToDirectionModel', 'HowTo' => 'SchemaOrg\\Type\\HowToModel'];
+    public const VALUES = ['HowToToolModel' => 'SchemaOrg\Type\HowToToolModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['HowToDirection' => 'SchemaOrg\Type\HowToDirectionModel', 'HowTo' => 'SchemaOrg\Type\HowToModel'];
 }

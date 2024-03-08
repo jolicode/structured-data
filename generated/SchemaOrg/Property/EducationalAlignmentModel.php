@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,6 +18,6 @@ final class EducationalAlignmentModel
 This property should not be used where the nature of the alignment can be described using a simple property, for example to express that a resource [[teaches]] or [[assesses]] a competency.';
     public const LABEL = 'educationalAlignment';
     public const NAME = 'schema:educationalAlignment';
-    public const VALUES = ['AlignmentObjectModel' => 'SchemaOrg\\Type\\AlignmentObjectModel'];
-    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel', 'LearningResource' => 'SchemaOrg\\Type\\LearningResourceModel'];
+    public const VALUES = ['AlignmentObjectModel' => 'SchemaOrg\Type\AlignmentObjectModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel', 'LearningResource' => 'SchemaOrg\Type\LearningResourceModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class OriginatesFromModel
     public const DESCRIPTION = 'The vasculature the lymphatic structure originates, or afferents, from.';
     public const LABEL = 'originatesFrom';
     public const NAME = 'schema:originatesFrom';
-    public const VALUES = ['VesselModel' => 'SchemaOrg\\Type\\VesselModel'];
-    public const TYPES = ['LymphaticVessel' => 'SchemaOrg\\Type\\LymphaticVesselModel'];
+    public const VALUES = ['VesselModel' => 'SchemaOrg\Type\VesselModel'];
+    public const TYPES = ['LymphaticVessel' => 'SchemaOrg\Type\LymphaticVesselModel'];
 }

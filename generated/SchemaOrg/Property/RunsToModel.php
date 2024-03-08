@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RunsToModel
     public const DESCRIPTION = 'The vasculature the lymphatic structure runs, or efferents, to.';
     public const LABEL = 'runsTo';
     public const NAME = 'schema:runsTo';
-    public const VALUES = ['VesselModel' => 'SchemaOrg\\Type\\VesselModel'];
-    public const TYPES = ['LymphaticVessel' => 'SchemaOrg\\Type\\LymphaticVesselModel'];
+    public const VALUES = ['VesselModel' => 'SchemaOrg\Type\VesselModel'];
+    public const TYPES = ['LymphaticVessel' => 'SchemaOrg\Type\LymphaticVesselModel'];
 }

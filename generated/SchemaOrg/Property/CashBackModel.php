@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CashBackModel
     public const DESCRIPTION = 'A cardholder benefit that pays the cardholder a small percentage of their net expenditures.';
     public const LABEL = 'cashBack';
     public const NAME = 'schema:cashBack';
-    public const VALUES = ['BooleanModel' => 'SchemaOrg\\Type\\BooleanModel', 'NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
-    public const TYPES = ['PaymentCard' => 'SchemaOrg\\Type\\PaymentCardModel'];
+    public const VALUES = ['BooleanModel' => 'SchemaOrg\Type\BooleanModel', 'NumberModel' => 'SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['PaymentCard' => 'SchemaOrg\Type\PaymentCardModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class CollegeOrUniversityModel
     public const DESCRIPTION = 'A college, university, or other third-level educational institution.';
     public const LABEL = 'CollegeOrUniversity';
     public const NAME = 'schema:CollegeOrUniversity';
-    public const PARENTS = ['EducationalOrganizationModel' => 'SchemaOrg\\Type\\EducationalOrganizationModel'];
+    public const PARENTS = ['EducationalOrganizationModel' => 'SchemaOrg\Type\EducationalOrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

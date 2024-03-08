@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -17,10 +15,10 @@ use SchemaOrg\Property;
 
 final class RentalCarReservationModel
 {
-    public const DESCRIPTION = 'A reservation for a rental car.\\n\\nNote: This type is for information about actual reservations, e.g. in confirmation emails or HTML pages with individual confirmations of reservations.';
+    public const DESCRIPTION = 'A reservation for a rental car.\n\nNote: This type is for information about actual reservations, e.g. in confirmation emails or HTML pages with individual confirmations of reservations.';
     public const LABEL = 'RentalCarReservation';
     public const NAME = 'schema:RentalCarReservation';
-    public const PARENTS = ['ReservationModel' => 'SchemaOrg\\Type\\ReservationModel'];
+    public const PARENTS = ['ReservationModel' => 'SchemaOrg\Type\ReservationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

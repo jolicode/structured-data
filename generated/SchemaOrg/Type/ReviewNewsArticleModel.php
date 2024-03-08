@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ReviewNewsArticleModel
     public const DESCRIPTION = 'A [[NewsArticle]] and [[CriticReview]] providing a professional critic\'s assessment of a service, product, performance, or artistic or literary work.';
     public const LABEL = 'ReviewNewsArticle';
     public const NAME = 'schema:ReviewNewsArticle';
-    public const PARENTS = ['CriticReviewModel' => 'SchemaOrg\\Type\\CriticReviewModel', 'NewsArticleModel' => 'SchemaOrg\\Type\\NewsArticleModel'];
+    public const PARENTS = ['CriticReviewModel' => 'SchemaOrg\Type\CriticReviewModel', 'NewsArticleModel' => 'SchemaOrg\Type\NewsArticleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

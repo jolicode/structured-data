@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DeliveryTimeModel
     public const DESCRIPTION = 'The total delay between the receipt of the order and the goods reaching the final customer.';
     public const LABEL = 'deliveryTime';
     public const NAME = 'schema:deliveryTime';
-    public const VALUES = ['ShippingDeliveryTimeModel' => 'SchemaOrg\\Type\\ShippingDeliveryTimeModel'];
-    public const TYPES = ['DeliveryTimeSettings' => 'SchemaOrg\\Type\\DeliveryTimeSettingsModel', 'OfferShippingDetails' => 'SchemaOrg\\Type\\OfferShippingDetailsModel'];
+    public const VALUES = ['ShippingDeliveryTimeModel' => 'SchemaOrg\Type\ShippingDeliveryTimeModel'];
+    public const TYPES = ['DeliveryTimeSettings' => 'SchemaOrg\Type\DeliveryTimeSettingsModel', 'OfferShippingDetails' => 'SchemaOrg\Type\OfferShippingDetailsModel'];
 }

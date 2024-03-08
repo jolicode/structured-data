@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AvailableChannelModel
     public const DESCRIPTION = 'A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).';
     public const LABEL = 'availableChannel';
     public const NAME = 'schema:availableChannel';
-    public const VALUES = ['ServiceChannelModel' => 'SchemaOrg\\Type\\ServiceChannelModel'];
-    public const TYPES = ['Service' => 'SchemaOrg\\Type\\ServiceModel'];
+    public const VALUES = ['ServiceChannelModel' => 'SchemaOrg\Type\ServiceChannelModel'];
+    public const TYPES = ['Service' => 'SchemaOrg\Type\ServiceModel'];
 }

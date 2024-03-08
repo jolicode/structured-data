@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ProductCollectionModel
     public const DESCRIPTION = 'A set of products (either [[ProductGroup]]s or specific variants) that are listed together e.g. in an [[Offer]].';
     public const LABEL = 'ProductCollection';
     public const NAME = 'schema:ProductCollection';
-    public const PARENTS = ['CollectionModel' => 'SchemaOrg\\Type\\CollectionModel', 'ProductModel' => 'SchemaOrg\\Type\\ProductModel'];
+    public const PARENTS = ['CollectionModel' => 'SchemaOrg\Type\CollectionModel', 'ProductModel' => 'SchemaOrg\Type\ProductModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class RadiationTherapyModel
     public const DESCRIPTION = 'A process of care using radiation aimed at improving a health condition.';
     public const LABEL = 'RadiationTherapy';
     public const NAME = 'schema:RadiationTherapy';
-    public const PARENTS = ['MedicalTherapyModel' => 'SchemaOrg\\Type\\MedicalTherapyModel'];
+    public const PARENTS = ['MedicalTherapyModel' => 'SchemaOrg\Type\MedicalTherapyModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

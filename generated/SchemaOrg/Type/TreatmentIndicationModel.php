@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class TreatmentIndicationModel
     public const DESCRIPTION = 'An indication for treating an underlying condition, symptom, etc.';
     public const LABEL = 'TreatmentIndication';
     public const NAME = 'schema:TreatmentIndication';
-    public const PARENTS = ['MedicalIndicationModel' => 'SchemaOrg\\Type\\MedicalIndicationModel'];
+    public const PARENTS = ['MedicalIndicationModel' => 'SchemaOrg\Type\MedicalIndicationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

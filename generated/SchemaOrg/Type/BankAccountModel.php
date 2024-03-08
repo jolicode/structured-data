@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class BankAccountModel
     public const DESCRIPTION = 'A product or service offered by a bank whereby one may deposit, withdraw or transfer money and in some cases be paid interest.';
     public const LABEL = 'BankAccount';
     public const NAME = 'schema:BankAccount';
-    public const PARENTS = ['FinancialProductModel' => 'SchemaOrg\\Type\\FinancialProductModel'];
+    public const PARENTS = ['FinancialProductModel' => 'SchemaOrg\Type\FinancialProductModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

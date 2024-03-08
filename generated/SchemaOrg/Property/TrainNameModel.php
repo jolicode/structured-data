@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TrainNameModel
     public const DESCRIPTION = 'The name of the train (e.g. The Orient Express).';
     public const LABEL = 'trainName';
     public const NAME = 'schema:trainName';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['TrainTrip' => 'SchemaOrg\\Type\\TrainTripModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['TrainTrip' => 'SchemaOrg\Type\TrainTripModel'];
 }

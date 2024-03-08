@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class IndividualProductModel
     public const DESCRIPTION = 'A single, identifiable product instance (e.g. a laptop with a particular serial number).';
     public const LABEL = 'IndividualProduct';
     public const NAME = 'schema:IndividualProduct';
-    public const PARENTS = ['ProductModel' => 'SchemaOrg\\Type\\ProductModel'];
+    public const PARENTS = ['ProductModel' => 'SchemaOrg\Type\ProductModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

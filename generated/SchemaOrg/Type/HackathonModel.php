@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class HackathonModel
     public const DESCRIPTION = 'A [hackathon](https://en.wikipedia.org/wiki/Hackathon) event.';
     public const LABEL = 'Hackathon';
     public const NAME = 'schema:Hackathon';
-    public const PARENTS = ['EventModel' => 'SchemaOrg\\Type\\EventModel'];
+    public const PARENTS = ['EventModel' => 'SchemaOrg\Type\EventModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

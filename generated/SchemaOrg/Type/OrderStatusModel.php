@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class OrderStatusModel
     public const DESCRIPTION = 'Enumerated status values for Order.';
     public const LABEL = 'OrderStatus';
     public const NAME = 'schema:OrderStatus';
-    public const PARENTS = ['StatusEnumerationModel' => 'SchemaOrg\\Type\\StatusEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['OrderCancelledModel' => 'EnumerationMember\\OrderCancelledModel', 'OrderDeliveredModel' => 'EnumerationMember\\OrderDeliveredModel', 'OrderInTransitModel' => 'EnumerationMember\\OrderInTransitModel', 'OrderPaymentDueModel' => 'EnumerationMember\\OrderPaymentDueModel', 'OrderPickupAvailableModel' => 'EnumerationMember\\OrderPickupAvailableModel', 'OrderProblemModel' => 'EnumerationMember\\OrderProblemModel', 'OrderProcessingModel' => 'EnumerationMember\\OrderProcessingModel', 'OrderReturnedModel' => 'EnumerationMember\\OrderReturnedModel'];
+    public const PARENTS = ['StatusEnumerationModel' => 'SchemaOrg\Type\StatusEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['OrderCancelledModel' => 'EnumerationMember\OrderCancelledModel', 'OrderDeliveredModel' => 'EnumerationMember\OrderDeliveredModel', 'OrderInTransitModel' => 'EnumerationMember\OrderInTransitModel', 'OrderPaymentDueModel' => 'EnumerationMember\OrderPaymentDueModel', 'OrderPickupAvailableModel' => 'EnumerationMember\OrderPickupAvailableModel', 'OrderProblemModel' => 'EnumerationMember\OrderProblemModel', 'OrderProcessingModel' => 'EnumerationMember\OrderProcessingModel', 'OrderReturnedModel' => 'EnumerationMember\OrderReturnedModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class LineModel
     public const DESCRIPTION = 'A line is a point-to-point path consisting of two or more points. A line is expressed as a series of two or more point objects separated by space.';
     public const LABEL = 'line';
     public const NAME = 'schema:line';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['GeoShape' => 'SchemaOrg\\Type\\GeoShapeModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['GeoShape' => 'SchemaOrg\Type\GeoShapeModel'];
 }

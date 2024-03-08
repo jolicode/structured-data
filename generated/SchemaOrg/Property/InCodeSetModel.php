@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InCodeSetModel
     public const DESCRIPTION = 'A [[CategoryCodeSet]] that contains this category code.';
     public const LABEL = 'inCodeSet';
     public const NAME = 'schema:inCodeSet';
-    public const VALUES = ['CategoryCodeSetModel' => 'SchemaOrg\\Type\\CategoryCodeSetModel', 'URLModel' => 'SchemaOrg\\Type\\URLModel'];
-    public const TYPES = ['CategoryCode' => 'SchemaOrg\\Type\\CategoryCodeModel'];
+    public const VALUES = ['CategoryCodeSetModel' => 'SchemaOrg\Type\CategoryCodeSetModel', 'URLModel' => 'SchemaOrg\Type\URLModel'];
+    public const TYPES = ['CategoryCode' => 'SchemaOrg\Type\CategoryCodeModel'];
 }

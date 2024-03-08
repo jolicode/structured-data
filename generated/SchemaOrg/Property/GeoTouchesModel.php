@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class GeoTouchesModel
     public const DESCRIPTION = 'Represents spatial relations in which two geometries (or the places they represent) touch: "they have at least one boundary point in common, but no interior points." (A symmetric relationship, as defined in [DE-9IM](https://en.wikipedia.org/wiki/DE-9IM).)';
     public const LABEL = 'geoTouches';
     public const NAME = 'schema:geoTouches';
-    public const VALUES = ['GeospatialGeometryModel' => 'SchemaOrg\\Type\\GeospatialGeometryModel', 'PlaceModel' => 'SchemaOrg\\Type\\PlaceModel'];
-    public const TYPES = ['GeospatialGeometry' => 'SchemaOrg\\Type\\GeospatialGeometryModel', 'Place' => 'SchemaOrg\\Type\\PlaceModel'];
+    public const VALUES = ['GeospatialGeometryModel' => 'SchemaOrg\Type\GeospatialGeometryModel', 'PlaceModel' => 'SchemaOrg\Type\PlaceModel'];
+    public const TYPES = ['GeospatialGeometry' => 'SchemaOrg\Type\GeospatialGeometryModel', 'Place' => 'SchemaOrg\Type\PlaceModel'];
 }

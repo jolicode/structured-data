@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HasBioPolymerSequenceModel
     public const DESCRIPTION = 'A symbolic representation of a BioChemEntity. For example, a nucleotide sequence of a Gene or an amino acid sequence of a Protein.';
     public const LABEL = 'hasBioPolymerSequence';
     public const NAME = 'schema:hasBioPolymerSequence';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Gene' => 'SchemaOrg\\Type\\GeneModel', 'Protein' => 'SchemaOrg\\Type\\ProteinModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Gene' => 'SchemaOrg\Type\GeneModel', 'Protein' => 'SchemaOrg\Type\ProteinModel'];
 }

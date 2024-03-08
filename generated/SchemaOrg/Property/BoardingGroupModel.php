@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BoardingGroupModel
     public const DESCRIPTION = 'The airline-specific indicator of boarding order / preference.';
     public const LABEL = 'boardingGroup';
     public const NAME = 'schema:boardingGroup';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['FlightReservation' => 'SchemaOrg\\Type\\FlightReservationModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['FlightReservation' => 'SchemaOrg\Type\FlightReservationModel'];
 }

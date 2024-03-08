@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BaseSalaryModel
     public const DESCRIPTION = 'The base salary of the job or of an employee in an EmployeeRole.';
     public const LABEL = 'baseSalary';
     public const NAME = 'schema:baseSalary';
-    public const VALUES = ['MonetaryAmountModel' => 'SchemaOrg\\Type\\MonetaryAmountModel', 'NumberModel' => 'SchemaOrg\\Type\\NumberModel', 'PriceSpecificationModel' => 'SchemaOrg\\Type\\PriceSpecificationModel'];
-    public const TYPES = ['EmployeeRole' => 'SchemaOrg\\Type\\EmployeeRoleModel', 'JobPosting' => 'SchemaOrg\\Type\\JobPostingModel'];
+    public const VALUES = ['MonetaryAmountModel' => 'SchemaOrg\Type\MonetaryAmountModel', 'NumberModel' => 'SchemaOrg\Type\NumberModel', 'PriceSpecificationModel' => 'SchemaOrg\Type\PriceSpecificationModel'];
+    public const TYPES = ['EmployeeRole' => 'SchemaOrg\Type\EmployeeRoleModel', 'JobPosting' => 'SchemaOrg\Type\JobPostingModel'];
 }

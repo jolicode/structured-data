@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class NaturalProgressionModel
     public const DESCRIPTION = 'The expected progression of the condition if it is not treated and allowed to progress naturally.';
     public const LABEL = 'naturalProgression';
     public const NAME = 'schema:naturalProgression';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MedicalCondition' => 'SchemaOrg\\Type\\MedicalConditionModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MedicalCondition' => 'SchemaOrg\Type\MedicalConditionModel'];
 }

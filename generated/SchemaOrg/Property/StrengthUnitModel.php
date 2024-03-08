@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class StrengthUnitModel
     public const DESCRIPTION = 'The units of an active ingredient\'s strength, e.g. mg.';
     public const LABEL = 'strengthUnit';
     public const NAME = 'schema:strengthUnit';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['DrugStrength' => 'SchemaOrg\\Type\\DrugStrengthModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['DrugStrength' => 'SchemaOrg\Type\DrugStrengthModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MotorcycleModel
     public const DESCRIPTION = 'A motorcycle or motorbike is a single-track, two-wheeled motor vehicle.';
     public const LABEL = 'Motorcycle';
     public const NAME = 'schema:Motorcycle';
-    public const PARENTS = ['VehicleModel' => 'SchemaOrg\\Type\\VehicleModel'];
+    public const PARENTS = ['VehicleModel' => 'SchemaOrg\Type\VehicleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

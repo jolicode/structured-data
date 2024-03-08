@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class StateModel
     public const DESCRIPTION = 'A state or province of a country.';
     public const LABEL = 'State';
     public const NAME = 'schema:State';
-    public const PARENTS = ['AdministrativeAreaModel' => 'SchemaOrg\\Type\\AdministrativeAreaModel'];
+    public const PARENTS = ['AdministrativeAreaModel' => 'SchemaOrg\Type\AdministrativeAreaModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

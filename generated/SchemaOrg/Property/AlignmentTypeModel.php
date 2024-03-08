@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AlignmentTypeModel
     public const DESCRIPTION = 'A category of alignment between the learning resource and the framework node. Recommended values include: \'requires\', \'textComplexity\', \'readingLevel\', and \'educationalSubject\'.';
     public const LABEL = 'alignmentType';
     public const NAME = 'schema:alignmentType';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['AlignmentObject' => 'SchemaOrg\\Type\\AlignmentObjectModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['AlignmentObject' => 'SchemaOrg\Type\AlignmentObjectModel'];
 }

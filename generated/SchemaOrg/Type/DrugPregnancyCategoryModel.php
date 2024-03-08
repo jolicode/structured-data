@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class DrugPregnancyCategoryModel
     public const DESCRIPTION = 'Categories that represent an assessment of the risk of fetal injury due to a drug or pharmaceutical used as directed by the mother during pregnancy.';
     public const LABEL = 'DrugPregnancyCategory';
     public const NAME = 'schema:DrugPregnancyCategory';
-    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\\Type\\MedicalEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['FDAcategoryAModel' => 'EnumerationMember\\FDAcategoryAModel', 'FDAcategoryBModel' => 'EnumerationMember\\FDAcategoryBModel', 'FDAcategoryCModel' => 'EnumerationMember\\FDAcategoryCModel', 'FDAcategoryDModel' => 'EnumerationMember\\FDAcategoryDModel', 'FDAcategoryXModel' => 'EnumerationMember\\FDAcategoryXModel', 'FDAnotEvaluatedModel' => 'EnumerationMember\\FDAnotEvaluatedModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\Type\MedicalEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['FDAcategoryAModel' => 'EnumerationMember\FDAcategoryAModel', 'FDAcategoryBModel' => 'EnumerationMember\FDAcategoryBModel', 'FDAcategoryCModel' => 'EnumerationMember\FDAcategoryCModel', 'FDAcategoryDModel' => 'EnumerationMember\FDAcategoryDModel', 'FDAcategoryXModel' => 'EnumerationMember\FDAcategoryXModel', 'FDAnotEvaluatedModel' => 'EnumerationMember\FDAnotEvaluatedModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

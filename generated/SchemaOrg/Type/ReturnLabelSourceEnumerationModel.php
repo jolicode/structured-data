@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class ReturnLabelSourceEnumerationModel
     public const DESCRIPTION = 'Enumerates several types of return labels for product returns.';
     public const LABEL = 'ReturnLabelSourceEnumeration';
     public const NAME = 'schema:ReturnLabelSourceEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['ReturnLabelCustomerResponsibilityModel' => 'EnumerationMember\\ReturnLabelCustomerResponsibilityModel', 'ReturnLabelDownloadAndPrintModel' => 'EnumerationMember\\ReturnLabelDownloadAndPrintModel', 'ReturnLabelInBoxModel' => 'EnumerationMember\\ReturnLabelInBoxModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['ReturnLabelCustomerResponsibilityModel' => 'EnumerationMember\ReturnLabelCustomerResponsibilityModel', 'ReturnLabelDownloadAndPrintModel' => 'EnumerationMember\ReturnLabelDownloadAndPrintModel', 'ReturnLabelInBoxModel' => 'EnumerationMember\ReturnLabelInBoxModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

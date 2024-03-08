@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class WarrantyPromiseModel
     public const DESCRIPTION = 'The warranty promise(s) included in the offer.';
     public const LABEL = 'warrantyPromise';
     public const NAME = 'schema:warrantyPromise';
-    public const VALUES = ['WarrantyPromiseModel' => 'SchemaOrg\\Type\\WarrantyPromiseModel'];
-    public const TYPES = ['BuyAction' => 'SchemaOrg\\Type\\BuyActionModel', 'SellAction' => 'SchemaOrg\\Type\\SellActionModel'];
+    public const VALUES = ['WarrantyPromiseModel' => 'SchemaOrg\Type\WarrantyPromiseModel'];
+    public const TYPES = ['BuyAction' => 'SchemaOrg\Type\BuyActionModel', 'SellAction' => 'SchemaOrg\Type\SellActionModel'];
 }

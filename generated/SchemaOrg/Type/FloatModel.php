@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,7 +16,7 @@ final class FloatModel
     public const DESCRIPTION = 'Data type: Floating number.';
     public const LABEL = 'Float';
     public const NAME = 'schema:Float';
-    public const PARENTS = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
+    public const PARENTS = ['NumberModel' => 'SchemaOrg\Type\NumberModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct()

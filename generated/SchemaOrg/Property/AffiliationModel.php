@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AffiliationModel
     public const DESCRIPTION = 'An organization that this person is affiliated with. For example, a school/university, a club, or a team.';
     public const LABEL = 'affiliation';
     public const NAME = 'schema:affiliation';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel'];
-    public const TYPES = ['Person' => 'SchemaOrg\\Type\\PersonModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel'];
+    public const TYPES = ['Person' => 'SchemaOrg\Type\PersonModel'];
 }

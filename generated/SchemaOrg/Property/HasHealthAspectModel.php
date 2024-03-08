@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HasHealthAspectModel
     public const DESCRIPTION = 'Indicates the aspect or aspects specifically addressed in some [[HealthTopicContent]]. For example, that the content is an overview, or that it talks about treatment, self-care, treatments or their side-effects.';
     public const LABEL = 'hasHealthAspect';
     public const NAME = 'schema:hasHealthAspect';
-    public const VALUES = ['HealthAspectEnumerationModel' => 'SchemaOrg\\Type\\HealthAspectEnumerationModel'];
-    public const TYPES = ['HealthTopicContent' => 'SchemaOrg\\Type\\HealthTopicContentModel'];
+    public const VALUES = ['HealthAspectEnumerationModel' => 'SchemaOrg\Type\HealthAspectEnumerationModel'];
+    public const TYPES = ['HealthTopicContent' => 'SchemaOrg\Type\HealthTopicContentModel'];
 }

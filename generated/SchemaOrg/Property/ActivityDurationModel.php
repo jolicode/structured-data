@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ActivityDurationModel
     public const DESCRIPTION = 'Length of time to engage in the activity.';
     public const LABEL = 'activityDuration';
     public const NAME = 'schema:activityDuration';
-    public const VALUES = ['DurationModel' => 'SchemaOrg\\Type\\DurationModel', 'QuantitativeValueModel' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
-    public const TYPES = ['ExercisePlan' => 'SchemaOrg\\Type\\ExercisePlanModel'];
+    public const VALUES = ['DurationModel' => 'SchemaOrg\Type\DurationModel', 'QuantitativeValueModel' => 'SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['ExercisePlan' => 'SchemaOrg\Type\ExercisePlanModel'];
 }

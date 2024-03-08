@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ReturnMethodModel
     public const DESCRIPTION = 'The type of return method offered, specified from an enumeration.';
     public const LABEL = 'returnMethod';
     public const NAME = 'schema:returnMethod';
-    public const VALUES = ['ReturnMethodEnumerationModel' => 'SchemaOrg\\Type\\ReturnMethodEnumerationModel'];
-    public const TYPES = ['MerchantReturnPolicy' => 'SchemaOrg\\Type\\MerchantReturnPolicyModel'];
+    public const VALUES = ['ReturnMethodEnumerationModel' => 'SchemaOrg\Type\ReturnMethodEnumerationModel'];
+    public const TYPES = ['MerchantReturnPolicy' => 'SchemaOrg\Type\MerchantReturnPolicyModel'];
 }

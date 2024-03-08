@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ClaimReviewModel
     public const DESCRIPTION = 'A fact-checking review of claims made (or reported) in some creative work (referenced via itemReviewed).';
     public const LABEL = 'ClaimReview';
     public const NAME = 'schema:ClaimReview';
-    public const PARENTS = ['ReviewModel' => 'SchemaOrg\\Type\\ReviewModel'];
+    public const PARENTS = ['ReviewModel' => 'SchemaOrg\Type\ReviewModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

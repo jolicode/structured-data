@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DietModel
     public const DESCRIPTION = 'A sub property of instrument. The diet used in this action.';
     public const LABEL = 'diet';
     public const NAME = 'schema:diet';
-    public const VALUES = ['DietModel' => 'SchemaOrg\\Type\\DietModel'];
-    public const TYPES = ['ExerciseAction' => 'SchemaOrg\\Type\\ExerciseActionModel'];
+    public const VALUES = ['DietModel' => 'SchemaOrg\Type\DietModel'];
+    public const TYPES = ['ExerciseAction' => 'SchemaOrg\Type\ExerciseActionModel'];
 }

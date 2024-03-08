@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class EnergyStarEnergyEfficiencyEnumerationModel
     public const DESCRIPTION = 'Used to indicate whether a product is EnergyStar certified.';
     public const LABEL = 'EnergyStarEnergyEfficiencyEnumeration';
     public const NAME = 'schema:EnergyStarEnergyEfficiencyEnumeration';
-    public const PARENTS = ['EnergyEfficiencyEnumerationModel' => 'SchemaOrg\\Type\\EnergyEfficiencyEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['EnergyStarCertifiedModel' => 'EnumerationMember\\EnergyStarCertifiedModel'];
+    public const PARENTS = ['EnergyEfficiencyEnumerationModel' => 'SchemaOrg\Type\EnergyEfficiencyEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['EnergyStarCertifiedModel' => 'EnumerationMember\EnergyStarCertifiedModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

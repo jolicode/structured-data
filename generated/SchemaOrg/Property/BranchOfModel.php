@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BranchOfModel
     public const DESCRIPTION = 'The larger organization that this local business is a branch of, if any. Not to be confused with (anatomical) [[branch]].';
     public const LABEL = 'branchOf';
     public const NAME = 'schema:branchOf';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel'];
-    public const TYPES = ['LocalBusiness' => 'SchemaOrg\\Type\\LocalBusinessModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel'];
+    public const TYPES = ['LocalBusiness' => 'SchemaOrg\Type\LocalBusinessModel'];
 }

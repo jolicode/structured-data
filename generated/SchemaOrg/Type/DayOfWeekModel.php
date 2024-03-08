@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -23,8 +21,8 @@ Originally, URLs from [GoodRelations](http://purl.org/goodrelations/v1) were use
       ';
     public const LABEL = 'DayOfWeek';
     public const NAME = 'schema:DayOfWeek';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['FridayModel' => 'EnumerationMember\\FridayModel', 'MondayModel' => 'EnumerationMember\\MondayModel', 'PublicHolidaysModel' => 'EnumerationMember\\PublicHolidaysModel', 'SaturdayModel' => 'EnumerationMember\\SaturdayModel', 'SundayModel' => 'EnumerationMember\\SundayModel', 'ThursdayModel' => 'EnumerationMember\\ThursdayModel', 'TuesdayModel' => 'EnumerationMember\\TuesdayModel', 'WednesdayModel' => 'EnumerationMember\\WednesdayModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['FridayModel' => 'EnumerationMember\FridayModel', 'MondayModel' => 'EnumerationMember\MondayModel', 'PublicHolidaysModel' => 'EnumerationMember\PublicHolidaysModel', 'SaturdayModel' => 'EnumerationMember\SaturdayModel', 'SundayModel' => 'EnumerationMember\SundayModel', 'ThursdayModel' => 'EnumerationMember\ThursdayModel', 'TuesdayModel' => 'EnumerationMember\TuesdayModel', 'WednesdayModel' => 'EnumerationMember\WednesdayModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

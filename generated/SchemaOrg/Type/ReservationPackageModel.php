@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ReservationPackageModel
     public const DESCRIPTION = 'A group of multiple reservations with common values for all sub-reservations.';
     public const LABEL = 'ReservationPackage';
     public const NAME = 'schema:ReservationPackage';
-    public const PARENTS = ['ReservationModel' => 'SchemaOrg\\Type\\ReservationModel'];
+    public const PARENTS = ['ReservationModel' => 'SchemaOrg\Type\ReservationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

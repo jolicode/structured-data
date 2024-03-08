@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class RadioSeasonModel
     public const DESCRIPTION = 'Season dedicated to radio broadcast and associated online delivery.';
     public const LABEL = 'RadioSeason';
     public const NAME = 'schema:RadioSeason';
-    public const PARENTS = ['CreativeWorkSeasonModel' => 'SchemaOrg\\Type\\CreativeWorkSeasonModel'];
+    public const PARENTS = ['CreativeWorkSeasonModel' => 'SchemaOrg\Type\CreativeWorkSeasonModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

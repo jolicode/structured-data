@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MedicineSystemModel
     public const DESCRIPTION = 'The system of medicine that includes this MedicalEntity, for example \'evidence-based\', \'homeopathic\', \'chiropractic\', etc.';
     public const LABEL = 'medicineSystem';
     public const NAME = 'schema:medicineSystem';
-    public const VALUES = ['MedicineSystemModel' => 'SchemaOrg\\Type\\MedicineSystemModel'];
-    public const TYPES = ['MedicalEntity' => 'SchemaOrg\\Type\\MedicalEntityModel'];
+    public const VALUES = ['MedicineSystemModel' => 'SchemaOrg\Type\MedicineSystemModel'];
+    public const TYPES = ['MedicalEntity' => 'SchemaOrg\Type\MedicalEntityModel'];
 }

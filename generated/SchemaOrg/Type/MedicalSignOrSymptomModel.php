@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MedicalSignOrSymptomModel
     public const DESCRIPTION = 'Any feature associated or not with a medical condition. In medicine a symptom is generally subjective while a sign is objective.';
     public const LABEL = 'MedicalSignOrSymptom';
     public const NAME = 'schema:MedicalSignOrSymptom';
-    public const PARENTS = ['MedicalConditionModel' => 'SchemaOrg\\Type\\MedicalConditionModel'];
+    public const PARENTS = ['MedicalConditionModel' => 'SchemaOrg\Type\MedicalConditionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DataTypeModel
     public const DESCRIPTION = 'The basic data types such as Integers, Strings, etc.';
     public const LABEL = 'DataType';
     public const NAME = 'schema:DataType';
-    public const PARENTS = ['Rdfs:ClassModel' => 'SchemaOrg\\Type\\Rdfs:ClassModel'];
+    public const PARENTS = ['Rdfs:ClassModel' => 'SchemaOrg\Type\Rdfs:ClassModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

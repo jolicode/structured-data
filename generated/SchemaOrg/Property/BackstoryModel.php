@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BackstoryModel
     public const DESCRIPTION = 'For an [[Article]], typically a [[NewsArticle]], the backstory property provides a textual summary giving a brief explanation of why and how an article was created. In a journalistic setting this could include information about reporting process, methods, interviews, data sources, etc.';
     public const LABEL = 'backstory';
     public const NAME = 'schema:backstory';
-    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Article' => 'SchemaOrg\\Type\\ArticleModel'];
+    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Article' => 'SchemaOrg\Type\ArticleModel'];
 }

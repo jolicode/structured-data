@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MedicalClinicModel
     public const DESCRIPTION = 'A facility, often associated with a hospital or medical school, that is devoted to the specific diagnosis and/or healthcare. Previously limited to outpatients but with evolution it may be open to inpatients as well.';
     public const LABEL = 'MedicalClinic';
     public const NAME = 'schema:MedicalClinic';
-    public const PARENTS = ['MedicalBusinessModel' => 'SchemaOrg\\Type\\MedicalBusinessModel', 'MedicalOrganizationModel' => 'SchemaOrg\\Type\\MedicalOrganizationModel'];
+    public const PARENTS = ['MedicalBusinessModel' => 'SchemaOrg\Type\MedicalBusinessModel', 'MedicalOrganizationModel' => 'SchemaOrg\Type\MedicalOrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

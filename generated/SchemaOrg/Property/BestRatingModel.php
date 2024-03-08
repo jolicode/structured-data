@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BestRatingModel
     public const DESCRIPTION = 'The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed.';
     public const LABEL = 'bestRating';
     public const NAME = 'schema:bestRating';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Rating' => 'SchemaOrg\\Type\\RatingModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Rating' => 'SchemaOrg\Type\RatingModel'];
 }

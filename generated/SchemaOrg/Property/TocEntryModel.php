@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TocEntryModel
     public const DESCRIPTION = 'Indicates a [[HyperTocEntry]] in a [[HyperToc]].';
     public const LABEL = 'tocEntry';
     public const NAME = 'schema:tocEntry';
-    public const VALUES = ['HyperTocEntryModel' => 'SchemaOrg\\Type\\HyperTocEntryModel'];
-    public const TYPES = ['HyperToc' => 'SchemaOrg\\Type\\HyperTocModel'];
+    public const VALUES = ['HyperTocEntryModel' => 'SchemaOrg\Type\HyperTocEntryModel'];
+    public const TYPES = ['HyperToc' => 'SchemaOrg\Type\HyperTocModel'];
 }

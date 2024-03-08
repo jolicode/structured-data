@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IncludesAttractionModel
     public const DESCRIPTION = 'Attraction located at destination.';
     public const LABEL = 'includesAttraction';
     public const NAME = 'schema:includesAttraction';
-    public const VALUES = ['TouristAttractionModel' => 'SchemaOrg\\Type\\TouristAttractionModel'];
-    public const TYPES = ['TouristDestination' => 'SchemaOrg\\Type\\TouristDestinationModel'];
+    public const VALUES = ['TouristAttractionModel' => 'SchemaOrg\Type\TouristAttractionModel'];
+    public const TYPES = ['TouristDestination' => 'SchemaOrg\Type\TouristDestinationModel'];
 }

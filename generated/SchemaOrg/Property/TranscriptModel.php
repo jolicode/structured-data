@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TranscriptModel
     public const DESCRIPTION = 'If this MediaObject is an AudioObject or VideoObject, the transcript of that object.';
     public const LABEL = 'transcript';
     public const NAME = 'schema:transcript';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['AudioObject' => 'SchemaOrg\\Type\\AudioObjectModel', 'VideoObject' => 'SchemaOrg\\Type\\VideoObjectModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['AudioObject' => 'SchemaOrg\Type\AudioObjectModel', 'VideoObject' => 'SchemaOrg\Type\VideoObjectModel'];
 }

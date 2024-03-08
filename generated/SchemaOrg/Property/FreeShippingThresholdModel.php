@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class FreeShippingThresholdModel
     public const DESCRIPTION = 'A monetary value above (or at) which the shipping rate becomes free. Intended to be used via an [[OfferShippingDetails]] with [[shippingSettingsLink]] matching this [[ShippingRateSettings]].';
     public const LABEL = 'freeShippingThreshold';
     public const NAME = 'schema:freeShippingThreshold';
-    public const VALUES = ['DeliveryChargeSpecificationModel' => 'SchemaOrg\\Type\\DeliveryChargeSpecificationModel', 'MonetaryAmountModel' => 'SchemaOrg\\Type\\MonetaryAmountModel'];
-    public const TYPES = ['ShippingRateSettings' => 'SchemaOrg\\Type\\ShippingRateSettingsModel'];
+    public const VALUES = ['DeliveryChargeSpecificationModel' => 'SchemaOrg\Type\DeliveryChargeSpecificationModel', 'MonetaryAmountModel' => 'SchemaOrg\Type\MonetaryAmountModel'];
+    public const TYPES = ['ShippingRateSettings' => 'SchemaOrg\Type\ShippingRateSettingsModel'];
 }

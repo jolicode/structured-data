@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class APIReferenceModel
     public const DESCRIPTION = 'Reference documentation for application programming interfaces (APIs).';
     public const LABEL = 'APIReference';
     public const NAME = 'schema:APIReference';
-    public const PARENTS = ['TechArticleModel' => 'SchemaOrg\\Type\\TechArticleModel'];
+    public const PARENTS = ['TechArticleModel' => 'SchemaOrg\Type\TechArticleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

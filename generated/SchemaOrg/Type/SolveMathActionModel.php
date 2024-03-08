@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class SolveMathActionModel
     public const DESCRIPTION = 'The action that takes in a math expression and directs users to a page potentially capable of solving/simplifying that expression.';
     public const LABEL = 'SolveMathAction';
     public const NAME = 'schema:SolveMathAction';
-    public const PARENTS = ['ActionModel' => 'SchemaOrg\\Type\\ActionModel'];
+    public const PARENTS = ['ActionModel' => 'SchemaOrg\Type\ActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

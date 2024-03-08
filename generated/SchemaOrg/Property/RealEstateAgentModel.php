@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RealEstateAgentModel
     public const DESCRIPTION = 'A sub property of participant. The real estate agent involved in the action.';
     public const LABEL = 'realEstateAgent';
     public const NAME = 'schema:realEstateAgent';
-    public const VALUES = ['RealEstateAgentModel' => 'SchemaOrg\\Type\\RealEstateAgentModel'];
-    public const TYPES = ['RentAction' => 'SchemaOrg\\Type\\RentActionModel'];
+    public const VALUES = ['RealEstateAgentModel' => 'SchemaOrg\Type\RealEstateAgentModel'];
+    public const TYPES = ['RentAction' => 'SchemaOrg\Type\RentActionModel'];
 }

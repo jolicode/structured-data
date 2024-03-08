@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MiddleSchoolModel
     public const DESCRIPTION = 'A middle school (typically for children aged around 11-14, although this varies somewhat).';
     public const LABEL = 'MiddleSchool';
     public const NAME = 'schema:MiddleSchool';
-    public const PARENTS = ['EducationalOrganizationModel' => 'SchemaOrg\\Type\\EducationalOrganizationModel'];
+    public const PARENTS = ['EducationalOrganizationModel' => 'SchemaOrg\Type\EducationalOrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DepositAccountModel
     public const DESCRIPTION = 'A type of Bank Account with a main purpose of depositing funds to gain interest or other benefits.';
     public const LABEL = 'DepositAccount';
     public const NAME = 'schema:DepositAccount';
-    public const PARENTS = ['BankAccountModel' => 'SchemaOrg\\Type\\BankAccountModel', 'InvestmentOrDepositModel' => 'SchemaOrg\\Type\\InvestmentOrDepositModel'];
+    public const PARENTS = ['BankAccountModel' => 'SchemaOrg\Type\BankAccountModel', 'InvestmentOrDepositModel' => 'SchemaOrg\Type\InvestmentOrDepositModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CostOriginModel
     public const DESCRIPTION = 'Additional details to capture the origin of the cost data. For example, \'Medicare Part B\'.';
     public const LABEL = 'costOrigin';
     public const NAME = 'schema:costOrigin';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['DrugCost' => 'SchemaOrg\\Type\\DrugCostModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['DrugCost' => 'SchemaOrg\Type\DrugCostModel'];
 }

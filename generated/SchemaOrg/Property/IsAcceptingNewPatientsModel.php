@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IsAcceptingNewPatientsModel
     public const DESCRIPTION = 'Whether the provider is accepting new patients.';
     public const LABEL = 'isAcceptingNewPatients';
     public const NAME = 'schema:isAcceptingNewPatients';
-    public const VALUES = ['BooleanModel' => 'SchemaOrg\\Type\\BooleanModel'];
-    public const TYPES = ['MedicalOrganization' => 'SchemaOrg\\Type\\MedicalOrganizationModel'];
+    public const VALUES = ['BooleanModel' => 'SchemaOrg\Type\BooleanModel'];
+    public const TYPES = ['MedicalOrganization' => 'SchemaOrg\Type\MedicalOrganizationModel'];
 }

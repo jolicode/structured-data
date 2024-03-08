@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class BackgroundNewsArticleModel
     public const DESCRIPTION = 'A [[NewsArticle]] providing historical context, definition and detail on a specific topic (aka "explainer" or "backgrounder"). For example, an in-depth article or frequently-asked-questions ([FAQ](https://en.wikipedia.org/wiki/FAQ)) document on topics such as Climate Change or the European Union. Other kinds of background material from a non-news setting are often described using [[Book]] or [[Article]], in particular [[ScholarlyArticle]]. See also [[NewsArticle]] for related vocabulary from a learning/education perspective.';
     public const LABEL = 'BackgroundNewsArticle';
     public const NAME = 'schema:BackgroundNewsArticle';
-    public const PARENTS = ['NewsArticleModel' => 'SchemaOrg\\Type\\NewsArticleModel'];
+    public const PARENTS = ['NewsArticleModel' => 'SchemaOrg\Type\NewsArticleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

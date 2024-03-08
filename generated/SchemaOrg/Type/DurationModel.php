@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DurationModel
     public const DESCRIPTION = 'Quantity: Duration (use [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601)).';
     public const LABEL = 'Duration';
     public const NAME = 'schema:Duration';
-    public const PARENTS = ['QuantityModel' => 'SchemaOrg\\Type\\QuantityModel'];
+    public const PARENTS = ['QuantityModel' => 'SchemaOrg\Type\QuantityModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,8 +18,8 @@ final class MedicalObservationalStudyDesignModel
     public const DESCRIPTION = 'Design models for observational medical studies. Enumerated type.';
     public const LABEL = 'MedicalObservationalStudyDesign';
     public const NAME = 'schema:MedicalObservationalStudyDesign';
-    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\\Type\\MedicalEnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['CaseSeriesModel' => 'EnumerationMember\\CaseSeriesModel', 'CohortStudyModel' => 'EnumerationMember\\CohortStudyModel', 'CrossSectionalModel' => 'EnumerationMember\\CrossSectionalModel', 'LongitudinalModel' => 'EnumerationMember\\LongitudinalModel', 'ObservationalModel' => 'EnumerationMember\\ObservationalModel', 'RegistryModel' => 'EnumerationMember\\RegistryModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'SchemaOrg\Type\MedicalEnumerationModel'];
+    public const ENUMERATION_MEMBERS = ['CaseSeriesModel' => 'EnumerationMember\CaseSeriesModel', 'CohortStudyModel' => 'EnumerationMember\CohortStudyModel', 'CrossSectionalModel' => 'EnumerationMember\CrossSectionalModel', 'LongitudinalModel' => 'EnumerationMember\LongitudinalModel', 'ObservationalModel' => 'EnumerationMember\ObservationalModel', 'RegistryModel' => 'EnumerationMember\RegistryModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class BrokerageAccountModel
     public const DESCRIPTION = 'An account that allows an investor to deposit funds and place investment orders with a licensed broker or brokerage firm.';
     public const LABEL = 'BrokerageAccount';
     public const NAME = 'schema:BrokerageAccount';
-    public const PARENTS = ['InvestmentOrDepositModel' => 'SchemaOrg\\Type\\InvestmentOrDepositModel'];
+    public const PARENTS = ['InvestmentOrDepositModel' => 'SchemaOrg\Type\InvestmentOrDepositModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

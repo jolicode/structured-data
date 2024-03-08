@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RelevantOccupationModel
     public const DESCRIPTION = 'The Occupation for the JobPosting.';
     public const LABEL = 'relevantOccupation';
     public const NAME = 'schema:relevantOccupation';
-    public const VALUES = ['OccupationModel' => 'SchemaOrg\\Type\\OccupationModel'];
-    public const TYPES = ['JobPosting' => 'SchemaOrg\\Type\\JobPostingModel'];
+    public const VALUES = ['OccupationModel' => 'SchemaOrg\Type\OccupationModel'];
+    public const TYPES = ['JobPosting' => 'SchemaOrg\Type\JobPostingModel'];
 }

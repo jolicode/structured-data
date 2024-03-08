@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class HealthInsurancePlanModel
     public const DESCRIPTION = 'A US-style health insurance plan, including PPOs, EPOs, and HMOs. ';
     public const LABEL = 'HealthInsurancePlan';
     public const NAME = 'schema:HealthInsurancePlan';
-    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\\Type\\IntangibleModel'];
+    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\Type\IntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

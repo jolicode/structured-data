@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ReportNumberModel
     public const DESCRIPTION = 'The number or other unique designator assigned to a Report by the publishing organization.';
     public const LABEL = 'reportNumber';
     public const NAME = 'schema:reportNumber';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Report' => 'SchemaOrg\\Type\\ReportModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Report' => 'SchemaOrg\Type\ReportModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class PodcastEpisodeModel
     public const DESCRIPTION = 'A single episode of a podcast series.';
     public const LABEL = 'PodcastEpisode';
     public const NAME = 'schema:PodcastEpisode';
-    public const PARENTS = ['EpisodeModel' => 'SchemaOrg\\Type\\EpisodeModel'];
+    public const PARENTS = ['EpisodeModel' => 'SchemaOrg\Type\EpisodeModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

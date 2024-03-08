@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TargetPlatformModel
     public const DESCRIPTION = 'Type of app development: phone, Metro style, desktop, XBox, etc.';
     public const LABEL = 'targetPlatform';
     public const NAME = 'schema:targetPlatform';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['APIReference' => 'SchemaOrg\\Type\\APIReferenceModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['APIReference' => 'SchemaOrg\Type\APIReferenceModel'];
 }

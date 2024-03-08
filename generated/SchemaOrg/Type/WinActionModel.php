@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class WinActionModel
     public const DESCRIPTION = 'The act of achieving victory in a competitive activity.';
     public const LABEL = 'WinAction';
     public const NAME = 'schema:WinAction';
-    public const PARENTS = ['AchieveActionModel' => 'SchemaOrg\\Type\\AchieveActionModel'];
+    public const PARENTS = ['AchieveActionModel' => 'SchemaOrg\Type\AchieveActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

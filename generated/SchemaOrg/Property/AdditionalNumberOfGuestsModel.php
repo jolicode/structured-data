@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AdditionalNumberOfGuestsModel
     public const DESCRIPTION = 'If responding yes, the number of guests who will attend in addition to the invitee.';
     public const LABEL = 'additionalNumberOfGuests';
     public const NAME = 'schema:additionalNumberOfGuests';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
-    public const TYPES = ['RsvpAction' => 'SchemaOrg\\Type\\RsvpActionModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['RsvpAction' => 'SchemaOrg\Type\RsvpActionModel'];
 }

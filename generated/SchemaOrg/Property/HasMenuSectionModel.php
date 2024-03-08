@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class HasMenuSectionModel
     public const DESCRIPTION = 'A subgrouping of the menu (by dishes, course, serving time period, etc.).';
     public const LABEL = 'hasMenuSection';
     public const NAME = 'schema:hasMenuSection';
-    public const VALUES = ['MenuSectionModel' => 'SchemaOrg\\Type\\MenuSectionModel'];
-    public const TYPES = ['Menu' => 'SchemaOrg\\Type\\MenuModel', 'MenuSection' => 'SchemaOrg\\Type\\MenuSectionModel'];
+    public const VALUES = ['MenuSectionModel' => 'SchemaOrg\Type\MenuSectionModel'];
+    public const TYPES = ['Menu' => 'SchemaOrg\Type\MenuModel', 'MenuSection' => 'SchemaOrg\Type\MenuSectionModel'];
 }

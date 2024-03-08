@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class AskPublicNewsArticleModel
     public const DESCRIPTION = 'A [[NewsArticle]] expressing an open call by a [[NewsMediaOrganization]] asking the public for input, insights, clarifications, anecdotes, documentation, etc., on an issue, for reporting purposes.';
     public const LABEL = 'AskPublicNewsArticle';
     public const NAME = 'schema:AskPublicNewsArticle';
-    public const PARENTS = ['NewsArticleModel' => 'SchemaOrg\\Type\\NewsArticleModel'];
+    public const PARENTS = ['NewsArticleModel' => 'SchemaOrg\Type\NewsArticleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DiscussesModel
     public const DESCRIPTION = 'Specifies the CreativeWork associated with the UserComment.';
     public const LABEL = 'discusses';
     public const NAME = 'schema:discusses';
-    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel'];
-    public const TYPES = ['UserComments' => 'SchemaOrg\\Type\\UserCommentsModel'];
+    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel'];
+    public const TYPES = ['UserComments' => 'SchemaOrg\Type\UserCommentsModel'];
 }

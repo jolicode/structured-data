@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -21,7 +19,7 @@ final class ConstraintNodeModel
     variety of purposes, and their values may sometimes be understood to indicate sets of possible values rather than single, exact and specific values.';
     public const LABEL = 'ConstraintNode';
     public const NAME = 'schema:ConstraintNode';
-    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\\Type\\IntangibleModel'];
+    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\Type\IntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

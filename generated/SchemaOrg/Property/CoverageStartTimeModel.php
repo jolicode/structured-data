@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CoverageStartTimeModel
     public const DESCRIPTION = 'The time when the live blog will begin covering the Event. Note that coverage may begin before the Event\'s start time. The LiveBlogPosting may also be created before coverage begins.';
     public const LABEL = 'coverageStartTime';
     public const NAME = 'schema:coverageStartTime';
-    public const VALUES = ['DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel'];
-    public const TYPES = ['LiveBlogPosting' => 'SchemaOrg\\Type\\LiveBlogPostingModel'];
+    public const VALUES = ['DateTimeModel' => 'SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['LiveBlogPosting' => 'SchemaOrg\Type\LiveBlogPostingModel'];
 }

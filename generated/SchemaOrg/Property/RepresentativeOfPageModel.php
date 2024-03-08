@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class RepresentativeOfPageModel
     public const DESCRIPTION = 'Indicates whether this image is representative of the content of the page.';
     public const LABEL = 'representativeOfPage';
     public const NAME = 'schema:representativeOfPage';
-    public const VALUES = ['BooleanModel' => 'SchemaOrg\\Type\\BooleanModel'];
-    public const TYPES = ['ImageObject' => 'SchemaOrg\\Type\\ImageObjectModel'];
+    public const VALUES = ['BooleanModel' => 'SchemaOrg\Type\BooleanModel'];
+    public const TYPES = ['ImageObject' => 'SchemaOrg\Type\ImageObjectModel'];
 }

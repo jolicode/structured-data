@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class StudyDesignModel
     public const DESCRIPTION = 'Specifics about the observational study design (enumerated).';
     public const LABEL = 'studyDesign';
     public const NAME = 'schema:studyDesign';
-    public const VALUES = ['MedicalObservationalStudyDesignModel' => 'SchemaOrg\\Type\\MedicalObservationalStudyDesignModel'];
-    public const TYPES = ['MedicalObservationalStudy' => 'SchemaOrg\\Type\\MedicalObservationalStudyModel'];
+    public const VALUES = ['MedicalObservationalStudyDesignModel' => 'SchemaOrg\Type\MedicalObservationalStudyDesignModel'];
+    public const TYPES = ['MedicalObservationalStudy' => 'SchemaOrg\Type\MedicalObservationalStudyModel'];
 }

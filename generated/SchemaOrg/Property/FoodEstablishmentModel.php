@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class FoodEstablishmentModel
     public const DESCRIPTION = 'A sub property of location. The specific food establishment where the action occurred.';
     public const LABEL = 'foodEstablishment';
     public const NAME = 'schema:foodEstablishment';
-    public const VALUES = ['FoodEstablishmentModel' => 'SchemaOrg\\Type\\FoodEstablishmentModel', 'PlaceModel' => 'SchemaOrg\\Type\\PlaceModel'];
-    public const TYPES = ['CookAction' => 'SchemaOrg\\Type\\CookActionModel'];
+    public const VALUES = ['FoodEstablishmentModel' => 'SchemaOrg\Type\FoodEstablishmentModel', 'PlaceModel' => 'SchemaOrg\Type\PlaceModel'];
+    public const TYPES = ['CookAction' => 'SchemaOrg\Type\CookActionModel'];
 }

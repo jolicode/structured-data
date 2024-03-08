@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class TaxiServiceModel
     public const DESCRIPTION = 'A service for a vehicle for hire with a driver for local travel. Fares are usually calculated based on distance traveled.';
     public const LABEL = 'TaxiService';
     public const NAME = 'schema:TaxiService';
-    public const PARENTS = ['ServiceModel' => 'SchemaOrg\\Type\\ServiceModel'];
+    public const PARENTS = ['ServiceModel' => 'SchemaOrg\Type\ServiceModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

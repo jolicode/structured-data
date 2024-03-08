@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InteractionTypeModel
     public const DESCRIPTION = 'The Action representing the type of interaction. For up votes, +1s, etc. use [[LikeAction]]. For down votes use [[DislikeAction]]. Otherwise, use the most specific Action.';
     public const LABEL = 'interactionType';
     public const NAME = 'schema:interactionType';
-    public const VALUES = ['ActionModel' => 'SchemaOrg\\Type\\ActionModel'];
-    public const TYPES = ['InteractionCounter' => 'SchemaOrg\\Type\\InteractionCounterModel'];
+    public const VALUES = ['ActionModel' => 'SchemaOrg\Type\ActionModel'];
+    public const TYPES = ['InteractionCounter' => 'SchemaOrg\Type\InteractionCounterModel'];
 }

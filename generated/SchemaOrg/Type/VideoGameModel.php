@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class VideoGameModel
     public const DESCRIPTION = 'A video game is an electronic game that involves human interaction with a user interface to generate visual feedback on a video device.';
     public const LABEL = 'VideoGame';
     public const NAME = 'schema:VideoGame';
-    public const PARENTS = ['GameModel' => 'SchemaOrg\\Type\\GameModel', 'SoftwareApplicationModel' => 'SchemaOrg\\Type\\SoftwareApplicationModel'];
+    public const PARENTS = ['GameModel' => 'SchemaOrg\Type\GameModel', 'SoftwareApplicationModel' => 'SchemaOrg\Type\SoftwareApplicationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

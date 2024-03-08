@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DefinedTermSetModel
     public const DESCRIPTION = 'A set of defined terms, for example a set of categories or a classification scheme, a glossary, dictionary or enumeration.';
     public const LABEL = 'DefinedTermSet';
     public const NAME = 'schema:DefinedTermSet';
-    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel'];
+    public const PARENTS = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

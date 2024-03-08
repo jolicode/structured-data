@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IsRelatedToModel
     public const DESCRIPTION = 'A pointer to another, somehow related product (or multiple products).';
     public const LABEL = 'isRelatedTo';
     public const NAME = 'schema:isRelatedTo';
-    public const VALUES = ['ProductModel' => 'SchemaOrg\\Type\\ProductModel', 'ServiceModel' => 'SchemaOrg\\Type\\ServiceModel'];
-    public const TYPES = ['Product' => 'SchemaOrg\\Type\\ProductModel', 'Service' => 'SchemaOrg\\Type\\ServiceModel'];
+    public const VALUES = ['ProductModel' => 'SchemaOrg\Type\ProductModel', 'ServiceModel' => 'SchemaOrg\Type\ServiceModel'];
+    public const TYPES = ['Product' => 'SchemaOrg\Type\ProductModel', 'Service' => 'SchemaOrg\Type\ServiceModel'];
 }

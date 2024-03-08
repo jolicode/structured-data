@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class AMRadioChannelModel
     public const DESCRIPTION = 'A radio channel that uses AM.';
     public const LABEL = 'AMRadioChannel';
     public const NAME = 'schema:AMRadioChannel';
-    public const PARENTS = ['RadioChannelModel' => 'SchemaOrg\\Type\\RadioChannelModel'];
+    public const PARENTS = ['RadioChannelModel' => 'SchemaOrg\Type\RadioChannelModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AcrissCodeModel
     public const DESCRIPTION = 'The ACRISS Car Classification Code is a code used by many car rental companies, for classifying vehicles. ACRISS stands for Association of Car Rental Industry Systems and Standards.';
     public const LABEL = 'acrissCode';
     public const NAME = 'schema:acrissCode';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['BusOrCoach' => 'SchemaOrg\\Type\\BusOrCoachModel', 'Car' => 'SchemaOrg\\Type\\CarModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['BusOrCoach' => 'SchemaOrg\Type\BusOrCoachModel', 'Car' => 'SchemaOrg\Type\CarModel'];
 }

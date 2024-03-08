@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InsertionModel
     public const DESCRIPTION = 'The place of attachment of a muscle, or what the muscle moves.';
     public const LABEL = 'insertion';
     public const NAME = 'schema:insertion';
-    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\\Type\\AnatomicalStructureModel'];
-    public const TYPES = ['Muscle' => 'SchemaOrg\\Type\\MuscleModel'];
+    public const VALUES = ['AnatomicalStructureModel' => 'SchemaOrg\Type\AnatomicalStructureModel'];
+    public const TYPES = ['Muscle' => 'SchemaOrg\Type\MuscleModel'];
 }

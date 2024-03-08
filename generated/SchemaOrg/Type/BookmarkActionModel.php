@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class BookmarkActionModel
     public const DESCRIPTION = 'An agent bookmarks/flags/labels/tags/marks an object.';
     public const LABEL = 'BookmarkAction';
     public const NAME = 'schema:BookmarkAction';
-    public const PARENTS = ['OrganizeActionModel' => 'SchemaOrg\\Type\\OrganizeActionModel'];
+    public const PARENTS = ['OrganizeActionModel' => 'SchemaOrg\Type\OrganizeActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

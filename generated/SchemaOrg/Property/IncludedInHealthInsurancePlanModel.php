@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class IncludedInHealthInsurancePlanModel
     public const DESCRIPTION = 'The insurance plans that cover this drug.';
     public const LABEL = 'includedInHealthInsurancePlan';
     public const NAME = 'schema:includedInHealthInsurancePlan';
-    public const VALUES = ['HealthInsurancePlanModel' => 'SchemaOrg\\Type\\HealthInsurancePlanModel'];
-    public const TYPES = ['Drug' => 'SchemaOrg\\Type\\DrugModel'];
+    public const VALUES = ['HealthInsurancePlanModel' => 'SchemaOrg\Type\HealthInsurancePlanModel'];
+    public const TYPES = ['Drug' => 'SchemaOrg\Type\DrugModel'];
 }

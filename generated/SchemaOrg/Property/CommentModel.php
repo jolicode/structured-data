@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CommentModel
     public const DESCRIPTION = 'Comments, typically from users.';
     public const LABEL = 'comment';
     public const NAME = 'schema:comment';
-    public const VALUES = ['CommentModel' => 'SchemaOrg\\Type\\CommentModel'];
-    public const TYPES = ['CreativeWork' => 'SchemaOrg\\Type\\CreativeWorkModel', 'RsvpAction' => 'SchemaOrg\\Type\\RsvpActionModel'];
+    public const VALUES = ['CommentModel' => 'SchemaOrg\Type\CommentModel'];
+    public const TYPES = ['CreativeWork' => 'SchemaOrg\Type\CreativeWorkModel', 'RsvpAction' => 'SchemaOrg\Type\RsvpActionModel'];
 }

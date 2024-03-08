@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AssociatedMediaReviewModel
     public const DESCRIPTION = 'An associated [[MediaReview]], related by specific common content, topic or claim. The expectation is that this property would be most typically used in cases where a single activity is conducting both claim reviews and media reviews, in which case [[relatedMediaReview]] would commonly be used on a [[ClaimReview]], while [[relatedClaimReview]] would be used on [[MediaReview]].';
     public const LABEL = 'associatedMediaReview';
     public const NAME = 'schema:associatedMediaReview';
-    public const VALUES = ['ReviewModel' => 'SchemaOrg\\Type\\ReviewModel'];
-    public const TYPES = ['Review' => 'SchemaOrg\\Type\\ReviewModel'];
+    public const VALUES = ['ReviewModel' => 'SchemaOrg\Type\ReviewModel'];
+    public const TYPES = ['Review' => 'SchemaOrg\Type\ReviewModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SupportingDataModel
     public const DESCRIPTION = 'Supporting data for a SoftwareApplication.';
     public const LABEL = 'supportingData';
     public const NAME = 'schema:supportingData';
-    public const VALUES = ['DataFeedModel' => 'SchemaOrg\\Type\\DataFeedModel'];
-    public const TYPES = ['SoftwareApplication' => 'SchemaOrg\\Type\\SoftwareApplicationModel'];
+    public const VALUES = ['DataFeedModel' => 'SchemaOrg\Type\DataFeedModel'];
+    public const TYPES = ['SoftwareApplication' => 'SchemaOrg\Type\SoftwareApplicationModel'];
 }

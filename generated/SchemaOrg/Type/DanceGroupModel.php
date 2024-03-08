@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class DanceGroupModel
     public const DESCRIPTION = 'A dance group&#x2014;for example, the Alvin Ailey Dance Theater or Riverdance.';
     public const LABEL = 'DanceGroup';
     public const NAME = 'schema:DanceGroup';
-    public const PARENTS = ['PerformingGroupModel' => 'SchemaOrg\\Type\\PerformingGroupModel'];
+    public const PARENTS = ['PerformingGroupModel' => 'SchemaOrg\Type\PerformingGroupModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

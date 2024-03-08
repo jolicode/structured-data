@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AircraftModel
     public const DESCRIPTION = 'The kind of aircraft (e.g., "Boeing 747").';
     public const LABEL = 'aircraft';
     public const NAME = 'schema:aircraft';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel', 'VehicleModel' => 'SchemaOrg\\Type\\VehicleModel'];
-    public const TYPES = ['Flight' => 'SchemaOrg\\Type\\FlightModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel', 'VehicleModel' => 'SchemaOrg\Type\VehicleModel'];
+    public const TYPES = ['Flight' => 'SchemaOrg\Type\FlightModel'];
 }

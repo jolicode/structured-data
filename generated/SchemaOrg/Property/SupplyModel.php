@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SupplyModel
     public const DESCRIPTION = 'A sub-property of instrument. A supply consumed when performing instructions or a direction.';
     public const LABEL = 'supply';
     public const NAME = 'schema:supply';
-    public const VALUES = ['HowToSupplyModel' => 'SchemaOrg\\Type\\HowToSupplyModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['HowToDirection' => 'SchemaOrg\\Type\\HowToDirectionModel', 'HowTo' => 'SchemaOrg\\Type\\HowToModel'];
+    public const VALUES = ['HowToSupplyModel' => 'SchemaOrg\Type\HowToSupplyModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['HowToDirection' => 'SchemaOrg\Type\HowToDirectionModel', 'HowTo' => 'SchemaOrg\Type\HowToModel'];
 }

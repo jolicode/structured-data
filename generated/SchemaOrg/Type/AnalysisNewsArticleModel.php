@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class AnalysisNewsArticleModel
     public const DESCRIPTION = 'An AnalysisNewsArticle is a [[NewsArticle]] that, while based on factual reporting, incorporates the expertise of the author/producer, offering interpretations and conclusions.';
     public const LABEL = 'AnalysisNewsArticle';
     public const NAME = 'schema:AnalysisNewsArticle';
-    public const PARENTS = ['NewsArticleModel' => 'SchemaOrg\\Type\\NewsArticleModel'];
+    public const PARENTS = ['NewsArticleModel' => 'SchemaOrg\Type\NewsArticleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

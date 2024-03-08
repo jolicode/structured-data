@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class NormalRangeModel
     public const DESCRIPTION = 'Range of acceptable values for a typical patient, when applicable.';
     public const LABEL = 'normalRange';
     public const NAME = 'schema:normalRange';
-    public const VALUES = ['MedicalEnumerationModel' => 'SchemaOrg\\Type\\MedicalEnumerationModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MedicalTest' => 'SchemaOrg\\Type\\MedicalTestModel'];
+    public const VALUES = ['MedicalEnumerationModel' => 'SchemaOrg\Type\MedicalEnumerationModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MedicalTest' => 'SchemaOrg\Type\MedicalTestModel'];
 }

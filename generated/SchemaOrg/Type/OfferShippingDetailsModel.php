@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -31,7 +29,7 @@ E.g. Cheaper and slower: $5 in 5-7 days
 or Fast and expensive: $15 in 1-2 days.';
     public const LABEL = 'OfferShippingDetails';
     public const NAME = 'schema:OfferShippingDetails';
-    public const PARENTS = ['StructuredValueModel' => 'SchemaOrg\\Type\\StructuredValueModel'];
+    public const PARENTS = ['StructuredValueModel' => 'SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

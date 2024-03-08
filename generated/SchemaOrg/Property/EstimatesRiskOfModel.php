@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class EstimatesRiskOfModel
     public const DESCRIPTION = 'The condition, complication, or symptom whose risk is being estimated.';
     public const LABEL = 'estimatesRiskOf';
     public const NAME = 'schema:estimatesRiskOf';
-    public const VALUES = ['MedicalEntityModel' => 'SchemaOrg\\Type\\MedicalEntityModel'];
-    public const TYPES = ['MedicalRiskEstimator' => 'SchemaOrg\\Type\\MedicalRiskEstimatorModel'];
+    public const VALUES = ['MedicalEntityModel' => 'SchemaOrg\Type\MedicalEntityModel'];
+    public const TYPES = ['MedicalRiskEstimator' => 'SchemaOrg\Type\MedicalRiskEstimatorModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -23,7 +21,7 @@ final class GeoCircleModel
        ';
     public const LABEL = 'GeoCircle';
     public const NAME = 'schema:GeoCircle';
-    public const PARENTS = ['GeoShapeModel' => 'SchemaOrg\\Type\\GeoShapeModel'];
+    public const PARENTS = ['GeoShapeModel' => 'SchemaOrg\Type\GeoShapeModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

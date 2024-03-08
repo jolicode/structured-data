@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class InstructorModel
     public const DESCRIPTION = 'A person assigned to instruct or provide instructional assistance for the [[CourseInstance]].';
     public const LABEL = 'instructor';
     public const NAME = 'schema:instructor';
-    public const VALUES = ['PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['CourseInstance' => 'SchemaOrg\\Type\\CourseInstanceModel'];
+    public const VALUES = ['PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['CourseInstance' => 'SchemaOrg\Type\CourseInstanceModel'];
 }

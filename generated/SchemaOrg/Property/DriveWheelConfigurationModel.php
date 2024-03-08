@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DriveWheelConfigurationModel
     public const DESCRIPTION = 'The drive wheel configuration, i.e. which roadwheels will receive torque from the vehicle\'s engine via the drivetrain.';
     public const LABEL = 'driveWheelConfiguration';
     public const NAME = 'schema:driveWheelConfiguration';
-    public const VALUES = ['DriveWheelConfigurationValueModel' => 'SchemaOrg\\Type\\DriveWheelConfigurationValueModel', 'TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Vehicle' => 'SchemaOrg\\Type\\VehicleModel'];
+    public const VALUES = ['DriveWheelConfigurationValueModel' => 'SchemaOrg\Type\DriveWheelConfigurationValueModel', 'TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Vehicle' => 'SchemaOrg\Type\VehicleModel'];
 }

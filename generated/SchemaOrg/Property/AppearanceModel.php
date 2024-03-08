@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AppearanceModel
     public const DESCRIPTION = 'Indicates an occurrence of a [[Claim]] in some [[CreativeWork]].';
     public const LABEL = 'appearance';
     public const NAME = 'schema:appearance';
-    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel'];
-    public const TYPES = ['Claim' => 'SchemaOrg\\Type\\ClaimModel'];
+    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel'];
+    public const TYPES = ['Claim' => 'SchemaOrg\Type\ClaimModel'];
 }

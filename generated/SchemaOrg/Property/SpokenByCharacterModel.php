@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class SpokenByCharacterModel
     public const DESCRIPTION = 'The (e.g. fictional) character, Person or Organization to whom the quotation is attributed within the containing CreativeWork.';
     public const LABEL = 'spokenByCharacter';
     public const NAME = 'schema:spokenByCharacter';
-    public const VALUES = ['OrganizationModel' => 'SchemaOrg\\Type\\OrganizationModel', 'PersonModel' => 'SchemaOrg\\Type\\PersonModel'];
-    public const TYPES = ['Quotation' => 'SchemaOrg\\Type\\QuotationModel'];
+    public const VALUES = ['OrganizationModel' => 'SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['Quotation' => 'SchemaOrg\Type\QuotationModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class DistanceModel
     public const DESCRIPTION = 'The distance travelled, e.g. exercising or travelling.';
     public const LABEL = 'distance';
     public const NAME = 'schema:distance';
-    public const VALUES = ['DistanceModel' => 'SchemaOrg\\Type\\DistanceModel'];
-    public const TYPES = ['ExerciseAction' => 'SchemaOrg\\Type\\ExerciseActionModel', 'TravelAction' => 'SchemaOrg\\Type\\TravelActionModel'];
+    public const VALUES = ['DistanceModel' => 'SchemaOrg\Type\DistanceModel'];
+    public const TYPES = ['ExerciseAction' => 'SchemaOrg\Type\ExerciseActionModel', 'TravelAction' => 'SchemaOrg\Type\TravelActionModel'];
 }

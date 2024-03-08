@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class AvailabilityStartsModel
     public const DESCRIPTION = 'The beginning of the availability of the product or service included in the offer.';
     public const LABEL = 'availabilityStarts';
     public const NAME = 'schema:availabilityStarts';
-    public const VALUES = ['DateModel' => 'SchemaOrg\\Type\\DateModel', 'DateTimeModel' => 'SchemaOrg\\Type\\DateTimeModel', 'TimeModel' => 'SchemaOrg\\Type\\TimeModel'];
-    public const TYPES = ['ActionAccessSpecification' => 'SchemaOrg\\Type\\ActionAccessSpecificationModel', 'Demand' => 'SchemaOrg\\Type\\DemandModel', 'Offer' => 'SchemaOrg\\Type\\OfferModel'];
+    public const VALUES = ['DateModel' => 'SchemaOrg\Type\DateModel', 'DateTimeModel' => 'SchemaOrg\Type\DateTimeModel', 'TimeModel' => 'SchemaOrg\Type\TimeModel'];
+    public const TYPES = ['ActionAccessSpecification' => 'SchemaOrg\Type\ActionAccessSpecificationModel', 'Demand' => 'SchemaOrg\Type\DemandModel', 'Offer' => 'SchemaOrg\Type\OfferModel'];
 }

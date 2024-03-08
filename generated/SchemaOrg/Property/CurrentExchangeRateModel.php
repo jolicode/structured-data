@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CurrentExchangeRateModel
     public const DESCRIPTION = 'The current price of a currency.';
     public const LABEL = 'currentExchangeRate';
     public const NAME = 'schema:currentExchangeRate';
-    public const VALUES = ['UnitPriceSpecificationModel' => 'SchemaOrg\\Type\\UnitPriceSpecificationModel'];
-    public const TYPES = ['ExchangeRateSpecification' => 'SchemaOrg\\Type\\ExchangeRateSpecificationModel'];
+    public const VALUES = ['UnitPriceSpecificationModel' => 'SchemaOrg\Type\UnitPriceSpecificationModel'];
+    public const TYPES = ['ExchangeRateSpecification' => 'SchemaOrg\Type\ExchangeRateSpecificationModel'];
 }

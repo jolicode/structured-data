@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CountryOfLastProcessingModel
     public const DESCRIPTION = 'The place where the item (typically [[Product]]) was last processed and tested before importation.';
     public const LABEL = 'countryOfLastProcessing';
     public const NAME = 'schema:countryOfLastProcessing';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Product' => 'SchemaOrg\\Type\\ProductModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Product' => 'SchemaOrg\Type\ProductModel'];
 }

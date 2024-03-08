@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PrimaryPreventionModel
     public const DESCRIPTION = 'A preventative therapy used to prevent an initial occurrence of the medical condition, such as vaccination.';
     public const LABEL = 'primaryPrevention';
     public const NAME = 'schema:primaryPrevention';
-    public const VALUES = ['MedicalTherapyModel' => 'SchemaOrg\\Type\\MedicalTherapyModel'];
-    public const TYPES = ['MedicalCondition' => 'SchemaOrg\\Type\\MedicalConditionModel'];
+    public const VALUES = ['MedicalTherapyModel' => 'SchemaOrg\Type\MedicalTherapyModel'];
+    public const TYPES = ['MedicalCondition' => 'SchemaOrg\Type\MedicalConditionModel'];
 }

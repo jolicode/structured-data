@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class TextObjectModel
     public const DESCRIPTION = 'A text file. The text can be unformatted or contain markup, html, etc.';
     public const LABEL = 'TextObject';
     public const NAME = 'schema:TextObject';
-    public const PARENTS = ['MediaObjectModel' => 'SchemaOrg\\Type\\MediaObjectModel'];
+    public const PARENTS = ['MediaObjectModel' => 'SchemaOrg\Type\MediaObjectModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

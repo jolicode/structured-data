@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ValueAddedTaxIncludedModel
     public const DESCRIPTION = 'Specifies whether the applicable value-added tax (VAT) is included in the price specification or not.';
     public const LABEL = 'valueAddedTaxIncluded';
     public const NAME = 'schema:valueAddedTaxIncluded';
-    public const VALUES = ['BooleanModel' => 'SchemaOrg\\Type\\BooleanModel'];
-    public const TYPES = ['PriceSpecification' => 'SchemaOrg\\Type\\PriceSpecificationModel'];
+    public const VALUES = ['BooleanModel' => 'SchemaOrg\Type\BooleanModel'];
+    public const TYPES = ['PriceSpecification' => 'SchemaOrg\Type\PriceSpecificationModel'];
 }

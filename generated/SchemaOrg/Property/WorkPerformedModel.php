@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class WorkPerformedModel
     public const DESCRIPTION = 'A work performed in some event, for example a play performed in a TheaterEvent.';
     public const LABEL = 'workPerformed';
     public const NAME = 'schema:workPerformed';
-    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\\Type\\CreativeWorkModel'];
-    public const TYPES = ['Event' => 'SchemaOrg\\Type\\EventModel'];
+    public const VALUES = ['CreativeWorkModel' => 'SchemaOrg\Type\CreativeWorkModel'];
+    public const TYPES = ['Event' => 'SchemaOrg\Type\EventModel'];
 }

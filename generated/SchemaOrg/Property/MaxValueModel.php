@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MaxValueModel
     public const DESCRIPTION = 'The upper value of some characteristic or property.';
     public const LABEL = 'maxValue';
     public const NAME = 'schema:maxValue';
-    public const VALUES = ['NumberModel' => 'SchemaOrg\\Type\\NumberModel'];
-    public const TYPES = ['MonetaryAmount' => 'SchemaOrg\\Type\\MonetaryAmountModel', 'PropertyValue' => 'SchemaOrg\\Type\\PropertyValueModel', 'PropertyValueSpecification' => 'SchemaOrg\\Type\\PropertyValueSpecificationModel', 'QuantitativeValue' => 'SchemaOrg\\Type\\QuantitativeValueModel'];
+    public const VALUES = ['NumberModel' => 'SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['MonetaryAmount' => 'SchemaOrg\Type\MonetaryAmountModel', 'PropertyValue' => 'SchemaOrg\Type\PropertyValueModel', 'PropertyValueSpecification' => 'SchemaOrg\Type\PropertyValueSpecificationModel', 'QuantitativeValue' => 'SchemaOrg\Type\QuantitativeValueModel'];
 }

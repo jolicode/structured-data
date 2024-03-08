@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class InvestmentOrDepositModel
     public const DESCRIPTION = 'A type of financial product that typically requires the client to transfer funds to a financial service in return for potential beneficial financial return.';
     public const LABEL = 'InvestmentOrDeposit';
     public const NAME = 'schema:InvestmentOrDeposit';
-    public const PARENTS = ['FinancialProductModel' => 'SchemaOrg\\Type\\FinancialProductModel'];
+    public const PARENTS = ['FinancialProductModel' => 'SchemaOrg\Type\FinancialProductModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

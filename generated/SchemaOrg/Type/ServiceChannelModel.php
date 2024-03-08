@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ServiceChannelModel
     public const DESCRIPTION = 'A means for accessing a service, e.g. a government office location, web site, or phone number.';
     public const LABEL = 'ServiceChannel';
     public const NAME = 'schema:ServiceChannel';
-    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\\Type\\IntangibleModel'];
+    public const PARENTS = ['IntangibleModel' => 'SchemaOrg\Type\IntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

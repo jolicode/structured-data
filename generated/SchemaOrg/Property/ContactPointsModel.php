@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ContactPointsModel
     public const DESCRIPTION = 'A contact point for a person or organization.';
     public const LABEL = 'contactPoints';
     public const NAME = 'schema:contactPoints';
-    public const VALUES = ['ContactPointModel' => 'SchemaOrg\\Type\\ContactPointModel'];
-    public const TYPES = ['Organization' => 'SchemaOrg\\Type\\OrganizationModel', 'Person' => 'SchemaOrg\\Type\\PersonModel'];
+    public const VALUES = ['ContactPointModel' => 'SchemaOrg\Type\ContactPointModel'];
+    public const TYPES = ['Organization' => 'SchemaOrg\Type\OrganizationModel', 'Person' => 'SchemaOrg\Type\PersonModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class OrderItemStatusModel
     public const DESCRIPTION = 'The current status of the order item.';
     public const LABEL = 'orderItemStatus';
     public const NAME = 'schema:orderItemStatus';
-    public const VALUES = ['OrderStatusModel' => 'SchemaOrg\\Type\\OrderStatusModel'];
-    public const TYPES = ['OrderItem' => 'SchemaOrg\\Type\\OrderItemModel'];
+    public const VALUES = ['OrderStatusModel' => 'SchemaOrg\Type\OrderStatusModel'];
+    public const TYPES = ['OrderItem' => 'SchemaOrg\Type\OrderItemModel'];
 }

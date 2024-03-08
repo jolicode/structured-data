@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class MoneyTransferModel
     public const DESCRIPTION = 'The act of transferring money from one place to another place. This may occur electronically or physically.';
     public const LABEL = 'MoneyTransfer';
     public const NAME = 'schema:MoneyTransfer';
-    public const PARENTS = ['TransferActionModel' => 'SchemaOrg\\Type\\TransferActionModel'];
+    public const PARENTS = ['TransferActionModel' => 'SchemaOrg\Type\TransferActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

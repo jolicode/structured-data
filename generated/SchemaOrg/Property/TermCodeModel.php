@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class TermCodeModel
     public const DESCRIPTION = 'A code that identifies this [[DefinedTerm]] within a [[DefinedTermSet]]';
     public const LABEL = 'termCode';
     public const NAME = 'schema:termCode';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['DefinedTerm' => 'SchemaOrg\\Type\\DefinedTermModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['DefinedTerm' => 'SchemaOrg\Type\DefinedTermModel'];
 }

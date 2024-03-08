@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ProvidesBroadcastServiceModel
     public const DESCRIPTION = 'The BroadcastService offered on this channel.';
     public const LABEL = 'providesBroadcastService';
     public const NAME = 'schema:providesBroadcastService';
-    public const VALUES = ['BroadcastServiceModel' => 'SchemaOrg\\Type\\BroadcastServiceModel'];
-    public const TYPES = ['BroadcastChannel' => 'SchemaOrg\\Type\\BroadcastChannelModel'];
+    public const VALUES = ['BroadcastServiceModel' => 'SchemaOrg\Type\BroadcastServiceModel'];
+    public const TYPES = ['BroadcastChannel' => 'SchemaOrg\Type\BroadcastChannelModel'];
 }

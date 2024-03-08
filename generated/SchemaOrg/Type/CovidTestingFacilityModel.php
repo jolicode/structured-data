@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -24,7 +22,7 @@ final class CovidTestingFacilityModel
       ';
     public const LABEL = 'CovidTestingFacility';
     public const NAME = 'schema:CovidTestingFacility';
-    public const PARENTS = ['MedicalClinicModel' => 'SchemaOrg\\Type\\MedicalClinicModel'];
+    public const PARENTS = ['MedicalClinicModel' => 'SchemaOrg\Type\MedicalClinicModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

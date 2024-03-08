@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class BreastfeedingWarningModel
     public const DESCRIPTION = 'Any precaution, guidance, contraindication, etc. related to this drug\'s use by breastfeeding mothers.';
     public const LABEL = 'breastfeedingWarning';
     public const NAME = 'schema:breastfeedingWarning';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Drug' => 'SchemaOrg\\Type\\DrugModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Drug' => 'SchemaOrg\Type\DrugModel'];
 }

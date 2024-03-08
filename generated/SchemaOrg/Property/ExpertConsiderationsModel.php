@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ExpertConsiderationsModel
     public const DESCRIPTION = 'Medical expert advice related to the plan.';
     public const LABEL = 'expertConsiderations';
     public const NAME = 'schema:expertConsiderations';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Diet' => 'SchemaOrg\\Type\\DietModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Diet' => 'SchemaOrg\Type\DietModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PaymentAcceptedModel
     public const DESCRIPTION = 'Cash, Credit Card, Cryptocurrency, Local Exchange Tradings System, etc.';
     public const LABEL = 'paymentAccepted';
     public const NAME = 'schema:paymentAccepted';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['LocalBusiness' => 'SchemaOrg\\Type\\LocalBusinessModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['LocalBusiness' => 'SchemaOrg\Type\LocalBusinessModel'];
 }

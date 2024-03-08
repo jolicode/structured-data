@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class ArriveActionModel
     public const DESCRIPTION = 'The act of arriving at a place. An agent arrives at a destination from a fromLocation, optionally with participants.';
     public const LABEL = 'ArriveAction';
     public const NAME = 'schema:ArriveAction';
-    public const PARENTS = ['MoveActionModel' => 'SchemaOrg\\Type\\MoveActionModel'];
+    public const PARENTS = ['MoveActionModel' => 'SchemaOrg\Type\MoveActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

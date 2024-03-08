@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class SpecialtyModel
     public const DESCRIPTION = 'Any branch of a field in which people typically develop specific expertise, usually after significant study, time, and effort.';
     public const LABEL = 'Specialty';
     public const NAME = 'schema:Specialty';
-    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\\Type\\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class NumberOfCreditsModel
     public const DESCRIPTION = 'The number of credits or units awarded by a Course or required to complete an EducationalOccupationalProgram.';
     public const LABEL = 'numberOfCredits';
     public const NAME = 'schema:numberOfCredits';
-    public const VALUES = ['IntegerModel' => 'SchemaOrg\\Type\\IntegerModel', 'StructuredValueModel' => 'SchemaOrg\\Type\\StructuredValueModel'];
-    public const TYPES = ['Course' => 'SchemaOrg\\Type\\CourseModel', 'EducationalOccupationalProgram' => 'SchemaOrg\\Type\\EducationalOccupationalProgramModel'];
+    public const VALUES = ['IntegerModel' => 'SchemaOrg\Type\IntegerModel', 'StructuredValueModel' => 'SchemaOrg\Type\StructuredValueModel'];
+    public const TYPES = ['Course' => 'SchemaOrg\Type\CourseModel', 'EducationalOccupationalProgram' => 'SchemaOrg\Type\EducationalOccupationalProgramModel'];
 }

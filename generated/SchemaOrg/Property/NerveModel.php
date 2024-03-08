@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class NerveModel
     public const DESCRIPTION = 'The underlying innervation associated with the muscle.';
     public const LABEL = 'nerve';
     public const NAME = 'schema:nerve';
-    public const VALUES = ['NerveModel' => 'SchemaOrg\\Type\\NerveModel'];
-    public const TYPES = ['Muscle' => 'SchemaOrg\\Type\\MuscleModel'];
+    public const VALUES = ['NerveModel' => 'SchemaOrg\Type\NerveModel'];
+    public const TYPES = ['Muscle' => 'SchemaOrg\Type\MuscleModel'];
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class CodeModel
     public const DESCRIPTION = 'A medical code for the entity, taken from a controlled vocabulary or ontology such as ICD-9, DiseasesDB, MeSH, SNOMED-CT, RxNorm, etc.';
     public const LABEL = 'code';
     public const NAME = 'schema:code';
-    public const VALUES = ['MedicalCodeModel' => 'SchemaOrg\\Type\\MedicalCodeModel'];
-    public const TYPES = ['MedicalEntity' => 'SchemaOrg\\Type\\MedicalEntityModel'];
+    public const VALUES = ['MedicalCodeModel' => 'SchemaOrg\Type\MedicalCodeModel'];
+    public const TYPES = ['MedicalEntity' => 'SchemaOrg\Type\MedicalEntityModel'];
 }

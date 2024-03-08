@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class EmailMessageModel
     public const DESCRIPTION = 'An email message.';
     public const LABEL = 'EmailMessage';
     public const NAME = 'schema:EmailMessage';
-    public const PARENTS = ['MessageModel' => 'SchemaOrg\\Type\\MessageModel'];
+    public const PARENTS = ['MessageModel' => 'SchemaOrg\Type\MessageModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

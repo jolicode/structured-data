@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class ProviderMobilityModel
     public const DESCRIPTION = 'Indicates the mobility of a provided service (e.g. \'static\', \'dynamic\').';
     public const LABEL = 'providerMobility';
     public const NAME = 'schema:providerMobility';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['Service' => 'SchemaOrg\\Type\\ServiceModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Service' => 'SchemaOrg\Type\ServiceModel'];
 }

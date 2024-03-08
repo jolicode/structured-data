@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -20,7 +18,7 @@ final class SuspendActionModel
     public const DESCRIPTION = 'The act of momentarily pausing a device or application (e.g. pause music playback or pause a timer).';
     public const LABEL = 'SuspendAction';
     public const NAME = 'schema:SuspendAction';
-    public const PARENTS = ['ControlActionModel' => 'SchemaOrg\\Type\\ControlActionModel'];
+    public const PARENTS = ['ControlActionModel' => 'SchemaOrg\Type\ControlActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class MusicalKeyModel
     public const DESCRIPTION = 'The key, mode, or scale this composition uses.';
     public const LABEL = 'musicalKey';
     public const NAME = 'schema:musicalKey';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MusicComposition' => 'SchemaOrg\\Type\\MusicCompositionModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MusicComposition' => 'SchemaOrg\Type\MusicCompositionModel'];
 }

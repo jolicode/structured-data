@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -18,6 +16,6 @@ final class PathophysiologyModel
     public const DESCRIPTION = 'Changes in the normal mechanical, physical, and biochemical functions that are associated with this activity or condition.';
     public const LABEL = 'pathophysiology';
     public const NAME = 'schema:pathophysiology';
-    public const VALUES = ['TextModel' => 'SchemaOrg\\Type\\TextModel'];
-    public const TYPES = ['MedicalCondition' => 'SchemaOrg\\Type\\MedicalConditionModel', 'PhysicalActivity' => 'SchemaOrg\\Type\\PhysicalActivityModel'];
+    public const VALUES = ['TextModel' => 'SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MedicalCondition' => 'SchemaOrg\Type\MedicalConditionModel', 'PhysicalActivity' => 'SchemaOrg\Type\PhysicalActivityModel'];
 }
