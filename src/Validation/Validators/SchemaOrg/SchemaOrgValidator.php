@@ -74,9 +74,10 @@ class SchemaOrgValidator implements ValidatorInterface
     public static function validateProperty(MappedType $type, MappedProperty $property, array $typesStack): array
     {
         $errors = [];
+        $propertyKey = self::stripActionSuffixes($property->key);
 
-        if (!class_exists(self::getPropertyFqcn($property->key))) {
-            $message = sprintf('This property does not exist: %s.', $property->key);
+        if (!class_exists(self::getPropertyFqcn($propertyKey))) {
+            $message = sprintf('This property does not exist: %s.', $propertyKey);
 
             $errors[] = [ValidationError::SEVERITY_ERROR, $message];
 
@@ -92,16 +93,16 @@ class SchemaOrgValidator implements ValidatorInterface
         $propertyIsValid = false;
 
         foreach ($typeFqcns as $typeFqcn) {
-            if (property_exists($typeFqcn, $property->key)) {
+            if (property_exists($typeFqcn, $propertyKey)) {
                 $propertyIsValid = true;
             }
         }
 
         if (!$propertyIsValid) {
             if (\is_string($type->type)) {
-                $message = sprintf('The property "%s" does not exist on the type "%s".', $property->key, $type->type);
+                $message = sprintf('The property "%s" does not exist on the type "%s".', $propertyKey, $type->type);
             } else {
-                $message = sprintf('The property "%s" does not exist on any of these types: "%s".', $property->key, implode(', ', $type->type));
+                $message = sprintf('The property "%s" does not exist on any of these types: "%s".', $propertyKey, implode(', ', $type->type));
             }
 
             $errors[] = [ValidationError::SEVERITY_ERROR, $message];
@@ -118,7 +119,9 @@ class SchemaOrgValidator implements ValidatorInterface
         $possibleTypes = [];
 
         foreach ($properties as $property) {
-            $types = self::getPropertyFqcn($property->key)::TYPES;
+            $propertyKey = self::stripActionSuffixes($property->key);
+
+            $types = self::getPropertyFqcn($propertyKey)::TYPES;
 
             foreach ($types as $shortName => $fqcn) {
                 $possibleTypes[$fqcn] = $shortName;
@@ -127,7 +130,7 @@ class SchemaOrgValidator implements ValidatorInterface
 
         foreach ($possibleTypes as $fqcn => $shortName) {
             foreach ($properties as $property) {
-                if (!property_exists($fqcn, $property->key)) {
+                if (!property_exists($fqcn, self::stripActionSuffixes($property->key))) {
                     unset($possibleTypes[$fqcn]);
                 }
             }
@@ -182,6 +185,13 @@ class SchemaOrgValidator implements ValidatorInterface
         return sprintf('SchemaOrg\\Property\\%sModel', ucfirst($propertyShortName));
     }
 
+    private static function stripActionSuffixes(string $propertyLabel): string
+    {
+        $propertyLabel = str_replace(['-input', '-output'], '', $propertyLabel);
+
+        return $propertyLabel;
+    }
+
     private static function propertyTypeIsValid(string $propertyLabel, string $typeFqcn): bool
     {
         // Ok this may look weird but take a look at http://blog.schema.org/2014/06/introducing-role.html
@@ -189,7 +199,9 @@ class SchemaOrgValidator implements ValidatorInterface
             return true;
         }
 
-        if (!\in_array($typeFqcn, self::getPropertyFqcn($propertyLabel)::VALUES, true)) {
+        $propertyValues = self::getPropertyFqcn($propertyLabel)::VALUES;
+
+        if (!\in_array($typeFqcn, $propertyValues, true)) {
             foreach ($typeFqcn::PARENTS as $parentType) {
                 if (self::propertyTypeIsValid($propertyLabel, $parentType)) {
                     return true;

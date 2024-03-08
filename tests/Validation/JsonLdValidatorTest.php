@@ -17,7 +17,6 @@ use Jolicode\JsonLd\Validation\JsonLdValidator;
 use Jolicode\JsonLd\Validation\Mapper\ValidationMap;
 use Jolicode\JsonLd\Validation\Validators\Google\GoogleValidator;
 use Jolicode\JsonLd\Validation\Validators\SchemaOrg\SchemaOrgValidator;
-use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 
@@ -205,6 +204,11 @@ class JsonLdValidatorTest extends TestCase
             'isValid' => true,
             'messages' => [],
         ];
+        yield 'Test actions work properly' => [
+            'document' => $path . '/action.jsonld',
+            'isValid' => true,
+            'messages' => [],
+        ];
     }
 
     private function testValidate(string $filePath, bool $isValid, array $expectedMessages, string $validator): void
@@ -244,16 +248,7 @@ class JsonLdValidatorTest extends TestCase
             }
         }
 
-        try {
-            $this->assertSame($isValid, !$containsErrors);
-        } catch (ExpectationFailedException $exception) {
-            $message = sprintf(
-                "The validation failed. The following errors were found: \n%s",
-                implode(\PHP_EOL, $foundErrorMessages)
-            );
-
-            throw new ExpectationFailedException($message, $exception->getComparisonFailure());
-        }
+        $this->assertSame($isValid, !$containsErrors);
     }
 
     private function provideGoogleFiles(): \Generator

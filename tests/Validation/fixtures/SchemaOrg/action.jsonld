@@ -1,0 +1,23 @@
+{
+    "@context": "http://schema.org",
+    "@type": "ReviewAction",
+    "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://api.example.com/review",
+        "encodingType": "application/ld+json",
+        "contentType": "application/ld+json"
+    },
+    "object" : {
+        "@type": "Movie",
+        "url-input": "required"
+    },
+    "resultReview": {
+        "@type": "Review",
+        "url-output": "required",
+        "reviewBody-input": "required",
+        "reviewRating": {
+            "@type": "Rating",
+            "ratingValue-input": "required"
+        }
+    }
+}
