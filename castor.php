@@ -20,7 +20,7 @@ use Symfony\Component\Console\Input\InputOption;
 #[AsTask(name: 'cs', description: 'Fix CS violations')]
 function cs(
     #[AsOption(name: 'dry-run', description: 'Display CS violations without fixing it')]
-    bool $dryRun = false
+    bool $dryRun = false,
 ): void {
     if ($dryRun) {
         run('vendor/bin/php-cs-fixer fix src --dry-run --diff');
@@ -47,8 +47,10 @@ function phpstan(): void
 function test(
     #[AsOption(name: 'group', shortcut: 'g', mode: InputOption::VALUE_REQUIRED, description: 'Only run tests from the specified group')]
     ?string $group = null,
-    #[AsOption(name: 'stop-on-failure', shortcut: 's', mode: InputOption::VALUE_NONE, description: 'Stop execution upon first error or failure')]
+    #[AsOption(name: 'stop-on-failure', shortcut: 'f', mode: InputOption::VALUE_NONE, description: 'Stop execution upon first failure')]
     ?bool $stopOnFailure = null,
+    #[AsOption(name: 'stop-on-error', shortcut: 'e', mode: InputOption::VALUE_NONE, description: 'Stop execution upon first error')]
+    ?bool $stopOnError = null,
 ): void {
     $command = 'php -d memory_limit=-1 vendor/bin/phpunit tests';
 
@@ -58,6 +60,10 @@ function test(
 
     if ($stopOnFailure) {
         $command .= ' --stop-on-failure';
+    }
+
+    if ($stopOnError) {
+        $command .= ' --stop-on-error';
     }
 
     run($command);
@@ -88,7 +94,7 @@ function generate(
     #[AsOption(name: 'reset', shortcut: 'r', mode: InputOption::VALUE_NONE, description: 'Reset the generated files')]
     bool $reset,
     #[AsOption(name: 'source', shortcut: 's', mode: InputOption::VALUE_REQUIRED, description: 'Only download from a specific source. Accepted values are "schemaorg" and "google"')]
-    ?string $source = null
+    ?string $source = null,
 ): void {
     $command = 'bin/json-ld generate';
 
@@ -112,7 +118,7 @@ function validate(
 ): void {
     $command = sprintf(
         'bin/json-ld validate %s',
-        $fileOrUrl
+        $fileOrUrl,
     );
 
     if ($validator) {
@@ -144,7 +150,7 @@ function benchValidators(): void
 #[AsTask(name: 'expand', namespace: 'algorithms', description: 'Expand a JSON-LD document')]
 function expand(
     #[AsArgument(name: 'file', description: 'The file to expand')]
-    string $fileName
+    string $fileName,
 ): void {
     run('bin/json-ld expand ' . $fileName);
 }
@@ -152,7 +158,7 @@ function expand(
 #[AsTask(name: 'flatten', namespace: 'algorithms', description: 'Flatten a JSON-LD document')]
 function flatten(
     #[AsArgument(name: 'file', description: 'The file to flatten')]
-    string $fileName
+    string $fileName,
 ): void {
     run('bin/json-ld flatten ' . $fileName);
 }

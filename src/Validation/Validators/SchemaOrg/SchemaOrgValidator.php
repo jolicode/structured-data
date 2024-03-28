@@ -12,7 +12,8 @@
 namespace Jolicode\JsonLd\Validation\Validators\SchemaOrg;
 
 use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Validation\Error\ValidationError;
+use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
+use Jolicode\JsonLd\Validation\Mapper\MappedError;
 use Jolicode\JsonLd\Validation\Mapper\MappedProperty;
 use Jolicode\JsonLd\Validation\Mapper\MappedType;
 use Jolicode\JsonLd\Validation\Validators\ValidatorInterface;
@@ -24,7 +25,6 @@ class SchemaOrgValidator implements ValidatorInterface
     public static function validateType(MappedType $type, ?MappedProperty $property, array $typesStack): array
     {
         $errors = [];
-
         $typeLabel = $type->type;
 
         if (
@@ -35,7 +35,7 @@ class SchemaOrgValidator implements ValidatorInterface
             // @see https://www.w3.org/TR/json-ld/#specifying-the-type
             $message = sprintf('A typed value may only have one type, %d provided.', \count($typeLabel));
 
-            $errors[] = [ValidationError::SEVERITY_ERROR, $message];
+            $errors[] = [MappedError::SEVERITY_ERROR, $message];
 
             return $errors;
         }
@@ -45,7 +45,7 @@ class SchemaOrgValidator implements ValidatorInterface
 
             $message = 'The @type entry of this type was not set. We had to guess it from its properties.';
 
-            $errors[] = [ValidationError::SEVERITY_WARNING, $message];
+            $errors[] = [MappedError::SEVERITY_WARNING, $message];
         }
 
         foreach ((array) $typeLabel as $label) {
@@ -54,7 +54,7 @@ class SchemaOrgValidator implements ValidatorInterface
             if (!class_exists($typeFqcn)) {
                 $message = sprintf('The "%s" type is not a valid Schema.org type.', $label);
 
-                $errors[] = [ValidationError::SEVERITY_ERROR, $message];
+                $errors[] = [MappedError::SEVERITY_ERROR, $message];
 
                 continue;
             }
@@ -63,7 +63,7 @@ class SchemaOrgValidator implements ValidatorInterface
                 if (!self::propertyTypeIsValid($property->key, $typeFqcn)) {
                     $message = sprintf('The "%s" property does not accept the "%s" type as a value.', $property->key, $typeFqcn::LABEL);
 
-                    $errors[] = [ValidationError::SEVERITY_ERROR, $message];
+                    $errors[] = [MappedError::SEVERITY_ERROR, $message];
                 }
             }
         }
@@ -74,19 +74,28 @@ class SchemaOrgValidator implements ValidatorInterface
     public static function validateProperty(MappedType $type, MappedProperty $property, array $typesStack): array
     {
         $errors = [];
+        $typeLabel = $type->type;
         $propertyKey = self::stripActionSuffixes($property->key);
+
+        if (Keyword::tryFrom($propertyKey)) {
+            return $errors;
+        }
 
         if (!class_exists(self::getPropertyFqcn($propertyKey))) {
             $message = sprintf('This property does not exist: %s.', $propertyKey);
 
-            $errors[] = [ValidationError::SEVERITY_ERROR, $message];
+            $errors[] = [MappedError::SEVERITY_ERROR, $message];
 
             return $errors;
         }
 
+        if (null === $typeLabel) {
+            $typeLabel = self::guessTypeFromProperties($type->properties);
+        }
+
         $typeFqcns = [];
 
-        foreach ((array) $type->type as $label) {
+        foreach ((array) $typeLabel as $label) {
             $typeFqcns[] = self::getTypeFqcn($label);
         }
 
@@ -99,13 +108,13 @@ class SchemaOrgValidator implements ValidatorInterface
         }
 
         if (!$propertyIsValid) {
-            if (\is_string($type->type)) {
-                $message = sprintf('The property "%s" does not exist on the type "%s".', $propertyKey, $type->type);
+            if (\is_string($typeLabel)) {
+                $message = sprintf('The property "%s" does not exist on the type "%s".', $propertyKey, $typeLabel);
             } else {
-                $message = sprintf('The property "%s" does not exist on any of these types: "%s".', $propertyKey, implode(', ', $type->type));
+                $message = sprintf('The property "%s" does not exist on any of these types: "%s".', $propertyKey, implode(', ', $typeLabel));
             }
 
-            $errors[] = [ValidationError::SEVERITY_ERROR, $message];
+            $errors[] = [MappedError::SEVERITY_ERROR, $message];
         }
 
         return $errors;
@@ -119,6 +128,10 @@ class SchemaOrgValidator implements ValidatorInterface
         $possibleTypes = [];
 
         foreach ($properties as $property) {
+            if (Keyword::tryFrom($property->key)) {
+                continue;
+            }
+
             $propertyKey = self::stripActionSuffixes($property->key);
 
             $types = self::getPropertyFqcn($propertyKey)::TYPES;

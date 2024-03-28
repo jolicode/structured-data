@@ -22,7 +22,7 @@ readonly class RegisteredValidatorsContainer
          */
         private readonly array $validators = [
             SchemaOrgValidator::class => new SchemaOrgValidator(),
-            GoogleValidator::class => new GoogleValidator(),
+            // GoogleValidator::class => new GoogleValidator(),
         ],
     ) {
     }

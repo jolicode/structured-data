@@ -11,9 +11,9 @@
 
 namespace Jolicode\JsonLd\Parser;
 
+use Jolicode\JsonLd\Parser\DataStructures\AbstractStructure;
 use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
 use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
-use Jolicode\JsonLd\Parser\DataStructures\StructureInterface;
 use JsonStreamingParser\Listener\IdleListener;
 use JsonStreamingParser\Listener\PositionAwareInterface;
 
@@ -23,11 +23,11 @@ class PointerListener extends IdleListener implements PositionAwareInterface
         private int $startLineNumber = 0,
         private int $currentColumn = 0,
         private int $currentLine = 0,
-        private ?StructureInterface $currentStructure = null,
+        private ?AbstractStructure $currentStructure = null,
     ) {
     }
 
-    public function getResult(): StructureInterface
+    public function getResult(): AbstractStructure
     {
         return $this->currentStructure;
     }
@@ -80,10 +80,11 @@ class PointerListener extends IdleListener implements PositionAwareInterface
 
     private function startStructure(string $structureClass): void
     {
-        $newStructure = new $structureClass($this->currentStructure);
+        $range = new Range($this->getCurrentPosition(), null);
+        $newStructure = new $structureClass($this->currentStructure, $range);
 
         if ($this->currentStructure) {
-            $this->currentStructure->addValue($newStructure, new Range($this->getCurrentPosition(), null));
+            $this->currentStructure->addValue($newStructure, $range);
         }
 
         $this->currentStructure = $newStructure;
@@ -91,6 +92,8 @@ class PointerListener extends IdleListener implements PositionAwareInterface
 
     private function endStructure(): void
     {
+        $this->currentStructure->range->end = $this->getCurrentPosition();
+
         if (isset($this->currentStructure->belongsTo)) {
             $this->currentStructure->belongsTo->getLastValue()->range->end = $this->getCurrentPosition();
             $parent = $this->currentStructure->belongsTo;

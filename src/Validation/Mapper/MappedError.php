@@ -11,17 +11,18 @@
 
 namespace Jolicode\JsonLd\Validation\Mapper;
 
-use Jolicode\JsonLd\Parser\Range;
-
 readonly class MappedError
 {
+    public const SEVERITY_ERROR = 'error';
+    public const SEVERITY_WARNING = 'warning';
+
     public function __construct(
         public string $message,
-        public string|array|null $type,
         public ?string $key,
-        public Range $range,
+        public ?string $type,
         public string $severity,
-        public ?string $validatorName = null,
+        public ?string $validatorName,
+        public string $ranges,
     ) {
     }
 }

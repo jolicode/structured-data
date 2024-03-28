@@ -18,11 +18,7 @@ use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
 use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
 use Jolicode\JsonLd\Parser\JsonLdParser;
-use Jolicode\JsonLd\Parser\Position;
 use Jolicode\JsonLd\Parser\Range;
-use Jolicode\JsonLd\Validation\Error\PropertyValidationError;
-use Jolicode\JsonLd\Validation\Error\TypeValidationError;
-use Jolicode\JsonLd\Validation\Error\ValidationError;
 use Jolicode\JsonLd\Validation\Mapper\MappedError;
 use Jolicode\JsonLd\Validation\Mapper\MappedProperty;
 use Jolicode\JsonLd\Validation\Mapper\MappedType;
@@ -40,10 +36,6 @@ class JsonLdValidator
          * @var array<string, string|array<string>>
          */
         private array $typesStack = [],
-        /**
-         * @var array<string,ValidationError>
-         */
-        private array $validationErrors = [],
         private ?string $specificValidator = null,
         private readonly ValidationMapper $validationMapper = new ValidationMapper(),
         private readonly JsonLdParser $parser = new JsonLdParser(),
@@ -123,13 +115,11 @@ class JsonLdValidator
     {
         $this->reset();
 
-        $map = $this->validationMapper->map($expandedJsonLd);
+        $map = $this->validationMapper->map($expandedJsonLd, $parsedJsonLd);
 
         foreach ($map->getTypes() as $type) {
             $this->validateType($type);
         }
-
-        $this->validationMapper->mapErrorsRanges($this->validationErrors, $parsedJsonLd);
 
         return $this->validationMapper->getMap();
     }
@@ -137,7 +127,6 @@ class JsonLdValidator
     private function reset(): void
     {
         $this->typesStack = [];
-        $this->validationErrors = [];
         $this->validationMapper->reset();
     }
 
@@ -147,11 +136,9 @@ class JsonLdValidator
             $message,
             null,
             null,
-            new Range(
-                new Position(0, 0),
-                new Position(0, 0),
-            ),
-            ValidationError::SEVERITY_ERROR,
+            MappedError::SEVERITY_ERROR,
+            null,
+            'line 1, column 1',
         );
 
         return new ValidationMap([$error], []);
@@ -174,30 +161,15 @@ class JsonLdValidator
          */
         foreach ($type->properties as $property) {
             if ($property->value instanceof MappedType) {
-                $this->typesStack[] = $this->validationMapper->removeSchemaOrgDomain($property->key);
-
                 $this->validateType($property->value, $property);
-
-                array_pop($this->typesStack);
 
                 continue;
             }
 
             if (\is_array($property->value)) {
-                foreach ($property->value as $index => $multipleTypesEntry) {
+                foreach ($property->value as $multipleTypesEntry) {
                     if ($multipleTypesEntry instanceof MappedType) {
-                        /**
-                         * @var string $propertyShortName
-                         */
-                        $propertyShortName = $this->validationMapper->removeSchemaOrgDomain($property->key);
-
-                        $this->typesStack[$propertyShortName][] = $propertyShortName;
-
                         $this->validateType($multipleTypesEntry, $property);
-
-                        if ($index === array_key_last($property->value)) {
-                            array_pop($this->typesStack);
-                        }
                     }
                 }
 
@@ -210,11 +182,8 @@ class JsonLdValidator
 
     private function callValidatorsForType(MappedType $type, ?MappedProperty $property): void
     {
-        $graphKey = 0;
-        $hasAGraph = false;
-
-        if (\count($this->validationMapper->flattenedTypeReferences)) {
-            $this->getGraphKey($type, $graphKey, $hasAGraph);
+        if ($this->isTypeReference($type)) {
+            return;
         }
 
         $validators = $this->specificValidator
@@ -227,28 +196,15 @@ class JsonLdValidator
             foreach ($errors as $error) {
                 [$severity, $message] = $error;
 
-                $typeLabel = \is_string($type->type) ? Keyword::TYPE->value : null;
-
-                $this->addTypeError($severity, $message, $typeLabel, $hasAGraph, $graphKey, $validator::VALIDATOR_NAME);
+                $this->addMappedError($type, $message, $type, $severity, $validator::VALIDATOR_NAME);
             }
         }
     }
 
     private function callValidatorsForProperty(MappedProperty $property, MappedType $type): void
     {
-        if (null === $type->type) {
+        if (Keyword::tryFrom($property->key)) {
             return;
-        }
-
-        if (\in_array($property->key, [Keyword::VALUE->value, Keyword::ID->value], true)) {
-            return;
-        }
-
-        $graphKey = 0;
-        $hasAGraph = false;
-
-        if (\count($this->validationMapper->flattenedTypeReferences)) {
-            $this->getGraphKey($type, $graphKey, $hasAGraph);
         }
 
         $validators = $this->specificValidator
@@ -261,63 +217,54 @@ class JsonLdValidator
             foreach ($errors as $error) {
                 [$severity, $message] = $error;
 
-                $property->errors[] = [$severity => $message];
-                $this->addPropertyError($severity, $message, $property->key, $hasAGraph, $graphKey, $validator::VALIDATOR_NAME);
+                $this->addMappedError($type, $message, $type, $severity, $validator::VALIDATOR_NAME);
             }
         }
     }
 
-    private function getGraphKey(MappedType $type, int &$graphKey, bool &$hasAGraph): void
+    private function isTypeReference(MappedType $type): bool
     {
-        $hasAGraph = true;
+        $properties = $type->properties;
 
-        $graphKey = array_search(
-            $type,
-            $this->validationMapper->flattenedTypeReferences,
-            true,
-        );
-
-        $graphKey = array_search(
-            $graphKey,
-            array_keys($this->validationMapper->flattenedTypeReferences), true,
-        );
+        return \array_key_exists(Keyword::ID->value, $type->properties)
+            && IriResolver::isBlankNodeIdentifier($properties[Keyword::ID->value]->value)
+            && 1 === \count($properties);
     }
 
-    private function addTypeError(
-        string $severity,
-        string $message,
-        ?string $typeLabel,
-        bool $hasAGraph,
-        int $graphKey,
-        string $validatorName,
-    ): void {
-        $this->validationErrors[] = new TypeValidationError(
+    private function addMappedError(MappedType|MappedProperty $target, string $message, MappedType $typeWithError, string $severity, string $validatorName): void
+    {
+        $typeLabel = $typeWithError->type;
+
+        if (\is_array($typeLabel)) {
+            $typeLabel = sprintf(
+                '[%s]',
+                implode(', ', $typeLabel),
+            );
+        }
+
+        $range = array_map(
+            fn (Range $range) => sprintf(
+                'starting line %d, column %d and ending line %d, column %d',
+                $range->start->line,
+                $range->start->column,
+                $range->end->line,
+                $range->end->column,
+            ),
+            $target->getRanges(),
+        );
+
+        $range = implode(\PHP_EOL, $range);
+
+        $error = new MappedError(
             $message,
+            Keyword::TYPE->value,
             $typeLabel,
-            $this->typesStack,
-            $hasAGraph,
-            $graphKey,
             $severity,
             $validatorName,
+            $range,
         );
-    }
 
-    private function addPropertyError(
-        string $severity,
-        string $message,
-        string $key,
-        bool $hasAGraph,
-        int $graphKey,
-        string $validatorName,
-    ): void {
-        $this->validationErrors[] = new PropertyValidationError(
-            $message,
-            $key,
-            $this->typesStack,
-            $hasAGraph,
-            $graphKey,
-            $severity,
-            $validatorName,
-        );
+        $target->errors[] = $error;
+        $this->validationMapper->getMap()->addError($error);
     }
 }

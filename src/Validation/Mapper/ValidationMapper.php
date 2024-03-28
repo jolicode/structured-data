@@ -13,15 +13,12 @@ namespace Jolicode\JsonLd\Validation\Mapper;
 
 use Jolicode\JsonLd\Algorithms\Http\IriResolver;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
+use Jolicode\JsonLd\Parser\DataStructures\AbstractStructure;
 use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
 use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
-use Jolicode\JsonLd\Parser\DataStructures\StructureInterface;
-use Jolicode\JsonLd\Parser\Position;
 use Jolicode\JsonLd\Parser\Properties\Property;
-use Jolicode\JsonLd\Parser\Range;
-use Jolicode\JsonLd\Validation\Error\TypeValidationError;
-use Jolicode\JsonLd\Validation\Error\ValidationError;
-use Jolicode\JsonLd\Validation\Validators\Google\GoogleValidator;
+use Jolicode\JsonLd\Parser\Properties\Value;
+use SchemaOrg\Type\DateModel;
 
 class ValidationMapper
 {
@@ -41,6 +38,7 @@ class ValidationMapper
          * @var array<string,MappedProperty>
          */
         private array $propertiesWithReferences = [],
+        private ?ObjectStructure $rootParsedJsonLd = null,
     ) {
     }
 
@@ -50,6 +48,7 @@ class ValidationMapper
         $this->mappedErrors = [];
         $this->flattenedTypeReferences = [];
         $this->propertiesWithReferences = [];
+        $this->rootParsedJsonLd = null;
     }
 
     /**
@@ -63,20 +62,27 @@ class ValidationMapper
     /**
      * This method takes an expanded JsonLd input and will transform it into an easier to manipulate, more user friendly object.
      */
-    public function map(array $expandedJsonLd): ValidationMap
+    public function map(array $expandedJsonLd, ObjectStructure $parsedJsonLd): ValidationMap
     {
-        foreach ($expandedJsonLd as $type) {
-            $type = $this->mapType($type);
+        $this->rootParsedJsonLd = $parsedJsonLd;
 
-            // This prevents adding the flattened types to the final result
-            if (\count($this->flattenedTypeReferences) > 1) {
-                continue;
+        foreach ($expandedJsonLd as $expandedType) {
+            $mappedType = $this->mapType($expandedType);
+
+            if (
+                !property_exists($expandedType, Keyword::ID->value)
+                || (!$this->isTypeReference($expandedType)
+                    && '_:b0' === $expandedType->{Keyword::ID->value})
+            ) {
+                $this->map->addType($mappedType);
             }
-
-            $this->map->addType($type);
         }
 
         $this->mapFlattenedTypes();
+
+        foreach ($this->map->getTypes() as $type) {
+            $this->addRangesToType($type, $parsedJsonLd);
+        }
 
         unset($this->propertiesWithReferences);
 
@@ -86,30 +92,6 @@ class ValidationMapper
     public function getMap(): ValidationMap
     {
         return $this->map;
-    }
-
-    /**
-     * @param array<ValidationError> $validationErrors
-     */
-    public function mapErrorsRanges(array $validationErrors, StructureInterface $parsedJsonLd): void
-    {
-        foreach ($validationErrors as $error) {
-            $typeWithViolation = $this->getTypeWithError($error, $parsedJsonLd);
-
-            if ($error instanceof TypeValidationError) {
-                if (Keyword::TYPE->value !== $error->key) {
-                    $this->createMappedErrorOnObjectBrackets($error, $typeWithViolation);
-
-                    continue;
-                }
-            }
-
-            $propertyWithError = $error->hasAGraph ?
-                $typeWithViolation->getGraphProperty($error->key, $error->graphKey) :
-                $typeWithViolation->getProperty($error->key);
-
-            $this->addMappedError($error, $typeWithViolation, $propertyWithError);
-        }
     }
 
     /**
@@ -143,17 +125,11 @@ class ValidationMapper
         }
 
         foreach ($expandedType as $label => $value) {
-            if (Keyword::TYPE->value === $label) {
-                continue;
-            }
-
             if (
                 Keyword::ID->value === $label
                 && IriResolver::isBlankNodeIdentifier($value)
             ) {
                 $this->saveFlattenedTypeReference($value, $type);
-
-                continue;
             }
 
             if (null !== $value) {
@@ -177,15 +153,15 @@ class ValidationMapper
         }
 
         foreach ($value as $valueEntry) {
+            if ($this->isTypeReference($valueEntry)) {
+                $this->savePropertyWithReference($valueEntry, $property);
+            }
+
             if ($this->isTypeProperty($valueEntry)) {
                 $valueEntry = $this->mapType($valueEntry);
             }
 
             $property->value[] = $valueEntry;
-
-            if ($this->isFlattenedTypeReference($valueEntry)) {
-                $this->savePropertyWithReference($valueEntry, $property);
-            }
         }
 
         if (1 === \count($property->value)) {
@@ -201,6 +177,123 @@ class ValidationMapper
         return $property;
     }
 
+    private function addRangesToType(MappedType $type, AbstractStructure $parsedJsonLd): void
+    {
+        if ($parsedJsonLd instanceof ObjectStructure) {
+            if ($parsedJsonLd->hasAGraph()) {
+                $identifier = array_search($type, $this->flattenedTypeReferences, true);
+
+                if ($identifier) {
+                    $parsedJsonLd = $parsedJsonLd->getGraphValue($identifier)->content;
+                } elseif (\count($this->flattenedTypeReferences)) {
+                    // Framed algorithm doesnt set an @id entry for the first element of the graph, but it does for every other entries of the graph.
+                    // Hence it is safe to get the first graph entry: for other entries, $identifier will evaluate to true.
+                    $parsedJsonLd = $parsedJsonLd->getGraphType(0);
+                } else {
+                    // @graph is supposed to only be used with the flattened and the framed algorithms, which all use type references.
+                    // Turns out, other formats may aswell! In those cases, the real type may be safely retrieved from the map directly. There are no references.
+                    $graphIndex = array_search($type, $this->map->getTypes(), \true);
+                    $parsedJsonLd = $parsedJsonLd->getGraphType($graphIndex);
+                }
+            }
+
+            if ($this->isParsedFlattenedTypeReference($parsedJsonLd)) {
+                $identifier = $parsedJsonLd->getProperty(Keyword::ID->value)->value->content;
+                $parsedJsonLd = $this->rootParsedJsonLd->getGraphValue($identifier)->content;
+            }
+
+            $type->addRange($parsedJsonLd->range);
+        }
+
+        $properties = $type->properties;
+
+        if ($parsedJsonLd instanceof ObjectStructure) {
+            foreach ($properties as $property) {
+                $this->addRangesToProperty($property, $parsedJsonLd);
+            }
+        } elseif ($parsedJsonLd instanceof ArrayStructure) {
+            array_map(
+                fn (Value $value) => $this->addRangesToType($type, $value->content),
+                $parsedJsonLd->getValues(),
+            );
+        }
+    }
+
+    private function addRangesToProperty(MappedProperty $property, ObjectStructure $parsedJsonLd): void
+    {
+        $parsedValue = $this->retrieveParsedValue($property, $parsedJsonLd);
+
+        if (!$parsedValue) {
+            return;
+        }
+
+        $range = $parsedValue->range;
+        $property->addRange($range);
+
+        if (IriResolver::isBlankNodeIdentifier($parsedValue->content)) {
+            return;
+        }
+
+        if ($property->value instanceof MappedType) {
+            // When a date is encountered during expansion, it converted to a type. This is not the case on the original JSON-LD, it is only a string.
+            if (\is_string($parsedValue->content) && DateModel::LABEL === $property->value->type) {
+                $property->value->addRange($range);
+
+                return;
+            }
+
+            $this->addRangesToType($property->value, $parsedValue->content);
+        }
+
+        if (\is_array($property->value)) {
+            if (!$parsedValue->content instanceof ArrayStructure) {
+                throw new \RuntimeException('Property value is an array but parsed value is not an array structure.');
+            }
+
+            foreach ($property->value as $key => $value) {
+                if ($value instanceof MappedType) {
+                    $this->addRangesToType($value, $parsedValue->content->getValue($key)->content);
+                }
+            }
+        }
+    }
+
+    /**
+     * Finding a property on an ObjectStructure is not that easy because its properties will follow the JSON-LD format the user provided.
+     * So it may be in either of the compacted, expanded, flattened or framed formats. We have to check for every single one.
+     */
+    private function retrieveParsedValue(MappedProperty $property, ObjectStructure $parsedJsonLd): Value|false
+    {
+        $shortPropertyKey = $property->key;
+        $expandedPropertyKey = $this->appendSchemaOrgDomain($property->key);
+
+        try {
+            // Compacted
+            return $parsedJsonLd->getProperty($shortPropertyKey)->value;
+        } catch (\InvalidArgumentException $exception) {
+            try {
+                // Expanded
+                return $parsedJsonLd->getProperty($expandedPropertyKey)->value;
+            } catch (\InvalidArgumentException $exception) {
+                if ($reference = $this->findPropertyReference($property)) {
+                    return $this->rootParsedJsonLd->getGraphValue($reference);
+                }
+
+                if ($this->isParsedFlattenedTypeReference($parsedJsonLd)) {
+                    return false;
+                }
+
+                try {
+                    // Flattened
+                    return $parsedJsonLd->getProperty($shortPropertyKey)->value;
+                } catch (\InvalidArgumentException $exception) {
+                    // Framed
+                    return $parsedJsonLd->getProperty($expandedPropertyKey)->value;
+                }
+            }
+        }
+    }
+
     private function saveFlattenedTypeReference(string $identifier, MappedType $type): void
     {
         $this->flattenedTypeReferences[$identifier] = $type;
@@ -211,7 +304,29 @@ class ValidationMapper
         $this->propertiesWithReferences[$valueEntry->{Keyword::ID->value}] = $property;
     }
 
-    private function isFlattenedTypeReference(\stdClass|MappedType $valueEntry): bool
+    private function findPropertyReference(MappedProperty $property): string
+    {
+        return array_search(
+            $property,
+            $this->propertiesWithReferences,
+            true,
+        );
+    }
+
+    private function isParsedFlattenedTypeReference(AbstractStructure $type): bool
+    {
+        if (!$type instanceof ObjectStructure) {
+            return false;
+        }
+
+        $properties = $type->getProperties();
+
+        return 1 === \count($properties)
+            && \array_key_exists('id', $properties)
+            && IriResolver::isBlankNodeIdentifier($properties['id']->value->content);
+    }
+
+    private function isTypeReference(\stdClass|MappedType|string $valueEntry): bool
     {
         return $valueEntry instanceof \stdClass
             && property_exists($valueEntry, Keyword::ID->value)
@@ -234,25 +349,45 @@ class ValidationMapper
             }
 
             if (\is_array($property->value)) {
+                $actualTypes = [];
+
                 foreach ($property->value as $propertyTypeEntry) {
                     if ($propertyTypeEntry instanceof MappedType) {
+                        $actualTypes = $property->value;
+
                         continue;
                     }
 
-                    $property->value[] = $this->getFlattenedTypeReference($propertyTypeEntry->{Keyword::ID->value});
+                    $actualTypes[] = $this->getFlattenedTypeReference($propertyTypeEntry->{Keyword::ID->value});
                 }
+
+                $property->value = $actualTypes;
             }
         }
     }
 
-    private function isTypeProperty(\stdClass $valueEntry): bool
+    private function isTypeProperty(\stdClass|string $valueEntry): bool
     {
-        return !property_exists($valueEntry, Keyword::VALUE->value)
-            && !property_exists($valueEntry, Keyword::ID->value)
-        ;
+        if (!$valueEntry instanceof \stdClass) {
+            return false;
+        }
+
+        $properties = get_object_vars($valueEntry);
+
+        if (1 === \count($properties)) {
+            if (property_exists($valueEntry, Keyword::ID->value)) {
+                return IriResolver::isBlankNodeIdentifier($valueEntry->{Keyword::ID->value});
+            }
+
+            if (property_exists($valueEntry, Keyword::VALUE->value)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    private function isValueOrId(\stdClass|MappedType $valueEntry): bool
+    private function isValueOrId(\stdClass|MappedType|string $valueEntry): bool
     {
         if ($valueEntry instanceof MappedType) {
             return false;
@@ -274,136 +409,8 @@ class ValidationMapper
         return $basicProperty->{Keyword::ID->value};
     }
 
-    private function addMappedError(ValidationError $error, ObjectStructure $type, Property $property): void
+    private function appendSchemaOrgDomain(string $property): string
     {
-        $typeProperties = $type->getProperties();
-
-        if (\array_key_exists(Keyword::TYPE->value, $typeProperties)) {
-            $type = $typeProperties[Keyword::TYPE->value]->value->content;
-        } elseif (\array_key_exists('type', $typeProperties)) {
-            $type = $typeProperties['type']->value->content;
-        } else {
-            $type = null;
-        }
-
-        $this->map->addError(new MappedError(
-            $error->message,
-            $type,
-            $property->key->name,
-            $property->key->range,
-            $error->severity,
-            $error->validatorName,
-        ));
-    }
-
-    private function getTypeWithError(ValidationError $error, StructureInterface $parsedJsonLd): ObjectStructure
-    {
-        /**
-         * @var ObjectStructure $rootType
-         */
-        $rootType = $parsedJsonLd;
-
-        if (0 === \count($error->propertiesChain)) {
-            return $rootType;
-        }
-
-        // Google validates that a property is MISSING. Obviously it will be impossible to find it on the object properties...
-        // So we just return the root type.
-        if (GoogleValidator::VALIDATOR_NAME === $error->validatorName) {
-            return $rootType;
-        }
-
-        $currentType = $rootType;
-
-        if ($error->graphKey) {
-            /**
-             * @var ArrayStructure $graph
-             */
-            $graph = $currentType->getProperty(Keyword::GRAPH->value)->value->content;
-            $graphEntries = $graph->getValues();
-
-            /**
-             * @var ObjectStructure $currentType
-             */
-            $currentType = $graphEntries[$error->graphKey]->content;
-        }
-
-        foreach ($error->propertiesChain as $property) {
-            $currentType = $this->retrieveTypeFromProperty($property, $currentType);
-        }
-
-        return $currentType;
-    }
-
-    /**
-     * If property is an array, this means it is a property holding multiple types as a value.
-     * The array will be filled with the property name, only its length matter: it is used to know which of its types is the one with an error.
-     *
-     * @param string|array $property The invalid property
-     */
-    private function retrieveTypeFromProperty(string|array $property, ObjectStructure $currentType): ObjectStructure|string
-    {
-        $properties = $currentType->getProperties();
-
-        if (\is_array($property)) {
-            $propertyName = $property[0];
-        } else {
-            $propertyName = $property;
-        }
-
-        if (!\array_key_exists($propertyName, $properties)) {
-            // When the user provide an expanded input, all properties are prefixed with the schema.org domain.
-            // But when we validate it, we strip the schema.org domain, which are automatically added by the expander.
-            // So, when mappind back the error to the user input, we will need the schema.org domain to find the property.
-            $prefixedPropertyName = sprintf('%s%s', self::SCHEMA_ORG_DOMAIN, $propertyName);
-
-            $propertyWithError = $properties[$prefixedPropertyName];
-        } else {
-            $propertyWithError = $properties[$propertyName];
-        }
-
-        $typeWithError = $propertyWithError->value->content;
-
-        if ($typeWithError instanceof ArrayStructure) {
-            if (\is_array($property)) {
-                $typeWithError = $typeWithError->getValues()[\count($property) - 1]->content;
-            } else {
-                $typeWithError = $typeWithError->getValues()[0]->content;
-            }
-        }
-
-        return $typeWithError;
-    }
-
-    /**
-     * When the "@type" entry is missing, we cannot map it back to the user input since it does not exist.
-     * When this is the case, we map the error on the object brackets.
-     */
-    private function createMappedErrorOnObjectBrackets(ValidationError $error, ObjectStructure $typeWithViolation): void
-    {
-        $properties = $typeWithViolation->getProperties();
-
-        $firstProperty = reset($properties);
-        $objectStart = $firstProperty->key->range->start;
-
-        $lastProperty = end($properties);
-        $objectEnd = $lastProperty->value->range->end;
-
-        $startLine = $objectStart->line - 1;
-        $startCol = $objectStart->column - 5;
-
-        $endLine = $objectEnd->line + 1;
-        $endCol = $startCol;
-
-        $this->map->addError(new MappedError(
-            $error->message,
-            null,
-            Keyword::TYPE->value,
-            new Range(
-                new Position($startLine, $startCol),
-                new Position($endLine, $endCol),
-            ),
-            $error->severity,
-        ));
+        return sprintf('%s%s', self::SCHEMA_ORG_DOMAIN, $property);
     }
 }

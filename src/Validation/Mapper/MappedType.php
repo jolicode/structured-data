@@ -11,6 +11,8 @@
 
 namespace Jolicode\JsonLd\Validation\Mapper;
 
+use Jolicode\JsonLd\Parser\Range;
+
 class MappedType
 {
     public function __construct(
@@ -24,6 +26,27 @@ class MappedType
          * @var array<MappedError>
          */
         public array $errors = [],
+        public ?self $parent = null,
+        /**
+         * @var array<self>
+         */
+        public array $children = [],
+        /**
+         * @var array<Range>
+         */
+        private array $ranges = [],
     ) {
+    }
+
+    public function getRanges(): array
+    {
+        return $this->ranges;
+    }
+
+    public function addRange(Range $range): void
+    {
+        if (!\in_array($range, $this->ranges, true)) {
+            $this->ranges[] = $range;
+        }
     }
 }

@@ -12,7 +12,6 @@
 namespace Jolicode\JsonLd\Command\Validation;
 
 use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Validation\Error\ValidationError;
 use Jolicode\JsonLd\Validation\Extraction\JsonLdNodeExtractor;
 use Jolicode\JsonLd\Validation\JsonLdValidator;
 use Jolicode\JsonLd\Validation\Mapper\MappedError;
@@ -92,7 +91,7 @@ class ValidateJsonLdCommand extends Command
 
         if ($errors) {
             foreach ($errors as $error) {
-                if (ValidationError::SEVERITY_ERROR === $error->severity) {
+                if (MappedError::SEVERITY_ERROR === $error->severity) {
                     $io->error($error->message);
                     $hasErrors = true;
                 } else {
@@ -139,25 +138,18 @@ class ValidateJsonLdCommand extends Command
 
     private function writeInfoMessage(SymfonyStyle $io, MappedError $error): void
     {
-        $type = match (true) {
-            \is_string($error->type) => $error->type,
-            \is_array($error->type) => sprintf('[%s]', implode(', ', $error->type)),
-            default => null,
-        };
-
-        if (!$type) {
+        if (!$error->type) {
             $typeText = 'an unknown type (with no @type property)';
         } else {
-            $typeText = sprintf('the type "%s"', $type);
+            $typeText = sprintf('the type "%s"', $error->type);
         }
 
         $io->info(sprintf(
-            'Raised by the %s validator for %s on property "%s", located at line %d, column %d',
+            'Raised by the %s validator for %s on property "%s". Found on the following lines: %s',
             $error->validatorName,
             $typeText,
             $error->key,
-            $error->range->start->line,
-            $error->range->start->column,
+            \PHP_EOL . $error->ranges,
         ));
     }
 }

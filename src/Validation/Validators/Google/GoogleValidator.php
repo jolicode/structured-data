@@ -12,7 +12,7 @@
 namespace Jolicode\JsonLd\Validation\Validators\Google;
 
 use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Validation\Error\ValidationError;
+use Jolicode\JsonLd\Validation\Mapper\MappedError;
 use Jolicode\JsonLd\Validation\Mapper\MappedProperty;
 use Jolicode\JsonLd\Validation\Mapper\MappedType;
 use Jolicode\JsonLd\Validation\Validators\ValidatorInterface;
@@ -35,7 +35,7 @@ class GoogleValidator implements ValidatorInterface
         $errors = [];
 
         if (null === $type->type) {
-            $errors[] = [ValidationError::SEVERITY_WARNING, 'The @type entry of this type is missing. Google will ignore this type.'];
+            $errors[] = [MappedError::SEVERITY_WARNING, 'The @type entry of this type is missing. Google will ignore this type.'];
 
             return $errors;
         }
@@ -110,7 +110,7 @@ class GoogleValidator implements ValidatorInterface
 
             foreach ($foundProperty[$propertyKey] as $propertyType) {
                 if ($message = self::typeHasInvalidValue($propertyType, $property->value)) {
-                    $errors[] = [ValidationError::SEVERITY_WARNING, $message];
+                    $errors[] = [MappedError::SEVERITY_WARNING, $message];
                 }
             }
         }
@@ -168,14 +168,14 @@ class GoogleValidator implements ValidatorInterface
 
                 unset($missingRequiredProperties['atLeastOneOf']);
 
-                $errors[] = [ValidationError::SEVERITY_ERROR, $message];
+                $errors[] = [MappedError::SEVERITY_ERROR, $message];
             }
         }
 
         foreach ($missingRequiredProperties as $label => $values) {
             $message = sprintf('Missing required property: "%s"', $label);
 
-            $errors[] = [ValidationError::SEVERITY_ERROR, $message];
+            $errors[] = [MappedError::SEVERITY_ERROR, $message];
         }
     }
 
@@ -197,7 +197,7 @@ class GoogleValidator implements ValidatorInterface
         foreach ($missingRecommendedProperties as $label => $values) {
             $message = sprintf('Missing recommended property: "%s"', $label);
 
-            $errors[] = [ValidationError::SEVERITY_WARNING, $message];
+            $errors[] = [MappedError::SEVERITY_WARNING, $message];
         }
     }
 

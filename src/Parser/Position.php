@@ -18,4 +18,9 @@ class Position
         public int $column = 0,
     ) {
     }
+
+    public function __toString()
+    {
+        return sprintf('%s:%s', $this->line, $this->column);
+    }
 }

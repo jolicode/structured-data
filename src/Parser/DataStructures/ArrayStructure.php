@@ -14,10 +14,11 @@ namespace Jolicode\JsonLd\Parser\DataStructures;
 use Jolicode\JsonLd\Parser\Properties\Value;
 use Jolicode\JsonLd\Parser\Range;
 
-class ArrayStructure implements StructureInterface
+class ArrayStructure extends AbstractStructure
 {
     public function __construct(
-        public ?StructureInterface $belongsTo = null,
+        public ?AbstractStructure $belongsTo = null,
+        public ?Range $range = null,
         /**
          * @var Value[]
          */
@@ -38,9 +39,9 @@ class ArrayStructure implements StructureInterface
         return $this->values;
     }
 
-    public function addValue(StructureInterface|string|bool|null $value, Range $range): void
+    public function addValue(AbstractStructure|string|bool|null $value, Range $range): void
     {
-        $this->values[] = new Value($value, $range);
+        $this->values[] = new Value($range, $value);
     }
 
     public function getLastValue(): Value

@@ -184,6 +184,11 @@ class JsonLdValidatorTest extends TestCase
             'isValid' => false,
             'messages' => ['A typed value may only have one type, 2 provided.'],
         ];
+        yield 'Test invalid multiple type work properly' => [
+            'document' => $path . '/multiple-types-invalid.jsonld',
+            'isValid' => false,
+            'messages' => ['The property "acrissCode" does not exist on any of these types: "Person, Organization".'],
+        ];
         yield 'Test invalid JSON document' => [
             'document' => $path . '/invalid-json.jsonld',
             'isValid' => false,
