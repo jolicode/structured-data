@@ -161,6 +161,10 @@ class ValidationMapper
                 $valueEntry = $this->mapType($valueEntry);
             }
 
+            if ($this->isValueOrId($valueEntry)) {
+                $valueEntry = $this->retrieveValueOrId($valueEntry);
+            }
+
             $property->value[] = $valueEntry;
         }
 
