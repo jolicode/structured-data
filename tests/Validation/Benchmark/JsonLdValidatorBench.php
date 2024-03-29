@@ -31,7 +31,7 @@ class JsonLdValidatorBench
      */
     public function benchSimpleExpandedValidation()
     {
-        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/simple-expanded.jsonld'));
+        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-expanded.jsonld'));
     }
 
     /**
@@ -43,7 +43,7 @@ class JsonLdValidatorBench
      */
     public function benchSimpleCompactedValidation()
     {
-        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/simple-compacted.jsonld'));
+        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-compacted.jsonld'));
     }
 
     /**
@@ -55,7 +55,7 @@ class JsonLdValidatorBench
      */
     public function benchSimpleFlattenedValidation()
     {
-        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/simple-flattened.jsonld'));
+        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-flattened.jsonld'));
     }
 
     /**
@@ -67,7 +67,7 @@ class JsonLdValidatorBench
      */
     public function benchSimpleFramedValidation()
     {
-        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/simple-framed.jsonld'));
+        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-framed.jsonld'));
     }
 
     /**
@@ -79,7 +79,7 @@ class JsonLdValidatorBench
      */
     public function benchComplexExpandedValidation()
     {
-        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/complex-expanded.jsonld'));
+        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-expanded.jsonld'));
     }
 
     /**
@@ -91,7 +91,7 @@ class JsonLdValidatorBench
      */
     public function benchComplexCompactedValidation()
     {
-        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/complex-compacted.jsonld'));
+        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-compacted.jsonld'));
     }
 
     /**
@@ -103,7 +103,7 @@ class JsonLdValidatorBench
      */
     public function benchComplexFlattenedValidation()
     {
-        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/complex-flattened.jsonld'));
+        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-flattened.jsonld'));
     }
 
     /**
@@ -115,7 +115,7 @@ class JsonLdValidatorBench
      */
     public function benchComplexFramedValidation()
     {
-        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/complex-framed.jsonld'));
+        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-framed.jsonld'));
     }
 
     /**
