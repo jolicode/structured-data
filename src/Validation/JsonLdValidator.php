@@ -128,7 +128,11 @@ class JsonLdValidator
             return $this->extractor->extractJsonLd($input);
         }
 
-        return $this->extractor->extractStructuredDataContent(file_get_contents($input));
+        if (is_file($input)) {
+            $input = file_get_contents($input);
+        }
+
+        return $this->extractor->extractStructuredDataContent($input);
     }
 
     private function createValidationMap(array $expandedJsonLd, ObjectStructure $parsedJsonLd): ValidationMap
