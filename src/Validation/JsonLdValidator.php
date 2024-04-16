@@ -19,6 +19,8 @@ use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
 use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
 use Jolicode\JsonLd\Parser\JsonLdParser;
 use Jolicode\JsonLd\Parser\Range;
+use Jolicode\JsonLd\Validation\Extraction\AbstractElement;
+use Jolicode\JsonLd\Validation\Extraction\JsonLdNodeExtractor;
 use Jolicode\JsonLd\Validation\Mapper\MappedError;
 use Jolicode\JsonLd\Validation\Mapper\MappedProperty;
 use Jolicode\JsonLd\Validation\Mapper\MappedType;
@@ -40,6 +42,7 @@ class JsonLdValidator
         private readonly ValidationMapper $validationMapper = new ValidationMapper(),
         private readonly JsonLdParser $parser = new JsonLdParser(),
         private readonly RegisteredValidatorsContainer $container = new RegisteredValidatorsContainer(),
+        private readonly JsonLdNodeExtractor $extractor = new JsonLdNodeExtractor(),
     ) {
     }
 
@@ -64,51 +67,68 @@ class JsonLdValidator
     }
 
     /**
-     * This method takes a raw JSON-LD string and will validate it.
-     * It will return a ValidationMap object, containing the validation errors found with their location in the JSON-LD document.
-     * The map also contains a user friendly tree of all the types found in the JSON-LD document, used for frontend and API purposes.
+     * This method is the main entrypoint of the library.
+     * It will make HTTP requests if needed, extract the JsonLd from the document, and validate it.
+     * It will merge all types found in the document (either in distinct <script> tags or in an array of types) in an array of ValidationMap.
      *
      * @return array<ValidationMap>
      */
-    public function validate(string $jsonLd, ?string $specificValidator = null): array
+    public function validate(string $input, ?string $specificValidator = null): array
     {
         $this->reset();
-
         $this->specificValidator = $specificValidator;
 
-        try {
-            /**
-             * @var ArrayStructure|ObjectStructure $parsedJsonLd
-             */
-            $parsedJsonLd = $this->parser->parse($jsonLd);
-        } catch (ParsingException $exception) {
-            return [$this->createMapWithInvalidDocument($exception->getMessage())];
-        }
-
+        $maps = [];
+        $elements = $this->getJsonLdContent($input);
         $expander = new Expander();
 
-        try {
-            $expansionResult = $expander->parseJson($jsonLd, encodeResult: false);
-        } catch (JsonLdException $exception) {
-            return [$this->createMapWithInvalidDocument($exception->getMessage())];
+        if (!\count($elements)) {
+            return [$this->createMapWithInvalidDocument('No JSON-LD elements were found in this document.', 0)];
         }
 
-        $maps = [];
-
-        if ($parsedJsonLd instanceof ArrayStructure) {
-            foreach ($parsedJsonLd->getValues() as $index => $jsonLdNode) {
+        foreach ($elements as $jsonLdElement) {
+            try {
                 /**
-                 * @var ObjectStructure $objectStructure
+                 * @var ArrayStructure|ObjectStructure $parsedJsonLd
                  */
-                $objectStructure = $jsonLdNode->content;
-
-                $maps[] = $this->createValidationMap([$expansionResult[$index]], $objectStructure);
+                $parsedJsonLd = $this->parser->parse($jsonLdElement);
+            } catch (ParsingException $exception) {
+                return [$this->createMapWithInvalidDocument($exception->getMessage(), $jsonLdElement->startLine)];
             }
-        } else {
-            $maps[] = $this->createValidationMap($expansionResult, $parsedJsonLd);
+
+            try {
+                $expansionResult = $expander->parseJson($jsonLdElement->content, encodeResult: false);
+            } catch (JsonLdException $exception) {
+                return [$this->createMapWithInvalidDocument($exception->getMessage(), $jsonLdElement->startLine)];
+            }
+
+            if ($parsedJsonLd instanceof ArrayStructure) {
+                foreach ($parsedJsonLd->getValues() as $index => $jsonLdNode) {
+                    /**
+                     * @var ObjectStructure $objectStructure
+                     */
+                    $objectStructure = $jsonLdNode->content;
+
+                    $maps[] = $this->createValidationMap([$expansionResult[$index]], $objectStructure);
+                }
+            } else {
+                $maps[] = $this->createValidationMap($expansionResult, $parsedJsonLd);
+            }
         }
 
         return $maps;
+    }
+
+    /**
+     * @return array<AbstractElement>
+     */
+    private function getJsonLdContent(string $input): array
+    {
+        if (IriResolver::isAbsoluteIri($input)) {
+            return $this->extractor->extractJsonLd($input);
+        }
+
+        return $this->extractor->extractStructuredDataContent(file_get_contents($input));
     }
 
     private function createValidationMap(array $expandedJsonLd, ObjectStructure $parsedJsonLd): ValidationMap
@@ -130,7 +150,7 @@ class JsonLdValidator
         $this->validationMapper->reset();
     }
 
-    private function createMapWithInvalidDocument(string $message): ValidationMap
+    private function createMapWithInvalidDocument(string $message, int $startLine): ValidationMap
     {
         $error = new MappedError(
             $message,
@@ -138,7 +158,7 @@ class JsonLdValidator
             null,
             MappedError::SEVERITY_ERROR,
             null,
-            'line 1, column 1',
+            sprintf('line %d', $startLine),
         );
 
         return new ValidationMap([$error], []);

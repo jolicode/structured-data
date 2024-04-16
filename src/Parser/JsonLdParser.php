@@ -12,6 +12,7 @@
 namespace Jolicode\JsonLd\Parser;
 
 use Jolicode\JsonLd\Parser\DataStructures\AbstractStructure;
+use Jolicode\JsonLd\Validation\Extraction\AbstractElement;
 use JsonStreamingParser\Parser;
 
 class JsonLdParser
@@ -19,13 +20,13 @@ class JsonLdParser
     /**
      * This method takes a json_encoded user input and builds a PHP representation of the JSON-LD document.
      */
-    public function parse(string $json): AbstractStructure
+    public function parse(AbstractElement $jsonLdElement): AbstractStructure
     {
-        $listener = new PointerListener();
+        $listener = new PointerListener(startLineNumber: $jsonLdElement->startLine);
 
         try {
             $stream = fopen('php://memory', 'r+');
-            fwrite($stream, $json);
+            fwrite($stream, $jsonLdElement->content);
             rewind($stream);
 
             $parser = new Parser($stream, $listener);

@@ -22,6 +22,9 @@ class JsonLdNodeExtractor
         $this->httpClient = $httpClient ?? HttpClient::create();
     }
 
+    /**
+     * @return AbstractElement[]
+     */
     public function extractJsonLd(string $url): array
     {
         $response = $this->httpClient->request('GET', $url, [
@@ -33,6 +36,9 @@ class JsonLdNodeExtractor
         return $this->extractStructuredDataContent($response->getContent());
     }
 
+    /**
+     * @return AbstractElement[]
+     */
     public function extractStructuredDataContent(string $body): array
     {
         $content = $this->extractJsonLdNodes($body);
@@ -40,20 +46,28 @@ class JsonLdNodeExtractor
         if (0 === \count($content)) {
             if (\in_array(substr(trim($body), 0, 1), ['[', '{'], true)) {
                 // assume it is a json string
-                $content = [$body];
+                $jsonLdElement = new JsonLdElement(0, $body);
+                $content = [$jsonLdElement];
             }
         }
 
         return $content;
     }
 
+    /**
+     * @return JsonLdElement[]
+     */
     private function extractJsonLdNodes(string $body): array
     {
         $content = [];
-        $document = JsonLdDOMDocument::fromString($body);
+        $document = new JsonLdDOMDocument($body);
+        $document = $document->fromString($body);
 
         foreach ($document->getItems() as $item) {
-            $content[] = $item->textContent;
+            if ($html = $item->textContent) {
+                $jsonLdElement = new JsonLdElement($document->getLine($item) - 1, $html);
+                $content[] = $jsonLdElement;
+            }
         }
 
         return $content;

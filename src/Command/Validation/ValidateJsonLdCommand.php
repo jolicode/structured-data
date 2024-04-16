@@ -11,11 +11,8 @@
 
 namespace Jolicode\JsonLd\Command\Validation;
 
-use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Validation\Extraction\JsonLdNodeExtractor;
 use Jolicode\JsonLd\Validation\JsonLdValidator;
 use Jolicode\JsonLd\Validation\Mapper\MappedError;
-use Jolicode\JsonLd\Validation\Mapper\ValidationMap;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -23,7 +20,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 
 #[AsCommand(
     name: 'validate',
@@ -32,7 +28,6 @@ use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 class ValidateJsonLdCommand extends Command
 {
     public function __construct(
-        private readonly JsonLdNodeExtractor $extractor = new JsonLdNodeExtractor(),
         private readonly JsonLdValidator $validator = new JsonLdValidator(),
     ) {
         parent::__construct();
@@ -55,7 +50,6 @@ class ValidateJsonLdCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        $errors = [];
 
         $specificValidator = $input->getOption('validator');
 
@@ -73,67 +67,35 @@ class ValidateJsonLdCommand extends Command
             }
         }
 
-        if (IriResolver::isAbsoluteIri($document = $input->getArgument('document'))) {
-            $jsonLd = $this->extractor->extractJsonLd($document);
+        $maps = $this->validator->validate($input->getArgument('document'), $specificValidator);
 
-            foreach ($jsonLd as $jsonLdItem) {
-                $errors = array_merge($errors, $this->validateJsonLdItem($jsonLdItem, $specificValidator));
-            }
-        } else {
-            $jsonLd = file_get_contents($document);
-
-            if (!$jsonLd) {
-                throw new FileNotFoundException(sprintf('The file "%s" does not exist.', $document));
-            }
-
-            $errors = $this->validateJsonLdItem($jsonLd, $specificValidator);
+        if (\count($maps)) {
+            $io->success(sprintf('%d types were found in the provided document.', \count($maps)));
         }
 
-        if ($errors) {
-            foreach ($errors as $error) {
-                if (MappedError::SEVERITY_ERROR === $error->severity) {
-                    $io->error($error->message);
-                    $hasErrors = true;
-                } else {
-                    $io->warning($error->message);
+        $hasErrors = false;
+
+        foreach ($maps as $map) {
+            if (!$map->isValid()) {
+                $hasErrors = true;
+
+                foreach ($map->getErrors() as $error) {
+                    if (MappedError::SEVERITY_ERROR === $error->severity) {
+                        $io->error($error->message);
+                    } else {
+                        $io->warning($error->message);
+                    }
+
+                    $this->writeInfoMessage($io, $error);
                 }
-
-                $this->writeInfoMessage($io, $error);
             }
-
-            if (isset($hasErrors)) {
-                $io->error('The provided JSON-LD document contains validation errors.');
-            } else {
-                $io->warning('The provided JSON-LD document contains validation warnings.');
-            }
-
-            return Command::SUCCESS;
         }
 
-        $io->success('The provided JSON-LD is valid.');
+        if (!$hasErrors) {
+            $io->success('Every structured data found in the provided document is valid.');
+        }
 
         return Command::SUCCESS;
-    }
-
-    /**
-     * @return MappedError[]
-     */
-    private function validateJsonLdItem(string $jsonLd, ?string $validator): array
-    {
-        $maps = $this->validator->validate($jsonLd, $validator);
-
-        $errors = array_filter(
-            $maps,
-            fn (ValidationMap $map) => !$map->isValid(),
-        );
-
-        $errors = array_reduce(
-            $errors,
-            fn (array $carry, ValidationMap $map) => array_merge($carry, $map->getErrors()),
-            [],
-        );
-
-        return $errors;
     }
 
     private function writeInfoMessage(SymfonyStyle $io, MappedError $error): void

@@ -32,21 +32,53 @@ class JsonLdDOMDocument extends \DOMDocument
 
     public function getItems(): array
     {
+        $items = [];
+        $reader = new \XMLReader();
+        $reader->XML($this->source, null, \LIBXML_BIGLINES | \LIBXML_HTML_NOIMPLIED | \LIBXML_HTML_NODEFDTD | \LIBXML_NOERROR | \LIBXML_NOWARNING);
+
+        while ($reader->read()) {
+            if (\XMLReader::ELEMENT === $reader->nodeType && 'script' === $reader->name && $reader->hasAttributes) {
+                if ($reader->moveToAttribute('type') && 'application/ld+json' === $reader->value) {
+                    $reader->moveToElement();
+                    $item = @$reader->expand();
+
+                    if ($item instanceof \DOMElement) {
+                        $items[] = $item;
+                    }
+                }
+            }
+        }
+
+        if (\count($items)) {
+            return $items;
+        }
+
         return iterator_to_array($this->xpath()->query('//script[@type=\'application/ld+json\']'));
     }
 
-    public static function fromString(string $source): self
+    public function fromString(string $source): self
     {
-        $document = new self();
+        $this->source = $source;
 
         $html5 = new HTML5([
             'disable_html_ns' => true,
-            'target_document' => $document,
+            'target_document' => $this,
         ]);
 
-        $document->source = $html5->loadHTML($source)->textContent;
+        $html5->loadHTML($source);
 
-        return $document;
+        return $this;
+    }
+
+    public function getLine(\DOMElement $item)
+    {
+        if ($item->getLineNo() > 0) {
+            return $item->getLineNo();
+        }
+        // attempt to get the line number from a raw DomDocument
+        $rawItem = $this->getRawItem($item->getNodePath());
+
+        return $rawItem ? $rawItem->getLineNo() : 0;
     }
 
     private function xpath(): \DOMXPath
@@ -56,5 +88,16 @@ class JsonLdDOMDocument extends \DOMDocument
         }
 
         return $this->xpath;
+    }
+
+    private function getRawItem(string $path)
+    {
+        if (null === $this->rawXpath) {
+            $rawDocument = new \DOMDocument();
+            @$rawDocument->loadHTML($this->source);
+            $this->rawXpath = new \DOMXPath($rawDocument);
+        }
+
+        return $this->rawXpath->query($path)[0];
     }
 }

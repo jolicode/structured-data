@@ -11,8 +11,6 @@
 
 namespace Jolicode\JsonLd\Tests\Validation;
 
-use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Validation\Extraction\JsonLdNodeExtractor;
 use Jolicode\JsonLd\Validation\JsonLdValidator;
 use Jolicode\JsonLd\Validation\Mapper\ValidationMap;
 use Jolicode\JsonLd\Validation\Validators\Google\GoogleValidator;
@@ -30,12 +28,10 @@ use Symfony\Component\Finder\Finder;
 class JsonLdValidatorTest extends TestCase
 {
     private JsonLdValidator $validator;
-    private JsonLdNodeExtractor $extractor;
 
     protected function setUp(): void
     {
         $this->validator = new JsonLdValidator();
-        $this->extractor = new JsonLdNodeExtractor();
     }
 
     /**
@@ -214,34 +210,30 @@ class JsonLdValidatorTest extends TestCase
             'isValid' => true,
             'messages' => [],
         ];
+        yield 'Test classic HTML document' => [
+            'document' => $path . '/html-classic.html',
+            'isValid' => true,
+            'messages' => [],
+        ];
+        yield 'Test HTML document with two json-ld script tags' => [
+            'document' => $path . '/html-double-tags.html',
+            'isValid' => true,
+            'messages' => [],
+        ];
+        yield 'Test HTML document with no script tag' => [
+            'document' => $path . '/html-no-tag.html',
+            'isValid' => false,
+            'messages' => [
+                'No JSON-LD elements were found in this document.',
+            ],
+        ];
     }
 
-    private function testValidate(string $filePath, bool $isValid, array $expectedMessages, string $validator): void
+    private function testValidate(string $filePath, bool $isValid, array $expectedMessages, string $specificValidator): void
     {
-        $maps = [];
-
-        if (IriResolver::isAbsoluteIri($filePath)) {
-            $jsonLd = $this->extractor->extractJsonLd($filePath);
-
-            foreach ($jsonLd as $jsonLdItem) {
-                $maps = array_merge($maps, $this->validator->validate($jsonLdItem, $validator));
-            }
-        } else {
-            $maps = $this->validator->validate(file_get_contents($filePath), $validator);
-        }
+        $maps = $this->validator->validate($filePath, $specificValidator);
 
         $containsErrors = false;
-
-        $foundErrorMessages = array_filter(
-            $maps,
-            fn (ValidationMap $map) => !$map->isValid(),
-        );
-
-        $foundErrorMessages = array_reduce(
-            $foundErrorMessages,
-            fn (array $carry, ValidationMap $map) => array_merge($carry, $map->getErrorMessages()),
-            [],
-        );
 
         foreach ($maps as $map) {
             if (!$map->isValid()) {
@@ -249,6 +241,17 @@ class JsonLdValidatorTest extends TestCase
             }
 
             if (!$isValid) {
+                $foundErrorMessages = array_filter(
+                    $maps,
+                    fn (ValidationMap $map) => !$map->isValid(),
+                );
+
+                $foundErrorMessages = array_reduce(
+                    $foundErrorMessages,
+                    fn (array $carry, ValidationMap $map) => array_merge($carry, $map->getErrorMessages()),
+                    [],
+                );
+
                 $this->assertSame($expectedMessages, $foundErrorMessages);
             }
         }
