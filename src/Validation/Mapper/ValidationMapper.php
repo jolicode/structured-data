@@ -206,7 +206,7 @@ class ValidationMapper
                 $parsedJsonLd = $this->rootParsedJsonLd->getGraphValue($identifier)->content;
             }
 
-            $type->addRange($parsedJsonLd->range);
+            $type->addValueRange($parsedJsonLd->range);
         }
 
         $properties = $type->properties;
@@ -231,8 +231,12 @@ class ValidationMapper
             return;
         }
 
-        $range = $parsedValue->range;
-        $property->addRange($range);
+        // A Value may be found on an array and have no key.
+        $parsedKey = $parsedValue instanceof Property ? $parsedValue->key : $parsedValue;
+        $parsedValue = $parsedValue->value;
+
+        $property->addKeyRange($parsedKey->range);
+        $property->addValueRange($parsedValue->range);
 
         if (IriResolver::isBlankNodeIdentifier($parsedValue->content)) {
             return;
@@ -241,7 +245,8 @@ class ValidationMapper
         if ($property->value instanceof MappedType) {
             // When a date is encountered during expansion, it converted to a type. This is not the case on the original JSON-LD, it is only a string.
             if (\is_string($parsedValue->content) && DateModel::LABEL === $property->value->type) {
-                $property->value->addRange($range);
+                $property->value->addKeyRange($parsedKey->range);
+                $property->value->addValueRange($parsedValue->range);
 
                 return;
             }
@@ -266,34 +271,24 @@ class ValidationMapper
      * Finding a property on an ObjectStructure is not that easy because its properties will follow the JSON-LD format the user provided.
      * So it may be in either of the compacted, expanded, flattened or framed formats. We have to check for every single one.
      */
-    private function retrieveParsedValue(MappedProperty $property, ObjectStructure $parsedJsonLd): Value|false
+    private function retrieveParsedValue(MappedProperty $property, ObjectStructure $parsedJsonLd): Property|Value|false
     {
         $shortPropertyKey = $property->key;
         $expandedPropertyKey = $this->appendSchemaOrgDomain($property->key);
 
         try {
             // Compacted
-            return $parsedJsonLd->getProperty($shortPropertyKey)->value;
+            return $parsedJsonLd->getProperty($shortPropertyKey);
         } catch (\InvalidArgumentException $exception) {
             try {
                 // Expanded
-                return $parsedJsonLd->getProperty($expandedPropertyKey)->value;
+                return $parsedJsonLd->getProperty($expandedPropertyKey);
             } catch (\InvalidArgumentException $exception) {
                 if ($reference = $this->findPropertyReference($property)) {
                     return $this->rootParsedJsonLd->getGraphValue($reference);
                 }
 
-                if ($this->isParsedFlattenedTypeReference($parsedJsonLd)) {
-                    return false;
-                }
-
-                try {
-                    // Flattened
-                    return $parsedJsonLd->getProperty($shortPropertyKey)->value;
-                } catch (\InvalidArgumentException $exception) {
-                    // Framed
-                    return $parsedJsonLd->getProperty($expandedPropertyKey)->value;
-                }
+                return false;
             }
         }
     }
