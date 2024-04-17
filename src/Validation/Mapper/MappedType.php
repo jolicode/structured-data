@@ -18,6 +18,7 @@ class MappedType
     public function __construct(
         public string|array|null $type = null,
         public ?string $name = null,
+        public bool $isValid = true,
         /**
          * @var array<MappedProperty>
          */
@@ -48,5 +49,10 @@ class MappedType
         if (!\in_array($range, $this->ranges, true)) {
             $this->ranges[] = $range;
         }
+    }
+
+    public function getProperty(string $name): ?MappedProperty
+    {
+        return $this->properties[$name] ?? null;
     }
 }

@@ -18,7 +18,7 @@ readonly class RegisteredValidatorsContainer
 {
     public function __construct(
         /**
-         * @var ValidatorInterface[]
+         * @var AbstractValidator[]
          */
         private readonly array $validators = [
             SchemaOrgValidator::class => new SchemaOrgValidator(),
@@ -27,13 +27,13 @@ readonly class RegisteredValidatorsContainer
     ) {
     }
 
-    public function getValidator(string $validator): ValidatorInterface
+    public function getValidator(string $validator): AbstractValidator
     {
         return $this->validators[$validator];
     }
 
     /**
-     * @return ValidatorInterface[]
+     * @return AbstractValidator[]
      */
     public function getValidators(): array
     {

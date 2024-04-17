@@ -15,9 +15,9 @@ use Jolicode\JsonLd\Algorithms\Http\IriResolver;
 use Jolicode\JsonLd\Validation\Mapper\MappedError;
 use Jolicode\JsonLd\Validation\Mapper\MappedProperty;
 use Jolicode\JsonLd\Validation\Mapper\MappedType;
-use Jolicode\JsonLd\Validation\Validators\ValidatorInterface;
+use Jolicode\JsonLd\Validation\Validators\AbstractValidator;
 
-class GoogleValidator implements ValidatorInterface
+class GoogleValidator extends AbstractValidator
 {
     public const VALIDATOR_NAME = 'Google';
 
@@ -35,7 +35,10 @@ class GoogleValidator implements ValidatorInterface
         $errors = [];
 
         if (null === $type->type) {
-            $errors[] = [MappedError::SEVERITY_WARNING, 'The @type entry of this type is missing. Google will ignore this type.'];
+            $message = 'The @type entry of this type is missing. Google will ignore this type.';
+            $target = $property ?: $type;
+
+            $errors[] = self::addMappedError($target, $message, $type, MappedError::SEVERITY_WARNING);
 
             return $errors;
         }
@@ -110,7 +113,7 @@ class GoogleValidator implements ValidatorInterface
 
             foreach ($foundProperty[$propertyKey] as $propertyType) {
                 if ($message = self::typeHasInvalidValue($propertyType, $property->value)) {
-                    $errors[] = [MappedError::SEVERITY_WARNING, $message];
+                    $errors[] = self::addMappedError($property, $message, $type, MappedError::SEVERITY_WARNING);
                 }
             }
         }
@@ -168,14 +171,14 @@ class GoogleValidator implements ValidatorInterface
 
                 unset($missingRequiredProperties['atLeastOneOf']);
 
-                $errors[] = [MappedError::SEVERITY_ERROR, $message];
+                $errors[] = self::addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR);
             }
         }
 
         foreach ($missingRequiredProperties as $label => $values) {
             $message = sprintf('Missing required property: "%s"', $label);
 
-            $errors[] = [MappedError::SEVERITY_ERROR, $message];
+            $errors[] = self::addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR);
         }
     }
 
@@ -197,7 +200,7 @@ class GoogleValidator implements ValidatorInterface
         foreach ($missingRecommendedProperties as $label => $values) {
             $message = sprintf('Missing recommended property: "%s"', $label);
 
-            $errors[] = [MappedError::SEVERITY_WARNING, $message];
+            $errors[] = self::addMappedError($type, $message, $type, MappedError::SEVERITY_WARNING);
         }
     }
 

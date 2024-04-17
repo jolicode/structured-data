@@ -18,7 +18,6 @@ use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
 use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
 use Jolicode\JsonLd\Parser\JsonLdParser;
-use Jolicode\JsonLd\Parser\Range;
 use Jolicode\JsonLd\Validation\Extraction\AbstractElement;
 use Jolicode\JsonLd\Validation\Extraction\JsonLdNodeExtractor;
 use Jolicode\JsonLd\Validation\Mapper\MappedError;
@@ -218,9 +217,7 @@ class JsonLdValidator
             $errors = $validator::validateType($type, $property, $this->typesStack);
 
             foreach ($errors as $error) {
-                [$severity, $message] = $error;
-
-                $this->addMappedError($type, $message, $type, $severity, $validator::VALIDATOR_NAME);
+                $this->validationMapper->getMap()->addError($error);
             }
         }
     }
@@ -239,9 +236,7 @@ class JsonLdValidator
             $errors = $validator::validateProperty($type, $property, $this->typesStack);
 
             foreach ($errors as $error) {
-                [$severity, $message] = $error;
-
-                $this->addMappedError($type, $message, $type, $severity, $validator::VALIDATOR_NAME);
+                $this->validationMapper->getMap()->addError($error);
             }
         }
     }
@@ -253,42 +248,5 @@ class JsonLdValidator
         return \array_key_exists(Keyword::ID->value, $type->properties)
             && IriResolver::isBlankNodeIdentifier($properties[Keyword::ID->value]->value)
             && 1 === \count($properties);
-    }
-
-    private function addMappedError(MappedType|MappedProperty $target, string $message, MappedType $typeWithError, string $severity, string $validatorName): void
-    {
-        $typeLabel = $typeWithError->type;
-
-        if (\is_array($typeLabel)) {
-            $typeLabel = sprintf(
-                '[%s]',
-                implode(', ', $typeLabel),
-            );
-        }
-
-        $range = array_map(
-            fn (Range $range) => sprintf(
-                'starting line %d, column %d and ending line %d, column %d',
-                $range->start->line,
-                $range->start->column,
-                $range->end->line,
-                $range->end->column,
-            ),
-            $target->getRanges(),
-        );
-
-        $range = implode(\PHP_EOL, $range);
-
-        $error = new MappedError(
-            $message,
-            Keyword::TYPE->value,
-            $typeLabel,
-            $severity,
-            $validatorName,
-            $range,
-        );
-
-        $target->errors[] = $error;
-        $this->validationMapper->getMap()->addError($error);
     }
 }
