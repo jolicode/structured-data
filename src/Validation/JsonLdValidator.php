@@ -186,6 +186,11 @@ class JsonLdValidator
             if ($property->value instanceof MappedType) {
                 $this->validateType($property->value, $property);
 
+                if (!$property->value->isValid) {
+                    $type->isValid = false;
+                    array_merge($type->errors, $property->value->errors);
+                }
+
                 continue;
             }
 

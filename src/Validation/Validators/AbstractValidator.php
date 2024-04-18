@@ -64,12 +64,14 @@ abstract class AbstractValidator
             Keyword::TYPE->value,
             $typeLabel,
             $severity,
-            self::VALIDATOR_NAME,
+            static::VALIDATOR_NAME,
             $range,
         );
 
         $target->errors[] = $error;
-        $typeWithError->isValid = false;
+        $target->isValid = false;
+        $target->parent->errors[] = $error;
+        $target->parent->isValid = false;
 
         return $error;
     }
