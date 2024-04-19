@@ -214,6 +214,23 @@ class JsonLdValidatorTest extends TestCase
             'isValid' => true,
             'messages' => [],
         ];
+        yield 'Test a lot of different errors on a compacted format' => [
+            'document' => $path . '/compacted-with-lots-of-errors.jsonld',
+            'isValid' => false,
+            'messages' => [
+                'The "Orgaanization" type is not a valid Schema.org type',
+                'The @type entry of this type was not set. We had to guess it from its properties',
+                'This property does not exist: badAgain',
+                'The property "contactType" does not exist on the type "Thing"',
+                'The property "email" does not exist on the type "Thing"',
+                'The property "telephone" does not exist on the type "Thing"',
+                'This property does not exist: contactaPoint',
+                'This property does not exist: creaator',
+                'The property "telephone" does not exist on the type "DataDownload"',
+                'This property does not exist: wrongOne',
+                'A typed value may only have one type, 2 provided',
+            ],
+        ];
         yield 'Test classic HTML document' => [
             'document' => $path . '/html-classic.html',
             'isValid' => true,

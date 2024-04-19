@@ -72,6 +72,12 @@ class SchemaOrgValidator extends AbstractValidator
             }
 
             if ($property && !IriResolver::isAbsoluteIri($property->key)) {
+                $propertyKey = self::stripActionSuffixes($property->key);
+
+                if (!class_exists(self::getPropertyFqcn($propertyKey))) {
+                    return $errors;
+                }
+
                 if (!self::propertyTypeIsValid($property->key, $typeFqcn)) {
                     $message = sprintf('The "%s" property does not accept the "%s" type as a value', $property->key, $typeFqcn::LABEL);
 
@@ -122,10 +128,10 @@ class SchemaOrgValidator extends AbstractValidator
         foreach ($typeFqcns as $typeFqcn) {
             if (class_exists($typeFqcn)) {
                 $typeExists = true;
-            }
 
-            if (property_exists($typeFqcn, $propertyKey) || str_contains($typeFqcn::LABEL, 'Role')) {
-                $propertyIsValid = true;
+                if (property_exists($typeFqcn, $propertyKey) || str_contains($typeFqcn::LABEL, 'Role')) {
+                    $propertyIsValid = true;
+                }
             }
         }
 
