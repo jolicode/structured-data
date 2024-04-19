@@ -26,7 +26,7 @@ class SchemaOrgValidator extends AbstractValidator
     {
         $errors = [];
         $typeLabel = $type->type;
-        $typeProperty = $type->getProperty(Keyword::TYPE->value);
+        $errorTarget = $type->getProperty(Keyword::TYPE->value) ?: $type;
 
         if (
             $property
@@ -34,37 +34,48 @@ class SchemaOrgValidator extends AbstractValidator
             && \count($typeLabel) > 1
         ) {
             // @see https://www.w3.org/TR/json-ld/#specifying-the-type
-            $message = sprintf('A typed value may only have one type, %d provided.', \count($typeLabel));
+            $message = sprintf('A typed value may only have one type, %d provided', \count($typeLabel));
 
-            $errors[] = self::addMappedError($typeProperty, $message, $type, MappedError::SEVERITY_ERROR);
+            $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_ERROR);
 
             return $errors;
         }
 
         if (null === $typeLabel) {
-            $typeLabel = self::guessTypeFromProperties($type->properties);
-            $message = 'The @type entry of this type was not set. We had to guess it from its properties.';
-            $target = $property ?: $type;
+            if (!$type->parent) {
+                $message = 'Missing a @type entry. The @type entry is mandatory for root types';
 
-            $errors[] = self::addMappedError($target, $message, $type, MappedError::SEVERITY_WARNING);
+                $errors[] = self::addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR);
+
+                return $errors;
+            }
+
+            $typeLabel = self::guessTypeFromProperties($type->properties);
+            $message = 'The @type entry of this type was not set. We had to guess it from its properties';
+
+            $errors[] = self::addMappedError($type, $message, $type, MappedError::SEVERITY_WARNING);
         }
 
         foreach ((array) $typeLabel as $label) {
+            if (!$label) {
+                continue;
+            }
+
             $typeFqcn = self::getTypeFqcn($label);
 
             if (!class_exists($typeFqcn)) {
-                $message = sprintf('The "%s" type is not a valid Schema.org type.', $label);
+                $message = sprintf('The "%s" type is not a valid Schema.org type', $label);
 
-                $errors[] = self::addMappedError($typeProperty, $message, $type, MappedError::SEVERITY_ERROR);
+                $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_ERROR);
 
                 continue;
             }
 
             if ($property && !IriResolver::isAbsoluteIri($property->key)) {
                 if (!self::propertyTypeIsValid($property->key, $typeFqcn)) {
-                    $message = sprintf('The "%s" property does not accept the "%s" type as a value.', $property->key, $typeFqcn::LABEL);
+                    $message = sprintf('The "%s" property does not accept the "%s" type as a value', $property->key, $typeFqcn::LABEL);
 
-                    $errors[] = self::addMappedError($typeProperty, $message, $type, MappedError::SEVERITY_ERROR);
+                    $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_ERROR);
                 }
             }
         }
@@ -76,6 +87,11 @@ class SchemaOrgValidator extends AbstractValidator
     {
         $errors = [];
         $typeLabel = $type->type;
+
+        if (!$typeLabel && !$type->parent) {
+            return $errors;
+        }
+
         $propertyKey = self::stripActionSuffixes($property->key);
 
         if (Keyword::tryFrom($propertyKey)) {
@@ -83,14 +99,14 @@ class SchemaOrgValidator extends AbstractValidator
         }
 
         if (!class_exists(self::getPropertyFqcn($propertyKey))) {
-            $message = sprintf('This property does not exist: %s.', $propertyKey);
+            $message = sprintf('This property does not exist: %s', $propertyKey);
 
             $errors[] = self::addMappedError($property, $message, $type, MappedError::SEVERITY_ERROR);
 
             return $errors;
         }
 
-        if (null === $typeLabel) {
+        if (!$typeLabel) {
             $typeLabel = self::guessTypeFromProperties($type->properties);
         }
 
@@ -101,18 +117,27 @@ class SchemaOrgValidator extends AbstractValidator
         }
 
         $propertyIsValid = false;
+        $typeExists = false;
 
         foreach ($typeFqcns as $typeFqcn) {
-            if (property_exists($typeFqcn, $propertyKey)) {
+            if (class_exists($typeFqcn)) {
+                $typeExists = true;
+            }
+
+            if (property_exists($typeFqcn, $propertyKey) || str_contains($typeFqcn::LABEL, 'Role')) {
                 $propertyIsValid = true;
             }
         }
 
+        if (!$typeExists) {
+            return $errors;
+        }
+
         if (!$propertyIsValid) {
             if (\is_string($typeLabel)) {
-                $message = sprintf('The property "%s" does not exist on the type "%s".', $propertyKey, $typeLabel);
+                $message = sprintf('The property "%s" does not exist on the type "%s"', $propertyKey, $typeLabel);
             } else {
-                $message = sprintf('The property "%s" does not exist on any of these types: "%s".', $propertyKey, implode(', ', $typeLabel));
+                $message = sprintf('The property "%s" does not exist on any of these types: "%s"', $propertyKey, implode(', ', $typeLabel));
             }
 
             $errors[] = self::addMappedError($property, $message, $type, MappedError::SEVERITY_ERROR);
@@ -134,8 +159,13 @@ class SchemaOrgValidator extends AbstractValidator
             }
 
             $propertyKey = self::stripActionSuffixes($property->key);
+            $typeFqcn = self::getPropertyFqcn($propertyKey);
 
-            $types = self::getPropertyFqcn($propertyKey)::TYPES;
+            if (!class_exists($typeFqcn)) {
+                continue;
+            }
+
+            $types = $typeFqcn::VALUES;
 
             foreach ($types as $shortName => $fqcn) {
                 $possibleTypes[$fqcn] = $shortName;
@@ -213,7 +243,13 @@ class SchemaOrgValidator extends AbstractValidator
             return true;
         }
 
-        $propertyValues = self::getPropertyFqcn($propertyLabel)::VALUES;
+        $propertyFqcn = self::getPropertyFqcn($propertyLabel);
+
+        if (!class_exists($propertyFqcn)) {
+            return false;
+        }
+
+        $propertyValues = $propertyFqcn::VALUES;
 
         if (!\in_array($typeFqcn, $propertyValues, true)) {
             foreach ($typeFqcn::PARENTS as $parentType) {

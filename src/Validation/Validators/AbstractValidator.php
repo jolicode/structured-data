@@ -70,8 +70,19 @@ abstract class AbstractValidator
 
         $target->errors[] = $error;
         $target->isValid = false;
-        $target->parent->errors[] = $error;
-        $target->parent->isValid = false;
+
+        $parentType = $target instanceof MappedProperty ? $target->type : $target->parent;
+
+        while ($parentType) {
+            $parentType->isValid = false;
+
+            // We add all the errors to the base type so it is possible to count them directly without iterating over all its subtypes and properties.
+            if (!$parentType->parent) {
+                $parentType->errors[] = $error;
+            }
+
+            $parentType = $parentType->parent;
+        }
 
         return $error;
     }

@@ -82,7 +82,7 @@ class JsonLdValidator
         $expander = new Expander();
 
         if (!\count($elements)) {
-            return [$this->createMapWithInvalidDocument('No JSON-LD elements were found in this document.', 0)];
+            return [$this->createMapWithInvalidDocument('No JSON-LD elements were found in this document', 0)];
         }
 
         foreach ($elements as $jsonLdElement) {
@@ -188,10 +188,7 @@ class JsonLdValidator
 
                 if (!$property->value->isValid) {
                     $type->isValid = false;
-                    array_merge($type->errors, $property->value->errors);
                 }
-
-                continue;
             }
 
             if (\is_array($property->value)) {
@@ -200,8 +197,6 @@ class JsonLdValidator
                         $this->validateType($multipleTypesEntry, $property);
                     }
                 }
-
-                continue;
             }
 
             $this->callValidatorsForProperty($property, $type);

@@ -130,34 +130,38 @@ class JsonLdValidatorTest extends TestCase
         yield 'Test bad attribute is invalid' => [
             'document' => $path . '/bad-attribute.jsonld',
             'isValid' => false,
-            'messages' => ['This property does not exist: imABadAttribute.'],
+            'messages' => ['This property does not exist: imABadAttribute'],
         ];
         yield 'Test nested bad attribute is invalid' => [
             'document' => $path . '/bad-attribute-nested-1.jsonld',
             'isValid' => false,
-            'messages' => ['This property does not exist: imABadAttribute.'],
+            'messages' => ['This property does not exist: imABadAttribute'],
         ];
         yield 'Test nested bad attribute is invalid bis' => [
             'document' => $path . '/bad-attribute-nested-2.jsonld',
             'isValid' => false,
             'messages' => [
-                'This property does not exist: badAgain.',
-                'The property "telephone" does not exist on the type "DataDownload".',
-                'This property does not exist: wrongOne.',
+                'This property does not exist: badAgain',
+                'The property "telephone" does not exist on the type "DataDownload"',
+                'This property does not exist: wrongOne',
             ],
         ];
-        yield 'Test missing type entry is invalid' => [
-            'document' => $path . '/no-type.jsonld',
+        yield 'Test missing main type entry is invalid' => [
+            'document' => $path . '/no-type-main.jsonld',
             'isValid' => false,
             'messages' => [
-                'The @type entry of this type was not set. We had to guess it from its properties.',
+                'Missing a @type entry. The @type entry is mandatory for root types',
             ],
         ];
         yield 'Test missing typed value type entry generates warning' => [
             'document' => $path . '/no-type-nested.jsonld',
             'isValid' => false,
             'messages' => [
-                'The @type entry of this type was not set. We had to guess it from its properties.',
+                'The @type entry of this type was not set. We had to guess it from its properties',
+                'The "birthPlace" property does not accept the "Thing" type as a value',
+                'The property "address" does not exist on the type "Thing"',
+                'The property "faxNumber" does not exist on the type "Thing"',
+                'The property "slogan" does not exist on the type "Thing"',
             ],
         ];
         yield 'Test parent attributes are working' => [
@@ -168,7 +172,7 @@ class JsonLdValidatorTest extends TestCase
         yield 'Test wrong parent attribute' => [
             'document' => $path . '/wrong-parent-attribute.jsonld',
             'isValid' => false,
-            'messages' => ['The "makesOffer" property does not accept the "Intangible" type as a value.'],
+            'messages' => ['The "makesOffer" property does not accept the "Intangible" type as a value'],
         ];
         yield 'Test multiple types on node object is valid' => [
             'document' => $path . '/multiple-types-1.jsonld',
@@ -178,12 +182,12 @@ class JsonLdValidatorTest extends TestCase
         yield 'Test multiple types on typed value is invalid' => [
             'document' => $path . '/multiple-types-2.jsonld',
             'isValid' => false,
-            'messages' => ['A typed value may only have one type, 2 provided.'],
+            'messages' => ['A typed value may only have one type, 2 provided'],
         ];
         yield 'Test invalid multiple type work properly' => [
             'document' => $path . '/multiple-types-invalid.jsonld',
             'isValid' => false,
-            'messages' => ['The property "acrissCode" does not exist on any of these types: "Person, Organization".'],
+            'messages' => ['The property "acrissCode" does not exist on any of these types: "Person, Organization"'],
         ];
         yield 'Test invalid JSON document' => [
             'document' => $path . '/invalid-json.jsonld',
@@ -224,7 +228,7 @@ class JsonLdValidatorTest extends TestCase
             'document' => $path . '/html-no-tag.html',
             'isValid' => false,
             'messages' => [
-                'No JSON-LD elements were found in this document.',
+                'No JSON-LD elements were found in this document',
             ],
         ];
     }
@@ -253,6 +257,14 @@ class JsonLdValidatorTest extends TestCase
                 );
 
                 $this->assertSame($expectedMessages, $foundErrorMessages);
+            }
+        }
+
+        if ($isValid === $containsErrors) {
+            foreach ($maps as $map) {
+                if ($mess = $map->getErrorMessages()) {
+                    dump($mess);
+                }
             }
         }
 

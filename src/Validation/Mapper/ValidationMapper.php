@@ -135,16 +135,16 @@ class ValidationMapper
             if (null !== $value) {
                 $propertyKey = $this->removeSchemaOrgDomain($label);
 
-                $type->properties[$propertyKey] = $this->mapProperty($value, $propertyKey);
+                $type->properties[$propertyKey] = $this->mapProperty($value, $propertyKey, $type);
             }
         }
 
         return $type;
     }
 
-    private function mapProperty(mixed $value, string $key): MappedProperty
+    private function mapProperty(mixed $value, string $key, MappedType $type): MappedProperty
     {
-        $property = new MappedProperty($key);
+        $property = new MappedProperty($key, $type);
 
         if (\is_string($value)) {
             $property->value = $value;
@@ -159,6 +159,7 @@ class ValidationMapper
 
             if ($this->isTypeProperty($valueEntry)) {
                 $valueEntry = $this->mapType($valueEntry);
+                $valueEntry->parent = $property->type;
             }
 
             if ($this->isValueOrId($valueEntry)) {
