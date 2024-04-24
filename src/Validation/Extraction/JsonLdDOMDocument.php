@@ -32,27 +32,6 @@ class JsonLdDOMDocument extends \DOMDocument
 
     public function getItems(): array
     {
-        $items = [];
-        $reader = new \XMLReader();
-        $reader->XML($this->source, null, \LIBXML_BIGLINES | \LIBXML_HTML_NOIMPLIED | \LIBXML_HTML_NODEFDTD | \LIBXML_NOERROR | \LIBXML_NOWARNING);
-
-        while ($reader->read()) {
-            if (\XMLReader::ELEMENT === $reader->nodeType && 'script' === $reader->name && $reader->hasAttributes) {
-                if ($reader->moveToAttribute('type') && 'application/ld+json' === $reader->value) {
-                    $reader->moveToElement();
-                    $item = @$reader->expand();
-
-                    if ($item instanceof \DOMElement) {
-                        $items[] = $item;
-                    }
-                }
-            }
-        }
-
-        if (\count($items)) {
-            return $items;
-        }
-
         return iterator_to_array($this->xpath()->query('//script[@type=\'application/ld+json\']'));
     }
 
