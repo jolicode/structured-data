@@ -72,4 +72,15 @@ class MappedType
     {
         return $this->properties[$name] ?? null;
     }
+
+    /**
+     * @return string[]
+     */
+    public function getErrorMessages(): array
+    {
+        return array_map(
+            fn (MappedError $error) => $error->message,
+            $this->errors,
+        );
+    }
 }

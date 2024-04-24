@@ -12,7 +12,7 @@
 namespace Jolicode\JsonLd\Tests\Validation;
 
 use Jolicode\JsonLd\Validation\JsonLdValidator;
-use Jolicode\JsonLd\Validation\Mapper\ValidationMap;
+use Jolicode\JsonLd\Validation\Mapper\MappedType;
 use Jolicode\JsonLd\Validation\Validators\Google\GoogleValidator;
 use Jolicode\JsonLd\Validation\Validators\SchemaOrg\SchemaOrgValidator;
 use PHPUnit\Framework\TestCase;
@@ -252,24 +252,24 @@ class JsonLdValidatorTest extends TestCase
 
     private function testValidate(string $filePath, bool $isValid, array $expectedMessages, string $specificValidator): void
     {
-        $maps = $this->validator->validate($filePath, $specificValidator);
+        $types = $this->validator->validate($filePath, $specificValidator);
 
         $containsErrors = false;
 
-        foreach ($maps as $map) {
-            if (!$map->isValid()) {
+        foreach ($types as $type) {
+            if ($type->errors) {
                 $containsErrors = true;
             }
 
             if (!$isValid) {
                 $foundErrorMessages = array_filter(
-                    $maps,
-                    fn (ValidationMap $map) => !$map->isValid(),
+                    $types,
+                    fn (MappedType $type) => (bool) $type->errors,
                 );
 
                 $foundErrorMessages = array_reduce(
                     $foundErrorMessages,
-                    fn (array $carry, ValidationMap $map) => array_merge($carry, $map->getErrorMessages()),
+                    fn (array $carry, MappedType $type) => array_merge($carry, $type->getErrorMessages()),
                     [],
                 );
 

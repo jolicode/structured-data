@@ -67,19 +67,19 @@ class ValidateJsonLdCommand extends Command
             }
         }
 
-        $maps = $this->validator->validate($input->getArgument('document'), $specificValidator);
+        $types = $this->validator->validate($input->getArgument('document'), $specificValidator);
 
-        if (\count($maps)) {
-            $io->success(sprintf('%d types were found in the provided document.', \count($maps)));
+        if (\count($types)) {
+            $io->success(sprintf('%d types were found in the provided document.', \count($types)));
         }
 
         $hasErrors = false;
 
-        foreach ($maps as $map) {
-            if (!$map->isValid()) {
+        foreach ($types as $type) {
+            if ($type->errors) {
                 $hasErrors = true;
 
-                foreach ($map->getErrors() as $error) {
+                foreach ($type->errors as $error) {
                     if (MappedError::SEVERITY_ERROR === $error->severity) {
                         $io->error($error->message);
                     } else {

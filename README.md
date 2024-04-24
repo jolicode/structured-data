@@ -62,7 +62,7 @@ If you want to use some special context options, you may instantiate a ContextPr
 
 #### Validation
 To validate a JSON-LD file, instantiate a JsonLdValidator and call the `validate` method with the JSON-LD input, which must be a valid json string.
-This method will return one ValidationMap for each detected root type. These maps expose 2 getters :
+This method will return one MappedType for each detected root type. These maps expose 2 getters :
 - `isValid` : Will return true if no validation errors were detected, false otherwise.
 - `getTypes` : Will return a PHP representation of the provided JSON-LD document with all errors assigned to their properties and the line and column where they are located in the original JSON document.
 - `getErrors` : returns all the errors found on the document. See the `MappedError` class for more informations about the errors.

@@ -29,7 +29,10 @@ class ValidationMapper
          * @var array<string,MappedType>
          */
         public array $flattenedTypeReferences = [],
-        private ValidationMap $map = new ValidationMap(),
+        /**
+         * @var array<MappedType>
+         */
+        private array $mappedTypes = [],
         /**
          * @var array<MappedError>
          */
@@ -44,7 +47,7 @@ class ValidationMapper
 
     public function reset(): void
     {
-        $this->map = new ValidationMap();
+        $this->mappedTypes = [];
         $this->mappedErrors = [];
         $this->flattenedTypeReferences = [];
         $this->propertiesWithReferences = [];
@@ -60,9 +63,9 @@ class ValidationMapper
     }
 
     /**
-     * This method takes an expanded JsonLd input and will transform it into an easier to manipulate, more user friendly object.
+     * @return array<MappedType>
      */
-    public function map(array $expandedJsonLd, ObjectStructure $parsedJsonLd): ValidationMap
+    public function map(array $expandedJsonLd, ObjectStructure $parsedJsonLd): array
     {
         $this->rootParsedJsonLd = $parsedJsonLd;
 
@@ -74,24 +77,19 @@ class ValidationMapper
                 || (!$this->isTypeReference($expandedType)
                     && '_:b0' === $expandedType->{Keyword::ID->value})
             ) {
-                $this->map->addType($mappedType);
+                $this->mappedTypes[] = $mappedType;
             }
         }
 
         $this->mapFlattenedTypes();
 
-        foreach ($this->map->getTypes() as $type) {
+        foreach ($this->mappedTypes as $type) {
             $this->addRangesToType($type, $parsedJsonLd);
         }
 
         unset($this->propertiesWithReferences);
 
-        return $this->map;
-    }
-
-    public function getMap(): ValidationMap
-    {
-        return $this->map;
+        return $this->mappedTypes;
     }
 
     /**
@@ -201,7 +199,7 @@ class ValidationMapper
                 } else {
                     // @graph is supposed to only be used with the flattened and the framed algorithms, which all use type references.
                     // Turns out, other formats may aswell! In those cases, the real type may be safely retrieved from the map directly. There are no references.
-                    $graphIndex = array_search($type, $this->map->getTypes(), \true);
+                    $graphIndex = array_search($type, $this->mappedTypes, \true);
                     $parsedJsonLd = $parsedJsonLd->getGraphType($graphIndex);
                 }
             }
