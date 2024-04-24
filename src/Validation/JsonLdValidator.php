@@ -110,7 +110,7 @@ class JsonLdValidator
                     $types = [...$types, ...$this->validateJsonLdElement([$expansionResult[$index]], $objectStructure)];
                 }
             } else {
-                $types = $this->validateJsonLdElement($expansionResult, $parsedJsonLd);
+                $types = [...$types, ...$this->validateJsonLdElement($expansionResult, $parsedJsonLd)];
             }
         }
 
