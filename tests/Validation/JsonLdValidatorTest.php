@@ -157,7 +157,7 @@ class JsonLdValidatorTest extends TestCase
             'document' => $path . '/no-type-nested.jsonld',
             'isValid' => false,
             'messages' => [
-                'The @type entry of this type was not set. We had to guess it from its properties',
+                'The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing',
                 'The "birthPlace" property does not accept the "Thing" type as a value',
                 'The property "address" does not exist on the type "Thing"',
                 'The property "faxNumber" does not exist on the type "Thing"',
@@ -219,7 +219,7 @@ class JsonLdValidatorTest extends TestCase
             'isValid' => false,
             'messages' => [
                 'The "Orgaanization" type is not a valid Schema.org type',
-                'The @type entry of this type was not set. We had to guess it from its properties',
+                'The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing',
                 'This property does not exist: badAgain',
                 'The property "contactType" does not exist on the type "Thing"',
                 'The property "email" does not exist on the type "Thing"',
@@ -274,14 +274,6 @@ class JsonLdValidatorTest extends TestCase
                 );
 
                 $this->assertSame($expectedMessages, $foundErrorMessages);
-            }
-        }
-
-        if ($isValid === $containsErrors) {
-            foreach ($maps as $map) {
-                if ($mess = $map->getErrorMessages()) {
-                    dump($mess);
-                }
             }
         }
 

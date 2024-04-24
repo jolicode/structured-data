@@ -19,6 +19,7 @@ class MappedType
         public string|array|null $type = null,
         public ?string $name = null,
         public bool $isValid = true,
+        public ?string $errorSeverity = null,
         /**
          * @var array<MappedProperty>
          */

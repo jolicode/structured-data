@@ -45,15 +45,15 @@ class SchemaOrgValidator extends AbstractValidator
             if (!$type->parent) {
                 $message = 'Missing a @type entry. The @type entry is mandatory for root types';
 
-                $errors[] = self::addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR);
+                $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_ERROR);
 
                 return $errors;
             }
 
             $typeLabel = self::guessTypeFromProperties($type->properties);
-            $message = 'The @type entry of this type was not set. We had to guess it from its properties';
+            $message = 'The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ' . $typeLabel;
 
-            $errors[] = self::addMappedError($type, $message, $type, MappedError::SEVERITY_WARNING);
+            $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_WARNING);
         }
 
         foreach ((array) $typeLabel as $label) {

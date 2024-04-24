@@ -166,6 +166,10 @@ class ValidationMapper
                 $valueEntry = $this->retrieveValueOrId($valueEntry);
             }
 
+            if (\is_string($valueEntry) && Keyword::TYPE->value === $key) {
+                $valueEntry = $this->removeSchemaOrgDomain($valueEntry);
+            }
+
             $property->value[] = $valueEntry;
         }
 
@@ -400,7 +404,7 @@ class ValidationMapper
      * Both values will not be present at the same time.
      * Value is used for regular values, while ID is used for URIs.
      */
-    private function retrieveValueOrId(\stdClass $basicProperty): string
+    private function retrieveValueOrId(\stdClass $basicProperty): string|bool
     {
         if (property_exists($basicProperty, Keyword::VALUE->value)) {
             return $basicProperty->{Keyword::VALUE->value};

@@ -188,6 +188,7 @@ class JsonLdValidator
 
                 if (!$property->value->isValid) {
                     $type->isValid = false;
+                    $property->isValid = false;
                 }
             }
 
@@ -195,6 +196,11 @@ class JsonLdValidator
                 foreach ($property->value as $multipleTypesEntry) {
                     if ($multipleTypesEntry instanceof MappedType) {
                         $this->validateType($multipleTypesEntry, $property);
+
+                        if (!$multipleTypesEntry->isValid) {
+                            $type->isValid = false;
+                            $property->isValid = false;
+                        }
                     }
                 }
             }

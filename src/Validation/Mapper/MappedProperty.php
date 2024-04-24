@@ -20,6 +20,7 @@ class MappedProperty
         public ?MappedType $type = null,
         public mixed $value = [],
         public bool $isValid = true,
+        public ?string $errorSeverity = null,
         /**
          * @var array<MappedError>
          */
