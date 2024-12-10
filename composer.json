@@ -18,30 +18,29 @@
     "authors": [
         {
             "name": "Hédic Guibert",
-            "email": "guiberthedic@gmail.com"
+            "email": "hguibert@jolicode.com"
+        },
+        {
+            "name": "Xavier Lacot",
+            "email": "xlacot@jolicode.com"
         }
     ],
     "require-dev": {
-        "phpunit/phpunit": "^9",
-        "symfony/var-dumper": "^6.3|7.0.*",
-        "friendsofphp/php-cs-fixer": "^3.17",
-        "phpstan/phpstan": "^1.9",
-        "phpbench/phpbench": "^1.2",
-        "kubawerlos/php-cs-fixer-custom-fixers": "^3.21"
+        "symfony/var-dumper": "^6.3|^7.0"
     },
     "require": {
         "php": ">=8.2",
-        "symfony/console": "^6.3|7.0.*",
-        "symfony/finder": "^6.3|7.0.*",
-        "symfony/filesystem": "^6.3|7.0.*",
-        "symfony/http-client": "^6.3|7.0.*",
+        "symfony/console": "^6.3|^7.0",
+        "symfony/finder": "^6.3|^7.0",
+        "symfony/filesystem": "^6.3|^7.0",
+        "symfony/http-client": "^6.3|^7.0",
         "league/uri": "^6.8|^7.4",
-        "symfony/http-kernel": "^6.3|7.0.*",
+        "symfony/http-kernel": "^6.3|^7.0",
         "monolog/monolog": "^3.3",
         "nikic/php-parser": "^4.15|^5.0",
         "salsify/json-streaming-parser": "^8.3",
-        "symfony/dom-crawler": "^6.3|7.0.*",
+        "symfony/dom-crawler": "^6.3|^7.0",
         "symfony/translation-contracts": "^3.3",
-        "symfony/css-selector": "^6.3|7.0.*"
+        "symfony/css-selector": "^6.3|^7.0"
     }
 }
