@@ -166,7 +166,7 @@ class JsonLdValidator
             null,
             MappedError::SEVERITY_ERROR,
             null,
-            sprintf('line %d', $startLine),
+            \sprintf('line %d', $startLine),
         );
 
         return [new MappedType(

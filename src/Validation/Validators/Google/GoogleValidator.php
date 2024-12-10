@@ -124,7 +124,7 @@ class GoogleValidator extends AbstractValidator
     private static function validateMultipleTypesEntry(MappedType $type, ?MappedProperty $property, array $typesStack): array
     {
         $className = self::concatenateTypeLabels($type);
-        $fqcn = sprintf(
+        $fqcn = \sprintf(
             '%s\\%s\\%s',
             self::BASE_NAMESPACE,
             $className,
@@ -164,7 +164,7 @@ class GoogleValidator extends AbstractValidator
 
         if (\array_key_exists('atLeastOneOf', $missingRequiredProperties)) {
             if (!\count(array_intersect_key($missingRequiredProperties['atLeastOneOf'], $type->properties))) {
-                $message = sprintf(
+                $message = \sprintf(
                     'Missing required property: at least one of the following properties must be present "%s"',
                     implode(', ', array_keys($missingRequiredProperties['atLeastOneOf'])),
                 );
@@ -176,7 +176,7 @@ class GoogleValidator extends AbstractValidator
         }
 
         foreach ($missingRequiredProperties as $label => $values) {
-            $message = sprintf('Missing required property: "%s"', $label);
+            $message = \sprintf('Missing required property: "%s"', $label);
 
             $errors[] = self::addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR);
         }
@@ -198,7 +198,7 @@ class GoogleValidator extends AbstractValidator
         }
 
         foreach ($missingRecommendedProperties as $label => $values) {
-            $message = sprintf('Missing recommended property: "%s"', $label);
+            $message = \sprintf('Missing recommended property: "%s"', $label);
 
             $errors[] = self::addMappedError($type, $message, $type, MappedError::SEVERITY_WARNING);
         }
@@ -227,7 +227,7 @@ class GoogleValidator extends AbstractValidator
     private static function hasIncorrectDate(string $givenValue): false|string
     {
         if (false === strtotime($givenValue)) {
-            return sprintf('Date/time format is incompatible with the ISO 8601 standard. "%s" given', $givenValue);
+            return \sprintf('Date/time format is incompatible with the ISO 8601 standard. "%s" given', $givenValue);
         }
 
         return false;
@@ -235,7 +235,7 @@ class GoogleValidator extends AbstractValidator
 
     private static function hasIncorrectUrl(string $givenValue): false|string
     {
-        return IriResolver::isAbsoluteIri($givenValue) ? false : sprintf('Incorrect URL: "%s" given.', $givenValue);
+        return IriResolver::isAbsoluteIri($givenValue) ? false : \sprintf('Incorrect URL: "%s" given.', $givenValue);
     }
 
     private static function buildFqcn(string $typeName, array $parents = []): string
@@ -247,7 +247,7 @@ class GoogleValidator extends AbstractValidator
         if (\count($parents)) {
             array_unshift($parents, self::$rootType);
         } else {
-            $fqcn .= sprintf('\\%s', $typeName);
+            $fqcn .= \sprintf('\\%s', $typeName);
         }
 
         foreach ($parents as $type) {
@@ -257,10 +257,10 @@ class GoogleValidator extends AbstractValidator
                 $type = $type[0];
             }
 
-            $fqcn .= sprintf('\\%s', ucfirst($type));
+            $fqcn .= \sprintf('\\%s', ucfirst($type));
         }
 
-        $fqcn .= sprintf('\\%s', $typeName);
+        $fqcn .= \sprintf('\\%s', $typeName);
 
         return $fqcn;
     }

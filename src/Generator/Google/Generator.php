@@ -53,8 +53,8 @@ class Generator implements GeneratorInterface
         foreach ($this->types as $type) {
             $className = $this->defineClassName($type);
 
-            $this->currentNamespace = sprintf('%s\\%s', self::NAMESPACE_BASE, $className);
-            $this->currentFilename = sprintf(
+            $this->currentNamespace = \sprintf('%s\\%s', self::NAMESPACE_BASE, $className);
+            $this->currentFilename = \sprintf(
                 '%s/%s/%s',
                 Extractor::GENERATED_DIR,
                 $className,
@@ -196,8 +196,8 @@ class Generator implements GeneratorInterface
                     $propertyName = ucfirst($property->name);
                     $className = $this->defineClassName($type);
 
-                    $this->currentNamespace = sprintf('%s\\%s', $previousNamespace, $propertyName);
-                    $this->currentFilename = sprintf('%s/%s/%s', $newFilename, $propertyName, $className);
+                    $this->currentNamespace = \sprintf('%s\\%s', $previousNamespace, $propertyName);
+                    $this->currentFilename = \sprintf('%s/%s/%s', $newFilename, $propertyName, $className);
 
                     $this->writeFullType($type, $className);
 
@@ -220,9 +220,9 @@ class Generator implements GeneratorInterface
         foreach ($type->subTypes as $subType) {
             $className = $this->defineClassName($subType);
 
-            $newNamespace = sprintf('%s\\Subtypes', $previousNamespace);
+            $newNamespace = \sprintf('%s\\Subtypes', $previousNamespace);
             $newFilename = $this->removeFilenameParentName($previousFilename);
-            $newFilename = sprintf('%s/Subtypes/%s', $newFilename, $className);
+            $newFilename = \sprintf('%s/Subtypes/%s', $newFilename, $className);
 
             $this->currentNamespace = $newNamespace;
             $this->currentFilename = $newFilename;
@@ -246,9 +246,9 @@ class Generator implements GeneratorInterface
         $previousNamespace = $this->currentNamespace;
         $previousFilename = $this->currentFilename;
 
-        $newNamespace = sprintf('%s\\Carousel', $previousNamespace);
+        $newNamespace = \sprintf('%s\\Carousel', $previousNamespace);
         $newFilename = $this->removeFilenameParentName($previousFilename);
-        $newFilename = sprintf('%s/Carousel/Carousel', $newFilename);
+        $newFilename = \sprintf('%s/Carousel/Carousel', $newFilename);
 
         $this->currentNamespace = $newNamespace;
         $this->currentFilename = $newFilename;
@@ -259,7 +259,7 @@ class Generator implements GeneratorInterface
         $this->currentFilename = $previousFilename;
 
         $class->addStmt(
-            $this->factory->classConst('CAROUSEL', sprintf('%s\\Carousel', $newNamespace))
+            $this->factory->classConst('CAROUSEL', \sprintf('%s\\Carousel', $newNamespace))
                 ->makePublic(),
         );
     }

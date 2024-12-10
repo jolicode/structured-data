@@ -40,7 +40,7 @@ class ValidateJsonLdCommand extends Command
             'validator',
             null,
             InputOption::VALUE_REQUIRED,
-            sprintf(
+            \sprintf(
                 'The validator to use. Currently supported validators are : %s (default: all)',
                 implode(', ', $this->validator->getSupportedValidatorsSimpleNames()),
             ),
@@ -57,7 +57,7 @@ class ValidateJsonLdCommand extends Command
             $specificValidator = $this->validator->getValidatorClassName($specificValidator);
 
             if (!$specificValidator) {
-                $io->error(sprintf(
+                $io->error(\sprintf(
                     'The required validator "%s" does not exist. Supported validators are : %s',
                     $specificValidator,
                     implode(', ', $this->validator->getSupportedValidatorsSimpleNames()),
@@ -70,7 +70,7 @@ class ValidateJsonLdCommand extends Command
         $types = $this->validator->validate($input->getArgument('document'), $specificValidator);
 
         if (\count($types)) {
-            $io->success(sprintf('%d types were found in the provided document.', \count($types)));
+            $io->success(\sprintf('%d types were found in the provided document.', \count($types)));
         }
 
         $hasErrors = false;
@@ -103,10 +103,10 @@ class ValidateJsonLdCommand extends Command
         if (!$error->type) {
             $typeText = 'an unknown type (with no @type property)';
         } else {
-            $typeText = sprintf('the type "%s"', $error->type);
+            $typeText = \sprintf('the type "%s"', $error->type);
         }
 
-        $io->info(sprintf(
+        $io->info(\sprintf(
             'Raised by the %s validator for %s on property "%s". Found on the following lines: %s',
             $error->validatorName,
             $typeText,

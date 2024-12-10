@@ -111,7 +111,7 @@ class ContextProcesser
                 && property_exists($document, 'statusCode')
                 && property_exists($document, 'content')
             ) {
-                throw new ContextProcessingException(sprintf('loading remote context failed. Response status code is : %d. Response content is : %s', $document->{'statusCode'}, $document->{'content'}));
+                throw new ContextProcessingException(\sprintf('loading remote context failed. Response status code is : %d. Response content is : %s', $document->{'statusCode'}, $document->{'content'}));
             }
 
             $loadedContext = $document->{Keyword::CONTEXT->value};

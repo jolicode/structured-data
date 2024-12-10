@@ -40,7 +40,7 @@ class GenerateCommand extends Command
     {
         if ($source = $input->getOption('source')) {
             if (!\in_array($source, ['schemaorg', 'google'], true)) {
-                throw new \InvalidArgumentException(sprintf('Invalid source "%s". Accepted values are "schemaorg" and "google"', $source));
+                throw new \InvalidArgumentException(\sprintf('Invalid source "%s". Accepted values are "schemaorg" and "google"', $source));
             }
 
             $this->container->getGenerator($source)->generate($input->getOption('refresh'));

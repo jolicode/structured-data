@@ -81,7 +81,9 @@ class FlattenerTest extends AbstractJsonLdTestCase
     {
         $options = new ProcessorOptions(base: $this->getBaseUrlForW3CTests($filename));
 
-        $testSpecificOptions = [];
+        $testSpecificOptions = [
+            'fake' => ['base' => $this->getBaseUrlForW3CTests($filename)],
+        ];
 
         if (\array_key_exists($filename, $testSpecificOptions)) {
             foreach ($testSpecificOptions[$filename] as $property => $value) {

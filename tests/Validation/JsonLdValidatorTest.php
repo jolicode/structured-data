@@ -250,37 +250,7 @@ class JsonLdValidatorTest extends TestCase
         ];
     }
 
-    private function testValidate(string $filePath, bool $isValid, array $expectedMessages, string $specificValidator): void
-    {
-        $types = $this->validator->validate($filePath, $specificValidator);
-
-        $containsErrors = false;
-
-        foreach ($types as $type) {
-            if ($type->errors) {
-                $containsErrors = true;
-            }
-
-            if (!$isValid) {
-                $foundErrorMessages = array_filter(
-                    $types,
-                    fn (MappedType $type) => (bool) $type->errors,
-                );
-
-                $foundErrorMessages = array_reduce(
-                    $foundErrorMessages,
-                    fn (array $carry, MappedType $type) => array_merge($carry, $type->getErrorMessages()),
-                    [],
-                );
-
-                $this->assertSame($expectedMessages, $foundErrorMessages);
-            }
-        }
-
-        $this->assertSame($isValid, !$containsErrors);
-    }
-
-    private function provideGoogleFiles(): \Generator
+    public function provideGoogleFiles(): \Generator
     {
         $path = __DIR__ . '/fixtures/Google';
 
@@ -347,5 +317,35 @@ class JsonLdValidatorTest extends TestCase
             'isValid' => true,
             'messages' => [],
         ];
+    }
+
+    private function testValidate(string $filePath, bool $isValid, array $expectedMessages, string $specificValidator): void
+    {
+        $types = $this->validator->validate($filePath, $specificValidator);
+
+        $containsErrors = false;
+
+        foreach ($types as $type) {
+            if ($type->errors) {
+                $containsErrors = true;
+            }
+
+            if (!$isValid) {
+                $foundErrorMessages = array_filter(
+                    $types,
+                    fn (MappedType $type) => (bool) $type->errors,
+                );
+
+                $foundErrorMessages = array_reduce(
+                    $foundErrorMessages,
+                    fn (array $carry, MappedType $type) => array_merge($carry, $type->getErrorMessages()),
+                    [],
+                );
+
+                $this->assertSame($expectedMessages, $foundErrorMessages);
+            }
+        }
+
+        $this->assertSame($isValid, !$containsErrors);
     }
 }

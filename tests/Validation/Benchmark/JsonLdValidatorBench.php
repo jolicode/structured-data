@@ -11,14 +11,12 @@
 
 namespace Jolicode\JsonLd\Tests\Validation\Benchmark;
 
-use Jolicode\JsonLd\Validation\Extraction\JsonLdNodeExtractor;
 use Jolicode\JsonLd\Validation\JsonLdValidator;
 
 class JsonLdValidatorBench
 {
     public function __construct(
         private readonly JsonLdValidator $validator = new JsonLdValidator(),
-        private readonly JsonLdNodeExtractor $extractor = new JsonLdNodeExtractor(),
     ) {
     }
 
@@ -127,9 +125,7 @@ class JsonLdValidatorBench
      */
     public function benchHttpCall()
     {
-        $jsonLd = $this->extractor->extractJsonLd('https://jolicode.com/blog/jouer-de-la-musique-dans-le-navigateur-avec-la-web-audio-api');
-
-        $this->validator->validate($jsonLd[0]);
+        $this->validator->validate('https://jolicode.com/blog/jouer-de-la-musique-dans-le-navigateur-avec-la-web-audio-api');
     }
 
     /**
@@ -141,10 +137,6 @@ class JsonLdValidatorBench
      */
     public function benchHttpCallWithManyTags()
     {
-        $jsonLd = $this->extractor->extractJsonLd('https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/examples.txt');
-
-        foreach ($jsonLd as $jsonLdItem) {
-            $this->validator->validate($jsonLdItem);
-        }
+        $this->validator->validate('https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/examples.txt');
     }
 }

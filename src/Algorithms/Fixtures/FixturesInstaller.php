@@ -62,13 +62,13 @@ class FixturesInstaller
 
         foreach (self::ALGORITHMS as $algorithm) {
             $inputFiles = $finder
-                ->in(sprintf('%s/%s/input', AbstractJsonLdTestCase::FIXTURES_PATH, $algorithm))
+                ->in(\sprintf('%s/%s/input', AbstractJsonLdTestCase::FIXTURES_PATH, $algorithm))
                 ->files()
                 ->ignoreDotFiles(true);
             $filesystem->remove($inputFiles);
 
             $outputFiles = $finder
-                ->in(sprintf('%s/%s/output', AbstractJsonLdTestCase::FIXTURES_PATH, $algorithm))
+                ->in(\sprintf('%s/%s/output', AbstractJsonLdTestCase::FIXTURES_PATH, $algorithm))
                 ->files()
                 ->ignoreDotFiles(true);
             $filesystem->remove($outputFiles);
@@ -100,7 +100,7 @@ class FixturesInstaller
         $filesystem->remove(self::W3C_ARCHIVE);
         $filesystem->remove(
             $finder
-                ->in(sprintf('%s/json-ld-api-main', AbstractJsonLdTestCase::VAR_DIR))
+                ->in(\sprintf('%s/json-ld-api-main', AbstractJsonLdTestCase::VAR_DIR))
                 ->depth(0)
                 ->ignoreDotFiles(false)
                 ->notName('tests'),
@@ -117,7 +117,7 @@ class FixturesInstaller
             // Then the output files to the output directory ^___^
             self::copyW3CFiles($algorithm, '/-out.jsonld/', 'output');
 
-            $logger->notice(sprintf(
+            $logger->notice(\sprintf(
                 'Copied the %s files to their location : %s/%s',
                 $algorithm,
                 AbstractJsonLdTestCase::FIXTURES_PATH,
@@ -132,7 +132,7 @@ class FixturesInstaller
         $filesystem = new Filesystem();
 
         $files = $finder
-            ->in(sprintf('%s/json-ld-api-main/tests/%s', AbstractJsonLdTestCase::VAR_DIR, $algorithm))
+            ->in(\sprintf('%s/json-ld-api-main/tests/%s', AbstractJsonLdTestCase::VAR_DIR, $algorithm))
             ->files()
             ->filter(
                 fn (\SplFileInfo $file) => preg_match($regex, $file->getFilename()) ? $file : false,
@@ -141,7 +141,7 @@ class FixturesInstaller
         foreach ($files as $file) {
             $filesystem->copy(
                 $file->getPathname(),
-                sprintf(
+                \sprintf(
                     '%s/%s/%s/%s',
                     AbstractJsonLdTestCase::FIXTURES_PATH,
                     $algorithm,

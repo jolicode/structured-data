@@ -130,7 +130,7 @@ class TermDefinitionCreator
             }
         // 15
         } elseif (preg_match('/[^^]:/', $term)) {
-            self::handleTermWithColons($activeContext, $definition, $localContext, $term);
+            self::handleTermWithColons($activeContext, $definition, $localContext, $term, $defined);
         // 16
         } elseif (str_contains($term, '/')) {
             // 16.2
@@ -468,6 +468,7 @@ class TermDefinitionCreator
         TermDefinition $definition,
         \stdClass|array $localContext,
         string $term,
+        array $defined,
     ): void {
         [$prefix, $suffix] = explode(':', $term, 2);
 
@@ -476,7 +477,7 @@ class TermDefinitionCreator
             self::create($activeContext, $localContext, $prefix, $defined);
         }
 
-        /** @var TermDefinition $activeDefinitions */
+        /** @var TermDefinition[] $activeDefinitions */
         $activeDefinitions = $activeContext->termDefinitions;
 
         // 15.2
@@ -641,7 +642,7 @@ class TermDefinitionCreator
         if (
             !\is_string($definition->nestValue)
             && (!\in_array($definition->nestValue, Keyword::cases(), true)
-                || Keyword::NEST->value === $definition->nestValue
+                // || Keyword::NEST->value === $definition->nestValue
             )
         ) {
             throw new TermDefinitionCreationException('invalid @nest value');

@@ -413,6 +413,6 @@ class ValidationMapper
 
     private function appendSchemaOrgDomain(string $property): string
     {
-        return sprintf('%s%s', self::SCHEMA_ORG_DOMAIN, $property);
+        return \sprintf('%s%s', self::SCHEMA_ORG_DOMAIN, $property);
     }
 }

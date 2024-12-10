@@ -191,6 +191,7 @@ class Expander
         }
 
         // 18
+        // @phpstan-ignore function.alreadyNarrowedType
         if (\is_object($result) && 1 === \count(get_object_vars($result)) && property_exists($result, Keyword::LANGUAGE->value)) {
             return null;
         }

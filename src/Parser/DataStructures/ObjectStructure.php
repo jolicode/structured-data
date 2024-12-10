@@ -48,7 +48,7 @@ class ObjectStructure extends AbstractStructure
             $name = str_replace('@', '', $name);
 
             if (!\array_key_exists($name, $this->properties)) {
-                throw new \InvalidArgumentException(sprintf('Property "%s" does not exist on this type.', $name));
+                throw new \InvalidArgumentException(\sprintf('Property "%s" does not exist on this type.', $name));
             }
         }
 

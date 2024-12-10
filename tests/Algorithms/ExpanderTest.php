@@ -35,7 +35,7 @@ class ExpanderTest extends AbstractJsonLdTestCase
             try {
                 $expander->parseJson($json, $options);
 
-                throw new AssertionFailedError(sprintf('An exception was expected for this test but none were thrown. Expected error message was : %s', $expected->getMessage()));
+                throw new AssertionFailedError(\sprintf('An exception was expected for this test but none were thrown. Expected error message was : %s', $expected->getMessage()));
             } catch (JsonLdException $exception) {
                 $this->assertSame($expected->getMessage(), $exception->getMessage());
             }

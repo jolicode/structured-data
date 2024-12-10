@@ -88,7 +88,7 @@ readonly class Generator implements GeneratorInterface
     {
         if (json_decode($content)) {
             $key = md5($content);
-            $filename = sprintf(
+            $filename = \sprintf(
                 '%s%s-%s.json-ld',
                 self::EXAMPLES_DIRECTORY,
                 $prefix,
@@ -111,10 +111,10 @@ readonly class Generator implements GeneratorInterface
                 Type::class => 'Type',
                 Property::class => 'Property',
                 EnumerationMember::class => 'EnumerationMember',
-                default => throw new \RuntimeException(sprintf('Unknown class %s', $element::class)),
+                default => throw new \RuntimeException(\sprintf('Unknown class %s', $element::class)),
             };
 
-            $fileName = sprintf(
+            $fileName = \sprintf(
                 '%s/%s/%s.php',
                 Extractor::GENERATED_DIR,
                 $classDirectory,
@@ -134,7 +134,7 @@ readonly class Generator implements GeneratorInterface
             Type::class => $this->generateType($element),
             Property::class => $this->generateProperty($element),
             EnumerationMember::class => $this->generateEnumerationMember($element),
-            default => throw new \RuntimeException(sprintf('Unknown class %s', $element::class)),
+            default => throw new \RuntimeException(\sprintf('Unknown class %s', $element::class)),
         };
     }
 
@@ -170,7 +170,7 @@ readonly class Generator implements GeneratorInterface
             $constructor->addParam(
                 $this->factory->param($property->label)
                     ->makePublic()
-                    ->setType(sprintf('?Property\\%s', $property->className))
+                    ->setType(\sprintf('?Property\\%s', $property->className))
                     ->setDefault(null),
             );
         }
@@ -180,7 +180,7 @@ readonly class Generator implements GeneratorInterface
 
         foreach ($type->parents as $parent) {
             $className = AbstractSchemaOrgElement::getClassName($parent);
-            $fqcn = sprintf('%s\\%s', self::NAMESPACE_TYPE, $className);
+            $fqcn = \sprintf('%s\\%s', self::NAMESPACE_TYPE, $className);
             $parents[] = new ArrayItem(
                 new Scalar\String_($fqcn),
                 new Scalar\String_($className),
@@ -200,7 +200,7 @@ readonly class Generator implements GeneratorInterface
 
         foreach ($type->enumerationMembers as $enumerationMember) {
             $enumerationMembers[] = new ArrayItem(
-                new Scalar\String_(sprintf('EnumerationMember\\%s', $enumerationMember->className)),
+                new Scalar\String_(\sprintf('EnumerationMember\\%s', $enumerationMember->className)),
                 new Scalar\String_($enumerationMember->className),
             );
         }
@@ -244,7 +244,7 @@ readonly class Generator implements GeneratorInterface
 
         foreach ($property->possibleValues as $value) {
             $className = AbstractSchemaOrgElement::getClassName($value);
-            $fqcn = sprintf('%s\\%s', self::NAMESPACE_TYPE, $className);
+            $fqcn = \sprintf('%s\\%s', self::NAMESPACE_TYPE, $className);
             $possibleValues[] = new ArrayItem(
                 new Scalar\String_($fqcn),
                 new Scalar\String_($className),
@@ -263,7 +263,7 @@ readonly class Generator implements GeneratorInterface
 
         foreach ($property->possibleTypes as $type) {
             $className = AbstractSchemaOrgElement::removeSchemaPrefix($type);
-            $fqcn = sprintf('%s\\%s%s', self::NAMESPACE_TYPE, $className, 'Model');
+            $fqcn = \sprintf('%s\\%s%s', self::NAMESPACE_TYPE, $className, 'Model');
             $possibleTypes[] = new ArrayItem(
                 new Scalar\String_($fqcn),
                 new Scalar\String_($className),

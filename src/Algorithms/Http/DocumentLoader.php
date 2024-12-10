@@ -40,7 +40,7 @@ class DocumentLoader
         ++$this->documentsCount;
 
         if ($this->documentsCount > self::MAX_DOCUMENTS) {
-            throw new \LogicException(sprintf('Cannot load more than %s documents.', self::MAX_DOCUMENTS));
+            throw new \LogicException(\sprintf('Cannot load more than %s documents.', self::MAX_DOCUMENTS));
         }
 
         if (is_file($this->url)) {

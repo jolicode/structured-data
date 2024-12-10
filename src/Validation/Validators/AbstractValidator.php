@@ -40,14 +40,14 @@ abstract class AbstractValidator
         $typeLabel = $typeWithError->type;
 
         if (\is_array($typeLabel)) {
-            $typeLabel = sprintf(
+            $typeLabel = \sprintf(
                 '[%s]',
                 implode(', ', $typeLabel),
             );
         }
 
         $range = array_map(
-            fn (Range $range) => sprintf(
+            fn (Range $range) => \sprintf(
                 'starting line %d, column %d and ending line %d, column %d',
                 $range->start->line,
                 $range->start->column,

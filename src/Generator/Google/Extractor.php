@@ -97,7 +97,7 @@ class Extractor
                 $fileName = end($fileName);
 
                 $this->filesystem->dumpFile(
-                    sprintf('%s%s.html', self::UPLOAD_DIRECTORY, $fileName),
+                    \sprintf('%s%s.html', self::UPLOAD_DIRECTORY, $fileName),
                     $client->request('GET', $typeLink)->getContent(),
                 );
             }
@@ -149,10 +149,10 @@ class Extractor
     private function generateGoogleLink(string $fileName, ?string $anchor = null): string
     {
         $typeLink = str_replace('.html', '', $fileName);
-        $typeLink = sprintf('%s/%s', self::TYPES_SOURCE_URL, $typeLink);
+        $typeLink = \sprintf('%s/%s', self::TYPES_SOURCE_URL, $typeLink);
 
         if ($anchor) {
-            return sprintf('%s#%s', $typeLink, $anchor);
+            return \sprintf('%s#%s', $typeLink, $anchor);
         }
 
         return $typeLink;
@@ -252,7 +252,7 @@ class Extractor
                 'course.html' => 'Course',
                 'local-business.html' => 'LocalBusiness',
                 'video.html' => 'VideoObject',
-                default => throw new \RuntimeException(sprintf('A carousel was detected on the "%s" page, but it is not handled yet.', $fileName))
+                default => throw new \RuntimeException(\sprintf('A carousel was detected on the "%s" page, but it is not handled yet.', $fileName))
             };
 
             $this->initializeCarousel($typeName);
@@ -314,7 +314,7 @@ class Extractor
             if (\array_key_exists('Book', $this->currentPageTypes) && \array_key_exists('Edition', $this->currentPageTypes['Book']->subTypes)) {
                 $this->currentType = $this->currentPageTypes['Book']->subTypes['Edition'];
             } else {
-                throw new \RuntimeException(sprintf('The "%s" page seems to have a special behavior that is not handled yet.', $fileName));
+                throw new \RuntimeException(\sprintf('The "%s" page seems to have a special behavior that is not handled yet.', $fileName));
             }
 
             return true;
@@ -420,7 +420,7 @@ class Extractor
         $this->pushCurrentType();
 
         $subType = $matches[1];
-        $parentType = str_replace(sprintf(' (%s)', $subType), '', $name);
+        $parentType = str_replace(\sprintf(' (%s)', $subType), '', $name);
         $parentType = $this->currentPageTypes[$parentType] ?? $this->extractedTypes[$parentType];
 
         $subType = new MainType(
@@ -444,7 +444,7 @@ class Extractor
         if (\count($previousType->subTypes) > 0) {
             $parent = $previousType;
         } else {
-            $previousType->name = $previousTypeName = sprintf('%s%s', $this->getSubtypePrefix($previousType->documentationUrl), $name);
+            $previousType->name = $previousTypeName = \sprintf('%s%s', $this->getSubtypePrefix($previousType->documentationUrl), $name);
             $previousType->isASubtype = true;
 
             $parent = new MainType(
@@ -460,7 +460,7 @@ class Extractor
         }
 
         $newType = new MainType(
-            name: $newTypeName = sprintf('%s%s', $this->getSubtypePrefix($fileName), $name),
+            name: $newTypeName = \sprintf('%s%s', $this->getSubtypePrefix($fileName), $name),
             documentationUrl: $this->generateGoogleLink($fileName, $node->attr('id')),
             isASubtype: true,
             parentType: $parent,
@@ -677,7 +677,7 @@ class Extractor
             str_contains($urlOrFilename, 'faqpage') => 'FAQ',
             str_contains($urlOrFilename, 'course-info') => 'Course',
             str_contains($urlOrFilename, 'practice-problems') => 'PracticeProblem',
-            default => throw new \RuntimeException(sprintf('Trying to get a subtype prefix for the "%s" URL, which is not supported', $urlOrFilename))
+            default => throw new \RuntimeException(\sprintf('Trying to get a subtype prefix for the "%s" URL, which is not supported', $urlOrFilename))
         };
     }
 

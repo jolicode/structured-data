@@ -34,7 +34,7 @@ class SchemaOrgValidator extends AbstractValidator
             && \count($typeLabel) > 1
         ) {
             // @see https://www.w3.org/TR/json-ld/#specifying-the-type
-            $message = sprintf('A typed value may only have one type, %d provided', \count($typeLabel));
+            $message = \sprintf('A typed value may only have one type, %d provided', \count($typeLabel));
 
             $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_ERROR);
 
@@ -64,7 +64,7 @@ class SchemaOrgValidator extends AbstractValidator
             $typeFqcn = self::getTypeFqcn($label);
 
             if (!class_exists($typeFqcn)) {
-                $message = sprintf('The "%s" type is not a valid Schema.org type', $label);
+                $message = \sprintf('The "%s" type is not a valid Schema.org type', $label);
 
                 $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_ERROR);
 
@@ -79,7 +79,7 @@ class SchemaOrgValidator extends AbstractValidator
                 }
 
                 if (!self::propertyTypeIsValid($property->key, $typeFqcn)) {
-                    $message = sprintf('The "%s" property does not accept the "%s" type as a value', $property->key, $typeFqcn::LABEL);
+                    $message = \sprintf('The "%s" property does not accept the "%s" type as a value', $property->key, $typeFqcn::LABEL);
 
                     $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_ERROR);
                 }
@@ -105,7 +105,7 @@ class SchemaOrgValidator extends AbstractValidator
         }
 
         if (!class_exists(self::getPropertyFqcn($propertyKey))) {
-            $message = sprintf('This property does not exist: %s', $propertyKey);
+            $message = \sprintf('This property does not exist: %s', $propertyKey);
 
             $errors[] = self::addMappedError($property, $message, $type, MappedError::SEVERITY_ERROR);
 
@@ -141,9 +141,9 @@ class SchemaOrgValidator extends AbstractValidator
 
         if (!$propertyIsValid) {
             if (\is_string($typeLabel)) {
-                $message = sprintf('The property "%s" does not exist on the type "%s"', $propertyKey, $typeLabel);
+                $message = \sprintf('The property "%s" does not exist on the type "%s"', $propertyKey, $typeLabel);
             } else {
-                $message = sprintf('The property "%s" does not exist on any of these types: "%s"', $propertyKey, implode(', ', $typeLabel));
+                $message = \sprintf('The property "%s" does not exist on any of these types: "%s"', $propertyKey, implode(', ', $typeLabel));
             }
 
             $errors[] = self::addMappedError($property, $message, $type, MappedError::SEVERITY_ERROR);
@@ -227,12 +227,12 @@ class SchemaOrgValidator extends AbstractValidator
 
     private static function getTypeFqcn(string $typeShortName): string
     {
-        return sprintf('SchemaOrg\\Type\\%sModel', $typeShortName);
+        return \sprintf('SchemaOrg\\Type\\%sModel', $typeShortName);
     }
 
     private static function getPropertyFqcn(string $propertyShortName): string
     {
-        return sprintf('SchemaOrg\\Property\\%sModel', ucfirst($propertyShortName));
+        return \sprintf('SchemaOrg\\Property\\%sModel', ucfirst($propertyShortName));
     }
 
     private static function stripActionSuffixes(string $propertyLabel): string

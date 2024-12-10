@@ -57,7 +57,7 @@ abstract class AbstractJsonLdTestCase extends TestCase
 
         return $finder
             ->files()
-            ->in(sprintf(
+            ->in(\sprintf(
                 '%s/%s/input/',
                 self::FIXTURES_PATH,
                 $this->getAlgorithmName(),
@@ -66,7 +66,7 @@ abstract class AbstractJsonLdTestCase extends TestCase
 
     protected function getBaseUrlForW3CTests(string $filename): string
     {
-        return sprintf(
+        return \sprintf(
             'https://w3c.github.io/json-ld-api/tests/%s/%s',
             $this->getAlgorithmName(),
             $filename,
@@ -102,7 +102,7 @@ abstract class AbstractJsonLdTestCase extends TestCase
 
     protected function getOutputFileName(string $filename): string
     {
-        return sprintf(
+        return \sprintf(
             '%s/%s/output/%s',
             self::FIXTURES_PATH,
             $this->getAlgorithmName(),

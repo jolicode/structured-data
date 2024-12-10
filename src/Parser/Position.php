@@ -21,6 +21,6 @@ class Position
 
     public function __toString()
     {
-        return sprintf('%s:%s', $this->line, $this->column);
+        return \sprintf('%s:%s', $this->line, $this->column);
     }
 }

@@ -76,7 +76,7 @@ class MainType extends AbstractType
 
             unset($currentProperty->types[$originalName]);
 
-            $newName = sprintf('%s %s', $originalName, $newName);
+            $newName = \sprintf('%s %s', $originalName, $newName);
             $originalType->name = $newName;
 
             $currentProperty->types[$newName] = $originalType;
