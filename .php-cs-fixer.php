@@ -20,8 +20,18 @@ For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 EOF;
 
+$finder = PhpCsFixer\Finder::create()
+    ->ignoreVCSIgnored(true)
+    ->ignoreDotFiles(false)
+    ->in(__DIR__)
+    ->append([
+        __FILE__,
+    ])
+;
+
 return (new PhpCsFixer\Config())
     ->registerCustomFixers(new PhpCsFixerCustomFixers\Fixers())
+    ->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
     ->setRiskyAllowed(true)
     ->setRules([
         '@Symfony' => true,
@@ -58,8 +68,5 @@ return (new PhpCsFixer\Config())
         'trailing_comma_in_multiline' => ['elements' => ['arguments', 'parameters', 'arrays']],
         PhpCsFixerCustomFixers\Fixer\MultilinePromotedPropertiesFixer::name() => true,
     ])
-    ->setFinder(
-        PhpCsFixer\Finder::create()
-            ->in(__DIR__ . '/src')
-            ->in(__DIR__ . '/tests')
-    );
+    ->setFinder($finder)
+;

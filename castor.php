@@ -13,69 +13,12 @@ use Castor\Attribute\AsArgument;
 use Castor\Attribute\AsOption;
 use Castor\Attribute\AsTask;
 
+use function Castor\import;
 use function Castor\run;
 
 use Symfony\Component\Console\Input\InputOption;
 
-#[AsTask(name: 'cs', description: 'Fix CS violations')]
-function cs(
-    #[AsOption(name: 'dry-run', description: 'Display CS violations without fixing it')]
-    bool $dryRun = false,
-): void {
-    if ($dryRun) {
-        run('vendor/bin/php-cs-fixer fix src --dry-run --diff');
-        run('vendor/bin/php-cs-fixer fix tests --dry-run --diff');
-    } else {
-        run('vendor/bin/php-cs-fixer fix src --verbose');
-        run('vendor/bin/php-cs-fixer fix tests --verbose');
-    }
-}
-
-#[AsTask(name: 'cs-generated', description: 'Fix CS violations in generated files. Use with caution! Very SLOW!')]
-function csGenerated(): void
-{
-    run('php -d memory_limit=-1 vendor/bin/php-cs-fixer fix generated', timeout: 0);
-}
-
-#[AsTask(name: 'phpstan', description: 'Run phpstan')]
-function phpstan(): void
-{
-    run('vendor/bin/phpstan analyse -c phpstan.neon');
-}
-
-#[AsTask(name: 'test', description: 'Run the tests', aliases: ['tests'])]
-function test(
-    #[AsOption(name: 'group', shortcut: 'g', mode: InputOption::VALUE_REQUIRED, description: 'Only run tests from the specified group')]
-    ?string $group = null,
-    #[AsOption(name: 'stop-on-failure', shortcut: 'f', mode: InputOption::VALUE_NONE, description: 'Stop execution upon first failure')]
-    ?bool $stopOnFailure = null,
-    #[AsOption(name: 'stop-on-error', shortcut: 'e', mode: InputOption::VALUE_NONE, description: 'Stop execution upon first error')]
-    ?bool $stopOnError = null,
-): void {
-    $command = 'php -d memory_limit=-1 vendor/bin/phpunit tests';
-
-    if ($group) {
-        $command .= sprintf(' --group %s', $group);
-    }
-
-    if ($stopOnFailure) {
-        $command .= ' --stop-on-failure';
-    }
-
-    if ($stopOnError) {
-        $command .= ' --stop-on-error';
-    }
-
-    run($command);
-}
-
-#[AsTask(name: 'ci', description: 'Run all the CI checks')]
-function ci(): void
-{
-    cs();
-    phpstan();
-    test();
-}
+import(__DIR__ . '/tools/castor.php');
 
 #[AsTask(name: 'delete', namespace: 'fixtures', description: 'Delete all test files')]
 function deleteFixtures(): void
@@ -126,25 +69,6 @@ function validate(
     }
 
     run($command);
-}
-
-#[AsTask(name: 'all', namespace: 'benchmark', description: 'Run all the benchmarks', aliases: ['bench'])]
-function bench(): void
-{
-    benchAlgorithms();
-    benchValidators();
-}
-
-#[AsTask(name: 'algorithms', namespace: 'benchmark', description: 'Run the algorithms benchmark')]
-function benchAlgorithms(): void
-{
-    run('vendor/bin/phpbench run tests/Algorithms/Benchmark --report=aggregate');
-}
-
-#[AsTask(name: 'validators', namespace: 'benchmark', description: 'Run the validators benchmark')]
-function benchValidators(): void
-{
-    run('vendor/bin/phpbench run tests/Validation/Benchmark --report=aggregate');
 }
 
 #[AsTask(name: 'expand', namespace: 'algorithms', description: 'Expand a JSON-LD document')]

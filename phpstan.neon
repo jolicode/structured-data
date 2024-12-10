@@ -1,8 +1,18 @@
 parameters:
-	level: 5
+    level: 5
 
-	paths:
-		- src
+    paths:
+        - src
+        - tests
+        - castor.php
+    scanFiles:
+        - .castor.stub.php
+    scanDirectories:
+        - generated
+        - tools/phpunit/vendor
+        - vendor
+    tmpDir: tools/phpstan/var
+    inferPrivatePropertyTypeFromConstructor: true
 
-	ignoreErrors:
-		- '#Argument of an invalid type stdClass supplied for foreach, only iterables are supported.#'
+    ignoreErrors:
+        - '#Argument of an invalid type stdClass supplied for foreach, only iterables are supported.#'
