@@ -15,12 +15,16 @@ use Castor\Attribute\AsOption;
 use Castor\Attribute\AsTask;
 
 use function Castor\context;
+use function Castor\finder;
+use function Castor\fs;
+use function Castor\http_download;
 use function Castor\io;
 use function Castor\run;
 
-use Jolicode\JsonLd\Generator\Downloader;
-use Jolicode\JsonLd\Generator\Filesystem;
+use Jolicode\JsonLd\Algorithms;
 use Symfony\Component\Console\Input\InputOption;
+
+const CACHE_DIR_W3C_TEST_SUITE = __DIR__ . '/../var/cache/w3c-json-ld-api';
 
 #[AsTask(description: 'Runs all QA tasks')]
 function all(): int
@@ -101,17 +105,47 @@ function phpstan(): int
 function phpunitPrepare(
     bool $force = false,
 ): void {
-    $filesystem = new Filesystem();
-
-    if ($force || !$filesystem->hasW3CTestSuiteFiles()) {
+    if ($force || !fs()->exists(\sprintf('%s/tests/flatten/output', CACHE_DIR_W3C_TEST_SUITE))) {
         io()->title('Downloading the W3C tests suite.');
+        fs()->remove(CACHE_DIR_W3C_TEST_SUITE);
 
-        $filesystem = new Filesystem();
-        $filesystem->removeW3CTestSuite();
+        $zipFileName = tempnam(sys_get_temp_dir(), 'w3c-json-ld-api');
+        http_download('https://github.com/w3c/json-ld-api/archive/main.zip', $zipFileName);
 
-        $downloader = new Downloader($filesystem);
-        $downloader->downloadW3CTestSuite();
-        $filesystem->copyContextTestFixtures();
+        $zip = new \ZipArchive();
+        $zip->open($zipFileName);
+        $zip->extractTo(CACHE_DIR_W3C_TEST_SUITE);
+        $zip->close();
+
+        foreach (Algorithms::algorithmNames() as $algorithm) {
+            foreach (['-in.jsonld' => 'input', '-out.jsonld' => 'output'] as $suffix => $directory) {
+                $targetDirectory = \sprintf('%s/tests/%s/%s', CACHE_DIR_W3C_TEST_SUITE, $algorithm, $directory);
+                fs()->mkdir($targetDirectory);
+                $files = finder()
+                    ->in(\sprintf('%s/json-ld-api-main/tests/%s', CACHE_DIR_W3C_TEST_SUITE, $algorithm))
+                    ->files()
+                    ->name('*' . $suffix)
+                ;
+
+                foreach ($files as $file) {
+                    fs()->copy(
+                        $file->getPathname(),
+                        \sprintf('%s/%s', $targetDirectory, $file->getFilename()),
+                        true,
+                    );
+                }
+            }
+        }
+
+        // remove the zip archive and all the files
+        fs()->remove($zipFileName);
+        fs()->remove(\sprintf('%s/json-ld-api-main', CACHE_DIR_W3C_TEST_SUITE));
+
+        // copy the context test fixtures
+        fs()->mirror(
+            __DIR__ . '/../resources/jsonld/context',
+            CACHE_DIR_W3C_TEST_SUITE . '/tests/context',
+        );
 
         io()->success('W3C tests suite downloaded successfully.');
     } else {
@@ -132,9 +166,7 @@ function phpunit(
         install();
     }
 
-    $filesystem = new Filesystem();
-
-    if (!$filesystem->hasW3CTestSuiteFiles()) {
+    if (!fs()->exists(\sprintf('%s/tests/flatten/output', CACHE_DIR_W3C_TEST_SUITE))) {
         phpunitPrepare();
     }
 

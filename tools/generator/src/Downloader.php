@@ -46,10 +46,4 @@ readonly class Downloader
         $response = $this->httpClient->request('GET', $url);
         $this->filesystem->saveSchemaOrgTypesDefinitionFile($response->getContent());
     }
-
-    public function downloadW3CTestSuite(): void
-    {
-        $response = $this->httpClient->request('GET', 'https://github.com/w3c/json-ld-api/archive/main.zip');
-        $this->filesystem->saveW3CTestSuiteFile($response->getContent());
-    }
 }
