@@ -12,15 +12,13 @@
 namespace Jolicode\JsonLd\Tests\Algorithms;
 
 use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 
 abstract class AbstractJsonLdTestCase extends TestCase
 {
-    public const FIXTURES_PATH = __DIR__ . '/fixtures';
-    public const VAR_DIR = self::FIXTURES_PATH . '/var';
+    public const DATA_PATH = __DIR__ . '/../../var/cache/w3c-json-ld-api/tests';
 
     /**
      * This function must return the name of the algorithm the child class is testing.
@@ -51,17 +49,16 @@ abstract class AbstractJsonLdTestCase extends TestCase
 
     protected function getInputFiles(): iterable
     {
-        $this->installTestSuite();
+        $directoryName = \sprintf('%s/%s/input/', self::DATA_PATH, $this->getAlgorithmName());
 
-        $finder = new Finder();
+        if (!file_exists($directoryName)) {
+            throw new \RuntimeException(\sprintf('The input directory "%s" does not exist. Did you forget to install the test suite? Please run the following command : `castor qa:phpunit:install-fixtures`', $directoryName));
+        }
 
-        return $finder
+        return (new Finder())
             ->files()
-            ->in(\sprintf(
-                '%s/%s/input/',
-                self::FIXTURES_PATH,
-                $this->getAlgorithmName(),
-            ));
+            ->in($directoryName)
+        ;
     }
 
     protected function getBaseUrlForW3CTests(string $filename): string
@@ -104,20 +101,9 @@ abstract class AbstractJsonLdTestCase extends TestCase
     {
         return \sprintf(
             '%s/%s/output/%s',
-            self::FIXTURES_PATH,
+            self::DATA_PATH,
             $this->getAlgorithmName(),
             $filename,
         );
-    }
-
-    protected function installTestSuite(): void
-    {
-        if (is_dir(self::VAR_DIR)) {
-            // We only need to download the tests once ;D.
-            // Use the reset command if you have issues with the installed test suite.
-            return;
-        }
-
-        FixturesInstaller::installFixtures();
     }
 }

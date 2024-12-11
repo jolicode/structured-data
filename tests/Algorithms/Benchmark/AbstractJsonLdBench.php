@@ -13,7 +13,7 @@ namespace Jolicode\JsonLd\Tests\Algorithms\Benchmark;
 
 abstract class AbstractJsonLdBench
 {
-    public const FIXTURES_PATH = __DIR__ . '/../fixtures';
+    public const DATA_PATH = __DIR__ . '/../../../var/cache/w3c-json-ld-api/tests';
 
     abstract protected function getAlgorithmName(): string;
 
@@ -21,7 +21,7 @@ abstract class AbstractJsonLdBench
     {
         return file_get_contents(\sprintf(
             '%s/%s/input/%s',
-            static::FIXTURES_PATH,
+            static::DATA_PATH,
             $this->getAlgorithmName(),
             $filename,
         ));

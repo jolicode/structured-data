@@ -11,8 +11,8 @@
 
 namespace Jolicode\JsonLd\Tests\Algorithms\Benchmark;
 
+use Jolicode\JsonLd\Algorithms;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
 
 class ContextProcesserBench extends AbstractJsonLdBench
 {
@@ -65,6 +65,6 @@ class ContextProcesserBench extends AbstractJsonLdBench
 
     protected function getAlgorithmName(): string
     {
-        return FixturesInstaller::ALGO_PROCESS_CONTEXT;
+        return Algorithms::CONTEXT->value;
     }
 }

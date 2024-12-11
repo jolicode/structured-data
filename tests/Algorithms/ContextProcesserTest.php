@@ -11,8 +11,8 @@
 
 namespace Jolicode\JsonLd\Tests\Algorithms;
 
+use Jolicode\JsonLd\Algorithms;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinitionCreator;
@@ -79,7 +79,7 @@ class ContextProcesserTest extends AbstractJsonLdTestCase
 
     protected function getAlgorithmName(): string
     {
-        return FixturesInstaller::ALGO_PROCESS_CONTEXT;
+        return Algorithms::CONTEXT->value;
     }
 
     protected function getExpectedErrorMessage(string $filename): string

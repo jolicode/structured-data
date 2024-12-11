@@ -11,17 +11,17 @@
 
 namespace Jolicode\JsonLd\Tests\Validation;
 
-use Jolicode\JsonLd\Validation\JsonLdValidator;
-use Jolicode\JsonLd\Validation\Mapper\MappedType;
-use Jolicode\JsonLd\Validation\Validators\Google\GoogleValidator;
-use Jolicode\JsonLd\Validation\Validators\SchemaOrg\SchemaOrgValidator;
+use Jolicode\SchemaOrg\JsonLdValidator;
+use Jolicode\SchemaOrg\Mapper\MappedType;
+use Jolicode\SchemaOrg\Validators\Google\GoogleValidator;
+use Jolicode\SchemaOrg\Validators\SchemaOrg\SchemaOrgValidator;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 
 /**
- * @covers \Jolicode\JsonLd\Validation\JsonLdValidator
- * @covers \Jolicode\JsonLd\Validation\Validators\SchemaOrgValidator
- * @covers \Jolicode\JsonLd\Validation\Validators\GoogleValidator
+ * @covers \Jolicode\SchemaOrg\JsonLdValidator
+ * @covers \Jolicode\SchemaOrg\Validators\SchemaOrgValidator
+ * @covers \Jolicode\SchemaOrg\Validators\GoogleValidator
  *
  * @group validation
  */
@@ -67,7 +67,7 @@ class JsonLdValidatorTest extends TestCase
     public function provideExamples(): \Generator
     {
         $finder = new Finder();
-        $finder->files()->in(__DIR__ . '/../../ressources/SchemaOrg/examples');
+        $finder->files()->in(__DIR__ . '/../../resources/schema.org/examples');
 
         foreach ($finder as $file) {
             yield $file->getFilename() => [$file->getPathname()];

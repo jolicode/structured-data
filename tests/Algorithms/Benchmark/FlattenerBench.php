@@ -11,7 +11,7 @@
 
 namespace Jolicode\JsonLd\Tests\Algorithms\Benchmark;
 
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
+use Jolicode\JsonLd\Algorithms;
 use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 
@@ -50,7 +50,7 @@ class FlattenerBench extends AbstractJsonLdBench
 
     protected function getAlgorithmName(): string
     {
-        return FixturesInstaller::ALGO_FLATTEN;
+        return Algorithms::FLATTEN->value;
     }
 
     private function flattenJsonFile(string $filename): void

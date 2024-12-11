@@ -11,7 +11,7 @@
 
 namespace Jolicode\JsonLd\Tests\Validation\Benchmark;
 
-use Jolicode\JsonLd\Validation\JsonLdValidator;
+use Jolicode\SchemaOrg\JsonLdValidator;
 
 class JsonLdValidatorBench
 {

@@ -11,10 +11,10 @@
 
 namespace Jolicode\JsonLd\Tests\Algorithms;
 
+use Jolicode\JsonLd\Algorithms;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
 use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use PHPUnit\Framework\AssertionFailedError;
 
@@ -46,7 +46,7 @@ class ExpanderTest extends AbstractJsonLdTestCase
 
     protected function getAlgorithmName(): string
     {
-        return FixturesInstaller::ALGO_EXPAND;
+        return Algorithms::EXPAND->value;
     }
 
     protected function getExpectedErrorMessage(string $filename): string
