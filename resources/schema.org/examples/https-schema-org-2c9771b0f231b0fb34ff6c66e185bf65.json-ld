@@ -1,0 +1,9 @@
+{
+  "@context": "https://schema.org",
+  "@id": "#model",
+  "@type": "ProductModel",
+  "additionalType": "http://www.productontology.org/id/Television_set",
+  "description": "The ACME Colorvision 123 is the leading-edge color TV from our company.",
+  "gtin13": "1234567890123",
+  "name": "ACME Colorvision 123"
+}

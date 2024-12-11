@@ -1,0 +1,13 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ReserveAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "Reservation",
+    "name": "Table at Bar Tartine"
+  },
+  "scheduledTime": "2020-05-29T19:30:00"
+}

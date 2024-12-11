@@ -1,0 +1,12 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ConsumeAction",
+  "agent": {
+    "@type": "Person",
+    "name": "Test Candidate One"
+  },
+  "object": {
+    "@type": "Energy",
+    "name": "100 calories"
+  }
+}

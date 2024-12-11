@@ -1,0 +1,17 @@
+{
+  "@context": "https://schema.org",
+  "@type": "AddAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "SoftwareApplication",
+    "name": "SAAS"
+  },
+  "targetCollection": {
+    "@type": "ItemList",
+    "name": "John's skillset",
+    "url": "http://linkedn.com/john/skillset"
+  }
+}

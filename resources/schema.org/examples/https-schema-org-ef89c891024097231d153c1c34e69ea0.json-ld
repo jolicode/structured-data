@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WatchAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "PerformingGroup",
+    "name": "Bolshoi"
+  },
+  "location": {
+    "@type": "PerformingArtsTheater",
+    "name": "Chuvash State Opera and Ballet Theater"
+  }
+}

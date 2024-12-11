@@ -1,0 +1,13 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ScheduleAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "Event",
+    "name": "SXSW"
+  },
+  "scheduledTime": "2023-03-06"
+}

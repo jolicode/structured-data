@@ -1,0 +1,13 @@
+{
+  "@context": "https://schema.org",
+  "@type": "CommunicateAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "recipient": {
+    "@type": "MedicalAudience",
+    "name": "Brain surgeons"
+  },
+  "object": "I'm retiring"
+}

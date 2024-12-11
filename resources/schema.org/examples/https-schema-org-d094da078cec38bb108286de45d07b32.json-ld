@@ -1,0 +1,12 @@
+{
+  "@context": "https://schema.org",
+  "@type": "InstallAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "MobileApplication",
+    "name": "Fitbit"
+  }
+}

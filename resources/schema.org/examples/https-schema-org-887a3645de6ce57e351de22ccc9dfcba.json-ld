@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": "OrderAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "Book",
+    "name": "Outliers"
+  },
+  "location": {
+    "@type": "LocalBusiness",
+    "name": "Amazon"
+  }
+}

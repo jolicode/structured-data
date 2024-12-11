@@ -1,0 +1,14 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ExerciseAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "exerciseType": "Running",
+  "distance": "100 miles",
+  "participant": {
+    "@type": "Person",
+    "name": "Steve"
+  }
+}

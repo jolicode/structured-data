@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": "IgnoreAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "ScholarlyArticle",
+    "name": "Do we really need to know whether P = NP?"
+  },
+  "participant": {
+    "@type": "Person",
+    "name": "Steve"
+  }
+}

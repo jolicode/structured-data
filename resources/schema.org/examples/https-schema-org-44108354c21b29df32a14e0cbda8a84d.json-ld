@@ -1,0 +1,17 @@
+{
+  "@context": "https://schema.org",
+  "@type": "PrependAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "Movie",
+    "name": "The Internship"
+  },
+  "targetCollection": {
+    "@type": "ItemList",
+    "name": "List of my favorite movies",
+    "url": "http://netflix.com/john/favorite"
+  }
+}

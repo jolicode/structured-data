@@ -1,0 +1,12 @@
+{
+  "@context": "https://schema.org",
+  "@type": "MarryAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "Person",
+    "name": "Ann"
+  }
+}
