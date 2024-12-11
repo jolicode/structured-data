@@ -27,22 +27,19 @@
             "email": "xlacot@jolicode.com"
         }
     ],
+    "config": {
+        "sort-packages": true
+    },
     "require-dev": {
         "symfony/var-dumper": "^6.3|^7.0"
     },
     "require": {
         "php": ">=8.2",
-        "symfony/console": "^6.3|^7.0",
-        "symfony/finder": "^6.3|^7.0",
-        "symfony/filesystem": "^6.3|^7.0",
-        "symfony/http-client": "^6.3|^7.0",
         "league/uri": "^6.8|^7.4",
-        "symfony/http-kernel": "^6.3|^7.0",
-        "monolog/monolog": "^3.3",
-        "nikic/php-parser": "^4.15|^5.0",
+        "masterminds/html5": "^2.9",
         "salsify/json-streaming-parser": "^8.3",
-        "symfony/dom-crawler": "^6.3|^7.0",
-        "symfony/translation-contracts": "^3.3",
-        "symfony/css-selector": "^6.3|^7.0"
+        "symfony/finder": "^7.2",
+        "symfony/http-client": "^6.3|^7.0",
+        "symfony/http-kernel": "^6.3|^7.0"
     }
 }
