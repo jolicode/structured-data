@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['8.2', '8.3', '8.4']
+        php-version: ['8.2', '8.3']
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -32,9 +32,6 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
-      - name: Generate and import everything needed to run the project
-        run: castor generate
-
       - name: Install qa tooling
         run: castor qa:install
 
@@ -45,4 +42,7 @@ jobs:
         run: castor qa:phpstan
 
       - name: Run the tests
-        run: castor qa:phpunit
+        run: castor qa:phpunit:run
+
+      - name: Check that schema.org types and properties classes can be generated
+        run: castor generate
