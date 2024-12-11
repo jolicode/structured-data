@@ -44,5 +44,8 @@ jobs:
       - name: Run the tests
         run: castor qa:phpunit:run
 
+      - name: Install generator tooling
+        run: castor generator:install
+
       - name: Check that schema.org types and properties classes can be generated
-        run: castor generate
+        run: castor generator:generate

@@ -8,7 +8,6 @@ parameters:
     scanFiles:
         - .castor.stub.php
     scanDirectories:
-        - generated
         - tools/phpunit/vendor
         - vendor
     tmpDir: tools/phpstan/var
