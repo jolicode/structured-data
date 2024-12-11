@@ -29,7 +29,7 @@ class IdentifierGenerator
      */
     public function getIdentifier(array|string|null $identifier): string|array
     {
-        if ($identifier && \array_key_exists($identifier, $this->existing)) {
+        if (\is_string($identifier) && \array_key_exists($identifier, $this->existing)) {
             return $this->existing[$identifier];
         }
 

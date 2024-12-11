@@ -30,7 +30,7 @@ class JsonLdDOMDocument extends \DOMDocument
 
     public function getItems(): array
     {
-        return iterator_to_array($this->xpath()->query('//script[@type=\'application/ld+json\']'));
+        return iterator_to_array($this->xpath()->query('//script[@type=\'application/ld+json\']') ?: []);
     }
 
     public function fromString(string $source): self

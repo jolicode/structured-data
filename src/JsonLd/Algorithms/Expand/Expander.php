@@ -33,7 +33,7 @@ class Expander
         string|\stdClass $json,
         ProcessorOptions $options = new ProcessorOptions(),
         bool $encodeResult = true,
-    ): \stdClass|array|string|null {
+    ): \stdClass|array|string|false|null {
         $element = \is_string($json) ? json_decode($json) : $json;
         $baseUrl = $options->base;
 
@@ -352,75 +352,74 @@ class Expander
                     throw new ExpansionException('colliding keywords');
                 }
 
-                // 13.4.3
-                if (Keyword::ID->value === $expandedProperty) {
-                    $expandedValue = $this->processIdKeyword($activeContext, $value, $options, $expandedValue);
-                }
+                switch ($expandedProperty) {
+                    case Keyword::ID->value:
+                        // 13.4.3
+                        $expandedValue = $this->processIdKeyword($activeContext, $value, $options, $expandedValue);
 
-                // 13.4.4
-                if (Keyword::TYPE->value === $expandedProperty) {
-                    $expandedValue = $this->processTypeKeyword($typeScopedContext, $result, $value, $options, $expandedValue);
-                }
+                        break;
+                    case Keyword::TYPE->value:
+                        // 13.4.4
+                        $expandedValue = $this->processTypeKeyword($typeScopedContext, $result, $value, $options, $expandedValue);
 
-                // 13.4.5
-                if (Keyword::GRAPH->value === $expandedProperty) {
-                    $expandedValue = $this->processGraphKeyword($activeContext, $value, $baseUrl, $options, $expandedValue);
-                }
+                        break;
+                    case Keyword::GRAPH->value:
+                        // 13.4.5
+                        $expandedValue = $this->processGraphKeyword($activeContext, $value, $baseUrl, $options, $expandedValue);
 
-                // 13.4.6
-                if (Keyword::INCLUDED->value === $expandedProperty) {
-                    $expandedValue = $this->processIncludedKeyword($activeContext, $value, $result, $baseUrl, $options, $expandedValue);
-                }
+                        break;
+                    case Keyword::INCLUDED->value:
+                        // 13.4.6
+                        $expandedValue = $this->processIncludedKeyword($activeContext, $value, $result, $baseUrl, $options, $expandedValue);
 
-                // 13.4.7
-                if (Keyword::VALUE->value === $expandedProperty) {
-                    $expandedValue = $this->processValueKeyword($activeContext, $value, $result, $inputType, $options, $expandedValue);
-                }
+                        break;
+                    case Keyword::VALUE->value:
+                        // 13.4.7
+                        $expandedValue = $this->processValueKeyword($activeContext, $value, $result, $inputType, $options, $expandedValue);
 
-                // 13.4.8
-                if (Keyword::LANGUAGE->value === $expandedProperty) {
-                    $expandedValue = $this->processLanguageKeyword($value, $options);
-                }
+                        break;
+                    case Keyword::LANGUAGE->value:
+                        // 13.4.8
+                        $expandedValue = $this->processLanguageKeyword($value, $options);
 
-                // 13.4.9
-                if (Keyword::DIRECTION->value === $expandedProperty) {
-                    $expandedValue = $this->processDirectionKeyword($activeContext, $value, $options);
-                }
+                        break;
+                    case Keyword::DIRECTION->value:
+                        // 13.4.9
+                        $expandedValue = $this->processDirectionKeyword($activeContext, $value, $options);
 
-                // 13.4.10
-                if (Keyword::INDEX->value === $expandedProperty) {
-                    $expandedValue = $this->processIndexKeyword($value);
-                }
+                        break;
+                    case Keyword::INDEX->value:
+                        // 13.4.10
+                        $expandedValue = $this->processIndexKeyword($value);
 
-                // 13.4.11
-                if (Keyword::LIST->value === $expandedProperty) {
-                    $expandedValue = $this->processListKeyword($activeContext, $activeProperty, $value, $baseUrl, $options, $expandedValue);
-                }
+                        break;
+                    case Keyword::LIST->value:
+                        // 13.4.11
+                        $expandedValue = $this->processListKeyword($activeContext, $activeProperty, $value, $baseUrl, $options, $expandedValue);
 
-                // 13.4.12
-                if (Keyword::SET->value === $expandedProperty) {
-                    $expandedValue = $this->expand(
-                        $value,
-                        $options,
-                        $baseUrl,
-                        $activeContext,
-                        $activeProperty,
-                    );
-                }
+                        break;
+                    case Keyword::SET->value:
+                        // 13.4.12
+                        $expandedValue = $this->expand(
+                            $value,
+                            $options,
+                            $baseUrl,
+                            $activeContext,
+                            $activeProperty,
+                        );
 
-                // 13.4.13
-                if (Keyword::REVERSE->value === $expandedProperty) {
-                    $expandedValue = $this->processReverseKeyword($activeContext, $value, $result, $expandedProperty, $baseUrl, $options);
+                        break;
+                    case Keyword::REVERSE->value:
+                        // 13.4.13
+                        $expandedValue = $this->processReverseKeyword($activeContext, $value, $result, $expandedProperty, $baseUrl, $options);
 
-                    // 13.4.13.5
-                    continue;
-                }
+                        // 13.4.13.5
+                        continue 2;
+                    case Keyword::NEST->value:
+                        // 13.4.14
+                        $nests[] = $key ?: [];
 
-                // 13.4.14
-                if (Keyword::NEST->value === $expandedProperty) {
-                    $nests[] = $key ?: [];
-
-                    continue;
+                        continue 2;
                 }
 
                 // 13.4.15
@@ -597,7 +596,7 @@ class Expander
         }
 
         // 13.4.4.5
-        if (\array_key_exists(Keyword::TYPE->value, $result)) {
+        if (\array_key_exists(Keyword::TYPE->value, $result) && \is_array($expandedValue)) {
             if (\is_array($result[Keyword::TYPE->value])) {
                 $expandedValue = [...$result[Keyword::TYPE->value], ...$expandedValue];
             } else {
@@ -607,7 +606,7 @@ class Expander
             sort($expandedValue);
         }
 
-        if (1 === \count($expandedValue)) {
+        if (\is_array($expandedValue) && 1 === \count($expandedValue)) {
             $expandedValue = $expandedValue[0];
         }
 
@@ -798,7 +797,9 @@ class Expander
             Keyword::REVERSE->value,
         );
 
-        $expandedValue = $expandedValue[0];
+        if (\is_array($expandedValue)) {
+            $expandedValue = $expandedValue[0];
+        }
 
         // 13.4.13.3
         if (property_exists($expandedValue, Keyword::REVERSE->value)) {
@@ -968,6 +969,10 @@ class Expander
                 true,
             );
 
+            if (!\is_array($indexValue)) {
+                $indexValue = (array) $indexValue;
+            }
+
             // 13.8.3.7
             foreach ($indexValue as $item) {
                 // 13.8.3.7.1
@@ -1116,7 +1121,7 @@ class Expander
                 }
 
                 // 14.2.1
-                foreach ($nestedValue as $key => $value) {
+                foreach ((array) $nestedValue as $key => $value) {
                     if (Keyword::VALUE->value === IriResolver::expand($activeContext, $key)) {
                         throw new ExpansionException('invalid @nest value');
                     }

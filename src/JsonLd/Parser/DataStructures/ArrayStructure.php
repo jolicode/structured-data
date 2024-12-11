@@ -44,8 +44,8 @@ class ArrayStructure extends AbstractStructure
         $this->values[] = new Value($range, $value);
     }
 
-    public function getLastValue(): Value
+    public function getLastValue(): ?Value
     {
-        return end($this->values);
+        return end($this->values) ?: null;
     }
 }

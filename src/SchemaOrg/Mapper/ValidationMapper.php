@@ -133,7 +133,9 @@ class ValidationMapper
             if (null !== $value) {
                 $propertyKey = $this->removeSchemaOrgDomain($label);
 
-                $type->properties[$propertyKey] = $this->mapProperty($value, $propertyKey, $type);
+                if (\is_string($propertyKey)) {
+                    $type->properties[$propertyKey] = $this->mapProperty($value, $propertyKey, $type);
+                }
             }
         }
 
@@ -200,7 +202,10 @@ class ValidationMapper
                     // @graph is supposed to only be used with the flattened and the framed algorithms, which all use type references.
                     // Turns out, other formats may aswell! In those cases, the real type may be safely retrieved from the map directly. There are no references.
                     $graphIndex = array_search($type, $this->mappedTypes, \true);
-                    $parsedJsonLd = $parsedJsonLd->getGraphType($graphIndex);
+
+                    if (\is_int($graphIndex)) {
+                        $parsedJsonLd = $parsedJsonLd->getGraphType($graphIndex);
+                    }
                 }
             }
 
@@ -220,7 +225,7 @@ class ValidationMapper
             }
         } elseif ($parsedJsonLd instanceof ArrayStructure) {
             array_map(
-                fn (Value $value) => $this->addRangesToType($type, $value->content),
+                fn (Value $value) => $value->content instanceof AbstractStructure && $this->addRangesToType($type, $value->content),
                 $parsedJsonLd->getValues(),
             );
         }
@@ -230,12 +235,12 @@ class ValidationMapper
     {
         $parsedValue = $this->retrieveParsedValue($property, $parsedJsonLd);
 
-        if (!$parsedValue) {
+        if (!$parsedValue instanceof Property) {
             return;
         }
 
         // A Value may be found on an array and have no key.
-        $parsedKey = $parsedValue instanceof Property ? $parsedValue->key : $parsedValue;
+        $parsedKey = $parsedValue->key;
         $parsedValue = $parsedValue->value;
 
         $property->addKeyRange($parsedKey->range);
@@ -254,7 +259,9 @@ class ValidationMapper
                 return;
             }
 
-            $this->addRangesToType($property->value, $parsedValue->content);
+            if ($parsedValue->content instanceof AbstractStructure) {
+                $this->addRangesToType($property->value, $parsedValue->content);
+            }
         }
 
         if (\is_array($property->value)) {
@@ -263,8 +270,10 @@ class ValidationMapper
             }
 
             foreach ($property->value as $key => $value) {
-                if ($value instanceof MappedType) {
-                    $this->addRangesToType($value, $parsedValue->content->getValue($key)->content);
+                $content = $parsedValue->content->getValue($key)->content;
+
+                if ($value instanceof MappedType && $content instanceof AbstractStructure) {
+                    $this->addRangesToType($value, $content);
                 }
             }
         }
@@ -303,16 +312,18 @@ class ValidationMapper
 
     private function savePropertyWithReference(\stdClass $valueEntry, MappedProperty $property): void
     {
-        $this->propertiesWithReferences[$valueEntry->{Keyword::ID->value}] = $property;
+        if (\is_string($valueEntry->{Keyword::ID->value})) {
+            $this->propertiesWithReferences[$valueEntry->{Keyword::ID->value}] = $property;
+        }
     }
 
-    private function findPropertyReference(MappedProperty $property): string
+    private function findPropertyReference(MappedProperty $property): ?string
     {
         return array_search(
             $property,
             $this->propertiesWithReferences,
             true,
-        );
+        ) ?: null;
     }
 
     private function isParsedFlattenedTypeReference(AbstractStructure $type): bool

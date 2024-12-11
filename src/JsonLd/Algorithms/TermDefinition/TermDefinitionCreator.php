@@ -92,7 +92,7 @@ class TermDefinitionCreator
             $simpleTerm = true;
         // 9
         } else {
-            if (!\is_object($value)) {
+            if (!$value instanceof \stdClass) {
                 throw new TermDefinitionCreationException('invalid term definition');
             }
 
@@ -281,7 +281,7 @@ class TermDefinitionCreator
     private static function setTypeMapping(
         Context $activeContext,
         TermDefinition $definition,
-        \stdClass|array $localContext,
+        \stdClass $localContext,
         mixed $value,
         array $defined,
     ): void {
@@ -326,7 +326,7 @@ class TermDefinitionCreator
     private static function setReverseDefinition(
         Context $activeContext,
         TermDefinition $definition,
-        \stdClass|array $localContext,
+        \stdClass $localContext,
         string $term,
         mixed $value,
         array $defined,
@@ -389,7 +389,7 @@ class TermDefinitionCreator
         TermDefinition $definition,
         string $term,
         mixed $value,
-        \stdClass|array $localContext,
+        \stdClass $localContext,
         array $defined,
         bool $simpleTerm,
     ): bool {
@@ -469,7 +469,7 @@ class TermDefinitionCreator
     private static function handleTermWithColons(
         Context $activeContext,
         TermDefinition $definition,
-        \stdClass|array $localContext,
+        \stdClass $localContext,
         string $term,
         array $defined,
     ): void {
@@ -561,7 +561,7 @@ class TermDefinitionCreator
 
     private static function handleContextValue(
         Context $activeContext,
-        array|\stdClass $localContext,
+        \stdClass $localContext,
         TermDefinition $definition,
         mixed $value,
         ?string $baseUrl,

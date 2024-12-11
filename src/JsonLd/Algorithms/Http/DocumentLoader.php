@@ -35,7 +35,7 @@ class DocumentLoader
         );
     }
 
-    public function load(): \stdClass|array
+    public function load(): \stdClass
     {
         ++$this->documentsCount;
 
@@ -43,8 +43,8 @@ class DocumentLoader
             throw new \LogicException(\sprintf('Cannot load more than %s documents.', self::MAX_DOCUMENTS));
         }
 
-        if (is_file($this->url)) {
-            return json_decode(file_get_contents($this->url));
+        if (is_file($this->url) && $content = file_get_contents($this->url)) {
+            return json_decode($content);
         }
 
         try {
@@ -121,10 +121,10 @@ class DocumentLoader
                         // inject this context
                         $externalContextNode = $this->load();
 
-                        if (isset($externalContextNode[Keyword::CONTEXT->value][Keyword::BASE->value])) {
+                        if (isset($externalContextNode->{Keyword::CONTEXT->value}[Keyword::BASE->value])) {
                             // see https://www.w3.org/TR/json-ld/#base-iri
                             // Please note that the @base will be ignored if used in external contexts.
-                            unset($externalContextNode[Keyword::CONTEXT->value][Keyword::BASE->value]);
+                            unset($externalContextNode->{Keyword::CONTEXT->value}[Keyword::BASE->value]);
                         }
                     }
                 }
@@ -135,14 +135,18 @@ class DocumentLoader
 
         if (isset($externalContextNode)) {
             if (property_exists($response, Keyword::CONTEXT->value)) {
-                $response->{Keyword::CONTEXT->value} = $externalContextNode[Keyword::CONTEXT->value];
+                $response->{Keyword::CONTEXT->value} = $externalContextNode->{Keyword::CONTEXT->value};
             } else {
                 foreach ($response as $key => $node) {
                     if (\is_array($node)) {
-                        $response->$key->{Keyword::CONTEXT->value} = $externalContextNode[Keyword::CONTEXT->value];
+                        $response->$key->{Keyword::CONTEXT->value} = $externalContextNode->{Keyword::CONTEXT->value};
                     }
                 }
             }
+        }
+
+        if (\is_array($response)) {
+            $response = (object) $response;
         }
 
         return $response;
@@ -154,7 +158,13 @@ class DocumentLoader
 
         foreach ($headers as $key => $header) {
             if (str_contains($header, ',')) {
-                foreach (preg_split('/,(?=\s*<.*>([^"]*"[^"]*")*[^"]*$)/', $header) as $part) {
+                $parts = preg_split('/,(?=\s*<.*>([^"]*"[^"]*")*[^"]*$)/', $header);
+
+                if (false === $parts) {
+                    throw new \RuntimeException('Failed to parse Link header');
+                }
+
+                foreach ($parts as $part) {
                     $headers[] = trim($part);
                 }
 
@@ -169,9 +179,18 @@ class DocumentLoader
                 ];
 
                 if (isset($matches[2])) {
-                    foreach (preg_split('/;(?=([^"]*"[^"]*")*[^"]*$)/', $matches[2]) as $part) {
+                    $parts = preg_split('/;(?=([^"]*"[^"]*")*[^"]*$)/', $matches[2]);
+
+                    if (false === $parts) {
+                        throw new \RuntimeException('Failed to parse header');
+                    }
+
+                    foreach ($parts as $part) {
                         $parts = preg_split('/=(?=([^"]*"[^"]*")*$)/', $part);
-                        $item[trim($parts[0])] = trim($parts[1], "\s\"'");
+
+                        if (false !== $parts) {
+                            $item[trim($parts[0])] = trim($parts[1], "\s\"'");
+                        }
                     }
                 }
 

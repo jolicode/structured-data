@@ -26,6 +26,11 @@ class JsonLdParser
 
         try {
             $stream = fopen('php://memory', 'r+');
+
+            if (false === $stream) {
+                throw new \RuntimeException('Could not open memory stream');
+            }
+
             fwrite($stream, $jsonLdElement->content);
             rewind($stream);
 

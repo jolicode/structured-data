@@ -11,13 +11,14 @@
 
 use Castor\Attribute\AsArgument;
 use Castor\Attribute\AsTask;
+
+use function Castor\import;
+use function Castor\io;
+
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
 use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
 use Jolicode\SchemaOrg\JsonLdValidator;
 use Jolicode\SchemaOrg\Mapper\MappedError;
-
-use function Castor\import;
-use function Castor\io;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -32,7 +33,7 @@ function expand(
     $file = file_get_contents($fileName);
 
     if (false === $file) {
-        io()->error(\sprintf('The file "%s" could not be read.', $fileName));
+        io()->error(sprintf('The file "%s" could not be read.', $fileName));
 
         return;
     }
@@ -55,7 +56,7 @@ function flatten(
     $file = file_get_contents($fileName);
 
     if (false === $file) {
-        io()->error(\sprintf('The file "%s" could not be read.', $fileName));
+        io()->error(sprintf('The file "%s" could not be read.', $fileName));
 
         return;
     }
@@ -78,8 +79,8 @@ function validate(
     $validator = new JsonLdValidator();
     $types = $validator->validate($fileOrUrl);
 
-    if (\count($types)) {
-        io()->success(\sprintf('%d types were found in the provided document.', \count($types)));
+    if (count($types)) {
+        io()->success(sprintf('%d types were found in the provided document.', count($types)));
     }
 
     $hasErrors = false;
@@ -95,10 +96,10 @@ function validate(
                     io()->warning($error->message);
                 }
 
-                io()->info(\sprintf(
+                io()->info(sprintf(
                     'Raised by the %s validator for %s on property "%s". Found on the following lines: %s',
                     $error->validatorName,
-                    $error->type ? \sprintf('the type "%s"', $error->type) : 'an unknown type (with no @type property)',
+                    $error->type ? sprintf('the type "%s"', $error->type) : 'an unknown type (with no @type property)',
                     $error->key,
                     \PHP_EOL . $error->ranges,
                 ));

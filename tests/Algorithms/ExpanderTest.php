@@ -40,7 +40,13 @@ class ExpanderTest extends AbstractJsonLdTestCase
                 $this->assertSame($expected->getMessage(), $exception->getMessage());
             }
         } else {
-            $this->assertEquals(json_decode($expected), json_decode($expander->parseJson($json, $options)));
+            $expanded = $expander->parseJson($json, $options);
+
+            if (!\is_string($expanded)) {
+                throw new AssertionFailedError('The expanded JSON is not a string');
+            }
+
+            $this->assertEquals(json_decode($expected), json_decode($expanded));
         }
     }
 

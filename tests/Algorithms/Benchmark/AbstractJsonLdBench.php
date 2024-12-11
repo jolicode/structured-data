@@ -17,14 +17,21 @@ abstract class AbstractJsonLdBench
 
     abstract protected function getAlgorithmName(): string;
 
-    protected function loadJson(string $filename): string|false
+    protected function loadJson(string $filename): string
     {
-        return file_get_contents(\sprintf(
+        $filePath = \sprintf(
             '%s/%s/input/%s',
             static::DATA_PATH,
             $this->getAlgorithmName(),
             $filename,
-        ));
+        );
+        $content = file_get_contents($filePath);
+
+        if (false === $content) {
+            throw new \RuntimeException(\sprintf('Could not load file %s', $filePath));
+        }
+
+        return $content;
     }
 
     protected function getBaseUrlForW3CTests(string $filename): string

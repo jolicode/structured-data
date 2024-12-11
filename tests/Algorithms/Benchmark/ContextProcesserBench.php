@@ -32,7 +32,7 @@ class ContextProcesserBench extends AbstractJsonLdBench
     {
         $json = $this->loadJson('context02-in.jsonld');
 
-        $this->processer->extractContext(json_decode($json));
+        $this->processer->extractContext(json_decode($json) ?? []);
     }
 
     /**
@@ -46,7 +46,7 @@ class ContextProcesserBench extends AbstractJsonLdBench
     {
         $json = $this->loadJson('context01-in.jsonld');
 
-        $this->processer->extractContext(json_decode($json));
+        $this->processer->extractContext(json_decode($json) ?? []);
     }
 
     /**
@@ -60,7 +60,7 @@ class ContextProcesserBench extends AbstractJsonLdBench
     {
         $json = $this->loadJson('context09-in.jsonld');
 
-        $this->processer->extractContext(json_decode($json));
+        $this->processer->extractContext(json_decode($json) ?? []);
     }
 
     protected function getAlgorithmName(): string

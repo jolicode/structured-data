@@ -69,7 +69,7 @@ class JsonLdValidator
      * It will make HTTP requests if needed, extract the JsonLd from the document, and validate it.
      * It will merge all types found in the document (either in distinct <script> tags or in an array of types) in an array of MappedTypes.
      *
-     * @return array<MappedType|MappedError>
+     * @return array<MappedType>
      */
     public function validate(string $input, ?string $specificValidator = null): array
     {
@@ -100,6 +100,10 @@ class JsonLdValidator
                 return $this->createInvalidDocumentType($exception->getMessage(), $jsonLdElement->startLine);
             }
 
+            if (!\is_array($expansionResult)) {
+                return $this->createInvalidDocumentType('The JSON-LD document is not valid', $jsonLdElement->startLine);
+            }
+
             if ($parsedJsonLd instanceof ArrayStructure) {
                 foreach ($parsedJsonLd->getValues() as $index => $jsonLdNode) {
                     /**
@@ -128,6 +132,10 @@ class JsonLdValidator
 
         if (is_file($input)) {
             $input = file_get_contents($input);
+
+            if (false === $input) {
+                throw new \RuntimeException(\sprintf('Could not read the file %s', $input));
+            }
         }
 
         return $this->extractor->extractStructuredDataContent($input);

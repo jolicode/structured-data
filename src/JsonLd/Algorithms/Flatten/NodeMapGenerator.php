@@ -64,6 +64,10 @@ class NodeMapGenerator
         if (property_exists($element, FramingKeyword::TYPE->value)) {
             // 3.1
             if (\is_array($element->{FramingKeyword::TYPE->value}) || \is_object($element->{FramingKeyword::TYPE->value})) {
+                if (!\is_array($element->{FramingKeyword::TYPE->value})) {
+                    $element->{FramingKeyword::TYPE->value} = (array) $element->{FramingKeyword::TYPE->value};
+                }
+
                 foreach ($element->{FramingKeyword::TYPE->value} as &$item) {
                     $item = $this->identifierGenerator->getIdentifier($item);
                 }
@@ -122,6 +126,10 @@ class NodeMapGenerator
                 $id = $this->identifierGenerator->getIdentifier(null);
             }
 
+            if (!\is_string($id)) {
+                throw new FlatteningException('The identifier must be a string');
+            }
+
             // 6.3
             if (!\array_key_exists($id, $graph)) {
                 $graph[$id] = [FramingKeyword::ID->value => $id];
@@ -131,7 +139,7 @@ class NodeMapGenerator
             $node = &$graph[$id];
 
             // 6.5
-            if (\is_object($activeSubject)) {
+            if ($activeSubject instanceof \stdClass) {
                 // 6.5.1
                 if (!\array_key_exists($activeProperty, $node)) {
                     $node[$activeProperty] = [$activeSubject];
@@ -227,6 +235,10 @@ class NodeMapGenerator
             foreach ($sortedElementProperties as $property => $value) {
                 // 6.12.1
                 $property = $this->identifierGenerator->getIdentifier($property);
+
+                if (!\is_string($property)) {
+                    throw new FlatteningException('The identifier must be a string');
+                }
 
                 // 6.12.2
                 if (!\array_key_exists($property, $node)) {

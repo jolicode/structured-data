@@ -100,7 +100,7 @@ class GoogleValidator extends AbstractValidator
 
             $foundProperty = array_filter(
                 [...$typeFqcn::RECOMMENDED_PROPERTIES, ...$typeFqcn::REQUIRED_PROPERTIES],
-                fn (string $key) => $key === $propertyKey,
+                fn (int|string $key) => $key === $propertyKey,
                 \ARRAY_FILTER_USE_KEY,
             );
 
@@ -140,17 +140,19 @@ class GoogleValidator extends AbstractValidator
 
         $cloneErrors = [];
 
-        foreach ($type->type as $label) {
-            $clone = clone $type;
-            $clone->type = $label;
+        if (\is_array($type->type)) {
+            foreach ($type->type as $label) {
+                $clone = clone $type;
+                $clone->type = $label;
 
-            $typeErrors = self::validateType($clone, $property, $typesStack);
+                $typeErrors = self::validateType($clone, $property, $typesStack);
 
-            if (!\count($typeErrors)) {
-                return [];
+                if (!\count($typeErrors)) {
+                    return [];
+                }
+
+                $cloneErrors[] = [...$typeErrors];
             }
-
-            $cloneErrors[] = [...$typeErrors];
         }
 
         return $cloneErrors;
@@ -207,6 +209,11 @@ class GoogleValidator extends AbstractValidator
     private static function concatenateTypeLabels(MappedType $type): string
     {
         $className = $type->type;
+
+        if (!\is_array($className)) {
+            return ucfirst($className);
+        }
+
         array_walk($className, fn (string &$word) => $word = ucfirst($word));
         $className = implode('', $className);
 

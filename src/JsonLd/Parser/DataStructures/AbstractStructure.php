@@ -21,5 +21,5 @@ abstract class AbstractStructure
 
     abstract public function addValue(self|string|bool|null $value, Range $range): void;
 
-    abstract public function getLastValue(): Value;
+    abstract public function getLastValue(): ?Value;
 }

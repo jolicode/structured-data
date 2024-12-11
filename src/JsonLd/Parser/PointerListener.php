@@ -80,6 +80,10 @@ class PointerListener extends IdleListener implements PositionAwareInterface
 
     private function startStructure(string $structureClass): void
     {
+        if (!\in_array($structureClass, [ObjectStructure::class, ArrayStructure::class], true)) {
+            throw new \InvalidArgumentException('Invalid structure class');
+        }
+
         $range = new Range($this->getCurrentPosition(), null);
         $newStructure = new $structureClass($this->currentStructure, $range);
 

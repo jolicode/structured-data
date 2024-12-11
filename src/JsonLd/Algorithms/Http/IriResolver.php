@@ -138,7 +138,7 @@ class IriResolver
             return false;
         }
 
-        return preg_match('/^(?:[^\s]*)|(?:\.\.|\.)\/?/', $iri);
+        return 1 === preg_match('/^(?:[^\s]*)|(?:\.\.|\.)\/?/', $iri);
     }
 
     public static function isAbsoluteIri(mixed $iri): bool
@@ -147,7 +147,7 @@ class IriResolver
             return false;
         }
 
-        return preg_match('/^[A-Za-z][A-Za-z0-9+-.]*:[^\s]*$/', $iri);
+        return 1 === preg_match('/^[A-Za-z][A-Za-z0-9+-.]*:[^\s]*$/', $iri);
     }
 
     public static function isBlankNodeIdentifier(mixed $iri): bool
@@ -156,7 +156,7 @@ class IriResolver
             return false;
         }
 
-        return preg_match('/^_:[^\s]*$/', $iri);
+        return 1 === preg_match('/^_:[^\s]*$/', $iri);
     }
 
     public static function isAbsoluteIriOrBlankNode(mixed $iri): bool
@@ -174,6 +174,6 @@ class IriResolver
             return $iri;
         }
 
-        return (string) Uri::createFromBaseUri($iri, $base);
+        return (string) Uri::fromBaseUri($iri, $base);
     }
 }

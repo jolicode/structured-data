@@ -92,8 +92,7 @@ class ObjectStructure extends AbstractStructure
     {
         $foundValue = array_filter(
             $this->getGraph()->getValues(),
-            /* @phpstan-ignore-next-line */
-            fn (Value $value) => $value->content->getProperty(Keyword::ID->value)->value->content === $reference,
+            fn (Value $value) => $value->content instanceof ObjectStructure && $value->content->getProperty(Keyword::ID->value)->value->content === $reference,
         );
 
         return $foundValue[array_key_first($foundValue)];
@@ -106,11 +105,20 @@ class ObjectStructure extends AbstractStructure
 
     public function addValue(AbstractStructure|string|bool|null $value, Range $range): void
     {
-        end($this->properties)->value = new Value($range, $value);
+        $lastProperty = $this->getLastProperty();
+
+        if (null !== $lastProperty) {
+            $lastProperty->value = new Value($range, $value);
+        }
     }
 
-    public function getLastValue(): Value
+    public function getLastProperty(): ?Property
     {
-        return end($this->properties)->value;
+        return end($this->properties) ?: null;
+    }
+
+    public function getLastValue(): ?Value
+    {
+        return $this->getLastProperty()?->value ?: null;
     }
 }

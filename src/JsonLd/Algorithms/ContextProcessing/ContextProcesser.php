@@ -104,7 +104,7 @@ class ContextProcesser
             $documentLoader = new DocumentLoader($url);
             $document = $documentLoader->load();
 
-            if (!\is_object($document) || !property_exists($document, Keyword::CONTEXT->value)) {
+            if (!property_exists($document, Keyword::CONTEXT->value)) {
                 throw new ContextProcessingException('invalid remote context');
             }
 
@@ -126,7 +126,7 @@ class ContextProcesser
 
     private function updateContext(
         Context $activeContext,
-        array|\stdClass|string|null $localContext,
+        array $localContext,
         Context $result,
         ?string $baseUrl = null,
         array &$remoteContexts = [],
@@ -152,7 +152,7 @@ class ContextProcesser
             }
 
             // 5.3 & 5.4
-            if (!\is_object($context)) {
+            if (!$context instanceof \stdClass) {
                 throw new ContextProcessingException('invalid local context');
             }
 
@@ -334,8 +334,8 @@ class ContextProcesser
         $value = $context->{Keyword::BASE->value};
 
         // 5.7.2
-        if (!$value) {
-            $result->baseIri = $value;
+        if (null === $value) {
+            $result->baseIri = null;
         // 5.7.4 : we invert 5.7.3 and 5.7.4 because it doesn't make sense to do it the other way around
         } elseif (IriResolver::isRelativeIri($value) && $result->baseIri) {
             $result->baseIri = IriResolver::resolveIri($result->baseIri, $value);
