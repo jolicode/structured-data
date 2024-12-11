@@ -1,0 +1,32 @@
+{
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Jolicode\\JsonLd\\Generator\\": "src/",
+            "SchemaOrg\\": "generated/SchemaOrg/",
+            "Google\\": "generated/Google/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hédic Guibert",
+            "email": "hguibert@jolicode.com"
+        },
+        {
+            "name": "Xavier Lacot",
+            "email": "xlacot@jolicode.com"
+        }
+    ],
+    "require-dev": {
+        "symfony/var-dumper": "^6.3|^7.0"
+    },
+    "require": {
+        "php": ">=8.3",
+        "symfony/finder": "^6.3|^7.0",
+        "symfony/filesystem": "^6.3|^7.0",
+        "symfony/http-client": "^6.3|^7.0",
+        "nikic/php-parser": "^4.15|^5.0",
+        "symfony/dom-crawler": "^6.3|^7.0",
+        "symfony/css-selector": "^6.3|^7.0"
+    }
+}

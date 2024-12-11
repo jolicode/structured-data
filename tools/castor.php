@@ -15,8 +15,11 @@ use Castor\Attribute\AsOption;
 use Castor\Attribute\AsTask;
 
 use function Castor\context;
+use function Castor\io;
 use function Castor\run;
 
+use Jolicode\JsonLd\Generator\Downloader;
+use Jolicode\JsonLd\Generator\Filesystem;
 use Symfony\Component\Console\Input\InputOption;
 
 #[AsTask(description: 'Runs all QA tasks')]
@@ -58,7 +61,7 @@ function update(): void
 }
 
 #[AsTask(description: 'Fix CS', aliases: ['cs'])]
-function cs(bool $dryRun = false): int
+function cs(bool $dryRun = false, ?string $directory = null): int
 {
     if (!is_dir(__DIR__ . '/php-cs-fixer/vendor')) {
         install();
@@ -69,6 +72,10 @@ function cs(bool $dryRun = false): int
     if ($dryRun) {
         $command[] = '--dry-run';
         $command[] = '--diff';
+    }
+
+    if ($directory) {
+        $command[] = $directory;
     }
 
     return run(
@@ -90,7 +97,29 @@ function phpstan(): int
     )->getExitCode();
 }
 
-#[AsTask(description: 'Runs PHPUnit', aliases: ['phpunit'])]
+#[AsTask(name: 'prepare', namespace: 'qa:phpunit', description: 'Download the W3C tests suite')]
+function phpunitPrepare(
+    bool $force = false,
+): void {
+    $filesystem = new Filesystem();
+
+    if ($force || !$filesystem->hasW3CTestSuiteFiles()) {
+        io()->title('Downloading the W3C tests suite.');
+
+        $filesystem = new Filesystem();
+        $filesystem->removeW3CTestSuite();
+
+        $downloader = new Downloader($filesystem);
+        $downloader->downloadW3CTestSuite();
+        $filesystem->copyContextTestFixtures();
+
+        io()->success('W3C tests suite downloaded successfully.');
+    } else {
+        io()->warning('The W3C tests suite is already downloaded. Use --force to download it again.');
+    }
+}
+
+#[AsTask(name: 'run', description: 'Runs PHPUnit', namespace: 'qa:phpunit', aliases: ['phpunit'])]
 function phpunit(
     #[AsOption(name: 'group', shortcut: 'g', mode: InputOption::VALUE_REQUIRED, description: 'Only run tests from the specified group')]
     ?string $group = null,
@@ -101,6 +130,12 @@ function phpunit(
 ): int {
     if (!is_dir(__DIR__ . '/phpunit/vendor')) {
         install();
+    }
+
+    $filesystem = new Filesystem();
+
+    if (!$filesystem->hasW3CTestSuiteFiles()) {
+        phpunitPrepare();
     }
 
     $command = [

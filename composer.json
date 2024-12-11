@@ -5,9 +5,11 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Jolicode\\JsonLd\\": "src/",
-            "SchemaOrg\\": "generated/SchemaOrg/",
-            "Google\\": "generated/Google/"
+            "Jolicode\\SchemaOrg\\EnumerationMember\\": "src/SchemaOrg/Generated/EnumerationMember/",
+            "Jolicode\\SchemaOrg\\Google\\": "src/SchemaOrg/Generated/Google/",
+            "Jolicode\\SchemaOrg\\Property\\": "src/SchemaOrg/Generated/Property/",
+            "Jolicode\\SchemaOrg\\Type\\": "src/SchemaOrg/Generated/Type/",
+            "Jolicode\\": "src/"
         }
     },
     "autoload-dev": {

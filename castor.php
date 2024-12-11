@@ -18,39 +18,10 @@ use function Castor\run;
 
 use Symfony\Component\Console\Input\InputOption;
 
+require_once __DIR__ . '/vendor/autoload.php';
+
 import(__DIR__ . '/tools/castor.php');
-
-#[AsTask(name: 'delete', namespace: 'fixtures', description: 'Delete all test files')]
-function deleteFixtures(): void
-{
-    run('bin/json-ld remove-fixtures');
-}
-
-#[AsTask(name: 'reset', namespace: 'fixtures', description: 'Delete the test files and reinstall them')]
-function resetFixtures(): void
-{
-    run('bin/json-ld remove-fixtures --reset');
-}
-
-#[AsTask(name: 'generate', description: 'Generate the PHP classes used to validate JSON-LD')]
-function generate(
-    #[AsOption(name: 'reset', shortcut: 'r', mode: InputOption::VALUE_NONE, description: 'Reset the generated files')]
-    bool $reset,
-    #[AsOption(name: 'source', shortcut: 's', mode: InputOption::VALUE_REQUIRED, description: 'Only download from a specific source. Accepted values are "schemaorg" and "google"')]
-    ?string $source = null,
-): void {
-    $command = 'bin/json-ld generate';
-
-    if ($reset) {
-        $command .= ' -r';
-    }
-
-    if ($source) {
-        $command .= sprintf(' -s %s', $source);
-    }
-
-    run($command);
-}
+import(__DIR__ . '/tools/generator/castor.php');
 
 #[AsTask(name: 'validate', description: 'Validate a local file or a remote URL')]
 function validate(

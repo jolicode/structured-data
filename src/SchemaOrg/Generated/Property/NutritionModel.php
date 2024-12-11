@@ -1,0 +1,21 @@
+<?php
+
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Jolicode\SchemaOrg\Property;
+
+final class NutritionModel
+{
+    public const DESCRIPTION = 'Nutrition information about the recipe or menu item.';
+    public const LABEL = 'nutrition';
+    public const NAME = 'schema:nutrition';
+    public const VALUES = ['NutritionInformationModel' => 'Jolicode\SchemaOrg\Type\NutritionInformationModel'];
+    public const TYPES = ['MenuItem' => 'Jolicode\SchemaOrg\Type\MenuItemModel', 'Recipe' => 'Jolicode\SchemaOrg\Type\RecipeModel'];
+}
