@@ -27,7 +27,7 @@ final class FakeCacheHeaderClient implements HttpClientInterface
 
         return new class($response) implements ResponseInterface {
             public function __construct(
-                private $response,
+                private ResponseInterface $response,
             ) {
             }
 
@@ -41,7 +41,7 @@ final class FakeCacheHeaderClient implements HttpClientInterface
                 $headers = $this->response->getHeaders($throw);
 
                 // One month
-                $headers['cache-control'] = 'public, max-age=2592000, s-maxage=2592000';
+                $headers['cache-control'] = ['public, max-age=2592000, s-maxage=2592000'];
 
                 return $headers;
             }

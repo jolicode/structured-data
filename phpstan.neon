@@ -1,5 +1,5 @@
 parameters:
-    level: 5
+    level: 6
 
     paths:
         - src
@@ -15,3 +15,5 @@ parameters:
 
     ignoreErrors:
         - '#Argument of an invalid type stdClass supplied for foreach, only iterables are supported.#'
+        - '#no value type specified in iterable type array#'
+        - '#Test(Case)?::provide[a-zA-Z0-9_]+\(\) return type has no value type specified in iterable type#'

@@ -105,7 +105,7 @@ class PointerListener extends IdleListener implements PositionAwareInterface
         }
     }
 
-    private function getCurrentPosition()
+    private function getCurrentPosition(): Position
     {
         return new Position($this->currentLine + $this->startLineNumber, $this->currentColumn);
     }

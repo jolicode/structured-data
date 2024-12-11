@@ -14,8 +14,11 @@ namespace Jolicode\JsonLd\Algorithms\Services;
 class ValueAdder
 {
     /**
-     * Implementation of the Add Value macro : https://www.w3.org/TR/json-ld-api/#algorithm-terms
-     * It is based on the 16th July 2020 recommendation.
+     * This is a PHP implementation of the Add Value macro based on the
+     * JSON-LD 1.1 Processing Algorithms and API W3C Recommendation published on
+     * July 16th, 2020.
+     *
+     * see https://www.w3.org/TR/json-ld-api/#algorithm-terms
      */
     public static function addValue(mixed $value, mixed $key, \stdClass|array $object, bool $asArray = false): \stdClass
     {

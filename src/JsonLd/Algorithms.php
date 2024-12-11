@@ -18,15 +18,19 @@ enum Algorithms: string
     case COMPACT = 'compact';
     case EXPAND = 'expand';
 
-    // This only includes algorithms with a directory in the official test suite
-    // see https://github.com/w3c/json-ld-api/tree/main/tests
-    // Other algorithms are handled in a different way.
-    public static function algorithms(): array
+    /**
+     * The list of algorithms that are part of the official test suite.
+     * Other algorithms are handled in a different way.
+     * see https://github.com/w3c/json-ld-api/tree/main/tests.
+     *
+     * @return array<string>
+     */
+    public static function algorithmNames(): array
     {
         return [
-            self::FLATTEN,
-            self::COMPACT,
-            self::EXPAND,
+            self::FLATTEN->value,
+            self::COMPACT->value,
+            self::EXPAND->value,
         ];
     }
 }

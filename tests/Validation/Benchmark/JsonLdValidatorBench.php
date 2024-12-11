@@ -27,7 +27,7 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleExpandedValidation()
+    public function benchSimpleExpandedValidation(): void
     {
         $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-expanded.jsonld'));
     }
@@ -39,7 +39,7 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleCompactedValidation()
+    public function benchSimpleCompactedValidation(): void
     {
         $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-compacted.jsonld'));
     }
@@ -51,7 +51,7 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleFlattenedValidation()
+    public function benchSimpleFlattenedValidation(): void
     {
         $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-flattened.jsonld'));
     }
@@ -63,7 +63,7 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleFramedValidation()
+    public function benchSimpleFramedValidation(): void
     {
         $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-framed.jsonld'));
     }
@@ -75,7 +75,7 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchComplexExpandedValidation()
+    public function benchComplexExpandedValidation(): void
     {
         $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-expanded.jsonld'));
     }
@@ -87,7 +87,7 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchComplexCompactedValidation()
+    public function benchComplexCompactedValidation(): void
     {
         $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-compacted.jsonld'));
     }
@@ -99,7 +99,7 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchComplexFlattenedValidation()
+    public function benchComplexFlattenedValidation(): void
     {
         $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-flattened.jsonld'));
     }
@@ -111,7 +111,7 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchComplexFramedValidation()
+    public function benchComplexFramedValidation(): void
     {
         $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-framed.jsonld'));
     }
@@ -123,7 +123,7 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchHttpCall()
+    public function benchHttpCall(): void
     {
         $this->validator->validate('https://jolicode.com/blog/jouer-de-la-musique-dans-le-navigateur-avec-la-web-audio-api');
     }
@@ -135,7 +135,7 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchHttpCallWithManyTags()
+    public function benchHttpCallWithManyTags(): void
     {
         $this->validator->validate('https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/examples.txt');
     }

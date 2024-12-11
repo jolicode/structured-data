@@ -22,8 +22,11 @@ use Jolicode\JsonLd\Algorithms\Services\DataStructureComparator;
 class TermDefinitionCreator
 {
     /**
-     * Implementation of the W3C Create Term Definition algorithm : https://www.w3.org/TR/json-ld-api/#create-term-definition
-     * It is based on the 16th July 2020 recommendation.
+     * This is a PHP implementation of the Create Term Definition based on the
+     * JSON-LD 1.1 Processing Algorithms and API W3C Recommendation published on
+     * July 16th, 2020.
+     *
+     * see https://www.w3.org/TR/json-ld-api/#create-term-definition
      */
     public static function create(
         Context $activeContext,
@@ -34,7 +37,7 @@ class TermDefinitionCreator
         bool $protected = false,
         bool $overrideProtected = false,
         array &$remoteContexts = [],
-    ) {
+    ): void {
         // 1
         if (\array_key_exists($term, $defined)) {
             if ($defined[$term]) {
@@ -493,7 +496,7 @@ class TermDefinitionCreator
         Context $activeContext,
         TermDefinition $definition,
         mixed $value,
-    ) {
+    ): void {
         $container = $value->{Keyword::CONTAINER->value};
 
         // 19.1

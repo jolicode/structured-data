@@ -31,7 +31,7 @@ class ExpanderBench extends AbstractJsonLdBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleExpansion()
+    public function benchSimpleExpansion(): void
     {
         $this->expandJsonFile('0002-in.jsonld');
     }
@@ -43,7 +43,7 @@ class ExpanderBench extends AbstractJsonLdBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchComplexExpansion()
+    public function benchComplexExpansion(): void
     {
         $this->expandJsonFile('pr25-in.jsonld');
     }
@@ -55,7 +55,7 @@ class ExpanderBench extends AbstractJsonLdBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchHttpCallExpansion()
+    public function benchHttpCallExpansion(): void
     {
         $this->expandJsonFile('so08-in.jsonld');
     }

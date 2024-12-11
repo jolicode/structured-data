@@ -47,7 +47,7 @@ abstract class AbstractJsonLdTestCase extends TestCase
      */
     abstract protected function getOptions(string $filename): ProcessorOptions;
 
-    protected function getInputFiles(): iterable
+    protected function getInputFiles(): Finder
     {
         $directoryName = \sprintf('%s/%s/input/', self::DATA_PATH, $this->getAlgorithmName());
 

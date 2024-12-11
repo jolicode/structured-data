@@ -29,8 +29,11 @@ class Expander
     ) {
     }
 
-    public function parseJson(string|\stdClass $json, ProcessorOptions $options = new ProcessorOptions(), bool $encodeResult = true): \stdClass|array|string|null
-    {
+    public function parseJson(
+        string|\stdClass $json,
+        ProcessorOptions $options = new ProcessorOptions(),
+        bool $encodeResult = true,
+    ): \stdClass|array|string|null {
         $element = \is_string($json) ? json_decode($json) : $json;
         $baseUrl = $options->base;
 
@@ -69,7 +72,11 @@ class Expander
     /**
      * Takes a json_decoded JSON element as input and returns it expanded.
      *
-     * This is a PHP implementation of https://www.w3.org/TR/json-ld-api/#expansion-algorithm. It is based on the 16th July 2020 recommendation.
+     * This is a PHP implementation of the Expansion algorithm based on the
+     * JSON-LD 1.1 Processing Algorithms and API W3C Recommendation published on
+     * July 16th, 2020.
+     *
+     * see https://www.w3.org/TR/json-ld-api/#expansion-algorithm
      */
     public function expand(
         mixed $element,
@@ -221,7 +228,11 @@ class Expander
     /**
      * Expand compacted values.
      *
-     * This is a PHP implementation of https://www.w3.org/TR/json-ld11-api/#value-expansion. It is based on the 16th July 2020 recommendation.
+     * This is a PHP implementation of the Value Expansion algorithm based on the
+     * JSON-LD 1.1 Processing Algorithms and API W3C Recommendation published on
+     * July 16th, 2020.
+     *
+     * see https://www.w3.org/TR/json-ld11-api/#value-expansion
      */
     private function expandValue(Context $activeContext, string $activeProperty, mixed $value): \stdClass
     {
@@ -287,6 +298,9 @@ class Expander
         return (object) $result;
     }
 
+    /**
+     * @param TermDefinition[] $activeDefinitions
+     */
     private function processElementEntries(
         mixed $element,
         Context $activeContext,
@@ -1037,8 +1051,11 @@ class Expander
         return $expandedValue;
     }
 
-    private function processReverseProperty(array &$result, string $expandedProperty, \stdClass|array $expandedValue): void
-    {
+    private function processReverseProperty(
+        array &$result,
+        string $expandedProperty,
+        \stdClass|array $expandedValue,
+    ): void {
         // 13.13.1
         if (!\array_key_exists(Keyword::REVERSE->value, $result)) {
             $result[Keyword::REVERSE->value] = new \stdClass();

@@ -21,6 +21,7 @@ class ContextProcesser
 {
     private const MAX_CONTEXTS = 10;
 
+    /** @var array<string, \stdClass|array<mixed>|string> */
     private array $alreadyLoadedDocuments = [];
 
     public function parseJson(string $json): Context
@@ -31,9 +32,13 @@ class ContextProcesser
     }
 
     /**
-     * Takes a json_decoded JSON-LD context as input and returns a processed context.
+     * Takes a json decoded JSON-LD context as input and returns a processed context.
      *
-     * This is a PHP implementation of the Context Processing algorithm https://www.w3.org/TR/json-ld-api/#context-processing-algorithms. It is based on the 16th July 2020 recommendation.
+     * This is a PHP implementation of the Context Processing algorithm based on the
+     * JSON-LD 1.1 Processing Algorithms and API W3C Recommendation published on
+     * July 16th, 2020.
+     *
+     * see https://www.w3.org/TR/json-ld-api/#context-processing-algorithms
      */
     public function processContext(
         Context $activeContext,
@@ -84,10 +89,8 @@ class ContextProcesser
 
     public function extractContext(\stdClass|array $json): mixed
     {
-        if (\is_object($json)) {
-            if (property_exists($json, Keyword::CONTEXT->value)) {
-                return $json->{Keyword::CONTEXT->value};
-            }
+        if (\is_object($json) && property_exists($json, Keyword::CONTEXT->value)) {
+            return $json->{Keyword::CONTEXT->value};
         }
 
         return null;

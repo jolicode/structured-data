@@ -28,7 +28,7 @@ class ContextProcesserBench extends AbstractJsonLdBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleContext()
+    public function benchSimpleContext(): void
     {
         $json = $this->loadJson('context02-in.jsonld');
 
@@ -42,7 +42,7 @@ class ContextProcesserBench extends AbstractJsonLdBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchComplexContext()
+    public function benchComplexContext(): void
     {
         $json = $this->loadJson('context01-in.jsonld');
 
@@ -56,7 +56,7 @@ class ContextProcesserBench extends AbstractJsonLdBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchHttpCallContext()
+    public function benchHttpCallContext(): void
     {
         $json = $this->loadJson('context09-in.jsonld');
 

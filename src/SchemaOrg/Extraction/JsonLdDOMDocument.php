@@ -17,10 +17,8 @@ class JsonLdDOMDocument extends \DOMDocument
 {
     public function __construct(
         protected ?string $source = null,
-        /** @var ?\DOMXPath */
-        protected $rawXpath = null,
-        /** @var \?DOMXPath */
-        protected $xpath = null,
+        protected ?\DOMXPath $rawXpath = null,
+        protected ?\DOMXPath $xpath = null,
         string $version = '1.0',
         string $encoding = '',
     ) {
@@ -49,7 +47,7 @@ class JsonLdDOMDocument extends \DOMDocument
         return $this;
     }
 
-    public function getLine(\DOMElement $item)
+    public function getLine(\DOMElement $item): int
     {
         if ($item->getLineNo() > 0) {
             return $item->getLineNo();
@@ -69,7 +67,7 @@ class JsonLdDOMDocument extends \DOMDocument
         return $this->xpath;
     }
 
-    private function getRawItem(string $path)
+    private function getRawItem(string $path): \DOMNode|false|null
     {
         if (null === $this->rawXpath) {
             $rawDocument = new \DOMDocument();
@@ -77,6 +75,8 @@ class JsonLdDOMDocument extends \DOMDocument
             $this->rawXpath = new \DOMXPath($rawDocument);
         }
 
-        return $this->rawXpath->query($path)[0];
+        $result = $this->rawXpath->query($path);
+
+        return false !== $result ? $result->item(0) : false;
     }
 }

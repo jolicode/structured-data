@@ -19,8 +19,11 @@ use League\Uri\Uri;
 class IriResolver
 {
     /**
-     * Implementation of the W3C IRI Expansion algorithm : https://www.w3.org/TR/json-ld-api/#iri-expansion
-     * It is based on the 16th July 2020 recommendation.
+     * This is a PHP implementation of the IRI Expansion algorithm based on the
+     * JSON-LD 1.1 Processing Algorithms and API W3C Recommendation published on
+     * July 16th, 2020.
+     *
+     * see https://www.w3.org/TR/json-ld-api/#iri-expansion
      */
     public static function expand(
         Context $activeContext,
