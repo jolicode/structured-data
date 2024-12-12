@@ -79,7 +79,7 @@ class NodeMapGenerator
         // 4
         if (property_exists($element, FramingKeyword::VALUE->value)) {
             // 4.1
-            if (null === $list) {
+            if (null !== $activeProperty && null === $list) {
                 if (null === $subjectNode || !\array_key_exists($activeProperty, $subjectNode)) {
                     $subjectNode[$activeProperty] = [$element];
                 // 4.1.2
@@ -99,6 +99,10 @@ class NodeMapGenerator
 
             // 5.2
             $this->buildNode($element->{FramingKeyword::LIST->value}, $nodeMap, $activeGraph, $activeSubject, $activeProperty, $result);
+
+            if (null === $result || !\array_key_exists(FramingKeyword::LIST->value, $result)) {
+                throw new FlatteningException('The result must have a LIST key');
+            }
 
             if (\is_object($result[FramingKeyword::LIST->value])) {
                 $result[FramingKeyword::LIST->value] = [$result[FramingKeyword::LIST->value]];
@@ -139,35 +143,37 @@ class NodeMapGenerator
             $node = &$graph[$id];
 
             // 6.5
-            if ($activeSubject instanceof \stdClass) {
-                // 6.5.1
-                if (!\array_key_exists($activeProperty, $node)) {
-                    $node[$activeProperty] = [$activeSubject];
-                // 6.5.2
-                } elseif (!DataStructureComparator::objectAlreadyInArray($activeSubject, $node[$activeProperty])) {
-                    $node[$activeProperty][] = $activeSubject;
-                }
-            // 6.6
-            } elseif (null !== $activeProperty) {
-                // 6.6.1
-                $reference = (object) [FramingKeyword::ID->value => $id];
-
-                // 6.6.2
-                if (null === $list) {
-                    if (null === $subjectNode) {
-                        $subjectNode = [];
+            if (null !== $activeProperty) {
+                if ($activeSubject instanceof \stdClass) {
+                    // 6.5.1
+                    if (!\array_key_exists($activeProperty, $node)) {
+                        $node[$activeProperty] = [$activeSubject];
+                    // 6.5.2
+                    } elseif (!DataStructureComparator::objectAlreadyInArray($activeSubject, $node[$activeProperty])) {
+                        $node[$activeProperty][] = $activeSubject;
                     }
-
-                    // 6.6.2.1
-                    if (!\array_key_exists($activeProperty, $subjectNode)) {
-                        $subjectNode[$activeProperty] = [$reference];
-                    // 6.6.2.2
-                    } elseif (!DataStructureComparator::objectAlreadyInArray($reference, $subjectNode[$activeProperty])) {
-                        $subjectNode[$activeProperty][] = $reference;
-                    }
-                // 6.6.3
+                // 6.6
                 } else {
-                    $list[FramingKeyword::LIST->value][] = $reference;
+                    // 6.6.1
+                    $reference = (object) [FramingKeyword::ID->value => $id];
+
+                    // 6.6.2
+                    if (null === $list) {
+                        if (null === $subjectNode) {
+                            $subjectNode = [];
+                        }
+
+                        // 6.6.2.1
+                        if (!\array_key_exists($activeProperty, $subjectNode)) {
+                            $subjectNode[$activeProperty] = [$reference];
+                        // 6.6.2.2
+                        } elseif (!DataStructureComparator::objectAlreadyInArray($reference, $subjectNode[$activeProperty])) {
+                            $subjectNode[$activeProperty][] = $reference;
+                        }
+                    // 6.6.3
+                    } else {
+                        $list[FramingKeyword::LIST->value][] = $reference;
+                    }
                 }
             }
 

@@ -27,7 +27,7 @@ class PointerListener extends IdleListener implements PositionAwareInterface
     ) {
     }
 
-    public function getResult(): AbstractStructure
+    public function getResult(): ?AbstractStructure
     {
         return $this->currentStructure;
     }
@@ -73,9 +73,12 @@ class PointerListener extends IdleListener implements PositionAwareInterface
     {
         $end = $this->getCurrentPosition();
         $start = clone $end;
-        $start->column -= \strlen($value);
 
-        $this->currentStructure->addValue($value, new Range($start, $end));
+        if (\is_string($value)) {
+            $start->column -= \strlen($value);
+        }
+
+        $this->currentStructure?->addValue($value, new Range($start, $end));
     }
 
     private function startStructure(string $structureClass): void
@@ -99,11 +102,21 @@ class PointerListener extends IdleListener implements PositionAwareInterface
         $currentPosition = $this->getCurrentPosition();
         ++$currentPosition->column;
 
-        $this->currentStructure->range->end = $currentPosition;
+        if (null === $this->currentStructure) {
+            throw new \RuntimeException('No structure to end');
+        }
+
+        if (null !== $this->currentStructure->range) {
+            $this->currentStructure->range->end = $currentPosition;
+        }
 
         if (isset($this->currentStructure->belongsTo)) {
-            $this->currentStructure->belongsTo->getLastValue()->range->end = $currentPosition;
             $parent = $this->currentStructure->belongsTo;
+
+            if (null !== $parent->getLastValue()?->range) {
+                $parent->getLastValue()->range->end = $currentPosition;
+            }
+
             unset($this->currentStructure->belongsTo);
             $this->currentStructure = $parent;
         }

@@ -42,7 +42,7 @@ class ObjectStructure extends AbstractStructure
         return $this->properties;
     }
 
-    public function getProperty(?string $name): Property
+    public function getProperty(string $name): Property
     {
         if (!\array_key_exists($name, $this->properties)) {
             $name = str_replace('@', '', $name);
@@ -79,7 +79,7 @@ class ObjectStructure extends AbstractStructure
         return $this->getGraph()->getValue($graphKey)->content;
     }
 
-    public function getGraphProperty(?string $name, int $graphKey): Property
+    public function getGraphProperty(string $name, int $graphKey): Property
     {
         return $this
             ->getGraphType($graphKey)
@@ -92,7 +92,7 @@ class ObjectStructure extends AbstractStructure
     {
         $foundValue = array_filter(
             $this->getGraph()->getValues(),
-            fn (Value $value) => $value->content instanceof ObjectStructure && $value->content->getProperty(Keyword::ID->value)->value->content === $reference,
+            fn (Value $value) => $value->content instanceof ObjectStructure && $value->content->getProperty(Keyword::ID->value)->value?->content === $reference,
         );
 
         return $foundValue[array_key_first($foundValue)];

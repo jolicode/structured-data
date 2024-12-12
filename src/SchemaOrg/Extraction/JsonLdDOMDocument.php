@@ -52,6 +52,11 @@ class JsonLdDOMDocument extends \DOMDocument
         if ($item->getLineNo() > 0) {
             return $item->getLineNo();
         }
+
+        if (null === $item->getNodePath()) {
+            return 0;
+        }
+
         // attempt to get the line number from a raw DomDocument
         $rawItem = $this->getRawItem($item->getNodePath());
 
@@ -70,6 +75,10 @@ class JsonLdDOMDocument extends \DOMDocument
     private function getRawItem(string $path): \DOMNode|false|null
     {
         if (null === $this->rawXpath) {
+            if (null === $this->source) {
+                return null;
+            }
+
             $rawDocument = new \DOMDocument();
             @$rawDocument->loadHTML($this->source);
             $this->rawXpath = new \DOMXPath($rawDocument);

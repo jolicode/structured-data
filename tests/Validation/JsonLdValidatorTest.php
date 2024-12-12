@@ -11,8 +11,8 @@
 
 namespace Jolicode\JsonLd\Tests\Validation;
 
-use Jolicode\SchemaOrg\JsonLdValidator;
 use Jolicode\SchemaOrg\Mapper\MappedType;
+use Jolicode\SchemaOrg\Validator;
 use Jolicode\SchemaOrg\Validators\Google\GoogleValidator;
 use Jolicode\SchemaOrg\Validators\SchemaOrg\SchemaOrgValidator;
 use PHPUnit\Framework\TestCase;
@@ -27,11 +27,11 @@ use Symfony\Component\Finder\Finder;
  */
 class JsonLdValidatorTest extends TestCase
 {
-    private JsonLdValidator $validator;
+    private Validator $validator;
 
     protected function setUp(): void
     {
-        $this->validator = new JsonLdValidator();
+        $this->validator = new Validator();
     }
 
     /**
@@ -243,10 +243,8 @@ class JsonLdValidatorTest extends TestCase
         ];
         yield 'Test HTML document with no script tag' => [
             'document' => $path . '/html-no-tag.html',
-            'isValid' => false,
-            'messages' => [
-                'No JSON-LD elements were found in this document',
-            ],
+            'isValid' => true,
+            'messages' => [],
         ];
     }
 
@@ -321,7 +319,7 @@ class JsonLdValidatorTest extends TestCase
 
     private function testValidate(string $filePath, bool $isValid, array $expectedMessages, string $specificValidator): void
     {
-        $types = $this->validator->validate($filePath, $specificValidator);
+        $types = $this->validator->getTypes($filePath, $specificValidator);
 
         $containsErrors = false;
 

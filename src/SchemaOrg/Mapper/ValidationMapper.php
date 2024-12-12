@@ -209,7 +209,7 @@ class ValidationMapper
                 }
             }
 
-            if ($this->isParsedFlattenedTypeReference($parsedJsonLd)) {
+            if ($this->rootParsedJsonLd instanceof ObjectStructure && $this->isParsedFlattenedTypeReference($parsedJsonLd)) {
                 $identifier = $parsedJsonLd->getProperty(Keyword::ID->value)->value->content;
                 $parsedJsonLd = $this->rootParsedJsonLd->getGraphValue($identifier)->content;
             }
@@ -242,6 +242,10 @@ class ValidationMapper
         // A Value may be found on an array and have no key.
         $parsedKey = $parsedValue->key;
         $parsedValue = $parsedValue->value;
+
+        if (null === $parsedValue) {
+            return;
+        }
 
         $property->addKeyRange($parsedKey->range);
         $property->addValueRange($parsedValue->range);
@@ -296,7 +300,7 @@ class ValidationMapper
                 // Expanded
                 return $parsedJsonLd->getProperty($expandedPropertyKey);
             } catch (\InvalidArgumentException $exception) {
-                if ($reference = $this->findPropertyReference($property)) {
+                if ($this->rootParsedJsonLd instanceof ObjectStructure && $reference = $this->findPropertyReference($property)) {
                     return $this->rootParsedJsonLd->getGraphValue($reference);
                 }
 
@@ -336,7 +340,7 @@ class ValidationMapper
 
         return 1 === \count($properties)
             && \array_key_exists('id', $properties)
-            && IriResolver::isBlankNodeIdentifier($properties['id']->value->content);
+            && IriResolver::isBlankNodeIdentifier($properties['id']->value?->content);
     }
 
     private function isTypeReference(\stdClass|MappedType|string $valueEntry): bool

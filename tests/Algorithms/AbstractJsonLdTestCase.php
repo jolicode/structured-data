@@ -80,7 +80,7 @@ abstract class AbstractJsonLdTestCase extends TestCase
             }
 
             $outputFileName = $this->getOutputFileName(
-                preg_replace('/-in/', '-out', $filename),
+                str_replace('-in', '-out', $filename),
             );
 
             if (is_file($outputFileName)) {

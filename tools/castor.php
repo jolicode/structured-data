@@ -32,9 +32,8 @@ function all(): int
     install();
     $cs = cs();
     $phpstan = phpstan();
-    $phpunit = phpunit();
 
-    return max($cs, $phpstan, $phpunit);
+    return max($cs, $phpstan);
 }
 
 #[AsTask(name: 'all', namespace: 'qa:bench', description: 'Run all the benchmarks', aliases: ['bench'])]

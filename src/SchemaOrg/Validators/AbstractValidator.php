@@ -48,11 +48,11 @@ abstract class AbstractValidator
 
         $range = array_map(
             fn (Range $range) => \sprintf(
-                'starting line %d, column %d and ending line %d, column %d',
-                $range->start->line,
-                $range->start->column,
-                $range->end->line,
-                $range->end->column,
+                '%d:%d to %d:%d',
+                $range->start?->line,
+                $range->start?->column,
+                $range->end?->line,
+                $range->end?->column,
             ),
             $target->getValueRanges(),
         );

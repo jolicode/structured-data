@@ -29,7 +29,7 @@ class Flattener
         $this->nodeMapGenerator = new NodeMapGenerator($this->identifierGenerator);
     }
 
-    public function parseJson(
+    public function flatten(
         string $json,
         mixed $context = null,
         ProcessorOptions $options = new ProcessorOptions(),
@@ -54,12 +54,12 @@ class Flattener
         $options->ordered = true;
 
         $expander = new Expander();
-        $expandedInput = $expander->expand($element, $options, activeContext: $activeContext);
+        $expandedInput = $expander->doExpand($element, $options, activeContext: $activeContext);
 
         // TODO: if context is not null, use the compaction algorithm.
         // See https://www.w3.org/TR/json-ld-api/#the-jsonldprocessor-interface in flatten() 6.1
 
-        return json_encode($this->flatten($expandedInput, $options->ordered), \JSON_PRETTY_PRINT) ?: null;
+        return json_encode($this->doFlatten($expandedInput, $options->ordered), \JSON_PRETTY_PRINT) ?: null;
     }
 
     /**
@@ -71,7 +71,7 @@ class Flattener
      *
      * see https://www.w3.org/TR/json-ld11-api/#algorithm-9
      */
-    public function flatten(\stdClass|array|null $element, bool $ordered = false): array
+    public function doFlatten(\stdClass|array|null $element, bool $ordered = false): array
     {
         // 1
         $nodeMap = [FramingKeyword::DEFAULT->value => []];

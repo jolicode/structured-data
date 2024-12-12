@@ -16,8 +16,10 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class JsonLdNodeExtractor
 {
+    private HttpClientInterface $httpClient;
+
     public function __construct(
-        private ?HttpClientInterface $httpClient = null,
+        ?HttpClientInterface $httpClient = null,
     ) {
         $this->httpClient = $httpClient ?? HttpClient::create();
     }

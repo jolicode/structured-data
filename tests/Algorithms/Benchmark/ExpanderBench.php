@@ -70,6 +70,6 @@ class ExpanderBench extends AbstractJsonLdBench
         $json = $this->loadJson($filename);
         $this->options->base = $this->getBaseUrlForW3CTests($filename);
 
-        $this->expander->parseJson($json, $this->options);
+        $this->expander->expand($json, $this->options);
     }
 }

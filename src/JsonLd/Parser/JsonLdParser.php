@@ -20,7 +20,7 @@ class JsonLdParser
     /**
      * This method takes a json_encoded user input and builds a PHP representation of the JSON-LD document.
      */
-    public function parse(AbstractElement $jsonLdElement): AbstractStructure
+    public function parse(AbstractElement $jsonLdElement): ?AbstractStructure
     {
         $listener = new PointerListener(startLineNumber: $jsonLdElement->startLine);
 

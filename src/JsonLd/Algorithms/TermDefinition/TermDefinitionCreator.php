@@ -416,7 +416,8 @@ class TermDefinitionCreator
             );
 
             if (
-                !Keyword::tryFrom($definition->iriMapping)
+                null !== $definition->iriMapping
+                && !Keyword::tryFrom($definition->iriMapping)
                 && !IriResolver::isIri($definition->iriMapping)
                 && !IriResolver::isBlankNodeIdentifier($definition->iriMapping)
             ) {
@@ -453,6 +454,7 @@ class TermDefinitionCreator
                 !str_contains(':', $term)
                 && !str_contains('/', $term)
                 && $simpleTerm
+                && null !== $definition->iriMapping
             ) {
                 $lastChar = mb_substr($definition->iriMapping, -1);
                 $genDelimCharacters = [':', '/', '?', '#', '[', ']', '@'];
@@ -679,7 +681,7 @@ class TermDefinitionCreator
         $definition->prefixFlag = $value->{Keyword::PREFIX->value};
 
         // 25.3
-        if ($definition->prefixFlag && Keyword::tryFrom($definition->iriMapping)) {
+        if ($definition->prefixFlag && null !== $definition->iriMapping && Keyword::tryFrom($definition->iriMapping)) {
             throw new TermDefinitionCreationException('invalid term definition');
         }
     }

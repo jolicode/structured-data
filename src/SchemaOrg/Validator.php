@@ -29,7 +29,7 @@ use Jolicode\SchemaOrg\Validators\RegisteredValidatorsContainer;
 use Jolicode\SchemaOrg\Validators\SchemaOrg\SchemaOrgValidator;
 use JsonStreamingParser\Exception\ParsingException;
 
-class JsonLdValidator
+class Validator
 {
     public function __construct(
         /**
@@ -65,13 +65,28 @@ class JsonLdValidator
     }
 
     /**
-     * This method is the main entrypoint of the library.
-     * It will make HTTP requests if needed, extract the JsonLd from the document, and validate it.
-     * It will merge all types found in the document (either in distinct <script> tags or in an array of types) in an array of MappedTypes.
+     * Returns false if the provided document contains schema.org errors, true otherwise.
+     */
+    public function isValid(string $input, ?string $specificValidator = null): bool
+    {
+        foreach ($this->getTypes($input, $specificValidator) as $type) {
+            if ($type->errors) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * This method returns the tree of the schema.org types found in the
+     * provided document, along with their properties and errors.
+     *
+     * If required, tt will make HTTP requests.
      *
      * @return array<MappedType>
      */
-    public function validate(string $input, ?string $specificValidator = null): array
+    public function getTypes(string $input, ?string $specificValidator = null): array
     {
         $this->reset();
         $this->specificValidator = $specificValidator;
@@ -81,7 +96,7 @@ class JsonLdValidator
         $types = [];
 
         if (!\count($elements)) {
-            return $this->createInvalidDocumentType('No JSON-LD elements were found in this document', 0);
+            return [];
         }
 
         foreach ($elements as $jsonLdElement) {
@@ -95,7 +110,7 @@ class JsonLdValidator
             }
 
             try {
-                $expansionResult = $expander->parseJson($jsonLdElement->content, encodeResult: false);
+                $expansionResult = $expander->expand($jsonLdElement->content, encodeResult: false);
             } catch (JsonLdException $exception) {
                 return $this->createInvalidDocumentType($exception->getMessage(), $jsonLdElement->startLine);
             }

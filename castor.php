@@ -17,8 +17,9 @@ use function Castor\io;
 
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
 use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
-use Jolicode\SchemaOrg\JsonLdValidator;
 use Jolicode\SchemaOrg\Mapper\MappedError;
+use Jolicode\SchemaOrg\Mapper\MappedType;
+use Jolicode\SchemaOrg\Validator;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -39,7 +40,7 @@ function expand(
     }
 
     $expander = new Expander();
-    $result = $expander->parseJson($file);
+    $result = $expander->expand($file);
 
     if (!is_string($result)) {
         $result = json_encode($result, \JSON_PRETTY_PRINT) ?: '';
@@ -62,7 +63,7 @@ function flatten(
     }
 
     $flattener = new Flattener();
-    $result = $flattener->parseJson($file);
+    $result = $flattener->flatten($file);
 
     if (!is_string($result)) {
         $result = json_encode($result, \JSON_PRETTY_PRINT) ?: '';
@@ -75,39 +76,67 @@ function flatten(
 function validate(
     #[AsArgument(name: 'fileOrUrl', description: 'The file or remote URL to validate')]
     string $fileOrUrl,
+    bool $withDetails = false,
 ): void {
-    $validator = new JsonLdValidator();
-    $types = $validator->validate($fileOrUrl);
+    $validator = new Validator();
+    $types = $validator->getTypes($fileOrUrl);
 
-    if (count($types)) {
-        io()->success(sprintf('%d types were found in the provided document.', count($types)));
+    if (0 === count($types)) {
+        io()->warning('No schema.org types were found in the provided document.');
+    } else {
+        io()->success(sprintf('%d schema.org types were found in the provided document.', count($types)));
     }
 
-    $hasErrors = false;
+    $errorsCount = 0;
 
     foreach ($types as $type) {
-        if ($type->errors) {
-            $hasErrors = true;
+        if ($withDetails && is_string($type->type)) {
+            io()->writeln(sprintf('Type: %s', $type->type));
 
-            foreach ($type->errors as $error) {
-                if (MappedError::SEVERITY_ERROR === $error->severity) {
-                    io()->error($error->message);
-                } else {
-                    io()->warning($error->message);
+            foreach ($type->properties as $propertyName => $property) {
+                $value = $property->value;
+
+                if ($value instanceof MappedType) {
+                    $value = $value->name;
                 }
 
-                io()->info(sprintf(
-                    'Raised by the %s validator for %s on property "%s". Found on the following lines: %s',
-                    $error->validatorName,
-                    $error->type ? sprintf('the type "%s"', $error->type) : 'an unknown type (with no @type property)',
-                    $error->key,
-                    \PHP_EOL . $error->ranges,
-                ));
+                if (null !== $value && is_string($value)) {
+                    io()->writeln(sprintf(' * %s: %s', $propertyName, $value));
+                } else {
+                    io()->writeln(sprintf(' * %s', $propertyName));
+                }
             }
+
+            if ($type->errors) {
+                foreach ($type->errors as $error) {
+                    if (MappedError::SEVERITY_ERROR === $error->severity) {
+                        io()->error($error->message);
+                    } else {
+                        io()->warning($error->message);
+                    }
+
+                    io()->writeln(sprintf(
+                        'The above error was raised for %s on property "%s". Found on position %s',
+                        $error->type ? sprintf('the type "%s"', $error->type) : 'an unknown type (with no @type property)',
+                        $error->key,
+                        $error->ranges,
+                    ));
+                }
+
+                io()->writeln('');
+            }
+        }
+
+        if ($type->errors) {
+            ++$errorsCount;
         }
     }
 
-    if (!$hasErrors) {
-        io()->success('The provided document structure seems to be valid.');
+    if (count($types) > 0) {
+        if ($errorsCount > 0) {
+            io()->error(sprintf('The provided document seems to be invalid. %s out of %s types contain an error.', $errorsCount, count($types)));
+        } else {
+            io()->success('The provided document seems to be valid.');
+        }
     }
 }

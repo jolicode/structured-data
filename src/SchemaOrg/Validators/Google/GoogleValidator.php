@@ -210,7 +210,11 @@ class GoogleValidator extends AbstractValidator
     {
         $className = $type->type;
 
-        if (!\is_array($className)) {
+        if (null === $className) {
+            throw new \RuntimeException('The type must not be null.');
+        }
+
+        if (\is_string($className)) {
             return ucfirst($className);
         }
 

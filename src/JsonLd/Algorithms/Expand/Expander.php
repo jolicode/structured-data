@@ -29,7 +29,14 @@ class Expander
     ) {
     }
 
-    public function parseJson(
+    /**
+     * @param string|\stdClass $json         The JSON-LD document to expand. It can be a URI, a JSON string or a JSON object.
+     * @param ProcessorOptions $options      options to use when expanding the document
+     * @param bool             $encodeResult Whether to encode the result as a JSON string or not.
+     *
+     * see https://www.w3.org/TR/json-ld11/#expansion-algorithm
+     */
+    public function expand(
         string|\stdClass $json,
         ProcessorOptions $options = new ProcessorOptions(),
         bool $encodeResult = true,
@@ -54,7 +61,7 @@ class Expander
             $this->contextProcesser->processContext($activeContext, $options->expandContext, $activeContext->baseUrl);
         }
 
-        $element = $this->expand(
+        $element = $this->doExpand(
             $element,
             $options,
             activeContext: $activeContext,
@@ -78,7 +85,7 @@ class Expander
      *
      * see https://www.w3.org/TR/json-ld-api/#expansion-algorithm
      */
-    public function expand(
+    public function doExpand(
         mixed $element,
         ProcessorOptions $options,
         ?string $baseUrl = null,
@@ -97,7 +104,7 @@ class Expander
         }
 
         // 3
-        if (\array_key_exists($activeProperty, $activeContext->termDefinitions) && false !== $activeContext->termDefinitions[$activeProperty]->context) {
+        if (null !== $activeProperty && \array_key_exists($activeProperty, $activeContext->termDefinitions) && false !== $activeContext->termDefinitions[$activeProperty]->context) {
             $propertyScopedContext = $activeContext->termDefinitions[$activeProperty]->context;
         } else {
             $propertyScopedContext = false;
@@ -400,7 +407,7 @@ class Expander
                         break;
                     case Keyword::SET->value:
                         // 13.4.12
-                        $expandedValue = $this->expand(
+                        $expandedValue = $this->doExpand(
                             $value,
                             $options,
                             $baseUrl,
@@ -425,7 +432,7 @@ class Expander
                 // 13.4.15
                 if ($options->frameExpansion) {
                     if (FramingKeyword::tryFrom($expandedProperty)) {
-                        $expandedValue = $this->expand(
+                        $expandedValue = $this->doExpand(
                             $value,
                             $options,
                             $baseUrl,
@@ -461,17 +468,23 @@ class Expander
 
             // 13.6
             if (
-                $keyDefinition
+                null !== $keyDefinition
                 && Keyword::JSON->value === $keyDefinition->typeMapping
             ) {
                 $expandedValue = $this->processJsonTypeMapping($value);
             // 13.7
-            } elseif ($containerMapping && \in_array(Keyword::LANGUAGE->value, $containerMapping, true) && \is_object($value)) {
+            } elseif (
+                $containerMapping
+                && null !== $keyDefinition
+                && \in_array(Keyword::LANGUAGE->value, $containerMapping, true)
+                && \is_object($value)
+            ) {
                 $expandedValue = $this->processLanguageContainerMapping($activeContext, $keyDefinition, $value);
             // 13.8
             } elseif (
                 \is_object($value)
                 && $containerMapping
+                && null !== $keyDefinition
                 && \count(array_intersect($containerMapping, [
                     Keyword::INDEX->value, Keyword::TYPE->value, Keyword::ID->value,
                 ]))
@@ -487,7 +500,7 @@ class Expander
                 );
             } else {
                 // 13.9
-                $expandedValue = $this->expand(
+                $expandedValue = $this->doExpand(
                     $value,
                     $options,
                     $baseUrl,
@@ -620,7 +633,7 @@ class Expander
         ProcessorOptions $options,
         array $expandedValue,
     ): array {
-        $expandedValue = $this->expand(
+        $expandedValue = $this->doExpand(
             $value,
             $options,
             $baseUrl,
@@ -657,7 +670,7 @@ class Expander
             }
 
             // 13.4.6.2
-            $expandedValue = $this->expand(
+            $expandedValue = $this->doExpand(
                 element: $value,
                 options: $options,
                 baseUrl: $baseUrl,
@@ -759,7 +772,7 @@ class Expander
         // 13.4.11.1
         if (null !== $activeProperty || Keyword::GRAPH->value !== $activeProperty) {
             // 13.4.11.2
-            $expandedValue = $this->expand(
+            $expandedValue = $this->doExpand(
                 $value,
                 $options,
                 $baseUrl,
@@ -789,7 +802,7 @@ class Expander
         }
 
         // 13.4.13.2
-        $expandedValue = $this->expand(
+        $expandedValue = $this->doExpand(
             $value,
             $options,
             $baseUrl,
@@ -960,7 +973,7 @@ class Expander
             }
 
             // 13.8.3.6
-            $indexValue = $this->expand(
+            $indexValue = $this->doExpand(
                 $indexValue,
                 $options,
                 $baseUrl,
@@ -995,7 +1008,7 @@ class Expander
                     // 13.8.3.7.2.3
                     $indexPropertyValues = [$reExpandedIndex];
 
-                    if (property_exists($item, $expandedIndexKey)) {
+                    if (null !== $expandedIndexKey && property_exists($item, $expandedIndexKey)) {
                         $indexPropertyValues[] = $item->$expandedIndexKey[0];
                     }
 
@@ -1195,7 +1208,7 @@ class Expander
         // 5.2
         foreach ($element as $item) {
             // 5.2.1
-            $expandedItem = $this->expand(
+            $expandedItem = $this->doExpand(
                 $item,
                 $options,
                 $baseUrl,
@@ -1206,7 +1219,8 @@ class Expander
 
             // 5.2.2
             if (
-                \array_key_exists($activeProperty, $activeContext->termDefinitions)
+                null !== $activeProperty
+                && \array_key_exists($activeProperty, $activeContext->termDefinitions)
                 && $activeContext->termDefinitions[$activeProperty]->containerMapping
                 && \in_array(Keyword::LIST->value, $activeContext->termDefinitions[$activeProperty]->containerMapping, true)
                 && \is_array($expandedItem)
@@ -1250,6 +1264,10 @@ class Expander
 
             if ($switchToPreviousContext) {
                 $activeContext = $activeContext->previousContext;
+            }
+
+            if (null === $activeContext) {
+                throw new ExpansionException('Invalid previous context');
             }
         }
 

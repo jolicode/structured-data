@@ -11,8 +11,8 @@
 
 namespace Jolicode\JsonLd\Generator;
 
-use Jolicode\JsonLd\Generator\SchemaOrg\Extractor;
 use Jolicode\JsonLd\Generator\SchemaOrg\Generator;
+use Jolicode\SchemaOrg\SchemaOrg;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -41,7 +41,7 @@ readonly class Downloader
 
         $url = \sprintf(
             'https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/releases/%s/schemaorg-current-https.jsonld',
-            Extractor::CURRENT_VERSION,
+            SchemaOrg::VERSION,
         );
         $response = $this->httpClient->request('GET', $url);
         $this->filesystem->saveSchemaOrgTypesDefinitionFile($response->getContent());

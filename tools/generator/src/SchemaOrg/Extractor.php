@@ -36,12 +36,6 @@ readonly class Extractor
 
     public const GENERATED_DIR = __DIR__ . '/../../../generated/SchemaOrg';
 
-    // @TODO MOVE TO MAIN LIB
-    // Bump this version with care! Sometimes a version is released but not yet available on GitHub.
-    // Moreover, bumping it will very likely modify the source file, sometimes with breaking changes.
-    // Be sure to check https://schema.org/docs/releases.html first.
-    public const CURRENT_VERSION = '22.0';
-
     public function __construct(
         private Filesystem $filesystem = new Filesystem(),
         private AsciiSlugger $slugger = new AsciiSlugger(),

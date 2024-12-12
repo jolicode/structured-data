@@ -15,6 +15,7 @@ use Jolicode\JsonLd\Algorithms;
 use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
 use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use PHPUnit\Framework\AssertionFailedError;
 
 /**
  * @see https://w3c.github.io/json-ld-api/tests/flatten-manifest.html
@@ -31,12 +32,18 @@ class FlattenerTest extends AbstractJsonLdTestCase
 
         if ($expected instanceof JsonLdException) {
             try {
-                $flattener->parseJson($json, $options);
+                $flattener->flatten($json, $options);
             } catch (JsonLdException $exception) {
                 $this->assertSame($expected->getMessage(), $exception->getMessage());
             }
         } else {
-            $this->assertEquals(json_decode($expected), json_decode($flattener->parseJson($json, options: $options)));
+            $flattened = $flattener->flatten($json, options: $options);
+
+            if (!\is_string($flattened)) {
+                throw new AssertionFailedError('The expanded JSON is not a string');
+            }
+
+            $this->assertEquals(json_decode($expected), json_decode($flattened));
         }
     }
 

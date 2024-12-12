@@ -11,7 +11,7 @@
 
 namespace Jolicode\JsonLd\Generator;
 
-use Jolicode\JsonLd\Generator\SchemaOrg\Extractor;
+use Jolicode\SchemaOrg\SchemaOrg;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
 
@@ -79,7 +79,7 @@ readonly class Filesystem
         return \sprintf(
             '%s/schemaorg-%s-https.jsonld',
             self::CACHE_DIR_SCHEMA_ORG,
-            Extractor::CURRENT_VERSION,
+            SchemaOrg::VERSION,
         );
     }
 }
