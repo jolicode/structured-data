@@ -17,5 +17,5 @@ final class PriceCurrencyModel
     public const LABEL = 'priceCurrency';
     public const NAME = 'schema:priceCurrency';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'PriceSpecification' => 'Jolicode\SchemaOrg\Type\PriceSpecificationModel', 'Reservation' => 'Jolicode\SchemaOrg\Type\ReservationModel', 'Ticket' => 'Jolicode\SchemaOrg\Type\TicketModel', 'TradeAction' => 'Jolicode\SchemaOrg\Type\TradeActionModel'];
+    public const TYPES = ['DonateAction' => 'Jolicode\SchemaOrg\Type\DonateActionModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'PriceSpecification' => 'Jolicode\SchemaOrg\Type\PriceSpecificationModel', 'Reservation' => 'Jolicode\SchemaOrg\Type\ReservationModel', 'Ticket' => 'Jolicode\SchemaOrg\Type\TicketModel', 'TradeAction' => 'Jolicode\SchemaOrg\Type\TradeActionModel'];
 }

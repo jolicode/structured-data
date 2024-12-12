@@ -13,9 +13,9 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class HasMeasurementModel
 {
-    public const DESCRIPTION = 'A product measurement, for example the inseam of pants, the wheel size of a bicycle, or the gauge of a screw. Usually an exact measurement, but can also be a range of measurements for adjustable products, for example belts and ski bindings.';
+    public const DESCRIPTION = 'A measurement of an item, For example, the inseam of pants, the wheel size of a bicycle, the gauge of a screw, or the carbon footprint measured for certification by an authority. Usually an exact measurement, but can also be a range of measurements for adjustable products, for example belts and ski bindings.';
     public const LABEL = 'hasMeasurement';
     public const NAME = 'schema:hasMeasurement';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
-    public const TYPES = ['Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'Product' => 'Jolicode\SchemaOrg\Type\ProductModel', 'SizeSpecification' => 'Jolicode\SchemaOrg\Type\SizeSpecificationModel'];
+    public const TYPES = ['Certification' => 'Jolicode\SchemaOrg\Type\CertificationModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'Product' => 'Jolicode\SchemaOrg\Type\ProductModel', 'SizeSpecification' => 'Jolicode\SchemaOrg\Type\SizeSpecificationModel'];
 }

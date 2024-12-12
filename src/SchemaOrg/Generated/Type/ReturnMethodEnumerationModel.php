@@ -19,7 +19,7 @@ final class ReturnMethodEnumerationModel
     public const LABEL = 'ReturnMethodEnumeration';
     public const NAME = 'schema:ReturnMethodEnumeration';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['ReturnAtKioskModel' => 'EnumerationMember\ReturnAtKioskModel', 'ReturnByMailModel' => 'EnumerationMember\ReturnByMailModel', 'ReturnInStoreModel' => 'EnumerationMember\ReturnInStoreModel'];
+    public const ENUMERATION_MEMBERS = ['KeepProductModel' => 'EnumerationMember\KeepProductModel', 'ReturnAtKioskModel' => 'EnumerationMember\ReturnAtKioskModel', 'ReturnByMailModel' => 'EnumerationMember\ReturnByMailModel', 'ReturnInStoreModel' => 'EnumerationMember\ReturnInStoreModel'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

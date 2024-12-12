@@ -55,6 +55,7 @@ final class MerchantReturnPolicyModel
         public ?Property\SameAsModel $sameAs = null,
         public ?Property\SubjectOfModel $subjectOf = null,
         public ?Property\UrlModel $url = null,
+        public ?Property\ValidForMemberTierModel $validForMemberTier = null,
     ) {
     }
 }

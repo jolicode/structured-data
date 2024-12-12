@@ -22,9 +22,11 @@ final class NGOModel
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(
+        public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,
         public ?Property\ActionableFeedbackPolicyModel $actionableFeedbackPolicy = null,
         public ?Property\AdditionalTypeModel $additionalType = null,
         public ?Property\AddressModel $address = null,
+        public ?Property\AgentInteractionStatisticModel $agentInteractionStatistic = null,
         public ?Property\AggregateRatingModel $aggregateRating = null,
         public ?Property\AlternateNameModel $alternateName = null,
         public ?Property\AlumniModel $alumni = null,
@@ -56,7 +58,10 @@ final class NGOModel
         public ?Property\FunderModel $funder = null,
         public ?Property\FundingModel $funding = null,
         public ?Property\GlobalLocationNumberModel $globalLocationNumber = null,
+        public ?Property\HasCertificationModel $hasCertification = null,
         public ?Property\HasCredentialModel $hasCredential = null,
+        public ?Property\HasGS1DigitalLinkModel $hasGS1DigitalLink = null,
+        public ?Property\HasMemberProgramModel $hasMemberProgram = null,
         public ?Property\HasMerchantReturnPolicyModel $hasMerchantReturnPolicy = null,
         public ?Property\HasOfferCatalogModel $hasOfferCatalog = null,
         public ?Property\HasPOSModel $hasPOS = null,
@@ -91,6 +96,7 @@ final class NGOModel
         public ?Property\SameAsModel $sameAs = null,
         public ?Property\SeeksModel $seeks = null,
         public ?Property\ServiceAreaModel $serviceArea = null,
+        public ?Property\SkillsModel $skills = null,
         public ?Property\SloganModel $slogan = null,
         public ?Property\SponsorModel $sponsor = null,
         public ?Property\SubOrganizationModel $subOrganization = null,

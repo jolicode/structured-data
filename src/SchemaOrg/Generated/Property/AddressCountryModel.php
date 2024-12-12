@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class AddressCountryModel
 {
-    public const DESCRIPTION = 'The country. For example, USA. You can also provide the two-letter [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1).';
+    public const DESCRIPTION = 'The country. Recommended to be in 2-letter [ISO 3166-1 alpha-2](http://en.wikipedia.org/wiki/ISO_3166-1) format, for example "US". For backward compatibility, a 3-letter [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) country code such as "SGP" or a full country name such as "Singapore" can also be used.';
     public const LABEL = 'addressCountry';
     public const NAME = 'schema:addressCountry';
     public const VALUES = ['CountryModel' => 'Jolicode\SchemaOrg\Type\CountryModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];

@@ -16,6 +16,6 @@ final class OrderQuantityModel
     public const DESCRIPTION = 'The number of the item ordered. If the property is not set, assume the quantity is one.';
     public const LABEL = 'orderQuantity';
     public const NAME = 'schema:orderQuantity';
-    public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
+    public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['OrderItem' => 'Jolicode\SchemaOrg\Type\OrderItemModel'];
 }

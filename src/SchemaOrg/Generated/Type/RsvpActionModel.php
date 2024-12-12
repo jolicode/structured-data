@@ -23,6 +23,7 @@ final class RsvpActionModel
 
     public function __construct(
         public ?Property\AboutModel $about = null,
+        public ?Property\ActionProcessModel $actionProcess = null,
         public ?Property\ActionStatusModel $actionStatus = null,
         public ?Property\AdditionalNumberOfGuestsModel $additionalNumberOfGuests = null,
         public ?Property\AdditionalTypeModel $additionalType = null,

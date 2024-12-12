@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class NumberOfForwardGearsModel
 {
-    public const DESCRIPTION = 'The total number of forward gears available for the transmission system of the vehicle.\n\nTypical unit code(s): C62';
+    public const DESCRIPTION = 'The total number of forward gears available for the transmission system of the vehicle.\n\nTypical unit code(s): C62.';
     public const LABEL = 'numberOfForwardGears';
     public const NAME = 'schema:numberOfForwardGears';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];

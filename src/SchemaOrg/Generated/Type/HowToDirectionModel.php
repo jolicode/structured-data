@@ -68,6 +68,7 @@ final class HowToDirectionModel
         public ?Property\DateModifiedModel $dateModified = null,
         public ?Property\DatePublishedModel $datePublished = null,
         public ?Property\DescriptionModel $description = null,
+        public ?Property\DigitalSourceTypeModel $digitalSourceType = null,
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
         public ?Property\DiscussionUrlModel $discussionUrl = null,
         public ?Property\DuringMediaModel $duringMedia = null,

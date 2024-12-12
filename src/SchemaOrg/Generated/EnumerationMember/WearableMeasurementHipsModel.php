@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\EnumerationMember;
 
 final class WearableMeasurementHipsModel
 {
-    public const DESCRIPTION = 'Measurement of the hip section, for example of a skirt';
+    public const DESCRIPTION = 'Measurement of the hip section, for example of a skirt.';
     public const LABEL = 'WearableMeasurementHips';
     public const NAME = 'schema:WearableMeasurementHips';
 }

@@ -18,10 +18,11 @@ final class DonateActionModel
     public const DESCRIPTION = 'The act of providing goods, services, or money without compensation, often for philanthropic reasons.';
     public const LABEL = 'DonateAction';
     public const NAME = 'schema:DonateAction';
-    public const PARENTS = ['TradeActionModel' => 'Jolicode\SchemaOrg\Type\TradeActionModel'];
+    public const PARENTS = ['TransferActionModel' => 'Jolicode\SchemaOrg\Type\TransferActionModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(
+        public ?Property\ActionProcessModel $actionProcess = null,
         public ?Property\ActionStatusModel $actionStatus = null,
         public ?Property\AdditionalTypeModel $additionalType = null,
         public ?Property\AgentModel $agent = null,
@@ -30,6 +31,7 @@ final class DonateActionModel
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
         public ?Property\EndTimeModel $endTime = null,
         public ?Property\ErrorModel $error = null,
+        public ?Property\FromLocationModel $fromLocation = null,
         public ?Property\IdentifierModel $identifier = null,
         public ?Property\ImageModel $image = null,
         public ?Property\InstrumentModel $instrument = null,
@@ -49,6 +51,7 @@ final class DonateActionModel
         public ?Property\StartTimeModel $startTime = null,
         public ?Property\SubjectOfModel $subjectOf = null,
         public ?Property\TargetModel $target = null,
+        public ?Property\ToLocationModel $toLocation = null,
         public ?Property\UrlModel $url = null,
     ) {
     }

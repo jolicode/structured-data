@@ -17,5 +17,5 @@ class SchemaOrg
     // Bump this version with care! Sometimes, a version is released but not
     // yet available on GitHub.
     // Be sure to check https://schema.org/docs/releases.html first.
-    public const VERSION = '22.0';
+    public const VERSION = '28.1';
 }

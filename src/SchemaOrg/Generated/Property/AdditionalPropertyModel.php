@@ -18,5 +18,5 @@ final class AdditionalPropertyModel
     public const LABEL = 'additionalProperty';
     public const NAME = 'schema:additionalProperty';
     public const VALUES = ['PropertyValueModel' => 'Jolicode\SchemaOrg\Type\PropertyValueModel'];
-    public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicyModel', 'Place' => 'Jolicode\SchemaOrg\Type\PlaceModel', 'Product' => 'Jolicode\SchemaOrg\Type\ProductModel', 'QualitativeValue' => 'Jolicode\SchemaOrg\Type\QualitativeValueModel', 'QuantitativeValue' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicyModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'Place' => 'Jolicode\SchemaOrg\Type\PlaceModel', 'Product' => 'Jolicode\SchemaOrg\Type\ProductModel', 'QualitativeValue' => 'Jolicode\SchemaOrg\Type\QualitativeValueModel', 'QuantitativeValue' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
 }

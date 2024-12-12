@@ -39,6 +39,7 @@ final class LoanOrCreditModel
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
         public ?Property\FeesAndCommissionsSpecificationModel $feesAndCommissionsSpecification = null,
         public ?Property\GracePeriodModel $gracePeriod = null,
+        public ?Property\HasCertificationModel $hasCertification = null,
         public ?Property\HasOfferCatalogModel $hasOfferCatalog = null,
         public ?Property\HoursAvailableModel $hoursAvailable = null,
         public ?Property\IdentifierModel $identifier = null,

@@ -77,6 +77,7 @@ final class VideoGameModel
         public ?Property\DatePublishedModel $datePublished = null,
         public ?Property\DescriptionModel $description = null,
         public ?Property\DeviceModel $device = null,
+        public ?Property\DigitalSourceTypeModel $digitalSourceType = null,
         public ?Property\DirectorModel $director = null,
         public ?Property\DirectorsModel $directors = null,
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,

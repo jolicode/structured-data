@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class DurationModel
 {
-    public const DESCRIPTION = 'The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601).';
+    public const DESCRIPTION = 'The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).';
     public const LABEL = 'duration';
     public const NAME = 'schema:duration';
     public const VALUES = ['DurationModel' => 'Jolicode\SchemaOrg\Type\DurationModel'];

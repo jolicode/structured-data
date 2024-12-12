@@ -17,5 +17,5 @@ final class PriceSpecificationModel
     public const LABEL = 'priceSpecification';
     public const NAME = 'schema:priceSpecification';
     public const VALUES = ['PriceSpecificationModel' => 'Jolicode\SchemaOrg\Type\PriceSpecificationModel'];
-    public const TYPES = ['Demand' => 'Jolicode\SchemaOrg\Type\DemandModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'TradeAction' => 'Jolicode\SchemaOrg\Type\TradeActionModel'];
+    public const TYPES = ['Demand' => 'Jolicode\SchemaOrg\Type\DemandModel', 'DonateAction' => 'Jolicode\SchemaOrg\Type\DonateActionModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'TradeAction' => 'Jolicode\SchemaOrg\Type\TradeActionModel'];
 }

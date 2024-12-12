@@ -74,6 +74,7 @@ final class MobileApplicationModel
         public ?Property\DatePublishedModel $datePublished = null,
         public ?Property\DescriptionModel $description = null,
         public ?Property\DeviceModel $device = null,
+        public ?Property\DigitalSourceTypeModel $digitalSourceType = null,
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
         public ?Property\DiscussionUrlModel $discussionUrl = null,
         public ?Property\DownloadUrlModel $downloadUrl = null,

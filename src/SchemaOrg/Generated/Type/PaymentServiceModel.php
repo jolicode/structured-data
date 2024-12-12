@@ -18,7 +18,7 @@ final class PaymentServiceModel
     public const DESCRIPTION = 'A Service to transfer funds from a person or organization to a beneficiary person or organization.';
     public const LABEL = 'PaymentService';
     public const NAME = 'schema:PaymentService';
-    public const PARENTS = ['FinancialProductModel' => 'Jolicode\SchemaOrg\Type\FinancialProductModel'];
+    public const PARENTS = ['FinancialProductModel' => 'Jolicode\SchemaOrg\Type\FinancialProductModel', 'PaymentMethodModel' => 'Jolicode\SchemaOrg\Type\PaymentMethodModel'];
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(
@@ -36,6 +36,7 @@ final class PaymentServiceModel
         public ?Property\DescriptionModel $description = null,
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
         public ?Property\FeesAndCommissionsSpecificationModel $feesAndCommissionsSpecification = null,
+        public ?Property\HasCertificationModel $hasCertification = null,
         public ?Property\HasOfferCatalogModel $hasOfferCatalog = null,
         public ?Property\HoursAvailableModel $hoursAvailable = null,
         public ?Property\IdentifierModel $identifier = null,
@@ -47,6 +48,7 @@ final class PaymentServiceModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
         public ?Property\OffersModel $offers = null,
+        public ?Property\PaymentMethodTypeModel $paymentMethodType = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\ProducesModel $produces = null,
         public ?Property\ProviderModel $provider = null,

@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class TermCodeModel
 {
-    public const DESCRIPTION = 'A code that identifies this [[DefinedTerm]] within a [[DefinedTermSet]]';
+    public const DESCRIPTION = 'A code that identifies this [[DefinedTerm]] within a [[DefinedTermSet]].';
     public const LABEL = 'termCode';
     public const NAME = 'schema:termCode';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];

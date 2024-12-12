@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\EnumerationMember;
 
 final class WearableMeasurementWidthModel
 {
-    public const DESCRIPTION = 'Measurement of the width, for example of shoes';
+    public const DESCRIPTION = 'Measurement of the width, for example of shoes.';
     public const LABEL = 'WearableMeasurementWidth';
     public const NAME = 'schema:WearableMeasurementWidth';
 }

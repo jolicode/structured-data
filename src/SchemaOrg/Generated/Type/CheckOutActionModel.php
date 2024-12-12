@@ -23,6 +23,7 @@ final class CheckOutActionModel
 
     public function __construct(
         public ?Property\AboutModel $about = null,
+        public ?Property\ActionProcessModel $actionProcess = null,
         public ?Property\ActionStatusModel $actionStatus = null,
         public ?Property\AdditionalTypeModel $additionalType = null,
         public ?Property\AgentModel $agent = null,

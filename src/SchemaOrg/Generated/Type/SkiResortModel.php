@@ -22,10 +22,12 @@ final class SkiResortModel
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(
+        public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,
         public ?Property\ActionableFeedbackPolicyModel $actionableFeedbackPolicy = null,
         public ?Property\AdditionalPropertyModel $additionalProperty = null,
         public ?Property\AdditionalTypeModel $additionalType = null,
         public ?Property\AddressModel $address = null,
+        public ?Property\AgentInteractionStatisticModel $agentInteractionStatistic = null,
         public ?Property\AggregateRatingModel $aggregateRating = null,
         public ?Property\AlternateNameModel $alternateName = null,
         public ?Property\AlumniModel $alumni = null,
@@ -79,9 +81,12 @@ final class SkiResortModel
         public ?Property\GeoTouchesModel $geoTouches = null,
         public ?Property\GeoWithinModel $geoWithin = null,
         public ?Property\GlobalLocationNumberModel $globalLocationNumber = null,
+        public ?Property\HasCertificationModel $hasCertification = null,
         public ?Property\HasCredentialModel $hasCredential = null,
         public ?Property\HasDriveThroughServiceModel $hasDriveThroughService = null,
+        public ?Property\HasGS1DigitalLinkModel $hasGS1DigitalLink = null,
         public ?Property\HasMapModel $hasMap = null,
+        public ?Property\HasMemberProgramModel $hasMemberProgram = null,
         public ?Property\HasMerchantReturnPolicyModel $hasMerchantReturnPolicy = null,
         public ?Property\HasOfferCatalogModel $hasOfferCatalog = null,
         public ?Property\HasPOSModel $hasPOS = null,
@@ -131,6 +136,7 @@ final class SkiResortModel
         public ?Property\SameAsModel $sameAs = null,
         public ?Property\SeeksModel $seeks = null,
         public ?Property\ServiceAreaModel $serviceArea = null,
+        public ?Property\SkillsModel $skills = null,
         public ?Property\SloganModel $slogan = null,
         public ?Property\SmokingAllowedModel $smokingAllowed = null,
         public ?Property\SpecialOpeningHoursSpecificationModel $specialOpeningHoursSpecification = null,

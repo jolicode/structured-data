@@ -73,6 +73,7 @@ A more detailed overview of [schema.org News markup](/docs/news.html) is also av
         public ?Property\DatePublishedModel $datePublished = null,
         public ?Property\DatelineModel $dateline = null,
         public ?Property\DescriptionModel $description = null,
+        public ?Property\DigitalSourceTypeModel $digitalSourceType = null,
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
         public ?Property\DiscussionUrlModel $discussionUrl = null,
         public ?Property\EditEIDRModel $editEIDR = null,

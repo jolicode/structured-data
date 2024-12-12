@@ -18,5 +18,5 @@ Note: for historical reasons, any textual label and formal code provided as a li
     public const LABEL = 'occupationalCategory';
     public const NAME = 'schema:occupationalCategory';
     public const VALUES = ['CategoryCodeModel' => 'Jolicode\SchemaOrg\Type\CategoryCodeModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalProgramModel', 'JobPosting' => 'Jolicode\SchemaOrg\Type\JobPostingModel', 'Occupation' => 'Jolicode\SchemaOrg\Type\OccupationModel', 'WorkBasedProgram' => 'Jolicode\SchemaOrg\Type\WorkBasedProgramModel'];
+    public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalProgramModel', 'JobPosting' => 'Jolicode\SchemaOrg\Type\JobPostingModel', 'Occupation' => 'Jolicode\SchemaOrg\Type\OccupationModel', 'Physician' => 'Jolicode\SchemaOrg\Type\PhysicianModel', 'WorkBasedProgram' => 'Jolicode\SchemaOrg\Type\WorkBasedProgramModel'];
 }

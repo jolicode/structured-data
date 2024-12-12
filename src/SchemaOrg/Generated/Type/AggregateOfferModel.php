@@ -24,6 +24,7 @@ final class AggregateOfferModel
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,
         public ?Property\AddOnModel $addOn = null,
+        public ?Property\AdditionalPropertyModel $additionalProperty = null,
         public ?Property\AdditionalTypeModel $additionalType = null,
         public ?Property\AdvanceBookingRequirementModel $advanceBookingRequirement = null,
         public ?Property\AggregateRatingModel $aggregateRating = null,
@@ -52,6 +53,7 @@ final class AggregateOfferModel
         public ?Property\Gtin14Model $gtin14 = null,
         public ?Property\Gtin8Model $gtin8 = null,
         public ?Property\HasAdultConsiderationModel $hasAdultConsideration = null,
+        public ?Property\HasGS1DigitalLinkModel $hasGS1DigitalLink = null,
         public ?Property\HasMeasurementModel $hasMeasurement = null,
         public ?Property\HasMerchantReturnPolicyModel $hasMerchantReturnPolicy = null,
         public ?Property\HighPriceModel $highPrice = null,
@@ -86,6 +88,7 @@ final class AggregateOfferModel
         public ?Property\SkuModel $sku = null,
         public ?Property\SubjectOfModel $subjectOf = null,
         public ?Property\UrlModel $url = null,
+        public ?Property\ValidForMemberTierModel $validForMemberTier = null,
         public ?Property\ValidFromModel $validFrom = null,
         public ?Property\ValidThroughModel $validThrough = null,
         public ?Property\WarrantyModel $warranty = null,

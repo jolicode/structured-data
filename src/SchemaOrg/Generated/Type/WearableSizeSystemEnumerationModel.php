@@ -15,7 +15,7 @@ use Jolicode\SchemaOrg\Property;
 
 final class WearableSizeSystemEnumerationModel
 {
-    public const DESCRIPTION = 'Enumerates common size systems specific for wearable products';
+    public const DESCRIPTION = 'Enumerates common size systems specific for wearable products.';
     public const LABEL = 'WearableSizeSystemEnumeration';
     public const NAME = 'schema:WearableSizeSystemEnumeration';
     public const PARENTS = ['SizeSystemEnumerationModel' => 'Jolicode\SchemaOrg\Type\SizeSystemEnumerationModel'];

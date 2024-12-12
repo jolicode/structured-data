@@ -13,9 +13,9 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class FounderModel
 {
-    public const DESCRIPTION = 'A person who founded this organization.';
+    public const DESCRIPTION = 'A person or organization who founded this organization.';
     public const LABEL = 'founder';
     public const NAME = 'schema:founder';
-    public const VALUES = ['PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
+    public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
 }

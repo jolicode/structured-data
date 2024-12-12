@@ -15,7 +15,7 @@ use Jolicode\SchemaOrg\Property;
 
 final class HealthPlanNetworkModel
 {
-    public const DESCRIPTION = 'A US-style health insurance plan network. ';
+    public const DESCRIPTION = 'A US-style health insurance plan network.';
     public const LABEL = 'HealthPlanNetwork';
     public const NAME = 'schema:HealthPlanNetwork';
     public const PARENTS = ['IntangibleModel' => 'Jolicode\SchemaOrg\Type\IntangibleModel'];

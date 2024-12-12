@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class WheelbaseModel
 {
-    public const DESCRIPTION = 'The distance between the centers of the front and rear wheels.\n\nTypical unit code(s): CMT for centimeters, MTR for meters, INH for inches, FOT for foot/feet';
+    public const DESCRIPTION = 'The distance between the centers of the front and rear wheels.\n\nTypical unit code(s): CMT for centimeters, MTR for meters, INH for inches, FOT for foot/feet.';
     public const LABEL = 'wheelbase';
     public const NAME = 'schema:wheelbase';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];

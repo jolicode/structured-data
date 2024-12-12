@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\EnumerationMember;
 
 final class WearableMeasurementBackModel
 {
-    public const DESCRIPTION = 'Measurement of the back section, for example of a jacket';
+    public const DESCRIPTION = 'Measurement of the back section, for example of a jacket.';
     public const LABEL = 'WearableMeasurementBack';
     public const NAME = 'schema:WearableMeasurementBack';
 }

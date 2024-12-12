@@ -68,6 +68,7 @@ final class DietModel
         public ?Property\DatePublishedModel $datePublished = null,
         public ?Property\DescriptionModel $description = null,
         public ?Property\DietFeaturesModel $dietFeatures = null,
+        public ?Property\DigitalSourceTypeModel $digitalSourceType = null,
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
         public ?Property\DiscussionUrlModel $discussionUrl = null,
         public ?Property\EditEIDRModel $editEIDR = null,

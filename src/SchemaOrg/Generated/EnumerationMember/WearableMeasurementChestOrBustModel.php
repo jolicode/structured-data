@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\EnumerationMember;
 
 final class WearableMeasurementChestOrBustModel
 {
-    public const DESCRIPTION = 'Measurement of the chest/bust section, for example of a suit';
+    public const DESCRIPTION = 'Measurement of the chest/bust section, for example of a suit.';
     public const LABEL = 'WearableMeasurementChestOrBust';
     public const NAME = 'schema:WearableMeasurementChestOrBust';
 }

@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class WorstRatingModel
 {
-    public const DESCRIPTION = 'The lowest value allowed in this rating system. If worstRating is omitted, 1 is assumed.';
+    public const DESCRIPTION = 'The lowest value allowed in this rating system.';
     public const LABEL = 'worstRating';
     public const NAME = 'schema:worstRating';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];

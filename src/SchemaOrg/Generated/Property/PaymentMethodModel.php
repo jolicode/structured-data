@@ -16,6 +16,6 @@ final class PaymentMethodModel
     public const DESCRIPTION = 'The name of the credit card or other method of payment for the order.';
     public const LABEL = 'paymentMethod';
     public const NAME = 'schema:paymentMethod';
-    public const VALUES = ['PaymentMethodModel' => 'Jolicode\SchemaOrg\Type\PaymentMethodModel'];
+    public const VALUES = ['PaymentMethodModel' => 'Jolicode\SchemaOrg\Type\PaymentMethodModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Invoice' => 'Jolicode\SchemaOrg\Type\InvoiceModel', 'Order' => 'Jolicode\SchemaOrg\Type\OrderModel'];
 }

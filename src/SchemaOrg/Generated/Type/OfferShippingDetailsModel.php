@@ -55,6 +55,7 @@ or Fast and expensive: $15 in 1-2 days.';
         public ?Property\SubjectOfModel $subjectOf = null,
         public ?Property\TransitTimeLabelModel $transitTimeLabel = null,
         public ?Property\UrlModel $url = null,
+        public ?Property\ValidForMemberTierModel $validForMemberTier = null,
         public ?Property\WeightModel $weight = null,
         public ?Property\WidthModel $width = null,
     ) {

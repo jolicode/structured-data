@@ -13,8 +13,7 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class ClaimInterpreterModel
 {
-    public const DESCRIPTION = 'For a [[Claim]] interpreted from [[MediaObject]] content
-    sed to indicate a claim contained, implied or refined from the content of a [[MediaObject]].';
+    public const DESCRIPTION = 'For a [[Claim]] interpreted from [[MediaObject]] content, the [[interpretedAsClaim]] property can be used to indicate a claim contained, implied or refined from the content of a [[MediaObject]].';
     public const LABEL = 'claimInterpreter';
     public const NAME = 'schema:claimInterpreter';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];

@@ -16,6 +16,6 @@ final class MemberOfModel
     public const DESCRIPTION = 'An Organization (or ProgramMembership) to which this Person or Organization belongs.';
     public const LABEL = 'memberOf';
     public const NAME = 'schema:memberOf';
-    public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'ProgramMembershipModel' => 'Jolicode\SchemaOrg\Type\ProgramMembershipModel'];
+    public const VALUES = ['MemberProgramTierModel' => 'Jolicode\SchemaOrg\Type\MemberProgramTierModel', 'OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'ProgramMembershipModel' => 'Jolicode\SchemaOrg\Type\ProgramMembershipModel'];
     public const TYPES = ['Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\SchemaOrg\Type\PersonModel'];
 }

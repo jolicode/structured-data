@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class SizeGroupModel
 {
-    public const DESCRIPTION = 'The size group (also known as "size type") for a product\'s size. Size groups are common in the fashion industry to define size segments and suggested audiences for wearable products. Multiple values can be combined, for example "men\'s big and tall", "petite maternity" or "regular"';
+    public const DESCRIPTION = 'The size group (also known as "size type") for a product\'s size. Size groups are common in the fashion industry to define size segments and suggested audiences for wearable products. Multiple values can be combined, for example "men\'s big and tall", "petite maternity" or "regular".';
     public const LABEL = 'sizeGroup';
     public const NAME = 'schema:sizeGroup';
     public const VALUES = ['SizeGroupEnumerationModel' => 'Jolicode\SchemaOrg\Type\SizeGroupEnumerationModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];

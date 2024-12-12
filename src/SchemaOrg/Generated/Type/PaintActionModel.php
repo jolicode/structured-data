@@ -22,6 +22,7 @@ final class PaintActionModel
     public const ENUMERATION_MEMBERS = [];
 
     public function __construct(
+        public ?Property\ActionProcessModel $actionProcess = null,
         public ?Property\ActionStatusModel $actionStatus = null,
         public ?Property\AdditionalTypeModel $additionalType = null,
         public ?Property\AgentModel $agent = null,

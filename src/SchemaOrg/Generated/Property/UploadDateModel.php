@@ -13,9 +13,9 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class UploadDateModel
 {
-    public const DESCRIPTION = 'Date when this media object was uploaded to this site.';
+    public const DESCRIPTION = 'Date (including time if available) when this media object was uploaded to this site.';
     public const LABEL = 'uploadDate';
     public const NAME = 'schema:uploadDate';
-    public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel'];
+    public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['MediaObject' => 'Jolicode\SchemaOrg\Type\MediaObjectModel'];
 }

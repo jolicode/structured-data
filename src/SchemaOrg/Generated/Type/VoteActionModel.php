@@ -23,6 +23,7 @@ final class VoteActionModel
 
     public function __construct(
         public ?Property\ActionOptionModel $actionOption = null,
+        public ?Property\ActionProcessModel $actionProcess = null,
         public ?Property\ActionStatusModel $actionStatus = null,
         public ?Property\AdditionalTypeModel $additionalType = null,
         public ?Property\AgentModel $agent = null,

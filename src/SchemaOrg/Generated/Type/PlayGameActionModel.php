@@ -23,6 +23,7 @@ final class PlayGameActionModel
 
     public function __construct(
         public ?Property\ActionAccessibilityRequirementModel $actionAccessibilityRequirement = null,
+        public ?Property\ActionProcessModel $actionProcess = null,
         public ?Property\ActionStatusModel $actionStatus = null,
         public ?Property\AdditionalTypeModel $additionalType = null,
         public ?Property\AgentModel $agent = null,

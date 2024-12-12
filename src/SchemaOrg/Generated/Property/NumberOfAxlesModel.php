@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class NumberOfAxlesModel
 {
-    public const DESCRIPTION = 'The number of axles.\n\nTypical unit code(s): C62';
+    public const DESCRIPTION = 'The number of axles.\n\nTypical unit code(s): C62.';
     public const LABEL = 'numberOfAxles';
     public const NAME = 'schema:numberOfAxles';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];

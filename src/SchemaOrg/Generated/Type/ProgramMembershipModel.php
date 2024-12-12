@@ -36,6 +36,7 @@ final class ProgramMembershipModel
         public ?Property\MembershipPointsEarnedModel $membershipPointsEarned = null,
         public ?Property\NameModel $name = null,
         public ?Property\PotentialActionModel $potentialAction = null,
+        public ?Property\ProgramModel $program = null,
         public ?Property\ProgramNameModel $programName = null,
         public ?Property\SameAsModel $sameAs = null,
         public ?Property\SubjectOfModel $subjectOf = null,

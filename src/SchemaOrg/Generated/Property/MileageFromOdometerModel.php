@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class MileageFromOdometerModel
 {
-    public const DESCRIPTION = 'The total distance travelled by the particular vehicle since its initial production, as read from its odometer.\n\nTypical unit code(s): KMT for kilometers, SMI for statute miles';
+    public const DESCRIPTION = 'The total distance travelled by the particular vehicle since its initial production, as read from its odometer.\n\nTypical unit code(s): KMT for kilometers, SMI for statute miles.';
     public const LABEL = 'mileageFromOdometer';
     public const NAME = 'schema:mileageFromOdometer';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];

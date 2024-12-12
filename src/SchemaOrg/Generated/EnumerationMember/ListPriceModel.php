@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\EnumerationMember;
 
 final class ListPriceModel
 {
-    public const DESCRIPTION = 'Represents the list price (the price a product is actually advertised for) of an offered product.';
+    public const DESCRIPTION = 'Represents the list price of an offered product. Typically the same as the [MSRP](https://schema.org/MSRP).';
     public const LABEL = 'ListPrice';
     public const NAME = 'schema:ListPrice';
 }

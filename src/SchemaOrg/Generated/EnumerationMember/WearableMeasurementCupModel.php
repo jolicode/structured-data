@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\EnumerationMember;
 
 final class WearableMeasurementCupModel
 {
-    public const DESCRIPTION = 'Measurement of the cup, for example of a bra';
+    public const DESCRIPTION = 'Measurement of the cup, for example of a bra.';
     public const LABEL = 'WearableMeasurementCup';
     public const NAME = 'schema:WearableMeasurementCup';
 }

@@ -43,6 +43,7 @@ final class CreditCardModel
         public ?Property\FeesAndCommissionsSpecificationModel $feesAndCommissionsSpecification = null,
         public ?Property\FloorLimitModel $floorLimit = null,
         public ?Property\GracePeriodModel $gracePeriod = null,
+        public ?Property\HasCertificationModel $hasCertification = null,
         public ?Property\HasOfferCatalogModel $hasOfferCatalog = null,
         public ?Property\HoursAvailableModel $hoursAvailable = null,
         public ?Property\IdentifierModel $identifier = null,
@@ -58,6 +59,7 @@ final class CreditCardModel
         public ?Property\MonthlyMinimumRepaymentAmountModel $monthlyMinimumRepaymentAmount = null,
         public ?Property\NameModel $name = null,
         public ?Property\OffersModel $offers = null,
+        public ?Property\PaymentMethodTypeModel $paymentMethodType = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\ProducesModel $produces = null,
         public ?Property\ProviderModel $provider = null,
@@ -73,7 +75,6 @@ final class CreditCardModel
         public ?Property\ServiceTypeModel $serviceType = null,
         public ?Property\SloganModel $slogan = null,
         public ?Property\SubjectOfModel $subjectOf = null,
-        public ?Property\SupersededByModel $supersededBy = null,
         public ?Property\TermsOfServiceModel $termsOfService = null,
         public ?Property\UrlModel $url = null,
     ) {

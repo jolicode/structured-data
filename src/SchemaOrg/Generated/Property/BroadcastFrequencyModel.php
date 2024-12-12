@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class BroadcastFrequencyModel
 {
-    public const DESCRIPTION = 'The frequency used for over-the-air broadcasts. Numeric values or simple ranges, e.g. 87-99. In addition a shortcut idiom is supported for frequences of AM and FM radio channels, e.g. "87 FM".';
+    public const DESCRIPTION = 'The frequency used for over-the-air broadcasts. Numeric values or simple ranges, e.g. 87-99. In addition a shortcut idiom is supported for frequencies of AM and FM radio channels, e.g. "87 FM".';
     public const LABEL = 'broadcastFrequency';
     public const NAME = 'schema:broadcastFrequency';
     public const VALUES = ['BroadcastFrequencySpecificationModel' => 'Jolicode\SchemaOrg\Type\BroadcastFrequencySpecificationModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];

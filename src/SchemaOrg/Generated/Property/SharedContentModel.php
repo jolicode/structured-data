@@ -17,5 +17,5 @@ final class SharedContentModel
     public const LABEL = 'sharedContent';
     public const NAME = 'schema:sharedContent';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
-    public const TYPES = ['SocialMediaPosting' => 'Jolicode\SchemaOrg\Type\SocialMediaPostingModel'];
+    public const TYPES = ['Comment' => 'Jolicode\SchemaOrg\Type\CommentModel', 'SocialMediaPosting' => 'Jolicode\SchemaOrg\Type\SocialMediaPostingModel'];
 }

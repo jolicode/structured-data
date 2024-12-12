@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\EnumerationMember;
 
 final class WearableMeasurementOutsideLegModel
 {
-    public const DESCRIPTION = 'Measurement of the outside leg, for example of pants';
+    public const DESCRIPTION = 'Measurement of the outside leg, for example of pants.';
     public const LABEL = 'WearableMeasurementOutsideLeg';
     public const NAME = 'schema:WearableMeasurementOutsideLeg';
 }

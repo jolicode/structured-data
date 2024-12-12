@@ -42,6 +42,7 @@ final class BroadcastServiceModel
         public ?Property\DescriptionModel $description = null,
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
         public ?Property\HasBroadcastChannelModel $hasBroadcastChannel = null,
+        public ?Property\HasCertificationModel $hasCertification = null,
         public ?Property\HasOfferCatalogModel $hasOfferCatalog = null,
         public ?Property\HoursAvailableModel $hoursAvailable = null,
         public ?Property\IdentifierModel $identifier = null,

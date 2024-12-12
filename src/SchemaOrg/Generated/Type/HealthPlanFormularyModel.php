@@ -15,7 +15,7 @@ use Jolicode\SchemaOrg\Property;
 
 final class HealthPlanFormularyModel
 {
-    public const DESCRIPTION = 'For a given health insurance plan, the specification for costs and coverage of prescription drugs. ';
+    public const DESCRIPTION = 'For a given health insurance plan, the specification for costs and coverage of prescription drugs.';
     public const LABEL = 'HealthPlanFormulary';
     public const NAME = 'schema:HealthPlanFormulary';
     public const PARENTS = ['IntangibleModel' => 'Jolicode\SchemaOrg\Type\IntangibleModel'];

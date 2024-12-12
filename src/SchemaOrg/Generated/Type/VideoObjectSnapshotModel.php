@@ -73,6 +73,7 @@ final class VideoObjectSnapshotModel
         public ?Property\DateModifiedModel $dateModified = null,
         public ?Property\DatePublishedModel $datePublished = null,
         public ?Property\DescriptionModel $description = null,
+        public ?Property\DigitalSourceTypeModel $digitalSourceType = null,
         public ?Property\DirectorModel $director = null,
         public ?Property\DirectorsModel $directors = null,
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,

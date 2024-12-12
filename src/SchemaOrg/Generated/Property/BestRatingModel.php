@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class BestRatingModel
 {
-    public const DESCRIPTION = 'The highest value allowed in this rating system. If bestRating is omitted, 5 is assumed.';
+    public const DESCRIPTION = 'The highest value allowed in this rating system.';
     public const LABEL = 'bestRating';
     public const NAME = 'schema:bestRating';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];

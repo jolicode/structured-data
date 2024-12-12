@@ -13,9 +13,9 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class DatePublishedModel
 {
-    public const DESCRIPTION = 'Date of first broadcast/publication.';
+    public const DESCRIPTION = 'Date of first publication or broadcast. For example the date a [[CreativeWork]] was broadcast or a [[Certification]] was issued.';
     public const LABEL = 'datePublished';
     public const NAME = 'schema:datePublished';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
-    public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
+    public const TYPES = ['Certification' => 'Jolicode\SchemaOrg\Type\CertificationModel', 'CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
 }

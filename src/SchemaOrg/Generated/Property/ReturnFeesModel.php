@@ -17,5 +17,5 @@ final class ReturnFeesModel
     public const LABEL = 'returnFees';
     public const NAME = 'schema:returnFees';
     public const VALUES = ['ReturnFeesEnumerationModel' => 'Jolicode\SchemaOrg\Type\ReturnFeesEnumerationModel'];
-    public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicyModel'];
+    public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicyModel', 'MerchantReturnPolicySeasonalOverride' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicySeasonalOverrideModel'];
 }

@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\EnumerationMember;
 
 final class WearableMeasurementInseamModel
 {
-    public const DESCRIPTION = 'Measurement of the inseam, for example of pants';
+    public const DESCRIPTION = 'Measurement of the inseam, for example of pants.';
     public const LABEL = 'WearableMeasurementInseam';
     public const NAME = 'schema:WearableMeasurementInseam';
 }

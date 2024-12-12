@@ -17,5 +17,5 @@ final class ReturnMethodModel
     public const LABEL = 'returnMethod';
     public const NAME = 'schema:returnMethod';
     public const VALUES = ['ReturnMethodEnumerationModel' => 'Jolicode\SchemaOrg\Type\ReturnMethodEnumerationModel'];
-    public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicyModel'];
+    public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicyModel', 'MerchantReturnPolicySeasonalOverride' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicySeasonalOverrideModel'];
 }

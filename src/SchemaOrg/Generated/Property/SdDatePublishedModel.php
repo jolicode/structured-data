@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class SdDatePublishedModel
 {
-    public const DESCRIPTION = 'Indicates the date on which the current structured data was generated / published. Typically used alongside [[sdPublisher]]';
+    public const DESCRIPTION = 'Indicates the date on which the current structured data was generated / published. Typically used alongside [[sdPublisher]].';
     public const LABEL = 'sdDatePublished';
     public const NAME = 'schema:sdDatePublished';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel'];

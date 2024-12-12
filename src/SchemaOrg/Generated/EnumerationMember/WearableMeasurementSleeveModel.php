@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\EnumerationMember;
 
 final class WearableMeasurementSleeveModel
 {
-    public const DESCRIPTION = 'Measurement of the sleeve length, for example of a shirt';
+    public const DESCRIPTION = 'Measurement of the sleeve length, for example of a shirt.';
     public const LABEL = 'WearableMeasurementSleeve';
     public const NAME = 'schema:WearableMeasurementSleeve';
 }

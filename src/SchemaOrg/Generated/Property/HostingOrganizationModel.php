@@ -13,9 +13,9 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class HostingOrganizationModel
 {
-    public const DESCRIPTION = 'The organization (airline, travelers\' club, etc.) the membership is made with.';
+    public const DESCRIPTION = 'The Organization (airline, travelers\' club, retailer, etc.) the membership is made with or which offers the  MemberProgram.';
     public const LABEL = 'hostingOrganization';
     public const NAME = 'schema:hostingOrganization';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
-    public const TYPES = ['ProgramMembership' => 'Jolicode\SchemaOrg\Type\ProgramMembershipModel'];
+    public const TYPES = ['MemberProgram' => 'Jolicode\SchemaOrg\Type\MemberProgramModel', 'ProgramMembership' => 'Jolicode\SchemaOrg\Type\ProgramMembershipModel'];
 }

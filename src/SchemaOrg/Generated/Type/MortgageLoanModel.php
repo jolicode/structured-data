@@ -40,6 +40,7 @@ final class MortgageLoanModel
         public ?Property\DomiciledMortgageModel $domiciledMortgage = null,
         public ?Property\FeesAndCommissionsSpecificationModel $feesAndCommissionsSpecification = null,
         public ?Property\GracePeriodModel $gracePeriod = null,
+        public ?Property\HasCertificationModel $hasCertification = null,
         public ?Property\HasOfferCatalogModel $hasOfferCatalog = null,
         public ?Property\HoursAvailableModel $hoursAvailable = null,
         public ?Property\IdentifierModel $identifier = null,

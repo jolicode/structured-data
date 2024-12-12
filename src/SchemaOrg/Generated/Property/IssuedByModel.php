@@ -13,9 +13,9 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class IssuedByModel
 {
-    public const DESCRIPTION = 'The organization issuing the ticket or permit.';
+    public const DESCRIPTION = 'The organization issuing the item, for example a [[Permit]], [[Ticket]], or [[Certification]].';
     public const LABEL = 'issuedBy';
     public const NAME = 'schema:issuedBy';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
-    public const TYPES = ['Permit' => 'Jolicode\SchemaOrg\Type\PermitModel', 'Ticket' => 'Jolicode\SchemaOrg\Type\TicketModel'];
+    public const TYPES = ['Certification' => 'Jolicode\SchemaOrg\Type\CertificationModel', 'Permit' => 'Jolicode\SchemaOrg\Type\PermitModel', 'Ticket' => 'Jolicode\SchemaOrg\Type\TicketModel'];
 }

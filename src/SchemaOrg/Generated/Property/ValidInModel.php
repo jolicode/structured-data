@@ -13,9 +13,9 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class ValidInModel
 {
-    public const DESCRIPTION = 'The geographic area where a permit or similar thing is valid.';
+    public const DESCRIPTION = 'The geographic area where the item is valid. Applies for example to a [[Permit]], a [[Certification]], or an [[EducationalOccupationalCredential]]. ';
     public const LABEL = 'validIn';
     public const NAME = 'schema:validIn';
     public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\SchemaOrg\Type\AdministrativeAreaModel'];
-    public const TYPES = ['EducationalOccupationalCredential' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalCredentialModel', 'Permit' => 'Jolicode\SchemaOrg\Type\PermitModel'];
+    public const TYPES = ['Certification' => 'Jolicode\SchemaOrg\Type\CertificationModel', 'EducationalOccupationalCredential' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalCredentialModel', 'Permit' => 'Jolicode\SchemaOrg\Type\PermitModel'];
 }

@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class NumberOfPreviousOwnersModel
 {
-    public const DESCRIPTION = 'The number of owners of the vehicle, including the current one.\n\nTypical unit code(s): C62';
+    public const DESCRIPTION = 'The number of owners of the vehicle, including the current one.\n\nTypical unit code(s): C62.';
     public const LABEL = 'numberOfPreviousOwners';
     public const NAME = 'schema:numberOfPreviousOwners';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
