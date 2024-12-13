@@ -65,11 +65,14 @@ class SchemaOrgValidator extends AbstractValidator
 
             if (!class_exists($typeFqcn)) {
                 $message = \sprintf('The "%s" type is not a valid Schema.org type', $label);
-
                 $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_ERROR);
 
                 continue;
             }
+
+            $type->description = $typeFqcn::DESCRIPTION;
+            $type->isPartOf = array_merge($type->isPartOf, $typeFqcn::IS_PART_OF);
+            $type->source = array_merge($type->source, $typeFqcn::SOURCE);
 
             if ($property && !IriResolver::isAbsoluteIri($property->key)) {
                 $propertyKey = self::stripActionSuffixes($property->key);
@@ -104,13 +107,19 @@ class SchemaOrgValidator extends AbstractValidator
             return $errors;
         }
 
-        if (!class_exists(self::getPropertyFqcn($propertyKey))) {
+        $propertyFqcn = self::getPropertyFqcn($propertyKey);
+
+        if (!class_exists($propertyFqcn)) {
             $message = \sprintf('This property does not exist: %s', $propertyKey);
 
             $errors[] = self::addMappedError($property, $message, $type, MappedError::SEVERITY_ERROR);
 
             return $errors;
         }
+
+        $property->description = $propertyFqcn::DESCRIPTION;
+        $property->isPartOf = array_merge($property->isPartOf, $propertyFqcn::IS_PART_OF);
+        $property->source = array_merge($property->source, $propertyFqcn::SOURCE);
 
         if (!$typeLabel) {
             $typeLabel = self::guessTypeFromProperties($type->properties);

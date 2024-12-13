@@ -18,6 +18,7 @@ class MappedType
     public function __construct(
         public string|array|null $type = null,
         public ?string $name = null,
+        public ?string $description = null,
         public bool $isValid = true,
         public ?string $errorSeverity = null,
         /**
@@ -36,17 +37,20 @@ class MappedType
         /**
          * @var array<Range>
          */
-        private array $keyRanges = [],
+        public array $keyRanges = [],
         /**
          * @var array<Range>
          */
-        private array $valueRanges = [],
+        public array $valueRanges = [],
+        /**
+         * @var array<string>
+         */
+        public array $isPartOf = [],
+        /**
+         * @var array<string>
+         */
+        public array $source = [],
     ) {
-    }
-
-    public function getKeyRanges(): array
-    {
-        return $this->keyRanges;
     }
 
     public function addKeyRange(Range $range): void
@@ -54,11 +58,6 @@ class MappedType
         if (!\in_array($range, $this->keyRanges, true)) {
             $this->keyRanges[] = $range;
         }
-    }
-
-    public function getValueRanges(): array
-    {
-        return $this->valueRanges;
     }
 
     public function addValueRange(Range $range): void

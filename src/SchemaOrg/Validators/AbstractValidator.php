@@ -54,7 +54,7 @@ abstract class AbstractValidator
                 $range->end?->line,
                 $range->end?->column,
             ),
-            $target->getValueRanges(),
+            $target->valueRanges,
         );
 
         $range = implode(\PHP_EOL, $range);

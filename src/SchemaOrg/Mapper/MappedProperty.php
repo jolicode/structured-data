@@ -18,6 +18,7 @@ class MappedProperty
     public function __construct(
         readonly public string $key,
         public ?MappedType $type = null,
+        public ?string $description = null,
         public mixed $value = [],
         public bool $isValid = true,
         public ?string $errorSeverity = null,
@@ -28,17 +29,20 @@ class MappedProperty
         /**
          * @var array<Range>
          */
-        private array $keyRanges = [],
+        public array $keyRanges = [],
         /**
          * @var array<Range>
          */
-        private array $valueRanges = [],
+        public array $valueRanges = [],
+        /**
+         * @var array<string>
+         */
+        public array $isPartOf = [],
+        /**
+         * @var array<string>
+         */
+        public array $source = [],
     ) {
-    }
-
-    public function getKeyRanges(): array
-    {
-        return $this->keyRanges;
     }
 
     public function addKeyRange(Range $range): void
@@ -46,11 +50,6 @@ class MappedProperty
         if (!\in_array($range, $this->keyRanges, true)) {
             $this->keyRanges[] = $range;
         }
-    }
-
-    public function getValueRanges(): array
-    {
-        return $this->valueRanges;
     }
 
     public function addValueRange(Range $range): void
