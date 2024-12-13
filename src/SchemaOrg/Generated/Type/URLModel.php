@@ -18,6 +18,8 @@ final class URLModel
     public const NAME = 'schema:URL';
     public const PARENTS = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct()
     {

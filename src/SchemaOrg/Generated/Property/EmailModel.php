@@ -18,4 +18,6 @@ final class EmailModel
     public const NAME = 'schema:email';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['ContactPoint' => 'Jolicode\SchemaOrg\Type\ContactPointModel', 'Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\SchemaOrg\Type\PersonModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

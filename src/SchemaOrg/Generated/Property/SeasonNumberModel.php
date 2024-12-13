@@ -18,4 +18,6 @@ final class SeasonNumberModel
     public const NAME = 'schema:seasonNumber';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['CreativeWorkSeason' => 'Jolicode\SchemaOrg\Type\CreativeWorkSeasonModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

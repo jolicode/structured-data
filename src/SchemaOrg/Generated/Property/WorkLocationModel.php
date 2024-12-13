@@ -18,4 +18,6 @@ final class WorkLocationModel
     public const NAME = 'schema:workLocation';
     public const VALUES = ['ContactPointModel' => 'Jolicode\SchemaOrg\Type\ContactPointModel', 'PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
     public const TYPES = ['Person' => 'Jolicode\SchemaOrg\Type\PersonModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

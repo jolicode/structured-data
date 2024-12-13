@@ -18,4 +18,6 @@ final class CustomerRemorseReturnShippingFeesAmountModel
     public const NAME = 'schema:customerRemorseReturnShippingFeesAmount';
     public const VALUES = ['MonetaryAmountModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel'];
     public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

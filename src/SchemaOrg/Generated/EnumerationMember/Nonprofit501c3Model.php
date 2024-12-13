@@ -16,4 +16,6 @@ final class Nonprofit501c3Model
     public const DESCRIPTION = 'Nonprofit501c3: Non-profit type referring to Religious, Educational, Charitable, Scientific, Literary, Testing for Public Safety, Fostering National or International Amateur Sports Competition, or Prevention of Cruelty to Children or Animals Organizations.';
     public const LABEL = 'Nonprofit501c3';
     public const NAME = 'schema:Nonprofit501c3';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

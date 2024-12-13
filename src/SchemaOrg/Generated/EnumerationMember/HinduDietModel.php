@@ -16,4 +16,6 @@ final class HinduDietModel
     public const DESCRIPTION = 'A diet conforming to Hindu dietary practices, in particular, beef-free.';
     public const LABEL = 'HinduDiet';
     public const NAME = 'schema:HinduDiet';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

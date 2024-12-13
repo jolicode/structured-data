@@ -18,4 +18,6 @@ final class ActionProcessModel
     public const NAME = 'schema:actionProcess';
     public const VALUES = ['HowToModel' => 'Jolicode\SchemaOrg\Type\HowToModel'];
     public const TYPES = ['Action' => 'Jolicode\SchemaOrg\Type\ActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

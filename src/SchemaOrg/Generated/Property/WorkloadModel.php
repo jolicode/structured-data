@@ -18,4 +18,6 @@ final class WorkloadModel
     public const NAME = 'schema:workload';
     public const VALUES = ['EnergyModel' => 'Jolicode\SchemaOrg\Type\EnergyModel', 'QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['ExercisePlan' => 'Jolicode\SchemaOrg\Type\ExercisePlanModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

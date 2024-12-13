@@ -18,4 +18,6 @@ final class GreaterOrEqualModel
     public const NAME = 'schema:greaterOrEqual';
     public const VALUES = ['QualitativeValueModel' => 'Jolicode\SchemaOrg\Type\QualitativeValueModel'];
     public const TYPES = ['QualitativeValue' => 'Jolicode\SchemaOrg\Type\QualitativeValueModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

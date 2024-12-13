@@ -16,4 +16,6 @@ final class WearableSizeSystemGS1Model
     public const DESCRIPTION = 'GS1 (formerly NRF) size system for wearables.';
     public const LABEL = 'WearableSizeSystemGS1';
     public const NAME = 'schema:WearableSizeSystemGS1';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

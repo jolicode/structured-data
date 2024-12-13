@@ -18,4 +18,6 @@ final class ValueReferenceModel
     public const NAME = 'schema:valueReference';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\SchemaOrg\Type\DefinedTermModel', 'EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel', 'MeasurementTypeEnumerationModel' => 'Jolicode\SchemaOrg\Type\MeasurementTypeEnumerationModel', 'PropertyValueModel' => 'Jolicode\SchemaOrg\Type\PropertyValueModel', 'QualitativeValueModel' => 'Jolicode\SchemaOrg\Type\QualitativeValueModel', 'QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel', 'StructuredValueModel' => 'Jolicode\SchemaOrg\Type\StructuredValueModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['PropertyValue' => 'Jolicode\SchemaOrg\Type\PropertyValueModel', 'QualitativeValue' => 'Jolicode\SchemaOrg\Type\QualitativeValueModel', 'QuantitativeValue' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -19,4 +19,6 @@ final class TemporalModel
     public const NAME = 'schema:temporal';
     public const VALUES = ['DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

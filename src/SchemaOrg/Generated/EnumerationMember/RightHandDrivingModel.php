@@ -16,4 +16,6 @@ final class RightHandDrivingModel
     public const DESCRIPTION = 'The steering position is on the right side of the vehicle (viewed from the main direction of driving).';
     public const LABEL = 'RightHandDriving';
     public const NAME = 'schema:RightHandDriving';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

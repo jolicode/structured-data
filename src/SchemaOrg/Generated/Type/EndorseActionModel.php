@@ -20,6 +20,8 @@ final class EndorseActionModel
     public const NAME = 'schema:EndorseAction';
     public const PARENTS = ['ReactActionModel' => 'Jolicode\SchemaOrg\Type\ReactActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

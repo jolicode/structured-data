@@ -18,4 +18,6 @@ final class AuthenticatorModel
     public const NAME = 'schema:authenticator';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
     public const TYPES = ['MediaSubscription' => 'Jolicode\SchemaOrg\Type\MediaSubscriptionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

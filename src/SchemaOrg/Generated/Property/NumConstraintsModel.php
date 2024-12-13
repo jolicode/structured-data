@@ -18,4 +18,6 @@ final class NumConstraintsModel
     public const NAME = 'schema:numConstraints';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['ConstraintNode' => 'Jolicode\SchemaOrg\Type\ConstraintNodeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

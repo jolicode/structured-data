@@ -18,4 +18,6 @@ final class PublicationTypeModel
     public const NAME = 'schema:publicationType';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalScholarlyArticle' => 'Jolicode\SchemaOrg\Type\MedicalScholarlyArticleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class ModifiedTimeModel
     public const NAME = 'schema:modifiedTime';
     public const VALUES = ['DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['Reservation' => 'Jolicode\SchemaOrg\Type\ReservationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

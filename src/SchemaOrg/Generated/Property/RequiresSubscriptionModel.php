@@ -18,4 +18,6 @@ final class RequiresSubscriptionModel
     public const NAME = 'schema:requiresSubscription';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel', 'MediaSubscriptionModel' => 'Jolicode\SchemaOrg\Type\MediaSubscriptionModel'];
     public const TYPES = ['ActionAccessSpecification' => 'Jolicode\SchemaOrg\Type\ActionAccessSpecificationModel', 'MediaObject' => 'Jolicode\SchemaOrg\Type\MediaObjectModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

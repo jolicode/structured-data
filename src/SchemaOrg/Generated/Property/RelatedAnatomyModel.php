@@ -18,4 +18,6 @@ final class RelatedAnatomyModel
     public const NAME = 'schema:relatedAnatomy';
     public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\SchemaOrg\Type\AnatomicalStructureModel', 'AnatomicalSystemModel' => 'Jolicode\SchemaOrg\Type\AnatomicalSystemModel'];
     public const TYPES = ['SuperficialAnatomy' => 'Jolicode\SchemaOrg\Type\SuperficialAnatomyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

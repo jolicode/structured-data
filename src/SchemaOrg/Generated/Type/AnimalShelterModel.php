@@ -20,6 +20,8 @@ final class AnimalShelterModel
     public const NAME = 'schema:AnimalShelter';
     public const PARENTS = ['LocalBusinessModel' => 'Jolicode\SchemaOrg\Type\LocalBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

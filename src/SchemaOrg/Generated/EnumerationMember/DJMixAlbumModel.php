@@ -16,4 +16,6 @@ final class DJMixAlbumModel
     public const DESCRIPTION = 'DJMixAlbum.';
     public const LABEL = 'DJMixAlbum';
     public const NAME = 'schema:DJMixAlbum';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

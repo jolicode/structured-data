@@ -20,6 +20,8 @@ final class ResearcherModel
     public const NAME = 'schema:Researcher';
     public const PARENTS = ['AudienceModel' => 'Jolicode\SchemaOrg\Type\AudienceModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

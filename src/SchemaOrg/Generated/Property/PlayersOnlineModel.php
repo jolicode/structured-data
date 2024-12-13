@@ -18,4 +18,6 @@ final class PlayersOnlineModel
     public const NAME = 'schema:playersOnline';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['GameServer' => 'Jolicode\SchemaOrg\Type\GameServerModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

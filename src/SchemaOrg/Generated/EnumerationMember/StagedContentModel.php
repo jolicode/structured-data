@@ -21,8 +21,9 @@ For an [[ImageObject]] to be \'staged content\': An image that was created using
 
 For an [[ImageObject]] with embedded text to be \'staged content\': An image that was created using actors or similarly contrived, such as a screenshot of a fake tweet.
 
-For an [[AudioObject]] to be \'staged content\': Audio that has been created using actors or similarly contrived.
-';
+For an [[AudioObject]] to be \'staged content\': Audio that has been created using actors or similarly contrived.';
     public const LABEL = 'StagedContent';
     public const NAME = 'schema:StagedContent';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

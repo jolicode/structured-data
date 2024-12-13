@@ -18,4 +18,6 @@ final class GuidelineDateModel
     public const NAME = 'schema:guidelineDate';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel'];
     public const TYPES = ['MedicalGuideline' => 'Jolicode\SchemaOrg\Type\MedicalGuidelineModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

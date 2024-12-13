@@ -18,6 +18,8 @@ final class FloatModel
     public const NAME = 'schema:Float';
     public const PARENTS = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct()
     {

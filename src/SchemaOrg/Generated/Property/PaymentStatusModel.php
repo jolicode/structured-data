@@ -18,4 +18,6 @@ final class PaymentStatusModel
     public const NAME = 'schema:paymentStatus';
     public const VALUES = ['PaymentStatusTypeModel' => 'Jolicode\SchemaOrg\Type\PaymentStatusTypeModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Invoice' => 'Jolicode\SchemaOrg\Type\InvoiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

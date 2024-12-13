@@ -31,6 +31,8 @@ or Fast and expensive: $15 in 1-2 days.';
     public const NAME = 'schema:OfferShippingDetails';
     public const PARENTS = ['StructuredValueModel' => 'Jolicode\SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2506'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

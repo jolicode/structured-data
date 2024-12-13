@@ -13,7 +13,9 @@ namespace Jolicode\SchemaOrg\EnumerationMember;
 
 final class GenericWebPlatformModel
 {
-    public const DESCRIPTION = 'Represents the generic notion of the Web Platform. More specific codes include [[MobileWebPlatform]] and [[DesktopWebPlatform]], as an incomplete list. ';
+    public const DESCRIPTION = 'Represents the generic notion of the Web Platform. More specific codes include [[MobileWebPlatform]] and [[DesktopWebPlatform]], as an incomplete list.';
     public const LABEL = 'GenericWebPlatform';
     public const NAME = 'schema:GenericWebPlatform';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

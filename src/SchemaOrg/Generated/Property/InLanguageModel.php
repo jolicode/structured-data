@@ -18,4 +18,6 @@ final class InLanguageModel
     public const NAME = 'schema:inLanguage';
     public const VALUES = ['LanguageModel' => 'Jolicode\SchemaOrg\Type\LanguageModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['BroadcastService' => 'Jolicode\SchemaOrg\Type\BroadcastServiceModel', 'CommunicateAction' => 'Jolicode\SchemaOrg\Type\CommunicateActionModel', 'CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'Event' => 'Jolicode\SchemaOrg\Type\EventModel', 'LinkRole' => 'Jolicode\SchemaOrg\Type\LinkRoleModel', 'PronounceableText' => 'Jolicode\SchemaOrg\Type\PronounceableTextModel', 'WriteAction' => 'Jolicode\SchemaOrg\Type\WriteActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

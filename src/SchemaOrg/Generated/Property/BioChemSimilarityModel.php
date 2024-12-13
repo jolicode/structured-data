@@ -18,4 +18,6 @@ final class BioChemSimilarityModel
     public const NAME = 'schema:bioChemSimilarity';
     public const VALUES = ['BioChemEntityModel' => 'Jolicode\SchemaOrg\Type\BioChemEntityModel'];
     public const TYPES = ['BioChemEntity' => 'Jolicode\SchemaOrg\Type\BioChemEntityModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

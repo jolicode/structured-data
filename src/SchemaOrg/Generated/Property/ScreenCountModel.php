@@ -18,4 +18,6 @@ final class ScreenCountModel
     public const NAME = 'schema:screenCount';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['MovieTheater' => 'Jolicode\SchemaOrg\Type\MovieTheaterModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

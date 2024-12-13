@@ -18,4 +18,6 @@ final class OwnershipFundingInfoModel
     public const NAME = 'schema:ownershipFundingInfo';
     public const VALUES = ['AboutPageModel' => 'Jolicode\SchemaOrg\Type\AboutPageModel', 'CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['NewsMediaOrganization' => 'Jolicode\SchemaOrg\Type\NewsMediaOrganizationModel', 'Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

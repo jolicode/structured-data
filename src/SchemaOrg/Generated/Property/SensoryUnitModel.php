@@ -18,4 +18,6 @@ final class SensoryUnitModel
     public const NAME = 'schema:sensoryUnit';
     public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\SchemaOrg\Type\AnatomicalStructureModel', 'SuperficialAnatomyModel' => 'Jolicode\SchemaOrg\Type\SuperficialAnatomyModel'];
     public const TYPES = ['Nerve' => 'Jolicode\SchemaOrg\Type\NerveModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class OwnedThroughModel
     public const NAME = 'schema:ownedThrough';
     public const VALUES = ['DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['OwnershipInfo' => 'Jolicode\SchemaOrg\Type\OwnershipInfoModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

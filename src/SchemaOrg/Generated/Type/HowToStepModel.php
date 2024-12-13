@@ -20,6 +20,8 @@ final class HowToStepModel
     public const NAME = 'schema:HowToStep';
     public const PARENTS = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'ItemListModel' => 'Jolicode\SchemaOrg\Type\ItemListModel', 'ListItemModel' => 'Jolicode\SchemaOrg\Type\ListItemModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

@@ -18,4 +18,6 @@ final class HasDigitalDocumentPermissionModel
     public const NAME = 'schema:hasDigitalDocumentPermission';
     public const VALUES = ['DigitalDocumentPermissionModel' => 'Jolicode\SchemaOrg\Type\DigitalDocumentPermissionModel'];
     public const TYPES = ['DigitalDocument' => 'Jolicode\SchemaOrg\Type\DigitalDocumentModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

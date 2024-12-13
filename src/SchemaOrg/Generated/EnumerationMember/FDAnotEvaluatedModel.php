@@ -16,4 +16,6 @@ final class FDAnotEvaluatedModel
     public const DESCRIPTION = 'A designation that the drug in question has not been assigned a pregnancy category designation by the US FDA.';
     public const LABEL = 'FDAnotEvaluated';
     public const NAME = 'schema:FDAnotEvaluated';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -25,6 +25,8 @@ final class ComicIssueModel
     public const NAME = 'schema:ComicIssue';
     public const PARENTS = ['PublicationIssueModel' => 'Jolicode\SchemaOrg\Type\PublicationIssueModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://bib.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

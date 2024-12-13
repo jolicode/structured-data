@@ -16,4 +16,6 @@ final class AyurvedicModel
     public const DESCRIPTION = 'A system of medicine that originated in India over thousands of years and that focuses on integrating and balancing the body, mind, and spirit.';
     public const LABEL = 'Ayurvedic';
     public const NAME = 'schema:Ayurvedic';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class AlcoholConsiderationModel
     public const DESCRIPTION = 'Item contains alcohol or promotes alcohol consumption.';
     public const LABEL = 'AlcoholConsideration';
     public const NAME = 'schema:AlcoholConsideration';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

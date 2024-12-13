@@ -20,6 +20,8 @@ final class RadioChannelModel
     public const NAME = 'schema:RadioChannel';
     public const PARENTS = ['BroadcastChannelModel' => 'Jolicode\SchemaOrg\Type\BroadcastChannelModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

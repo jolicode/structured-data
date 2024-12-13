@@ -18,4 +18,6 @@ final class HostingOrganizationModel
     public const NAME = 'schema:hostingOrganization';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
     public const TYPES = ['MemberProgram' => 'Jolicode\SchemaOrg\Type\MemberProgramModel', 'ProgramMembership' => 'Jolicode\SchemaOrg\Type\ProgramMembershipModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

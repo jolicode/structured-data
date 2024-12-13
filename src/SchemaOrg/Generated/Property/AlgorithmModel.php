@@ -18,4 +18,6 @@ final class AlgorithmModel
     public const NAME = 'schema:algorithm';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalRiskScore' => 'Jolicode\SchemaOrg\Type\MedicalRiskScoreModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

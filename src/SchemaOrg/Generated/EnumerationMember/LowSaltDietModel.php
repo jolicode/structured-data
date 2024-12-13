@@ -16,4 +16,6 @@ final class LowSaltDietModel
     public const DESCRIPTION = 'A diet focused on reduced sodium intake.';
     public const LABEL = 'LowSaltDiet';
     public const NAME = 'schema:LowSaltDiet';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

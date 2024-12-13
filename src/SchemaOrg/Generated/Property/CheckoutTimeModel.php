@@ -18,4 +18,6 @@ final class CheckoutTimeModel
     public const NAME = 'schema:checkoutTime';
     public const VALUES = ['DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel', 'TimeModel' => 'Jolicode\SchemaOrg\Type\TimeModel'];
     public const TYPES = ['LodgingBusiness' => 'Jolicode\SchemaOrg\Type\LodgingBusinessModel', 'LodgingReservation' => 'Jolicode\SchemaOrg\Type\LodgingReservationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

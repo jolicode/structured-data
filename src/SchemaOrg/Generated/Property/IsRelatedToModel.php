@@ -18,4 +18,6 @@ final class IsRelatedToModel
     public const NAME = 'schema:isRelatedTo';
     public const VALUES = ['ProductModel' => 'Jolicode\SchemaOrg\Type\ProductModel', 'ServiceModel' => 'Jolicode\SchemaOrg\Type\ServiceModel'];
     public const TYPES = ['Product' => 'Jolicode\SchemaOrg\Type\ProductModel', 'Service' => 'Jolicode\SchemaOrg\Type\ServiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

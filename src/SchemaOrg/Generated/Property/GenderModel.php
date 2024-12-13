@@ -18,4 +18,6 @@ final class GenderModel
     public const NAME = 'schema:gender';
     public const VALUES = ['GenderTypeModel' => 'Jolicode\SchemaOrg\Type\GenderTypeModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Person' => 'Jolicode\SchemaOrg\Type\PersonModel', 'SportsTeam' => 'Jolicode\SchemaOrg\Type\SportsTeamModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

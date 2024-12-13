@@ -18,4 +18,6 @@ final class RefundTypeModel
     public const NAME = 'schema:refundType';
     public const VALUES = ['RefundTypeEnumerationModel' => 'Jolicode\SchemaOrg\Type\RefundTypeEnumerationModel'];
     public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicyModel', 'MerchantReturnPolicySeasonalOverride' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicySeasonalOverrideModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

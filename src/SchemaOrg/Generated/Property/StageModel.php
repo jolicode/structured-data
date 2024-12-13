@@ -18,4 +18,6 @@ final class StageModel
     public const NAME = 'schema:stage';
     public const VALUES = ['MedicalConditionStageModel' => 'Jolicode\SchemaOrg\Type\MedicalConditionStageModel'];
     public const TYPES = ['MedicalCondition' => 'Jolicode\SchemaOrg\Type\MedicalConditionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class EpisodeNumberModel
     public const NAME = 'schema:episodeNumber';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Episode' => 'Jolicode\SchemaOrg\Type\EpisodeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class PhoneCarrierPaymentModel
     public const DESCRIPTION = 'Payment by billing via the phone carrier.';
     public const LABEL = 'PhoneCarrierPayment';
     public const NAME = 'schema:PhoneCarrierPayment';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

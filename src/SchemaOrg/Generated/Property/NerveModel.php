@@ -18,4 +18,6 @@ final class NerveModel
     public const NAME = 'schema:nerve';
     public const VALUES = ['NerveModel' => 'Jolicode\SchemaOrg\Type\NerveModel'];
     public const TYPES = ['Muscle' => 'Jolicode\SchemaOrg\Type\MuscleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class Nonprofit501qModel
     public const DESCRIPTION = 'Nonprofit501q: Non-profit type referring to Credit Counseling Organizations.';
     public const LABEL = 'Nonprofit501q';
     public const NAME = 'schema:Nonprofit501q';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

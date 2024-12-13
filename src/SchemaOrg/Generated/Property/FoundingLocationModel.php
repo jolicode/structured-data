@@ -18,4 +18,6 @@ final class FoundingLocationModel
     public const NAME = 'schema:foundingLocation';
     public const VALUES = ['PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
     public const TYPES = ['Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

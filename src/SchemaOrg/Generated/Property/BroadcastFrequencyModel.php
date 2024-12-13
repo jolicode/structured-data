@@ -18,4 +18,6 @@ final class BroadcastFrequencyModel
     public const NAME = 'schema:broadcastFrequency';
     public const VALUES = ['BroadcastFrequencySpecificationModel' => 'Jolicode\SchemaOrg\Type\BroadcastFrequencySpecificationModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['BroadcastChannel' => 'Jolicode\SchemaOrg\Type\BroadcastChannelModel', 'BroadcastService' => 'Jolicode\SchemaOrg\Type\BroadcastServiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

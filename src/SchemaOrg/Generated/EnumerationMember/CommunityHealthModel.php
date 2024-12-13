@@ -16,4 +16,6 @@ final class CommunityHealthModel
     public const DESCRIPTION = 'A field of public health focusing on improving health characteristics of a defined population in relation with their geographical or environment areas.';
     public const LABEL = 'CommunityHealth';
     public const NAME = 'schema:CommunityHealth';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class GynecologicModel
     public const DESCRIPTION = 'A specific branch of medical science that pertains to the health care of women, particularly in the diagnosis and treatment of disorders affecting the female reproductive system.';
     public const LABEL = 'Gynecologic';
     public const NAME = 'schema:Gynecologic';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

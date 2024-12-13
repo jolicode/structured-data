@@ -18,4 +18,6 @@ final class LeiCodeModel
     public const NAME = 'schema:leiCode';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

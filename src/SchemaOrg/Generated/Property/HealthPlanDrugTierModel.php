@@ -18,4 +18,6 @@ final class HealthPlanDrugTierModel
     public const NAME = 'schema:healthPlanDrugTier';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['HealthInsurancePlan' => 'Jolicode\SchemaOrg\Type\HealthInsurancePlanModel', 'HealthPlanFormulary' => 'Jolicode\SchemaOrg\Type\HealthPlanFormularyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

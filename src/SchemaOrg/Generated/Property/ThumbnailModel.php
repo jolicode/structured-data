@@ -18,4 +18,6 @@ final class ThumbnailModel
     public const NAME = 'schema:thumbnail';
     public const VALUES = ['ImageObjectModel' => 'Jolicode\SchemaOrg\Type\ImageObjectModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class CurrentExchangeRateModel
     public const NAME = 'schema:currentExchangeRate';
     public const VALUES = ['UnitPriceSpecificationModel' => 'Jolicode\SchemaOrg\Type\UnitPriceSpecificationModel'];
     public const TYPES = ['ExchangeRateSpecification' => 'Jolicode\SchemaOrg\Type\ExchangeRateSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

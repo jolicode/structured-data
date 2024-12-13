@@ -18,4 +18,6 @@ final class HasDefinedTermModel
     public const NAME = 'schema:hasDefinedTerm';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\SchemaOrg\Type\DefinedTermModel'];
     public const TYPES = ['DefinedTermSet' => 'Jolicode\SchemaOrg\Type\DefinedTermSetModel', 'Taxon' => 'Jolicode\SchemaOrg\Type\TaxonModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

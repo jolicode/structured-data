@@ -16,4 +16,6 @@ final class OneTimePaymentsModel
     public const DESCRIPTION = 'OneTimePayments: this is a benefit for one-time payments for individuals.';
     public const LABEL = 'OneTimePayments';
     public const NAME = 'schema:OneTimePayments';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class ReplaceeModel
     public const NAME = 'schema:replacee';
     public const VALUES = ['ThingModel' => 'Jolicode\SchemaOrg\Type\ThingModel'];
     public const TYPES = ['ReplaceAction' => 'Jolicode\SchemaOrg\Type\ReplaceActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

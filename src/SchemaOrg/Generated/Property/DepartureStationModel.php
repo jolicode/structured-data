@@ -18,4 +18,6 @@ final class DepartureStationModel
     public const NAME = 'schema:departureStation';
     public const VALUES = ['TrainStationModel' => 'Jolicode\SchemaOrg\Type\TrainStationModel'];
     public const TYPES = ['TrainTrip' => 'Jolicode\SchemaOrg\Type\TrainTripModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

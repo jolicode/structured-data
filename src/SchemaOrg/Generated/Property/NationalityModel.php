@@ -18,4 +18,6 @@ final class NationalityModel
     public const NAME = 'schema:nationality';
     public const VALUES = ['CountryModel' => 'Jolicode\SchemaOrg\Type\CountryModel'];
     public const TYPES = ['Person' => 'Jolicode\SchemaOrg\Type\PersonModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -20,6 +20,8 @@ final class MusicReleaseModel
     public const NAME = 'schema:MusicRelease';
     public const PARENTS = ['MusicPlaylistModel' => 'Jolicode\SchemaOrg\Type\MusicPlaylistModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

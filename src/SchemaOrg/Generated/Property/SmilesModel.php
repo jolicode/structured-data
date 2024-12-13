@@ -18,4 +18,6 @@ final class SmilesModel
     public const NAME = 'schema:smiles';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MolecularEntity' => 'Jolicode\SchemaOrg\Type\MolecularEntityModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class RelatedTopicsHealthAspectModel
     public const DESCRIPTION = 'Other prominent or relevant topics tied to the main topic.';
     public const LABEL = 'RelatedTopicsHealthAspect';
     public const NAME = 'schema:RelatedTopicsHealthAspect';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

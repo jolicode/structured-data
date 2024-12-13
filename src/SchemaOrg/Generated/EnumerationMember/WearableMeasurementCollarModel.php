@@ -16,4 +16,6 @@ final class WearableMeasurementCollarModel
     public const DESCRIPTION = 'Measurement of the collar, for example of a shirt.';
     public const LABEL = 'WearableMeasurementCollar';
     public const NAME = 'schema:WearableMeasurementCollar';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

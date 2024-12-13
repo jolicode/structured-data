@@ -18,4 +18,6 @@ final class HasEnergyEfficiencyCategoryModel
     public const NAME = 'schema:hasEnergyEfficiencyCategory';
     public const VALUES = ['EnergyEfficiencyEnumerationModel' => 'Jolicode\SchemaOrg\Type\EnergyEfficiencyEnumerationModel'];
     public const TYPES = ['EnergyConsumptionDetails' => 'Jolicode\SchemaOrg\Type\EnergyConsumptionDetailsModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

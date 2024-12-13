@@ -18,4 +18,6 @@ final class AvailableTestModel
     public const NAME = 'schema:availableTest';
     public const VALUES = ['MedicalTestModel' => 'Jolicode\SchemaOrg\Type\MedicalTestModel'];
     public const TYPES = ['DiagnosticLab' => 'Jolicode\SchemaOrg\Type\DiagnosticLabModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

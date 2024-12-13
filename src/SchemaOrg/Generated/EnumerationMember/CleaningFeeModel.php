@@ -16,4 +16,6 @@ final class CleaningFeeModel
     public const DESCRIPTION = 'Represents the cleaning fee part of the total price for an offered product, for example a vacation rental.';
     public const LABEL = 'CleaningFee';
     public const NAME = 'schema:CleaningFee';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

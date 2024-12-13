@@ -18,4 +18,6 @@ final class DatePostedModel
     public const NAME = 'schema:datePosted';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['CDCPMDRecord' => 'Jolicode\SchemaOrg\Type\CDCPMDRecordModel', 'JobPosting' => 'Jolicode\SchemaOrg\Type\JobPostingModel', 'RealEstateListing' => 'Jolicode\SchemaOrg\Type\RealEstateListingModel', 'SpecialAnnouncement' => 'Jolicode\SchemaOrg\Type\SpecialAnnouncementModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

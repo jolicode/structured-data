@@ -20,6 +20,8 @@ final class MedicalObservationalStudyModel
     public const NAME = 'schema:MedicalObservationalStudy';
     public const PARENTS = ['MedicalStudyModel' => 'Jolicode\SchemaOrg\Type\MedicalStudyModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

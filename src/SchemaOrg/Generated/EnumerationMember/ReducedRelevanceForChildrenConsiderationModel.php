@@ -16,4 +16,6 @@ final class ReducedRelevanceForChildrenConsiderationModel
     public const DESCRIPTION = 'A general code for cases where relevance to children is reduced, e.g. adult education, mortgages, retirement-related products, etc.';
     public const LABEL = 'ReducedRelevanceForChildrenConsideration';
     public const NAME = 'schema:ReducedRelevanceForChildrenConsideration';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

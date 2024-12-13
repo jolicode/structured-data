@@ -18,4 +18,6 @@ final class MainEntityModel
     public const NAME = 'schema:mainEntity';
     public const VALUES = ['ThingModel' => 'Jolicode\SchemaOrg\Type\ThingModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -20,6 +20,8 @@ final class PersonModel
     public const NAME = 'schema:Person';
     public const PARENTS = ['ThingModel' => 'Jolicode\SchemaOrg\Type\ThingModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalNameModel $additionalName = null,

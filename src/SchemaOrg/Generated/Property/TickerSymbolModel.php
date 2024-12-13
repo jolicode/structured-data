@@ -18,4 +18,6 @@ final class TickerSymbolModel
     public const NAME = 'schema:tickerSymbol';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Corporation' => 'Jolicode\SchemaOrg\Type\CorporationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

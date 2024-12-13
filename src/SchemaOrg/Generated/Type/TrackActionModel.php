@@ -20,6 +20,8 @@ final class TrackActionModel
     public const NAME = 'schema:TrackAction';
     public const PARENTS = ['FindActionModel' => 'Jolicode\SchemaOrg\Type\FindActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

@@ -16,4 +16,6 @@ final class RefurbishedConditionModel
     public const DESCRIPTION = 'Indicates that the item is refurbished.';
     public const LABEL = 'RefurbishedCondition';
     public const NAME = 'schema:RefurbishedCondition';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

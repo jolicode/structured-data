@@ -18,4 +18,6 @@ final class SuccessorOfModel
     public const NAME = 'schema:successorOf';
     public const VALUES = ['ProductModelModel' => 'Jolicode\SchemaOrg\Type\ProductModelModel'];
     public const TYPES = ['ProductModel' => 'Jolicode\SchemaOrg\Type\ProductModelModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

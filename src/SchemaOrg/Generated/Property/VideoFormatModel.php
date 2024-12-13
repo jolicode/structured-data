@@ -18,4 +18,6 @@ final class VideoFormatModel
     public const NAME = 'schema:videoFormat';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['BroadcastEvent' => 'Jolicode\SchemaOrg\Type\BroadcastEventModel', 'BroadcastService' => 'Jolicode\SchemaOrg\Type\BroadcastServiceModel', 'ScreeningEvent' => 'Jolicode\SchemaOrg\Type\ScreeningEventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

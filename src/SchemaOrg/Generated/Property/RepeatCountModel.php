@@ -18,4 +18,6 @@ final class RepeatCountModel
     public const NAME = 'schema:repeatCount';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['Schedule' => 'Jolicode\SchemaOrg\Type\ScheduleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

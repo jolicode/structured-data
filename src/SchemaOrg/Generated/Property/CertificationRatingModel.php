@@ -18,4 +18,6 @@ final class CertificationRatingModel
     public const NAME = 'schema:certificationRating';
     public const VALUES = ['RatingModel' => 'Jolicode\SchemaOrg\Type\RatingModel'];
     public const TYPES = ['Certification' => 'Jolicode\SchemaOrg\Type\CertificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

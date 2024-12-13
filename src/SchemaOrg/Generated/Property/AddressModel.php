@@ -18,4 +18,6 @@ final class AddressModel
     public const NAME = 'schema:address';
     public const VALUES = ['PostalAddressModel' => 'Jolicode\SchemaOrg\Type\PostalAddressModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['GeoCoordinates' => 'Jolicode\SchemaOrg\Type\GeoCoordinatesModel', 'GeoShape' => 'Jolicode\SchemaOrg\Type\GeoShapeModel', 'Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\SchemaOrg\Type\PersonModel', 'Place' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class ReservationStatusModel
     public const NAME = 'schema:reservationStatus';
     public const VALUES = ['ReservationStatusTypeModel' => 'Jolicode\SchemaOrg\Type\ReservationStatusTypeModel'];
     public const TYPES = ['Reservation' => 'Jolicode\SchemaOrg\Type\ReservationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

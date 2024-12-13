@@ -18,4 +18,6 @@ final class PencilerModel
     public const NAME = 'schema:penciler';
     public const VALUES = ['PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['ComicIssue' => 'Jolicode\SchemaOrg\Type\ComicIssueModel', 'ComicStory' => 'Jolicode\SchemaOrg\Type\ComicStoryModel', 'VisualArtwork' => 'Jolicode\SchemaOrg\Type\VisualArtworkModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

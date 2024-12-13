@@ -18,4 +18,6 @@ final class ByDayModel
     public const NAME = 'schema:byDay';
     public const VALUES = ['DayOfWeekModel' => 'Jolicode\SchemaOrg\Type\DayOfWeekModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Schedule' => 'Jolicode\SchemaOrg\Type\ScheduleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

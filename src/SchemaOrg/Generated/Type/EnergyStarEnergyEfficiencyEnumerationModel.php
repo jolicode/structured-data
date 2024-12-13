@@ -20,6 +20,8 @@ final class EnergyStarEnergyEfficiencyEnumerationModel
     public const NAME = 'schema:EnergyStarEnergyEfficiencyEnumeration';
     public const PARENTS = ['EnergyEfficiencyEnumerationModel' => 'Jolicode\SchemaOrg\Type\EnergyEfficiencyEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['EnergyStarCertifiedModel' => 'EnumerationMember\EnergyStarCertifiedModel'];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2670'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

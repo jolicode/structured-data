@@ -16,4 +16,6 @@ final class WritePermissionModel
     public const DESCRIPTION = 'Permission to write or edit the document.';
     public const LABEL = 'WritePermission';
     public const NAME = 'schema:WritePermission';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class SingleReleaseModel
     public const DESCRIPTION = 'SingleRelease.';
     public const LABEL = 'SingleRelease';
     public const NAME = 'schema:SingleRelease';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

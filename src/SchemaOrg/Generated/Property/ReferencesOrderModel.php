@@ -18,4 +18,6 @@ final class ReferencesOrderModel
     public const NAME = 'schema:referencesOrder';
     public const VALUES = ['OrderModel' => 'Jolicode\SchemaOrg\Type\OrderModel'];
     public const TYPES = ['Invoice' => 'Jolicode\SchemaOrg\Type\InvoiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

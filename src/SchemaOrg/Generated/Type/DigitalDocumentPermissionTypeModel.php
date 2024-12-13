@@ -20,6 +20,8 @@ final class DigitalDocumentPermissionTypeModel
     public const NAME = 'schema:DigitalDocumentPermissionType';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['CommentPermissionModel' => 'EnumerationMember\CommentPermissionModel', 'ReadPermissionModel' => 'EnumerationMember\ReadPermissionModel', 'WritePermissionModel' => 'EnumerationMember\WritePermissionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

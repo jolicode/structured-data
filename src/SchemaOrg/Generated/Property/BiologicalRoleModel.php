@@ -18,4 +18,6 @@ final class BiologicalRoleModel
     public const NAME = 'schema:biologicalRole';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\SchemaOrg\Type\DefinedTermModel'];
     public const TYPES = ['BioChemEntity' => 'Jolicode\SchemaOrg\Type\BioChemEntityModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

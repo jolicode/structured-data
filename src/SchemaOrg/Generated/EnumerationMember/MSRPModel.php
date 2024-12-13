@@ -16,4 +16,6 @@ final class MSRPModel
     public const DESCRIPTION = 'Represents the manufacturer suggested retail price ("MSRP") of an offered product.';
     public const LABEL = 'MSRP';
     public const NAME = 'schema:MSRP';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

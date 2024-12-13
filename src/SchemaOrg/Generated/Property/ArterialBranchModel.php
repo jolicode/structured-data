@@ -18,4 +18,6 @@ final class ArterialBranchModel
     public const NAME = 'schema:arterialBranch';
     public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\SchemaOrg\Type\AnatomicalStructureModel'];
     public const TYPES = ['Artery' => 'Jolicode\SchemaOrg\Type\ArteryModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class ActionStatusModel
     public const NAME = 'schema:actionStatus';
     public const VALUES = ['ActionStatusTypeModel' => 'Jolicode\SchemaOrg\Type\ActionStatusTypeModel'];
     public const TYPES = ['Action' => 'Jolicode\SchemaOrg\Type\ActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

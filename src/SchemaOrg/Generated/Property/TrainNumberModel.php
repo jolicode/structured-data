@@ -18,4 +18,6 @@ final class TrainNumberModel
     public const NAME = 'schema:trainNumber';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['TrainTrip' => 'Jolicode\SchemaOrg\Type\TrainTripModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

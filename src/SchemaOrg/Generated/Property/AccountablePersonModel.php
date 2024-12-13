@@ -18,4 +18,6 @@ final class AccountablePersonModel
     public const NAME = 'schema:accountablePerson';
     public const VALUES = ['PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

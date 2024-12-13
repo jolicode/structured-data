@@ -16,4 +16,6 @@ final class ReadPermissionModel
     public const DESCRIPTION = 'Permission to read or view the document.';
     public const LABEL = 'ReadPermission';
     public const NAME = 'schema:ReadPermission';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

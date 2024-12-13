@@ -18,4 +18,6 @@ final class StructuralClassModel
     public const NAME = 'schema:structuralClass';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Joint' => 'Jolicode\SchemaOrg\Type\JointModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

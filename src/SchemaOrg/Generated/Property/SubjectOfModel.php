@@ -18,4 +18,6 @@ final class SubjectOfModel
     public const NAME = 'schema:subjectOf';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'EventModel' => 'Jolicode\SchemaOrg\Type\EventModel'];
     public const TYPES = ['Thing' => 'Jolicode\SchemaOrg\Type\ThingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class ParkingMapModel
     public const DESCRIPTION = 'A parking map.';
     public const LABEL = 'ParkingMap';
     public const NAME = 'schema:ParkingMap';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

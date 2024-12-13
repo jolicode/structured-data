@@ -20,6 +20,8 @@ final class CoverArtModel
     public const NAME = 'schema:CoverArt';
     public const PARENTS = ['VisualArtworkModel' => 'Jolicode\SchemaOrg\Type\VisualArtworkModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://bib.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

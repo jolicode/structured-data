@@ -16,4 +16,6 @@ final class HardcoverModel
     public const DESCRIPTION = 'Book format: Hardcover.';
     public const LABEL = 'Hardcover';
     public const NAME = 'schema:Hardcover';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

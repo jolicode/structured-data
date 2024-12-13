@@ -20,6 +20,8 @@ final class DentistModel
     public const NAME = 'schema:Dentist';
     public const PARENTS = ['LocalBusinessModel' => 'Jolicode\SchemaOrg\Type\LocalBusinessModel', 'MedicalBusinessModel' => 'Jolicode\SchemaOrg\Type\MedicalBusinessModel', 'MedicalOrganizationModel' => 'Jolicode\SchemaOrg\Type\MedicalOrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

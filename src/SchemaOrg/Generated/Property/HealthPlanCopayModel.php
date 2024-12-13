@@ -18,4 +18,6 @@ final class HealthPlanCopayModel
     public const NAME = 'schema:healthPlanCopay';
     public const VALUES = ['PriceSpecificationModel' => 'Jolicode\SchemaOrg\Type\PriceSpecificationModel'];
     public const TYPES = ['HealthPlanCostSharingSpecification' => 'Jolicode\SchemaOrg\Type\HealthPlanCostSharingSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class EligibleTransactionVolumeModel
     public const NAME = 'schema:eligibleTransactionVolume';
     public const VALUES = ['PriceSpecificationModel' => 'Jolicode\SchemaOrg\Type\PriceSpecificationModel'];
     public const TYPES = ['Demand' => 'Jolicode\SchemaOrg\Type\DemandModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'PriceSpecification' => 'Jolicode\SchemaOrg\Type\PriceSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

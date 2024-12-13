@@ -18,4 +18,6 @@ final class CodeSampleTypeModel
     public const NAME = 'schema:codeSampleType';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['SoftwareSourceCode' => 'Jolicode\SchemaOrg\Type\SoftwareSourceCodeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -20,6 +20,8 @@ final class AnalysisNewsArticleModel
     public const NAME = 'schema:AnalysisNewsArticle';
     public const PARENTS = ['NewsArticleModel' => 'Jolicode\SchemaOrg\Type\NewsArticleModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1525'];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

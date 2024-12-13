@@ -18,4 +18,6 @@ final class IsAcceptingNewPatientsModel
     public const NAME = 'schema:isAcceptingNewPatients';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['MedicalOrganization' => 'Jolicode\SchemaOrg\Type\MedicalOrganizationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

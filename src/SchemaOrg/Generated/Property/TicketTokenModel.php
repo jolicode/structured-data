@@ -18,4 +18,6 @@ final class TicketTokenModel
     public const NAME = 'schema:ticketToken';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['Ticket' => 'Jolicode\SchemaOrg\Type\TicketModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

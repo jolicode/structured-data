@@ -20,6 +20,8 @@ final class NewspaperModel
     public const NAME = 'schema:Newspaper';
     public const PARENTS = ['PeriodicalModel' => 'Jolicode\SchemaOrg\Type\PeriodicalModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://bib.schema.org'];
+    public const SOURCE = ['http://www.productontology.org/id/Newspaper'];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

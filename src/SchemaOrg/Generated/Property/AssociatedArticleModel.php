@@ -18,4 +18,6 @@ final class AssociatedArticleModel
     public const NAME = 'schema:associatedArticle';
     public const VALUES = ['NewsArticleModel' => 'Jolicode\SchemaOrg\Type\NewsArticleModel'];
     public const TYPES = ['MediaObject' => 'Jolicode\SchemaOrg\Type\MediaObjectModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

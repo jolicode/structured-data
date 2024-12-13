@@ -18,4 +18,6 @@ final class ComposerModel
     public const NAME = 'schema:composer';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['Event' => 'Jolicode\SchemaOrg\Type\EventModel', 'MusicComposition' => 'Jolicode\SchemaOrg\Type\MusicCompositionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

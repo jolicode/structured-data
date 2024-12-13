@@ -18,4 +18,6 @@ final class VehicleSpecialUsageModel
     public const NAME = 'schema:vehicleSpecialUsage';
     public const VALUES = ['CarUsageTypeModel' => 'Jolicode\SchemaOrg\Type\CarUsageTypeModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Vehicle' => 'Jolicode\SchemaOrg\Type\VehicleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

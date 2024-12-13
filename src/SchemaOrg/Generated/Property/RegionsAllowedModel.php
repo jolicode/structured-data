@@ -18,4 +18,6 @@ final class RegionsAllowedModel
     public const NAME = 'schema:regionsAllowed';
     public const VALUES = ['PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
     public const TYPES = ['MediaObject' => 'Jolicode\SchemaOrg\Type\MediaObjectModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

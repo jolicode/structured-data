@@ -18,4 +18,6 @@ final class MinimumPaymentDueModel
     public const NAME = 'schema:minimumPaymentDue';
     public const VALUES = ['MonetaryAmountModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel', 'PriceSpecificationModel' => 'Jolicode\SchemaOrg\Type\PriceSpecificationModel'];
     public const TYPES = ['Invoice' => 'Jolicode\SchemaOrg\Type\InvoiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

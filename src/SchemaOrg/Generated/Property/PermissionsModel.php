@@ -18,4 +18,6 @@ final class PermissionsModel
     public const NAME = 'schema:permissions';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['SoftwareApplication' => 'Jolicode\SchemaOrg\Type\SoftwareApplicationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

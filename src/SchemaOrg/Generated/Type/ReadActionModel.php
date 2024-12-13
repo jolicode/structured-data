@@ -20,6 +20,8 @@ final class ReadActionModel
     public const NAME = 'schema:ReadAction';
     public const PARENTS = ['ConsumeActionModel' => 'Jolicode\SchemaOrg\Type\ConsumeActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionAccessibilityRequirementModel $actionAccessibilityRequirement = null,

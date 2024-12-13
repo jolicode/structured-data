@@ -18,4 +18,6 @@ final class LyricsModel
     public const NAME = 'schema:lyrics';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
     public const TYPES = ['MusicComposition' => 'Jolicode\SchemaOrg\Type\MusicCompositionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

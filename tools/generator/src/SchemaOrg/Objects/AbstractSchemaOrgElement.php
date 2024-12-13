@@ -15,6 +15,9 @@ use Jolicode\JsonLd\Generator\SchemaOrg\Extractor;
 
 abstract class AbstractSchemaOrgElement
 {
+    public array $isPartOf = [];
+    public array $source = [];
+
     /**
      * Instantiates a new object from a fetched Schema.org raw type.
      */
@@ -22,12 +25,25 @@ abstract class AbstractSchemaOrgElement
 
     public static function getClassName(string $label): string
     {
-        return ucfirst(self::replaceStartNumbers(self::removeSchemaPrefix($label))) . 'Model';
+        return ucfirst(self::replaceStartNumbers(self::removeSchemaPrefix(trim($label)))) . 'Model';
     }
 
     public static function removeSchemaPrefix(string $name): string
     {
         return str_replace('schema:', '', $name);
+    }
+
+    protected static function addSchemaInformation(self $object, array $rawType): self
+    {
+        if (isset($rawType[Extractor::SCHEMA_IS_PART_OF])) {
+            $object->isPartOf = self::schemaInformationAsArray($rawType[Extractor::SCHEMA_IS_PART_OF]);
+        }
+
+        if (isset($rawType[Extractor::SCHEMA_SOURCE])) {
+            $object->source = self::schemaInformationAsArray($rawType[Extractor::SCHEMA_SOURCE]);
+        }
+
+        return $object;
     }
 
     /**
@@ -66,5 +82,17 @@ abstract class AbstractSchemaOrgElement
         }
 
         return $name;
+    }
+
+    private static function schemaInformationAsArray(array $schemaInformation): array
+    {
+        if (isset($schemaInformation[Extractor::KEY_ID])) {
+            return [$schemaInformation[Extractor::KEY_ID]];
+        }
+
+        return array_map(
+            fn (array $schema) => $schema[Extractor::KEY_ID],
+            $schemaInformation,
+        );
     }
 }

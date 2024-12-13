@@ -16,4 +16,6 @@ final class WearableSizeGroupBigModel
     public const DESCRIPTION = 'Size group "Big" for wearables.';
     public const LABEL = 'WearableSizeGroupBig';
     public const NAME = 'schema:WearableSizeGroupBig';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

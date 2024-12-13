@@ -16,4 +16,6 @@ final class MultiPlayerModel
     public const DESCRIPTION = 'Play mode: MultiPlayer. Requiring or allowing multiple human players to play simultaneously.';
     public const LABEL = 'MultiPlayer';
     public const NAME = 'schema:MultiPlayer';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

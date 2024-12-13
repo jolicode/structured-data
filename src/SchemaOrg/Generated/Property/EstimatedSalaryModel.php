@@ -18,4 +18,6 @@ final class EstimatedSalaryModel
     public const NAME = 'schema:estimatedSalary';
     public const VALUES = ['MonetaryAmountDistributionModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountDistributionModel', 'MonetaryAmountModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel', 'NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['JobPosting' => 'Jolicode\SchemaOrg\Type\JobPostingModel', 'Occupation' => 'Jolicode\SchemaOrg\Type\OccupationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

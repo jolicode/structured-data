@@ -18,4 +18,6 @@ final class CorrectionsPolicyModel
     public const NAME = 'schema:correctionsPolicy';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['NewsMediaOrganization' => 'Jolicode\SchemaOrg\Type\NewsMediaOrganizationModel', 'Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

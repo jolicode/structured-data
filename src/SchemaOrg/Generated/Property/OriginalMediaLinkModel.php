@@ -18,4 +18,6 @@ final class OriginalMediaLinkModel
     public const NAME = 'schema:originalMediaLink';
     public const VALUES = ['MediaObjectModel' => 'Jolicode\SchemaOrg\Type\MediaObjectModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel', 'WebPageModel' => 'Jolicode\SchemaOrg\Type\WebPageModel'];
     public const TYPES = ['MediaReview' => 'Jolicode\SchemaOrg\Type\MediaReviewModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

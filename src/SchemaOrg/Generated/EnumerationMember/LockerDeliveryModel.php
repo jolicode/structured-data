@@ -16,4 +16,6 @@ final class LockerDeliveryModel
     public const DESCRIPTION = 'A DeliveryMethod in which an item is made available via locker.';
     public const LABEL = 'LockerDelivery';
     public const NAME = 'schema:LockerDelivery';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

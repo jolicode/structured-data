@@ -18,4 +18,6 @@ final class ItemShippedModel
     public const NAME = 'schema:itemShipped';
     public const VALUES = ['ProductModel' => 'Jolicode\SchemaOrg\Type\ProductModel'];
     public const TYPES = ['ParcelDelivery' => 'Jolicode\SchemaOrg\Type\ParcelDeliveryModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -20,6 +20,8 @@ final class MedicalObservationalStudyDesignModel
     public const NAME = 'schema:MedicalObservationalStudyDesign';
     public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\SchemaOrg\Type\MedicalEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['CaseSeriesModel' => 'EnumerationMember\CaseSeriesModel', 'CohortStudyModel' => 'EnumerationMember\CohortStudyModel', 'CrossSectionalModel' => 'EnumerationMember\CrossSectionalModel', 'LongitudinalModel' => 'EnumerationMember\LongitudinalModel', 'ObservationalModel' => 'EnumerationMember\ObservationalModel', 'RegistryModel' => 'EnumerationMember\RegistryModel'];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

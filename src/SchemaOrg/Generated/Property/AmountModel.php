@@ -18,4 +18,6 @@ final class AmountModel
     public const NAME = 'schema:amount';
     public const VALUES = ['MonetaryAmountModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel', 'NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['DatedMoneySpecification' => 'Jolicode\SchemaOrg\Type\DatedMoneySpecificationModel', 'InvestmentOrDeposit' => 'Jolicode\SchemaOrg\Type\InvestmentOrDepositModel', 'LoanOrCredit' => 'Jolicode\SchemaOrg\Type\LoanOrCreditModel', 'MonetaryGrant' => 'Jolicode\SchemaOrg\Type\MonetaryGrantModel', 'MoneyTransfer' => 'Jolicode\SchemaOrg\Type\MoneyTransferModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

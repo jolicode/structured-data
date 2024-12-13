@@ -18,4 +18,6 @@ final class DistanceModel
     public const NAME = 'schema:distance';
     public const VALUES = ['DistanceModel' => 'Jolicode\SchemaOrg\Type\DistanceModel'];
     public const TYPES = ['ExerciseAction' => 'Jolicode\SchemaOrg\Type\ExerciseActionModel', 'TravelAction' => 'Jolicode\SchemaOrg\Type\TravelActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

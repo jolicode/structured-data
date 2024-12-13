@@ -20,6 +20,8 @@ final class SteeringPositionValueModel
     public const NAME = 'schema:SteeringPositionValue';
     public const PARENTS = ['QualitativeValueModel' => 'Jolicode\SchemaOrg\Type\QualitativeValueModel'];
     public const ENUMERATION_MEMBERS = ['LeftHandDrivingModel' => 'EnumerationMember\LeftHandDrivingModel', 'RightHandDrivingModel' => 'EnumerationMember\RightHandDrivingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalPropertyModel $additionalProperty = null,

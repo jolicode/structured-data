@@ -16,4 +16,6 @@ final class WearableSizeSystemMXModel
     public const DESCRIPTION = 'Mexican size system for wearables.';
     public const LABEL = 'WearableSizeSystemMX';
     public const NAME = 'schema:WearableSizeSystemMX';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

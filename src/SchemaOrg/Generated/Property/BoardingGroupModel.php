@@ -18,4 +18,6 @@ final class BoardingGroupModel
     public const NAME = 'schema:boardingGroup';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['FlightReservation' => 'Jolicode\SchemaOrg\Type\FlightReservationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

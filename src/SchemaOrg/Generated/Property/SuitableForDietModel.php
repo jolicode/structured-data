@@ -18,4 +18,6 @@ final class SuitableForDietModel
     public const NAME = 'schema:suitableForDiet';
     public const VALUES = ['RestrictedDietModel' => 'Jolicode\SchemaOrg\Type\RestrictedDietModel'];
     public const TYPES = ['MenuItem' => 'Jolicode\SchemaOrg\Type\MenuItemModel', 'Recipe' => 'Jolicode\SchemaOrg\Type\RecipeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

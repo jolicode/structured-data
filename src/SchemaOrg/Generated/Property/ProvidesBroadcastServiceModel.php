@@ -18,4 +18,6 @@ final class ProvidesBroadcastServiceModel
     public const NAME = 'schema:providesBroadcastService';
     public const VALUES = ['BroadcastServiceModel' => 'Jolicode\SchemaOrg\Type\BroadcastServiceModel'];
     public const TYPES = ['BroadcastChannel' => 'Jolicode\SchemaOrg\Type\BroadcastChannelModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

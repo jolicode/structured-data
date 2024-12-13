@@ -18,4 +18,6 @@ final class MeasurementQualifierModel
     public const NAME = 'schema:measurementQualifier';
     public const VALUES = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const TYPES = ['Observation' => 'Jolicode\SchemaOrg\Type\ObservationModel', 'StatisticalVariable' => 'Jolicode\SchemaOrg\Type\StatisticalVariableModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

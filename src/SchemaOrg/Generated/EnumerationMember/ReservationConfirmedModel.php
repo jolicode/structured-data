@@ -16,4 +16,6 @@ final class ReservationConfirmedModel
     public const DESCRIPTION = 'The status of a confirmed reservation.';
     public const LABEL = 'ReservationConfirmed';
     public const NAME = 'schema:ReservationConfirmed';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

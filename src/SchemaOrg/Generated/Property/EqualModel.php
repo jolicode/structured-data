@@ -18,4 +18,6 @@ final class EqualModel
     public const NAME = 'schema:equal';
     public const VALUES = ['QualitativeValueModel' => 'Jolicode\SchemaOrg\Type\QualitativeValueModel'];
     public const TYPES = ['QualitativeValue' => 'Jolicode\SchemaOrg\Type\QualitativeValueModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

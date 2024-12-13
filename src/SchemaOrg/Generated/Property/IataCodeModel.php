@@ -18,4 +18,6 @@ final class IataCodeModel
     public const NAME = 'schema:iataCode';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Airline' => 'Jolicode\SchemaOrg\Type\AirlineModel', 'Airport' => 'Jolicode\SchemaOrg\Type\AirportModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

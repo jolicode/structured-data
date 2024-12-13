@@ -16,4 +16,6 @@ final class BodyMeasurementHipsModel
     public const DESCRIPTION = 'Girth of hips (measured around the buttocks). Used, for example, to fit skirts.';
     public const LABEL = 'BodyMeasurementHips';
     public const NAME = 'schema:BodyMeasurementHips';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

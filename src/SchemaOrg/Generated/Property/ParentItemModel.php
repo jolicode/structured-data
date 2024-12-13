@@ -18,4 +18,6 @@ final class ParentItemModel
     public const NAME = 'schema:parentItem';
     public const VALUES = ['CommentModel' => 'Jolicode\SchemaOrg\Type\CommentModel', 'CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
     public const TYPES = ['Answer' => 'Jolicode\SchemaOrg\Type\AnswerModel', 'Comment' => 'Jolicode\SchemaOrg\Type\CommentModel', 'Question' => 'Jolicode\SchemaOrg\Type\QuestionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

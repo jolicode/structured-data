@@ -16,4 +16,6 @@ final class UsedConditionModel
     public const DESCRIPTION = 'Indicates that the item is used.';
     public const LABEL = 'UsedCondition';
     public const NAME = 'schema:UsedCondition';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class TrainingSalaryModel
     public const NAME = 'schema:trainingSalary';
     public const VALUES = ['MonetaryAmountDistributionModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountDistributionModel'];
     public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalProgramModel', 'WorkBasedProgram' => 'Jolicode\SchemaOrg\Type\WorkBasedProgramModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class ArchivedAtModel
     public const NAME = 'schema:archivedAt';
     public const VALUES = ['URLModel' => 'Jolicode\SchemaOrg\Type\URLModel', 'WebPageModel' => 'Jolicode\SchemaOrg\Type\WebPageModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

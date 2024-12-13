@@ -18,4 +18,6 @@ final class EligibleDurationModel
     public const NAME = 'schema:eligibleDuration';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['Demand' => 'Jolicode\SchemaOrg\Type\DemandModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

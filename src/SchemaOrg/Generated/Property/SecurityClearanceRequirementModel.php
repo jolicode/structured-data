@@ -18,4 +18,6 @@ final class SecurityClearanceRequirementModel
     public const NAME = 'schema:securityClearanceRequirement';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['JobPosting' => 'Jolicode\SchemaOrg\Type\JobPostingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

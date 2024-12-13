@@ -18,4 +18,6 @@ final class CollectionSizeModel
     public const NAME = 'schema:collectionSize';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['Collection' => 'Jolicode\SchemaOrg\Type\CollectionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

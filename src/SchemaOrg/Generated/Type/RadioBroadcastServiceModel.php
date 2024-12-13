@@ -20,6 +20,8 @@ final class RadioBroadcastServiceModel
     public const NAME = 'schema:RadioBroadcastService';
     public const PARENTS = ['BroadcastServiceModel' => 'Jolicode\SchemaOrg\Type\BroadcastServiceModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2109'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

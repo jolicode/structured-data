@@ -20,6 +20,8 @@ final class MedicalRiskCalculatorModel
     public const NAME = 'schema:MedicalRiskCalculator';
     public const PARENTS = ['MedicalRiskEstimatorModel' => 'Jolicode\SchemaOrg\Type\MedicalRiskEstimatorModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

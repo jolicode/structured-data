@@ -18,4 +18,6 @@ final class TocContinuationModel
     public const NAME = 'schema:tocContinuation';
     public const VALUES = ['HyperTocEntryModel' => 'Jolicode\SchemaOrg\Type\HyperTocEntryModel'];
     public const TYPES = ['HyperTocEntry' => 'Jolicode\SchemaOrg\Type\HyperTocEntryModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

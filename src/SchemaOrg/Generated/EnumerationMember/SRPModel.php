@@ -16,4 +16,6 @@ final class SRPModel
     public const DESCRIPTION = 'Represents the suggested retail price ("SRP") of an offered product.';
     public const LABEL = 'SRP';
     public const NAME = 'schema:SRP';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

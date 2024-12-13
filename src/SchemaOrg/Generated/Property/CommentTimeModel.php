@@ -18,4 +18,6 @@ final class CommentTimeModel
     public const NAME = 'schema:commentTime';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['UserComments' => 'Jolicode\SchemaOrg\Type\UserCommentsModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class VideoQualityModel
     public const NAME = 'schema:videoQuality';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['VideoObject' => 'Jolicode\SchemaOrg\Type\VideoObjectModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class NumberOfPagesModel
     public const NAME = 'schema:numberOfPages';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['Book' => 'Jolicode\SchemaOrg\Type\BookModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

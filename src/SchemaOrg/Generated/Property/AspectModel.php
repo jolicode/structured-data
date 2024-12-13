@@ -18,4 +18,6 @@ final class AspectModel
     public const NAME = 'schema:aspect';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalWebPage' => 'Jolicode\SchemaOrg\Type\MedicalWebPageModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

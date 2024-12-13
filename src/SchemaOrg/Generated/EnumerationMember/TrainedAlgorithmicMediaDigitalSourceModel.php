@@ -16,4 +16,6 @@ final class TrainedAlgorithmicMediaDigitalSourceModel
     public const DESCRIPTION = 'Content coded as \'<a href="https://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia">trained algorithmic media</a>\' using the IPTC <a href="https://cv.iptc.org/newscodes/digitalsourcetype/">digital source type</a> vocabulary.';
     public const LABEL = 'TrainedAlgorithmicMediaDigitalSource';
     public const NAME = 'schema:TrainedAlgorithmicMediaDigitalSource';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

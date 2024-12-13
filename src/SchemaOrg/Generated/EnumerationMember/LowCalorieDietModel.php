@@ -16,4 +16,6 @@ final class LowCalorieDietModel
     public const DESCRIPTION = 'A diet focused on reduced calorie intake.';
     public const LABEL = 'LowCalorieDiet';
     public const NAME = 'schema:LowCalorieDiet';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

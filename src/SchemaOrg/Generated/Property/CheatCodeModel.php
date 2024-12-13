@@ -18,4 +18,6 @@ final class CheatCodeModel
     public const NAME = 'schema:cheatCode';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
     public const TYPES = ['VideoGame' => 'Jolicode\SchemaOrg\Type\VideoGameModel', 'VideoGameSeries' => 'Jolicode\SchemaOrg\Type\VideoGameSeriesModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

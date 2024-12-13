@@ -18,4 +18,6 @@ final class EstimatedCostModel
     public const NAME = 'schema:estimatedCost';
     public const VALUES = ['MonetaryAmountModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['HowTo' => 'Jolicode\SchemaOrg\Type\HowToModel', 'HowToSupply' => 'Jolicode\SchemaOrg\Type\HowToSupplyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

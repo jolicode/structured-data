@@ -16,4 +16,6 @@ final class BodyMeasurementHeadModel
     public const DESCRIPTION = 'Maximum girth of head above the ears. Used, for example, to fit hats.';
     public const LABEL = 'BodyMeasurementHead';
     public const NAME = 'schema:BodyMeasurementHead';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

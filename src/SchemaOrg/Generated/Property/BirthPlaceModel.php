@@ -18,4 +18,6 @@ final class BirthPlaceModel
     public const NAME = 'schema:birthPlace';
     public const VALUES = ['PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
     public const TYPES = ['Person' => 'Jolicode\SchemaOrg\Type\PersonModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

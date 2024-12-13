@@ -16,4 +16,6 @@ final class DemoGameAvailabilityModel
     public const DESCRIPTION = 'Indicates demo game availability, i.e. a somehow limited demonstration of the full game.';
     public const LABEL = 'DemoGameAvailability';
     public const NAME = 'schema:DemoGameAvailability';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

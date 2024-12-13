@@ -16,4 +16,6 @@ final class RadiographyModel
     public const DESCRIPTION = 'Radiography is an imaging technique that uses electromagnetic radiation other than visible light, especially X-rays, to view the internal structure of a non-uniformly composed and opaque object such as the human body.';
     public const LABEL = 'Radiography';
     public const NAME = 'schema:Radiography';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

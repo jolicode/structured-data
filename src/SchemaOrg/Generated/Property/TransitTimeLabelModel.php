@@ -18,4 +18,6 @@ final class TransitTimeLabelModel
     public const NAME = 'schema:transitTimeLabel';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DeliveryTimeSettings' => 'Jolicode\SchemaOrg\Type\DeliveryTimeSettingsModel', 'OfferShippingDetails' => 'Jolicode\SchemaOrg\Type\OfferShippingDetailsModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class Nonprofit501nModel
     public const DESCRIPTION = 'Nonprofit501n: Non-profit type referring to Charitable Risk Pools.';
     public const LABEL = 'Nonprofit501n';
     public const NAME = 'schema:Nonprofit501n';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

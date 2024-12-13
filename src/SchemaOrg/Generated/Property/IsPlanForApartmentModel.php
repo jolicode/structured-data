@@ -18,4 +18,6 @@ final class IsPlanForApartmentModel
     public const NAME = 'schema:isPlanForApartment';
     public const VALUES = ['AccommodationModel' => 'Jolicode\SchemaOrg\Type\AccommodationModel'];
     public const TYPES = ['FloorPlan' => 'Jolicode\SchemaOrg\Type\FloorPlanModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

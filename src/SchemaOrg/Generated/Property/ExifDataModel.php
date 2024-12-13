@@ -18,4 +18,6 @@ final class ExifDataModel
     public const NAME = 'schema:exifData';
     public const VALUES = ['PropertyValueModel' => 'Jolicode\SchemaOrg\Type\PropertyValueModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['ImageObject' => 'Jolicode\SchemaOrg\Type\ImageObjectModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class CashModel
     public const DESCRIPTION = 'Payment using cash, on premises, equivalent to <code>http://purl.org/goodrelations/v1#Cash</code>.';
     public const LABEL = 'Cash';
     public const NAME = 'schema:Cash';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

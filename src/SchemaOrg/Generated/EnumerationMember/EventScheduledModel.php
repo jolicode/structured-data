@@ -16,4 +16,6 @@ final class EventScheduledModel
     public const DESCRIPTION = 'The event is taking place or has taken place on the startDate as scheduled. Use of this value is optional, as it is assumed by default.';
     public const LABEL = 'EventScheduled';
     public const NAME = 'schema:EventScheduled';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

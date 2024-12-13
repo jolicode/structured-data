@@ -20,6 +20,8 @@ final class ReturnLabelSourceEnumerationModel
     public const NAME = 'schema:ReturnLabelSourceEnumeration';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['ReturnLabelCustomerResponsibilityModel' => 'EnumerationMember\ReturnLabelCustomerResponsibilityModel', 'ReturnLabelDownloadAndPrintModel' => 'EnumerationMember\ReturnLabelDownloadAndPrintModel', 'ReturnLabelInBoxModel' => 'EnumerationMember\ReturnLabelInBoxModel'];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2880'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

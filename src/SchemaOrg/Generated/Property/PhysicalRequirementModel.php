@@ -18,4 +18,6 @@ final class PhysicalRequirementModel
     public const NAME = 'schema:physicalRequirement';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\SchemaOrg\Type\DefinedTermModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['JobPosting' => 'Jolicode\SchemaOrg\Type\JobPostingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

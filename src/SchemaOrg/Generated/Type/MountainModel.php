@@ -20,6 +20,8 @@ final class MountainModel
     public const NAME = 'schema:Mountain';
     public const PARENTS = ['LandformModel' => 'Jolicode\SchemaOrg\Type\LandformModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalPropertyModel $additionalProperty = null,

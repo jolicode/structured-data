@@ -16,4 +16,6 @@ final class TerminatedModel
     public const DESCRIPTION = 'Terminated.';
     public const LABEL = 'Terminated';
     public const NAME = 'schema:Terminated';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

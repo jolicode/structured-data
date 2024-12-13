@@ -16,4 +16,6 @@ final class SymptomsHealthAspectModel
     public const DESCRIPTION = 'Symptoms or related symptoms of a Topic.';
     public const LABEL = 'SymptomsHealthAspect';
     public const NAME = 'schema:SymptomsHealthAspect';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

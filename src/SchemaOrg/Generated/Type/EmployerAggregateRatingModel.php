@@ -20,6 +20,8 @@ final class EmployerAggregateRatingModel
     public const NAME = 'schema:EmployerAggregateRating';
     public const PARENTS = ['AggregateRatingModel' => 'Jolicode\SchemaOrg\Type\AggregateRatingModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1689'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

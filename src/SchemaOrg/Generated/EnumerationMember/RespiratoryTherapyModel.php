@@ -16,4 +16,6 @@ final class RespiratoryTherapyModel
     public const DESCRIPTION = 'The therapy that is concerned with the maintenance or improvement of respiratory function (as in patients with pulmonary disease).';
     public const LABEL = 'RespiratoryTherapy';
     public const NAME = 'schema:RespiratoryTherapy';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

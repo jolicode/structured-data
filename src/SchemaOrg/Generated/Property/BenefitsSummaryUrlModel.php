@@ -18,4 +18,6 @@ final class BenefitsSummaryUrlModel
     public const NAME = 'schema:benefitsSummaryUrl';
     public const VALUES = ['URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['HealthInsurancePlan' => 'Jolicode\SchemaOrg\Type\HealthInsurancePlanModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

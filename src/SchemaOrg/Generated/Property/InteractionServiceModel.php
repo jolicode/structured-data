@@ -18,4 +18,6 @@ final class InteractionServiceModel
     public const NAME = 'schema:interactionService';
     public const VALUES = ['SoftwareApplicationModel' => 'Jolicode\SchemaOrg\Type\SoftwareApplicationModel', 'WebSiteModel' => 'Jolicode\SchemaOrg\Type\WebSiteModel'];
     public const TYPES = ['InteractionCounter' => 'Jolicode\SchemaOrg\Type\InteractionCounterModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

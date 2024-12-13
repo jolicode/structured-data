@@ -18,4 +18,6 @@ final class NumberOfBedroomsModel
     public const NAME = 'schema:numberOfBedrooms';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['Accommodation' => 'Jolicode\SchemaOrg\Type\AccommodationModel', 'ApartmentComplex' => 'Jolicode\SchemaOrg\Type\ApartmentComplexModel', 'FloorPlan' => 'Jolicode\SchemaOrg\Type\FloorPlanModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class StarRatingModel
     public const NAME = 'schema:starRating';
     public const VALUES = ['RatingModel' => 'Jolicode\SchemaOrg\Type\RatingModel'];
     public const TYPES = ['FoodEstablishment' => 'Jolicode\SchemaOrg\Type\FoodEstablishmentModel', 'LodgingBusiness' => 'Jolicode\SchemaOrg\Type\LodgingBusinessModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

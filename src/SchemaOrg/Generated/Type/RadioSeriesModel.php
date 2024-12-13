@@ -20,6 +20,8 @@ final class RadioSeriesModel
     public const NAME = 'schema:RadioSeries';
     public const PARENTS = ['CreativeWorkSeriesModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkSeriesModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

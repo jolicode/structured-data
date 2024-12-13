@@ -18,4 +18,6 @@ final class LoanMortgageMandateAmountModel
     public const NAME = 'schema:loanMortgageMandateAmount';
     public const VALUES = ['MonetaryAmountModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel'];
     public const TYPES = ['MortgageLoan' => 'Jolicode\SchemaOrg\Type\MortgageLoanModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

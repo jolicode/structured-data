@@ -16,4 +16,6 @@ final class EUEnergyEfficiencyCategoryCModel
     public const DESCRIPTION = 'Represents EU Energy Efficiency Class C as defined in EU energy labeling regulations.';
     public const LABEL = 'EUEnergyEfficiencyCategoryC';
     public const NAME = 'schema:EUEnergyEfficiencyCategoryC';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

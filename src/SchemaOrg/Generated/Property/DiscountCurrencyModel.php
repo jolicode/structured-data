@@ -18,4 +18,6 @@ final class DiscountCurrencyModel
     public const NAME = 'schema:discountCurrency';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Order' => 'Jolicode\SchemaOrg\Type\OrderModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

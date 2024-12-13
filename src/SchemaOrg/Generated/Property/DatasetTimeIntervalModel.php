@@ -18,4 +18,6 @@ final class DatasetTimeIntervalModel
     public const NAME = 'schema:datasetTimeInterval';
     public const VALUES = ['DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['Dataset' => 'Jolicode\SchemaOrg\Type\DatasetModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

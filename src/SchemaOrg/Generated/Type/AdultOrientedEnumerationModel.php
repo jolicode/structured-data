@@ -20,6 +20,8 @@ final class AdultOrientedEnumerationModel
     public const NAME = 'schema:AdultOrientedEnumeration';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['AlcoholConsiderationModel' => 'EnumerationMember\AlcoholConsiderationModel', 'DangerousGoodConsiderationModel' => 'EnumerationMember\DangerousGoodConsiderationModel', 'HealthcareConsiderationModel' => 'EnumerationMember\HealthcareConsiderationModel', 'NarcoticConsiderationModel' => 'EnumerationMember\NarcoticConsiderationModel', 'ReducedRelevanceForChildrenConsiderationModel' => 'EnumerationMember\ReducedRelevanceForChildrenConsiderationModel', 'SexualContentConsiderationModel' => 'EnumerationMember\SexualContentConsiderationModel', 'TobaccoNicotineConsiderationModel' => 'EnumerationMember\TobaccoNicotineConsiderationModel', 'UnclassifiedAdultConsiderationModel' => 'EnumerationMember\UnclassifiedAdultConsiderationModel', 'ViolenceConsiderationModel' => 'EnumerationMember\ViolenceConsiderationModel', 'WeaponConsiderationModel' => 'EnumerationMember\WeaponConsiderationModel'];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2989'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

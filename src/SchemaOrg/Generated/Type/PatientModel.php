@@ -20,6 +20,8 @@ final class PatientModel
     public const NAME = 'schema:Patient';
     public const PARENTS = ['MedicalAudienceModel' => 'Jolicode\SchemaOrg\Type\MedicalAudienceModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalNameModel $additionalName = null,

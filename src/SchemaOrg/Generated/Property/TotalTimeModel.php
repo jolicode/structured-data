@@ -18,4 +18,6 @@ final class TotalTimeModel
     public const NAME = 'schema:totalTime';
     public const VALUES = ['DurationModel' => 'Jolicode\SchemaOrg\Type\DurationModel'];
     public const TYPES = ['HowToDirection' => 'Jolicode\SchemaOrg\Type\HowToDirectionModel', 'HowTo' => 'Jolicode\SchemaOrg\Type\HowToModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

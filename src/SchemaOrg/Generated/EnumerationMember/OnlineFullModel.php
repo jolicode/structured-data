@@ -16,4 +16,6 @@ final class OnlineFullModel
     public const DESCRIPTION = 'Game server status: OnlineFull. Server is online but unavailable. The maximum number of players has reached.';
     public const LABEL = 'OnlineFull';
     public const NAME = 'schema:OnlineFull';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

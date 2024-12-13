@@ -16,4 +16,6 @@ final class EvidenceLevelBModel
     public const DESCRIPTION = 'Data derived from a single randomized trial, or nonrandomized studies.';
     public const LABEL = 'EvidenceLevelB';
     public const NAME = 'schema:EvidenceLevelB';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

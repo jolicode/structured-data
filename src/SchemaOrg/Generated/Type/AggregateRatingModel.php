@@ -20,6 +20,8 @@ final class AggregateRatingModel
     public const NAME = 'schema:AggregateRating';
     public const PARENTS = ['RatingModel' => 'Jolicode\SchemaOrg\Type\RatingModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

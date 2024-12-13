@@ -18,4 +18,6 @@ final class BroadcastServiceTierModel
     public const NAME = 'schema:broadcastServiceTier';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['BroadcastChannel' => 'Jolicode\SchemaOrg\Type\BroadcastChannelModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

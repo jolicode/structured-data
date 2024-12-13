@@ -16,4 +16,6 @@ final class PaymentDueModel
     public const DESCRIPTION = 'The payment is due, but still within an acceptable time to be received.';
     public const LABEL = 'PaymentDue';
     public const NAME = 'schema:PaymentDue';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

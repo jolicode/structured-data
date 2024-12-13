@@ -17,12 +17,13 @@ final class HotelRoomModel
 {
     public const DESCRIPTION = 'A hotel room is a single room in a hotel.
 <br /><br />
-See also the <a href="/docs/hotels.html">dedicated document on the use of schema.org for marking up hotels and other forms of accommodations</a>.
-';
+See also the <a href="/docs/hotels.html">dedicated document on the use of schema.org for marking up hotels and other forms of accommodations</a>.';
     public const LABEL = 'HotelRoom';
     public const NAME = 'schema:HotelRoom';
     public const PARENTS = ['RoomModel' => 'Jolicode\SchemaOrg\Type\RoomModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AccommodationCategoryModel $accommodationCategory = null,

@@ -18,4 +18,6 @@ final class DoorTimeModel
     public const NAME = 'schema:doorTime';
     public const VALUES = ['DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel', 'TimeModel' => 'Jolicode\SchemaOrg\Type\TimeModel'];
     public const TYPES = ['Event' => 'Jolicode\SchemaOrg\Type\EventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

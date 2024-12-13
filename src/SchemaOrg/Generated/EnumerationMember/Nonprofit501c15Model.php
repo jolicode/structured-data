@@ -16,4 +16,6 @@ final class Nonprofit501c15Model
     public const DESCRIPTION = 'Nonprofit501c15: Non-profit type referring to Mutual Insurance Companies or Associations.';
     public const LABEL = 'Nonprofit501c15';
     public const NAME = 'schema:Nonprofit501c15';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

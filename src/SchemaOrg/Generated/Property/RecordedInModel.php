@@ -18,4 +18,6 @@ final class RecordedInModel
     public const NAME = 'schema:recordedIn';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
     public const TYPES = ['Event' => 'Jolicode\SchemaOrg\Type\EventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

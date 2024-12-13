@@ -19,4 +19,6 @@ Typical unit code(s): MTK for square meter, FTK for square foot, or YDK for squa
     public const NAME = 'schema:floorSize';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['Accommodation' => 'Jolicode\SchemaOrg\Type\AccommodationModel', 'FloorPlan' => 'Jolicode\SchemaOrg\Type\FloorPlanModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class BillingStartModel
     public const NAME = 'schema:billingStart';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['UnitPriceSpecification' => 'Jolicode\SchemaOrg\Type\UnitPriceSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

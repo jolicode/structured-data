@@ -18,4 +18,6 @@ final class PaymentDueModel
     public const NAME = 'schema:paymentDue';
     public const VALUES = ['DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['Invoice' => 'Jolicode\SchemaOrg\Type\InvoiceModel', 'Order' => 'Jolicode\SchemaOrg\Type\OrderModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

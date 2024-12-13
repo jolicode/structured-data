@@ -18,4 +18,6 @@ final class BioChemInteractionModel
     public const NAME = 'schema:bioChemInteraction';
     public const VALUES = ['BioChemEntityModel' => 'Jolicode\SchemaOrg\Type\BioChemEntityModel'];
     public const TYPES = ['BioChemEntity' => 'Jolicode\SchemaOrg\Type\BioChemEntityModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

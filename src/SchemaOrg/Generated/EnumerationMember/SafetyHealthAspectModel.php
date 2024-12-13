@@ -16,4 +16,6 @@ final class SafetyHealthAspectModel
     public const DESCRIPTION = 'Content about the safety-related aspects of a health topic.';
     public const LABEL = 'SafetyHealthAspect';
     public const NAME = 'schema:SafetyHealthAspect';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

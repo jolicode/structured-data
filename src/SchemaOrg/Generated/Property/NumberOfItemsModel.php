@@ -18,4 +18,6 @@ final class NumberOfItemsModel
     public const NAME = 'schema:numberOfItems';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['ItemList' => 'Jolicode\SchemaOrg\Type\ItemListModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

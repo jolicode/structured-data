@@ -20,6 +20,8 @@ final class GamePlayModeModel
     public const NAME = 'schema:GamePlayMode';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['CoOpModel' => 'EnumerationMember\CoOpModel', 'MultiPlayerModel' => 'EnumerationMember\MultiPlayerModel', 'SinglePlayerModel' => 'EnumerationMember\SinglePlayerModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

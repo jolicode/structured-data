@@ -20,6 +20,8 @@ final class FinancialProductModel
     public const NAME = 'schema:FinancialProduct';
     public const PARENTS = ['ServiceModel' => 'Jolicode\SchemaOrg\Type\ServiceModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

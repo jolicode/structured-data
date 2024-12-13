@@ -18,4 +18,6 @@ final class FundingModel
     public const NAME = 'schema:funding';
     public const VALUES = ['GrantModel' => 'Jolicode\SchemaOrg\Type\GrantModel'];
     public const TYPES = ['BioChemEntity' => 'Jolicode\SchemaOrg\Type\BioChemEntityModel', 'CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'Event' => 'Jolicode\SchemaOrg\Type\EventModel', 'MedicalEntity' => 'Jolicode\SchemaOrg\Type\MedicalEntityModel', 'Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\SchemaOrg\Type\PersonModel', 'Product' => 'Jolicode\SchemaOrg\Type\ProductModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

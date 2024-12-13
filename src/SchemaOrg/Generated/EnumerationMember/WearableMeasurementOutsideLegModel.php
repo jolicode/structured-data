@@ -16,4 +16,6 @@ final class WearableMeasurementOutsideLegModel
     public const DESCRIPTION = 'Measurement of the outside leg, for example of pants.';
     public const LABEL = 'WearableMeasurementOutsideLeg';
     public const NAME = 'schema:WearableMeasurementOutsideLeg';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

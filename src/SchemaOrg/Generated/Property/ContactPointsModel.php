@@ -18,4 +18,6 @@ final class ContactPointsModel
     public const NAME = 'schema:contactPoints';
     public const VALUES = ['ContactPointModel' => 'Jolicode\SchemaOrg\Type\ContactPointModel'];
     public const TYPES = ['Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\SchemaOrg\Type\PersonModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

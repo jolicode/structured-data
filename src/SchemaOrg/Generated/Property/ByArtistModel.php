@@ -18,4 +18,6 @@ final class ByArtistModel
     public const NAME = 'schema:byArtist';
     public const VALUES = ['MusicGroupModel' => 'Jolicode\SchemaOrg\Type\MusicGroupModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['MusicAlbum' => 'Jolicode\SchemaOrg\Type\MusicAlbumModel', 'MusicRecording' => 'Jolicode\SchemaOrg\Type\MusicRecordingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

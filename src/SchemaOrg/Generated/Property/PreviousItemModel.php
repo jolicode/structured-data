@@ -18,4 +18,6 @@ final class PreviousItemModel
     public const NAME = 'schema:previousItem';
     public const VALUES = ['ListItemModel' => 'Jolicode\SchemaOrg\Type\ListItemModel'];
     public const TYPES = ['ListItem' => 'Jolicode\SchemaOrg\Type\ListItemModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

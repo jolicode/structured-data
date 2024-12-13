@@ -18,4 +18,6 @@ final class CostOriginModel
     public const NAME = 'schema:costOrigin';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DrugCost' => 'Jolicode\SchemaOrg\Type\DrugCostModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

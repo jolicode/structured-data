@@ -20,6 +20,8 @@ final class PodcastEpisodeModel
     public const NAME = 'schema:PodcastEpisode';
     public const PARENTS = ['EpisodeModel' => 'Jolicode\SchemaOrg\Type\EpisodeModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/373'];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

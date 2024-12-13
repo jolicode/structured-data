@@ -20,6 +20,8 @@ final class MovieSeriesModel
     public const NAME = 'schema:MovieSeries';
     public const PARENTS = ['CreativeWorkSeriesModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkSeriesModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

@@ -20,6 +20,8 @@ final class MedicalBusinessModel
     public const NAME = 'schema:MedicalBusiness';
     public const PARENTS = ['LocalBusinessModel' => 'Jolicode\SchemaOrg\Type\LocalBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

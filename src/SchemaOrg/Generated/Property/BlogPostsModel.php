@@ -18,4 +18,6 @@ final class BlogPostsModel
     public const NAME = 'schema:blogPosts';
     public const VALUES = ['BlogPostingModel' => 'Jolicode\SchemaOrg\Type\BlogPostingModel'];
     public const TYPES = ['Blog' => 'Jolicode\SchemaOrg\Type\BlogModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

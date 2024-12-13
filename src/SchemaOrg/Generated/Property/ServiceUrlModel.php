@@ -18,4 +18,6 @@ final class ServiceUrlModel
     public const NAME = 'schema:serviceUrl';
     public const VALUES = ['URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['ServiceChannel' => 'Jolicode\SchemaOrg\Type\ServiceChannelModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

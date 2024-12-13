@@ -16,4 +16,6 @@ final class MayTreatHealthAspectModel
     public const DESCRIPTION = 'Related topics may be treated by a Topic.';
     public const LABEL = 'MayTreatHealthAspect';
     public const NAME = 'schema:MayTreatHealthAspect';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

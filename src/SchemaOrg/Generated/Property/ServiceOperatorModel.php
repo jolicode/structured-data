@@ -18,4 +18,6 @@ final class ServiceOperatorModel
     public const NAME = 'schema:serviceOperator';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
     public const TYPES = ['GovernmentService' => 'Jolicode\SchemaOrg\Type\GovernmentServiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

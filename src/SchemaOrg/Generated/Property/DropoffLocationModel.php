@@ -18,4 +18,6 @@ final class DropoffLocationModel
     public const NAME = 'schema:dropoffLocation';
     public const VALUES = ['PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
     public const TYPES = ['RentalCarReservation' => 'Jolicode\SchemaOrg\Type\RentalCarReservationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

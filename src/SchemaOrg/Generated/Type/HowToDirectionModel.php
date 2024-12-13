@@ -20,6 +20,8 @@ final class HowToDirectionModel
     public const NAME = 'schema:HowToDirection';
     public const PARENTS = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'ListItemModel' => 'Jolicode\SchemaOrg\Type\ListItemModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

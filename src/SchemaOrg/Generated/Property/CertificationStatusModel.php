@@ -18,4 +18,6 @@ final class CertificationStatusModel
     public const NAME = 'schema:certificationStatus';
     public const VALUES = ['CertificationStatusEnumerationModel' => 'Jolicode\SchemaOrg\Type\CertificationStatusEnumerationModel'];
     public const TYPES = ['Certification' => 'Jolicode\SchemaOrg\Type\CertificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

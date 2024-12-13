@@ -18,4 +18,6 @@ final class MapTypeModel
     public const NAME = 'schema:mapType';
     public const VALUES = ['MapCategoryTypeModel' => 'Jolicode\SchemaOrg\Type\MapCategoryTypeModel'];
     public const TYPES = ['Map' => 'Jolicode\SchemaOrg\Type\MapModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

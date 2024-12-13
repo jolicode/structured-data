@@ -18,4 +18,6 @@ final class IncreasesRiskOfModel
     public const NAME = 'schema:increasesRiskOf';
     public const VALUES = ['MedicalEntityModel' => 'Jolicode\SchemaOrg\Type\MedicalEntityModel'];
     public const TYPES = ['MedicalRiskFactor' => 'Jolicode\SchemaOrg\Type\MedicalRiskFactorModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

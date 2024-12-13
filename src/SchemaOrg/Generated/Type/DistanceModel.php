@@ -20,6 +20,8 @@ final class DistanceModel
     public const NAME = 'schema:Distance';
     public const PARENTS = ['QuantityModel' => 'Jolicode\SchemaOrg\Type\QuantityModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

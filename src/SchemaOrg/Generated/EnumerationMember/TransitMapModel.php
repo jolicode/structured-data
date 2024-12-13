@@ -16,4 +16,6 @@ final class TransitMapModel
     public const DESCRIPTION = 'A transit map.';
     public const LABEL = 'TransitMap';
     public const NAME = 'schema:TransitMap';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

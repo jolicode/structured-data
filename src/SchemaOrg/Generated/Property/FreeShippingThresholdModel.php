@@ -18,4 +18,6 @@ final class FreeShippingThresholdModel
     public const NAME = 'schema:freeShippingThreshold';
     public const VALUES = ['DeliveryChargeSpecificationModel' => 'Jolicode\SchemaOrg\Type\DeliveryChargeSpecificationModel', 'MonetaryAmountModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel'];
     public const TYPES = ['ShippingRateSettings' => 'Jolicode\SchemaOrg\Type\ShippingRateSettingsModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -20,6 +20,8 @@ final class BedTypeModel
     public const NAME = 'schema:BedType';
     public const PARENTS = ['QualitativeValueModel' => 'Jolicode\SchemaOrg\Type\QualitativeValueModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1262'];
 
     public function __construct(
         public ?Property\AdditionalPropertyModel $additionalProperty = null,

@@ -18,4 +18,6 @@ final class CountryOfAssemblyModel
     public const NAME = 'schema:countryOfAssembly';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Product' => 'Jolicode\SchemaOrg\Type\ProductModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

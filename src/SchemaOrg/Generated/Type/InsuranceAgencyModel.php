@@ -20,6 +20,8 @@ final class InsuranceAgencyModel
     public const NAME = 'schema:InsuranceAgency';
     public const PARENTS = ['FinancialServiceModel' => 'Jolicode\SchemaOrg\Type\FinancialServiceModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

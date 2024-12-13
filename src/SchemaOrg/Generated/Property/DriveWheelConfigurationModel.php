@@ -18,4 +18,6 @@ final class DriveWheelConfigurationModel
     public const NAME = 'schema:driveWheelConfiguration';
     public const VALUES = ['DriveWheelConfigurationValueModel' => 'Jolicode\SchemaOrg\Type\DriveWheelConfigurationValueModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Vehicle' => 'Jolicode\SchemaOrg\Type\VehicleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

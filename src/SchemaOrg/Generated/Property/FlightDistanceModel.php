@@ -18,4 +18,6 @@ final class FlightDistanceModel
     public const NAME = 'schema:flightDistance';
     public const VALUES = ['DistanceModel' => 'Jolicode\SchemaOrg\Type\DistanceModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Flight' => 'Jolicode\SchemaOrg\Type\FlightModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

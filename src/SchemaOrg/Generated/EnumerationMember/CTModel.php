@@ -16,4 +16,6 @@ final class CTModel
     public const DESCRIPTION = 'X-ray computed tomography imaging.';
     public const LABEL = 'CT';
     public const NAME = 'schema:CT';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

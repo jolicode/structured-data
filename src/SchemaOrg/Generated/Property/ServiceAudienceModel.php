@@ -18,4 +18,6 @@ final class ServiceAudienceModel
     public const NAME = 'schema:serviceAudience';
     public const VALUES = ['AudienceModel' => 'Jolicode\SchemaOrg\Type\AudienceModel'];
     public const TYPES = ['Service' => 'Jolicode\SchemaOrg\Type\ServiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

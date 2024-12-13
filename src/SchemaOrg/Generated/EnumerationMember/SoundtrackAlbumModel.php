@@ -16,4 +16,6 @@ final class SoundtrackAlbumModel
     public const DESCRIPTION = 'SoundtrackAlbum.';
     public const LABEL = 'SoundtrackAlbum';
     public const NAME = 'schema:SoundtrackAlbum';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

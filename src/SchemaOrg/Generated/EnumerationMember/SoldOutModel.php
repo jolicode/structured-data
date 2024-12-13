@@ -16,4 +16,6 @@ final class SoldOutModel
     public const DESCRIPTION = 'Indicates that the item has sold out.';
     public const LABEL = 'SoldOut';
     public const NAME = 'schema:SoldOut';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

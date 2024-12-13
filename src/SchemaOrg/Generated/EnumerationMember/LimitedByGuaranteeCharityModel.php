@@ -16,4 +16,6 @@ final class LimitedByGuaranteeCharityModel
     public const DESCRIPTION = 'LimitedByGuaranteeCharity: Non-profit type referring to a charitable company that is limited by guarantee (UK).';
     public const LABEL = 'LimitedByGuaranteeCharity';
     public const NAME = 'schema:LimitedByGuaranteeCharity';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

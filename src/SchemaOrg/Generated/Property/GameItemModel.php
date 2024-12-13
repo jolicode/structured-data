@@ -18,4 +18,6 @@ final class GameItemModel
     public const NAME = 'schema:gameItem';
     public const VALUES = ['ThingModel' => 'Jolicode\SchemaOrg\Type\ThingModel'];
     public const TYPES = ['Game' => 'Jolicode\SchemaOrg\Type\GameModel', 'VideoGameSeries' => 'Jolicode\SchemaOrg\Type\VideoGameSeriesModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

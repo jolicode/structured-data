@@ -17,12 +17,13 @@ final class OfferForPurchaseModel
 {
     public const DESCRIPTION = 'An [[OfferForPurchase]] in Schema.org represents an [[Offer]] to sell something, i.e. an [[Offer]] whose
   [[businessFunction]] is [sell](http://purl.org/goodrelations/v1#Sell.). See [Good Relations](https://en.wikipedia.org/wiki/GoodRelations) for
-  background on the underlying concepts.
-  ';
+  background on the underlying concepts.';
     public const LABEL = 'OfferForPurchase';
     public const NAME = 'schema:OfferForPurchase';
     public const PARENTS = ['OfferModel' => 'Jolicode\SchemaOrg\Type\OfferModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2348'];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

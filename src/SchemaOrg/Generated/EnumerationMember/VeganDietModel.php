@@ -16,4 +16,6 @@ final class VeganDietModel
     public const DESCRIPTION = 'A diet exclusive of all animal products.';
     public const LABEL = 'VeganDiet';
     public const NAME = 'schema:VeganDiet';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

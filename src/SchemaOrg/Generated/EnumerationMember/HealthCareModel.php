@@ -16,4 +16,6 @@ final class HealthCareModel
     public const DESCRIPTION = 'HealthCare: this is a benefit for health care.';
     public const LABEL = 'HealthCare';
     public const NAME = 'schema:HealthCare';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -20,6 +20,8 @@ final class NonprofitTypeModel
     public const NAME = 'schema:NonprofitType';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2543'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

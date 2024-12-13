@@ -16,4 +16,6 @@ final class PharmacySpecialtyModel
     public const DESCRIPTION = 'The practice or art and science of preparing and dispensing drugs and medicines.';
     public const LABEL = 'PharmacySpecialty';
     public const NAME = 'schema:PharmacySpecialty';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

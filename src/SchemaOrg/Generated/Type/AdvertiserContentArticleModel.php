@@ -20,6 +20,8 @@ final class AdvertiserContentArticleModel
     public const NAME = 'schema:AdvertiserContentArticle';
     public const PARENTS = ['ArticleModel' => 'Jolicode\SchemaOrg\Type\ArticleModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1525'];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

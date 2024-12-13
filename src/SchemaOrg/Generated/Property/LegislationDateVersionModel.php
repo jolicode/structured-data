@@ -18,4 +18,6 @@ final class LegislationDateVersionModel
     public const NAME = 'schema:legislationDateVersion';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel'];
     public const TYPES = ['Legislation' => 'Jolicode\SchemaOrg\Type\LegislationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

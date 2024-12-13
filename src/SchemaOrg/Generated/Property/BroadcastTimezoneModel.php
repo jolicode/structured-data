@@ -18,4 +18,6 @@ final class BroadcastTimezoneModel
     public const NAME = 'schema:broadcastTimezone';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['BroadcastService' => 'Jolicode\SchemaOrg\Type\BroadcastServiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

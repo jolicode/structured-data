@@ -18,4 +18,6 @@ final class NumberOfCreditsModel
     public const NAME = 'schema:numberOfCredits';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel', 'StructuredValueModel' => 'Jolicode\SchemaOrg\Type\StructuredValueModel'];
     public const TYPES = ['Course' => 'Jolicode\SchemaOrg\Type\CourseModel', 'EducationalOccupationalProgram' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalProgramModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

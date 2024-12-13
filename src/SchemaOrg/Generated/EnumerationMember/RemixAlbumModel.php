@@ -16,4 +16,6 @@ final class RemixAlbumModel
     public const DESCRIPTION = 'RemixAlbum.';
     public const LABEL = 'RemixAlbum';
     public const NAME = 'schema:RemixAlbum';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

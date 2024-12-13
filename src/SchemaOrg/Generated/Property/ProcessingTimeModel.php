@@ -18,4 +18,6 @@ final class ProcessingTimeModel
     public const NAME = 'schema:processingTime';
     public const VALUES = ['DurationModel' => 'Jolicode\SchemaOrg\Type\DurationModel'];
     public const TYPES = ['ServiceChannel' => 'Jolicode\SchemaOrg\Type\ServiceChannelModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

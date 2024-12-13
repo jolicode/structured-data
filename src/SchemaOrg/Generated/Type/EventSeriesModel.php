@@ -27,12 +27,13 @@ include a thematic event series (e.g. topical meetups or classes), or a series o
 EventSeries has been defined as a kind of Event to make it easy for publishers to use it in an Event context without
 worrying about which kinds of series are really event-like enough to call an Event. In general an EventSeries
 may seem more Event-like when the period of time is compact and when aspects such as location are fixed, but
-it may also sometimes prove useful to describe a longer-term series as an Event.
-   ';
+it may also sometimes prove useful to describe a longer-term series as an Event.';
     public const LABEL = 'EventSeries';
     public const NAME = 'schema:EventSeries';
     public const PARENTS = ['EventModel' => 'Jolicode\SchemaOrg\Type\EventModel', 'SeriesModel' => 'Jolicode\SchemaOrg\Type\SeriesModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/447'];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

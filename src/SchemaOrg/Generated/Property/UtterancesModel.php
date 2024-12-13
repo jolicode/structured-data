@@ -18,4 +18,6 @@ final class UtterancesModel
     public const NAME = 'schema:utterances';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['HyperTocEntry' => 'Jolicode\SchemaOrg\Type\HyperTocEntryModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

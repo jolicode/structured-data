@@ -18,4 +18,6 @@ final class MenuAddOnModel
     public const NAME = 'schema:menuAddOn';
     public const VALUES = ['MenuItemModel' => 'Jolicode\SchemaOrg\Type\MenuItemModel', 'MenuSectionModel' => 'Jolicode\SchemaOrg\Type\MenuSectionModel'];
     public const TYPES = ['MenuItem' => 'Jolicode\SchemaOrg\Type\MenuItemModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

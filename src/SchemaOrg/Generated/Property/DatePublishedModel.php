@@ -18,4 +18,6 @@ final class DatePublishedModel
     public const NAME = 'schema:datePublished';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['Certification' => 'Jolicode\SchemaOrg\Type\CertificationModel', 'CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

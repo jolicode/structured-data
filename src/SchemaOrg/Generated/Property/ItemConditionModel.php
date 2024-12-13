@@ -18,4 +18,6 @@ final class ItemConditionModel
     public const NAME = 'schema:itemCondition';
     public const VALUES = ['OfferItemConditionModel' => 'Jolicode\SchemaOrg\Type\OfferItemConditionModel'];
     public const TYPES = ['Demand' => 'Jolicode\SchemaOrg\Type\DemandModel', 'MerchantReturnPolicy' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicyModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'Product' => 'Jolicode\SchemaOrg\Type\ProductModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

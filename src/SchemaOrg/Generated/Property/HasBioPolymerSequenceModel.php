@@ -18,4 +18,6 @@ final class HasBioPolymerSequenceModel
     public const NAME = 'schema:hasBioPolymerSequence';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Gene' => 'Jolicode\SchemaOrg\Type\GeneModel', 'Protein' => 'Jolicode\SchemaOrg\Type\ProteinModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

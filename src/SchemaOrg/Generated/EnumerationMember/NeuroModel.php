@@ -16,4 +16,6 @@ final class NeuroModel
     public const DESCRIPTION = 'Neurological system clinical examination.';
     public const LABEL = 'Neuro';
     public const NAME = 'schema:Neuro';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

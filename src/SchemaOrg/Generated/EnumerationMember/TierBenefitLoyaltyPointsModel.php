@@ -16,4 +16,6 @@ final class TierBenefitLoyaltyPointsModel
     public const DESCRIPTION = 'Benefit of the tier is earning of loyalty points.';
     public const LABEL = 'TierBenefitLoyaltyPoints';
     public const NAME = 'schema:TierBenefitLoyaltyPoints';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

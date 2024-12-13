@@ -20,6 +20,8 @@ final class VitalSignModel
     public const NAME = 'schema:VitalSign';
     public const PARENTS = ['MedicalSignModel' => 'Jolicode\SchemaOrg\Type\MedicalSignModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

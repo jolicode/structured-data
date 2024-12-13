@@ -18,4 +18,6 @@ final class FirstPerformanceModel
     public const NAME = 'schema:firstPerformance';
     public const VALUES = ['EventModel' => 'Jolicode\SchemaOrg\Type\EventModel'];
     public const TYPES = ['MusicComposition' => 'Jolicode\SchemaOrg\Type\MusicCompositionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class Sha256Model
     public const NAME = 'schema:sha256';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MediaObject' => 'Jolicode\SchemaOrg\Type\MediaObjectModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

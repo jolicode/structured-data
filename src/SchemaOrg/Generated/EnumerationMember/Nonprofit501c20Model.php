@@ -16,4 +16,6 @@ final class Nonprofit501c20Model
     public const DESCRIPTION = 'Nonprofit501c20: Non-profit type referring to Group Legal Services Plan Organizations.';
     public const LABEL = 'Nonprofit501c20';
     public const NAME = 'schema:Nonprofit501c20';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class EncodesCreativeWorkModel
     public const NAME = 'schema:encodesCreativeWork';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
     public const TYPES = ['MediaObject' => 'Jolicode\SchemaOrg\Type\MediaObjectModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

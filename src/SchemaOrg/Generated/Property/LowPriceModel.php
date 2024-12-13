@@ -18,4 +18,6 @@ final class LowPriceModel
     public const NAME = 'schema:lowPrice';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['AggregateOffer' => 'Jolicode\SchemaOrg\Type\AggregateOfferModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -22,4 +22,6 @@ In the case of products, the country of origin of the product. The exact interpr
     public const NAME = 'schema:countryOfOrigin';
     public const VALUES = ['CountryModel' => 'Jolicode\SchemaOrg\Type\CountryModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'Movie' => 'Jolicode\SchemaOrg\Type\MovieModel', 'Product' => 'Jolicode\SchemaOrg\Type\ProductModel', 'TVEpisode' => 'Jolicode\SchemaOrg\Type\TVEpisodeModel', 'TVSeason' => 'Jolicode\SchemaOrg\Type\TVSeasonModel', 'TVSeries' => 'Jolicode\SchemaOrg\Type\TVSeriesModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

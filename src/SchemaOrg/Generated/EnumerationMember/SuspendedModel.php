@@ -16,4 +16,6 @@ final class SuspendedModel
     public const DESCRIPTION = 'Suspended.';
     public const LABEL = 'Suspended';
     public const NAME = 'schema:Suspended';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

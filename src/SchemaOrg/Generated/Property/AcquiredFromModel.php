@@ -18,4 +18,6 @@ final class AcquiredFromModel
     public const NAME = 'schema:acquiredFrom';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['OwnershipInfo' => 'Jolicode\SchemaOrg\Type\OwnershipInfoModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

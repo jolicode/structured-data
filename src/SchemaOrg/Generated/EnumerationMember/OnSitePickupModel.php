@@ -16,4 +16,6 @@ final class OnSitePickupModel
     public const DESCRIPTION = 'A DeliveryMethod in which an item is collected on site, e.g. in a store or at a box office.';
     public const LABEL = 'OnSitePickup';
     public const NAME = 'schema:OnSitePickup';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

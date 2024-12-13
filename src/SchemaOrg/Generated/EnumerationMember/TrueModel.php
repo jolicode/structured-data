@@ -16,4 +16,6 @@ final class TrueModel
     public const DESCRIPTION = 'The boolean value true.';
     public const LABEL = 'True';
     public const NAME = 'schema:True';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

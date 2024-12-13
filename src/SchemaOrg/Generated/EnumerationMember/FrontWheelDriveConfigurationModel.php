@@ -16,4 +16,6 @@ final class FrontWheelDriveConfigurationModel
     public const DESCRIPTION = 'Front-wheel drive is a transmission layout where the engine drives the front wheels.';
     public const LABEL = 'FrontWheelDriveConfiguration';
     public const NAME = 'schema:FrontWheelDriveConfiguration';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

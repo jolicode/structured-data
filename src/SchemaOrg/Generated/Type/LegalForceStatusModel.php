@@ -20,6 +20,8 @@ final class LegalForceStatusModel
     public const NAME = 'schema:LegalForceStatus';
     public const PARENTS = ['StatusEnumerationModel' => 'Jolicode\SchemaOrg\Type\StatusEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['InForceModel' => 'EnumerationMember\InForceModel', 'NotInForceModel' => 'EnumerationMember\NotInForceModel', 'PartiallyInForceModel' => 'EnumerationMember\PartiallyInForceModel'];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1156'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

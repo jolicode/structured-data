@@ -18,4 +18,6 @@ final class HoursAvailableModel
     public const NAME = 'schema:hoursAvailable';
     public const VALUES = ['OpeningHoursSpecificationModel' => 'Jolicode\SchemaOrg\Type\OpeningHoursSpecificationModel'];
     public const TYPES = ['ContactPoint' => 'Jolicode\SchemaOrg\Type\ContactPointModel', 'LocationFeatureSpecification' => 'Jolicode\SchemaOrg\Type\LocationFeatureSpecificationModel', 'Service' => 'Jolicode\SchemaOrg\Type\ServiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class HospitalAffiliationModel
     public const NAME = 'schema:hospitalAffiliation';
     public const VALUES = ['HospitalModel' => 'Jolicode\SchemaOrg\Type\HospitalModel'];
     public const TYPES = ['Physician' => 'Jolicode\SchemaOrg\Type\PhysicianModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

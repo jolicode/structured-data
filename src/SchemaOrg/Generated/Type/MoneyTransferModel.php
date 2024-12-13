@@ -20,6 +20,8 @@ final class MoneyTransferModel
     public const NAME = 'schema:MoneyTransfer';
     public const PARENTS = ['TransferActionModel' => 'Jolicode\SchemaOrg\Type\TransferActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1253'];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

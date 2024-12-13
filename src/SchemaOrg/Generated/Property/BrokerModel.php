@@ -18,4 +18,6 @@ final class BrokerModel
     public const NAME = 'schema:broker';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['Invoice' => 'Jolicode\SchemaOrg\Type\InvoiceModel', 'Order' => 'Jolicode\SchemaOrg\Type\OrderModel', 'Reservation' => 'Jolicode\SchemaOrg\Type\ReservationModel', 'Service' => 'Jolicode\SchemaOrg\Type\ServiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class HasTiersModel
     public const NAME = 'schema:hasTiers';
     public const VALUES = ['MemberProgramTierModel' => 'Jolicode\SchemaOrg\Type\MemberProgramTierModel'];
     public const TYPES = ['MemberProgram' => 'Jolicode\SchemaOrg\Type\MemberProgramModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

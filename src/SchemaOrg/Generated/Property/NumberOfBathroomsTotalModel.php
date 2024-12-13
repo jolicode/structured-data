@@ -18,4 +18,6 @@ final class NumberOfBathroomsTotalModel
     public const NAME = 'schema:numberOfBathroomsTotal';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['Accommodation' => 'Jolicode\SchemaOrg\Type\AccommodationModel', 'FloorPlan' => 'Jolicode\SchemaOrg\Type\FloorPlanModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

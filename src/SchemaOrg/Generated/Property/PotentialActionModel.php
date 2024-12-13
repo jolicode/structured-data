@@ -18,4 +18,6 @@ final class PotentialActionModel
     public const NAME = 'schema:potentialAction';
     public const VALUES = ['ActionModel' => 'Jolicode\SchemaOrg\Type\ActionModel'];
     public const TYPES = ['Thing' => 'Jolicode\SchemaOrg\Type\ThingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

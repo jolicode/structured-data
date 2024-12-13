@@ -18,4 +18,6 @@ final class SoftwareHelpModel
     public const NAME = 'schema:softwareHelp';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
     public const TYPES = ['SoftwareApplication' => 'Jolicode\SchemaOrg\Type\SoftwareApplicationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

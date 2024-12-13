@@ -18,4 +18,6 @@ final class MakesOfferModel
     public const NAME = 'schema:makesOffer';
     public const VALUES = ['OfferModel' => 'Jolicode\SchemaOrg\Type\OfferModel'];
     public const TYPES = ['Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\SchemaOrg\Type\PersonModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

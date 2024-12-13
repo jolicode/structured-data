@@ -18,4 +18,6 @@ final class DigitalSourceTypeModel
     public const NAME = 'schema:digitalSourceType';
     public const VALUES = ['IPTCDigitalSourceEnumerationModel' => 'Jolicode\SchemaOrg\Type\IPTCDigitalSourceEnumerationModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

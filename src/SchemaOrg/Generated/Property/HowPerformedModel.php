@@ -18,4 +18,6 @@ final class HowPerformedModel
     public const NAME = 'schema:howPerformed';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalProcedure' => 'Jolicode\SchemaOrg\Type\MedicalProcedureModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

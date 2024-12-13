@@ -20,6 +20,8 @@ final class EmailMessageModel
     public const NAME = 'schema:EmailMessage';
     public const PARENTS = ['MessageModel' => 'Jolicode\SchemaOrg\Type\MessageModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

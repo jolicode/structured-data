@@ -16,4 +16,6 @@ final class HomeopathicModel
     public const DESCRIPTION = 'A system of medicine based on the principle that a disease can be cured by a substance that produces similar symptoms in healthy people.';
     public const LABEL = 'Homeopathic';
     public const NAME = 'schema:Homeopathic';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

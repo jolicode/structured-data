@@ -18,4 +18,6 @@ final class ShippingRateModel
     public const NAME = 'schema:shippingRate';
     public const VALUES = ['MonetaryAmountModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel'];
     public const TYPES = ['OfferShippingDetails' => 'Jolicode\SchemaOrg\Type\OfferShippingDetailsModel', 'ShippingRateSettings' => 'Jolicode\SchemaOrg\Type\ShippingRateSettingsModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

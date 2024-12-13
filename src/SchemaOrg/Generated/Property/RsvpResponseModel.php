@@ -18,4 +18,6 @@ final class RsvpResponseModel
     public const NAME = 'schema:rsvpResponse';
     public const VALUES = ['RsvpResponseTypeModel' => 'Jolicode\SchemaOrg\Type\RsvpResponseTypeModel'];
     public const TYPES = ['RsvpAction' => 'Jolicode\SchemaOrg\Type\RsvpActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

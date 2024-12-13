@@ -18,4 +18,6 @@ final class LegislationTransposesModel
     public const NAME = 'schema:legislationTransposes';
     public const VALUES = ['LegislationModel' => 'Jolicode\SchemaOrg\Type\LegislationModel'];
     public const TYPES = ['Legislation' => 'Jolicode\SchemaOrg\Type\LegislationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

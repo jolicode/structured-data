@@ -20,6 +20,8 @@ final class EducationalOrganizationModel
     public const NAME = 'schema:EducationalOrganization';
     public const PARENTS = ['CivicStructureModel' => 'Jolicode\SchemaOrg\Type\CivicStructureModel', 'OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

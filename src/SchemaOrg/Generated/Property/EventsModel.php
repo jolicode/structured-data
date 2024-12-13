@@ -18,4 +18,6 @@ final class EventsModel
     public const NAME = 'schema:events';
     public const VALUES = ['EventModel' => 'Jolicode\SchemaOrg\Type\EventModel'];
     public const TYPES = ['Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'Place' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class EditorModel
     public const NAME = 'schema:editor';
     public const VALUES = ['PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class NumberOfAirbagsModel
     public const NAME = 'schema:numberOfAirbags';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Vehicle' => 'Jolicode\SchemaOrg\Type\VehicleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

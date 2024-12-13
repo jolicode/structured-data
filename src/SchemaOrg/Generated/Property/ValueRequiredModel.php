@@ -18,4 +18,6 @@ final class ValueRequiredModel
     public const NAME = 'schema:valueRequired';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['PropertyValueSpecification' => 'Jolicode\SchemaOrg\Type\PropertyValueSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

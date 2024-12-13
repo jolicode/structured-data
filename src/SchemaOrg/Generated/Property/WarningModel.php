@@ -18,4 +18,6 @@ final class WarningModel
     public const NAME = 'schema:warning';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['Drug' => 'Jolicode\SchemaOrg\Type\DrugModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

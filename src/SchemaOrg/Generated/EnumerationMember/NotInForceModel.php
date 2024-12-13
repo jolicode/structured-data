@@ -16,4 +16,6 @@ final class NotInForceModel
     public const DESCRIPTION = 'Indicates that a legislation is currently not in force.';
     public const LABEL = 'NotInForce';
     public const NAME = 'schema:NotInForce';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

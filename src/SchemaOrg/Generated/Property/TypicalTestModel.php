@@ -18,4 +18,6 @@ final class TypicalTestModel
     public const NAME = 'schema:typicalTest';
     public const VALUES = ['MedicalTestModel' => 'Jolicode\SchemaOrg\Type\MedicalTestModel'];
     public const TYPES = ['MedicalCondition' => 'Jolicode\SchemaOrg\Type\MedicalConditionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

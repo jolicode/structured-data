@@ -22,12 +22,13 @@ In practice many news publishers produce a wide variety of article types, many o
 
 The [[ReportageNewsArticle]] type is based on a stricter ideal for "news" as a work of journalism, with articles based on factual information either observed or verified by the author, or reported and verified from knowledgeable sources.  This often includes perspectives from multiple viewpoints on a particular issue (distinguishing news reports from public relations or propaganda).  News reports in the [[ReportageNewsArticle]] sense de-emphasize the opinion of the author, with commentary and value judgements typically expressed elsewhere.
 
-A [[ReportageNewsArticle]] which goes deeper into analysis can also be marked with an additional type of [[AnalysisNewsArticle]].
-';
+A [[ReportageNewsArticle]] which goes deeper into analysis can also be marked with an additional type of [[AnalysisNewsArticle]].';
     public const LABEL = 'ReportageNewsArticle';
     public const NAME = 'schema:ReportageNewsArticle';
     public const PARENTS = ['NewsArticleModel' => 'Jolicode\SchemaOrg\Type\NewsArticleModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1525'];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

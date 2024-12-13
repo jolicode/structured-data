@@ -16,4 +16,6 @@ final class BodyMeasurementWeightModel
     public const DESCRIPTION = 'Body weight. Used, for example, to measure pantyhose.';
     public const LABEL = 'BodyMeasurementWeight';
     public const NAME = 'schema:BodyMeasurementWeight';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

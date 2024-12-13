@@ -16,4 +16,6 @@ final class DigitalAudioTapeFormatModel
     public const DESCRIPTION = 'DigitalAudioTapeFormat.';
     public const LABEL = 'DigitalAudioTapeFormat';
     public const NAME = 'schema:DigitalAudioTapeFormat';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

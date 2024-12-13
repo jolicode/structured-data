@@ -18,4 +18,6 @@ final class UsedToDiagnoseModel
     public const NAME = 'schema:usedToDiagnose';
     public const VALUES = ['MedicalConditionModel' => 'Jolicode\SchemaOrg\Type\MedicalConditionModel'];
     public const TYPES = ['MedicalTest' => 'Jolicode\SchemaOrg\Type\MedicalTestModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

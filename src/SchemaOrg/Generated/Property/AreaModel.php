@@ -18,4 +18,6 @@ final class AreaModel
     public const NAME = 'schema:area';
     public const VALUES = ['PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
     public const TYPES = ['BroadcastService' => 'Jolicode\SchemaOrg\Type\BroadcastServiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class CharitableIncorporatedOrganizationModel
     public const DESCRIPTION = 'CharitableIncorporatedOrganization: Non-profit type referring to a Charitable Incorporated Organization (UK).';
     public const LABEL = 'CharitableIncorporatedOrganization';
     public const NAME = 'schema:CharitableIncorporatedOrganization';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

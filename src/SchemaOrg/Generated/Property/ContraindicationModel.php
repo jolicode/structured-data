@@ -18,4 +18,6 @@ final class ContraindicationModel
     public const NAME = 'schema:contraindication';
     public const VALUES = ['MedicalContraindicationModel' => 'Jolicode\SchemaOrg\Type\MedicalContraindicationModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalDevice' => 'Jolicode\SchemaOrg\Type\MedicalDeviceModel', 'MedicalTherapy' => 'Jolicode\SchemaOrg\Type\MedicalTherapyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

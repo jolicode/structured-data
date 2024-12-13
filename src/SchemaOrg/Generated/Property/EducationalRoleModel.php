@@ -18,4 +18,6 @@ final class EducationalRoleModel
     public const NAME = 'schema:educationalRole';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['EducationalAudience' => 'Jolicode\SchemaOrg\Type\EducationalAudienceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class SignificantLinkModel
     public const NAME = 'schema:significantLink';
     public const VALUES = ['URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['WebPage' => 'Jolicode\SchemaOrg\Type\WebPageModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

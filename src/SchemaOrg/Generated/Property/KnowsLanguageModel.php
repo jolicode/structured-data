@@ -18,4 +18,6 @@ final class KnowsLanguageModel
     public const NAME = 'schema:knowsLanguage';
     public const VALUES = ['LanguageModel' => 'Jolicode\SchemaOrg\Type\LanguageModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\SchemaOrg\Type\PersonModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -20,6 +20,8 @@ final class EducationalOccupationalProgramModel
     public const NAME = 'schema:EducationalOccupationalProgram';
     public const PARENTS = ['IntangibleModel' => 'Jolicode\SchemaOrg\Type\IntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2289'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

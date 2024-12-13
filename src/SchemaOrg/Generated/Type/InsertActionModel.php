@@ -20,6 +20,8 @@ final class InsertActionModel
     public const NAME = 'schema:InsertAction';
     public const PARENTS = ['AddActionModel' => 'Jolicode\SchemaOrg\Type\AddActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

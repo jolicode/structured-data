@@ -18,4 +18,6 @@ final class ResultCommentModel
     public const NAME = 'schema:resultComment';
     public const VALUES = ['CommentModel' => 'Jolicode\SchemaOrg\Type\CommentModel'];
     public const TYPES = ['CommentAction' => 'Jolicode\SchemaOrg\Type\CommentActionModel', 'ReplyAction' => 'Jolicode\SchemaOrg\Type\ReplyActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class ProvidesServiceModel
     public const NAME = 'schema:providesService';
     public const VALUES = ['ServiceModel' => 'Jolicode\SchemaOrg\Type\ServiceModel'];
     public const TYPES = ['ServiceChannel' => 'Jolicode\SchemaOrg\Type\ServiceChannelModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

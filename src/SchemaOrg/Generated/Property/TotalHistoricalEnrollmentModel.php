@@ -18,4 +18,6 @@ final class TotalHistoricalEnrollmentModel
     public const NAME = 'schema:totalHistoricalEnrollment';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['Course' => 'Jolicode\SchemaOrg\Type\CourseModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

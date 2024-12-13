@@ -16,4 +16,6 @@ final class WearableSizeGroupExtraShortModel
     public const DESCRIPTION = 'Size group "Extra Short" for wearables.';
     public const LABEL = 'WearableSizeGroupExtraShort';
     public const NAME = 'schema:WearableSizeGroupExtraShort';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

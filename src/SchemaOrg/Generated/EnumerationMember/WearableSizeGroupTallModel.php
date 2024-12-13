@@ -16,4 +16,6 @@ final class WearableSizeGroupTallModel
     public const DESCRIPTION = 'Size group "Tall" for wearables.';
     public const LABEL = 'WearableSizeGroupTall';
     public const NAME = 'schema:WearableSizeGroupTall';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

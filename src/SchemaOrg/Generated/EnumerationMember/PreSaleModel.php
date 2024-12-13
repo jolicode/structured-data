@@ -16,4 +16,6 @@ final class PreSaleModel
     public const DESCRIPTION = 'Indicates that the item is available for ordering and delivery before general availability.';
     public const LABEL = 'PreSale';
     public const NAME = 'schema:PreSale';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

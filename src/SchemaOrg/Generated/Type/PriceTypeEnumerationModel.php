@@ -20,6 +20,8 @@ final class PriceTypeEnumerationModel
     public const NAME = 'schema:PriceTypeEnumeration';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['InvoicePriceModel' => 'EnumerationMember\InvoicePriceModel', 'ListPriceModel' => 'EnumerationMember\ListPriceModel', 'MSRPModel' => 'EnumerationMember\MSRPModel', 'MinimumAdvertisedPriceModel' => 'EnumerationMember\MinimumAdvertisedPriceModel', 'RegularPriceModel' => 'EnumerationMember\RegularPriceModel', 'SRPModel' => 'EnumerationMember\SRPModel', 'SalePriceModel' => 'EnumerationMember\SalePriceModel', 'StrikethroughPriceModel' => 'EnumerationMember\StrikethroughPriceModel'];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2712'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

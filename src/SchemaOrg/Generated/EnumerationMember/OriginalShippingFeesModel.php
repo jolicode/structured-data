@@ -16,4 +16,6 @@ final class OriginalShippingFeesModel
     public const DESCRIPTION = 'Specifies that the customer must pay the original shipping costs when returning a product.';
     public const LABEL = 'OriginalShippingFees';
     public const NAME = 'schema:OriginalShippingFees';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

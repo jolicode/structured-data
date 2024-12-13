@@ -18,4 +18,6 @@ final class ContainsPlaceModel
     public const NAME = 'schema:containsPlace';
     public const VALUES = ['PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
     public const TYPES = ['Place' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class OriginalMediaContextDescriptionModel
     public const NAME = 'schema:originalMediaContextDescription';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MediaReview' => 'Jolicode\SchemaOrg\Type\MediaReviewModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

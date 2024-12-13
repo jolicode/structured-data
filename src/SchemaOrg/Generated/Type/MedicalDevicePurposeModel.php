@@ -20,6 +20,8 @@ final class MedicalDevicePurposeModel
     public const NAME = 'schema:MedicalDevicePurpose';
     public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\SchemaOrg\Type\MedicalEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['DiagnosticModel' => 'EnumerationMember\DiagnosticModel', 'TherapeuticModel' => 'EnumerationMember\TherapeuticModel'];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -18,4 +18,6 @@ final class PartOfEpisodeModel
     public const NAME = 'schema:partOfEpisode';
     public const VALUES = ['EpisodeModel' => 'Jolicode\SchemaOrg\Type\EpisodeModel'];
     public const TYPES = ['Clip' => 'Jolicode\SchemaOrg\Type\ClipModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

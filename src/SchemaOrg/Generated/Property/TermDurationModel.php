@@ -18,4 +18,6 @@ final class TermDurationModel
     public const NAME = 'schema:termDuration';
     public const VALUES = ['DurationModel' => 'Jolicode\SchemaOrg\Type\DurationModel'];
     public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalProgramModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

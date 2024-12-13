@@ -18,4 +18,6 @@ final class HasCategoryCodeModel
     public const NAME = 'schema:hasCategoryCode';
     public const VALUES = ['CategoryCodeModel' => 'Jolicode\SchemaOrg\Type\CategoryCodeModel'];
     public const TYPES = ['CategoryCodeSet' => 'Jolicode\SchemaOrg\Type\CategoryCodeSetModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

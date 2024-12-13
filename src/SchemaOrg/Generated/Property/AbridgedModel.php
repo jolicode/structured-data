@@ -18,4 +18,6 @@ final class AbridgedModel
     public const NAME = 'schema:abridged';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['Book' => 'Jolicode\SchemaOrg\Type\BookModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

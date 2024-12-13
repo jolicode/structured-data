@@ -20,6 +20,8 @@ final class LegislationObjectModel
     public const NAME = 'schema:LegislationObject';
     public const PARENTS = ['LegislationModel' => 'Jolicode\SchemaOrg\Type\LegislationModel', 'MediaObjectModel' => 'Jolicode\SchemaOrg\Type\MediaObjectModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1156'];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

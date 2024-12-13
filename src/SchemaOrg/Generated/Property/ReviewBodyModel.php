@@ -18,4 +18,6 @@ final class ReviewBodyModel
     public const NAME = 'schema:reviewBody';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Review' => 'Jolicode\SchemaOrg\Type\ReviewModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

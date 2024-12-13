@@ -18,4 +18,6 @@ final class ReviewRatingModel
     public const NAME = 'schema:reviewRating';
     public const VALUES = ['RatingModel' => 'Jolicode\SchemaOrg\Type\RatingModel'];
     public const TYPES = ['Review' => 'Jolicode\SchemaOrg\Type\ReviewModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

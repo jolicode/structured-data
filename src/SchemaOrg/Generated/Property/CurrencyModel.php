@@ -18,4 +18,6 @@ final class CurrencyModel
     public const NAME = 'schema:currency';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DatedMoneySpecification' => 'Jolicode\SchemaOrg\Type\DatedMoneySpecificationModel', 'ExchangeRateSpecification' => 'Jolicode\SchemaOrg\Type\ExchangeRateSpecificationModel', 'LoanOrCredit' => 'Jolicode\SchemaOrg\Type\LoanOrCreditModel', 'MonetaryAmountDistribution' => 'Jolicode\SchemaOrg\Type\MonetaryAmountDistributionModel', 'MonetaryAmount' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

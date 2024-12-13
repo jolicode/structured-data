@@ -20,6 +20,8 @@ final class GovernmentPermitModel
     public const NAME = 'schema:GovernmentPermit';
     public const PARENTS = ['PermitModel' => 'Jolicode\SchemaOrg\Type\PermitModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

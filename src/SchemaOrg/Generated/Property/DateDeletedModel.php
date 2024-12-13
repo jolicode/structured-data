@@ -18,4 +18,6 @@ final class DateDeletedModel
     public const NAME = 'schema:dateDeleted';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['DataFeedItem' => 'Jolicode\SchemaOrg\Type\DataFeedItemModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

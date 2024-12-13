@@ -18,4 +18,6 @@ final class HomeTeamModel
     public const NAME = 'schema:homeTeam';
     public const VALUES = ['PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel', 'SportsTeamModel' => 'Jolicode\SchemaOrg\Type\SportsTeamModel'];
     public const TYPES = ['SportsEvent' => 'Jolicode\SchemaOrg\Type\SportsEventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

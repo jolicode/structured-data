@@ -16,4 +16,6 @@ final class EndocrineModel
     public const DESCRIPTION = 'A specific branch of medical science that pertains to diagnosis and treatment of disorders of endocrine glands and their secretions.';
     public const LABEL = 'Endocrine';
     public const NAME = 'schema:Endocrine';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

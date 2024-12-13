@@ -18,4 +18,6 @@ final class MeasurementMethodModel
     public const NAME = 'schema:measurementMethod';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\SchemaOrg\Type\DefinedTermModel', 'MeasurementMethodEnumModel' => 'Jolicode\SchemaOrg\Type\MeasurementMethodEnumModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['DataCatalog' => 'Jolicode\SchemaOrg\Type\DataCatalogModel', 'DataDownload' => 'Jolicode\SchemaOrg\Type\DataDownloadModel', 'Dataset' => 'Jolicode\SchemaOrg\Type\DatasetModel', 'Observation' => 'Jolicode\SchemaOrg\Type\ObservationModel', 'PropertyValue' => 'Jolicode\SchemaOrg\Type\PropertyValueModel', 'StatisticalVariable' => 'Jolicode\SchemaOrg\Type\StatisticalVariableModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

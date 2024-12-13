@@ -18,4 +18,6 @@ final class IsVariantOfModel
     public const NAME = 'schema:isVariantOf';
     public const VALUES = ['ProductGroupModel' => 'Jolicode\SchemaOrg\Type\ProductGroupModel', 'ProductModelModel' => 'Jolicode\SchemaOrg\Type\ProductModelModel'];
     public const TYPES = ['Product' => 'Jolicode\SchemaOrg\Type\ProductModel', 'ProductModel' => 'Jolicode\SchemaOrg\Type\ProductModelModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

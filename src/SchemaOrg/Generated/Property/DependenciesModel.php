@@ -18,4 +18,6 @@ final class DependenciesModel
     public const NAME = 'schema:dependencies';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['TechArticle' => 'Jolicode\SchemaOrg\Type\TechArticleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

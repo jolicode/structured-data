@@ -20,6 +20,8 @@ final class PhysicalActivityCategoryModel
     public const NAME = 'schema:PhysicalActivityCategory';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['AerobicActivityModel' => 'EnumerationMember\AerobicActivityModel', 'AnaerobicActivityModel' => 'EnumerationMember\AnaerobicActivityModel', 'BalanceModel' => 'EnumerationMember\BalanceModel', 'FlexibilityModel' => 'EnumerationMember\FlexibilityModel', 'LeisureTimeActivityModel' => 'EnumerationMember\LeisureTimeActivityModel', 'OccupationalActivityModel' => 'EnumerationMember\OccupationalActivityModel', 'StrengthTrainingModel' => 'EnumerationMember\StrengthTrainingModel'];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

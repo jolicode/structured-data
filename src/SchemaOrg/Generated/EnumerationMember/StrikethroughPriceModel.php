@@ -16,4 +16,6 @@ final class StrikethroughPriceModel
     public const DESCRIPTION = 'Represents the strikethrough price (the previous advertised price) of an offered product.';
     public const LABEL = 'StrikethroughPrice';
     public const NAME = 'schema:StrikethroughPrice';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

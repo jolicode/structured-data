@@ -16,4 +16,6 @@ final class MobileWebPlatformModel
     public const DESCRIPTION = 'Represents the broad notion of \'mobile\' browsers as a Web Platform.';
     public const LABEL = 'MobileWebPlatform';
     public const NAME = 'schema:MobileWebPlatform';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

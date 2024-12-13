@@ -16,4 +16,6 @@ final class PaymentDeclinedModel
     public const DESCRIPTION = 'The payee received the payment, but it was declined for some reason.';
     public const LABEL = 'PaymentDeclined';
     public const NAME = 'schema:PaymentDeclined';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

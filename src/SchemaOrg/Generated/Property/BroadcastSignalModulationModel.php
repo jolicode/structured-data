@@ -18,4 +18,6 @@ final class BroadcastSignalModulationModel
     public const NAME = 'schema:broadcastSignalModulation';
     public const VALUES = ['QualitativeValueModel' => 'Jolicode\SchemaOrg\Type\QualitativeValueModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['BroadcastFrequencySpecification' => 'Jolicode\SchemaOrg\Type\BroadcastFrequencySpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

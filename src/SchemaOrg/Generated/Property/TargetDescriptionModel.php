@@ -18,4 +18,6 @@ final class TargetDescriptionModel
     public const NAME = 'schema:targetDescription';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['AlignmentObject' => 'Jolicode\SchemaOrg\Type\AlignmentObjectModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

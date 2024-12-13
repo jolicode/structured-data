@@ -18,4 +18,6 @@ final class GameServerModel
     public const NAME = 'schema:gameServer';
     public const VALUES = ['GameServerModel' => 'Jolicode\SchemaOrg\Type\GameServerModel'];
     public const TYPES = ['VideoGame' => 'Jolicode\SchemaOrg\Type\VideoGameModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -13,9 +13,11 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class NsnModel
 {
-    public const DESCRIPTION = 'Indicates the [NATO stock number](https://en.wikipedia.org/wiki/NATO_Stock_Number) (nsn) of a [[Product]]. ';
+    public const DESCRIPTION = 'Indicates the [NATO stock number](https://en.wikipedia.org/wiki/NATO_Stock_Number) (nsn) of a [[Product]].';
     public const LABEL = 'nsn';
     public const NAME = 'schema:nsn';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Product' => 'Jolicode\SchemaOrg\Type\ProductModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

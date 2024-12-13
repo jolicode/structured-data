@@ -16,4 +16,6 @@ final class EmergencyModel
     public const DESCRIPTION = 'A specific branch of medical science that deals with the evaluation and initial treatment of medical conditions caused by trauma or sudden illness.';
     public const LABEL = 'Emergency';
     public const NAME = 'schema:Emergency';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

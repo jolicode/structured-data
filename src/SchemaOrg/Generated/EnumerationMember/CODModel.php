@@ -16,4 +16,6 @@ final class CODModel
     public const DESCRIPTION = 'Cash on Delivery (COD) payment, equivalent to <code>http://purl.org/goodrelations/v1#COD</code>.';
     public const LABEL = 'COD';
     public const NAME = 'schema:COD';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

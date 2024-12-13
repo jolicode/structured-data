@@ -18,4 +18,6 @@ final class InCodeSetModel
     public const NAME = 'schema:inCodeSet';
     public const VALUES = ['CategoryCodeSetModel' => 'Jolicode\SchemaOrg\Type\CategoryCodeSetModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['CategoryCode' => 'Jolicode\SchemaOrg\Type\CategoryCodeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

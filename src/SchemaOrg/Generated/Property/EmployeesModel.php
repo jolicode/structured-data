@@ -18,4 +18,6 @@ final class EmployeesModel
     public const NAME = 'schema:employees';
     public const VALUES = ['PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

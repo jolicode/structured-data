@@ -18,4 +18,6 @@ final class PreparationModel
     public const NAME = 'schema:preparation';
     public const VALUES = ['MedicalEntityModel' => 'Jolicode\SchemaOrg\Type\MedicalEntityModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalProcedure' => 'Jolicode\SchemaOrg\Type\MedicalProcedureModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

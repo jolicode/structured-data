@@ -18,4 +18,6 @@ final class PartySizeModel
     public const NAME = 'schema:partySize';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel', 'QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['FoodEstablishmentReservation' => 'Jolicode\SchemaOrg\Type\FoodEstablishmentReservationModel', 'TaxiReservation' => 'Jolicode\SchemaOrg\Type\TaxiReservationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -20,6 +20,8 @@ final class PreOrderActionModel
     public const NAME = 'schema:PreOrderAction';
     public const PARENTS = ['TradeActionModel' => 'Jolicode\SchemaOrg\Type\TradeActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1125'];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

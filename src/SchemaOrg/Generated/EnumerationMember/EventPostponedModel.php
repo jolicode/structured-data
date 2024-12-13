@@ -16,4 +16,6 @@ final class EventPostponedModel
     public const DESCRIPTION = 'The event has been postponed and no new date has been set. The event\'s previousStartDate should be set.';
     public const LABEL = 'EventPostponed';
     public const NAME = 'schema:EventPostponed';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class ModelModel
     public const NAME = 'schema:model';
     public const VALUES = ['ProductModelModel' => 'Jolicode\SchemaOrg\Type\ProductModelModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Product' => 'Jolicode\SchemaOrg\Type\ProductModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

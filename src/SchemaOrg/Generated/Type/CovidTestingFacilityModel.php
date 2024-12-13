@@ -18,12 +18,13 @@ final class CovidTestingFacilityModel
     public const DESCRIPTION = 'A CovidTestingFacility is a [[MedicalClinic]] where testing for the COVID-19 Coronavirus
       disease is available. If the facility is being made available from an established [[Pharmacy]], [[Hotel]], or other
       non-medical organization, multiple types can be listed. This makes it easier to re-use existing schema.org information
-      about that place, e.g. contact info, address, opening hours. Note that in an emergency, such information may not always be reliable.
-      ';
+      about that place, e.g. contact info, address, opening hours. Note that in an emergency, such information may not always be reliable.';
     public const LABEL = 'CovidTestingFacility';
     public const NAME = 'schema:CovidTestingFacility';
     public const PARENTS = ['MedicalClinicModel' => 'Jolicode\SchemaOrg\Type\MedicalClinicModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2490'];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

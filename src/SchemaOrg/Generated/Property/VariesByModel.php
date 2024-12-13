@@ -18,4 +18,6 @@ final class VariesByModel
     public const NAME = 'schema:variesBy';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\SchemaOrg\Type\DefinedTermModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['ProductGroup' => 'Jolicode\SchemaOrg\Type\ProductGroupModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

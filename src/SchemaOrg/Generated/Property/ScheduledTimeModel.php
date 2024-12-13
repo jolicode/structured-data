@@ -18,4 +18,6 @@ final class ScheduledTimeModel
     public const NAME = 'schema:scheduledTime';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['PlanAction' => 'Jolicode\SchemaOrg\Type\PlanActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

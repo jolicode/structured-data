@@ -16,4 +16,6 @@ final class OrderPickupAvailableModel
     public const DESCRIPTION = 'OrderStatus representing availability of an order for pickup.';
     public const LABEL = 'OrderPickupAvailable';
     public const NAME = 'schema:OrderPickupAvailable';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

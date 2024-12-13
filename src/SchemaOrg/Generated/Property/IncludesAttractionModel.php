@@ -18,4 +18,6 @@ final class IncludesAttractionModel
     public const NAME = 'schema:includesAttraction';
     public const VALUES = ['TouristAttractionModel' => 'Jolicode\SchemaOrg\Type\TouristAttractionModel'];
     public const TYPES = ['TouristDestination' => 'Jolicode\SchemaOrg\Type\TouristDestinationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

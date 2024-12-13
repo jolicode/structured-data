@@ -13,7 +13,9 @@ namespace Jolicode\SchemaOrg\EnumerationMember;
 
 final class OnlineEventAttendanceModeModel
 {
-    public const DESCRIPTION = 'OnlineEventAttendanceMode - an event that is primarily conducted online. ';
+    public const DESCRIPTION = 'OnlineEventAttendanceMode - an event that is primarily conducted online.';
     public const LABEL = 'OnlineEventAttendanceMode';
     public const NAME = 'schema:OnlineEventAttendanceMode';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class DateSentModel
     public const NAME = 'schema:dateSent';
     public const VALUES = ['DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['Message' => 'Jolicode\SchemaOrg\Type\MessageModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

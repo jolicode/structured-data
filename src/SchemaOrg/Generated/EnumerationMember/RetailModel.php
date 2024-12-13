@@ -16,4 +16,6 @@ final class RetailModel
     public const DESCRIPTION = 'The drug\'s cost represents the retail cost of the drug.';
     public const LABEL = 'Retail';
     public const NAME = 'schema:Retail';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

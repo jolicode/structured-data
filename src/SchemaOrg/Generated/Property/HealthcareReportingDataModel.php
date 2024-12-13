@@ -18,4 +18,6 @@ final class HealthcareReportingDataModel
     public const NAME = 'schema:healthcareReportingData';
     public const VALUES = ['CDCPMDRecordModel' => 'Jolicode\SchemaOrg\Type\CDCPMDRecordModel', 'DatasetModel' => 'Jolicode\SchemaOrg\Type\DatasetModel'];
     public const TYPES = ['Hospital' => 'Jolicode\SchemaOrg\Type\HospitalModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

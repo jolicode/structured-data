@@ -16,4 +16,6 @@ final class EUEnergyEfficiencyCategoryEModel
     public const DESCRIPTION = 'Represents EU Energy Efficiency Class E as defined in EU energy labeling regulations.';
     public const LABEL = 'EUEnergyEfficiencyCategoryE';
     public const NAME = 'schema:EUEnergyEfficiencyCategoryE';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

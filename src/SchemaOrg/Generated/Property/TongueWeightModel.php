@@ -18,4 +18,6 @@ final class TongueWeightModel
     public const NAME = 'schema:tongueWeight';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['Vehicle' => 'Jolicode\SchemaOrg\Type\VehicleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

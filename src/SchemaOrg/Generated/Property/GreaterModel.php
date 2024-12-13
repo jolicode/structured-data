@@ -18,4 +18,6 @@ final class GreaterModel
     public const NAME = 'schema:greater';
     public const VALUES = ['QualitativeValueModel' => 'Jolicode\SchemaOrg\Type\QualitativeValueModel'];
     public const TYPES = ['QualitativeValue' => 'Jolicode\SchemaOrg\Type\QualitativeValueModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class UsageOrScheduleHealthAspectModel
     public const DESCRIPTION = 'Content about how, when, frequency and dosage of a topic.';
     public const LABEL = 'UsageOrScheduleHealthAspect';
     public const NAME = 'schema:UsageOrScheduleHealthAspect';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

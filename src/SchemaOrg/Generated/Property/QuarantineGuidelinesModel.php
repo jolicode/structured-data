@@ -18,4 +18,6 @@ final class QuarantineGuidelinesModel
     public const NAME = 'schema:quarantineGuidelines';
     public const VALUES = ['URLModel' => 'Jolicode\SchemaOrg\Type\URLModel', 'WebContentModel' => 'Jolicode\SchemaOrg\Type\WebContentModel'];
     public const TYPES = ['SpecialAnnouncement' => 'Jolicode\SchemaOrg\Type\SpecialAnnouncementModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

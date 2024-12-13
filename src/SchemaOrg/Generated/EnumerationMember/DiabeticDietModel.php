@@ -16,4 +16,6 @@ final class DiabeticDietModel
     public const DESCRIPTION = 'A diet appropriate for people with diabetes.';
     public const LABEL = 'DiabeticDiet';
     public const NAME = 'schema:DiabeticDiet';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

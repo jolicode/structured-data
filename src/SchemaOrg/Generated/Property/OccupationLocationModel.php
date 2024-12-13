@@ -13,9 +13,11 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class OccupationLocationModel
 {
-    public const DESCRIPTION = ' The region/country for which this occupational description is appropriate. Note that educational requirements and qualifications can vary between jurisdictions.';
+    public const DESCRIPTION = 'The region/country for which this occupational description is appropriate. Note that educational requirements and qualifications can vary between jurisdictions.';
     public const LABEL = 'occupationLocation';
     public const NAME = 'schema:occupationLocation';
     public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\SchemaOrg\Type\AdministrativeAreaModel'];
     public const TYPES = ['Occupation' => 'Jolicode\SchemaOrg\Type\OccupationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

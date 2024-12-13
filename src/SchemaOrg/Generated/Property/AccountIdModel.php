@@ -18,4 +18,6 @@ final class AccountIdModel
     public const NAME = 'schema:accountId';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Invoice' => 'Jolicode\SchemaOrg\Type\InvoiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

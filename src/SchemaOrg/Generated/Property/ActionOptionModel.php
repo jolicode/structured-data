@@ -18,4 +18,6 @@ final class ActionOptionModel
     public const NAME = 'schema:actionOption';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'ThingModel' => 'Jolicode\SchemaOrg\Type\ThingModel'];
     public const TYPES = ['ChooseAction' => 'Jolicode\SchemaOrg\Type\ChooseActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

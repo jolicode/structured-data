@@ -18,4 +18,6 @@ final class ProductGroupIDModel
     public const NAME = 'schema:productGroupID';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['ProductGroup' => 'Jolicode\SchemaOrg\Type\ProductGroupModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class SpeechPathologyModel
     public const DESCRIPTION = 'The scientific study and treatment of defects, disorders, and malfunctions of speech and voice, as stuttering, lisping, or lalling, and of language disturbances, as aphasia or delayed language acquisition.';
     public const LABEL = 'SpeechPathology';
     public const NAME = 'schema:SpeechPathology';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

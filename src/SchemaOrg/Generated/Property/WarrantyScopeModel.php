@@ -18,4 +18,6 @@ final class WarrantyScopeModel
     public const NAME = 'schema:warrantyScope';
     public const VALUES = ['WarrantyScopeModel' => 'Jolicode\SchemaOrg\Type\WarrantyScopeModel'];
     public const TYPES = ['WarrantyPromise' => 'Jolicode\SchemaOrg\Type\WarrantyPromiseModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

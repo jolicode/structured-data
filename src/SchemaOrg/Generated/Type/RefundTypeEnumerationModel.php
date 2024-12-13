@@ -20,6 +20,8 @@ final class RefundTypeEnumerationModel
     public const NAME = 'schema:RefundTypeEnumeration';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['ExchangeRefundModel' => 'EnumerationMember\ExchangeRefundModel', 'FullRefundModel' => 'EnumerationMember\FullRefundModel', 'StoreCreditRefundModel' => 'EnumerationMember\StoreCreditRefundModel'];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2288'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

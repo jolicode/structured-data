@@ -18,4 +18,6 @@ final class EndorsersModel
     public const NAME = 'schema:endorsers';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['Diet' => 'Jolicode\SchemaOrg\Type\DietModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

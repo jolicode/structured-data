@@ -18,4 +18,6 @@ final class AssemblyVersionModel
     public const NAME = 'schema:assemblyVersion';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['APIReference' => 'Jolicode\SchemaOrg\Type\APIReferenceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

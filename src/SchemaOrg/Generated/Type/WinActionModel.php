@@ -20,6 +20,8 @@ final class WinActionModel
     public const NAME = 'schema:WinAction';
     public const PARENTS = ['AchieveActionModel' => 'Jolicode\SchemaOrg\Type\AchieveActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

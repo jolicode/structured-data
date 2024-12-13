@@ -18,4 +18,6 @@ final class AudioModel
     public const NAME = 'schema:audio';
     public const VALUES = ['AudioObjectModel' => 'Jolicode\SchemaOrg\Type\AudioObjectModel', 'ClipModel' => 'Jolicode\SchemaOrg\Type\ClipModel', 'MusicRecordingModel' => 'Jolicode\SchemaOrg\Type\MusicRecordingModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

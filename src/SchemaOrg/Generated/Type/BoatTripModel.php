@@ -20,6 +20,8 @@ final class BoatTripModel
     public const NAME = 'schema:BoatTrip';
     public const PARENTS = ['TripModel' => 'Jolicode\SchemaOrg\Type\TripModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1755'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -18,4 +18,6 @@ final class ContentUrlModel
     public const NAME = 'schema:contentUrl';
     public const VALUES = ['URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['MediaObject' => 'Jolicode\SchemaOrg\Type\MediaObjectModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

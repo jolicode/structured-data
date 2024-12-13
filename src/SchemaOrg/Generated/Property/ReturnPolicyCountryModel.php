@@ -18,4 +18,6 @@ final class ReturnPolicyCountryModel
     public const NAME = 'schema:returnPolicyCountry';
     public const VALUES = ['CountryModel' => 'Jolicode\SchemaOrg\Type\CountryModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class GracePeriodModel
     public const NAME = 'schema:gracePeriod';
     public const VALUES = ['DurationModel' => 'Jolicode\SchemaOrg\Type\DurationModel'];
     public const TYPES = ['LoanOrCredit' => 'Jolicode\SchemaOrg\Type\LoanOrCreditModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

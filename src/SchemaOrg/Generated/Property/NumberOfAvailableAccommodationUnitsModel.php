@@ -18,4 +18,6 @@ final class NumberOfAvailableAccommodationUnitsModel
     public const NAME = 'schema:numberOfAvailableAccommodationUnits';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['ApartmentComplex' => 'Jolicode\SchemaOrg\Type\ApartmentComplexModel', 'FloorPlan' => 'Jolicode\SchemaOrg\Type\FloorPlanModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

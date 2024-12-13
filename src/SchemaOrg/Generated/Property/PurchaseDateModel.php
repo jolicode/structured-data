@@ -18,4 +18,6 @@ final class PurchaseDateModel
     public const NAME = 'schema:purchaseDate';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel'];
     public const TYPES = ['Product' => 'Jolicode\SchemaOrg\Type\ProductModel', 'Vehicle' => 'Jolicode\SchemaOrg\Type\VehicleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

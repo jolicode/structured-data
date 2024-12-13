@@ -18,4 +18,6 @@ final class StartOffsetModel
     public const NAME = 'schema:startOffset';
     public const VALUES = ['HyperTocEntryModel' => 'Jolicode\SchemaOrg\Type\HyperTocEntryModel', 'NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['Clip' => 'Jolicode\SchemaOrg\Type\ClipModel', 'SeekToAction' => 'Jolicode\SchemaOrg\Type\SeekToActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

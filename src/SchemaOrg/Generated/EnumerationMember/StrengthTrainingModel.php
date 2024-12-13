@@ -16,4 +16,6 @@ final class StrengthTrainingModel
     public const DESCRIPTION = 'Physical activity that is engaged in to improve muscle and bone strength. Also referred to as resistance training.';
     public const LABEL = 'StrengthTraining';
     public const NAME = 'schema:StrengthTraining';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

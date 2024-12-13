@@ -20,6 +20,8 @@ final class RejectActionModel
     public const NAME = 'schema:RejectAction';
     public const PARENTS = ['AllocateActionModel' => 'Jolicode\SchemaOrg\Type\AllocateActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

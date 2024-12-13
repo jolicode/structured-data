@@ -20,6 +20,8 @@ final class CourseModel
     public const NAME = 'schema:Course';
     public const PARENTS = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'LearningResourceModel' => 'Jolicode\SchemaOrg\Type\LearningResourceModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

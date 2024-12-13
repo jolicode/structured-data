@@ -18,4 +18,6 @@ final class ItemDefectReturnShippingFeesAmountModel
     public const NAME = 'schema:itemDefectReturnShippingFeesAmount';
     public const VALUES = ['MonetaryAmountModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel'];
     public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

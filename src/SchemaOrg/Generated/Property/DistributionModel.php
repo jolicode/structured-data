@@ -18,4 +18,6 @@ final class DistributionModel
     public const NAME = 'schema:distribution';
     public const VALUES = ['DataDownloadModel' => 'Jolicode\SchemaOrg\Type\DataDownloadModel'];
     public const TYPES = ['Dataset' => 'Jolicode\SchemaOrg\Type\DatasetModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

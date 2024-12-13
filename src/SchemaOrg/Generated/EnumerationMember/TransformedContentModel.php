@@ -21,8 +21,9 @@ For an [[ImageObject]] to be \'transformed content\': Adding or deleting visual 
 
 For an [[ImageObject]] with embedded text to be \'transformed content\': Adding or deleting visual elements to give the image a different meaning with the intention to mislead.
 
-For an [[AudioObject]] to be \'transformed content\': Part or all of the audio has been manipulated to alter the words or sounds, or the audio has been synthetically generated, such as to create a sound-alike voice.
-';
+For an [[AudioObject]] to be \'transformed content\': Part or all of the audio has been manipulated to alter the words or sounds, or the audio has been synthetically generated, such as to create a sound-alike voice.';
     public const LABEL = 'TransformedContent';
     public const NAME = 'schema:TransformedContent';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

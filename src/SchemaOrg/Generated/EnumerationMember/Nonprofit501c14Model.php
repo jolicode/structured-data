@@ -16,4 +16,6 @@ final class Nonprofit501c14Model
     public const DESCRIPTION = 'Nonprofit501c14: Non-profit type referring to State-Chartered Credit Unions, Mutual Reserve Funds.';
     public const LABEL = 'Nonprofit501c14';
     public const NAME = 'schema:Nonprofit501c14';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

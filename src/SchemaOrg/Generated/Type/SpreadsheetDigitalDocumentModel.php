@@ -20,6 +20,8 @@ final class SpreadsheetDigitalDocumentModel
     public const NAME = 'schema:SpreadsheetDigitalDocument';
     public const PARENTS = ['DigitalDocumentModel' => 'Jolicode\SchemaOrg\Type\DigitalDocumentModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

@@ -18,4 +18,6 @@ final class SignDetectedModel
     public const NAME = 'schema:signDetected';
     public const VALUES = ['MedicalSignModel' => 'Jolicode\SchemaOrg\Type\MedicalSignModel'];
     public const TYPES = ['MedicalTest' => 'Jolicode\SchemaOrg\Type\MedicalTestModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

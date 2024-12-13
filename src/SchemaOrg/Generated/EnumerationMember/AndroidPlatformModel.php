@@ -16,4 +16,6 @@ final class AndroidPlatformModel
     public const DESCRIPTION = 'Represents the broad notion of Android-based operating systems.';
     public const LABEL = 'AndroidPlatform';
     public const NAME = 'schema:AndroidPlatform';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

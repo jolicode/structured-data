@@ -20,6 +20,8 @@ final class SolveMathActionModel
     public const NAME = 'schema:SolveMathAction';
     public const PARENTS = ['ActionModel' => 'Jolicode\SchemaOrg\Type\ActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2740'];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

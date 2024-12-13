@@ -20,6 +20,8 @@ final class TheaterGroupModel
     public const NAME = 'schema:TheaterGroup';
     public const PARENTS = ['PerformingGroupModel' => 'Jolicode\SchemaOrg\Type\PerformingGroupModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

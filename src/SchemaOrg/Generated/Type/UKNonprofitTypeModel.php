@@ -20,6 +20,8 @@ final class UKNonprofitTypeModel
     public const NAME = 'schema:UKNonprofitType';
     public const PARENTS = ['NonprofitTypeModel' => 'Jolicode\SchemaOrg\Type\NonprofitTypeModel'];
     public const ENUMERATION_MEMBERS = ['CharitableIncorporatedOrganizationModel' => 'EnumerationMember\CharitableIncorporatedOrganizationModel', 'LimitedByGuaranteeCharityModel' => 'EnumerationMember\LimitedByGuaranteeCharityModel', 'UKTrustModel' => 'EnumerationMember\UKTrustModel', 'UnincorporatedAssociationCharityModel' => 'EnumerationMember\UnincorporatedAssociationCharityModel'];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2543'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

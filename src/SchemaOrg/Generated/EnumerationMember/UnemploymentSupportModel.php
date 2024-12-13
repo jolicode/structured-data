@@ -16,4 +16,6 @@ final class UnemploymentSupportModel
     public const DESCRIPTION = 'UnemploymentSupport: this is a benefit for unemployment support.';
     public const LABEL = 'UnemploymentSupport';
     public const NAME = 'schema:UnemploymentSupport';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

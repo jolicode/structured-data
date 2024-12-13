@@ -18,4 +18,6 @@ final class HasDeliveryMethodModel
     public const NAME = 'schema:hasDeliveryMethod';
     public const VALUES = ['DeliveryMethodModel' => 'Jolicode\SchemaOrg\Type\DeliveryMethodModel'];
     public const TYPES = ['DeliveryEvent' => 'Jolicode\SchemaOrg\Type\DeliveryEventModel', 'ParcelDelivery' => 'Jolicode\SchemaOrg\Type\ParcelDeliveryModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

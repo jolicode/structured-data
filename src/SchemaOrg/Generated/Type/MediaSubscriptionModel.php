@@ -20,6 +20,8 @@ final class MediaSubscriptionModel
     public const NAME = 'schema:MediaSubscription';
     public const PARENTS = ['IntangibleModel' => 'Jolicode\SchemaOrg\Type\IntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1741'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

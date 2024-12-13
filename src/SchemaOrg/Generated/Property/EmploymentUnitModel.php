@@ -18,4 +18,6 @@ final class EmploymentUnitModel
     public const NAME = 'schema:employmentUnit';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
     public const TYPES = ['JobPosting' => 'Jolicode\SchemaOrg\Type\JobPostingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class OrderProblemModel
     public const DESCRIPTION = 'OrderStatus representing that there is a problem with the order.';
     public const LABEL = 'OrderProblem';
     public const NAME = 'schema:OrderProblem';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

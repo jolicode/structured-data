@@ -20,4 +20,6 @@ final class VariantCoverModel
     public const NAME = 'schema:variantCover';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['ComicIssue' => 'Jolicode\SchemaOrg\Type\ComicIssueModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

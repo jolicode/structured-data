@@ -18,4 +18,6 @@ final class ApplicableLocationModel
     public const NAME = 'schema:applicableLocation';
     public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\SchemaOrg\Type\AdministrativeAreaModel'];
     public const TYPES = ['DrugCost' => 'Jolicode\SchemaOrg\Type\DrugCostModel', 'DrugLegalStatus' => 'Jolicode\SchemaOrg\Type\DrugLegalStatusModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

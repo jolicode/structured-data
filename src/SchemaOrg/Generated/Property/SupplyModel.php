@@ -18,4 +18,6 @@ final class SupplyModel
     public const NAME = 'schema:supply';
     public const VALUES = ['HowToSupplyModel' => 'Jolicode\SchemaOrg\Type\HowToSupplyModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['HowToDirection' => 'Jolicode\SchemaOrg\Type\HowToDirectionModel', 'HowTo' => 'Jolicode\SchemaOrg\Type\HowToModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class ActiveActionStatusModel
     public const DESCRIPTION = 'An in-progress action (e.g., while watching the movie, or driving to a location).';
     public const LABEL = 'ActiveActionStatus';
     public const NAME = 'schema:ActiveActionStatus';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class ReservationIdModel
     public const NAME = 'schema:reservationId';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Reservation' => 'Jolicode\SchemaOrg\Type\ReservationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class InteractionTypeModel
     public const NAME = 'schema:interactionType';
     public const VALUES = ['ActionModel' => 'Jolicode\SchemaOrg\Type\ActionModel'];
     public const TYPES = ['InteractionCounter' => 'Jolicode\SchemaOrg\Type\InteractionCounterModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

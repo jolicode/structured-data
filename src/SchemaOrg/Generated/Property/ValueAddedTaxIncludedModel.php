@@ -18,4 +18,6 @@ final class ValueAddedTaxIncludedModel
     public const NAME = 'schema:valueAddedTaxIncluded';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['PriceSpecification' => 'Jolicode\SchemaOrg\Type\PriceSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

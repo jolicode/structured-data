@@ -20,6 +20,8 @@ final class MolecularEntityModel
     public const NAME = 'schema:MolecularEntity';
     public const PARENTS = ['BioChemEntityModel' => 'Jolicode\SchemaOrg\Type\BioChemEntityModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['http://bioschemas.org'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

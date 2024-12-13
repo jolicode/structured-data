@@ -18,4 +18,6 @@ final class TissueSampleModel
     public const NAME = 'schema:tissueSample';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['PathologyTest' => 'Jolicode\SchemaOrg\Type\PathologyTestModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

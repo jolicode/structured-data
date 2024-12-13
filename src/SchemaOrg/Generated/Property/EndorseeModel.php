@@ -18,4 +18,6 @@ final class EndorseeModel
     public const NAME = 'schema:endorsee';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['EndorseAction' => 'Jolicode\SchemaOrg\Type\EndorseActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

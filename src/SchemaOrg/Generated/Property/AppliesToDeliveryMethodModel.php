@@ -18,4 +18,6 @@ final class AppliesToDeliveryMethodModel
     public const NAME = 'schema:appliesToDeliveryMethod';
     public const VALUES = ['DeliveryMethodModel' => 'Jolicode\SchemaOrg\Type\DeliveryMethodModel'];
     public const TYPES = ['DeliveryChargeSpecification' => 'Jolicode\SchemaOrg\Type\DeliveryChargeSpecificationModel', 'PaymentChargeSpecification' => 'Jolicode\SchemaOrg\Type\PaymentChargeSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

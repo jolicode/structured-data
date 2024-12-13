@@ -18,4 +18,6 @@ final class ResultModel
     public const NAME = 'schema:result';
     public const VALUES = ['ThingModel' => 'Jolicode\SchemaOrg\Type\ThingModel'];
     public const TYPES = ['Action' => 'Jolicode\SchemaOrg\Type\ActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

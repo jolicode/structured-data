@@ -18,4 +18,6 @@ final class EnergyEfficiencyScaleMinModel
     public const NAME = 'schema:energyEfficiencyScaleMin';
     public const VALUES = ['EUEnergyEfficiencyEnumerationModel' => 'Jolicode\SchemaOrg\Type\EUEnergyEfficiencyEnumerationModel'];
     public const TYPES = ['EnergyConsumptionDetails' => 'Jolicode\SchemaOrg\Type\EnergyConsumptionDetailsModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

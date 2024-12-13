@@ -16,4 +16,6 @@ final class WearableSizeSystemJPModel
     public const DESCRIPTION = 'Japanese size system for wearables.';
     public const LABEL = 'WearableSizeSystemJP';
     public const NAME = 'schema:WearableSizeSystemJP';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

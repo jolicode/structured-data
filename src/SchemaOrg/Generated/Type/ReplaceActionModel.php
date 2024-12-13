@@ -20,6 +20,8 @@ final class ReplaceActionModel
     public const NAME = 'schema:ReplaceAction';
     public const PARENTS = ['UpdateActionModel' => 'Jolicode\SchemaOrg\Type\UpdateActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

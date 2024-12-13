@@ -16,4 +16,6 @@ final class ScreeningHealthAspectModel
     public const DESCRIPTION = 'Content about how to screen or further filter a topic.';
     public const LABEL = 'ScreeningHealthAspect';
     public const NAME = 'schema:ScreeningHealthAspect';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

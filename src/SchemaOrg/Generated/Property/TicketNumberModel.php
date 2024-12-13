@@ -18,4 +18,6 @@ final class TicketNumberModel
     public const NAME = 'schema:ticketNumber';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Ticket' => 'Jolicode\SchemaOrg\Type\TicketModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

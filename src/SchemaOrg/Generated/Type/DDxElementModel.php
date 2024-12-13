@@ -20,6 +20,8 @@ final class DDxElementModel
     public const NAME = 'schema:DDxElement';
     public const PARENTS = ['MedicalIntangibleModel' => 'Jolicode\SchemaOrg\Type\MedicalIntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

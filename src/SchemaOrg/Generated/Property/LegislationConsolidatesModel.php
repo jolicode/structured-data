@@ -18,4 +18,6 @@ final class LegislationConsolidatesModel
     public const NAME = 'schema:legislationConsolidates';
     public const VALUES = ['LegislationModel' => 'Jolicode\SchemaOrg\Type\LegislationModel'];
     public const TYPES = ['Legislation' => 'Jolicode\SchemaOrg\Type\LegislationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

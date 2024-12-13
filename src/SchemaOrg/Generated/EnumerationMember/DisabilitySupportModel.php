@@ -16,4 +16,6 @@ final class DisabilitySupportModel
     public const DESCRIPTION = 'DisabilitySupport: this is a benefit for disability support.';
     public const LABEL = 'DisabilitySupport';
     public const NAME = 'schema:DisabilitySupport';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

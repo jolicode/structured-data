@@ -18,4 +18,6 @@ final class AssociatedDiseaseModel
     public const NAME = 'schema:associatedDisease';
     public const VALUES = ['MedicalConditionModel' => 'Jolicode\SchemaOrg\Type\MedicalConditionModel', 'PropertyValueModel' => 'Jolicode\SchemaOrg\Type\PropertyValueModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['BioChemEntity' => 'Jolicode\SchemaOrg\Type\BioChemEntityModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

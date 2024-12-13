@@ -18,4 +18,6 @@ final class CostPerUnitModel
     public const NAME = 'schema:costPerUnit';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'QualitativeValueModel' => 'Jolicode\SchemaOrg\Type\QualitativeValueModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DrugCost' => 'Jolicode\SchemaOrg\Type\DrugCostModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

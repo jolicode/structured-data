@@ -16,4 +16,6 @@ final class WearableMeasurementHipsModel
     public const DESCRIPTION = 'Measurement of the hip section, for example of a skirt.';
     public const LABEL = 'WearableMeasurementHips';
     public const NAME = 'schema:WearableMeasurementHips';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

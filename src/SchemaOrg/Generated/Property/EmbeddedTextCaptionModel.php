@@ -18,4 +18,6 @@ final class EmbeddedTextCaptionModel
     public const NAME = 'schema:embeddedTextCaption';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['AudioObject' => 'Jolicode\SchemaOrg\Type\AudioObjectModel', 'ImageObject' => 'Jolicode\SchemaOrg\Type\ImageObjectModel', 'VideoObject' => 'Jolicode\SchemaOrg\Type\VideoObjectModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

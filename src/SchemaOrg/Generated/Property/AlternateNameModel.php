@@ -18,4 +18,6 @@ final class AlternateNameModel
     public const NAME = 'schema:alternateName';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Thing' => 'Jolicode\SchemaOrg\Type\ThingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

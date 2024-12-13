@@ -18,4 +18,6 @@ final class InteractionCountModel
     public const NAME = 'schema:interactionCount';
     public const VALUES = [];
     public const TYPES = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

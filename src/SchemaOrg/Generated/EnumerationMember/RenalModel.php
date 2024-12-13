@@ -16,4 +16,6 @@ final class RenalModel
     public const DESCRIPTION = 'A specific branch of medical science that pertains to the study of the kidneys and its respective disease states.';
     public const LABEL = 'Renal';
     public const NAME = 'schema:Renal';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

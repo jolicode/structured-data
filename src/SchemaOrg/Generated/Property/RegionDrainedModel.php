@@ -18,4 +18,6 @@ final class RegionDrainedModel
     public const NAME = 'schema:regionDrained';
     public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\SchemaOrg\Type\AnatomicalStructureModel', 'AnatomicalSystemModel' => 'Jolicode\SchemaOrg\Type\AnatomicalSystemModel'];
     public const TYPES = ['LymphaticVessel' => 'Jolicode\SchemaOrg\Type\LymphaticVesselModel', 'Vein' => 'Jolicode\SchemaOrg\Type\VeinModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

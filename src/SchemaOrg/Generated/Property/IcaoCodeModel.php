@@ -18,4 +18,6 @@ final class IcaoCodeModel
     public const NAME = 'schema:icaoCode';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Airport' => 'Jolicode\SchemaOrg\Type\AirportModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

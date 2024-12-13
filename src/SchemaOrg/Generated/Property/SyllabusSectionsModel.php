@@ -18,4 +18,6 @@ final class SyllabusSectionsModel
     public const NAME = 'schema:syllabusSections';
     public const VALUES = ['SyllabusModel' => 'Jolicode\SchemaOrg\Type\SyllabusModel'];
     public const TYPES = ['Course' => 'Jolicode\SchemaOrg\Type\CourseModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

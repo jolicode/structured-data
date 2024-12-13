@@ -16,4 +16,6 @@ final class ReservedModel
     public const DESCRIPTION = 'Indicates that the item is reserved and therefore not available.';
     public const LABEL = 'Reserved';
     public const NAME = 'schema:Reserved';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

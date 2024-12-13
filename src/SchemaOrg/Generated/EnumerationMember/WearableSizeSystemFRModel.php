@@ -16,4 +16,6 @@ final class WearableSizeSystemFRModel
     public const DESCRIPTION = 'French size system for wearables.';
     public const LABEL = 'WearableSizeSystemFR';
     public const NAME = 'schema:WearableSizeSystemFR';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

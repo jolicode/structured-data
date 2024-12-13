@@ -18,4 +18,6 @@ final class StudyDesignModel
     public const NAME = 'schema:studyDesign';
     public const VALUES = ['MedicalObservationalStudyDesignModel' => 'Jolicode\SchemaOrg\Type\MedicalObservationalStudyDesignModel'];
     public const TYPES = ['MedicalObservationalStudy' => 'Jolicode\SchemaOrg\Type\MedicalObservationalStudyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class CheckInAdvanceModel
     public const DESCRIPTION = 'Payment in advance by sending a check, equivalent to <code>http://purl.org/goodrelations/v1#CheckInAdvance</code>.';
     public const LABEL = 'CheckInAdvance';
     public const NAME = 'schema:CheckInAdvance';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

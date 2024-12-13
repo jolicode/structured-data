@@ -18,4 +18,6 @@ final class ValidForMemberTierModel
     public const NAME = 'schema:validForMemberTier';
     public const VALUES = ['MemberProgramTierModel' => 'Jolicode\SchemaOrg\Type\MemberProgramTierModel'];
     public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicyModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'OfferShippingDetails' => 'Jolicode\SchemaOrg\Type\OfferShippingDetailsModel', 'PriceSpecification' => 'Jolicode\SchemaOrg\Type\PriceSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

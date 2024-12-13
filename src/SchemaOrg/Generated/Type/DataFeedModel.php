@@ -20,6 +20,8 @@ final class DataFeedModel
     public const NAME = 'schema:DataFeed';
     public const PARENTS = ['DatasetModel' => 'Jolicode\SchemaOrg\Type\DatasetModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

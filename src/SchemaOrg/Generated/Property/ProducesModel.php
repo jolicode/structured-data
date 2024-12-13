@@ -18,4 +18,6 @@ final class ProducesModel
     public const NAME = 'schema:produces';
     public const VALUES = ['ThingModel' => 'Jolicode\SchemaOrg\Type\ThingModel'];
     public const TYPES = ['Service' => 'Jolicode\SchemaOrg\Type\ServiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

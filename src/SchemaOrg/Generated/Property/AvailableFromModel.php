@@ -18,4 +18,6 @@ final class AvailableFromModel
     public const NAME = 'schema:availableFrom';
     public const VALUES = ['DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['DeliveryEvent' => 'Jolicode\SchemaOrg\Type\DeliveryEventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

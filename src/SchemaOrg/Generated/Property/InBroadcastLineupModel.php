@@ -18,4 +18,6 @@ final class InBroadcastLineupModel
     public const NAME = 'schema:inBroadcastLineup';
     public const VALUES = ['CableOrSatelliteServiceModel' => 'Jolicode\SchemaOrg\Type\CableOrSatelliteServiceModel'];
     public const TYPES = ['BroadcastChannel' => 'Jolicode\SchemaOrg\Type\BroadcastChannelModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

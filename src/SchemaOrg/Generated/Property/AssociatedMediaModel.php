@@ -18,4 +18,6 @@ final class AssociatedMediaModel
     public const NAME = 'schema:associatedMedia';
     public const VALUES = ['MediaObjectModel' => 'Jolicode\SchemaOrg\Type\MediaObjectModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'HyperTocEntry' => 'Jolicode\SchemaOrg\Type\HyperTocEntryModel', 'HyperToc' => 'Jolicode\SchemaOrg\Type\HyperTocModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

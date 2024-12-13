@@ -18,4 +18,6 @@ final class StatusModel
     public const NAME = 'schema:status';
     public const VALUES = ['EventStatusTypeModel' => 'Jolicode\SchemaOrg\Type\EventStatusTypeModel', 'MedicalStudyStatusModel' => 'Jolicode\SchemaOrg\Type\MedicalStudyStatusModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalCondition' => 'Jolicode\SchemaOrg\Type\MedicalConditionModel', 'MedicalProcedure' => 'Jolicode\SchemaOrg\Type\MedicalProcedureModel', 'MedicalStudy' => 'Jolicode\SchemaOrg\Type\MedicalStudyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

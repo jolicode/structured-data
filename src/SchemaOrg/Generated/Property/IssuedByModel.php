@@ -18,4 +18,6 @@ final class IssuedByModel
     public const NAME = 'schema:issuedBy';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
     public const TYPES = ['Certification' => 'Jolicode\SchemaOrg\Type\CertificationModel', 'Permit' => 'Jolicode\SchemaOrg\Type\PermitModel', 'Ticket' => 'Jolicode\SchemaOrg\Type\TicketModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

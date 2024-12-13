@@ -18,4 +18,6 @@ final class PotentialUseModel
     public const NAME = 'schema:potentialUse';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\SchemaOrg\Type\DefinedTermModel'];
     public const TYPES = ['ChemicalSubstance' => 'Jolicode\SchemaOrg\Type\ChemicalSubstanceModel', 'MolecularEntity' => 'Jolicode\SchemaOrg\Type\MolecularEntityModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class TollFreeModel
     public const DESCRIPTION = 'The associated telephone number is toll free.';
     public const LABEL = 'TollFree';
     public const NAME = 'schema:TollFree';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

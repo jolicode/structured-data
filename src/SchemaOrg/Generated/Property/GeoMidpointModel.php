@@ -18,4 +18,6 @@ final class GeoMidpointModel
     public const NAME = 'schema:geoMidpoint';
     public const VALUES = ['GeoCoordinatesModel' => 'Jolicode\SchemaOrg\Type\GeoCoordinatesModel'];
     public const TYPES = ['GeoCircle' => 'Jolicode\SchemaOrg\Type\GeoCircleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

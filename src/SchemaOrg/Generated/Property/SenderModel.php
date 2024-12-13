@@ -18,4 +18,6 @@ final class SenderModel
     public const NAME = 'schema:sender';
     public const VALUES = ['AudienceModel' => 'Jolicode\SchemaOrg\Type\AudienceModel', 'OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['Message' => 'Jolicode\SchemaOrg\Type\MessageModel', 'ReceiveAction' => 'Jolicode\SchemaOrg\Type\ReceiveActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

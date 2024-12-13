@@ -18,4 +18,6 @@ final class BusinessDaysModel
     public const NAME = 'schema:businessDays';
     public const VALUES = ['OpeningHoursSpecificationModel' => 'Jolicode\SchemaOrg\Type\OpeningHoursSpecificationModel'];
     public const TYPES = ['ShippingDeliveryTime' => 'Jolicode\SchemaOrg\Type\ShippingDeliveryTimeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

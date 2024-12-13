@@ -20,6 +20,8 @@ final class TierBenefitEnumerationModel
     public const NAME = 'schema:TierBenefitEnumeration';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['TierBenefitLoyaltyPointsModel' => 'EnumerationMember\TierBenefitLoyaltyPointsModel', 'TierBenefitLoyaltyPriceModel' => 'EnumerationMember\TierBenefitLoyaltyPriceModel', 'TierBenefitLoyaltyReturnsModel' => 'EnumerationMember\TierBenefitLoyaltyReturnsModel', 'TierBenefitLoyaltyShippingModel' => 'EnumerationMember\TierBenefitLoyaltyShippingModel'];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3563'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -18,4 +18,6 @@ final class JobLocationModel
     public const NAME = 'schema:jobLocation';
     public const VALUES = ['PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
     public const TYPES = ['JobPosting' => 'Jolicode\SchemaOrg\Type\JobPostingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

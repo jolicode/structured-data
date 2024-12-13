@@ -16,4 +16,6 @@ final class PaymentPastDueModel
     public const DESCRIPTION = 'The payment is due and considered late.';
     public const LABEL = 'PaymentPastDue';
     public const NAME = 'schema:PaymentPastDue';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

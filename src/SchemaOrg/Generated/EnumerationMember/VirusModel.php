@@ -16,4 +16,6 @@ final class VirusModel
     public const DESCRIPTION = 'Pathogenic virus that causes viral infection.';
     public const LABEL = 'Virus';
     public const NAME = 'schema:Virus';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

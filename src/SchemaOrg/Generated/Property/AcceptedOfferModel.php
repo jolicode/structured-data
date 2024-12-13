@@ -18,4 +18,6 @@ final class AcceptedOfferModel
     public const NAME = 'schema:acceptedOffer';
     public const VALUES = ['OfferModel' => 'Jolicode\SchemaOrg\Type\OfferModel'];
     public const TYPES = ['Order' => 'Jolicode\SchemaOrg\Type\OrderModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class VinylFormatModel
     public const DESCRIPTION = 'VinylFormat.';
     public const LABEL = 'VinylFormat';
     public const NAME = 'schema:VinylFormat';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

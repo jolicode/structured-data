@@ -18,4 +18,6 @@ final class DurationOfWarrantyModel
     public const NAME = 'schema:durationOfWarranty';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['WarrantyPromise' => 'Jolicode\SchemaOrg\Type\WarrantyPromiseModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

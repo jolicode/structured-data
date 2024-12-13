@@ -20,6 +20,8 @@ final class StatusEnumerationModel
     public const NAME = 'schema:StatusEnumeration';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2604'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

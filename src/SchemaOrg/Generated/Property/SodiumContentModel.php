@@ -18,4 +18,6 @@ final class SodiumContentModel
     public const NAME = 'schema:sodiumContent';
     public const VALUES = ['MassModel' => 'Jolicode\SchemaOrg\Type\MassModel'];
     public const TYPES = ['NutritionInformation' => 'Jolicode\SchemaOrg\Type\NutritionInformationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class DayOfWeekModel
     public const NAME = 'schema:dayOfWeek';
     public const VALUES = ['DayOfWeekModel' => 'Jolicode\SchemaOrg\Type\DayOfWeekModel'];
     public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalProgramModel', 'OpeningHoursSpecification' => 'Jolicode\SchemaOrg\Type\OpeningHoursSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

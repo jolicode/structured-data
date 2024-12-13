@@ -18,4 +18,6 @@ final class CvdFacilityIdModel
     public const NAME = 'schema:cvdFacilityId';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['CDCPMDRecord' => 'Jolicode\SchemaOrg\Type\CDCPMDRecordModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

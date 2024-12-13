@@ -16,4 +16,6 @@ final class LivingWithHealthAspectModel
     public const DESCRIPTION = 'Information about coping or life related to the topic.';
     public const LABEL = 'LivingWithHealthAspect';
     public const NAME = 'schema:LivingWithHealthAspect';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -20,6 +20,8 @@ final class PhysicalTherapyModel
     public const NAME = 'schema:PhysicalTherapy';
     public const PARENTS = ['MedicalTherapyModel' => 'Jolicode\SchemaOrg\Type\MedicalTherapyModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -18,4 +18,6 @@ final class EvidenceLevelModel
     public const NAME = 'schema:evidenceLevel';
     public const VALUES = ['MedicalEvidenceLevelModel' => 'Jolicode\SchemaOrg\Type\MedicalEvidenceLevelModel'];
     public const TYPES = ['MedicalGuideline' => 'Jolicode\SchemaOrg\Type\MedicalGuidelineModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

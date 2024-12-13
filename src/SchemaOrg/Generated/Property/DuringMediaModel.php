@@ -18,4 +18,6 @@ final class DuringMediaModel
     public const NAME = 'schema:duringMedia';
     public const VALUES = ['MediaObjectModel' => 'Jolicode\SchemaOrg\Type\MediaObjectModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['HowToDirection' => 'Jolicode\SchemaOrg\Type\HowToDirectionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -20,6 +20,8 @@ final class AtlasModel
     public const NAME = 'schema:Atlas';
     public const PARENTS = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://bib.schema.org'];
+    public const SOURCE = ['http://www.productontology.org/id/Atlas'];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

@@ -18,4 +18,6 @@ final class RelevantOccupationModel
     public const NAME = 'schema:relevantOccupation';
     public const VALUES = ['OccupationModel' => 'Jolicode\SchemaOrg\Type\OccupationModel'];
     public const TYPES = ['JobPosting' => 'Jolicode\SchemaOrg\Type\JobPostingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

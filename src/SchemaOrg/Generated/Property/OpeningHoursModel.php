@@ -18,4 +18,6 @@ final class OpeningHoursModel
     public const NAME = 'schema:openingHours';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['CivicStructure' => 'Jolicode\SchemaOrg\Type\CivicStructureModel', 'LocalBusiness' => 'Jolicode\SchemaOrg\Type\LocalBusinessModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

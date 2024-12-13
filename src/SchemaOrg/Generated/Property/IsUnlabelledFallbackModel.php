@@ -18,4 +18,6 @@ final class IsUnlabelledFallbackModel
     public const NAME = 'schema:isUnlabelledFallback';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['DeliveryTimeSettings' => 'Jolicode\SchemaOrg\Type\DeliveryTimeSettingsModel', 'ShippingRateSettings' => 'Jolicode\SchemaOrg\Type\ShippingRateSettingsModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class IdentifyingExamModel
     public const NAME = 'schema:identifyingExam';
     public const VALUES = ['PhysicalExamModel' => 'Jolicode\SchemaOrg\Type\PhysicalExamModel'];
     public const TYPES = ['MedicalSign' => 'Jolicode\SchemaOrg\Type\MedicalSignModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

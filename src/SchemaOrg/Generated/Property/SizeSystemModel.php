@@ -18,4 +18,6 @@ final class SizeSystemModel
     public const NAME = 'schema:sizeSystem';
     public const VALUES = ['SizeSystemEnumerationModel' => 'Jolicode\SchemaOrg\Type\SizeSystemEnumerationModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['SizeSpecification' => 'Jolicode\SchemaOrg\Type\SizeSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

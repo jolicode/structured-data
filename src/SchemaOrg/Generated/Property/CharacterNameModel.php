@@ -18,4 +18,6 @@ final class CharacterNameModel
     public const NAME = 'schema:characterName';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['PerformanceRole' => 'Jolicode\SchemaOrg\Type\PerformanceRoleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

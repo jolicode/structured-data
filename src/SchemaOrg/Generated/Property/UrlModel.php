@@ -18,4 +18,6 @@ final class UrlModel
     public const NAME = 'schema:url';
     public const VALUES = ['URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['Thing' => 'Jolicode\SchemaOrg\Type\ThingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

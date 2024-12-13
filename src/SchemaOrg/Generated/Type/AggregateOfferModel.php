@@ -20,6 +20,8 @@ final class AggregateOfferModel
     public const NAME = 'schema:AggregateOffer';
     public const PARENTS = ['OfferModel' => 'Jolicode\SchemaOrg\Type\OfferModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

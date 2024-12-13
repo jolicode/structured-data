@@ -18,4 +18,6 @@ final class InPlaylistModel
     public const NAME = 'schema:inPlaylist';
     public const VALUES = ['MusicPlaylistModel' => 'Jolicode\SchemaOrg\Type\MusicPlaylistModel'];
     public const TYPES = ['MusicRecording' => 'Jolicode\SchemaOrg\Type\MusicRecordingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

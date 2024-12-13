@@ -18,4 +18,6 @@ final class FinancialAidEligibleModel
     public const NAME = 'schema:financialAidEligible';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\SchemaOrg\Type\DefinedTermModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Course' => 'Jolicode\SchemaOrg\Type\CourseModel', 'EducationalOccupationalProgram' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalProgramModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

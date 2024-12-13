@@ -23,4 +23,6 @@ The property values can be expressed either as unstructured text (repeated as ne
     public const NAME = 'schema:negativeNotes';
     public const VALUES = ['ItemListModel' => 'Jolicode\SchemaOrg\Type\ItemListModel', 'ListItemModel' => 'Jolicode\SchemaOrg\Type\ListItemModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'WebContentModel' => 'Jolicode\SchemaOrg\Type\WebContentModel'];
     public const TYPES = ['Product' => 'Jolicode\SchemaOrg\Type\ProductModel', 'Review' => 'Jolicode\SchemaOrg\Type\ReviewModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

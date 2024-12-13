@@ -16,4 +16,6 @@ final class BackOrderModel
     public const DESCRIPTION = 'Indicates that the item is available on back order.';
     public const LABEL = 'BackOrder';
     public const NAME = 'schema:BackOrder';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

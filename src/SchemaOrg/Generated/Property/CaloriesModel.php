@@ -18,4 +18,6 @@ final class CaloriesModel
     public const NAME = 'schema:calories';
     public const VALUES = ['EnergyModel' => 'Jolicode\SchemaOrg\Type\EnergyModel'];
     public const TYPES = ['NutritionInformation' => 'Jolicode\SchemaOrg\Type\NutritionInformationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

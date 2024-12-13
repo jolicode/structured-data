@@ -18,4 +18,6 @@ final class LiveBlogUpdateModel
     public const NAME = 'schema:liveBlogUpdate';
     public const VALUES = ['BlogPostingModel' => 'Jolicode\SchemaOrg\Type\BlogPostingModel'];
     public const TYPES = ['LiveBlogPosting' => 'Jolicode\SchemaOrg\Type\LiveBlogPostingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

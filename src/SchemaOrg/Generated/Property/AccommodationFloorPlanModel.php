@@ -18,4 +18,6 @@ final class AccommodationFloorPlanModel
     public const NAME = 'schema:accommodationFloorPlan';
     public const VALUES = ['FloorPlanModel' => 'Jolicode\SchemaOrg\Type\FloorPlanModel'];
     public const TYPES = ['Accommodation' => 'Jolicode\SchemaOrg\Type\AccommodationModel', 'Residence' => 'Jolicode\SchemaOrg\Type\ResidenceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

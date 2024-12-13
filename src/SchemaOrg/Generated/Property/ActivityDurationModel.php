@@ -18,4 +18,6 @@ final class ActivityDurationModel
     public const NAME = 'schema:activityDuration';
     public const VALUES = ['DurationModel' => 'Jolicode\SchemaOrg\Type\DurationModel', 'QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['ExercisePlan' => 'Jolicode\SchemaOrg\Type\ExercisePlanModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

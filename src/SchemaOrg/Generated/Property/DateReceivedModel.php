@@ -18,4 +18,6 @@ final class DateReceivedModel
     public const NAME = 'schema:dateReceived';
     public const VALUES = ['DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['Message' => 'Jolicode\SchemaOrg\Type\MessageModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

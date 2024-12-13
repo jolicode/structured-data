@@ -18,4 +18,6 @@ final class LegalStatusModel
     public const NAME = 'schema:legalStatus';
     public const VALUES = ['DrugLegalStatusModel' => 'Jolicode\SchemaOrg\Type\DrugLegalStatusModel', 'MedicalEnumerationModel' => 'Jolicode\SchemaOrg\Type\MedicalEnumerationModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DietarySupplement' => 'Jolicode\SchemaOrg\Type\DietarySupplementModel', 'Drug' => 'Jolicode\SchemaOrg\Type\DrugModel', 'MedicalEntity' => 'Jolicode\SchemaOrg\Type\MedicalEntityModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

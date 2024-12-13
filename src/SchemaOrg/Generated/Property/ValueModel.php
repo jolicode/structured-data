@@ -18,4 +18,6 @@ final class ValueModel
     public const NAME = 'schema:value';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel', 'NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'StructuredValueModel' => 'Jolicode\SchemaOrg\Type\StructuredValueModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MonetaryAmount' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel', 'PropertyValue' => 'Jolicode\SchemaOrg\Type\PropertyValueModel', 'QuantitativeValue' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

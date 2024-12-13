@@ -20,6 +20,8 @@ final class DrugPrescriptionStatusModel
     public const NAME = 'schema:DrugPrescriptionStatus';
     public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\SchemaOrg\Type\MedicalEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['OTCModel' => 'EnumerationMember\OTCModel', 'PrescriptionOnlyModel' => 'EnumerationMember\PrescriptionOnlyModel'];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

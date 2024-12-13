@@ -34,6 +34,9 @@ readonly class Extractor
     public const RDF_PROPERTY = 'rdf:Property';
     public const OWL_EQUIVALENT_CLASS = 'owl:equivalentClass';
 
+    public const SCHEMA_IS_PART_OF = 'schema:isPartOf';
+    public const SCHEMA_SOURCE = 'schema:source';
+
     public const GENERATED_DIR = __DIR__ . '/../../../generated/SchemaOrg';
 
     public function __construct(

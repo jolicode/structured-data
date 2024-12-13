@@ -16,4 +16,6 @@ final class RisksOrComplicationsHealthAspectModel
     public const DESCRIPTION = 'Information about the risk factors and possible complications that may follow a topic.';
     public const LABEL = 'RisksOrComplicationsHealthAspect';
     public const NAME = 'schema:RisksOrComplicationsHealthAspect';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

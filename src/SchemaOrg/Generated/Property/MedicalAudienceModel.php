@@ -18,4 +18,6 @@ final class MedicalAudienceModel
     public const NAME = 'schema:medicalAudience';
     public const VALUES = ['MedicalAudienceModel' => 'Jolicode\SchemaOrg\Type\MedicalAudienceModel', 'MedicalAudienceTypeModel' => 'Jolicode\SchemaOrg\Type\MedicalAudienceTypeModel'];
     public const TYPES = ['MedicalWebPage' => 'Jolicode\SchemaOrg\Type\MedicalWebPageModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

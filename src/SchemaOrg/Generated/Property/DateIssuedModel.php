@@ -18,4 +18,6 @@ final class DateIssuedModel
     public const NAME = 'schema:dateIssued';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['Ticket' => 'Jolicode\SchemaOrg\Type\TicketModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

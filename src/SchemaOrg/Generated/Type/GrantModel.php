@@ -20,12 +20,13 @@ final class GrantModel
 
 Grants support  activities directed towards some agreed collective goals, often but not always organized as [[Project]]s. Long-lived projects are sometimes sponsored by a variety of grants over time, but it is also common for a project to be associated with a single grant.
 
-The amount of a [[Grant]] is represented using [[amount]] as a [[MonetaryAmount]].
-    ';
+The amount of a [[Grant]] is represented using [[amount]] as a [[MonetaryAmount]].';
     public const LABEL = 'Grant';
     public const NAME = 'schema:Grant';
     public const PARENTS = ['IntangibleModel' => 'Jolicode\SchemaOrg\Type\IntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/383', 'https://schema.org/docs/collab/FundInfoCollab'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

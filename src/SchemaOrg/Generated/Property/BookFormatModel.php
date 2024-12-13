@@ -18,4 +18,6 @@ final class BookFormatModel
     public const NAME = 'schema:bookFormat';
     public const VALUES = ['BookFormatTypeModel' => 'Jolicode\SchemaOrg\Type\BookFormatTypeModel'];
     public const TYPES = ['Book' => 'Jolicode\SchemaOrg\Type\BookModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -20,6 +20,8 @@ final class LymphaticVesselModel
     public const NAME = 'schema:LymphaticVessel';
     public const PARENTS = ['VesselModel' => 'Jolicode\SchemaOrg\Type\VesselModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

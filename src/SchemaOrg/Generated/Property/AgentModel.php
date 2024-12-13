@@ -18,4 +18,6 @@ final class AgentModel
     public const NAME = 'schema:agent';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['Action' => 'Jolicode\SchemaOrg\Type\ActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

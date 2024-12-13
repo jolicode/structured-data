@@ -18,4 +18,6 @@ final class ServiceLocationModel
     public const NAME = 'schema:serviceLocation';
     public const VALUES = ['PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
     public const TYPES = ['ServiceChannel' => 'Jolicode\SchemaOrg\Type\ServiceChannelModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

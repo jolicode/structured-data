@@ -16,4 +16,6 @@ final class OrderDeliveredModel
     public const DESCRIPTION = 'OrderStatus representing successful delivery of an order.';
     public const LABEL = 'OrderDelivered';
     public const NAME = 'schema:OrderDelivered';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

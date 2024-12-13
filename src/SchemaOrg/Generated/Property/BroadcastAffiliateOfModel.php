@@ -18,4 +18,6 @@ final class BroadcastAffiliateOfModel
     public const NAME = 'schema:broadcastAffiliateOf';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
     public const TYPES = ['BroadcastService' => 'Jolicode\SchemaOrg\Type\BroadcastServiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

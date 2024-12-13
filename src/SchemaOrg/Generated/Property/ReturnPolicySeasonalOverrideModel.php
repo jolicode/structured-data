@@ -18,4 +18,6 @@ final class ReturnPolicySeasonalOverrideModel
     public const NAME = 'schema:returnPolicySeasonalOverride';
     public const VALUES = ['MerchantReturnPolicySeasonalOverrideModel' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicySeasonalOverrideModel'];
     public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -21,6 +21,8 @@ case of a single file published after Zip compression, the convention of appendi
     public const NAME = 'schema:3DModel';
     public const PARENTS = ['MediaObjectModel' => 'Jolicode\SchemaOrg\Type\MediaObjectModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2140'];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

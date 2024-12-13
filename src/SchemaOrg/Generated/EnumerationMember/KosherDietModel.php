@@ -16,4 +16,6 @@ final class KosherDietModel
     public const DESCRIPTION = 'A diet conforming to Jewish dietary practices.';
     public const LABEL = 'KosherDiet';
     public const NAME = 'schema:KosherDiet';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

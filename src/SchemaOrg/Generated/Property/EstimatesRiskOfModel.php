@@ -18,4 +18,6 @@ final class EstimatesRiskOfModel
     public const NAME = 'schema:estimatesRiskOf';
     public const VALUES = ['MedicalEntityModel' => 'Jolicode\SchemaOrg\Type\MedicalEntityModel'];
     public const TYPES = ['MedicalRiskEstimator' => 'Jolicode\SchemaOrg\Type\MedicalRiskEstimatorModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

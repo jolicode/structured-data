@@ -20,6 +20,8 @@ final class BorrowActionModel
     public const NAME = 'schema:BorrowAction';
     public const PARENTS = ['TransferActionModel' => 'Jolicode\SchemaOrg\Type\TransferActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

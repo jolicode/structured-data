@@ -18,4 +18,6 @@ final class IsResizableModel
     public const NAME = 'schema:isResizable';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['3DModel' => 'Jolicode\SchemaOrg\Type\3DModelModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

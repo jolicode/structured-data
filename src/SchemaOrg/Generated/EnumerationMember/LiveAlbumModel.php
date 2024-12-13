@@ -16,4 +16,6 @@ final class LiveAlbumModel
     public const DESCRIPTION = 'LiveAlbum.';
     public const LABEL = 'LiveAlbum';
     public const NAME = 'schema:LiveAlbum';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

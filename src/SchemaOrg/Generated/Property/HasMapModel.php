@@ -18,4 +18,6 @@ final class HasMapModel
     public const NAME = 'schema:hasMap';
     public const VALUES = ['MapModel' => 'Jolicode\SchemaOrg\Type\MapModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['Place' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

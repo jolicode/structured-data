@@ -18,4 +18,6 @@ final class InDefinedTermSetModel
     public const NAME = 'schema:inDefinedTermSet';
     public const VALUES = ['DefinedTermSetModel' => 'Jolicode\SchemaOrg\Type\DefinedTermSetModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['DefinedTerm' => 'Jolicode\SchemaOrg\Type\DefinedTermModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

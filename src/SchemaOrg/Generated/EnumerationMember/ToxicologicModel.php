@@ -16,4 +16,6 @@ final class ToxicologicModel
     public const DESCRIPTION = 'A specific branch of medical science that is concerned with poisons, their nature, effects and detection and involved in the treatment of poisoning.';
     public const LABEL = 'Toxicologic';
     public const NAME = 'schema:Toxicologic';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -20,6 +20,8 @@ final class WearableMeasurementTypeEnumerationModel
     public const NAME = 'schema:WearableMeasurementTypeEnumeration';
     public const PARENTS = ['MeasurementTypeEnumerationModel' => 'Jolicode\SchemaOrg\Type\MeasurementTypeEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['WearableMeasurementBackModel' => 'EnumerationMember\WearableMeasurementBackModel', 'WearableMeasurementChestOrBustModel' => 'EnumerationMember\WearableMeasurementChestOrBustModel', 'WearableMeasurementCollarModel' => 'EnumerationMember\WearableMeasurementCollarModel', 'WearableMeasurementCupModel' => 'EnumerationMember\WearableMeasurementCupModel', 'WearableMeasurementHeightModel' => 'EnumerationMember\WearableMeasurementHeightModel', 'WearableMeasurementHipsModel' => 'EnumerationMember\WearableMeasurementHipsModel', 'WearableMeasurementInseamModel' => 'EnumerationMember\WearableMeasurementInseamModel', 'WearableMeasurementLengthModel' => 'EnumerationMember\WearableMeasurementLengthModel', 'WearableMeasurementOutsideLegModel' => 'EnumerationMember\WearableMeasurementOutsideLegModel', 'WearableMeasurementSleeveModel' => 'EnumerationMember\WearableMeasurementSleeveModel', 'WearableMeasurementWaistModel' => 'EnumerationMember\WearableMeasurementWaistModel', 'WearableMeasurementWidthModel' => 'EnumerationMember\WearableMeasurementWidthModel'];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

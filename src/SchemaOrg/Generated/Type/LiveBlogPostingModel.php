@@ -20,6 +20,8 @@ final class LiveBlogPostingModel
     public const NAME = 'schema:LiveBlogPosting';
     public const PARENTS = ['BlogPostingModel' => 'Jolicode\SchemaOrg\Type\BlogPostingModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

@@ -20,6 +20,8 @@ final class BankAccountModel
     public const NAME = 'schema:BankAccount';
     public const PARENTS = ['FinancialProductModel' => 'Jolicode\SchemaOrg\Type\FinancialProductModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AccountMinimumInflowModel $accountMinimumInflow = null,

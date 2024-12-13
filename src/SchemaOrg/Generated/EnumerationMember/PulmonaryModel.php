@@ -16,4 +16,6 @@ final class PulmonaryModel
     public const DESCRIPTION = 'A specific branch of medical science that pertains to the study of the respiratory system and its respective disease states.';
     public const LABEL = 'Pulmonary';
     public const NAME = 'schema:Pulmonary';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

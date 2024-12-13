@@ -18,4 +18,6 @@ final class RunsToModel
     public const NAME = 'schema:runsTo';
     public const VALUES = ['VesselModel' => 'Jolicode\SchemaOrg\Type\VesselModel'];
     public const TYPES = ['LymphaticVessel' => 'Jolicode\SchemaOrg\Type\LymphaticVesselModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

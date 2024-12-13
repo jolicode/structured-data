@@ -17,12 +17,13 @@ final class DayOfWeekModel
 {
     public const DESCRIPTION = 'The day of the week, e.g. used to specify to which day the opening hours of an OpeningHoursSpecification refer.
 
-Originally, URLs from [GoodRelations](http://purl.org/goodrelations/v1) were used (for [[Monday]], [[Tuesday]], [[Wednesday]], [[Thursday]], [[Friday]], [[Saturday]], [[Sunday]] plus a special entry for [[PublicHolidays]]); these have now been integrated directly into schema.org.
-      ';
+Originally, URLs from [GoodRelations](http://purl.org/goodrelations/v1) were used (for [[Monday]], [[Tuesday]], [[Wednesday]], [[Thursday]], [[Friday]], [[Saturday]], [[Sunday]] plus a special entry for [[PublicHolidays]]); these have now been integrated directly into schema.org.';
     public const LABEL = 'DayOfWeek';
     public const NAME = 'schema:DayOfWeek';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['FridayModel' => 'EnumerationMember\FridayModel', 'MondayModel' => 'EnumerationMember\MondayModel', 'PublicHolidaysModel' => 'EnumerationMember\PublicHolidaysModel', 'SaturdayModel' => 'EnumerationMember\SaturdayModel', 'SundayModel' => 'EnumerationMember\SundayModel', 'ThursdayModel' => 'EnumerationMember\ThursdayModel', 'TuesdayModel' => 'EnumerationMember\TuesdayModel', 'WednesdayModel' => 'EnumerationMember\WednesdayModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -18,4 +18,6 @@ final class VideoFrameSizeModel
     public const NAME = 'schema:videoFrameSize';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['VideoObject' => 'Jolicode\SchemaOrg\Type\VideoObjectModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

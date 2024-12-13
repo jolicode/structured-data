@@ -20,6 +20,8 @@ final class VideoGameModel
     public const NAME = 'schema:VideoGame';
     public const PARENTS = ['GameModel' => 'Jolicode\SchemaOrg\Type\GameModel', 'SoftwareApplicationModel' => 'Jolicode\SchemaOrg\Type\SoftwareApplicationModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

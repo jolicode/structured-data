@@ -16,4 +16,6 @@ final class DiscontinuedModel
     public const DESCRIPTION = 'Indicates that the item has been discontinued.';
     public const LABEL = 'Discontinued';
     public const NAME = 'schema:Discontinued';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

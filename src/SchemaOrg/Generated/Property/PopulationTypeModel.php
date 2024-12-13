@@ -18,4 +18,6 @@ final class PopulationTypeModel
     public const NAME = 'schema:populationType';
     public const VALUES = ['ClassModel' => 'Jolicode\SchemaOrg\Type\ClassModel'];
     public const TYPES = ['StatisticalPopulation' => 'Jolicode\SchemaOrg\Type\StatisticalPopulationModel', 'StatisticalVariable' => 'Jolicode\SchemaOrg\Type\StatisticalVariableModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

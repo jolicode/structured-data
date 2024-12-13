@@ -20,6 +20,8 @@ final class GenderTypeModel
     public const NAME = 'schema:GenderType';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['FemaleModel' => 'EnumerationMember\FemaleModel', 'MaleModel' => 'EnumerationMember\MaleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

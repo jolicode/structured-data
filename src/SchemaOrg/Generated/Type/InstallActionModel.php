@@ -20,6 +20,8 @@ final class InstallActionModel
     public const NAME = 'schema:InstallAction';
     public const PARENTS = ['ConsumeActionModel' => 'Jolicode\SchemaOrg\Type\ConsumeActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionAccessibilityRequirementModel $actionAccessibilityRequirement = null,

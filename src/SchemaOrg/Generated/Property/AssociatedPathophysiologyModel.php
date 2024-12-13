@@ -18,4 +18,6 @@ final class AssociatedPathophysiologyModel
     public const NAME = 'schema:associatedPathophysiology';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['AnatomicalStructure' => 'Jolicode\SchemaOrg\Type\AnatomicalStructureModel', 'AnatomicalSystem' => 'Jolicode\SchemaOrg\Type\AnatomicalSystemModel', 'SuperficialAnatomy' => 'Jolicode\SchemaOrg\Type\SuperficialAnatomyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

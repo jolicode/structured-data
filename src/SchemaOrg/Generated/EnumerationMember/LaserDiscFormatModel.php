@@ -16,4 +16,6 @@ final class LaserDiscFormatModel
     public const DESCRIPTION = 'LaserDiscFormat.';
     public const LABEL = 'LaserDiscFormat';
     public const NAME = 'schema:LaserDiscFormat';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

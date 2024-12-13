@@ -16,4 +16,6 @@ final class InStorePrepayModel
     public const DESCRIPTION = 'Payment in advance in some form of shop or kiosk for goods purchased online.';
     public const LABEL = 'InStorePrepay';
     public const NAME = 'schema:InStorePrepay';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

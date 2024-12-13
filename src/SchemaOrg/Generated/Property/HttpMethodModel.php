@@ -18,4 +18,6 @@ final class HttpMethodModel
     public const NAME = 'schema:httpMethod';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['EntryPoint' => 'Jolicode\SchemaOrg\Type\EntryPointModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

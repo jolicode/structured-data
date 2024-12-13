@@ -18,4 +18,6 @@ final class TrackingNumberModel
     public const NAME = 'schema:trackingNumber';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['ParcelDelivery' => 'Jolicode\SchemaOrg\Type\ParcelDeliveryModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

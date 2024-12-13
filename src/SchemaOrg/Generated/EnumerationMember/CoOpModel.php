@@ -16,4 +16,6 @@ final class CoOpModel
     public const DESCRIPTION = 'Play mode: CoOp. Co-operative games, where you play on the same team with friends.';
     public const LABEL = 'CoOp';
     public const NAME = 'schema:CoOp';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

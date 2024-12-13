@@ -18,4 +18,6 @@ final class DiscountCodeModel
     public const NAME = 'schema:discountCode';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Order' => 'Jolicode\SchemaOrg\Type\OrderModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

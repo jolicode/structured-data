@@ -41,9 +41,9 @@ class Type extends AbstractSchemaOrgElement
         self::sanitizeEntries($rawType);
 
         $type = new self(
-            name: $rawType[Extractor::KEY_ID],
-            description: $rawType[Extractor::RDFS_COMMENT],
-            label: $rawType[Extractor::RDFS_LABEL],
+            name: trim($rawType[Extractor::KEY_ID]),
+            description: trim($rawType[Extractor::RDFS_COMMENT]),
+            label: trim($rawType[Extractor::RDFS_LABEL]),
             equivalentClass: $rawType[Extractor::OWL_EQUIVALENT_CLASS] ?? [],
             className: self::getClassName($rawType[Extractor::RDFS_LABEL]),
         );
@@ -52,15 +52,15 @@ class Type extends AbstractSchemaOrgElement
 
         if ($parents) {
             if (\is_array($parents) && \array_key_exists(Extractor::KEY_ID, $parents)) {
-                $type->parents[$parents[Extractor::KEY_ID]] = $parents[Extractor::KEY_ID];
+                $type->parents[$parents[Extractor::KEY_ID]] = trim($parents[Extractor::KEY_ID]);
             } else {
                 foreach ($parents as $parent) {
-                    $type->parents[$parent[Extractor::KEY_ID]] = $parent[Extractor::KEY_ID];
+                    $type->parents[$parent[Extractor::KEY_ID]] = trim($parent[Extractor::KEY_ID]);
                 }
             }
         }
 
-        return $type;
+        return self::addSchemaInformation($type, $rawType);
     }
 
     public function addProperty(Property $property): void

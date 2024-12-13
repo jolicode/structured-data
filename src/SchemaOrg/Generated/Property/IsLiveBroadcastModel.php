@@ -18,4 +18,6 @@ final class IsLiveBroadcastModel
     public const NAME = 'schema:isLiveBroadcast';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['BroadcastEvent' => 'Jolicode\SchemaOrg\Type\BroadcastEventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

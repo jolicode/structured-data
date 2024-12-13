@@ -18,4 +18,6 @@ final class ExecutableLibraryNameModel
     public const NAME = 'schema:executableLibraryName';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['APIReference' => 'Jolicode\SchemaOrg\Type\APIReferenceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

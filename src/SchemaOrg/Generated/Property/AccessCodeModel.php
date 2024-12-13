@@ -18,4 +18,6 @@ final class AccessCodeModel
     public const NAME = 'schema:accessCode';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DeliveryEvent' => 'Jolicode\SchemaOrg\Type\DeliveryEventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

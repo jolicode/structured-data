@@ -18,4 +18,6 @@ final class EventAttendanceModeModel
     public const NAME = 'schema:eventAttendanceMode';
     public const VALUES = ['EventAttendanceModeEnumerationModel' => 'Jolicode\SchemaOrg\Type\EventAttendanceModeEnumerationModel'];
     public const TYPES = ['Event' => 'Jolicode\SchemaOrg\Type\EventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class CourseModel
     public const NAME = 'schema:course';
     public const VALUES = ['PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
     public const TYPES = ['ExerciseAction' => 'Jolicode\SchemaOrg\Type\ExerciseActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

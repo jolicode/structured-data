@@ -18,4 +18,6 @@ final class SportsActivityLocationModel
     public const NAME = 'schema:sportsActivityLocation';
     public const VALUES = ['SportsActivityLocationModel' => 'Jolicode\SchemaOrg\Type\SportsActivityLocationModel'];
     public const TYPES = ['ExerciseAction' => 'Jolicode\SchemaOrg\Type\ExerciseActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

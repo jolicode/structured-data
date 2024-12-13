@@ -18,4 +18,6 @@ final class CheckoutPageURLTemplateModel
     public const NAME = 'schema:checkoutPageURLTemplate';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Offer' => 'Jolicode\SchemaOrg\Type\OfferModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

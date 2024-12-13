@@ -18,4 +18,6 @@ final class ItineraryModel
     public const NAME = 'schema:itinerary';
     public const VALUES = ['ItemListModel' => 'Jolicode\SchemaOrg\Type\ItemListModel', 'PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
     public const TYPES = ['Trip' => 'Jolicode\SchemaOrg\Type\TripModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

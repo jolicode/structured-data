@@ -18,4 +18,6 @@ final class DoseValueModel
     public const NAME = 'schema:doseValue';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'QualitativeValueModel' => 'Jolicode\SchemaOrg\Type\QualitativeValueModel'];
     public const TYPES = ['DoseSchedule' => 'Jolicode\SchemaOrg\Type\DoseScheduleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

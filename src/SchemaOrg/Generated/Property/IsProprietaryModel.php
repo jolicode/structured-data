@@ -18,4 +18,6 @@ final class IsProprietaryModel
     public const NAME = 'schema:isProprietary';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['DietarySupplement' => 'Jolicode\SchemaOrg\Type\DietarySupplementModel', 'Drug' => 'Jolicode\SchemaOrg\Type\DrugModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

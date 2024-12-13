@@ -18,4 +18,6 @@ final class ReferenceQuantityModel
     public const NAME = 'schema:referenceQuantity';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['UnitPriceSpecification' => 'Jolicode\SchemaOrg\Type\UnitPriceSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

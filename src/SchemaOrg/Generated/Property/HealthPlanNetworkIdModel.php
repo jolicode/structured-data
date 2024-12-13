@@ -18,4 +18,6 @@ final class HealthPlanNetworkIdModel
     public const NAME = 'schema:healthPlanNetworkId';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['HealthPlanNetwork' => 'Jolicode\SchemaOrg\Type\HealthPlanNetworkModel', 'MedicalOrganization' => 'Jolicode\SchemaOrg\Type\MedicalOrganizationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

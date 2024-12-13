@@ -18,4 +18,6 @@ final class AmountOfThisGoodModel
     public const NAME = 'schema:amountOfThisGood';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['TypeAndQuantityNode' => 'Jolicode\SchemaOrg\Type\TypeAndQuantityNodeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

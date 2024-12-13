@@ -18,4 +18,6 @@ final class UsesHealthPlanIdStandardModel
     public const NAME = 'schema:usesHealthPlanIdStandard';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['HealthInsurancePlan' => 'Jolicode\SchemaOrg\Type\HealthInsurancePlanModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

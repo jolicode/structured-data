@@ -16,4 +16,6 @@ final class InvoicePriceModel
     public const DESCRIPTION = 'Represents the invoice price of an offered product.';
     public const LABEL = 'InvoicePrice';
     public const NAME = 'schema:InvoicePrice';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

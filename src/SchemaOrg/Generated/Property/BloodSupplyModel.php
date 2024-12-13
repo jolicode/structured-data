@@ -18,4 +18,6 @@ final class BloodSupplyModel
     public const NAME = 'schema:bloodSupply';
     public const VALUES = ['VesselModel' => 'Jolicode\SchemaOrg\Type\VesselModel'];
     public const TYPES = ['Muscle' => 'Jolicode\SchemaOrg\Type\MuscleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

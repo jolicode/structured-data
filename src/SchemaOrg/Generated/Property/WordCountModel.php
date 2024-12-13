@@ -18,4 +18,6 @@ final class WordCountModel
     public const NAME = 'schema:wordCount';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['Article' => 'Jolicode\SchemaOrg\Type\ArticleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

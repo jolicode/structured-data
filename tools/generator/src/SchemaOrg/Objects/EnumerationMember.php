@@ -29,9 +29,9 @@ class EnumerationMember extends AbstractSchemaOrgElement
         self::sanitizeEntries($rawType);
 
         return new self(
-            name: $rawType[Extractor::KEY_ID],
-            description: $rawType[Extractor::RDFS_COMMENT],
-            label: $rawType[Extractor::RDFS_LABEL],
+            name: trim($rawType[Extractor::KEY_ID]),
+            description: trim($rawType[Extractor::RDFS_COMMENT]),
+            label: trim($rawType[Extractor::RDFS_LABEL]),
             inTypes: (array) $rawType[Extractor::KEY_TYPE],
             className: self::getClassName($rawType[Extractor::RDFS_LABEL]),
         );

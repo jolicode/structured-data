@@ -18,4 +18,6 @@ final class IsAccessibleForFreeModel
     public const NAME = 'schema:isAccessibleForFree';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'Event' => 'Jolicode\SchemaOrg\Type\EventModel', 'Place' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

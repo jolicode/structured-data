@@ -18,4 +18,6 @@ final class IsEncodedByBioChemEntityModel
     public const NAME = 'schema:isEncodedByBioChemEntity';
     public const VALUES = ['GeneModel' => 'Jolicode\SchemaOrg\Type\GeneModel'];
     public const TYPES = ['BioChemEntity' => 'Jolicode\SchemaOrg\Type\BioChemEntityModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

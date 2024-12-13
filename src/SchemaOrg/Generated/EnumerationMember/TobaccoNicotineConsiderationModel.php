@@ -16,4 +16,6 @@ final class TobaccoNicotineConsiderationModel
     public const DESCRIPTION = 'Item contains tobacco and/or nicotine, for example cigars, cigarettes, chewing tobacco, e-cigarettes, or hookahs.';
     public const LABEL = 'TobaccoNicotineConsideration';
     public const NAME = 'schema:TobaccoNicotineConsideration';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

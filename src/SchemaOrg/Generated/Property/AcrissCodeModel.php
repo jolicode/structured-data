@@ -18,4 +18,6 @@ final class AcrissCodeModel
     public const NAME = 'schema:acrissCode';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['BusOrCoach' => 'Jolicode\SchemaOrg\Type\BusOrCoachModel', 'Car' => 'Jolicode\SchemaOrg\Type\CarModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

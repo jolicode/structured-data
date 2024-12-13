@@ -16,4 +16,6 @@ final class UltrasoundModel
     public const DESCRIPTION = 'Ultrasound imaging.';
     public const LABEL = 'Ultrasound';
     public const NAME = 'schema:Ultrasound';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

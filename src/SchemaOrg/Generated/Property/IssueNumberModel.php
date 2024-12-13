@@ -18,4 +18,6 @@ final class IssueNumberModel
     public const NAME = 'schema:issueNumber';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['PublicationIssue' => 'Jolicode\SchemaOrg\Type\PublicationIssueModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

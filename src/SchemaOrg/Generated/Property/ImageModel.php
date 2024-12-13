@@ -18,4 +18,6 @@ final class ImageModel
     public const NAME = 'schema:image';
     public const VALUES = ['ImageObjectModel' => 'Jolicode\SchemaOrg\Type\ImageObjectModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['Thing' => 'Jolicode\SchemaOrg\Type\ThingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

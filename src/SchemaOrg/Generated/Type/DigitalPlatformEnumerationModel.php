@@ -15,11 +15,13 @@ use Jolicode\SchemaOrg\Property;
 
 final class DigitalPlatformEnumerationModel
 {
-    public const DESCRIPTION = 'Enumerates some common technology platforms, for use with properties such as [[actionPlatform]]. It is not supposed to be comprehensive - when a suitable code is not enumerated here, textual or URL values can be used instead. These codes are at a fairly high level and do not deal with versioning and other nuance. Additional codes can be suggested [in github](https://github.com/schemaorg/schemaorg/issues/3057). ';
+    public const DESCRIPTION = 'Enumerates some common technology platforms, for use with properties such as [[actionPlatform]]. It is not supposed to be comprehensive - when a suitable code is not enumerated here, textual or URL values can be used instead. These codes are at a fairly high level and do not deal with versioning and other nuance. Additional codes can be suggested [in github](https://github.com/schemaorg/schemaorg/issues/3057).';
     public const LABEL = 'DigitalPlatformEnumeration';
     public const NAME = 'schema:DigitalPlatformEnumeration';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['AndroidPlatformModel' => 'EnumerationMember\AndroidPlatformModel', 'DesktopWebPlatformModel' => 'EnumerationMember\DesktopWebPlatformModel', 'GenericWebPlatformModel' => 'EnumerationMember\GenericWebPlatformModel', 'IOSPlatformModel' => 'EnumerationMember\IOSPlatformModel', 'MobileWebPlatformModel' => 'EnumerationMember\MobileWebPlatformModel'];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3057'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -18,4 +18,6 @@ final class CauseOfModel
     public const NAME = 'schema:causeOf';
     public const VALUES = ['MedicalEntityModel' => 'Jolicode\SchemaOrg\Type\MedicalEntityModel'];
     public const TYPES = ['MedicalCause' => 'Jolicode\SchemaOrg\Type\MedicalCauseModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

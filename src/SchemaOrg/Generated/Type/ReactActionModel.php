@@ -20,6 +20,8 @@ final class ReactActionModel
     public const NAME = 'schema:ReactAction';
     public const PARENTS = ['AssessActionModel' => 'Jolicode\SchemaOrg\Type\AssessActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

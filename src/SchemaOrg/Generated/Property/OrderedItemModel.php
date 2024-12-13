@@ -18,4 +18,6 @@ final class OrderedItemModel
     public const NAME = 'schema:orderedItem';
     public const VALUES = ['OrderItemModel' => 'Jolicode\SchemaOrg\Type\OrderItemModel', 'ProductModel' => 'Jolicode\SchemaOrg\Type\ProductModel', 'ServiceModel' => 'Jolicode\SchemaOrg\Type\ServiceModel'];
     public const TYPES = ['OrderItem' => 'Jolicode\SchemaOrg\Type\OrderItemModel', 'Order' => 'Jolicode\SchemaOrg\Type\OrderModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

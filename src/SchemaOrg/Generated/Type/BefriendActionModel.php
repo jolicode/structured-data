@@ -20,6 +20,8 @@ final class BefriendActionModel
     public const NAME = 'schema:BefriendAction';
     public const PARENTS = ['InteractActionModel' => 'Jolicode\SchemaOrg\Type\InteractActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

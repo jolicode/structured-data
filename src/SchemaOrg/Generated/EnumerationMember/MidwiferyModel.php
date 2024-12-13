@@ -16,4 +16,6 @@ final class MidwiferyModel
     public const DESCRIPTION = 'A nurse-like health profession that deals with pregnancy, childbirth, and the postpartum period (including care of the newborn), besides sexual and reproductive health of women throughout their lives.';
     public const LABEL = 'Midwifery';
     public const NAME = 'schema:Midwifery';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

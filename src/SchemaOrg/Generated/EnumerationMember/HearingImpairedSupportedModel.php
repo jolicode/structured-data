@@ -16,4 +16,6 @@ final class HearingImpairedSupportedModel
     public const DESCRIPTION = 'Uses devices to support users with hearing impairments.';
     public const LABEL = 'HearingImpairedSupported';
     public const NAME = 'schema:HearingImpairedSupported';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

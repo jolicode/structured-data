@@ -23,4 +23,6 @@ final class EventScheduleModel
     public const NAME = 'schema:eventSchedule';
     public const VALUES = ['ScheduleModel' => 'Jolicode\SchemaOrg\Type\ScheduleModel'];
     public const TYPES = ['Event' => 'Jolicode\SchemaOrg\Type\EventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

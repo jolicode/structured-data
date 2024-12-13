@@ -18,4 +18,6 @@ final class ServesCuisineModel
     public const NAME = 'schema:servesCuisine';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['FoodEstablishment' => 'Jolicode\SchemaOrg\Type\FoodEstablishmentModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

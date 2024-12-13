@@ -18,4 +18,6 @@ final class SuggestedGenderModel
     public const NAME = 'schema:suggestedGender';
     public const VALUES = ['GenderTypeModel' => 'Jolicode\SchemaOrg\Type\GenderTypeModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['PeopleAudience' => 'Jolicode\SchemaOrg\Type\PeopleAudienceModel', 'SizeSpecification' => 'Jolicode\SchemaOrg\Type\SizeSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

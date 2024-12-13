@@ -18,4 +18,6 @@ final class SupersededByModel
     public const NAME = 'schema:supersededBy';
     public const VALUES = ['ClassModel' => 'Jolicode\SchemaOrg\Type\ClassModel', 'EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel', 'PropertyModel' => 'Jolicode\SchemaOrg\Type\PropertyModel'];
     public const TYPES = ['Class' => 'Jolicode\SchemaOrg\Type\ClassModel', 'Enumeration' => 'Jolicode\SchemaOrg\Type\EnumerationModel', 'Property' => 'Jolicode\SchemaOrg\Type\PropertyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class GlutenFreeDietModel
     public const DESCRIPTION = 'A diet exclusive of gluten.';
     public const LABEL = 'GlutenFreeDiet';
     public const NAME = 'schema:GlutenFreeDiet';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

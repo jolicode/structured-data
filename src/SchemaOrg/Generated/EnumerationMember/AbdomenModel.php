@@ -16,4 +16,6 @@ final class AbdomenModel
     public const DESCRIPTION = 'Abdomen clinical examination.';
     public const LABEL = 'Abdomen';
     public const NAME = 'schema:Abdomen';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

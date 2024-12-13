@@ -18,4 +18,6 @@ final class SubTestModel
     public const NAME = 'schema:subTest';
     public const VALUES = ['MedicalTestModel' => 'Jolicode\SchemaOrg\Type\MedicalTestModel'];
     public const TYPES = ['MedicalTestPanel' => 'Jolicode\SchemaOrg\Type\MedicalTestPanelModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

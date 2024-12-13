@@ -18,4 +18,6 @@ final class PostalCodeEndModel
     public const NAME = 'schema:postalCodeEnd';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['PostalCodeRangeSpecification' => 'Jolicode\SchemaOrg\Type\PostalCodeRangeSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class DeliveryTimeModel
     public const NAME = 'schema:deliveryTime';
     public const VALUES = ['ShippingDeliveryTimeModel' => 'Jolicode\SchemaOrg\Type\ShippingDeliveryTimeModel'];
     public const TYPES = ['DeliveryTimeSettings' => 'Jolicode\SchemaOrg\Type\DeliveryTimeSettingsModel', 'OfferShippingDetails' => 'Jolicode\SchemaOrg\Type\OfferShippingDetailsModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

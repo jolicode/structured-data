@@ -18,4 +18,6 @@ final class BillingAddressModel
     public const NAME = 'schema:billingAddress';
     public const VALUES = ['PostalAddressModel' => 'Jolicode\SchemaOrg\Type\PostalAddressModel'];
     public const TYPES = ['Order' => 'Jolicode\SchemaOrg\Type\OrderModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

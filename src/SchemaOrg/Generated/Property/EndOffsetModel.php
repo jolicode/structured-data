@@ -18,4 +18,6 @@ final class EndOffsetModel
     public const NAME = 'schema:endOffset';
     public const VALUES = ['HyperTocEntryModel' => 'Jolicode\SchemaOrg\Type\HyperTocEntryModel', 'NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['Clip' => 'Jolicode\SchemaOrg\Type\ClipModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

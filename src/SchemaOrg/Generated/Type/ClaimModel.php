@@ -19,12 +19,13 @@ final class ClaimModel
 
   Beyond [[ClaimReview]], the Claim type can be associated with related creative works - for example a [[ScholarlyArticle]] or [[Question]] might be [[about]] some [[Claim]].
 
-  At this time, Schema.org does not define any types of relationship between claims. This is a natural area for future exploration.
-  ';
+  At this time, Schema.org does not define any types of relationship between claims. This is a natural area for future exploration.';
     public const LABEL = 'Claim';
     public const NAME = 'schema:Claim';
     public const PARENTS = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1828'];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

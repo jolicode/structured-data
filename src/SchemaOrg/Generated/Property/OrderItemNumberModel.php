@@ -18,4 +18,6 @@ final class OrderItemNumberModel
     public const NAME = 'schema:orderItemNumber';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['OrderItem' => 'Jolicode\SchemaOrg\Type\OrderItemModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class MadeToOrderModel
     public const DESCRIPTION = 'Indicates that the item is made to order (custom made).';
     public const LABEL = 'MadeToOrder';
     public const NAME = 'schema:MadeToOrder';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

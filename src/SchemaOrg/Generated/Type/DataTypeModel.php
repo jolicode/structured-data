@@ -20,6 +20,8 @@ final class DataTypeModel
     public const NAME = 'schema:DataType';
     public const PARENTS = ['Rdfs:ClassModel' => 'Jolicode\SchemaOrg\Type\Rdfs:ClassModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -18,4 +18,6 @@ final class FirstAppearanceModel
     public const NAME = 'schema:firstAppearance';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
     public const TYPES = ['Claim' => 'Jolicode\SchemaOrg\Type\ClaimModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

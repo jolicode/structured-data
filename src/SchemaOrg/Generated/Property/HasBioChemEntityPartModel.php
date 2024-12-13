@@ -13,9 +13,11 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class HasBioChemEntityPartModel
 {
-    public const DESCRIPTION = 'Indicates a BioChemEntity that (in some sense) has this BioChemEntity as a part. ';
+    public const DESCRIPTION = 'Indicates a BioChemEntity that (in some sense) has this BioChemEntity as a part.';
     public const LABEL = 'hasBioChemEntityPart';
     public const NAME = 'schema:hasBioChemEntityPart';
     public const VALUES = ['BioChemEntityModel' => 'Jolicode\SchemaOrg\Type\BioChemEntityModel'];
     public const TYPES = ['BioChemEntity' => 'Jolicode\SchemaOrg\Type\BioChemEntityModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

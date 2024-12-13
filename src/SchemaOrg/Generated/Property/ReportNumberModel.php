@@ -18,4 +18,6 @@ final class ReportNumberModel
     public const NAME = 'schema:reportNumber';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Report' => 'Jolicode\SchemaOrg\Type\ReportModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

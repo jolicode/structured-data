@@ -18,4 +18,6 @@ final class MinValueModel
     public const NAME = 'schema:minValue';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['MonetaryAmount' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel', 'PropertyValue' => 'Jolicode\SchemaOrg\Type\PropertyValueModel', 'PropertyValueSpecification' => 'Jolicode\SchemaOrg\Type\PropertyValueSpecificationModel', 'QuantitativeValue' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

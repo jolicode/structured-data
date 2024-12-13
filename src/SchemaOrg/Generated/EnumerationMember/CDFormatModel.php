@@ -16,4 +16,6 @@ final class CDFormatModel
     public const DESCRIPTION = 'CDFormat.';
     public const LABEL = 'CDFormat';
     public const NAME = 'schema:CDFormat';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

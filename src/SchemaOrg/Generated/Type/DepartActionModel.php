@@ -20,6 +20,8 @@ final class DepartActionModel
     public const NAME = 'schema:DepartAction';
     public const PARENTS = ['MoveActionModel' => 'Jolicode\SchemaOrg\Type\MoveActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

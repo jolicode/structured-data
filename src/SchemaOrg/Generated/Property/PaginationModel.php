@@ -18,4 +18,6 @@ final class PaginationModel
     public const NAME = 'schema:pagination';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Article' => 'Jolicode\SchemaOrg\Type\ArticleModel', 'Chapter' => 'Jolicode\SchemaOrg\Type\ChapterModel', 'PublicationIssue' => 'Jolicode\SchemaOrg\Type\PublicationIssueModel', 'PublicationVolume' => 'Jolicode\SchemaOrg\Type\PublicationVolumeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

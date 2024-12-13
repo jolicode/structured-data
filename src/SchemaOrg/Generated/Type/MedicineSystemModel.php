@@ -20,6 +20,8 @@ final class MedicineSystemModel
     public const NAME = 'schema:MedicineSystem';
     public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\SchemaOrg\Type\MedicalEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['AyurvedicModel' => 'EnumerationMember\AyurvedicModel', 'ChiropracticModel' => 'EnumerationMember\ChiropracticModel', 'HomeopathicModel' => 'EnumerationMember\HomeopathicModel', 'OsteopathicModel' => 'EnumerationMember\OsteopathicModel', 'TraditionalChineseModel' => 'EnumerationMember\TraditionalChineseModel', 'WesternConventionalModel' => 'EnumerationMember\WesternConventionalModel'];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

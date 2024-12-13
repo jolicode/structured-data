@@ -18,4 +18,6 @@ final class AudienceModel
     public const NAME = 'schema:audience';
     public const VALUES = ['AudienceModel' => 'Jolicode\SchemaOrg\Type\AudienceModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'Event' => 'Jolicode\SchemaOrg\Type\EventModel', 'LodgingBusiness' => 'Jolicode\SchemaOrg\Type\LodgingBusinessModel', 'PlayAction' => 'Jolicode\SchemaOrg\Type\PlayActionModel', 'Product' => 'Jolicode\SchemaOrg\Type\ProductModel', 'Service' => 'Jolicode\SchemaOrg\Type\ServiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

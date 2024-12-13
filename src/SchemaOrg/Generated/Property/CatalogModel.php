@@ -18,4 +18,6 @@ final class CatalogModel
     public const NAME = 'schema:catalog';
     public const VALUES = ['DataCatalogModel' => 'Jolicode\SchemaOrg\Type\DataCatalogModel'];
     public const TYPES = ['Dataset' => 'Jolicode\SchemaOrg\Type\DatasetModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

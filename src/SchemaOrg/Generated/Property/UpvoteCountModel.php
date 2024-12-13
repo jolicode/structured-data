@@ -18,4 +18,6 @@ final class UpvoteCountModel
     public const NAME = 'schema:upvoteCount';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['Comment' => 'Jolicode\SchemaOrg\Type\CommentModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class EventMovedOnlineModel
     public const DESCRIPTION = 'Indicates that the event was changed to allow online participation. See [[eventAttendanceMode]] for specifics of whether it is now fully or partially online.';
     public const LABEL = 'EventMovedOnline';
     public const NAME = 'schema:EventMovedOnline';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

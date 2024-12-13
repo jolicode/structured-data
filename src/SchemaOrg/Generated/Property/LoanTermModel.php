@@ -18,4 +18,6 @@ final class LoanTermModel
     public const NAME = 'schema:loanTerm';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['LoanOrCredit' => 'Jolicode\SchemaOrg\Type\LoanOrCreditModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class InAlbumModel
     public const NAME = 'schema:inAlbum';
     public const VALUES = ['MusicAlbumModel' => 'Jolicode\SchemaOrg\Type\MusicAlbumModel'];
     public const TYPES = ['MusicRecording' => 'Jolicode\SchemaOrg\Type\MusicRecordingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class HasTierRequirementModel
     public const NAME = 'schema:hasTierRequirement';
     public const VALUES = ['CreditCardModel' => 'Jolicode\SchemaOrg\Type\CreditCardModel', 'MonetaryAmountModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'UnitPriceSpecificationModel' => 'Jolicode\SchemaOrg\Type\UnitPriceSpecificationModel'];
     public const TYPES = ['MemberProgramTier' => 'Jolicode\SchemaOrg\Type\MemberProgramTierModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

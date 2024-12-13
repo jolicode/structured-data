@@ -16,4 +16,6 @@ final class EUEnergyEfficiencyCategoryBModel
     public const DESCRIPTION = 'Represents EU Energy Efficiency Class B as defined in EU energy labeling regulations.';
     public const LABEL = 'EUEnergyEfficiencyCategoryB';
     public const NAME = 'schema:EUEnergyEfficiencyCategoryB';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

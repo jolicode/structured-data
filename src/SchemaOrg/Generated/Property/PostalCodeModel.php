@@ -18,4 +18,6 @@ final class PostalCodeModel
     public const NAME = 'schema:postalCode';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DefinedRegion' => 'Jolicode\SchemaOrg\Type\DefinedRegionModel', 'GeoCoordinates' => 'Jolicode\SchemaOrg\Type\GeoCoordinatesModel', 'GeoShape' => 'Jolicode\SchemaOrg\Type\GeoShapeModel', 'PostalAddress' => 'Jolicode\SchemaOrg\Type\PostalAddressModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

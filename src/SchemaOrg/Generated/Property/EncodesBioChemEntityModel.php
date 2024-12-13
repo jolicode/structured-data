@@ -13,9 +13,11 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class EncodesBioChemEntityModel
 {
-    public const DESCRIPTION = 'Another BioChemEntity encoded by this one. ';
+    public const DESCRIPTION = 'Another BioChemEntity encoded by this one.';
     public const LABEL = 'encodesBioChemEntity';
     public const NAME = 'schema:encodesBioChemEntity';
     public const VALUES = ['BioChemEntityModel' => 'Jolicode\SchemaOrg\Type\BioChemEntityModel'];
     public const TYPES = ['Gene' => 'Jolicode\SchemaOrg\Type\GeneModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

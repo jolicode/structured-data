@@ -18,4 +18,6 @@ final class DomiciledMortgageModel
     public const NAME = 'schema:domiciledMortgage';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['MortgageLoan' => 'Jolicode\SchemaOrg\Type\MortgageLoanModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class StudyModel
     public const NAME = 'schema:study';
     public const VALUES = ['MedicalStudyModel' => 'Jolicode\SchemaOrg\Type\MedicalStudyModel'];
     public const TYPES = ['MedicalEntity' => 'Jolicode\SchemaOrg\Type\MedicalEntityModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

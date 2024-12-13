@@ -18,4 +18,6 @@ final class PossibleTreatmentModel
     public const NAME = 'schema:possibleTreatment';
     public const VALUES = ['MedicalTherapyModel' => 'Jolicode\SchemaOrg\Type\MedicalTherapyModel'];
     public const TYPES = ['MedicalCondition' => 'Jolicode\SchemaOrg\Type\MedicalConditionModel', 'MedicalSignOrSymptom' => 'Jolicode\SchemaOrg\Type\MedicalSignOrSymptomModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

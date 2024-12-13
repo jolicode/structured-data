@@ -18,4 +18,6 @@ final class NextItemModel
     public const NAME = 'schema:nextItem';
     public const VALUES = ['ListItemModel' => 'Jolicode\SchemaOrg\Type\ListItemModel'];
     public const TYPES = ['ListItem' => 'Jolicode\SchemaOrg\Type\ListItemModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

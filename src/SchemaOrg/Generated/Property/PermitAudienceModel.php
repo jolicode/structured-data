@@ -18,4 +18,6 @@ final class PermitAudienceModel
     public const NAME = 'schema:permitAudience';
     public const VALUES = ['AudienceModel' => 'Jolicode\SchemaOrg\Type\AudienceModel'];
     public const TYPES = ['Permit' => 'Jolicode\SchemaOrg\Type\PermitModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

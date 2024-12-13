@@ -16,4 +16,6 @@ final class EyeModel
     public const DESCRIPTION = 'Eye or ophthalmological function assessment with clinical examination.';
     public const LABEL = 'Eye';
     public const NAME = 'schema:Eye';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class ChildMaxAgeModel
     public const NAME = 'schema:childMaxAge';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['ParentAudience' => 'Jolicode\SchemaOrg\Type\ParentAudienceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

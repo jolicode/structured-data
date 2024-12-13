@@ -16,4 +16,6 @@ final class SaturdayModel
     public const DESCRIPTION = 'The day of the week between Friday and Sunday.';
     public const LABEL = 'Saturday';
     public const NAME = 'schema:Saturday';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

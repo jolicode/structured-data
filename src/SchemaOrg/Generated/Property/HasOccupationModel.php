@@ -18,4 +18,6 @@ final class HasOccupationModel
     public const NAME = 'schema:hasOccupation';
     public const VALUES = ['OccupationModel' => 'Jolicode\SchemaOrg\Type\OccupationModel'];
     public const TYPES = ['Person' => 'Jolicode\SchemaOrg\Type\PersonModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

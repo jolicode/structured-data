@@ -18,4 +18,6 @@ final class TargetUrlModel
     public const NAME = 'schema:targetUrl';
     public const VALUES = ['URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['AlignmentObject' => 'Jolicode\SchemaOrg\Type\AlignmentObjectModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

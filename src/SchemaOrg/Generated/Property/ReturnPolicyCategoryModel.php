@@ -18,4 +18,6 @@ final class ReturnPolicyCategoryModel
     public const NAME = 'schema:returnPolicyCategory';
     public const VALUES = ['MerchantReturnEnumerationModel' => 'Jolicode\SchemaOrg\Type\MerchantReturnEnumerationModel'];
     public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicyModel', 'MerchantReturnPolicySeasonalOverride' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicySeasonalOverrideModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

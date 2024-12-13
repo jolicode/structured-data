@@ -18,4 +18,6 @@ final class AddOnModel
     public const NAME = 'schema:addOn';
     public const VALUES = ['OfferModel' => 'Jolicode\SchemaOrg\Type\OfferModel'];
     public const TYPES = ['Offer' => 'Jolicode\SchemaOrg\Type\OfferModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -13,9 +13,11 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class YearBuiltModel
 {
-    public const DESCRIPTION = 'The year an [[Accommodation]] was constructed. This corresponds to the [YearBuilt field in RESO](https://ddwiki.reso.org/display/DDW17/YearBuilt+Field). ';
+    public const DESCRIPTION = 'The year an [[Accommodation]] was constructed. This corresponds to the [YearBuilt field in RESO](https://ddwiki.reso.org/display/DDW17/YearBuilt+Field).';
     public const LABEL = 'yearBuilt';
     public const NAME = 'schema:yearBuilt';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['Accommodation' => 'Jolicode\SchemaOrg\Type\AccommodationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

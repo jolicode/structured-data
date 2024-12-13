@@ -16,4 +16,6 @@ final class DigitalFormatModel
     public const DESCRIPTION = 'DigitalFormat.';
     public const LABEL = 'DigitalFormat';
     public const NAME = 'schema:DigitalFormat';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class TargetPopulationModel
     public const NAME = 'schema:targetPopulation';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DietarySupplement' => 'Jolicode\SchemaOrg\Type\DietarySupplementModel', 'DoseSchedule' => 'Jolicode\SchemaOrg\Type\DoseScheduleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

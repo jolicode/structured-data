@@ -18,4 +18,6 @@ final class HasHealthAspectModel
     public const NAME = 'schema:hasHealthAspect';
     public const VALUES = ['HealthAspectEnumerationModel' => 'Jolicode\SchemaOrg\Type\HealthAspectEnumerationModel'];
     public const TYPES = ['HealthTopicContent' => 'Jolicode\SchemaOrg\Type\HealthTopicContentModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

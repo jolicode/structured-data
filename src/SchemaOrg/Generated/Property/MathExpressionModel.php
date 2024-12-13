@@ -18,4 +18,6 @@ final class MathExpressionModel
     public const NAME = 'schema:mathExpression';
     public const VALUES = ['SolveMathActionModel' => 'Jolicode\SchemaOrg\Type\SolveMathActionModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MathSolver' => 'Jolicode\SchemaOrg\Type\MathSolverModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

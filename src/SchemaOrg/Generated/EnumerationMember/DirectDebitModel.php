@@ -16,4 +16,6 @@ final class DirectDebitModel
     public const DESCRIPTION = 'Payment in advance by direct debit from the bank, equivalent to <code>http://purl.org/goodrelations/v1#DirectDebit</code>.';
     public const LABEL = 'DirectDebit';
     public const NAME = 'schema:DirectDebit';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

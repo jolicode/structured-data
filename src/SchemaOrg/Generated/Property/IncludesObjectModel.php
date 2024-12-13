@@ -18,4 +18,6 @@ final class IncludesObjectModel
     public const NAME = 'schema:includesObject';
     public const VALUES = ['TypeAndQuantityNodeModel' => 'Jolicode\SchemaOrg\Type\TypeAndQuantityNodeModel'];
     public const TYPES = ['Demand' => 'Jolicode\SchemaOrg\Type\DemandModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'ProductCollection' => 'Jolicode\SchemaOrg\Type\ProductCollectionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

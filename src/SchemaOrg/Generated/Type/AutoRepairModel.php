@@ -20,6 +20,8 @@ final class AutoRepairModel
     public const NAME = 'schema:AutoRepair';
     public const PARENTS = ['AutomotiveBusinessModel' => 'Jolicode\SchemaOrg\Type\AutomotiveBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

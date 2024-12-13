@@ -20,6 +20,8 @@ final class WaterfallModel
     public const NAME = 'schema:Waterfall';
     public const PARENTS = ['BodyOfWaterModel' => 'Jolicode\SchemaOrg\Type\BodyOfWaterModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalPropertyModel $additionalProperty = null,

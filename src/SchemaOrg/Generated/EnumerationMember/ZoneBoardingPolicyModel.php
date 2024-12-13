@@ -16,4 +16,6 @@ final class ZoneBoardingPolicyModel
     public const DESCRIPTION = 'The airline boards by zones of the plane.';
     public const LABEL = 'ZoneBoardingPolicy';
     public const NAME = 'schema:ZoneBoardingPolicy';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

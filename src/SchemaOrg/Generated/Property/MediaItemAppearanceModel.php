@@ -18,4 +18,6 @@ final class MediaItemAppearanceModel
     public const NAME = 'schema:mediaItemAppearance';
     public const VALUES = ['MediaObjectModel' => 'Jolicode\SchemaOrg\Type\MediaObjectModel'];
     public const TYPES = ['MediaReviewItem' => 'Jolicode\SchemaOrg\Type\MediaReviewItemModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

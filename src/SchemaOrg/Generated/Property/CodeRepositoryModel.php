@@ -18,4 +18,6 @@ final class CodeRepositoryModel
     public const NAME = 'schema:codeRepository';
     public const VALUES = ['URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['SoftwareSourceCode' => 'Jolicode\SchemaOrg\Type\SoftwareSourceCodeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

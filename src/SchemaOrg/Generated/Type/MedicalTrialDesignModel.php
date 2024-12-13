@@ -20,6 +20,8 @@ final class MedicalTrialDesignModel
     public const NAME = 'schema:MedicalTrialDesign';
     public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\SchemaOrg\Type\MedicalEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['DoubleBlindedTrialModel' => 'EnumerationMember\DoubleBlindedTrialModel', 'InternationalTrialModel' => 'EnumerationMember\InternationalTrialModel', 'MultiCenterTrialModel' => 'EnumerationMember\MultiCenterTrialModel', 'OpenTrialModel' => 'EnumerationMember\OpenTrialModel', 'PlaceboControlledTrialModel' => 'EnumerationMember\PlaceboControlledTrialModel', 'RandomizedTrialModel' => 'EnumerationMember\RandomizedTrialModel', 'SingleBlindedTrialModel' => 'EnumerationMember\SingleBlindedTrialModel', 'SingleCenterTrialModel' => 'EnumerationMember\SingleCenterTrialModel', 'TripleBlindedTrialModel' => 'EnumerationMember\TripleBlindedTrialModel'];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

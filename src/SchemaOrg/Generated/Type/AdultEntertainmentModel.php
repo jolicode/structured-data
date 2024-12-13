@@ -20,6 +20,8 @@ final class AdultEntertainmentModel
     public const NAME = 'schema:AdultEntertainment';
     public const PARENTS = ['EntertainmentBusinessModel' => 'Jolicode\SchemaOrg\Type\EntertainmentBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

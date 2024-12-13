@@ -18,4 +18,6 @@ final class GranteeModel
     public const NAME = 'schema:grantee';
     public const VALUES = ['AudienceModel' => 'Jolicode\SchemaOrg\Type\AudienceModel', 'ContactPointModel' => 'Jolicode\SchemaOrg\Type\ContactPointModel', 'OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['DigitalDocumentPermission' => 'Jolicode\SchemaOrg\Type\DigitalDocumentPermissionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

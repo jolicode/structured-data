@@ -20,6 +20,8 @@ final class ConvenienceStoreModel
     public const NAME = 'schema:ConvenienceStore';
     public const PARENTS = ['StoreModel' => 'Jolicode\SchemaOrg\Type\StoreModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

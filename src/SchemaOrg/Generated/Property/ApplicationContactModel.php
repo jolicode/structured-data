@@ -18,4 +18,6 @@ final class ApplicationContactModel
     public const NAME = 'schema:applicationContact';
     public const VALUES = ['ContactPointModel' => 'Jolicode\SchemaOrg\Type\ContactPointModel'];
     public const TYPES = ['JobPosting' => 'Jolicode\SchemaOrg\Type\JobPostingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

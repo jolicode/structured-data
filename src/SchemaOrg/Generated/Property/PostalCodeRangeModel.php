@@ -18,4 +18,6 @@ final class PostalCodeRangeModel
     public const NAME = 'schema:postalCodeRange';
     public const VALUES = ['PostalCodeRangeSpecificationModel' => 'Jolicode\SchemaOrg\Type\PostalCodeRangeSpecificationModel'];
     public const TYPES = ['DefinedRegion' => 'Jolicode\SchemaOrg\Type\DefinedRegionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

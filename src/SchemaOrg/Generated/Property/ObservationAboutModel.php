@@ -18,4 +18,6 @@ final class ObservationAboutModel
     public const NAME = 'schema:observationAbout';
     public const VALUES = ['PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel', 'ThingModel' => 'Jolicode\SchemaOrg\Type\ThingModel'];
     public const TYPES = ['Observation' => 'Jolicode\SchemaOrg\Type\ObservationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

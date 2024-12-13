@@ -16,4 +16,6 @@ final class DVDFormatModel
     public const DESCRIPTION = 'DVDFormat.';
     public const LABEL = 'DVDFormat';
     public const NAME = 'schema:DVDFormat';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

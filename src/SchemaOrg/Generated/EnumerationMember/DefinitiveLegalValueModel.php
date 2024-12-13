@@ -17,4 +17,6 @@ final class DefinitiveLegalValueModel
   Something "Definitive" is considered to be also [[AuthoritativeLegalValue]].';
     public const LABEL = 'DefinitiveLegalValue';
     public const NAME = 'schema:DefinitiveLegalValue';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

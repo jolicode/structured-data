@@ -18,4 +18,6 @@ final class RecommendationStrengthModel
     public const NAME = 'schema:recommendationStrength';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalGuidelineRecommendation' => 'Jolicode\SchemaOrg\Type\MedicalGuidelineRecommendationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

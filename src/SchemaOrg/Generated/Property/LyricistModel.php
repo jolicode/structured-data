@@ -18,4 +18,6 @@ final class LyricistModel
     public const NAME = 'schema:lyricist';
     public const VALUES = ['PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['MusicComposition' => 'Jolicode\SchemaOrg\Type\MusicCompositionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

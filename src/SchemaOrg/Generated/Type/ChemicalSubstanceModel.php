@@ -20,6 +20,8 @@ final class ChemicalSubstanceModel
     public const NAME = 'schema:ChemicalSubstance';
     public const PARENTS = ['BioChemEntityModel' => 'Jolicode\SchemaOrg\Type\BioChemEntityModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['http://bioschemas.org', 'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=59999'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

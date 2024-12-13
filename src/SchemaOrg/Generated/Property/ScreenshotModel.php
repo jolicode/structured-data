@@ -18,4 +18,6 @@ final class ScreenshotModel
     public const NAME = 'schema:screenshot';
     public const VALUES = ['ImageObjectModel' => 'Jolicode\SchemaOrg\Type\ImageObjectModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['SoftwareApplication' => 'Jolicode\SchemaOrg\Type\SoftwareApplicationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

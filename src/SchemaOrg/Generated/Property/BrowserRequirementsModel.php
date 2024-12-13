@@ -18,4 +18,6 @@ final class BrowserRequirementsModel
     public const NAME = 'schema:browserRequirements';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['WebApplication' => 'Jolicode\SchemaOrg\Type\WebApplicationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

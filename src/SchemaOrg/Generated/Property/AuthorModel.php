@@ -18,4 +18,6 @@ final class AuthorModel
     public const NAME = 'schema:author';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'Rating' => 'Jolicode\SchemaOrg\Type\RatingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -20,6 +20,8 @@ final class MedicalProcedureTypeModel
     public const NAME = 'schema:MedicalProcedureType';
     public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\SchemaOrg\Type\MedicalEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['NoninvasiveProcedureModel' => 'EnumerationMember\NoninvasiveProcedureModel', 'PercutaneousProcedureModel' => 'EnumerationMember\PercutaneousProcedureModel'];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

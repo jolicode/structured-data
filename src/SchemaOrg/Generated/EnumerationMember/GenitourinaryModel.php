@@ -16,4 +16,6 @@ final class GenitourinaryModel
     public const DESCRIPTION = 'Genitourinary system function assessment with clinical examination.';
     public const LABEL = 'Genitourinary';
     public const NAME = 'schema:Genitourinary';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

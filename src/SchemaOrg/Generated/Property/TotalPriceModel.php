@@ -18,4 +18,6 @@ final class TotalPriceModel
     public const NAME = 'schema:totalPrice';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'PriceSpecificationModel' => 'Jolicode\SchemaOrg\Type\PriceSpecificationModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Reservation' => 'Jolicode\SchemaOrg\Type\ReservationModel', 'Ticket' => 'Jolicode\SchemaOrg\Type\TicketModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

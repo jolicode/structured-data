@@ -16,4 +16,6 @@ final class Nonprofit501c8Model
     public const DESCRIPTION = 'Nonprofit501c8: Non-profit type referring to Fraternal Beneficiary Societies and Associations.';
     public const LABEL = 'Nonprofit501c8';
     public const NAME = 'schema:Nonprofit501c8';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

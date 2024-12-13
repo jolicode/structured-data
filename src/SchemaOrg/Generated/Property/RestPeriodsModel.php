@@ -18,4 +18,6 @@ final class RestPeriodsModel
     public const NAME = 'schema:restPeriods';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['ExercisePlan' => 'Jolicode\SchemaOrg\Type\ExercisePlanModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

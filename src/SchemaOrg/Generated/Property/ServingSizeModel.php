@@ -18,4 +18,6 @@ final class ServingSizeModel
     public const NAME = 'schema:servingSize';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['NutritionInformation' => 'Jolicode\SchemaOrg\Type\NutritionInformationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

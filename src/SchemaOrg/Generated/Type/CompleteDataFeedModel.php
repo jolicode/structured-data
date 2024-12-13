@@ -22,6 +22,8 @@ This is the equivalent of Atom\'s element as defined in Feed Paging and Archivin
     public const NAME = 'schema:CompleteDataFeed';
     public const PARENTS = ['DataFeedModel' => 'Jolicode\SchemaOrg\Type\DataFeedModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1397'];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

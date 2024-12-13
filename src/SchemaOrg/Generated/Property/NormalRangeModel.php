@@ -18,4 +18,6 @@ final class NormalRangeModel
     public const NAME = 'schema:normalRange';
     public const VALUES = ['MedicalEnumerationModel' => 'Jolicode\SchemaOrg\Type\MedicalEnumerationModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalTest' => 'Jolicode\SchemaOrg\Type\MedicalTestModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

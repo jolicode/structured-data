@@ -16,4 +16,6 @@ final class UnincorporatedAssociationCharityModel
     public const DESCRIPTION = 'UnincorporatedAssociationCharity: Non-profit type referring to a charitable company that is not incorporated (UK).';
     public const LABEL = 'UnincorporatedAssociationCharity';
     public const NAME = 'schema:UnincorporatedAssociationCharity';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

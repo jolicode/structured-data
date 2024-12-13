@@ -20,6 +20,8 @@ final class OwnershipInfoModel
     public const NAME = 'schema:OwnershipInfo';
     public const PARENTS = ['StructuredValueModel' => 'Jolicode\SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcquiredFromModel $acquiredFrom = null,

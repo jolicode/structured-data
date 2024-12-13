@@ -20,6 +20,8 @@ final class DietarySupplementModel
     public const NAME = 'schema:DietarySupplement';
     public const PARENTS = ['ProductModel' => 'Jolicode\SchemaOrg\Type\ProductModel', 'SubstanceModel' => 'Jolicode\SchemaOrg\Type\SubstanceModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActiveIngredientModel $activeIngredient = null,

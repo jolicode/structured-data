@@ -18,4 +18,6 @@ final class MessageAttachmentModel
     public const NAME = 'schema:messageAttachment';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
     public const TYPES = ['Message' => 'Jolicode\SchemaOrg\Type\MessageModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

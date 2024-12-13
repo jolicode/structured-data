@@ -16,4 +16,6 @@ final class Nonprofit501c18Model
     public const DESCRIPTION = 'Nonprofit501c18: Non-profit type referring to Employee Funded Pension Trust (created before 25 June 1959).';
     public const LABEL = 'Nonprofit501c18';
     public const NAME = 'schema:Nonprofit501c18';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

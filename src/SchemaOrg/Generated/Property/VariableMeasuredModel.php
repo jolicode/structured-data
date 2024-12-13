@@ -18,4 +18,6 @@ final class VariableMeasuredModel
     public const NAME = 'schema:variableMeasured';
     public const VALUES = ['PropertyModel' => 'Jolicode\SchemaOrg\Type\PropertyModel', 'PropertyValueModel' => 'Jolicode\SchemaOrg\Type\PropertyValueModel', 'StatisticalVariableModel' => 'Jolicode\SchemaOrg\Type\StatisticalVariableModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Dataset' => 'Jolicode\SchemaOrg\Type\DatasetModel', 'Observation' => 'Jolicode\SchemaOrg\Type\ObservationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

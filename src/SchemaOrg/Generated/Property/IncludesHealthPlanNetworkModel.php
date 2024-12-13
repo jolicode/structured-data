@@ -18,4 +18,6 @@ final class IncludesHealthPlanNetworkModel
     public const NAME = 'schema:includesHealthPlanNetwork';
     public const VALUES = ['HealthPlanNetworkModel' => 'Jolicode\SchemaOrg\Type\HealthPlanNetworkModel'];
     public const TYPES = ['HealthInsurancePlan' => 'Jolicode\SchemaOrg\Type\HealthInsurancePlanModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

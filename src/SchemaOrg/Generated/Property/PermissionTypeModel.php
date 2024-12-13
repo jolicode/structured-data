@@ -18,4 +18,6 @@ final class PermissionTypeModel
     public const NAME = 'schema:permissionType';
     public const VALUES = ['DigitalDocumentPermissionTypeModel' => 'Jolicode\SchemaOrg\Type\DigitalDocumentPermissionTypeModel'];
     public const TYPES = ['DigitalDocumentPermission' => 'Jolicode\SchemaOrg\Type\DigitalDocumentPermissionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

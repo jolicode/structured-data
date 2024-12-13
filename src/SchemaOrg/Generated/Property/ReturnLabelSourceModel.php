@@ -18,4 +18,6 @@ final class ReturnLabelSourceModel
     public const NAME = 'schema:returnLabelSource';
     public const VALUES = ['ReturnLabelSourceEnumerationModel' => 'Jolicode\SchemaOrg\Type\ReturnLabelSourceEnumerationModel'];
     public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

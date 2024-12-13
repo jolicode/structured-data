@@ -18,4 +18,6 @@ final class AlumniModel
     public const NAME = 'schema:alumni';
     public const VALUES = ['PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['EducationalOrganization' => 'Jolicode\SchemaOrg\Type\EducationalOrganizationModel', 'Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

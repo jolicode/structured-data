@@ -16,4 +16,6 @@ final class SurgicalModel
     public const DESCRIPTION = 'A specific branch of medical science that pertains to treating diseases, injuries and deformities by manual and instrumental means.';
     public const LABEL = 'Surgical';
     public const NAME = 'schema:Surgical';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

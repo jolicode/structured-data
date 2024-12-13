@@ -18,4 +18,6 @@ final class BorrowerModel
     public const NAME = 'schema:borrower';
     public const VALUES = ['PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['LendAction' => 'Jolicode\SchemaOrg\Type\LendActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

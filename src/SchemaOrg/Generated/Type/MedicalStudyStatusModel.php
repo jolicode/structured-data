@@ -20,6 +20,8 @@ final class MedicalStudyStatusModel
     public const NAME = 'schema:MedicalStudyStatus';
     public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\SchemaOrg\Type\MedicalEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['ActiveNotRecruitingModel' => 'EnumerationMember\ActiveNotRecruitingModel', 'CompletedModel' => 'EnumerationMember\CompletedModel', 'EnrollingByInvitationModel' => 'EnumerationMember\EnrollingByInvitationModel', 'NotYetRecruitingModel' => 'EnumerationMember\NotYetRecruitingModel', 'RecruitingModel' => 'EnumerationMember\RecruitingModel', 'ResultsAvailableModel' => 'EnumerationMember\ResultsAvailableModel', 'ResultsNotAvailableModel' => 'EnumerationMember\ResultsNotAvailableModel', 'SuspendedModel' => 'EnumerationMember\SuspendedModel', 'TerminatedModel' => 'EnumerationMember\TerminatedModel', 'WithdrawnModel' => 'EnumerationMember\WithdrawnModel'];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

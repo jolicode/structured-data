@@ -20,6 +20,8 @@ final class HospitalModel
     public const NAME = 'schema:Hospital';
     public const PARENTS = ['CivicStructureModel' => 'Jolicode\SchemaOrg\Type\CivicStructureModel', 'EmergencyServiceModel' => 'Jolicode\SchemaOrg\Type\EmergencyServiceModel', 'MedicalOrganizationModel' => 'Jolicode\SchemaOrg\Type\MedicalOrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

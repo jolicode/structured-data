@@ -16,4 +16,6 @@ final class StudioAlbumModel
     public const DESCRIPTION = 'StudioAlbum.';
     public const LABEL = 'StudioAlbum';
     public const NAME = 'schema:StudioAlbum';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

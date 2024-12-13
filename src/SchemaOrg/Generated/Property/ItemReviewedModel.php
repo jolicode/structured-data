@@ -18,4 +18,6 @@ final class ItemReviewedModel
     public const NAME = 'schema:itemReviewed';
     public const VALUES = ['ThingModel' => 'Jolicode\SchemaOrg\Type\ThingModel'];
     public const TYPES = ['AggregateRating' => 'Jolicode\SchemaOrg\Type\AggregateRatingModel', 'Review' => 'Jolicode\SchemaOrg\Type\ReviewModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

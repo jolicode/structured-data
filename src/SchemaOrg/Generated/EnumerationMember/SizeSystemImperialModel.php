@@ -16,4 +16,6 @@ final class SizeSystemImperialModel
     public const DESCRIPTION = 'Imperial size system.';
     public const LABEL = 'SizeSystemImperial';
     public const NAME = 'schema:SizeSystemImperial';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

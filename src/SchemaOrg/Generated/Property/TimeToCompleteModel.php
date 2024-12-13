@@ -18,4 +18,6 @@ final class TimeToCompleteModel
     public const NAME = 'schema:timeToComplete';
     public const VALUES = ['DurationModel' => 'Jolicode\SchemaOrg\Type\DurationModel'];
     public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalProgramModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

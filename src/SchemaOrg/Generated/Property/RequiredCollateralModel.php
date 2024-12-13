@@ -18,4 +18,6 @@ final class RequiredCollateralModel
     public const NAME = 'schema:requiredCollateral';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'ThingModel' => 'Jolicode\SchemaOrg\Type\ThingModel'];
     public const TYPES = ['LoanOrCredit' => 'Jolicode\SchemaOrg\Type\LoanOrCreditModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

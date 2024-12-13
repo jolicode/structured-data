@@ -18,4 +18,6 @@ final class CcRecipientModel
     public const NAME = 'schema:ccRecipient';
     public const VALUES = ['ContactPointModel' => 'Jolicode\SchemaOrg\Type\ContactPointModel', 'OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['Message' => 'Jolicode\SchemaOrg\Type\MessageModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

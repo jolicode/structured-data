@@ -18,4 +18,6 @@ final class TourBookingPageModel
     public const NAME = 'schema:tourBookingPage';
     public const VALUES = ['URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['Accommodation' => 'Jolicode\SchemaOrg\Type\AccommodationModel', 'ApartmentComplex' => 'Jolicode\SchemaOrg\Type\ApartmentComplexModel', 'Place' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

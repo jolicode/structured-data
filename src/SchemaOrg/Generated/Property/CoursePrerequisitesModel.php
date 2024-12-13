@@ -18,4 +18,6 @@ final class CoursePrerequisitesModel
     public const NAME = 'schema:coursePrerequisites';
     public const VALUES = ['AlignmentObjectModel' => 'Jolicode\SchemaOrg\Type\AlignmentObjectModel', 'CourseModel' => 'Jolicode\SchemaOrg\Type\CourseModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Course' => 'Jolicode\SchemaOrg\Type\CourseModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

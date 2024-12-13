@@ -16,4 +16,6 @@ final class WearableSizeGroupGirlsModel
     public const DESCRIPTION = 'Size group "Girls" for wearables.';
     public const LABEL = 'WearableSizeGroupGirls';
     public const NAME = 'schema:WearableSizeGroupGirls';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

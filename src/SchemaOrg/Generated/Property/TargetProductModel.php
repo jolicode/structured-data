@@ -18,4 +18,6 @@ final class TargetProductModel
     public const NAME = 'schema:targetProduct';
     public const VALUES = ['SoftwareApplicationModel' => 'Jolicode\SchemaOrg\Type\SoftwareApplicationModel'];
     public const TYPES = ['SoftwareSourceCode' => 'Jolicode\SchemaOrg\Type\SoftwareSourceCodeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

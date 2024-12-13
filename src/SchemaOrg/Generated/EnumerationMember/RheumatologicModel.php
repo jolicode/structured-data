@@ -16,4 +16,6 @@ final class RheumatologicModel
     public const DESCRIPTION = 'A specific branch of medical science that deals with the study and treatment of rheumatic, autoimmune or joint diseases.';
     public const LABEL = 'Rheumatologic';
     public const NAME = 'schema:Rheumatologic';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class FoodEventModel
     public const NAME = 'schema:foodEvent';
     public const VALUES = ['FoodEventModel' => 'Jolicode\SchemaOrg\Type\FoodEventModel'];
     public const TYPES = ['CookAction' => 'Jolicode\SchemaOrg\Type\CookActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

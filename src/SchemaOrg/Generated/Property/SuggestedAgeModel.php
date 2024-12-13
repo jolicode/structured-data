@@ -18,4 +18,6 @@ final class SuggestedAgeModel
     public const NAME = 'schema:suggestedAge';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['PeopleAudience' => 'Jolicode\SchemaOrg\Type\PeopleAudienceModel', 'SizeSpecification' => 'Jolicode\SchemaOrg\Type\SizeSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class ServicePostalAddressModel
     public const NAME = 'schema:servicePostalAddress';
     public const VALUES = ['PostalAddressModel' => 'Jolicode\SchemaOrg\Type\PostalAddressModel'];
     public const TYPES = ['ServiceChannel' => 'Jolicode\SchemaOrg\Type\ServiceChannelModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

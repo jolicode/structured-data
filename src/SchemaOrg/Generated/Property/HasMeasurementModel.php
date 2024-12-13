@@ -18,4 +18,6 @@ final class HasMeasurementModel
     public const NAME = 'schema:hasMeasurement';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['Certification' => 'Jolicode\SchemaOrg\Type\CertificationModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'Product' => 'Jolicode\SchemaOrg\Type\ProductModel', 'SizeSpecification' => 'Jolicode\SchemaOrg\Type\SizeSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

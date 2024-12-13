@@ -18,4 +18,6 @@ final class TicketedSeatModel
     public const NAME = 'schema:ticketedSeat';
     public const VALUES = ['SeatModel' => 'Jolicode\SchemaOrg\Type\SeatModel'];
     public const TYPES = ['Ticket' => 'Jolicode\SchemaOrg\Type\TicketModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class OriginAddressModel
     public const NAME = 'schema:originAddress';
     public const VALUES = ['PostalAddressModel' => 'Jolicode\SchemaOrg\Type\PostalAddressModel'];
     public const TYPES = ['ParcelDelivery' => 'Jolicode\SchemaOrg\Type\ParcelDeliveryModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

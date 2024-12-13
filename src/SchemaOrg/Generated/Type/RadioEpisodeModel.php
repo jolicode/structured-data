@@ -20,6 +20,8 @@ final class RadioEpisodeModel
     public const NAME = 'schema:RadioEpisode';
     public const PARENTS = ['EpisodeModel' => 'Jolicode\SchemaOrg\Type\EpisodeModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

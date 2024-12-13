@@ -18,4 +18,6 @@ final class LoanTypeModel
     public const NAME = 'schema:loanType';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['LoanOrCredit' => 'Jolicode\SchemaOrg\Type\LoanOrCreditModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

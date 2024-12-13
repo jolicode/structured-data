@@ -18,4 +18,6 @@ final class SportsTeamModel
     public const NAME = 'schema:sportsTeam';
     public const VALUES = ['SportsTeamModel' => 'Jolicode\SchemaOrg\Type\SportsTeamModel'];
     public const TYPES = ['ExerciseAction' => 'Jolicode\SchemaOrg\Type\ExerciseActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

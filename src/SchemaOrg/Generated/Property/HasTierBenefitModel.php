@@ -18,4 +18,6 @@ final class HasTierBenefitModel
     public const NAME = 'schema:hasTierBenefit';
     public const VALUES = ['TierBenefitEnumerationModel' => 'Jolicode\SchemaOrg\Type\TierBenefitEnumerationModel'];
     public const TYPES = ['MemberProgramTier' => 'Jolicode\SchemaOrg\Type\MemberProgramTierModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

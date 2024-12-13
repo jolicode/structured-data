@@ -16,4 +16,6 @@ final class RestockingFeesModel
     public const DESCRIPTION = 'Specifies that the customer must pay a restocking fee when returning a product.';
     public const LABEL = 'RestockingFees';
     public const NAME = 'schema:RestockingFees';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

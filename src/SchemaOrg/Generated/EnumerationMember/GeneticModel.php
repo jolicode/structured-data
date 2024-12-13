@@ -16,4 +16,6 @@ final class GeneticModel
     public const DESCRIPTION = 'A specific branch of medical science that pertains to hereditary transmission and the variation of inherited characteristics and disorders.';
     public const LABEL = 'Genetic';
     public const NAME = 'schema:Genetic';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class CostCategoryModel
     public const NAME = 'schema:costCategory';
     public const VALUES = ['DrugCostCategoryModel' => 'Jolicode\SchemaOrg\Type\DrugCostCategoryModel'];
     public const TYPES = ['DrugCost' => 'Jolicode\SchemaOrg\Type\DrugCostModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

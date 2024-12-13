@@ -16,4 +16,6 @@ final class LowLactoseDietModel
     public const DESCRIPTION = 'A diet appropriate for people with lactose intolerance.';
     public const LABEL = 'LowLactoseDiet';
     public const NAME = 'schema:LowLactoseDiet';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

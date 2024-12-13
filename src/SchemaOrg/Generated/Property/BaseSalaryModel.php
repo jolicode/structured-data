@@ -18,4 +18,6 @@ final class BaseSalaryModel
     public const NAME = 'schema:baseSalary';
     public const VALUES = ['MonetaryAmountModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel', 'NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'PriceSpecificationModel' => 'Jolicode\SchemaOrg\Type\PriceSpecificationModel'];
     public const TYPES = ['EmployeeRole' => 'Jolicode\SchemaOrg\Type\EmployeeRoleModel', 'JobPosting' => 'Jolicode\SchemaOrg\Type\JobPostingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

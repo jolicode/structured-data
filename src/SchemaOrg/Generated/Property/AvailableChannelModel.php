@@ -18,4 +18,6 @@ final class AvailableChannelModel
     public const NAME = 'schema:availableChannel';
     public const VALUES = ['ServiceChannelModel' => 'Jolicode\SchemaOrg\Type\ServiceChannelModel'];
     public const TYPES = ['Service' => 'Jolicode\SchemaOrg\Type\ServiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

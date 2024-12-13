@@ -16,4 +16,6 @@ final class ClinicianModel
     public const DESCRIPTION = 'Medical clinicians, including practicing physicians and other medical professionals involved in clinical practice.';
     public const LABEL = 'Clinician';
     public const NAME = 'schema:Clinician';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

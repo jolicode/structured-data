@@ -16,4 +16,6 @@ final class OfflineTemporarilyModel
     public const DESCRIPTION = 'Game server status: OfflineTemporarily. Server is offline now but it can be online soon.';
     public const LABEL = 'OfflineTemporarily';
     public const NAME = 'schema:OfflineTemporarily';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class TreatmentsHealthAspectModel
     public const DESCRIPTION = 'Treatments or related therapies for a Topic.';
     public const LABEL = 'TreatmentsHealthAspect';
     public const NAME = 'schema:TreatmentsHealthAspect';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

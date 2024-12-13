@@ -20,6 +20,8 @@ final class CatholicChurchModel
     public const NAME = 'schema:CatholicChurch';
     public const PARENTS = ['ChurchModel' => 'Jolicode\SchemaOrg\Type\ChurchModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalPropertyModel $additionalProperty = null,

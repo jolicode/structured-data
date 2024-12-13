@@ -16,4 +16,6 @@ final class WearableSizeGroupHuskyModel
     public const DESCRIPTION = 'Size group "Husky" (or "Stocky") for wearables.';
     public const LABEL = 'WearableSizeGroupHusky';
     public const NAME = 'schema:WearableSizeGroupHusky';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

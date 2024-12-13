@@ -18,4 +18,6 @@ final class SteeringPositionModel
     public const NAME = 'schema:steeringPosition';
     public const VALUES = ['SteeringPositionValueModel' => 'Jolicode\SchemaOrg\Type\SteeringPositionValueModel'];
     public const TYPES = ['Vehicle' => 'Jolicode\SchemaOrg\Type\VehicleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

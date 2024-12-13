@@ -16,4 +16,6 @@ final class PreventionHealthAspectModel
     public const DESCRIPTION = 'Information about actions or measures that can be taken to avoid getting the topic or reaching a critical situation related to the topic.';
     public const LABEL = 'PreventionHealthAspect';
     public const NAME = 'schema:PreventionHealthAspect';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

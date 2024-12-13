@@ -20,6 +20,8 @@ final class TrainTripModel
     public const NAME = 'schema:TrainTrip';
     public const PARENTS = ['TripModel' => 'Jolicode\SchemaOrg\Type\TripModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

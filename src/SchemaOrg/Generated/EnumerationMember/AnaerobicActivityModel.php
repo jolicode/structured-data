@@ -16,4 +16,6 @@ final class AnaerobicActivityModel
     public const DESCRIPTION = 'Physical activity that is of high-intensity which utilizes the anaerobic metabolism of the body.';
     public const LABEL = 'AnaerobicActivity';
     public const NAME = 'schema:AnaerobicActivity';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

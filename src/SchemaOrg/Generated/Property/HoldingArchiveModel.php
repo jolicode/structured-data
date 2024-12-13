@@ -18,4 +18,6 @@ final class HoldingArchiveModel
     public const NAME = 'schema:holdingArchive';
     public const VALUES = ['ArchiveOrganizationModel' => 'Jolicode\SchemaOrg\Type\ArchiveOrganizationModel'];
     public const TYPES = ['ArchiveComponent' => 'Jolicode\SchemaOrg\Type\ArchiveComponentModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

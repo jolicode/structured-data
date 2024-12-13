@@ -13,8 +13,9 @@ namespace Jolicode\SchemaOrg\EnumerationMember;
 
 final class ParcelServiceModel
 {
-    public const DESCRIPTION = 'A private parcel service as the delivery mode available for a certain offer.\n\nCommonly used values:\n\n* http://purl.org/goodrelations/v1#DHL\n* http://purl.org/goodrelations/v1#FederalExpress\n* http://purl.org/goodrelations/v1#UPS
-      ';
+    public const DESCRIPTION = 'A private parcel service as the delivery mode available for a certain offer.\n\nCommonly used values:\n\n* http://purl.org/goodrelations/v1#DHL\n* http://purl.org/goodrelations/v1#FederalExpress\n* http://purl.org/goodrelations/v1#UPS';
     public const LABEL = 'ParcelService';
     public const NAME = 'schema:ParcelService';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

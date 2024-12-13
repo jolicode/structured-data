@@ -18,4 +18,6 @@ final class IsAccessoryOrSparePartForModel
     public const NAME = 'schema:isAccessoryOrSparePartFor';
     public const VALUES = ['ProductModel' => 'Jolicode\SchemaOrg\Type\ProductModel'];
     public const TYPES = ['Product' => 'Jolicode\SchemaOrg\Type\ProductModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

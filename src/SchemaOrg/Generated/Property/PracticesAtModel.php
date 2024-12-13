@@ -18,4 +18,6 @@ final class PracticesAtModel
     public const NAME = 'schema:practicesAt';
     public const VALUES = ['MedicalOrganizationModel' => 'Jolicode\SchemaOrg\Type\MedicalOrganizationModel'];
     public const TYPES = ['IndividualPhysician' => 'Jolicode\SchemaOrg\Type\IndividualPhysicianModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

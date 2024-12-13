@@ -15,11 +15,13 @@ use Jolicode\SchemaOrg\Property;
 
 final class DataDownloadModel
 {
-    public const DESCRIPTION = 'All or part of a [[Dataset]] in downloadable form. ';
+    public const DESCRIPTION = 'All or part of a [[Dataset]] in downloadable form.';
     public const LABEL = 'DataDownload';
     public const NAME = 'schema:DataDownload';
     public const PARENTS = ['MediaObjectModel' => 'Jolicode\SchemaOrg\Type\MediaObjectModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

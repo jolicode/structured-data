@@ -18,4 +18,6 @@ final class SeriousAdverseOutcomeModel
     public const NAME = 'schema:seriousAdverseOutcome';
     public const VALUES = ['MedicalEntityModel' => 'Jolicode\SchemaOrg\Type\MedicalEntityModel'];
     public const TYPES = ['MedicalDevice' => 'Jolicode\SchemaOrg\Type\MedicalDeviceModel', 'MedicalTherapy' => 'Jolicode\SchemaOrg\Type\MedicalTherapyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

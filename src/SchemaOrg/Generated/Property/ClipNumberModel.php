@@ -18,4 +18,6 @@ final class ClipNumberModel
     public const NAME = 'schema:clipNumber';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Clip' => 'Jolicode\SchemaOrg\Type\ClipModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

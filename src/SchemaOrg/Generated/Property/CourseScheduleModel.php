@@ -18,4 +18,6 @@ final class CourseScheduleModel
     public const NAME = 'schema:courseSchedule';
     public const VALUES = ['ScheduleModel' => 'Jolicode\SchemaOrg\Type\ScheduleModel'];
     public const TYPES = ['CourseInstance' => 'Jolicode\SchemaOrg\Type\CourseInstanceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

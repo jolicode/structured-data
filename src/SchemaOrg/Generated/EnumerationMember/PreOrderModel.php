@@ -16,4 +16,6 @@ final class PreOrderModel
     public const DESCRIPTION = 'Indicates that the item is available for pre-order.';
     public const LABEL = 'PreOrder';
     public const NAME = 'schema:PreOrder';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

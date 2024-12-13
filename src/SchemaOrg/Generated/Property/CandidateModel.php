@@ -18,4 +18,6 @@ final class CandidateModel
     public const NAME = 'schema:candidate';
     public const VALUES = ['PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['VoteAction' => 'Jolicode\SchemaOrg\Type\VoteActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class BreadcrumbModel
     public const NAME = 'schema:breadcrumb';
     public const VALUES = ['BreadcrumbListModel' => 'Jolicode\SchemaOrg\Type\BreadcrumbListModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['WebPage' => 'Jolicode\SchemaOrg\Type\WebPageModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

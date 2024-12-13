@@ -20,6 +20,8 @@ final class SuspendActionModel
     public const NAME = 'schema:SuspendAction';
     public const PARENTS = ['ControlActionModel' => 'Jolicode\SchemaOrg\Type\ControlActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

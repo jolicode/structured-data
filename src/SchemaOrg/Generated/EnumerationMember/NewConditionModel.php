@@ -16,4 +16,6 @@ final class NewConditionModel
     public const DESCRIPTION = 'Indicates that the item is new.';
     public const LABEL = 'NewCondition';
     public const NAME = 'schema:NewCondition';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

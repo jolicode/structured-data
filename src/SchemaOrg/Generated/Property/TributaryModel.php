@@ -18,4 +18,6 @@ final class TributaryModel
     public const NAME = 'schema:tributary';
     public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\SchemaOrg\Type\AnatomicalStructureModel'];
     public const TYPES = ['Vein' => 'Jolicode\SchemaOrg\Type\VeinModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -19,4 +19,6 @@ final class UsNPIModel
     public const NAME = 'schema:usNPI';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Physician' => 'Jolicode\SchemaOrg\Type\PhysicianModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class ReviewedByModel
     public const NAME = 'schema:reviewedBy';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['WebPage' => 'Jolicode\SchemaOrg\Type\WebPageModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

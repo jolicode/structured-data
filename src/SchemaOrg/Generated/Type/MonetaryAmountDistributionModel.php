@@ -20,6 +20,8 @@ final class MonetaryAmountDistributionModel
     public const NAME = 'schema:MonetaryAmountDistribution';
     public const PARENTS = ['QuantitativeValueDistributionModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueDistributionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1698'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

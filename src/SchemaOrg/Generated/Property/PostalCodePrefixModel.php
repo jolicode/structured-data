@@ -18,4 +18,6 @@ final class PostalCodePrefixModel
     public const NAME = 'schema:postalCodePrefix';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DefinedRegion' => 'Jolicode\SchemaOrg\Type\DefinedRegionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

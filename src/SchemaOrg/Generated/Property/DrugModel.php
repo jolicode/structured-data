@@ -18,4 +18,6 @@ final class DrugModel
     public const NAME = 'schema:drug';
     public const VALUES = ['DrugModel' => 'Jolicode\SchemaOrg\Type\DrugModel'];
     public const TYPES = ['DrugClass' => 'Jolicode\SchemaOrg\Type\DrugClassModel', 'MedicalCondition' => 'Jolicode\SchemaOrg\Type\MedicalConditionModel', 'Patient' => 'Jolicode\SchemaOrg\Type\PatientModel', 'TherapeuticProcedure' => 'Jolicode\SchemaOrg\Type\TherapeuticProcedureModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

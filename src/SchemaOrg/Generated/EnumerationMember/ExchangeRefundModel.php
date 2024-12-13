@@ -16,4 +16,6 @@ final class ExchangeRefundModel
     public const DESCRIPTION = 'Specifies that a refund can be done as an exchange for the same product.';
     public const LABEL = 'ExchangeRefund';
     public const NAME = 'schema:ExchangeRefund';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

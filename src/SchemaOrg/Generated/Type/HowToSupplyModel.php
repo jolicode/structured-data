@@ -20,6 +20,8 @@ final class HowToSupplyModel
     public const NAME = 'schema:HowToSupply';
     public const PARENTS = ['HowToItemModel' => 'Jolicode\SchemaOrg\Type\HowToItemModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

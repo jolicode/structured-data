@@ -20,6 +20,8 @@ final class DefenceEstablishmentModel
     public const NAME = 'schema:DefenceEstablishment';
     public const PARENTS = ['GovernmentBuildingModel' => 'Jolicode\SchemaOrg\Type\GovernmentBuildingModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalPropertyModel $additionalProperty = null,

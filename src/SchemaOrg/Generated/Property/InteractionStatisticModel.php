@@ -18,4 +18,6 @@ final class InteractionStatisticModel
     public const NAME = 'schema:interactionStatistic';
     public const VALUES = ['InteractionCounterModel' => 'Jolicode\SchemaOrg\Type\InteractionCounterModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\SchemaOrg\Type\PersonModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

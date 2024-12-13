@@ -18,4 +18,6 @@ final class HealthPlanPharmacyCategoryModel
     public const NAME = 'schema:healthPlanPharmacyCategory';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['HealthPlanCostSharingSpecification' => 'Jolicode\SchemaOrg\Type\HealthPlanCostSharingSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

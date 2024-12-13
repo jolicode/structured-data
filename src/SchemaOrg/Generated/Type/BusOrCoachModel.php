@@ -20,6 +20,8 @@ final class BusOrCoachModel
     public const NAME = 'schema:BusOrCoach';
     public const PARENTS = ['VehicleModel' => 'Jolicode\SchemaOrg\Type\VehicleModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://auto.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AccelerationTimeModel $accelerationTime = null,

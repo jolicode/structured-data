@@ -16,4 +16,6 @@ final class DemoAlbumModel
     public const DESCRIPTION = 'DemoAlbum.';
     public const LABEL = 'DemoAlbum';
     public const NAME = 'schema:DemoAlbum';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

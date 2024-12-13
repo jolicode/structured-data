@@ -18,4 +18,6 @@ final class ApplicationStartDateModel
     public const NAME = 'schema:applicationStartDate';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel'];
     public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalProgramModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

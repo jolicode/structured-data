@@ -16,4 +16,6 @@ final class GraphicNovelModel
     public const DESCRIPTION = 'Book format: GraphicNovel. May represent a bound collection of ComicIssue instances.';
     public const LABEL = 'GraphicNovel';
     public const NAME = 'schema:GraphicNovel';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

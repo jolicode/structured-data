@@ -18,4 +18,6 @@ final class RiskFactorModel
     public const NAME = 'schema:riskFactor';
     public const VALUES = ['MedicalRiskFactorModel' => 'Jolicode\SchemaOrg\Type\MedicalRiskFactorModel'];
     public const TYPES = ['MedicalCondition' => 'Jolicode\SchemaOrg\Type\MedicalConditionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

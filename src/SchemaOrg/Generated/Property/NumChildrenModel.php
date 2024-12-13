@@ -18,4 +18,6 @@ final class NumChildrenModel
     public const NAME = 'schema:numChildren';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel', 'QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['LodgingReservation' => 'Jolicode\SchemaOrg\Type\LodgingReservationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

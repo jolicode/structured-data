@@ -16,4 +16,6 @@ final class ByBankTransferInAdvanceModel
     public const DESCRIPTION = 'Payment in advance by bank transfer, equivalent to <code>http://purl.org/goodrelations/v1#ByBankTransferInAdvance</code>.';
     public const LABEL = 'ByBankTransferInAdvance';
     public const NAME = 'schema:ByBankTransferInAdvance';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

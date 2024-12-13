@@ -18,4 +18,6 @@ final class DefaultValueModel
     public const NAME = 'schema:defaultValue';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'ThingModel' => 'Jolicode\SchemaOrg\Type\ThingModel'];
     public const TYPES = ['PropertyValueSpecification' => 'Jolicode\SchemaOrg\Type\PropertyValueSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

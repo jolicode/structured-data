@@ -20,6 +20,8 @@ final class BloodTestModel
     public const NAME = 'schema:BloodTest';
     public const PARENTS = ['MedicalTestModel' => 'Jolicode\SchemaOrg\Type\MedicalTestModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

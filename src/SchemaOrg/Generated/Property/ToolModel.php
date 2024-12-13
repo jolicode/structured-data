@@ -18,4 +18,6 @@ final class ToolModel
     public const NAME = 'schema:tool';
     public const VALUES = ['HowToToolModel' => 'Jolicode\SchemaOrg\Type\HowToToolModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['HowToDirection' => 'Jolicode\SchemaOrg\Type\HowToDirectionModel', 'HowTo' => 'Jolicode\SchemaOrg\Type\HowToModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

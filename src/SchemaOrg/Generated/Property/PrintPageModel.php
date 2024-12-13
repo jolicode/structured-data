@@ -18,4 +18,6 @@ final class PrintPageModel
     public const NAME = 'schema:printPage';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['NewsArticle' => 'Jolicode\SchemaOrg\Type\NewsArticleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

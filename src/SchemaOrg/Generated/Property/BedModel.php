@@ -19,4 +19,6 @@ final class BedModel
     public const NAME = 'schema:bed';
     public const VALUES = ['BedDetailsModel' => 'Jolicode\SchemaOrg\Type\BedDetailsModel', 'BedTypeModel' => 'Jolicode\SchemaOrg\Type\BedTypeModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Accommodation' => 'Jolicode\SchemaOrg\Type\AccommodationModel', 'HotelRoom' => 'Jolicode\SchemaOrg\Type\HotelRoomModel', 'Suite' => 'Jolicode\SchemaOrg\Type\SuiteModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

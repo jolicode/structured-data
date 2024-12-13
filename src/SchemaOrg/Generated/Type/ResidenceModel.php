@@ -20,6 +20,8 @@ final class ResidenceModel
     public const NAME = 'schema:Residence';
     public const PARENTS = ['PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AccommodationFloorPlanModel $accommodationFloorPlan = null,

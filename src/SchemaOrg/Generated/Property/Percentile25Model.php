@@ -18,4 +18,6 @@ final class Percentile25Model
     public const NAME = 'schema:percentile25';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['QuantitativeValueDistribution' => 'Jolicode\SchemaOrg\Type\QuantitativeValueDistributionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

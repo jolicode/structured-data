@@ -18,4 +18,6 @@ final class UsesDeviceModel
     public const NAME = 'schema:usesDevice';
     public const VALUES = ['MedicalDeviceModel' => 'Jolicode\SchemaOrg\Type\MedicalDeviceModel'];
     public const TYPES = ['MedicalTest' => 'Jolicode\SchemaOrg\Type\MedicalTestModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

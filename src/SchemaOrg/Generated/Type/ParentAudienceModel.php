@@ -20,6 +20,8 @@ final class ParentAudienceModel
     public const NAME = 'schema:ParentAudience';
     public const PARENTS = ['PeopleAudienceModel' => 'Jolicode\SchemaOrg\Type\PeopleAudienceModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

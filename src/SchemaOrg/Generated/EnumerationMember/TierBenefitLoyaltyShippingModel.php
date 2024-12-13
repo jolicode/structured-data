@@ -16,4 +16,6 @@ final class TierBenefitLoyaltyShippingModel
     public const DESCRIPTION = 'Benefit of the tier is a members-only shipping price or speed (for example free shipping or 1-day shipping).';
     public const LABEL = 'TierBenefitLoyaltyShipping';
     public const NAME = 'schema:TierBenefitLoyaltyShipping';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

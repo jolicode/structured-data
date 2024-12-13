@@ -18,4 +18,6 @@ final class IssnModel
     public const NAME = 'schema:issn';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Blog' => 'Jolicode\SchemaOrg\Type\BlogModel', 'CreativeWorkSeries' => 'Jolicode\SchemaOrg\Type\CreativeWorkSeriesModel', 'Dataset' => 'Jolicode\SchemaOrg\Type\DatasetModel', 'WebSite' => 'Jolicode\SchemaOrg\Type\WebSiteModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class PrognosisHealthAspectModel
     public const DESCRIPTION = 'Typical progression and happenings of life course of the topic.';
     public const LABEL = 'PrognosisHealthAspect';
     public const NAME = 'schema:PrognosisHealthAspect';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -20,6 +20,8 @@ final class MedicalAudienceTypeModel
     public const NAME = 'schema:MedicalAudienceType';
     public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\SchemaOrg\Type\MedicalEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['ClinicianModel' => 'EnumerationMember\ClinicianModel', 'MedicalResearcherModel' => 'EnumerationMember\MedicalResearcherModel'];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

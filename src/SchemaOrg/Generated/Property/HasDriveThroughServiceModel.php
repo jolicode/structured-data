@@ -18,4 +18,6 @@ final class HasDriveThroughServiceModel
     public const NAME = 'schema:hasDriveThroughService';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['Place' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

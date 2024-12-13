@@ -18,4 +18,6 @@ final class ValidForModel
     public const NAME = 'schema:validFor';
     public const VALUES = ['DurationModel' => 'Jolicode\SchemaOrg\Type\DurationModel'];
     public const TYPES = ['EducationalOccupationalCredential' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalCredentialModel', 'Permit' => 'Jolicode\SchemaOrg\Type\PermitModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -20,6 +20,8 @@ final class APIReferenceModel
     public const NAME = 'schema:APIReference';
     public const PARENTS = ['TechArticleModel' => 'Jolicode\SchemaOrg\Type\TechArticleModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

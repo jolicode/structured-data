@@ -16,4 +16,6 @@ final class WearableMeasurementInseamModel
     public const DESCRIPTION = 'Measurement of the inseam, for example of pants.';
     public const LABEL = 'WearableMeasurementInseam';
     public const NAME = 'schema:WearableMeasurementInseam';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

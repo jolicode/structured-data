@@ -20,6 +20,8 @@ final class WearActionModel
     public const NAME = 'schema:WearAction';
     public const PARENTS = ['UseActionModel' => 'Jolicode\SchemaOrg\Type\UseActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionAccessibilityRequirementModel $actionAccessibilityRequirement = null,

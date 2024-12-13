@@ -16,4 +16,6 @@ final class OrderInTransitModel
     public const DESCRIPTION = 'OrderStatus representing that an order is in transit.';
     public const LABEL = 'OrderInTransit';
     public const NAME = 'schema:OrderInTransit';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

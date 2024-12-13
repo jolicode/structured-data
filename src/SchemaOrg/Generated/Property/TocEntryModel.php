@@ -18,4 +18,6 @@ final class TocEntryModel
     public const NAME = 'schema:tocEntry';
     public const VALUES = ['HyperTocEntryModel' => 'Jolicode\SchemaOrg\Type\HyperTocEntryModel'];
     public const TYPES = ['HyperToc' => 'Jolicode\SchemaOrg\Type\HyperTocModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

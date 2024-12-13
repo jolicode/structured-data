@@ -16,4 +16,6 @@ final class ReservationCancelledModel
     public const DESCRIPTION = 'The status for a previously confirmed reservation that is now cancelled.';
     public const LABEL = 'ReservationCancelled';
     public const NAME = 'schema:ReservationCancelled';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

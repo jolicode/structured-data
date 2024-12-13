@@ -18,4 +18,6 @@ final class YieldModel
     public const NAME = 'schema:yield';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['HowTo' => 'Jolicode\SchemaOrg\Type\HowToModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

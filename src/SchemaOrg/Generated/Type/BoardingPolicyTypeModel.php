@@ -20,6 +20,8 @@ final class BoardingPolicyTypeModel
     public const NAME = 'schema:BoardingPolicyType';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['GroupBoardingPolicyModel' => 'EnumerationMember\GroupBoardingPolicyModel', 'ZoneBoardingPolicyModel' => 'EnumerationMember\ZoneBoardingPolicyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -18,4 +18,6 @@ final class AvailableLanguageModel
     public const NAME = 'schema:availableLanguage';
     public const VALUES = ['LanguageModel' => 'Jolicode\SchemaOrg\Type\LanguageModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['ContactPoint' => 'Jolicode\SchemaOrg\Type\ContactPointModel', 'Course' => 'Jolicode\SchemaOrg\Type\CourseModel', 'LodgingBusiness' => 'Jolicode\SchemaOrg\Type\LodgingBusinessModel', 'ServiceChannel' => 'Jolicode\SchemaOrg\Type\ServiceChannelModel', 'TouristAttraction' => 'Jolicode\SchemaOrg\Type\TouristAttractionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

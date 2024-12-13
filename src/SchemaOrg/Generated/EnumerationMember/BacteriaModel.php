@@ -16,4 +16,6 @@ final class BacteriaModel
     public const DESCRIPTION = 'Pathogenic bacteria that cause bacterial infection.';
     public const LABEL = 'Bacteria';
     public const NAME = 'schema:Bacteria';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

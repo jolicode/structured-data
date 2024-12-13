@@ -18,4 +18,6 @@ final class BeneficiaryBankModel
     public const NAME = 'schema:beneficiaryBank';
     public const VALUES = ['BankOrCreditUnionModel' => 'Jolicode\SchemaOrg\Type\BankOrCreditUnionModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MoneyTransfer' => 'Jolicode\SchemaOrg\Type\MoneyTransferModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

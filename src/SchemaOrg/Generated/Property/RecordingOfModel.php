@@ -18,4 +18,6 @@ final class RecordingOfModel
     public const NAME = 'schema:recordingOf';
     public const VALUES = ['MusicCompositionModel' => 'Jolicode\SchemaOrg\Type\MusicCompositionModel'];
     public const TYPES = ['MusicRecording' => 'Jolicode\SchemaOrg\Type\MusicRecordingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

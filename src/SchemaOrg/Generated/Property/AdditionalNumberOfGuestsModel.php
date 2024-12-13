@@ -18,4 +18,6 @@ final class AdditionalNumberOfGuestsModel
     public const NAME = 'schema:additionalNumberOfGuests';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['RsvpAction' => 'Jolicode\SchemaOrg\Type\RsvpActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

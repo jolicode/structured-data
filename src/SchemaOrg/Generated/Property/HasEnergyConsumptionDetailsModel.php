@@ -18,4 +18,6 @@ final class HasEnergyConsumptionDetailsModel
     public const NAME = 'schema:hasEnergyConsumptionDetails';
     public const VALUES = ['EnergyConsumptionDetailsModel' => 'Jolicode\SchemaOrg\Type\EnergyConsumptionDetailsModel'];
     public const TYPES = ['Product' => 'Jolicode\SchemaOrg\Type\ProductModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class EnrollingByInvitationModel
     public const DESCRIPTION = 'Enrolling participants by invitation only.';
     public const LABEL = 'EnrollingByInvitation';
     public const NAME = 'schema:EnrollingByInvitation';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

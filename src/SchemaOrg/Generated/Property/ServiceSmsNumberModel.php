@@ -18,4 +18,6 @@ final class ServiceSmsNumberModel
     public const NAME = 'schema:serviceSmsNumber';
     public const VALUES = ['ContactPointModel' => 'Jolicode\SchemaOrg\Type\ContactPointModel'];
     public const TYPES = ['ServiceChannel' => 'Jolicode\SchemaOrg\Type\ServiceChannelModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

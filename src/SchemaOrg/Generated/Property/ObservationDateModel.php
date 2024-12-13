@@ -18,4 +18,6 @@ final class ObservationDateModel
     public const NAME = 'schema:observationDate';
     public const VALUES = ['DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['Observation' => 'Jolicode\SchemaOrg\Type\ObservationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

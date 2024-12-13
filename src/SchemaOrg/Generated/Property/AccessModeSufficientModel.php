@@ -18,4 +18,6 @@ final class AccessModeSufficientModel
     public const NAME = 'schema:accessModeSufficient';
     public const VALUES = ['ItemListModel' => 'Jolicode\SchemaOrg\Type\ItemListModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

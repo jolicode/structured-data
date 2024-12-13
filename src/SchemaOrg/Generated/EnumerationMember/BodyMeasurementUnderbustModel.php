@@ -16,4 +16,6 @@ final class BodyMeasurementUnderbustModel
     public const DESCRIPTION = 'Girth of body just below the bust. Used, for example, to fit women\'s swimwear.';
     public const LABEL = 'BodyMeasurementUnderbust';
     public const NAME = 'schema:BodyMeasurementUnderbust';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

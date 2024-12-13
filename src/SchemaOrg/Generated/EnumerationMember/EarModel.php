@@ -16,4 +16,6 @@ final class EarModel
     public const DESCRIPTION = 'Ear function assessment with clinical examination.';
     public const LABEL = 'Ear';
     public const NAME = 'schema:Ear';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

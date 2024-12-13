@@ -18,4 +18,6 @@ final class HasCourseInstanceModel
     public const NAME = 'schema:hasCourseInstance';
     public const VALUES = ['CourseInstanceModel' => 'Jolicode\SchemaOrg\Type\CourseInstanceModel'];
     public const TYPES = ['Course' => 'Jolicode\SchemaOrg\Type\CourseModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

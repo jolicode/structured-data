@@ -18,4 +18,6 @@ final class RelatedTherapyModel
     public const NAME = 'schema:relatedTherapy';
     public const VALUES = ['MedicalTherapyModel' => 'Jolicode\SchemaOrg\Type\MedicalTherapyModel'];
     public const TYPES = ['AnatomicalStructure' => 'Jolicode\SchemaOrg\Type\AnatomicalStructureModel', 'AnatomicalSystem' => 'Jolicode\SchemaOrg\Type\AnatomicalSystemModel', 'SuperficialAnatomy' => 'Jolicode\SchemaOrg\Type\SuperficialAnatomyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class AnnouncementLocationModel
     public const NAME = 'schema:announcementLocation';
     public const VALUES = ['CivicStructureModel' => 'Jolicode\SchemaOrg\Type\CivicStructureModel', 'LocalBusinessModel' => 'Jolicode\SchemaOrg\Type\LocalBusinessModel'];
     public const TYPES = ['SpecialAnnouncement' => 'Jolicode\SchemaOrg\Type\SpecialAnnouncementModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class ItemListOrderModel
     public const NAME = 'schema:itemListOrder';
     public const VALUES = ['ItemListOrderTypeModel' => 'Jolicode\SchemaOrg\Type\ItemListOrderTypeModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['ItemList' => 'Jolicode\SchemaOrg\Type\ItemListModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -17,12 +17,13 @@ final class GeoCircleModel
 {
     public const DESCRIPTION = 'A GeoCircle is a GeoShape representing a circular geographic area. As it is a GeoShape
           it provides the simple textual property \'circle\', but also allows the combination of postalCode alongside geoRadius.
-          The center of the circle can be indicated via the \'geoMidpoint\' property, or more approximately using \'address\', \'postalCode\'.
-       ';
+          The center of the circle can be indicated via the \'geoMidpoint\' property, or more approximately using \'address\', \'postalCode\'.';
     public const LABEL = 'GeoCircle';
     public const NAME = 'schema:GeoCircle';
     public const PARENTS = ['GeoShapeModel' => 'Jolicode\SchemaOrg\Type\GeoShapeModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

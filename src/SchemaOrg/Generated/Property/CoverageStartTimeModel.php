@@ -18,4 +18,6 @@ final class CoverageStartTimeModel
     public const NAME = 'schema:coverageStartTime';
     public const VALUES = ['DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['LiveBlogPosting' => 'Jolicode\SchemaOrg\Type\LiveBlogPostingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

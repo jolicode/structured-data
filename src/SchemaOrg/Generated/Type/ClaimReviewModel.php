@@ -20,6 +20,8 @@ final class ClaimReviewModel
     public const NAME = 'schema:ClaimReview';
     public const PARENTS = ['ReviewModel' => 'Jolicode\SchemaOrg\Type\ReviewModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1061'];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

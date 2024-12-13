@@ -20,6 +20,8 @@ final class DrawActionModel
     public const NAME = 'schema:DrawAction';
     public const PARENTS = ['CreateActionModel' => 'Jolicode\SchemaOrg\Type\CreateActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

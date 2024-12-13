@@ -18,4 +18,6 @@ final class CarrierModel
     public const NAME = 'schema:carrier';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
     public const TYPES = ['Flight' => 'Jolicode\SchemaOrg\Type\FlightModel', 'ParcelDelivery' => 'Jolicode\SchemaOrg\Type\ParcelDeliveryModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class CvdNumC19MechVentPatsModel
     public const NAME = 'schema:cvdNumC19MechVentPats';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['CDCPMDRecord' => 'Jolicode\SchemaOrg\Type\CDCPMDRecordModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

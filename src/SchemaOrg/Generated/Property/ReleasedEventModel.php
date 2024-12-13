@@ -18,4 +18,6 @@ final class ReleasedEventModel
     public const NAME = 'schema:releasedEvent';
     public const VALUES = ['PublicationEventModel' => 'Jolicode\SchemaOrg\Type\PublicationEventModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

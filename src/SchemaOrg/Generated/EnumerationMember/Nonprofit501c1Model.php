@@ -16,4 +16,6 @@ final class Nonprofit501c1Model
     public const DESCRIPTION = 'Nonprofit501c1: Non-profit type referring to Corporations Organized Under Act of Congress, including Federal Credit Unions and National Farm Loan Associations.';
     public const LABEL = 'Nonprofit501c1';
     public const NAME = 'schema:Nonprofit501c1';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

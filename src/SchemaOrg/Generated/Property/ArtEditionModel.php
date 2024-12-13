@@ -18,4 +18,6 @@ final class ArtEditionModel
     public const NAME = 'schema:artEdition';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['VisualArtwork' => 'Jolicode\SchemaOrg\Type\VisualArtworkModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

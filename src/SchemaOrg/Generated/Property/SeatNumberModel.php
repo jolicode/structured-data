@@ -18,4 +18,6 @@ final class SeatNumberModel
     public const NAME = 'schema:seatNumber';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Seat' => 'Jolicode\SchemaOrg\Type\SeatModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

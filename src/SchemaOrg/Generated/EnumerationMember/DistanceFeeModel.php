@@ -16,4 +16,6 @@ final class DistanceFeeModel
     public const DESCRIPTION = 'Represents the distance fee (e.g., price per km or mile) part of the total price for an offered product, for example a car rental.';
     public const LABEL = 'DistanceFee';
     public const NAME = 'schema:DistanceFee';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

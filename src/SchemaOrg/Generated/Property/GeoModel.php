@@ -18,4 +18,6 @@ final class GeoModel
     public const NAME = 'schema:geo';
     public const VALUES = ['GeoCoordinatesModel' => 'Jolicode\SchemaOrg\Type\GeoCoordinatesModel', 'GeoShapeModel' => 'Jolicode\SchemaOrg\Type\GeoShapeModel'];
     public const TYPES = ['Place' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

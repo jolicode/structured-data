@@ -18,4 +18,6 @@ final class PostOpModel
     public const NAME = 'schema:postOp';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalDevice' => 'Jolicode\SchemaOrg\Type\MedicalDeviceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

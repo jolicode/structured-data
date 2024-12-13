@@ -18,4 +18,6 @@ final class BranchOfModel
     public const NAME = 'schema:branchOf';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
     public const TYPES = ['LocalBusiness' => 'Jolicode\SchemaOrg\Type\LocalBusinessModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

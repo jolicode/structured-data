@@ -20,6 +20,8 @@ final class PublicToiletModel
     public const NAME = 'schema:PublicToilet';
     public const PARENTS = ['CivicStructureModel' => 'Jolicode\SchemaOrg\Type\CivicStructureModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1624'];
 
     public function __construct(
         public ?Property\AdditionalPropertyModel $additionalProperty = null,

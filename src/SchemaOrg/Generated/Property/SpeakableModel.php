@@ -25,10 +25,11 @@ The *speakable* property can be repeated an arbitrary number of times, with thre
 
 
 For more sophisticated markup of speakable sections beyond simple ID references, either CSS selectors or XPath expressions to pick out document section(s) as speakable. For this
-we define a supporting type, [[SpeakableSpecification]]  which is defined to be a possible value of the *speakable* property.
-         ';
+we define a supporting type, [[SpeakableSpecification]]  which is defined to be a possible value of the *speakable* property.';
     public const LABEL = 'speakable';
     public const NAME = 'schema:speakable';
     public const VALUES = ['SpeakableSpecificationModel' => 'Jolicode\SchemaOrg\Type\SpeakableSpecificationModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['Article' => 'Jolicode\SchemaOrg\Type\ArticleModel', 'WebPage' => 'Jolicode\SchemaOrg\Type\WebPageModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

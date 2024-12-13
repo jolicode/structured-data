@@ -16,4 +16,6 @@ final class BodyMeasurementNeckModel
     public const DESCRIPTION = 'Girth of neck. Used, for example, to fit shirts.';
     public const LABEL = 'BodyMeasurementNeck';
     public const NAME = 'schema:BodyMeasurementNeck';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

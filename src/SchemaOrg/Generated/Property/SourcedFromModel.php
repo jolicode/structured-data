@@ -18,4 +18,6 @@ final class SourcedFromModel
     public const NAME = 'schema:sourcedFrom';
     public const VALUES = ['BrainStructureModel' => 'Jolicode\SchemaOrg\Type\BrainStructureModel'];
     public const TYPES = ['Nerve' => 'Jolicode\SchemaOrg\Type\NerveModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

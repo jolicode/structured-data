@@ -18,4 +18,6 @@ final class VendorModel
     public const NAME = 'schema:vendor';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['BuyAction' => 'Jolicode\SchemaOrg\Type\BuyActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

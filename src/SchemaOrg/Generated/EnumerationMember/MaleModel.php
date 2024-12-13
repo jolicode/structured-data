@@ -16,4 +16,6 @@ final class MaleModel
     public const DESCRIPTION = 'The male gender.';
     public const LABEL = 'Male';
     public const NAME = 'schema:Male';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

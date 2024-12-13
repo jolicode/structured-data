@@ -13,9 +13,11 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class MaximumPhysicalAttendeeCapacityModel
 {
-    public const DESCRIPTION = 'The maximum physical attendee capacity of an [[Event]] whose [[eventAttendanceMode]] is [[OfflineEventAttendanceMode]] (or the offline aspects, in the case of a [[MixedEventAttendanceMode]]). ';
+    public const DESCRIPTION = 'The maximum physical attendee capacity of an [[Event]] whose [[eventAttendanceMode]] is [[OfflineEventAttendanceMode]] (or the offline aspects, in the case of a [[MixedEventAttendanceMode]]).';
     public const LABEL = 'maximumPhysicalAttendeeCapacity';
     public const NAME = 'schema:maximumPhysicalAttendeeCapacity';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['Event' => 'Jolicode\SchemaOrg\Type\EventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

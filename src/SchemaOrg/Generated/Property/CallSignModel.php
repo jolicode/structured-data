@@ -18,4 +18,6 @@ final class CallSignModel
     public const NAME = 'schema:callSign';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['BroadcastService' => 'Jolicode\SchemaOrg\Type\BroadcastServiceModel', 'Person' => 'Jolicode\SchemaOrg\Type\PersonModel', 'Vehicle' => 'Jolicode\SchemaOrg\Type\VehicleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

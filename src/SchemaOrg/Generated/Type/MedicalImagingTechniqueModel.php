@@ -20,6 +20,8 @@ final class MedicalImagingTechniqueModel
     public const NAME = 'schema:MedicalImagingTechnique';
     public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\SchemaOrg\Type\MedicalEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['CTModel' => 'EnumerationMember\CTModel', 'MRIModel' => 'EnumerationMember\MRIModel', 'PETModel' => 'EnumerationMember\PETModel', 'RadiographyModel' => 'EnumerationMember\RadiographyModel', 'UltrasoundModel' => 'EnumerationMember\UltrasoundModel', 'XRayModel' => 'EnumerationMember\XRayModel'];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

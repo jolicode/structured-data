@@ -18,4 +18,6 @@ final class DepartureBusStopModel
     public const NAME = 'schema:departureBusStop';
     public const VALUES = ['BusStationModel' => 'Jolicode\SchemaOrg\Type\BusStationModel', 'BusStopModel' => 'Jolicode\SchemaOrg\Type\BusStopModel'];
     public const TYPES = ['BusTrip' => 'Jolicode\SchemaOrg\Type\BusTripModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

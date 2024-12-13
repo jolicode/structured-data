@@ -19,12 +19,13 @@ final class FundingAgencyModel
     the granting process (via [[Grant]]s, typically [[MonetaryGrant]]s).
     A funding agency is not always required for grant funding, e.g. philanthropic giving, corporate sponsorship etc.
 
-Examples of funding agencies include ERC, REA, NIH, Bill and Melinda Gates Foundation, ...
-    ';
+Examples of funding agencies include ERC, REA, NIH, Bill and Melinda Gates Foundation, ...';
     public const LABEL = 'FundingAgency';
     public const NAME = 'schema:FundingAgency';
     public const PARENTS = ['ProjectModel' => 'Jolicode\SchemaOrg\Type\ProjectModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/383', 'https://schema.org/docs/collab/FundInfoCollab'];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

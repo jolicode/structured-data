@@ -18,4 +18,6 @@ final class AddressCountryModel
     public const NAME = 'schema:addressCountry';
     public const VALUES = ['CountryModel' => 'Jolicode\SchemaOrg\Type\CountryModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DefinedRegion' => 'Jolicode\SchemaOrg\Type\DefinedRegionModel', 'GeoCoordinates' => 'Jolicode\SchemaOrg\Type\GeoCoordinatesModel', 'GeoShape' => 'Jolicode\SchemaOrg\Type\GeoShapeModel', 'PostalAddress' => 'Jolicode\SchemaOrg\Type\PostalAddressModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

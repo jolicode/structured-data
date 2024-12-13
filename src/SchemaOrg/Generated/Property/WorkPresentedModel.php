@@ -18,4 +18,6 @@ final class WorkPresentedModel
     public const NAME = 'schema:workPresented';
     public const VALUES = ['MovieModel' => 'Jolicode\SchemaOrg\Type\MovieModel'];
     public const TYPES = ['ScreeningEvent' => 'Jolicode\SchemaOrg\Type\ScreeningEventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

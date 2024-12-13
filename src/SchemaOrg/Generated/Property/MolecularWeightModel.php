@@ -18,4 +18,6 @@ final class MolecularWeightModel
     public const NAME = 'schema:molecularWeight';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MolecularEntity' => 'Jolicode\SchemaOrg\Type\MolecularEntityModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

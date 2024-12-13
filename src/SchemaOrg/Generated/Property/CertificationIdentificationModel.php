@@ -18,4 +18,6 @@ final class CertificationIdentificationModel
     public const NAME = 'schema:certificationIdentification';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\SchemaOrg\Type\DefinedTermModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Certification' => 'Jolicode\SchemaOrg\Type\CertificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

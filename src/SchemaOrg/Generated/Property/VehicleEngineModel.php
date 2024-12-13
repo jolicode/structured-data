@@ -18,4 +18,6 @@ final class VehicleEngineModel
     public const NAME = 'schema:vehicleEngine';
     public const VALUES = ['EngineSpecificationModel' => 'Jolicode\SchemaOrg\Type\EngineSpecificationModel'];
     public const TYPES = ['Vehicle' => 'Jolicode\SchemaOrg\Type\VehicleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

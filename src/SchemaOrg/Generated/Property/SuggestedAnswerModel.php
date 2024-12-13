@@ -18,4 +18,6 @@ final class SuggestedAnswerModel
     public const NAME = 'schema:suggestedAnswer';
     public const VALUES = ['AnswerModel' => 'Jolicode\SchemaOrg\Type\AnswerModel', 'ItemListModel' => 'Jolicode\SchemaOrg\Type\ItemListModel'];
     public const TYPES = ['Question' => 'Jolicode\SchemaOrg\Type\QuestionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

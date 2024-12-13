@@ -18,4 +18,6 @@ final class StorageRequirementsModel
     public const NAME = 'schema:storageRequirements';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['SoftwareApplication' => 'Jolicode\SchemaOrg\Type\SoftwareApplicationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

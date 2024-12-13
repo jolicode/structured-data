@@ -16,4 +16,6 @@ final class SkinModel
     public const DESCRIPTION = 'Skin assessment with clinical examination.';
     public const LABEL = 'Skin';
     public const NAME = 'schema:Skin';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

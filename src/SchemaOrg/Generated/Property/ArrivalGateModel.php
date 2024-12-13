@@ -18,4 +18,6 @@ final class ArrivalGateModel
     public const NAME = 'schema:arrivalGate';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Flight' => 'Jolicode\SchemaOrg\Type\FlightModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

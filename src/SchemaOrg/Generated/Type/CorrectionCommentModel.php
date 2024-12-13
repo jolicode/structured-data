@@ -20,6 +20,8 @@ final class CorrectionCommentModel
     public const NAME = 'schema:CorrectionComment';
     public const PARENTS = ['CommentModel' => 'Jolicode\SchemaOrg\Type\CommentModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1950'];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

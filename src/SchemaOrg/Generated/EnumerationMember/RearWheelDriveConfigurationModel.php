@@ -16,4 +16,6 @@ final class RearWheelDriveConfigurationModel
     public const DESCRIPTION = 'Real-wheel drive is a transmission layout where the engine drives the rear wheels.';
     public const LABEL = 'RearWheelDriveConfiguration';
     public const NAME = 'schema:RearWheelDriveConfiguration';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

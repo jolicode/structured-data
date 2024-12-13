@@ -18,4 +18,6 @@ final class ActionApplicationModel
     public const NAME = 'schema:actionApplication';
     public const VALUES = ['SoftwareApplicationModel' => 'Jolicode\SchemaOrg\Type\SoftwareApplicationModel'];
     public const TYPES = ['EntryPoint' => 'Jolicode\SchemaOrg\Type\EntryPointModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

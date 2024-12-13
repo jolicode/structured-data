@@ -18,4 +18,6 @@ final class InsertionModel
     public const NAME = 'schema:insertion';
     public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\SchemaOrg\Type\AnatomicalStructureModel'];
     public const TYPES = ['Muscle' => 'Jolicode\SchemaOrg\Type\MuscleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

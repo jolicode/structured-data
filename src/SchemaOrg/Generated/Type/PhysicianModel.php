@@ -20,6 +20,8 @@ final class PhysicianModel
     public const NAME = 'schema:Physician';
     public const PARENTS = ['MedicalBusinessModel' => 'Jolicode\SchemaOrg\Type\MedicalBusinessModel', 'MedicalOrganizationModel' => 'Jolicode\SchemaOrg\Type\MedicalOrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

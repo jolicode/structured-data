@@ -16,4 +16,6 @@ final class CertificationActiveModel
     public const DESCRIPTION = 'Specifies that a certification is active.';
     public const LABEL = 'CertificationActive';
     public const NAME = 'schema:CertificationActive';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

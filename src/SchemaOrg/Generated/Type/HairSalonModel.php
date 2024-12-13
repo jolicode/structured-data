@@ -20,6 +20,8 @@ final class HairSalonModel
     public const NAME = 'schema:HairSalon';
     public const PARENTS = ['HealthAndBeautyBusinessModel' => 'Jolicode\SchemaOrg\Type\HealthAndBeautyBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

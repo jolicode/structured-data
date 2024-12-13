@@ -18,4 +18,6 @@ final class ProductSupportedModel
     public const NAME = 'schema:productSupported';
     public const VALUES = ['ProductModel' => 'Jolicode\SchemaOrg\Type\ProductModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['ContactPoint' => 'Jolicode\SchemaOrg\Type\ContactPointModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

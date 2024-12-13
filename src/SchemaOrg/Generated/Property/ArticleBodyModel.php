@@ -18,4 +18,6 @@ final class ArticleBodyModel
     public const NAME = 'schema:articleBody';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Article' => 'Jolicode\SchemaOrg\Type\ArticleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

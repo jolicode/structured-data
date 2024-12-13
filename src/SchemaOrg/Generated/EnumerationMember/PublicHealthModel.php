@@ -16,4 +16,6 @@ final class PublicHealthModel
     public const DESCRIPTION = 'Branch of medicine that pertains to the health services to improve and protect community health, especially epidemiology, sanitation, immunization, and preventive medicine.';
     public const LABEL = 'PublicHealth';
     public const NAME = 'schema:PublicHealth';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

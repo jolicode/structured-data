@@ -18,4 +18,6 @@ final class PrepTimeModel
     public const NAME = 'schema:prepTime';
     public const VALUES = ['DurationModel' => 'Jolicode\SchemaOrg\Type\DurationModel'];
     public const TYPES = ['HowToDirection' => 'Jolicode\SchemaOrg\Type\HowToDirectionModel', 'HowTo' => 'Jolicode\SchemaOrg\Type\HowToModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

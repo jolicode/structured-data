@@ -18,4 +18,6 @@ final class PublishedOnModel
     public const NAME = 'schema:publishedOn';
     public const VALUES = ['BroadcastServiceModel' => 'Jolicode\SchemaOrg\Type\BroadcastServiceModel'];
     public const TYPES = ['PublicationEvent' => 'Jolicode\SchemaOrg\Type\PublicationEventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

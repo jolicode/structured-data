@@ -18,4 +18,6 @@ final class DiagramModel
     public const NAME = 'schema:diagram';
     public const VALUES = ['ImageObjectModel' => 'Jolicode\SchemaOrg\Type\ImageObjectModel'];
     public const TYPES = ['AnatomicalStructure' => 'Jolicode\SchemaOrg\Type\AnatomicalStructureModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

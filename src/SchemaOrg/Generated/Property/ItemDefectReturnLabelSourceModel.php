@@ -18,4 +18,6 @@ final class ItemDefectReturnLabelSourceModel
     public const NAME = 'schema:itemDefectReturnLabelSource';
     public const VALUES = ['ReturnLabelSourceEnumerationModel' => 'Jolicode\SchemaOrg\Type\ReturnLabelSourceEnumerationModel'];
     public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

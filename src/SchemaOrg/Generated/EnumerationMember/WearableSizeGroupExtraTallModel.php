@@ -16,4 +16,6 @@ final class WearableSizeGroupExtraTallModel
     public const DESCRIPTION = 'Size group "Extra Tall" for wearables.';
     public const LABEL = 'WearableSizeGroupExtraTall';
     public const NAME = 'schema:WearableSizeGroupExtraTall';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

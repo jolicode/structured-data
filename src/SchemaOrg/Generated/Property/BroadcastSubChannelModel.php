@@ -18,4 +18,6 @@ final class BroadcastSubChannelModel
     public const NAME = 'schema:broadcastSubChannel';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['BroadcastFrequencySpecification' => 'Jolicode\SchemaOrg\Type\BroadcastFrequencySpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

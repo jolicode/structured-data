@@ -18,4 +18,6 @@ final class CodingSystemModel
     public const NAME = 'schema:codingSystem';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalCode' => 'Jolicode\SchemaOrg\Type\MedicalCodeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

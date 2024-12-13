@@ -20,6 +20,8 @@ final class DeactivateActionModel
     public const NAME = 'schema:DeactivateAction';
     public const PARENTS = ['ControlActionModel' => 'Jolicode\SchemaOrg\Type\ControlActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

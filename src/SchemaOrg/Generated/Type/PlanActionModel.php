@@ -20,6 +20,8 @@ final class PlanActionModel
     public const NAME = 'schema:PlanAction';
     public const PARENTS = ['OrganizeActionModel' => 'Jolicode\SchemaOrg\Type\OrganizeActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

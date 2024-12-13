@@ -21,6 +21,8 @@ final class TouristTripModel
     public const NAME = 'schema:TouristTrip';
     public const PARENTS = ['TripModel' => 'Jolicode\SchemaOrg\Type\TripModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1810'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -20,6 +20,8 @@ final class MuseumModel
     public const NAME = 'schema:Museum';
     public const PARENTS = ['CivicStructureModel' => 'Jolicode\SchemaOrg\Type\CivicStructureModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalPropertyModel $additionalProperty = null,

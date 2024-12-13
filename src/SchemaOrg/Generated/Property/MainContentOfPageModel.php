@@ -18,4 +18,6 @@ final class MainContentOfPageModel
     public const NAME = 'schema:mainContentOfPage';
     public const VALUES = ['WebPageElementModel' => 'Jolicode\SchemaOrg\Type\WebPageElementModel'];
     public const TYPES = ['WebPage' => 'Jolicode\SchemaOrg\Type\WebPageModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

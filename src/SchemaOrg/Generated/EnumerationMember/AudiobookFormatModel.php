@@ -16,4 +16,6 @@ final class AudiobookFormatModel
     public const DESCRIPTION = 'Book format: Audiobook. This is an enumerated value for use with the bookFormat property. There is also a type \'Audiobook\' in the bib extension which includes Audiobook specific properties.';
     public const LABEL = 'AudiobookFormat';
     public const NAME = 'schema:AudiobookFormat';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

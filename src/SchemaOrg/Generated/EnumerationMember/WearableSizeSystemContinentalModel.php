@@ -16,4 +16,6 @@ final class WearableSizeSystemContinentalModel
     public const DESCRIPTION = 'Continental size system for wearables.';
     public const LABEL = 'WearableSizeSystemContinental';
     public const NAME = 'schema:WearableSizeSystemContinental';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

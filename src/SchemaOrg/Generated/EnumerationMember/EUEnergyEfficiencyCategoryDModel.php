@@ -16,4 +16,6 @@ final class EUEnergyEfficiencyCategoryDModel
     public const DESCRIPTION = 'Represents EU Energy Efficiency Class D as defined in EU energy labeling regulations.';
     public const LABEL = 'EUEnergyEfficiencyCategoryD';
     public const NAME = 'schema:EUEnergyEfficiencyCategoryD';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

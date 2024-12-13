@@ -16,4 +16,6 @@ final class OpenTrialModel
     public const DESCRIPTION = 'A trial design in which the researcher knows the full details of the treatment, and so does the patient.';
     public const LABEL = 'OpenTrial';
     public const NAME = 'schema:OpenTrial';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

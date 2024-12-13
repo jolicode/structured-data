@@ -20,6 +20,8 @@ final class EventStatusTypeModel
     public const NAME = 'schema:EventStatusType';
     public const PARENTS = ['StatusEnumerationModel' => 'Jolicode\SchemaOrg\Type\StatusEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['EventCancelledModel' => 'EnumerationMember\EventCancelledModel', 'EventMovedOnlineModel' => 'EnumerationMember\EventMovedOnlineModel', 'EventPostponedModel' => 'EnumerationMember\EventPostponedModel', 'EventRescheduledModel' => 'EnumerationMember\EventRescheduledModel', 'EventScheduledModel' => 'EnumerationMember\EventScheduledModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

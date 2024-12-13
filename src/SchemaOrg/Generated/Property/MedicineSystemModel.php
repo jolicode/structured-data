@@ -18,4 +18,6 @@ final class MedicineSystemModel
     public const NAME = 'schema:medicineSystem';
     public const VALUES = ['MedicineSystemModel' => 'Jolicode\SchemaOrg\Type\MedicineSystemModel'];
     public const TYPES = ['MedicalEntity' => 'Jolicode\SchemaOrg\Type\MedicalEntityModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

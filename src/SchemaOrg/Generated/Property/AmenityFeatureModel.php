@@ -18,4 +18,6 @@ final class AmenityFeatureModel
     public const NAME = 'schema:amenityFeature';
     public const VALUES = ['LocationFeatureSpecificationModel' => 'Jolicode\SchemaOrg\Type\LocationFeatureSpecificationModel'];
     public const TYPES = ['Accommodation' => 'Jolicode\SchemaOrg\Type\AccommodationModel', 'FloorPlan' => 'Jolicode\SchemaOrg\Type\FloorPlanModel', 'LodgingBusiness' => 'Jolicode\SchemaOrg\Type\LodgingBusinessModel', 'Place' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

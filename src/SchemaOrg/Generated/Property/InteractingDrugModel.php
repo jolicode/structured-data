@@ -18,4 +18,6 @@ final class InteractingDrugModel
     public const NAME = 'schema:interactingDrug';
     public const VALUES = ['DrugModel' => 'Jolicode\SchemaOrg\Type\DrugModel'];
     public const TYPES = ['Drug' => 'Jolicode\SchemaOrg\Type\DrugModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

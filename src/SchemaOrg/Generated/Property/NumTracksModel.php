@@ -18,4 +18,6 @@ final class NumTracksModel
     public const NAME = 'schema:numTracks';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['MusicPlaylist' => 'Jolicode\SchemaOrg\Type\MusicPlaylistModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

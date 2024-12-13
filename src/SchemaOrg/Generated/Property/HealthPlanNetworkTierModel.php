@@ -18,4 +18,6 @@ final class HealthPlanNetworkTierModel
     public const NAME = 'schema:healthPlanNetworkTier';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['HealthPlanNetwork' => 'Jolicode\SchemaOrg\Type\HealthPlanNetworkModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

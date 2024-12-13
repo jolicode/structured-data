@@ -18,4 +18,6 @@ final class TypicalCreditsPerTermModel
     public const NAME = 'schema:typicalCreditsPerTerm';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel', 'StructuredValueModel' => 'Jolicode\SchemaOrg\Type\StructuredValueModel'];
     public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalProgramModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

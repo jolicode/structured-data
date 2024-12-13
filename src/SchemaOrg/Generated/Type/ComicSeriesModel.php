@@ -22,6 +22,8 @@ final class ComicSeriesModel
     public const NAME = 'schema:ComicSeries';
     public const PARENTS = ['PeriodicalModel' => 'Jolicode\SchemaOrg\Type\PeriodicalModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://bib.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

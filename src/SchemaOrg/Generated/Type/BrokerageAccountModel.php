@@ -20,6 +20,8 @@ final class BrokerageAccountModel
     public const NAME = 'schema:BrokerageAccount';
     public const PARENTS = ['InvestmentOrDepositModel' => 'Jolicode\SchemaOrg\Type\InvestmentOrDepositModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1253'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

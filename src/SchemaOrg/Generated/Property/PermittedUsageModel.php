@@ -18,4 +18,6 @@ final class PermittedUsageModel
     public const NAME = 'schema:permittedUsage';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Accommodation' => 'Jolicode\SchemaOrg\Type\AccommodationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

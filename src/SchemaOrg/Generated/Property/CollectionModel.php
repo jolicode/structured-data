@@ -18,4 +18,6 @@ final class CollectionModel
     public const NAME = 'schema:collection';
     public const VALUES = ['ThingModel' => 'Jolicode\SchemaOrg\Type\ThingModel'];
     public const TYPES = ['UpdateAction' => 'Jolicode\SchemaOrg\Type\UpdateActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -20,6 +20,8 @@ final class NLNonprofitTypeModel
     public const NAME = 'schema:NLNonprofitType';
     public const PARENTS = ['NonprofitTypeModel' => 'Jolicode\SchemaOrg\Type\NonprofitTypeModel'];
     public const ENUMERATION_MEMBERS = ['NonprofitANBIModel' => 'EnumerationMember\NonprofitANBIModel', 'NonprofitSBBIModel' => 'EnumerationMember\NonprofitSBBIModel'];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2543'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

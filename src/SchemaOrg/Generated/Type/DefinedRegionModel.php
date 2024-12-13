@@ -27,12 +27,13 @@ Requirement 2:
 Country: US
 PostalCode Set: { [94000-94585], [97000, 97999], [13000, 13599]}
 { [12345, 12345], [78945, 78945], }
-Region = state, canton, prefecture, autonomous community...
-';
+Region = state, canton, prefecture, autonomous community...';
     public const LABEL = 'DefinedRegion';
     public const NAME = 'schema:DefinedRegion';
     public const PARENTS = ['StructuredValueModel' => 'Jolicode\SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2506'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

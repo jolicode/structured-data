@@ -18,4 +18,6 @@ final class ExpressedInModel
     public const NAME = 'schema:expressedIn';
     public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\SchemaOrg\Type\AnatomicalStructureModel', 'AnatomicalSystemModel' => 'Jolicode\SchemaOrg\Type\AnatomicalSystemModel', 'BioChemEntityModel' => 'Jolicode\SchemaOrg\Type\BioChemEntityModel', 'DefinedTermModel' => 'Jolicode\SchemaOrg\Type\DefinedTermModel'];
     public const TYPES = ['Gene' => 'Jolicode\SchemaOrg\Type\GeneModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

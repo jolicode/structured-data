@@ -18,4 +18,6 @@ final class VehicleConfigurationModel
     public const NAME = 'schema:vehicleConfiguration';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Vehicle' => 'Jolicode\SchemaOrg\Type\VehicleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

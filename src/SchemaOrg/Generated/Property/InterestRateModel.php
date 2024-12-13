@@ -18,4 +18,6 @@ final class InterestRateModel
     public const NAME = 'schema:interestRate';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['FinancialProduct' => 'Jolicode\SchemaOrg\Type\FinancialProductModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

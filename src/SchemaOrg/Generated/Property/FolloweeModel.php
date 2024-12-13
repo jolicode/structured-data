@@ -18,4 +18,6 @@ final class FolloweeModel
     public const NAME = 'schema:followee';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['FollowAction' => 'Jolicode\SchemaOrg\Type\FollowActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class LearningResourceTypeModel
     public const NAME = 'schema:learningResourceType';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\SchemaOrg\Type\DefinedTermModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'LearningResource' => 'Jolicode\SchemaOrg\Type\LearningResourceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

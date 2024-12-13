@@ -18,4 +18,6 @@ final class InventoryLevelModel
     public const NAME = 'schema:inventoryLevel';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['Demand' => 'Jolicode\SchemaOrg\Type\DemandModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'SomeProducts' => 'Jolicode\SchemaOrg\Type\SomeProductsModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

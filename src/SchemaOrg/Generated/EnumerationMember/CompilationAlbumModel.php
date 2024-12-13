@@ -16,4 +16,6 @@ final class CompilationAlbumModel
     public const DESCRIPTION = 'CompilationAlbum.';
     public const LABEL = 'CompilationAlbum';
     public const NAME = 'schema:CompilationAlbum';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

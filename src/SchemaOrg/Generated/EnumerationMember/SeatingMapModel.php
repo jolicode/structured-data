@@ -16,4 +16,6 @@ final class SeatingMapModel
     public const DESCRIPTION = 'A seating map.';
     public const LABEL = 'SeatingMap';
     public const NAME = 'schema:SeatingMap';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

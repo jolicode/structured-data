@@ -16,4 +16,6 @@ final class WednesdayModel
     public const DESCRIPTION = 'The day of the week between Tuesday and Thursday.';
     public const LABEL = 'Wednesday';
     public const NAME = 'schema:Wednesday';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class InternationalTrialModel
     public const DESCRIPTION = 'An international trial.';
     public const LABEL = 'InternationalTrial';
     public const NAME = 'schema:InternationalTrial';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

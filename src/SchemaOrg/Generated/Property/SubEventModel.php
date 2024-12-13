@@ -18,4 +18,6 @@ final class SubEventModel
     public const NAME = 'schema:subEvent';
     public const VALUES = ['EventModel' => 'Jolicode\SchemaOrg\Type\EventModel'];
     public const TYPES = ['Event' => 'Jolicode\SchemaOrg\Type\EventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

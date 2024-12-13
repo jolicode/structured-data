@@ -16,4 +16,6 @@ final class ParentalSupportModel
     public const DESCRIPTION = 'ParentalSupport: this is a benefit for parental support.';
     public const LABEL = 'ParentalSupport';
     public const NAME = 'schema:ParentalSupport';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

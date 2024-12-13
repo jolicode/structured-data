@@ -18,4 +18,6 @@ final class SubtitleLanguageModel
     public const NAME = 'schema:subtitleLanguage';
     public const VALUES = ['LanguageModel' => 'Jolicode\SchemaOrg\Type\LanguageModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['BroadcastEvent' => 'Jolicode\SchemaOrg\Type\BroadcastEventModel', 'Movie' => 'Jolicode\SchemaOrg\Type\MovieModel', 'ScreeningEvent' => 'Jolicode\SchemaOrg\Type\ScreeningEventModel', 'TVEpisode' => 'Jolicode\SchemaOrg\Type\TVEpisodeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

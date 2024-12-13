@@ -18,4 +18,6 @@ final class PriceComponentModel
     public const NAME = 'schema:priceComponent';
     public const VALUES = ['UnitPriceSpecificationModel' => 'Jolicode\SchemaOrg\Type\UnitPriceSpecificationModel'];
     public const TYPES = ['CompoundPriceSpecification' => 'Jolicode\SchemaOrg\Type\CompoundPriceSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

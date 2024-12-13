@@ -18,4 +18,6 @@ final class GeoRadiusModel
     public const NAME = 'schema:geoRadius';
     public const VALUES = ['DistanceModel' => 'Jolicode\SchemaOrg\Type\DistanceModel', 'NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['GeoCircle' => 'Jolicode\SchemaOrg\Type\GeoCircleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

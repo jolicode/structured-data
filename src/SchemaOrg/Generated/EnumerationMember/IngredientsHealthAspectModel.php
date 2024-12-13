@@ -16,4 +16,6 @@ final class IngredientsHealthAspectModel
     public const DESCRIPTION = 'Content discussing ingredients-related aspects of a health topic.';
     public const LABEL = 'IngredientsHealthAspect';
     public const NAME = 'schema:IngredientsHealthAspect';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

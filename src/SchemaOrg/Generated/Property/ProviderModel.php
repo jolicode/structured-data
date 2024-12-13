@@ -18,4 +18,6 @@ final class ProviderModel
     public const NAME = 'schema:provider';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['Action' => 'Jolicode\SchemaOrg\Type\ActionModel', 'CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'EducationalOccupationalProgram' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalProgramModel', 'Invoice' => 'Jolicode\SchemaOrg\Type\InvoiceModel', 'ParcelDelivery' => 'Jolicode\SchemaOrg\Type\ParcelDeliveryModel', 'Reservation' => 'Jolicode\SchemaOrg\Type\ReservationModel', 'Service' => 'Jolicode\SchemaOrg\Type\ServiceModel', 'Trip' => 'Jolicode\SchemaOrg\Type\TripModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

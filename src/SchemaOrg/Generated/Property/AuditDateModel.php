@@ -18,4 +18,6 @@ final class AuditDateModel
     public const NAME = 'schema:auditDate';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['Certification' => 'Jolicode\SchemaOrg\Type\CertificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

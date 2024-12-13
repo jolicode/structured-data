@@ -18,4 +18,6 @@ final class DeliveryMethodModel
     public const NAME = 'schema:deliveryMethod';
     public const VALUES = ['DeliveryMethodModel' => 'Jolicode\SchemaOrg\Type\DeliveryMethodModel'];
     public const TYPES = ['OrderAction' => 'Jolicode\SchemaOrg\Type\OrderActionModel', 'ReceiveAction' => 'Jolicode\SchemaOrg\Type\ReceiveActionModel', 'SendAction' => 'Jolicode\SchemaOrg\Type\SendActionModel', 'TrackAction' => 'Jolicode\SchemaOrg\Type\TrackActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

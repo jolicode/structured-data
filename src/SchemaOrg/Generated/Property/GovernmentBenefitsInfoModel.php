@@ -18,4 +18,6 @@ final class GovernmentBenefitsInfoModel
     public const NAME = 'schema:governmentBenefitsInfo';
     public const VALUES = ['GovernmentServiceModel' => 'Jolicode\SchemaOrg\Type\GovernmentServiceModel'];
     public const TYPES = ['SpecialAnnouncement' => 'Jolicode\SchemaOrg\Type\SpecialAnnouncementModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

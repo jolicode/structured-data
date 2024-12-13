@@ -20,6 +20,8 @@ final class AudiobookModel
     public const NAME = 'schema:Audiobook';
     public const PARENTS = ['AudioObjectModel' => 'Jolicode\SchemaOrg\Type\AudioObjectModel', 'BookModel' => 'Jolicode\SchemaOrg\Type\BookModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://bib.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

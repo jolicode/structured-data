@@ -16,4 +16,6 @@ final class UrologicModel
     public const DESCRIPTION = 'A specific branch of medical science that is concerned with the diagnosis and treatment of diseases pertaining to the urinary tract and the urogenital system.';
     public const LABEL = 'Urologic';
     public const NAME = 'schema:Urologic';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

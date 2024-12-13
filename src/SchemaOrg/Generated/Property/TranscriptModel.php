@@ -18,4 +18,6 @@ final class TranscriptModel
     public const NAME = 'schema:transcript';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['AudioObject' => 'Jolicode\SchemaOrg\Type\AudioObjectModel', 'VideoObject' => 'Jolicode\SchemaOrg\Type\VideoObjectModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

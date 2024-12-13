@@ -18,4 +18,6 @@ final class ToLocationModel
     public const NAME = 'schema:toLocation';
     public const VALUES = ['PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
     public const TYPES = ['ExerciseAction' => 'Jolicode\SchemaOrg\Type\ExerciseActionModel', 'InsertAction' => 'Jolicode\SchemaOrg\Type\InsertActionModel', 'MoveAction' => 'Jolicode\SchemaOrg\Type\MoveActionModel', 'TransferAction' => 'Jolicode\SchemaOrg\Type\TransferActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

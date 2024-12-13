@@ -16,4 +16,6 @@ final class CausesHealthAspectModel
     public const DESCRIPTION = 'Information about the causes and main actions that gave rise to the topic.';
     public const LABEL = 'CausesHealthAspect';
     public const NAME = 'schema:CausesHealthAspect';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class SubStageSuffixModel
     public const NAME = 'schema:subStageSuffix';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalConditionStage' => 'Jolicode\SchemaOrg\Type\MedicalConditionStageModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

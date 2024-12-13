@@ -19,4 +19,6 @@ final class FloorLevelModel
     public const NAME = 'schema:floorLevel';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Accommodation' => 'Jolicode\SchemaOrg\Type\AccommodationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

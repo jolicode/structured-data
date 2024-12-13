@@ -16,4 +16,6 @@ final class OrderCancelledModel
     public const DESCRIPTION = 'OrderStatus representing cancellation of an order.';
     public const LABEL = 'OrderCancelled';
     public const NAME = 'schema:OrderCancelled';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

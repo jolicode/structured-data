@@ -18,4 +18,6 @@ final class UserInteractionCountModel
     public const NAME = 'schema:userInteractionCount';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['InteractionCounter' => 'Jolicode\SchemaOrg\Type\InteractionCounterModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

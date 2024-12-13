@@ -18,4 +18,6 @@ final class ClaimInterpreterModel
     public const NAME = 'schema:claimInterpreter';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['Claim' => 'Jolicode\SchemaOrg\Type\ClaimModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

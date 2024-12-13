@@ -18,6 +18,8 @@ final class NumberModel
     public const NAME = 'schema:Number';
     public const PARENTS = [];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct()
     {

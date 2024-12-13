@@ -20,4 +20,6 @@ This property should not be used where the nature of the alignment can be descri
     public const NAME = 'schema:educationalAlignment';
     public const VALUES = ['AlignmentObjectModel' => 'Jolicode\SchemaOrg\Type\AlignmentObjectModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'LearningResource' => 'Jolicode\SchemaOrg\Type\LearningResourceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

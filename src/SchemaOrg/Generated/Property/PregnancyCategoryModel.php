@@ -18,4 +18,6 @@ final class PregnancyCategoryModel
     public const NAME = 'schema:pregnancyCategory';
     public const VALUES = ['DrugPregnancyCategoryModel' => 'Jolicode\SchemaOrg\Type\DrugPregnancyCategoryModel'];
     public const TYPES = ['Drug' => 'Jolicode\SchemaOrg\Type\DrugModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

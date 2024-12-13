@@ -16,4 +16,6 @@ final class InStoreOnlyModel
     public const DESCRIPTION = 'Indicates that the item is available only at physical locations.';
     public const LABEL = 'InStoreOnly';
     public const NAME = 'schema:InStoreOnly';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

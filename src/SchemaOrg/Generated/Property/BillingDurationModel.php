@@ -18,4 +18,6 @@ final class BillingDurationModel
     public const NAME = 'schema:billingDuration';
     public const VALUES = ['DurationModel' => 'Jolicode\SchemaOrg\Type\DurationModel', 'NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['UnitPriceSpecification' => 'Jolicode\SchemaOrg\Type\UnitPriceSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

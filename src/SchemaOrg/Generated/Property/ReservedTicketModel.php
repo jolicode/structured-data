@@ -18,4 +18,6 @@ final class ReservedTicketModel
     public const NAME = 'schema:reservedTicket';
     public const VALUES = ['TicketModel' => 'Jolicode\SchemaOrg\Type\TicketModel'];
     public const TYPES = ['Reservation' => 'Jolicode\SchemaOrg\Type\ReservationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

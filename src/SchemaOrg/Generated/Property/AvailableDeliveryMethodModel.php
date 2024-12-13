@@ -18,4 +18,6 @@ final class AvailableDeliveryMethodModel
     public const NAME = 'schema:availableDeliveryMethod';
     public const VALUES = ['DeliveryMethodModel' => 'Jolicode\SchemaOrg\Type\DeliveryMethodModel'];
     public const TYPES = ['Demand' => 'Jolicode\SchemaOrg\Type\DemandModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

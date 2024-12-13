@@ -18,4 +18,6 @@ final class DoesNotShipModel
     public const NAME = 'schema:doesNotShip';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['OfferShippingDetails' => 'Jolicode\SchemaOrg\Type\OfferShippingDetailsModel', 'ShippingRateSettings' => 'Jolicode\SchemaOrg\Type\ShippingRateSettingsModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

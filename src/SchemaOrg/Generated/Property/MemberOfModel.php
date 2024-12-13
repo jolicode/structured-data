@@ -18,4 +18,6 @@ final class MemberOfModel
     public const NAME = 'schema:memberOf';
     public const VALUES = ['MemberProgramTierModel' => 'Jolicode\SchemaOrg\Type\MemberProgramTierModel', 'OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'ProgramMembershipModel' => 'Jolicode\SchemaOrg\Type\ProgramMembershipModel'];
     public const TYPES = ['Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\SchemaOrg\Type\PersonModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

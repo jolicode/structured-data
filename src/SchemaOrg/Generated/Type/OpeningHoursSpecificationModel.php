@@ -16,12 +16,13 @@ use Jolicode\SchemaOrg\Property;
 final class OpeningHoursSpecificationModel
 {
     public const DESCRIPTION = 'A structured value providing information about the opening hours of a place or a certain service inside a place.\n\n
-The place is __open__ if the [[opens]] property is specified, and __closed__ otherwise.\n\nIf the value for the [[closes]] property is less than the value for the [[opens]] property then the hour range is assumed to span over the next day.
-      ';
+The place is __open__ if the [[opens]] property is specified, and __closed__ otherwise.\n\nIf the value for the [[closes]] property is less than the value for the [[opens]] property then the hour range is assumed to span over the next day.';
     public const LABEL = 'OpeningHoursSpecification';
     public const NAME = 'schema:OpeningHoursSpecification';
     public const PARENTS = ['StructuredValueModel' => 'Jolicode\SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

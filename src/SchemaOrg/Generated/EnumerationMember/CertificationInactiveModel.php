@@ -16,4 +16,6 @@ final class CertificationInactiveModel
     public const DESCRIPTION = 'Specifies that a certification is inactive (no longer in effect).';
     public const LABEL = 'CertificationInactive';
     public const NAME = 'schema:CertificationInactive';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

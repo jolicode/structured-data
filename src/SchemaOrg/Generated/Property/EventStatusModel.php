@@ -18,4 +18,6 @@ final class EventStatusModel
     public const NAME = 'schema:eventStatus';
     public const VALUES = ['EventStatusTypeModel' => 'Jolicode\SchemaOrg\Type\EventStatusTypeModel'];
     public const TYPES = ['Event' => 'Jolicode\SchemaOrg\Type\EventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

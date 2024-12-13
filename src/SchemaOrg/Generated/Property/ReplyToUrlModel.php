@@ -18,4 +18,6 @@ final class ReplyToUrlModel
     public const NAME = 'schema:replyToUrl';
     public const VALUES = ['URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['UserComments' => 'Jolicode\SchemaOrg\Type\UserCommentsModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

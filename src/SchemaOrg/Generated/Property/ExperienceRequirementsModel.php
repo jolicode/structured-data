@@ -18,4 +18,6 @@ final class ExperienceRequirementsModel
     public const NAME = 'schema:experienceRequirements';
     public const VALUES = ['OccupationalExperienceRequirementsModel' => 'Jolicode\SchemaOrg\Type\OccupationalExperienceRequirementsModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['JobPosting' => 'Jolicode\SchemaOrg\Type\JobPostingModel', 'Occupation' => 'Jolicode\SchemaOrg\Type\OccupationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

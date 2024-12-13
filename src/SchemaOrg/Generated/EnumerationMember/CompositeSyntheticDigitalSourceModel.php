@@ -16,4 +16,6 @@ final class CompositeSyntheticDigitalSourceModel
     public const DESCRIPTION = 'Content coded as \'<a href="https://cv.iptc.org/newscodes/digitalsourcetype/compositeSynthetic">composite synthetic</a>\' using the IPTC <a href="https://cv.iptc.org/newscodes/digitalsourcetype/">digital source type</a> vocabulary.';
     public const LABEL = 'CompositeSyntheticDigitalSource';
     public const NAME = 'schema:CompositeSyntheticDigitalSource';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

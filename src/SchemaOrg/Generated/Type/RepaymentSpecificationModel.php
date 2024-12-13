@@ -20,6 +20,8 @@ final class RepaymentSpecificationModel
     public const NAME = 'schema:RepaymentSpecification';
     public const PARENTS = ['StructuredValueModel' => 'Jolicode\SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1253'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

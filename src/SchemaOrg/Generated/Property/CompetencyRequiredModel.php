@@ -18,4 +18,6 @@ final class CompetencyRequiredModel
     public const NAME = 'schema:competencyRequired';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\SchemaOrg\Type\DefinedTermModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['EducationalOccupationalCredential' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalCredentialModel', 'LearningResource' => 'Jolicode\SchemaOrg\Type\LearningResourceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

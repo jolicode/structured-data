@@ -18,4 +18,6 @@ final class DataFeedElementModel
     public const NAME = 'schema:dataFeedElement';
     public const VALUES = ['DataFeedItemModel' => 'Jolicode\SchemaOrg\Type\DataFeedItemModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'ThingModel' => 'Jolicode\SchemaOrg\Type\ThingModel'];
     public const TYPES = ['DataFeed' => 'Jolicode\SchemaOrg\Type\DataFeedModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

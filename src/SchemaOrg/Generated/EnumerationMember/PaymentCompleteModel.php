@@ -16,4 +16,6 @@ final class PaymentCompleteModel
     public const DESCRIPTION = 'The payment has been received and processed.';
     public const LABEL = 'PaymentComplete';
     public const NAME = 'schema:PaymentComplete';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

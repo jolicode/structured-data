@@ -18,4 +18,6 @@ final class WinnerModel
     public const NAME = 'schema:winner';
     public const VALUES = ['PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['LoseAction' => 'Jolicode\SchemaOrg\Type\LoseActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

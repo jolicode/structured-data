@@ -18,4 +18,6 @@ final class RecommendedIntakeModel
     public const NAME = 'schema:recommendedIntake';
     public const VALUES = ['RecommendedDoseScheduleModel' => 'Jolicode\SchemaOrg\Type\RecommendedDoseScheduleModel'];
     public const TYPES = ['DietarySupplement' => 'Jolicode\SchemaOrg\Type\DietarySupplementModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

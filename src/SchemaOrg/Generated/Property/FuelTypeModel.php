@@ -18,4 +18,6 @@ final class FuelTypeModel
     public const NAME = 'schema:fuelType';
     public const VALUES = ['QualitativeValueModel' => 'Jolicode\SchemaOrg\Type\QualitativeValueModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['EngineSpecification' => 'Jolicode\SchemaOrg\Type\EngineSpecificationModel', 'Vehicle' => 'Jolicode\SchemaOrg\Type\VehicleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

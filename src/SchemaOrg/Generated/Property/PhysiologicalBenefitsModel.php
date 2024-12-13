@@ -18,4 +18,6 @@ final class PhysiologicalBenefitsModel
     public const NAME = 'schema:physiologicalBenefits';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Diet' => 'Jolicode\SchemaOrg\Type\DietModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

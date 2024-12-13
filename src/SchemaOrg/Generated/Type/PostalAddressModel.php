@@ -20,6 +20,8 @@ final class PostalAddressModel
     public const NAME = 'schema:PostalAddress';
     public const PARENTS = ['ContactPointModel' => 'Jolicode\SchemaOrg\Type\ContactPointModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

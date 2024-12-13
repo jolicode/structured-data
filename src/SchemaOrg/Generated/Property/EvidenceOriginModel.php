@@ -18,4 +18,6 @@ final class EvidenceOriginModel
     public const NAME = 'schema:evidenceOrigin';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalGuideline' => 'Jolicode\SchemaOrg\Type\MedicalGuidelineModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

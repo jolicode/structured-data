@@ -18,4 +18,6 @@ final class ActionAccessibilityRequirementModel
     public const NAME = 'schema:actionAccessibilityRequirement';
     public const VALUES = ['ActionAccessSpecificationModel' => 'Jolicode\SchemaOrg\Type\ActionAccessSpecificationModel'];
     public const TYPES = ['ConsumeAction' => 'Jolicode\SchemaOrg\Type\ConsumeActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

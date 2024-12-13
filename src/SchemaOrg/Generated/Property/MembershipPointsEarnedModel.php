@@ -18,4 +18,6 @@ final class MembershipPointsEarnedModel
     public const NAME = 'schema:membershipPointsEarned';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['MemberProgramTier' => 'Jolicode\SchemaOrg\Type\MemberProgramTierModel', 'PriceSpecification' => 'Jolicode\SchemaOrg\Type\PriceSpecificationModel', 'ProgramMembership' => 'Jolicode\SchemaOrg\Type\ProgramMembershipModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

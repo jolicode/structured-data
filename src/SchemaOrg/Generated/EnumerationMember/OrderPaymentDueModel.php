@@ -16,4 +16,6 @@ final class OrderPaymentDueModel
     public const DESCRIPTION = 'OrderStatus representing that payment is due on an order.';
     public const LABEL = 'OrderPaymentDue';
     public const NAME = 'schema:OrderPaymentDue';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

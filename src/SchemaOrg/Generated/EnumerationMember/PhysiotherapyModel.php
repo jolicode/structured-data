@@ -16,4 +16,6 @@ final class PhysiotherapyModel
     public const DESCRIPTION = 'The practice of treatment of disease, injury, or deformity by physical methods such as massage, heat treatment, and exercise rather than by drugs or surgery.';
     public const LABEL = 'Physiotherapy';
     public const NAME = 'schema:Physiotherapy';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

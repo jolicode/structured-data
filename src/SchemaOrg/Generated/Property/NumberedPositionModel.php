@@ -18,4 +18,6 @@ final class NumberedPositionModel
     public const NAME = 'schema:numberedPosition';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['OrganizationRole' => 'Jolicode\SchemaOrg\Type\OrganizationRoleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

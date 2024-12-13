@@ -18,4 +18,6 @@ final class HasAdultConsiderationModel
     public const NAME = 'schema:hasAdultConsideration';
     public const VALUES = ['AdultOrientedEnumerationModel' => 'Jolicode\SchemaOrg\Type\AdultOrientedEnumerationModel'];
     public const TYPES = ['Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'Product' => 'Jolicode\SchemaOrg\Type\ProductModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

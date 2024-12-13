@@ -13,9 +13,11 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class AnswerExplanationModel
 {
-    public const DESCRIPTION = 'A step-by-step or full explanation about Answer. Can outline how this Answer was achieved or contain more broad clarification or statement about it. ';
+    public const DESCRIPTION = 'A step-by-step or full explanation about Answer. Can outline how this Answer was achieved or contain more broad clarification or statement about it.';
     public const LABEL = 'answerExplanation';
     public const NAME = 'schema:answerExplanation';
     public const VALUES = ['CommentModel' => 'Jolicode\SchemaOrg\Type\CommentModel', 'WebContentModel' => 'Jolicode\SchemaOrg\Type\WebContentModel'];
     public const TYPES = ['Answer' => 'Jolicode\SchemaOrg\Type\AnswerModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class SelfCareHealthAspectModel
     public const DESCRIPTION = 'Self care actions or measures that can be taken to sooth, health or avoid a topic. This may be carried at home and can be carried/managed by the person itself.';
     public const LABEL = 'SelfCareHealthAspect';
     public const NAME = 'schema:SelfCareHealthAspect';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

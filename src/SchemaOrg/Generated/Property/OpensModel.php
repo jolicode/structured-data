@@ -18,4 +18,6 @@ final class OpensModel
     public const NAME = 'schema:opens';
     public const VALUES = ['TimeModel' => 'Jolicode\SchemaOrg\Type\TimeModel'];
     public const TYPES = ['OpeningHoursSpecification' => 'Jolicode\SchemaOrg\Type\OpeningHoursSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

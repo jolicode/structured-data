@@ -16,4 +16,6 @@ final class LowFatDietModel
     public const DESCRIPTION = 'A diet focused on reduced fat and cholesterol intake.';
     public const LABEL = 'LowFatDiet';
     public const NAME = 'schema:LowFatDiet';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

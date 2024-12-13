@@ -16,4 +16,6 @@ final class SinglePlayerModel
     public const DESCRIPTION = 'Play mode: SinglePlayer. Which is played by a lone player.';
     public const LABEL = 'SinglePlayer';
     public const NAME = 'schema:SinglePlayer';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

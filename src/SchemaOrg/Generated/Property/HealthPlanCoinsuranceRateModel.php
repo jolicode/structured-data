@@ -18,4 +18,6 @@ final class HealthPlanCoinsuranceRateModel
     public const NAME = 'schema:healthPlanCoinsuranceRate';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['HealthPlanCostSharingSpecification' => 'Jolicode\SchemaOrg\Type\HealthPlanCostSharingSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

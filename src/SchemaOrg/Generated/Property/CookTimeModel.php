@@ -18,4 +18,6 @@ final class CookTimeModel
     public const NAME = 'schema:cookTime';
     public const VALUES = ['DurationModel' => 'Jolicode\SchemaOrg\Type\DurationModel'];
     public const TYPES = ['Recipe' => 'Jolicode\SchemaOrg\Type\RecipeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

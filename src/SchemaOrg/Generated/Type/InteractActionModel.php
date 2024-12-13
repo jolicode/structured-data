@@ -20,6 +20,8 @@ final class InteractActionModel
     public const NAME = 'schema:InteractAction';
     public const PARENTS = ['ActionModel' => 'Jolicode\SchemaOrg\Type\ActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

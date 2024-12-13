@@ -18,4 +18,6 @@ final class DateReadModel
     public const NAME = 'schema:dateRead';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['Message' => 'Jolicode\SchemaOrg\Type\MessageModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

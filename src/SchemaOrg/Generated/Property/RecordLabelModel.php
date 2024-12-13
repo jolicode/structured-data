@@ -18,4 +18,6 @@ final class RecordLabelModel
     public const NAME = 'schema:recordLabel';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
     public const TYPES = ['MusicRelease' => 'Jolicode\SchemaOrg\Type\MusicReleaseModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

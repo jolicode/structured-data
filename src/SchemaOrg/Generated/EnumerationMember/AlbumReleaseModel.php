@@ -16,4 +16,6 @@ final class AlbumReleaseModel
     public const DESCRIPTION = 'AlbumRelease.';
     public const LABEL = 'AlbumRelease';
     public const NAME = 'schema:AlbumRelease';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

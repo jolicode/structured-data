@@ -20,6 +20,8 @@ final class ScholarlyArticleModel
     public const NAME = 'schema:ScholarlyArticle';
     public const PARENTS = ['ArticleModel' => 'Jolicode\SchemaOrg\Type\ArticleModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

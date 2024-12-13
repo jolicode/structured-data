@@ -18,4 +18,6 @@ final class OpponentModel
     public const NAME = 'schema:opponent';
     public const VALUES = ['PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['ExerciseAction' => 'Jolicode\SchemaOrg\Type\ExerciseActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

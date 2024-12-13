@@ -19,4 +19,6 @@ final class EnginePowerModel
     public const NAME = 'schema:enginePower';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['EngineSpecification' => 'Jolicode\SchemaOrg\Type\EngineSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

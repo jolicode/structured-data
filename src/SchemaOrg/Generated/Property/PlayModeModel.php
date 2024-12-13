@@ -18,4 +18,6 @@ final class PlayModeModel
     public const NAME = 'schema:playMode';
     public const VALUES = ['GamePlayModeModel' => 'Jolicode\SchemaOrg\Type\GamePlayModeModel'];
     public const TYPES = ['VideoGame' => 'Jolicode\SchemaOrg\Type\VideoGameModel', 'VideoGameSeries' => 'Jolicode\SchemaOrg\Type\VideoGameSeriesModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

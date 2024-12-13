@@ -18,4 +18,6 @@ final class RoofLoadModel
     public const NAME = 'schema:roofLoad';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['BusOrCoach' => 'Jolicode\SchemaOrg\Type\BusOrCoachModel', 'Car' => 'Jolicode\SchemaOrg\Type\CarModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

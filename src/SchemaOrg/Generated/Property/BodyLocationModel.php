@@ -18,4 +18,6 @@ final class BodyLocationModel
     public const NAME = 'schema:bodyLocation';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['AnatomicalStructure' => 'Jolicode\SchemaOrg\Type\AnatomicalStructureModel', 'MedicalProcedure' => 'Jolicode\SchemaOrg\Type\MedicalProcedureModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

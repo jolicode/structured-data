@@ -16,4 +16,6 @@ final class InStockModel
     public const DESCRIPTION = 'Indicates that the item is in stock.';
     public const LABEL = 'InStock';
     public const NAME = 'schema:InStock';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class DatasetModel
     public const NAME = 'schema:dataset';
     public const VALUES = ['DatasetModel' => 'Jolicode\SchemaOrg\Type\DatasetModel'];
     public const TYPES = ['DataCatalog' => 'Jolicode\SchemaOrg\Type\DataCatalogModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

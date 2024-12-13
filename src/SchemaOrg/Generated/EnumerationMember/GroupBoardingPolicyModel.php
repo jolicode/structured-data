@@ -16,4 +16,6 @@ final class GroupBoardingPolicyModel
     public const DESCRIPTION = 'The airline boards by groups based on check-in time, priority, etc.';
     public const LABEL = 'GroupBoardingPolicy';
     public const NAME = 'schema:GroupBoardingPolicy';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

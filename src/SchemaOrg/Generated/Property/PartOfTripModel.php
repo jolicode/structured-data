@@ -18,4 +18,6 @@ final class PartOfTripModel
     public const NAME = 'schema:partOfTrip';
     public const VALUES = ['TripModel' => 'Jolicode\SchemaOrg\Type\TripModel'];
     public const TYPES = ['Trip' => 'Jolicode\SchemaOrg\Type\TripModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

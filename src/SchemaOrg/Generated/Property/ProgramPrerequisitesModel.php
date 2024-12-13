@@ -18,4 +18,6 @@ final class ProgramPrerequisitesModel
     public const NAME = 'schema:programPrerequisites';
     public const VALUES = ['AlignmentObjectModel' => 'Jolicode\SchemaOrg\Type\AlignmentObjectModel', 'CourseModel' => 'Jolicode\SchemaOrg\Type\CourseModel', 'EducationalOccupationalCredentialModel' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalCredentialModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalProgramModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

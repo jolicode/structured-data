@@ -18,4 +18,6 @@ final class CvdCollectionDateModel
     public const NAME = 'schema:cvdCollectionDate';
     public const VALUES = ['DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['CDCPMDRecord' => 'Jolicode\SchemaOrg\Type\CDCPMDRecordModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

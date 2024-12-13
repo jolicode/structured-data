@@ -18,4 +18,6 @@ final class StepsModel
     public const NAME = 'schema:steps';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'ItemListModel' => 'Jolicode\SchemaOrg\Type\ItemListModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['HowTo' => 'Jolicode\SchemaOrg\Type\HowToModel', 'HowToSection' => 'Jolicode\SchemaOrg\Type\HowToSectionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

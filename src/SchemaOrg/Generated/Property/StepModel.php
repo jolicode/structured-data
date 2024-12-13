@@ -18,4 +18,6 @@ final class StepModel
     public const NAME = 'schema:step';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'HowToSectionModel' => 'Jolicode\SchemaOrg\Type\HowToSectionModel', 'HowToStepModel' => 'Jolicode\SchemaOrg\Type\HowToStepModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['HowTo' => 'Jolicode\SchemaOrg\Type\HowToModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

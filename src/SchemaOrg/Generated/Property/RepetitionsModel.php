@@ -18,4 +18,6 @@ final class RepetitionsModel
     public const NAME = 'schema:repetitions';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['ExercisePlan' => 'Jolicode\SchemaOrg\Type\ExercisePlanModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

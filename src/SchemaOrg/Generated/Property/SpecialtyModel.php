@@ -18,4 +18,6 @@ final class SpecialtyModel
     public const NAME = 'schema:specialty';
     public const VALUES = ['SpecialtyModel' => 'Jolicode\SchemaOrg\Type\SpecialtyModel'];
     public const TYPES = ['WebPage' => 'Jolicode\SchemaOrg\Type\WebPageModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

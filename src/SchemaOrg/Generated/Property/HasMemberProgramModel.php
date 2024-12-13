@@ -18,4 +18,6 @@ final class HasMemberProgramModel
     public const NAME = 'schema:hasMemberProgram';
     public const VALUES = ['MemberProgramModel' => 'Jolicode\SchemaOrg\Type\MemberProgramModel'];
     public const TYPES = ['Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

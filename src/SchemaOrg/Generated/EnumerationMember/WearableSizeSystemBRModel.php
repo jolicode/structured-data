@@ -16,4 +16,6 @@ final class WearableSizeSystemBRModel
     public const DESCRIPTION = 'Brazilian size system for wearables.';
     public const LABEL = 'WearableSizeSystemBR';
     public const NAME = 'schema:WearableSizeSystemBR';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

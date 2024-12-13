@@ -18,4 +18,6 @@ final class ExercisePlanModel
     public const NAME = 'schema:exercisePlan';
     public const VALUES = ['ExercisePlanModel' => 'Jolicode\SchemaOrg\Type\ExercisePlanModel'];
     public const TYPES = ['ExerciseAction' => 'Jolicode\SchemaOrg\Type\ExerciseActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

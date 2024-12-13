@@ -20,6 +20,8 @@ final class MonetaryGrantModel
     public const NAME = 'schema:MonetaryGrant';
     public const PARENTS = ['GrantModel' => 'Jolicode\SchemaOrg\Type\GrantModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/383', 'https://schema.org/docs/collab/FundInfoCollab'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -18,4 +18,6 @@ final class HasOfferCatalogModel
     public const NAME = 'schema:hasOfferCatalog';
     public const VALUES = ['OfferCatalogModel' => 'Jolicode\SchemaOrg\Type\OfferCatalogModel'];
     public const TYPES = ['Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\SchemaOrg\Type\PersonModel', 'Service' => 'Jolicode\SchemaOrg\Type\ServiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class PickupTimeModel
     public const NAME = 'schema:pickupTime';
     public const VALUES = ['DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['RentalCarReservation' => 'Jolicode\SchemaOrg\Type\RentalCarReservationModel', 'TaxiReservation' => 'Jolicode\SchemaOrg\Type\TaxiReservationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

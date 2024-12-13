@@ -18,4 +18,6 @@ final class DomainIncludesModel
     public const NAME = 'schema:domainIncludes';
     public const VALUES = ['ClassModel' => 'Jolicode\SchemaOrg\Type\ClassModel'];
     public const TYPES = ['Property' => 'Jolicode\SchemaOrg\Type\PropertyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

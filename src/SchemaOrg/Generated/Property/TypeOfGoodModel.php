@@ -18,4 +18,6 @@ final class TypeOfGoodModel
     public const NAME = 'schema:typeOfGood';
     public const VALUES = ['ProductModel' => 'Jolicode\SchemaOrg\Type\ProductModel', 'ServiceModel' => 'Jolicode\SchemaOrg\Type\ServiceModel'];
     public const TYPES = ['OwnershipInfo' => 'Jolicode\SchemaOrg\Type\OwnershipInfoModel', 'TypeAndQuantityNode' => 'Jolicode\SchemaOrg\Type\TypeAndQuantityNodeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

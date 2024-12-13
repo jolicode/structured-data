@@ -16,4 +16,6 @@ final class CommentPermissionModel
     public const DESCRIPTION = 'Permission to add comments to the document.';
     public const LABEL = 'CommentPermission';
     public const NAME = 'schema:CommentPermission';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

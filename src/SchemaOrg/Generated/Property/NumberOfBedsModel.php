@@ -18,4 +18,6 @@ final class NumberOfBedsModel
     public const NAME = 'schema:numberOfBeds';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['BedDetails' => 'Jolicode\SchemaOrg\Type\BedDetailsModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

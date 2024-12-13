@@ -18,4 +18,6 @@ final class HasVariantModel
     public const NAME = 'schema:hasVariant';
     public const VALUES = ['ProductModel' => 'Jolicode\SchemaOrg\Type\ProductModel'];
     public const TYPES = ['ProductGroup' => 'Jolicode\SchemaOrg\Type\ProductGroupModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

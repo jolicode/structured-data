@@ -18,4 +18,6 @@ final class ItemModel
     public const NAME = 'schema:item';
     public const VALUES = ['ThingModel' => 'Jolicode\SchemaOrg\Type\ThingModel'];
     public const TYPES = ['DataFeedItem' => 'Jolicode\SchemaOrg\Type\DataFeedItemModel', 'ListItem' => 'Jolicode\SchemaOrg\Type\ListItemModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

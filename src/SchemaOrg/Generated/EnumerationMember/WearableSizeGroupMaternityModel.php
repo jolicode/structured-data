@@ -16,4 +16,6 @@ final class WearableSizeGroupMaternityModel
     public const DESCRIPTION = 'Size group "Maternity" for wearables.';
     public const LABEL = 'WearableSizeGroupMaternity';
     public const NAME = 'schema:WearableSizeGroupMaternity';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

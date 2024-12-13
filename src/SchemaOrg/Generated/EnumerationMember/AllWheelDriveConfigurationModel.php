@@ -16,4 +16,6 @@ final class AllWheelDriveConfigurationModel
     public const DESCRIPTION = 'All-wheel Drive is a transmission layout where the engine drives all four wheels.';
     public const LABEL = 'AllWheelDriveConfiguration';
     public const NAME = 'schema:AllWheelDriveConfiguration';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

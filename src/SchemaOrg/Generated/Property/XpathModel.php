@@ -18,4 +18,6 @@ final class XpathModel
     public const NAME = 'schema:xpath';
     public const VALUES = ['XPathTypeModel' => 'Jolicode\SchemaOrg\Type\XPathTypeModel'];
     public const TYPES = ['SpeakableSpecification' => 'Jolicode\SchemaOrg\Type\SpeakableSpecificationModel', 'WebPageElement' => 'Jolicode\SchemaOrg\Type\WebPageElementModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

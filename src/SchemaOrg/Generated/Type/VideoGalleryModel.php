@@ -20,6 +20,8 @@ final class VideoGalleryModel
     public const NAME = 'schema:VideoGallery';
     public const PARENTS = ['MediaGalleryModel' => 'Jolicode\SchemaOrg\Type\MediaGalleryModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

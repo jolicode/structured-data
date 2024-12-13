@@ -18,4 +18,6 @@ final class MedicalSpecialtyModel
     public const NAME = 'schema:medicalSpecialty';
     public const VALUES = ['MedicalSpecialtyModel' => 'Jolicode\SchemaOrg\Type\MedicalSpecialtyModel'];
     public const TYPES = ['Hospital' => 'Jolicode\SchemaOrg\Type\HospitalModel', 'MedicalClinic' => 'Jolicode\SchemaOrg\Type\MedicalClinicModel', 'MedicalOrganization' => 'Jolicode\SchemaOrg\Type\MedicalOrganizationModel', 'Physician' => 'Jolicode\SchemaOrg\Type\PhysicianModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

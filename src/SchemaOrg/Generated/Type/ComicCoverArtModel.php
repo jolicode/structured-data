@@ -20,6 +20,8 @@ final class ComicCoverArtModel
     public const NAME = 'schema:ComicCoverArt';
     public const PARENTS = ['ComicStoryModel' => 'Jolicode\SchemaOrg\Type\ComicStoryModel', 'CoverArtModel' => 'Jolicode\SchemaOrg\Type\CoverArtModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://bib.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

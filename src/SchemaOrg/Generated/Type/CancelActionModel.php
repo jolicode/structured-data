@@ -20,6 +20,8 @@ final class CancelActionModel
     public const NAME = 'schema:CancelAction';
     public const PARENTS = ['PlanActionModel' => 'Jolicode\SchemaOrg\Type\PlanActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

@@ -18,4 +18,6 @@ final class StreetAddressModel
     public const NAME = 'schema:streetAddress';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['PostalAddress' => 'Jolicode\SchemaOrg\Type\PostalAddressModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

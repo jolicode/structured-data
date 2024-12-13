@@ -18,4 +18,6 @@ final class DoseUnitModel
     public const NAME = 'schema:doseUnit';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DoseSchedule' => 'Jolicode\SchemaOrg\Type\DoseScheduleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

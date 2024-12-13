@@ -18,4 +18,6 @@ final class FoodEstablishmentModel
     public const NAME = 'schema:foodEstablishment';
     public const VALUES = ['FoodEstablishmentModel' => 'Jolicode\SchemaOrg\Type\FoodEstablishmentModel', 'PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
     public const TYPES = ['CookAction' => 'Jolicode\SchemaOrg\Type\CookActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class OrderReturnedModel
     public const DESCRIPTION = 'OrderStatus representing that an order has been returned.';
     public const LABEL = 'OrderReturned';
     public const NAME = 'schema:OrderReturned';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

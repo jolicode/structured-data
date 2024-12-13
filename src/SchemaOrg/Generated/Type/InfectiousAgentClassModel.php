@@ -20,6 +20,8 @@ final class InfectiousAgentClassModel
     public const NAME = 'schema:InfectiousAgentClass';
     public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\SchemaOrg\Type\MedicalEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['BacteriaModel' => 'EnumerationMember\BacteriaModel', 'FungusModel' => 'EnumerationMember\FungusModel', 'MulticellularParasiteModel' => 'EnumerationMember\MulticellularParasiteModel', 'PrionModel' => 'EnumerationMember\PrionModel', 'ProtozoaModel' => 'EnumerationMember\ProtozoaModel', 'VirusModel' => 'EnumerationMember\VirusModel'];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

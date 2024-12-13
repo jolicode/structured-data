@@ -16,4 +16,6 @@ final class BodyMeasurementBustModel
     public const DESCRIPTION = 'Maximum girth of bust. Used, for example, to fit women\'s suits.';
     public const LABEL = 'BodyMeasurementBust';
     public const NAME = 'schema:BodyMeasurementBust';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

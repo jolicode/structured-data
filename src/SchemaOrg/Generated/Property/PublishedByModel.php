@@ -18,4 +18,6 @@ final class PublishedByModel
     public const NAME = 'schema:publishedBy';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['PublicationEvent' => 'Jolicode\SchemaOrg\Type\PublicationEventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

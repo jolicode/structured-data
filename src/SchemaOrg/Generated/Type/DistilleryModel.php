@@ -20,6 +20,8 @@ final class DistilleryModel
     public const NAME = 'schema:Distillery';
     public const PARENTS = ['FoodEstablishmentModel' => 'Jolicode\SchemaOrg\Type\FoodEstablishmentModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/743'];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

@@ -18,4 +18,6 @@ final class OrderDeliveryModel
     public const NAME = 'schema:orderDelivery';
     public const VALUES = ['ParcelDeliveryModel' => 'Jolicode\SchemaOrg\Type\ParcelDeliveryModel'];
     public const TYPES = ['OrderItem' => 'Jolicode\SchemaOrg\Type\OrderItemModel', 'Order' => 'Jolicode\SchemaOrg\Type\OrderModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

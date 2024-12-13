@@ -20,6 +20,8 @@ final class MapCategoryTypeModel
     public const NAME = 'schema:MapCategoryType';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['ParkingMapModel' => 'EnumerationMember\ParkingMapModel', 'SeatingMapModel' => 'EnumerationMember\SeatingMapModel', 'TransitMapModel' => 'EnumerationMember\TransitMapModel', 'VenueMapModel' => 'EnumerationMember\VenueMapModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

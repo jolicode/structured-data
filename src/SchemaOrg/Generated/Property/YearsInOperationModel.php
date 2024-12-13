@@ -18,4 +18,6 @@ final class YearsInOperationModel
     public const NAME = 'schema:yearsInOperation';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['BusinessAudience' => 'Jolicode\SchemaOrg\Type\BusinessAudienceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -20,6 +20,8 @@ final class DeliveryChargeSpecificationModel
     public const NAME = 'schema:DeliveryChargeSpecification';
     public const PARENTS = ['PriceSpecificationModel' => 'Jolicode\SchemaOrg\Type\PriceSpecificationModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

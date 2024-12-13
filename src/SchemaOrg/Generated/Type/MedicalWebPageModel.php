@@ -20,6 +20,8 @@ final class MedicalWebPageModel
     public const NAME = 'schema:MedicalWebPage';
     public const PARENTS = ['WebPageModel' => 'Jolicode\SchemaOrg\Type\WebPageModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

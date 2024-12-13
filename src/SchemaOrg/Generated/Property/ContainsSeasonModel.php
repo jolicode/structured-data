@@ -18,4 +18,6 @@ final class ContainsSeasonModel
     public const NAME = 'schema:containsSeason';
     public const VALUES = ['CreativeWorkSeasonModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkSeasonModel'];
     public const TYPES = ['RadioSeries' => 'Jolicode\SchemaOrg\Type\RadioSeriesModel', 'TVSeries' => 'Jolicode\SchemaOrg\Type\TVSeriesModel', 'VideoGameSeries' => 'Jolicode\SchemaOrg\Type\VideoGameSeriesModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class SugarContentModel
     public const NAME = 'schema:sugarContent';
     public const VALUES = ['MassModel' => 'Jolicode\SchemaOrg\Type\MassModel'];
     public const TYPES = ['NutritionInformation' => 'Jolicode\SchemaOrg\Type\NutritionInformationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

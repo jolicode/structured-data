@@ -16,4 +16,6 @@ final class WearableSizeGroupPetiteModel
     public const DESCRIPTION = 'Size group "Petite" for wearables.';
     public const LABEL = 'WearableSizeGroupPetite';
     public const NAME = 'schema:WearableSizeGroupPetite';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

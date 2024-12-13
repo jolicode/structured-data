@@ -18,4 +18,6 @@ final class ReadByModel
     public const NAME = 'schema:readBy';
     public const VALUES = ['PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['Audiobook' => 'Jolicode\SchemaOrg\Type\AudiobookModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class YearlyRevenueModel
     public const NAME = 'schema:yearlyRevenue';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['BusinessAudience' => 'Jolicode\SchemaOrg\Type\BusinessAudienceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

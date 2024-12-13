@@ -18,4 +18,6 @@ final class ObservationPeriodModel
     public const NAME = 'schema:observationPeriod';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Observation' => 'Jolicode\SchemaOrg\Type\ObservationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

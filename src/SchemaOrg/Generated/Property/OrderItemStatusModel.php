@@ -18,4 +18,6 @@ final class OrderItemStatusModel
     public const NAME = 'schema:orderItemStatus';
     public const VALUES = ['OrderStatusModel' => 'Jolicode\SchemaOrg\Type\OrderStatusModel'];
     public const TYPES = ['OrderItem' => 'Jolicode\SchemaOrg\Type\OrderItemModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

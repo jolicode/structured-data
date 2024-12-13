@@ -16,4 +16,6 @@ final class Nonprofit501c2Model
     public const DESCRIPTION = 'Nonprofit501c2: Non-profit type referring to Title-holding Corporations for Exempt Organizations.';
     public const LABEL = 'Nonprofit501c2';
     public const NAME = 'schema:Nonprofit501c2';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

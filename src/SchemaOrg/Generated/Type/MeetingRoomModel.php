@@ -17,12 +17,13 @@ final class MeetingRoomModel
 {
     public const DESCRIPTION = 'A meeting room, conference room, or conference hall is a room provided for singular events such as business conferences and meetings (source: Wikipedia, the free encyclopedia, see <a href="http://en.wikipedia.org/wiki/Conference_hall">http://en.wikipedia.org/wiki/Conference_hall</a>).
 <br /><br />
-See also the <a href="/docs/hotels.html">dedicated document on the use of schema.org for marking up hotels and other forms of accommodations</a>.
-';
+See also the <a href="/docs/hotels.html">dedicated document on the use of schema.org for marking up hotels and other forms of accommodations</a>.';
     public const LABEL = 'MeetingRoom';
     public const NAME = 'schema:MeetingRoom';
     public const PARENTS = ['RoomModel' => 'Jolicode\SchemaOrg\Type\RoomModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AccommodationCategoryModel $accommodationCategory = null,

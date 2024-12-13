@@ -18,4 +18,6 @@ final class MonthsOfExperienceModel
     public const NAME = 'schema:monthsOfExperience';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['OccupationalExperienceRequirements' => 'Jolicode\SchemaOrg\Type\OccupationalExperienceRequirementsModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

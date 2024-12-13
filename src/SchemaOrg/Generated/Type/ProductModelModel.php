@@ -20,6 +20,8 @@ final class ProductModelModel
     public const NAME = 'schema:ProductModel';
     public const PARENTS = ['ProductModel' => 'Jolicode\SchemaOrg\Type\ProductModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalPropertyModel $additionalProperty = null,

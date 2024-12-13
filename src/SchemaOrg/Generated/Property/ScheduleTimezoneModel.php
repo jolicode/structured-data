@@ -18,4 +18,6 @@ final class ScheduleTimezoneModel
     public const NAME = 'schema:scheduleTimezone';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Schedule' => 'Jolicode\SchemaOrg\Type\ScheduleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

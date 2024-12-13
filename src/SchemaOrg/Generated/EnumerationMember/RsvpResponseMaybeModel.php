@@ -16,4 +16,6 @@ final class RsvpResponseMaybeModel
     public const DESCRIPTION = 'The invitee may or may not attend.';
     public const LABEL = 'RsvpResponseMaybe';
     public const NAME = 'schema:RsvpResponseMaybe';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

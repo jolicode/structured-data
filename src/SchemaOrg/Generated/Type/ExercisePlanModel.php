@@ -20,6 +20,8 @@ final class ExercisePlanModel
     public const NAME = 'schema:ExercisePlan';
     public const PARENTS = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'PhysicalActivityModel' => 'Jolicode\SchemaOrg\Type\PhysicalActivityModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

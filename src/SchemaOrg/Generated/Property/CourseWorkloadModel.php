@@ -18,4 +18,6 @@ final class CourseWorkloadModel
     public const NAME = 'schema:courseWorkload';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['CourseInstance' => 'Jolicode\SchemaOrg\Type\CourseInstanceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

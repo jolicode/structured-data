@@ -18,4 +18,6 @@ final class CatalogNumberModel
     public const NAME = 'schema:catalogNumber';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MusicRelease' => 'Jolicode\SchemaOrg\Type\MusicReleaseModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

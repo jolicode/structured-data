@@ -18,4 +18,6 @@ final class AccountMinimumInflowModel
     public const NAME = 'schema:accountMinimumInflow';
     public const VALUES = ['MonetaryAmountModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel'];
     public const TYPES = ['BankAccount' => 'Jolicode\SchemaOrg\Type\BankAccountModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

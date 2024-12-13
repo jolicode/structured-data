@@ -16,4 +16,6 @@ final class ReturnInStoreModel
     public const DESCRIPTION = 'Specifies that product returns must be made in a store.';
     public const LABEL = 'ReturnInStore';
     public const NAME = 'schema:ReturnInStore';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

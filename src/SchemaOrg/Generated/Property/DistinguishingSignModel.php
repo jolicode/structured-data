@@ -18,4 +18,6 @@ final class DistinguishingSignModel
     public const NAME = 'schema:distinguishingSign';
     public const VALUES = ['MedicalSignOrSymptomModel' => 'Jolicode\SchemaOrg\Type\MedicalSignOrSymptomModel'];
     public const TYPES = ['DDxElement' => 'Jolicode\SchemaOrg\Type\DDxElementModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

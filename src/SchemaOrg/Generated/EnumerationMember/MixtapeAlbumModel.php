@@ -16,4 +16,6 @@ final class MixtapeAlbumModel
     public const DESCRIPTION = 'MixtapeAlbum.';
     public const LABEL = 'MixtapeAlbum';
     public const NAME = 'schema:MixtapeAlbum';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

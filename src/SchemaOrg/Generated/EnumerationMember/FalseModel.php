@@ -16,4 +16,6 @@ final class FalseModel
     public const DESCRIPTION = 'The boolean value false.';
     public const LABEL = 'False';
     public const NAME = 'schema:False';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

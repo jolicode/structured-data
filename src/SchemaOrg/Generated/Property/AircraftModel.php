@@ -18,4 +18,6 @@ final class AircraftModel
     public const NAME = 'schema:aircraft';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'VehicleModel' => 'Jolicode\SchemaOrg\Type\VehicleModel'];
     public const TYPES = ['Flight' => 'Jolicode\SchemaOrg\Type\FlightModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

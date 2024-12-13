@@ -20,6 +20,8 @@ final class MathSolverModel
     public const NAME = 'schema:MathSolver';
     public const PARENTS = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2740'];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

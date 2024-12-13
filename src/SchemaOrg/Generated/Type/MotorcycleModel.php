@@ -20,6 +20,8 @@ final class MotorcycleModel
     public const NAME = 'schema:Motorcycle';
     public const PARENTS = ['VehicleModel' => 'Jolicode\SchemaOrg\Type\VehicleModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://auto.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AccelerationTimeModel $accelerationTime = null,

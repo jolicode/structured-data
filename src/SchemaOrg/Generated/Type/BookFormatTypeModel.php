@@ -20,6 +20,8 @@ final class BookFormatTypeModel
     public const NAME = 'schema:BookFormatType';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['AudiobookFormatModel' => 'EnumerationMember\AudiobookFormatModel', 'EBookModel' => 'EnumerationMember\EBookModel', 'GraphicNovelModel' => 'EnumerationMember\GraphicNovelModel', 'HardcoverModel' => 'EnumerationMember\HardcoverModel', 'PaperbackModel' => 'EnumerationMember\PaperbackModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

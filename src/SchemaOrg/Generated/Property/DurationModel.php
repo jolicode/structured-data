@@ -18,4 +18,6 @@ final class DurationModel
     public const NAME = 'schema:duration';
     public const VALUES = ['DurationModel' => 'Jolicode\SchemaOrg\Type\DurationModel'];
     public const TYPES = ['Audiobook' => 'Jolicode\SchemaOrg\Type\AudiobookModel', 'Episode' => 'Jolicode\SchemaOrg\Type\EpisodeModel', 'Event' => 'Jolicode\SchemaOrg\Type\EventModel', 'MediaObject' => 'Jolicode\SchemaOrg\Type\MediaObjectModel', 'Movie' => 'Jolicode\SchemaOrg\Type\MovieModel', 'MusicRecording' => 'Jolicode\SchemaOrg\Type\MusicRecordingModel', 'MusicRelease' => 'Jolicode\SchemaOrg\Type\MusicReleaseModel', 'QuantitativeValueDistribution' => 'Jolicode\SchemaOrg\Type\QuantitativeValueDistributionModel', 'Schedule' => 'Jolicode\SchemaOrg\Type\ScheduleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

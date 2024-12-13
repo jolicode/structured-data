@@ -16,4 +16,6 @@ final class OncologicModel
     public const DESCRIPTION = 'A specific branch of medical science that deals with benign and malignant tumors, including the study of their development, diagnosis, treatment and prevention.';
     public const LABEL = 'Oncologic';
     public const NAME = 'schema:Oncologic';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

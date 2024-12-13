@@ -20,6 +20,8 @@ final class WPHeaderModel
     public const NAME = 'schema:WPHeader';
     public const PARENTS = ['WebPageElementModel' => 'Jolicode\SchemaOrg\Type\WebPageElementModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

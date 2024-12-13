@@ -18,4 +18,6 @@ final class LegislationLegalValueModel
     public const NAME = 'schema:legislationLegalValue';
     public const VALUES = ['LegalValueLevelModel' => 'Jolicode\SchemaOrg\Type\LegalValueLevelModel'];
     public const TYPES = ['LegislationObject' => 'Jolicode\SchemaOrg\Type\LegislationObjectModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

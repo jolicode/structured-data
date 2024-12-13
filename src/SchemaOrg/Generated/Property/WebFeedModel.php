@@ -18,4 +18,6 @@ final class WebFeedModel
     public const NAME = 'schema:webFeed';
     public const VALUES = ['DataFeedModel' => 'Jolicode\SchemaOrg\Type\DataFeedModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['PodcastSeries' => 'Jolicode\SchemaOrg\Type\PodcastSeriesModel', 'SpecialAnnouncement' => 'Jolicode\SchemaOrg\Type\SpecialAnnouncementModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

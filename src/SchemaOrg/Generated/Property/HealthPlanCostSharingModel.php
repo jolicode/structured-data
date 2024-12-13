@@ -18,4 +18,6 @@ final class HealthPlanCostSharingModel
     public const NAME = 'schema:healthPlanCostSharing';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['HealthPlanFormulary' => 'Jolicode\SchemaOrg\Type\HealthPlanFormularyModel', 'HealthPlanNetwork' => 'Jolicode\SchemaOrg\Type\HealthPlanNetworkModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

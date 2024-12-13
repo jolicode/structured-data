@@ -20,6 +20,8 @@ final class HealthClubModel
     public const NAME = 'schema:HealthClub';
     public const PARENTS = ['HealthAndBeautyBusinessModel' => 'Jolicode\SchemaOrg\Type\HealthAndBeautyBusinessModel', 'SportsActivityLocationModel' => 'Jolicode\SchemaOrg\Type\SportsActivityLocationModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

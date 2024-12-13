@@ -18,4 +18,6 @@ final class VolumeNumberModel
     public const NAME = 'schema:volumeNumber';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['PublicationVolume' => 'Jolicode\SchemaOrg\Type\PublicationVolumeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

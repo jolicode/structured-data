@@ -17,12 +17,13 @@ final class OfferForLeaseModel
 {
     public const DESCRIPTION = 'An [[OfferForLease]] in Schema.org represents an [[Offer]] to lease out something, i.e. an [[Offer]] whose
   [[businessFunction]] is [lease out](http://purl.org/goodrelations/v1#LeaseOut.). See [Good Relations](https://en.wikipedia.org/wiki/GoodRelations) for
-  background on the underlying concepts.
-  ';
+  background on the underlying concepts.';
     public const LABEL = 'OfferForLease';
     public const NAME = 'schema:OfferForLease';
     public const PARENTS = ['OfferModel' => 'Jolicode\SchemaOrg\Type\OfferModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2348'];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

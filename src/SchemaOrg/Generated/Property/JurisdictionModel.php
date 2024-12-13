@@ -18,4 +18,6 @@ final class JurisdictionModel
     public const NAME = 'schema:jurisdiction';
     public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\SchemaOrg\Type\AdministrativeAreaModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['GovernmentService' => 'Jolicode\SchemaOrg\Type\GovernmentServiceModel', 'Legislation' => 'Jolicode\SchemaOrg\Type\LegislationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

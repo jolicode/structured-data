@@ -18,4 +18,6 @@ final class ChemicalCompositionModel
     public const NAME = 'schema:chemicalComposition';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['ChemicalSubstance' => 'Jolicode\SchemaOrg\Type\ChemicalSubstanceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

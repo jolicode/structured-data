@@ -18,4 +18,6 @@ final class PhotosModel
     public const NAME = 'schema:photos';
     public const VALUES = ['ImageObjectModel' => 'Jolicode\SchemaOrg\Type\ImageObjectModel', 'PhotographModel' => 'Jolicode\SchemaOrg\Type\PhotographModel'];
     public const TYPES = ['Place' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

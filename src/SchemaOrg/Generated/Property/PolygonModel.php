@@ -18,4 +18,6 @@ final class PolygonModel
     public const NAME = 'schema:polygon';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['GeoShape' => 'Jolicode\SchemaOrg\Type\GeoShapeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

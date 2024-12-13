@@ -18,4 +18,6 @@ final class ValuePatternModel
     public const NAME = 'schema:valuePattern';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['PropertyValueSpecification' => 'Jolicode\SchemaOrg\Type\PropertyValueSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

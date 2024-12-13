@@ -16,4 +16,6 @@ final class HowItWorksHealthAspectModel
     public const DESCRIPTION = 'Content that discusses and explains how a particular health-related topic works, e.g. in terms of mechanisms and underlying science.';
     public const LABEL = 'HowItWorksHealthAspect';
     public const NAME = 'schema:HowItWorksHealthAspect';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

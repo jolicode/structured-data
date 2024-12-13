@@ -18,4 +18,6 @@ final class BroadcastOfEventModel
     public const NAME = 'schema:broadcastOfEvent';
     public const VALUES = ['EventModel' => 'Jolicode\SchemaOrg\Type\EventModel'];
     public const TYPES = ['BroadcastEvent' => 'Jolicode\SchemaOrg\Type\BroadcastEventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

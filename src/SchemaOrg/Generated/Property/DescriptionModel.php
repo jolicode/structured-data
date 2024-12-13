@@ -18,4 +18,6 @@ final class DescriptionModel
     public const NAME = 'schema:description';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'TextObjectModel' => 'Jolicode\SchemaOrg\Type\TextObjectModel'];
     public const TYPES = ['Thing' => 'Jolicode\SchemaOrg\Type\ThingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

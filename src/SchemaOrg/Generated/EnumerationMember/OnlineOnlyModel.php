@@ -16,4 +16,6 @@ final class OnlineOnlyModel
     public const DESCRIPTION = 'Indicates that the item is available only online.';
     public const LABEL = 'OnlineOnly';
     public const NAME = 'schema:OnlineOnly';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class StudyLocationModel
     public const NAME = 'schema:studyLocation';
     public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\SchemaOrg\Type\AdministrativeAreaModel'];
     public const TYPES = ['MedicalStudy' => 'Jolicode\SchemaOrg\Type\MedicalStudyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

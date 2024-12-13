@@ -18,4 +18,6 @@ final class FreeModel
     public const NAME = 'schema:free';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['PublicationEvent' => 'Jolicode\SchemaOrg\Type\PublicationEventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class DepartureAirportModel
     public const NAME = 'schema:departureAirport';
     public const VALUES = ['AirportModel' => 'Jolicode\SchemaOrg\Type\AirportModel'];
     public const TYPES = ['Flight' => 'Jolicode\SchemaOrg\Type\FlightModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

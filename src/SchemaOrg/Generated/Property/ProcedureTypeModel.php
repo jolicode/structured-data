@@ -18,4 +18,6 @@ final class ProcedureTypeModel
     public const NAME = 'schema:procedureType';
     public const VALUES = ['MedicalProcedureTypeModel' => 'Jolicode\SchemaOrg\Type\MedicalProcedureTypeModel'];
     public const TYPES = ['MedicalProcedure' => 'Jolicode\SchemaOrg\Type\MedicalProcedureModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

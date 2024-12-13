@@ -18,4 +18,6 @@ final class AlbumProductionTypeModel
     public const NAME = 'schema:albumProductionType';
     public const VALUES = ['MusicAlbumProductionTypeModel' => 'Jolicode\SchemaOrg\Type\MusicAlbumProductionTypeModel'];
     public const TYPES = ['MusicAlbum' => 'Jolicode\SchemaOrg\Type\MusicAlbumModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

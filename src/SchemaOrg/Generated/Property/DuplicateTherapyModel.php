@@ -18,4 +18,6 @@ final class DuplicateTherapyModel
     public const NAME = 'schema:duplicateTherapy';
     public const VALUES = ['MedicalTherapyModel' => 'Jolicode\SchemaOrg\Type\MedicalTherapyModel'];
     public const TYPES = ['MedicalTherapy' => 'Jolicode\SchemaOrg\Type\MedicalTherapyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

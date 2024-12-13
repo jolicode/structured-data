@@ -18,4 +18,6 @@ final class StrengthUnitModel
     public const NAME = 'schema:strengthUnit';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DrugStrength' => 'Jolicode\SchemaOrg\Type\DrugStrengthModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

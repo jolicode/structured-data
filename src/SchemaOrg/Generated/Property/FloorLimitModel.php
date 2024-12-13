@@ -18,4 +18,6 @@ final class FloorLimitModel
     public const NAME = 'schema:floorLimit';
     public const VALUES = ['MonetaryAmountModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel'];
     public const TYPES = ['PaymentCard' => 'Jolicode\SchemaOrg\Type\PaymentCardModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

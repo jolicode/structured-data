@@ -16,4 +16,6 @@ final class EUEnergyEfficiencyCategoryA1PlusModel
     public const DESCRIPTION = 'Represents EU Energy Efficiency Class A+ as defined in EU energy labeling regulations.';
     public const LABEL = 'EUEnergyEfficiencyCategoryA1Plus';
     public const NAME = 'schema:EUEnergyEfficiencyCategoryA1Plus';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

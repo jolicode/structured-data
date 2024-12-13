@@ -18,4 +18,6 @@ final class AvailableStrengthModel
     public const NAME = 'schema:availableStrength';
     public const VALUES = ['DrugStrengthModel' => 'Jolicode\SchemaOrg\Type\DrugStrengthModel'];
     public const TYPES = ['Drug' => 'Jolicode\SchemaOrg\Type\DrugModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

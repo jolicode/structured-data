@@ -18,4 +18,6 @@ final class CoachModel
     public const NAME = 'schema:coach';
     public const VALUES = ['PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['SportsTeam' => 'Jolicode\SchemaOrg\Type\SportsTeamModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

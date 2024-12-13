@@ -20,6 +20,8 @@ final class SkiResortModel
     public const NAME = 'schema:SkiResort';
     public const PARENTS = ['ResortModel' => 'Jolicode\SchemaOrg\Type\ResortModel', 'SportsActivityLocationModel' => 'Jolicode\SchemaOrg\Type\SportsActivityLocationModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

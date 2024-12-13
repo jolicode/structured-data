@@ -20,6 +20,8 @@ final class ReservoirModel
     public const NAME = 'schema:Reservoir';
     public const PARENTS = ['BodyOfWaterModel' => 'Jolicode\SchemaOrg\Type\BodyOfWaterModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalPropertyModel $additionalProperty = null,

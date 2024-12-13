@@ -18,4 +18,6 @@ final class NumberOfLoanPaymentsModel
     public const NAME = 'schema:numberOfLoanPayments';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['RepaymentSpecification' => 'Jolicode\SchemaOrg\Type\RepaymentSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

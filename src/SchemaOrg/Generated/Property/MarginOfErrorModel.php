@@ -18,4 +18,6 @@ final class MarginOfErrorModel
     public const NAME = 'schema:marginOfError';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['Observation' => 'Jolicode\SchemaOrg\Type\ObservationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

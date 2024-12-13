@@ -18,4 +18,6 @@ final class GuidelineSubjectModel
     public const NAME = 'schema:guidelineSubject';
     public const VALUES = ['MedicalEntityModel' => 'Jolicode\SchemaOrg\Type\MedicalEntityModel'];
     public const TYPES = ['MedicalGuideline' => 'Jolicode\SchemaOrg\Type\MedicalGuidelineModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

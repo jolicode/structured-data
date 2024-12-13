@@ -20,6 +20,8 @@ final class MusicReleaseFormatTypeModel
     public const NAME = 'schema:MusicReleaseFormatType';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['CDFormatModel' => 'EnumerationMember\CDFormatModel', 'CassetteFormatModel' => 'EnumerationMember\CassetteFormatModel', 'DVDFormatModel' => 'EnumerationMember\DVDFormatModel', 'DigitalAudioTapeFormatModel' => 'EnumerationMember\DigitalAudioTapeFormatModel', 'DigitalFormatModel' => 'EnumerationMember\DigitalFormatModel', 'LaserDiscFormatModel' => 'EnumerationMember\LaserDiscFormatModel', 'VinylFormatModel' => 'EnumerationMember\VinylFormatModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

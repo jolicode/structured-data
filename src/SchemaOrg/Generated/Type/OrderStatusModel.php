@@ -20,6 +20,8 @@ final class OrderStatusModel
     public const NAME = 'schema:OrderStatus';
     public const PARENTS = ['StatusEnumerationModel' => 'Jolicode\SchemaOrg\Type\StatusEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['OrderCancelledModel' => 'EnumerationMember\OrderCancelledModel', 'OrderDeliveredModel' => 'EnumerationMember\OrderDeliveredModel', 'OrderInTransitModel' => 'EnumerationMember\OrderInTransitModel', 'OrderPaymentDueModel' => 'EnumerationMember\OrderPaymentDueModel', 'OrderPickupAvailableModel' => 'EnumerationMember\OrderPickupAvailableModel', 'OrderProblemModel' => 'EnumerationMember\OrderProblemModel', 'OrderProcessingModel' => 'EnumerationMember\OrderProcessingModel', 'OrderReturnedModel' => 'EnumerationMember\OrderReturnedModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

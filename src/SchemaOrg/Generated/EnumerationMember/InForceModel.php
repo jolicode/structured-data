@@ -16,4 +16,6 @@ final class InForceModel
     public const DESCRIPTION = 'Indicates that a legislation is in force.';
     public const LABEL = 'InForce';
     public const NAME = 'schema:InForce';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

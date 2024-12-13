@@ -18,4 +18,6 @@ final class DepartureBoatTerminalModel
     public const NAME = 'schema:departureBoatTerminal';
     public const VALUES = ['BoatTerminalModel' => 'Jolicode\SchemaOrg\Type\BoatTerminalModel'];
     public const TYPES = ['BoatTrip' => 'Jolicode\SchemaOrg\Type\BoatTripModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

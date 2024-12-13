@@ -18,4 +18,6 @@ final class RealEstateAgentModel
     public const NAME = 'schema:realEstateAgent';
     public const VALUES = ['RealEstateAgentModel' => 'Jolicode\SchemaOrg\Type\RealEstateAgentModel'];
     public const TYPES = ['RentAction' => 'Jolicode\SchemaOrg\Type\RentActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

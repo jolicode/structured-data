@@ -20,6 +20,8 @@ final class PaymentServiceModel
     public const NAME = 'schema:PaymentService';
     public const PARENTS = ['FinancialProductModel' => 'Jolicode\SchemaOrg\Type\FinancialProductModel', 'PaymentMethodModel' => 'Jolicode\SchemaOrg\Type\PaymentMethodModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

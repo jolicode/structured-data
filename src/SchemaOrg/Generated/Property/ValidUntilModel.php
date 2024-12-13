@@ -18,4 +18,6 @@ final class ValidUntilModel
     public const NAME = 'schema:validUntil';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel'];
     public const TYPES = ['Permit' => 'Jolicode\SchemaOrg\Type\PermitModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

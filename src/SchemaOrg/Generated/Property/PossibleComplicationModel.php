@@ -18,4 +18,6 @@ final class PossibleComplicationModel
     public const NAME = 'schema:possibleComplication';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalCondition' => 'Jolicode\SchemaOrg\Type\MedicalConditionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

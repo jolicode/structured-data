@@ -16,4 +16,6 @@ final class ItemListUnorderedModel
     public const DESCRIPTION = 'An ItemList ordered with no explicit order.';
     public const LABEL = 'ItemListUnordered';
     public const NAME = 'schema:ItemListUnordered';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

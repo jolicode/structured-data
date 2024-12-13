@@ -18,4 +18,6 @@ final class RatingExplanationModel
     public const NAME = 'schema:ratingExplanation';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Rating' => 'Jolicode\SchemaOrg\Type\RatingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

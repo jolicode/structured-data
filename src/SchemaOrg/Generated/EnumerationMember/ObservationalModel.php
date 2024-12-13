@@ -16,4 +16,6 @@ final class ObservationalModel
     public const DESCRIPTION = 'An observational study design.';
     public const LABEL = 'Observational';
     public const NAME = 'schema:Observational';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

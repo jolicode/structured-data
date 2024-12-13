@@ -18,4 +18,6 @@ final class LanguageModel
     public const NAME = 'schema:language';
     public const VALUES = ['LanguageModel' => 'Jolicode\SchemaOrg\Type\LanguageModel'];
     public const TYPES = ['CommunicateAction' => 'Jolicode\SchemaOrg\Type\CommunicateActionModel', 'WriteAction' => 'Jolicode\SchemaOrg\Type\WriteActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

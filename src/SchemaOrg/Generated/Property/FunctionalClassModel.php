@@ -18,4 +18,6 @@ final class FunctionalClassModel
     public const NAME = 'schema:functionalClass';
     public const VALUES = ['MedicalEntityModel' => 'Jolicode\SchemaOrg\Type\MedicalEntityModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Joint' => 'Jolicode\SchemaOrg\Type\JointModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

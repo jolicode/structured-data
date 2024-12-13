@@ -20,6 +20,8 @@ final class EmployeeRoleModel
     public const NAME = 'schema:EmployeeRole';
     public const PARENTS = ['OrganizationRoleModel' => 'Jolicode\SchemaOrg\Type\OrganizationRoleModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

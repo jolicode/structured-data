@@ -18,4 +18,6 @@ final class TrialDesignModel
     public const NAME = 'schema:trialDesign';
     public const VALUES = ['MedicalTrialDesignModel' => 'Jolicode\SchemaOrg\Type\MedicalTrialDesignModel'];
     public const TYPES = ['MedicalTrial' => 'Jolicode\SchemaOrg\Type\MedicalTrialModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

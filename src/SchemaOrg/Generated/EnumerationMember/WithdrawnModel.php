@@ -16,4 +16,6 @@ final class WithdrawnModel
     public const DESCRIPTION = 'Withdrawn.';
     public const LABEL = 'Withdrawn';
     public const NAME = 'schema:Withdrawn';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

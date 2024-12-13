@@ -18,4 +18,6 @@ final class LongitudeModel
     public const NAME = 'schema:longitude';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['GeoCoordinates' => 'Jolicode\SchemaOrg\Type\GeoCoordinatesModel', 'Place' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

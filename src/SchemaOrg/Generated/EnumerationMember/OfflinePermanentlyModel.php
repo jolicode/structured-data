@@ -16,4 +16,6 @@ final class OfflinePermanentlyModel
     public const DESCRIPTION = 'Game server status: OfflinePermanently. Server is offline and not available.';
     public const LABEL = 'OfflinePermanently';
     public const NAME = 'schema:OfflinePermanently';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

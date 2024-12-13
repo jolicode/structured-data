@@ -18,4 +18,6 @@ final class PartOfSeasonModel
     public const NAME = 'schema:partOfSeason';
     public const VALUES = ['CreativeWorkSeasonModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkSeasonModel'];
     public const TYPES = ['Clip' => 'Jolicode\SchemaOrg\Type\ClipModel', 'Episode' => 'Jolicode\SchemaOrg\Type\EpisodeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

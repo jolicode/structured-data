@@ -18,4 +18,6 @@ final class RecourseLoanModel
     public const NAME = 'schema:recourseLoan';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['LoanOrCredit' => 'Jolicode\SchemaOrg\Type\LoanOrCreditModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

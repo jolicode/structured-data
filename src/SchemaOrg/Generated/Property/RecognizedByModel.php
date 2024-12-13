@@ -18,4 +18,6 @@ final class RecognizedByModel
     public const NAME = 'schema:recognizedBy';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
     public const TYPES = ['EducationalOccupationalCredential' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalCredentialModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

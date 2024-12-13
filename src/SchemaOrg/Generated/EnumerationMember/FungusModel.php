@@ -16,4 +16,6 @@ final class FungusModel
     public const DESCRIPTION = 'Pathogenic fungus.';
     public const LABEL = 'Fungus';
     public const NAME = 'schema:Fungus';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

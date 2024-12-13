@@ -19,4 +19,6 @@ final class RepeatFrequencyModel
     public const NAME = 'schema:repeatFrequency';
     public const VALUES = ['DurationModel' => 'Jolicode\SchemaOrg\Type\DurationModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Schedule' => 'Jolicode\SchemaOrg\Type\ScheduleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

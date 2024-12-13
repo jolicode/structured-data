@@ -18,4 +18,6 @@ final class RequiredQuantityModel
     public const NAME = 'schema:requiredQuantity';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['HowToItem' => 'Jolicode\SchemaOrg\Type\HowToItemModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

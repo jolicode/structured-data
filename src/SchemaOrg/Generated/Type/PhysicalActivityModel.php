@@ -20,6 +20,8 @@ final class PhysicalActivityModel
     public const NAME = 'schema:PhysicalActivity';
     public const PARENTS = ['LifestyleModificationModel' => 'Jolicode\SchemaOrg\Type\LifestyleModificationModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

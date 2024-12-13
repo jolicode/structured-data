@@ -16,4 +16,6 @@ final class AllergiesHealthAspectModel
     public const DESCRIPTION = 'Content about the allergy-related aspects of a health topic.';
     public const LABEL = 'AllergiesHealthAspect';
     public const NAME = 'schema:AllergiesHealthAspect';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

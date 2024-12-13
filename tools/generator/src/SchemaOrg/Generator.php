@@ -18,6 +18,7 @@ use Jolicode\JsonLd\Generator\SchemaOrg\Objects\ClassesContainer;
 use Jolicode\JsonLd\Generator\SchemaOrg\Objects\EnumerationMember;
 use Jolicode\JsonLd\Generator\SchemaOrg\Objects\Property;
 use Jolicode\JsonLd\Generator\SchemaOrg\Objects\Type;
+use PhpParser\Builder\Class_;
 use PhpParser\BuilderFactory;
 use PhpParser\Node\ArrayItem;
 use PhpParser\Node\Expr;
@@ -192,6 +193,7 @@ readonly class Generator implements GeneratorInterface
                 ->makePublic(),
         );
 
+        $class = $this->addSchemaInformation($class, $type);
         $class->addStmt($constructor);
         $node->addStmt($class);
 
@@ -257,6 +259,7 @@ readonly class Generator implements GeneratorInterface
                 ->makePublic(),
         );
 
+        $class = $this->addSchemaInformation($class, $property);
         $node->addStmt($class);
 
         return $node->getNode();
@@ -283,8 +286,27 @@ readonly class Generator implements GeneratorInterface
                     ->makePublic(),
             );
 
+        $class = $this->addSchemaInformation($class, $enumerationMember);
         $node->addStmt($class);
 
         return $node->getNode();
+    }
+
+    private function addSchemaInformation(Class_ $class, AbstractSchemaOrgElement $element): Class_
+    {
+        $metadata = [
+            'IS_PART_OF' => $element->isPartOf,
+            'SOURCE' => $element->source,
+        ];
+
+        foreach ($metadata as $key => $value) {
+            usort($value, fn ($a, $b) => $a <=> $b);
+            $class->addStmt(
+                $this->factory->classConst($key, $value)
+                    ->makePublic(),
+            );
+        }
+
+        return $class;
     }
 }

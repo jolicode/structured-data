@@ -20,6 +20,8 @@ final class MedicalEvidenceLevelModel
     public const NAME = 'schema:MedicalEvidenceLevel';
     public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\SchemaOrg\Type\MedicalEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['EvidenceLevelAModel' => 'EnumerationMember\EvidenceLevelAModel', 'EvidenceLevelBModel' => 'EnumerationMember\EvidenceLevelBModel', 'EvidenceLevelCModel' => 'EnumerationMember\EvidenceLevelCModel'];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

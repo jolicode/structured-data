@@ -18,4 +18,6 @@ final class EndTimeModel
     public const NAME = 'schema:endTime';
     public const VALUES = ['DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel', 'TimeModel' => 'Jolicode\SchemaOrg\Type\TimeModel'];
     public const TYPES = ['Action' => 'Jolicode\SchemaOrg\Type\ActionModel', 'FoodEstablishmentReservation' => 'Jolicode\SchemaOrg\Type\FoodEstablishmentReservationModel', 'InteractionCounter' => 'Jolicode\SchemaOrg\Type\InteractionCounterModel', 'MediaObject' => 'Jolicode\SchemaOrg\Type\MediaObjectModel', 'Schedule' => 'Jolicode\SchemaOrg\Type\ScheduleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

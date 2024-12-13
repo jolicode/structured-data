@@ -20,6 +20,8 @@ final class VoteActionModel
     public const NAME = 'schema:VoteAction';
     public const PARENTS = ['ChooseActionModel' => 'Jolicode\SchemaOrg\Type\ChooseActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionOptionModel $actionOption = null,

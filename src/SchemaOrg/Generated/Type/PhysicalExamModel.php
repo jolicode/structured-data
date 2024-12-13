@@ -15,11 +15,13 @@ use Jolicode\SchemaOrg\Property;
 
 final class PhysicalExamModel
 {
-    public const DESCRIPTION = 'A type of physical examination of a patient performed by a physician. ';
+    public const DESCRIPTION = 'A type of physical examination of a patient performed by a physician.';
     public const LABEL = 'PhysicalExam';
     public const NAME = 'schema:PhysicalExam';
     public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\SchemaOrg\Type\MedicalEnumerationModel', 'MedicalProcedureModel' => 'Jolicode\SchemaOrg\Type\MedicalProcedureModel'];
     public const ENUMERATION_MEMBERS = ['AbdomenModel' => 'EnumerationMember\AbdomenModel', 'AppearanceModel' => 'EnumerationMember\AppearanceModel', 'CardiovascularExamModel' => 'EnumerationMember\CardiovascularExamModel', 'EarModel' => 'EnumerationMember\EarModel', 'EyeModel' => 'EnumerationMember\EyeModel', 'GenitourinaryModel' => 'EnumerationMember\GenitourinaryModel', 'HeadModel' => 'EnumerationMember\HeadModel', 'LungModel' => 'EnumerationMember\LungModel', 'MusculoskeletalExamModel' => 'EnumerationMember\MusculoskeletalExamModel', 'NeckModel' => 'EnumerationMember\NeckModel', 'NeuroModel' => 'EnumerationMember\NeuroModel', 'NoseModel' => 'EnumerationMember\NoseModel', 'SkinModel' => 'EnumerationMember\SkinModel', 'ThroatModel' => 'EnumerationMember\ThroatModel'];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

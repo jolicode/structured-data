@@ -18,4 +18,6 @@ final class HandlingTimeModel
     public const NAME = 'schema:handlingTime';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['ShippingDeliveryTime' => 'Jolicode\SchemaOrg\Type\ShippingDeliveryTimeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class DateCreatedModel
     public const NAME = 'schema:dateCreated';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'DataFeedItem' => 'Jolicode\SchemaOrg\Type\DataFeedItemModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

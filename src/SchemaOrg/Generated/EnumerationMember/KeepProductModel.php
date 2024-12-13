@@ -16,4 +16,6 @@ final class KeepProductModel
     public const DESCRIPTION = 'Specifies that the consumer can keep the product, even when receiving a refund or store credit.';
     public const LABEL = 'KeepProduct';
     public const NAME = 'schema:KeepProduct';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

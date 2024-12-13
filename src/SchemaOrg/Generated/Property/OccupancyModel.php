@@ -19,4 +19,6 @@ Typical unit code(s): C62 for person.';
     public const NAME = 'schema:occupancy';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['Accommodation' => 'Jolicode\SchemaOrg\Type\AccommodationModel', 'Apartment' => 'Jolicode\SchemaOrg\Type\ApartmentModel', 'HotelRoom' => 'Jolicode\SchemaOrg\Type\HotelRoomModel', 'SingleFamilyResidence' => 'Jolicode\SchemaOrg\Type\SingleFamilyResidenceModel', 'Suite' => 'Jolicode\SchemaOrg\Type\SuiteModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

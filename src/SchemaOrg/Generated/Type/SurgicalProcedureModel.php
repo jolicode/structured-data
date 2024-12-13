@@ -20,6 +20,8 @@ final class SurgicalProcedureModel
     public const NAME = 'schema:SurgicalProcedure';
     public const PARENTS = ['MedicalProcedureModel' => 'Jolicode\SchemaOrg\Type\MedicalProcedureModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

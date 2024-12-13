@@ -18,4 +18,6 @@ final class InChIKeyModel
     public const NAME = 'schema:inChIKey';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MolecularEntity' => 'Jolicode\SchemaOrg\Type\MolecularEntityModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

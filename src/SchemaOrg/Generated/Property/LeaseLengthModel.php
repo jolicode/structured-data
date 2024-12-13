@@ -18,4 +18,6 @@ final class LeaseLengthModel
     public const NAME = 'schema:leaseLength';
     public const VALUES = ['DurationModel' => 'Jolicode\SchemaOrg\Type\DurationModel', 'QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['Accommodation' => 'Jolicode\SchemaOrg\Type\AccommodationModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'RealEstateListing' => 'Jolicode\SchemaOrg\Type\RealEstateListingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

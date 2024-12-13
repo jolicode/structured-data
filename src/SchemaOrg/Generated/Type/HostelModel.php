@@ -17,12 +17,13 @@ final class HostelModel
 {
     public const DESCRIPTION = 'A hostel - cheap accommodation, often in shared dormitories.
 <br /><br />
-See also the <a href="/docs/hotels.html">dedicated document on the use of schema.org for marking up hotels and other forms of accommodations</a>.
-';
+See also the <a href="/docs/hotels.html">dedicated document on the use of schema.org for marking up hotels and other forms of accommodations</a>.';
     public const LABEL = 'Hostel';
     public const NAME = 'schema:Hostel';
     public const PARENTS = ['LodgingBusinessModel' => 'Jolicode\SchemaOrg\Type\LodgingBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

@@ -16,4 +16,6 @@ final class ItemListOrderAscendingModel
     public const DESCRIPTION = 'An ItemList ordered with lower values listed first.';
     public const LABEL = 'ItemListOrderAscending';
     public const NAME = 'schema:ItemListOrderAscending';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

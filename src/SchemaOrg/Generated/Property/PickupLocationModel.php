@@ -18,4 +18,6 @@ final class PickupLocationModel
     public const NAME = 'schema:pickupLocation';
     public const VALUES = ['PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
     public const TYPES = ['RentalCarReservation' => 'Jolicode\SchemaOrg\Type\RentalCarReservationModel', 'TaxiReservation' => 'Jolicode\SchemaOrg\Type\TaxiReservationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

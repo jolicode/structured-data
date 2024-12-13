@@ -18,4 +18,6 @@ final class IncludedCompositionModel
     public const NAME = 'schema:includedComposition';
     public const VALUES = ['MusicCompositionModel' => 'Jolicode\SchemaOrg\Type\MusicCompositionModel'];
     public const TYPES = ['MusicComposition' => 'Jolicode\SchemaOrg\Type\MusicCompositionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class Nonprofit501c5Model
     public const DESCRIPTION = 'Nonprofit501c5: Non-profit type referring to Labor, Agricultural and Horticultural Organizations.';
     public const LABEL = 'Nonprofit501c5';
     public const NAME = 'schema:Nonprofit501c5';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

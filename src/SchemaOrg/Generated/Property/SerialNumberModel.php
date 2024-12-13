@@ -18,4 +18,6 @@ final class SerialNumberModel
     public const NAME = 'schema:serialNumber';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Demand' => 'Jolicode\SchemaOrg\Type\DemandModel', 'IndividualProduct' => 'Jolicode\SchemaOrg\Type\IndividualProductModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

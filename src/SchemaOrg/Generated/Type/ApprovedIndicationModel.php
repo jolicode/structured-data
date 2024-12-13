@@ -20,6 +20,8 @@ final class ApprovedIndicationModel
     public const NAME = 'schema:ApprovedIndication';
     public const PARENTS = ['MedicalIndicationModel' => 'Jolicode\SchemaOrg\Type\MedicalIndicationModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

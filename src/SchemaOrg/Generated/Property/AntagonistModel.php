@@ -18,4 +18,6 @@ final class AntagonistModel
     public const NAME = 'schema:antagonist';
     public const VALUES = ['MuscleModel' => 'Jolicode\SchemaOrg\Type\MuscleModel'];
     public const TYPES = ['Muscle' => 'Jolicode\SchemaOrg\Type\MuscleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

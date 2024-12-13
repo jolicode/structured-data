@@ -16,4 +16,6 @@ final class ExampleMeasurementMethodEnumModel
     public const DESCRIPTION = 'An example [[MeasurementMethodEnum]] (to remove when real enums are added).';
     public const LABEL = 'ExampleMeasurementMethodEnum';
     public const NAME = 'schema:ExampleMeasurementMethodEnum';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

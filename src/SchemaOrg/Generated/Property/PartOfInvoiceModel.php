@@ -18,4 +18,6 @@ final class PartOfInvoiceModel
     public const NAME = 'schema:partOfInvoice';
     public const VALUES = ['InvoiceModel' => 'Jolicode\SchemaOrg\Type\InvoiceModel'];
     public const TYPES = ['Order' => 'Jolicode\SchemaOrg\Type\OrderModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

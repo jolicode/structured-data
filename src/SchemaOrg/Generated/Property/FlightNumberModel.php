@@ -18,4 +18,6 @@ final class FlightNumberModel
     public const NAME = 'schema:flightNumber';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Flight' => 'Jolicode\SchemaOrg\Type\FlightModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

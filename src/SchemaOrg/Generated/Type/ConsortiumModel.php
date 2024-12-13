@@ -20,6 +20,8 @@ final class ConsortiumModel
     public const NAME = 'schema:Consortium';
     public const PARENTS = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1559'];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

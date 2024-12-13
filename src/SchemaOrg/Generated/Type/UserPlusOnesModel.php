@@ -20,6 +20,8 @@ final class UserPlusOnesModel
     public const NAME = 'schema:UserPlusOnes';
     public const PARENTS = ['UserInteractionModel' => 'Jolicode\SchemaOrg\Type\UserInteractionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

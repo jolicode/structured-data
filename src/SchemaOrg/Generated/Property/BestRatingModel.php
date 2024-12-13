@@ -18,4 +18,6 @@ final class BestRatingModel
     public const NAME = 'schema:bestRating';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Rating' => 'Jolicode\SchemaOrg\Type\RatingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

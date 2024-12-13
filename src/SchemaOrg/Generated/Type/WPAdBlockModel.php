@@ -20,6 +20,8 @@ final class WPAdBlockModel
     public const NAME = 'schema:WPAdBlock';
     public const PARENTS = ['WebPageElementModel' => 'Jolicode\SchemaOrg\Type\WebPageElementModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

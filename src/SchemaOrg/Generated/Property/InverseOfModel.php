@@ -18,4 +18,6 @@ final class InverseOfModel
     public const NAME = 'schema:inverseOf';
     public const VALUES = ['PropertyModel' => 'Jolicode\SchemaOrg\Type\PropertyModel'];
     public const TYPES = ['Property' => 'Jolicode\SchemaOrg\Type\PropertyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

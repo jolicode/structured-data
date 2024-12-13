@@ -16,4 +16,6 @@ final class DataDrivenMediaDigitalSourceModel
     public const DESCRIPTION = 'Content coded as \'<a href="https://cv.iptc.org/newscodes/digitalsourcetype/dataDrivenMedia">data driven media</a>\' using the IPTC <a href="https://cv.iptc.org/newscodes/digitalsourcetype/">digital source type</a> vocabulary.';
     public const LABEL = 'DataDrivenMediaDigitalSource';
     public const NAME = 'schema:DataDrivenMediaDigitalSource';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

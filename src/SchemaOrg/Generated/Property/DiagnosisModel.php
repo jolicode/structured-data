@@ -18,4 +18,6 @@ final class DiagnosisModel
     public const NAME = 'schema:diagnosis';
     public const VALUES = ['MedicalConditionModel' => 'Jolicode\SchemaOrg\Type\MedicalConditionModel'];
     public const TYPES = ['DDxElement' => 'Jolicode\SchemaOrg\Type\DDxElementModel', 'Patient' => 'Jolicode\SchemaOrg\Type\PatientModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

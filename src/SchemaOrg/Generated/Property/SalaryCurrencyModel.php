@@ -18,4 +18,6 @@ final class SalaryCurrencyModel
     public const NAME = 'schema:salaryCurrency';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['EmployeeRole' => 'Jolicode\SchemaOrg\Type\EmployeeRoleModel', 'JobPosting' => 'Jolicode\SchemaOrg\Type\JobPostingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

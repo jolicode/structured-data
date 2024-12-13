@@ -18,4 +18,6 @@ final class SizeGroupModel
     public const NAME = 'schema:sizeGroup';
     public const VALUES = ['SizeGroupEnumerationModel' => 'Jolicode\SchemaOrg\Type\SizeGroupEnumerationModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['SizeSpecification' => 'Jolicode\SchemaOrg\Type\SizeSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

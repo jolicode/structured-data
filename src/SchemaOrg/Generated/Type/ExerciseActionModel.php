@@ -20,6 +20,8 @@ final class ExerciseActionModel
     public const NAME = 'schema:ExerciseAction';
     public const PARENTS = ['PlayActionModel' => 'Jolicode\SchemaOrg\Type\PlayActionModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\ActionProcessModel $actionProcess = null,

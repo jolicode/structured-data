@@ -18,4 +18,6 @@ final class GenreModel
     public const NAME = 'schema:genre';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['BroadcastChannel' => 'Jolicode\SchemaOrg\Type\BroadcastChannelModel', 'CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'MusicGroup' => 'Jolicode\SchemaOrg\Type\MusicGroupModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

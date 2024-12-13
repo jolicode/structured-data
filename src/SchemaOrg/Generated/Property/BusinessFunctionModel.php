@@ -18,4 +18,6 @@ final class BusinessFunctionModel
     public const NAME = 'schema:businessFunction';
     public const VALUES = ['BusinessFunctionModel' => 'Jolicode\SchemaOrg\Type\BusinessFunctionModel'];
     public const TYPES = ['Demand' => 'Jolicode\SchemaOrg\Type\DemandModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'TypeAndQuantityNode' => 'Jolicode\SchemaOrg\Type\TypeAndQuantityNodeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

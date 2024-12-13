@@ -18,4 +18,6 @@ final class MusicReleaseFormatModel
     public const NAME = 'schema:musicReleaseFormat';
     public const VALUES = ['MusicReleaseFormatTypeModel' => 'Jolicode\SchemaOrg\Type\MusicReleaseFormatTypeModel'];
     public const TYPES = ['MusicRelease' => 'Jolicode\SchemaOrg\Type\MusicReleaseModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

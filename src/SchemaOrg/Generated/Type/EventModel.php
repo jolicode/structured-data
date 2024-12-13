@@ -20,6 +20,8 @@ final class EventModel
     public const NAME = 'schema:Event';
     public const PARENTS = ['ThingModel' => 'Jolicode\SchemaOrg\Type\ThingModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

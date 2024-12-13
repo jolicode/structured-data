@@ -16,4 +16,6 @@ final class MisconceptionsHealthAspectModel
     public const DESCRIPTION = 'Content about common misconceptions and myths that are related to a topic.';
     public const LABEL = 'MisconceptionsHealthAspect';
     public const NAME = 'schema:MisconceptionsHealthAspect';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class HasMenuModel
     public const NAME = 'schema:hasMenu';
     public const VALUES = ['MenuModel' => 'Jolicode\SchemaOrg\Type\MenuModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['FoodEstablishment' => 'Jolicode\SchemaOrg\Type\FoodEstablishmentModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

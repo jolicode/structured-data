@@ -18,4 +18,6 @@ final class BuyerModel
     public const NAME = 'schema:buyer';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['SellAction' => 'Jolicode\SchemaOrg\Type\SellActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class PartOfTVSeriesModel
     public const NAME = 'schema:partOfTVSeries';
     public const VALUES = ['TVSeriesModel' => 'Jolicode\SchemaOrg\Type\TVSeriesModel'];
     public const TYPES = ['TVClip' => 'Jolicode\SchemaOrg\Type\TVClipModel', 'TVEpisode' => 'Jolicode\SchemaOrg\Type\TVEpisodeModel', 'TVSeason' => 'Jolicode\SchemaOrg\Type\TVSeasonModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

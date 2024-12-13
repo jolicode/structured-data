@@ -18,4 +18,6 @@ final class ServiceTypeModel
     public const NAME = 'schema:serviceType';
     public const VALUES = ['GovernmentBenefitsTypeModel' => 'Jolicode\SchemaOrg\Type\GovernmentBenefitsTypeModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Service' => 'Jolicode\SchemaOrg\Type\ServiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

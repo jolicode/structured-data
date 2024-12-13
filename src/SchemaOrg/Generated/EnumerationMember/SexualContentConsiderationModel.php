@@ -16,4 +16,6 @@ final class SexualContentConsiderationModel
     public const DESCRIPTION = 'The item contains sexually oriented content such as nudity, suggestive or explicit material, or related online services, or is intended to enhance sexual activity. Examples: Erotic videos or magazine, sexual enhancement devices, sex toys.';
     public const LABEL = 'SexualContentConsideration';
     public const NAME = 'schema:SexualContentConsideration';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

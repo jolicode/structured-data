@@ -18,4 +18,6 @@ final class DocumentationModel
     public const NAME = 'schema:documentation';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['WebAPI' => 'Jolicode\SchemaOrg\Type\WebAPIModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

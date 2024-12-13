@@ -18,4 +18,6 @@ final class EduQuestionTypeModel
     public const NAME = 'schema:eduQuestionType';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Question' => 'Jolicode\SchemaOrg\Type\QuestionModel', 'SolveMathAction' => 'Jolicode\SchemaOrg\Type\SolveMathActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

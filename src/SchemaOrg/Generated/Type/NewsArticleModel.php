@@ -17,12 +17,13 @@ final class NewsArticleModel
 {
     public const DESCRIPTION = 'A NewsArticle is an article whose content reports news, or provides background context and supporting materials for understanding the news.
 
-A more detailed overview of [schema.org News markup](/docs/news.html) is also available.
-';
+A more detailed overview of [schema.org News markup](/docs/news.html) is also available.';
     public const LABEL = 'NewsArticle';
     public const NAME = 'schema:NewsArticle';
     public const PARENTS = ['ArticleModel' => 'Jolicode\SchemaOrg\Type\ArticleModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

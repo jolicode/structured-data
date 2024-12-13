@@ -16,4 +16,6 @@ final class PartiallyInForceModel
     public const DESCRIPTION = 'Indicates that parts of the legislation are in force, and parts are not.';
     public const LABEL = 'PartiallyInForce';
     public const NAME = 'schema:PartiallyInForce';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

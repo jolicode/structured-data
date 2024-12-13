@@ -17,12 +17,13 @@ final class CDCPMDRecordModel
 {
     public const DESCRIPTION = 'A CDCPMDRecord is a data structure representing a record in a CDC tabular data format
       used for hospital data reporting. See [documentation](/docs/cdc-covid.html) for details, and the linked CDC materials for authoritative
-      definitions used as the source here.
-      ';
+      definitions used as the source here.';
     public const LABEL = 'CDCPMDRecord';
     public const NAME = 'schema:CDCPMDRecord';
     public const PARENTS = ['StructuredValueModel' => 'Jolicode\SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2521'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

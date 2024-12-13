@@ -18,4 +18,6 @@ final class DiscussesModel
     public const NAME = 'schema:discusses';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
     public const TYPES = ['UserComments' => 'Jolicode\SchemaOrg\Type\UserCommentsModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

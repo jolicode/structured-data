@@ -18,4 +18,6 @@ final class GameAvailabilityTypeModel
     public const NAME = 'schema:gameAvailabilityType';
     public const VALUES = ['GameAvailabilityEnumerationModel' => 'Jolicode\SchemaOrg\Type\GameAvailabilityEnumerationModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['PlayGameAction' => 'Jolicode\SchemaOrg\Type\PlayGameActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -21,8 +21,9 @@ For an [[ImageObject]] to be \'satire or parody content\': An image that was cre
 
 For an [[ImageObject]] with embedded text to be \'satire or parody content\': An image that was created as political or humorous commentary and is presented in that context. (Reshares of satire/parody content that do not include relevant context are more likely to fall under the “missing context” rating.)
 
-For an [[AudioObject]] to be \'satire or parody content\': Audio that was created as political or humorous commentary and is presented in that context. (Reshares of satire/parody content that do not include relevant context are more likely to fall under the “missing context” rating.)
-';
+For an [[AudioObject]] to be \'satire or parody content\': Audio that was created as political or humorous commentary and is presented in that context. (Reshares of satire/parody content that do not include relevant context are more likely to fall under the “missing context” rating.)';
     public const LABEL = 'SatireOrParodyContent';
     public const NAME = 'schema:SatireOrParodyContent';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

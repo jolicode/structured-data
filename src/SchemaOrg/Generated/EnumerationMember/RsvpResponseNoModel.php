@@ -16,4 +16,6 @@ final class RsvpResponseNoModel
     public const DESCRIPTION = 'The invitee will not attend.';
     public const LABEL = 'RsvpResponseNo';
     public const NAME = 'schema:RsvpResponseNo';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

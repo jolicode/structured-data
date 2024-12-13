@@ -16,4 +16,6 @@ final class NeckModel
     public const DESCRIPTION = 'Neck assessment with clinical examination.';
     public const LABEL = 'Neck';
     public const NAME = 'schema:Neck';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

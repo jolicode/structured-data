@@ -16,4 +16,6 @@ final class FourWheelDriveConfigurationModel
     public const DESCRIPTION = 'Four-wheel drive is a transmission layout where the engine primarily drives two wheels with a part-time four-wheel drive capability.';
     public const LABEL = 'FourWheelDriveConfiguration';
     public const NAME = 'schema:FourWheelDriveConfiguration';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

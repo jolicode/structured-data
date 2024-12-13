@@ -16,4 +16,6 @@ final class ReimbursementCapModel
     public const DESCRIPTION = 'The drug\'s cost represents the maximum reimbursement paid by an insurer for the drug.';
     public const LABEL = 'ReimbursementCap';
     public const NAME = 'schema:ReimbursementCap';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

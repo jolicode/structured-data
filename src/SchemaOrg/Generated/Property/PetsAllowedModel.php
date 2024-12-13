@@ -18,4 +18,6 @@ final class PetsAllowedModel
     public const NAME = 'schema:petsAllowed';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Accommodation' => 'Jolicode\SchemaOrg\Type\AccommodationModel', 'ApartmentComplex' => 'Jolicode\SchemaOrg\Type\ApartmentComplexModel', 'FloorPlan' => 'Jolicode\SchemaOrg\Type\FloorPlanModel', 'LodgingBusiness' => 'Jolicode\SchemaOrg\Type\LodgingBusinessModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

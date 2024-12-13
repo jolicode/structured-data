@@ -18,4 +18,6 @@ final class TransmissionMethodModel
     public const NAME = 'schema:transmissionMethod';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['InfectiousDisease' => 'Jolicode\SchemaOrg\Type\InfectiousDiseaseModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class ImagingTechniqueModel
     public const NAME = 'schema:imagingTechnique';
     public const VALUES = ['MedicalImagingTechniqueModel' => 'Jolicode\SchemaOrg\Type\MedicalImagingTechniqueModel'];
     public const TYPES = ['ImagingTest' => 'Jolicode\SchemaOrg\Type\ImagingTestModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

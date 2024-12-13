@@ -18,4 +18,6 @@ final class RelevantSpecialtyModel
     public const NAME = 'schema:relevantSpecialty';
     public const VALUES = ['MedicalSpecialtyModel' => 'Jolicode\SchemaOrg\Type\MedicalSpecialtyModel'];
     public const TYPES = ['MedicalEntity' => 'Jolicode\SchemaOrg\Type\MedicalEntityModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

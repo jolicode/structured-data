@@ -18,4 +18,6 @@ final class SpokenByCharacterModel
     public const NAME = 'schema:spokenByCharacter';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['Quotation' => 'Jolicode\SchemaOrg\Type\QuotationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

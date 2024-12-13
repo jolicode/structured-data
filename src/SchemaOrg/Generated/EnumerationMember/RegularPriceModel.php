@@ -16,4 +16,6 @@ final class RegularPriceModel
     public const DESCRIPTION = 'Represents the regular price of an offered product. This is usually the advertised price before a temporary sale. Once the sale period ends the advertised price will go back to the regular price.';
     public const LABEL = 'RegularPrice';
     public const NAME = 'schema:RegularPrice';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

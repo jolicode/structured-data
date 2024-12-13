@@ -18,4 +18,6 @@ final class PrescriptionStatusModel
     public const NAME = 'schema:prescriptionStatus';
     public const VALUES = ['DrugPrescriptionStatusModel' => 'Jolicode\SchemaOrg\Type\DrugPrescriptionStatusModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Drug' => 'Jolicode\SchemaOrg\Type\DrugModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

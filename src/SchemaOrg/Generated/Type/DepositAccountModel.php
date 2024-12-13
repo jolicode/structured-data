@@ -20,6 +20,8 @@ final class DepositAccountModel
     public const NAME = 'schema:DepositAccount';
     public const PARENTS = ['BankAccountModel' => 'Jolicode\SchemaOrg\Type\BankAccountModel', 'InvestmentOrDepositModel' => 'Jolicode\SchemaOrg\Type\InvestmentOrDepositModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AccountMinimumInflowModel $accountMinimumInflow = null,

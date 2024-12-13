@@ -16,4 +16,6 @@ final class LimitedAvailabilityModel
     public const DESCRIPTION = 'Indicates that the item has limited availability.';
     public const LABEL = 'LimitedAvailability';
     public const NAME = 'schema:LimitedAvailability';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

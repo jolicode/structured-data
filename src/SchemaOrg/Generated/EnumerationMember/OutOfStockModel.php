@@ -16,4 +16,6 @@ final class OutOfStockModel
     public const DESCRIPTION = 'Indicates that the item is out of stock.';
     public const LABEL = 'OutOfStock';
     public const NAME = 'schema:OutOfStock';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

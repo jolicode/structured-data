@@ -18,4 +18,6 @@ final class RequiredMinAgeModel
     public const NAME = 'schema:requiredMinAge';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['PeopleAudience' => 'Jolicode\SchemaOrg\Type\PeopleAudienceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

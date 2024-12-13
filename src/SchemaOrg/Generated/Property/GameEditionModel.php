@@ -18,4 +18,6 @@ final class GameEditionModel
     public const NAME = 'schema:gameEdition';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['VideoGame' => 'Jolicode\SchemaOrg\Type\VideoGameModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

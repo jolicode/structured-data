@@ -18,4 +18,6 @@ final class VideoModel
     public const NAME = 'schema:video';
     public const VALUES = ['ClipModel' => 'Jolicode\SchemaOrg\Type\ClipModel', 'VideoObjectModel' => 'Jolicode\SchemaOrg\Type\VideoObjectModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

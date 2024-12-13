@@ -13,9 +13,11 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class CostCurrencyModel
 {
-    public const DESCRIPTION = 'The currency (in 3-letter) of the drug cost. See: http://en.wikipedia.org/wiki/ISO_4217. ';
+    public const DESCRIPTION = 'The currency (in 3-letter) of the drug cost. See: http://en.wikipedia.org/wiki/ISO_4217.';
     public const LABEL = 'costCurrency';
     public const NAME = 'schema:costCurrency';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DrugCost' => 'Jolicode\SchemaOrg\Type\DrugCostModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

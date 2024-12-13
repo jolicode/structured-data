@@ -18,4 +18,6 @@ final class IsrcCodeModel
     public const NAME = 'schema:isrcCode';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MusicRecording' => 'Jolicode\SchemaOrg\Type\MusicRecordingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class ReservationPendingModel
     public const DESCRIPTION = 'The status of a reservation when a request has been sent, but not confirmed.';
     public const LABEL = 'ReservationPending';
     public const NAME = 'schema:ReservationPending';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

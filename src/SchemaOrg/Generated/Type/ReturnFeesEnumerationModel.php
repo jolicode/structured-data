@@ -20,6 +20,8 @@ final class ReturnFeesEnumerationModel
     public const NAME = 'schema:ReturnFeesEnumeration';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['FreeReturnModel' => 'EnumerationMember\FreeReturnModel', 'OriginalShippingFeesModel' => 'EnumerationMember\OriginalShippingFeesModel', 'RestockingFeesModel' => 'EnumerationMember\RestockingFeesModel', 'ReturnFeesCustomerResponsibilityModel' => 'EnumerationMember\ReturnFeesCustomerResponsibilityModel', 'ReturnShippingFeesModel' => 'EnumerationMember\ReturnShippingFeesModel'];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2288'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

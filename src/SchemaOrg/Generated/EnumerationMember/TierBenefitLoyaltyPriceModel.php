@@ -16,4 +16,6 @@ final class TierBenefitLoyaltyPriceModel
     public const DESCRIPTION = 'Benefit of the tier is a members-only price.';
     public const LABEL = 'TierBenefitLoyaltyPrice';
     public const NAME = 'schema:TierBenefitLoyaltyPrice';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class EvidenceLevelAModel
     public const DESCRIPTION = 'Data derived from multiple randomized clinical trials or meta-analyses.';
     public const LABEL = 'EvidenceLevelA';
     public const NAME = 'schema:EvidenceLevelA';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

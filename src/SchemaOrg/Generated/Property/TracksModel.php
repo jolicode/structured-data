@@ -18,4 +18,6 @@ final class TracksModel
     public const NAME = 'schema:tracks';
     public const VALUES = ['MusicRecordingModel' => 'Jolicode\SchemaOrg\Type\MusicRecordingModel'];
     public const TYPES = ['MusicGroup' => 'Jolicode\SchemaOrg\Type\MusicGroupModel', 'MusicPlaylist' => 'Jolicode\SchemaOrg\Type\MusicPlaylistModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

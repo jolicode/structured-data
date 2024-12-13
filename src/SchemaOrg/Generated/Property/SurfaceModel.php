@@ -18,4 +18,6 @@ final class SurfaceModel
     public const NAME = 'schema:surface';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['VisualArtwork' => 'Jolicode\SchemaOrg\Type\VisualArtworkModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

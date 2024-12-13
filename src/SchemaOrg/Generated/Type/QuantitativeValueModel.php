@@ -15,11 +15,13 @@ use Jolicode\SchemaOrg\Property;
 
 final class QuantitativeValueModel
 {
-    public const DESCRIPTION = ' A point value or interval for product characteristics and other purposes.';
+    public const DESCRIPTION = 'A point value or interval for product characteristics and other purposes.';
     public const LABEL = 'QuantitativeValue';
     public const NAME = 'schema:QuantitativeValue';
     public const PARENTS = ['StructuredValueModel' => 'Jolicode\SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalPropertyModel $additionalProperty = null,

@@ -16,4 +16,6 @@ final class DamagedConditionModel
     public const DESCRIPTION = 'Indicates that the item is damaged.';
     public const LABEL = 'DamagedCondition';
     public const NAME = 'schema:DamagedCondition';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

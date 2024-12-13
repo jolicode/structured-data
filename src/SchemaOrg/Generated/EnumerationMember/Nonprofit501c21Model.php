@@ -16,4 +16,6 @@ final class Nonprofit501c21Model
     public const DESCRIPTION = 'Nonprofit501c21: Non-profit type referring to Black Lung Benefit Trusts.';
     public const LABEL = 'Nonprofit501c21';
     public const NAME = 'schema:Nonprofit501c21';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

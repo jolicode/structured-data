@@ -18,4 +18,6 @@ final class MediaAuthenticityCategoryModel
     public const NAME = 'schema:mediaAuthenticityCategory';
     public const VALUES = ['MediaManipulationRatingEnumerationModel' => 'Jolicode\SchemaOrg\Type\MediaManipulationRatingEnumerationModel'];
     public const TYPES = ['MediaReview' => 'Jolicode\SchemaOrg\Type\MediaReviewModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

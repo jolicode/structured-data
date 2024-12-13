@@ -18,4 +18,6 @@ final class ActionPlatformModel
     public const NAME = 'schema:actionPlatform';
     public const VALUES = ['DigitalPlatformEnumerationModel' => 'Jolicode\SchemaOrg\Type\DigitalPlatformEnumerationModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['EntryPoint' => 'Jolicode\SchemaOrg\Type\EntryPointModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

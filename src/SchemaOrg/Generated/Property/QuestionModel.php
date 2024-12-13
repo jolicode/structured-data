@@ -18,4 +18,6 @@ final class QuestionModel
     public const NAME = 'schema:question';
     public const VALUES = ['QuestionModel' => 'Jolicode\SchemaOrg\Type\QuestionModel'];
     public const TYPES = ['AskAction' => 'Jolicode\SchemaOrg\Type\AskActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class CreditedToModel
     public const NAME = 'schema:creditedTo';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['MusicRelease' => 'Jolicode\SchemaOrg\Type\MusicReleaseModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

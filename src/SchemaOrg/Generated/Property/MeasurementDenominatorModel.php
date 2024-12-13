@@ -18,4 +18,6 @@ final class MeasurementDenominatorModel
     public const NAME = 'schema:measurementDenominator';
     public const VALUES = ['StatisticalVariableModel' => 'Jolicode\SchemaOrg\Type\StatisticalVariableModel'];
     public const TYPES = ['Observation' => 'Jolicode\SchemaOrg\Type\ObservationModel', 'StatisticalVariable' => 'Jolicode\SchemaOrg\Type\StatisticalVariableModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class LoanRepaymentFormModel
     public const NAME = 'schema:loanRepaymentForm';
     public const VALUES = ['RepaymentSpecificationModel' => 'Jolicode\SchemaOrg\Type\RepaymentSpecificationModel'];
     public const TYPES = ['LoanOrCredit' => 'Jolicode\SchemaOrg\Type\LoanOrCreditModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

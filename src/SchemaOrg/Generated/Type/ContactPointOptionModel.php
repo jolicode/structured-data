@@ -20,6 +20,8 @@ final class ContactPointOptionModel
     public const NAME = 'schema:ContactPointOption';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['HearingImpairedSupportedModel' => 'EnumerationMember\HearingImpairedSupportedModel', 'TollFreeModel' => 'EnumerationMember\TollFreeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

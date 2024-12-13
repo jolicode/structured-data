@@ -18,4 +18,6 @@ final class SignificanceModel
     public const NAME = 'schema:significance';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['SuperficialAnatomy' => 'Jolicode\SchemaOrg\Type\SuperficialAnatomyModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

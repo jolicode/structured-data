@@ -16,4 +16,6 @@ final class CompletedActionStatusModel
     public const DESCRIPTION = 'An action that has already taken place.';
     public const LABEL = 'CompletedActionStatus';
     public const NAME = 'schema:CompletedActionStatus';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

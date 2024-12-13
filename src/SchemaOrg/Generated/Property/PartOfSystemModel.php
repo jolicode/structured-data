@@ -18,4 +18,6 @@ final class PartOfSystemModel
     public const NAME = 'schema:partOfSystem';
     public const VALUES = ['AnatomicalSystemModel' => 'Jolicode\SchemaOrg\Type\AnatomicalSystemModel'];
     public const TYPES = ['AnatomicalStructure' => 'Jolicode\SchemaOrg\Type\AnatomicalStructureModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

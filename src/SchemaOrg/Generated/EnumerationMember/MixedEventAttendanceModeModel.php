@@ -16,4 +16,6 @@ final class MixedEventAttendanceModeModel
     public const DESCRIPTION = 'MixedEventAttendanceMode - an event that is conducted as a combination of both offline and online modes.';
     public const LABEL = 'MixedEventAttendanceMode';
     public const NAME = 'schema:MixedEventAttendanceMode';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

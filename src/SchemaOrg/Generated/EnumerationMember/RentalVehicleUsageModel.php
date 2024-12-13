@@ -16,4 +16,6 @@ final class RentalVehicleUsageModel
     public const DESCRIPTION = 'Indicates the usage of the vehicle as a rental car.';
     public const LABEL = 'RentalVehicleUsage';
     public const NAME = 'schema:RentalVehicleUsage';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

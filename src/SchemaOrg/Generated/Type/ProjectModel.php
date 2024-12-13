@@ -16,12 +16,13 @@ use Jolicode\SchemaOrg\Property;
 final class ProjectModel
 {
     public const DESCRIPTION = 'An enterprise (potentially individual but typically collaborative), planned to achieve a particular aim.
-Use properties from [[Organization]], [[subOrganization]]/[[parentOrganization]] to indicate project sub-structures.
-   ';
+Use properties from [[Organization]], [[subOrganization]]/[[parentOrganization]] to indicate project sub-structures.';
     public const LABEL = 'Project';
     public const NAME = 'schema:Project';
     public const PARENTS = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/383', 'https://schema.org/docs/collab/FundInfoCollab'];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

@@ -13,9 +13,11 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class LinkRelationshipModel
 {
-    public const DESCRIPTION = 'Indicates the relationship type of a Web link. ';
+    public const DESCRIPTION = 'Indicates the relationship type of a Web link.';
     public const LABEL = 'linkRelationship';
     public const NAME = 'schema:linkRelationship';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['LinkRole' => 'Jolicode\SchemaOrg\Type\LinkRoleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

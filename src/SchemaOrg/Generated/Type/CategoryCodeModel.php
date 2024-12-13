@@ -20,6 +20,8 @@ final class CategoryCodeModel
     public const NAME = 'schema:CategoryCode';
     public const PARENTS = ['DefinedTermModel' => 'Jolicode\SchemaOrg\Type\DefinedTermModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/894'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

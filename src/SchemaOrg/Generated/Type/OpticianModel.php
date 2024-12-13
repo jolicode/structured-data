@@ -20,6 +20,8 @@ final class OpticianModel
     public const NAME = 'schema:Optician';
     public const PARENTS = ['MedicalBusinessModel' => 'Jolicode\SchemaOrg\Type\MedicalBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

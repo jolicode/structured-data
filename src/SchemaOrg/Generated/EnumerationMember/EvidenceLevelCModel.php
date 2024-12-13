@@ -16,4 +16,6 @@ final class EvidenceLevelCModel
     public const DESCRIPTION = 'Only consensus opinion of experts, case studies, or standard-of-care.';
     public const LABEL = 'EvidenceLevelC';
     public const NAME = 'schema:EvidenceLevelC';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

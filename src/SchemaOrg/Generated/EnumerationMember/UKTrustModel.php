@@ -16,4 +16,6 @@ final class UKTrustModel
     public const DESCRIPTION = 'UKTrust: Non-profit type referring to a UK trust.';
     public const LABEL = 'UKTrust';
     public const NAME = 'schema:UKTrust';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

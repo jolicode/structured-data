@@ -16,4 +16,6 @@ final class WearableSizeSystemEuropeModel
     public const DESCRIPTION = 'European size system for wearables.';
     public const LABEL = 'WearableSizeSystemEurope';
     public const NAME = 'schema:WearableSizeSystemEurope';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

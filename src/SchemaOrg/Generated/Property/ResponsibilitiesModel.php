@@ -18,4 +18,6 @@ final class ResponsibilitiesModel
     public const NAME = 'schema:responsibilities';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['JobPosting' => 'Jolicode\SchemaOrg\Type\JobPostingModel', 'Occupation' => 'Jolicode\SchemaOrg\Type\OccupationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class Nonprofit501c27Model
     public const DESCRIPTION = 'Nonprofit501c27: Non-profit type referring to State-Sponsored Workers\' Compensation Reinsurance Organizations.';
     public const LABEL = 'Nonprofit501c27';
     public const NAME = 'schema:Nonprofit501c27';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

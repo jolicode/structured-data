@@ -13,9 +13,11 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class MaximumVirtualAttendeeCapacityModel
 {
-    public const DESCRIPTION = 'The maximum virtual attendee capacity of an [[Event]] whose [[eventAttendanceMode]] is [[OnlineEventAttendanceMode]] (or the online aspects, in the case of a [[MixedEventAttendanceMode]]). ';
+    public const DESCRIPTION = 'The maximum virtual attendee capacity of an [[Event]] whose [[eventAttendanceMode]] is [[OnlineEventAttendanceMode]] (or the online aspects, in the case of a [[MixedEventAttendanceMode]]).';
     public const LABEL = 'maximumVirtualAttendeeCapacity';
     public const NAME = 'schema:maximumVirtualAttendeeCapacity';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['Event' => 'Jolicode\SchemaOrg\Type\EventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

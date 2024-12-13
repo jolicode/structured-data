@@ -18,4 +18,6 @@ final class FromLocationModel
     public const NAME = 'schema:fromLocation';
     public const VALUES = ['PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
     public const TYPES = ['ExerciseAction' => 'Jolicode\SchemaOrg\Type\ExerciseActionModel', 'MoveAction' => 'Jolicode\SchemaOrg\Type\MoveActionModel', 'TransferAction' => 'Jolicode\SchemaOrg\Type\TransferActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

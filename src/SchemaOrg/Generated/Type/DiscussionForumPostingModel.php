@@ -20,6 +20,8 @@ final class DiscussionForumPostingModel
     public const NAME = 'schema:DiscussionForumPosting';
     public const PARENTS = ['SocialMediaPostingModel' => 'Jolicode\SchemaOrg\Type\SocialMediaPostingModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

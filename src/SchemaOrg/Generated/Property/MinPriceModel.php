@@ -18,4 +18,6 @@ final class MinPriceModel
     public const NAME = 'schema:minPrice';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['PriceSpecification' => 'Jolicode\SchemaOrg\Type\PriceSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

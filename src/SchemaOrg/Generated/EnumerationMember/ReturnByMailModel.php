@@ -16,4 +16,6 @@ final class ReturnByMailModel
     public const DESCRIPTION = 'Specifies that product returns must be done by mail.';
     public const LABEL = 'ReturnByMail';
     public const NAME = 'schema:ReturnByMail';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

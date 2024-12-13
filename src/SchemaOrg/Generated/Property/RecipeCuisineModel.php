@@ -18,4 +18,6 @@ final class RecipeCuisineModel
     public const NAME = 'schema:recipeCuisine';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Recipe' => 'Jolicode\SchemaOrg\Type\RecipeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class TripOriginModel
     public const NAME = 'schema:tripOrigin';
     public const VALUES = ['PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
     public const TYPES = ['Trip' => 'Jolicode\SchemaOrg\Type\TripModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

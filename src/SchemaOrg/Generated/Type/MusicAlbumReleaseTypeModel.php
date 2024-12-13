@@ -20,6 +20,8 @@ final class MusicAlbumReleaseTypeModel
     public const NAME = 'schema:MusicAlbumReleaseType';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['AlbumReleaseModel' => 'EnumerationMember\AlbumReleaseModel', 'BroadcastReleaseModel' => 'EnumerationMember\BroadcastReleaseModel', 'EPReleaseModel' => 'EnumerationMember\EPReleaseModel', 'SingleReleaseModel' => 'EnumerationMember\SingleReleaseModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

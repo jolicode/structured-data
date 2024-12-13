@@ -16,4 +16,6 @@ final class ReturnShippingFeesModel
     public const DESCRIPTION = 'Specifies that the customer must pay the return shipping costs when returning a product.';
     public const LABEL = 'ReturnShippingFees';
     public const NAME = 'schema:ReturnShippingFees';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

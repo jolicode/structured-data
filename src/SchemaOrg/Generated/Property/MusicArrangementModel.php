@@ -18,4 +18,6 @@ final class MusicArrangementModel
     public const NAME = 'schema:musicArrangement';
     public const VALUES = ['MusicCompositionModel' => 'Jolicode\SchemaOrg\Type\MusicCompositionModel'];
     public const TYPES = ['MusicComposition' => 'Jolicode\SchemaOrg\Type\MusicCompositionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,12 +16,13 @@ use Jolicode\SchemaOrg\Property;
 final class RealEstateListingModel
 {
     public const DESCRIPTION = 'A [[RealEstateListing]] is a listing that describes one or more real-estate [[Offer]]s (whose [[businessFunction]] is typically to lease out, or to sell).
-  The [[RealEstateListing]] type itself represents the overall listing, as manifested in some [[WebPage]].
-  ';
+  The [[RealEstateListing]] type itself represents the overall listing, as manifested in some [[WebPage]].';
     public const LABEL = 'RealEstateListing';
     public const NAME = 'schema:RealEstateListing';
     public const PARENTS = ['WebPageModel' => 'Jolicode\SchemaOrg\Type\WebPageModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2348'];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

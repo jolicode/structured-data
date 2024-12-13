@@ -18,4 +18,6 @@ final class LocationModel
     public const NAME = 'schema:location';
     public const VALUES = ['PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel', 'PostalAddressModel' => 'Jolicode\SchemaOrg\Type\PostalAddressModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'VirtualLocationModel' => 'Jolicode\SchemaOrg\Type\VirtualLocationModel'];
     public const TYPES = ['Action' => 'Jolicode\SchemaOrg\Type\ActionModel', 'Event' => 'Jolicode\SchemaOrg\Type\EventModel', 'InteractionCounter' => 'Jolicode\SchemaOrg\Type\InteractionCounterModel', 'Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

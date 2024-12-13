@@ -16,4 +16,6 @@ final class HalalDietModel
     public const DESCRIPTION = 'A diet conforming to Islamic dietary practices.';
     public const LABEL = 'HalalDiet';
     public const NAME = 'schema:HalalDiet';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

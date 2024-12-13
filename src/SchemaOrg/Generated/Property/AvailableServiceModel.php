@@ -18,4 +18,6 @@ final class AvailableServiceModel
     public const NAME = 'schema:availableService';
     public const VALUES = ['MedicalProcedureModel' => 'Jolicode\SchemaOrg\Type\MedicalProcedureModel', 'MedicalTestModel' => 'Jolicode\SchemaOrg\Type\MedicalTestModel', 'MedicalTherapyModel' => 'Jolicode\SchemaOrg\Type\MedicalTherapyModel'];
     public const TYPES = ['Hospital' => 'Jolicode\SchemaOrg\Type\HospitalModel', 'MedicalClinic' => 'Jolicode\SchemaOrg\Type\MedicalClinicModel', 'Physician' => 'Jolicode\SchemaOrg\Type\PhysicianModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

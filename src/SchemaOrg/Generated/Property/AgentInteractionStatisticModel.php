@@ -18,4 +18,6 @@ final class AgentInteractionStatisticModel
     public const NAME = 'schema:agentInteractionStatistic';
     public const VALUES = ['InteractionCounterModel' => 'Jolicode\SchemaOrg\Type\InteractionCounterModel'];
     public const TYPES = ['Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\SchemaOrg\Type\PersonModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

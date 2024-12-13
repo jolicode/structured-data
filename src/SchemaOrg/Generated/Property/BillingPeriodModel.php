@@ -18,4 +18,6 @@ final class BillingPeriodModel
     public const NAME = 'schema:billingPeriod';
     public const VALUES = ['DurationModel' => 'Jolicode\SchemaOrg\Type\DurationModel'];
     public const TYPES = ['Invoice' => 'Jolicode\SchemaOrg\Type\InvoiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

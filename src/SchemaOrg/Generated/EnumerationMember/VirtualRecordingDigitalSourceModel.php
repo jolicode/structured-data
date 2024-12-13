@@ -16,4 +16,6 @@ final class VirtualRecordingDigitalSourceModel
     public const DESCRIPTION = 'Content coded as \'<a href="https://cv.iptc.org/newscodes/digitalsourcetype/virtualRecording">virtual recording</a>\' using the IPTC <a href="https://cv.iptc.org/newscodes/digitalsourcetype/">digital source type</a> vocabulary.';
     public const LABEL = 'VirtualRecordingDigitalSource';
     public const NAME = 'schema:VirtualRecordingDigitalSource';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

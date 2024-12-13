@@ -20,6 +20,8 @@ final class SizeSystemEnumerationModel
     public const NAME = 'schema:SizeSystemEnumeration';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['SizeSystemImperialModel' => 'EnumerationMember\SizeSystemImperialModel', 'SizeSystemMetricModel' => 'EnumerationMember\SizeSystemMetricModel'];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

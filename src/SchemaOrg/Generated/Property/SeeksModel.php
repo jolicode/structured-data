@@ -18,4 +18,6 @@ final class SeeksModel
     public const NAME = 'schema:seeks';
     public const VALUES = ['DemandModel' => 'Jolicode\SchemaOrg\Type\DemandModel'];
     public const TYPES = ['Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\SchemaOrg\Type\PersonModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

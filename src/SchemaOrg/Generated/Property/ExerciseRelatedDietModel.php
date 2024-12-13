@@ -18,4 +18,6 @@ final class ExerciseRelatedDietModel
     public const NAME = 'schema:exerciseRelatedDiet';
     public const VALUES = ['DietModel' => 'Jolicode\SchemaOrg\Type\DietModel'];
     public const TYPES = ['ExerciseAction' => 'Jolicode\SchemaOrg\Type\ExerciseActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class WearableSizeSystemCNModel
     public const DESCRIPTION = 'Chinese size system for wearables.';
     public const LABEL = 'WearableSizeSystemCN';
     public const NAME = 'schema:WearableSizeSystemCN';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

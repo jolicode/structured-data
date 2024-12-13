@@ -16,4 +16,6 @@ final class WearableMeasurementBackModel
     public const DESCRIPTION = 'Measurement of the back section, for example of a jacket.';
     public const LABEL = 'WearableMeasurementBack';
     public const NAME = 'schema:WearableMeasurementBack';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

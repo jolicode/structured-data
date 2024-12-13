@@ -18,4 +18,6 @@ final class EnergyEfficiencyScaleMaxModel
     public const NAME = 'schema:energyEfficiencyScaleMax';
     public const VALUES = ['EUEnergyEfficiencyEnumerationModel' => 'Jolicode\SchemaOrg\Type\EUEnergyEfficiencyEnumerationModel'];
     public const TYPES = ['EnergyConsumptionDetails' => 'Jolicode\SchemaOrg\Type\EnergyConsumptionDetailsModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

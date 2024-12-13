@@ -18,4 +18,6 @@ final class AlternativeOfModel
     public const NAME = 'schema:alternativeOf';
     public const VALUES = ['GeneModel' => 'Jolicode\SchemaOrg\Type\GeneModel'];
     public const TYPES = ['Gene' => 'Jolicode\SchemaOrg\Type\GeneModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

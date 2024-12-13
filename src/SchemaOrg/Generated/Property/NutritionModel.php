@@ -18,4 +18,6 @@ final class NutritionModel
     public const NAME = 'schema:nutrition';
     public const VALUES = ['NutritionInformationModel' => 'Jolicode\SchemaOrg\Type\NutritionInformationModel'];
     public const TYPES = ['MenuItem' => 'Jolicode\SchemaOrg\Type\MenuItemModel', 'Recipe' => 'Jolicode\SchemaOrg\Type\RecipeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

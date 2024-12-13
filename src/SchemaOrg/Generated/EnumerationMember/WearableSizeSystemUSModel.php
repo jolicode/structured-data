@@ -16,4 +16,6 @@ final class WearableSizeSystemUSModel
     public const DESCRIPTION = 'United States size system for wearables.';
     public const LABEL = 'WearableSizeSystemUS';
     public const NAME = 'schema:WearableSizeSystemUS';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

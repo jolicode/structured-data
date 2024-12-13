@@ -18,4 +18,6 @@ final class AppearanceModel
     public const NAME = 'schema:appearance';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
     public const TYPES = ['Claim' => 'Jolicode\SchemaOrg\Type\ClaimModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

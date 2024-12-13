@@ -18,4 +18,6 @@ final class QualificationsModel
     public const NAME = 'schema:qualifications';
     public const VALUES = ['EducationalOccupationalCredentialModel' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalCredentialModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['JobPosting' => 'Jolicode\SchemaOrg\Type\JobPostingModel', 'Occupation' => 'Jolicode\SchemaOrg\Type\OccupationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

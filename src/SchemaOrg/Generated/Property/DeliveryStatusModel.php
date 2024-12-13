@@ -18,4 +18,6 @@ final class DeliveryStatusModel
     public const NAME = 'schema:deliveryStatus';
     public const VALUES = ['DeliveryEventModel' => 'Jolicode\SchemaOrg\Type\DeliveryEventModel'];
     public const TYPES = ['ParcelDelivery' => 'Jolicode\SchemaOrg\Type\ParcelDeliveryModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

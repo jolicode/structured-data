@@ -20,6 +20,8 @@ final class MedicalSymptomModel
     public const NAME = 'schema:MedicalSymptom';
     public const PARENTS = ['MedicalSignOrSymptomModel' => 'Jolicode\SchemaOrg\Type\MedicalSignOrSymptomModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -16,4 +16,6 @@ final class Nonprofit501c23Model
     public const DESCRIPTION = 'Nonprofit501c23: Non-profit type referring to Veterans Organizations.';
     public const LABEL = 'Nonprofit501c23';
     public const NAME = 'schema:Nonprofit501c23';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

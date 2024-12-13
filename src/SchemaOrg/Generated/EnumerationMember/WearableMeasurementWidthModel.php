@@ -16,4 +16,6 @@ final class WearableMeasurementWidthModel
     public const DESCRIPTION = 'Measurement of the width, for example of shoes.';
     public const LABEL = 'WearableMeasurementWidth';
     public const NAME = 'schema:WearableMeasurementWidth';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

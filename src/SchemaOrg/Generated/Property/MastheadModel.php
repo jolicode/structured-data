@@ -18,4 +18,6 @@ final class MastheadModel
     public const NAME = 'schema:masthead';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['NewsMediaOrganization' => 'Jolicode\SchemaOrg\Type\NewsMediaOrganizationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

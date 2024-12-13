@@ -20,6 +20,8 @@ final class MedicalEntityModel
     public const NAME = 'schema:MedicalEntity';
     public const PARENTS = ['ThingModel' => 'Jolicode\SchemaOrg\Type\ThingModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

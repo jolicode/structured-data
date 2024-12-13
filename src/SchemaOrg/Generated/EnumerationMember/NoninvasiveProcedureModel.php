@@ -16,4 +16,6 @@ final class NoninvasiveProcedureModel
     public const DESCRIPTION = 'A type of medical procedure that involves noninvasive techniques.';
     public const LABEL = 'NoninvasiveProcedure';
     public const NAME = 'schema:NoninvasiveProcedure';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

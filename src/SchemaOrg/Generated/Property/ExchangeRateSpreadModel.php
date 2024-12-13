@@ -18,4 +18,6 @@ final class ExchangeRateSpreadModel
     public const NAME = 'schema:exchangeRateSpread';
     public const VALUES = ['MonetaryAmountModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel', 'NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['ExchangeRateSpecification' => 'Jolicode\SchemaOrg\Type\ExchangeRateSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class BroadcastReleaseModel
     public const DESCRIPTION = 'BroadcastRelease.';
     public const LABEL = 'BroadcastRelease';
     public const NAME = 'schema:BroadcastRelease';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

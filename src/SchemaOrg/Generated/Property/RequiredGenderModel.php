@@ -18,4 +18,6 @@ final class RequiredGenderModel
     public const NAME = 'schema:requiredGender';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['PeopleAudience' => 'Jolicode\SchemaOrg\Type\PeopleAudienceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

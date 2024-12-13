@@ -18,4 +18,6 @@ final class BranchModel
     public const NAME = 'schema:branch';
     public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\SchemaOrg\Type\AnatomicalStructureModel'];
     public const TYPES = ['Nerve' => 'Jolicode\SchemaOrg\Type\NerveModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

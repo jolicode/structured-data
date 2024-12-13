@@ -18,4 +18,6 @@ final class SalaryUponCompletionModel
     public const NAME = 'schema:salaryUponCompletion';
     public const VALUES = ['MonetaryAmountDistributionModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountDistributionModel'];
     public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalProgramModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

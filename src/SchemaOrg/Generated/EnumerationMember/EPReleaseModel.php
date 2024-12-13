@@ -16,4 +16,6 @@ final class EPReleaseModel
     public const DESCRIPTION = 'EPRelease.';
     public const LABEL = 'EPRelease';
     public const NAME = 'schema:EPRelease';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

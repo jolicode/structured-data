@@ -18,4 +18,6 @@ final class ColleagueModel
     public const NAME = 'schema:colleague';
     public const VALUES = ['PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['Person' => 'Jolicode\SchemaOrg\Type\PersonModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

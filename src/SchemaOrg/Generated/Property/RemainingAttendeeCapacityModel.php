@@ -18,4 +18,6 @@ final class RemainingAttendeeCapacityModel
     public const NAME = 'schema:remainingAttendeeCapacity';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['Event' => 'Jolicode\SchemaOrg\Type\EventModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

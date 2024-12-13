@@ -18,4 +18,6 @@ final class RepresentativeOfPageModel
     public const NAME = 'schema:representativeOfPage';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['ImageObject' => 'Jolicode\SchemaOrg\Type\ImageObjectModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

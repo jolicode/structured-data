@@ -16,4 +16,6 @@ final class FreeReturnModel
     public const DESCRIPTION = 'Specifies that product returns are free of charge for the customer.';
     public const LABEL = 'FreeReturn';
     public const NAME = 'schema:FreeReturn';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

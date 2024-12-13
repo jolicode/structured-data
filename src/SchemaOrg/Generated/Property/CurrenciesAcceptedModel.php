@@ -18,4 +18,6 @@ final class CurrenciesAcceptedModel
     public const NAME = 'schema:currenciesAccepted';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['LocalBusiness' => 'Jolicode\SchemaOrg\Type\LocalBusinessModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

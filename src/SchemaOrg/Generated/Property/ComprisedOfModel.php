@@ -18,4 +18,6 @@ final class ComprisedOfModel
     public const NAME = 'schema:comprisedOf';
     public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\SchemaOrg\Type\AnatomicalStructureModel', 'AnatomicalSystemModel' => 'Jolicode\SchemaOrg\Type\AnatomicalSystemModel'];
     public const TYPES = ['AnatomicalSystem' => 'Jolicode\SchemaOrg\Type\AnatomicalSystemModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

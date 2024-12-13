@@ -20,6 +20,8 @@ final class FMRadioChannelModel
     public const NAME = 'schema:FMRadioChannel';
     public const PARENTS = ['RadioChannelModel' => 'Jolicode\SchemaOrg\Type\RadioChannelModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1004'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -18,4 +18,6 @@ final class TargetModel
     public const NAME = 'schema:target';
     public const VALUES = ['EntryPointModel' => 'Jolicode\SchemaOrg\Type\EntryPointModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['Action' => 'Jolicode\SchemaOrg\Type\ActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

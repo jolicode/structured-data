@@ -20,6 +20,8 @@ final class QuantitativeValueDistributionModel
     public const NAME = 'schema:QuantitativeValueDistribution';
     public const PARENTS = ['StructuredValueModel' => 'Jolicode\SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1698'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

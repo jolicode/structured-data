@@ -18,4 +18,6 @@ final class RecipientModel
     public const NAME = 'schema:recipient';
     public const VALUES = ['AudienceModel' => 'Jolicode\SchemaOrg\Type\AudienceModel', 'ContactPointModel' => 'Jolicode\SchemaOrg\Type\ContactPointModel', 'OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['AuthorizeAction' => 'Jolicode\SchemaOrg\Type\AuthorizeActionModel', 'CommunicateAction' => 'Jolicode\SchemaOrg\Type\CommunicateActionModel', 'DonateAction' => 'Jolicode\SchemaOrg\Type\DonateActionModel', 'GiveAction' => 'Jolicode\SchemaOrg\Type\GiveActionModel', 'Message' => 'Jolicode\SchemaOrg\Type\MessageModel', 'PayAction' => 'Jolicode\SchemaOrg\Type\PayActionModel', 'ReturnAction' => 'Jolicode\SchemaOrg\Type\ReturnActionModel', 'SendAction' => 'Jolicode\SchemaOrg\Type\SendActionModel', 'TipAction' => 'Jolicode\SchemaOrg\Type\TipActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

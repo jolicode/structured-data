@@ -16,4 +16,6 @@ final class WearableSizeGroupMensModel
     public const DESCRIPTION = 'Size group "Mens" for wearables.';
     public const LABEL = 'WearableSizeGroupMens';
     public const NAME = 'schema:WearableSizeGroupMens';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

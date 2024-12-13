@@ -18,4 +18,6 @@ final class ResultReviewModel
     public const NAME = 'schema:resultReview';
     public const VALUES = ['ReviewModel' => 'Jolicode\SchemaOrg\Type\ReviewModel'];
     public const TYPES = ['ReviewAction' => 'Jolicode\SchemaOrg\Type\ReviewActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class AppliesToPaymentMethodModel
     public const NAME = 'schema:appliesToPaymentMethod';
     public const VALUES = ['PaymentMethodModel' => 'Jolicode\SchemaOrg\Type\PaymentMethodModel'];
     public const TYPES = ['PaymentChargeSpecification' => 'Jolicode\SchemaOrg\Type\PaymentChargeSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

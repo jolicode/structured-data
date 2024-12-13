@@ -16,4 +16,6 @@ final class PotentialActionStatusModel
     public const DESCRIPTION = 'A description of an action that is supported.';
     public const LABEL = 'PotentialActionStatus';
     public const NAME = 'schema:PotentialActionStatus';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

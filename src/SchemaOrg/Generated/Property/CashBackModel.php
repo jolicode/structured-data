@@ -18,4 +18,6 @@ final class CashBackModel
     public const NAME = 'schema:cashBack';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel', 'NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['PaymentCard' => 'Jolicode\SchemaOrg\Type\PaymentCardModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class ApplicationDeadlineModel
     public const NAME = 'schema:applicationDeadline';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\SchemaOrg\Type\EducationalOccupationalProgramModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

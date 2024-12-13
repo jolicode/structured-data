@@ -18,4 +18,6 @@ final class ServerStatusModel
     public const NAME = 'schema:serverStatus';
     public const VALUES = ['GameServerStatusModel' => 'Jolicode\SchemaOrg\Type\GameServerStatusModel'];
     public const TYPES = ['GameServer' => 'Jolicode\SchemaOrg\Type\GameServerModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

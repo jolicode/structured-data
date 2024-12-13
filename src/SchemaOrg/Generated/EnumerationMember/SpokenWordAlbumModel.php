@@ -16,4 +16,6 @@ final class SpokenWordAlbumModel
     public const DESCRIPTION = 'SpokenWordAlbum.';
     public const LABEL = 'SpokenWordAlbum';
     public const NAME = 'schema:SpokenWordAlbum';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

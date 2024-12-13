@@ -39,9 +39,9 @@ class Property extends AbstractSchemaOrgElement
         self::sanitizeEntries($rawType);
 
         return new self(
-            name: $rawType[Extractor::KEY_ID],
-            description: $rawType[Extractor::RDFS_COMMENT],
-            label: $rawType[Extractor::RDFS_LABEL],
+            name: trim($rawType[Extractor::KEY_ID]),
+            description: trim($rawType[Extractor::RDFS_COMMENT]),
+            label: trim($rawType[Extractor::RDFS_LABEL]),
             possibleTypes: self::findPossibleEntries($rawType, self::INCLUDE_DOMAIN),
             possibleValues: self::findPossibleEntries($rawType, self::INCLUDE_RANGE),
             className: self::getClassName($rawType[Extractor::RDFS_LABEL]),

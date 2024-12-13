@@ -16,4 +16,6 @@ final class ViolenceConsiderationModel
     public const DESCRIPTION = 'Item shows or promotes violence.';
     public const LABEL = 'ViolenceConsideration';
     public const NAME = 'schema:ViolenceConsideration';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

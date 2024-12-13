@@ -18,4 +18,6 @@ final class WarrantyPromiseModel
     public const NAME = 'schema:warrantyPromise';
     public const VALUES = ['WarrantyPromiseModel' => 'Jolicode\SchemaOrg\Type\WarrantyPromiseModel'];
     public const TYPES = ['BuyAction' => 'Jolicode\SchemaOrg\Type\BuyActionModel', 'SellAction' => 'Jolicode\SchemaOrg\Type\SellActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

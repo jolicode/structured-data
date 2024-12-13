@@ -49,12 +49,13 @@ for representing non-location entities (e.g. a [[Course]] or a [[RadioStation]])
 The basic content of [[SpecialAnnouncement]] is similar to that of an [RSS](https://en.wikipedia.org/wiki/RSS) or [Atom](https://en.wikipedia.org/wiki/Atom_(Web_standard)) feed. For publishers without such feeds, basic feed-like information can be shared by posting
 [[SpecialAnnouncement]] updates in a page, e.g. using JSON-LD. For sites with Atom/RSS functionality, you can point to a feed
 with the [[webFeed]] property. This can be a simple URL, or an inline [[DataFeed]] object, with [[encodingFormat]] providing
-media type information, e.g. "application/rss+xml" or "application/atom+xml".
-';
+media type information, e.g. "application/rss+xml" or "application/atom+xml".';
     public const LABEL = 'SpecialAnnouncement';
     public const NAME = 'schema:SpecialAnnouncement';
     public const PARENTS = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2490'];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

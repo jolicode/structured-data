@@ -18,4 +18,6 @@ final class BusNameModel
     public const NAME = 'schema:busName';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['BusTrip' => 'Jolicode\SchemaOrg\Type\BusTripModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

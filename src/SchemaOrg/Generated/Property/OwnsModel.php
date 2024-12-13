@@ -18,4 +18,6 @@ final class OwnsModel
     public const NAME = 'schema:owns';
     public const VALUES = ['OwnershipInfoModel' => 'Jolicode\SchemaOrg\Type\OwnershipInfoModel', 'ProductModel' => 'Jolicode\SchemaOrg\Type\ProductModel'];
     public const TYPES = ['Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\SchemaOrg\Type\PersonModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

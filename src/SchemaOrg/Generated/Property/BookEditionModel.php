@@ -18,4 +18,6 @@ final class BookEditionModel
     public const NAME = 'schema:bookEdition';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Book' => 'Jolicode\SchemaOrg\Type\BookModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

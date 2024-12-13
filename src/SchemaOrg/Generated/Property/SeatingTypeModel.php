@@ -18,4 +18,6 @@ final class SeatingTypeModel
     public const NAME = 'schema:seatingType';
     public const VALUES = ['QualitativeValueModel' => 'Jolicode\SchemaOrg\Type\QualitativeValueModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Seat' => 'Jolicode\SchemaOrg\Type\SeatModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -20,6 +20,8 @@ final class EUEnergyEfficiencyEnumerationModel
     public const NAME = 'schema:EUEnergyEfficiencyEnumeration';
     public const PARENTS = ['EnergyEfficiencyEnumerationModel' => 'Jolicode\SchemaOrg\Type\EnergyEfficiencyEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['EUEnergyEfficiencyCategoryA1PlusModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryA1PlusModel', 'EUEnergyEfficiencyCategoryA2PlusModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryA2PlusModel', 'EUEnergyEfficiencyCategoryA3PlusModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryA3PlusModel', 'EUEnergyEfficiencyCategoryAModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryAModel', 'EUEnergyEfficiencyCategoryBModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryBModel', 'EUEnergyEfficiencyCategoryCModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryCModel', 'EUEnergyEfficiencyCategoryDModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryDModel', 'EUEnergyEfficiencyCategoryEModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryEModel', 'EUEnergyEfficiencyCategoryFModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryFModel', 'EUEnergyEfficiencyCategoryGModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryGModel'];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2670'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

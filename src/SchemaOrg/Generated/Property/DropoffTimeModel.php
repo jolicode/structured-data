@@ -18,4 +18,6 @@ final class DropoffTimeModel
     public const NAME = 'schema:dropoffTime';
     public const VALUES = ['DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['RentalCarReservation' => 'Jolicode\SchemaOrg\Type\RentalCarReservationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class GeographicAreaModel
     public const NAME = 'schema:geographicArea';
     public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\SchemaOrg\Type\AdministrativeAreaModel'];
     public const TYPES = ['Audience' => 'Jolicode\SchemaOrg\Type\AudienceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

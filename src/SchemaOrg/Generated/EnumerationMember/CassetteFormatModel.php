@@ -16,4 +16,6 @@ final class CassetteFormatModel
     public const DESCRIPTION = 'CassetteFormat.';
     public const LABEL = 'CassetteFormat';
     public const NAME = 'schema:CassetteFormat';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

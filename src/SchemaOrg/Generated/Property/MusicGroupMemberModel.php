@@ -18,4 +18,6 @@ final class MusicGroupMemberModel
     public const NAME = 'schema:musicGroupMember';
     public const VALUES = ['PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['MusicGroup' => 'Jolicode\SchemaOrg\Type\MusicGroupModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

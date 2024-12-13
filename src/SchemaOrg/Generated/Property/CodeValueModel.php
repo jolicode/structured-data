@@ -18,4 +18,6 @@ final class CodeValueModel
     public const NAME = 'schema:codeValue';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['CategoryCode' => 'Jolicode\SchemaOrg\Type\CategoryCodeModel', 'MedicalCode' => 'Jolicode\SchemaOrg\Type\MedicalCodeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

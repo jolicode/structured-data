@@ -18,4 +18,6 @@ final class CssSelectorModel
     public const NAME = 'schema:cssSelector';
     public const VALUES = ['CssSelectorTypeModel' => 'Jolicode\SchemaOrg\Type\CssSelectorTypeModel'];
     public const TYPES = ['SpeakableSpecification' => 'Jolicode\SchemaOrg\Type\SpeakableSpecificationModel', 'WebPageElement' => 'Jolicode\SchemaOrg\Type\WebPageElementModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

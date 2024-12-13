@@ -18,4 +18,6 @@ final class ExpectsAcceptanceOfModel
     public const NAME = 'schema:expectsAcceptanceOf';
     public const VALUES = ['OfferModel' => 'Jolicode\SchemaOrg\Type\OfferModel'];
     public const TYPES = ['ActionAccessSpecification' => 'Jolicode\SchemaOrg\Type\ActionAccessSpecificationModel', 'ConsumeAction' => 'Jolicode\SchemaOrg\Type\ConsumeActionModel', 'MediaSubscription' => 'Jolicode\SchemaOrg\Type\MediaSubscriptionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

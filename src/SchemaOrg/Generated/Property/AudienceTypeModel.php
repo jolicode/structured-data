@@ -18,4 +18,6 @@ final class AudienceTypeModel
     public const NAME = 'schema:audienceType';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Audience' => 'Jolicode\SchemaOrg\Type\AudienceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

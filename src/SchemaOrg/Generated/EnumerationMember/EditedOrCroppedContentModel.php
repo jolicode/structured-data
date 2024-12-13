@@ -21,8 +21,9 @@ For an [[ImageObject]] to be \'edited or cropped content\': Presenting a part of
 
 For an [[ImageObject]] with embedded text to be \'edited or cropped content\': Presenting a part of an image from a larger whole to mislead the viewer.
 
-For an [[AudioObject]] to be \'edited or cropped content\': The audio has been edited or rearranged. This category applies to time edits, including editing multiple audio clips together to alter the story being told or editing out large portions from the recording.
-';
+For an [[AudioObject]] to be \'edited or cropped content\': The audio has been edited or rearranged. This category applies to time edits, including editing multiple audio clips together to alter the story being told or editing out large portions from the recording.';
     public const LABEL = 'EditedOrCroppedContent';
     public const NAME = 'schema:EditedOrCroppedContent';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

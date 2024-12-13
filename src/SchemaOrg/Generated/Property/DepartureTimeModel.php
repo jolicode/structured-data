@@ -18,4 +18,6 @@ final class DepartureTimeModel
     public const NAME = 'schema:departureTime';
     public const VALUES = ['DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel', 'TimeModel' => 'Jolicode\SchemaOrg\Type\TimeModel'];
     public const TYPES = ['Trip' => 'Jolicode\SchemaOrg\Type\TripModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

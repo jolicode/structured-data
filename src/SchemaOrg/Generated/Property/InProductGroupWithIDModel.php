@@ -13,9 +13,11 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class InProductGroupWithIDModel
 {
-    public const DESCRIPTION = 'Indicates the [[productGroupID]] for a [[ProductGroup]] that this product [[isVariantOf]]. ';
+    public const DESCRIPTION = 'Indicates the [[productGroupID]] for a [[ProductGroup]] that this product [[isVariantOf]].';
     public const LABEL = 'inProductGroupWithID';
     public const NAME = 'schema:inProductGroupWithID';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Product' => 'Jolicode\SchemaOrg\Type\ProductModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

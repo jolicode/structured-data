@@ -18,4 +18,6 @@ final class MuscleActionModel
     public const NAME = 'schema:muscleAction';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Muscle' => 'Jolicode\SchemaOrg\Type\MuscleModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class WearableSizeSystemITModel
     public const DESCRIPTION = 'Italian size system for wearables.';
     public const LABEL = 'WearableSizeSystemIT';
     public const NAME = 'schema:WearableSizeSystemIT';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

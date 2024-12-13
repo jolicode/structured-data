@@ -16,4 +16,6 @@ final class WearableSizeSystemDEModel
     public const DESCRIPTION = 'German size system for wearables.';
     public const LABEL = 'WearableSizeSystemDE';
     public const NAME = 'schema:WearableSizeSystemDE';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

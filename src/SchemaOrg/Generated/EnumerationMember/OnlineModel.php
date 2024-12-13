@@ -16,4 +16,6 @@ final class OnlineModel
     public const DESCRIPTION = 'Game server status: Online. Server is available.';
     public const LABEL = 'Online';
     public const NAME = 'schema:Online';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

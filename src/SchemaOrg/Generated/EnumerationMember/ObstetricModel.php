@@ -16,4 +16,6 @@ final class ObstetricModel
     public const DESCRIPTION = 'A specific branch of medical science that specializes in the care of women during the prenatal and postnatal care and with the delivery of the child.';
     public const LABEL = 'Obstetric';
     public const NAME = 'schema:Obstetric';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

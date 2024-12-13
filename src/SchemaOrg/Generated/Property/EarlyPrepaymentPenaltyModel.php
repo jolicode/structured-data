@@ -18,4 +18,6 @@ final class EarlyPrepaymentPenaltyModel
     public const NAME = 'schema:earlyPrepaymentPenalty';
     public const VALUES = ['MonetaryAmountModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel'];
     public const TYPES = ['RepaymentSpecification' => 'Jolicode\SchemaOrg\Type\RepaymentSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

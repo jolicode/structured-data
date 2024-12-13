@@ -18,4 +18,6 @@ final class ActiveIngredientModel
     public const NAME = 'schema:activeIngredient';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DietarySupplement' => 'Jolicode\SchemaOrg\Type\DietarySupplementModel', 'Drug' => 'Jolicode\SchemaOrg\Type\DrugModel', 'DrugStrength' => 'Jolicode\SchemaOrg\Type\DrugStrengthModel', 'Substance' => 'Jolicode\SchemaOrg\Type\SubstanceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

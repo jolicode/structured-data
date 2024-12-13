@@ -16,4 +16,6 @@ final class WearableSizeSystemUKModel
     public const DESCRIPTION = 'United Kingdom size system for wearables.';
     public const LABEL = 'WearableSizeSystemUK';
     public const NAME = 'schema:WearableSizeSystemUK';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

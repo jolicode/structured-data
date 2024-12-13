@@ -18,4 +18,6 @@ final class LodgingUnitTypeModel
     public const NAME = 'schema:lodgingUnitType';
     public const VALUES = ['QualitativeValueModel' => 'Jolicode\SchemaOrg\Type\QualitativeValueModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['LodgingReservation' => 'Jolicode\SchemaOrg\Type\LodgingReservationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

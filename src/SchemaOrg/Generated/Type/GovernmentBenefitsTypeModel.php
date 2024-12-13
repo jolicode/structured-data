@@ -20,6 +20,8 @@ final class GovernmentBenefitsTypeModel
     public const NAME = 'schema:GovernmentBenefitsType';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['BasicIncomeModel' => 'EnumerationMember\BasicIncomeModel', 'BusinessSupportModel' => 'EnumerationMember\BusinessSupportModel', 'DisabilitySupportModel' => 'EnumerationMember\DisabilitySupportModel', 'HealthCareModel' => 'EnumerationMember\HealthCareModel', 'OneTimePaymentsModel' => 'EnumerationMember\OneTimePaymentsModel', 'PaidLeaveModel' => 'EnumerationMember\PaidLeaveModel', 'ParentalSupportModel' => 'EnumerationMember\ParentalSupportModel', 'UnemploymentSupportModel' => 'EnumerationMember\UnemploymentSupportModel'];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2534'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

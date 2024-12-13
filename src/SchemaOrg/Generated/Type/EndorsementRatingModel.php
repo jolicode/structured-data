@@ -20,12 +20,13 @@ final class EndorsementRatingModel
 some [[agent]]. As is common elsewhere in schema.org, it is sometimes more useful to describe the results of such an action without explicitly describing the [[Action]].
 
 An [[EndorsementRating]] may be part of a numeric scale or organized system, but this is not required: having an explicit type for indicating a positive,
-endorsement rating is particularly useful in the absence of numeric scales as it helps consumers understand that the rating is broadly positive.
-';
+endorsement rating is particularly useful in the absence of numeric scales as it helps consumers understand that the rating is broadly positive.';
     public const LABEL = 'EndorsementRating';
     public const NAME = 'schema:EndorsementRating';
     public const PARENTS = ['RatingModel' => 'Jolicode\SchemaOrg\Type\RatingModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1293'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

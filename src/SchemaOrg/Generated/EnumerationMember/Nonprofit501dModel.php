@@ -16,4 +16,6 @@ final class Nonprofit501dModel
     public const DESCRIPTION = 'Nonprofit501d: Non-profit type referring to Religious and Apostolic Associations.';
     public const LABEL = 'Nonprofit501d';
     public const NAME = 'schema:Nonprofit501d';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

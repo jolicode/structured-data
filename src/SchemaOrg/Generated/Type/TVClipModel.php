@@ -20,6 +20,8 @@ final class TVClipModel
     public const NAME = 'schema:TVClip';
     public const PARENTS = ['ClipModel' => 'Jolicode\SchemaOrg\Type\ClipModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

@@ -18,4 +18,6 @@ final class ChildTaxonModel
     public const NAME = 'schema:childTaxon';
     public const VALUES = ['TaxonModel' => 'Jolicode\SchemaOrg\Type\TaxonModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['Taxon' => 'Jolicode\SchemaOrg\Type\TaxonModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class LandlordModel
     public const NAME = 'schema:landlord';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['RentAction' => 'Jolicode\SchemaOrg\Type\RentActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

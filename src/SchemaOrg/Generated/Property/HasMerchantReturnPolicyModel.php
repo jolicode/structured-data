@@ -18,4 +18,6 @@ final class HasMerchantReturnPolicyModel
     public const NAME = 'schema:hasMerchantReturnPolicy';
     public const VALUES = ['MerchantReturnPolicyModel' => 'Jolicode\SchemaOrg\Type\MerchantReturnPolicyModel'];
     public const TYPES = ['Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'Product' => 'Jolicode\SchemaOrg\Type\ProductModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,12 +18,13 @@ final class AccommodationModel
     public const DESCRIPTION = 'An accommodation is a place that can accommodate human beings, e.g. a hotel room, a camping pitch, or a meeting room. Many accommodations are for overnight stays, but this is not a mandatory requirement.
 For more specific types of accommodations not defined in schema.org, one can use [[additionalType]] with external vocabularies.
 <br /><br />
-See also the <a href="/docs/hotels.html">dedicated document on the use of schema.org for marking up hotels and other forms of accommodations</a>.
-';
+See also the <a href="/docs/hotels.html">dedicated document on the use of schema.org for marking up hotels and other forms of accommodations</a>.';
     public const LABEL = 'Accommodation';
     public const NAME = 'schema:Accommodation';
     public const PARENTS = ['PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AccommodationCategoryModel $accommodationCategory = null,

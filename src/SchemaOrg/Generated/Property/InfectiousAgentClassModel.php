@@ -18,4 +18,6 @@ final class InfectiousAgentClassModel
     public const NAME = 'schema:infectiousAgentClass';
     public const VALUES = ['InfectiousAgentClassModel' => 'Jolicode\SchemaOrg\Type\InfectiousAgentClassModel'];
     public const TYPES = ['InfectiousDisease' => 'Jolicode\SchemaOrg\Type\InfectiousDiseaseModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

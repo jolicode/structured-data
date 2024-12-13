@@ -20,4 +20,6 @@ final class DiseaseSpreadStatisticsModel
     public const NAME = 'schema:diseaseSpreadStatistics';
     public const VALUES = ['DatasetModel' => 'Jolicode\SchemaOrg\Type\DatasetModel', 'ObservationModel' => 'Jolicode\SchemaOrg\Type\ObservationModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel', 'WebContentModel' => 'Jolicode\SchemaOrg\Type\WebContentModel'];
     public const TYPES = ['SpecialAnnouncement' => 'Jolicode\SchemaOrg\Type\SpecialAnnouncementModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class NonprofitSBBIModel
     public const DESCRIPTION = 'NonprofitSBBI: Non-profit type referring to a Social Interest Promoting Institution (NL).';
     public const LABEL = 'NonprofitSBBI';
     public const NAME = 'schema:NonprofitSBBI';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

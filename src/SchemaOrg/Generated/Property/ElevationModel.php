@@ -18,4 +18,6 @@ final class ElevationModel
     public const NAME = 'schema:elevation';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['GeoCoordinates' => 'Jolicode\SchemaOrg\Type\GeoCoordinatesModel', 'GeoShape' => 'Jolicode\SchemaOrg\Type\GeoShapeModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

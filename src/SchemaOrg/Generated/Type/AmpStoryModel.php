@@ -20,6 +20,8 @@ final class AmpStoryModel
     public const NAME = 'schema:AmpStory';
     public const PARENTS = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'MediaObjectModel' => 'Jolicode\SchemaOrg\Type\MediaObjectModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2646'];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

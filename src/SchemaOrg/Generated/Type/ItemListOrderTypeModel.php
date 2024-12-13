@@ -20,6 +20,8 @@ final class ItemListOrderTypeModel
     public const NAME = 'schema:ItemListOrderType';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['ItemListOrderAscendingModel' => 'EnumerationMember\ItemListOrderAscendingModel', 'ItemListOrderDescendingModel' => 'EnumerationMember\ItemListOrderDescendingModel', 'ItemListUnorderedModel' => 'EnumerationMember\ItemListUnorderedModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

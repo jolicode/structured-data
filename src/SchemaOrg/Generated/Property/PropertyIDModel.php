@@ -21,4 +21,6 @@ Standards bodies should promote a standard prefix for the identifiers of propert
     public const NAME = 'schema:propertyID';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['PropertyValue' => 'Jolicode\SchemaOrg\Type\PropertyValueModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

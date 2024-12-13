@@ -18,4 +18,6 @@ final class BankAccountTypeModel
     public const NAME = 'schema:bankAccountType';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['BankAccount' => 'Jolicode\SchemaOrg\Type\BankAccountModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

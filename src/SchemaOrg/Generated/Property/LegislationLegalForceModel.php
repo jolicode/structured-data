@@ -18,4 +18,6 @@ final class LegislationLegalForceModel
     public const NAME = 'schema:legislationLegalForce';
     public const VALUES = ['LegalForceStatusModel' => 'Jolicode\SchemaOrg\Type\LegalForceStatusModel'];
     public const TYPES = ['Legislation' => 'Jolicode\SchemaOrg\Type\LegislationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

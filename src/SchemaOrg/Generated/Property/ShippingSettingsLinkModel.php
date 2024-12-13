@@ -18,4 +18,6 @@ final class ShippingSettingsLinkModel
     public const NAME = 'schema:shippingSettingsLink';
     public const VALUES = ['URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
     public const TYPES = ['OfferShippingDetails' => 'Jolicode\SchemaOrg\Type\OfferShippingDetailsModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class InstructorModel
     public const NAME = 'schema:instructor';
     public const VALUES = ['PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['CourseInstance' => 'Jolicode\SchemaOrg\Type\CourseInstanceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

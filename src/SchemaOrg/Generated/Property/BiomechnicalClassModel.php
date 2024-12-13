@@ -18,4 +18,6 @@ final class BiomechnicalClassModel
     public const NAME = 'schema:biomechnicalClass';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Joint' => 'Jolicode\SchemaOrg\Type\JointModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -18,4 +18,6 @@ final class CommentTextModel
     public const NAME = 'schema:commentText';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['UserComments' => 'Jolicode\SchemaOrg\Type\UserCommentsModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

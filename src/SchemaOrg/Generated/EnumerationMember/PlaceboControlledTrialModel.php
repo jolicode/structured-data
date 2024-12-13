@@ -16,4 +16,6 @@ final class PlaceboControlledTrialModel
     public const DESCRIPTION = 'A placebo-controlled trial design.';
     public const LABEL = 'PlaceboControlledTrial';
     public const NAME = 'schema:PlaceboControlledTrial';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

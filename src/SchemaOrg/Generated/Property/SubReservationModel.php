@@ -18,4 +18,6 @@ final class SubReservationModel
     public const NAME = 'schema:subReservation';
     public const VALUES = ['ReservationModel' => 'Jolicode\SchemaOrg\Type\ReservationModel'];
     public const TYPES = ['ReservationPackage' => 'Jolicode\SchemaOrg\Type\ReservationPackageModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

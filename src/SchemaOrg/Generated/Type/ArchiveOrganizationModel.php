@@ -20,6 +20,8 @@ final class ArchiveOrganizationModel
     public const NAME = 'schema:ArchiveOrganization';
     public const PARENTS = ['LocalBusinessModel' => 'Jolicode\SchemaOrg\Type\LocalBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1758'];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

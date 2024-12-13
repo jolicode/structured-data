@@ -18,4 +18,6 @@ final class AffectedByModel
     public const NAME = 'schema:affectedBy';
     public const VALUES = ['DrugModel' => 'Jolicode\SchemaOrg\Type\DrugModel'];
     public const TYPES = ['MedicalTest' => 'Jolicode\SchemaOrg\Type\MedicalTestModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

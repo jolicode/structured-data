@@ -16,4 +16,6 @@ final class BusinessSupportModel
     public const DESCRIPTION = 'BusinessSupport: this is a benefit for supporting businesses.';
     public const LABEL = 'BusinessSupport';
     public const NAME = 'schema:BusinessSupport';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

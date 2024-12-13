@@ -18,4 +18,6 @@ final class AlbumReleaseTypeModel
     public const NAME = 'schema:albumReleaseType';
     public const VALUES = ['MusicAlbumReleaseTypeModel' => 'Jolicode\SchemaOrg\Type\MusicAlbumReleaseTypeModel'];
     public const TYPES = ['MusicAlbum' => 'Jolicode\SchemaOrg\Type\MusicAlbumModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

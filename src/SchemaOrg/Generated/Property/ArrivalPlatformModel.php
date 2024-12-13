@@ -18,4 +18,6 @@ final class ArrivalPlatformModel
     public const NAME = 'schema:arrivalPlatform';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['TrainTrip' => 'Jolicode\SchemaOrg\Type\TrainTripModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

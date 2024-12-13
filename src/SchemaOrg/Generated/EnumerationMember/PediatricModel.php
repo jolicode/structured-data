@@ -16,4 +16,6 @@ final class PediatricModel
     public const DESCRIPTION = 'A specific branch of medical science that specializes in the care of infants, children and adolescents.';
     public const LABEL = 'Pediatric';
     public const NAME = 'schema:Pediatric';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

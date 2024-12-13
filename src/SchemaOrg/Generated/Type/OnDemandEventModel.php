@@ -20,6 +20,8 @@ final class OnDemandEventModel
     public const NAME = 'schema:OnDemandEvent';
     public const PARENTS = ['PublicationEventModel' => 'Jolicode\SchemaOrg\Type\PublicationEventModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AboutModel $about = null,

@@ -20,6 +20,8 @@ final class WebAPIModel
     public const NAME = 'schema:WebAPI';
     public const PARENTS = ['ServiceModel' => 'Jolicode\SchemaOrg\Type\ServiceModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1423'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

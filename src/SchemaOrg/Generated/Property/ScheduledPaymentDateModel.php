@@ -18,4 +18,6 @@ final class ScheduledPaymentDateModel
     public const NAME = 'schema:scheduledPaymentDate';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel'];
     public const TYPES = ['Invoice' => 'Jolicode\SchemaOrg\Type\InvoiceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

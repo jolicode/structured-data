@@ -18,4 +18,6 @@ final class TextValueModel
     public const NAME = 'schema:textValue';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['PronounceableText' => 'Jolicode\SchemaOrg\Type\PronounceableTextModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

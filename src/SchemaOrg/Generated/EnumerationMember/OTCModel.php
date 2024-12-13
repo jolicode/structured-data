@@ -16,4 +16,6 @@ final class OTCModel
     public const DESCRIPTION = 'The character of a medical substance, typically a medicine, of being available over the counter or not.';
     public const LABEL = 'OTC';
     public const NAME = 'schema:OTC';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

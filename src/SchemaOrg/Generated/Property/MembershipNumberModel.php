@@ -18,4 +18,6 @@ final class MembershipNumberModel
     public const NAME = 'schema:membershipNumber';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['ProgramMembership' => 'Jolicode\SchemaOrg\Type\ProgramMembershipModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

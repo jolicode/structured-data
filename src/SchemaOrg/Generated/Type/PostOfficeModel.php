@@ -20,6 +20,8 @@ final class PostOfficeModel
     public const NAME = 'schema:PostOffice';
     public const PARENTS = ['GovernmentOfficeModel' => 'Jolicode\SchemaOrg\Type\GovernmentOfficeModel'];
     public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

@@ -18,4 +18,6 @@ final class ValueMaxLengthModel
     public const NAME = 'schema:valueMaxLength';
     public const VALUES = ['NumberModel' => 'Jolicode\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['PropertyValueSpecification' => 'Jolicode\SchemaOrg\Type\PropertyValueSpecificationModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class RsvpResponseYesModel
     public const DESCRIPTION = 'The invitee will attend.';
     public const LABEL = 'RsvpResponseYes';
     public const NAME = 'schema:RsvpResponseYes';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

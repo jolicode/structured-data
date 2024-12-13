@@ -18,4 +18,6 @@ final class HealthConditionModel
     public const NAME = 'schema:healthCondition';
     public const VALUES = ['MedicalConditionModel' => 'Jolicode\SchemaOrg\Type\MedicalConditionModel'];
     public const TYPES = ['MedicalStudy' => 'Jolicode\SchemaOrg\Type\MedicalStudyModel', 'Patient' => 'Jolicode\SchemaOrg\Type\PatientModel', 'PeopleAudience' => 'Jolicode\SchemaOrg\Type\PeopleAudienceModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

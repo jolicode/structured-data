@@ -18,4 +18,6 @@ final class QueryModel
     public const NAME = 'schema:query';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['SearchAction' => 'Jolicode\SchemaOrg\Type\SearchActionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

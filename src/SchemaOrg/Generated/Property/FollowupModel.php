@@ -18,4 +18,6 @@ final class FollowupModel
     public const NAME = 'schema:followup';
     public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalProcedure' => 'Jolicode\SchemaOrg\Type\MedicalProcedureModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

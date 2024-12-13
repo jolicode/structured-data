@@ -18,4 +18,6 @@ final class AnswerCountModel
     public const NAME = 'schema:answerCount';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['Question' => 'Jolicode\SchemaOrg\Type\QuestionModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

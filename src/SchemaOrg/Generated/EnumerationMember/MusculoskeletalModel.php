@@ -16,4 +16,6 @@ final class MusculoskeletalModel
     public const DESCRIPTION = 'A specific branch of medical science that pertains to diagnosis and treatment of disorders of muscles, ligaments and skeletal system.';
     public const LABEL = 'Musculoskeletal';
     public const NAME = 'schema:Musculoskeletal';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

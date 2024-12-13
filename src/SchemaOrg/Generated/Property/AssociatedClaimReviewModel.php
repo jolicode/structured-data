@@ -18,4 +18,6 @@ final class AssociatedClaimReviewModel
     public const NAME = 'schema:associatedClaimReview';
     public const VALUES = ['ReviewModel' => 'Jolicode\SchemaOrg\Type\ReviewModel'];
     public const TYPES = ['Review' => 'Jolicode\SchemaOrg\Type\ReviewModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

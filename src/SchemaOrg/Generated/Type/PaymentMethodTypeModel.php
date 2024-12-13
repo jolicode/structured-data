@@ -20,6 +20,8 @@ final class PaymentMethodTypeModel
     public const NAME = 'schema:PaymentMethodType';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['ByBankTransferInAdvanceModel' => 'EnumerationMember\ByBankTransferInAdvanceModel', 'ByInvoiceModel' => 'EnumerationMember\ByInvoiceModel', 'CODModel' => 'EnumerationMember\CODModel', 'CashModel' => 'EnumerationMember\CashModel', 'CheckInAdvanceModel' => 'EnumerationMember\CheckInAdvanceModel', 'DirectDebitModel' => 'EnumerationMember\DirectDebitModel', 'InStorePrepayModel' => 'EnumerationMember\InStorePrepayModel', 'PhoneCarrierPaymentModel' => 'EnumerationMember\PhoneCarrierPaymentModel'];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3537'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -16,4 +16,6 @@ final class WearableSizeGroupPlusModel
     public const DESCRIPTION = 'Size group "Plus" for wearables.';
     public const LABEL = 'WearableSizeGroupPlus';
     public const NAME = 'schema:WearableSizeGroupPlus';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

@@ -16,4 +16,6 @@ final class ActivationFeeModel
     public const DESCRIPTION = 'Represents the activation fee part of the total price for an offered product, for example a cellphone contract.';
     public const LABEL = 'ActivationFee';
     public const NAME = 'schema:ActivationFee';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

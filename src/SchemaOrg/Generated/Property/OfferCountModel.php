@@ -18,4 +18,6 @@ final class OfferCountModel
     public const NAME = 'schema:offerCount';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['AggregateOffer' => 'Jolicode\SchemaOrg\Type\AggregateOfferModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

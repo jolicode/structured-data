@@ -18,4 +18,6 @@ final class ExperienceInPlaceOfEducationModel
     public const NAME = 'schema:experienceInPlaceOfEducation';
     public const VALUES = ['BooleanModel' => 'Jolicode\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['JobPosting' => 'Jolicode\SchemaOrg\Type\JobPostingModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }

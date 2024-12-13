@@ -16,4 +16,6 @@ final class EBookModel
     public const DESCRIPTION = 'Book format: Ebook.';
     public const LABEL = 'EBook';
     public const NAME = 'schema:EBook';
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
 }
