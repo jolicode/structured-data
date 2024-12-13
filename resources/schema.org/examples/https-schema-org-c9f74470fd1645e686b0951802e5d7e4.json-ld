@@ -1,0 +1,15 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Example",
+  "eventSchedule": [
+    {
+      "@type": "Schedule",
+      "repeatFrequency": "P1M",
+      "byDay": "2MO",
+      "startTime": "18:00:00",
+      "endTime": "19:30:00",
+      "scheduleTimezone": "Asia/Shanghai"
+    }
+  ]
+}

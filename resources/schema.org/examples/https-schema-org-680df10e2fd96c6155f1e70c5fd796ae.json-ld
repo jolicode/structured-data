@@ -1,0 +1,9 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "Quotation",
+  "creator": {
+    "@type": "Person",
+    "name": "Franklin Delano Roosevelt"
+  },
+  "text": "The only thing we have to fear is fear itself."
+}

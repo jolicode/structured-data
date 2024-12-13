@@ -1,0 +1,30 @@
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalScholarlyArticle",
+  "about": [
+    {
+      "@type": "Drug",
+      "code": {
+        "@id": "http://www.ncbi.nlm.nih.gov/mesh/D02.078.370.141.450",
+        "@type": "MedicalCode",
+        "code": "D02.078.370.141.450",
+        "codingSystem": "MeSH"
+      },
+      "name": "Metformin"
+    },
+    {
+      "@type": "MedicalCondition",
+      "name": "Diabetes Mellitus, Type 2"
+    }
+  ],
+  "audience": "https://schema.org/Clinician",
+  "author": {
+    "@type": "Person",
+    "affiliation": "Medical University",
+    "name": "Dr. John Smith"
+  },
+  "datePublished": "2012-03-24",
+  "description": "We review clinical evidence related to the use of metformin for treatment of type-2 diabetes mellitus and provide new clinical guideline recommendations.",
+  "name": "New guidelines for metformin and diabetes mellitus",
+  "publicationType": "Meta-Analysis"
+  }

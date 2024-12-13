@@ -1,0 +1,9 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "Occupation",
+  "name": "Research Scientist",
+  "qualifications": {
+    "@type": "EducationalOccupationalCredential",
+    "educationalLevel": "PhD or equivalent"
+  }
+}

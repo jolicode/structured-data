@@ -1,0 +1,9 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "Thing",
+  "name": "Schema.org Ontology",
+  "subjectOf": {
+    "@type": "Book",
+    "name": "The Complete History of Schema.org"
+  }
+}
