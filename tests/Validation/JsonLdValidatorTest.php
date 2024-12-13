@@ -41,7 +41,7 @@ class JsonLdValidatorTest extends TestCase
      */
     public function testSchemaOrgValidator(string $filePath, bool $isValid, array $expectedMessages): void
     {
-        $this->testValidate($filePath, $isValid, $expectedMessages, SchemaOrgValidator::class);
+        $this->check($filePath, $isValid, $expectedMessages, SchemaOrgValidator::class);
     }
 
     /**
@@ -51,26 +51,38 @@ class JsonLdValidatorTest extends TestCase
      */
     // public function testGoogleValidator(string $filePath, bool $isValid, array $expectedMessages): void
     // {
-    //     $this->testValidate($filePath, $isValid, $expectedMessages, GoogleValidator::class);
+    //     $this->check($filePath, $isValid, $expectedMessages, GoogleValidator::class);
     // }
 
     /**
      * @group schemaorg
      *
-     * @dataProvider provideExamples
+     * @dataProvider provideSchemaOrgExamples
      */
-    public function testValidateBis(string $filePath): void
+    public function testSchemaOrgExamples(string $filePath, bool $isValid = true, array $expectedErrors = []): void
     {
-        $this->testValidate($filePath, true, [], SchemaOrgValidator::class);
+        $this->check($filePath, $isValid, $expectedErrors, SchemaOrgValidator::class);
     }
 
-    public function provideExamples(): \Generator
+    public function provideSchemaOrgExamples(): \Generator
     {
         $finder = new Finder();
         $finder->files()->in(__DIR__ . '/../../resources/schema.org/examples');
+        $baseline = file_get_contents(__DIR__ . '/../../resources/schema.org/examples-baseline.json');
+
+        if (false === $baseline) {
+            $baseline = '{}';
+        }
+
+        $baseline = json_decode($baseline, true);
 
         foreach ($finder as $file) {
-            yield $file->getFilename() => [$file->getPathname()];
+            $errors = $baseline[$file->getFilename()] ?? [];
+            yield $file->getFilename() => [
+                $file->getPathname(),
+                empty($errors),
+                $errors,
+            ];
         }
     }
 
@@ -317,7 +329,7 @@ class JsonLdValidatorTest extends TestCase
         ];
     }
 
-    private function testValidate(string $filePath, bool $isValid, array $expectedMessages, string $specificValidator): void
+    private function check(string $filePath, bool $isValid, array $expectedMessages, string $specificValidator): void
     {
         $types = $this->validator->getTypes($filePath, $specificValidator);
 

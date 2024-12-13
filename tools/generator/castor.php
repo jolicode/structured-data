@@ -28,7 +28,9 @@ use function Castor\run;
 use Jolicode\JsonLd\Generator\Filesystem;
 use Jolicode\JsonLd\Generator\GeneratorsContainer;
 use Jolicode\JsonLd\Generator\SchemaOrg\Generator;
+use Jolicode\SchemaOrg\Mapper\MappedType;
 use Jolicode\SchemaOrg\SchemaOrg;
+use Jolicode\SchemaOrg\Validator;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Process\ExecutableFinder;
 
@@ -87,7 +89,7 @@ function downloadSchemaOrgTypesFile(
     io()->success('Schema.org types updated successfully');
 }
 
-#[AsTask(name: 'schema-org:update-examples', description: 'Updates the schema.org example files stored in the resources directory')]
+#[AsTask(name: 'schema-org:examples:update', description: 'Updates the schema.org example files stored in the resources directory')]
 function downloadSchemaOrgExamples(): void
 {
     io()->title('Downloading the schema.org examples file');
@@ -110,6 +112,36 @@ function downloadSchemaOrgExamples(): void
 
     fs()->remove(Filesystem::CACHE_DIR_SCHEMA_ORG . '/git');
     io()->success('Schema.org examples file downloaded successfully');
+}
+
+#[AsTask(name: 'schema-org:examples:baseline', description: 'Update the schema.org examples baseline file')]
+function updateSchemaOrgExamplesBaseline(): void
+{
+    $finder = finder()->files()->in(Filesystem::SCHEMA_ORG_EXAMPLES_DIR)->name('*.json-ld')->sortByName();
+    $validator = new Validator();
+    $baseline = [];
+
+    foreach ($finder as $file) {
+        $types = $validator->getTypes($file->getContents());
+        $errors = array_filter(
+            $types,
+            fn (MappedType $type) => (bool) $type->errors,
+        );
+
+        if (\count($errors) > 0) {
+            $errors = array_reduce(
+                $errors,
+                fn (array $carry, MappedType $type) => array_merge($carry, $type->getErrorMessages()),
+                [],
+            );
+            $baseline[$file->getFilename()] = $errors;
+        }
+    }
+
+    fs()->dumpFile(
+        Filesystem::SCHEMA_ORG_EXAMPLES_DIR . '/../examples-baseline.json',
+        json_encode($baseline, \JSON_PRETTY_PRINT),
+    );
 }
 
 function getCurrentSchemaOrgDefinition(): string

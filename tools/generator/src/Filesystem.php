@@ -18,8 +18,8 @@ use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
 readonly class Filesystem
 {
     public const CACHE_DIR_SCHEMA_ORG = __DIR__ . '/../../../var/cache/schema-org';
+    public const SCHEMA_ORG_EXAMPLES_DIR = __DIR__ . '/../../../resources/schema.org/examples';
     private const GENERATED_CLASSES_DIR = __DIR__ . '/../../../src/SchemaOrg/Generated';
-    private const SCHEMA_ORG_EXAMPLES_DIR = __DIR__ . '/../../../resources';
 
     public function __construct(
         private SymfonyFilesystem $filesystem = new SymfonyFilesystem(),
@@ -48,7 +48,7 @@ readonly class Filesystem
         if (json_decode($content)) {
             $key = md5($content);
             $filename = \sprintf(
-                '%s/schema.org/examples/%s-%s.json-ld',
+                '%s/%s-%s.json-ld',
                 self::SCHEMA_ORG_EXAMPLES_DIR,
                 $prefix,
                 $key,

@@ -70,9 +70,7 @@ class ValidationMapper
         $this->rootParsedJsonLd = $parsedJsonLd;
 
         foreach ($expandedJsonLd as $expandedType) {
-            dump($expandedType);
             $mappedType = $this->mapType($expandedType);
-            dump($mappedType);
 
             if (
                 !property_exists($expandedType, Keyword::ID->value)
@@ -118,10 +116,16 @@ class ValidationMapper
             $type->type = $this->removeSchemaOrgDomain(...(array) $expandedType->{Keyword::TYPE->value});
         }
 
+        $nameProperty = null;
+
         if (property_exists($expandedType, 'http://schema.org/name')) {
-            $type->name = $expandedType->{'http://schema.org/name'}[0]->{Keyword::VALUE->value};
+            $nameProperty = $expandedType->{'http://schema.org/name'}[0];
         } elseif (property_exists($expandedType, 'https://schema.org/name')) {
-            $type->name = $expandedType->{'https://schema.org/name'}[0]->{Keyword::VALUE->value};
+            $nameProperty = $expandedType->{'https://schema.org/name'}[0];
+        }
+
+        if (null !== $nameProperty && property_exists($nameProperty, Keyword::VALUE->value)) {
+            $type->name = $nameProperty->{Keyword::VALUE->value};
         }
 
         foreach ($expandedType as $label => $value) {
@@ -274,11 +278,7 @@ class ValidationMapper
             }
         }
 
-        if (\is_array($property->value)) {
-            if (!$parsedValue->content instanceof ArrayStructure) {
-                throw new \RuntimeException('Property value is an array but parsed value is not an array structure.');
-            }
-
+        if (\is_array($property->value) && $parsedValue->content instanceof ArrayStructure) {
             foreach ($property->value as $key => $value) {
                 $content = $parsedValue->content->getValue($key)->content;
 
