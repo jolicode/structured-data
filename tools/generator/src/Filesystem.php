@@ -17,9 +17,9 @@ use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
 
 readonly class Filesystem
 {
+    public const CACHE_DIR_SCHEMA_ORG = __DIR__ . '/../../../var/cache/schema-org';
     private const GENERATED_CLASSES_DIR = __DIR__ . '/../../../src/SchemaOrg/Generated';
     private const SCHEMA_ORG_EXAMPLES_DIR = __DIR__ . '/../../../resources';
-    private const CACHE_DIR_SCHEMA_ORG = __DIR__ . '/../../../var/cache/schema-org';
 
     public function __construct(
         private SymfonyFilesystem $filesystem = new SymfonyFilesystem(),
@@ -56,11 +56,6 @@ readonly class Filesystem
 
             $this->filesystem->dumpFile($filename, $content);
         }
-    }
-
-    public function saveSchemaOrgTypesDefinitionFile(string $content): void
-    {
-        $this->filesystem->dumpFile($this->getSchemaOrgTypesDefinitionFilename(), $content);
     }
 
     public function getSchemaOrgTypesDefinition(): string

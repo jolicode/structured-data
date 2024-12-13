@@ -70,7 +70,9 @@ class ValidationMapper
         $this->rootParsedJsonLd = $parsedJsonLd;
 
         foreach ($expandedJsonLd as $expandedType) {
+            dump($expandedType);
             $mappedType = $this->mapType($expandedType);
+            dump($mappedType);
 
             if (
                 !property_exists($expandedType, Keyword::ID->value)
@@ -153,6 +155,10 @@ class ValidationMapper
         }
 
         foreach ($value as $valueEntry) {
+            if (\is_array($valueEntry)) {
+                $valueEntry = (object) $valueEntry;
+            }
+
             if ($this->isTypeReference($valueEntry)) {
                 $this->savePropertyWithReference($valueEntry, $property);
             }
@@ -383,7 +389,7 @@ class ValidationMapper
         }
     }
 
-    private function isTypeProperty(\stdClass|string $valueEntry): bool
+    private function isTypeProperty(\stdClass|array|string $valueEntry): bool
     {
         if (!$valueEntry instanceof \stdClass) {
             return false;

@@ -18,13 +18,19 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
 use Castor\Attribute\AsOption;
 use Castor\Attribute\AsTask;
 
+use function Castor\check;
+use function Castor\finder;
+use function Castor\fs;
+use function Castor\http_download;
 use function Castor\io;
 use function Castor\run;
 
-use Jolicode\JsonLd\Generator\Downloader;
 use Jolicode\JsonLd\Generator\Filesystem;
 use Jolicode\JsonLd\Generator\GeneratorsContainer;
+use Jolicode\JsonLd\Generator\SchemaOrg\Generator;
+use Jolicode\SchemaOrg\SchemaOrg;
 use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Process\ExecutableFinder;
 
 #[AsTask(description: 'Installs generator tooling')]
 function install(): void
@@ -45,7 +51,7 @@ function generate(
 ): void {
     io()->title('Generating classes for JSON-LD validation');
 
-    if (!(new Filesystem())->hasSchemaOrgTypesDefinitionFile()) {
+    if (!file_exists(getCurrentSchemaOrgDefinitionFileName())) {
         io()->info('The schema.org types definition file is missing, downloading it.');
         downloadSchemaOrgTypesFile();
     }
@@ -65,10 +71,19 @@ function downloadSchemaOrgTypesFile(
     bool $overwrite = false,
 ): void {
     io()->title('Downloading the schema.org types definition file');
+    $filename = getCurrentSchemaOrgDefinitionFileName();
 
-    $downloader = new Downloader();
-    $downloader->downloadSchemaOrgTypesDefinitionFile($overwrite);
+    if (!$overwrite && file_exists($filename)) {
+        return;
+    }
 
+    http_download(
+        \sprintf(
+            'https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/releases/%s/schemaorg-current-https.jsonld',
+            SchemaOrg::VERSION,
+        ),
+        $filename,
+    );
     io()->success('Schema.org types updated successfully');
 }
 
@@ -76,9 +91,37 @@ function downloadSchemaOrgTypesFile(
 function downloadSchemaOrgExamples(): void
 {
     io()->title('Downloading the schema.org examples file');
+    check(
+        'Check if Git is installed',
+        'Git is not installed. Please install it before.',
+        fn () => (new ExecutableFinder())->find('git'),
+    );
 
-    $downloader = new Downloader();
-    $downloader->downloadSchemaOrgExamples();
+    fs()->remove(Filesystem::CACHE_DIR_SCHEMA_ORG . '/git');
+    run('git clone --filter=blob:none --sparse --depth=1 https://github.com/schemaorg/schemaorg.git ' . Filesystem::CACHE_DIR_SCHEMA_ORG . '/git');
+    run('git sparse-checkout set --no-cone "/data/ext" "/data/examples.txt"', workingDirectory: Filesystem::CACHE_DIR_SCHEMA_ORG . '/git');
+    run('git checkout main', workingDirectory: Filesystem::CACHE_DIR_SCHEMA_ORG . '/git');
 
+    $generator = new Generator();
+
+    foreach (finder()->name('*.txt')->in(Filesystem::CACHE_DIR_SCHEMA_ORG . '/git/data')->files() as $file) {
+        $generator->generateExamples($file->getContents());
+    }
+
+    fs()->remove(Filesystem::CACHE_DIR_SCHEMA_ORG . '/git');
     io()->success('Schema.org examples file downloaded successfully');
+}
+
+function getCurrentSchemaOrgDefinition(): string
+{
+    return file_get_contents(getCurrentSchemaOrgDefinitionFileName());
+}
+
+function getCurrentSchemaOrgDefinitionFileName(): string
+{
+    return \sprintf(
+        '%s/schemaorg-%s-https.jsonld',
+        Filesystem::CACHE_DIR_SCHEMA_ORG,
+        SchemaOrg::VERSION,
+    );
 }
