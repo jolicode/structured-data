@@ -75,7 +75,7 @@ class ValidationMapper
             if (
                 !property_exists($expandedType, Keyword::ID->value)
                 || (!$this->isTypeReference($expandedType)
-                    && '_:b0' === $expandedType->{Keyword::ID->value})
+                    || '_:b0' === $expandedType->{Keyword::ID->value})
             ) {
                 $this->mappedTypes[] = $mappedType;
             }
@@ -158,7 +158,7 @@ class ValidationMapper
             return $property;
         }
 
-        foreach ($value as $valueEntry) {
+        foreach ($value as $valueKey => $valueEntry) {
             if (\is_array($valueEntry)) {
                 $valueEntry = (object) $valueEntry;
             }
@@ -170,6 +170,7 @@ class ValidationMapper
             if ($this->isTypeProperty($valueEntry)) {
                 $valueEntry = $this->mapType($valueEntry);
                 $valueEntry->parent = $property->type;
+                $valueEntry->parentProperty = $property;
             }
 
             if ($this->isValueOrId($valueEntry)) {
@@ -180,10 +181,15 @@ class ValidationMapper
                 $valueEntry = $this->removeSchemaOrgDomain($valueEntry);
             }
 
-            $property->value[] = $valueEntry;
+            if (\is_string($valueKey)) {
+                $valueKey = $this->removeSchemaOrgDomain($valueKey);
+                $property->value[$valueKey] = $valueEntry;
+            } else {
+                $property->value[] = $valueEntry;
+            }
         }
 
-        if (1 === \count($property->value)) {
+        if (\is_array($property->value) && 1 === \count($property->value)) {
             $propertyValue = $property->value[0];
 
             if ($this->isValueOrId($propertyValue)) {

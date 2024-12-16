@@ -58,7 +58,6 @@ abstract class AbstractValidator
         );
 
         $range = implode(\PHP_EOL, $range);
-
         $error = new MappedError(
             $message,
             Keyword::TYPE->value,
@@ -66,6 +65,7 @@ abstract class AbstractValidator
             $severity,
             static::VALIDATOR_NAME,
             $range,
+            parent: $target,
         );
 
         $target->errors[] = $error;

@@ -26,7 +26,7 @@ class SchemaOrgValidator extends AbstractValidator
     {
         $errors = [];
         $typeLabel = $type->type;
-        $errorTarget = $type->getProperty(Keyword::TYPE->value) ?: $type;
+        $errorTarget = $property ?: $type;
 
         if (
             $property

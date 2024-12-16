@@ -91,21 +91,7 @@ function validate(
 
     foreach ($types as $type) {
         if ($withDetails && is_string($type->type)) {
-            io()->writeln(sprintf('Type: %s', $type->type));
-
-            foreach ($type->properties as $propertyName => $property) {
-                $value = $property->value;
-
-                if ($value instanceof MappedType) {
-                    $value = $value->name;
-                }
-
-                if (null !== $value && is_string($value)) {
-                    io()->writeln(sprintf(' * %s: %s', $propertyName, $value));
-                } else {
-                    io()->writeln(sprintf(' * %s', $propertyName));
-                }
-            }
+            displayType($type);
 
             if ($type->errors) {
                 foreach ($type->errors as $error) {
@@ -116,9 +102,10 @@ function validate(
                     }
 
                     io()->writeln(sprintf(
-                        'The above error was raised for %s on property "%s". Found on position %s',
+                        'The above error was raised for %s on property "%s" (%s). Found on position %s',
                         $error->type ? sprintf('the type "%s"', $error->type) : 'an unknown type (with no @type property)',
                         $error->key,
+                        $error->parent?->getKeyPath(),
                         $error->ranges,
                     ));
                 }
@@ -137,6 +124,33 @@ function validate(
             io()->error(sprintf('The provided document seems to be invalid. %s out of %s types contain an error.', $errorsCount, count($types)));
         } else {
             io()->success('The provided document seems to be valid.');
+        }
+    }
+}
+
+function displayType(MappedType $type, int $level = 0): void
+{
+    $prefix = str_repeat('  ', $level);
+    io()->writeln(sprintf('%s * %s', $prefix, $type->getKeyPath()));
+
+    foreach ($type->properties as $propertyName => $property) {
+        /** @var Jolicode\SchemaOrg\Mapper\MappedProperty $property */
+        $value = $property->value;
+
+        if (is_string($value)) {
+            io()->writeln(sprintf('%s   * %s: %s', $prefix, $property->getKeyPath(), $value));
+        } elseif ($value instanceof MappedType) {
+            displayType($value, $level + 1);
+        } elseif (is_array($value)) {
+            foreach ($value as $subValue) {
+                if ($subValue instanceof MappedType) {
+                    displayType($subValue, $level + 1);
+                } else {
+                    io()->writeln(sprintf('%s   * %s: %s', $prefix, $property->getKeyPath(), $subValue));
+                }
+            }
+        } else {
+            io()->writeln(sprintf('%s   * %s', $prefix, $property->getKeyPath()));
         }
     }
 }

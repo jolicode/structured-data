@@ -30,6 +30,7 @@ class MappedType
          */
         public array $errors = [],
         public ?self $parent = null,
+        public ?MappedProperty $parentProperty = null,
         /**
          * @var array<self>
          */
@@ -75,11 +76,24 @@ class MappedType
     /**
      * @return string[]
      */
-    public function getErrorMessages(): array
+    public function getErrorMessages(bool $withKey = false): array
     {
         return array_map(
-            fn (MappedError $error) => $error->message,
+            function (MappedError $error) use ($withKey) {
+                if ($withKey) {
+                    $errorKeyPath = $error->getKeyPath();
+
+                    return $errorKeyPath ? $error->getKeyPath() . ': ' . $error->message : $error->message;
+                }
+
+                return $error->message;
+            },
             $this->errors,
         );
+    }
+
+    public function getKeyPath(): string
+    {
+        return $this->parentProperty?->getKeyPath() ?? '';
     }
 }

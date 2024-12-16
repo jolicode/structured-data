@@ -58,4 +58,15 @@ class MappedProperty
             $this->valueRanges[] = $range;
         }
     }
+
+    public function getKeyPath(): string
+    {
+        $path = $this->key;
+
+        if ($this->type && $this->type->parentProperty) {
+            $path = $this->type->parentProperty->getKeyPath() . '.' . $path;
+        }
+
+        return $path;
+    }
 }

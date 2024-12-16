@@ -31,6 +31,12 @@ class ObjectStructure extends AbstractStructure
 
     public function hasProperty(string $name): bool
     {
+        if (\array_key_exists($name, $this->properties)) {
+            return true;
+        }
+
+        $name = str_replace('@', '', $name);
+
         return \array_key_exists($name, $this->properties);
     }
 
@@ -92,7 +98,12 @@ class ObjectStructure extends AbstractStructure
     {
         $foundValue = array_filter(
             $this->getGraph()->getValues(),
-            fn (Value $value) => $value->content instanceof ObjectStructure && $value->content->getProperty(Keyword::ID->value)->value?->content === $reference,
+            function (Value $value) use ($reference): bool {
+                return $value->content instanceof ObjectStructure
+                    && $value->content->hasProperty(Keyword::ID->value)
+                    && $value->content->getProperty(Keyword::ID->value)->value?->content === $reference
+                ;
+            },
         );
 
         return $foundValue[array_key_first($foundValue)];

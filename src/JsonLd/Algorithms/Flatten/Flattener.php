@@ -100,10 +100,8 @@ class Flattener
             }
 
             // 4.2
-            $entry = &$defaultGraph[$graphName];
-
             // 4.3
-            $entry[FramingKeyword::GRAPH->value] = [];
+            $defaultGraph[$graphName][FramingKeyword::GRAPH->value] = [];
 
             // 4.4
             if ($ordered) {
@@ -116,7 +114,7 @@ class Flattener
                     continue;
                 }
 
-                $entry[FramingKeyword::GRAPH->value][] = $node;
+                $defaultGraph[$graphName][FramingKeyword::GRAPH->value][] = $node;
             }
         }
 

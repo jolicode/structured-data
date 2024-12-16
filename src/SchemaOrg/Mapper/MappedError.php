@@ -23,6 +23,18 @@ readonly class MappedError
         public string $severity,
         public ?string $validatorName,
         public string $ranges,
+        public MappedType|MappedProperty|null $parent = null,
     ) {
+    }
+
+    public function getKeyPath(): string
+    {
+        $parentPath = $this->parent?->getKeyPath();
+
+        if ($parentPath) {
+            return $parentPath;
+        }
+
+        return $this->key ?? '';
     }
 }
