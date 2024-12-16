@@ -23,7 +23,9 @@ class PointerListener extends IdleListener implements PositionAwareInterface
         private int $startLineNumber = 0,
         private int $currentColumn = 0,
         private int $currentLine = 0,
+        private int $startColumnNumber = 0,
         private ?AbstractStructure $currentStructure = null,
+        private int $currentColumnAdjustment = 0,
     ) {
     }
 
@@ -34,6 +36,10 @@ class PointerListener extends IdleListener implements PositionAwareInterface
 
     public function setFilePosition(int $lineNumber, int $charNumber): void
     {
+        if ($this->currentLine !== $lineNumber) {
+            $this->currentColumnAdjustment = 0;
+        }
+
         $this->currentLine = $lineNumber;
         $this->currentColumn = $charNumber;
     }
@@ -60,25 +66,32 @@ class PointerListener extends IdleListener implements PositionAwareInterface
 
     public function key(string $key): void
     {
-        if ($this->currentStructure instanceof ObjectStructure) {
-            $endPosition = $this->getCurrentPosition();
-            $startPosition = clone $endPosition;
-            $startPosition->column -= \strlen($key);
+        $this->adjustFilePosition($key);
+        $endPosition = $this->getCurrentPosition();
+        $startPosition = clone $endPosition;
+        $startPosition->column -= mb_strlen($key);
 
+        if ($this->currentStructure instanceof ObjectStructure) {
             $this->currentStructure->addKey($key, new Range($startPosition, $endPosition));
         }
     }
 
     public function value($value): void
     {
-        $end = $this->getCurrentPosition();
-        $start = clone $end;
-
         if (\is_string($value)) {
-            $start->column -= \strlen($value);
+            $this->adjustFilePosition($value);
         }
 
+        $end = $this->getCurrentPosition();
+        $start = clone $end;
+        $start->column -= mb_strlen((string) $value);
+
         $this->currentStructure?->addValue($value, new Range($start, $end));
+    }
+
+    private function adjustFilePosition(string $string): void
+    {
+        $this->currentColumnAdjustment += mb_strlen($string) - \strlen($string);
     }
 
     private function startStructure(string $structureClass): void
@@ -124,6 +137,12 @@ class PointerListener extends IdleListener implements PositionAwareInterface
 
     private function getCurrentPosition(): Position
     {
-        return new Position($this->currentLine + $this->startLineNumber, $this->currentColumn);
+        $column = $this->currentColumn + $this->currentColumnAdjustment;
+
+        if (1 === $this->currentLine) {
+            $column += $this->startColumnNumber;
+        }
+
+        return new Position($this->currentLine + $this->startLineNumber, $column);
     }
 }

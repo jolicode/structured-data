@@ -22,7 +22,10 @@ class JsonLdParser
      */
     public function parse(JsonLdElement $jsonLdElement): ?AbstractStructure
     {
-        $listener = new PointerListener(startLineNumber: $jsonLdElement->startLine);
+        $listener = new PointerListener(
+            startLineNumber: $jsonLdElement->startLine,
+            startColumnNumber: $jsonLdElement->startColumn,
+        );
 
         try {
             $stream = fopen('php://memory', 'r+');
