@@ -1,0 +1,51 @@
+{
+    "bad-attribute-nested-1.jsonld": [
+        "hasPart.hasPart.hasPart.hasPart.imABadAttribute: This property does not exist: imABadAttribute"
+    ],
+    "bad-attribute-nested-2.jsonld": [
+        "creator.contactPoint.badAgain: This property does not exist: badAgain",
+        "distribution.telephone: The property \"telephone\" does not exist on the type \"DataDownload\"",
+        "hasPart.creator.wrongOne: This property does not exist: wrongOne"
+    ],
+    "bad-attribute.jsonld": [
+        "imABadAttribute: This property does not exist: imABadAttribute"
+    ],
+    "compacted-with-lots-of-errors.jsonld": [
+        "creaator: The \"Orgaanization\" type is not a valid Schema.org type",
+        "creaator.contactaPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
+        "creaator.contactaPoint.badAgain: This property does not exist: badAgain",
+        "creaator.contactaPoint.contactType: The property \"contactType\" does not exist on the type \"Thing\"",
+        "creaator.contactaPoint.email: The property \"email\" does not exist on the type \"Thing\"",
+        "creaator.contactaPoint.telephone: The property \"telephone\" does not exist on the type \"Thing\"",
+        "creaator.contactaPoint: This property does not exist: contactaPoint",
+        "creaator: This property does not exist: creaator",
+        "distribution.telephone: The property \"telephone\" does not exist on the type \"DataDownload\"",
+        "hasPart.creator.wrongOne: This property does not exist: wrongOne",
+        "includedInDataCatalog: A typed value may only have one type, 2 provided"
+    ],
+    "expansion-exception.jsonld": [
+        "invalid type mapping"
+    ],
+    "invalid-json.jsonld": [
+        "Parsing error in [3:5]. Expected ',' or '}' while parsing object. Got: \""
+    ],
+    "multiple-types-2.jsonld": [
+        "birthPlace: A typed value may only have one type, 2 provided"
+    ],
+    "multiple-types-invalid.jsonld": [
+        "acrissCode: The property \"acrissCode\" does not exist on any of these types: \"Person, Organization\""
+    ],
+    "no-type-main.jsonld": [
+        "@type: Missing a @type entry. The @type entry is mandatory for root types"
+    ],
+    "no-type-nested.jsonld": [
+        "birthPlace: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
+        "birthPlace: The \"birthPlace\" property does not accept the \"Thing\" type as a value",
+        "birthPlace.address: The property \"address\" does not exist on the type \"Thing\"",
+        "birthPlace.faxNumber: The property \"faxNumber\" does not exist on the type \"Thing\"",
+        "birthPlace.slogan: The property \"slogan\" does not exist on the type \"Thing\""
+    ],
+    "wrong-parent-attribute.jsonld": [
+        "makesOffer: The \"makesOffer\" property does not accept the \"Intangible\" type as a value"
+    ]
+}

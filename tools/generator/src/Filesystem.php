@@ -19,6 +19,7 @@ readonly class Filesystem
 {
     public const CACHE_DIR_SCHEMA_ORG = __DIR__ . '/../../../var/cache/schema-org';
     public const SCHEMA_ORG_EXAMPLES_DIR = __DIR__ . '/../../../resources/schema.org/examples';
+    public const SCHEMA_ORG_FIXTURES_DIR = __DIR__ . '/../../../tests/Validation/fixtures/schema-org';
     private const GENERATED_CLASSES_DIR = __DIR__ . '/../../../src/SchemaOrg/Generated';
 
     public function __construct(
@@ -48,7 +49,7 @@ readonly class Filesystem
         if (json_decode($content)) {
             $key = md5($content);
             $filename = \sprintf(
-                '%s/%s-%s.json-ld',
+                '%s/%s-%s.jsonld',
                 self::SCHEMA_ORG_EXAMPLES_DIR,
                 $prefix,
                 $key,

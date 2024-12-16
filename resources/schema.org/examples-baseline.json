@@ -1,83 +1,119 @@
 {
-    "https-schema-org-0643a814f42411f98e4229065615a8b2.json-ld": [
-        "The \"@@@@\" type is not a valid Schema.org type"
+    "https-schema-org-0643a814f42411f98e4229065615a8b2.jsonld": [
+        "@type: The \"@@@@\" type is not a valid Schema.org type"
     ],
-    "https-schema-org-174cd6b839af20061459b14293425945.json-ld": [
-        "The property \"category\" does not exist on the type \"Guide\"",
-        "The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
-        "A typed value may only have one type, 2 provided",
-        "The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value"
+    "https-schema-org-174cd6b839af20061459b14293425945.jsonld": [
+        "category: The property \"category\" does not exist on the type \"Guide\"",
+        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
+        "hasPart: A typed value may only have one type, 2 provided",
+        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value"
     ],
-    "https-schema-org-4c9d6074efc0a21ff015997ae6780fb5.json-ld": [
-        "The property \"offeredBy\" does not exist on the type \"WorkBasedProgram\""
+    "https-schema-org-4c9d6074efc0a21ff015997ae6780fb5.jsonld": [
+        "offeredBy: The property \"offeredBy\" does not exist on the type \"WorkBasedProgram\""
     ],
-    "https-schema-org-4e6cf2c959e98935838b1053deccda20.json-ld": [
-        "The property \"category\" does not exist on the type \"Guide\"",
-        "The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
-        "A typed value may only have one type, 2 provided",
-        "The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value"
+    "https-schema-org-4e6cf2c959e98935838b1053deccda20.jsonld": [
+        "category: The property \"category\" does not exist on the type \"Guide\"",
+        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
+        "hasPart: A typed value may only have one type, 2 provided",
+        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value"
     ],
-    "https-schema-org-64d408910bd61862047a17436c6bf316.json-ld": [
-        "The property \"category\" does not exist on the type \"Guide\"",
-        "The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
-        "The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
-        "The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
-        "The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
-        "The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
-        "The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value"
+    "https-schema-org-5ae1b2e6b7cc52e871bf3dec64d6f02d.jsonld": [
+        "@type: Missing a @type entry. The @type entry is mandatory for root types"
     ],
-    "https-schema-org-74ed4843445c67e0995ca7bb4cb13784.json-ld": [
-        "This property does not exist: minAmount",
-        "This property does not exist: serviceMobileApp"
+    "https-schema-org-635c0b6cc24a32ec3454113a1e860c6d.jsonld": [
+        "@reverse: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
+        "@reverse.0: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
+        "@reverse.0.0: This property does not exist: 0",
+        "@reverse.0: This property does not exist: 0",
+        "@reverse: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
+        "@reverse.0: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
+        "@reverse.0.0: This property does not exist: 0",
+        "@reverse.0: This property does not exist: 0",
+        "@reverse.1: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
+        "@reverse.1.0: This property does not exist: 0",
+        "@reverse.1: This property does not exist: 1",
+        "@reverse: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
+        "@reverse.0: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
+        "@reverse.0.0: This property does not exist: 0",
+        "@reverse.0: This property does not exist: 0",
+        "@reverse.1: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
+        "@reverse.1.0: This property does not exist: 0",
+        "@reverse.1: This property does not exist: 1"
     ],
-    "https-schema-org-8d49e9454c85a63d1e1b7e304fcb4724.json-ld": [
-        "This property does not exist: maxAmount",
-        "This property does not exist: minAmount"
+    "https-schema-org-64d408910bd61862047a17436c6bf316.jsonld": [
+        "category: The property \"category\" does not exist on the type \"Guide\"",
+        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
+        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
+        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
+        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
+        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
+        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value"
     ],
-    "https-schema-org-8f0ed5c3d308671ec8d6598fa4fa2689.json-ld": [
-        "The property \"mathExpression\" does not exist on the type \"SolveMathAction\"",
-        "The property \"mathExpression\" does not exist on the type \"SolveMathAction\""
+    "https-schema-org-74ed4843445c67e0995ca7bb4cb13784.jsonld": [
+        "amount.minAmount: This property does not exist: minAmount",
+        "availableChannel.serviceMobileApp: This property does not exist: serviceMobileApp"
     ],
-    "https-schema-org-ac74a981e8399650eb20b17d8f79b51c.json-ld": [
-        "The property \"endDate\" does not exist on the type \"MonetaryGrant\"",
-        "The property \"startDate\" does not exist on the type \"MonetaryGrant\""
+    "https-schema-org-8d49e9454c85a63d1e1b7e304fcb4724.jsonld": [
+        "amount.maxAmount: This property does not exist: maxAmount",
+        "amount.minAmount: This property does not exist: minAmount"
     ],
-    "https-schema-org-d0defd4b48b483a3172db271da7bd2fd.json-ld": [
-        "This property does not exist: healthPlanNetworkTiers",
-        "The \"healthPlanCostSharing\" property does not accept the \"HealthPlanCostSharingSpecification\" type as a value",
-        "The property \"currency\" does not exist on the type \"PriceSpecification\"",
-        "This property does not exist: healthPlanPharmacyType",
-        "The \"healthPlanCostSharing\" property does not accept the \"HealthPlanCostSharingSpecification\" type as a value",
-        "The property \"currency\" does not exist on the type \"PriceSpecification\"",
-        "This property does not exist: healthPlanPharmacyType",
-        "This property does not exist: marketingUrl",
-        "This property does not exist: summaryUrl",
-        "This property does not exist: usesHealthPlanIdType"
+    "https-schema-org-8f0ed5c3d308671ec8d6598fa4fa2689.jsonld": [
+        "potentialAction.mathExpression-input: The property \"mathExpression\" does not exist on the type \"SolveMathAction\"",
+        "potentialAction.mathExpression-input: The property \"mathExpression\" does not exist on the type \"SolveMathAction\""
     ],
-    "https-schema-org-e4a7db6e7875a6c2b6228532a90d294e.json-ld": [
-        "The property \"drug\" does not exist on the type \"MedicalWebPage\""
+    "https-schema-org-a00cda5ffe4ac3b34f1b3c6d63368aa9.jsonld": [
+        "@type: Missing a @type entry. The @type entry is mandatory for root types",
+        "@type: The \"http:\/\/productontology.org\/id\/DVD\" type is not a valid Schema.org type",
+        "@type: The \"https:\/\/schema.org\/Movie\" type is not a valid Schema.org type",
+        "https:\/\/schema.org\/director: This property does not exist: https:\/\/schema.org\/director",
+        "https:\/\/schema.org\/isPartOf: This property does not exist: https:\/\/schema.org\/isPartOf",
+        "https:\/\/schema.org\/name: This property does not exist: https:\/\/schema.org\/name",
+        "https:\/\/schema.org\/productionCompany: This property does not exist: https:\/\/schema.org\/productionCompany"
     ],
-    "https-schema-org-e773b0f1560d400d5fc8eea9addb838c.json-ld": [
-        "The property \"adverseOutcome\" does not exist on the type \"Drug\"",
-        "The property \"contraindication\" does not exist on the type \"Drug\"",
-        "This property does not exist: indication",
-        "The property \"seriousAdverseOutcome\" does not exist on the type \"Drug\""
+    "https-schema-org-ac74a981e8399650eb20b17d8f79b51c.jsonld": [
+        "endDate: The property \"endDate\" does not exist on the type \"MonetaryGrant\"",
+        "startDate: The property \"startDate\" does not exist on the type \"MonetaryGrant\""
     ],
-    "https-schema-org-ebdbf5bad40b117d3c9162b0f5e829dc.json-ld": [
-        "This property does not exist: cause",
-        "The \"possibleTreatment\" property does not accept the \"Drug\" type as a value",
-        "The \"possibleTreatment\" property does not accept the \"DrugClass\" type as a value",
-        "The \"possibleTreatment\" property does not accept the \"DrugClass\" type as a value",
-        "The \"possibleTreatment\" property does not accept the \"Drug\" type as a value",
-        "The \"secondaryPrevention\" property does not accept the \"LifestyleModification\" type as a value",
-        "The \"secondaryPrevention\" property does not accept the \"LifestyleModification\" type as a value",
-        "The \"secondaryPrevention\" property does not accept the \"LifestyleModification\" type as a value"
+    "https-schema-org-d0defd4b48b483a3172db271da7bd2fd.jsonld": [
+        "healthPlanNetworkTiers: This property does not exist: healthPlanNetworkTiers",
+        "includesHealthPlanFormulary.healthPlanCostSharing: The \"healthPlanCostSharing\" property does not accept the \"HealthPlanCostSharingSpecification\" type as a value",
+        "includesHealthPlanFormulary.healthPlanCostSharing.healthPlanCopay.currency: The property \"currency\" does not exist on the type \"PriceSpecification\"",
+        "includesHealthPlanFormulary.healthPlanCostSharing.healthPlanPharmacyType: This property does not exist: healthPlanPharmacyType",
+        "includesHealthPlanFormulary.healthPlanCostSharing: The \"healthPlanCostSharing\" property does not accept the \"HealthPlanCostSharingSpecification\" type as a value",
+        "includesHealthPlanFormulary.healthPlanCostSharing.healthPlanCopay.currency: The property \"currency\" does not exist on the type \"PriceSpecification\"",
+        "includesHealthPlanFormulary.healthPlanCostSharing.healthPlanPharmacyType: This property does not exist: healthPlanPharmacyType",
+        "marketingUrl: This property does not exist: marketingUrl",
+        "summaryUrl: This property does not exist: summaryUrl",
+        "usesHealthPlanIdType: This property does not exist: usesHealthPlanIdType"
     ],
-    "https-schema-org-f929ad89ee52fc24a8010302a47faaf7.json-ld": [
-        "The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
-        "The \"contactPoint\" property does not accept the \"Thing\" type as a value",
-        "The property \"contactType\" does not exist on the type \"Thing\"",
-        "The property \"email\" does not exist on the type \"Thing\"",
-        "The property \"telephone\" does not exist on the type \"Thing\""
+    "https-schema-org-e4a7db6e7875a6c2b6228532a90d294e.jsonld": [
+        "drug: The property \"drug\" does not exist on the type \"MedicalWebPage\""
+    ],
+    "https-schema-org-e773b0f1560d400d5fc8eea9addb838c.jsonld": [
+        "adverseOutcome: The property \"adverseOutcome\" does not exist on the type \"Drug\"",
+        "contraindication: The property \"contraindication\" does not exist on the type \"Drug\"",
+        "indication: This property does not exist: indication",
+        "seriousAdverseOutcome: The property \"seriousAdverseOutcome\" does not exist on the type \"Drug\""
+    ],
+    "https-schema-org-ebdbf5bad40b117d3c9162b0f5e829dc.jsonld": [
+        "cause: This property does not exist: cause",
+        "possibleTreatment: The \"possibleTreatment\" property does not accept the \"Drug\" type as a value",
+        "possibleTreatment: The \"possibleTreatment\" property does not accept the \"DrugClass\" type as a value",
+        "possibleTreatment: The \"possibleTreatment\" property does not accept the \"DrugClass\" type as a value",
+        "possibleTreatment: The \"possibleTreatment\" property does not accept the \"Drug\" type as a value",
+        "secondaryPrevention: The \"secondaryPrevention\" property does not accept the \"LifestyleModification\" type as a value",
+        "secondaryPrevention: The \"secondaryPrevention\" property does not accept the \"LifestyleModification\" type as a value",
+        "secondaryPrevention: The \"secondaryPrevention\" property does not accept the \"LifestyleModification\" type as a value"
+    ],
+    "https-schema-org-f929ad89ee52fc24a8010302a47faaf7.jsonld": [
+        "contactPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
+        "contactPoint: The \"contactPoint\" property does not accept the \"Thing\" type as a value",
+        "contactPoint.contactType: The property \"contactType\" does not exist on the type \"Thing\"",
+        "contactPoint.email: The property \"email\" does not exist on the type \"Thing\"",
+        "contactPoint.telephone: The property \"telephone\" does not exist on the type \"Thing\""
+    ],
+    "https-schema-org-fecfb38a45ddda4c1562c0d5557fdf8d.jsonld": [
+        "constrainingProperty: This property does not exist: constrainingProperty",
+        "gender: The property \"gender\" does not exist on the type \"StatisticalVariable\""
     ]
 }

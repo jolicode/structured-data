@@ -117,30 +117,13 @@ function downloadSchemaOrgExamples(): void
 #[AsTask(name: 'schema-org:examples:baseline', description: 'Update the schema.org examples baseline file')]
 function updateSchemaOrgExamplesBaseline(): void
 {
-    $finder = finder()->files()->in(Filesystem::SCHEMA_ORG_EXAMPLES_DIR)->name('*.json-ld')->sortByName();
-    $validator = new Validator();
-    $baseline = [];
-
-    foreach ($finder as $file) {
-        $types = $validator->getTypes($file->getContents());
-        $errors = array_filter(
-            $types,
-            fn (MappedType $type) => (bool) $type->errors,
-        );
-
-        if (\count($errors) > 0) {
-            $errors = array_reduce(
-                $errors,
-                fn (array $carry, MappedType $type) => array_merge($carry, $type->getErrorMessages()),
-                [],
-            );
-            $baseline[$file->getFilename()] = $errors;
-        }
-    }
-
-    fs()->dumpFile(
+    updateBaseline(
+        Filesystem::SCHEMA_ORG_EXAMPLES_DIR,
         Filesystem::SCHEMA_ORG_EXAMPLES_DIR . '/../examples-baseline.json',
-        json_encode($baseline, \JSON_PRETTY_PRINT),
+    );
+    updateBaseline(
+        Filesystem::SCHEMA_ORG_FIXTURES_DIR,
+        Filesystem::SCHEMA_ORG_FIXTURES_DIR . '/../schema-org-baseline.json',
     );
 }
 
@@ -155,5 +138,36 @@ function getCurrentSchemaOrgDefinitionFileName(): string
         '%s/schemaorg-%s-https.jsonld',
         Filesystem::CACHE_DIR_SCHEMA_ORG,
         SchemaOrg::VERSION,
+    );
+}
+
+function updateBaseline(
+    string $path,
+    string $baselinePath,
+): void {
+    $finder = finder()->files()->in($path)->name('*.jsonld')->sortByName();
+    $validator = new Validator();
+    $baseline = [];
+
+    foreach ($finder as $file) {
+        $types = $validator->getTypes($file->getContents());
+        $errorMessages = [];
+        $typesWithError = array_filter(
+            $types,
+            fn (MappedType $type) => (bool) $type->errors,
+        );
+
+        if (\count($typesWithError) > 0) {
+            foreach ($typesWithError as $typeWithError) {
+                $errorMessages = array_merge($errorMessages, $typeWithError->getErrorMessages(true));
+            }
+
+            $baseline[$file->getFilename()] = $errorMessages;
+        }
+    }
+
+    fs()->dumpFile(
+        $baselinePath,
+        json_encode($baseline, \JSON_PRETTY_PRINT),
     );
 }
