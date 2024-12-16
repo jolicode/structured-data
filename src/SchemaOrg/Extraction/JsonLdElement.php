@@ -11,6 +11,12 @@
 
 namespace Jolicode\SchemaOrg\Extraction;
 
-class JsonLdElement extends AbstractElement
+class JsonLdElement
 {
+    public function __construct(
+        public int $startLine,
+        public int $startColumn,
+        public string $content,
+    ) {
+    }
 }

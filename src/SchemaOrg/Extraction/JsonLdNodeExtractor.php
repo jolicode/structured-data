@@ -25,7 +25,7 @@ class JsonLdNodeExtractor
     }
 
     /**
-     * @return AbstractElement[]
+     * @return JsonLdElement[]
      */
     public function extractJsonLd(string $url): array
     {
@@ -39,7 +39,7 @@ class JsonLdNodeExtractor
     }
 
     /**
-     * @return AbstractElement[]
+     * @return JsonLdElement[]
      */
     public function extractStructuredDataContent(string $body): array
     {
@@ -48,8 +48,7 @@ class JsonLdNodeExtractor
         if (0 === \count($content)) {
             if (\in_array(substr(trim($body), 0, 1), ['[', '{'], true)) {
                 // assume it is a json string
-                $jsonLdElement = new JsonLdElement(0, $body);
-                $content = [$jsonLdElement];
+                $content = [new JsonLdElement(0, 0, $body)];
             }
         }
 
@@ -62,12 +61,27 @@ class JsonLdNodeExtractor
     private function extractJsonLdNodes(string $body): array
     {
         $content = [];
-        $document = new JsonLdDOMDocument($body);
-        $document = $document->fromString($body);
+        $regex = '/<script[^>]+type=\"application\/ld\+json\"[^>]*>(.*)<\/script>/miUus';
 
-        foreach ($document->getItems() as $item) {
-            if ($html = $item->textContent) {
-                $jsonLdElement = new JsonLdElement($document->getLine($item) - 1, $html);
+        if (preg_match_all(
+            '/<script[^>]+type=\"application\/ld\+json\"[^>]*>(.*)<\/script>/miUus',
+            $body,
+            $matches,
+            \PREG_PATTERN_ORDER | \PREG_OFFSET_CAPTURE,
+        )) {
+            foreach ($matches[1] as $match) {
+                $startColumn = mb_strlen(substr($body, 0, $match[1]));
+                $startLine = substr_count($body, "\n", 0, $startColumn);
+
+                if ($startLine > 0) {
+                    $lastLineReturnPosition = mb_strrpos(substr($body, 0, $startColumn), "\n");
+
+                    if (false !== $lastLineReturnPosition) {
+                        $startColumn = $startColumn - $lastLineReturnPosition - 1;
+                    }
+                }
+
+                $jsonLdElement = new JsonLdElement($startLine, $startColumn, $match[0]);
                 $content[] = $jsonLdElement;
             }
         }

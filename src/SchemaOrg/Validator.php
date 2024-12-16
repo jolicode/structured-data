@@ -18,7 +18,7 @@ use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
 use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
 use Jolicode\JsonLd\Parser\JsonLdParser;
-use Jolicode\SchemaOrg\Extraction\AbstractElement;
+use Jolicode\SchemaOrg\Extraction\JsonLdElement;
 use Jolicode\SchemaOrg\Extraction\JsonLdNodeExtractor;
 use Jolicode\SchemaOrg\Mapper\MappedError;
 use Jolicode\SchemaOrg\Mapper\MappedProperty;
@@ -137,7 +137,7 @@ class Validator
     }
 
     /**
-     * @return array<AbstractElement>
+     * @return array<JsonLdElement>
      */
     private function getJsonLdContent(string $input): array
     {
