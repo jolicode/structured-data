@@ -61,7 +61,6 @@ class JsonLdNodeExtractor
     private function extractJsonLdNodes(string $body): array
     {
         $content = [];
-        $regex = '/<script[^>]+type=\"application\/ld\+json\"[^>]*>(.*)<\/script>/miUus';
 
         if (preg_match_all(
             '/<script[^>]+type=\"application\/ld\+json\"[^>]*>(.*)<\/script>/miUus',
@@ -71,10 +70,10 @@ class JsonLdNodeExtractor
         )) {
             foreach ($matches[1] as $match) {
                 $startColumn = mb_strlen(substr($body, 0, $match[1]));
-                $startLine = substr_count($body, "\n", 0, $startColumn);
+                $startLine = substr_count(mb_substr($body, 0, $startColumn), "\n");
 
                 if ($startLine > 0) {
-                    $lastLineReturnPosition = mb_strrpos(substr($body, 0, $startColumn), "\n");
+                    $lastLineReturnPosition = mb_strrpos(mb_substr($body, 0, $startColumn), "\n");
 
                     if (false !== $lastLineReturnPosition) {
                         $startColumn = $startColumn - $lastLineReturnPosition - 1;
