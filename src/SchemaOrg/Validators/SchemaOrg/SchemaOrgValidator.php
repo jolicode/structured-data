@@ -35,8 +35,12 @@ class SchemaOrgValidator extends AbstractValidator
         ) {
             // @see https://www.w3.org/TR/json-ld/#specifying-the-type
             $message = \sprintf('A typed value may only have one type, %d provided', \count($typeLabel));
-
-            $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_ERROR);
+            $errors[] = self::addMappedError(
+                $type->getProperty(Keyword::TYPE->value) ?? $errorTarget,
+                $message,
+                $type,
+                MappedError::SEVERITY_ERROR,
+            );
 
             return $errors;
         }
@@ -44,7 +48,6 @@ class SchemaOrgValidator extends AbstractValidator
         if (null === $typeLabel) {
             if (!$type->parent) {
                 $message = 'Missing a @type entry. The @type entry is mandatory for root types';
-
                 $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_ERROR);
 
                 return $errors;
@@ -52,7 +55,6 @@ class SchemaOrgValidator extends AbstractValidator
 
             $typeLabel = self::guessTypeFromProperties($type->properties);
             $message = 'The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ' . $typeLabel;
-
             $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_WARNING);
         }
 
@@ -65,7 +67,12 @@ class SchemaOrgValidator extends AbstractValidator
 
             if (!class_exists($typeFqcn)) {
                 $message = \sprintf('The "%s" type is not a valid Schema.org type', $label);
-                $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_ERROR);
+                $errors[] = self::addMappedError(
+                    $type->getProperty(Keyword::TYPE->value) ?? $errorTarget,
+                    $message,
+                    $type,
+                    MappedError::SEVERITY_ERROR,
+                );
 
                 continue;
             }
@@ -83,7 +90,6 @@ class SchemaOrgValidator extends AbstractValidator
 
                 if (!self::propertyTypeIsValid($property->key, $typeFqcn)) {
                     $message = \sprintf('The "%s" property does not accept the "%s" type as a value', $property->key, $typeFqcn::LABEL);
-
                     $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_ERROR);
                 }
             }

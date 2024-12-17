@@ -11,7 +11,7 @@
         "imABadAttribute: This property does not exist: imABadAttribute"
     ],
     "compacted-with-lots-of-errors.jsonld": [
-        "creaator: The \"Orgaanization\" type is not a valid Schema.org type",
+        "creaator.@type: The \"Orgaanization\" type is not a valid Schema.org type",
         "creaator.contactaPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
         "creaator.contactaPoint.badAgain: This property does not exist: badAgain",
         "creaator.contactaPoint.contactType: The property \"contactType\" does not exist on the type \"Thing\"",
@@ -21,7 +21,7 @@
         "creaator: This property does not exist: creaator",
         "distribution.telephone: The property \"telephone\" does not exist on the type \"DataDownload\"",
         "hasPart.creator.wrongOne: This property does not exist: wrongOne",
-        "includedInDataCatalog: A typed value may only have one type, 2 provided"
+        "includedInDataCatalog.@type: A typed value may only have one type, 2 provided"
     ],
     "expansion-exception.jsonld": [
         "invalid type mapping"
@@ -30,7 +30,7 @@
         "Parsing error in [3:5]. Expected ',' or '}' while parsing object. Got: \""
     ],
     "multiple-types-2.jsonld": [
-        "birthPlace: A typed value may only have one type, 2 provided"
+        "birthPlace.@type: A typed value may only have one type, 2 provided"
     ],
     "multiple-types-invalid.jsonld": [
         "acrissCode: The property \"acrissCode\" does not exist on any of these types: \"Person, Organization\""

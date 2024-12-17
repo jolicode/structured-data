@@ -5,7 +5,7 @@
     "https-schema-org-174cd6b839af20061459b14293425945.jsonld": [
         "category: The property \"category\" does not exist on the type \"Guide\"",
         "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
-        "hasPart: A typed value may only have one type, 2 provided",
+        "hasPart.@type: A typed value may only have one type, 2 provided",
         "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value"
     ],
     "https-schema-org-4c9d6074efc0a21ff015997ae6780fb5.jsonld": [
@@ -14,7 +14,7 @@
     "https-schema-org-4e6cf2c959e98935838b1053deccda20.jsonld": [
         "category: The property \"category\" does not exist on the type \"Guide\"",
         "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
-        "hasPart: A typed value may only have one type, 2 provided",
+        "hasPart.@type: A typed value may only have one type, 2 provided",
         "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value"
     ],
     "https-schema-org-5ae1b2e6b7cc52e871bf3dec64d6f02d.jsonld": [
