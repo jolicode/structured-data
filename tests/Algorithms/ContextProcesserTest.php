@@ -11,8 +11,8 @@
 
 namespace Jolicode\JsonLd\Tests\Algorithms;
 
+use Jolicode\JsonLd\Algorithms;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinitionCreator;
@@ -45,37 +45,7 @@ class ContextProcesserTest extends AbstractJsonLdTestCase
         $this->assertSame($expected, TermDefinitionCreator::validateContainerEntry($container));
     }
 
-    protected function getAlgorithmName(): string
-    {
-        return FixturesInstaller::ALGO_PROCESS_CONTEXT;
-    }
-
-    protected function getExpectedErrorMessage(string $filename): string
-    {
-        $failedTestsErrorMessages = [];
-
-        $defaultErrorMessage = <<<'ERROR'
-            Something went wrong with this test : it does not have an output file, which implies it expects an error to be thrown.
-            However, there is no expected error message in the tests. Maybe the output file was deleted, or the ContextProcesser is actually broken.
-        ERROR;
-
-        return $failedTestsErrorMessages[$filename] ?? $defaultErrorMessage;
-    }
-
-    protected function shouldSkipThisTest(string $filename): bool
-    {
-        $testsToSkip = [];
-
-        return \in_array($filename, $testsToSkip, true);
-    }
-
-    protected function getOptions(string $filename): ProcessorOptions
-    {
-        // contexts don't use options
-        return new ProcessorOptions();
-    }
-
-    private function provideContainerEntries(): iterable
+    public function provideContainerEntries(): iterable
     {
         yield 'correct keyword returns true' => [
             'container' => Keyword::GRAPH->value,
@@ -105,5 +75,39 @@ class ContextProcesserTest extends AbstractJsonLdTestCase
             'container' => [Keyword::SET->value, Keyword::LIST->value],
             'expected' => false,
         ];
+    }
+
+    protected function getAlgorithmName(): string
+    {
+        return Algorithms::CONTEXT->value;
+    }
+
+    protected function getExpectedErrorMessage(string $filename): string
+    {
+        $failedTestsErrorMessages = [
+            'fake' => 'Add below the error message you expect for this test',
+        ];
+
+        $defaultErrorMessage = <<<'ERROR'
+            Something went wrong with this test : it does not have an output file, which implies it expects an error to be thrown.
+            However, there is no expected error message in the tests. Maybe the output file was deleted, or the ContextProcesser is actually broken.
+        ERROR;
+
+        return $failedTestsErrorMessages[$filename] ?? $defaultErrorMessage;
+    }
+
+    protected function shouldSkipThisTest(string $filename): bool
+    {
+        $testsToSkip = [
+            'fake', // Add below the filename of the test you want to skip
+        ];
+
+        return \in_array($filename, $testsToSkip, true);
+    }
+
+    protected function getOptions(string $filename): ProcessorOptions
+    {
+        // contexts don't use options
+        return new ProcessorOptions();
     }
 }

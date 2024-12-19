@@ -11,7 +11,7 @@
 
 namespace Jolicode\JsonLd\Tests\Algorithms\Benchmark;
 
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
+use Jolicode\JsonLd\Algorithms;
 use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 
@@ -31,7 +31,7 @@ class FlattenerBench extends AbstractJsonLdBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleFlattening()
+    public function benchSimpleFlattening(): void
     {
         $this->flattenJsonFile('0002-in.jsonld');
     }
@@ -43,14 +43,14 @@ class FlattenerBench extends AbstractJsonLdBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchComplexFlattening()
+    public function benchComplexFlattening(): void
     {
         $this->flattenJsonFile('0036-in.jsonld');
     }
 
     protected function getAlgorithmName(): string
     {
-        return FixturesInstaller::ALGO_FLATTEN;
+        return Algorithms::FLATTEN->value;
     }
 
     private function flattenJsonFile(string $filename): void
@@ -58,6 +58,6 @@ class FlattenerBench extends AbstractJsonLdBench
         $json = $this->loadJson($filename);
         $this->options->base = $this->getBaseUrlForW3CTests($filename);
 
-        $this->flattener->parseJson($json, $this->options);
+        $this->flattener->flatten($json, $this->options);
     }
 }

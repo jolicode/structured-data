@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": "PlayAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "MobileApplication",
+    "name": "Angry Birds."
+  },
+  "participant": {
+    "@type": "Person",
+    "name": "Steve"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "@context": "https://schema.org",
+  "@type": "MortgageLoan",
+  "name": "Agency 30 Year Fixed",
+  "description": "Experience easier budgeting with predictable monthly payments. Relax knowing you’ll never have to worry about rising interest rates for the life of your loan.",
+  "amount": {
+    "@type": "MonetaryAmount",
+    "value": "200000",
+    "currency": "USD"
+  },
+  "loanTerm": {
+    "@type": "QuantitativeValue",
+    "value": "30",
+    "unitCode": "ANN"
+  },
+  "interestRate": "3.625",
+  "annualPercentageRate": "3.8047",
+  "loanRepaymentForm": {
+    "@type": "RepaymentSpecification",
+    "loanPaymentAmount": {
+      "@type": "MonetaryAmount",
+      "value": "909.3",
+      "currency": "USD"
+    },
+    "downPayment": "20",
+    "numberOfLoanPayments": "360",
+    "loanPaymentFrequency": "1"
+  }
+}

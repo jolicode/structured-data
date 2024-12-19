@@ -11,10 +11,10 @@
 
 namespace Jolicode\JsonLd\Tests\Algorithms;
 
+use Jolicode\JsonLd\Algorithms;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
 use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use PHPUnit\Framework\AssertionFailedError;
 
@@ -33,20 +33,26 @@ class ExpanderTest extends AbstractJsonLdTestCase
 
         if ($expected instanceof JsonLdException) {
             try {
-                $expander->parseJson($json, $options);
+                $expander->expand($json, $options);
 
-                throw new AssertionFailedError(sprintf('An exception was expected for this test but none were thrown. Expected error message was : %s', $expected->getMessage()));
+                throw new AssertionFailedError(\sprintf('An exception was expected for this test but none were thrown. Expected error message was : %s', $expected->getMessage()));
             } catch (JsonLdException $exception) {
                 $this->assertSame($expected->getMessage(), $exception->getMessage());
             }
         } else {
-            $this->assertEquals(json_decode($expected), json_decode($expander->parseJson($json, $options)));
+            $expanded = $expander->expand($json, $options);
+
+            if (!\is_string($expanded)) {
+                throw new AssertionFailedError('The expanded JSON is not a string');
+            }
+
+            $this->assertEquals(json_decode($expected), json_decode($expanded));
         }
     }
 
     protected function getAlgorithmName(): string
     {
-        return FixturesInstaller::ALGO_EXPAND;
+        return Algorithms::EXPAND->value;
     }
 
     protected function getExpectedErrorMessage(string $filename): string

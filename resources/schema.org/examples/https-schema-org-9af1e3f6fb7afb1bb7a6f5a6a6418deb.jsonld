@@ -1,0 +1,6 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "JobPosting",
+  "title": "Stone mason",
+  "physicalRequirement": "Must be able to lift and carry loads of up to 50kg."
+}

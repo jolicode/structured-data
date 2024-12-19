@@ -1,0 +1,12 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ViewAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "Painting",
+    "name": "Les demoiselles d'avignon"
+  }
+}

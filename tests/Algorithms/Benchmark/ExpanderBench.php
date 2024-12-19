@@ -11,8 +11,8 @@
 
 namespace Jolicode\JsonLd\Tests\Algorithms\Benchmark;
 
+use Jolicode\JsonLd\Algorithms;
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 
 class ExpanderBench extends AbstractJsonLdBench
@@ -31,7 +31,7 @@ class ExpanderBench extends AbstractJsonLdBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleExpansion()
+    public function benchSimpleExpansion(): void
     {
         $this->expandJsonFile('0002-in.jsonld');
     }
@@ -43,7 +43,7 @@ class ExpanderBench extends AbstractJsonLdBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchComplexExpansion()
+    public function benchComplexExpansion(): void
     {
         $this->expandJsonFile('pr25-in.jsonld');
     }
@@ -55,14 +55,14 @@ class ExpanderBench extends AbstractJsonLdBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchHttpCallExpansion()
+    public function benchHttpCallExpansion(): void
     {
         $this->expandJsonFile('so08-in.jsonld');
     }
 
     protected function getAlgorithmName(): string
     {
-        return FixturesInstaller::ALGO_EXPAND;
+        return Algorithms::EXPAND->value;
     }
 
     private function expandJsonFile(string $filename): void
@@ -70,6 +70,6 @@ class ExpanderBench extends AbstractJsonLdBench
         $json = $this->loadJson($filename);
         $this->options->base = $this->getBaseUrlForW3CTests($filename);
 
-        $this->expander->parseJson($json, $this->options);
+        $this->expander->expand($json, $this->options);
     }
 }

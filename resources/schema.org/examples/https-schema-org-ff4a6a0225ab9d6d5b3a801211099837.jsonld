@@ -1,0 +1,12 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WearAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "Brand",
+    "name": "Calvin Klein"
+  }
+}

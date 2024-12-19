@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": "BorrowAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "Book",
+    "name": "Outliers"
+  },
+  "lender": {
+    "@type": "Person",
+    "name": "Steve"
+  }
+}

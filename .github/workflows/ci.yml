@@ -1,41 +1,51 @@
 name: Run tests
 
 on:
-    push:
-        branches: [ main ]
-    pull_request:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: ["main"]
+  schedule:
+    - cron: "0 0 * * SUN"
 
 jobs:
-    ci:
-        name: Test with PHP ${{ matrix.php-version }}
-        strategy:
-            fail-fast: false
-            matrix:
-                php-version: ['8.2', '8.3']
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
+  ci:
+    name: Test with PHP ${{ matrix.php-version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ['8.2', '8.3']
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-            - name: Setup PHP
-              uses: shivammathur/setup-php@v2
-              with:
-                  php-version: ${{ matrix.php-version }}
-                  tools: castor
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          tools: castor
 
-            - name: Validate composer.json and composer.lock
-              run: composer validate --strict
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
 
-            - name: Install dependencies
-              run: composer install --prefer-dist --no-progress
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
 
-            - name: Generate and import everything needed to run the project
-              run: castor generate
+      - name: Install qa tooling
+        run: castor qa:install
 
-            - name: Check PHP coding standards
-              run: castor cs --dry-run
+      - name: Check PHP coding standards
+        run: castor qa:cs --dry-run
 
-            - name: Run PHPStan
-              run: castor phpstan
+      - name: Run PHPStan
+        run: castor qa:phpstan
 
-            - name: Run the tests
-              run: castor test
+      - name: Run the tests
+        run: castor qa:phpunit:run
+
+      - name: Install generator tooling
+        run: castor generator:install
+
+      - name: Check that schema.org types and properties classes can be generated
+        run: castor generator:generate

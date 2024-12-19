@@ -1,0 +1,12 @@
+{
+  "@context": "https://schema.org",
+  "@type": "PhotographAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "ImageObject",
+    "url": "http://john.com/steve.jpg"
+  }
+}

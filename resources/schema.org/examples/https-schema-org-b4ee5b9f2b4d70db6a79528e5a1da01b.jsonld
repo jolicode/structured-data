@@ -1,0 +1,13 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ExerciseAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "exerciseType": "Tennis",
+  "opponent": {
+    "@type": "Person",
+    "name": "Steve"
+  }
+}

@@ -1,0 +1,44 @@
+<?php
+
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Jolicode\SchemaOrg\Type;
+
+use Jolicode\SchemaOrg\Property;
+
+final class HealthPlanNetworkModel
+{
+    public const DESCRIPTION = 'A US-style health insurance plan network.';
+    public const LABEL = 'HealthPlanNetwork';
+    public const NAME = 'schema:HealthPlanNetwork';
+    public const PARENTS = ['IntangibleModel' => 'Jolicode\SchemaOrg\Type\IntangibleModel'];
+    public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1062'];
+
+    public function __construct(
+        public ?Property\AdditionalTypeModel $additionalType = null,
+        public ?Property\AlternateNameModel $alternateName = null,
+        public ?Property\DescriptionModel $description = null,
+        public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
+        public ?Property\HealthPlanCostSharingModel $healthPlanCostSharing = null,
+        public ?Property\HealthPlanNetworkIdModel $healthPlanNetworkId = null,
+        public ?Property\HealthPlanNetworkTierModel $healthPlanNetworkTier = null,
+        public ?Property\IdentifierModel $identifier = null,
+        public ?Property\ImageModel $image = null,
+        public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
+        public ?Property\NameModel $name = null,
+        public ?Property\PotentialActionModel $potentialAction = null,
+        public ?Property\SameAsModel $sameAs = null,
+        public ?Property\SubjectOfModel $subjectOf = null,
+        public ?Property\UrlModel $url = null,
+    ) {
+    }
+}

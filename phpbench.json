@@ -1,4 +1,4 @@
 {
-    "$schema":"./vendor/phpbench/phpbench/phpbench.schema.json",
+    "$schema":"./tools/phpbench/vendor/phpbench/phpbench/phpbench.schema.json",
     "runner.bootstrap": "vendor/autoload.php"
 }

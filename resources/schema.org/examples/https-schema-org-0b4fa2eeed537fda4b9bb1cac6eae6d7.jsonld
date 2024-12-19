@@ -1,0 +1,12 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LeaveAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "SportsTeam",
+    "name": "Chicago Bulls"
+  }
+}

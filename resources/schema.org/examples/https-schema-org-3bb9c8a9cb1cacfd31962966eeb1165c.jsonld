@@ -1,0 +1,9 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SearchAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "query": "What is the answer to life the universe and everything?"
+}

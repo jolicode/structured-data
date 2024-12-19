@@ -1,0 +1,12 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FilmAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "Movie",
+    "name": "The Internship"
+  }
+}

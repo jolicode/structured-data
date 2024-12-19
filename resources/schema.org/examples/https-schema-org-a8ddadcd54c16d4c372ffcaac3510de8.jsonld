@@ -1,0 +1,12 @@
+{
+  "@context": "https://schema.org",
+  "@type": "DrinkAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "Product",
+    "name": "Coke"
+  }
+}

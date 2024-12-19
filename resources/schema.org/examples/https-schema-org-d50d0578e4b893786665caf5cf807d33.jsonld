@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": "AssignAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "ExercisePlan",
+    "name": "Steve's weight loss plan"
+  },
+  "participant": {
+    "@type": "Person",
+    "name": "Steve"
+  }
+}

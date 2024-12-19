@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": ["CreativeWork","ArchiveComponent"],
+  "materialExtent": [
+          {
+            "@type": "QuantitativeValue",
+            "unitText": "folder",
+            "value": "1"
+          },
+          {
+            "@type": "QuantitativeValue",
+            "unitText": "design drawings",
+            "value": "5"
+          }
+       ]
+}

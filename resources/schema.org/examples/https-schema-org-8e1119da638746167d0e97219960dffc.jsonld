@@ -1,0 +1,11 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    "HP Pavilion dv6-6013cl",
+    "Dell XPS 15 (Sandy Bridge)",
+    "Lenovo ThinkPad X220"
+  ],
+  "itemListOrder": "https://schema.org/ItemListOrderDescending",
+  "name": "Top 10 laptops"
+}

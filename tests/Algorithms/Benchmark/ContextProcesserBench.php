@@ -11,8 +11,8 @@
 
 namespace Jolicode\JsonLd\Tests\Algorithms\Benchmark;
 
+use Jolicode\JsonLd\Algorithms;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
-use Jolicode\JsonLd\Algorithms\Fixtures\FixturesInstaller;
 
 class ContextProcesserBench extends AbstractJsonLdBench
 {
@@ -28,11 +28,11 @@ class ContextProcesserBench extends AbstractJsonLdBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleContext()
+    public function benchSimpleContext(): void
     {
         $json = $this->loadJson('context02-in.jsonld');
 
-        $this->processer->extractContext(json_decode($json));
+        $this->processer->extractContext(json_decode($json) ?? []);
     }
 
     /**
@@ -42,11 +42,11 @@ class ContextProcesserBench extends AbstractJsonLdBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchComplexContext()
+    public function benchComplexContext(): void
     {
         $json = $this->loadJson('context01-in.jsonld');
 
-        $this->processer->extractContext(json_decode($json));
+        $this->processer->extractContext(json_decode($json) ?? []);
     }
 
     /**
@@ -56,15 +56,15 @@ class ContextProcesserBench extends AbstractJsonLdBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchHttpCallContext()
+    public function benchHttpCallContext(): void
     {
         $json = $this->loadJson('context09-in.jsonld');
 
-        $this->processer->extractContext(json_decode($json));
+        $this->processer->extractContext(json_decode($json) ?? []);
     }
 
     protected function getAlgorithmName(): string
     {
-        return FixturesInstaller::ALGO_PROCESS_CONTEXT;
+        return Algorithms::CONTEXT->value;
     }
 }

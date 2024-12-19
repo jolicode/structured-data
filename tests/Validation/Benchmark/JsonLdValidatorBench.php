@@ -11,14 +11,12 @@
 
 namespace Jolicode\JsonLd\Tests\Validation\Benchmark;
 
-use Jolicode\JsonLd\Validation\Extraction\JsonLdNodeExtractor;
-use Jolicode\JsonLd\Validation\JsonLdValidator;
+use Jolicode\SchemaOrg\Validator;
 
 class JsonLdValidatorBench
 {
     public function __construct(
-        private readonly JsonLdValidator $validator = new JsonLdValidator(),
-        private readonly JsonLdNodeExtractor $extractor = new JsonLdNodeExtractor(),
+        private readonly Validator $validator = new Validator(),
     ) {
     }
 
@@ -29,9 +27,9 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleExpandedValidation()
+    public function benchSimpleExpandedValidation(): void
     {
-        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-expanded.jsonld'));
+        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-expanded.jsonld') ?: '');
     }
 
     /**
@@ -41,9 +39,9 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleCompactedValidation()
+    public function benchSimpleCompactedValidation(): void
     {
-        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-compacted.jsonld'));
+        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-compacted.jsonld') ?: '');
     }
 
     /**
@@ -53,9 +51,9 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleFlattenedValidation()
+    public function benchSimpleFlattenedValidation(): void
     {
-        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-flattened.jsonld'));
+        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-flattened.jsonld') ?: '');
     }
 
     /**
@@ -65,9 +63,9 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleFramedValidation()
+    public function benchSimpleFramedValidation(): void
     {
-        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-framed.jsonld'));
+        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-framed.jsonld') ?: '');
     }
 
     /**
@@ -77,9 +75,9 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchComplexExpandedValidation()
+    public function benchComplexExpandedValidation(): void
     {
-        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-expanded.jsonld'));
+        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-expanded.jsonld') ?: '');
     }
 
     /**
@@ -89,9 +87,9 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchComplexCompactedValidation()
+    public function benchComplexCompactedValidation(): void
     {
-        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-compacted.jsonld'));
+        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-compacted.jsonld') ?: '');
     }
 
     /**
@@ -101,9 +99,9 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchComplexFlattenedValidation()
+    public function benchComplexFlattenedValidation(): void
     {
-        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-flattened.jsonld'));
+        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-flattened.jsonld') ?: '');
     }
 
     /**
@@ -113,9 +111,9 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchComplexFramedValidation()
+    public function benchComplexFramedValidation(): void
     {
-        $this->validator->validate(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-framed.jsonld'));
+        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-framed.jsonld') ?: '');
     }
 
     /**
@@ -125,11 +123,9 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchHttpCall()
+    public function benchHttpCall(): void
     {
-        $jsonLd = $this->extractor->extractJsonLd('https://jolicode.com/blog/jouer-de-la-musique-dans-le-navigateur-avec-la-web-audio-api');
-
-        $this->validator->validate($jsonLd[0]);
+        $this->validator->getTypes('https://jolicode.com/blog/jouer-de-la-musique-dans-le-navigateur-avec-la-web-audio-api');
     }
 
     /**
@@ -139,12 +135,8 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchHttpCallWithManyTags()
+    public function benchHttpCallWithManyTags(): void
     {
-        $jsonLd = $this->extractor->extractJsonLd('https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/examples.txt');
-
-        foreach ($jsonLd as $jsonLdItem) {
-            $this->validator->validate($jsonLdItem);
-        }
+        $this->validator->getTypes('https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/examples.txt');
     }
 }

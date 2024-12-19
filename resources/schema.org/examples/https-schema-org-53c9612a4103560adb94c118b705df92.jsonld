@@ -1,0 +1,12 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WinAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "Book",
+    "name": "Top 1000 Things You Didn't Know about Nobel prizes"
+  }
+}

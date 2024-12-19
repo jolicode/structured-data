@@ -1,0 +1,14 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "JobPosting",
+  "title": "Software Engineer",
+  "educationRequirements": {
+    "@type": "EducationalOccupationalCredential",
+    "credentialCategory": "bachelor degree"
+  },
+  "experienceRequirements": {
+    "@type": "OccupationalExperienceRequirements",
+    "monthsOfExperience": "60"
+  },
+  "experienceInPlaceOfEducation": true
+}

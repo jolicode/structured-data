@@ -1,0 +1,12 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ReactAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "ScholarlyArticle",
+    "name": "We found out that P = NP!"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WinAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "SoftwareApplication",
+    "name": "chess"
+  },
+  "participant": {
+    "@type": "Person",
+    "name": "Steve"
+  }
+}

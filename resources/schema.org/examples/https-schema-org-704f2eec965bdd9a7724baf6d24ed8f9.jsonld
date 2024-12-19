@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": "CommentAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "resultComment": {
+    "@type": "Comment",
+    "text": "That's cool!"
+  },
+  "about": {
+    "@type": "ScholarlyArticle",
+    "name": "We found that P = NP!"
+  }
+}

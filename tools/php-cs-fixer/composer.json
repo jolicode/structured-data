@@ -1,0 +1,14 @@
+{
+    "type": "project",
+    "require": {
+        "friendsofphp/php-cs-fixer": "^3.65",
+        "kubawerlos/php-cs-fixer-custom-fixers": "^3.22"
+    },
+    "config": {
+        "platform": {
+            "php": "8.2"
+        },
+        "bump-after-update": true,
+        "sort-packages": true
+    }
+}

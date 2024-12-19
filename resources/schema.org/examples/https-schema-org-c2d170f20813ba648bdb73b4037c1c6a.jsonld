@@ -1,0 +1,16 @@
+{
+  "@context": "https://schema.org",
+  "@type": "TrackAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "Product",
+    "name": "fitbit"
+  },
+  "deliveryMethod": {
+    "@type": "DeliveryMethod",
+    "@id": "http://purl.org/goodrelations/v1#UPS"
+  }
+}

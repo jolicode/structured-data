@@ -11,25 +11,32 @@
 
 namespace Jolicode\JsonLd\Tests\Algorithms\Benchmark;
 
-use Jolicode\JsonLd\Tests\Algorithms\AbstractJsonLdTestCase;
-
 abstract class AbstractJsonLdBench
 {
+    public const DATA_PATH = __DIR__ . '/../../../var/cache/w3c-json-ld-api/tests';
+
     abstract protected function getAlgorithmName(): string;
 
-    protected function loadJson(string $filename): string|false
+    protected function loadJson(string $filename): string
     {
-        return file_get_contents(sprintf(
+        $filePath = \sprintf(
             '%s/%s/input/%s',
-            AbstractJsonLdTestCase::FIXTURES_PATH,
+            static::DATA_PATH,
             $this->getAlgorithmName(),
             $filename,
-        ));
+        );
+        $content = file_get_contents($filePath);
+
+        if (false === $content) {
+            throw new \RuntimeException(\sprintf('Could not load file %s', $filePath));
+        }
+
+        return $content;
     }
 
     protected function getBaseUrlForW3CTests(string $filename): string
     {
-        return sprintf(
+        return \sprintf(
             'https://w3c.github.io/json-ld-api/tests/%s/%s',
             $this->getAlgorithmName(),
             $filename,

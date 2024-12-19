@@ -10,155 +10,147 @@
  */
 
 use Castor\Attribute\AsArgument;
-use Castor\Attribute\AsOption;
 use Castor\Attribute\AsTask;
 
-use function Castor\run;
+use function Castor\import;
+use function Castor\io;
 
-use Symfony\Component\Console\Input\InputOption;
+use Jolicode\JsonLd\Algorithms\Expand\Expander;
+use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
+use Jolicode\SchemaOrg\Mapper\MappedError;
+use Jolicode\SchemaOrg\Mapper\MappedType;
+use Jolicode\SchemaOrg\Validator;
 
-#[AsTask(name: 'cs', description: 'Fix CS violations')]
-function cs(
-    #[AsOption(name: 'dry-run', description: 'Display CS violations without fixing it')]
-    bool $dryRun = false,
-): void {
-    if ($dryRun) {
-        run('vendor/bin/php-cs-fixer fix src --dry-run --diff');
-        run('vendor/bin/php-cs-fixer fix tests --dry-run --diff');
-    } else {
-        run('vendor/bin/php-cs-fixer fix src --verbose');
-        run('vendor/bin/php-cs-fixer fix tests --verbose');
-    }
-}
+require_once __DIR__ . '/vendor/autoload.php';
 
-#[AsTask(name: 'cs-generated', description: 'Fix CS violations in generated files. Use with caution! Very SLOW!')]
-function csGenerated(): void
-{
-    run('php -d memory_limit=-1 vendor/bin/php-cs-fixer fix generated', timeout: 0);
-}
+import(__DIR__ . '/tools/castor.php');
+import(__DIR__ . '/tools/generator/castor.php');
 
-#[AsTask(name: 'phpstan', description: 'Run phpstan')]
-function phpstan(): void
-{
-    run('vendor/bin/phpstan analyse -c phpstan.neon');
-}
-
-#[AsTask(name: 'test', description: 'Run the tests', aliases: ['tests'])]
-function test(
-    #[AsOption(name: 'group', shortcut: 'g', mode: InputOption::VALUE_REQUIRED, description: 'Only run tests from the specified group')]
-    ?string $group = null,
-    #[AsOption(name: 'stop-on-failure', shortcut: 'f', mode: InputOption::VALUE_NONE, description: 'Stop execution upon first failure')]
-    ?bool $stopOnFailure = null,
-    #[AsOption(name: 'stop-on-error', shortcut: 'e', mode: InputOption::VALUE_NONE, description: 'Stop execution upon first error')]
-    ?bool $stopOnError = null,
-): void {
-    $command = 'php -d memory_limit=-1 vendor/bin/phpunit tests';
-
-    if ($group) {
-        $command .= sprintf(' --group %s', $group);
-    }
-
-    if ($stopOnFailure) {
-        $command .= ' --stop-on-failure';
-    }
-
-    if ($stopOnError) {
-        $command .= ' --stop-on-error';
-    }
-
-    run($command);
-}
-
-#[AsTask(name: 'ci', description: 'Run all the CI checks')]
-function ci(): void
-{
-    cs();
-    phpstan();
-    test();
-}
-
-#[AsTask(name: 'delete', namespace: 'fixtures', description: 'Delete all test files')]
-function deleteFixtures(): void
-{
-    run('bin/json-ld remove-fixtures');
-}
-
-#[AsTask(name: 'reset', namespace: 'fixtures', description: 'Delete the test files and reinstall them')]
-function resetFixtures(): void
-{
-    run('bin/json-ld remove-fixtures --reset');
-}
-
-#[AsTask(name: 'generate', description: 'Generate the PHP classes used to validate JSON-LD')]
-function generate(
-    #[AsOption(name: 'reset', shortcut: 'r', mode: InputOption::VALUE_NONE, description: 'Reset the generated files')]
-    bool $reset,
-    #[AsOption(name: 'source', shortcut: 's', mode: InputOption::VALUE_REQUIRED, description: 'Only download from a specific source. Accepted values are "schemaorg" and "google"')]
-    ?string $source = null,
-): void {
-    $command = 'bin/json-ld generate';
-
-    if ($reset) {
-        $command .= ' -r';
-    }
-
-    if ($source) {
-        $command .= sprintf(' -s %s', $source);
-    }
-
-    run($command);
-}
-
-#[AsTask(name: 'validate', description: 'Validate a local file or a remote URL')]
-function validate(
-    #[AsArgument(name: 'fileOrUrl', description: 'The file or remote URL to validate')]
-    string $fileOrUrl,
-    #[AsOption(name: 'validator', mode: InputOption::VALUE_REQUIRED, description: 'The validator to use')]
-    ?string $validator = null,
-): void {
-    $command = sprintf(
-        'bin/json-ld validate %s',
-        $fileOrUrl,
-    );
-
-    if ($validator) {
-        $command .= sprintf(' --validator=%s', $validator);
-    }
-
-    run($command);
-}
-
-#[AsTask(name: 'all', namespace: 'benchmark', description: 'Run all the benchmarks', aliases: ['bench'])]
-function bench(): void
-{
-    benchAlgorithms();
-    benchValidators();
-}
-
-#[AsTask(name: 'algorithms', namespace: 'benchmark', description: 'Run the algorithms benchmark')]
-function benchAlgorithms(): void
-{
-    run('vendor/bin/phpbench run tests/Algorithms/Benchmark --report=aggregate');
-}
-
-#[AsTask(name: 'validators', namespace: 'benchmark', description: 'Run the validators benchmark')]
-function benchValidators(): void
-{
-    run('vendor/bin/phpbench run tests/Validation/Benchmark --report=aggregate');
-}
-
-#[AsTask(name: 'expand', namespace: 'algorithms', description: 'Expand a JSON-LD document')]
+#[AsTask(name: 'expand', namespace: 'json-ld', description: 'Applies the expansion algorithm to a JSON-LD document')]
 function expand(
     #[AsArgument(name: 'file', description: 'The file to expand')]
     string $fileName,
 ): void {
-    run('bin/json-ld expand ' . $fileName);
+    $file = file_get_contents($fileName);
+
+    if (false === $file) {
+        io()->error(sprintf('The file "%s" could not be read.', $fileName));
+
+        return;
+    }
+
+    $expander = new Expander();
+    $result = $expander->expand($file);
+
+    if (!is_string($result)) {
+        $result = json_encode($result, \JSON_PRETTY_PRINT) ?: '';
+    }
+
+    io()->writeln($result);
 }
 
-#[AsTask(name: 'flatten', namespace: 'algorithms', description: 'Flatten a JSON-LD document')]
+#[AsTask(name: 'flatten', namespace: 'json-ld', description: 'Applies the flatenization algorithm to a JSON-LD document')]
 function flatten(
     #[AsArgument(name: 'file', description: 'The file to flatten')]
     string $fileName,
 ): void {
-    run('bin/json-ld flatten ' . $fileName);
+    $file = file_get_contents($fileName);
+
+    if (false === $file) {
+        io()->error(sprintf('The file "%s" could not be read.', $fileName));
+
+        return;
+    }
+
+    $flattener = new Flattener();
+    $result = $flattener->flatten($file);
+
+    if (!is_string($result)) {
+        $result = json_encode($result, \JSON_PRETTY_PRINT) ?: '';
+    }
+
+    io()->writeln($result);
+}
+
+#[AsTask(name: 'validate', namespace: 'schema-org', description: 'Validate a local file or a remote URL')]
+function validate(
+    #[AsArgument(name: 'fileOrUrl', description: 'The file or remote URL to validate')]
+    string $fileOrUrl,
+    bool $withDetails = false,
+): void {
+    $validator = new Validator();
+    $types = $validator->getTypes($fileOrUrl);
+
+    if (0 === count($types)) {
+        io()->warning('No schema.org types were found in the provided document.');
+    } else {
+        io()->success(sprintf('%d schema.org types were found in the provided document.', count($types)));
+    }
+
+    $errorsCount = 0;
+
+    foreach ($types as $type) {
+        if ($withDetails && is_string($type->type)) {
+            displayType($type);
+
+            if ($type->errors) {
+                foreach ($type->errors as $error) {
+                    if (MappedError::SEVERITY_ERROR === $error->severity) {
+                        io()->error($error->message);
+                    } else {
+                        io()->warning($error->message);
+                    }
+
+                    io()->writeln(sprintf(
+                        'The above error was raised for %s on property "%s" (%s). Found on position %s',
+                        $error->type ? sprintf('the type "%s"', $error->type) : 'an unknown type (with no @type property)',
+                        $error->key,
+                        $error->parent?->getKeyPath(),
+                        $error->ranges,
+                    ));
+                }
+
+                io()->writeln('');
+            }
+        }
+
+        if ($type->errors) {
+            ++$errorsCount;
+        }
+    }
+
+    if (count($types) > 0) {
+        if ($errorsCount > 0) {
+            io()->error(sprintf('The provided document seems to be invalid. %s out of %s types contain an error.', $errorsCount, count($types)));
+        } else {
+            io()->success('The provided document seems to be valid.');
+        }
+    }
+}
+
+function displayType(MappedType $type, int $level = 0): void
+{
+    $prefix = str_repeat('  ', $level);
+    io()->writeln(sprintf('%s * %s', $prefix, $type->getKeyPath()));
+
+    foreach ($type->properties as $propertyName => $property) {
+        /** @var Jolicode\SchemaOrg\Mapper\MappedProperty $property */
+        $value = $property->value;
+
+        if (is_string($value)) {
+            io()->writeln(sprintf('%s   * %s: %s', $prefix, $property->getKeyPath(), $value));
+        } elseif ($value instanceof MappedType) {
+            displayType($value, $level + 1);
+        } elseif (is_array($value)) {
+            foreach ($value as $subValue) {
+                if ($subValue instanceof MappedType) {
+                    displayType($subValue, $level + 1);
+                } else {
+                    io()->writeln(sprintf('%s   * %s: %s', $prefix, $property->getKeyPath(), $subValue));
+                }
+            }
+        } else {
+            io()->writeln(sprintf('%s   * %s', $prefix, $property->getKeyPath()));
+        }
+    }
 }

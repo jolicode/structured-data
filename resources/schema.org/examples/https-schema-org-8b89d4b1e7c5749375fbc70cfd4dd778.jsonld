@@ -1,0 +1,14 @@
+{
+  "@context": "https://schema.org",
+  "@type": "PayAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "price": "1500",
+  "priceCurrency": "USD",
+  "recipient": {
+    "@type": "Organization",
+    "name": "An Airline"
+  }
+}
