@@ -106,11 +106,7 @@
         "secondaryPrevention: The \"secondaryPrevention\" property does not accept the \"LifestyleModification\" type as a value"
     ],
     "https-schema-org-f929ad89ee52fc24a8010302a47faaf7.jsonld": [
-        "contactPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
-        "contactPoint: The \"contactPoint\" property does not accept the \"Thing\" type as a value",
-        "contactPoint.contactType: The property \"contactType\" does not exist on the type \"Thing\"",
-        "contactPoint.email: The property \"email\" does not exist on the type \"Thing\"",
-        "contactPoint.telephone: The property \"telephone\" does not exist on the type \"Thing\""
+        "contactPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ContactPoint"
     ],
     "https-schema-org-fecfb38a45ddda4c1562c0d5557fdf8d.jsonld": [
         "constrainingProperty: This property does not exist: constrainingProperty",

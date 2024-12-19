@@ -12,11 +12,8 @@
     ],
     "compacted-with-lots-of-errors.jsonld": [
         "creaator.@type: The \"Orgaanization\" type is not a valid Schema.org type",
-        "creaator.contactaPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
+        "creaator.contactaPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ContactPoint",
         "creaator.contactaPoint.badAgain: This property does not exist: badAgain",
-        "creaator.contactaPoint.contactType: The property \"contactType\" does not exist on the type \"Thing\"",
-        "creaator.contactaPoint.email: The property \"email\" does not exist on the type \"Thing\"",
-        "creaator.contactaPoint.telephone: The property \"telephone\" does not exist on the type \"Thing\"",
         "creaator.contactaPoint: This property does not exist: contactaPoint",
         "creaator: This property does not exist: creaator",
         "distribution.telephone: The property \"telephone\" does not exist on the type \"DataDownload\"",
@@ -39,11 +36,8 @@
         "@type: Missing a @type entry. The @type entry is mandatory for root types"
     ],
     "no-type-nested.jsonld": [
-        "birthPlace: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
-        "birthPlace: The \"birthPlace\" property does not accept the \"Thing\" type as a value",
-        "birthPlace.address: The property \"address\" does not exist on the type \"Thing\"",
-        "birthPlace.faxNumber: The property \"faxNumber\" does not exist on the type \"Thing\"",
-        "birthPlace.slogan: The property \"slogan\" does not exist on the type \"Thing\""
+        "birthPlace: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Organization",
+        "birthPlace: The \"birthPlace\" property does not accept the \"Organization\" type as a value"
     ],
     "wrong-parent-attribute.jsonld": [
         "makesOffer: The \"makesOffer\" property does not accept the \"Intangible\" type as a value"
