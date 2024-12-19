@@ -14,6 +14,7 @@ namespace Jolicode\JsonLd\Algorithms\Expand;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
 use Jolicode\JsonLd\Algorithms\Exception\ExpansionException;
+use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
 use Jolicode\JsonLd\Algorithms\Http\DocumentLoader;
 use Jolicode\JsonLd\Algorithms\Http\IriResolver;
 use Jolicode\JsonLd\Algorithms\JsonLd\FramingKeyword;
@@ -43,6 +44,10 @@ class Expander
     ): \stdClass|array|string|false|null {
         $element = \is_string($json) ? json_decode($json) : $json;
         $baseUrl = $options->base;
+
+        if (null === $element) {
+            throw new JsonLdException('The JSON string could not be parsed.');
+        }
 
         if (\is_string($element)) {
             $baseUrl = $element;
