@@ -16,6 +16,7 @@ use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\SchemaOrg\Mapper\MappedError;
 use Jolicode\SchemaOrg\Mapper\MappedProperty;
 use Jolicode\SchemaOrg\Mapper\MappedType;
+use Jolicode\SchemaOrg\Type\PropertyValueSpecificationModel;
 use Jolicode\SchemaOrg\Validators\AbstractValidator;
 
 class SchemaOrgValidator extends AbstractValidator
@@ -54,6 +55,7 @@ class SchemaOrgValidator extends AbstractValidator
             }
 
             $typeLabel = self::guessTypeFromProperties($type->properties);
+            $type->type = $typeLabel;
             $message = 'The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ' . $typeLabel;
             $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_WARNING);
         }
@@ -168,13 +170,18 @@ class SchemaOrgValidator extends AbstractValidator
     }
 
     /**
-     * @param array<MappedProperty> $properties
+     * @param array<MappedProperty> $typeProperties
      */
-    public static function guessTypeFromProperties(array $properties): string
-    {
+    public static function guessTypeFromProperties(
+        array $typeProperties,
+    ): string {
+        /**
+         * @var array<string, array{fqcn: string, shortName: string, supportedProperties: string[], ancestors: string[], parentsChainLength: int}> $possibleTypes
+         */
         $possibleTypes = [];
+        $evaluatedPropertiesCount = 0;
 
-        foreach ($properties as $property) {
+        foreach ($typeProperties as $property) {
             if (Keyword::tryFrom($property->key)) {
                 continue;
             }
@@ -186,58 +193,69 @@ class SchemaOrgValidator extends AbstractValidator
                 continue;
             }
 
-            $types = $typeFqcn::VALUES;
+            ++$evaluatedPropertiesCount;
 
-            foreach ($types as $shortName => $fqcn) {
-                $possibleTypes[$fqcn] = $shortName;
+            /** @var string $fqcn */
+            foreach ($typeFqcn::TYPES as $shortName => $fqcn) {
+                if (!isset($possibleTypes[$fqcn])) {
+                    $possibleTypes[$fqcn] = [
+                        'fqcn' => $fqcn,
+                        'shortName' => $shortName,
+                        'supportedProperties' => [],
+                        'ancestors' => [],
+                        'parentsChainLength' => 0,
+                    ];
+                }
+
+                $possibleTypes[$fqcn]['supportedProperties'][] = $property->key;
+                $possibleTypes[$fqcn]['ancestors'] = array_merge($possibleTypes[$fqcn]['ancestors'], $fqcn::PARENTS);
             }
         }
 
-        foreach ($possibleTypes as $fqcn => $shortName) {
-            foreach ($properties as $property) {
-                if (!property_exists($fqcn, self::stripActionSuffixes($property->key))) {
-                    unset($possibleTypes[$fqcn]);
+        foreach ($possibleTypes as $fqcn => $possibleType) {
+            foreach ($possibleType['ancestors'] as $ancestor) {
+                if (isset($possibleTypes[$ancestor])) {
+                    $possibleTypes[$fqcn]['supportedProperties'] = array_unique(array_merge($possibleType['supportedProperties'], $possibleTypes[$ancestor]['supportedProperties']));
                 }
             }
         }
 
+        // filter out the found types that do not have all the properties
+        $possibleTypes = array_filter($possibleTypes, fn ($possibleType) => \count($possibleType['supportedProperties']) === $evaluatedPropertiesCount);
+
         if (\count($possibleTypes) > 1) {
-            return self::getMostSpecificType($possibleTypes);
+            foreach ($possibleTypes as $fqcn => $possibleType) {
+                $possibleTypes[$fqcn]['parentsChainLength'] = self::countLonguestParentsChain($fqcn);
+            }
+
+            /**
+            * @var array<string, array{shortName: string, parentsChainLength: int}> $possibleTypes
+            */
+            usort($possibleTypes, fn ($a, $b) => $a['parentsChainLength'] <=> $b['parentsChainLength']);
+
+            return $possibleTypes[0]['shortName'];
         }
 
         if (1 === \count($possibleTypes)) {
-            return array_pop($possibleTypes);
+            return array_pop($possibleTypes)['shortName'];
         }
 
         return 'Thing';
     }
 
-    private static function getMostSpecificType(array $possibleTypes): string
-    {
-        $typesCounts = [];
-
-        foreach ($possibleTypes as $fqcn => $shortName) {
-            $typesCounts[self::countLongestParentsChain($fqcn)] = $shortName;
-        }
-
-        ksort($typesCounts, \SORT_NUMERIC);
-
-        return array_pop($typesCounts);
-    }
-
-    private static function countLongestParentsChain(string $fqcn, int $currentCount = 0): int
+    private static function countLonguestParentsChain(string $fqcn): int
     {
         if (!$fqcn::PARENTS) {
-            return $currentCount;
+            return 0;
         }
+
+        $longuestParentsChainLength = 0;
 
         foreach ($fqcn::PARENTS as $parentType) {
-            if (self::countLongestParentsChain($parentType, $currentCount) > $currentCount) {
-                ++$currentCount;
-            }
+            $longuestParentsChainLength = max(self::countLonguestParentsChain($parentType), $longuestParentsChainLength);
         }
 
-        return ++$currentCount;
+        return $longuestParentsChainLength + 1;
     }
 
     private static function getTypeFqcn(string $typeShortName): string
@@ -264,6 +282,13 @@ class SchemaOrgValidator extends AbstractValidator
             return true;
         }
 
+        if (PropertyValueSpecificationModel::class === $typeFqcn && (
+            str_ends_with($propertyLabel, '-input')
+            || str_ends_with($propertyLabel, '-output')
+        )) {
+            return true;
+        }
+
         $propertyFqcn = self::getPropertyFqcn($propertyLabel);
 
         if (!class_exists($propertyFqcn)) {
@@ -272,16 +297,16 @@ class SchemaOrgValidator extends AbstractValidator
 
         $propertyValues = $propertyFqcn::VALUES;
 
-        if (!\in_array($typeFqcn, $propertyValues, true)) {
-            foreach ($typeFqcn::PARENTS as $parentType) {
-                if (self::propertyTypeIsValid($propertyLabel, $parentType)) {
-                    return true;
-                }
-            }
-
-            return false;
+        if (\in_array($typeFqcn, $propertyValues, true)) {
+            return true;
         }
 
-        return true;
+        foreach ($typeFqcn::PARENTS as $parentType) {
+            if (self::propertyTypeIsValid($propertyLabel, $parentType)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
