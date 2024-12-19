@@ -221,6 +221,7 @@ class SchemaOrgValidator extends AbstractValidator
         }
 
         // filter out the found types that do not have all the properties
+        /** @var array<string,array{shortName:string,parentsChainLength:int}> $possibleTypes */
         $possibleTypes = array_filter($possibleTypes, fn ($possibleType) => \count($possibleType['supportedProperties']) === $evaluatedPropertiesCount);
 
         if (\count($possibleTypes) > 1) {
@@ -228,10 +229,7 @@ class SchemaOrgValidator extends AbstractValidator
                 $possibleTypes[$fqcn]['parentsChainLength'] = self::countLonguestParentsChain($fqcn);
             }
 
-            /**
-            * @var array<string, array{shortName: string, parentsChainLength: int}> $possibleTypes
-            */
-            usort($possibleTypes, fn ($a, $b) => $a['parentsChainLength'] <=> $b['parentsChainLength']);
+            usort($possibleTypes, fn (array $a, array $b) => $a['parentsChainLength'] <=> $b['parentsChainLength']);
 
             return $possibleTypes[0]['shortName'];
         }
