@@ -63,7 +63,7 @@ class JsonLdNodeExtractor
         $content = [];
 
         if (preg_match_all(
-            '/<script[^>]+type=\"application\/ld\+json\"[^>]*>(.*)<\/script>/miUus',
+            '/<script[^>]+type=[\"\']application\/ld\+json[\"\'][^>]*>(.*)<\/script>/miUus',
             $body,
             $matches,
             \PREG_PATTERN_ORDER | \PREG_OFFSET_CAPTURE,
