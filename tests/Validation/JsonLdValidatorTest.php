@@ -165,7 +165,7 @@ class JsonLdValidatorTest extends TestCase
         $errorMessages = [];
         $typesWithError = array_filter(
             $types,
-            fn (MappedType $type) => (bool) $type->errors,
+            static fn (MappedType $type) => (bool) $type->errors,
         );
 
         foreach ($typesWithError as $typeWithError) {

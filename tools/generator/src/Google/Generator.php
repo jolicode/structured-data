@@ -168,7 +168,7 @@ class Generator implements GeneratorInterface
 
                 array_walk(
                     $property->atLeastOneOf,
-                    function (PropertyType $type) use (&$atLeastOneOf, &$formattedProperties, $property) {
+                    static function (PropertyType $type) use (&$atLeastOneOf, &$formattedProperties, $property) {
                         $atLeastOneOf[$type->name] = array_keys($property->types);
 
                         if (!\array_key_exists($type->name, $formattedProperties)) {
@@ -286,7 +286,7 @@ class Generator implements GeneratorInterface
     private function toPascalCase(string $string): string
     {
         $string = explode(' ', $string);
-        array_walk($string, fn (string &$word) => $word = ucfirst($word));
+        array_walk($string, static fn (string &$word) => $word = ucfirst($word));
         $string = implode('', $string);
 
         return $string;

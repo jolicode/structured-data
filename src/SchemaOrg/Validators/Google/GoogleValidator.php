@@ -100,7 +100,7 @@ class GoogleValidator extends AbstractValidator
 
             $foundProperty = array_filter(
                 [...$typeFqcn::RECOMMENDED_PROPERTIES, ...$typeFqcn::REQUIRED_PROPERTIES],
-                fn (int|string $key) => $key === $propertyKey,
+                static fn (int|string $key) => $key === $propertyKey,
                 \ARRAY_FILTER_USE_KEY,
             );
 
@@ -218,7 +218,7 @@ class GoogleValidator extends AbstractValidator
             return ucfirst($className);
         }
 
-        array_walk($className, fn (string &$word) => $word = ucfirst($word));
+        array_walk($className, static fn (string &$word) => $word = ucfirst($word));
         $className = implode('', $className);
 
         return $className;

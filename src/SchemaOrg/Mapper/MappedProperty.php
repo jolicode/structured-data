@@ -16,7 +16,7 @@ use Jolicode\JsonLd\Parser\Range;
 class MappedProperty
 {
     public function __construct(
-        readonly public string $key,
+        public readonly string $key,
         public ?MappedType $type = null,
         public ?string $description = null,
         public mixed $value = [],

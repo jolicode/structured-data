@@ -1,12 +1,12 @@
 {
     "type": "project",
     "require": {
-        "phpunit/phpunit": "^9.6.22"
+        "phpunit/phpunit": "^9.6.34"
     },
     "config": {
         "bump-after-update": true,
         "platform": {
-            "php": "8.2"
+            "php": "8.4"
         },
         "sort-packages": true
     }

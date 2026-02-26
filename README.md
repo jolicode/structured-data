@@ -10,7 +10,7 @@ published on July 16th, 2020.
 
 This library requires:
 
-- PHP >= 8.2
+- PHP >= 8.4
 - the [ZipArchive PHP extension](https://www.php.net/manual/en/class.ziparchive.php);
 - the PHP task runner [Castor](https://github.com/jolicode/castor/), used for the tooling and the CLI interface.
 

@@ -151,7 +151,7 @@ class MainType extends AbstractType
         }
 
         $propertyTypesToUpdate = array_map(
-            fn (PropertyType $type): string => $type->name,
+            static fn (PropertyType $type): string => $type->name,
             $foundProperty->types,
         );
 

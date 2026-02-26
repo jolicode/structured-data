@@ -174,6 +174,6 @@ class IriResolver
             return $iri;
         }
 
-        return (string) Uri::fromBaseUri($iri, $base);
+        return (string) Uri::parse($iri, $base);
     }
 }

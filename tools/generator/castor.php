@@ -19,6 +19,7 @@ use Castor\Attribute\AsOption;
 use Castor\Attribute\AsTask;
 
 use function Castor\check;
+use function Castor\context;
 use function Castor\finder;
 use function Castor\fs;
 use function Castor\http_download;
@@ -96,13 +97,15 @@ function downloadSchemaOrgExamples(): void
     check(
         'Check if Git is installed',
         'Git is not installed. Please install it before.',
-        fn () => (new ExecutableFinder())->find('git'),
+        static fn () => (new ExecutableFinder())->find('git'),
     );
 
     fs()->remove(Filesystem::CACHE_DIR_SCHEMA_ORG . '/git');
     run('git clone --filter=blob:none --sparse --depth=1 https://github.com/schemaorg/schemaorg.git ' . Filesystem::CACHE_DIR_SCHEMA_ORG . '/git');
-    run('git sparse-checkout set --no-cone "/data/ext" "/data/examples.txt"', workingDirectory: Filesystem::CACHE_DIR_SCHEMA_ORG . '/git');
-    run('git checkout main', workingDirectory: Filesystem::CACHE_DIR_SCHEMA_ORG . '/git');
+
+    $context = context()->withWorkingDirectory(Filesystem::CACHE_DIR_SCHEMA_ORG . '/git');
+    run('git sparse-checkout set --no-cone "/data/ext" "/data/examples.txt"', $context);
+    run('git checkout main', $context);
 
     $generator = new Generator();
 
@@ -154,7 +157,7 @@ function updateBaseline(
         $errorMessages = [];
         $typesWithError = array_filter(
             $types,
-            fn (MappedType $type) => (bool) $type->errors,
+            static fn (MappedType $type) => (bool) $type->errors,
         );
 
         if (\count($typesWithError) > 0) {

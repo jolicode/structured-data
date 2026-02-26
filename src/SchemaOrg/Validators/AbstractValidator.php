@@ -47,7 +47,7 @@ abstract class AbstractValidator
         }
 
         $range = array_map(
-            fn (Range $range) => \sprintf(
+            static fn (Range $range) => \sprintf(
                 '%d:%d to %d:%d',
                 $range->start?->line,
                 $range->start?->column,

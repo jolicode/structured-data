@@ -775,7 +775,7 @@ class Expander
         array $expandedValue,
     ): array {
         // 13.4.11.1
-        if (null !== $activeProperty || Keyword::GRAPH->value !== $activeProperty) {
+        if (null !== $activeProperty && Keyword::GRAPH->value !== $activeProperty) {
             // 13.4.11.2
             $expandedValue = $this->doExpand(
                 $value,

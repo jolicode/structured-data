@@ -79,7 +79,7 @@ class MappedType
     public function getErrorMessages(bool $withKey = false): array
     {
         return array_map(
-            function (MappedError $error) use ($withKey) {
+            static function (MappedError $error) use ($withKey) {
                 if ($withKey) {
                     $errorKeyPath = $error->getKeyPath();
 

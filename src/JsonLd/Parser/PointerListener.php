@@ -130,7 +130,7 @@ class PointerListener extends IdleListener implements PositionAwareInterface
                 $parent->getLastValue()->range->end = $currentPosition;
             }
 
-            unset($this->currentStructure->belongsTo);
+            $this->currentStructure->belongsTo = null;
             $this->currentStructure = $parent;
         }
     }

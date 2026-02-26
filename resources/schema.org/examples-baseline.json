@@ -110,6 +110,7 @@
     ],
     "https-schema-org-fecfb38a45ddda4c1562c0d5557fdf8d.jsonld": [
         "constrainingProperty: This property does not exist: constrainingProperty",
-        "gender: The property \"gender\" does not exist on the type \"StatisticalVariable\""
+        "gender: The property \"gender\" does not exist on the type \"StatisticalVariable\"",
+        "observationDate: The \"observationDate\" property does not accept the \"Date\" type as a value"
     ]
 }

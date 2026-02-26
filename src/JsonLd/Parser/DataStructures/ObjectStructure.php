@@ -98,7 +98,7 @@ class ObjectStructure extends AbstractStructure
     {
         $foundValue = array_filter(
             $this->getGraph()->getValues(),
-            function (Value $value) use ($reference): bool {
+            static function (Value $value) use ($reference): bool {
                 return $value->content instanceof ObjectStructure
                     && $value->content->hasProperty(Keyword::ID->value)
                     && $value->content->getProperty(Keyword::ID->value)->value?->content === $reference

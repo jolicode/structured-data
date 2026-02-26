@@ -91,7 +91,7 @@ abstract class AbstractSchemaOrgElement
         }
 
         return array_map(
-            fn (array $schema) => $schema[Extractor::KEY_ID],
+            static fn (array $schema) => $schema[Extractor::KEY_ID],
             $schemaInformation,
         );
     }

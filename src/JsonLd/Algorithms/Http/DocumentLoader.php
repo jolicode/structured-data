@@ -76,7 +76,7 @@ class DocumentLoader
                 $parsedLinkHeaders = $this->parseLinkHeaders($response->getHeaders()['link']);
 
                 // try to see at an alternate location https://www.w3.org/TR/json-ld/#alternate-document-location
-                $alternateLocationHeader = array_filter($parsedLinkHeaders, function ($link) {
+                $alternateLocationHeader = array_filter($parsedLinkHeaders, static function ($link) {
                     return isset($link['rel'])
                         && isset($link['type'])
                         && \in_array('alternate', explode(' ', $link['rel']), true)
@@ -104,7 +104,7 @@ class DocumentLoader
                     // check for a Link rel="http://www.w3.org/ns/json-ld#context"
                     // see https://www.w3.org/TR/json-ld/#interpreting-json-as-json-ld
                     // if found, get the context at this URL
-                    $externalContextURLs = array_filter($parsedLinkHeaders, function ($link) {
+                    $externalContextURLs = array_filter($parsedLinkHeaders, static function ($link) {
                         return isset($link['rel'])
                             && \in_array('http://www.w3.org/ns/json-ld#context', explode(' ', $link['rel']), true);
                     });

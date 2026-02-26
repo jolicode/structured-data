@@ -152,7 +152,7 @@ class ValidationMapper
     {
         $property = new MappedProperty($key, $type);
 
-        if (\is_string($value)) {
+        if (\is_string($value) || \is_int($value)) {
             $property->value = $value;
 
             return $property;

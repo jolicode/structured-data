@@ -47,7 +47,7 @@ class Validator
     public function getSupportedValidatorsSimpleNames(): array
     {
         $supportedValidators = array_map(
-            fn (string $validatorFqcn) => strtolower($validatorFqcn::VALIDATOR_NAME),
+            static fn (string $validatorFqcn) => strtolower($validatorFqcn::VALIDATOR_NAME),
             array_keys($this->container->getValidators()),
         );
 

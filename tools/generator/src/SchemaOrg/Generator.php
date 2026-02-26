@@ -144,7 +144,7 @@ readonly class Generator implements GeneratorInterface
             );
 
         /* ADD THE PROPERTIES */
-        usort($type->properties, fn (Property $a, Property $b) => $a->label <=> $b->label);
+        usort($type->properties, static fn (Property $a, Property $b) => $a->label <=> $b->label);
 
         foreach ($type->properties as $property) {
             $constructor->addParam(
@@ -168,7 +168,7 @@ readonly class Generator implements GeneratorInterface
         }
 
         /* @phpstan-ignore-next-line */
-        usort($parents, fn ($a, $b) => $a->value->value <=> $b->value->value);
+        usort($parents, static fn ($a, $b) => $a->value->value <=> $b->value->value);
 
         $class->addStmt(
             $this->factory->classConst('PARENTS', new Expr\Array_($parents))
@@ -186,7 +186,7 @@ readonly class Generator implements GeneratorInterface
         }
 
         /* @phpstan-ignore-next-line */
-        usort($enumerationMembers, fn ($a, $b) => $a->value->value <=> $b->value->value);
+        usort($enumerationMembers, static fn ($a, $b) => $a->value->value <=> $b->value->value);
 
         $class->addStmt(
             $this->factory->classConst('ENUMERATION_MEMBERS', new Expr\Array_($enumerationMembers))
@@ -233,7 +233,7 @@ readonly class Generator implements GeneratorInterface
         }
 
         /* @phpstan-ignore-next-line */
-        usort($possibleValues, fn ($a, $b) => $a->value->value <=> $b->value->value);
+        usort($possibleValues, static fn ($a, $b) => $a->value->value <=> $b->value->value);
 
         $class->addStmt(
             $this->factory->classConst('VALUES', new Expr\Array_($possibleValues))
@@ -252,7 +252,7 @@ readonly class Generator implements GeneratorInterface
         }
 
         /* @phpstan-ignore-next-line */
-        usort($possibleTypes, fn ($a, $b) => $a->value->value <=> $b->value->value);
+        usort($possibleTypes, static fn ($a, $b) => $a->value->value <=> $b->value->value);
 
         $class->addStmt(
             $this->factory->classConst('TYPES', new Expr\Array_($possibleTypes))
@@ -300,7 +300,7 @@ readonly class Generator implements GeneratorInterface
         ];
 
         foreach ($metadata as $key => $value) {
-            usort($value, fn ($a, $b) => $a <=> $b);
+            usort($value, static fn ($a, $b) => $a <=> $b);
             $class->addStmt(
                 $this->factory->classConst($key, $value)
                     ->makePublic(),
