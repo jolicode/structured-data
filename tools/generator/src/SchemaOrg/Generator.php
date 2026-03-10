@@ -29,9 +29,9 @@ use Symfony\Component\DomCrawler\Crawler;
 
 readonly class Generator implements GeneratorInterface
 {
-    private const NAMESPACE_TYPE = 'Jolicode\\SchemaOrg\\Type';
-    private const NAMESPACE_PROPERTY = 'Jolicode\\SchemaOrg\\Property';
-    private const NAMESPACE_ENUMERATION_MEMBER = 'Jolicode\\SchemaOrg\\EnumerationMember';
+    private const NAMESPACE_TYPE = 'Jolicode\\Vocabularies\\SchemaOrg\\Type';
+    private const NAMESPACE_PROPERTY = 'Jolicode\\Vocabularies\\SchemaOrg\\Property';
+    private const NAMESPACE_ENUMERATION_MEMBER = 'Jolicode\\Vocabularies\\SchemaOrg\\EnumerationMember';
 
     public function __construct(
         private BuilderFactory $factory = new BuilderFactory(),

@@ -1,0 +1,52 @@
+<?php
+
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Jolicode\Vocabularies\SchemaOrg\Type;
+
+use Jolicode\Vocabularies\SchemaOrg\Property;
+
+final class TouristTripModel
+{
+    public const DESCRIPTION = 'A tourist trip. A created itinerary of visits to one or more places of interest ([[TouristAttraction]]/[[TouristDestination]]) often linked by a similar theme, geographic area, or interest to a particular [[touristType]]. The [UNWTO](http://www2.unwto.org/) defines tourism trip as the Trip taken by visitors.
+  (See examples below.)';
+    public const LABEL = 'TouristTrip';
+    public const NAME = 'schema:TouristTrip';
+    public const PARENTS = ['TripModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TripModel'];
+    public const ENUMERATION_MEMBERS = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1810'];
+
+    public function __construct(
+        public ?Property\AdditionalTypeModel $additionalType = null,
+        public ?Property\AlternateNameModel $alternateName = null,
+        public ?Property\ArrivalTimeModel $arrivalTime = null,
+        public ?Property\DepartureTimeModel $departureTime = null,
+        public ?Property\DescriptionModel $description = null,
+        public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
+        public ?Property\IdentifierModel $identifier = null,
+        public ?Property\ImageModel $image = null,
+        public ?Property\ItineraryModel $itinerary = null,
+        public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
+        public ?Property\NameModel $name = null,
+        public ?Property\OffersModel $offers = null,
+        public ?Property\OwnerModel $owner = null,
+        public ?Property\PartOfTripModel $partOfTrip = null,
+        public ?Property\PotentialActionModel $potentialAction = null,
+        public ?Property\ProviderModel $provider = null,
+        public ?Property\SameAsModel $sameAs = null,
+        public ?Property\SubTripModel $subTrip = null,
+        public ?Property\SubjectOfModel $subjectOf = null,
+        public ?Property\TouristTypeModel $touristType = null,
+        public ?Property\TripOriginModel $tripOrigin = null,
+        public ?Property\UrlModel $url = null,
+    ) {
+    }
+}

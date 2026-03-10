@@ -1,0 +1,23 @@
+<?php
+
+/*
+ * This file is part of JoliCode's json-ld project.
+ *
+ * (c) jolicode.com <coucou@jolicode.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Jolicode\Vocabularies\SchemaOrg\Property;
+
+final class HospitalAffiliationModel
+{
+    public const DESCRIPTION = 'A hospital with which the physician or office is affiliated.';
+    public const LABEL = 'hospitalAffiliation';
+    public const NAME = 'schema:hospitalAffiliation';
+    public const VALUES = ['HospitalModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\HospitalModel'];
+    public const TYPES = ['Physician' => 'Jolicode\Vocabularies\SchemaOrg\Type\PhysicianModel'];
+    public const IS_PART_OF = [];
+    public const SOURCE = [];
+}

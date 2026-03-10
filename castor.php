@@ -14,17 +14,36 @@ use Castor\Attribute\AsTask;
 
 use function Castor\import;
 use function Castor\io;
+use function Castor\run;
 
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
 use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
-use Jolicode\SchemaOrg\Mapper\MappedError;
-use Jolicode\SchemaOrg\Mapper\MappedType;
-use Jolicode\SchemaOrg\Validator;
+use Jolicode\Vocabularies\Mapper\MappedError;
+use Jolicode\Vocabularies\Mapper\MappedType;
+use Jolicode\Vocabularies\Validator;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
 import(__DIR__ . '/tools/castor.php');
 import(__DIR__ . '/tools/generator/castor.php');
+
+#[AsTask(description: 'Installs qa tooling')]
+function install(): void
+{
+    run(['composer', 'install', '-o', '--working-dir', 'tools/php-cs-fixer']);
+    run(['composer', 'install', '-o', '--working-dir', 'tools/phpstan']);
+    run(['composer', 'install', '-o', '--working-dir', 'tools/phpbench']);
+    run(['composer', 'install', '-o', '--working-dir', 'tools/phpunit']);
+}
+
+#[AsTask(description: 'Updates qa tooling')]
+function update(): void
+{
+    run(['composer', 'update', '-o', '--working-dir', 'tools/php-cs-fixer']);
+    run(['composer', 'update', '-o', '--working-dir', 'tools/phpstan']);
+    run(['composer', 'update', '-o', '--working-dir', 'tools/phpbench']);
+    run(['composer', 'update', '-o', '--working-dir', 'tools/phpunit']);
+}
 
 #[AsTask(name: 'expand', namespace: 'json-ld', description: 'Applies the expansion algorithm to a JSON-LD document')]
 function expand(
@@ -134,7 +153,7 @@ function displayType(MappedType $type, int $level = 0): void
     io()->writeln(sprintf('%s * %s', $prefix, $type->getKeyPath()));
 
     foreach ($type->properties as $propertyName => $property) {
-        /** @var Jolicode\SchemaOrg\Mapper\MappedProperty $property */
+        /** @var Jolicode\Vocabularies\Mapper\MappedProperty $property */
         $value = $property->value;
 
         if (is_string($value)) {

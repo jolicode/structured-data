@@ -29,9 +29,9 @@ use function Castor\run;
 use Jolicode\JsonLd\Generator\Filesystem;
 use Jolicode\JsonLd\Generator\GeneratorsContainer;
 use Jolicode\JsonLd\Generator\SchemaOrg\Generator;
-use Jolicode\SchemaOrg\Mapper\MappedType;
-use Jolicode\SchemaOrg\SchemaOrg;
-use Jolicode\SchemaOrg\Validator;
+use Jolicode\Vocabularies\Mapper\MappedType;
+use Jolicode\Vocabularies\SchemaOrg;
+use Jolicode\Vocabularies\Validator;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Process\ExecutableFinder;
 

@@ -52,10 +52,10 @@ class Type extends AbstractSchemaOrgElement
 
         if ($parents) {
             if (\array_key_exists(Extractor::KEY_ID, $parents)) {
-                $type->addParent($parents[Extractor::KEY_ID]);
+                $type->addParent($type, $parents[Extractor::KEY_ID]);
             } else {
                 foreach ($parents as $parent) {
-                    $type->addParent($parent[Extractor::KEY_ID]);
+                    $type->addParent($type, $parent[Extractor::KEY_ID]);
                 }
             }
         }
@@ -74,10 +74,10 @@ class Type extends AbstractSchemaOrgElement
     }
 
     /** Schema.org adds references to other vocabularies, but they don't belong to the Schema.org vocabulary so we skip them */
-    private function addParent(string $parent): void
+    private function addParent(self $type, string $parent): void
     {
         if (str_starts_with($parent, 'schema:')) {
-            $this->parents[$parent] = $parent;
+            $type->parents[$parent] = trim($parent);
         }
     }
 }

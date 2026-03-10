@@ -11,17 +11,17 @@
 
 namespace Jolicode\JsonLd\Tests\Validation;
 
-use Jolicode\SchemaOrg\Mapper\MappedType;
-use Jolicode\SchemaOrg\Validator;
-use Jolicode\SchemaOrg\Validators\Google\GoogleValidator;
-use Jolicode\SchemaOrg\Validators\SchemaOrg\SchemaOrgValidator;
+use Jolicode\Vocabularies\Mapper\MappedType;
+use Jolicode\Vocabularies\Validator;
+use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
+use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 
 /**
- * @covers \Jolicode\SchemaOrg\JsonLdValidator
- * @covers \Jolicode\SchemaOrg\Validators\SchemaOrgValidator
- * @covers \Jolicode\SchemaOrg\Validators\GoogleValidator
+ * @covers \Jolicode\Vocabularies\JsonLdValidator
+ * @covers \Jolicode\Vocabularies\Validators\SchemaOrgValidator
+ * @covers \Jolicode\Vocabularies\Validators\GoogleValidator
  *
  * @group validation
  */

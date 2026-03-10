@@ -11,7 +11,7 @@
 
 namespace Jolicode\JsonLd\Generator;
 
-use Jolicode\SchemaOrg\SchemaOrg;
+use Jolicode\Vocabularies\SchemaOrg;
 use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
 
@@ -20,7 +20,7 @@ readonly class Filesystem
     public const CACHE_DIR_SCHEMA_ORG = __DIR__ . '/../../../var/cache/schema-org';
     public const SCHEMA_ORG_EXAMPLES_DIR = __DIR__ . '/../../../resources/schema.org/examples';
     public const SCHEMA_ORG_FIXTURES_DIR = __DIR__ . '/../../../tests/Validation/fixtures/schema-org';
-    private const GENERATED_CLASSES_DIR = __DIR__ . '/../../../src/SchemaOrg/Generated';
+    private const GENERATED_CLASSES_DIR = __DIR__ . '/../../../src/Vocabularies/Generated';
 
     public function __construct(
         private SymfonyFilesystem $filesystem = new SymfonyFilesystem(),
@@ -38,7 +38,7 @@ readonly class Filesystem
     {
         $this->filesystem->dumpFile(\sprintf(
             '%s/%s/%s.php',
-            self::GENERATED_CLASSES_DIR,
+            self::GENERATED_CLASSES_DIR . '/SchemaOrg',
             $type,
             $className,
         ), $content);

@@ -33,7 +33,7 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Install qa tooling
-        run: castor qa:install
+        run: castor install
 
       - name: Check PHP coding standards
         run: castor qa:cs --dry-run

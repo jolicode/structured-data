@@ -60,7 +60,7 @@ readonly class Extractor
         $container = new ClassesContainer();
 
         foreach ($graph as $type) {
-            // Schema.org decided to add some weirdo empty types which are unusable. Why schema.org, whyyyy ? it was so clean :(
+            // Schema.org decided to add some references to other vocabularies, so we can't use them.
             if (!\array_key_exists(self::RDFS_COMMENT, $type) || !\array_key_exists(self::RDFS_LABEL, $type)) {
                 continue;
             }

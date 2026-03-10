@@ -11,8 +11,8 @@
 
 namespace Jolicode\JsonLd\Parser;
 
+use Jolicode\JsonLd\Extraction\JsonLdElement;
 use Jolicode\JsonLd\Parser\DataStructures\AbstractStructure;
-use Jolicode\SchemaOrg\Extraction\JsonLdElement;
 use JsonStreamingParser\Parser;
 
 class JsonLdParser

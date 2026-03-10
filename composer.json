@@ -5,10 +5,10 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Jolicode\\SchemaOrg\\EnumerationMember\\": "src/SchemaOrg/Generated/EnumerationMember/",
-            "Jolicode\\SchemaOrg\\Google\\": "src/SchemaOrg/Generated/Google/",
-            "Jolicode\\SchemaOrg\\Property\\": "src/SchemaOrg/Generated/Property/",
-            "Jolicode\\SchemaOrg\\Type\\": "src/SchemaOrg/Generated/Type/",
+            "Jolicode\\Vocabularies\\SchemaOrg\\EnumerationMember\\": "src/Vocabularies/Generated/SchemaOrg/EnumerationMember/",
+            "Jolicode\\Vocabularies\\Google\\": "src/Vocabularies/Generated/Google/",
+            "Jolicode\\Vocabularies\\SchemaOrg\\Property\\": "src/Vocabularies/Generated/SchemaOrg/Property/",
+            "Jolicode\\Vocabularies\\SchemaOrg\\Type\\": "src/Vocabularies/Generated/SchemaOrg/Type/",
             "Jolicode\\": "src/"
         }
     },

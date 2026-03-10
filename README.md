@@ -146,7 +146,7 @@ Command | Description
 
 The usual process to update the schema.org version used by this library is:
 
-- bump the version of the schema.org definition in the `src/SchemaOrg/SchemaOrg.php` file
+- bump the version of the schema.org definition in the `src/Vocabularies/SchemaOrg.php` file
 - run `castor generator:generate` to update the schema.org classes
 - run `castor generator:schema-org:update-examples` to update the examples. This will add new examples in the `resources/schema.org/examples` directory
 - run the tests to ensure everything is working as expected:

@@ -45,24 +45,6 @@ function bench(): int
     );
 }
 
-#[AsTask(description: 'Installs qa tooling')]
-function install(): void
-{
-    run(['composer', 'install', '-o', '--working-dir', __DIR__ . '/php-cs-fixer']);
-    run(['composer', 'install', '-o', '--working-dir', __DIR__ . '/phpstan']);
-    run(['composer', 'install', '-o', '--working-dir', __DIR__ . '/phpbench']);
-    run(['composer', 'install', '-o', '--working-dir', __DIR__ . '/phpunit']);
-}
-
-#[AsTask(description: 'Updates qa tooling')]
-function update(): void
-{
-    run(['composer', 'update', '-o', '--working-dir', __DIR__ . '/php-cs-fixer']);
-    run(['composer', 'update', '-o', '--working-dir', __DIR__ . '/phpstan']);
-    run(['composer', 'update', '-o', '--working-dir', __DIR__ . '/phpbench']);
-    run(['composer', 'update', '-o', '--working-dir', __DIR__ . '/phpunit']);
-}
-
 #[AsTask(description: 'Fix CS', aliases: ['cs'])]
 function cs(bool $dryRun = false, ?string $directory = null): int
 {
@@ -152,7 +134,7 @@ function phpunitPrepare(
     }
 }
 
-#[AsTask(name: 'run', description: 'Runs PHPUnit', namespace: 'qa:phpunit', aliases: ['phpunit'])]
+#[AsTask(name: 'run', description: 'Runs PHPUnit', namespace: 'qa:phpunit', aliases: ['phpunit', 'test', 'tests'])]
 function phpunit(
     #[AsOption(name: 'group', shortcut: 'g', mode: InputOption::VALUE_REQUIRED, description: 'Only run tests from the specified group')]
     ?string $group = null,
