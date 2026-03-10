@@ -17,7 +17,7 @@ final class ValidThroughModel
     public const LABEL = 'validThrough';
     public const NAME = 'schema:validThrough';
     public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
-    public const TYPES = ['Demand' => 'Jolicode\SchemaOrg\Type\DemandModel', 'JobPosting' => 'Jolicode\SchemaOrg\Type\JobPostingModel', 'LocationFeatureSpecification' => 'Jolicode\SchemaOrg\Type\LocationFeatureSpecificationModel', 'MonetaryAmount' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'OpeningHoursSpecification' => 'Jolicode\SchemaOrg\Type\OpeningHoursSpecificationModel', 'PriceSpecification' => 'Jolicode\SchemaOrg\Type\PriceSpecificationModel'];
+    public const TYPES = ['Demand' => 'Jolicode\SchemaOrg\Type\DemandModel', 'FinancialIncentive' => 'Jolicode\SchemaOrg\Type\FinancialIncentiveModel', 'JobPosting' => 'Jolicode\SchemaOrg\Type\JobPostingModel', 'LocationFeatureSpecification' => 'Jolicode\SchemaOrg\Type\LocationFeatureSpecificationModel', 'MonetaryAmount' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'OpeningHoursSpecification' => 'Jolicode\SchemaOrg\Type\OpeningHoursSpecificationModel', 'PriceSpecification' => 'Jolicode\SchemaOrg\Type\PriceSpecificationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -15,7 +15,7 @@ use Jolicode\SchemaOrg\Property;
 
 final class IndividualPhysicianModel
 {
-    public const DESCRIPTION = 'An individual medical practitioner. For their official address use [[address]], for affiliations to hospitals use [[hospitalAffiliation]].
+    public const DESCRIPTION = 'An individual medical practitioner. For their official address use [[address]], for affiliations to hospitals use [[hospitalAffiliation]]. 
 The [[practicesAt]] property can be used to indicate [[MedicalOrganization]] hospitals, clinics, pharmacies etc. where this physician practices.';
     public const LABEL = 'IndividualPhysician';
     public const NAME = 'schema:IndividualPhysician';
@@ -42,6 +42,7 @@ The [[practicesAt]] property can be used to indicate [[MedicalOrganization]] hos
         public ?Property\BranchCodeModel $branchCode = null,
         public ?Property\BranchOfModel $branchOf = null,
         public ?Property\BrandModel $brand = null,
+        public ?Property\CompanyRegistrationModel $companyRegistration = null,
         public ?Property\ContactPointModel $contactPoint = null,
         public ?Property\ContactPointsModel $contactPoints = null,
         public ?Property\ContainedInModel $containedIn = null,
@@ -90,6 +91,7 @@ The [[practicesAt]] property can be used to indicate [[MedicalOrganization]] hos
         public ?Property\HasMerchantReturnPolicyModel $hasMerchantReturnPolicy = null,
         public ?Property\HasOfferCatalogModel $hasOfferCatalog = null,
         public ?Property\HasPOSModel $hasPOS = null,
+        public ?Property\HasShippingServiceModel $hasShippingService = null,
         public ?Property\HealthPlanNetworkIdModel $healthPlanNetworkId = null,
         public ?Property\HospitalAffiliationModel $hospitalAffiliation = null,
         public ?Property\IdentifierModel $identifier = null,
@@ -103,7 +105,9 @@ The [[practicesAt]] property can be used to indicate [[MedicalOrganization]] hos
         public ?Property\KnowsAboutModel $knowsAbout = null,
         public ?Property\KnowsLanguageModel $knowsLanguage = null,
         public ?Property\LatitudeModel $latitude = null,
+        public ?Property\LegalAddressModel $legalAddress = null,
         public ?Property\LegalNameModel $legalName = null,
+        public ?Property\LegalRepresentativeModel $legalRepresentative = null,
         public ?Property\LeiCodeModel $leiCode = null,
         public ?Property\LocationModel $location = null,
         public ?Property\LogoModel $logo = null,
@@ -124,6 +128,7 @@ The [[practicesAt]] property can be used to indicate [[MedicalOrganization]] hos
         public ?Property\OccupationalCategoryModel $occupationalCategory = null,
         public ?Property\OpeningHoursModel $openingHours = null,
         public ?Property\OpeningHoursSpecificationModel $openingHoursSpecification = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\OwnershipFundingInfoModel $ownershipFundingInfo = null,
         public ?Property\OwnsModel $owns = null,
         public ?Property\ParentOrganizationModel $parentOrganization = null,

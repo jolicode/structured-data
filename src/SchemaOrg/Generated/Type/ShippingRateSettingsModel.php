@@ -35,13 +35,15 @@ final class ShippingRateSettingsModel
         public ?Property\IsUnlabelledFallbackModel $isUnlabelledFallback = null,
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OrderPercentageModel $orderPercentage = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\SameAsModel $sameAs = null,
         public ?Property\ShippingDestinationModel $shippingDestination = null,
-        public ?Property\ShippingLabelModel $shippingLabel = null,
         public ?Property\ShippingRateModel $shippingRate = null,
         public ?Property\SubjectOfModel $subjectOf = null,
         public ?Property\UrlModel $url = null,
+        public ?Property\WeightPercentageModel $weightPercentage = null,
     ) {
     }
 }

@@ -21,7 +21,7 @@ final class LegalValueLevelModel
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['AuthoritativeLegalValueModel' => 'EnumerationMember\AuthoritativeLegalValueModel', 'DefinitiveLegalValueModel' => 'EnumerationMember\DefinitiveLegalValueModel', 'OfficialLegalValueModel' => 'EnumerationMember\OfficialLegalValueModel', 'UnofficialLegalValueModel' => 'EnumerationMember\UnofficialLegalValueModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
-    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1156'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1156', 'https://op.europa.eu/en/web/eu-vocabularies/model/-/resource/dataset/eli'];
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,
@@ -32,6 +32,7 @@ final class LegalValueLevelModel
         public ?Property\ImageModel $image = null,
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\SameAsModel $sameAs = null,
         public ?Property\SubjectOfModel $subjectOf = null,

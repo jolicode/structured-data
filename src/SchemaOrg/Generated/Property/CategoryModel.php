@@ -17,7 +17,7 @@ final class CategoryModel
     public const LABEL = 'category';
     public const NAME = 'schema:category';
     public const VALUES = ['CategoryCodeModel' => 'Jolicode\SchemaOrg\Type\CategoryCodeModel', 'PhysicalActivityCategoryModel' => 'Jolicode\SchemaOrg\Type\PhysicalActivityCategoryModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel', 'ThingModel' => 'Jolicode\SchemaOrg\Type\ThingModel', 'URLModel' => 'Jolicode\SchemaOrg\Type\URLModel'];
-    public const TYPES = ['ActionAccessSpecification' => 'Jolicode\SchemaOrg\Type\ActionAccessSpecificationModel', 'Invoice' => 'Jolicode\SchemaOrg\Type\InvoiceModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'PhysicalActivity' => 'Jolicode\SchemaOrg\Type\PhysicalActivityModel', 'Product' => 'Jolicode\SchemaOrg\Type\ProductModel', 'Recommendation' => 'Jolicode\SchemaOrg\Type\RecommendationModel', 'Service' => 'Jolicode\SchemaOrg\Type\ServiceModel', 'SpecialAnnouncement' => 'Jolicode\SchemaOrg\Type\SpecialAnnouncementModel'];
+    public const TYPES = ['ActionAccessSpecification' => 'Jolicode\SchemaOrg\Type\ActionAccessSpecificationModel', 'Guide' => 'Jolicode\SchemaOrg\Type\GuideModel', 'Invoice' => 'Jolicode\SchemaOrg\Type\InvoiceModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'PhysicalActivity' => 'Jolicode\SchemaOrg\Type\PhysicalActivityModel', 'Product' => 'Jolicode\SchemaOrg\Type\ProductModel', 'Recommendation' => 'Jolicode\SchemaOrg\Type\RecommendationModel', 'Service' => 'Jolicode\SchemaOrg\Type\ServiceModel', 'SpecialAnnouncement' => 'Jolicode\SchemaOrg\Type\SpecialAnnouncementModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

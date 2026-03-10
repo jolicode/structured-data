@@ -16,7 +16,7 @@ final class PossibleTreatmentModel
     public const DESCRIPTION = 'A possible treatment to address this condition, sign or symptom.';
     public const LABEL = 'possibleTreatment';
     public const NAME = 'schema:possibleTreatment';
-    public const VALUES = ['MedicalTherapyModel' => 'Jolicode\SchemaOrg\Type\MedicalTherapyModel'];
+    public const VALUES = ['DrugClassModel' => 'Jolicode\SchemaOrg\Type\DrugClassModel', 'DrugModel' => 'Jolicode\SchemaOrg\Type\DrugModel', 'LifestyleModificationModel' => 'Jolicode\SchemaOrg\Type\LifestyleModificationModel', 'MedicalTherapyModel' => 'Jolicode\SchemaOrg\Type\MedicalTherapyModel'];
     public const TYPES = ['MedicalCondition' => 'Jolicode\SchemaOrg\Type\MedicalConditionModel', 'MedicalSignOrSymptom' => 'Jolicode\SchemaOrg\Type\MedicalSignOrSymptomModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

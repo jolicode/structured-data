@@ -237,7 +237,7 @@ class Validator
                 }
             }
 
-            $this->callValidatorsForProperty($property, $type);
+            $this->callValidatorsForProperty($property, $type, $originalProperty);
         }
     }
 
@@ -256,7 +256,7 @@ class Validator
         }
     }
 
-    private function callValidatorsForProperty(MappedProperty $property, MappedType $type): void
+    private function callValidatorsForProperty(MappedProperty $property, MappedType $type, ?MappedProperty $originalProperty = null): void
     {
         if (Keyword::tryFrom($property->key)) {
             return;
@@ -267,7 +267,7 @@ class Validator
             : $this->container->getValidators();
 
         foreach ($validators as $validator) {
-            $validator::validateProperty($type, $property, $this->typesStack);
+            $validator::validateProperty($type, $property, $this->typesStack, $originalProperty);
         }
     }
 

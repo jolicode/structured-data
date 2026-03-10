@@ -1,0 +1,49 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "Event",
+  "startDate": "2026-01-22T20:00:00-05:00",
+  "endDate": "2026-01-22T21:00:00-05:00",
+  "name": "Rinse",
+  "location": { 
+    "@type": "Place",
+    "@id": "https://nac-cna.ca/venue/studio#Place",
+    "name": "Azrieli Studio",
+    "sameAs": "http://www.wikidata.org/entity/Q109326244",
+    "address": {
+      "type": "PostalAddress",
+      "streetAddress": "1 Elgin Street",
+      "addressLocality": "Ottawa",
+      "addressRegion": "ON",
+      "postalCode": "K1P 5W1",
+      "addressCountry": "CA"
+      }
+    },
+  "description": "Rinse recreates an origin myth on stage&mdash;recounting personal narratives in relation to dance, art, feminism, desire, love, popular culture, and colonial history.",
+  "url": "https://nac-cna.ca/en/event/38366",
+  "image": "https://naccnaca-eventimages.s3.amazonaws.com/38366/amrita_hero__large.jpg",
+  "organizer": {
+    "@type": "Organization",
+    "name": "NAC Indigenous Theatre",
+    "url": "https://nac-cna.ca/en/indigenoustheatre",
+    "sameAs": "http://www.wikidata.org/entity/Q105878246"
+    },
+  "performer": {
+    "@type": "Person",
+    "name": "Amrita Hepi", 
+    "sameAs": "http://www.wikidata.org/entity/Q134599760"
+    },
+  "workPerformed": {
+    "@type": "CreativeWork",
+    "name": "Rinse",
+    "sameAs": "http://www.wikidata.org/entity/Q134876960"
+    },
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://nac-cna.ca/en/event/38366",
+    "price": "35",
+    "priceCurrency": "CAD",
+    "validFrom": "2025-06-12T10:00:00-05:00"
+    }				
+}

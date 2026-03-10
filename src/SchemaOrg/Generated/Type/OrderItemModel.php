@@ -18,7 +18,7 @@ final class OrderItemModel
     public const DESCRIPTION = 'An order item is a line of an order. It includes the quantity and shipping details of a bought offer.';
     public const LABEL = 'OrderItem';
     public const NAME = 'schema:OrderItem';
-    public const PARENTS = ['IntangibleModel' => 'Jolicode\SchemaOrg\Type\IntangibleModel'];
+    public const PARENTS = ['StructuredValueModel' => 'Jolicode\SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];
@@ -37,6 +37,7 @@ final class OrderItemModel
         public ?Property\OrderItemStatusModel $orderItemStatus = null,
         public ?Property\OrderQuantityModel $orderQuantity = null,
         public ?Property\OrderedItemModel $orderedItem = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\SameAsModel $sameAs = null,
         public ?Property\SubjectOfModel $subjectOf = null,

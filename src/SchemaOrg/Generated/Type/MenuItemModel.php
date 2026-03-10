@@ -35,6 +35,7 @@ final class MenuItemModel
         public ?Property\NameModel $name = null,
         public ?Property\NutritionModel $nutrition = null,
         public ?Property\OffersModel $offers = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\SameAsModel $sameAs = null,
         public ?Property\SubjectOfModel $subjectOf = null,

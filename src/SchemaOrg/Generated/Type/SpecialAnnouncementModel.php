@@ -110,6 +110,7 @@ media type information, e.g. "application/rss+xml" or "application/atom+xml".';
         public ?Property\DiscussionUrlModel $discussionUrl = null,
         public ?Property\DiseasePreventionInfoModel $diseasePreventionInfo = null,
         public ?Property\DiseaseSpreadStatisticsModel $diseaseSpreadStatistics = null,
+        public ?Property\DisplayLocationModel $displayLocation = null,
         public ?Property\EditEIDRModel $editEIDR = null,
         public ?Property\EditorModel $editor = null,
         public ?Property\EducationalAlignmentModel $educationalAlignment = null,
@@ -152,6 +153,7 @@ media type information, e.g. "application/rss+xml" or "application/atom+xml".';
         public ?Property\NameModel $name = null,
         public ?Property\NewsUpdatesAndGuidelinesModel $newsUpdatesAndGuidelines = null,
         public ?Property\OffersModel $offers = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PatternModel $pattern = null,
         public ?Property\PositionModel $position = null,
         public ?Property\PotentialActionModel $potentialAction = null,
@@ -195,6 +197,7 @@ media type information, e.g. "application/rss+xml" or "application/atom+xml".';
         public ?Property\VersionModel $version = null,
         public ?Property\VideoModel $video = null,
         public ?Property\WebFeedModel $webFeed = null,
+        public ?Property\WordCountModel $wordCount = null,
         public ?Property\WorkExampleModel $workExample = null,
         public ?Property\WorkTranslationModel $workTranslation = null,
     ) {

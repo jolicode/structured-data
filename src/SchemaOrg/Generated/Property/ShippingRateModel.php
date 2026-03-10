@@ -16,8 +16,8 @@ final class ShippingRateModel
     public const DESCRIPTION = 'The shipping rate is the cost of shipping to the specified destination. Typically, the maxValue and currency values (of the [[MonetaryAmount]]) are most appropriate.';
     public const LABEL = 'shippingRate';
     public const NAME = 'schema:shippingRate';
-    public const VALUES = ['MonetaryAmountModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel'];
-    public const TYPES = ['OfferShippingDetails' => 'Jolicode\SchemaOrg\Type\OfferShippingDetailsModel', 'ShippingRateSettings' => 'Jolicode\SchemaOrg\Type\ShippingRateSettingsModel'];
+    public const VALUES = ['MonetaryAmountModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel', 'ShippingRateSettingsModel' => 'Jolicode\SchemaOrg\Type\ShippingRateSettingsModel'];
+    public const TYPES = ['OfferShippingDetails' => 'Jolicode\SchemaOrg\Type\OfferShippingDetailsModel', 'ShippingConditions' => 'Jolicode\SchemaOrg\Type\ShippingConditionsModel', 'ShippingRateSettings' => 'Jolicode\SchemaOrg\Type\ShippingRateSettingsModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

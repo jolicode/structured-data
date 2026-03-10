@@ -13,11 +13,11 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class PublisherModel
 {
-    public const DESCRIPTION = 'The publisher of the creative work.';
+    public const DESCRIPTION = 'The publisher of the article in question.';
     public const LABEL = 'publisher';
     public const NAME = 'schema:publisher';
     public const VALUES = ['OrganizationModel' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\SchemaOrg\Type\PersonModel'];
-    public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
+    public const TYPES = ['CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel', 'FinancialIncentive' => 'Jolicode\SchemaOrg\Type\FinancialIncentiveModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

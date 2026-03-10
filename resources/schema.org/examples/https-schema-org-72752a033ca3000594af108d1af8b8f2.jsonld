@@ -1,0 +1,32 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "Organization",
+  "name": "Example Inc.",
+  "hasShippingService": [
+    {
+      "@type": "ShippingService",
+      "name": "Members Free Shipping",
+      "description": "Free shipping worldwide for Gold and Platinum members.",
+      "validForMemberTier": [
+        { "@id": "https://www.example.com/membership-plus#tier_gold" },
+        { "@id": "https://www.example.com/membership-plus#tier_platinum" }
+      ],
+      "shippingConditions": {
+        "@type": "ShippingConditions",
+        "shippingRate": "0"
+      }
+    }, {
+      "@type": "ShippingService",
+      "name": "Standard Shipping",
+      "description": "Flat-fee worldwide shipping.",
+      "shippingConditions": {
+        "@type": "ShippingConditions",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": "9.99",
+          "currency": "USD"
+        }
+      }
+    }
+  ]
+}

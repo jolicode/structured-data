@@ -81,6 +81,7 @@ final class SingleFamilyResidenceModel
         public ?Property\NumberOfRoomsModel $numberOfRooms = null,
         public ?Property\OccupancyModel $occupancy = null,
         public ?Property\OpeningHoursSpecificationModel $openingHoursSpecification = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PermittedUsageModel $permittedUsage = null,
         public ?Property\PetsAllowedModel $petsAllowed = null,
         public ?Property\PhotoModel $photo = null,

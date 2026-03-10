@@ -34,6 +34,7 @@ final class MerchantReturnPolicySeasonalOverrideModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\MerchantReturnDaysModel $merchantReturnDays = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\RefundTypeModel $refundType = null,
         public ?Property\RestockingFeeModel $restockingFee = null,

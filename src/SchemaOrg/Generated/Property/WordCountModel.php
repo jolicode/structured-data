@@ -13,11 +13,11 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class WordCountModel
 {
-    public const DESCRIPTION = 'The number of words in the text of the Article.';
+    public const DESCRIPTION = 'The number of words in the text of the CreativeWork such as an Article, Book, etc.';
     public const LABEL = 'wordCount';
     public const NAME = 'schema:wordCount';
     public const VALUES = ['IntegerModel' => 'Jolicode\SchemaOrg\Type\IntegerModel'];
-    public const TYPES = ['Article' => 'Jolicode\SchemaOrg\Type\ArticleModel'];
+    public const TYPES = ['Article' => 'Jolicode\SchemaOrg\Type\ArticleModel', 'CreativeWork' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

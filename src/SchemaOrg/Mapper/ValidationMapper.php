@@ -23,6 +23,7 @@ use Jolicode\SchemaOrg\Type\DateModel;
 class ValidationMapper
 {
     private const SCHEMA_ORG_DOMAIN = 'http://schema.org/';
+    private const SCHEMA_ORG_DOMAIN_SECURE = 'https://schema.org/';
 
     public function __construct(
         /**
@@ -102,7 +103,9 @@ class ValidationMapper
         $typeShortNames = [];
 
         foreach ($typesEntry as $typeName) {
-            $typeShortNames[] = str_replace(self::SCHEMA_ORG_DOMAIN, '', $typeName);
+            $typeName = str_replace(self::SCHEMA_ORG_DOMAIN, '', $typeName);
+            $typeName = str_replace(self::SCHEMA_ORG_DOMAIN_SECURE, '', $typeName);
+            $typeShortNames[] = $typeName;
         }
 
         return 1 === \count($typeShortNames) ? $typeShortNames[0] : $typeShortNames;
@@ -168,9 +171,15 @@ class ValidationMapper
             }
 
             if ($this->isTypeProperty($valueEntry)) {
-                $valueEntry = $this->mapType($valueEntry);
-                $valueEntry->parent = $property->type;
-                $valueEntry->parentProperty = $property;
+                if (Keyword::REVERSE->value === $key) {
+                    foreach ($valueEntry as $reverseValue) {
+                        $property->value[] = $this->createPropertyType($reverseValue, $property);
+                    }
+
+                    continue;
+                }
+
+                $valueEntry = $this->createPropertyType($valueEntry, $property);
             }
 
             if ($this->isValueOrId($valueEntry)) {
@@ -414,6 +423,15 @@ class ValidationMapper
         }
 
         return true;
+    }
+
+    private function createPropertyType(\stdClass $expandedType, MappedProperty $property): MappedType
+    {
+        $propertyType = $this->mapType($expandedType);
+        $propertyType->parent = $property->type;
+        $propertyType->parentProperty = $property;
+
+        return $propertyType;
     }
 
     private function isValueOrId(\stdClass|MappedType|string $valueEntry): bool

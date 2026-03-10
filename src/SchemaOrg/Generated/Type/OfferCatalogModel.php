@@ -25,6 +25,7 @@ final class OfferCatalogModel
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,
+        public ?Property\AggregateElementModel $aggregateElement = null,
         public ?Property\AlternateNameModel $alternateName = null,
         public ?Property\DescriptionModel $description = null,
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
@@ -35,6 +36,7 @@ final class OfferCatalogModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
         public ?Property\NumberOfItemsModel $numberOfItems = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\SameAsModel $sameAs = null,
         public ?Property\SubjectOfModel $subjectOf = null,

@@ -16,7 +16,7 @@ final class ObservationDateModel
     public const DESCRIPTION = 'The observationDate of an [[Observation]].';
     public const LABEL = 'observationDate';
     public const NAME = 'schema:observationDate';
-    public const VALUES = ['DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
+    public const VALUES = ['DateModel' => 'Jolicode\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['Observation' => 'Jolicode\SchemaOrg\Type\ObservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

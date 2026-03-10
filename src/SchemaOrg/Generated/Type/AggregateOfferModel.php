@@ -76,6 +76,7 @@ final class AggregateOfferModel
         public ?Property\OfferCountModel $offerCount = null,
         public ?Property\OfferedByModel $offeredBy = null,
         public ?Property\OffersModel $offers = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\PriceModel $price = null,
         public ?Property\PriceCurrencyModel $priceCurrency = null,

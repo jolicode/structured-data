@@ -1,0 +1,15 @@
+{
+  "@context": "https://schema.org",
+  "@type": "MathSolver",
+  "url": "https://www.mathdomain.com/",
+  "potentialAction": [{
+     "@type": "SolveMathAction",
+     "target": "https://mathdomain.com/solve?q={math_expression_string}",
+     "eduQuestionType": "Polynomial Equations"
+   },
+   {
+     "@type": "SolveMathAction",
+     "target": "https://mathdomain.com/graph?q={math_expression_string}",
+     "eduQuestionType": "Graphing"
+   }]
+}

@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class NetWorthModel
 {
-    public const DESCRIPTION = 'The total financial value of the person as calculated by subtracting assets from liabilities.';
+    public const DESCRIPTION = 'The total financial value of the person as calculated by subtracting the total value of liabilities from the total value of assets.';
     public const LABEL = 'netWorth';
     public const NAME = 'schema:netWorth';
     public const VALUES = ['MonetaryAmountModel' => 'Jolicode\SchemaOrg\Type\MonetaryAmountModel', 'PriceSpecificationModel' => 'Jolicode\SchemaOrg\Type\PriceSpecificationModel'];

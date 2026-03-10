@@ -37,6 +37,7 @@ final class FoodEstablishmentReservationModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\ModifiedTimeModel $modifiedTime = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PartySizeModel $partySize = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\PriceCurrencyModel $priceCurrency = null,

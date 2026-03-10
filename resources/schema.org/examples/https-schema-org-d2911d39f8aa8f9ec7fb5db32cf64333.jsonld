@@ -1,0 +1,11 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "Error",
+  "timestamp": "2025-11-17T18:23:00Z",
+  "description": "Out of Cheese Error",
+  "source": {
+     "@type": "SoftwareApplication",
+     "name": "Cheese Machine"
+  },
+  "errorCode": "DEADBEEF"
+}

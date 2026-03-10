@@ -54,14 +54,14 @@ class SchemaOrgValidator extends AbstractValidator
                 return $errors;
             }
 
-            $typeLabel = self::guessTypeFromProperties($type->properties);
+            $typeLabel = self::guessTypeFromProperties($type->properties, $property?->key);
             $type->type = $typeLabel;
             $message = 'The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ' . $typeLabel;
             $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_WARNING);
         }
 
         foreach ((array) $typeLabel as $label) {
-            if (!$label) {
+            if (!$label || IriResolver::isAbsoluteIri($label)) {
                 continue;
             }
 
@@ -100,7 +100,7 @@ class SchemaOrgValidator extends AbstractValidator
         return $errors;
     }
 
-    public static function validateProperty(MappedType $type, MappedProperty $property, array $typesStack): array
+    public static function validateProperty(MappedType $type, MappedProperty $property, array $typesStack, ?MappedProperty $originalProperty = null): array
     {
         $errors = [];
         $typeLabel = $type->type;
@@ -111,7 +111,7 @@ class SchemaOrgValidator extends AbstractValidator
 
         $propertyKey = self::stripActionSuffixes($property->key);
 
-        if (Keyword::tryFrom($propertyKey)) {
+        if (Keyword::tryFrom($propertyKey) || IriResolver::isAbsoluteIri($propertyKey)) {
             return $errors;
         }
 
@@ -130,7 +130,7 @@ class SchemaOrgValidator extends AbstractValidator
         $property->source = array_merge($property->source, $propertyFqcn::SOURCE);
 
         if (!$typeLabel) {
-            $typeLabel = self::guessTypeFromProperties($type->properties);
+            $typeLabel = self::guessTypeFromProperties($type->properties, $originalProperty?->key);
         }
 
         $typeFqcns = [];
@@ -174,6 +174,7 @@ class SchemaOrgValidator extends AbstractValidator
      */
     public static function guessTypeFromProperties(
         array $typeProperties,
+        ?string $parentProperty = null,
     ): string {
         /**
          * @var array<string, array{fqcn: string, shortName: string, supportedProperties: string[], ancestors: string[], parentsChainLength: int}> $possibleTypes
@@ -181,22 +182,26 @@ class SchemaOrgValidator extends AbstractValidator
         $possibleTypes = [];
         $evaluatedPropertiesCount = 0;
 
+        if ($parentProperty && $guessedType = self::guessFromParentProperty($parentProperty, $typeProperties)) {
+            return $guessedType;
+        }
+
         foreach ($typeProperties as $property) {
             if (Keyword::tryFrom($property->key)) {
                 continue;
             }
 
             $propertyKey = self::stripActionSuffixes($property->key);
-            $typeFqcn = self::getPropertyFqcn($propertyKey);
+            $propertyFqcn = self::getPropertyFqcn($propertyKey);
 
-            if (!class_exists($typeFqcn)) {
+            if (!class_exists($propertyFqcn)) {
                 continue;
             }
 
             ++$evaluatedPropertiesCount;
 
             /** @var string $fqcn */
-            foreach ($typeFqcn::TYPES as $shortName => $fqcn) {
+            foreach ($propertyFqcn::TYPES as $shortName => $fqcn) {
                 if (!isset($possibleTypes[$fqcn])) {
                     $possibleTypes[$fqcn] = [
                         'fqcn' => $fqcn,
@@ -239,6 +244,30 @@ class SchemaOrgValidator extends AbstractValidator
         }
 
         return 'Thing';
+    }
+
+    private static function guessFromParentProperty(string $parentProperty, array $typeProperties): ?string
+    {
+        $parentPropertyKey = self::stripActionSuffixes($parentProperty);
+        $parentPropertyFqcn = self::getPropertyFqcn($parentPropertyKey);
+        $bestMatches = [];
+
+        if (!class_exists($parentPropertyFqcn)) {
+            return null;
+        }
+
+        foreach ($parentPropertyFqcn::VALUES as $expectedFqcn) {
+            $commonProperties = array_intersect_key(
+                array_map(static fn (MappedProperty $property) => $property->key, $typeProperties),
+                get_class_vars($expectedFqcn),
+            );
+
+            $bestMatches[\count($commonProperties)] = $expectedFqcn::LABEL;
+        }
+
+        ksort($bestMatches);
+
+        return array_pop($bestMatches);
     }
 
     private static function countLonguestParentsChain(string $fqcn): int

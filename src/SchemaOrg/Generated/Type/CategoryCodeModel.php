@@ -24,6 +24,7 @@ final class CategoryCodeModel
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/894'];
 
     public function __construct(
+        public ?Property\AboutModel $about = null,
         public ?Property\AdditionalTypeModel $additionalType = null,
         public ?Property\AlternateNameModel $alternateName = null,
         public ?Property\CodeValueModel $codeValue = null,
@@ -35,6 +36,7 @@ final class CategoryCodeModel
         public ?Property\InDefinedTermSetModel $inDefinedTermSet = null,
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\SameAsModel $sameAs = null,
         public ?Property\SubjectOfModel $subjectOf = null,

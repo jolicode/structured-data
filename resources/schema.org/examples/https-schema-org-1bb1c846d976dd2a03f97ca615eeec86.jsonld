@@ -1,0 +1,40 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "FinancialIncentive",
+  "name": "Clean Vehicle Tax Credit",
+  "url": "https://www.irs.gov/credits-deductions/credits-for-new-clean-vehicles-purchased-in-2023-or-after",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Internal Revenue Service (IRS)"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "US Federal Government"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "United States"
+  },
+  "validFrom": "2023-01-01", 
+  "validThrough": "2032-12-31", 
+  "incentiveType": "TaxCredit",
+  "purchaseType": "NewPurchase",
+  "incentiveAmount": {
+    "@type": "QuantitativeValue",
+    "minValue": "2500",
+    "maxValue": "7500",
+    "unitCode": "USD"
+  },
+  "incentiveStatus": "Active",
+  "incentivizedItem": {
+    "@type": "DefinedTerm",
+    "inDefinedTermSet": "https://www.unspsc.org/",
+    "termCode": "25101509",
+    "name": "Electrically powered vehicle"
+  }, 
+  "incomeLimit": {
+    "@type": "MonetaryAmount",
+    "maxValue": "114000",
+    "currency": "USD"
+  }
+}

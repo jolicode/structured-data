@@ -40,6 +40,7 @@ final class ParcelDeliveryModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
         public ?Property\OriginAddressModel $originAddress = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PartOfOrderModel $partOfOrder = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\ProviderModel $provider = null,

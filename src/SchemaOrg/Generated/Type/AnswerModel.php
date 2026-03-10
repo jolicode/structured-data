@@ -72,6 +72,7 @@ final class AnswerModel
         public ?Property\DigitalSourceTypeModel $digitalSourceType = null,
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
         public ?Property\DiscussionUrlModel $discussionUrl = null,
+        public ?Property\DisplayLocationModel $displayLocation = null,
         public ?Property\DownvoteCountModel $downvoteCount = null,
         public ?Property\EditEIDRModel $editEIDR = null,
         public ?Property\EditorModel $editor = null,
@@ -112,6 +113,7 @@ final class AnswerModel
         public ?Property\MentionsModel $mentions = null,
         public ?Property\NameModel $name = null,
         public ?Property\OffersModel $offers = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\ParentItemModel $parentItem = null,
         public ?Property\PatternModel $pattern = null,
         public ?Property\PositionModel $position = null,
@@ -153,6 +155,7 @@ final class AnswerModel
         public ?Property\UsageInfoModel $usageInfo = null,
         public ?Property\VersionModel $version = null,
         public ?Property\VideoModel $video = null,
+        public ?Property\WordCountModel $wordCount = null,
         public ?Property\WorkExampleModel $workExample = null,
         public ?Property\WorkTranslationModel $workTranslation = null,
     ) {

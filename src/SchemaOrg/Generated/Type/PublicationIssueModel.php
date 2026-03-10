@@ -15,7 +15,7 @@ use Jolicode\SchemaOrg\Property;
 
 final class PublicationIssueModel
 {
-    public const DESCRIPTION = 'A part of a successively published publication such as a periodical or publication volume, often numbered, usually containing a grouping of works such as articles.\n\nSee also [blog post](http://blog.schema.org/2014/09/schemaorg-support-for-bibliographic_2.html).';
+    public const DESCRIPTION = 'A part of a successively published publication such as a periodical or publication volume, often numbered, usually containing a grouping of works such as articles.\n\nSee also [blog post](https://blog-schema.org/2014/09/02/schema-org-support-for-bibliographic-relationships-and-periodicals/).';
     public const LABEL = 'PublicationIssue';
     public const NAME = 'schema:PublicationIssue';
     public const PARENTS = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
@@ -71,6 +71,7 @@ final class PublicationIssueModel
         public ?Property\DigitalSourceTypeModel $digitalSourceType = null,
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
         public ?Property\DiscussionUrlModel $discussionUrl = null,
+        public ?Property\DisplayLocationModel $displayLocation = null,
         public ?Property\EditEIDRModel $editEIDR = null,
         public ?Property\EditorModel $editor = null,
         public ?Property\EducationalAlignmentModel $educationalAlignment = null,
@@ -111,6 +112,7 @@ final class PublicationIssueModel
         public ?Property\MentionsModel $mentions = null,
         public ?Property\NameModel $name = null,
         public ?Property\OffersModel $offers = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PageEndModel $pageEnd = null,
         public ?Property\PageStartModel $pageStart = null,
         public ?Property\PaginationModel $pagination = null,
@@ -152,6 +154,7 @@ final class PublicationIssueModel
         public ?Property\UsageInfoModel $usageInfo = null,
         public ?Property\VersionModel $version = null,
         public ?Property\VideoModel $video = null,
+        public ?Property\WordCountModel $wordCount = null,
         public ?Property\WorkExampleModel $workExample = null,
         public ?Property\WorkTranslationModel $workTranslation = null,
     ) {

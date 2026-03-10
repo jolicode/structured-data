@@ -37,6 +37,7 @@ final class OccupationModel
         public ?Property\NameModel $name = null,
         public ?Property\OccupationLocationModel $occupationLocation = null,
         public ?Property\OccupationalCategoryModel $occupationalCategory = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\QualificationsModel $qualifications = null,
         public ?Property\ResponsibilitiesModel $responsibilities = null,

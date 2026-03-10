@@ -1,0 +1,32 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "JSON Example",
+  "offers": {
+    "@type": "Offer",
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "height": "12 in",
+      "width": "45 cm",
+      "depth": "0.3 m",
+      "weight": "1.2 kg",
+      "hasShippingService": {
+        "@type": "ShippingService",
+        "shippingConditions": {
+          "@type": "ShippingConditions",
+          "shippingDestination": [
+            {
+              "@type": "DefinedRegion",
+              "addressCountry": "US"
+            },
+            {
+              "@type": "DefinedRegion",
+              "addressCountry": "CA"
+            }
+          ],
+          "shippingRate": "0"
+        }
+      }
+    }
+  }
+}

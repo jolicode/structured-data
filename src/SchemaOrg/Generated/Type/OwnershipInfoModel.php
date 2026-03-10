@@ -35,6 +35,7 @@ final class OwnershipInfoModel
         public ?Property\NameModel $name = null,
         public ?Property\OwnedFromModel $ownedFrom = null,
         public ?Property\OwnedThroughModel $ownedThrough = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\SameAsModel $sameAs = null,
         public ?Property\SubjectOfModel $subjectOf = null,

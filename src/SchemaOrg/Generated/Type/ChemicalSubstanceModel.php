@@ -46,6 +46,7 @@ final class ChemicalSubstanceModel
         public ?Property\IsPartOfBioChemEntityModel $isPartOfBioChemEntity = null,
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\PotentialUseModel $potentialUse = null,
         public ?Property\SameAsModel $sameAs = null,

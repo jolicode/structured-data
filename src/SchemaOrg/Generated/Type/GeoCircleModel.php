@@ -42,6 +42,7 @@ final class GeoCircleModel
         public ?Property\LineModel $line = null,
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PolygonModel $polygon = null,
         public ?Property\PostalCodeModel $postalCode = null,
         public ?Property\PotentialActionModel $potentialAction = null,

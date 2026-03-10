@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\EnumerationMember;
 
 final class HardcoverModel
 {
-    public const DESCRIPTION = 'Book format: Hardcover.';
+    public const DESCRIPTION = 'A durable, archival-quality book featuring a rigid protective shell made of heavy board wrapped in cloth or paper, designed to withstand heavy use and preservation on a shelf.';
     public const LABEL = 'Hardcover';
     public const NAME = 'schema:Hardcover';
     public const IS_PART_OF = [];

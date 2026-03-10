@@ -47,6 +47,7 @@ final class OrderModel
         public ?Property\OrderNumberModel $orderNumber = null,
         public ?Property\OrderStatusModel $orderStatus = null,
         public ?Property\OrderedItemModel $orderedItem = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PartOfInvoiceModel $partOfInvoice = null,
         public ?Property\PaymentDueModel $paymentDue = null,
         public ?Property\PaymentDueDateModel $paymentDueDate = null,

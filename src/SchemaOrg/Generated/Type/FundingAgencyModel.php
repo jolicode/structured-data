@@ -18,7 +18,7 @@ final class FundingAgencyModel
     public const DESCRIPTION = 'A FundingAgency is an organization that implements one or more [[FundingScheme]]s and manages
     the granting process (via [[Grant]]s, typically [[MonetaryGrant]]s).
     A funding agency is not always required for grant funding, e.g. philanthropic giving, corporate sponsorship etc.
-
+    
 Examples of funding agencies include ERC, REA, NIH, Bill and Melinda Gates Foundation, ...';
     public const LABEL = 'FundingAgency';
     public const NAME = 'schema:FundingAgency';
@@ -40,6 +40,7 @@ Examples of funding agencies include ERC, REA, NIH, Bill and Melinda Gates Found
         public ?Property\AwardModel $award = null,
         public ?Property\AwardsModel $awards = null,
         public ?Property\BrandModel $brand = null,
+        public ?Property\CompanyRegistrationModel $companyRegistration = null,
         public ?Property\ContactPointModel $contactPoint = null,
         public ?Property\ContactPointsModel $contactPoints = null,
         public ?Property\CorrectionsPolicyModel $correctionsPolicy = null,
@@ -71,6 +72,7 @@ Examples of funding agencies include ERC, REA, NIH, Bill and Melinda Gates Found
         public ?Property\HasMerchantReturnPolicyModel $hasMerchantReturnPolicy = null,
         public ?Property\HasOfferCatalogModel $hasOfferCatalog = null,
         public ?Property\HasPOSModel $hasPOS = null,
+        public ?Property\HasShippingServiceModel $hasShippingService = null,
         public ?Property\IdentifierModel $identifier = null,
         public ?Property\ImageModel $image = null,
         public ?Property\InteractionStatisticModel $interactionStatistic = null,
@@ -79,7 +81,9 @@ Examples of funding agencies include ERC, REA, NIH, Bill and Melinda Gates Found
         public ?Property\KeywordsModel $keywords = null,
         public ?Property\KnowsAboutModel $knowsAbout = null,
         public ?Property\KnowsLanguageModel $knowsLanguage = null,
+        public ?Property\LegalAddressModel $legalAddress = null,
         public ?Property\LegalNameModel $legalName = null,
+        public ?Property\LegalRepresentativeModel $legalRepresentative = null,
         public ?Property\LeiCodeModel $leiCode = null,
         public ?Property\LocationModel $location = null,
         public ?Property\LogoModel $logo = null,
@@ -92,6 +96,7 @@ Examples of funding agencies include ERC, REA, NIH, Bill and Melinda Gates Found
         public ?Property\NameModel $name = null,
         public ?Property\NonprofitStatusModel $nonprofitStatus = null,
         public ?Property\NumberOfEmployeesModel $numberOfEmployees = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\OwnershipFundingInfoModel $ownershipFundingInfo = null,
         public ?Property\OwnsModel $owns = null,
         public ?Property\ParentOrganizationModel $parentOrganization = null,

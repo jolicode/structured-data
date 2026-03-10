@@ -80,6 +80,7 @@ final class VideoObjectSnapshotModel
         public ?Property\DirectorsModel $directors = null,
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
         public ?Property\DiscussionUrlModel $discussionUrl = null,
+        public ?Property\DisplayLocationModel $displayLocation = null,
         public ?Property\DurationModel $duration = null,
         public ?Property\EditEIDRModel $editEIDR = null,
         public ?Property\EditorModel $editor = null,
@@ -127,6 +128,7 @@ final class VideoObjectSnapshotModel
         public ?Property\MusicByModel $musicBy = null,
         public ?Property\NameModel $name = null,
         public ?Property\OffersModel $offers = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PatternModel $pattern = null,
         public ?Property\PlayerTypeModel $playerType = null,
         public ?Property\PositionModel $position = null,
@@ -176,6 +178,7 @@ final class VideoObjectSnapshotModel
         public ?Property\VideoFrameSizeModel $videoFrameSize = null,
         public ?Property\VideoQualityModel $videoQuality = null,
         public ?Property\WidthModel $width = null,
+        public ?Property\WordCountModel $wordCount = null,
         public ?Property\WorkExampleModel $workExample = null,
         public ?Property\WorkTranslationModel $workTranslation = null,
     ) {

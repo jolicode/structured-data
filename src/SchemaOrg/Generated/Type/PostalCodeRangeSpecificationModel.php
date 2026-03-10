@@ -32,6 +32,7 @@ final class PostalCodeRangeSpecificationModel
         public ?Property\ImageModel $image = null,
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PostalCodeBeginModel $postalCodeBegin = null,
         public ?Property\PostalCodeEndModel $postalCodeEnd = null,
         public ?Property\PotentialActionModel $potentialAction = null,

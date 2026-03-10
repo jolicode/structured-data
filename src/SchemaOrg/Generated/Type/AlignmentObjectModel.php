@@ -16,7 +16,6 @@ use Jolicode\SchemaOrg\Property;
 final class AlignmentObjectModel
 {
     public const DESCRIPTION = 'An intangible item that describes an alignment between a learning resource and a node in an educational framework.
-
 Should not be used where the nature of the alignment can be described using a simple property, for example to express that a resource [[teaches]] or [[assesses]] a competency.';
     public const LABEL = 'AlignmentObject';
     public const NAME = 'schema:AlignmentObject';
@@ -36,6 +35,7 @@ Should not be used where the nature of the alignment can be described using a si
         public ?Property\ImageModel $image = null,
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\SameAsModel $sameAs = null,
         public ?Property\SubjectOfModel $subjectOf = null,

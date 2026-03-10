@@ -25,6 +25,12 @@ class ClassesContainer
          */
         private array $typesAliases = [],
         /**
+         * @var array<string, string>
+         */
+        private array $deprecatedTypes = [
+            'schema:DeliveryTimeSettings' => 'schema:ShippingConditions', // Deprecated in release 29.0. See https://github.com/schemaorg/schemaorg/issues/3617
+        ],
+        /**
          * @var array<string, Property>
          */
         private array $properties = [],
@@ -59,7 +65,7 @@ class ClassesContainer
 
     public function addEnumerationMember(EnumerationMember $enumerationMember): void
     {
-        if (!\array_key_exists($enumerationMember->name, $this->properties)) {
+        if (!\array_key_exists($enumerationMember->name, $this->enumerationMembers)) {
             $this->enumerationMembers[$enumerationMember->name] = $enumerationMember;
         }
     }
@@ -74,11 +80,19 @@ class ClassesContainer
 
     public function getType(string $name): Type
     {
-        if (!\array_key_exists($name, $this->types)) {
+        if (\array_key_exists($name, $this->types)) {
+            return $this->types[$name];
+        }
+
+        if (\array_key_exists($name, $this->typesAliases)) {
             return $this->typesAliases[$name];
         }
 
-        return $this->types[$name];
+        if (\array_key_exists($name, $this->deprecatedTypes)) {
+            return $this->getType($this->deprecatedTypes[$name]);
+        }
+
+        throw new \InvalidArgumentException(\sprintf('The type "%s" cannot be found in the classes container', $name));
     }
 
     /**

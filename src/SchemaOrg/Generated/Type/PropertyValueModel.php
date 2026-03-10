@@ -36,6 +36,7 @@ final class PropertyValueModel
         public ?Property\MeasurementTechniqueModel $measurementTechnique = null,
         public ?Property\MinValueModel $minValue = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\PropertyIDModel $propertyID = null,
         public ?Property\SameAsModel $sameAs = null,

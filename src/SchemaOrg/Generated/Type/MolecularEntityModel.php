@@ -51,6 +51,7 @@ final class MolecularEntityModel
         public ?Property\MolecularWeightModel $molecularWeight = null,
         public ?Property\MonoisotopicMolecularWeightModel $monoisotopicMolecularWeight = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\PotentialUseModel $potentialUse = null,
         public ?Property\SameAsModel $sameAs = null,

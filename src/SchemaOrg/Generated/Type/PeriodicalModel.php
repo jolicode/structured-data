@@ -15,7 +15,7 @@ use Jolicode\SchemaOrg\Property;
 
 final class PeriodicalModel
 {
-    public const DESCRIPTION = 'A publication in any medium issued in successive parts bearing numerical or chronological designations and intended to continue indefinitely, such as a magazine, scholarly journal, or newspaper.\n\nSee also [blog post](http://blog.schema.org/2014/09/schemaorg-support-for-bibliographic_2.html).';
+    public const DESCRIPTION = 'A publication in any medium issued in successive parts bearing numerical or chronological designations and intended to continue indefinitely, such as a magazine, scholarly journal, or newspaper.\n\nSee also [blog post](https://blog.schema.org/2014/09/02/schema-org-support-for-bibliographic-relationships-and-periodicals/).';
     public const LABEL = 'Periodical';
     public const NAME = 'schema:Periodical';
     public const PARENTS = ['CreativeWorkSeriesModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkSeriesModel'];
@@ -71,6 +71,7 @@ final class PeriodicalModel
         public ?Property\DigitalSourceTypeModel $digitalSourceType = null,
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
         public ?Property\DiscussionUrlModel $discussionUrl = null,
+        public ?Property\DisplayLocationModel $displayLocation = null,
         public ?Property\EditEIDRModel $editEIDR = null,
         public ?Property\EditorModel $editor = null,
         public ?Property\EducationalAlignmentModel $educationalAlignment = null,
@@ -112,6 +113,7 @@ final class PeriodicalModel
         public ?Property\MentionsModel $mentions = null,
         public ?Property\NameModel $name = null,
         public ?Property\OffersModel $offers = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PatternModel $pattern = null,
         public ?Property\PositionModel $position = null,
         public ?Property\PotentialActionModel $potentialAction = null,
@@ -151,6 +153,7 @@ final class PeriodicalModel
         public ?Property\UsageInfoModel $usageInfo = null,
         public ?Property\VersionModel $version = null,
         public ?Property\VideoModel $video = null,
+        public ?Property\WordCountModel $wordCount = null,
         public ?Property\WorkExampleModel $workExample = null,
         public ?Property\WorkTranslationModel $workTranslation = null,
     ) {

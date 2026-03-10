@@ -43,6 +43,7 @@ final class JointModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\MedicineSystemModel $medicineSystem = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PartOfSystemModel $partOfSystem = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\RecognizingAuthorityModel $recognizingAuthority = null,

@@ -56,6 +56,7 @@ final class JobPostingModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
         public ?Property\OccupationalCategoryModel $occupationalCategory = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PhysicalRequirementModel $physicalRequirement = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\QualificationsModel $qualifications = null,

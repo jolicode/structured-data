@@ -51,11 +51,11 @@ class Type extends AbstractSchemaOrgElement
         $parents = $rawType[Extractor::RDFS_SUB_CLASS_OF] ?? null;
 
         if ($parents) {
-            if (\is_array($parents) && \array_key_exists(Extractor::KEY_ID, $parents)) {
-                $type->parents[$parents[Extractor::KEY_ID]] = trim($parents[Extractor::KEY_ID]);
+            if (\array_key_exists(Extractor::KEY_ID, $parents)) {
+                $type->addParent($parents[Extractor::KEY_ID]);
             } else {
                 foreach ($parents as $parent) {
-                    $type->parents[$parent[Extractor::KEY_ID]] = trim($parent[Extractor::KEY_ID]);
+                    $type->addParent($parent[Extractor::KEY_ID]);
                 }
             }
         }
@@ -71,5 +71,13 @@ class Type extends AbstractSchemaOrgElement
     public function addEnumerationMember(EnumerationMember $enumerationMember): void
     {
         $this->enumerationMembers[$enumerationMember->name] = $enumerationMember;
+    }
+
+    /** Schema.org adds references to other vocabularies, but they don't belong to the Schema.org vocabulary so we skip them */
+    private function addParent(string $parent): void
+    {
+        if (str_starts_with($parent, 'schema:')) {
+            $this->parents[$parent] = $parent;
+        }
     }
 }

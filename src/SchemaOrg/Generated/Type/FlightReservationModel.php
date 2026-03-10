@@ -37,6 +37,7 @@ final class FlightReservationModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\ModifiedTimeModel $modifiedTime = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PassengerPriorityStatusModel $passengerPriorityStatus = null,
         public ?Property\PassengerSequenceNumberModel $passengerSequenceNumber = null,
         public ?Property\PotentialActionModel $potentialAction = null,

@@ -77,6 +77,7 @@ final class MediaReviewModel
         public ?Property\DigitalSourceTypeModel $digitalSourceType = null,
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
         public ?Property\DiscussionUrlModel $discussionUrl = null,
+        public ?Property\DisplayLocationModel $displayLocation = null,
         public ?Property\EditEIDRModel $editEIDR = null,
         public ?Property\EditorModel $editor = null,
         public ?Property\EducationalAlignmentModel $educationalAlignment = null,
@@ -121,6 +122,7 @@ final class MediaReviewModel
         public ?Property\OffersModel $offers = null,
         public ?Property\OriginalMediaContextDescriptionModel $originalMediaContextDescription = null,
         public ?Property\OriginalMediaLinkModel $originalMediaLink = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PatternModel $pattern = null,
         public ?Property\PositionModel $position = null,
         public ?Property\PositiveNotesModel $positiveNotes = null,
@@ -163,6 +165,7 @@ final class MediaReviewModel
         public ?Property\UsageInfoModel $usageInfo = null,
         public ?Property\VersionModel $version = null,
         public ?Property\VideoModel $video = null,
+        public ?Property\WordCountModel $wordCount = null,
         public ?Property\WorkExampleModel $workExample = null,
         public ?Property\WorkTranslationModel $workTranslation = null,
     ) {

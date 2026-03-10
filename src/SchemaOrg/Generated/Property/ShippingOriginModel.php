@@ -17,7 +17,7 @@ final class ShippingOriginModel
     public const LABEL = 'shippingOrigin';
     public const NAME = 'schema:shippingOrigin';
     public const VALUES = ['DefinedRegionModel' => 'Jolicode\SchemaOrg\Type\DefinedRegionModel'];
-    public const TYPES = ['OfferShippingDetails' => 'Jolicode\SchemaOrg\Type\OfferShippingDetailsModel'];
+    public const TYPES = ['OfferShippingDetails' => 'Jolicode\SchemaOrg\Type\OfferShippingDetailsModel', 'ShippingConditions' => 'Jolicode\SchemaOrg\Type\ShippingConditionsModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

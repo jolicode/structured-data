@@ -17,7 +17,7 @@ final class DepthModel
     public const LABEL = 'depth';
     public const NAME = 'schema:depth';
     public const VALUES = ['DistanceModel' => 'Jolicode\SchemaOrg\Type\DistanceModel', 'QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
-    public const TYPES = ['OfferShippingDetails' => 'Jolicode\SchemaOrg\Type\OfferShippingDetailsModel', 'Product' => 'Jolicode\SchemaOrg\Type\ProductModel', 'VisualArtwork' => 'Jolicode\SchemaOrg\Type\VisualArtworkModel'];
+    public const TYPES = ['OfferShippingDetails' => 'Jolicode\SchemaOrg\Type\OfferShippingDetailsModel', 'Product' => 'Jolicode\SchemaOrg\Type\ProductModel', 'ShippingConditions' => 'Jolicode\SchemaOrg\Type\ShippingConditionsModel', 'VisualArtwork' => 'Jolicode\SchemaOrg\Type\VisualArtworkModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

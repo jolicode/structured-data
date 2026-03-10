@@ -72,6 +72,7 @@ final class MusicCompositionModel
         public ?Property\DigitalSourceTypeModel $digitalSourceType = null,
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
         public ?Property\DiscussionUrlModel $discussionUrl = null,
+        public ?Property\DisplayLocationModel $displayLocation = null,
         public ?Property\EditEIDRModel $editEIDR = null,
         public ?Property\EditorModel $editor = null,
         public ?Property\EducationalAlignmentModel $educationalAlignment = null,
@@ -119,6 +120,7 @@ final class MusicCompositionModel
         public ?Property\MusicalKeyModel $musicalKey = null,
         public ?Property\NameModel $name = null,
         public ?Property\OffersModel $offers = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PatternModel $pattern = null,
         public ?Property\PositionModel $position = null,
         public ?Property\PotentialActionModel $potentialAction = null,
@@ -158,6 +160,7 @@ final class MusicCompositionModel
         public ?Property\UsageInfoModel $usageInfo = null,
         public ?Property\VersionModel $version = null,
         public ?Property\VideoModel $video = null,
+        public ?Property\WordCountModel $wordCount = null,
         public ?Property\WorkExampleModel $workExample = null,
         public ?Property\WorkTranslationModel $workTranslation = null,
     ) {

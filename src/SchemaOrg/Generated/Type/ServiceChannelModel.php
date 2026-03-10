@@ -33,6 +33,7 @@ final class ServiceChannelModel
         public ?Property\ImageModel $image = null,
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\ProcessingTimeModel $processingTime = null,
         public ?Property\ProvidesServiceModel $providesService = null,

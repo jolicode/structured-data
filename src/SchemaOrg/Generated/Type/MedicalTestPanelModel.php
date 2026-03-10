@@ -39,6 +39,7 @@ final class MedicalTestPanelModel
         public ?Property\MedicineSystemModel $medicineSystem = null,
         public ?Property\NameModel $name = null,
         public ?Property\NormalRangeModel $normalRange = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\RecognizingAuthorityModel $recognizingAuthority = null,
         public ?Property\RelevantSpecialtyModel $relevantSpecialty = null,

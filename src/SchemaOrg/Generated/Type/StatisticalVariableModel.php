@@ -39,6 +39,7 @@ final class StatisticalVariableModel
         public ?Property\MeasurementTechniqueModel $measurementTechnique = null,
         public ?Property\NameModel $name = null,
         public ?Property\NumConstraintsModel $numConstraints = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PopulationTypeModel $populationType = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\SameAsModel $sameAs = null,

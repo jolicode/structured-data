@@ -13,10 +13,10 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class OwnsModel
 {
-    public const DESCRIPTION = 'Products owned by the organization or person.';
+    public const DESCRIPTION = 'Things owned by the organization or person.';
     public const LABEL = 'owns';
     public const NAME = 'schema:owns';
-    public const VALUES = ['OwnershipInfoModel' => 'Jolicode\SchemaOrg\Type\OwnershipInfoModel', 'ProductModel' => 'Jolicode\SchemaOrg\Type\ProductModel'];
+    public const VALUES = ['ThingModel' => 'Jolicode\SchemaOrg\Type\ThingModel'];
     public const TYPES = ['Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\SchemaOrg\Type\PersonModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

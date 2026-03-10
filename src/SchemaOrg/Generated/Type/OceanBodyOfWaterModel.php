@@ -69,6 +69,7 @@ final class OceanBodyOfWaterModel
         public ?Property\MaximumAttendeeCapacityModel $maximumAttendeeCapacity = null,
         public ?Property\NameModel $name = null,
         public ?Property\OpeningHoursSpecificationModel $openingHoursSpecification = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PhotoModel $photo = null,
         public ?Property\PhotosModel $photos = null,
         public ?Property\PotentialActionModel $potentialAction = null,

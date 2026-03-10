@@ -59,6 +59,7 @@ final class DemandModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\MpnModel $mpn = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\PriceSpecificationModel $priceSpecification = null,
         public ?Property\SameAsModel $sameAs = null,

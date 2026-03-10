@@ -34,6 +34,7 @@ final class BrandModel
         public ?Property\LogoModel $logo = null,
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\ReviewModel $review = null,
         public ?Property\SameAsModel $sameAs = null,

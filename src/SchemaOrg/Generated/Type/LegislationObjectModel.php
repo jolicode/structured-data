@@ -21,7 +21,7 @@ final class LegislationObjectModel
     public const PARENTS = ['LegislationModel' => 'Jolicode\SchemaOrg\Type\LegislationModel', 'MediaObjectModel' => 'Jolicode\SchemaOrg\Type\MediaObjectModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
-    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1156'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1156', 'https://op.europa.eu/en/web/eu-vocabularies/model/-/resource/dataset/eli'];
 
     public function __construct(
         public ?Property\AboutModel $about = null,
@@ -75,6 +75,7 @@ final class LegislationObjectModel
         public ?Property\DigitalSourceTypeModel $digitalSourceType = null,
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
         public ?Property\DiscussionUrlModel $discussionUrl = null,
+        public ?Property\DisplayLocationModel $displayLocation = null,
         public ?Property\DurationModel $duration = null,
         public ?Property\EditEIDRModel $editEIDR = null,
         public ?Property\EditorModel $editor = null,
@@ -111,16 +112,23 @@ final class LegislationObjectModel
         public ?Property\JurisdictionModel $jurisdiction = null,
         public ?Property\KeywordsModel $keywords = null,
         public ?Property\LearningResourceTypeModel $learningResourceType = null,
+        public ?Property\LegislationAmendsModel $legislationAmends = null,
         public ?Property\LegislationAppliesModel $legislationApplies = null,
         public ?Property\LegislationChangesModel $legislationChanges = null,
+        public ?Property\LegislationCommencesModel $legislationCommences = null,
         public ?Property\LegislationConsolidatesModel $legislationConsolidates = null,
+        public ?Property\LegislationCorrectsModel $legislationCorrects = null,
+        public ?Property\LegislationCountersignedByModel $legislationCountersignedBy = null,
         public ?Property\LegislationDateModel $legislationDate = null,
+        public ?Property\LegislationDateOfApplicabilityModel $legislationDateOfApplicability = null,
         public ?Property\LegislationDateVersionModel $legislationDateVersion = null,
+        public ?Property\LegislationEnsuresImplementationOfModel $legislationEnsuresImplementationOf = null,
         public ?Property\LegislationIdentifierModel $legislationIdentifier = null,
         public ?Property\LegislationJurisdictionModel $legislationJurisdiction = null,
         public ?Property\LegislationLegalForceModel $legislationLegalForce = null,
         public ?Property\LegislationLegalValueModel $legislationLegalValue = null,
         public ?Property\LegislationPassedByModel $legislationPassedBy = null,
+        public ?Property\LegislationRepealsModel $legislationRepeals = null,
         public ?Property\LegislationResponsibleModel $legislationResponsible = null,
         public ?Property\LegislationTransposesModel $legislationTransposes = null,
         public ?Property\LegislationTypeModel $legislationType = null,
@@ -134,6 +142,7 @@ final class LegislationObjectModel
         public ?Property\MentionsModel $mentions = null,
         public ?Property\NameModel $name = null,
         public ?Property\OffersModel $offers = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PatternModel $pattern = null,
         public ?Property\PlayerTypeModel $playerType = null,
         public ?Property\PositionModel $position = null,
@@ -180,6 +189,7 @@ final class LegislationObjectModel
         public ?Property\VersionModel $version = null,
         public ?Property\VideoModel $video = null,
         public ?Property\WidthModel $width = null,
+        public ?Property\WordCountModel $wordCount = null,
         public ?Property\WorkExampleModel $workExample = null,
         public ?Property\WorkTranslationModel $workTranslation = null,
     ) {

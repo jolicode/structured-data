@@ -54,6 +54,7 @@ final class DepositAccountModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
         public ?Property\OffersModel $offers = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\ProducesModel $produces = null,
         public ?Property\ProviderModel $provider = null,

@@ -1,0 +1,72 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "FinancialIncentive",
+  "name": "ACT Sustainable Household Scheme",
+  "url": "https://www.climatechoices.act.gov.au/policy-programs/sustainable-household-scheme", 
+  "publisher": {
+    "@type": "Organization",
+    "name": "ACT Government" 
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Brighte"
+  },
+  "areaServed": {
+    "@type": "State",
+    "name": "Australian Capital Territory"
+  },
+  "validFrom": "2021-05-01", 
+  "validThrough": "2026-06-30", 
+  "incentiveType": "Loan", 
+  "purchaseType": "NewPurchase",
+  "incentiveAmount": {
+    "@type": "LoanOrCredit",
+    "loanTerm": {
+      "@type": "QuantitativeValue",
+      "value": "10",
+      "unitCode": "ANN" 
+    },
+    "annualPercentageRate": [
+      {
+        "@type": "QuantitativeValue",
+        "name": "fixed interest rates",
+        "minValue": "0",
+        "maxValue": "0"
+      }
+    ],
+    "amount": [
+      {
+        "@type": "MonetaryAmount",
+        "name": "loan amount",
+        "minValue": "2000",
+        "maxValue": "15000",
+        "currency": "AUD"
+      }
+    ]
+  },
+  "incentiveStatus": "Active",
+  "incentivizedItem": {
+    "@type": "DefinedTerm",
+    "inDefinedTermSet": "https://www.unspsc.org/",
+    "termCode": "30141500",
+    "name": "Thermal insulation"
+  },
+  "incentivizedItem": {
+    "@type": "DefinedTerm",
+    "inDefinedTermSet": "https://www.unspsc.org/",
+    "termCode": "40101806",
+    "name": "Heat Pumps"
+  },
+  "incentivizedItem": {
+    "@type": "DefinedTerm",
+    "inDefinedTermSet": "https://www.unspsc.org/",
+    "termCode": "261315XX",
+    "name": "Photovoltaic module"
+  },
+  "incentivizedItem": {
+    "@type": "DefinedTerm",
+    "inDefinedTermSet": "https://www.unspsc.org/",
+    "termCode": "251018XX",
+    "name": "Electric two-wheel vehicle"
+  }
+}

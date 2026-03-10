@@ -3,51 +3,16 @@
         "@type: The \"@@@@\" type is not a valid Schema.org type"
     ],
     "https-schema-org-174cd6b839af20061459b14293425945.jsonld": [
-        "category: The property \"category\" does not exist on the type \"Guide\"",
-        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
-        "hasPart.@type: A typed value may only have one type, 2 provided",
-        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value"
+        "hasPart.@type: A typed value may only have one type, 2 provided"
     ],
     "https-schema-org-4c9d6074efc0a21ff015997ae6780fb5.jsonld": [
         "offeredBy: The property \"offeredBy\" does not exist on the type \"WorkBasedProgram\""
     ],
     "https-schema-org-4e6cf2c959e98935838b1053deccda20.jsonld": [
-        "category: The property \"category\" does not exist on the type \"Guide\"",
-        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
-        "hasPart.@type: A typed value may only have one type, 2 provided",
-        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value"
+        "hasPart.@type: A typed value may only have one type, 2 provided"
     ],
     "https-schema-org-5ae1b2e6b7cc52e871bf3dec64d6f02d.jsonld": [
         "@type: Missing a @type entry. The @type entry is mandatory for root types"
-    ],
-    "https-schema-org-635c0b6cc24a32ec3454113a1e860c6d.jsonld": [
-        "@reverse: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
-        "@reverse.0: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
-        "@reverse.0.0: This property does not exist: 0",
-        "@reverse.0: This property does not exist: 0",
-        "@reverse: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
-        "@reverse.0: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
-        "@reverse.0.0: This property does not exist: 0",
-        "@reverse.0: This property does not exist: 0",
-        "@reverse.1: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
-        "@reverse.1.0: This property does not exist: 0",
-        "@reverse.1: This property does not exist: 1",
-        "@reverse: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
-        "@reverse.0: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
-        "@reverse.0.0: This property does not exist: 0",
-        "@reverse.0: This property does not exist: 0",
-        "@reverse.1: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Thing",
-        "@reverse.1.0: This property does not exist: 0",
-        "@reverse.1: This property does not exist: 1"
-    ],
-    "https-schema-org-64d408910bd61862047a17436c6bf316.jsonld": [
-        "category: The property \"category\" does not exist on the type \"Guide\"",
-        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
-        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
-        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
-        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
-        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value",
-        "hasPart.reviewAspect: The \"reviewAspect\" property does not accept the \"PropertyValue\" type as a value"
     ],
     "https-schema-org-74ed4843445c67e0995ca7bb4cb13784.jsonld": [
         "amount.minAmount: This property does not exist: minAmount",
@@ -62,13 +27,7 @@
         "potentialAction.mathExpression-input: The property \"mathExpression\" does not exist on the type \"SolveMathAction\""
     ],
     "https-schema-org-a00cda5ffe4ac3b34f1b3c6d63368aa9.jsonld": [
-        "@type: Missing a @type entry. The @type entry is mandatory for root types",
-        "@type: The \"http:\/\/productontology.org\/id\/DVD\" type is not a valid Schema.org type",
-        "@type: The \"https:\/\/schema.org\/Movie\" type is not a valid Schema.org type",
-        "https:\/\/schema.org\/director: This property does not exist: https:\/\/schema.org\/director",
-        "https:\/\/schema.org\/isPartOf: This property does not exist: https:\/\/schema.org\/isPartOf",
-        "https:\/\/schema.org\/name: This property does not exist: https:\/\/schema.org\/name",
-        "https:\/\/schema.org\/productionCompany: This property does not exist: https:\/\/schema.org\/productionCompany"
+        "@type: Missing a @type entry. The @type entry is mandatory for root types"
     ],
     "https-schema-org-ac74a981e8399650eb20b17d8f79b51c.jsonld": [
         "endDate: The property \"endDate\" does not exist on the type \"MonetaryGrant\"",
@@ -76,10 +35,8 @@
     ],
     "https-schema-org-d0defd4b48b483a3172db271da7bd2fd.jsonld": [
         "healthPlanNetworkTiers: This property does not exist: healthPlanNetworkTiers",
-        "includesHealthPlanFormulary.healthPlanCostSharing: The \"healthPlanCostSharing\" property does not accept the \"HealthPlanCostSharingSpecification\" type as a value",
         "includesHealthPlanFormulary.healthPlanCostSharing.healthPlanCopay.currency: The property \"currency\" does not exist on the type \"PriceSpecification\"",
         "includesHealthPlanFormulary.healthPlanCostSharing.healthPlanPharmacyType: This property does not exist: healthPlanPharmacyType",
-        "includesHealthPlanFormulary.healthPlanCostSharing: The \"healthPlanCostSharing\" property does not accept the \"HealthPlanCostSharingSpecification\" type as a value",
         "includesHealthPlanFormulary.healthPlanCostSharing.healthPlanCopay.currency: The property \"currency\" does not exist on the type \"PriceSpecification\"",
         "includesHealthPlanFormulary.healthPlanCostSharing.healthPlanPharmacyType: This property does not exist: healthPlanPharmacyType",
         "marketingUrl: This property does not exist: marketingUrl",
@@ -95,22 +52,48 @@
         "indication: This property does not exist: indication",
         "seriousAdverseOutcome: The property \"seriousAdverseOutcome\" does not exist on the type \"Drug\""
     ],
-    "https-schema-org-ebdbf5bad40b117d3c9162b0f5e829dc.jsonld": [
-        "cause: This property does not exist: cause",
-        "possibleTreatment: The \"possibleTreatment\" property does not accept the \"Drug\" type as a value",
-        "possibleTreatment: The \"possibleTreatment\" property does not accept the \"DrugClass\" type as a value",
-        "possibleTreatment: The \"possibleTreatment\" property does not accept the \"DrugClass\" type as a value",
-        "possibleTreatment: The \"possibleTreatment\" property does not accept the \"Drug\" type as a value",
-        "secondaryPrevention: The \"secondaryPrevention\" property does not accept the \"LifestyleModification\" type as a value",
-        "secondaryPrevention: The \"secondaryPrevention\" property does not accept the \"LifestyleModification\" type as a value",
-        "secondaryPrevention: The \"secondaryPrevention\" property does not accept the \"LifestyleModification\" type as a value"
-    ],
     "https-schema-org-f929ad89ee52fc24a8010302a47faaf7.jsonld": [
         "contactPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ContactPoint"
     ],
+    "https-schema-org-f21ae2fe26743fed63e9c61cf8e5c3fc.jsonld": [
+        "contactPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ContactPoint"
+    ],
+    "https-schema-org-21a1664e55ae6e784c466eb8af1a6c32.jsonld": [
+        "name: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Text",
+        "name: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Text"
+    ],
     "https-schema-org-fecfb38a45ddda4c1562c0d5557fdf8d.jsonld": [
         "constrainingProperty: This property does not exist: constrainingProperty",
-        "gender: The property \"gender\" does not exist on the type \"StatisticalVariable\"",
-        "observationDate: The \"observationDate\" property does not accept the \"Date\" type as a value"
+        "gender: The property \"gender\" does not exist on the type \"StatisticalVariable\""
+    ],
+    "https-schema-org-beba94f53fe97689f5ed1840a172282b.jsonld": [
+        "mainEntity.hasCredential.@type: The \"Credential\" type is not a valid Schema.org type"
+    ],
+    "https-schema-org-dedfa837501d6efbd9b4aeca4a3b079b.jsonld": [
+        "fundedItem.@type: A typed value may only have one type, 2 provided"
+    ],
+    "https-schema-org-63cee047cb7afc041c813c4b6056835f.jsonld": [
+        "hasPart.@type: A typed value may only have one type, 2 provided"
+    ],
+    "https-schema-org-96d8282739af36a7a8e0f2ceca36607c.jsonld": [
+        "hasPart.@type: A typed value may only have one type, 2 provided"
+    ],
+    "https-schema-org-2c80195f7c456d2123fb503ad43391d0.jsonld": [
+        "name: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Text",
+        "name: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Text"
+    ],
+    "https-schema-org-0aee8d59f25f1386e25436a6c49ea7e1.jsonld": [
+        "offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
+        "offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
+        "offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
+        "offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
+        "offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
+        "offers.shippingDetails.hasShippingService.shippingConditions.transitTime.duration: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: QuantitativeValue"
+
+    ],
+    "https-schema-org-0e4210c7345d903d151c8662407727e1.jsonld": [
+        "description: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: TextObject",
+        "description: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: TextObject",
+        "review.reviewBody: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Text"
     ]
 }

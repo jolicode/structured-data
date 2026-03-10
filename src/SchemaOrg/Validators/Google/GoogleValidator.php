@@ -85,7 +85,7 @@ class GoogleValidator extends AbstractValidator
         return $errors;
     }
 
-    public static function validateProperty(MappedType $type, MappedProperty $property, array $typesStack): array
+    public static function validateProperty(MappedType $type, MappedProperty $property, array $typesStack, ?MappedProperty $originalProperty = null): array
     {
         $errors = [];
 

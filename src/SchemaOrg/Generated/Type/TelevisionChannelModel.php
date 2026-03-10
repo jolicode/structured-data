@@ -37,6 +37,7 @@ final class TelevisionChannelModel
         public ?Property\InBroadcastLineupModel $inBroadcastLineup = null,
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\ProvidesBroadcastServiceModel $providesBroadcastService = null,
         public ?Property\SameAsModel $sameAs = null,

@@ -54,6 +54,7 @@ final class PaymentCardModel
         public ?Property\MonthlyMinimumRepaymentAmountModel $monthlyMinimumRepaymentAmount = null,
         public ?Property\NameModel $name = null,
         public ?Property\OffersModel $offers = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PaymentMethodTypeModel $paymentMethodType = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\ProducesModel $produces = null,

@@ -42,7 +42,7 @@ readonly class Generator implements GeneratorInterface
 
     public function getName(): string
     {
-        return 'schemaorg';
+        return 'schema.org';
     }
 
     public function generate(): void

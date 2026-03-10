@@ -40,6 +40,7 @@ final class UnitPriceSpecificationModel
         public ?Property\MembershipPointsEarnedModel $membershipPointsEarned = null,
         public ?Property\MinPriceModel $minPrice = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\PriceModel $price = null,
         public ?Property\PriceComponentTypeModel $priceComponentType = null,

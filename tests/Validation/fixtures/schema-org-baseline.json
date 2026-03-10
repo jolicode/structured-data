@@ -36,8 +36,7 @@
         "@type: Missing a @type entry. The @type entry is mandatory for root types"
     ],
     "no-type-nested.jsonld": [
-        "birthPlace: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Organization",
-        "birthPlace: The \"birthPlace\" property does not accept the \"Organization\" type as a value"
+        "birthPlace: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Place"
     ],
     "wrong-parent-attribute.jsonld": [
         "makesOffer: The \"makesOffer\" property does not accept the \"Intangible\" type as a value"

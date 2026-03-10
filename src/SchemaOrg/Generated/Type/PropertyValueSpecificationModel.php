@@ -36,6 +36,7 @@ final class PropertyValueSpecificationModel
         public ?Property\MinValueModel $minValue = null,
         public ?Property\MultipleValuesModel $multipleValues = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\ReadonlyValueModel $readonlyValue = null,
         public ?Property\SameAsModel $sameAs = null,

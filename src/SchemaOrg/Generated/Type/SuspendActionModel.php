@@ -40,6 +40,7 @@ final class SuspendActionModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
         public ?Property\ObjectModel $object = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\ParticipantModel $participant = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\ProviderModel $provider = null,

@@ -16,8 +16,8 @@ final class BusinessDaysModel
     public const DESCRIPTION = 'Days of the week when the merchant typically operates, indicated via opening hours markup.';
     public const LABEL = 'businessDays';
     public const NAME = 'schema:businessDays';
-    public const VALUES = ['OpeningHoursSpecificationModel' => 'Jolicode\SchemaOrg\Type\OpeningHoursSpecificationModel'];
-    public const TYPES = ['ShippingDeliveryTime' => 'Jolicode\SchemaOrg\Type\ShippingDeliveryTimeModel'];
+    public const VALUES = ['DayOfWeekModel' => 'Jolicode\SchemaOrg\Type\DayOfWeekModel', 'OpeningHoursSpecificationModel' => 'Jolicode\SchemaOrg\Type\OpeningHoursSpecificationModel'];
+    public const TYPES = ['ServicePeriod' => 'Jolicode\SchemaOrg\Type\ServicePeriodModel', 'ShippingDeliveryTime' => 'Jolicode\SchemaOrg\Type\ShippingDeliveryTimeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

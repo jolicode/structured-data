@@ -17,7 +17,7 @@ final class ShippingDestinationModel
     public const LABEL = 'shippingDestination';
     public const NAME = 'schema:shippingDestination';
     public const VALUES = ['DefinedRegionModel' => 'Jolicode\SchemaOrg\Type\DefinedRegionModel'];
-    public const TYPES = ['DeliveryTimeSettings' => 'Jolicode\SchemaOrg\Type\DeliveryTimeSettingsModel', 'OfferShippingDetails' => 'Jolicode\SchemaOrg\Type\OfferShippingDetailsModel', 'ShippingRateSettings' => 'Jolicode\SchemaOrg\Type\ShippingRateSettingsModel'];
+    public const TYPES = ['DeliveryTimeSettings' => 'Jolicode\SchemaOrg\Type\DeliveryTimeSettingsModel', 'OfferShippingDetails' => 'Jolicode\SchemaOrg\Type\OfferShippingDetailsModel', 'ShippingConditions' => 'Jolicode\SchemaOrg\Type\ShippingConditionsModel', 'ShippingRateSettings' => 'Jolicode\SchemaOrg\Type\ShippingRateSettingsModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

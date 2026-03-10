@@ -15,7 +15,7 @@ use Jolicode\SchemaOrg\Property;
 
 final class DefinedTermSetModel
 {
-    public const DESCRIPTION = 'A set of defined terms, for example a set of categories or a classification scheme, a glossary, dictionary or enumeration.';
+    public const DESCRIPTION = 'A set of defined terms, for example a set of categories or a classification scheme, a glossary, dictionary or enumeration. Use the about property to specify what the term set is about.';
     public const LABEL = 'DefinedTermSet';
     public const NAME = 'schema:DefinedTermSet';
     public const PARENTS = ['CreativeWorkModel' => 'Jolicode\SchemaOrg\Type\CreativeWorkModel'];
@@ -71,6 +71,7 @@ final class DefinedTermSetModel
         public ?Property\DigitalSourceTypeModel $digitalSourceType = null,
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
         public ?Property\DiscussionUrlModel $discussionUrl = null,
+        public ?Property\DisplayLocationModel $displayLocation = null,
         public ?Property\EditEIDRModel $editEIDR = null,
         public ?Property\EditorModel $editor = null,
         public ?Property\EducationalAlignmentModel $educationalAlignment = null,
@@ -111,6 +112,7 @@ final class DefinedTermSetModel
         public ?Property\MentionsModel $mentions = null,
         public ?Property\NameModel $name = null,
         public ?Property\OffersModel $offers = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PatternModel $pattern = null,
         public ?Property\PositionModel $position = null,
         public ?Property\PotentialActionModel $potentialAction = null,
@@ -149,6 +151,7 @@ final class DefinedTermSetModel
         public ?Property\UsageInfoModel $usageInfo = null,
         public ?Property\VersionModel $version = null,
         public ?Property\VideoModel $video = null,
+        public ?Property\WordCountModel $wordCount = null,
         public ?Property\WorkExampleModel $workExample = null,
         public ?Property\WorkTranslationModel $workTranslation = null,
     ) {

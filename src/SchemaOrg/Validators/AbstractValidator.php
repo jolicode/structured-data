@@ -33,7 +33,7 @@ abstract class AbstractValidator
      *
      * @return MappedError[]
      */
-    abstract public static function validateProperty(MappedType $type, MappedProperty $property, array $typesStack): array;
+    abstract public static function validateProperty(MappedType $type, MappedProperty $property, array $typesStack, ?MappedProperty $originalProperty = null): array;
 
     protected static function addMappedError(MappedType|MappedProperty $target, string $message, MappedType $typeWithError, string $severity): MappedError
     {

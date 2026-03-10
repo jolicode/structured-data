@@ -37,6 +37,7 @@ final class GeoCoordinatesModel
         public ?Property\LongitudeModel $longitude = null,
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PostalCodeModel $postalCode = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\SameAsModel $sameAs = null,

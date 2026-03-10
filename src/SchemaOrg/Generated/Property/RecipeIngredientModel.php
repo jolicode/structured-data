@@ -13,10 +13,10 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class RecipeIngredientModel
 {
-    public const DESCRIPTION = 'A single ingredient used in the recipe, e.g. sugar, flour or garlic.';
+    public const DESCRIPTION = 'An ingredient or ordered list of ingredients and potentially quantities used in the recipe, e.g. 1 cup of sugar, flour or garlic.  The ingredients can be represented as free text or more structured values.';
     public const LABEL = 'recipeIngredient';
     public const NAME = 'schema:recipeIngredient';
-    public const VALUES = ['TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
+    public const VALUES = ['ItemListModel' => 'Jolicode\SchemaOrg\Type\ItemListModel', 'PropertyValueModel' => 'Jolicode\SchemaOrg\Type\PropertyValueModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Recipe' => 'Jolicode\SchemaOrg\Type\RecipeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

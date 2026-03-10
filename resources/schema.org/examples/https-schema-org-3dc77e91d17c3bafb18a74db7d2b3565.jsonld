@@ -1,0 +1,61 @@
+{
+  "@context": [
+    "https://schema.org",
+    {
+      "uncefact": "https://service.unece.org/trade/uncefact/"
+    }
+  ],
+  "@graph": [
+    {
+      "@id": "urn:example:product:battery-x001",
+      "@type": "Product",
+      "name": "Laptop Battery Replacement",
+      "description": "A consumable battery for Model X",
+      "gtin": "5901234123457",
+      "category": "Consumable",
+      "additionalProperty": [
+        {
+          "@type": "PropertyValue",
+          "name": "Product Type Code",
+          "description": "UN/CEFACT UNCL 1001 code for Consumable",
+          "propertyID": "https://service.unece.org/trade/untdid/d19b/tred/tred1001.htm",
+          "value": "711"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Product Role",
+          "value": "Consumable"
+        }
+      ]
+    },
+    {
+      "@id": "urn:example:product:pump-twin-001",
+      "@type": "Product",
+      "name": "Virtual Pump Twin",
+      "description": "Digital Twin of the physical water pump for simulation",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "DID",
+        "value": "did:web:example.com:product:pump-twin-001"
+      },
+      "category": "Digital Twin",
+      "additionalProperty": {
+        "@type": "PropertyValue",
+        "name": "Product Role",
+        "value": "Digital Twin"
+      }
+    },
+    {
+      "@id": "urn:example:product:crm-module-001",
+      "@type": "SoftwareApplication",
+      "name": "CRM Module",
+      "description": "Software module for customer relationship management",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "DID",
+        "value": "did:web:example.com:product:crm-module-001"
+      },
+      "applicationCategory": "BusinessApplication"
+    }
+  ]
+}

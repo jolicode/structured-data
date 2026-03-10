@@ -43,6 +43,7 @@ final class NerveModel
         public ?Property\MedicineSystemModel $medicineSystem = null,
         public ?Property\NameModel $name = null,
         public ?Property\NerveMotorModel $nerveMotor = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PartOfSystemModel $partOfSystem = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\RecognizingAuthorityModel $recognizingAuthority = null,

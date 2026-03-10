@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\EnumerationMember;
 
 final class PaperbackModel
 {
-    public const DESCRIPTION = 'Book format: Paperback.';
+    public const DESCRIPTION = 'A flexible, lightweight book bound with a thick paper or cardstock cover and glued spine, prioritizing portability and affordability over long-term durability.';
     public const LABEL = 'Paperback';
     public const NAME = 'schema:Paperback';
     public const IS_PART_OF = [];

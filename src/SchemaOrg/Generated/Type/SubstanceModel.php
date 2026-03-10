@@ -39,6 +39,7 @@ final class SubstanceModel
         public ?Property\MaximumIntakeModel $maximumIntake = null,
         public ?Property\MedicineSystemModel $medicineSystem = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\RecognizingAuthorityModel $recognizingAuthority = null,
         public ?Property\RelevantSpecialtyModel $relevantSpecialty = null,

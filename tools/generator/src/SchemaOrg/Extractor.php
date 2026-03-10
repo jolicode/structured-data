@@ -60,6 +60,11 @@ readonly class Extractor
         $container = new ClassesContainer();
 
         foreach ($graph as $type) {
+            // Schema.org decided to add some weirdo empty types which are unusable. Why schema.org, whyyyy ? it was so clean :(
+            if (!\array_key_exists(self::RDFS_COMMENT, $type) || !\array_key_exists(self::RDFS_LABEL, $type)) {
+                continue;
+            }
+
             match (true) {
                 $this->isClassType($type) => $container->addType(Type::fromRawData($type)),
                 $this->isPropertyType($type) => $container->addProperty(Property::fromRawData($type)),

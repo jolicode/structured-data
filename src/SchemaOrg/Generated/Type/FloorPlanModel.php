@@ -43,6 +43,7 @@ final class FloorPlanModel
         public ?Property\NumberOfFullBathroomsModel $numberOfFullBathrooms = null,
         public ?Property\NumberOfPartialBathroomsModel $numberOfPartialBathrooms = null,
         public ?Property\NumberOfRoomsModel $numberOfRooms = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PetsAllowedModel $petsAllowed = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\SameAsModel $sameAs = null,

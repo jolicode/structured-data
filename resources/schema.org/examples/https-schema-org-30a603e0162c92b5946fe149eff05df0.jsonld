@@ -1,0 +1,25 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ReceiveAction",
+  "agent": {
+    "@type": "Person",
+    "name": "John"
+  },
+  "object": {
+    "@type": "Book",
+    "name": "Outliers"
+  },
+  "sender": {
+    "@type": "Person",
+    "name": "Steve"
+  },
+  "deliveryMethod": "http://purl.org/goodrelations/v1#UPS",
+  "fromLocation": {
+    "@type": "Country",
+    "name": "Brazil"
+  },
+  "toLocation": {
+    "@type": "Country",
+    "name": "USA"
+  }
+}

@@ -24,6 +24,7 @@ final class MedicalCodeModel
     public const SOURCE = [];
 
     public function __construct(
+        public ?Property\AboutModel $about = null,
         public ?Property\AdditionalTypeModel $additionalType = null,
         public ?Property\AlternateNameModel $alternateName = null,
         public ?Property\CodeModel $code = null,
@@ -41,6 +42,7 @@ final class MedicalCodeModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\MedicineSystemModel $medicineSystem = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\RecognizingAuthorityModel $recognizingAuthority = null,
         public ?Property\RelevantSpecialtyModel $relevantSpecialty = null,

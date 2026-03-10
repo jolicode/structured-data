@@ -38,6 +38,7 @@ final class RentalCarReservationModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\ModifiedTimeModel $modifiedTime = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PickupLocationModel $pickupLocation = null,
         public ?Property\PickupTimeModel $pickupTime = null,
         public ?Property\PotentialActionModel $potentialAction = null,

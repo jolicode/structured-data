@@ -39,6 +39,7 @@ final class InvoiceModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\MinimumPaymentDueModel $minimumPaymentDue = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PaymentDueModel $paymentDue = null,
         public ?Property\PaymentDueDateModel $paymentDueDate = null,
         public ?Property\PaymentMethodModel $paymentMethod = null,

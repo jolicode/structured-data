@@ -34,6 +34,7 @@ final class QuantitativeValueDistributionModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\MedianModel $median = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\Percentile10Model $percentile10 = null,
         public ?Property\Percentile25Model $percentile25 = null,
         public ?Property\Percentile75Model $percentile75 = null,

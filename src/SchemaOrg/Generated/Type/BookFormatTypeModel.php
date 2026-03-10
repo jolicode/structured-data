@@ -19,7 +19,7 @@ final class BookFormatTypeModel
     public const LABEL = 'BookFormatType';
     public const NAME = 'schema:BookFormatType';
     public const PARENTS = ['EnumerationModel' => 'Jolicode\SchemaOrg\Type\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['AudiobookFormatModel' => 'EnumerationMember\AudiobookFormatModel', 'EBookModel' => 'EnumerationMember\EBookModel', 'GraphicNovelModel' => 'EnumerationMember\GraphicNovelModel', 'HardcoverModel' => 'EnumerationMember\HardcoverModel', 'PaperbackModel' => 'EnumerationMember\PaperbackModel'];
+    public const ENUMERATION_MEMBERS = ['AudiobookFormatModel' => 'EnumerationMember\AudiobookFormatModel', 'EBookModel' => 'EnumerationMember\EBookModel', 'GraphicNovelModel' => 'EnumerationMember\GraphicNovelModel', 'HardcoverModel' => 'EnumerationMember\HardcoverModel', 'PamphletModel' => 'EnumerationMember\PamphletModel', 'PaperbackModel' => 'EnumerationMember\PaperbackModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 
@@ -32,6 +32,7 @@ final class BookFormatTypeModel
         public ?Property\ImageModel $image = null,
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\SameAsModel $sameAs = null,
         public ?Property\SubjectOfModel $subjectOf = null,

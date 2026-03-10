@@ -17,7 +17,7 @@ final class CutoffTimeModel
     public const LABEL = 'cutoffTime';
     public const NAME = 'schema:cutoffTime';
     public const VALUES = ['TimeModel' => 'Jolicode\SchemaOrg\Type\TimeModel'];
-    public const TYPES = ['ShippingDeliveryTime' => 'Jolicode\SchemaOrg\Type\ShippingDeliveryTimeModel'];
+    public const TYPES = ['ServicePeriod' => 'Jolicode\SchemaOrg\Type\ServicePeriodModel', 'ShippingDeliveryTime' => 'Jolicode\SchemaOrg\Type\ShippingDeliveryTimeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

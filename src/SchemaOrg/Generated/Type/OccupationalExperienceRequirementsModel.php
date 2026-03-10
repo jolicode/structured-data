@@ -33,6 +33,7 @@ final class OccupationalExperienceRequirementsModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\MonthsOfExperienceModel $monthsOfExperience = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\SameAsModel $sameAs = null,
         public ?Property\SubjectOfModel $subjectOf = null,

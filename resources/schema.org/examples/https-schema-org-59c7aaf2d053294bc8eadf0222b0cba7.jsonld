@@ -1,0 +1,15 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "VideoGame",
+  "name": "Whale Rider",
+  "operatingSystem": {
+    "@type": "OperatingSystem",
+    "name": "Door",
+    "softwareVersion": "44"
+  },
+  "softwareRequirements": {
+    "@type": "RuntimePlatform",
+    "name": "Passive Y",
+    "softwareVersion": "31"
+  }
+}

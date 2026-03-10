@@ -36,6 +36,7 @@ final class InteractionCounterModel
         public ?Property\LocationModel $location = null,
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\SameAsModel $sameAs = null,
         public ?Property\StartTimeModel $startTime = null,

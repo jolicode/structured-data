@@ -74,6 +74,7 @@ final class OfferForLeaseModel
         public ?Property\MpnModel $mpn = null,
         public ?Property\NameModel $name = null,
         public ?Property\OfferedByModel $offeredBy = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\PriceModel $price = null,
         public ?Property\PriceCurrencyModel $priceCurrency = null,

@@ -35,6 +35,7 @@ final class AggregateRatingModel
         public ?Property\ItemReviewedModel $itemReviewed = null,
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\RatingCountModel $ratingCount = null,
         public ?Property\RatingExplanationModel $ratingExplanation = null,

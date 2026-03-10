@@ -48,6 +48,7 @@ In the context of a quantitative knowledge graph, typical properties could inclu
         public ?Property\ObservationAboutModel $observationAbout = null,
         public ?Property\ObservationDateModel $observationDate = null,
         public ?Property\ObservationPeriodModel $observationPeriod = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\SameAsModel $sameAs = null,
         public ?Property\SubjectOfModel $subjectOf = null,

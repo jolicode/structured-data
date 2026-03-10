@@ -11,32 +11,17 @@
 
 namespace Jolicode\SchemaOrg\Type;
 
-use Jolicode\SchemaOrg\Property;
-
 final class DataTypeModel
 {
     public const DESCRIPTION = 'The basic data types such as Integers, Strings, etc.';
     public const LABEL = 'DataType';
     public const NAME = 'schema:DataType';
-    public const PARENTS = ['Rdfs:ClassModel' => 'Jolicode\SchemaOrg\Type\Rdfs:ClassModel'];
+    public const PARENTS = [];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 
-    public function __construct(
-        public ?Property\AdditionalTypeModel $additionalType = null,
-        public ?Property\AlternateNameModel $alternateName = null,
-        public ?Property\DescriptionModel $description = null,
-        public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
-        public ?Property\IdentifierModel $identifier = null,
-        public ?Property\ImageModel $image = null,
-        public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
-        public ?Property\NameModel $name = null,
-        public ?Property\PotentialActionModel $potentialAction = null,
-        public ?Property\SameAsModel $sameAs = null,
-        public ?Property\SubjectOfModel $subjectOf = null,
-        public ?Property\SupersededByModel $supersededBy = null,
-        public ?Property\UrlModel $url = null,
-    ) {
+    public function __construct()
+    {
     }
 }

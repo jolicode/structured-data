@@ -36,6 +36,7 @@ final class LinkRoleModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
         public ?Property\NamedPositionModel $namedPosition = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\RoleNameModel $roleName = null,
         public ?Property\SameAsModel $sameAs = null,

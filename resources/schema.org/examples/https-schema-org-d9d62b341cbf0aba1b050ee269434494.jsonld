@@ -1,0 +1,47 @@
+{
+  "@context": "http://schema.org",
+  "type": "PerformingArtsEvent",
+  "id": "http://kg.artsdata.ca/resource/K43-1500",
+  "name": "Gravity and Other Myths - Ten Thousand Hours",
+  "startDate": "2026-04-28T19:00:00-04:00",
+  "endDate": "2026-04-28T21:00:00-04:00",
+  "url": "https://www.centredesarts.ca/spectacle/gravity-and-other-myths-ten-thousand-hours",
+  "description": "Eight acrobats and one musician investigate physical skill; how we obtain it, how we perfect it, and how it can transform our lives. Through highlighting the nuance of high level acrobatics, audiences experience a heightened appreciation of the countless hours required to master the skills they are witnessing. Set to a driving, dynamic and intricate musical score using percussion/drums live on-stage, Ten Thousand Hours is a revelry of the distinct physical language that defines GOM and a celebration of the pursuit of mastery. This is a love letter to our bodies and the amazing things they let us do every day. This is an invitation to watch us work.",
+  "image": "https://www.centredesarts.ca/img-activites/gravity-and-the-other-myths-1280x720-MD.webp",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "type": "Place",
+    "name": "Salle Desjardins",
+    "sameAs": "http://www.wikidata.org/entity/Q111668872",
+    "address": {
+      "type": "PostalAddress",
+      "streetAddress": "1705 Rue Saint-Antoine",
+      "addressCountry": "CA",
+      "addressLocality": "Saint-Hyacinthe",
+      "addressRegion": "QC",
+      "postalCode": "J2S 9E2"
+    }
+  },
+  "organizer": {
+    "type": "Organization",
+    "name": "Centre des arts Juliette-Lassonde",
+    "sameAs": "http://www.wikidata.org/entity/Q2945528"
+  },
+  "performer": {
+    "type": "Organization",
+    "name": "Gravity and Other Myths",
+    "sameAs": "http://www.wikidata.org/entity/Q37658370"
+  },
+  "workPerformed": {
+    "type": "CreativeWork",
+    "name": "Ten Thousand Hours",
+    "genre": "Circus"
+    },
+  "offers": {
+    "type": "Offer",
+    "url": "https://centredesarts.tuxedobillet.com/main/gravity-and-other-myths-ten-thousand-hours-260428/20260428190000?axeptio_token=dx62unp1oz6c295lm5t1mc",
+    "price": "48",
+    "priceCurrency": "CAD"
+  }
+}

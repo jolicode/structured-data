@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\EnumerationMember;
 
 final class DefinitiveLegalValueModel
 {
-    public const DESCRIPTION = 'Indicates a document for which the text is conclusively what the law says and is legally binding. (E.g. the digitally signed version of an Official Journal.)
+    public const DESCRIPTION = 'Indicates a document for which the text is conclusively what the law says and is legally binding. (e.g. The digitally signed version of an Official Journal.)
   Something "Definitive" is considered to be also [[AuthoritativeLegalValue]].';
     public const LABEL = 'DefinitiveLegalValue';
     public const NAME = 'schema:DefinitiveLegalValue';

@@ -17,7 +17,7 @@ final class AreaServedModel
     public const LABEL = 'areaServed';
     public const NAME = 'schema:areaServed';
     public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\SchemaOrg\Type\AdministrativeAreaModel', 'GeoShapeModel' => 'Jolicode\SchemaOrg\Type\GeoShapeModel', 'PlaceModel' => 'Jolicode\SchemaOrg\Type\PlaceModel', 'TextModel' => 'Jolicode\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['ContactPoint' => 'Jolicode\SchemaOrg\Type\ContactPointModel', 'DeliveryChargeSpecification' => 'Jolicode\SchemaOrg\Type\DeliveryChargeSpecificationModel', 'Demand' => 'Jolicode\SchemaOrg\Type\DemandModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'Service' => 'Jolicode\SchemaOrg\Type\ServiceModel'];
+    public const TYPES = ['ContactPoint' => 'Jolicode\SchemaOrg\Type\ContactPointModel', 'DeliveryChargeSpecification' => 'Jolicode\SchemaOrg\Type\DeliveryChargeSpecificationModel', 'Demand' => 'Jolicode\SchemaOrg\Type\DemandModel', 'FinancialIncentive' => 'Jolicode\SchemaOrg\Type\FinancialIncentiveModel', 'Offer' => 'Jolicode\SchemaOrg\Type\OfferModel', 'Organization' => 'Jolicode\SchemaOrg\Type\OrganizationModel', 'Service' => 'Jolicode\SchemaOrg\Type\ServiceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

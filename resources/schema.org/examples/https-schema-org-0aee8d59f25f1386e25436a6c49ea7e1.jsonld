@@ -1,0 +1,78 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "JSON Example",
+  "offers": {
+    "@type": "Offer",
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "height": "12 in",
+      "width": "45 cm",
+      "depth": "300 mm",
+      "weight": "1.2 kg",
+      "hasShippingService": {
+        "@type": "ShippingService",
+        "handlingTime": {
+          "@type": "ServicePeriod",
+          "cutoffTime": "14:30:00-07:00",
+          "duration": {
+            "@type": "QuantitativeValue",
+            "maxValue": "30",
+            "unitCode": "min"
+          }
+        },
+        "shippingConditions": {
+          "@type": "ShippingConditions",
+          "shippingDestination": [
+            {
+              "@type": "DefinedRegion",
+              "addressCountry": "US"
+            },
+            {
+              "@type": "DefinedRegion",
+              "addressCountry": "CA"
+            }
+          ],
+          "orderValue": {
+            "@type": "MonetaryAmount",
+            "minValue": "35",
+            "maxValue": "200"
+          },
+          "shippingRate": {
+            "@type": "ShippingRateSettings",
+            "shippingRate": {
+              "@type": "MonetaryAmount",
+              "value": "10",
+              "currency": "USD"
+            },
+            "weightPercentage": "1.0"
+          },
+          "transitTime": {
+            "@type": "ServicePeriod",
+            "duration": {
+              "maxValue": "3.5",
+              "unitCode": "h"
+            },
+            "businessDays": [
+              {
+                "dayOfWeek": "Monday"
+              },
+              {
+                "dayOfWeek": "Tuesday"
+              },
+              {
+                "dayOfWeek": "Wednesday"
+              },
+              {
+                "dayOfWeek": "Thursday"
+              },
+              {
+                "dayOfWeek": "Friday"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

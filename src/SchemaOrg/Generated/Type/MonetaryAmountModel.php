@@ -35,6 +35,7 @@ final class MonetaryAmountModel
         public ?Property\MaxValueModel $maxValue = null,
         public ?Property\MinValueModel $minValue = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\SameAsModel $sameAs = null,
         public ?Property\SubjectOfModel $subjectOf = null,

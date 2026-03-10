@@ -42,6 +42,7 @@ final class LodgingReservationModel
         public ?Property\NameModel $name = null,
         public ?Property\NumAdultsModel $numAdults = null,
         public ?Property\NumChildrenModel $numChildren = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\PriceCurrencyModel $priceCurrency = null,
         public ?Property\ProgramMembershipUsedModel $programMembershipUsed = null,

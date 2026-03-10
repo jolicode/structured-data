@@ -40,6 +40,7 @@ final class DiagnosticProcedureModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\MedicineSystemModel $medicineSystem = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\PreparationModel $preparation = null,
         public ?Property\ProcedureTypeModel $procedureType = null,

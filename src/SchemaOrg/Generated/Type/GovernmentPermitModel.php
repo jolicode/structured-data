@@ -34,6 +34,7 @@ final class GovernmentPermitModel
         public ?Property\IssuedThroughModel $issuedThrough = null,
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PermitAudienceModel $permitAudience = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\SameAsModel $sameAs = null,

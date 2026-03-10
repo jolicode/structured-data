@@ -35,6 +35,7 @@ final class HowToSupplyModel
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
         public ?Property\NextItemModel $nextItem = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PositionModel $position = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\PreviousItemModel $previousItem = null,

@@ -73,6 +73,7 @@ final class ApartmentComplexModel
         public ?Property\NumberOfAvailableAccommodationUnitsModel $numberOfAvailableAccommodationUnits = null,
         public ?Property\NumberOfBedroomsModel $numberOfBedrooms = null,
         public ?Property\OpeningHoursSpecificationModel $openingHoursSpecification = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PetsAllowedModel $petsAllowed = null,
         public ?Property\PhotoModel $photo = null,
         public ?Property\PhotosModel $photos = null,

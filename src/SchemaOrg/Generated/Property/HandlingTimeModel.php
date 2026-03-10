@@ -13,11 +13,15 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class HandlingTimeModel
 {
-    public const DESCRIPTION = 'The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup. Typical properties: minValue, maxValue, unitCode (d for DAY).  This is by common convention assumed to mean business days (if a unitCode is used, coded as "d"), i.e. only counting days when the business normally operates.';
+    public const DESCRIPTION = 'The typical delay between the receipt of the order and the goods either leaving the warehouse or being prepared for pickup, in case the delivery method is on site pickup.
+
+In the context of [[ShippingDeliveryTime]], Typical properties: minValue, maxValue, unitCode (d for DAY).  This is by common convention assumed to mean business days (if a unitCode is used, coded as "d"), i.e. only counting days when the business normally operates.
+
+In the context of [[ShippingService]], use the [[ServicePeriod]] format, that contains the same information in a structured form, with cut-off time, business days and duration.';
     public const LABEL = 'handlingTime';
     public const NAME = 'schema:handlingTime';
-    public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel'];
-    public const TYPES = ['ShippingDeliveryTime' => 'Jolicode\SchemaOrg\Type\ShippingDeliveryTimeModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'Jolicode\SchemaOrg\Type\QuantitativeValueModel', 'ServicePeriodModel' => 'Jolicode\SchemaOrg\Type\ServicePeriodModel'];
+    public const TYPES = ['ShippingDeliveryTime' => 'Jolicode\SchemaOrg\Type\ShippingDeliveryTimeModel', 'ShippingService' => 'Jolicode\SchemaOrg\Type\ShippingServiceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

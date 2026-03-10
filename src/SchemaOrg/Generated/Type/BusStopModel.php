@@ -70,6 +70,7 @@ final class BusStopModel
         public ?Property\NameModel $name = null,
         public ?Property\OpeningHoursModel $openingHours = null,
         public ?Property\OpeningHoursSpecificationModel $openingHoursSpecification = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PhotoModel $photo = null,
         public ?Property\PhotosModel $photos = null,
         public ?Property\PotentialActionModel $potentialAction = null,

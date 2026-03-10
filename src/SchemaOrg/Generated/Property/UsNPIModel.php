@@ -13,7 +13,7 @@ namespace Jolicode\SchemaOrg\Property;
 
 final class UsNPIModel
 {
-    public const DESCRIPTION = 'A <a href="https://en.wikipedia.org/wiki/National_Provider_Identifier">National Provider Identifier</a> (NPI)
+    public const DESCRIPTION = 'A <a href="https://en.wikipedia.org/wiki/National_Provider_Identifier">National Provider Identifier</a> (NPI) 
     is a unique 10-digit identification number issued to health care providers in the United States by the Centers for Medicare and Medicaid Services.';
     public const LABEL = 'usNPI';
     public const NAME = 'schema:usNPI';

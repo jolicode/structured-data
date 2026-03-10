@@ -45,6 +45,7 @@ final class EducationalOccupationalProgramModel
         public ?Property\OccupationalCategoryModel $occupationalCategory = null,
         public ?Property\OccupationalCredentialAwardedModel $occupationalCredentialAwarded = null,
         public ?Property\OffersModel $offers = null,
+        public ?Property\OwnerModel $owner = null,
         public ?Property\PotentialActionModel $potentialAction = null,
         public ?Property\ProgramPrerequisitesModel $programPrerequisites = null,
         public ?Property\ProgramTypeModel $programType = null,
