@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RDFa Invalid Multiple</title>
+</head>
+<body>
+    <main>
+        <h1>Fixture with multiple invalid RDFa structures</h1>
+
+        <!-- Invalid RDFa: schema.org vocab is present but no top-level typeof subject exists. -->
+        <section vocab="https://schema.org/">
+            <span property="name">Broken RDFa One</span>
+            <a property="url" href="https://example.com/broken-rdfa-one">Profile</a>
+        </section>
+
+        <!-- Invalid RDFa: prefix is valid, but there is still no typed subject to attach the properties to. -->
+        <section prefix="schema: https://schema.org/">
+            <span property="schema:name">Broken RDFa Two</span>
+            <a property="schema:url" href="https://example.com/broken-rdfa-two">Website</a>
+        </section>
+    </main>
+</body>
+</html>

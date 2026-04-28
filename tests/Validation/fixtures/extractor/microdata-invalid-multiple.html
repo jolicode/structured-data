@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Microdata Invalid Multiple</title>
+</head>
+<body>
+    <main>
+        <h1>Complex fixture with multiple malformed microdata blocks</h1>
+
+        <!--
+            Invalid by design. This fixture combines several edge cases:
+            - missing itemtype on itemscope roots
+            - broken itemprop names
+            - invalid itemref target
+            - malformed HTML closures
+            - inconsistent nested entity wiring
+        -->
+
+        <!-- Root item with missing itemtype and bad itemref reference -->
+        <section class="broken-micro-a" itemscope itemid="https://example.com/broken-org" itemref="missing-ref-a missing-ref-b">
+            <span itempr0p="name">Broken One</span>
+            <a itemprop="url" href="https://example.com/broken-one">Broken link</a>
+
+            <!-- Nested item also missing itemtype -->
+            <div itemprop="employee" itemscope>
+                <span itemprop="name">Broken Employee</span>
+                <meta itemprop="jobTitle" content="No Type Assigned" />
+            </div>
+        </section>
+
+        <!-- Missing itemtype, malformed tags, and typo in nested property -->
+        <section class="broken-micro-b" itemscope>
+            <span itemprop="name">Broken Two
+            <a itemprop="url" href="https://example.com/broken-two">Broken link
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                <span itempr0p="streetAddress">Neverland Street</span>
+                <span itemprop="postalCode">00000</span>
+            </div>
+        </section>
+
+        <!-- Referenced node that is not an itemprop carrier as expected by itemref -->
+        <aside id="missing-ref-a">Not a property node</aside>
+    </main>
+</body>
+</html>

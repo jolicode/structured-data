@@ -11,56 +11,53 @@
 
 namespace Jolicode\JsonLd\Extraction;
 
-use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
-
-class JsonLdNodeExtractor
+class JsonLdNodeExtractor implements FormatExtractorInterface
 {
-    private HttpClientInterface $httpClient;
-
-    public function __construct(
-        ?HttpClientInterface $httpClient = null,
-    ) {
-        $this->httpClient = $httpClient ?? HttpClient::create();
-    }
-
-    /**
-     * @return JsonLdElement[]
-     */
-    public function extractJsonLd(string $url): array
-    {
-        $response = $this->httpClient->request('GET', $url, [
-            'headers' => [
-                'Accept' => 'application/ld+json',
-            ],
-        ]);
-
-        return $this->extractStructuredDataContent($response->getContent());
-    }
-
     /**
      * @return JsonLdElement[]
      */
     public function extractStructuredDataContent(string $body): array
     {
-        $content = $this->extractJsonLdNodes($body);
+        $trimmedBody = trim($body);
 
-        if (0 === \count($content)) {
-            if (\in_array(substr(trim($body), 0, 1), ['[', '{'], true)) {
-                // assume it is a json string
-                $content = [new JsonLdElement(0, 0, $body)];
-            }
+        if ($this->looksLikeRawJsonDocument($trimmedBody)) {
+            // Let the parser report precise syntax errors for raw JSON input.
+            return [new JsonLdElement(0, 0, $body)];
         }
 
-        return $content;
+        [$content, $invalidLocations] = $this->extractJsonLdNodes($body);
+
+        if ($content) {
+            return $content;
+        }
+
+        if ($this->containsJsonLdScriptTag($body)) {
+            $locationInfo = $invalidLocations ? ' at ' . implode(', ', $invalidLocations) : '';
+
+            throw new \RuntimeException(\sprintf('Invalid JSON-LD document: found JSON-LD script tags but could not extract usable content%s.', $locationInfo));
+        }
+
+        return [];
+    }
+
+    public function supportsContent(string $body): bool
+    {
+        $trimmedBody = trim($body);
+
+        if ($this->looksLikeRawJsonDocument($trimmedBody)) {
+            return true;
+        }
+
+        return $this->containsJsonLdScriptTag($body);
     }
 
     /**
-     * @return JsonLdElement[]
+     * @return array{array<JsonLdElement>, list<string>}
      */
     private function extractJsonLdNodes(string $body): array
     {
         $content = [];
+        $invalidLocations = [];
 
         if (preg_match_all(
             '/<script[^>]+type=[\"\']application\/ld\+json[\"\'][^>]*>(.*)<\/script>/miUus',
@@ -69,6 +66,13 @@ class JsonLdNodeExtractor
             \PREG_PATTERN_ORDER | \PREG_OFFSET_CAPTURE,
         )) {
             foreach ($matches[1] as $match) {
+                if (!json_validate(trim($match[0]))) {
+                    $lineNumber = substr_count(substr($body, 0, $match[1]), "\n") + 1;
+                    $invalidLocations[] = "line {$lineNumber}";
+
+                    continue;
+                }
+
                 $startColumn = mb_strlen(substr($body, 0, $match[1]));
                 $startLine = substr_count(mb_substr($body, 0, $startColumn), "\n");
 
@@ -85,6 +89,21 @@ class JsonLdNodeExtractor
             }
         }
 
-        return $content;
+        return [$content, $invalidLocations];
+    }
+
+    private function looksLikeRawJsonDocument(string $trimmedBody): bool
+    {
+        if ('' === $trimmedBody || !\in_array($trimmedBody[0], ['[', '{'], true)) {
+            return false;
+        }
+
+        // Avoid classifying HTML documents (including malformed ones) as raw JSON.
+        return 1 !== preg_match('/<\s*(?:!doctype|html|head|body|script|meta|div|span|section|article|main)\b/i', $trimmedBody);
+    }
+
+    private function containsJsonLdScriptTag(string $body): bool
+    {
+        return 1 === preg_match('/<script[^>]+type=["\']application\/ld\+json["\'][^>]*>/miu', $body);
     }
 }

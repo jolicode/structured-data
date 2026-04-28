@@ -95,7 +95,7 @@ function flatten(
     io()->writeln($result);
 }
 
-#[AsTask(name: 'validate', namespace: 'schema-org', description: 'Validate a local file or a remote URL')]
+#[AsTask(name: 'validate', description: 'Validate a local file or a remote URL')]
 function validate(
     #[AsArgument(name: 'fileOrUrl', description: 'The file or remote URL to validate')]
     string $fileOrUrl,
@@ -156,6 +156,10 @@ function validate(
 
                 io()->writeln('');
             }
+        }
+
+        foreach ($type->warnings as $warning) {
+            io()->warning($warning->message);
         }
 
         if ($type->errors) {

@@ -60,5 +60,9 @@ jobs:
         continue-on-error: ${{ github.event_name != 'workflow_dispatch' || inputs.google_docs_strict != 'true' }}
         run: castor google:generation:verify-docs
 
+      - name: Verify Google docs coverage (report-only by default)
+        continue-on-error: ${{ github.event_name != 'workflow_dispatch' || inputs.google_docs_strict != 'true' }}
+        run: castor google:generation:verify-docs
+
       - name: Check that schema.org types and properties classes can be generated
         run: castor generation:generate

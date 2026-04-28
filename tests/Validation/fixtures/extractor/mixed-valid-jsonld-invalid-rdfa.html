@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mixed Valid JSON-LD Invalid RDFa</title>
+</head>
+<body>
+    <main>
+        <h1>Page mixing valid JSON-LD and broken RDFa</h1>
+
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Valid Json With Broken RDFa",
+            "url": "https://example.com/valid-json-broken-rdfa"
+        }
+        </script>
+
+        <!-- Invalid RDFa: schema.org properties are present, but no typed subject exists. -->
+        <section vocab="https://schema.org/">
+            <span property="name">Broken RDFa With Valid Json</span>
+            <a property="url" href="https://example.com/broken-rdfa-valid-json">Profile</a>
+        </section>
+    </main>
+</body>
+</html>

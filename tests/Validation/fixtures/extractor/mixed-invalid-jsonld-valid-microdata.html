@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>L'Ecran demoniaque | La Cinematheque francaise</title>
+    <meta name="description" content="Page de cycle inspiree de la programmation cinema de la Cinematheque francaise, avec microdata valide sur l'evenement principal et JSON-LD volontairement casse dans le corps de page." />
+    <meta id="event-keywords" itemprop="keywords" content="expressionnisme allemand, retrospective, cinema muet" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <p class="eyebrow">Programmation cinema</p>
+            <h1>L'Ecran demoniaque</h1>
+            <p class="dates">Du 18 mars au 6 avril 2026</p>
+            <p class="lead">
+                Cette retrospective inspiree de la Cinematheque francaise celebre le cinema expressionniste,
+                avec une presentation video, un texte critique et un parcours parmi plusieurs oeuvres majeures.
+            </p>
+        </div>
+    </header>
+
+    <main>
+        <!--
+            Single top-level valid microdata document on purpose.
+            The root event is valid and contains nested film items.
+            Broken JSON-LD snippets are distributed in the body to exercise resilience.
+        -->
+        <article
+            class="cycle-page"
+            itemscope
+            itemtype="https://schema.org/Event"
+            itemid="https://example.com/events/l-ecran-demoniaque"
+            itemref="event-keywords"
+        >
+            <div class="container hero-grid">
+                <section class="intro">
+                    <h2 itemprop="name">L'Ecran demoniaque</h2>
+                    <meta itemprop="alternateName" content="Cycle expressionniste de la Cinematheque" />
+                    <time itemprop="startDate" datetime="2026-03-18T00:00:00+01:00">18 mars 2026</time>
+                    <time itemprop="endDate" datetime="2026-04-06T23:59:59+01:00">6 avril 2026</time>
+                    <p itemprop="description">
+                        Feter les 90 ans de la Cinematheque, c'est aussi honorer Lotte Eisner et son livre
+                        fondateur sur le cinema expressionniste allemand. Le cycle remet en lumiere Murnau,
+                        Lang, Louise Brooks et d'autres figures du cinema d'outre-Rhin.
+                    </p>
+
+                    <div itemprop="organizer" itemscope itemtype="https://schema.org/Person">
+                        <strong itemprop="name">Valid Micro With Broken Json</strong>
+                        <meta itemprop="jobTitle" content="Programmatrice du cycle" />
+                        <a itemprop="url" href="https://example.com/programmation/valid-micro-broken-json">Profil</a>
+                    </div>
+
+                    <div itemprop="location" itemscope itemtype="https://schema.org/Place">
+                        <strong itemprop="name">La Cinematheque francaise</strong>
+                        <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                            <span itemprop="streetAddress">51 Rue de Bercy</span>
+                            <span itemprop="postalCode">75012</span>
+                            <span itemprop="addressLocality">Paris</span>
+                            <span itemprop="addressCountry">FR</span>
+                        </div>
+                    </div>
+                </section>
+
+                <aside class="media-column">
+                    <div itemprop="subjectOf" itemscope itemtype="https://schema.org/VideoObject">
+                        <strong itemprop="name">Presentation du cycle L'Ecran demoniaque</strong>
+                        <iframe
+                            itemprop="embedUrl"
+                            width="1000"
+                            height="562"
+                            src="https://player.vimeo.com/video/1171077388"
+                            title="Presentation video du cycle"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                        ></iframe>
+                    </div>
+                    <p>
+                        Ressource associee:
+                        <a href="https://www.cinematheque.fr/article/2458.html">Les films doivent etre des dessins doues de vie</a>.
+                    </p>
+                </aside>
+            </div>
+
+            <section class="films-list">
+                <div class="container">
+                    <h2>Les films</h2>
+                    <ol class="cards">
+                        <li class="card" itemprop="workFeatured" itemscope itemtype="https://schema.org/Movie">
+                            <h3 itemprop="name">Algol</h3>
+                            <p>
+                                <span itemprop="director" itemscope itemtype="https://schema.org/Person">
+                                    <span itemprop="name">Hans Werckmeister</span>
+                                </span>
+                                , <time itemprop="dateCreated" datetime="1920">1920</time>
+                            </p>
+                            <p>Lu 6 avr 18h00 - Salle GF</p>
+                        </li>
+
+                        <!-- Broken JSON-LD element: missing comma after @type and unquoted property value. -->
+                        <script type="application/ld+json">
+                        {"@context":"https://schema.org","@type":"Movie" "name": "Le Cabinet des figures de cire", "dateCreated": 1924}
+                        </script>
+
+                        <li class="card" itemprop="workFeatured" itemscope itemtype="https://schema.org/Movie">
+                            <h3 itemprop="name">Le Cabinet du docteur Caligari</h3>
+                            <p>
+                                <span itemprop="director" itemscope itemtype="https://schema.org/Person">
+                                    <span itemprop="name">Robert Wiene</span>
+                                </span>
+                                , <time itemprop="dateCreated" datetime="1920">1920</time>
+                            </p>
+                            <p>Projection suivie d'une conference sur l'expressionnisme.</p>
+                        </li>
+
+                        <!-- Broken JSON-LD element: trailing comma and missing closing brace. -->
+                        <script type="application/ld+json">
+                        {"@context":"https://schema.org","@type":"Movie","name":"De l'aube a minuit",}
+                        </script>
+
+                        <li class="card" itemprop="workFeatured" itemscope itemtype="https://schema.org/Movie">
+                            <h3 itemprop="name">Metropolis</h3>
+                            <p>
+                                <span itemprop="director" itemscope itemtype="https://schema.org/Person">
+                                    <span itemprop="name">Fritz Lang</span>
+                                </span>
+                                , <time itemprop="dateCreated" datetime="1927">1927</time>
+                            </p>
+                            <p>Version restauree, dans la partie la plus attendue du cycle.</p>
+                        </li>
+
+                        <!-- Broken JSON-LD element: bad bracket balance and invalid string termination. -->
+                        <script type="application/ld+json">
+                        {"@context":"https://schema.org","@type":"Movie","name":"Les Nibelungen, partie 1 : La Mort de Siegfried","director":[{"@type":"Person","name":"Fritz Lang"}]
+                        </script>
+
+                        <li class="card" itemprop="workFeatured" itemscope itemtype="https://schema.org/Movie">
+                            <h3 itemprop="name">Le Dernier des hommes</h3>
+                            <p>
+                                <span itemprop="director" itemscope itemtype="https://schema.org/Person">
+                                    <span itemprop="name">F. W. Murnau</span>
+                                </span>
+                                , <time itemprop="dateCreated" datetime="1924">1924</time>
+                            </p>
+                            <p>Film cle pour les recherches formelles du cycle.</p>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="extras">
+                <div class="container">
+                    <h2>Rencontres et informations pratiques</h2>
+                    <p>
+                        Une conference intitulee <em>L'Expressionnisme a l'ecran : histoire d'un label</em>
+                        complete la retrospective. Le public est invite a arriver 30 minutes avant la seance
+                        en raison des controles de securite a l'entree du batiment.
+                    </p>
+                    <p>
+                        Les partenaires cites sur la page source comprennent notamment Bundesarchiv-Filmarchiv,
+                        Filmarchiv Austria, Filmmuseum Munchen et le Goethe-Institut de Paris.
+                    </p>
+                </div>
+            </section>
+        </article>
+    </main>
+</body>
+</html>

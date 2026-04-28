@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JsonLd Valid Multiple</title>
+</head>
+<body>
+    <main>
+        <h1>Moderately complex fixture with two valid JSON-LD items</h1>
+
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Json One",
+            "url": "https://example.com/json-one",
+            "jobTitle": "Editor"
+        }
+        </script>
+
+        <section>
+            <h2>Organization details</h2>
+            <p>This second item is still valid but includes nested data and repeated fields.</p>
+        </section>
+
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Json Two",
+            "url": "https://example.com/json-two",
+            "sameAs": [
+                "https://github.com/json-two",
+                "https://www.linkedin.com/company/json-two"
+            ],
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "20 Test Street",
+                "addressLocality": "Paris",
+                "postalCode": "75010",
+                "addressCountry": "FR"
+            }
+        }
+        </script>
+    </main>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RDFa Invalid Single</title>
+</head>
+<body>
+    <main>
+        <h1>Fixture with one invalid RDFa structure</h1>
+
+        <!-- Invalid RDFa: schema.org properties exist but there is no typed subject. -->
+        <section vocab="https://schema.org/">
+            <span property="name">Broken RDFa Single</span>
+            <a property="url" href="https://example.com/broken-rdfa-single">Profile</a>
+        </section>
+    </main>
+</body>
+</html>

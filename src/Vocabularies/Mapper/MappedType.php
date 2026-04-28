@@ -29,6 +29,15 @@ class MappedType
          * @var array<MappedError>
          */
         public array $errors = [],
+        /**
+         * Extraction-level warnings: structured-data snippets that were detected but could
+         * not be fully parsed. Unlike $errors, these never affect validity — they are
+         * informational notices about malformed snippets in a document that was otherwise
+         * successfully extracted.
+         *
+         * @var array<MappedError>
+         */
+        public array $warnings = [],
         public ?self $parent = null,
         public ?MappedProperty $parentProperty = null,
         /**

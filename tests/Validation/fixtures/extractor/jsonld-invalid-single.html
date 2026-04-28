@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JsonLd Invalid Single</title>
+</head>
+<body>
+    <main>
+        <h1>Simple fixture with one invalid JSON-LD item</h1>
+
+        <!-- Invalid JSON-LD: trailing comma makes the JSON invalid. -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Broken Single JsonLd",
+        }
+        </script>
+    </main>
+</body>
+</html>

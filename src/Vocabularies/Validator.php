@@ -15,8 +15,7 @@ use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
 use Jolicode\JsonLd\Algorithms\Http\IriResolver;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Jolicode\JsonLd\Extraction\JsonLdElement;
-use Jolicode\JsonLd\Extraction\JsonLdNodeExtractor;
+use Jolicode\JsonLd\Extraction\Extractor;
 use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
 use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
 use Jolicode\JsonLd\Parser\JsonLdParser;
@@ -35,7 +34,7 @@ class Validator
         private readonly ValidationMapper $validationMapper = new ValidationMapper(),
         private readonly JsonLdParser $parser = new JsonLdParser(),
         private readonly RegisteredValidatorsContainer $validatorsContainer = new RegisteredValidatorsContainer(),
-        private readonly JsonLdNodeExtractor $extractor = new JsonLdNodeExtractor(),
+        private readonly Extractor $extractor = new Extractor(),
     ) {
         $this->resetValidators();
     }
@@ -88,7 +87,16 @@ class Validator
             $this->resetValidators();
         }
 
-        $elements = $this->getJsonLdContent($input);
+        try {
+            $elements = $this->extractor->extract($input);
+        } catch (\RuntimeException $exception) {
+            if (str_starts_with($exception->getMessage(), Extractor::NO_SUPPORTED_FORMATS_DETECTED_MESSAGE_PREFIX)) {
+                return [];
+            }
+
+            return $this->createInvalidDocumentType($exception->getMessage(), 0);
+        }
+
         $expander = new Expander();
         $types = [];
 
@@ -130,27 +138,28 @@ class Validator
             }
         }
 
-        return [...$types];
-    }
+        $extractionWarnings = $this->extractor->getLastExtractionWarnings();
 
-    /**
-     * @return array<JsonLdElement>
-     */
-    private function getJsonLdContent(string $input): array
-    {
-        if (IriResolver::isAbsoluteIri($input)) {
-            return $this->extractor->extractJsonLd($input);
-        }
+        if ($extractionWarnings && $types) {
+            $firstType = $types[array_key_first($types)];
 
-        if (is_file($input)) {
-            $input = file_get_contents($input);
-
-            if (false === $input) {
-                throw new \RuntimeException(\sprintf('Could not read the file %s', $input));
+            foreach ($extractionWarnings as $warning) {
+                $firstType->warnings[] = new MappedError(
+                    \sprintf(
+                        'A %s snippet was detected but is malformed and could not be fully processed. Reason: %s',
+                        $warning->format,
+                        $warning->message,
+                    ),
+                    null,
+                    null,
+                    MappedError::SEVERITY_WARNING,
+                    null,
+                    '',
+                );
             }
         }
 
-        return $this->extractor->extractStructuredDataContent($input);
+        return [...$types];
     }
 
     /**

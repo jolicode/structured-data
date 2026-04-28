@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RDFa Valid Multiple</title>
+</head>
+<body>
+    <main>
+        <h1>Fixture with two valid RDFa roots</h1>
+
+        <section vocab="https://schema.org/" typeof="Person" about="https://example.com/rdfa-one">
+            <h2 property="name">RDFa One</h2>
+            <a property="url" href="https://example.com/rdfa-one">Profile</a>
+        </section>
+
+        <aside prefix="schema: https://schema.org/" typeof="schema:Organization" about="https://example.com/rdfa-two">
+            <h2 property="schema:name">RDFa Two</h2>
+            <a property="schema:url" href="https://example.com/rdfa-two">Website</a>
+            <div property="schema:address" typeof="schema:PostalAddress">
+                <span property="schema:streetAddress">20 RDFa Street</span>
+                <span property="schema:addressLocality">Paris</span>
+            </div>
+        </aside>
+    </main>
+</body>
+</html>

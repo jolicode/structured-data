@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Microdata Valid Multiple</title>
+    <meta id="org-email" itemprop="email" content="hello@example.com" />
+    <link id="org-sameas-a" itemprop="sameAs" href="https://www.linkedin.com/company/micro-org" />
+    <link id="org-sameas-b" itemprop="sameAs" href="https://github.com/micro-org" />
+</head>
+<body>
+    <main>
+        <h1>Complex fixture with valid nested microdata</h1>
+
+        <!--
+            Single top-level item on purpose: tests expect exactly one extracted document.
+            This fixture exercises complex but valid constructs:
+            - nested items (employee, address, opening hours)
+            - itemid + itemref
+            - repeated properties (sameAs)
+            - value carriers through meta/link/time
+        -->
+        <section
+            class="org-card"
+            itemscope
+            itemtype="https://schema.org/Organization"
+            itemid="https://example.com/org/micro-org"
+            itemref="org-email org-sameas-a org-sameas-b"
+        >
+            <strong itemprop="name">Micro Org</strong>
+            <a itemprop="url" href="https://example.com/micro-org">Website</a>
+            <meta itemprop="foundingDate" content="2014-02-10" />
+
+            <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                <span itemprop="streetAddress">10 Data Lane</span>
+                <span itemprop="addressLocality">Paris</span>
+                <span itemprop="postalCode">75010</span>
+                <span itemprop="addressCountry">FR</span>
+            </div>
+
+            <div itemprop="employee" itemscope itemtype="https://schema.org/Person">
+                <strong itemprop="name">Micro Person</strong>
+                <a itemprop="url" href="https://example.com/micro-person">Profile</a>
+                <meta itemprop="jobTitle" content="Lead Engineer" />
+                <time itemprop="birthDate" datetime="1990-01-12">January 12, 1990</time>
+            </div>
+
+            <div itemprop="openingHoursSpecification" itemscope itemtype="https://schema.org/OpeningHoursSpecification">
+                <meta itemprop="dayOfWeek" content="https://schema.org/Monday" />
+                <meta itemprop="dayOfWeek" content="https://schema.org/Tuesday" />
+                <meta itemprop="opens" content="09:00" />
+                <meta itemprop="closes" content="18:00" />
+            </div>
+        </section>
+    </main>
+</body>
+</html>

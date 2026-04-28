@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JsonLd Invalid Multiple</title>
+</head>
+<body>
+    <main>
+        <h1>Moderately complex fixture with multiple invalid JSON-LD items</h1>
+
+        <!-- Invalid JSON-LD: missing comma between @type and name. -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person"
+            "name": "Broken Json One"
+        }
+        </script>
+
+        <section>
+            <h2>Additional broken payload</h2>
+            <p>The second document is also invalid and should keep extraction in error mode.</p>
+        </section>
+
+        <!-- Invalid JSON-LD: unfinished object, missing closing braces. -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Broken Json Two",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Paris"
+        }
+        </script>
+    </main>
+</body>
+</html>

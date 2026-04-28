@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mixed Invalid JSON-LD Valid RDFa</title>
+</head>
+<body>
+    <main>
+        <h1>Page mixing broken JSON-LD and valid RDFa</h1>
+
+        <!-- Invalid JSON-LD: trailing comma keeps this script unusable. -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Broken Json With Valid RDFa",
+        }
+        </script>
+
+        <section vocab="https://schema.org/" typeof="Person" about="https://example.com/valid-rdfa-broken-json">
+            <h2 property="name">Valid RDFa With Broken Json</h2>
+            <a property="url" href="https://example.com/valid-rdfa-broken-json">Profile</a>
+        </section>
+    </main>
+</body>
+</html>
