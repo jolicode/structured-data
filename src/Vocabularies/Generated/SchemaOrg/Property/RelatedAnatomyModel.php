@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RelatedAnatomyModel
 {
     public const DESCRIPTION = 'Anatomical systems or structures that relate to the superficial anatomy.';
     public const LABEL = 'relatedAnatomy';
     public const NAME = 'schema:relatedAnatomy';
-    public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AnatomicalStructureModel', 'AnatomicalSystemModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AnatomicalSystemModel'];
-    public const TYPES = ['SuperficialAnatomy' => 'Jolicode\Vocabularies\SchemaOrg\Type\SuperficialAnatomyModel'];
+    public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalStructureModel', 'AnatomicalSystemModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalSystemModel'];
+    public const TYPES = ['SuperficialAnatomy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SuperficialAnatomyModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

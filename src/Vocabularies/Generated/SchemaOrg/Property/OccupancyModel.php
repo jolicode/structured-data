@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OccupancyModel
 {
@@ -17,8 +17,8 @@ final class OccupancyModel
 Typical unit code(s): C62 for person.';
     public const LABEL = 'occupancy';
     public const NAME = 'schema:occupancy';
-    public const VALUES = ['QuantitativeValueModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\QuantitativeValueModel'];
-    public const TYPES = ['Accommodation' => 'Jolicode\Vocabularies\SchemaOrg\Type\AccommodationModel', 'Apartment' => 'Jolicode\Vocabularies\SchemaOrg\Type\ApartmentModel', 'HotelRoom' => 'Jolicode\Vocabularies\SchemaOrg\Type\HotelRoomModel', 'SingleFamilyResidence' => 'Jolicode\Vocabularies\SchemaOrg\Type\SingleFamilyResidenceModel', 'Suite' => 'Jolicode\Vocabularies\SchemaOrg\Type\SuiteModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['Accommodation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AccommodationModel', 'Apartment' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ApartmentModel', 'HotelRoom' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HotelRoomModel', 'SingleFamilyResidence' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SingleFamilyResidenceModel', 'Suite' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SuiteModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

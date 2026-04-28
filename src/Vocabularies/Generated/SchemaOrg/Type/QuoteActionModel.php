@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class QuoteActionModel
 {
     public const DESCRIPTION = 'An agent quotes/estimates/appraises an object/product/service with a price at a location/store.';
     public const LABEL = 'QuoteAction';
     public const NAME = 'schema:QuoteAction';
-    public const PARENTS = ['TradeActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TradeActionModel'];
+    public const PARENTS = ['TradeActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TradeActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

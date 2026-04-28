@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DurationModel
 {
     public const DESCRIPTION = 'The duration of the item (movie, audio recording, event, etc.) in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).';
     public const LABEL = 'duration';
     public const NAME = 'schema:duration';
-    public const VALUES = ['DurationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DurationModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\QuantitativeValueModel'];
-    public const TYPES = ['Audiobook' => 'Jolicode\Vocabularies\SchemaOrg\Type\AudiobookModel', 'Episode' => 'Jolicode\Vocabularies\SchemaOrg\Type\EpisodeModel', 'Event' => 'Jolicode\Vocabularies\SchemaOrg\Type\EventModel', 'MediaObject' => 'Jolicode\Vocabularies\SchemaOrg\Type\MediaObjectModel', 'Movie' => 'Jolicode\Vocabularies\SchemaOrg\Type\MovieModel', 'MusicRecording' => 'Jolicode\Vocabularies\SchemaOrg\Type\MusicRecordingModel', 'MusicRelease' => 'Jolicode\Vocabularies\SchemaOrg\Type\MusicReleaseModel', 'QuantitativeValueDistribution' => 'Jolicode\Vocabularies\SchemaOrg\Type\QuantitativeValueDistributionModel', 'Schedule' => 'Jolicode\Vocabularies\SchemaOrg\Type\ScheduleModel', 'ServicePeriod' => 'Jolicode\Vocabularies\SchemaOrg\Type\ServicePeriodModel'];
+    public const VALUES = ['DurationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DurationModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['Audiobook' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AudiobookModel', 'Episode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EpisodeModel', 'Event' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel', 'MediaObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaObjectModel', 'Movie' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MovieModel', 'MusicRecording' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicRecordingModel', 'MusicRelease' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicReleaseModel', 'QuantitativeValueDistribution' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueDistributionModel', 'Schedule' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ScheduleModel', 'ServicePeriod' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServicePeriodModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

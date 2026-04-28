@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicalGuidelineModel
 {
     public const DESCRIPTION = 'Any recommendation made by a standard society (e.g. ACC/AHA) or consensus statement that denotes how to diagnose and treat a particular condition. Note: this type should be used to tag the actual guideline recommendation; if the guideline recommendation occurs in a larger scholarly article, use MedicalScholarlyArticle to tag the overall article, not this type. Note also: the organization making the recommendation should be captured in the recognizingAuthority base property of MedicalEntity.';
     public const LABEL = 'MedicalGuideline';
     public const NAME = 'schema:MedicalGuideline';
-    public const PARENTS = ['MedicalEntityModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalEntityModel'];
+    public const PARENTS = ['MedicalEntityModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

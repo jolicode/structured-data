@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ChemicalCompositionModel
 {
     public const DESCRIPTION = 'The chemical composition describes the identity and relative ratio of the chemical elements that make up the substance.';
     public const LABEL = 'chemicalComposition';
     public const NAME = 'schema:chemicalComposition';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['ChemicalSubstance' => 'Jolicode\Vocabularies\SchemaOrg\Type\ChemicalSubstanceModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['ChemicalSubstance' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ChemicalSubstanceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

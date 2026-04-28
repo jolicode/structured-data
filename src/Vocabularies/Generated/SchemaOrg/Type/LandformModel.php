@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LandformModel
 {
     public const DESCRIPTION = 'A landform or physical feature.  Landform elements include mountains, plains, lakes, rivers, seascape and oceanic waterbody interface features such as bays, peninsulas, seas and so forth, including sub-aqueous terrain features such as submersed mountain ranges, volcanoes, and the great ocean basins.';
     public const LABEL = 'Landform';
     public const NAME = 'schema:Landform';
-    public const PARENTS = ['PlaceModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PlaceModel'];
+    public const PARENTS = ['PlaceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlaceModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

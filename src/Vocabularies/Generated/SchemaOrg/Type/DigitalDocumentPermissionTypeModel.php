@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DigitalDocumentPermissionTypeModel
 {
     public const DESCRIPTION = 'A type of permission which can be granted for accessing a digital document.';
     public const LABEL = 'DigitalDocumentPermissionType';
     public const NAME = 'schema:DigitalDocumentPermissionType';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['CommentPermissionModel' => 'EnumerationMember\CommentPermissionModel', 'ReadPermissionModel' => 'EnumerationMember\ReadPermissionModel', 'WritePermissionModel' => 'EnumerationMember\WritePermissionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

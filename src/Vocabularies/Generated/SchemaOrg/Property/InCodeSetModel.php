@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class InCodeSetModel
 {
     public const DESCRIPTION = 'A [[CategoryCodeSet]] that contains this category code.';
     public const LABEL = 'inCodeSet';
     public const NAME = 'schema:inCodeSet';
-    public const VALUES = ['CategoryCodeSetModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CategoryCodeSetModel', 'URLModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\URLModel'];
-    public const TYPES = ['CategoryCode' => 'Jolicode\Vocabularies\SchemaOrg\Type\CategoryCodeModel'];
+    public const VALUES = ['CategoryCodeSetModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeSetModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
+    public const TYPES = ['CategoryCode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

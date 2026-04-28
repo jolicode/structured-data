@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IncludesObjectModel
 {
     public const DESCRIPTION = 'This links to a node or nodes indicating the exact quantity of the products included in  an [[Offer]] or [[ProductCollection]].';
     public const LABEL = 'includesObject';
     public const NAME = 'schema:includesObject';
-    public const VALUES = ['TypeAndQuantityNodeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TypeAndQuantityNodeModel'];
-    public const TYPES = ['Demand' => 'Jolicode\Vocabularies\SchemaOrg\Type\DemandModel', 'Offer' => 'Jolicode\Vocabularies\SchemaOrg\Type\OfferModel', 'ProductCollection' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProductCollectionModel'];
+    public const VALUES = ['TypeAndQuantityNodeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TypeAndQuantityNodeModel'];
+    public const TYPES = ['Demand' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DemandModel', 'Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel', 'ProductCollection' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductCollectionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

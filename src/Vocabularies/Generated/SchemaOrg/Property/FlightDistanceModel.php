@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class FlightDistanceModel
 {
     public const DESCRIPTION = 'The distance of the flight.';
     public const LABEL = 'flightDistance';
     public const NAME = 'schema:flightDistance';
-    public const VALUES = ['DistanceModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DistanceModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Flight' => 'Jolicode\Vocabularies\SchemaOrg\Type\FlightModel'];
+    public const VALUES = ['DistanceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DistanceModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Flight' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FlightModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -18,12 +18,17 @@ use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
 use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
 use Jolicode\JsonLd\Parser\Properties\Property;
 use Jolicode\JsonLd\Parser\Properties\Value;
-use Jolicode\Vocabularies\SchemaOrg\Type\DateModel;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateModel;
 
 class ValidationMapper
 {
     private const SCHEMA_ORG_DOMAIN = 'http://schema.org/';
     private const SCHEMA_ORG_DOMAIN_SECURE = 'https://schema.org/';
+
+    /**
+     * @var array<string, string>|null
+     */
+    private static ?array $knownTypeNamesByLowercase = null;
 
     public function __construct(
         /**
@@ -116,7 +121,11 @@ class ValidationMapper
         $type = new MappedType();
 
         if (property_exists($expandedType, Keyword::TYPE->value)) {
-            $type->type = $this->removeSchemaOrgDomain(...(array) $expandedType->{Keyword::TYPE->value});
+            $types = $this->removeSchemaOrgDomain(...(array) $expandedType->{Keyword::TYPE->value});
+            $type->type = array_map(
+                fn (string $mappedType): string => $this->normalizeTypeLabelCase($mappedType),
+                (array) $types,
+            );
         }
 
         $nameProperty = null;
@@ -143,6 +152,7 @@ class ValidationMapper
                 $propertyKey = $this->removeSchemaOrgDomain($label);
 
                 if (\is_string($propertyKey)) {
+                    $propertyKey = $this->normalizePropertyKeyCase($propertyKey);
                     $type->properties[$propertyKey] = $this->mapProperty($value, $propertyKey, $type);
                 }
             }
@@ -192,6 +202,7 @@ class ValidationMapper
 
             if (\is_string($valueKey)) {
                 $valueKey = $this->removeSchemaOrgDomain($valueKey);
+                $valueKey = $this->normalizePropertyKeyCase($valueKey);
                 $property->value[$valueKey] = $valueEntry;
             } else {
                 $property->value[] = $valueEntry;
@@ -209,6 +220,54 @@ class ValidationMapper
         }
 
         return $property;
+    }
+
+    private function normalizeTypeLabelCase(string $typeName): string
+    {
+        $knownTypes = self::getKnownTypeNamesByLowercase();
+
+        return $knownTypes[strtolower($typeName)] ?? $typeName;
+    }
+
+    private function normalizePropertyKeyCase(string $propertyKey): string
+    {
+        if (str_starts_with($propertyKey, '@')) {
+            return $propertyKey;
+        }
+
+        if (strtoupper($propertyKey) === $propertyKey) {
+            return strtolower($propertyKey);
+        }
+
+        if (strtoupper($propertyKey[0]) === $propertyKey[0]) {
+            return lcfirst($propertyKey);
+        }
+
+        return $propertyKey;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    private static function getKnownTypeNamesByLowercase(): array
+    {
+        if (null !== self::$knownTypeNamesByLowercase) {
+            return self::$knownTypeNamesByLowercase;
+        }
+
+        self::$knownTypeNamesByLowercase = [];
+
+        foreach (glob(__DIR__ . '/../Generated/SchemaOrg/Type/*Model.php') ?: [] as $file) {
+            $typeName = str_replace('Model.php', '', basename($file));
+            self::$knownTypeNamesByLowercase[strtolower($typeName)] = $typeName;
+        }
+
+        foreach (glob(__DIR__ . '/../Generated/Google/*.php') ?: [] as $file) {
+            $typeName = str_replace('.php', '', basename($file));
+            self::$knownTypeNamesByLowercase[strtolower($typeName)] = $typeName;
+        }
+
+        return self::$knownTypeNamesByLowercase;
     }
 
     private function addRangesToType(MappedType $type, AbstractStructure $parsedJsonLd): void

@@ -1,0 +1,199 @@
+{
+  "article.jsonld": [],
+  "article-author-sameas.jsonld": [],
+  "article-author-missing-url-and-sameas.jsonld": [
+    "author: Missing recommended property: \"url\" for the type \"Person\""
+  ],
+  "book.jsonld": [
+    "@type: Missing required property: \"url\" for the type \"LibrarySystem\"",
+    "dataFeedElement.author: Missing recommended property: \"sameAs\" for the type \"Person\"",
+    "dataFeedElement.author: Missing recommended property: \"sameAs\" for the type \"Person\"",
+    "dataFeedElement.workExample.potentialAction.expectsAcceptanceOf.category: The value is correct, but is not lowercased. Google expects lowercased values.",
+    "dataFeedElement.workExample.potentialAction.lender: Missing required property: \"additionalProperty\" for the type \"LibrarySystem\"",
+    "dataFeedElement.workExample.potentialAction.lender: Missing required property: \"additionalProperty\" for the type \"LibrarySystem\"",
+    "dataFeedElement.workExample.potentialAction.lender: Missing required property: \"member\" for the type \"LibrarySystem\"",
+    "dataFeedElement.workExample.potentialAction.lender: Missing required property: \"member\" for the type \"LibrarySystem\"",
+    "dataFeedElement.workExample.potentialAction.lender: Missing required property: \"name\" for the type \"LibrarySystem\"",
+    "dataFeedElement.workExample.potentialAction.lender: Missing required property: \"name\" for the type \"LibrarySystem\"",
+    "dataFeedElement.workExample.potentialAction.lender: Missing required property: \"url\" for the type \"LibrarySystem\"",
+    "dataFeedElement.workExample.potentialAction.lender: Missing required property: \"url\" for the type \"LibrarySystem\"",
+    "dataFeedElement.workExample: Missing recommended property: \"author\" for the type \"Book\"",
+    "dataFeedElement.workExample: Missing recommended property: \"author\" for the type \"Book\"",
+    "dataFeedElement.workExample: Missing recommended property: \"author\" for the type \"Book\"",
+    "dataFeedElement.workExample: Missing recommended property: \"author\" for the type \"Book\"",
+    "dataFeedElement.workExample: Missing recommended property: \"identifier\" for the type \"Book\"",
+    "dataFeedElement.workExample: Missing recommended property: \"identifier\" for the type \"Book\"",
+    "dataFeedElement.workExample: Missing recommended property: \"name\" for the type \"Book\"",
+    "dataFeedElement.workExample: Missing recommended property: \"name\" for the type \"Book\"",
+    "dataFeedElement.workExample: Missing recommended property: \"name\" for the type \"Book\"",
+    "dataFeedElement.workExample: Missing recommended property: \"name\" for the type \"Book\"",
+    "dataFeedElement.workExample: Missing recommended property: \"sameAs\" for the type \"Book\"",
+    "dataFeedElement.workExample: Missing recommended property: \"sameAs\" for the type \"Book\"",
+    "dataFeedElement.workExample: Missing recommended property: \"sameAs\" for the type \"Book\"",
+    "dataFeedElement.workExample: Missing recommended property: \"sameAs\" for the type \"Book\""
+  ],
+  "book-invalid-purchase-without-price.jsonld": [
+    "dataFeedElement.author: Missing recommended property: \"sameAs\" for the type \"Person\"",
+    "dataFeedElement.workExample: Missing recommended property: \"author\" for the type \"Book\"",
+    "dataFeedElement.workExample: Missing recommended property: \"bookEdition\" for the type \"Book\"",
+    "dataFeedElement.workExample: Missing recommended property: \"datePublished\" for the type \"Book\"",
+    "dataFeedElement.workExample: Missing recommended property: \"identifier\" for the type \"Book\"",
+    "dataFeedElement.workExample: Missing recommended property: \"name\" for the type \"Book\"",
+    "dataFeedElement.workExample: Missing recommended property: \"sameAs\" for the type \"Book\"",
+    "dataFeedElement.workExample.potentialAction.expectsAcceptanceOf: Missing required property: \"price\" for the type \"Offer\" when \"category\" is \"purchase\" or \"rental\"."
+  ],
+  "breadcrumb.jsonld": [],
+  "breadcrumb-invalid-non-last-item.jsonld": [
+    "itemListElement: Missing required property: \"item\" for the type \"ListItem\""
+  ],
+  "breadcrumb-invalid-single-item.jsonld": [
+    "itemListElement: A \"BreadcrumbList\" must contain at least 2 \"ListItem\" entries."
+  ],
+  "movie.jsonld": [],
+  "movie-missing-image.jsonld": [
+    "@type: Missing required property: \"image\" for the type \"Movie\""
+  ],
+  "faqpage.jsonld": [],
+  "faqpage-missing-answer-text.jsonld": [
+    "mainEntity.acceptedAnswer: Missing required property: \"text\" for the type \"Answer\""
+  ],
+  "profilepage.jsonld": [],
+  "profilepage-missing-mainentity.jsonld": [
+    "@type: Missing required property: \"mainEntity\" for the type \"ProfilePage\""
+  ],
+  "softwareapplication.jsonld": [],
+  "softwareapplication-missing-offers-price.jsonld": [
+    "offers: Missing required property: \"price\" for the type \"Offer\""
+  ],
+  "softwareapplication-missing-rating-or-review.jsonld": [
+    "@type: Missing required property: at least one of the following properties must be present \"aggregateRating, review\""
+  ],
+  "mobileapplication.jsonld": [],
+  "qapage.jsonld": [],
+  "qapage-with-interaction-statistics.jsonld": [],
+  "qapage-reply-count-inconsistent.jsonld": [
+    "mainEntity: Consistency hint: \"answerCount\" (1) + \"commentCount\" (1) should be at least the number of marked-up replies (2 answers/comments total)."
+  ],
+  "qapage-missing-answer-text.jsonld": [
+    "mainEntity.acceptedAnswer: Missing required property: \"text\" for the type \"Answer\""
+  ],
+  "qapage-missing-answers.jsonld": [
+    "mainEntity: Missing required property: at least one of the following properties must be present \"acceptedAnswer, suggestedAnswer\""
+  ],
+  "organization.jsonld": [],
+  "organization-missing-name.jsonld": [
+    "@type: Missing recommended property: \"name\" for the type \"Organization\""
+  ],
+  "organization-missing-member-program-description.jsonld": [
+    "hasMemberProgram: Missing required property: \"description\" for the type \"MemberProgram\""
+  ],
+  "organization-missing-shipping-conditions.jsonld": [
+    "hasShippingService: Missing required property: \"shippingConditions\" for the type \"ShippingService\""
+  ],
+  "organization-missing-merchant-return-days.jsonld": [
+    "hasMerchantReturnPolicy: Missing required property: \"merchantReturnDays\" for the type \"MerchantReturnPolicy\" when \"returnPolicyCategory\" is \"MerchantReturnFiniteReturnWindow\"."
+  ],
+  "organization-taxid-country-mismatch.jsonld": [
+    "taxID: Potential inconsistency: \"taxID\" starts with \"US\" but \"address.addressCountry\" is \"FR\". Ensure tax identifiers match the declared country."
+  ],
+  "product-snippet-zero-price.jsonld": [],
+  "product-merchant-listing-zero-price.jsonld": [
+    "offers.price: Invalid value: \"price\" must be greater than 0 for merchant listing offers.",
+    "offers: Missing recommended property: \"hasMerchantReturnPolicy\" for the type \"Offer\"",
+    "offers: Missing recommended property: \"shippingDetails\" for the type \"Offer\""
+  ],
+  "image-license-metadata.jsonld": [],
+  "image-license-metadata-missing-required.jsonld": [
+    "@type: Missing recommended property: \"acquireLicensePage\" for the type \"ImageObject\"",
+    "@type: Missing required property: at least one of the following properties must be present \"creator, creditText, copyrightNotice, license\""
+  ],
+  "math-solvers.jsonld": [],
+  "math-solvers-missing-action.jsonld": [
+    "@type: Missing required property: \"potentialAction\" for the type \"MathSolver\""
+  ],
+  "speakable-css.jsonld": [],
+  "speakable-xpath.jsonld": [],
+  "speakable-both.jsonld": [
+    "@type: A \"SpeakableSpecification\" must define exactly one of \"cssSelector\" or \"xPath\"."
+  ],
+  "speakable-neither.jsonld": [
+    "@type: A \"SpeakableSpecification\" must define exactly one of \"cssSelector\" or \"xPath\"."
+  ],
+  "vacation-rental.jsonld": [],
+  "vacation-rental-missing-occupancy-value.jsonld": [
+    "containsPlace.occupancy: Missing required property: \"value\" for the type \"QuantitativeValue\""
+  ],
+  "local-business.jsonld": [],
+  "local-business-missing-address.jsonld": [
+    "@type: Missing required property: \"address\" for the type \"LocalBusiness\""
+  ],
+  "job-posting.jsonld": [],
+  "job-posting-remote.jsonld": [],
+  "job-posting-remote-missing-applicant-location.jsonld": [
+    "@type: Missing required property: \"applicantLocationRequirements\" for the type \"JobPosting\" when \"jobLocationType\" is \"TELECOMMUTE\" and no \"jobLocation\" is provided."
+  ],
+  "discussion-forum.jsonld": [],
+  "discussion-forum-url-only.jsonld": [],
+  "discussion-forum-missing-content.jsonld": [
+    "@type: Missing required property: at least one of the following properties must be present \"text, image, video\""
+  ],
+  "carousel.jsonld": [],
+  "carousel-missing-position.jsonld": [
+    "itemListElement: Missing required property: \"position\" for the type \"ListItem\""
+  ],
+  "carousel-all-in-one-course.jsonld": [],
+  "carousel-all-in-one-course-missing-provider.jsonld": [
+    "itemListElement.item: Missing required property: \"provider\" for the type \"Course\""
+  ],
+  "carousel-all-in-one-recipe.jsonld": [],
+  "carousel-all-in-one-recipe-missing-ingredient.jsonld": [
+    "itemListElement.item: Missing required property: \"recipeIngredient\" for the type \"Recipe\""
+  ],
+  "carousel-all-in-one-restaurant.jsonld": [],
+  "carousel-all-in-one-restaurant-missing-servescuisine.jsonld": [
+    "itemListElement.item: Missing required property: \"servesCuisine\" for the type \"Restaurant\""
+  ],
+  "course-info.jsonld": [],
+  "quiz.jsonld": [],
+  "quiz-missing-haspart.jsonld": [
+    "@type: Missing required property: \"hasPart\" for the type \"Quiz\""
+  ],
+  "course.jsonld": [],
+  "course-missing-provider.jsonld": [
+    "@type: Missing required property: \"provider\" for the type \"Course\""
+  ],
+  "covid19.jsonld": [],
+  "dataset.jsonld": [],
+  "dataset-missing-description.jsonld": [
+    "@type: Missing required property: \"description\" for the type \"Dataset\""
+  ],
+  "reviewsnippet-review.jsonld": [],
+  "reviewsnippet-aggregaterating-missing-counts.jsonld": [
+    "@type: Missing required property: at least one of the following properties must be present \"ratingCount, reviewCount\""
+  ],
+  "employer-aggregaterating.jsonld": [],
+  "employer-aggregaterating-missing-counts.jsonld": [
+    "@type: Missing required property: at least one of the following properties must be present \"ratingCount, reviewCount\""
+  ],
+  "video.jsonld": [],
+  "video-missing-embedurl.jsonld": [
+    "@type: Missing recommended property: \"embedUrl\" for the type \"VideoObject\"",
+    "@type: Missing required property: \"name\" for the type \"VideoObject\""
+  ],
+  "event.jsonld": [],
+  "event-missing-description.jsonld": [
+    "@type: Missing required property: \"description\" for the type \"Event\""
+  ],
+  "factcheck.jsonld": [],
+  "factcheck-missing-claimreviewed.jsonld": [
+    "@type: Missing required property: \"claimReviewed\" for the type \"ClaimReview\""
+  ],
+  "recipe.jsonld": [],
+  "recipe-missing-ingredients.jsonld": [
+    "@type: Missing required property: \"recipeIngredient\" for the type \"Recipe\""
+  ],
+  "recipe-calories-without-yield.jsonld": [
+    "@type: Advisory: when \"nutrition.calories\" is provided, include \"recipeYield\" so calories are interpreted per serving."
+  ],
+  "dataset-tabular.jsonld": []
+}

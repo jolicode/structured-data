@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AggregateRatingModel
 {
     public const DESCRIPTION = 'The overall rating, based on a collection of reviews or ratings, of the item.';
     public const LABEL = 'aggregateRating';
     public const NAME = 'schema:aggregateRating';
-    public const VALUES = ['AggregateRatingModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AggregateRatingModel'];
-    public const TYPES = ['Brand' => 'Jolicode\Vocabularies\SchemaOrg\Type\BrandModel', 'CreativeWork' => 'Jolicode\Vocabularies\SchemaOrg\Type\CreativeWorkModel', 'Event' => 'Jolicode\Vocabularies\SchemaOrg\Type\EventModel', 'Offer' => 'Jolicode\Vocabularies\SchemaOrg\Type\OfferModel', 'Organization' => 'Jolicode\Vocabularies\SchemaOrg\Type\OrganizationModel', 'Place' => 'Jolicode\Vocabularies\SchemaOrg\Type\PlaceModel', 'Product' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProductModel', 'Service' => 'Jolicode\Vocabularies\SchemaOrg\Type\ServiceModel'];
+    public const VALUES = ['AggregateRatingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AggregateRatingModel'];
+    public const TYPES = ['Brand' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BrandModel', 'CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'Event' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel', 'Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel', 'Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'Place' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlaceModel', 'Product' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel', 'Service' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

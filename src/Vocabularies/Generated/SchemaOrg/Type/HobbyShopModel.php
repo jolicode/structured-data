@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HobbyShopModel
 {
     public const DESCRIPTION = 'A store that sells materials useful or necessary for various hobbies.';
     public const LABEL = 'HobbyShop';
     public const NAME = 'schema:HobbyShop';
-    public const PARENTS = ['StoreModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\StoreModel'];
+    public const PARENTS = ['StoreModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\StoreModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

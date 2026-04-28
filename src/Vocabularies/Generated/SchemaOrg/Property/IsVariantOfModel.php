@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IsVariantOfModel
 {
     public const DESCRIPTION = 'Indicates the kind of product that this is a variant of. In the case of [[ProductModel]], this is a pointer (from a ProductModel) to a base product from which this product is a variant. It is safe to infer that the variant inherits all product features from the base model, unless defined locally. This is not transitive. In the case of a [[ProductGroup]], the group description also serves as a template, representing a set of Products that vary on explicitly defined, specific dimensions only (so it defines both a set of variants, as well as which values distinguish amongst those variants). When used with [[ProductGroup]], this property can apply to any [[Product]] included in the group.';
     public const LABEL = 'isVariantOf';
     public const NAME = 'schema:isVariantOf';
-    public const VALUES = ['ProductGroupModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProductGroupModel', 'ProductModelModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProductModelModel'];
-    public const TYPES = ['Product' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProductModel', 'ProductModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProductModelModel'];
+    public const VALUES = ['ProductGroupModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductGroupModel', 'ProductModelModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModelModel'];
+    public const TYPES = ['Product' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel', 'ProductModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModelModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

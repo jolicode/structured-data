@@ -1,0 +1,22 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    "title": "Software Engineer",
+    "description": "<p>This role is fully remote.</p><p>You will build backend services.</p>",
+    "identifier": {
+        "@type": "PropertyValue",
+        "name": "Google",
+        "value": "1234567"
+    },
+    "datePosted": "2024-01-18",
+    "validThrough": "2024-03-18T00:00",
+    "employmentType": "FULL_TIME",
+    "directApply": true,
+    "jobLocationType": "TELECOMMUTE",
+    "hiringOrganization": {
+        "@type": "Organization",
+        "name": "Google",
+        "sameAs": "https://www.google.com",
+        "logo": "https://www.example.com/images/logo.png"
+    }
+}

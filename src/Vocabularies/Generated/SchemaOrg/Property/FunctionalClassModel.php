@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class FunctionalClassModel
 {
     public const DESCRIPTION = 'The degree of mobility the joint allows.';
     public const LABEL = 'functionalClass';
     public const NAME = 'schema:functionalClass';
-    public const VALUES = ['MedicalEntityModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalEntityModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Joint' => 'Jolicode\Vocabularies\SchemaOrg\Type\JointModel'];
+    public const VALUES = ['MedicalEntityModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Joint' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\JointModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

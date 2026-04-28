@@ -1,0 +1,13 @@
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "How long does it take to process a refund?",
+            "acceptedAnswer": {
+                "@type": "Answer"
+            }
+        }
+    ]
+}

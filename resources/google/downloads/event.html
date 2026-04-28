@@ -1,0 +1,586 @@
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">location</code>
+      </td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Place" class="external-link">Place</a></code></p>
+          <p>The location of the event. Set the <code translate="no" dir="ltr">@type</code> to <code translate="no" dir="ltr">Place</code>. Add the <a href="#location-address"><code translate="no" dir="ltr">location.address</code></a> and
+                <a href="#location-name"><code translate="no" dir="ltr">location.name</code></a> properties.</p>
+        </td>
+      </tr>
+        <tr>
+        <td id="location-address">
+          <code translate="no" dir="ltr">location.address</code>
+        </td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/PostalAddress" class="external-link">PostalAddress</a></code></p>
+          <p>The venue's detailed street address. </p>
+          <p><span class="compare-no" aria-hidden="true"></span><b>Not recommended</b>: Sydney</p>
+          <p><span class="compare-yes" aria-hidden="true"></span><b>Recommended</b>: Bennelong Point,
+            Sydney NSW 2000, Australia</p>
+          <p><b>United States example</b></p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="United Sates location" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"location"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Place"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Snickerpark Stadium"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"address"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"PostalAddress"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"streetAddress"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"100 West Snickerpark Dr"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressLocality"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Snickertown"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"postalCode"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"19019"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressRegion"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"PA"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressCountry"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"US"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+          <p><b>Japan examples</b></p>
+            <p>
+              You can write addresses for Japan in different ways, and Google still understands the
+              address. Here's an example with the street address, locality, and country in
+              different fields.
+            </p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Granular Japan location" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"location"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Place"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"ダイバーシティ東京"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"address"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"PostalAddress"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"streetAddress"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"江東区青海1-10"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressLocality"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"東京"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressCountry"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"日本"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+            <p>
+              Here's an example of the street address and address country in different fields.
+            </p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Japan location with only address and country fields" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"location"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Place"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"ダイバーシティ東京"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"address"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"PostalAddress"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"streetAddress"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"東京都江東区青海1-10"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressCountry"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"日本"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+
+<p>
+Here's an example of the entire address on one line.
+</p>
+<div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Japan addess on one line" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"location"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Place"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"ダイバーシティ東京"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"address"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"PostalAddress"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"東京都江東区青海 1-1-10 ダイバーシティ東京プラザ"</span>
+<span class="devsite-syntax-w">   </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+          <p><b>Best practices for addresses</b>:</p>
+          <ul>
+            <li>If the event happens across several streets, define the starting location and mention
+              the full details in description.</li>
+            <li>If the event happens without a well-defined location, use the city name or the most
+              representative location.</li>
+            <li>If the event happens at multiple locations at the same time, create different events for
+              each location.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td id="event-name">
+          <code translate="no" dir="ltr">name</code>
+        </td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+          <p>The full title of the event.</p>
+          <aside class="warning">DO NOT put the name of the event location. Instead, use
+            <a href="#location-name"><code translate="no" dir="ltr">location.name</code></a> to specify the name of the location
+            where the event is being held.</aside>
+          <p><span class="compare-no" aria-hidden="true"></span><b>Not recommended</b>: Bill Graham Civic Auditorium</p>
+          <p><span class="compare-no" aria-hidden="true"></span><b>Not recommended</b>: **LIMITED TIME SALE -
+            Kesha and Macklemore Concert - $25**</p>
+          <p><span class="compare-yes" aria-hidden="true"></span><b>Recommended</b>: The Adventures of Kesha and
+            Macklemore</p>
+          <p><span class="compare-yes" aria-hidden="true"></span><b>Recommended</b>: Meet and Greet: Kesha and
+            Macklemore</p>
+          <p><b>Best practices</b>:</p>
+          <ul>
+            <li>Don't use the type of event as the name of the event. For example, "Concert" is not
+              a descriptive name for an event.</li>
+            <li>Don't include extraneous information like URLs, prices, or performers. Instead, use
+              the appropriate properties for those values.</li>
+            <li>Highlight a unique aspect of the event in the title. This helps users make faster
+              decisions (for example, "feat. Q&amp;A with the artist").</li>
+            <li>Don't add short-term promotions (for example, "buy your tickets now").</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td id="startdate"><code translate="no" dir="ltr">startDate</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+          <p>The start date and start time of the event in
+            <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO-8601 format</a>.
+            Add both the date and time so users can find events that fit into their
+            schedule.</p>
+          <aside class="key-point">
+            Make sure to follow the <a href="#date-time-best-guidelines">Date and time guidelines</a>.
+          </aside>
+          <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="startDate property" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"startDate": "2025-07-21T19:00"</pre></devsite-code>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">description</code>
+        </td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+          <p>Description of the event. Describe all details of the event to make it easier for
+            users to understand and attend the event.</p>
+          <p>
+            <b>Best practices</b>:
+          </p>
+          <ul>
+            <li>Add a clear and concise description of the specific event.</li>
+            <li>Focus on the event details and not your site's features. </li>
+            <li>Don't repeat other facts like date and location; instead, add that information to the
+              respective properties.</li>
+          </ul>
+          <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="description property" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"description": "The Adventures of Kira and Morrison is coming to Snickertown in a can't miss performance."</pre></devsite-code>
+          <aside class="note">Google only shows a snippet of the full description.</aside>
+        </td>
+      </tr>
+      <tr>
+        <td id="enddate">
+          <code translate="no" dir="ltr">endDate</code>
+        </td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+          <p>The end date and end time of the event in
+            <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO-8601 format</a>.
+            Use the same format as <code translate="no" dir="ltr"><a href="#startdate">startDate</a></code>. Add both the
+            date and time so users can find events that fit into their schedule.</p>
+          <aside class="key-point">
+            Make sure to follow the <a href="#date-time-best-guidelines">Date and time
+            guidelines</a>.
+          </aside>
+          <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="endDate property" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"endDate": "2025-07-21T23:00"</pre></devsite-code>
+        </td>
+      </tr>
+      <tr>
+      <td id="eventstatus"><code translate="no" dir="ltr">eventStatus</code>
+        </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/EventStatusType" class="external-link">EventStatusType</a></code>
+        <aside class="warning"><b>Warning</b>: When the event status changes,
+          <b>DON'T</b> remove the <a href="#startdate"><code translate="no" dir="ltr">startDate</code></a>. The <code translate="no" dir="ltr">startDate</code>
+          property is required to help identify the unique event.</aside>
+        <p>
+          The status of the event. If you don't use this field, Google understands the
+          <code translate="no" dir="ltr">eventStatus</code> to be <code translate="no" dir="ltr">EventScheduled</code>. You can use multiple statuses, if
+          applicable. Here are the supported values.
+        </p>
+        <table class="responsive fixed">
+      <colgroup>
+        <col width="30%">
+      </colgroup>
+      <tbody>
+          <tr><td><a href="https://schema.org/EventCancelled" class="external-link"><code translate="no" dir="ltr">EventCancelled</code></a></td>
+            <td>
+            <p>
+              The event has been canceled.</p>
+              <aside class="key-point">Don't remove or change other properties (for
+                example, don't remove <code translate="no" dir="ltr">startDate</code> or <code translate="no" dir="ltr">location</code>);
+                instead, keep all values as the same as they were before the cancelation, and
+                update the <code translate="no" dir="ltr">eventStatus</code> to <code translate="no" dir="ltr">EventCancelled</code>. <br>
+                <br>
+                <b>Why?</b> Properties like <code translate="no" dir="ltr">startDate</code> and
+                <code translate="no" dir="ltr">location</code> help identify the unique event and
+                make sure people understand the new status of the event.</aside>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Canceled event" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Event"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"eventStatus"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org/EventCancelled"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"startDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2020-07-21T19:00"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+            </td></tr>
+          <tr><td><a href="https://schema.org/EventPostponed" class="external-link"><code translate="no" dir="ltr">EventPostponed</code></a></td>
+            <td>
+            <p>
+              The event has been postponed to a later date, but the date isn't known yet. Keep the
+              original date in the <a href="#startdate"><code translate="no" dir="ltr">startDate</code></a> of the event
+              until you know when the event will take place. Once you know the new date information,
+              change the <code translate="no" dir="ltr">eventStatus</code> to <code translate="no" dir="ltr">EventRescheduled</code> and update the
+               <a href="#startdate"><code translate="no" dir="ltr">startDate</code></a> and <a href="#enddate"><code translate="no" dir="ltr">endDate</code></a>
+                with the new date information.
+            </p>
+              <aside class="key-point">Don't remove or change other properties (for
+                example, don't remove the <code translate="no" dir="ltr">startDate</code> or <code translate="no" dir="ltr">location</code>);
+                instead, keep all values as the same as they were before the postponement, and
+                update the <code translate="no" dir="ltr">eventStatus</code> to <code translate="no" dir="ltr">EventPostponed</code>. <br>
+                <br>
+                <b>Why?</b> Properties like <code translate="no" dir="ltr">startDate</code> and
+                <code translate="no" dir="ltr">location</code> help identify the unique event and
+                make sure people understand the new status of the event.</aside>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Postponed event" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Event"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"eventStatus"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org/EventPostponed"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"startDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2020-07-21T19:00"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+            </td></tr>
+          <tr><td><a href="https://schema.org/EventRescheduled" class="external-link"><code translate="no" dir="ltr">EventRescheduled</code></a></td>
+            <td>
+            <p>
+              The event has been rescheduled to a later date. Update the
+              <a href="#startdate"><code translate="no" dir="ltr">startDate</code></a> and <a href="#enddate"><code translate="no" dir="ltr">endDate</code></a>
+              with the relevant new dates. Optionally, you can also mark the <code translate="no" dir="ltr">eventStatus</code>
+              field as rescheduled and add the <code translate="no" dir="ltr"><a href="#previous-start-date">previousStartDate</a></code>.
+            </p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Rescheduled event" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Event"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"eventStatus"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org/EventRescheduled"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"startDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2020-07-21T19:00"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"endDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2025-07-21T23:00"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"previousStartDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2025-03-21T19:00"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+            </td></tr>
+          <tr><td><a href="https://schema.org/EventScheduled" class="external-link"><code translate="no" dir="ltr">EventScheduled</code></a></td>
+            <td>
+            <p>
+              The event is scheduled to happen. This value is the default status for events. If you
+              don't set <code translate="no" dir="ltr">eventStatus</code>, Google understands the event to be happening on schedule.
+            </p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Scheduled event" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Event"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"eventStatus"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org/EventScheduled"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"startDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2020-07-21T19:00"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+            </td></tr>
+          </tbody>
+        </table>
+        </td></tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">image</code>
+        </td>
+        <td>
+          <p>Repeated <code translate="no" dir="ltr"><a href="https://schema.org/ImageObject" class="external-link">ImageObject</a></code> or
+          <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+          <p>URL of an image or logo for the event or tour. Including an image helps users
+            understand and engage with your event. We recommend that images are 1920px wide
+            (the minimum width is 720px).</p>
+          
+<p>Additional image guidelines:
+  </p><ul>
+    <li>Image URLs must be crawlable and indexable. To check if Google can access your URLs, use
+      the <a href="https://support.google.com/webmasters/answer/9012289" class="external-link">URL Inspection tool</a>.</li>
+    <li>Images must represent the marked up content.</li>
+    <li>Images must be in a file format that's <a href="/search/docs/appearance/google-images#supported-image-formats">supported by Google Images</a>.</li>
+    <li>For best results, we recommend providing multiple high-resolution images (minimum of 50K pixels when
+      multiplying width and height) with the following aspect ratios: 16x9, 4x3, and 1x1.</li>
+  </ul>
+          <p>For example:</p>
+  <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="multiple images example in json-ld" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"image": [
+  "https://example.com/photos/1x1/photo.jpg",
+  "https://example.com/photos/4x3/photo.jpg",
+  "https://example.com/photos/16x9/photo.jpg"
+]</pre></devsite-code>
+  
+        </td>
+      </tr>
+        <tr>
+        <td id="location-name">
+          <code translate="no" dir="ltr">location.name</code>
+        </td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+          <p>The detailed name of the place or venue where the event is being held. This property
+            is only recommended for events that take place at a physical location.</p>
+          <aside class="warning">DO NOT put the title of the event in this field. Instead, use
+            <a href="#event-name"><code translate="no" dir="ltr">name</code></a> to specify the name of the event.</aside>
+          <p><span class="compare-no" aria-hidden="true"></span><b>Not recommended</b>: San Francisco, CA</p>
+          <p><span class="compare-yes" aria-hidden="true"></span><b>Recommended</b>: Bill Graham Civic Auditorium</p>
+            <p>
+              <b>Best practices</b>:
+          </p>
+         <ul>
+           <li>Don't include a city name unless it is a city-wide event.</li>
+           <li>The <code translate="no" dir="ltr">location.name</code> property must be the name of the venue or location, not a repeat of
+             the title of the event. If you don't know the name of the location, don't use this property.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">offers</code>
+        </td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Offer" class="external-link">Offer</a></code></p>
+          A nested <code translate="no" dir="ltr"><a href="https://schema.org/Offer" class="external-link">Offer</a></code>, one for each ticket
+          type.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">offers.availability</code>
+        </td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+          <p>One of the following:</p>
+          <ul>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/InStock" class="external-link">InStock</a></code>: Event tickets are in stock.</li>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/SoldOut" class="external-link">SoldOut</a></code>: Event tickets are sold out.</li>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/PreOrder" class="external-link">PreOrder</a></code>: Event tickets are available for preorder.</li>
+          </ul>
+          <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="availability property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"offers"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Offer"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"availability"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org/InStock"</span></strong>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+          <aside class="note"><b>Note:</b> If the ticket is not yet on sale to the general public, you can
+            omit availability and specify <code translate="no" dir="ltr">validFrom</code>.</aside>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">offers.price</code>
+        </td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+          <p>The lowest available price available for your tickets, including service charges and
+            fees. Don't forget to update it as prices change or tickets sell out.</p>
+          <p>
+            If the event is available without payment, fees, or service charges, set the <code translate="no" dir="ltr">price</code> to <code translate="no" dir="ltr">0</code>.
+          </p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="price property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"offers"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Offer"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"price"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">30</span></strong>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        </td>
+      </tr>
+      <tr>
+        <td id="offers-priceCurrency">
+        <code translate="no" dir="ltr">offers.priceCurrency</code>
+        </td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+          <p>The 3-letter ISO 4217 currency code.</p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="priceCurrency property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"offers"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Offer"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><b><span class="devsite-syntax-s">"priceCurrency"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"USD"</span></b>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">offers.validFrom</code>
+        </td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+          <p>The date and time when tickets go on sale (only required on date-restricted offers), in
+            <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO-8601 format</a>.</p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="validFrom property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"offers"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Offer"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"validFrom"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2024-05-21T12:00"</span></strong>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        </td>
+      </tr>
+      <tr>
+        <td id="offers-url">
+          <code translate="no" dir="ltr">offers.url</code>
+        </td>
+        <td>
+          <p><a href="https://schema.org/URL" class="external-link">URL</a></p>
+          <p>The URL of a page providing the ability to buy tickets. </p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="url property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"offers"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Offer"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"url"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://www.example.com/event_offer/12345_201803180430"</span></strong>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+          <p id="url-requirements">This URL must meet the following requirements:</p>
+          <ul>
+            <li>Direct to a landing page that clearly and predominantly provides the opportunity to buy
+              a ticket offering admittance to that specific event to any user from the general
+              public.</li>
+            <li>Be a link that a user could click the web page that contains the event.</li>
+            <li>Be crawlable by Googlebot (not blocked by robots.txt).</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td id="organizer">
+          <code translate="no" dir="ltr">organizer</code>
+        </td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code>
+            or <code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code></p>
+          <p>The person or organization that is hosting the event. If you include <code translate="no" dir="ltr">organizer</code>,
+            we encourage you to add the following properties:</p>
+          <ul>
+            <li><a href="#organizer-name"><code translate="no" dir="ltr">organizer.name</code></a></li>
+            <li><a href="#organizer-url"><code translate="no" dir="ltr">organizer.url</code></a></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td id="organizer-name">
+          <code translate="no" dir="ltr">organizer.name</code>
+        </td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+          <p>The name of the person or organization that's hosting the event.</p>
+        </td>
+      </tr>
+      <tr>
+        <td id="organizer-url">
+          <code translate="no" dir="ltr">organizer.url</code>
+        </td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+          <p>The event host's domain URL.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">performer</code>
+        </td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code></p>
+          <p>The participants performing at the event, such as artists and comedians. Use a nested
+            <code translate="no" dir="ltr"><a href="https://schema.org/PerformingGroup" class="external-link">PerformingGroup</a></code> or
+          <code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code>, one for each performer.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">performer.name</code>
+        </td>
+        <td>
+          <p><a href="https://schema.org/Text" class="external-link">Text</a></p>
+          <p>The name of the participant performing at the event, such as the name of the artist or
+            comedian.</p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="performer.name property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"performer"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"PerformingGroup"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Kira and Morrison"</span></strong>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        </td>
+      </tr>
+      <tr>
+        <td id="previous-start-date">
+          <code translate="no" dir="ltr">previousStartDate</code>
+        </td>
+        <td>
+          <p><a href="https://schema.org/DateTime" class="external-link">DateTime</a></p>
+          <p>The previously scheduled start date for the event if an event has been rescheduled. If
+            you add <code translate="no" dir="ltr">previousStartDate</code>, you must also add the <a href="#eventstatus"><code translate="no" dir="ltr">eventStatus</code></a>
+            property and set the <code translate="no" dir="ltr">eventStatus</code> to <code translate="no" dir="ltr">EventRescheduled</code>. Don't use other event statuses.</p>
+          <aside class="key-point">
+            Make sure to follow the <a href="#date-time-best-guidelines">Date and time guidelines</a>.
+          </aside>
+          <p>
+            For rescheduled events, the <a href="#startdate"><code translate="no" dir="ltr">startDate</code></a>
+            property must only be used for the newly scheduled start date. In the (rare) case of an
+            event that has been postponed and rescheduled multiple times, this field may be repeated.
+          </p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Event that was rescheduled multiple times" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Event"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"previousStartDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span><span class="devsite-syntax-s">"2020-03-21T19:00-05:00"</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2020-03-20T19:00-05:00"</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2020-03-21T19:00-05:00"</span><span class="devsite-syntax-p">],</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"eventStatus"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org/EventRescheduled"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"startDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2020-07-21T19:00-05:00"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+<table class="responsive fixed">
+      <colgroup>
+        <col width="30%">
+      </colgroup>
+      <tbody>
+          <tr><td><a href="https://schema.org/EventCancelled" class="external-link"><code translate="no" dir="ltr">EventCancelled</code></a></td>
+            <td>
+            <p>
+              The event has been canceled.</p>
+              <aside class="key-point">Don't remove or change other properties (for
+                example, don't remove <code translate="no" dir="ltr">startDate</code> or <code translate="no" dir="ltr">location</code>);
+                instead, keep all values as the same as they were before the cancelation, and
+                update the <code translate="no" dir="ltr">eventStatus</code> to <code translate="no" dir="ltr">EventCancelled</code>. <br>
+                <br>
+                <b>Why?</b> Properties like <code translate="no" dir="ltr">startDate</code> and
+                <code translate="no" dir="ltr">location</code> help identify the unique event and
+                make sure people understand the new status of the event.</aside>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Canceled event" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Event"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"eventStatus"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org/EventCancelled"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"startDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2020-07-21T19:00"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+            </td></tr>
+          <tr><td><a href="https://schema.org/EventPostponed" class="external-link"><code translate="no" dir="ltr">EventPostponed</code></a></td>
+            <td>
+            <p>
+              The event has been postponed to a later date, but the date isn't known yet. Keep the
+              original date in the <a href="#startdate"><code translate="no" dir="ltr">startDate</code></a> of the event
+              until you know when the event will take place. Once you know the new date information,
+              change the <code translate="no" dir="ltr">eventStatus</code> to <code translate="no" dir="ltr">EventRescheduled</code> and update the
+               <a href="#startdate"><code translate="no" dir="ltr">startDate</code></a> and <a href="#enddate"><code translate="no" dir="ltr">endDate</code></a>
+                with the new date information.
+            </p>
+              <aside class="key-point">Don't remove or change other properties (for
+                example, don't remove the <code translate="no" dir="ltr">startDate</code> or <code translate="no" dir="ltr">location</code>);
+                instead, keep all values as the same as they were before the postponement, and
+                update the <code translate="no" dir="ltr">eventStatus</code> to <code translate="no" dir="ltr">EventPostponed</code>. <br>
+                <br>
+                <b>Why?</b> Properties like <code translate="no" dir="ltr">startDate</code> and
+                <code translate="no" dir="ltr">location</code> help identify the unique event and
+                make sure people understand the new status of the event.</aside>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Postponed event" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Event"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"eventStatus"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org/EventPostponed"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"startDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2020-07-21T19:00"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+            </td></tr>
+          <tr><td><a href="https://schema.org/EventRescheduled" class="external-link"><code translate="no" dir="ltr">EventRescheduled</code></a></td>
+            <td>
+            <p>
+              The event has been rescheduled to a later date. Update the
+              <a href="#startdate"><code translate="no" dir="ltr">startDate</code></a> and <a href="#enddate"><code translate="no" dir="ltr">endDate</code></a>
+              with the relevant new dates. Optionally, you can also mark the <code translate="no" dir="ltr">eventStatus</code>
+              field as rescheduled and add the <code translate="no" dir="ltr"><a href="#previous-start-date">previousStartDate</a></code>.
+            </p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Rescheduled event" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Event"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"eventStatus"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org/EventRescheduled"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"startDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2020-07-21T19:00"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"endDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2025-07-21T23:00"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"previousStartDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2025-03-21T19:00"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+            </td></tr>
+          <tr><td><a href="https://schema.org/EventScheduled" class="external-link"><code translate="no" dir="ltr">EventScheduled</code></a></td>
+            <td>
+            <p>
+              The event is scheduled to happen. This value is the default status for events. If you
+              don't set <code translate="no" dir="ltr">eventStatus</code>, Google understands the event to be happening on schedule.
+            </p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Scheduled event" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Event"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"eventStatus"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org/EventScheduled"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"startDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2020-07-21T19:00"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+            </td></tr>
+          </tbody>
+        </table>

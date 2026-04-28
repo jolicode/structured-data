@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PodcastSeasonModel
 {
     public const DESCRIPTION = 'A single season of a podcast. Many podcasts do not break down into separate seasons. In that case, PodcastSeries should be used.';
     public const LABEL = 'PodcastSeason';
     public const NAME = 'schema:PodcastSeason';
-    public const PARENTS = ['CreativeWorkSeasonModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CreativeWorkSeasonModel'];
+    public const PARENTS = ['CreativeWorkSeasonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkSeasonModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/373'];

@@ -1,0 +1,11 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Basic Tee",
+    "image": "https://example.com/basic-tee.jpg",
+    "offers": {
+        "@type": "Offer",
+        "price": 0,
+        "availability": "https://schema.org/InStock"
+    }
+}

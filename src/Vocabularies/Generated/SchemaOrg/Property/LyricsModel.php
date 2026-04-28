@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LyricsModel
 {
     public const DESCRIPTION = 'The words in the song.';
     public const LABEL = 'lyrics';
     public const NAME = 'schema:lyrics';
-    public const VALUES = ['CreativeWorkModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CreativeWorkModel'];
-    public const TYPES = ['MusicComposition' => 'Jolicode\Vocabularies\SchemaOrg\Type\MusicCompositionModel'];
+    public const VALUES = ['CreativeWorkModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel'];
+    public const TYPES = ['MusicComposition' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicCompositionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

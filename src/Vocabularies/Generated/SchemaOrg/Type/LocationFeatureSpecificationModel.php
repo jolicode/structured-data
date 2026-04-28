@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LocationFeatureSpecificationModel
 {
     public const DESCRIPTION = 'Specifies a location feature by providing a structured value representing a feature of an accommodation as a property-value pair of varying degrees of formality.';
     public const LABEL = 'LocationFeatureSpecification';
     public const NAME = 'schema:LocationFeatureSpecification';
-    public const PARENTS = ['PropertyValueModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PropertyValueModel'];
+    public const PARENTS = ['PropertyValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyValueModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

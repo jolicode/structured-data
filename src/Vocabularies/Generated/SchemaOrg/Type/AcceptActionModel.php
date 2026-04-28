@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AcceptActionModel
 {
     public const DESCRIPTION = 'The act of committing to/adopting an object.\n\nRelated actions:\n\n* [[RejectAction]]: The antonym of AcceptAction.';
     public const LABEL = 'AcceptAction';
     public const NAME = 'schema:AcceptAction';
-    public const PARENTS = ['AllocateActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AllocateActionModel'];
+    public const PARENTS = ['AllocateActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AllocateActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

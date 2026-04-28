@@ -1,0 +1,310 @@
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">address</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/PostalAddress" class="external-link">PostalAddress</a></code></p>
+        <aside class="important">This is a required property if you are using the <code translate="no" dir="ltr">LocalBusiness</code>
+          type or one of its subtypes.</aside>
+      <p>The address (physical or mailing) of your organization, if applicable. Include all properties that apply to your country. The more
+        properties you provide, the higher quality the result is for users.
+        You can provide multiple addresses if you have a location in multiple cities, states, or countries.
+        For example:</p>
+    <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="postal address example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"address"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"PostalAddress"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"streetAddress"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"999 W Example St Suite 99 Unit 9"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"addressLocality"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"New York"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"addressRegion"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"NY"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"postalCode"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"10019"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"addressCountry"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"US"</span>
+<span class="devsite-syntax-p">},{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"streetAddress"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"999 Rue due exemple"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"addressLocality"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Paris"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"postalCode"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"75001"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"addressCountry"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"FR"</span>
+<span class="devsite-syntax-p">}]</span></pre></devsite-code>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">address.addressCountry</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The country for your postal address, using the two-letter <a href="https://wikipedia.org/wiki/ISO_3166-1" class="external-link">ISO 3166-1 alpha-2 country code.</a></p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">address.addressLocality</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The city of your postal address.</p>
+        </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">address.addressRegion</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The region of your postal address, if applicable. For example, a state.</p>
+        </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">address.postalCode</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The postal code for your address.</p>
+        </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">address.streetAddress</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The full street address of your postal address.</p>
+        </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">alternateName</code></td>
+        <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>Another common name that your organization goes by, if applicable.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">contactPoint</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/ContactPoint" class="external-link">ContactPoint</a></code></p>
+      <p>The best way for a user to contact your business, if applicable. Include all support methods available to your users
+        following Google recommended <a href="/search/blog/2021/07/customer-support">best practices</a>. For example:</p>
+    <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="contact point example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"contactPoint"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"ContactPoint"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"telephone"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"+9-999-999-9999"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"email"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"contact@example.com"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">contactPoint.email</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The email address to contact your business, if applicable.
+        If you are using a <code translate="no" dir="ltr">LocalBusiness</code> type, specify a primary email address at
+        the <code translate="no" dir="ltr">LocalBusiness</code> level before using <code translate="no" dir="ltr">contactPoint</code> to specify
+        multiple ways to reach your organization.
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">contactPoint.telephone</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The phone number to contact your business, if applicable.
+        Be sure to include the country code and area code in the phone number.
+        If you are using a <code translate="no" dir="ltr">LocalBusiness</code> type, specify a primary phone number at
+        the <code translate="no" dir="ltr">LocalBusiness</code> level before using <code translate="no" dir="ltr">contactPoint</code> to specify
+        multiple ways to reach your organization.
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">description</code></td>
+        <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>A detailed description of your organization, if applicable.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">duns</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The Dun &amp; Bradstreet DUNS number for identifying your <code translate="no" dir="ltr">Organization</code>, if
+        applicable. We encourage using the <code translate="no" dir="ltr">iso6523Code</code> field with prefix <code translate="no" dir="ltr">0060:</code>
+        instead.</p></td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">email</code>
+      </td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The email address to contact your business, if applicable.</p>
+        </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">foundingDate</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code></p>
+    <p>The date your <code translate="no" dir="ltr">Organization</code> was founded in <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 date format</a>, if applicable.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">globalLocationNumber</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The GS1 Global Location Number identifying the location of your <code translate="no" dir="ltr">Organization</code>,
+        if applicable.</p></td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">hasMerchantReturnPolicy</code>
+      </td>
+      <td><p>Repeated <code translate="no" dir="ltr"><a href="https://schema.org/MerchantReturnPolicy" class="external-link">MerchantReturnPolicy</a></code></p>
+        <p>
+          The return policy of your <code translate="no" dir="ltr">Organization</code>, if applicable. See
+          <a href="/search/docs/appearance/structured-data/return-policy#merchant-return-policy-properties">Merchant return policy markup</a>
+          for detailed information on required and optional properties for <code translate="no" dir="ltr">MerchantReturnPolicy</code>.
+        </p>
+          <aside class="note">
+            If you don't provide a return policy for your <code translate="no" dir="ltr">Organization</code>, or if some of your
+            products have specific return policies for which you need to override the return
+            policies defined for your <code translate="no" dir="ltr">Organization</code>, use this property also under
+            <a href="/search/docs/appearance/structured-data/merchant-listing#merchant-return-policy-properties">merchant listing markup</a>.
+          </aside>
+        </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">hasMemberProgram</code>
+      </td>
+      <td><p>Repeated <code translate="no" dir="ltr"><a href="https://schema.org/MemberProgram" class="external-link">MemberProgram</a></code></p>
+        <p>
+          A member (loyalty) program that you provide, if applicable.
+         See <a href="/search/docs/appearance/structured-data/loyalty-program#member-program-properties">Member program markup</a> for detailed information on required and optional properties for <code translate="no" dir="ltr">MemberProgram</code>.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">hasShippingService</code>
+      </td>
+      <td><p>Repeated <code translate="no" dir="ltr"><a href="https://schema.org/ShippingService" class="external-link">ShippingService</a></code></p>
+        <p>
+          The shipping policy of your <code translate="no" dir="ltr">Organization</code>, if applicable. See
+          <a href="/search/docs/appearance/structured-data/shipping-policy#merchant-shipping-policy-properties">Merchant shipping policy markup</a>
+          for detailed information on required and optional properties for <code translate="no" dir="ltr">ShippingService</code>.
+        </p>
+          <aside class="note">
+            If you don't provide a shipping policy for your <code translate="no" dir="ltr">Organization</code>, or if some of your
+            products have specific shipping policies for which you need to override the shipping
+            policies defined for your <code translate="no" dir="ltr">Organization</code>, use this property also under
+            <a href="/search/docs/appearance/structured-data/merchant-listing#merchant-shipping-policy-properties">merchant listing markup</a>.
+          </aside>
+        </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">iso6523Code</code>
+      </td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The ISO 6523 identifier of your organization, if applicable.
+          The first part of an ISO 6523 identifier is an <a href="http://iso6523.info/icd_list.pdf" class="external-link"><code translate="no" dir="ltr">ICD</code> (International Code Designator)</a>
+          which defines which identification scheme is used.
+          The second part is the actual identifier. We recommend separating the ICD and the
+          identifier with a colon character (<code translate="no" dir="ltr">U+003A</code>). Common ICD values include:</p>
+          <ul>
+            <li><code translate="no" dir="ltr">0060</code>: Dun &amp; Bradstreet Data Universal Numbering System (DUNS)</li>
+            <li><code translate="no" dir="ltr">0088</code>: GS1 Global Location Number (GLN)</li>
+            <li><code translate="no" dir="ltr">0199</code>: Legal Entity Identifier (LEI)</li>
+          </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">legalName</code></td>
+        <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The registered, legal name of your <code translate="no" dir="ltr">Organization</code>, if applicable and different
+          from the <code translate="no" dir="ltr">name</code> property.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">leiCode</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The identifier for your <code translate="no" dir="ltr">Organization</code> as defined in ISO 17442, if applicable.
+        We encourage using the <code translate="no" dir="ltr">iso6523Code</code> field with prefix <code translate="no" dir="ltr">0199:</code> instead.</p></td>
+    </tr>
+    <tr id="logo">
+      <td><code translate="no" dir="ltr">logo</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/ImageObject" class="external-link">ImageObject</a></code></p>
+        <p>A logo that is representative of your organization, if applicable. Adding this property can help Google
+          better understand which logo you want to show, for example in Search results and knowledge
+          panels.</p>
+        <p>Image guidelines:</p>
+        <ul>
+          <li>The image must be 112x112px, at minimum.</li>
+          <li>The image URL must be crawlable and indexable.</li>
+          <li>The image file format must be <a href="/search/docs/appearance/google-images#supported-image-formats">supported by Google Images</a>.</li>
+          <li>Make sure the image looks how you intend it to look on a purely white background (for
+            example, if the logo is mostly white or gray, it may not look how you want it to look when
+            displayed on a white background).</li>
+        </ul>
+        <p>If you use the <code translate="no" dir="ltr"><a href="https://schema.org/ImageObject" class="external-link">ImageObject</a></code> type,
+          make sure that it has a valid <code translate="no" dir="ltr"><a href="https://schema.org/contentUrl" class="external-link">contentUrl</a></code> property or
+          <code translate="no" dir="ltr"><a href="https://schema.org/url" class="external-link">url</a></code> property that follows the same guidelines as a
+          <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code> type.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">naics</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The <a href="https://www.census.gov/naics/" class="external-link">North American Industry Classification System (NAICS) code</a>
+        for your <code translate="no" dir="ltr">Organization</code>, if applicable.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">name</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>
+        The name of your organization. Use the same <code translate="no" dir="ltr">name</code> and <code translate="no" dir="ltr">alternateName</code>
+        that you're using for your <a href="/search/docs/appearance/site-names">site name</a>.
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">numberOfEmployees</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/QuantitativeValue" class="external-link">QuantitativeValue</a></code></p>
+        <p>The number of employees in your <code translate="no" dir="ltr">Organization</code>, if applicable.</p>
+        <p>Example with a specific number of employees:</p>
+    <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="exact number of employees example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"numberOfEmployees"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"QuantitativeValue"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">2056</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        <p>Example with the number of employees in a range:</p>
+    <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="number or employees in range example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"numberOfEmployees"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"QuantitativeValue"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"minValue"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">100</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"maxValue"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">999</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">sameAs</code>
+      </td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>The URL of a page on another website with additional information about your organization,
+          if applicable. For example, a URL to your organization's profile page on a social media or
+          review site. You can provide multiple <code translate="no" dir="ltr">sameAs</code> URLs.
+        </p>
+      </td>
+    </tr>
+  <tr>
+    <td>
+      <code translate="no" dir="ltr">taxID</code>
+    </td>
+     <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+     <p>The tax ID associated with your <code translate="no" dir="ltr">Organization</code>, if applicable. Make sure
+      <code translate="no" dir="ltr">taxID</code> matches the country that you provided in the <code translate="no" dir="ltr">address</code> field.</p></td>
+  </tr>
+  <tr>
+    <td>
+      <code translate="no" dir="ltr">telephone</code>
+    </td>
+    <td>
+      <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>A business phone number meant to be the primary contact method for customers, if applicable.
+        Be sure to include the country code and area code in the phone number.</p>
+    </td>
+  </tr>
+   <tr>
+    <td>
+      <code translate="no" dir="ltr">url</code>
+    </td>
+     <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+     <p>The URL of the website of your organization, if applicable. This helps Google uniquely
+       identify your organization.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code translate="no" dir="ltr">vatID</code>
+    </td>
+     <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+     <p>The VAT (Value Added Tax) code associated with your <code translate="no" dir="ltr">Organization</code>, if applicable
+       to your country and business. This is an important trust signal for users (for example, users
+       can look up your business in public VAT registries).</p></td>
+  </tr>
+  </tbody>
+</table>

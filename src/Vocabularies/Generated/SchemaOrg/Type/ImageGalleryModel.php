@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ImageGalleryModel
 {
     public const DESCRIPTION = 'Web page type: Image gallery page.';
     public const LABEL = 'ImageGallery';
     public const NAME = 'schema:ImageGallery';
-    public const PARENTS = ['MediaGalleryModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MediaGalleryModel'];
+    public const PARENTS = ['MediaGalleryModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaGalleryModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

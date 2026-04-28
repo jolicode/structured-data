@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OrganizationRoleModel
 {
     public const DESCRIPTION = 'A subclass of Role used to describe roles within organizations.';
     public const LABEL = 'OrganizationRole';
     public const NAME = 'schema:OrganizationRole';
-    public const PARENTS = ['RoleModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\RoleModel'];
+    public const PARENTS = ['RoleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RoleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

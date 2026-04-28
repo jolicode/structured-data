@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TVEpisodeModel
 {
     public const DESCRIPTION = 'A TV episode which can be part of a series or season.';
     public const LABEL = 'TVEpisode';
     public const NAME = 'schema:TVEpisode';
-    public const PARENTS = ['EpisodeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EpisodeModel'];
+    public const PARENTS = ['EpisodeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EpisodeModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

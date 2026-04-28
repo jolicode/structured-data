@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ActionPlatformModel
 {
     public const DESCRIPTION = 'The high level platform(s) where the Action can be performed for the given URL. To specify a specific application or operating system instance, use actionApplication.';
     public const LABEL = 'actionPlatform';
     public const NAME = 'schema:actionPlatform';
-    public const VALUES = ['DigitalPlatformEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DigitalPlatformEnumerationModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\URLModel'];
-    public const TYPES = ['EntryPoint' => 'Jolicode\Vocabularies\SchemaOrg\Type\EntryPointModel'];
+    public const VALUES = ['DigitalPlatformEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DigitalPlatformEnumerationModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
+    public const TYPES = ['EntryPoint' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EntryPointModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

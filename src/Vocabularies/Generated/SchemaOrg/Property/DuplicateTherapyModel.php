@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DuplicateTherapyModel
 {
     public const DESCRIPTION = 'A therapy that duplicates or overlaps this one.';
     public const LABEL = 'duplicateTherapy';
     public const NAME = 'schema:duplicateTherapy';
-    public const VALUES = ['MedicalTherapyModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalTherapyModel'];
-    public const TYPES = ['MedicalTherapy' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalTherapyModel'];
+    public const VALUES = ['MedicalTherapyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTherapyModel'];
+    public const TYPES = ['MedicalTherapy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTherapyModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

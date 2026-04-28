@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicineSystemModel
 {
     public const DESCRIPTION = 'Systems of medical practice.';
     public const LABEL = 'MedicineSystem';
     public const NAME = 'schema:MedicineSystem';
-    public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalEnumerationModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['AyurvedicModel' => 'EnumerationMember\AyurvedicModel', 'ChiropracticModel' => 'EnumerationMember\ChiropracticModel', 'HomeopathicModel' => 'EnumerationMember\HomeopathicModel', 'OsteopathicModel' => 'EnumerationMember\OsteopathicModel', 'TraditionalChineseModel' => 'EnumerationMember\TraditionalChineseModel', 'WesternConventionalModel' => 'EnumerationMember\WesternConventionalModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

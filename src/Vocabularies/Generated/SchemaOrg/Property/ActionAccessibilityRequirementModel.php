@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ActionAccessibilityRequirementModel
 {
     public const DESCRIPTION = 'A set of requirements that must be fulfilled in order to perform an Action. If more than one value is specified, fulfilling one set of requirements will allow the Action to be performed.';
     public const LABEL = 'actionAccessibilityRequirement';
     public const NAME = 'schema:actionAccessibilityRequirement';
-    public const VALUES = ['ActionAccessSpecificationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ActionAccessSpecificationModel'];
-    public const TYPES = ['ConsumeAction' => 'Jolicode\Vocabularies\SchemaOrg\Type\ConsumeActionModel'];
+    public const VALUES = ['ActionAccessSpecificationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ActionAccessSpecificationModel'];
+    public const TYPES = ['ConsumeAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ConsumeActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

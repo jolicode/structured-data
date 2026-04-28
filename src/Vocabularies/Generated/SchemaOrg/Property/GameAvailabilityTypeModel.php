@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class GameAvailabilityTypeModel
 {
     public const DESCRIPTION = 'Indicates the availability type of the game content associated with this action, such as whether it is a full version or a demo.';
     public const LABEL = 'gameAvailabilityType';
     public const NAME = 'schema:gameAvailabilityType';
-    public const VALUES = ['GameAvailabilityEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\GameAvailabilityEnumerationModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['PlayGameAction' => 'Jolicode\Vocabularies\SchemaOrg\Type\PlayGameActionModel'];
+    public const VALUES = ['GameAvailabilityEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GameAvailabilityEnumerationModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['PlayGameAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlayGameActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

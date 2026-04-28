@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CallSignModel
 {
     public const DESCRIPTION = 'A [callsign](https://en.wikipedia.org/wiki/Call_sign), as used in broadcasting and radio communications to identify people, radio and TV stations, or vehicles.';
     public const LABEL = 'callSign';
     public const NAME = 'schema:callSign';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['BroadcastService' => 'Jolicode\Vocabularies\SchemaOrg\Type\BroadcastServiceModel', 'Person' => 'Jolicode\Vocabularies\SchemaOrg\Type\PersonModel', 'Vehicle' => 'Jolicode\Vocabularies\SchemaOrg\Type\VehicleModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['BroadcastService' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastServiceModel', 'Person' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel', 'Vehicle' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VehicleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

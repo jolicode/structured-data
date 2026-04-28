@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IgnoreActionModel
 {
     public const DESCRIPTION = 'The act of intentionally disregarding the object. An agent ignores an object.';
     public const LABEL = 'IgnoreAction';
     public const NAME = 'schema:IgnoreAction';
-    public const PARENTS = ['AssessActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AssessActionModel'];
+    public const PARENTS = ['AssessActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AssessActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

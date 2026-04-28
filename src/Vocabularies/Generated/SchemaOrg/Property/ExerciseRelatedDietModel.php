@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ExerciseRelatedDietModel
 {
     public const DESCRIPTION = 'A sub property of instrument. The diet used in this action.';
     public const LABEL = 'exerciseRelatedDiet';
     public const NAME = 'schema:exerciseRelatedDiet';
-    public const VALUES = ['DietModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DietModel'];
-    public const TYPES = ['ExerciseAction' => 'Jolicode\Vocabularies\SchemaOrg\Type\ExerciseActionModel'];
+    public const VALUES = ['DietModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DietModel'];
+    public const TYPES = ['ExerciseAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ExerciseActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

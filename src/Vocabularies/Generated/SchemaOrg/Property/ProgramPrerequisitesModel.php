@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ProgramPrerequisitesModel
 {
     public const DESCRIPTION = 'Prerequisites for enrolling in the program.';
     public const LABEL = 'programPrerequisites';
     public const NAME = 'schema:programPrerequisites';
-    public const VALUES = ['AlignmentObjectModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AlignmentObjectModel', 'CourseModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CourseModel', 'EducationalOccupationalCredentialModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EducationalOccupationalCredentialModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\Vocabularies\SchemaOrg\Type\EducationalOccupationalProgramModel'];
+    public const VALUES = ['AlignmentObjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AlignmentObjectModel', 'CourseModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CourseModel', 'EducationalOccupationalCredentialModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalCredentialModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalProgramModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

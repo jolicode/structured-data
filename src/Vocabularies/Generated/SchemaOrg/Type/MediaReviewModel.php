@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MediaReviewModel
 {
@@ -21,7 +21,7 @@ final class MediaReviewModel
     to combat misinformation, the specific structures for representing media objects, their versions and publication context, are still evolving. Similarly, best practices for the relationship between [[MediaReview]] and [[ClaimReview]] markup have not yet been finalized.';
     public const LABEL = 'MediaReview';
     public const NAME = 'schema:MediaReview';
-    public const PARENTS = ['ReviewModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ReviewModel'];
+    public const PARENTS = ['ReviewModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReviewModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2450'];

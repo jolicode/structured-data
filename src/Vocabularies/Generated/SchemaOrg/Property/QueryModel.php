@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class QueryModel
 {
     public const DESCRIPTION = 'A sub property of instrument. The query used on this action.';
     public const LABEL = 'query';
     public const NAME = 'schema:query';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['SearchAction' => 'Jolicode\Vocabularies\SchemaOrg\Type\SearchActionModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['SearchAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SearchActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

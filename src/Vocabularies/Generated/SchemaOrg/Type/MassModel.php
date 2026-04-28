@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MassModel
 {
     public const DESCRIPTION = 'Properties that take Mass as values are of the form \'&lt;Number&gt; &lt;Mass unit of measure&gt;\'. E.g., \'7 kg\'.';
     public const LABEL = 'Mass';
     public const NAME = 'schema:Mass';
-    public const PARENTS = ['QuantityModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\QuantityModel'];
+    public const PARENTS = ['QuantityModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantityModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HealthConditionModel
 {
     public const DESCRIPTION = 'Specifying the health condition(s) of a patient, medical study, or other target audience.';
     public const LABEL = 'healthCondition';
     public const NAME = 'schema:healthCondition';
-    public const VALUES = ['MedicalConditionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalConditionModel'];
-    public const TYPES = ['MedicalStudy' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalStudyModel', 'Patient' => 'Jolicode\Vocabularies\SchemaOrg\Type\PatientModel', 'PeopleAudience' => 'Jolicode\Vocabularies\SchemaOrg\Type\PeopleAudienceModel'];
+    public const VALUES = ['MedicalConditionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel'];
+    public const TYPES = ['MedicalStudy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalStudyModel', 'Patient' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PatientModel', 'PeopleAudience' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PeopleAudienceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

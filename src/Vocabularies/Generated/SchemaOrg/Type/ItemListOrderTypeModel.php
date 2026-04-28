@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ItemListOrderTypeModel
 {
     public const DESCRIPTION = 'Enumerated for values for itemListOrder for indicating how an ordered ItemList is organized.';
     public const LABEL = 'ItemListOrderType';
     public const NAME = 'schema:ItemListOrderType';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['ItemListOrderAscendingModel' => 'EnumerationMember\ItemListOrderAscendingModel', 'ItemListOrderDescendingModel' => 'EnumerationMember\ItemListOrderDescendingModel', 'ItemListUnorderedModel' => 'EnumerationMember\ItemListUnorderedModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

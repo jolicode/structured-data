@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class GameAvailabilityEnumerationModel
 {
     public const DESCRIPTION = 'For a [[VideoGame]], such as used with a [[PlayGameAction]], an enumeration of the kind of game availability offered.';
     public const LABEL = 'GameAvailabilityEnumeration';
     public const NAME = 'schema:GameAvailabilityEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['DemoGameAvailabilityModel' => 'EnumerationMember\DemoGameAvailabilityModel', 'FullGameAvailabilityModel' => 'EnumerationMember\FullGameAvailabilityModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3058'];

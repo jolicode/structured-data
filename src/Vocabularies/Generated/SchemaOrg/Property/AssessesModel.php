@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AssessesModel
 {
     public const DESCRIPTION = 'The item being described is intended to assess the competency or learning outcome defined by the referenced term.';
     public const LABEL = 'assesses';
     public const NAME = 'schema:assesses';
-    public const VALUES = ['DefinedTermModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DefinedTermModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\SchemaOrg\Type\CreativeWorkModel', 'EducationEvent' => 'Jolicode\Vocabularies\SchemaOrg\Type\EducationEventModel', 'LearningResource' => 'Jolicode\Vocabularies\SchemaOrg\Type\LearningResourceModel'];
+    public const VALUES = ['DefinedTermModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'EducationEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationEventModel', 'LearningResource' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LearningResourceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

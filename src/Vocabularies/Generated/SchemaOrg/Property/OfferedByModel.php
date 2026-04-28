@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OfferedByModel
 {
     public const DESCRIPTION = 'A pointer to the organization or person making the offer.';
     public const LABEL = 'offeredBy';
     public const NAME = 'schema:offeredBy';
-    public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PersonModel'];
-    public const TYPES = ['Offer' => 'Jolicode\Vocabularies\SchemaOrg\Type\OfferModel'];
+    public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DrugPrescriptionStatusModel
 {
     public const DESCRIPTION = 'Indicates whether this drug is available by prescription or over-the-counter.';
     public const LABEL = 'DrugPrescriptionStatus';
     public const NAME = 'schema:DrugPrescriptionStatus';
-    public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalEnumerationModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['OTCModel' => 'EnumerationMember\OTCModel', 'PrescriptionOnlyModel' => 'EnumerationMember\PrescriptionOnlyModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

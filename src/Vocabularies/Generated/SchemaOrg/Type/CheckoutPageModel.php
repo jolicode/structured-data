@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CheckoutPageModel
 {
     public const DESCRIPTION = 'Web page type: Checkout page.';
     public const LABEL = 'CheckoutPage';
     public const NAME = 'schema:CheckoutPage';
-    public const PARENTS = ['WebPageModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\WebPageModel'];
+    public const PARENTS = ['WebPageModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebPageModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BreadcrumbModel
 {
     public const DESCRIPTION = 'A set of links that can help a user understand and navigate a website hierarchy.';
     public const LABEL = 'breadcrumb';
     public const NAME = 'schema:breadcrumb';
-    public const VALUES = ['BreadcrumbListModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\BreadcrumbListModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['WebPage' => 'Jolicode\Vocabularies\SchemaOrg\Type\WebPageModel'];
+    public const VALUES = ['BreadcrumbListModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BreadcrumbListModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['WebPage' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebPageModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

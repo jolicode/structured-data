@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CollectionSizeModel
 {
     public const DESCRIPTION = 'The number of items in the [[Collection]].';
     public const LABEL = 'collectionSize';
     public const NAME = 'schema:collectionSize';
-    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\IntegerModel'];
-    public const TYPES = ['Collection' => 'Jolicode\Vocabularies\SchemaOrg\Type\CollectionModel'];
+    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['Collection' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CollectionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

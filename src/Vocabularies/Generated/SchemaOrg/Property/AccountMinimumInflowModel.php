@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AccountMinimumInflowModel
 {
     public const DESCRIPTION = 'A minimum amount that has to be paid in every month.';
     public const LABEL = 'accountMinimumInflow';
     public const NAME = 'schema:accountMinimumInflow';
-    public const VALUES = ['MonetaryAmountModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MonetaryAmountModel'];
-    public const TYPES = ['BankAccount' => 'Jolicode\Vocabularies\SchemaOrg\Type\BankAccountModel'];
+    public const VALUES = ['MonetaryAmountModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountModel'];
+    public const TYPES = ['BankAccount' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BankAccountModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

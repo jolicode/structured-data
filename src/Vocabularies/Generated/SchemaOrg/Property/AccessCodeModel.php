@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AccessCodeModel
 {
     public const DESCRIPTION = 'Password, PIN, or access code needed for delivery (e.g. from a locker).';
     public const LABEL = 'accessCode';
     public const NAME = 'schema:accessCode';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['DeliveryEvent' => 'Jolicode\Vocabularies\SchemaOrg\Type\DeliveryEventModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['DeliveryEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DeliveryEventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

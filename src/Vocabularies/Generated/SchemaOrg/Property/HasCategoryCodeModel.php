@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HasCategoryCodeModel
 {
     public const DESCRIPTION = 'A Category code contained in this code set.';
     public const LABEL = 'hasCategoryCode';
     public const NAME = 'schema:hasCategoryCode';
-    public const VALUES = ['CategoryCodeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CategoryCodeModel'];
-    public const TYPES = ['CategoryCodeSet' => 'Jolicode\Vocabularies\SchemaOrg\Type\CategoryCodeSetModel'];
+    public const VALUES = ['CategoryCodeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeModel'];
+    public const TYPES = ['CategoryCodeSet' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeSetModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

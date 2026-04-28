@@ -1,0 +1,217 @@
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">contentUrl</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>
+          A URL to the actual image content. Google uses <code translate="no" dir="ltr">contentUrl</code> to determine
+          which image the photo metadata applies to.
+        </p>
+        <aside class="note">
+          Google also supports the <code translate="no" dir="ltr">url</code> property to specify the image URL if you don't
+          include <code translate="no" dir="ltr">contentUrl</code>. While the <code translate="no" dir="ltr">url</code> property is not as precise
+          and we recommend you use <code translate="no" dir="ltr">contentUrl</code> instead, existing markup may still use
+          <code translate="no" dir="ltr">url</code>.
+        </aside>
+      </td>
+    </tr>
+    <tr>
+      <td>Either <code translate="no" dir="ltr">creator</code> or <code translate="no" dir="ltr">creditText</code> or <code translate="no" dir="ltr">copyrightNotice</code> or <code translate="no" dir="ltr">license</code></td>
+      <td><p>In addition to <code translate="no" dir="ltr">contentUrl</code>, you must include one of the following properties:</p>
+        <ul>
+          <li><a href="#creator-sd"><code translate="no" dir="ltr">creator</code></a></li>
+          <li><a href="#credit-sd"><code translate="no" dir="ltr">creditText</code></a></li>
+          <li><a href="#copyright-sd"><code translate="no" dir="ltr">copyrightNotice</code></a></li>
+          <li><a href="#license-sd"><code translate="no" dir="ltr">license</code></a></li>
+        </ul>
+        <aside class="note">Once you include one of these properties, the other three properties
+          become recommended in the Rich Results Test.</aside>
+        </td>
+      </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">acquireLicensePage</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>
+          A URL to a page where the user can find information on how to license that image. Here
+          are some examples:
+        </p>
+        <ul>
+          <li>
+            A check-out page for that image where the user can select specific resolutions or
+            usage rights
+          </li>
+          <li>A general page that explains how to contact you</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td id="creator-sd"><code translate="no" dir="ltr">creator</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code>
+          or <code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code></p>
+        <p>
+          The creator of the image. This is usually the photographer, but it may be a company or organization (if appropriate).
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td id="creator-sd"><code translate="no" dir="ltr">creator.name</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>
+          The name of the creator.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td id="credit-sd"><code translate="no" dir="ltr">creditText</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>
+          The name of the person and/or organization that is credited for the image when it's published.
+        </p>
+      </td>
+    </tr>
+    <tr id="copyright-sd">
+      <td><code translate="no" dir="ltr">copyrightNotice</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>
+          The copyright notice for claiming the intellectual property for this photograph. This
+          identifies the current owner of the copyright for the photograph.
+        </p>
+      </td>
+    </tr>
+    <tr id="license-sd">
+      <td><code translate="no" dir="ltr">license</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>
+          A URL to a page that describes the license governing an image's use. For example, it
+          could be the terms and conditions that you have on your website. Where applicable, it
+          could also be a Creative Commons License (for example,
+          <a href="https://creativecommons.org/licenses/by-nc/4.0/" class="external-link">BY-NC 4.0</a>).
+        </p>
+          <p>
+            If you're using structured data to specify an image, you must include the <code translate="no" dir="ltr">license</code>
+            property for your image to be eligible to be shown with the Licensable badge. We recommend that
+            you also add the <code translate="no" dir="ltr">acquireLicensePage</code> property if you have that information.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <a href="https://iptc.org/std/photometadata/specification/IPTC-PhotoMetadata#copyright-notice" class="external-link">Copyright Notice</a>
+      </td>
+      <td>
+        <p>
+          The copyright notice for claiming the intellectual property for this photograph. This identifies
+          the current owner of the copyright for the photograph.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://iptc.org/std/photometadata/specification/IPTC-PhotoMetadata#creator" class="external-link">Creator</a>
+      </td>
+      <td>
+        <p>
+          The creator of the image. This is usually the name of the photographer, but it may be the
+          name of a company or organization (if appropriate).
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://iptc.org/std/photometadata/specification/IPTC-PhotoMetadata#credit-line" class="external-link">Credit Line</a>
+      </td>
+        <td>
+          <p>
+            The name of the person and/or organization that is credited for the image when it's published.
+          </p>
+      </td>
+    </tr>
+    <tr>
+      <td id="digital-source-type">
+        <a href="https://iptc.org/std/photometadata/specification/IPTC-PhotoMetadata#digital-source-type" class="external-link">Digital Source Type</a>
+      </td>
+        <td>
+          <p>
+            The type of digital source that was used to create the image. Google supports the
+            following IPTC <code translate="no" dir="ltr">NewsCodes</code>:
+          </p>
+          <ul>
+            <li><a href="https://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia" class="external-link"><code translate="no" dir="ltr">trainedAlgorithmicMedia</code></a>:
+              The image was created algorithmically using a model derived from sampled content.</li>
+            <li><a href="https://cv.iptc.org/newscodes/digitalsourcetype/compositeSynthetic" class="external-link"><code translate="no" dir="ltr">compositeSynthetic</code></a>:
+              The image is a mix or composite that includes at least one synthetic element.</li>
+            <li><a href="https://cv.iptc.org/newscodes/digitalsourcetype/algorithmicMedia" class="external-link"><code translate="no" dir="ltr">algorithmicMedia</code></a>:
+              The image was created purely by an algorithm not based on any sampled training data
+              (for example, an image created by software using a mathematical formula).</li>
+            <li><a href="https://cv.iptc.org/newscodes/digitalsourcetype/compositeWithTrainedAlgorithmicMedia" class="external-link"><code translate="no" dir="ltr">compositeWithTrainedAlgorithmicMedia</code></a>:
+              The image is a composite of trained algorithmic media with some other media, such as
+              with inpainting or outpainting operations.</li>
+          </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="http://ns.useplus.org/LDF/ldf-XMPSpecification#LicensorURL" class="external-link"><span translate="no">Licensor URL</span></a>
+      </td>
+      <td>
+        <p>
+          A URL to a page where the user can find information on how to license that image. The
+          <a href="http://ns.useplus.org/LDF/ldf-XMPSpecification#LicensorURL" class="external-link"><span translate="no">Licensor URL</span></a>
+          must be a property of a
+          <a href="https://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata#licensor" class="external-link"><span translate="no">Licensor</span> object</a>,
+          not a property of the image object. Here are some examples:
+        </p>
+        <ul>
+          <li>A check-out page for that image where the user can select specific resolutions</li>
+          <li>A general page that explains how to contact you</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata#web-statement-of-rights" class="external-link"><span translate="no">Web Statement of Rights</span></a>
+      </td>
+      <td>
+        <p>
+          A URL to a page that describes the license governing an image's use, and optionally
+          other rights information. For example, it could be the terms and conditions that you
+          have on your website. Where applicable, it could also be a Creative Commons License (for
+          example,
+          <a href="https://creativecommons.org/licenses/by-nc/4.0/" class="external-link">BY-NC 4.0</a>).
+        </p>
+        <p>
+          You must include the Web Statement of Rights field for your image to be eligible to be
+          shown with the licensable badge. We recommend that you also add the
+          <span translate="no">Licensor URL</span> field if you have that information.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>

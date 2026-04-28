@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RepresentativeOfPageModel
 {
     public const DESCRIPTION = 'Indicates whether this image is representative of the content of the page.';
     public const LABEL = 'representativeOfPage';
     public const NAME = 'schema:representativeOfPage';
-    public const VALUES = ['BooleanModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\BooleanModel'];
-    public const TYPES = ['ImageObject' => 'Jolicode\Vocabularies\SchemaOrg\Type\ImageObjectModel'];
+    public const VALUES = ['BooleanModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BooleanModel'];
+    public const TYPES = ['ImageObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ImageObjectModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

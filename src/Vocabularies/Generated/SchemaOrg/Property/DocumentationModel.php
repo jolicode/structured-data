@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DocumentationModel
 {
     public const DESCRIPTION = 'Further documentation describing the Web API in more detail.';
     public const LABEL = 'documentation';
     public const NAME = 'schema:documentation';
-    public const VALUES = ['CreativeWorkModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CreativeWorkModel', 'URLModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\URLModel'];
-    public const TYPES = ['WebAPI' => 'Jolicode\Vocabularies\SchemaOrg\Type\WebAPIModel'];
+    public const VALUES = ['CreativeWorkModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
+    public const TYPES = ['WebAPI' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebAPIModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

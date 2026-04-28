@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DataModel
 {
     public const DESCRIPTION = 'Data associated with the event, like for instance a log message.';
     public const LABEL = 'data';
     public const NAME = 'schema:data';
-    public const VALUES = ['ThingModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ThingModel'];
-    public const TYPES = ['InstantaneousEvent' => 'Jolicode\Vocabularies\SchemaOrg\Type\InstantaneousEventModel'];
+    public const VALUES = ['ThingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['InstantaneousEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InstantaneousEventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

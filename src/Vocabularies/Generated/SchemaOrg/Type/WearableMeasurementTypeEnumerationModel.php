@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class WearableMeasurementTypeEnumerationModel
 {
     public const DESCRIPTION = 'Enumerates common types of measurement for wearables products.';
     public const LABEL = 'WearableMeasurementTypeEnumeration';
     public const NAME = 'schema:WearableMeasurementTypeEnumeration';
-    public const PARENTS = ['MeasurementTypeEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MeasurementTypeEnumerationModel'];
+    public const PARENTS = ['MeasurementTypeEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MeasurementTypeEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['WearableMeasurementBackModel' => 'EnumerationMember\WearableMeasurementBackModel', 'WearableMeasurementChestOrBustModel' => 'EnumerationMember\WearableMeasurementChestOrBustModel', 'WearableMeasurementCollarModel' => 'EnumerationMember\WearableMeasurementCollarModel', 'WearableMeasurementCupModel' => 'EnumerationMember\WearableMeasurementCupModel', 'WearableMeasurementHeightModel' => 'EnumerationMember\WearableMeasurementHeightModel', 'WearableMeasurementHipsModel' => 'EnumerationMember\WearableMeasurementHipsModel', 'WearableMeasurementInseamModel' => 'EnumerationMember\WearableMeasurementInseamModel', 'WearableMeasurementLengthModel' => 'EnumerationMember\WearableMeasurementLengthModel', 'WearableMeasurementOutsideLegModel' => 'EnumerationMember\WearableMeasurementOutsideLegModel', 'WearableMeasurementSleeveModel' => 'EnumerationMember\WearableMeasurementSleeveModel', 'WearableMeasurementWaistModel' => 'EnumerationMember\WearableMeasurementWaistModel', 'WearableMeasurementWidthModel' => 'EnumerationMember\WearableMeasurementWidthModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];

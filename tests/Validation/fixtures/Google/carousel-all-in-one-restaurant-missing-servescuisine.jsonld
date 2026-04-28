@@ -1,0 +1,28 @@
+{
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+                "@type": "Restaurant",
+                "name": "Trattoria Luigi",
+                "url": "https://example.com/restaurants/trattoria-luigi",
+                "image": [
+                    "https://example.com/photos/1x1/photo.jpg",
+                    "https://example.com/photos/4x3/photo.jpg",
+                    "https://example.com/photos/16x9/photo.jpg"
+                ],
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "148 W 51st St",
+                    "addressLocality": "New York",
+                    "addressRegion": "NY",
+                    "postalCode": "10019",
+                    "addressCountry": "US"
+                }
+            }
+        }
+    ]
+}

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LeaveActionModel
 {
     public const DESCRIPTION = 'An agent leaves an event / group with participants/friends at a location.\n\nRelated actions:\n\n* [[JoinAction]]: The antonym of LeaveAction.\n* [[UnRegisterAction]]: Unlike UnRegisterAction, LeaveAction implies leaving a group/team of people rather than a service.';
     public const LABEL = 'LeaveAction';
     public const NAME = 'schema:LeaveAction';
-    public const PARENTS = ['InteractActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\InteractActionModel'];
+    public const PARENTS = ['InteractActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InteractActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

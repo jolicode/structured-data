@@ -1,0 +1,1260 @@
+<table class="responsive fixed">
+  <colgroup>
+    <col width="20%">
+  </colgroup>
+  <thead>
+    <tr>
+      <th colspan="2">Required properties</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">containsPlace</code>
+      </td>
+      <td>
+        <p>
+          <code translate="no" dir="ltr">
+            <a href="https://schema.org/Accommodation" class="external-link">Accommodation</a>
+          </code>
+        </p>
+        <p>
+          A vacation rental listing must contain one
+          <a href="https://schema.org/Accommodation" class="external-link">Accommodation</a>
+          to markup additional details such as beds, occupancy, number of rooms, and
+          <code translate="no" dir="ltr">amenityFeature</code> properties.
+        </p>
+      </td>
+    </tr>
+  <tr>
+    <td>
+      <code id="occupancy-sd" translate="no" dir="ltr">containsPlace.occupancy</code>
+    </td>
+    <td>
+      <p>
+        <code translate="no" dir="ltr">
+          <a href="https://schema.org/QuantitativeValue" class="external-link">QuantitativeValue</a>
+        </code>
+      </p>
+      <p>Information about the maximum number of guests allowed to stay at the vacation rental listing.</p>
+      <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="occupancy example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"occupancy"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"QuantitativeValue"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">5</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span></pre></devsite-code>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code translate="no" dir="ltr">containsPlace.occupancy.value</code>
+    </td>
+    <td>
+      <p>
+        <code translate="no" dir="ltr">
+          <a href="https://schema.org/Integer" class="external-link">Integer</a>
+        </code>
+      </p>
+      <p>The numerical value of guests allowed to stay at the vacation rental listing.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code id="identifier-sd" translate="no" dir="ltr">identifier</code>
+      </td>
+      <td>
+        <p>
+          <code translate="no" dir="ltr">
+            <a href="https://schema.org/Text" class="external-link">Text</a>
+          </code>
+        </p>
+        <p>A unique identifier for the property.</p>
+        <p>
+          Additional guidelines:
+        </p>
+          <ul>
+            <li>
+              The identifier must be independent of the listing content; for example, it won't
+              change when the property owner updates the listing name or number of bedrooms.
+            </li>
+            <li>The same identifier must be used for the same listing in different languages.</li>
+          </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code id="image-sd" translate="no" dir="ltr">image</code>
+      </td>
+      <td>
+        <p>
+          Repeated <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code>
+        </p>
+        <p>One or more images of the listing. The listing must have a minimum of 8 photos (at
+          least 1 image of each of the following: bedroom, bathroom, and common area).</p>
+        <p>
+          Additionally, follow the
+          <a href="/hotels/vacation-rentals/dev-guide/onboarding#property_listing_image_requirements" class="external-link">Property listing image requirements</a>.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code id="latitude-sd" translate="no" dir="ltr">latitude</code> <br> (or <code translate="no" dir="ltr">geo.latitude</code>)
+      </td>
+      <td>
+        <p>
+          <code translate="no" dir="ltr">
+            <a href="https://schema.org/Number" class="external-link">Number</a>
+          </code>
+        </p>
+        <p>
+          The latitude of the listing's location. Precision must be at least 5 decimal places.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code id="longitude-sd" translate="no" dir="ltr">longitude</code> <br> (or <code translate="no" dir="ltr">geo.longitude</code>)
+      </td>
+      <td>
+        <p>
+          <code translate="no" dir="ltr">
+            <a href="https://schema.org/Number" class="external-link">Number</a>
+          </code>
+        </p>
+        <p>
+          The longitude of the listing's location. Precision must be at least 5 decimal places.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code id="name-sd" translate="no" dir="ltr">name</code>
+      </td>
+      <td>
+        <p>
+          <code translate="no" dir="ltr">
+            <a href="https://schema.org/Text" class="external-link">Text</a>
+          </code>
+        </p>
+        <p>The name of the vacation rental listing.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup>
+    <col width="20%">
+  </colgroup>
+  <thead>
+    <tr>
+      <th colspan="2">Recommended properties</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">additionalType</code>
+      </td>
+      <td>
+        <p>
+          <code translate="no" dir="ltr">
+            <a href="https://schema.org/Text" class="external-link">Text</a>
+          </code>
+        </p>
+        <p>
+          The type of vacation rental listing. Here are some suggested values:
+        </p>
+          <ul>
+            <li><code translate="no" dir="ltr">Apartment</code></li>
+            <li><code translate="no" dir="ltr">Bungalow</code></li>
+            <li><code translate="no" dir="ltr">Cabin</code></li>
+            <li><code translate="no" dir="ltr">Chalet</code></li>
+            <li><code translate="no" dir="ltr">Cottage</code></li>
+            <li><code translate="no" dir="ltr">Gite</code></li>
+            <li><code translate="no" dir="ltr">HolidayVillageRental</code></li>
+            <li><code translate="no" dir="ltr">House</code></li>
+            <li><code translate="no" dir="ltr">Villa</code></li>
+            <li><code translate="no" dir="ltr">VacationRental</code></li>
+          </ul>
+        <p>
+          The full definitions of these values are in
+          <a href="https://support.google.com/hotelprices/answer/9970971?ref_topic=10062823#VR" class="external-link">Categories for lodging businesses</a>.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">address</code>
+      </td>
+      <td>
+        <p>
+          <code translate="no" dir="ltr">
+            <a href="https://schema.org/PostalAddress" class="external-link">PostalAddress</a>
+          </code>
+        </p>
+        <p>The full, physical location of the vacation rental.</p>
+        <p>Provide the street address, city, state or region,
+        and postal code for the vacation rental. If applicable, provide the unit or apartment number.</p>
+
+        <p>Note that P.O. boxes or other mailing-only addresses are not
+        considered full, physical addresses.</p>
+
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Postal Address example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"address"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"addressCountry"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"US"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"addressLocality"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Mountain View"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"addressRegion"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"California"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"postalCode"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"94043"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"streetAddress"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"1600 Amphitheatre Pkwy, Apartment 4E"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code translate="no" dir="ltr">address.addressCountry</code>
+    </td>
+    <td>
+      <p>
+        <code translate="no" dir="ltr">
+          <a href="https://schema.org/Text" class="external-link">Text</a>
+        </code>
+      </p>
+      <p>The country of your vacation listing, using the two-letter
+        <a href="https://wikipedia.org/wiki/ISO_3166-1" class="external-link">ISO 3166-1 alpha-2 country code</a>.</p>
+  </td>
+</tr>
+<tr>
+      <td>
+        <code translate="no" dir="ltr">address.addressLocality</code>
+      </td>
+      <td>
+        <p>
+          <code translate="no" dir="ltr">
+            <a href="https://schema.org/Text" class="external-link">Text</a>
+          </code>
+        </p>
+        <p>The city of your vacation listing.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code translate="no" dir="ltr">address.addressRegion</code>
+    </td>
+    <td>
+      <p>
+        <code translate="no" dir="ltr">
+          <a href="https://schema.org/Text" class="external-link">Text</a>
+        </code>
+      </p>
+      <p>The name of the listings's state, region, or province.</p>
+  </td>
+</tr>
+<tr>
+  <td>
+    <code translate="no" dir="ltr">address.postalCode</code>
+  </td>
+  <td>
+    <p>
+      <code translate="no" dir="ltr">
+        <a href="https://schema.org/Text" class="external-link">Text</a>
+      </code>
+    </p>
+    <p>The postal code for your vacation listing.</p>
+</td>
+</tr>
+<tr>
+      <td>
+        <code translate="no" dir="ltr">address.streetAddress</code>
+      </td>
+      <td>
+        <p>
+          <code translate="no" dir="ltr">
+            <a href="https://schema.org/Text" class="external-link">Text</a>
+          </code>
+        </p>
+        <p>The full street address of your vacation listing, including the unit or apartment
+          number if applicable.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code id="aggregate-rating-sd" translate="no" dir="ltr">aggregateRating</code>
+    </td>
+    <td>
+      <p>
+        <code translate="no" dir="ltr">
+          <a href="https://schema.org/AggregateRating" class="external-link">AggregateRating</a>
+        </code>
+      </p>
+      <p>
+        The average vacation rental rating is based on multiple ratings or reviews. Follow the
+        <a href="/search/docs/appearance/structured-data/review-snippet#guidelines">review snippet guidelines</a>
+        and the list of required and recommended
+        <a href="/search/docs/appearance/structured-data/review-snippet#aggregated-rating-type-definition">aggregate rating properties</a>.
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code translate="no" dir="ltr">brand</code>
+    </td>
+    <td>
+      <p>
+        <code translate="no" dir="ltr">
+          <a href="https://schema.org/Brand" class="external-link">Brand</a>
+        </code>
+      </p>
+      <p>
+        The brand ID associated with this property. Read more about how to to associate your
+        properties to brands and how link your brand icons and display names to respective
+        brand IDs in the <a href="https://support.google.com/hotelprices/answer/9919249" class="external-link">Hotel Center documentation</a>.
+      </p>
+      <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="brand example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"brand"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Brand"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"<var translate="no">brandIdName</var>"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code translate="no" dir="ltr">checkinTime</code>
+    </td>
+    <td>
+      <p>
+        <code translate="no" dir="ltr">
+          <a href="https://schema.org/Time" class="external-link">Time</a>
+        </code>
+      </p>
+      <p>
+        The earliest time someone may check into a lodging establishment in
+        <a href="https://wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>.
+      </p>
+      <p>Example: <code translate="no" dir="ltr">14:30:00+08:00</code></p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code translate="no" dir="ltr">checkoutTime</code>
+    </td>
+    <td>
+      <p>
+        <code translate="no" dir="ltr">
+          <a href="https://schema.org/Time" class="external-link">Time</a>
+        </code>
+      </p>
+      <p>The latest time someone may check into a lodging establishment in <a href="https://wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>.</p>
+      <p>Example: <code translate="no" dir="ltr">14:30:00+08:00</code></p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code translate="no" dir="ltr">containsPlace.additionalType</code>
+    </td>
+    <td>
+      <p>
+        <code translate="no" dir="ltr">
+          <a href="https://schema.org/Text" class="external-link">Text</a>
+        </code>
+      </p>
+      <p>
+        The type of room for this accommodation. Use one of the following values:
+      </p>
+        <ul>
+          <li><code translate="no" dir="ltr">EntirePlace</code></li>
+          <li><code translate="no" dir="ltr">PrivateRoom</code></li>
+          <li><code translate="no" dir="ltr">SharedRoom</code></li>
+        </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code translate="no" dir="ltr">containsPlace.amenityFeature</code>
+    </td>
+    <td>
+      <p>
+        Repeated
+        <code translate="no" dir="ltr"><a href="https://schema.org/amenityFeature" class="external-link">amenityFeature</a></code>
+      </p>
+      <p>Whether the property has a certain feature or amenity. Boolean examples follow this pattern:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="amenityFeature example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"amenityFeature"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"LocationFeatureSpecification"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"<var translate="no">featureName</var>"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kc">true</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+<b>Boolean values</b>
+    <p>Use one of the following values for the <code translate="no" dir="ltr">amenityFeature.name</code> property. The
+      values must be in English, even for non-English listings.</p>
+    <table>
+      <colgroup>
+        <col width="25%">
+      </colgroup>
+      <tbody><tr>
+        <td>
+          <code translate="no" dir="ltr">ac</code>
+        </td>
+        <td>
+          <p>Whether the property has air conditioning.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">airportShuttle</code>
+        </td>
+        <td>
+          <p>Whether the host provides transportation to and from airport or other terminals.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">balcony</code>
+        </td>
+        <td>
+          <p>Whether the property has a balcony.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">beachAccess</code>
+        </td>
+        <td>
+          <p>Whether the property has access to a public beach close to the property.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">childFriendly</code>
+        </td>
+        <td>
+          <p>Whether the property is suitable for children.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">crib</code>
+        </td>
+        <td>
+          <p>Whether the property provides a crib.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">elevator</code>
+        </td>
+        <td>
+          <p>Whether the property has an elevator.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">fireplace</code>
+        </td>
+        <td>
+          <p>Whether the property has a fireplace.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">freeBreakfast</code>
+        </td>
+        <td>
+          <p>Whether the property has breakfast included.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">gymFitnessEquipment</code>
+        </td>
+        <td>
+          <p>Whether the property has a gym or fitness equipment.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">heating</code>
+        </td>
+        <td>
+          <p>Whether the property has heating.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">hotTub</code>
+        </td>
+        <td>
+          <p>Whether the property has a hot tub.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">instantBookable</code>
+        </td>
+        <td>
+          <p>
+            Whether the property is instantly bookable through the checkout process. The alternative is waiting for approval.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">ironingBoard</code>
+        </td>
+        <td>
+          <p>Whether the property has ironing boards available.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">kitchen</code>
+        </td>
+        <td>
+          <p>Whether the property has a kitchen.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">microwave</code>
+        </td>
+        <td>
+          <p>Whether the property has a microwave available.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">outdoorGrill</code>
+        </td>
+        <td>
+          <p>Whether the property has a grill.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">ovenStove</code>
+        </td>
+        <td>
+          <p>Whether the property has an oven or a stove.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">patio</code>
+        </td>
+        <td>
+          <p>Whether the property has a patio.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">petsAllowed</code>
+        </td>
+        <td>
+          <p>Whether the guest is allowed to bring a pet to the property.</p>
+          <aside class="note">You can use the <code translate="no" dir="ltr">containsPlace.petsAllowed</code> property
+            instead of this field.
+         </aside>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">pool</code>
+        </td>
+        <td>
+          <p>Whether the property has a pool.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">privateBeachAccess</code>
+        </td>
+        <td>
+          <p>Whether the property has dedicated access to a non-public beach.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">selfCheckinCheckout</code>
+        </td>
+        <td>
+          <p>Whether the property supports self checkin and checkout.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">smokingAllowed</code>
+        </td>
+        <td>
+          <p>Whether smoking is allowed in the unit.</p>
+          <aside class="note">You can use the <code translate="no" dir="ltr">containsPlace.smokingAllowed</code> property
+             instead of this field.
+          </aside>
+        </td>
+      </tr>
+      <tr>
+        </tr><tr>
+          <td>
+            <code translate="no" dir="ltr">tv</code>
+          </td>
+          <td>
+            <p>Whether the property has a TV.</p>
+          </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">washerDryer</code>
+        </td>
+        <td>
+          <p>Whether the property has laundry appliances.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">wheelchairAccessible</code>
+        </td>
+        <td>
+          <p>Whether the property is wheelchair accessible.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">wifi</code>
+        </td>
+        <td>
+          <p>Whether the property has wifi.</p>
+        </td>
+      </tr>
+    </tbody></table>
+    <p><b>Non-boolean values</b></p>
+    <p>We also support the following non-boolean <code translate="no" dir="ltr">name</code> and <code translate="no" dir="ltr">value</code> pairs for
+       <code translate="no" dir="ltr">amenityFeature</code>.  Both values must be in English, even for non-English listings.
+    </p>
+    <p>Non-boolean values follow this pattern:</p>
+    <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="amenityFeature example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"amenityFeature"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"LocationFeatureSpecification"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"<var translate="no">featureName</var>"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"<var translate="no">detail</var>"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span></pre></devsite-code>
+      <table>
+        <colgroup>
+          <col width="25%">
+        </colgroup>
+        <tbody><tr>
+          <td>
+            <p>
+              <code translate="no" dir="ltr">
+                internetType
+              </code>
+            </p>
+          </td>
+          <td>
+            <p>
+              The type of internet available on the property. Here are some suggested values:
+            </p>
+              <ul>
+                <li><code translate="no" dir="ltr">Free</code></li>
+                <li><code translate="no" dir="ltr">Paid</code></li>
+                <li><code translate="no" dir="ltr">None</code></li>
+              </ul>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="internet-type example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"amenityFeature"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"LocationFeatureSpecification"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"internetType"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Free"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">
+            <p>parkingType</p>
+          </code>
+        </td>
+        <td>
+          <p>
+            The type of parking available on the property. Here are some suggested values:
+            </p><ul>
+              <li><code translate="no" dir="ltr">Free</code></li>
+              <li><code translate="no" dir="ltr">Paid</code></li>
+              <li><code translate="no" dir="ltr">None</code></li>
+            </ul>
+          <p></p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="parking-type example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"amenityFeature"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"LocationFeatureSpecification"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"parkingType"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Free"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">
+            poolType
+          </code>
+        </td>
+        <td>
+          <p>
+            The type of pool available on the property. Here are some suggested values:
+            </p><ul>
+              <li><code translate="no" dir="ltr">Indoor</code></li>
+              <li><code translate="no" dir="ltr">Outdoor</code></li>
+              <li><code translate="no" dir="ltr">None</code></li>
+            </ul>
+            <aside class="note">Only English strings are supported.</aside>
+          <p></p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="pool-type example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"amenityFeature"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"LocationFeatureSpecification"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"poolType"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Outdoor"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">
+            <p>licenseNum</p>
+          </code>
+        </td>
+        <td>
+          <p>
+            The license number (tourist or business) required to be shown for properties in certain
+            regions of the world. It could be repeated and, if multiple licenses exist, we suggest
+            adding the authority of the license as context (for example: <code translate="no" dir="ltr">Paris: 123456ABC</code>).
+          </p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="pool-type example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"amenityFeature"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"LocationFeatureSpecification"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"licenseNum"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Paris: 123456ABC"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+          </td>
+        </tr>
+        </tbody></table>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code translate="no" dir="ltr">containsPlace.bed</code>
+    </td>
+    <td>
+      <p>
+        Repeated <code translate="no" dir="ltr"><a href="https://schema.org/BedDetails" class="external-link">BedDetails</a></code>
+      </p>
+      <p>
+        Information about the type and number of beds in the listing.
+      </p>
+      <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="BedDetails example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"bed"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"BedDetails"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"numberOfBeds"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">1</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"typeOfBed"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Queen"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"BedDetails"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"numberOfBeds"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">2</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"typeOfBed"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Single"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}]</span></pre></devsite-code>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code translate="no" dir="ltr">containsPlace.bed.numberOfBeds</code>
+    </td>
+    <td>
+      <p>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code>
+      </p>
+      <p>
+        The number of beds in the listing.
+      </p>
+  </td>
+  </tr>
+  <tr>
+    <td>
+      <code translate="no" dir="ltr">containsPlace.bed.typeOfBed</code>
+    </td>
+    <td>
+      <p>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+      </p>
+      <p>
+        The type of beds in the listing. Here are some suggested values:
+        </p><ul>
+          <li><code translate="no" dir="ltr">CaliforniaKing</code></li>
+          <li><code translate="no" dir="ltr">King</code></li>
+          <li><code translate="no" dir="ltr">Queen</code></li>
+          <li><code translate="no" dir="ltr">Full</code></li>
+          <li><code translate="no" dir="ltr">Double</code></li>
+          <li><code translate="no" dir="ltr">SemiDouble</code></li>
+          <li><code translate="no" dir="ltr">Single</code></li>
+        </ul>
+      <p></p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code translate="no" dir="ltr">containsPlace.floorSize</code>
+    </td>
+    <td>
+      <p>
+        <code translate="no" dir="ltr">
+          <a href="https://schema.org/QuantitativeValue" class="external-link">QuantitativeValue</a>
+        </code>
+      </p>
+      <p>Size of the accommodation. It must be specified using <code translate="no" dir="ltr">unitCode</code> property values:
+      </p>
+        <ul>
+          <li>For square feet: <code translate="no" dir="ltr">FTK</code> or <code translate="no" dir="ltr">SQFT</code></li>
+          <li>For square meters: <code translate="no" dir="ltr">MTK</code> or <code translate="no" dir="ltr">SQM</code></li>
+        </ul>
+<div></div><devsite-code><pre class="devsite-click-to-copy" data-label="BedDetails example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"floorSize"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"QuantitativeValue"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">75</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"unitCode"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MTK"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span></pre></devsite-code>
+  </td>
+</tr>
+<tr>
+  <td>
+    <code translate="no" dir="ltr">containsPlace.numberOfBathroomsTotal</code>
+  </td>
+  <td>
+    <p>
+      <code translate="no" dir="ltr">
+        <a href="https://schema.org/Integer" class="external-link">Integer</a>
+      </code>
+    </p>
+    <p>
+      The total bathrooms in the listing. Follow real estate conventions as
+      <a href="https://ddwiki.reso.org/display/DDW17/BathroomsTotalInteger+Field" class="external-link">documented in RESO</a>
+      and use the simple sum of the number of bathrooms. For example, for a property with two full
+      bathrooms and one half bathroom, the total number of bathrooms is 2.5.
+    </p>
+  </td>
+</tr>
+<tr>
+  <td>
+    <code translate="no" dir="ltr">containsPlace.numberOfBedrooms</code>
+  </td>
+  <td>
+    <p>
+      <code translate="no" dir="ltr">
+        <a href="https://schema.org/Integer" class="external-link">Integer</a>
+      </code>
+    </p>
+    <p>The total number of bedrooms in the listing.</p>
+  </td>
+</tr>
+<tr>
+  <td>
+    <code translate="no" dir="ltr">containsPlace.numberOfRooms</code>
+  </td>
+  <td>
+      <p>
+        <code translate="no" dir="ltr">
+          <a href="https://schema.org/Integer" class="external-link">Integer</a>
+        </code>
+      </p>
+      <p>The total number of rooms in the listing.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code id="description-sd" translate="no" dir="ltr">description</code>
+    </td>
+    <td>
+      <p>
+        <code translate="no" dir="ltr">
+          <a href="https://schema.org/Text" class="external-link">Text</a>
+        </code>
+      </p>
+      <p>A description of the property.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code translate="no" dir="ltr">knowsLanguage</code>
+    </td>
+    <td>
+      <p>
+        <code translate="no" dir="ltr">
+          Repeated <a href="https://schema.org/Text" class="external-link">Text</a>
+        </code>
+      </p>
+      <p>
+        The languages the host can speak. Use language codes from the IETF BCP 47 standard, such
+        as <code translate="no" dir="ltr">en-US</code> or <code translate="no" dir="ltr">fr-FR</code>.
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <code id="review-sd" translate="no" dir="ltr">review</code>
+    </td>
+    <td>
+      <p>
+        <code translate="no" dir="ltr">
+          Repeated <a href="https://schema.org/Review" class="external-link">Review</a>
+        </code>
+      </p>
+      <p>
+        One or more user reviews of the listing. Follow the
+        <a href="/search/docs/appearance/structured-data/review-snippet#guidelines">review snippet guidelines</a>
+        and the list of required and recommended
+        <a href="/search/docs/appearance/structured-data/review-snippet#review-properties">review properties</a>.
+      </p>
+      <aside class="important"><b>Note</b>: For vacation rentals, the <code translate="no" dir="ltr">review.datePublished</code> is a required field.</aside>
+<div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Review example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"review"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Review"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"reviewRating"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Rating"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"ratingValue"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">4</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"bestRating"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">5</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"datePublished"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2023-02-09"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"author"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Person"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Lillian R"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code id="review-sd" translate="no" dir="ltr">review.contentReferenceTime</code>
+      </td>
+      <td>
+        <p>
+          <code translate="no" dir="ltr">
+            <a href="https://schema.org/DateTime" class="external-link">DateTime</a>
+          </code>
+        </p>
+        <aside class="important">This property is <b>required for vacation listings located in France</b>.</aside>
+          <p>The start date of the author's stay.</p>
+        </td>
+      </tr>
+  </tbody>
+</table>
+<table>
+      <colgroup>
+        <col width="25%">
+      </colgroup>
+      <tbody><tr>
+        <td>
+          <code translate="no" dir="ltr">ac</code>
+        </td>
+        <td>
+          <p>Whether the property has air conditioning.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">airportShuttle</code>
+        </td>
+        <td>
+          <p>Whether the host provides transportation to and from airport or other terminals.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">balcony</code>
+        </td>
+        <td>
+          <p>Whether the property has a balcony.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">beachAccess</code>
+        </td>
+        <td>
+          <p>Whether the property has access to a public beach close to the property.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">childFriendly</code>
+        </td>
+        <td>
+          <p>Whether the property is suitable for children.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">crib</code>
+        </td>
+        <td>
+          <p>Whether the property provides a crib.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">elevator</code>
+        </td>
+        <td>
+          <p>Whether the property has an elevator.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">fireplace</code>
+        </td>
+        <td>
+          <p>Whether the property has a fireplace.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">freeBreakfast</code>
+        </td>
+        <td>
+          <p>Whether the property has breakfast included.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">gymFitnessEquipment</code>
+        </td>
+        <td>
+          <p>Whether the property has a gym or fitness equipment.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">heating</code>
+        </td>
+        <td>
+          <p>Whether the property has heating.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">hotTub</code>
+        </td>
+        <td>
+          <p>Whether the property has a hot tub.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">instantBookable</code>
+        </td>
+        <td>
+          <p>
+            Whether the property is instantly bookable through the checkout process. The alternative is waiting for approval.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">ironingBoard</code>
+        </td>
+        <td>
+          <p>Whether the property has ironing boards available.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">kitchen</code>
+        </td>
+        <td>
+          <p>Whether the property has a kitchen.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">microwave</code>
+        </td>
+        <td>
+          <p>Whether the property has a microwave available.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">outdoorGrill</code>
+        </td>
+        <td>
+          <p>Whether the property has a grill.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">ovenStove</code>
+        </td>
+        <td>
+          <p>Whether the property has an oven or a stove.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">patio</code>
+        </td>
+        <td>
+          <p>Whether the property has a patio.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">petsAllowed</code>
+        </td>
+        <td>
+          <p>Whether the guest is allowed to bring a pet to the property.</p>
+          <aside class="note">You can use the <code translate="no" dir="ltr">containsPlace.petsAllowed</code> property
+            instead of this field.
+         </aside>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">pool</code>
+        </td>
+        <td>
+          <p>Whether the property has a pool.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">privateBeachAccess</code>
+        </td>
+        <td>
+          <p>Whether the property has dedicated access to a non-public beach.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">selfCheckinCheckout</code>
+        </td>
+        <td>
+          <p>Whether the property supports self checkin and checkout.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">smokingAllowed</code>
+        </td>
+        <td>
+          <p>Whether smoking is allowed in the unit.</p>
+          <aside class="note">You can use the <code translate="no" dir="ltr">containsPlace.smokingAllowed</code> property
+             instead of this field.
+          </aside>
+        </td>
+      </tr>
+      <tr>
+        </tr><tr>
+          <td>
+            <code translate="no" dir="ltr">tv</code>
+          </td>
+          <td>
+            <p>Whether the property has a TV.</p>
+          </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">washerDryer</code>
+        </td>
+        <td>
+          <p>Whether the property has laundry appliances.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">wheelchairAccessible</code>
+        </td>
+        <td>
+          <p>Whether the property is wheelchair accessible.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">wifi</code>
+        </td>
+        <td>
+          <p>Whether the property has wifi.</p>
+        </td>
+      </tr>
+    </tbody></table>
+<table>
+        <colgroup>
+          <col width="25%">
+        </colgroup>
+        <tbody><tr>
+          <td>
+            <p>
+              <code translate="no" dir="ltr">
+                internetType
+              </code>
+            </p>
+          </td>
+          <td>
+            <p>
+              The type of internet available on the property. Here are some suggested values:
+            </p>
+              <ul>
+                <li><code translate="no" dir="ltr">Free</code></li>
+                <li><code translate="no" dir="ltr">Paid</code></li>
+                <li><code translate="no" dir="ltr">None</code></li>
+              </ul>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="internet-type example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"amenityFeature"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"LocationFeatureSpecification"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"internetType"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Free"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">
+            <p>parkingType</p>
+          </code>
+        </td>
+        <td>
+          <p>
+            The type of parking available on the property. Here are some suggested values:
+            </p><ul>
+              <li><code translate="no" dir="ltr">Free</code></li>
+              <li><code translate="no" dir="ltr">Paid</code></li>
+              <li><code translate="no" dir="ltr">None</code></li>
+            </ul>
+          <p></p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="parking-type example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"amenityFeature"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"LocationFeatureSpecification"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"parkingType"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Free"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">
+            poolType
+          </code>
+        </td>
+        <td>
+          <p>
+            The type of pool available on the property. Here are some suggested values:
+            </p><ul>
+              <li><code translate="no" dir="ltr">Indoor</code></li>
+              <li><code translate="no" dir="ltr">Outdoor</code></li>
+              <li><code translate="no" dir="ltr">None</code></li>
+            </ul>
+            <aside class="note">Only English strings are supported.</aside>
+          <p></p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="pool-type example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"amenityFeature"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"LocationFeatureSpecification"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"poolType"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Outdoor"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">
+            <p>licenseNum</p>
+          </code>
+        </td>
+        <td>
+          <p>
+            The license number (tourist or business) required to be shown for properties in certain
+            regions of the world. It could be repeated and, if multiple licenses exist, we suggest
+            adding the authority of the license as context (for example: <code translate="no" dir="ltr">Paris: 123456ABC</code>).
+          </p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="pool-type example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"amenityFeature"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"LocationFeatureSpecification"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"licenseNum"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Paris: 123456ABC"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+          </td>
+        </tr>
+        </tbody></table>

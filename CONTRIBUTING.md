@@ -51,6 +51,28 @@ Run the tests using the following command:
 castor qa:phpunit:run
 ```
 
+Both schema.org and Google validator tests are included. You can run them individually with:
+
+```shell
+castor qa:phpunit:run -- --filter testSchemaOrgValidator
+castor qa:phpunit:run -- --filter testGoogleValidator
+```
+
+## Working with validators
+
+This project includes two main validators: the schema.org validator and the Google validator.
+
+### Updating validators
+
+When adding or updating validator support (new types, schema versions, special validation rules):
+
+- **Google validator** updates are based on the [Google structured-data documentation](https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data). For special rules or complex validation logic, see the existing rule implementations in `src/Vocabularies/Validators/Google/SpecialRules/`.
+- **Schema.org validator** updates follow [official schema.org releases](https://schema.org/docs/releases.html).
+
+For comprehensive upgrade procedures for either validator, refer to:
+- [Google validator upgrade guidelines](resources/google/UPGRADE_GUIDELINES.md)
+- [Schema.org validator upgrade guidelines](resources/schema.org/UPGRADE_GUIDELINES.md)
+
 ## Standard code
 
 Use [PHP CS fixer](https://cs.symfony.com/) to make your code compliant with

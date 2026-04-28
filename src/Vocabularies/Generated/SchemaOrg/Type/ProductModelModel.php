@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ProductModelModel
 {
     public const DESCRIPTION = 'A datasheet or vendor specification of a product (in the sense of a prototypical description).';
     public const LABEL = 'ProductModel';
     public const NAME = 'schema:ProductModel';
-    public const PARENTS = ['ProductModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProductModel'];
+    public const PARENTS = ['ProductModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PlaceModel
 {
     public const DESCRIPTION = 'Entities that have a somewhat fixed, physical extension.';
     public const LABEL = 'Place';
     public const NAME = 'schema:Place';
-    public const PARENTS = ['ThingModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ThingModel'];
+    public const PARENTS = ['ThingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

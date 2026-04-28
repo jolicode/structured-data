@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class NumAdultsModel
 {
     public const DESCRIPTION = 'The number of adults staying in the unit.';
     public const LABEL = 'numAdults';
     public const NAME = 'schema:numAdults';
-    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\IntegerModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\QuantitativeValueModel'];
-    public const TYPES = ['LodgingReservation' => 'Jolicode\Vocabularies\SchemaOrg\Type\LodgingReservationModel'];
+    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IntegerModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['LodgingReservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LodgingReservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SearchActionModel
 {
     public const DESCRIPTION = 'The act of searching for an object.\n\nRelated actions:\n\n* [[FindAction]]: SearchAction generally leads to a FindAction, but not necessarily.';
     public const LABEL = 'SearchAction';
     public const NAME = 'schema:SearchAction';
-    public const PARENTS = ['ActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ActionModel'];
+    public const PARENTS = ['ActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

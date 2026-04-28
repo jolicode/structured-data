@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class StreetAddressModel
 {
     public const DESCRIPTION = 'The street address. For example, 1600 Amphitheatre Pkwy.';
     public const LABEL = 'streetAddress';
     public const NAME = 'schema:streetAddress';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['PostalAddress' => 'Jolicode\Vocabularies\SchemaOrg\Type\PostalAddressModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['PostalAddress' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PostalAddressModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AircraftModel
 {
     public const DESCRIPTION = 'The kind of aircraft (e.g., "Boeing 747").';
     public const LABEL = 'aircraft';
     public const NAME = 'schema:aircraft';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel', 'VehicleModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\VehicleModel'];
-    public const TYPES = ['Flight' => 'Jolicode\Vocabularies\SchemaOrg\Type\FlightModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'VehicleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VehicleModel'];
+    public const TYPES = ['Flight' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FlightModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

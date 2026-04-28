@@ -1,0 +1,23 @@
+{
+  "@context": "https://schema.org",
+  "@type": "MathSolver",
+  "name": "An awesome math solver",
+  "url": "https://www.mathdomain.com/",
+  "usageInfo": "https://www.mathdomain.com/privacy",
+  "inLanguage": "en",
+  "learningResourceType": "Math solver",
+  "potentialAction": [
+    {
+      "@type": "SolveMathAction",
+      "target": "https://mathdomain.com/solve?q={math_expression_string}",
+      "mathExpression-input": "required name=math_expression_string",
+      "eduQuestionType": ["Polynomial Equation", "Derivative"]
+    },
+    {
+      "@type": "SolveMathAction",
+      "target": "https://mathdomain.com/trig?q={math_expression_string}",
+      "mathExpression-input": "required name=math_expression_string",
+      "eduQuestionType": "Trigonometric Equation"
+    }
+  ]
+}

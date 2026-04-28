@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SuccessorOfModel
 {
     public const DESCRIPTION = 'A pointer from a newer variant of a product  to its previous, often discontinued predecessor.';
     public const LABEL = 'successorOf';
     public const NAME = 'schema:successorOf';
-    public const VALUES = ['ProductModelModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProductModelModel'];
-    public const TYPES = ['ProductModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProductModelModel'];
+    public const VALUES = ['ProductModelModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModelModel'];
+    public const TYPES = ['ProductModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModelModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

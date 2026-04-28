@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ContactPointModel
 {
     public const DESCRIPTION = 'A contact point for a person or organization.';
     public const LABEL = 'contactPoint';
     public const NAME = 'schema:contactPoint';
-    public const VALUES = ['ContactPointModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ContactPointModel'];
-    public const TYPES = ['HealthInsurancePlan' => 'Jolicode\Vocabularies\SchemaOrg\Type\HealthInsurancePlanModel', 'Organization' => 'Jolicode\Vocabularies\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\Vocabularies\SchemaOrg\Type\PersonModel'];
+    public const VALUES = ['ContactPointModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ContactPointModel'];
+    public const TYPES = ['HealthInsurancePlan' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HealthInsurancePlanModel', 'Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

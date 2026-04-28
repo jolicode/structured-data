@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CreativeWorkModel
 {
     public const DESCRIPTION = 'The most generic kind of creative work, including books, movies, photographs, software programs, etc.';
     public const LABEL = 'CreativeWork';
     public const NAME = 'schema:CreativeWork';
-    public const PARENTS = ['ThingModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ThingModel'];
+    public const PARENTS = ['ThingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

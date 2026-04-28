@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BankAccountTypeModel
 {
     public const DESCRIPTION = 'The type of a bank account.';
     public const LABEL = 'bankAccountType';
     public const NAME = 'schema:bankAccountType';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\URLModel'];
-    public const TYPES = ['BankAccount' => 'Jolicode\Vocabularies\SchemaOrg\Type\BankAccountModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
+    public const TYPES = ['BankAccount' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BankAccountModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

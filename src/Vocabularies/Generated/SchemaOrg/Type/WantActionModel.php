@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class WantActionModel
 {
     public const DESCRIPTION = 'The act of expressing a desire about the object. An agent wants an object.';
     public const LABEL = 'WantAction';
     public const NAME = 'schema:WantAction';
-    public const PARENTS = ['ReactActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ReactActionModel'];
+    public const PARENTS = ['ReactActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReactActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EducationalAudienceModel
 {
     public const DESCRIPTION = 'An EducationalAudience.';
     public const LABEL = 'EducationalAudience';
     public const NAME = 'schema:EducationalAudience';
-    public const PARENTS = ['AudienceModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AudienceModel'];
+    public const PARENTS = ['AudienceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AudienceModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

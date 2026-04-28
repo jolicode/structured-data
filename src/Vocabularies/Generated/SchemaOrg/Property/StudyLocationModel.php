@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class StudyLocationModel
 {
     public const DESCRIPTION = 'The location in which the study is taking/took place.';
     public const LABEL = 'studyLocation';
     public const NAME = 'schema:studyLocation';
-    public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AdministrativeAreaModel'];
-    public const TYPES = ['MedicalStudy' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalStudyModel'];
+    public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AdministrativeAreaModel'];
+    public const TYPES = ['MedicalStudy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalStudyModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

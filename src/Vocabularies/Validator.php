@@ -24,52 +24,46 @@ use Jolicode\Vocabularies\Mapper\MappedError;
 use Jolicode\Vocabularies\Mapper\MappedProperty;
 use Jolicode\Vocabularies\Mapper\MappedType;
 use Jolicode\Vocabularies\Mapper\ValidationMapper;
-use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
 use Jolicode\Vocabularies\Validators\RegisteredValidatorsContainer;
-use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
 use JsonStreamingParser\Exception\ParsingException;
 
 class Validator
 {
+    private array $currentValidators = [];
+
     public function __construct(
-        /**
-         * @var array<string, string|array<string>>
-         */
-        private array $typesStack = [],
-        private ?string $specificValidator = null,
         private readonly ValidationMapper $validationMapper = new ValidationMapper(),
         private readonly JsonLdParser $parser = new JsonLdParser(),
-        private readonly RegisteredValidatorsContainer $container = new RegisteredValidatorsContainer(),
+        private readonly RegisteredValidatorsContainer $validatorsContainer = new RegisteredValidatorsContainer(),
         private readonly JsonLdNodeExtractor $extractor = new JsonLdNodeExtractor(),
     ) {
+        $this->resetValidators();
     }
 
-    public function getSupportedValidatorsSimpleNames(): array
+    public function resetValidators(): void
     {
-        $supportedValidators = array_map(
-            static fn (string $validatorFqcn) => strtolower($validatorFqcn::VALIDATOR_NAME),
-            array_keys($this->container->getValidators()),
-        );
-
-        return $supportedValidators;
+        $this->currentValidators = $this->validatorsContainer->getValidators();
     }
 
-    public function getValidatorClassName(string $validatorCasualName): false|string
+    public function setValidator(string $validator): void
     {
-        return match (strtolower($validatorCasualName)) {
-            'schemaorg' => SchemaOrgValidator::class,
-            'schema.org' => SchemaOrgValidator::class,
-            'google' => GoogleValidator::class,
-            default => false,
-        };
+        if (class_exists($validator)) {
+            $this->currentValidators = [$this->validatorsContainer->getValidator($validator)];
+
+            return;
+        }
+
+        $validator = $this->validatorsContainer->getValidatorClassName($validator);
+
+        $this->currentValidators = [$this->validatorsContainer->getValidator($validator)];
     }
 
     /**
      * Returns false if the provided document contains schema.org errors, true otherwise.
      */
-    public function isValid(string $input, ?string $specificValidator = null): bool
+    public function isValid(string $input): bool
     {
-        foreach ($this->getTypes($input, $specificValidator) as $type) {
+        foreach ($this->getTypes($input) as $type) {
             if ($type->errors) {
                 return false;
             }
@@ -86,10 +80,13 @@ class Validator
      *
      * @return array<MappedType>
      */
-    public function getTypes(string $input, ?string $specificValidator = null): array
+    public function getTypes(string $input): array
     {
-        $this->reset();
-        $this->specificValidator = $specificValidator;
+        $this->validationMapper->reset();
+
+        if (!$this->currentValidators) {
+            $this->resetValidators();
+        }
 
         $elements = $this->getJsonLdContent($input);
         $expander = new Expander();
@@ -161,7 +158,7 @@ class Validator
      */
     private function validateJsonLdElement(array $expandedJsonLd, ObjectStructure $parsedJsonLd): array
     {
-        $this->reset();
+        $this->validationMapper->reset();
 
         $types = $this->validationMapper->map($expandedJsonLd, $parsedJsonLd);
 
@@ -170,12 +167,6 @@ class Validator
         }
 
         return $types;
-    }
-
-    private function reset(): void
-    {
-        $this->typesStack = [];
-        $this->validationMapper->reset();
     }
 
     /**
@@ -216,7 +207,7 @@ class Validator
          */
         foreach ($type->properties as $property) {
             if ($property->value instanceof MappedType) {
-                $this->validateType($property->value, $property);
+                $this->validateType($property->value);
 
                 if (!$property->value->isValid) {
                     $type->isValid = false;
@@ -227,7 +218,7 @@ class Validator
             if (\is_array($property->value)) {
                 foreach ($property->value as $multipleTypesEntry) {
                     if ($multipleTypesEntry instanceof MappedType) {
-                        $this->validateType($multipleTypesEntry, $property);
+                        $this->validateType($multipleTypesEntry);
 
                         if (!$multipleTypesEntry->isValid) {
                             $type->isValid = false;
@@ -241,18 +232,14 @@ class Validator
         }
     }
 
-    private function callValidatorsForType(MappedType $type, ?MappedProperty $property): void
+    private function callValidatorsForType(MappedType $type): void
     {
         if ($this->isTypeReference($type)) {
             return;
         }
 
-        $validators = $this->specificValidator
-            ? [$this->container->getValidator($this->specificValidator)]
-            : $this->container->getValidators();
-
-        foreach ($validators as $validator) {
-            $validator::validateType($type, $property, $this->typesStack);
+        foreach ($this->currentValidators as $validator) {
+            $validator->validateType($type);
         }
     }
 
@@ -262,12 +249,8 @@ class Validator
             return;
         }
 
-        $validators = $this->specificValidator
-            ? [$this->container->getValidator($this->specificValidator)]
-            : $this->container->getValidators();
-
-        foreach ($validators as $validator) {
-            $validator::validateProperty($type, $property, $this->typesStack, $originalProperty);
+        foreach ($this->currentValidators as $validator) {
+            $validator->validateProperty($type, $property, $originalProperty);
         }
     }
 

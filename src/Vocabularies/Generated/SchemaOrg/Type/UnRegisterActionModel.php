@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class UnRegisterActionModel
 {
     public const DESCRIPTION = 'The act of un-registering from a service.\n\nRelated actions:\n\n* [[RegisterAction]]: antonym of UnRegisterAction.\n* [[LeaveAction]]: Unlike LeaveAction, UnRegisterAction implies that you are unregistering from a service you were previously registered, rather than leaving a team/group of people.';
     public const LABEL = 'UnRegisterAction';
     public const NAME = 'schema:UnRegisterAction';
-    public const PARENTS = ['InteractActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\InteractActionModel'];
+    public const PARENTS = ['InteractActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InteractActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SuspendActionModel
 {
     public const DESCRIPTION = 'The act of momentarily pausing a device or application (e.g. pause music playback or pause a timer).';
     public const LABEL = 'SuspendAction';
     public const NAME = 'schema:SuspendAction';
-    public const PARENTS = ['ControlActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ControlActionModel'];
+    public const PARENTS = ['ControlActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ControlActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

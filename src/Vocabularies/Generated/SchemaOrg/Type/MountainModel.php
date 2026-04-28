@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MountainModel
 {
     public const DESCRIPTION = 'A mountain, like Mount Whitney or Mount Everest.';
     public const LABEL = 'Mountain';
     public const NAME = 'schema:Mountain';
-    public const PARENTS = ['LandformModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\LandformModel'];
+    public const PARENTS = ['LandformModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LandformModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CertificationRatingModel
 {
     public const DESCRIPTION = 'Rating of a certification instance (as defined by an independent certification body). Typically this rating can be used to rate the level to which the requirements of the certification instance are fulfilled. See also [gs1:certificationValue](https://www.gs1.org/voc/certificationValue).';
     public const LABEL = 'certificationRating';
     public const NAME = 'schema:certificationRating';
-    public const VALUES = ['RatingModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\RatingModel'];
-    public const TYPES = ['Certification' => 'Jolicode\Vocabularies\SchemaOrg\Type\CertificationModel'];
+    public const VALUES = ['RatingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RatingModel'];
+    public const TYPES = ['Certification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CertificationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

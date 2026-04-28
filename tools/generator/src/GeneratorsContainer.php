@@ -21,8 +21,8 @@ readonly class GeneratorsContainer
          * @var GeneratorInterface[]
          */
         private array $generators = [
-            'schemaorg' => new SchemaOrgGenerator(),
-            // 'google' => new GoogleGenerator(),
+            'schema.org' => new SchemaOrgGenerator(),
+            'google' => new GoogleGenerator(),
         ],
     ) {
     }

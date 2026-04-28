@@ -10,6 +10,7 @@
  */
 
 use Castor\Attribute\AsArgument;
+use Castor\Attribute\AsOption;
 use Castor\Attribute\AsTask;
 
 use function Castor\import;
@@ -21,6 +22,9 @@ use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
 use Jolicode\Vocabularies\Mapper\MappedError;
 use Jolicode\Vocabularies\Mapper\MappedType;
 use Jolicode\Vocabularies\Validator;
+use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
+use Jolicode\Vocabularies\Validators\RegisteredValidatorsContainer;
+use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -95,9 +99,30 @@ function flatten(
 function validate(
     #[AsArgument(name: 'fileOrUrl', description: 'The file or remote URL to validate')]
     string $fileOrUrl,
+    #[AsArgument(name: 'validator', description: 'The specific validator to use')]
+    false|string $specificValidator = false,
+    #[AsOption(name: 'details', description: 'Whether to display the details of the validation', shortcut: 'd')]
     bool $withDetails = false,
 ): void {
     $validator = new Validator();
+    $validatorsContainer = new RegisteredValidatorsContainer();
+
+    if ($specificValidator) {
+        $validatorClass = $validatorsContainer->getValidatorClassName($specificValidator);
+
+        if (false === $validatorClass) {
+            io()->error(sprintf(
+                'Invalid validator specified. Accepted values are: "%s", "%s" (case-insensitive).',
+                SchemaOrgValidator::VALIDATOR_NAME,
+                GoogleValidator::VALIDATOR_NAME,
+            ));
+
+            return;
+        }
+
+        $validator->setValidator($validatorClass);
+    }
+
     $types = $validator->getTypes($fileOrUrl);
 
     if (0 === count($types)) {
@@ -109,7 +134,7 @@ function validate(
     $errorsCount = 0;
 
     foreach ($types as $type) {
-        if ($withDetails && is_string($type->type)) {
+        if ($withDetails) {
             displayType($type);
 
             if ($type->errors) {
@@ -134,7 +159,11 @@ function validate(
         }
 
         if ($type->errors) {
-            ++$errorsCount;
+            foreach ($type->errors as $error) {
+                if (MappedError::SEVERITY_ERROR === $error->severity) {
+                    ++$errorsCount;
+                }
+            }
         }
     }
 

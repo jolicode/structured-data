@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class WebAPIModel
 {
     public const DESCRIPTION = 'An application programming interface accessible over Web/Internet technologies.';
     public const LABEL = 'WebAPI';
     public const NAME = 'schema:WebAPI';
-    public const PARENTS = ['ServiceModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ServiceModel'];
+    public const PARENTS = ['ServiceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1423'];

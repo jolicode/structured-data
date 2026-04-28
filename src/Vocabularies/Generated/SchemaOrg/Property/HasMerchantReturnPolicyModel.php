@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HasMerchantReturnPolicyModel
 {
     public const DESCRIPTION = 'Specifies a MerchantReturnPolicy that may be applicable.';
     public const LABEL = 'hasMerchantReturnPolicy';
     public const NAME = 'schema:hasMerchantReturnPolicy';
-    public const VALUES = ['MerchantReturnPolicyModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MerchantReturnPolicyModel'];
-    public const TYPES = ['Offer' => 'Jolicode\Vocabularies\SchemaOrg\Type\OfferModel', 'Organization' => 'Jolicode\Vocabularies\SchemaOrg\Type\OrganizationModel', 'Product' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProductModel'];
+    public const VALUES = ['MerchantReturnPolicyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MerchantReturnPolicyModel'];
+    public const TYPES = ['Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel', 'Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'Product' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

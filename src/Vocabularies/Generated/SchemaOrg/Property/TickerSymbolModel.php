@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TickerSymbolModel
 {
     public const DESCRIPTION = 'The exchange traded instrument associated with a Corporation object. The tickerSymbol is expressed as an exchange and an instrument name separated by a space character. For the exchange component of the tickerSymbol attribute, we recommend using the controlled vocabulary of Market Identifier Codes (MIC) specified in ISO 15022.';
     public const LABEL = 'tickerSymbol';
     public const NAME = 'schema:tickerSymbol';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Corporation' => 'Jolicode\Vocabularies\SchemaOrg\Type\CorporationModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Corporation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CorporationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

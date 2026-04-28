@@ -1,0 +1,392 @@
+<table class="responsive fixed">
+  <colgroup><col width="30%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">name</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The name of the product.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Product snippets require either <code translate="no" dir="ltr">review</code> or <code translate="no" dir="ltr">aggregateRating</code> or <code translate="no" dir="ltr">offers</code></td>
+      <td>
+        <p>You must include one of the following properties:</p>
+        <ul>
+          <li><code translate="no" dir="ltr">review</code></li>
+          <li><code translate="no" dir="ltr">aggregateRating</code></li>
+          <li><code translate="no" dir="ltr">offers</code></li>
+        </ul>
+        <aside class="note">You only need to provide one of <code translate="no" dir="ltr">review</code>,
+          <code translate="no" dir="ltr">aggregateRating</code>, and <code translate="no" dir="ltr">offers</code>, but the product snippets
+          section of the Rich Results Test may report a warning if you provide
+          <code translate="no" dir="ltr">offers</code> without <code translate="no" dir="ltr">review</code> or <code translate="no" dir="ltr">aggregateRating</code>
+          properties.</aside>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="30%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">aggregateRating</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/AggregateRating" class="external-link">AggregateRating</a></code></p>
+        <p>A nested <code translate="no" dir="ltr">aggregateRating</code> of the product. Follow the
+          <a href="/search/docs/appearance/structured-data/review-snippet#guidelines">Review snippet
+            guidelines</a> and the list of required and recommended
+          <a href="/search/docs/appearance/structured-data/review-snippet#aggregated-rating-type-definition"><code translate="no" dir="ltr">AggregateRating</code>
+            properties</a>.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">offers</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Offer" class="external-link">Offer</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/AggregateOffer" class="external-link">AggregateOffer</a></code></p>
+        <p>A nested <code translate="no" dir="ltr">Offer</code> or
+          <code translate="no" dir="ltr">AggregateOffer</code> to sell the product. Include the required and
+          recommended properties for either <a href="#offer-properties"><code translate="no" dir="ltr">Offer</code></a>
+          or <a href="#aggregate-offer-properties"><code translate="no" dir="ltr">AggregateOffer</code></a> (whichever
+          is applicable to your content).</p>
+        <p>
+          To be eligible for the <a href="/search/docs/appearance/structured-data/product#price-drop">price drop enhancement</a>, use <a href="#offer-properties"><code translate="no" dir="ltr">Offer</code></a>,
+          not <code translate="no" dir="ltr">AggregateOffer</code>.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">review</code></td>
+      <td>
+        <p><a href="https://schema.org/Review" class="external-link"><code translate="no" dir="ltr">Review</code></a></p>
+        <p>A nested <code translate="no" dir="ltr">Review</code> of the product. Follow the
+          <a href="/search/docs/appearance/structured-data/review-snippet#guidelines">Review snippet
+            guidelines</a> and the list of required and recommended
+          <a href="/search/docs/appearance/structured-data/review-snippet#review-properties">review
+            properties</a>.</p>
+        <p>If you add a review for the product, the reviewer's name must be a valid name for a <code translate="no" dir="ltr">Person</code> or
+          <code translate="no" dir="ltr">Team</code>.</p>
+        <p><span class="compare-no" aria-hidden="true"></span><b>Not recommended</b>: 50% off on Black Friday</p>
+        <p><span class="compare-yes" aria-hidden="true"></span><b>Recommended</b>: "James Smith" or "CNET Reviewers"</p>
+        <p>
+          To manually tell Google about the <a href="#pros-cons">pros and cons</a> of an editorial product review page,
+          add the <code translate="no" dir="ltr">positiveNotes</code> and/or <code translate="no" dir="ltr">negativeNotes</code> properties to your nested product review.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="30%"></colgroup>
+  <thead><tr><th colspan="2">Required properties</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>Two statements about the product</td>
+      <td>You must provide at least two statements about the product in any combination of
+        positive or negative statements (for example, <code translate="no" dir="ltr">ItemList</code> markup with two
+        positive statements is valid):
+        <ul>
+          <li><a href="#negative-notes"><code translate="no" dir="ltr">negativeNotes</code></a></li>
+          <li><a href="#positive-notes"><code translate="no" dir="ltr">positiveNotes</code></a></li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="30%"></colgroup>
+  <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+  <tbody>
+    <tr id="negative-notes">
+      <td><code translate="no" dir="ltr">negativeNotes</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/ItemList" class="external-link">ItemList</a></code>
+          (see <a href="#pros-cons-item-list"><code translate="no" dir="ltr">ItemList</code> for Positive and Negative Notes</a>
+          on usage of <code translate="no" dir="ltr">ItemList</code> in this context)
+        </p>
+        <p>
+          An optional nested list of negative statements about the product (cons).
+        </p>
+        <p>
+          To list multiple negative statements, specify multiple <code translate="no" dir="ltr">ListItem</code>
+          properties in an <code translate="no" dir="ltr">itemListElement</code> array. For example:
+        </p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Multiple cons" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"review"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Review"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"negativeNotes"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"ItemList"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"itemListElement"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"ListItem"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-s">"position"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">1</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"No child protection"</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"ListItem"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-s">"position"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">2</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Lacking advanced features"</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">]</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+    </td>
+  </tr>
+  <tr id="positive-notes">
+    <td><code translate="no" dir="ltr">positiveNotes</code></td>
+    <td>
+      <p><code translate="no" dir="ltr"><a href="https://schema.org/ItemList" class="external-link">ItemList</a></code>
+        (see <a href="#pros-cons-item-list"><code translate="no" dir="ltr">ItemList</code> for Positive and Negative Notes</a>
+        on usage of <code translate="no" dir="ltr">ItemList</code> in this context)
+      </p>
+      <p>
+        An optional nested list of positive statements about the product (pros).
+      </p>
+      <p>
+        To list multiple positive statements, specify multiple <code translate="no" dir="ltr">ListItem</code>
+        properties in an <code translate="no" dir="ltr">itemListElement</code> array. For example:
+      </p>
+      <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Multiple pros" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"review"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Review"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"positiveNotes"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"ItemList"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"itemListElement"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"ListItem"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-s">"position"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">1</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Consistent results"</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"ListItem"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-s">"position"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">2</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Still sharp after many uses"</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">]</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="30%"></colgroup>
+  <thead><tr><th colspan="2">Required properties</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">itemListElement</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/ListItem" class="external-link">ListItem</a></code></p>
+        <p>
+          A list of statements about the product, listed in a specific order.
+          Specify each statement with a <code translate="no" dir="ltr">ListItem</code>.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">itemListElement.name</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>
+          The key statement of the review.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="30%"></colgroup>
+  <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">itemListElement.position</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code></p>
+        <p>
+          The position of the review. Position 1 signifies the first statement in the list.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="30%"></colgroup>
+  <thead><tr><th colspan="2">Required properties</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">price</code> or <code translate="no" dir="ltr">priceSpecification.price</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+        <p>The offer price of a product. Follow
+          <a href="https://schema.org/price" class="external-link">schema.org usage guidelines</a>.</p>
+        <p>
+          Here's an example of the <code translate="no" dir="ltr">price</code> property (the value can be a JSON string
+          or number):
+        </p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="Price property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"offers"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Offer"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"price"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m devsite-syntax-m-Double">39.99</span><span class="devsite-syntax-p">,</span></strong>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"priceCurrency"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"USD"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        <p>
+          Here's an example of how to specify that a product is available without payment:
+        </p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="Product with 0 price" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"offers"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Offer"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"price"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">0</span><span class="devsite-syntax-p">,</span></strong>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"priceCurrency"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"EUR"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        <p>
+          Alternatively, the offer price may be nested inside a <code translate="no" dir="ltr">priceSpecification</code>
+          property instead of being provided at the <code translate="no" dir="ltr">Offer</code> level.
+        </p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Price specification property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"offers"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Offer"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"priceSpecification"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"PriceSpecification"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"price"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m devsite-syntax-m-Double">9.99</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"priceCurrency"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"AUD"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        
+    <aside class="note">
+      If you use both the <code translate="no" dir="ltr">offers.price</code> and <code translate="no" dir="ltr">offers.priceSpecification</code>
+      properties to encode an active price, Google will use the price provided through
+      the <code translate="no" dir="ltr">offers.price</code> property and ignore the <code translate="no" dir="ltr">offers.priceSpecification</code>
+      property.
+    </aside>
+        <aside class="note">If you have complex pricing, check out the <a href="/search/docs/appearance/structured-data/merchant-listing#pricing-example">pricing examples</a> and
+          supported <a href="/search/docs/appearance/structured-data/merchant-listing#offer-details">pricing properties</a> in the merchant listing documentation.
+        </aside>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="30%"></colgroup>
+  <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">availability</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/ItemAvailability" class="external-link">ItemAvailability</a></code></p>
+        <p>Use the single most appropriate product availability option from the following list.</p>
+        <ul>
+          <li><code translate="no" dir="ltr">https://schema.org/BackOrder</code>: The item is on back order.</li>
+          <li><code translate="no" dir="ltr">https://schema.org/Discontinued</code>: The item has been discontinued.</li>
+          <li><code translate="no" dir="ltr">https://schema.org/InStock</code>: The item is in stock.</li>
+          <li><code translate="no" dir="ltr">https://schema.org/InStoreOnly</code>: The item is only available for purchase in store.</li>
+          <li><code translate="no" dir="ltr">https://schema.org/LimitedAvailability</code>: The item has limited availability.</li>
+          <li><code translate="no" dir="ltr">https://schema.org/OnlineOnly</code>: The item is available online only.</li>
+          <li><code translate="no" dir="ltr">https://schema.org/OutOfStock</code>: The item is currently out of stock.</li>
+          <li><code translate="no" dir="ltr">https://schema.org/PreOrder</code>: The item is available for pre-order.</li>
+          <li><code translate="no" dir="ltr">https://schema.org/PreSale</code>: The item is available for ordering and delivery before general availability.</li>
+          <li><code translate="no" dir="ltr">https://schema.org/SoldOut</code>: The item has been sold out.</li>
+        </ul>
+        <p>The short names without the URL prefix are also supported (for example, <code translate="no" dir="ltr">BackOrder</code>).</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">priceCurrency</code> or <code translate="no" dir="ltr">priceSpecification.priceCurrency</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The currency used to describe the product price, in three-letter
+          <a href="https://en.wikipedia.org/wiki/ISO_4217" class="external-link">ISO 4217</a>
+          format.</p>
+        <p>This property is currently recommended for product snippets to help Google
+          determine the currency more accurately, but required for merchant listing experiences.
+          It is therefore best to always provide this property.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">priceValidUntil</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code></p>
+        <p>The date (in <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601</a>
+          date format) after which the price will no longer be available, if applicable. Your product snippet
+          may not display if the <code translate="no" dir="ltr">priceValidUntil</code> property indicates a past date.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="30%"></colgroup>
+  <thead><tr><th colspan="2">Required properties</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">price</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+        <p>
+          The offer price of a product. See also the <code translate="no" dir="ltr">price</code> property of <code translate="no" dir="ltr">Offer</code>.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="30%"></colgroup>
+  <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">priceCurrency</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The currency used to describe the product price, in three-letter
+          <a href="https://en.wikipedia.org/wiki/ISO_4217" class="external-link">ISO 4217</a> format.
+          See also the <code translate="no" dir="ltr">priceCurrency</code> property of <code translate="no" dir="ltr">Offer</code>.</p>
+        <p>While this property is optional for product snippets, it's strongly recommended because
+          it avoids pricing ambiguities and it's required for merchant
+          listing experiences.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="30%"></colgroup>
+  <thead><tr><th colspan="2">Required properties</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">lowPrice</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+        <p>
+          The lowest price of all offers available. Use a decimal separator (<code translate="no" dir="ltr">.</code>) when
+          expressing fractions of a currency unit, such as 1.23 for $1.23 US dollars.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">priceCurrency</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The currency used to describe the product price, in three-letter
+          <a href="https://en.wikipedia.org/wiki/ISO_4217" class="external-link">ISO 4217</a> format.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="30%"></colgroup>
+  <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">highPrice</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+        <p>The highest price of all offers available. Use a floating point number if necessary.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">offerCount</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+        <p>The number of offers for the product.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>

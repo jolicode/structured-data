@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HasBroadcastChannelModel
 {
     public const DESCRIPTION = 'A broadcast channel of a broadcast service.';
     public const LABEL = 'hasBroadcastChannel';
     public const NAME = 'schema:hasBroadcastChannel';
-    public const VALUES = ['BroadcastChannelModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\BroadcastChannelModel'];
-    public const TYPES = ['BroadcastService' => 'Jolicode\Vocabularies\SchemaOrg\Type\BroadcastServiceModel'];
+    public const VALUES = ['BroadcastChannelModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastChannelModel'];
+    public const TYPES = ['BroadcastService' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastServiceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

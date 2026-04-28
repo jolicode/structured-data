@@ -12,6 +12,7 @@
     "provider": {
     "@type": "Organization",
     "name": "Example University",
+    "sameAs": "https://www.exampleuniversity.com",
     "url": "www.exampleuniversity.com"
     },
     "image": [

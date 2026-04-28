@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReturnActionModel
 {
     public const DESCRIPTION = 'The act of returning to the origin that which was previously received (concrete objects) or taken (ownership).';
     public const LABEL = 'ReturnAction';
     public const NAME = 'schema:ReturnAction';
-    public const PARENTS = ['TransferActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TransferActionModel'];
+    public const PARENTS = ['TransferActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TransferActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

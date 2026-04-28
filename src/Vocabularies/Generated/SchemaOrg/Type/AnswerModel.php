@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AnswerModel
 {
     public const DESCRIPTION = 'An answer offered to a question; perhaps correct, perhaps opinionated or wrong.';
     public const LABEL = 'Answer';
     public const NAME = 'schema:Answer';
-    public const PARENTS = ['CommentModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CommentModel'];
+    public const PARENTS = ['CommentModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommentModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

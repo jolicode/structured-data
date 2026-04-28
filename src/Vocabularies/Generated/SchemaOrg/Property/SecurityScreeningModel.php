@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SecurityScreeningModel
 {
     public const DESCRIPTION = 'The type of security screening the passenger is subject to.';
     public const LABEL = 'securityScreening';
     public const NAME = 'schema:securityScreening';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['FlightReservation' => 'Jolicode\Vocabularies\SchemaOrg\Type\FlightReservationModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['FlightReservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FlightReservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

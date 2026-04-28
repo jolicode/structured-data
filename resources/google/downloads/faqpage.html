@@ -1,0 +1,62 @@
+<table class="responsive fixed">
+  <colgroup>
+    <col width="20%">
+  </colgroup>
+  <tbody>
+    <tr>
+      <th colspan="2">Required properties</th>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">mainEntity</code></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Question" class="external-link">Question</a></code>
+        <p>
+          An array of <code translate="no" dir="ltr">Question</code> elements which contain the list of answered questions
+          that this <code translate="no" dir="ltr">FAQPage</code> is about. You must specify at least one valid <a href="#question"><code translate="no" dir="ltr">Question</code> item</a>.
+          A <code translate="no" dir="ltr">Question</code> item includes both the question and answer.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">acceptedAnswer</code></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Answer" class="external-link">Answer</a></code>
+        <p>The answer to the question. There must be one answer per question.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">name</code></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+        <p>The full text of the question. For example, "How long does it take to process a refund?".</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">text</code></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+        <p>The full answer to the question. The answer may contain HTML content such as links and
+          lists. Google Search displays the following HTML tags:
+          <code translate="no" dir="ltr">&lt;h1&gt;</code> through <code translate="no" dir="ltr">&lt;h6&gt;</code>,
+          <code translate="no" dir="ltr">&lt;br&gt;</code>, <code translate="no" dir="ltr">&lt;ol&gt;</code>,
+          <code translate="no" dir="ltr">&lt;ul&gt;</code>, <code translate="no" dir="ltr">&lt;li&gt;</code>,
+          <code translate="no" dir="ltr">&lt;a&gt;</code>, <code translate="no" dir="ltr">&lt;p&gt;</code>,
+          <code translate="no" dir="ltr">&lt;div&gt;</code>, <code translate="no" dir="ltr">&lt;b&gt;</code>,
+          <code translate="no" dir="ltr">&lt;strong&gt;</code>, <code translate="no" dir="ltr">&lt;i&gt;</code>,
+          and <code translate="no" dir="ltr">&lt;em&gt;</code>. All other tags are ignored.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>

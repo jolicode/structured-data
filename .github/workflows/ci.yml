@@ -2,9 +2,15 @@ name: Run tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
     branches: ["main"]
+  workflow_dispatch:
+    inputs:
+      google_docs_strict:
+        description: "Fail job if google:generation:verify-docs reports gaps"
+        required: false
+        default: "false"
   schedule:
     - cron: "0 0 * * SUN"
 
@@ -14,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['8.4']
+        php-version: ["8.4"]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -32,6 +38,9 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
+      - name: Check platform requirements
+        run: composer check-platform-reqs
+
       - name: Install qa tooling
         run: castor install
 
@@ -45,7 +54,11 @@ jobs:
         run: castor qa:phpunit:run
 
       - name: Install generator tooling
-        run: castor generator:install
+        run: composer install --working-dir tools/generator --prefer-dist --no-progress
+
+      - name: Verify Google docs coverage (report-only by default)
+        continue-on-error: ${{ github.event_name != 'workflow_dispatch' || inputs.google_docs_strict != 'true' }}
+        run: castor google:generation:verify-docs
 
       - name: Check that schema.org types and properties classes can be generated
-        run: castor generator:generate
+        run: castor generation:generate

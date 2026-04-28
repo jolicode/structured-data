@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EventStatusTypeModel
 {
     public const DESCRIPTION = 'EventStatusType is an enumeration type whose instances represent several states that an Event may be in.';
     public const LABEL = 'EventStatusType';
     public const NAME = 'schema:EventStatusType';
-    public const PARENTS = ['StatusEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\StatusEnumerationModel'];
+    public const PARENTS = ['StatusEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\StatusEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['EventCancelledModel' => 'EnumerationMember\EventCancelledModel', 'EventMovedOnlineModel' => 'EnumerationMember\EventMovedOnlineModel', 'EventPostponedModel' => 'EnumerationMember\EventPostponedModel', 'EventRescheduledModel' => 'EnumerationMember\EventRescheduledModel', 'EventScheduledModel' => 'EnumerationMember\EventScheduledModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

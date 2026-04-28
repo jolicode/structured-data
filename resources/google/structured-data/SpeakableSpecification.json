@@ -1,0 +1,26 @@
+{
+    "name": "SpeakableSpecification",
+    "documentation": "https://developers.google.com/search/docs/appearance/structured-data/speakable",
+    "specialRules": [
+        "google.speakable.cssselector_or_xpath"
+    ],
+    "supportedTypes": [
+        "SpeakableSpecification"
+    ],
+    "properties": {
+        "cssSelector": {
+            "name": "cssSelector",
+            "severity": "optional",
+            "supportedTypes": [
+                "Text"
+            ]
+        },
+        "xPath": {
+            "name": "xPath",
+            "severity": "optional",
+            "supportedTypes": [
+                "Text"
+            ]
+        }
+    }
+}

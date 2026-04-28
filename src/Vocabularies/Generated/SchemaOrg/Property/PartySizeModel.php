@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PartySizeModel
 {
     public const DESCRIPTION = 'Number of people the reservation should accommodate.';
     public const LABEL = 'partySize';
     public const NAME = 'schema:partySize';
-    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\IntegerModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\QuantitativeValueModel'];
-    public const TYPES = ['FoodEstablishmentReservation' => 'Jolicode\Vocabularies\SchemaOrg\Type\FoodEstablishmentReservationModel', 'TaxiReservation' => 'Jolicode\Vocabularies\SchemaOrg\Type\TaxiReservationModel'];
+    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IntegerModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['FoodEstablishmentReservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FoodEstablishmentReservationModel', 'TaxiReservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TaxiReservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

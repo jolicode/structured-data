@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PositiveNotesModel
 {
@@ -20,8 +20,8 @@ In the case of a [[Review]], the property describes the [[itemReviewed]] from th
 The property values can be expressed either as unstructured text (repeated as necessary), or if ordered, as a list (in which case the most positive is at the beginning of the list).';
     public const LABEL = 'positiveNotes';
     public const NAME = 'schema:positiveNotes';
-    public const VALUES = ['ItemListModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ItemListModel', 'ListItemModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ListItemModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel', 'WebContentModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\WebContentModel'];
-    public const TYPES = ['Product' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProductModel', 'Review' => 'Jolicode\Vocabularies\SchemaOrg\Type\ReviewModel'];
+    public const VALUES = ['ItemListModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ItemListModel', 'ListItemModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ListItemModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'WebContentModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebContentModel'];
+    public const TYPES = ['Product' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel', 'Review' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReviewModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

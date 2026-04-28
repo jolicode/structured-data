@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class UsesDeviceModel
 {
     public const DESCRIPTION = 'Device used to perform the test.';
     public const LABEL = 'usesDevice';
     public const NAME = 'schema:usesDevice';
-    public const VALUES = ['MedicalDeviceModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalDeviceModel'];
-    public const TYPES = ['MedicalTest' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalTestModel'];
+    public const VALUES = ['MedicalDeviceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalDeviceModel'];
+    public const TYPES = ['MedicalTest' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTestModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

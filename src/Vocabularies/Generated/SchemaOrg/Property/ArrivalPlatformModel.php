@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ArrivalPlatformModel
 {
     public const DESCRIPTION = 'The platform where the train arrives.';
     public const LABEL = 'arrivalPlatform';
     public const NAME = 'schema:arrivalPlatform';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['TrainTrip' => 'Jolicode\Vocabularies\SchemaOrg\Type\TrainTripModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['TrainTrip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TrainTripModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

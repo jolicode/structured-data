@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LoanPaymentFrequencyModel
 {
     public const DESCRIPTION = 'Frequency of payments due, i.e. number of months between payments. This is defined as a frequency, i.e. the reciprocal of a period of time.';
     public const LABEL = 'loanPaymentFrequency';
     public const NAME = 'schema:loanPaymentFrequency';
-    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\NumberModel'];
-    public const TYPES = ['RepaymentSpecification' => 'Jolicode\Vocabularies\SchemaOrg\Type\RepaymentSpecificationModel'];
+    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['RepaymentSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RepaymentSpecificationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

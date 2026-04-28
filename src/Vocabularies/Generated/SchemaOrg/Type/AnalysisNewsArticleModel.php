@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AnalysisNewsArticleModel
 {
     public const DESCRIPTION = 'An AnalysisNewsArticle is a [[NewsArticle]] that, while based on factual reporting, incorporates the expertise of the author/producer, offering interpretations and conclusions.';
     public const LABEL = 'AnalysisNewsArticle';
     public const NAME = 'schema:AnalysisNewsArticle';
-    public const PARENTS = ['NewsArticleModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\NewsArticleModel'];
+    public const PARENTS = ['NewsArticleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NewsArticleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1525'];

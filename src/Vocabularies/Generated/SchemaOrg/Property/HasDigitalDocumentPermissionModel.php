@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HasDigitalDocumentPermissionModel
 {
     public const DESCRIPTION = 'A permission related to the access to this document (e.g. permission to read or write an electronic document). For a public document, specify a grantee with an Audience with audienceType equal to "public".';
     public const LABEL = 'hasDigitalDocumentPermission';
     public const NAME = 'schema:hasDigitalDocumentPermission';
-    public const VALUES = ['DigitalDocumentPermissionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DigitalDocumentPermissionModel'];
-    public const TYPES = ['DigitalDocument' => 'Jolicode\Vocabularies\SchemaOrg\Type\DigitalDocumentModel'];
+    public const VALUES = ['DigitalDocumentPermissionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DigitalDocumentPermissionModel'];
+    public const TYPES = ['DigitalDocument' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DigitalDocumentModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

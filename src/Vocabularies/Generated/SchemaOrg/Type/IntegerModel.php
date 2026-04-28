@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
 final class IntegerModel
 {
     public const DESCRIPTION = 'Data type: Integer.';
     public const LABEL = 'Integer';
     public const NAME = 'schema:Integer';
-    public const PARENTS = ['NumberModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\NumberModel'];
+    public const PARENTS = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

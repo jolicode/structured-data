@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OrderValueModel
 {
     public const DESCRIPTION = 'Minimum and maximum order value for which these shipping conditions are valid.';
     public const LABEL = 'orderValue';
     public const NAME = 'schema:orderValue';
-    public const VALUES = ['MonetaryAmountModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MonetaryAmountModel'];
-    public const TYPES = ['ShippingConditions' => 'Jolicode\Vocabularies\SchemaOrg\Type\ShippingConditionsModel'];
+    public const VALUES = ['MonetaryAmountModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountModel'];
+    public const TYPES = ['ShippingConditions' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ShippingConditionsModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

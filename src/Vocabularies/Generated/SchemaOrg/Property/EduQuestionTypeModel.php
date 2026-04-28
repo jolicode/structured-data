@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EduQuestionTypeModel
 {
     public const DESCRIPTION = 'For questions that are part of learning resources (e.g. Quiz), eduQuestionType indicates the format of question being given. Example: "Multiple choice", "Open ended", "Flashcard".';
     public const LABEL = 'eduQuestionType';
     public const NAME = 'schema:eduQuestionType';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Question' => 'Jolicode\Vocabularies\SchemaOrg\Type\QuestionModel', 'SolveMathAction' => 'Jolicode\Vocabularies\SchemaOrg\Type\SolveMathActionModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Question' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuestionModel', 'SolveMathAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SolveMathActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

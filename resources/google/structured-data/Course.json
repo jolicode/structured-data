@@ -1,0 +1,47 @@
+{
+    "name": "Course",
+    "documentation": "https://developers.google.com/search/docs/appearance/structured-data/course",
+    "specialRules": [],
+    "supportedTypes": [
+        "Course"
+    ],
+    "properties": {
+        "name": {
+            "name": "name",
+            "severity": "required",
+            "supportedTypes": [
+                "Text"
+            ]
+        },
+        "description": {
+            "name": "description",
+            "severity": "recommended",
+            "supportedTypes": [
+                "Text"
+            ]
+        },
+        "provider": {
+            "name": "provider",
+            "severity": "required",
+            "supportedTypes": [
+                "Organization"
+            ],
+            "properties": {
+                "name": {
+                    "name": "name",
+                    "severity": "required",
+                    "supportedTypes": [
+                        "Text"
+                    ]
+                },
+                "sameAs": {
+                    "name": "sameAs",
+                    "severity": "recommended",
+                    "supportedTypes": [
+                        "URL"
+                    ]
+                }
+            }
+        }
+    }
+}

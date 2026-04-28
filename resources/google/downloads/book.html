@@ -1,0 +1,931 @@
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code translate="no" dir="ltr">@context</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>Set to <code translate="no" dir="ltr">https://schema.org</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">@type</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>Set to <code translate="no" dir="ltr">DataFeed</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">dataFeedElement</code></td>
+          <td>
+            <p><a href="https://schema.org/Book" class="external-link"><code translate="no" dir="ltr">Book</code></a> or
+              <a href="https://schema.org/LibrarySystem" class="external-link"><code translate="no" dir="ltr">LibrarySystem</code></a></p>
+            <p>Set to either a single
+              <a href="https://schema.org/Book" class="external-link"><code translate="no" dir="ltr">Book</code></a> entity or
+              <a href="https://schema.org/LibrarySystem" class="external-link"><code translate="no" dir="ltr">LibrarySystem</code></a>
+              entity. Otherwise, set to an array of either only <code translate="no" dir="ltr">Book</code> entities or
+              <code translate="no" dir="ltr">LibrarySystem</code> entities. Don't set this to an array that includes both
+              <code translate="no" dir="ltr">Book</code> entities and <code translate="no" dir="ltr">LibrarySystem</code> entities.</p>
+
+            <p>Example use in a <code translate="no" dir="ltr">Book</code> feed:</p>
+
+<div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Data feed element" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"DataFeed"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"dataFeedElement"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Book"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"@id"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/work/the_catcher_in_the_rye"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"url"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/work/the_catcher_in_the_rye"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"The Catcher in the Rye"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"author"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Person"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"J.D. Salinger"</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"sameAs"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://en.wikipedia.org/wiki/The_Catcher_in_the_Rye"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"workExample"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">          </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Book"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">          </span><span class="devsite-syntax-s">"@id"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/edition/the_catcher_in_the_rye_paperback"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">          </span><span class="devsite-syntax-s">"isbn"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"9787543321724"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">          </span><span class="devsite-syntax-s">"bookEdition"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Mass Market Paperback"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">          </span><span class="devsite-syntax-s">"bookFormat"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org/Paperback"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">          </span><span class="devsite-syntax-s">"inLanguage"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"en"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">          </span><span class="devsite-syntax-o">...</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-o">...</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">]</span>
+<span class="devsite-syntax-w">   </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">],</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"dateModified"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2018-09-10T13:58:26.892Z"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+
+            <p>Example use in a <code translate="no" dir="ltr">LibrarySystem</code> feed:</p>
+
+<div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Library system feed" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"DataFeed"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"dataFeedElement"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"LibrarySystem"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"@id"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/library-systems/100"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Santa Clara County Library District"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"additionalProperty"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">          </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"PropertyValue"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">          </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"librarytype"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">          </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"public"</span>
+<span class="devsite-syntax-w">        </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-p">],</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-o">...</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-o">...</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">],</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"dateModified"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2018-09-10T13:58:26.892Z"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+
+            <aside class="warning">
+              <p><b>Warning:</b> As described in
+                <a href="#create-your-feed">Create your feed</a>, if you have both a
+                <a href="#book-entity"><code translate="no" dir="ltr">Book</code></a> feed and a <a href="#library-entity"><code translate="no" dir="ltr">Library</code></a>
+                feed, they must be two separate feeds files. Therefore, for any given
+                <code translate="no" dir="ltr">DataFeed</code> entity, you can set its <code translate="no" dir="ltr">dataFeedElement</code> property
+                according to one and only one of the following conditions:</p>
+
+              <ul>
+                <li>Set <code translate="no" dir="ltr">dataFeedElement</code> to either a single <code translate="no" dir="ltr">Book</code> entity or
+                  an array of <code translate="no" dir="ltr">Book</code> entities.</li>
+                <li>Set <code translate="no" dir="ltr">dataFeedElement</code> to either a single <code translate="no" dir="ltr">LibrarySystem</code>
+                  entity or an array of <code translate="no" dir="ltr">LibrarySystem</code> entities.</li>
+              </ul>
+            </aside>
+          </td>
+        </tr><tr>
+          <td><code translate="no" dir="ltr">dateModified</code></td>
+          <td>
+            <p><a href="https://schema.org/DateTime" class="external-link"><code translate="no" dir="ltr">DateTime</code></a></p>
+            <p>The date and time of the last update of the feed in the
+              <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601</a> format.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code translate="no" dir="ltr">@context</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>Set to <code translate="no" dir="ltr">https://schema.org</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">@id</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>A globally unique ID for the book in URL format. It must be unique to your
+              organization. The ID must be stable and not change over time. URL format is suggested
+              though not required. It doesn't have to be a working link. The domain used for the
+              <code translate="no" dir="ltr">@id</code> value must be owned by your organization.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">@type</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>Set to <code translate="no" dir="ltr">Book</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">author</code></td>
+          <td>
+            <p><a href="https://schema.org/Person" class="external-link"><code translate="no" dir="ltr">Person</code></a> or
+              <a href="https://schema.org/Organization" class="external-link"><code translate="no" dir="ltr">Organization</code></a></p>
+            <p>The author(s) of the book.</p>
+            <aside><p><b>Note:</b> If the book doesn't have an author, but rather, one or more
+              <i>contributors</i>, include these other contributors as defined in
+              <a href="https://schema.org/Book" class="external-link">schema.org/Book</a>.
+              For example, a book might have no known or recorded author, but might instead have a
+              number of editors.</p>
+            <p>Conversely, if a book's author is an organization, define the author accordinly as
+              defined in
+              <a href="https://schema.org/Organization" class="external-link">schema.org/Organization</a>.
+              For example, the author for a book titled "Fundamentals of fire fighting skills" might
+              be the organization
+              <code translate="no" dir="ltr">National Fire Protection Association</code>.</p></aside>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">name</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>The title of the book.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">url</code></td>
+          <td>
+            <p><a href="https://schema.org/URL" class="external-link"><code translate="no" dir="ltr">URL</code></a></p>
+            <p>The URL on your website where the book is introduced or described. This link helps
+              accurately reconcile the content in your feed with the content in Google's
+              databases. It can be the same as <code translate="no" dir="ltr">workExample.target.urlTemplate</code>.</p>
+            <p>For the actual landing page, Google Search uses the URL provided in
+              <code translate="no" dir="ltr">workExample.target.urlTemplate</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">workExample</code></td>
+          <td>
+            <p><a href="https://schema.org/Book" class="external-link"><code translate="no" dir="ltr">Book</code></a> <code translate="no" dir="ltr">(Edition)</code></p>
+            <p>The edition(s) of the work.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code translate="no" dir="ltr">sameAs</code></td>
+          <td>
+            <p><a href="https://schema.org/URL" class="external-link"><code translate="no" dir="ltr">URL</code></a></p>
+            <p>The URL of a reference page that identifies the work. For example, a Wikipedia,
+              Wikidata, VIAF, or Library of Congress page for the book.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code translate="no" dir="ltr">@id</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>A globally unique ID for the book in URL format. It must be unique to your
+              organization. The ID must be stable and not change over time. URL format is suggested
+              though not required. It doesn't have to be a working link. The domain used for the
+              <code translate="no" dir="ltr">@id</code> value must be owned by your organization.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">@type</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>Set to <code translate="no" dir="ltr">Book</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">bookFormat</code></td>
+          <td>
+            <p><a href="https://schema.org/Enumeration" class="external-link"><code translate="no" dir="ltr">Enum</code></a></p>
+            <p>The format of the edition. The value of this must be one of the
+              following:</p>
+            <ul>
+              <li><code translate="no" dir="ltr">https://schema.org/AudiobookFormat</code></li>
+              <li><code translate="no" dir="ltr">https://schema.org/EBook</code></li>
+              <li><code translate="no" dir="ltr">https://schema.org/Hardcover</code></li>
+              <li><code translate="no" dir="ltr">https://schema.org/Paperback</code></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">inLanguage</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>The main language of the content in the edition. Use one of the two-letter codes
+              from the <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" class="external-link">list
+              of ISO 639-1 alpha-2 codes</a>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">isbn</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>The ISBN-13 of the edition. If you have ISBN-10, convert it into ISBN-13.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">potentialAction</code></td>
+          <td>
+            <p><a href="https://schema.org/ReadAction" class="external-link"><code translate="no" dir="ltr">ReadAction</code></a> or <a href="https://schema.org/BorrowAction" class="external-link"><code translate="no" dir="ltr">BorrowAction</code></a></p>
+            <p>The action to be triggered for users to purchase or download the book. For more
+              details, refer to <a href="#readaction-potentialaction"><code translate="no" dir="ltr">ReadAction</code></a> or
+              <a href="#borrowaction-potentialaction"><code translate="no" dir="ltr">BorrowAction</code></a>.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code translate="no" dir="ltr">author</code></td>
+          <td>
+            <p><a href="https://schema.org/Person" class="external-link"><code translate="no" dir="ltr">Person</code></a> or
+              <a href="https://schema.org/Organization" class="external-link"><code translate="no" dir="ltr">Organization</code></a></p>
+            <p>The author(s) of the edition.</p>
+            <aside><p><b>Note:</b> Only use this when the author of the edition is different from
+              the work author information.</p>
+              <p>If the edition doesn't have an author, but rather, one or more
+              <i>contributors</i>, include these other contributors as defined in
+              <a href="https://schema.org/Book" class="external-link">schema.org/Book</a>.
+              For example, an edition might have no known or recorded author, but might instead have
+                a number of editors.</p>
+            <p>Conversely, if an edition's author is an organization, define the author as defined
+              in
+              <a href="https://schema.org/Organization" class="external-link">schema.org/Organization</a>.
+              For example,
+              <i>Publication manual of the American Psychological Association, 6th edition</i>'s
+              author might be the organization
+              <code translate="no" dir="ltr">American Psychological Association</code>.</p></aside>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">bookEdition</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>The edition information of the book. For example, <code translate="no" dir="ltr">2nd Edition</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">datePublished</code></td>
+          <td>
+            <p><a href="https://schema.org/Date" class="external-link"><code translate="no" dir="ltr">Date</code></a></p>
+            <p>The date of publication of the edition in <var translate="no">YYYY-MM-DD</var> or <var translate="no">YYYY</var>
+              format. This can be either a specific date or only a specific year.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">identifier</code></td>
+          <td>
+            <p><a href="https://schema.org/PropertyValue" class="external-link"><code translate="no" dir="ltr">PropertyValue</code></a></p>
+            <p>The external or other ID that unambiguously identifies this edition. Multiple
+              identifiers are allowed. For more details, refer to
+              <a href="#propertyvalue-identifier"><code translate="no" dir="ltr">PropertyValue</code> (<code translate="no" dir="ltr">identifier</code>)</a>.</p>
+            <p>This property can be repeated.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">name</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>The title of the edition. Only use this when the title of the edition is different
+              from the title of the work.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">sameAs</code></td>
+          <td>
+            <p><a href="https://schema.org/URL" class="external-link"><code translate="no" dir="ltr">URL</code></a></p>
+            <p>The URL of a reference web page that unambiguously indicates the edition. For
+              example, a Wikipedia page for this specific edition. Don't reuse the
+              <code translate="no" dir="ltr">sameAs</code> of the <code translate="no" dir="ltr">Work</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">url</code></td>
+          <td>
+            <p><a href="https://schema.org/URL" class="external-link"><code translate="no" dir="ltr">URL</code></a></p>
+            <p>The URL on your website where the edition is introduced or described. It can be the
+              same as <code translate="no" dir="ltr">workExample.target.urlTemplate</code>.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code translate="no" dir="ltr">@type</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>Set to <code translate="no" dir="ltr">Person</code> or <code translate="no" dir="ltr">Organization</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">name</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>The name of the person or organization.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code translate="no" dir="ltr">sameAs</code></td>
+          <td>
+            <p><a href="https://schema.org/URL" class="external-link"><code translate="no" dir="ltr">URL</code></a></p>
+            <p>The URL of a reference web page that unambiguously indicates the person or
+              organization's identity. For example, a Wikipedia page for the person or organization.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code translate="no" dir="ltr">@type</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>Set to <code translate="no" dir="ltr">PropertyValue</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">propertyID</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>The type of ID. As described in
+              <a href="#isbn-and-other-supported-identifiers">ISBN and other supported
+                identifiers</a>, it must be either of the following:</p>
+            <ul>
+              <li><code translate="no" dir="ltr">OCLC_NUMBER</code></li>
+              <li><code translate="no" dir="ltr">LCCN</code></li>
+              <li><code translate="no" dir="ltr">JP_E-CODE</code></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">value</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>The ID value. The external ID that unambiguously identifies this edition. Remove all
+              non-numeric prefixes of the external ID.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code translate="no" dir="ltr">@type</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>Set to <code translate="no" dir="ltr">ReadAction</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">expectsAcceptanceOf</code></td>
+          <td>
+            <p><a href="https://schema.org/Offer" class="external-link"><code translate="no" dir="ltr">Offer</code></a></p>
+            <p>The definition of user requirements to access this entity. If multiple
+              <code translate="no" dir="ltr">Offer</code> properties are present, a user matching <i>any</i> of the
+              <code translate="no" dir="ltr">Offer</code> criteria might be able to access the content.</p>
+            <p>This property can be repeated.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">expectsAcceptanceOf.@type</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>Set to <code translate="no" dir="ltr">Offer</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">expectsAcceptanceOf.category</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>The type of <code translate="no" dir="ltr">Offer</code>. This must be one of the following values:</p>
+            <ul>
+              <li><code translate="no" dir="ltr">nologinrequired</code>: The action is available to the user with no purchase
+                or login to access content.</li>
+              <li><code translate="no" dir="ltr">free</code>: The action is available with no purchase or paid subscription
+                required of the user. The action does, however, require a user to log in.</li>
+              <li><code translate="no" dir="ltr">subscription</code>: The book is included with a paid subscription to your
+                service.</li>
+              <li><code translate="no" dir="ltr">purchase</code>: The book is accessible through a purchase.</li>
+              <li><code translate="no" dir="ltr">rental</code>: The book is accessible for a finite amount of time after the
+                purchase.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">expectsAcceptanceOf.eligibleRegion</code></td>
+          <td>
+            <p><a href="https://schema.org/Country" class="external-link"><code translate="no" dir="ltr">Country</code></a></p>
+            <p>The country that's eligible for this <code translate="no" dir="ltr">Offer</code>. This can be used to control
+              the country and region where this content is or isn't available.</p>
+            <p>This property can be repeated.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">expectsAcceptanceOf.eligibleRegion.@type</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>Set to <code translate="no" dir="ltr">Country</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">expectsAcceptanceOf.eligibleRegion.name</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>The <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2" class="external-link">ISO 3166-1 alpha-2</a> country code.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">target</code></td>
+          <td>
+            <p><a href="https://schema.org/EntryPoint" class="external-link"><code translate="no" dir="ltr">EntryPoint</code></a></p>
+            <p>The specifications of your deep link, which includes the supported platform
+              information. There can be multiple <code translate="no" dir="ltr">EntryPoint</code> properties to define
+              different deep links for different platform sets.</p>
+            <p>This property can be repeated.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">target.@type</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>Set to <code translate="no" dir="ltr">EntryPoint</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">target.actionPlatform</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>The platform(s) that this deep link is valid for. Use one of the following
+              values:</p>
+            <ul>
+              <li><code translate="no" dir="ltr">https://schema.org/DesktopWebPlatform</code></li>
+              <li><code translate="no" dir="ltr">https://schema.org/AndroidPlatform</code></li>
+              <li><code translate="no" dir="ltr">https://schema.org/IOSPlatform</code></li>
+            </ul>
+            <p>This property can be repeated.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">target.urlTemplate</code></td>
+          <td>
+            <p><a href="https://schema.org/URL" class="external-link"><code translate="no" dir="ltr">URL</code></a></p>
+            <p>The link that takes users directly to the content of your book's landing page.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code translate="no" dir="ltr">expectsAcceptanceOf.availabilityEnds</code></td>
+          <td>
+            <p><a href="https://schema.org/DateTime" class="external-link"><code translate="no" dir="ltr">DateTime</code></a></p>
+            <p>The end time of the availability window. This can be used to control the exact time
+              when this book must no longer be exposed to users.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">expectsAcceptanceOf.availabilityStarts</code></td>
+          <td>
+            <p><a href="https://schema.org/DateTime" class="external-link"><code translate="no" dir="ltr">DateTime</code></a></p>
+            <p>The start time of the availability window. This can be used to control the exact
+              time when this book can be exposed to users.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">expectsAcceptanceOf.price</code></td>
+          <td>
+            <p><a href="https://schema.org/Number" class="external-link"><code translate="no" dir="ltr">Number</code></a></p>
+            <p>The purchase price of the book. This is required when the <code translate="no" dir="ltr">Offer</code>
+              property's <code translate="no" dir="ltr">category</code> is set to <code translate="no" dir="ltr">purchase</code> or
+              <code translate="no" dir="ltr">rental</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">expectsAcceptanceOf.priceCurrency</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>The currency of the price in three-letter
+              <a href="https://en.wikipedia.org/wiki/ISO_4217" class="external-link">ISO
+                4217</a> format.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code translate="no" dir="ltr">@type</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>Set to <code translate="no" dir="ltr">BorrowAction</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">lender</code></td>
+          <td>
+            <p><a href="https://schema.org/LibrarySystem" class="external-link"><code translate="no" dir="ltr">LibrarySystem</code></a></p>
+            <p>The library system that provides access to this edition.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">lender.@id</code></td>
+          <td>
+            <p><a href="https://schema.org/URL" class="external-link"><code translate="no" dir="ltr">URL</code></a></p>
+            <p>The ID references of the <code translate="no" dir="ltr">LibrarySystem</code>, which must be fully described
+              separately in the library feed.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">lender.@type</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>Set to <code translate="no" dir="ltr">LibrarySystem</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">target</code></td>
+          <td>
+            <p><a href="https://schema.org/EntryPoint" class="external-link"><code translate="no" dir="ltr">EntryPoint</code></a></p>
+            <p>The specifications of your deep link, which includes the supported platform
+              information. To define deep links for different platform sets, specify an
+              <code translate="no" dir="ltr">EntryPoint</code> array.</p>
+            <p>This property can be repeated.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">target.@type</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>Set to <code translate="no" dir="ltr">EntryPoint</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">target.actionPlatform</code></td>
+          <td>
+            <p><a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a></p>
+            <p>The platform(s) that this deep link is valid for. Use one of the following
+              values:</p>
+            <ul>
+              <li><code translate="no" dir="ltr">https://schema.org/DesktopWebPlatform</code></li>
+              <li><code translate="no" dir="ltr">https://schema.org/AndroidPlatform</code></li>
+              <li><code translate="no" dir="ltr">https://schema.org/IOSPlatform</code></li>
+            </ul>
+            <p>This property can be repeated.</p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">target.urlTemplate</code></td>
+          <td>
+            <p><a href="https://schema.org/URL" class="external-link"><code translate="no" dir="ltr">URL</code></a></p>
+            <p>The link that takes users directly to the content of your book's landing page.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">@context</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+
+          <p>Set to <code translate="no" dir="ltr">https://schema.org</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">@id</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code>
+
+          <p>A globally unique ID for the library system in URL
+            format. The ID must be stable and not change over time. It's treated
+            as an opaque string and doesn't need to be a working link. The
+            domain used for the <code translate="no" dir="ltr">@id</code> value must be owned by your
+            organization.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">@type</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+
+          <p>Set to <code translate="no" dir="ltr">LibrarySystem</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">additionalProperty</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/PropertyValue" class="external-link">PropertyValue</a></code>
+
+        <p>The additional property used to indicate the type of
+          the library.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">additionalProperty.@type</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+
+          <p>Set to <code translate="no" dir="ltr">PropertyValue</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">additionalProperty.name</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+
+          <p>Set to <code translate="no" dir="ltr">librarytype</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">additionalProperty.value</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+
+        <p>The type of the library. Use one of the following
+          values:</p>
+        <ul>
+          <li><code translate="no" dir="ltr">public</code></li>
+          <li><code translate="no" dir="ltr">academic</code></li>
+          <li><code translate="no" dir="ltr">corporate</code></li>
+          <li><code translate="no" dir="ltr">government</code></li>
+          <li><code translate="no" dir="ltr">school</code></li>
+          <li><code translate="no" dir="ltr">special</code></li>
+        </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">member</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Library" class="external-link">Library</a></code>
+
+        <p>The member(s) of the library system.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">name</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+
+          <p>The name of the library system. For example,
+            <code translate="no" dir="ltr">The Southwestern League of Libraries</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">url</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code>
+
+          <p>The URL where the library system is introduced or
+            described. Google Search uses this link to reconcile the content in
+            your feed with the content in Google's databases. For the actual
+            landing page, Google Search uses the URL provided in
+            <code translate="no" dir="ltr">workExample.target.urlTemplate</code>.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">@id</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code>
+
+          <p>A globally unique ID for the library branch in URL
+            format. The ID must be stable and not change over time. It's treated
+            as an opaque string and doesn't need to be a working link. The
+            domain used for the <code translate="no" dir="ltr">@id</code> value must be owned by your
+            organization.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">@type</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+
+          <p>Set to <code translate="no" dir="ltr">Library</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">location</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/PostalAddress" class="external-link">PostalAddress</a></code>
+
+        <p>The street address of the library branch. Not all
+          properties apply to every country. You must include as many as apply
+          to the addresses of your libraries.</p>
+
+        <p>Example United States <code translate="no" dir="ltr">location</code>:</p>
+<div></div><devsite-code><pre class="devsite-click-to-copy" data-label="United States location" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Library"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@id"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/library-branches/1001"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Campbell Library"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"location"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"PostalAddress"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"streetAddress"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"77 Harrison Ave"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressLocality"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Campbell"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressRegion"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"CA"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"postalCode"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"95008"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressCountry"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"US"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+
+        <p>Example Japan <code translate="no" dir="ltr">location</code>:</p>
+<div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Japan location" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Library"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@id"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/library-branches/1003"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Tokyo Metropolitan Central Library"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"location"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"PostalAddress"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"streetAddress"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"７-13-5 Minamiazabu, Minato City"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressLocality"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Tokyo"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"postalCode"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"106-0047"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressCountry"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"JP"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">location.@type</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+
+          <p>Set to <code translate="no" dir="ltr">PostalAddress</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">location.addressCountry</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+
+          <p>The country code in
+            <a href="https://en.wikipedia.org/wiki/ISO_3166-1" class="external-link">ISO 3166-1</a>
+            format. For example, <code translate="no" dir="ltr">US</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">location.addressLocality</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+
+          <p>The locality. For example,
+            <code translate="no" dir="ltr">Mountain View</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">location.addressRegion</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+
+          <p>The region. For example, <code translate="no" dir="ltr">CA</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">location.postalCode</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+
+          <p>The postal code. For example,
+            <code translate="no" dir="ltr">94043</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">location.streetAddress</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+
+          <p>The street address. For example,
+            <code translate="no" dir="ltr">1600 Amphitheatre Pkwy</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <code translate="no" dir="ltr">name</code>
+        </td>
+        <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+
+        <p>The name of the library branch.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>

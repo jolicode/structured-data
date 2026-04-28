@@ -5,10 +5,10 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Jolicode\\Vocabularies\\SchemaOrg\\EnumerationMember\\": "src/Vocabularies/Generated/SchemaOrg/EnumerationMember/",
-            "Jolicode\\Vocabularies\\Google\\": "src/Vocabularies/Generated/Google/",
-            "Jolicode\\Vocabularies\\SchemaOrg\\Property\\": "src/Vocabularies/Generated/SchemaOrg/Property/",
-            "Jolicode\\Vocabularies\\SchemaOrg\\Type\\": "src/Vocabularies/Generated/SchemaOrg/Type/",
+            "Jolicode\\Vocabularies\\Generated\\SchemaOrg\\EnumerationMember\\": "src/Vocabularies/Generated/SchemaOrg/EnumerationMember/",
+            "Jolicode\\Vocabularies\\Generated\\Google\\": "src/Vocabularies/Generated/Google/",
+            "Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Property\\": "src/Vocabularies/Generated/SchemaOrg/Property/",
+            "Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Type\\": "src/Vocabularies/Generated/SchemaOrg/Type/",
             "Jolicode\\": "src/"
         }
     },
@@ -34,7 +34,7 @@
         "symfony/var-dumper": "^6.3|^7.0"
     },
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.4",
         "league/uri": "^6.8|^7.4",
         "salsify/json-streaming-parser": "^8.3",
         "symfony/finder": "^7.2",

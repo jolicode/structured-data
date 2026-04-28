@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EventAttendanceModeEnumerationModel
 {
     public const DESCRIPTION = 'An EventAttendanceModeEnumeration value is one of potentially several modes of organising an event, relating to whether it is online or offline.';
     public const LABEL = 'EventAttendanceModeEnumeration';
     public const NAME = 'schema:EventAttendanceModeEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['MixedEventAttendanceModeModel' => 'EnumerationMember\MixedEventAttendanceModeModel', 'OfflineEventAttendanceModeModel' => 'EnumerationMember\OfflineEventAttendanceModeModel', 'OnlineEventAttendanceModeModel' => 'EnumerationMember\OnlineEventAttendanceModeModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1842'];

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LegislationObjectModel
 {
     public const DESCRIPTION = 'A specific object or file containing a Legislation. Note that the same Legislation can be published in multiple files. For example, a digitally signed PDF, a plain PDF and an HTML version.';
     public const LABEL = 'LegislationObject';
     public const NAME = 'schema:LegislationObject';
-    public const PARENTS = ['LegislationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\LegislationModel', 'MediaObjectModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MediaObjectModel'];
+    public const PARENTS = ['LegislationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LegislationModel', 'MediaObjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaObjectModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1156', 'https://op.europa.eu/en/web/eu-vocabularies/model/-/resource/dataset/eli'];

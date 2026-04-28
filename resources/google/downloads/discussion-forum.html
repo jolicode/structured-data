@@ -1,0 +1,385 @@
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><h3 id="author" data-text="author" tabindex="-1"><code translate="no" dir="ltr">author</code></h3></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code> or
+        <code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code>
+        <p>Information about the author of the post. To help Google best understand authors across various features,
+          we recommend following the <a href="/search/docs/appearance/structured-data/article#author-bp">author markup best practices</a>.</p>
+        <p>Include as many properties that make sense for the author, using the supported properties
+          from <a href="/search/docs/appearance/structured-data/article#article-types">article</a>
+          and <a href="/search/docs/appearance/structured-data/profile-page">profile page</a>
+          structured data as a guide.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><h3 id="author.name" data-text="author.name" tabindex="-1"><code translate="no" dir="ltr">author.name</code></h3></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+        <p>The name of the author of the post.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><h3 id="datepublished" data-text="datePublished" tabindex="-1"><code translate="no" dir="ltr">datePublished</code></h3></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+        <p>The date and time the post was made in <a href="https://wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>.</p></td>
+    </tr>
+    <tr>
+      <td>Either <code translate="no" dir="ltr">text</code> or <code translate="no" dir="ltr">image</code> or <code translate="no" dir="ltr">video</code></td>
+      <td><p>To represent the content of the post, you must include one of the following properties:</p>
+        <ul>
+          <li><a href="#text-sd"><code translate="no" dir="ltr">text</code></a></li>
+          <li><a href="#image-sd"><code translate="no" dir="ltr">image</code></a></li>
+          <li><a href="#video-sd"><code translate="no" dir="ltr">video</code></a></li>
+        </ul>
+        <p>This is not required if you are representing a post on another page (with an external
+          <code translate="no" dir="ltr">url</code>) as in later pages of forums or forum category pages.
+        </p>
+        </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><h3 id="author.url" data-text="author.url" tabindex="-1"><code translate="no" dir="ltr">author.url</code></h3></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>A link to a web page that uniquely identifies the author of the post, most likely a profile
+          page of the forum.  We recommend marking up that page using
+          <a href="/search/docs/appearance/structured-data/profile-page">profile page structured data</a>.</p>
+        </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">comment</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Comment" class="external-link">Comment</a></code></p>
+          <p>A comment about or response to the post, if applicable. Mark up comments in the order
+            in which they appear on the page.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">commentCount</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code></p>
+          <p>The number of comments about this post, if applicable. This is particularly useful
+            if they are not all present in the comment markup.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">creativeWorkStatus</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+          <p>When the post has been deleted but remains for context or threading, set this property to
+            <code translate="no" dir="ltr">Deleted</code>, if applicable.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">dateModified</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+          <p>The date and time the post was edited in <a href="https://wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>,
+            if applicable. If no changes have happened, it's not necessary to duplicate the publish
+            date.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">digitalSourceType</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/IPTCDigitalSourceEnumeration" class="external-link">IPTCDigitalSourceEnumeration</a></code></p>
+        <p>The <code translate="no" dir="ltr">digitalSourceType</code> property indicates the type of digital source
+          associated with the content, if applicable. This property is particularly relevant for distinguishing
+          between human and AI or other machine-generated content.  Google supports the following values:</p>
+          <ul>
+            <li><code translate="no" dir="ltr">TrainedAlgorithmicMediaDigitalSource</code>: Indicates content created by a
+              trained model, such as an LLM.</li>
+            <li><code translate="no" dir="ltr">AlgorithmicMediaDigitalSource</code>: Indicates content created by a simpler
+              algorithmic process, such as an automatic reply bot.</li>
+          </ul>
+          <p>If this property is not specified, Google will assume the content is human-generated.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><h3 id="headline" data-text="headline" tabindex="-1"><code translate="no" dir="ltr">headline</code></h3></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+        <p>The title of the post. If there isn't a separate title, don't duplicate or truncate the
+          text into a headline.  This is not recommended for a <code translate="no" dir="ltr">SocialMediaPosting</code>.</p></td>
+    </tr>
+    <tr>
+      <td id="image-sd"><code translate="no" dir="ltr">image</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/ImageObject" class="external-link">ImageObject</a></code>
+        or <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>Any inline images within the post, if applicable. If there aren't any images, don't
+          include default, icon, placeholder, or author images in this field.  If your image is a
+          link preview, include it in the <code translate="no" dir="ltr">image</code> field of an attached <code translate="no" dir="ltr">WebPage</code> in
+          <code translate="no" dir="ltr">sharedContent</code>.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">interactionStatistic</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/InteractionCounter" class="external-link">InteractionCounter</a></code></p>
+        <p>User statistics applied to the main post, if applicable.</p>
+        <p>Google supports the following <code translate="no" dir="ltr">interactionTypes</code>:</p>
+        <ul>
+          <li><a href="https://schema.org/LikeAction" class="external-link">https://schema.org/LikeAction</a>:
+            The number of likes or upvotes.</li>
+          <li><a href="https://schema.org/DislikeAction" class="external-link">https://schema.org/DislikeAction</a>:
+            The number of dislikes or downvotes.</li>
+          <li><a href="https://schema.org/ViewAction" class="external-link">https://schema.org/ViewAction</a>:
+            The number of views.</li>
+          <li><a href="https://schema.org/CommentAction" class="external-link">https://schema.org/CommentAction</a>
+            or <a href="https://schema.org/ReplyAction" class="external-link">https://schema.org/ReplyAction</a>:
+            The number of comments.</li>
+          <li><a href="https://schema.org/ShareAction" class="external-link">https://schema.org/ShareAction</a>:
+            The number of reshares.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">isPartOf</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/CreativeWork" class="external-link">CreativeWork</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+          <p>The primary source of the post if the post occurs on a particular part of the overall
+            website, if applicable.
+            For example, a subforum or group within the broader website. If a <code translate="no" dir="ltr">CreativeWork</code>
+            (like <code translate="no" dir="ltr">WebPage</code>) is used, use the <a href="https://schema.org/CreativeWork" class="external-link">URL</a>
+            property to specify its URL.</p></td>
+    </tr>
+    <tr>
+      <td><h3 id="sharedcontent" data-text="sharedContent" tabindex="-1"><code translate="no" dir="ltr">sharedContent</code></h3></td>
+      <td>Subtype of <code translate="no" dir="ltr"><a href="https://schema.org/CreativeWork" class="external-link">CreativeWork</a></code>
+        <p>The primary shared content in the post, if applicable. We accept four types here:</p>
+          <ol>
+            <li><code translate="no" dir="ltr">WebPage</code>: The most common way this can be used is to share
+           (with URLs) as a topical discussion.
+        <p>Here's an example of how to add that there's a link shared in the post:</p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="JSON-LD example how to include a shared link from a post" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-w">  </span><span class="devsite-syntax-o">...</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"sharedContent"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"WebPage"</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"url"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/external-url"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-o">...</span></pre></devsite-code>
+            </li>
+            <li><code translate="no" dir="ltr">ImageObject</code>: If the primary content of the post is an image, you can
+              use this type to mark it up.</li>
+            <li><code translate="no" dir="ltr">VideoObject</code>: If the primary content of the post is a video, you can use
+              this type to mark it up.</li>
+            <li><code translate="no" dir="ltr">DiscussionForumPosting</code> or <code translate="no" dir="ltr">Comment</code>: If there is a
+              referenced post or comment (quoted or reposted), include a reference to that here.
+              <p>Here's an example to mark up a referenced <code translate="no" dir="ltr">Comment</code>:</p>
+              <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="JSON-LD example how to include a referenced comment" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-w">  </span><span class="devsite-syntax-o">...</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"sharedContent"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Comment"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"url"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/post123#comment456"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"datePublished"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2025-03-24"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"author"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Person"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Jane Doe"</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"text"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"This is a referenced comment displayed inside the post"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-o">...</span></pre></devsite-code>
+            </li>
+          </ol>
+      </td>
+    </tr>
+    <tr>
+      <td id="text-sd"><code translate="no" dir="ltr">text</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">Text</a></code></p>
+          <p>Any text in the post, if applicable. This is very common, but in some cases can be
+            left out if there is other media in the post.</p></td>
+    </tr>
+    <tr>
+      <td><h3 id="url" data-text="url" tabindex="-1"><code translate="no" dir="ltr">url</code></h3></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code>
+        <p>The canonical URL of the discussion. In multi-page threads, set this property to th
+          first page URL. For a single discussion, this is usually the current URL.</p></td>
+    </tr>
+    <tr>
+      <td id="video-sd"><code translate="no" dir="ltr">video</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/VideoObject" class="external-link">VideoObject</a></code></p>
+      <p>Any inline videos within the post, if applicable.</p></td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><h3 id="author_1" data-text="author" tabindex="-1"><code translate="no" dir="ltr">author</code></h3></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code> or
+        <code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code>
+        <p>Information about the author of the comment. To help Google best understand authors across various features,
+          we recommend following the <a href="/search/docs/appearance/structured-data/article#author-bp">author markup best practices</a>.</p>
+        <p>Include as many properties that make sense for the author, using the supported properties
+          from <a href="/search/docs/appearance/structured-data/article#article-types">article</a>
+          and <a href="/search/docs/appearance/structured-data/profile-page">profile page</a>
+          structured data as a guide.</p></td>
+    </tr>
+    <tr>
+      <td><h3 id="datepublished_1" data-text="datePublished" tabindex="-1"><code translate="no" dir="ltr">datePublished</code></h3></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+        <p>The date and time the comment was made in <a href="https://wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>.
+          If no changes have happened, it's not necessary to duplicate the publish date.</p></td>
+    </tr>
+    <tr id="comment-content">
+      <td>Either <code translate="no" dir="ltr">text</code> or <code translate="no" dir="ltr">image</code> or <code translate="no" dir="ltr">video</code></td>
+      <td><p>To represent the content of the comment, you must include one of the following properties:</p>
+        <ul>
+          <li><a href="#text-sd"><code translate="no" dir="ltr">text</code></a></li>
+          <li><a href="#image-sd"><code translate="no" dir="ltr">image</code></a></li>
+          <li><a href="#video-sd"><code translate="no" dir="ltr">video</code></a></li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><h3 id="author.url_1" data-text="author.url" tabindex="-1"><code translate="no" dir="ltr">author.url</code></h3></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>A link to a web page that uniquely identifies the author of the comment, most likely a profile
+          page of the forum.  We recommend marking up that page using
+          <a href="/search/docs/appearance/structured-data/profile-page">profile page structured data</a>.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">comment</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Comment" class="external-link">Comment</a></code></p>
+          <p>Another comment about or in response to the comment, if applicable. Mark up the comments
+            in the order in which they appear on the page.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">commentCount</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code></p>
+          <p>The number of comments about this comment, if applicable. This is particularly useful
+            if they are not all present in the comment markup.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">creativeWorkStatus</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+          <p>If the comment has been deleted but remains for context or threading, set this property
+            to <code translate="no" dir="ltr">Deleted</code>, if applicable.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">dateModified</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+          <p>The date and time the comment was last edited in
+            <a href="https://wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>,
+             if applicable.</p></td>
+    </tr>
+        <tr>
+      <td><code translate="no" dir="ltr">digitalSourceType</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/IPTCDigitalSourceEnumeration" class="external-link">IPTCDigitalSourceEnumeration</a></code></p>
+        <p>The <code translate="no" dir="ltr">digitalSourceType</code> property indicates the type of digital source
+          associated with the content, if applicable. This property is particularly relevant for distinguishing
+          between human and AI or other machine-generated content.  Google supports the following values:</p>
+          <ul>
+            <li><code translate="no" dir="ltr">TrainedAlgorithmicMediaDigitalSource</code>: Indicates content created by a
+              trained model, such as an LLM.</li>
+            <li><code translate="no" dir="ltr">AlgorithmicMediaDigitalSource</code>: Indicates content created by a simpler
+              algorithmic process, such as an automatic reply bot.</li>
+          </ul>
+          <p>If this property is not specified, Google will assume the content is human-generated.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">image</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/ImageObject" class="external-link">ImageObject</a></code>
+        or <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>Any inline images within the comment, if applicable. If there aren't any images, don't
+          include default, icon, placeholder, or author images in this field.  If your image is a
+          link preview, include it in the <code translate="no" dir="ltr">image</code> field of an attached <code translate="no" dir="ltr">WebPage</code> in
+          <code translate="no" dir="ltr">sharedContent</code>.</p></td>
+    </tr>
+    <tr id="comment-interactionStatistic">
+      <td><code translate="no" dir="ltr">interactionStatistic</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/InteractionCounter" class="external-link">InteractionCounter</a></code></p>
+        <p>User statistics applied to the comment, if applicable.</p>
+        <p>Google supports the following <code translate="no" dir="ltr">interactionTypes</code>:</p>
+        <ul>
+          <li><a href="https://schema.org/LikeAction" class="external-link">https://schema.org/LikeAction</a>:
+            The number of likes or upvotes.</li>
+          <li><a href="https://schema.org/DislikeAction" class="external-link">https://schema.org/DislikeAction</a>:
+            The number of dislikes or downvotes.</li>
+          <li><a href="https://schema.org/ViewAction" class="external-link">https://schema.org/ViewAction</a>:
+            The number of views.</li>
+          <li><a href="https://schema.org/CommentAction" class="external-link">https://schema.org/CommentAction</a>
+            or <a href="https://schema.org/ReplyAction" class="external-link">https://schema.org/ReplyAction</a>:
+            The number of comments.</li>
+          <li><a href="https://schema.org/ShareAction" class="external-link">https://schema.org/ShareAction</a>:
+            The number of reshares.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><h3 id="sharedcontent_1" data-text="sharedContent" tabindex="-1"><code translate="no" dir="ltr">sharedContent</code></h3></td>
+     <td>Subtype of <code translate="no" dir="ltr"><a href="https://schema.org/CreativeWork" class="external-link">CreativeWork</a></code>
+        <p>The primary shared content in the post, if applicable. We recognize four types here:</p>
+          <ol>
+            <li><code translate="no" dir="ltr">WebPage</code>: The most common way this can be used is to share
+           (with URLs) as a topical discussion.
+        <p>Here's an example of how to add that there's a link shared in the post:</p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="JSON-LD example how to include a shared link from a post" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-w">  </span><span class="devsite-syntax-o">...</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"sharedContent"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"WebPage"</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"url"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/external-url"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-o">...</span></pre></devsite-code>
+            </li>
+            <li><code translate="no" dir="ltr">ImageObject</code>: If the primary content of the post is an image, you can
+              use this type to mark it up.</li>
+            <li><code translate="no" dir="ltr">VideoObject</code>: If the primary content of the post is a video, you can use
+              this type to mark it up.</li>
+            <li><code translate="no" dir="ltr">DiscussionForumPosting</code> or <code translate="no" dir="ltr">Comment</code>: If there is a
+              referenced post or comment (quoted or reposted), include a reference to that here.
+              <p>Here's an example to mark up a referenced <code translate="no" dir="ltr">Comment</code>:</p>
+              <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="JSON-LD example how to include a referenced comment" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-w">  </span><span class="devsite-syntax-o">...</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"sharedContent"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Comment"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"url"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/post123#comment456"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"datePublished"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2025-03-24"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"author"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Person"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Jane Doe"</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"text"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"This is a referenced comment displayed inside the post"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-o">...</span></pre></devsite-code>
+            </li>
+          </ol>
+      </td>
+    </tr>
+    <tr>
+      <td><h3 id="url_1" data-text="url" tabindex="-1"><code translate="no" dir="ltr">url</code></h3></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code>
+        <p>The URL to this specific comment on the page, if applicable. Don't include this property if it's just
+          the URL of the original post.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">video</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/VideoObject" class="external-link">VideoObject</a></code></p>
+      <p>Any inline videos within the comment, if applicable.</p></td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><h3 id="userinteractioncount" data-text="userInteractionCount" tabindex="-1"><code translate="no" dir="ltr">userInteractionCount</code></h3></td>
+        <td><code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code>
+          <p>The number of times this interaction was performed.</p></td>
+      </tr>
+      <tr>
+        <td><h3 id="interactiontype" data-text="interactionType" tabindex="-1"><code translate="no" dir="ltr">interactionType</code></h3></td>
+        <td><p>Subtype of <a href="https://schema.org/Action" class="external-link"><code translate="no" dir="ltr">Action</code></a></p>
+          <p>For a list of valid <code translate="no" dir="ltr">Action</code> subtypes for this property, check the property that's using <code translate="no" dir="ltr">InteractionCounter</code>
+            (for example, <a href="#comment-interactionStatistic"><code translate="no" dir="ltr">interactionStatistic</code></a>).</p>
+          </td>
+      </tr>
+    </tbody>
+</table>

@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MeetingRoomModel
 {
@@ -20,7 +20,7 @@ final class MeetingRoomModel
 See also the <a href="/docs/hotels.html">dedicated document on the use of schema.org for marking up hotels and other forms of accommodations</a>.';
     public const LABEL = 'MeetingRoom';
     public const NAME = 'schema:MeetingRoom';
-    public const PARENTS = ['RoomModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\RoomModel'];
+    public const PARENTS = ['RoomModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RoomModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

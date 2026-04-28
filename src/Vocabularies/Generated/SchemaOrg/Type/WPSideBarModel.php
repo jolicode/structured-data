@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class WPSideBarModel
 {
     public const DESCRIPTION = 'A sidebar section of the page.';
     public const LABEL = 'WPSideBar';
     public const NAME = 'schema:WPSideBar';
-    public const PARENTS = ['WebPageElementModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\WebPageElementModel'];
+    public const PARENTS = ['WebPageElementModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebPageElementModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

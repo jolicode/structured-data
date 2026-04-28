@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ProvidesServiceModel
 {
     public const DESCRIPTION = 'The service provided by this channel.';
     public const LABEL = 'providesService';
     public const NAME = 'schema:providesService';
-    public const VALUES = ['ServiceModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ServiceModel'];
-    public const TYPES = ['ServiceChannel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ServiceChannelModel'];
+    public const VALUES = ['ServiceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceModel'];
+    public const TYPES = ['ServiceChannel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceChannelModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

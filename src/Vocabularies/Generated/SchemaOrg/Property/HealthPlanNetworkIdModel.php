@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HealthPlanNetworkIdModel
 {
     public const DESCRIPTION = 'Name or unique ID of network. (Networks are often reused across different insurance plans.)';
     public const LABEL = 'healthPlanNetworkId';
     public const NAME = 'schema:healthPlanNetworkId';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['HealthPlanNetwork' => 'Jolicode\Vocabularies\SchemaOrg\Type\HealthPlanNetworkModel', 'MedicalOrganization' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalOrganizationModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['HealthPlanNetwork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HealthPlanNetworkModel', 'MedicalOrganization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalOrganizationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

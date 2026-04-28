@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EncodingTypeModel
 {
     public const DESCRIPTION = 'The supported encoding type(s) for an EntryPoint request.';
     public const LABEL = 'encodingType';
     public const NAME = 'schema:encodingType';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['EntryPoint' => 'Jolicode\Vocabularies\SchemaOrg\Type\EntryPointModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['EntryPoint' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EntryPointModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

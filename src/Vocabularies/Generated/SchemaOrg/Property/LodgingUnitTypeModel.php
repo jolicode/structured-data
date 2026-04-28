@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LodgingUnitTypeModel
 {
     public const DESCRIPTION = 'Textual description of the unit type (including suite vs. room, size of bed, etc.).';
     public const LABEL = 'lodgingUnitType';
     public const NAME = 'schema:lodgingUnitType';
-    public const VALUES = ['QualitativeValueModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\QualitativeValueModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['LodgingReservation' => 'Jolicode\Vocabularies\SchemaOrg\Type\LodgingReservationModel'];
+    public const VALUES = ['QualitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QualitativeValueModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['LodgingReservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LodgingReservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

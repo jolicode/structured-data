@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CollectionModel
 {
     public const DESCRIPTION = 'A sub property of object. The collection target of the action.';
     public const LABEL = 'collection';
     public const NAME = 'schema:collection';
-    public const VALUES = ['ThingModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ThingModel'];
-    public const TYPES = ['UpdateAction' => 'Jolicode\Vocabularies\SchemaOrg\Type\UpdateActionModel'];
+    public const VALUES = ['ThingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['UpdateAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\UpdateActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

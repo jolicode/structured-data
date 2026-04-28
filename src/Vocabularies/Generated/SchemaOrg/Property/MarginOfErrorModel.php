@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MarginOfErrorModel
 {
     public const DESCRIPTION = 'A [[marginOfError]] for an [[Observation]].';
     public const LABEL = 'marginOfError';
     public const NAME = 'schema:marginOfError';
-    public const VALUES = ['QuantitativeValueModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\QuantitativeValueModel'];
-    public const TYPES = ['Observation' => 'Jolicode\Vocabularies\SchemaOrg\Type\ObservationModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['Observation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ObservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

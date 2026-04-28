@@ -1,0 +1,67 @@
+{
+  "name": "Library",
+  "documentation": "https://developers.google.com/search/docs/appearance/structured-data/book#library-member",
+  "supportedTypes": [
+    "Library"
+  ],
+  "properties": {
+    "@id": {
+      "name": "@id",
+      "severity": "required",
+      "supportedTypes": [
+        "URL"
+      ]
+    },
+    "location": {
+      "name": "location",
+      "severity": "required",
+      "supportedTypes": [
+        "PostalAddress"
+      ],
+      "properties": {
+        "addressCountry": {
+          "name": "addressCountry",
+          "severity": "required",
+          "supportedTypes": [
+            "Text"
+          ]
+        },
+        "addressLocality": {
+          "name": "addressLocality",
+          "severity": "required",
+          "supportedTypes": [
+            "Text"
+          ]
+        },
+        "addressRegion": {
+          "name": "addressRegion",
+          "severity": "required",
+          "supportedTypes": [
+            "Text"
+          ]
+        },
+        "postalCode": {
+          "name": "postalCode",
+          "severity": "required",
+          "supportedTypes": [
+            "Text"
+          ]
+        },
+        "streetAddress": {
+          "name": "streetAddress",
+          "severity": "required",
+          "supportedTypes": [
+            "Text"
+          ]
+        }
+      }
+    },
+    "name": {
+      "name": "name",
+      "severity": "required",
+      "supportedTypes": [
+        "Text"
+      ]
+    }
+  }
+}

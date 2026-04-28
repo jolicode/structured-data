@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ResultReviewModel
 {
     public const DESCRIPTION = 'A sub property of result. The review that resulted in the performing of the action.';
     public const LABEL = 'resultReview';
     public const NAME = 'schema:resultReview';
-    public const VALUES = ['ReviewModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ReviewModel'];
-    public const TYPES = ['ReviewAction' => 'Jolicode\Vocabularies\SchemaOrg\Type\ReviewActionModel'];
+    public const VALUES = ['ReviewModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReviewModel'];
+    public const TYPES = ['ReviewAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReviewActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

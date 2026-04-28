@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DaySpaModel
 {
     public const DESCRIPTION = 'A day spa.';
     public const LABEL = 'DaySpa';
     public const NAME = 'schema:DaySpa';
-    public const PARENTS = ['HealthAndBeautyBusinessModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\HealthAndBeautyBusinessModel'];
+    public const PARENTS = ['HealthAndBeautyBusinessModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HealthAndBeautyBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

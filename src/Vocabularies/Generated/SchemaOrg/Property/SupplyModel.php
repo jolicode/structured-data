@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SupplyModel
 {
     public const DESCRIPTION = 'A sub-property of instrument. A supply consumed when performing instructions or a direction.';
     public const LABEL = 'supply';
     public const NAME = 'schema:supply';
-    public const VALUES = ['HowToSupplyModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\HowToSupplyModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['HowToDirection' => 'Jolicode\Vocabularies\SchemaOrg\Type\HowToDirectionModel', 'HowTo' => 'Jolicode\Vocabularies\SchemaOrg\Type\HowToModel'];
+    public const VALUES = ['HowToSupplyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HowToSupplyModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['HowToDirection' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HowToDirectionModel', 'HowTo' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HowToModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

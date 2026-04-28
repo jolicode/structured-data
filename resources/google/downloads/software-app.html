@@ -1,0 +1,155 @@
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+            <code translate="no" dir="ltr">name</code>
+          </td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+            <p>The name of the app.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code translate="no" dir="ltr">offers.price</code>
+          </td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/Offer" class="external-link">Offer</a></code></p>
+            <p>An offer to sell the app. For developers, <code translate="no" dir="ltr">offers</code> can indicate the
+              marketplaces that carry the application. For marketplaces, use <code translate="no" dir="ltr">offers</code> to
+              indicate the price of the app for a specific app instance.</p>
+            <p>
+              If the app is available without payment, set <code translate="no" dir="ltr">offers.price</code> to <code translate="no" dir="ltr">0</code>. For example:
+            </p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="price property set to 0" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"offers"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Offer"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"price"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">0</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+            <p>
+              If the app has a price greater than 0, we recommend also including the <code translate="no" dir="ltr">offers.priceCurrency</code> property (or Google will try to find the right currency).
+              For example:
+            </p>
+<div></div><devsite-code><pre class="devsite-click-to-copy" data-label="price property with currency" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"offers"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Offer"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"price"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m devsite-syntax-m-Double">1.00</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"priceCurrency"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"USD"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Rating or review
+          </td>
+          <td>
+            <p>
+              A rating or review of the app. You must include one of the following properties:
+            </p>
+            <table>
+            <tbody><tr>
+              <td>
+                <code translate="no" dir="ltr">aggregateRating</code>
+              </td>
+              <td><p><code translate="no" dir="ltr"><a href="https://schema.org/AggregateRating" class="external-link">AggregateRating</a></code></p>
+            <p>The average review score of the app. Follow the
+              <a href="/search/docs/appearance/structured-data/review-snippet#guidelines">Review snippet
+                guidelines</a> and list of required and recommended
+              <a href="/search/docs/appearance/structured-data/review-snippet#aggregate_rating_type_definitions">AggregateRating properties</a>.</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code translate="no" dir="ltr">review</code>
+              </td>
+              <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Review" class="external-link">Review</a></code></p>
+            <p>A single review of the app. Follow the
+              <a href="/search/docs/appearance/structured-data/review-snippet#guidelines">Review snippet
+                guidelines</a> and list of required and recommended
+              <a href="/search/docs/appearance/structured-data/review-snippet#review-properties">Review properties</a>.</p>
+              </td>
+            </tr>
+              </tbody></table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<table>
+            <tbody><tr>
+              <td>
+                <code translate="no" dir="ltr">aggregateRating</code>
+              </td>
+              <td><p><code translate="no" dir="ltr"><a href="https://schema.org/AggregateRating" class="external-link">AggregateRating</a></code></p>
+            <p>The average review score of the app. Follow the
+              <a href="/search/docs/appearance/structured-data/review-snippet#guidelines">Review snippet
+                guidelines</a> and list of required and recommended
+              <a href="/search/docs/appearance/structured-data/review-snippet#aggregate_rating_type_definitions">AggregateRating properties</a>.</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code translate="no" dir="ltr">review</code>
+              </td>
+              <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Review" class="external-link">Review</a></code></p>
+            <p>A single review of the app. Follow the
+              <a href="/search/docs/appearance/structured-data/review-snippet#guidelines">Review snippet
+                guidelines</a> and list of required and recommended
+              <a href="/search/docs/appearance/structured-data/review-snippet#review-properties">Review properties</a>.</p>
+              </td>
+            </tr>
+              </tbody></table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+            <code translate="no" dir="ltr">applicationCategory</code>
+          </td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+            <p>The type of app (for example, <code translate="no" dir="ltr">BusinessApplication</code> or
+              <code translate="no" dir="ltr">GameApplication</code>). The value must be a supported app type.</p>
+            <p><b>List of supported app types</b></p>
+              <ul>
+                <li><code translate="no" dir="ltr">GameApplication</code></li>
+                <li><code translate="no" dir="ltr">SocialNetworkingApplication</code></li>
+                <li><code translate="no" dir="ltr">TravelApplication</code></li>
+                <li><code translate="no" dir="ltr">ShoppingApplication</code></li>
+                <li><code translate="no" dir="ltr">SportsApplication</code></li>
+                <li><code translate="no" dir="ltr">LifestyleApplication</code></li>
+                <li><code translate="no" dir="ltr">BusinessApplication</code></li>
+                <li><code translate="no" dir="ltr">DesignApplication</code></li>
+                <li><code translate="no" dir="ltr">DeveloperApplication</code></li>
+                <li><code translate="no" dir="ltr">DriverApplication</code></li>
+                <li><code translate="no" dir="ltr">EducationalApplication</code></li>
+                <li><code translate="no" dir="ltr">HealthApplication</code></li>
+                <li><code translate="no" dir="ltr">FinanceApplication</code></li>
+                <li><code translate="no" dir="ltr">SecurityApplication</code></li>
+                <li><code translate="no" dir="ltr">BrowserApplication</code></li>
+                <li><code translate="no" dir="ltr">CommunicationApplication</code></li>
+                <li><code translate="no" dir="ltr">DesktopEnhancementApplication</code></li>
+                <li><code translate="no" dir="ltr">EntertainmentApplication</code></li>
+                <li><code translate="no" dir="ltr">MultimediaApplication</code></li>
+                <li><code translate="no" dir="ltr">HomeApplication</code></li>
+                <li><code translate="no" dir="ltr">UtilitiesApplication</code></li>
+                <li><code translate="no" dir="ltr">ReferenceApplication</code></li>
+              </ul>
+          </td>
+       </tr>
+        <tr>
+          <td>
+            <code translate="no" dir="ltr">operatingSystem</code>
+          </td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+            <p>The operating system(s) required to use the app (for example, <code translate="no" dir="ltr">Windows 7</code>,
+              <code translate="no" dir="ltr">OSX 10.6</code>, <code translate="no" dir="ltr">Android 1.6</code>)</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>

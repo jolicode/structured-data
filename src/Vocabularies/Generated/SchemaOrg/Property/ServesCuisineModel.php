@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ServesCuisineModel
 {
     public const DESCRIPTION = 'The cuisine of the restaurant.';
     public const LABEL = 'servesCuisine';
     public const NAME = 'schema:servesCuisine';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['FoodEstablishment' => 'Jolicode\Vocabularies\SchemaOrg\Type\FoodEstablishmentModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['FoodEstablishment' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FoodEstablishmentModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

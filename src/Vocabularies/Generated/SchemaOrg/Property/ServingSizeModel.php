@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ServingSizeModel
 {
     public const DESCRIPTION = 'The serving size, in terms of the number of volume or mass.';
     public const LABEL = 'servingSize';
     public const NAME = 'schema:servingSize';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['NutritionInformation' => 'Jolicode\Vocabularies\SchemaOrg\Type\NutritionInformationModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['NutritionInformation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NutritionInformationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

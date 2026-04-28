@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TotalTimeModel
 {
     public const DESCRIPTION = 'The total time required to perform instructions or a direction (including time to prepare the supplies), in [ISO 8601 duration format](http://en.wikipedia.org/wiki/ISO_8601).';
     public const LABEL = 'totalTime';
     public const NAME = 'schema:totalTime';
-    public const VALUES = ['DurationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DurationModel'];
-    public const TYPES = ['HowToDirection' => 'Jolicode\Vocabularies\SchemaOrg\Type\HowToDirectionModel', 'HowTo' => 'Jolicode\Vocabularies\SchemaOrg\Type\HowToModel'];
+    public const VALUES = ['DurationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DurationModel'];
+    public const TYPES = ['HowToDirection' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HowToDirectionModel', 'HowTo' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HowToModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

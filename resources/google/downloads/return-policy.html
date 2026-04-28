@@ -1,0 +1,334 @@
+<table class="responsive fixed">
+      <colgroup><col width="30%"></colgroup>
+      <thead><tr><th colspan="2">Required properties (choose the option that best suits your use case)</th></tr></thead>
+      <tbody>
+        <tr class="alt" id="organization-required-properties"><td colspan="2">Option A</td></tr>
+        <tr id="applicable-country">
+          <td><code translate="no" dir="ltr">applicableCountry</code></td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+            <p>The country code that the return policy applies to (where the product is sold and will be returned from).
+              Use the two-letter <a href="https://en.wikipedia.org/wiki/ISO_3166-1" class="external-link">ISO 3166-1 alpha-2</a>
+              country code formatting. You can specify up to 50 countries.</p>
+          </td>
+        </tr>
+        <tr id="return-policy-category">
+          <td><code translate="no" dir="ltr">returnPolicyCategory</code></td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/MerchantReturnEnumeration" class="external-link">MerchantReturnEnumeration</a></code></p>
+            <p>The type of return policy. Use one of the following values:</p>
+            <ul>
+              <li><code translate="no" dir="ltr">https://schema.org/MerchantReturnFiniteReturnWindow</code>:
+                There's a set number of days to return a product.</li>
+              <li><code translate="no" dir="ltr">https://schema.org/MerchantReturnNotPermitted</code>:
+                Returns aren't permitted.</li>
+              <li><code translate="no" dir="ltr">https://schema.org/MerchantReturnUnlimitedWindow</code>:
+                There's an unlimited amount of time to return a product.</li>
+            </ul>
+            <p>
+              If you use <code translate="no" dir="ltr">MerchantReturnFiniteReturnWindow</code>, then the
+              <a href="#merchant-return-days"><code translate="no" dir="ltr">merchantReturnDays</code></a> property is required.
+            </p>
+          </td>
+        </tr>
+        <tr class="alt"><td colspan="2">Option B</td></tr>
+        <tr id="merchant-return-link">
+          <td><code translate="no" dir="ltr">merchantReturnLink</code></td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+            <p>
+              Specify the URL of a web page that describes the return policy to your customers. This can be your own
+              return policy, or a third-party policy from a service that handles your returns.
+            </p>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+<table class="responsive fixed">
+    <colgroup><col width="30%"></colgroup>
+    <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+    <tbody>
+      <tr id="merchant-return-days">
+        <td><code translate="no" dir="ltr">merchantReturnDays</code></td>
+        <td>
+          <p>
+            <code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code>
+          </p>
+          <p>The number of days from the delivery date that a product can be returned. This
+            property is only required if <a href="#return-policy-category"><code translate="no" dir="ltr">returnPolicyCategory</code></a> equals <code translate="no" dir="ltr">MerchantReturnFiniteReturnWindow</code>.</p>
+        </td>
+      </tr>
+      <tr id="return-fees">
+        <td><code translate="no" dir="ltr">returnFees</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/ReturnFeesEnumeration" class="external-link">ReturnFeesEnumeration</a></code></p>
+          <p>The default type of return fee. Use one of the following supported values:</p>
+          <ul>
+            <li><code translate="no" dir="ltr">https://schema.org/FreeReturn</code>: There's no charge to the consumer to
+              return the product. If used, don't include the <a href="#return-shipping-fees-amount"><code translate="no" dir="ltr">returnShippingFeesAmount</code></a>
+              property.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/ReturnFeesCustomerResponsibility</code>: The consumer
+              needs to handle and pay for the return shipping themselves. If used, don't include
+              the <a href="#return-shipping-fees-amount"><code translate="no" dir="ltr">returnShippingFeesAmount</code></a>
+              property.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/ReturnShippingFees</code>: There's a shipping fee
+              charged by the merchant to the consumer to return the product. Specify the
+              (non-zero) shipping fee using the
+              <a href="#return-shipping-fees-amount"><code translate="no" dir="ltr">returnShippingFeesAmount</code></a> property.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr id="return-method">
+        <td><code translate="no" dir="ltr">returnMethod</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/ReturnMethodEnumeration" class="external-link">ReturnMethodEnumeration</a></code></p>
+          <p>The type of return method offered. Use one or more of the following values:</p>
+          <ul>
+            <li><code translate="no" dir="ltr">https://schema.org/ReturnAtKiosk</code>: The item can be returned at a kiosk.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/ReturnByMail</code>: The item can be returned by mail.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/ReturnInStore</code>: The item can be returned in store.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr id="return-shipping-fees-amount">
+        <td><code translate="no" dir="ltr">returnShippingFeesAmount</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/MonetaryAmount" class="external-link">MonetaryAmount</a></code></p>
+          <p>The cost of shipping for returning a product. This property must be specified only when
+              <a href="#return-fees"><code translate="no" dir="ltr">returnFees</code></a> equals <code translate="no" dir="ltr">https://schema.org/ReturnShippingFees</code>.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<table class="responsive fixed">
+    <colgroup><col width="30%"></colgroup>
+    <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+    <tbody>
+      <tr id="customer-remorse-return-fees">
+        <td><code translate="no" dir="ltr">customerRemorseReturnFees</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/ReturnFeesEnumeration" class="external-link">ReturnFeesEnumeration</a></code></p>
+          <p>A specific type of return fee if the product is returned due to customer remorse.
+            See <a href="#return-fees"><code translate="no" dir="ltr">returnFees</code></a> for possible values.</p>
+        </td>
+      </tr>
+      <tr id="customer-remorse-return-label-source">
+        <td><code translate="no" dir="ltr">customerRemorseReturnLabelSource</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/ReturnLabelSourceEnumeration" class="external-link">ReturnLabelSourceEnumeration</a></code></p>
+          <p>
+            The method by which the consumer obtains a return shipping label for a product.
+            See <a href="#return-label-source"><code translate="no" dir="ltr">returnLabelSource</code></a> for possible values.
+          </p>
+        </td>
+      </tr>
+      <tr id="customer-remorse-return-shipping-fees-amount">
+        <td><code translate="no" dir="ltr">customerRemorseReturnShippingFeesAmount</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/MonetaryAmount" class="external-link">MonetaryAmount</a></code></p>
+          <p>
+            The cost of shipping for returning a product due to customer remorse. This property
+            is only required if there's a non-zero shipping fee to be paid by the consumer to return a product.
+            See <a href="#return-shipping-fees-amount"><code translate="no" dir="ltr">returnShippingFeesAmount</code></a> for details.
+          </p>
+        </td>
+      </tr>
+      <tr id="itemCondition">
+        <td><code translate="no" dir="ltr">itemCondition</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/OfferItemCondition" class="external-link">OfferItemCondition</a></code></p>
+          <p>
+            The acceptable conditions of an item which can be returned. You can provide multiple conditions which are accepted.
+            Use the following values:
+          </p>
+          <ul>
+            <li><code translate="no" dir="ltr">https://schema.org/DamagedCondition</code>: Damaged items are accepted.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/NewCondition</code>: New items are accepted.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/RefurbishedCondition</code>: Refurbished items are accepted.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/UsedCondition</code>: Used items are accepted.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr id="item-defect-return-fees">
+        <td><code translate="no" dir="ltr">itemDefectReturnFees</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/ReturnFeesEnumeration" class="external-link">ReturnFeesEnumeration</a></code></p>
+          <p>A specific type of return fee for defect products. See <a href="#return-fees"><code translate="no" dir="ltr">returnFees</code></a> for possible values.</p>
+        </td>
+      </tr>
+      <tr id="item-defect-return-label-source">
+        <td><code translate="no" dir="ltr">itemDefectReturnLabelSource</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/ReturnLabelSourceEnumeration" class="external-link">ReturnLabelSourceEnumeration</a></code></p>
+          <p>
+            The method by which the consumer can obtain a return shipping label for a product.
+            See <a href="#return-label-source"><code translate="no" dir="ltr">returnLabelSource</code></a> for possible values.
+          </p>
+        </td>
+      </tr>
+      <tr id="item-defect-return-shipping-fees-amount">
+        <td><code translate="no" dir="ltr">itemDefectReturnShippingFeesAmount</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/MonetaryAmount" class="external-link">MonetaryAmount</a></code></p>
+          <p>
+            The cost of shipping for returning a product due to defect products. This property
+            is only required if there's a non-zero shipping fee to be paid by the consumer to return a product.
+            See <a href="#return-shipping-fees-amount"><code translate="no" dir="ltr">returnShippingFeesAmount</code></a> for details.
+          </p>
+        </td>
+      </tr>
+      <tr id="refund-type">
+        <td><code translate="no" dir="ltr">refundType</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/RefundTypeEnumeration" class="external-link">RefundType</a></code></p>
+          <p>The type of refund(s) available for the consumer when returning a product.</p>
+          <ul>
+            <li><code translate="no" dir="ltr">https://schema.org/ExchangeRefund</code>: The item can be exchanged for the same product.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/FullRefund</code>: The item can be refunded for the full monetary amount.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/StoreCreditRefund</code>: The item can can be refunded for store credit.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr id="restocking-fee">
+        <td><code translate="no" dir="ltr">restockingFee</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/MonetaryAmount" class="external-link">MonetaryAmount</a></code> or
+             <code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+          <p>The restocking fee charged to the consumer when returning a product. Specify a value of type <code translate="no" dir="ltr">Number</code> to charge
+             a percentage of the price paid by the consumer or use <code translate="no" dir="ltr">MonetaryAmount</code> to charge a fixed amount.</p>
+        </td>
+      </tr>
+      <tr id="return-label-source">
+        <td><code translate="no" dir="ltr">returnLabelSource</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/ReturnLabelSourceEnumeration" class="external-link">ReturnLabelSourceEnumeration</a></code></p>
+          <p>
+            The method by which the consumer can obtain a return shipping label for a product. Use one of the following values:
+          </p>
+          <ul>
+            <li><code translate="no" dir="ltr">https://schema.org/ReturnLabelCustomerResponsibility</code>:
+              It's the responsibility of the consumer to create a return label.
+            </li>
+            <li><code translate="no" dir="ltr">https://schema.org/ReturnLabelDownloadAndPrint</code>:
+              The return label must be downloaded and printed by the customer.
+            </li>
+            <li><code translate="no" dir="ltr">https://schema.org/ReturnLabelInBox</code>:
+              The return label was included when the product was originally shipped.
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr id="return-policy-country">
+        <td><code translate="no" dir="ltr">returnPolicyCountry</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+          <p>
+            The country where the product has to be sent to for returns. This country can be different
+            from the country where the product was originally shipped or sent to.
+            <a href="https://en.wikipedia.org/wiki/ISO_3166-1" class="external-link">ISO 3166-1 alpha-2</a>
+            country code formatting. You can specify up to 50 countries.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<table class="responsive fixed">
+    <colgroup><col width="30%"></colgroup>
+    <thead><tr><th colspan="2">Required properties</th></tr></thead>
+    <tbody>
+      <tr id="return-policy-seasonal-override">
+        <td><code translate="no" dir="ltr">returnPolicySeasonalOverride</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/MerchantReturnPolicySeasonalOverride" class="external-link">MerchantReturnPolicySeasonalOverride</a></code></p>
+          <p>A seasonal override of a return policy to specify return policies for special events, such as holidays.
+            For example, your usual return policy category is set to <code translate="no" dir="ltr">MerchantReturnPolicyUnlimitedWindow</code>
+            but the return window should be limited during holiday sales:
+          </p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="seasonal override example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"returnPolicySeasonalOverride"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MerchantReturnPolicySeasonalOverride"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"startDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2024-11-29"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"endDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2024-12-06"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"merchantReturnDays"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">10</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"returnPolicyCategory"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org/MerchantReturnFiniteReturnWindow"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span></pre></devsite-code>
+  <p>
+    Here's how to specify multiple seasonal overrides. In this example, the usual return policy is
+    unlimited, but is limited during the following two date ranges:
+  </p>
+  <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="multiple seasonal override example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"returnPolicySeasonalOverride"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MerchantReturnPolicySeasonalOverride"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"startDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2024-11-29"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"endDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2024-12-06"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"merchantReturnDays"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">10</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"returnPolicyCategory"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org/MerchantReturnFiniteReturnWindow"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MerchantReturnPolicySeasonalOverride"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"startDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2024-12-26"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"endDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2025-01-06"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"merchantReturnDays"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">10</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"returnPolicyCategory"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org/MerchantReturnFiniteReturnWindow"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}]</span>
+<span class="devsite-syntax-w">  </span></pre></devsite-code>
+        </td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">returnPolicySeasonalOverride.returnPolicyCategory</code></td>
+        <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/MerchantReturnEnumeration" class="external-link">MerchantReturnEnumeration</a></code></p>
+            <p>The type of return policy. Use one of the following values:</p>
+            <ul>
+              <li><code translate="no" dir="ltr">https://schema.org/MerchantReturnFiniteReturnWindow</code>:
+                There's a set number of days to return a product.</li>
+              <li><code translate="no" dir="ltr">https://schema.org/MerchantReturnNotPermitted</code>:
+                Returns aren't permitted.</li>
+              <li><code translate="no" dir="ltr">https://schema.org/MerchantReturnUnlimitedWindow</code>:
+                There's an unlimited amount of time to return a product.</li>
+            </ul>
+            <p>
+              If you use <code translate="no" dir="ltr">MerchantReturnFiniteReturnWindow</code>, then the
+              <code translate="no" dir="ltr">merchantReturnDays</code> property is required.
+            </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<table class="responsive fixed">
+    <colgroup><col width="30%"></colgroup>
+    <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><code translate="no" dir="ltr">returnPolicySeasonalOverride.endDate</code></td>
+        <td>
+          <p>
+            <code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code> or
+            <code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code>
+          </p>
+          <p>The end date of the seasonal override.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">returnPolicySeasonalOverride.merchantReturnDays</code></td>
+        <td>
+          <p>
+            <code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code> or
+            <code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code> or
+            <code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code>
+          </p>
+          <p>The number of days from the delivery date that a product can be returned. This
+            property is only required if you set the <code translate="no" dir="ltr">returnPolicyCategory</code> to <code translate="no" dir="ltr">MerchantReturnFiniteReturnWindow</code>.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">returnPolicySeasonalOverride.startDate</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code> or
+            <code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code>
+          </p>
+          <p>The start date of the seasonal override.</p>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PartOfOrderModel
 {
     public const DESCRIPTION = 'The overall order the items in this delivery were included in.';
     public const LABEL = 'partOfOrder';
     public const NAME = 'schema:partOfOrder';
-    public const VALUES = ['OrderModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\OrderModel'];
-    public const TYPES = ['ParcelDelivery' => 'Jolicode\Vocabularies\SchemaOrg\Type\ParcelDeliveryModel'];
+    public const VALUES = ['OrderModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrderModel'];
+    public const TYPES = ['ParcelDelivery' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ParcelDeliveryModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

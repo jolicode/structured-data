@@ -1,0 +1,169 @@
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead><tr><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">mainEntity</code>
+      </td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code> or
+        <code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code></p>
+        <p>The person or organization that this profile page is about. This indicates that the primary
+          focus of this page is information about this entity.</p>
+        <p>Try to use the correct type if that information is available (meaning, if you know whether
+          the page represents an individual or an organization); otherwise, default to <code translate="no" dir="ltr">Person</code>
+          (for example, if it's an unknown type of account).
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">dateCreated</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+        <p>The date and time that the profile was created, if applicable, in
+          <a href="https://wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601</a> date
+          format.
+        </p>
+      </td>
+    </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">dateModified</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+          <p>The date and time that information in the profile was modified, if applicable, in
+            <a href="https://wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601</a> date
+            format. Ideally, this only represents human-edited metadata changes to the profile (for
+            example, adding extra outlinks to places this profile is referenced wouldn't be a
+            modification).
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead><tr><th colspan="2">Required properties</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">name</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The primary way the person or organization is identified. We recommend using this field
+          for real names (and <code translate="no" dir="ltr">alternateName</code> for social media handles). However, you
+          can use this field to specify a social media handle if that's the only way the person is
+          identified on your site.</p>
+        <aside class="note">If the <code translate="no" dir="ltr">name</code> property isn't available, you can provide the
+          <code translate="no" dir="ltr">alternateName</code> property to fulfill this requirement.
+      </aside></td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">agentInteractionStatistic</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/InteractionCounter" class="external-link">InteractionCounter</a></code></p>
+        <p>User statistics about the profile page entity's own behavior, if applicable.</p><p>
+        </p><p>Google recognizes the following <code translate="no" dir="ltr">interactionTypes</code>:</p>
+        <ul>
+          <li><a href="https://schema.org/FollowAction" class="external-link">https://schema.org/FollowAction</a>:
+            The number of other accounts being followed.</li>
+          <li><a href="https://schema.org/LikeAction" class="external-link">https://schema.org/LikeAction</a>:
+            The number of likes (generally of other entity's posts).</li>
+          <li><a href="https://schema.org/WriteAction" class="external-link">https://schema.org/WriteAction</a>:
+            The number of posts.</li>
+          <li><a href="https://schema.org/ShareAction" class="external-link">https://schema.org/ShareAction</a>:
+            The number of reshares of posts.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">alternateName</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>An alternate public identifier, if applicable. For example, a social media handle if
+          a person's real name is used in the <code translate="no" dir="ltr">name</code> field.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">description</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The user's byline or applicable credential, if applicable.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">identifier</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>Any unique identifier that's used within your site, if applicable. This could be an
+          internal database ID that your site uses to identify a user even if their social media
+          handle changes.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">image</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code> or
+        <code translate="no" dir="ltr"><a href="https://schema.org/ImageObject" class="external-link">ImageObject</a></code></p>
+        <p>The URL or <code translate="no" dir="ltr">ImageObject</code> of a profile image of the creator, if applicable. If there are no
+          images, don't include a default image, icon, or placeholder image in this field.</p>
+        
+<p>Additional image guidelines:
+  </p><ul>
+    <li>Image URLs must be crawlable and indexable. To check if Google can access your URLs, use
+      the <a href="https://support.google.com/webmasters/answer/9012289" class="external-link">URL Inspection tool</a>.</li>
+    <li>Images must represent the marked up content.</li>
+    <li>Images must be in a file format that's <a href="/search/docs/appearance/google-images#supported-image-formats">supported by Google Images</a>.</li>
+    <li>For best results, we recommend providing multiple high-resolution images (minimum of 50K pixels when
+      multiplying width and height) with the following aspect ratios: 16x9, 4x3, and 1x1.</li>
+  </ul>
+          <p>For example:</p>
+  <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="multiple images example in json-ld" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"image": [
+  "https://example.com/photos/1x1/photo.jpg",
+  "https://example.com/photos/4x3/photo.jpg",
+  "https://example.com/photos/16x9/photo.jpg"
+]</pre></devsite-code>
+  </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">interactionStatistic</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/InteractionCounter" class="external-link">InteractionCounter</a></code></p>
+        <p>User statistics applied to the profile page entity, if applicable. Only include stats
+          about the platform that the profile page is hosted on (don't reference that the creator
+          also has 100,000 followers on their home page).</p><p>
+        </p><p>Google recognizes the following <code translate="no" dir="ltr">interactionTypes</code>:</p>
+        <ul>
+          <li><a href="https://schema.org/FollowAction" class="external-link">https://schema.org/FollowAction</a>:
+            The number of followers.</li>
+          <li><a href="https://schema.org/LikeAction" class="external-link">https://schema.org/LikeAction</a>:
+            The number of likes of this entity.</li>
+          <li><a href="https://schema.org/BefriendAction" class="external-link">https://schema.org/BefriendAction</a>:
+            A bi-directional relationship.</li>
+          </ul>
+        <p></p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">sameAs</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>The URL to other external profiles or home pages for the profile, if applicable.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class InAlbumModel
 {
     public const DESCRIPTION = 'The album to which this recording belongs.';
     public const LABEL = 'inAlbum';
     public const NAME = 'schema:inAlbum';
-    public const VALUES = ['MusicAlbumModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MusicAlbumModel'];
-    public const TYPES = ['MusicRecording' => 'Jolicode\Vocabularies\SchemaOrg\Type\MusicRecordingModel'];
+    public const VALUES = ['MusicAlbumModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicAlbumModel'];
+    public const TYPES = ['MusicRecording' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicRecordingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

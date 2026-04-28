@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ClaimInterpreterModel
 {
     public const DESCRIPTION = 'For a [[Claim]] interpreted from [[MediaObject]] content, the [[interpretedAsClaim]] property can be used to indicate a claim contained, implied or refined from the content of a [[MediaObject]].';
     public const LABEL = 'claimInterpreter';
     public const NAME = 'schema:claimInterpreter';
-    public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PersonModel'];
-    public const TYPES = ['Claim' => 'Jolicode\Vocabularies\SchemaOrg\Type\ClaimModel'];
+    public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['Claim' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ClaimModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

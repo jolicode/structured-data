@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReceiveActionModel
 {
     public const DESCRIPTION = 'The act of physically/electronically taking delivery of an object that has been transferred from an origin to a destination. Reciprocal of SendAction.\n\nRelated actions:\n\n* [[SendAction]]: The reciprocal of ReceiveAction.\n* [[TakeAction]]: Unlike TakeAction, ReceiveAction does not imply that the ownership has been transferred (e.g. I can receive a package, but it does not mean the package is now mine).';
     public const LABEL = 'ReceiveAction';
     public const NAME = 'schema:ReceiveAction';
-    public const PARENTS = ['TransferActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TransferActionModel'];
+    public const PARENTS = ['TransferActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TransferActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

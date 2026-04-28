@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DescriptionModel
 {
     public const DESCRIPTION = 'A description of the item.';
     public const LABEL = 'description';
     public const NAME = 'schema:description';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel', 'TextObjectModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextObjectModel'];
-    public const TYPES = ['Thing' => 'Jolicode\Vocabularies\SchemaOrg\Type\ThingModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'TextObjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextObjectModel'];
+    public const TYPES = ['Thing' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

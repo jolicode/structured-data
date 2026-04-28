@@ -1,0 +1,385 @@
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td><code translate="no" dir="ltr">description</code>
+      </td>
+       <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+         <p>A short summary describing a dataset.</p>
+         <p><b>Guidelines</b></p>
+         <ul>
+           <li>The summary must be between 50 and 5000 characters long.</li>
+           <li>The summary may include Markdown syntax. Embedded images need to use absolute path URLs
+             (instead of relative paths).</li>
+           <li>When using the JSON-LD format, denote new lines with <code translate="no" dir="ltr">\n</code> (two characters: backslash and lower case
+             letter "n").</li>
+        </ul>
+      </td>
+     </tr>
+     <tr>
+      <td><code translate="no" dir="ltr">name</code>
+      </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+        <p>A descriptive name of a dataset. For example, "Snow depth in the Northern Hemisphere".</p>
+         <p><b>Guidelines</b></p>
+         <ul>
+           <li>Use unique names for distinct datasets whenever possible.</li>
+             <p><span class="compare-yes" aria-hidden="true"></span><b>Recommended</b>: <code translate="no" dir="ltr">
+               "Snow depth in the Northern Hemisphere"</code> and <code translate="no" dir="ltr">"Snow depth in the Southern Hemisphere"</code> for two different datasets.</p>
+             <p><span class="compare-no" aria-hidden="true"></span><b>Not recommended</b>: <code translate="no" dir="ltr">"Snow depth"</code> and <code translate="no" dir="ltr">"Snow depth"</code> for two different datasets.</p>
+         </ul>
+      </td>
+     </tr>
+     </tbody>
+   </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+         <tr>
+      <td>
+        <code translate="no" dir="ltr">alternateName</code>
+      </td>
+      <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+        <p>Alternative names that have been used to refer to this dataset, such as aliases or
+          abbreviations. Example (in JSON-LD format):</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Alternate name" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"name": "The Quick, Draw! Dataset"
+"alternateName": ["Quick Draw Dataset", "quickdraw-dataset"]</pre></devsite-code>
+      </td>
+     </tr>
+     <tr>
+      <td>
+        <code translate="no" dir="ltr">creator</code>
+      </td>
+      <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code> or
+        <code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code>
+        <p>The creator or author of this dataset. To uniquely identify individuals, use
+          <a href="https://orcid.org" class="external-link">ORCID ID</a> as the value of the <code translate="no" dir="ltr">sameAs</code> property
+          of the <code translate="no" dir="ltr">Person</code> type. To uniquely identify institutions and organizations, use
+          <a href="https://ror.org" class="external-link">ROR ID</a>.
+          Example (in JSON-LD format):</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Creator info" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"creator"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Person"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"sameAs"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://orcid.org/0000-0000-0000-0000"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"givenName"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Jane"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"familyName"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Foo"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Jane Foo"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Person"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"sameAs"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://orcid.org/0000-0000-0000-0001"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"givenName"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Jo"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"familyName"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Bar"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Jo Bar"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Organization"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"sameAs"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://ror.org/xxxxxxxxx"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Fictitious Research Consortium"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">]</span></pre></devsite-code>
+      </td>
+     </tr>
+     <tr>
+      <td><code translate="no" dir="ltr">citation</code>
+      </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/CreativeWork" class="external-link">CreativeWork</a></code>
+       <p>Identifies academic articles that are recommended by the data provider be cited in addition to the
+         dataset itself. Provide the citation for the dataset itself with other properties, such as <code translate="no" dir="ltr">name</code>, <code translate="no" dir="ltr">identifier</code>,
+         <code translate="no" dir="ltr">creator</code>, and <code translate="no" dir="ltr">publisher</code> properties.
+         For example, this property can uniquely identify a related academic publication such as a
+         data descriptor, data paper, or an article for which this dataset is supplementary
+         material for. Examples (in JSON-LD format):</p>
+         <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="DOI citation" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"citation": "https://doi.org/10.1111/111"</pre></devsite-code>
+         <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Pubmed citation" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"citation": "https://identifiers.org/pubmed:11111111"</pre></devsite-code>
+         <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Arxiv citation" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"citation": "https://identifiers.org/arxiv:0111.1111v1"</pre></devsite-code>
+         <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="DOI citation with text" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"citation":
+ "Doe J (2014) Influence of X ... https://doi.org/10.1111/111"</pre></devsite-code>
+       <p><b>Additional guidelines</b></p>
+         <ul>
+           <li>Don't use this property to provide citation information for the dataset itself. It is
+             intended to identify related academic articles, not the dataset itself. To provide
+             information necessary to cite the dataset itself use <code translate="no" dir="ltr">name</code>,
+             <code translate="no" dir="ltr">identifier</code>, <code translate="no" dir="ltr">creator</code>, and <code translate="no" dir="ltr">publisher</code> properties
+             instead.</li>
+           <li>
+             When populating the citation property with a citation snippet, provide the
+             article identifier (such as a DOI) whenever possible.
+             <p><span class="compare-yes" aria-hidden="true"></span><b>Recommended</b>: <code translate="no" dir="ltr"> "Doe J (2014) Influence of X.
+               Biomics 1(1). https://doi.org/10.1111/111"</code></p>
+             <p><span class="compare-no" aria-hidden="true"></span><b>Not recommended</b>: <code translate="no" dir="ltr">"Doe J (2014) Influence of X.
+               Biomics 1(1)."</code></p>
+           </li>
+        </ul>
+       </td>
+     </tr>
+     <tr>
+      <td>
+        <code translate="no" dir="ltr">funder</code>
+      </td>
+      <td>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code> or
+        <code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code>
+        <p>A person or organization that provides financial support for this dataset. To uniquely identify individuals, use
+          <a href="https://orcid.org" class="external-link">ORCID ID</a> as the value of the <code translate="no" dir="ltr">sameAs</code> property
+          of the <code translate="no" dir="ltr">Person</code> type. To uniquely identify institutions and organizations, use
+          <a href="https://ror.org" class="external-link">ROR ID</a>.
+          Example (in JSON-LD format):</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Funder with ORCID ID and ROR ID" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"funder"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Person"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"sameAs"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://orcid.org/0000-0000-0000-0002"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"givenName"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Jane"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"familyName"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Funder"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Jane Funder"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Organization"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"sameAs"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://ror.org/yyyyyyyyy"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Fictitious Funding Organization"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">]</span></pre></devsite-code>
+      </td>
+     </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">hasPart</code> or <code translate="no" dir="ltr">isPartOf</code>
+      </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code> or
+        <code translate="no" dir="ltr"><a href="https://schema.org/Dataset" class="external-link">Dataset</a></code>
+        <p>If the dataset is a collection of smaller datasets, use the <code translate="no" dir="ltr">hasPart</code> property
+          to denote such relationship. Conversly, if the dataset is part of a larger
+          dataset, use <code translate="no" dir="ltr">isPartOf</code>. Both properties can take the form of a URL
+          or a <code translate="no" dir="ltr">Dataset</code> instance. In case <code translate="no" dir="ltr">Dataset</code> is used as a value it has
+          to include all of the properties required for a standalone <code translate="no" dir="ltr">Dataset</code>.
+          Examples:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="hasPart dataset" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"hasPart"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Dataset"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Sub dataset 01"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"description"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Informative description of the first subdataset..."</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"license"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://creativecommons.org/publicdomain/zero/1.0/"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"creator"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-s">"Organization"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Sub dataset 01 creator"</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Dataset"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Sub dataset 02"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"description"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Informative description of the second subdataset..."</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"license"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://creativecommons.org/publicdomain/zero/1.0/"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"creator"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-s">"Organization"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Sub dataset 02 creator"</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">]</span></pre></devsite-code>
+       <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="isPartOf example" translate="no" dir="ltr" is-upgraded="" syntax="verilog" syntax-guessed=""><span class="devsite-syntax-s">"isPartOf"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-o">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/aggregate_dataset"</span></pre></devsite-code>
+      </td>
+     </tr>
+          <tr>
+      <td><code translate="no" dir="ltr">identifier</code>
+      </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code>, <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>, or <code translate="no" dir="ltr"><a href="https://schema.org/PropertyValue" class="external-link">PropertyValue</a></code>
+   <p>An identifier, such as a DOI or a Compact Identifier. If the dataset has more than one
+     identifier, repeat the <code translate="no" dir="ltr">identifier</code> property. If using JSON-LD, this is represented
+     using JSON list syntax.</p>
+      </td>
+     </tr>
+     <tr>
+      <td><code translate="no" dir="ltr">isAccessibleForFree</code>
+      </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Boolean" class="external-link">Boolean</a></code>
+        <p>Whether the dataset is accessible without payment.</p>
+      </td>
+     </tr>
+        <tr>
+      <td><code translate="no" dir="ltr">keywords</code>
+      </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+        <p>Keywords summarizing the dataset.</p>
+      </td>
+     </tr>
+     <tr>
+      <td><code translate="no" dir="ltr">license</code>
+      </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/CreativeWork" class="external-link">CreativeWork</a></code>
+        <p>A license under which the dataset is distributed. For example:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="hello" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"license" : "https://creativecommons.org/publicdomain/zero/1.0/"</pre></devsite-code>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="hello" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"license"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"CreativeWork"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Custom license"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"url"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/custom_license"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span></pre></devsite-code>
+        <p><b>Additional guidelines</b></p>
+         <ul>
+           <li>
+             Provide a URL that unambiguously identifies a specific version of the license used.
+             <p><span class="compare-yes" aria-hidden="true"></span><b>Recommended</b></p>
+             <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="hello" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"license" : "https://creativecommons.org/licenses/by/4.0"</pre></devsite-code>
+             <p><span class="compare-no" aria-hidden="true"></span><b>Not recommended</b></p>
+             <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="hello" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"license" : "https://creativecommons.org/licenses/by"</pre></devsite-code>
+           </li>
+        </ul>
+      </td>
+     </tr>
+     <tr>
+      <td><code translate="no" dir="ltr">measurementTechnique</code>
+      </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code>
+        <p>The technique, technology, or methodology used in a dataset, which can correspond to the variable(s) described in <code translate="no" dir="ltr">variableMeasured</code>.</p>
+        <aside class="note">The <a href="https://pending.webschemas.org/measurementTechnique" class="external-link"><code translate="no" dir="ltr">measurementTechnique</code></a>
+          property is proposed and pending standardization at schema.org. We encourage publishers to
+          share any feedback on this property with the schema.org community.</aside>
+      </td>
+     </tr>
+     <tr>
+      <td><code translate="no" dir="ltr">sameAs</code>
+      </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code>
+   <p>The URL of a reference web page that unambiguously indicates the dataset's identity.</p>
+      </td>
+     </tr>
+     <tr>
+     <td><code translate="no" dir="ltr">spatialCoverage</code></td>
+       <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/Place" class="external-link">Place</a></code>
+       <p>You can provide a single point that describes the spatial aspect of the dataset. Only
+         include this property if the dataset has a spatial dimension. For example,
+         a single point where all the measurements were collected, or the coordinates of a bounding
+         box for an area.</p>
+       <p><b>Points</b></p>
+       <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="hello" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"spatialCoverage:"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Place"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"geo"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"GeoCoordinates"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"latitude"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m devsite-syntax-m-Double">39.3280</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"longitude"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m devsite-syntax-m-Double">120.1633</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+       <p><b>Shapes</b></p>
+         <p>Use <a href="https://schema.org/GeoShape" class="external-link"><code translate="no" dir="ltr">GeoShape</code></a> to describe areas of different shapes. For example, to specify a bounding box.</p>
+       <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="hello" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"spatialCoverage:"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Place"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"geo"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"GeoShape"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"box"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"39.3280 120.1633 40.445 123.7878"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+       <p><b>Points inside <code translate="no" dir="ltr">box</code>, <code translate="no" dir="ltr">circle</code>, <code translate="no" dir="ltr">line</code>, or
+         <code translate="no" dir="ltr">polygon</code> properties must be expressed as a space separated pair of two
+         values corresponding to latitude and longitude (in that order).</b>
+       </p>
+       <p><b>Named locations</b></p>
+       <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="hello" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"spatialCoverage:" "Tahoe City, CA"</pre></devsite-code>
+       </td>
+     </tr>
+    <tr>
+     <td><code translate="no" dir="ltr">temporalCoverage</code></td>
+     <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+       <p>The data in the dataset covers a specific time interval. Only include this property if the
+         dataset has a temporal dimension. Schema.org uses the ISO 8601 standard
+         to describe time intervals and time points. You can describe dates differently depending
+         upon the dataset interval. Indicate open-ended intervals with two decimal points (<code translate="no" dir="ltr">..</code>).
+
+       </p><p><b>Single date</b></p>
+       <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="hello" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"temporalCoverage" : "2008"</pre></devsite-code>
+
+       <p><b>Time period</b></p>
+       <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="hello" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"temporalCoverage" : "1950-01-01/2013-12-18"</pre></devsite-code>
+
+       <p><b>Open-ended time period</b></p>
+       <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="hello" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"temporalCoverage" : "2013-12-19/.."</pre></devsite-code>
+      </td>
+    </tr>
+     <tr>
+      <td><code translate="no" dir="ltr">variableMeasured</code>
+      </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/PropertyValue" class="external-link">PropertyValue</a></code>
+        <p>The variable that this dataset measures. For example, temperature or pressure.</p>
+        <aside class="note">The <a href="https://pending.webschemas.org/variableMeasured" class="external-link"><code translate="no" dir="ltr">variableMeasured</code></a>
+          property is proposed and pending standardization at schema.org. We encourage publishers to
+          share any feedback on this property with the schema.org community.</aside>
+      </td>
+     </tr>
+     <tr>
+      <td><code translate="no" dir="ltr">version</code>
+      </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code>
+   <p>The version number for the dataset.</p>
+      </td>
+     </tr>
+     <tr>
+      <td><code translate="no" dir="ltr">url</code>
+      </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code>
+   <p>Location of a page describing the dataset.</p>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td><code translate="no" dir="ltr">includedInDataCatalog</code>
+      </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/DataCatalog" class="external-link">DataCatalog</a></code>
+   <p>
+   The catalog to which the dataset belongs.</p><p>
+      </p></td>
+     </tr>
+     </tbody>
+   </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td><code translate="no" dir="ltr">distribution.contentUrl</code>
+      </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code>
+   <p>
+   The link for the download.</p>
+      </td>
+     </tr>
+     </tbody>
+   </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+
+     <tr>
+      <td><code translate="no" dir="ltr">distribution</code>
+      </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/DataDownload" class="external-link">DataDownload</a></code>
+   <p>The description of the location for download of the dataset and the file format for
+   download.</p><p>
+      </p></td>
+     </tr>
+     <tr>
+      <td><code translate="no" dir="ltr">distribution.encodingFormat</code>
+      </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code>
+         <p>
+         The file format of the distribution.</p><p>
+      </p></td>
+     </tr>
+      </tbody>
+   </table>

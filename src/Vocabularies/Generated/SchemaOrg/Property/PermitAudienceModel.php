@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PermitAudienceModel
 {
     public const DESCRIPTION = 'The target audience for this permit.';
     public const LABEL = 'permitAudience';
     public const NAME = 'schema:permitAudience';
-    public const VALUES = ['AudienceModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AudienceModel'];
-    public const TYPES = ['Permit' => 'Jolicode\Vocabularies\SchemaOrg\Type\PermitModel'];
+    public const VALUES = ['AudienceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AudienceModel'];
+    public const TYPES = ['Permit' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PermitModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

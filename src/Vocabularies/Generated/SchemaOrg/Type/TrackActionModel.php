@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TrackActionModel
 {
     public const DESCRIPTION = 'An agent tracks an object for updates.\n\nRelated actions:\n\n* [[FollowAction]]: Unlike FollowAction, TrackAction refers to the interest on the location of innanimates objects.\n* [[SubscribeAction]]: Unlike SubscribeAction, TrackAction refers to  the interest on the location of innanimate objects.';
     public const LABEL = 'TrackAction';
     public const NAME = 'schema:TrackAction';
-    public const PARENTS = ['FindActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\FindActionModel'];
+    public const PARENTS = ['FindActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FindActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

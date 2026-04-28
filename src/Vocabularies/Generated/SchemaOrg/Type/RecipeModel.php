@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RecipeModel
 {
     public const DESCRIPTION = 'A recipe. For dietary restrictions covered by the recipe, a few common restrictions are enumerated via [[suitableForDiet]]. The [[keywords]] property can also be used to add more detail.';
     public const LABEL = 'Recipe';
     public const NAME = 'schema:Recipe';
-    public const PARENTS = ['HowToModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\HowToModel'];
+    public const PARENTS = ['HowToModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HowToModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

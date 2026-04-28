@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class InsertionModel
 {
     public const DESCRIPTION = 'The place of attachment of a muscle, or what the muscle moves.';
     public const LABEL = 'insertion';
     public const NAME = 'schema:insertion';
-    public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AnatomicalStructureModel'];
-    public const TYPES = ['Muscle' => 'Jolicode\Vocabularies\SchemaOrg\Type\MuscleModel'];
+    public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalStructureModel'];
+    public const TYPES = ['Muscle' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MuscleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

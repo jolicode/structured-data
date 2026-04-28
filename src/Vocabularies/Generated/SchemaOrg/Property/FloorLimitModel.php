@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class FloorLimitModel
 {
     public const DESCRIPTION = 'A floor limit is the amount of money above which credit card transactions must be authorized.';
     public const LABEL = 'floorLimit';
     public const NAME = 'schema:floorLimit';
-    public const VALUES = ['MonetaryAmountModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MonetaryAmountModel'];
-    public const TYPES = ['PaymentCard' => 'Jolicode\Vocabularies\SchemaOrg\Type\PaymentCardModel'];
+    public const VALUES = ['MonetaryAmountModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountModel'];
+    public const TYPES = ['PaymentCard' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PaymentCardModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

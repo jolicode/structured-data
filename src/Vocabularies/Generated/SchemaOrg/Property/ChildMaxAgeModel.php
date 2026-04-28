@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ChildMaxAgeModel
 {
     public const DESCRIPTION = 'Maximal age of the child.';
     public const LABEL = 'childMaxAge';
     public const NAME = 'schema:childMaxAge';
-    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\NumberModel'];
-    public const TYPES = ['ParentAudience' => 'Jolicode\Vocabularies\SchemaOrg\Type\ParentAudienceModel'];
+    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['ParentAudience' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ParentAudienceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

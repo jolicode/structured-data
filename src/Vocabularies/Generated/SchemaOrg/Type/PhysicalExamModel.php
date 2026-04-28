@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PhysicalExamModel
 {
     public const DESCRIPTION = 'A type of physical examination of a patient performed by a physician.';
     public const LABEL = 'PhysicalExam';
     public const NAME = 'schema:PhysicalExam';
-    public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalEnumerationModel', 'MedicalProcedureModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalProcedureModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEnumerationModel', 'MedicalProcedureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalProcedureModel'];
     public const ENUMERATION_MEMBERS = ['AbdomenModel' => 'EnumerationMember\AbdomenModel', 'AppearanceModel' => 'EnumerationMember\AppearanceModel', 'CardiovascularExamModel' => 'EnumerationMember\CardiovascularExamModel', 'EarModel' => 'EnumerationMember\EarModel', 'EyeModel' => 'EnumerationMember\EyeModel', 'GenitourinaryModel' => 'EnumerationMember\GenitourinaryModel', 'HeadModel' => 'EnumerationMember\HeadModel', 'LungModel' => 'EnumerationMember\LungModel', 'MusculoskeletalExamModel' => 'EnumerationMember\MusculoskeletalExamModel', 'NeckModel' => 'EnumerationMember\NeckModel', 'NeuroModel' => 'EnumerationMember\NeuroModel', 'NoseModel' => 'EnumerationMember\NoseModel', 'SkinModel' => 'EnumerationMember\SkinModel', 'ThroatModel' => 'EnumerationMember\ThroatModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

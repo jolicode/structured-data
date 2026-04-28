@@ -22,6 +22,10 @@ use function Castor\io;
 use function Castor\run;
 
 use Jolicode\JsonLd\Algorithms;
+use Jolicode\JsonLd\Generator\Google\Filesystem as GoogleFilesystem;
+use Jolicode\JsonLd\Generator\SchemaOrg\Filesystem as SchemaOrgFilesystem;
+use Jolicode\Vocabularies\Mapper\MappedType;
+use Jolicode\Vocabularies\Validator;
 use Symfony\Component\Console\Input\InputOption;
 
 const CACHE_DIR_W3C_TEST_SUITE = __DIR__ . '/../var/cache/w3c-json-ld-api';
@@ -175,6 +179,66 @@ function phpunit(
         $command,
         context: context()->withAllowFailure()->withWorkingDirectory(\dirname(__DIR__)),
     )->getExitCode();
+}
+
+#[AsTask(name: 'examples:baseline', description: 'Update the schema.org examples baseline file. Will make all the tests green. Use with CARE!')]
+function updateSchemaOrgExamplesBaseline(): void
+{
+    io()->confirm(
+        "This command will take the results of the tests and write them in their respective baseline files.\n
+        This will change the expected outputs of the tests.\n
+        Are you 100% sure the current results of the tests are correct?",
+        false,
+    );
+
+    updateBaseline(
+        'schemaorg',
+        SchemaOrgFilesystem::SCHEMA_ORG_EXAMPLES_DIR,
+        SchemaOrgFilesystem::SCHEMA_ORG_EXAMPLES_DIR . '/../examples-baseline.json',
+    );
+    updateBaseline(
+        'schemaorg',
+        SchemaOrgFilesystem::SCHEMA_ORG_FIXTURES_DIR,
+        SchemaOrgFilesystem::SCHEMA_ORG_FIXTURES_DIR . '/../schema-org-baseline.json',
+    );
+    updateBaseline(
+        'google',
+        GoogleFilesystem::GOOGLE_FIXTURES_DIR,
+        GoogleFilesystem::GOOGLE_FIXTURES_DIR . '/../google-baseline.json',
+    );
+}
+
+function updateBaseline(
+    string $specificValidator,
+    string $path,
+    string $baselinePath,
+): void {
+    $finder = finder()->files()->in($path)->name('*.jsonld')->sortByName();
+    $validator = new Validator();
+    $validator->setValidator($specificValidator);
+    $baseline = [];
+
+    foreach ($finder as $file) {
+        $types = $validator->getTypes($file->getContents());
+        $errorMessages = [];
+        $typesWithError = array_filter(
+            $types,
+            static fn (MappedType $type) => (bool) $type->errors,
+        );
+
+        if (\count($typesWithError) > 0) {
+            foreach ($typesWithError as $typeWithError) {
+                $errorMessages = array_merge($errorMessages, $typeWithError->getErrorMessages(true));
+            }
+
+            $baseline[$file->getFilename()] = $errorMessages;
+        }
+    }
+
+    fs()->dumpFile(
+        $baselinePath,
+        json_encode($baseline, \JSON_PRETTY_PRINT),
+    );
 }
 
 #[AsTask(name: 'algorithms', namespace: 'qa:bench', description: 'Run the algorithms benchmark')]

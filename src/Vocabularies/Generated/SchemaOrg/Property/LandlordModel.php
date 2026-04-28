@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LandlordModel
 {
     public const DESCRIPTION = 'A sub property of participant. The owner of the real estate property.';
     public const LABEL = 'landlord';
     public const NAME = 'schema:landlord';
-    public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PersonModel'];
-    public const TYPES = ['RentAction' => 'Jolicode\Vocabularies\SchemaOrg\Type\RentActionModel'];
+    public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['RentAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RentActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

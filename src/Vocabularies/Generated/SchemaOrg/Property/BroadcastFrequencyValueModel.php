@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BroadcastFrequencyValueModel
 {
     public const DESCRIPTION = 'The frequency in MHz for a particular broadcast.';
     public const LABEL = 'broadcastFrequencyValue';
     public const NAME = 'schema:broadcastFrequencyValue';
-    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\QuantitativeValueModel'];
-    public const TYPES = ['BroadcastFrequencySpecification' => 'Jolicode\Vocabularies\SchemaOrg\Type\BroadcastFrequencySpecificationModel'];
+    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['BroadcastFrequencySpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastFrequencySpecificationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

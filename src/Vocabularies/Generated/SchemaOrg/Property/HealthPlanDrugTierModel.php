@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HealthPlanDrugTierModel
 {
     public const DESCRIPTION = 'The tier(s) of drugs offered by this formulary or insurance plan.';
     public const LABEL = 'healthPlanDrugTier';
     public const NAME = 'schema:healthPlanDrugTier';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['HealthInsurancePlan' => 'Jolicode\Vocabularies\SchemaOrg\Type\HealthInsurancePlanModel', 'HealthPlanFormulary' => 'Jolicode\Vocabularies\SchemaOrg\Type\HealthPlanFormularyModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['HealthInsurancePlan' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HealthInsurancePlanModel', 'HealthPlanFormulary' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HealthPlanFormularyModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

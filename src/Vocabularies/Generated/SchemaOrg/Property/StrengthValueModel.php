@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class StrengthValueModel
 {
     public const DESCRIPTION = 'The value of an active ingredient\'s strength, e.g. 325.';
     public const LABEL = 'strengthValue';
     public const NAME = 'schema:strengthValue';
-    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\NumberModel'];
-    public const TYPES = ['DrugStrength' => 'Jolicode\Vocabularies\SchemaOrg\Type\DrugStrengthModel'];
+    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['DrugStrength' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugStrengthModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

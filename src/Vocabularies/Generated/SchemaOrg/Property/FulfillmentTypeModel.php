@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class FulfillmentTypeModel
 {
     public const DESCRIPTION = 'Type of fulfillment applicable to the [[ShippingService]].';
     public const LABEL = 'fulfillmentType';
     public const NAME = 'schema:fulfillmentType';
-    public const VALUES = ['FulfillmentTypeEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\FulfillmentTypeEnumerationModel'];
-    public const TYPES = ['ShippingService' => 'Jolicode\Vocabularies\SchemaOrg\Type\ShippingServiceModel'];
+    public const VALUES = ['FulfillmentTypeEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FulfillmentTypeEnumerationModel'];
+    public const TYPES = ['ShippingService' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ShippingServiceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

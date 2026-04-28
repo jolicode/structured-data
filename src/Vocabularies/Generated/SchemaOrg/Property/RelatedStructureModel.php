@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RelatedStructureModel
 {
     public const DESCRIPTION = 'Related anatomical structure(s) that are not part of the system but relate or connect to it, such as vascular bundles associated with an organ system.';
     public const LABEL = 'relatedStructure';
     public const NAME = 'schema:relatedStructure';
-    public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AnatomicalStructureModel'];
-    public const TYPES = ['AnatomicalSystem' => 'Jolicode\Vocabularies\SchemaOrg\Type\AnatomicalSystemModel'];
+    public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalStructureModel'];
+    public const TYPES = ['AnatomicalSystem' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalSystemModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

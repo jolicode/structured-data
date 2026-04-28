@@ -1,0 +1,78 @@
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+   <tr>
+      <td><code translate="no" dir="ltr">image</code></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/ImageObject" class="external-link">ImageObject</a></code>
+        <p>
+          An image that represents the movie. Additional image guidelines:</p>
+        <ul>
+          <li>Image URLs must be
+            <a href="/search/docs/crawling-indexing/sitemaps/image-sitemaps">crawlable and indexable</a>.</li>
+          <li>Images must represent the marked up content.</li>
+          <li>Images must be in .jpg, .png, or .gif format.</li>
+          <li>Images must have a high resolution and have a 6:9 aspect ratio. While Google can crop images
+            that are close to a 6:9 aspect ratio, images largely deviating from this ratio aren't
+            eligible for the feature.</li>
+        </ul>
+      </td>
+    </tr>
+   <tr>
+      <td><code translate="no" dir="ltr">name</code></td>
+     <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+        <p>
+          The name of the movie.
+        </p>
+      </td>
+    </tr>
+    </tbody>
+    </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+          <td><h3 id="aggregaterating" data-text="             aggregateRating             " tabindex="-1">
+            <code translate="no" dir="ltr">aggregateRating</code>
+            </h3></td>
+          <td><p><code translate="no" dir="ltr"><a href="https://schema.org/AggregateRating" class="external-link">AggregateRating</a></code></p>
+          <p>Annotation for the average review score assigned to the movie. Follow the <a href="/search/docs/appearance/structured-data/review-snippet#guidelines">Review snippet guidelines</a> and list of required and recommended <a href="/search/docs/appearance/structured-data/review-snippet#aggregate-rating">AggregateRating properties</a>.</p>
+      </td>
+      </tr>
+   <tr>
+      <td><code translate="no" dir="ltr">dateCreated</code></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code>
+        <p>
+          The date the movie was released.
+        </p>
+      </td>
+    </tr>
+   <tr>
+      <td><code translate="no" dir="ltr">director</code></td>
+     <td><code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code>
+        <p>
+          The director of the movie. For example:</p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="director.name property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"director"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Person"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Bradley Cooper"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+    </tr>
+    <tr>
+        <td><h3 id="review" data-text="           review           " tabindex="-1">
+          <code translate="no" dir="ltr">review</code>
+          </h3></td>
+         <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Review" class="external-link">Review</a></code></p>
+          <p>A nested <code translate="no" dir="ltr">Review</code> of the movie. Follow the
+            <a href="/search/docs/appearance/structured-data/review-snippet#guidelines">Review snippet
+              guidelines</a> and the list of required and recommended
+            <a href="/search/docs/appearance/structured-data/review-snippet#review-properties">review
+              properties</a>.</p></td>
+       </tr>
+    </tbody>
+  </table>

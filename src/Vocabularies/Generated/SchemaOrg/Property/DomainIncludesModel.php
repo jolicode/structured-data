@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DomainIncludesModel
 {
     public const DESCRIPTION = 'Relates a property to a class that is (one of) the type(s) the property is expected to be used on.';
     public const LABEL = 'domainIncludes';
     public const NAME = 'schema:domainIncludes';
-    public const VALUES = ['ClassModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ClassModel'];
-    public const TYPES = ['Property' => 'Jolicode\Vocabularies\SchemaOrg\Type\PropertyModel'];
+    public const VALUES = ['ClassModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ClassModel'];
+    public const TYPES = ['Property' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

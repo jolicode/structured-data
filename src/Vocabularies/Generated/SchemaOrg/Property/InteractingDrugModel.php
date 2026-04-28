@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class InteractingDrugModel
 {
     public const DESCRIPTION = 'Another drug that is known to interact with this drug in a way that impacts the effect of this drug or causes a risk to the patient. Note: disease interactions are typically captured as contraindications.';
     public const LABEL = 'interactingDrug';
     public const NAME = 'schema:interactingDrug';
-    public const VALUES = ['DrugModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DrugModel'];
-    public const TYPES = ['Drug' => 'Jolicode\Vocabularies\SchemaOrg\Type\DrugModel'];
+    public const VALUES = ['DrugModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugModel'];
+    public const TYPES = ['Drug' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

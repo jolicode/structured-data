@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SubTestModel
 {
     public const DESCRIPTION = 'A component test of the panel.';
     public const LABEL = 'subTest';
     public const NAME = 'schema:subTest';
-    public const VALUES = ['MedicalTestModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalTestModel'];
-    public const TYPES = ['MedicalTestPanel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalTestPanelModel'];
+    public const VALUES = ['MedicalTestModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTestModel'];
+    public const TYPES = ['MedicalTestPanel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTestPanelModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

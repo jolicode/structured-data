@@ -1,0 +1,11 @@
+{
+    "@context": "https://schema.org",
+    "@type": "AggregateRating",
+    "itemReviewed": {
+      "@type": "Product",
+      "name": "Executive Anvil"
+    },
+    "ratingValue": 4.4,
+    "bestRating": 5,
+    "worstRating": 1
+}

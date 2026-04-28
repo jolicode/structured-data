@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class NewsArticleModel
 {
@@ -20,7 +20,7 @@ final class NewsArticleModel
 A more detailed overview of [schema.org News markup](/docs/news.html) is also available.';
     public const LABEL = 'NewsArticle';
     public const NAME = 'schema:NewsArticle';
-    public const PARENTS = ['ArticleModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ArticleModel'];
+    public const PARENTS = ['ArticleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ArticleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AlignmentTypeModel
 {
     public const DESCRIPTION = 'A category of alignment between the learning resource and the framework node. Recommended values include: \'requires\', \'textComplexity\', \'readingLevel\', and \'educationalSubject\'.';
     public const LABEL = 'alignmentType';
     public const NAME = 'schema:alignmentType';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['AlignmentObject' => 'Jolicode\Vocabularies\SchemaOrg\Type\AlignmentObjectModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['AlignmentObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AlignmentObjectModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

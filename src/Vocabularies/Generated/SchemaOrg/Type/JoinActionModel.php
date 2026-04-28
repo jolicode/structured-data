@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class JoinActionModel
 {
     public const DESCRIPTION = 'An agent joins an event/group with participants/friends at a location.\n\nRelated actions:\n\n* [[RegisterAction]]: Unlike RegisterAction, JoinAction refers to joining a group/team of people.\n* [[SubscribeAction]]: Unlike SubscribeAction, JoinAction does not imply that you\'ll be receiving updates.\n* [[FollowAction]]: Unlike FollowAction, JoinAction does not imply that you\'ll be polling for updates.';
     public const LABEL = 'JoinAction';
     public const NAME = 'schema:JoinAction';
-    public const PARENTS = ['InteractActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\InteractActionModel'];
+    public const PARENTS = ['InteractActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InteractActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

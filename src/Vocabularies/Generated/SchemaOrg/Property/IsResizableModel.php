@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IsResizableModel
 {
     public const DESCRIPTION = 'Whether the 3DModel allows resizing. For example, room layout applications often do not allow 3DModel elements to be resized to reflect reality.';
     public const LABEL = 'isResizable';
     public const NAME = 'schema:isResizable';
-    public const VALUES = ['BooleanModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\BooleanModel'];
-    public const TYPES = ['3DModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\3DModelModel'];
+    public const VALUES = ['BooleanModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BooleanModel'];
+    public const TYPES = ['3DModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\3DModelModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PatientModel
 {
     public const DESCRIPTION = 'A patient is any person recipient of health care services.';
     public const LABEL = 'Patient';
     public const NAME = 'schema:Patient';
-    public const PARENTS = ['MedicalAudienceModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalAudienceModel', 'PersonModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PersonModel'];
+    public const PARENTS = ['MedicalAudienceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalAudienceModel', 'PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

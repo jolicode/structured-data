@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TaxiServiceModel
 {
     public const DESCRIPTION = 'A service for a vehicle for hire with a driver for local travel. Fares are usually calculated based on distance traveled.';
     public const LABEL = 'TaxiService';
     public const NAME = 'schema:TaxiService';
-    public const PARENTS = ['ServiceModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ServiceModel'];
+    public const PARENTS = ['ServiceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

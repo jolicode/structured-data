@@ -1,0 +1,12 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Basic Tee",
+    "offers": {
+        "@type": "Offer",
+        "price": 0,
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "priceValidUntil": "2030-01-01"
+    }
+}

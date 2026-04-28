@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LiquorStoreModel
 {
     public const DESCRIPTION = 'A shop that sells alcoholic drinks such as wine, beer, whisky and other spirits.';
     public const LABEL = 'LiquorStore';
     public const NAME = 'schema:LiquorStore';
-    public const PARENTS = ['StoreModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\StoreModel'];
+    public const PARENTS = ['StoreModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\StoreModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

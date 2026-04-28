@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PriceSpecificationModel
 {
     public const DESCRIPTION = 'One or more detailed price specifications, indicating the unit price and delivery or payment charges.';
     public const LABEL = 'priceSpecification';
     public const NAME = 'schema:priceSpecification';
-    public const VALUES = ['PriceSpecificationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PriceSpecificationModel'];
-    public const TYPES = ['Demand' => 'Jolicode\Vocabularies\SchemaOrg\Type\DemandModel', 'DonateAction' => 'Jolicode\Vocabularies\SchemaOrg\Type\DonateActionModel', 'Offer' => 'Jolicode\Vocabularies\SchemaOrg\Type\OfferModel', 'TradeAction' => 'Jolicode\Vocabularies\SchemaOrg\Type\TradeActionModel'];
+    public const VALUES = ['PriceSpecificationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PriceSpecificationModel'];
+    public const TYPES = ['Demand' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DemandModel', 'DonateAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DonateActionModel', 'Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel', 'TradeAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TradeActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

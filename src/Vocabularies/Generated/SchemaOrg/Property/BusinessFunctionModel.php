@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BusinessFunctionModel
 {
     public const DESCRIPTION = 'The business function (e.g. sell, lease, repair, dispose) of the offer or component of a bundle (TypeAndQuantityNode). The default is http://purl.org/goodrelations/v1#Sell.';
     public const LABEL = 'businessFunction';
     public const NAME = 'schema:businessFunction';
-    public const VALUES = ['BusinessFunctionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\BusinessFunctionModel'];
-    public const TYPES = ['Demand' => 'Jolicode\Vocabularies\SchemaOrg\Type\DemandModel', 'Offer' => 'Jolicode\Vocabularies\SchemaOrg\Type\OfferModel', 'TypeAndQuantityNode' => 'Jolicode\Vocabularies\SchemaOrg\Type\TypeAndQuantityNodeModel'];
+    public const VALUES = ['BusinessFunctionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BusinessFunctionModel'];
+    public const TYPES = ['Demand' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DemandModel', 'Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel', 'TypeAndQuantityNode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TypeAndQuantityNodeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EventScheduleModel
 {
@@ -21,8 +21,8 @@ final class EventScheduleModel
       or seasons.';
     public const LABEL = 'eventSchedule';
     public const NAME = 'schema:eventSchedule';
-    public const VALUES = ['ScheduleModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ScheduleModel'];
-    public const TYPES = ['Event' => 'Jolicode\Vocabularies\SchemaOrg\Type\EventModel'];
+    public const VALUES = ['ScheduleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ScheduleModel'];
+    public const TYPES = ['Event' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

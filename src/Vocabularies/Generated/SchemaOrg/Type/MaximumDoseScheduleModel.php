@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MaximumDoseScheduleModel
 {
     public const DESCRIPTION = 'The maximum dosing schedule considered safe for a drug or supplement as recommended by an authority or by the drug/supplement\'s manufacturer. Capture the recommending authority in the recognizingAuthority property of MedicalEntity.';
     public const LABEL = 'MaximumDoseSchedule';
     public const NAME = 'schema:MaximumDoseSchedule';
-    public const PARENTS = ['DoseScheduleModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DoseScheduleModel'];
+    public const PARENTS = ['DoseScheduleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DoseScheduleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BioChemSimilarityModel
 {
     public const DESCRIPTION = 'A similar BioChemEntity, e.g., obtained by fingerprint similarity algorithms.';
     public const LABEL = 'bioChemSimilarity';
     public const NAME = 'schema:bioChemSimilarity';
-    public const VALUES = ['BioChemEntityModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\BioChemEntityModel'];
-    public const TYPES = ['BioChemEntity' => 'Jolicode\Vocabularies\SchemaOrg\Type\BioChemEntityModel'];
+    public const VALUES = ['BioChemEntityModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BioChemEntityModel'];
+    public const TYPES = ['BioChemEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BioChemEntityModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

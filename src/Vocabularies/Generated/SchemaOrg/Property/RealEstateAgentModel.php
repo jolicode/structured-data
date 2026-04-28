@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RealEstateAgentModel
 {
     public const DESCRIPTION = 'A sub property of participant. The real estate agent involved in the action.';
     public const LABEL = 'realEstateAgent';
     public const NAME = 'schema:realEstateAgent';
-    public const VALUES = ['RealEstateAgentModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\RealEstateAgentModel'];
-    public const TYPES = ['RentAction' => 'Jolicode\Vocabularies\SchemaOrg\Type\RentActionModel'];
+    public const VALUES = ['RealEstateAgentModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RealEstateAgentModel'];
+    public const TYPES = ['RentAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RentActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

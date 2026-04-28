@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PreOrderActionModel
 {
     public const DESCRIPTION = 'An agent orders a (not yet released) object/product/service to be delivered/sent.';
     public const LABEL = 'PreOrderAction';
     public const NAME = 'schema:PreOrderAction';
-    public const PARENTS = ['TradeActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TradeActionModel'];
+    public const PARENTS = ['TradeActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TradeActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1125'];

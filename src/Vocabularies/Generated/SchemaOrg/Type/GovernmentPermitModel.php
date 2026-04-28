@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class GovernmentPermitModel
 {
     public const DESCRIPTION = 'A permit issued by a government agency.';
     public const LABEL = 'GovernmentPermit';
     public const NAME = 'schema:GovernmentPermit';
-    public const PARENTS = ['PermitModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PermitModel'];
+    public const PARENTS = ['PermitModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PermitModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

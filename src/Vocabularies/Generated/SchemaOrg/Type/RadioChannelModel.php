@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RadioChannelModel
 {
     public const DESCRIPTION = 'A unique instance of a radio BroadcastService on a CableOrSatelliteService lineup.';
     public const LABEL = 'RadioChannel';
     public const NAME = 'schema:RadioChannel';
-    public const PARENTS = ['BroadcastChannelModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\BroadcastChannelModel'];
+    public const PARENTS = ['BroadcastChannelModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastChannelModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

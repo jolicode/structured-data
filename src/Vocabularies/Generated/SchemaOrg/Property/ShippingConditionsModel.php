@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ShippingConditionsModel
 {
     public const DESCRIPTION = 'The conditions (constraints, price) applicable to the [[ShippingService]].';
     public const LABEL = 'shippingConditions';
     public const NAME = 'schema:shippingConditions';
-    public const VALUES = ['ShippingConditionsModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ShippingConditionsModel'];
-    public const TYPES = ['ShippingService' => 'Jolicode\Vocabularies\SchemaOrg\Type\ShippingServiceModel'];
+    public const VALUES = ['ShippingConditionsModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ShippingConditionsModel'];
+    public const TYPES = ['ShippingService' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ShippingServiceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

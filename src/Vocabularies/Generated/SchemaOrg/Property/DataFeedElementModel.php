@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DataFeedElementModel
 {
     public const DESCRIPTION = 'An item within a data feed. Data feeds may have many elements.';
     public const LABEL = 'dataFeedElement';
     public const NAME = 'schema:dataFeedElement';
-    public const VALUES = ['DataFeedItemModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DataFeedItemModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel', 'ThingModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ThingModel'];
-    public const TYPES = ['DataFeed' => 'Jolicode\Vocabularies\SchemaOrg\Type\DataFeedModel'];
+    public const VALUES = ['DataFeedItemModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DataFeedItemModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'ThingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['DataFeed' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DataFeedModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

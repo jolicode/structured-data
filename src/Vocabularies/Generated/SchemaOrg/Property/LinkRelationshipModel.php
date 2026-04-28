@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LinkRelationshipModel
 {
     public const DESCRIPTION = 'Indicates the relationship type of a Web link.';
     public const LABEL = 'linkRelationship';
     public const NAME = 'schema:linkRelationship';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['LinkRole' => 'Jolicode\Vocabularies\SchemaOrg\Type\LinkRoleModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['LinkRole' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LinkRoleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

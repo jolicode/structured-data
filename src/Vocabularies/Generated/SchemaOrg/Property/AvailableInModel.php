@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AvailableInModel
 {
     public const DESCRIPTION = 'The location in which the strength is available.';
     public const LABEL = 'availableIn';
     public const NAME = 'schema:availableIn';
-    public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AdministrativeAreaModel'];
-    public const TYPES = ['DrugStrength' => 'Jolicode\Vocabularies\SchemaOrg\Type\DrugStrengthModel'];
+    public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AdministrativeAreaModel'];
+    public const TYPES = ['DrugStrength' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugStrengthModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

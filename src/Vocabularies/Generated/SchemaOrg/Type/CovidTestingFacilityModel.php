@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CovidTestingFacilityModel
 {
@@ -21,7 +21,7 @@ final class CovidTestingFacilityModel
       about that place, e.g. contact info, address, opening hours. Note that in an emergency, such information may not always be reliable.';
     public const LABEL = 'CovidTestingFacility';
     public const NAME = 'schema:CovidTestingFacility';
-    public const PARENTS = ['MedicalClinicModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalClinicModel'];
+    public const PARENTS = ['MedicalClinicModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalClinicModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2490'];

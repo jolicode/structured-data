@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OpeningHoursSpecificationModel
 {
     public const DESCRIPTION = 'The opening hours of a certain place.';
     public const LABEL = 'openingHoursSpecification';
     public const NAME = 'schema:openingHoursSpecification';
-    public const VALUES = ['OpeningHoursSpecificationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\OpeningHoursSpecificationModel'];
-    public const TYPES = ['Place' => 'Jolicode\Vocabularies\SchemaOrg\Type\PlaceModel'];
+    public const VALUES = ['OpeningHoursSpecificationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OpeningHoursSpecificationModel'];
+    public const TYPES = ['Place' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlaceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

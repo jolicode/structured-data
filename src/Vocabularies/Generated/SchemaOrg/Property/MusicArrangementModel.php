@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MusicArrangementModel
 {
     public const DESCRIPTION = 'An arrangement derived from the composition.';
     public const LABEL = 'musicArrangement';
     public const NAME = 'schema:musicArrangement';
-    public const VALUES = ['MusicCompositionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MusicCompositionModel'];
-    public const TYPES = ['MusicComposition' => 'Jolicode\Vocabularies\SchemaOrg\Type\MusicCompositionModel'];
+    public const VALUES = ['MusicCompositionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicCompositionModel'];
+    public const TYPES = ['MusicComposition' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicCompositionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

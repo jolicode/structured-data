@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RiskFactorModel
 {
     public const DESCRIPTION = 'A modifiable or non-modifiable factor that increases the risk of a patient contracting this condition, e.g. age,  coexisting condition.';
     public const LABEL = 'riskFactor';
     public const NAME = 'schema:riskFactor';
-    public const VALUES = ['MedicalRiskFactorModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalRiskFactorModel'];
-    public const TYPES = ['MedicalCondition' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalConditionModel'];
+    public const VALUES = ['MedicalRiskFactorModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalRiskFactorModel'];
+    public const TYPES = ['MedicalCondition' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

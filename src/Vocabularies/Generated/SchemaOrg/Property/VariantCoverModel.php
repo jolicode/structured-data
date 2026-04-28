@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class VariantCoverModel
 {
@@ -18,8 +18,8 @@ final class VariantCoverModel
     	Variant Cover" or "2nd Printing Variant".';
     public const LABEL = 'variantCover';
     public const NAME = 'schema:variantCover';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['ComicIssue' => 'Jolicode\Vocabularies\SchemaOrg\Type\ComicIssueModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['ComicIssue' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ComicIssueModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DriveWheelConfigurationValueModel
 {
     public const DESCRIPTION = 'A value indicating which roadwheels will receive torque.';
     public const LABEL = 'DriveWheelConfigurationValue';
     public const NAME = 'schema:DriveWheelConfigurationValue';
-    public const PARENTS = ['QualitativeValueModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\QualitativeValueModel'];
+    public const PARENTS = ['QualitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QualitativeValueModel'];
     public const ENUMERATION_MEMBERS = ['AllWheelDriveConfigurationModel' => 'EnumerationMember\AllWheelDriveConfigurationModel', 'FourWheelDriveConfigurationModel' => 'EnumerationMember\FourWheelDriveConfigurationModel', 'FrontWheelDriveConfigurationModel' => 'EnumerationMember\FrontWheelDriveConfigurationModel', 'RearWheelDriveConfigurationModel' => 'EnumerationMember\RearWheelDriveConfigurationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

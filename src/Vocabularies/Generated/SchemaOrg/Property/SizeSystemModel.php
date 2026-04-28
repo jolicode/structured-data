@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SizeSystemModel
 {
     public const DESCRIPTION = 'The size system used to identify a product\'s size. Typically either a standard (for example, "GS1" or "ISO-EN13402"), country code (for example "US" or "JP"), or a measuring system (for example "Metric" or "Imperial").';
     public const LABEL = 'sizeSystem';
     public const NAME = 'schema:sizeSystem';
-    public const VALUES = ['SizeSystemEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\SizeSystemEnumerationModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['SizeSpecification' => 'Jolicode\Vocabularies\SchemaOrg\Type\SizeSpecificationModel'];
+    public const VALUES = ['SizeSystemEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SizeSystemEnumerationModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['SizeSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SizeSpecificationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

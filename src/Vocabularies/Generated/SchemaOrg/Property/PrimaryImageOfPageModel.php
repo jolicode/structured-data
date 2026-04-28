@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PrimaryImageOfPageModel
 {
     public const DESCRIPTION = 'Indicates the main image on the page.';
     public const LABEL = 'primaryImageOfPage';
     public const NAME = 'schema:primaryImageOfPage';
-    public const VALUES = ['ImageObjectModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ImageObjectModel'];
-    public const TYPES = ['WebPage' => 'Jolicode\Vocabularies\SchemaOrg\Type\WebPageModel'];
+    public const VALUES = ['ImageObjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ImageObjectModel'];
+    public const TYPES = ['WebPage' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebPageModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

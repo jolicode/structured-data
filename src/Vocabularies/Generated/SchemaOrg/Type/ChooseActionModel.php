@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ChooseActionModel
 {
     public const DESCRIPTION = 'The act of expressing a preference from a set of options or a large or unbounded set of choices/options.';
     public const LABEL = 'ChooseAction';
     public const NAME = 'schema:ChooseAction';
-    public const PARENTS = ['AssessActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AssessActionModel'];
+    public const PARENTS = ['AssessActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AssessActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

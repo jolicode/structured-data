@@ -1,0 +1,136 @@
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Required properties</th></tr></thead>
+        <tbody>
+          <tr id="description">
+            <td><code translate="no" dir="ltr">description</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The description of the loyalty program, describing the primary benefits for members.</p>
+            </td>
+          </tr>
+          <tr id="hasTiers">
+            <td><code translate="no" dir="ltr">hasTiers</code></td>
+            <td>
+              <p>Repeated <code translate="no" dir="ltr"><a href="https://schema.org/MemberProgramTier" class="external-link">MemberProgramTier</a></code></p>
+              <p>Defines a tier under a loyalty program. A loyalty program must have at least one tier.
+                See the list of <a href="#memberprogram-tier-properties"><code translate="no" dir="ltr">MemberProgramTier</code> properties</a>
+                supported by Google.</p>
+            </td>
+          </tr>
+          <tr id="name">
+            <td><code translate="no" dir="ltr">name</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The name of the loyalty program.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+        <tbody>
+          <tr id="url">
+            <td><code translate="no" dir="ltr">url</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+              <p>A URL of the web page where a shopper can sign up for this loyalty program.
+                Don't provide multiple URLs. If not provided, the URL of the page
+                containing the <code translate="no" dir="ltr">MemberProgram</code> structured data will be assumed.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Required properties</th></tr></thead>
+        <tbody>
+          <tr id="hasTierBenefit">
+            <td><code translate="no" dir="ltr">hasTierBenefit</code></td>
+            <td>
+              <p>Repeated <code translate="no" dir="ltr"><a href="https://schema.org/TierBenefitEnumeration" class="external-link">TierBenefitEnumeration</a></code></p>
+              <p>Benefit for members of this member tier. A member tier can have multiple benefits. The short names without the URL prefix
+                are also supported (for example <code translate="no" dir="ltr">TierBenefitLoyaltyPoints</code>).</p>
+              <ul>
+                <li><code translate="no" dir="ltr">https://schema.org/TierBenefitLoyaltyPoints</code>: The benefit is earning loyalty points. Also specify <code translate="no" dir="ltr">membershipPointsEarned</code>.</li>
+                <li><code translate="no" dir="ltr">https://schema.org/TierBenefitLoyaltyPrice</code>: The benefit is a member's only price.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr id="name">
+            <td><code translate="no" dir="ltr">name</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The name of the membership tier.</p>
+            </td>
+          </tr>
+         </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+        <tbody><tr id="hasTierRequirement">
+          <td><code translate="no" dir="ltr">hasTierRequirement</code></td>
+          <td>
+            <p>
+              <code translate="no" dir="ltr"><a href="https://schema.org/CreditCard" class="external-link">CreditCard</a></code>, or
+              <code translate="no" dir="ltr"><a href="https://schema.org/MonetaryAmount" class="external-link">MonetaryAmount</a></code>, or
+              <code translate="no" dir="ltr"><a href="https://schema.org/UnitPriceSpecification" class="external-link">UnitPriceSpecification</a></code>, or
+              <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+            </p>
+            <p>The requirement to join a member tier. If not specified, anyone can join the tier for free. For a non-free tier, specify
+              a value of the type representing the requirement to join the tier.
+            </p>
+            <ul>
+              <li><code translate="no" dir="ltr">https://schema.org/CreditCard</code>: Specify the credit card that the user needs to sign up for to join the tier.
+                For example:
+<div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Creditcard required" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"hasTierRequirement"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"CreditCard"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Capital Two cashback rewards platinum card"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span></pre></devsite-code>
+              </li>
+              <li><code translate="no" dir="ltr">https://schema.org/MonetaryAmount</code>: Specify the minimum amount of spending required to join the tier.
+                For example, for a $250 minimum spending, specify:
+<div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Minimum spending" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"hasTierRequirement"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MonetaryAmount"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">250</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"currency"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"USD"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span></pre></devsite-code>
+              </li>
+              <li><code translate="no" dir="ltr">https://schema.org/UnitPriceSpecification</code>: Specify the periodic fee a consumer needs to pay for membership in the tier.
+                For example, for a 12 month membership, billed once a month at 9.99€, specify:
+<div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Periodic fee" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"hasTierRequirement"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"UnitPriceSpecification"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"price"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m devsite-syntax-m-Double">9.99</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"priceCurrency"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"EUR"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"billingDuration"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">12</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"billingIncrement"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">1</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"unitCode"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MON"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span></pre></devsite-code>
+              </li>
+              <li><code translate="no" dir="ltr">https://schema.org/Text</code>: Describe any other requirement to join the tier. For example:
+<div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Other requirement" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"hasTierRequirement": "Purchase a share in our coop and volunteer a minimum of 1 day a month to keep operating costs low."</pre></devsite-code>
+              </li>
+            </ul>
+          </td>
+        </tr>
+
+        <tr>
+          <td><code translate="no" dir="ltr">membershipPointsEarned</code></td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/membershipPointsEarned" class="external-link">QuantitativeValue</a></code></p>
+            <p>The number of loyalty points earned by the consumer per currency unit spent when <code translate="no" dir="ltr">hasTierBenefit</code> is equal to <code translate="no" dir="ltr">https://schema.org/TierBenefitLoyaltyPoints</code>.
+            </p>
+          </td>
+        </tr>
+
+        <tr id="url">
+          <td><code translate="no" dir="ltr">url</code></td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+            <p>A URL of the web page where a shopper can sign up for this specific member tier.
+              Don't provide multiple URLs.</p>
+          </td>
+        </tr>
+      </tbody></table>

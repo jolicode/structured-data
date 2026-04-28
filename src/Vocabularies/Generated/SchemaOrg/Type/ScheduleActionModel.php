@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ScheduleActionModel
 {
     public const DESCRIPTION = 'Scheduling future actions, events, or tasks.\n\nRelated actions:\n\n* [[ReserveAction]]: Unlike ReserveAction, ScheduleAction allocates future actions (e.g. an event, a task, etc) towards a time slot / spatial allocation.';
     public const LABEL = 'ScheduleAction';
     public const NAME = 'schema:ScheduleAction';
-    public const PARENTS = ['PlanActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PlanActionModel'];
+    public const PARENTS = ['PlanActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlanActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

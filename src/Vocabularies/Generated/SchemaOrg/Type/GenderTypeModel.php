@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class GenderTypeModel
 {
     public const DESCRIPTION = 'An enumeration of genders.';
     public const LABEL = 'GenderType';
     public const NAME = 'schema:GenderType';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['FemaleModel' => 'EnumerationMember\FemaleModel', 'MaleModel' => 'EnumerationMember\MaleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

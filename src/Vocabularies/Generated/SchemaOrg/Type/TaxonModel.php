@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TaxonModel
 {
     public const DESCRIPTION = 'A set of organisms asserted to represent a natural cohesive biological unit.';
     public const LABEL = 'Taxon';
     public const NAME = 'schema:Taxon';
-    public const PARENTS = ['ThingModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ThingModel'];
+    public const PARENTS = ['ThingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['http://bioschemas.org'];

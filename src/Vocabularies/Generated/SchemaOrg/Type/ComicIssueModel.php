@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ComicIssueModel
 {
@@ -23,7 +23,7 @@ final class ComicIssueModel
     	description of the issue (if any).';
     public const LABEL = 'ComicIssue';
     public const NAME = 'schema:ComicIssue';
-    public const PARENTS = ['PublicationIssueModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PublicationIssueModel'];
+    public const PARENTS = ['PublicationIssueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PublicationIssueModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://bib.schema.org'];
     public const SOURCE = [];

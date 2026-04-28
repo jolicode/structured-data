@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RuntimeModel
 {
     public const DESCRIPTION = 'Runtime platform or script interpreter dependencies (example: Java v1, Python 2.3, .NET Framework 3.0).';
     public const LABEL = 'runtime';
     public const NAME = 'schema:runtime';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['SoftwareSourceCode' => 'Jolicode\Vocabularies\SchemaOrg\Type\SoftwareSourceCodeModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['SoftwareSourceCode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SoftwareSourceCodeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

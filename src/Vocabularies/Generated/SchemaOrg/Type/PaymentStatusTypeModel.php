@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PaymentStatusTypeModel
 {
     public const DESCRIPTION = 'A specific payment status. For example, PaymentDue, PaymentComplete, etc.';
     public const LABEL = 'PaymentStatusType';
     public const NAME = 'schema:PaymentStatusType';
-    public const PARENTS = ['StatusEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\StatusEnumerationModel'];
+    public const PARENTS = ['StatusEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\StatusEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['PaymentAutomaticallyAppliedModel' => 'EnumerationMember\PaymentAutomaticallyAppliedModel', 'PaymentCompleteModel' => 'EnumerationMember\PaymentCompleteModel', 'PaymentDeclinedModel' => 'EnumerationMember\PaymentDeclinedModel', 'PaymentDueModel' => 'EnumerationMember\PaymentDueModel', 'PaymentPastDueModel' => 'EnumerationMember\PaymentPastDueModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

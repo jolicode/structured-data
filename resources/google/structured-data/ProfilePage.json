@@ -1,0 +1,123 @@
+{
+    "name": "ProfilePage",
+    "documentation": "https://developers.google.com/search/docs/appearance/structured-data/profile-page",
+    "specialRules": [],
+    "supportedTypes": [
+        "ProfilePage"
+    ],
+    "properties": {
+        "mainEntity": {
+            "name": "mainEntity",
+            "severity": "required",
+            "supportedTypes": [
+                "Person",
+                "Organization"
+            ],
+            "properties": {
+                "name": {
+                    "name": "name",
+                    "severity": "recommended",
+                    "supportedTypes": [
+                        "Text"
+                    ]
+                },
+                "agentInteractionStatistic": {
+                    "name": "agentInteractionStatistic",
+                    "severity": "recommended",
+                    "supportedTypes": [
+                        "InteractionCounter"
+                    ],
+                    "properties": {
+                        "interactionType": {
+                            "name": "interactionType",
+                            "severity": "recommended",
+                            "supportedTypes": [
+                                "URL"
+                            ]
+                        },
+                        "userInteractionCount": {
+                            "name": "userInteractionCount",
+                            "severity": "recommended",
+                            "supportedTypes": [
+                                "Integer"
+                            ]
+                        }
+                    }
+                },
+                "alternateName": {
+                    "name": "alternateName",
+                    "severity": "recommended",
+                    "supportedTypes": [
+                        "Text"
+                    ]
+                },
+                "description": {
+                    "name": "description",
+                    "severity": "recommended",
+                    "supportedTypes": [
+                        "Text"
+                    ]
+                },
+                "identifier": {
+                    "name": "identifier",
+                    "severity": "recommended",
+                    "supportedTypes": [
+                        "Text"
+                    ]
+                },
+                "image": {
+                    "name": "image",
+                    "severity": "recommended",
+                    "supportedTypes": [
+                        "URL",
+                        "ImageObject"
+                    ]
+                },
+                "interactionStatistic": {
+                    "name": "interactionStatistic",
+                    "severity": "recommended",
+                    "supportedTypes": [
+                        "InteractionCounter"
+                    ],
+                    "properties": {
+                        "interactionType": {
+                            "name": "interactionType",
+                            "severity": "recommended",
+                            "supportedTypes": [
+                                "URL"
+                            ]
+                        },
+                        "userInteractionCount": {
+                            "name": "userInteractionCount",
+                            "severity": "recommended",
+                            "supportedTypes": [
+                                "Integer"
+                            ]
+                        }
+                    }
+                },
+                "sameAs": {
+                    "name": "sameAs",
+                    "severity": "recommended",
+                    "supportedTypes": [
+                        "URL"
+                    ]
+                }
+            }
+        },
+        "dateCreated": {
+            "name": "dateCreated",
+            "severity": "recommended",
+            "supportedTypes": [
+                "DateTime"
+            ]
+        },
+        "dateModified": {
+            "name": "dateModified",
+            "severity": "recommended",
+            "supportedTypes": [
+                "DateTime"
+            ]
+        }
+    }
+}

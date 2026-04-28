@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DepartActionModel
 {
     public const DESCRIPTION = 'The act of  departing from a place. An agent departs from a fromLocation for a destination, optionally with participants.';
     public const LABEL = 'DepartAction';
     public const NAME = 'schema:DepartAction';
-    public const PARENTS = ['MoveActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MoveActionModel'];
+    public const PARENTS = ['MoveActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MoveActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

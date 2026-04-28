@@ -11,15 +11,17 @@
 
 namespace Jolicode\JsonLd\Generator;
 
+use Symfony\Component\Console\Style\SymfonyStyle;
+
 interface GeneratorInterface
 {
     /**
      * Extracts all the needed data and generates the corresponding files.
      */
-    public function generate(): void;
+    public function generate(?SymfonyStyle $io = null): void;
 
     /**
      * Returns the name of the generator.
      */
-    public function getName(): string;
+    public static function getName(): string;
 }

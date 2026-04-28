@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SalaryCurrencyModel
 {
     public const DESCRIPTION = 'The currency (coded using [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217)) used for the main salary information in this job posting or for this employee.';
     public const LABEL = 'salaryCurrency';
     public const NAME = 'schema:salaryCurrency';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['EmployeeRole' => 'Jolicode\Vocabularies\SchemaOrg\Type\EmployeeRoleModel', 'JobPosting' => 'Jolicode\Vocabularies\SchemaOrg\Type\JobPostingModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['EmployeeRole' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EmployeeRoleModel', 'JobPosting' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\JobPostingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

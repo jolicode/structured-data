@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class UseActionModel
 {
     public const DESCRIPTION = 'The act of applying an object to its intended purpose.';
     public const LABEL = 'UseAction';
     public const NAME = 'schema:UseAction';
-    public const PARENTS = ['ConsumeActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ConsumeActionModel'];
+    public const PARENTS = ['ConsumeActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ConsumeActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CountryOfOriginModel
 {
@@ -20,8 +20,8 @@ In the case of TV and movie, this would be the country of the principle offices 
 In the case of products, the country of origin of the product. The exact interpretation of this may vary by context and product type, and cannot be fully enumerated here.';
     public const LABEL = 'countryOfOrigin';
     public const NAME = 'schema:countryOfOrigin';
-    public const VALUES = ['CountryModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CountryModel'];
-    public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\SchemaOrg\Type\CreativeWorkModel', 'Movie' => 'Jolicode\Vocabularies\SchemaOrg\Type\MovieModel', 'Product' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProductModel', 'TVEpisode' => 'Jolicode\Vocabularies\SchemaOrg\Type\TVEpisodeModel', 'TVSeason' => 'Jolicode\Vocabularies\SchemaOrg\Type\TVSeasonModel', 'TVSeries' => 'Jolicode\Vocabularies\SchemaOrg\Type\TVSeriesModel'];
+    public const VALUES = ['CountryModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CountryModel'];
+    public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'Movie' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MovieModel', 'Product' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel', 'TVEpisode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TVEpisodeModel', 'TVSeason' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TVSeasonModel', 'TVSeries' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TVSeriesModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

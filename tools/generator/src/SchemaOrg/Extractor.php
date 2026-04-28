@@ -11,12 +11,10 @@
 
 namespace Jolicode\JsonLd\Generator\SchemaOrg;
 
-use Jolicode\JsonLd\Generator\Filesystem;
 use Jolicode\JsonLd\Generator\SchemaOrg\Objects\ClassesContainer;
 use Jolicode\JsonLd\Generator\SchemaOrg\Objects\EnumerationMember;
 use Jolicode\JsonLd\Generator\SchemaOrg\Objects\Property;
 use Jolicode\JsonLd\Generator\SchemaOrg\Objects\Type;
-use Symfony\Component\String\Slugger\AsciiSlugger;
 
 readonly class Extractor
 {
@@ -37,11 +35,8 @@ readonly class Extractor
     public const SCHEMA_IS_PART_OF = 'schema:isPartOf';
     public const SCHEMA_SOURCE = 'schema:source';
 
-    public const GENERATED_DIR = __DIR__ . '/../../../generated/SchemaOrg';
-
     public function __construct(
         private Filesystem $filesystem = new Filesystem(),
-        private AsciiSlugger $slugger = new AsciiSlugger(),
     ) {
     }
 

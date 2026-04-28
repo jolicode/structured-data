@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class NumberOfPagesModel
 {
     public const DESCRIPTION = 'The number of pages in the book.';
     public const LABEL = 'numberOfPages';
     public const NAME = 'schema:numberOfPages';
-    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\IntegerModel'];
-    public const TYPES = ['Book' => 'Jolicode\Vocabularies\SchemaOrg\Type\BookModel'];
+    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['Book' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BookModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

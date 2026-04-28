@@ -13,24 +13,26 @@ namespace Jolicode\Vocabularies\Validators\SchemaOrg;
 
 use Jolicode\JsonLd\Algorithms\Http\IriResolver;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property\AdditionalPropertyModel;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyValueSpecificationModel;
 use Jolicode\Vocabularies\Mapper\MappedError;
 use Jolicode\Vocabularies\Mapper\MappedProperty;
 use Jolicode\Vocabularies\Mapper\MappedType;
-use Jolicode\Vocabularies\SchemaOrg\Type\PropertyValueSpecificationModel;
 use Jolicode\Vocabularies\Validators\AbstractValidator;
 
 class SchemaOrgValidator extends AbstractValidator
 {
     public const VALIDATOR_NAME = 'SchemaOrg';
 
-    public static function validateType(MappedType $type, ?MappedProperty $property, array $typesStack): array
+    public function validateType(MappedType $type): array
     {
         $errors = [];
         $typeLabel = $type->type;
-        $errorTarget = $property ?: $type;
+        $parentProperty = $type->parentProperty;
+        $errorTarget = $parentProperty ?: $type;
 
         if (
-            $property
+            $parentProperty
             && \is_array($typeLabel)
             && \count($typeLabel) > 1
         ) {
@@ -54,7 +56,13 @@ class SchemaOrgValidator extends AbstractValidator
                 return $errors;
             }
 
-            $typeLabel = self::guessTypeFromProperties($type->properties, $property?->key);
+            // Ignore nested foreign-vocabulary nodes (e.g. JSON-LD security proof graphs)
+            // referenced by absolute-IRI properties: they are outside schema.org scope.
+            if ($parentProperty && IriResolver::isAbsoluteIri($parentProperty->key)) {
+                return $errors;
+            }
+
+            $typeLabel = $this->guessTypeFromProperties($type->properties, $parentProperty?->key);
             $type->type = $typeLabel;
             $message = 'The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ' . $typeLabel;
             $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_WARNING);
@@ -65,7 +73,7 @@ class SchemaOrgValidator extends AbstractValidator
                 continue;
             }
 
-            $typeFqcn = self::getTypeFqcn($label);
+            $typeFqcn = $this->getTypeFqcn($label);
 
             if (!class_exists($typeFqcn)) {
                 $message = \sprintf('The "%s" type is not a valid Schema.org type', $label);
@@ -83,15 +91,15 @@ class SchemaOrgValidator extends AbstractValidator
             $type->isPartOf = array_merge($type->isPartOf, $typeFqcn::IS_PART_OF);
             $type->source = array_merge($type->source, $typeFqcn::SOURCE);
 
-            if ($property && !IriResolver::isAbsoluteIri($property->key)) {
-                $propertyKey = self::stripActionSuffixes($property->key);
+            if ($parentProperty && !IriResolver::isAbsoluteIri($parentProperty->key)) {
+                $parentPropertyKey = $this->stripActionSuffixes($parentProperty->key);
 
-                if (!class_exists(self::getPropertyFqcn($propertyKey))) {
+                if (!class_exists($this->getPropertyFqcn($parentPropertyKey))) {
                     return $errors;
                 }
 
-                if (!self::propertyTypeIsValid($property->key, $typeFqcn)) {
-                    $message = \sprintf('The "%s" property does not accept the "%s" type as a value', $property->key, $typeFqcn::LABEL);
+                if (!self::propertyTypeIsValid($parentProperty->key, $typeFqcn)) {
+                    $message = \sprintf('The "%s" property does not accept the "%s" type as a value', $parentProperty->key, $typeFqcn::LABEL);
                     $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_ERROR);
                 }
             }
@@ -100,7 +108,7 @@ class SchemaOrgValidator extends AbstractValidator
         return $errors;
     }
 
-    public static function validateProperty(MappedType $type, MappedProperty $property, array $typesStack, ?MappedProperty $originalProperty = null): array
+    public function validateProperty(MappedType $type, MappedProperty $property, ?MappedProperty $originalProperty = null): array
     {
         $errors = [];
         $typeLabel = $type->type;
@@ -109,13 +117,13 @@ class SchemaOrgValidator extends AbstractValidator
             return $errors;
         }
 
-        $propertyKey = self::stripActionSuffixes($property->key);
+        $propertyKey = $this->stripActionSuffixes($property->key);
 
         if (Keyword::tryFrom($propertyKey) || IriResolver::isAbsoluteIri($propertyKey)) {
             return $errors;
         }
 
-        $propertyFqcn = self::getPropertyFqcn($propertyKey);
+        $propertyFqcn = $this->getPropertyFqcn($propertyKey);
 
         if (!class_exists($propertyFqcn)) {
             $message = \sprintf('This property does not exist: %s', $propertyKey);
@@ -146,7 +154,11 @@ class SchemaOrgValidator extends AbstractValidator
             if (class_exists($typeFqcn)) {
                 $typeExists = true;
 
-                if (property_exists($typeFqcn, $propertyKey) || str_contains($typeFqcn::LABEL, 'Role')) {
+                if (
+                    property_exists($typeFqcn, $propertyKey)
+                    || str_contains($typeFqcn::LABEL, 'Role')
+                    || (AdditionalPropertyModel::LABEL === $propertyKey)
+                ) {
                     $propertyIsValid = true;
                 }
             }
@@ -157,8 +169,9 @@ class SchemaOrgValidator extends AbstractValidator
         }
 
         if (!$propertyIsValid) {
-            if (\is_string($typeLabel)) {
-                $message = \sprintf('The property "%s" does not exist on the type "%s"', $propertyKey, $typeLabel);
+            if (\is_string($typeLabel) || (\is_array($typeLabel) && 1 === \count($typeLabel))) {
+                $singleTypeLabel = \is_string($typeLabel) ? $typeLabel : $typeLabel[0];
+                $message = \sprintf('The property "%s" does not exist on the type "%s"', $propertyKey, $singleTypeLabel);
             } else {
                 $message = \sprintf('The property "%s" does not exist on any of these types: "%s"', $propertyKey, implode(', ', $typeLabel));
             }
@@ -172,7 +185,7 @@ class SchemaOrgValidator extends AbstractValidator
     /**
      * @param array<MappedProperty> $typeProperties
      */
-    public static function guessTypeFromProperties(
+    public function guessTypeFromProperties(
         array $typeProperties,
         ?string $parentProperty = null,
     ): string {
@@ -191,8 +204,8 @@ class SchemaOrgValidator extends AbstractValidator
                 continue;
             }
 
-            $propertyKey = self::stripActionSuffixes($property->key);
-            $propertyFqcn = self::getPropertyFqcn($propertyKey);
+            $propertyKey = $this->stripActionSuffixes($property->key);
+            $propertyFqcn = $this->getPropertyFqcn($propertyKey);
 
             if (!class_exists($propertyFqcn)) {
                 continue;
@@ -231,7 +244,7 @@ class SchemaOrgValidator extends AbstractValidator
 
         if (\count($possibleTypes) > 1) {
             foreach ($possibleTypes as $fqcn => $possibleType) {
-                $possibleTypes[$fqcn]['parentsChainLength'] = self::countLonguestParentsChain($fqcn);
+                $possibleTypes[$fqcn]['parentsChainLength'] = $this->countLonguestParentsChain($fqcn);
             }
 
             usort($possibleTypes, static fn (array $a, array $b) => $a['parentsChainLength'] <=> $b['parentsChainLength']);
@@ -246,10 +259,10 @@ class SchemaOrgValidator extends AbstractValidator
         return 'Thing';
     }
 
-    private static function guessFromParentProperty(string $parentProperty, array $typeProperties): ?string
+    private function guessFromParentProperty(string $parentProperty, array $typeProperties): ?string
     {
-        $parentPropertyKey = self::stripActionSuffixes($parentProperty);
-        $parentPropertyFqcn = self::getPropertyFqcn($parentPropertyKey);
+        $parentPropertyKey = $this->stripActionSuffixes($parentProperty);
+        $parentPropertyFqcn = $this->getPropertyFqcn($parentPropertyKey);
         $bestMatches = [];
 
         if (!class_exists($parentPropertyFqcn)) {
@@ -270,7 +283,7 @@ class SchemaOrgValidator extends AbstractValidator
         return array_pop($bestMatches);
     }
 
-    private static function countLonguestParentsChain(string $fqcn): int
+    private function countLonguestParentsChain(string $fqcn): int
     {
         if (!$fqcn::PARENTS) {
             return 0;
@@ -279,30 +292,30 @@ class SchemaOrgValidator extends AbstractValidator
         $longuestParentsChainLength = 0;
 
         foreach ($fqcn::PARENTS as $parentType) {
-            $longuestParentsChainLength = max(self::countLonguestParentsChain($parentType), $longuestParentsChainLength);
+            $longuestParentsChainLength = max($this->countLonguestParentsChain($parentType), $longuestParentsChainLength);
         }
 
         return $longuestParentsChainLength + 1;
     }
 
-    private static function getTypeFqcn(string $typeShortName): string
+    private function getTypeFqcn(string $typeShortName): string
     {
-        return \sprintf('Jolicode\\Vocabularies\\SchemaOrg\\Type\\%sModel', $typeShortName);
+        return \sprintf('Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Type\\%sModel', $typeShortName);
     }
 
-    private static function getPropertyFqcn(string $propertyShortName): string
+    private function getPropertyFqcn(string $propertyShortName): string
     {
-        return \sprintf('Jolicode\\Vocabularies\\SchemaOrg\\Property\\%sModel', ucfirst($propertyShortName));
+        return \sprintf('Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Property\\%sModel', ucfirst($propertyShortName));
     }
 
-    private static function stripActionSuffixes(string $propertyLabel): string
+    private function stripActionSuffixes(string $propertyLabel): string
     {
         $propertyLabel = str_replace(['-input', '-output'], '', $propertyLabel);
 
         return $propertyLabel;
     }
 
-    private static function propertyTypeIsValid(string $propertyLabel, string $typeFqcn): bool
+    private function propertyTypeIsValid(string $propertyLabel, string $typeFqcn): bool
     {
         // Ok this may look weird but take a look at http://blog.schema.org/2014/06/introducing-role.html
         if (str_contains($typeFqcn::LABEL, 'Role')) {
@@ -316,7 +329,7 @@ class SchemaOrgValidator extends AbstractValidator
             return true;
         }
 
-        $propertyFqcn = self::getPropertyFqcn($propertyLabel);
+        $propertyFqcn = $this->getPropertyFqcn($propertyLabel);
 
         if (!class_exists($propertyFqcn)) {
             return false;

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AddOnModel
 {
     public const DESCRIPTION = 'An additional offer that can only be obtained in combination with the first base offer (e.g. supplements and extensions that are available for a surcharge).';
     public const LABEL = 'addOn';
     public const NAME = 'schema:addOn';
-    public const VALUES = ['OfferModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\OfferModel'];
-    public const TYPES = ['Offer' => 'Jolicode\Vocabularies\SchemaOrg\Type\OfferModel'];
+    public const VALUES = ['OfferModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel'];
+    public const TYPES = ['Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class WarrantyScopeModel
 {
     public const DESCRIPTION = 'The scope of the warranty promise.';
     public const LABEL = 'warrantyScope';
     public const NAME = 'schema:warrantyScope';
-    public const VALUES = ['WarrantyScopeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\WarrantyScopeModel'];
-    public const TYPES = ['WarrantyPromise' => 'Jolicode\Vocabularies\SchemaOrg\Type\WarrantyPromiseModel'];
+    public const VALUES = ['WarrantyScopeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WarrantyScopeModel'];
+    public const TYPES = ['WarrantyPromise' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WarrantyPromiseModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

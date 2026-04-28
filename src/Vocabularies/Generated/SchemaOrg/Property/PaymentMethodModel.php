@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PaymentMethodModel
 {
     public const DESCRIPTION = 'The name of the credit card or other method of payment for the order.';
     public const LABEL = 'paymentMethod';
     public const NAME = 'schema:paymentMethod';
-    public const VALUES = ['PaymentMethodModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PaymentMethodModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Invoice' => 'Jolicode\Vocabularies\SchemaOrg\Type\InvoiceModel', 'Order' => 'Jolicode\Vocabularies\SchemaOrg\Type\OrderModel'];
+    public const VALUES = ['PaymentMethodModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PaymentMethodModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Invoice' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InvoiceModel', 'Order' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrderModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

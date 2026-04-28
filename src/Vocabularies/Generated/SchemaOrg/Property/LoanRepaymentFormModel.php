@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LoanRepaymentFormModel
 {
     public const DESCRIPTION = 'A form of paying back money previously borrowed from a lender. Repayment usually takes the form of periodic payments that normally include part principal plus interest in each payment.';
     public const LABEL = 'loanRepaymentForm';
     public const NAME = 'schema:loanRepaymentForm';
-    public const VALUES = ['RepaymentSpecificationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\RepaymentSpecificationModel'];
-    public const TYPES = ['LoanOrCredit' => 'Jolicode\Vocabularies\SchemaOrg\Type\LoanOrCreditModel'];
+    public const VALUES = ['RepaymentSpecificationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RepaymentSpecificationModel'];
+    public const TYPES = ['LoanOrCredit' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LoanOrCreditModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

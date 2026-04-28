@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TransitTimeLabelModel
 {
     public const DESCRIPTION = 'Label to match an [[OfferShippingDetails]] with a [[DeliveryTimeSettings]] (within the context of a [[shippingSettingsLink]] cross-reference).';
     public const LABEL = 'transitTimeLabel';
     public const NAME = 'schema:transitTimeLabel';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['DeliveryTimeSettings' => 'Jolicode\Vocabularies\SchemaOrg\Type\DeliveryTimeSettingsModel', 'OfferShippingDetails' => 'Jolicode\Vocabularies\SchemaOrg\Type\OfferShippingDetailsModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['DeliveryTimeSettings' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DeliveryTimeSettingsModel', 'OfferShippingDetails' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferShippingDetailsModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

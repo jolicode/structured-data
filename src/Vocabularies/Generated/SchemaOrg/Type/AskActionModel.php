@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AskActionModel
 {
     public const DESCRIPTION = 'The act of posing a question / favor to someone.\n\nRelated actions:\n\n* [[ReplyAction]]: Appears generally as a response to AskAction.';
     public const LABEL = 'AskAction';
     public const NAME = 'schema:AskAction';
-    public const PARENTS = ['CommunicateActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CommunicateActionModel'];
+    public const PARENTS = ['CommunicateActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommunicateActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

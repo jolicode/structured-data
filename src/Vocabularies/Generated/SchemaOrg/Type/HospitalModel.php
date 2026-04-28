@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HospitalModel
 {
     public const DESCRIPTION = 'A hospital.';
     public const LABEL = 'Hospital';
     public const NAME = 'schema:Hospital';
-    public const PARENTS = ['CivicStructureModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CivicStructureModel', 'EmergencyServiceModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EmergencyServiceModel', 'MedicalOrganizationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalOrganizationModel'];
+    public const PARENTS = ['CivicStructureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CivicStructureModel', 'EmergencyServiceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EmergencyServiceModel', 'MedicalOrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalOrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

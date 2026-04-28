@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ServiceSmsNumberModel
 {
     public const DESCRIPTION = 'The number to access the service by text message.';
     public const LABEL = 'serviceSmsNumber';
     public const NAME = 'schema:serviceSmsNumber';
-    public const VALUES = ['ContactPointModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ContactPointModel'];
-    public const TYPES = ['ServiceChannel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ServiceChannelModel'];
+    public const VALUES = ['ContactPointModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ContactPointModel'];
+    public const TYPES = ['ServiceChannel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceChannelModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

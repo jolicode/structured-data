@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PostalCodeBeginModel
 {
     public const DESCRIPTION = 'First postal code in a range (included).';
     public const LABEL = 'postalCodeBegin';
     public const NAME = 'schema:postalCodeBegin';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['PostalCodeRangeSpecification' => 'Jolicode\Vocabularies\SchemaOrg\Type\PostalCodeRangeSpecificationModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['PostalCodeRangeSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PostalCodeRangeSpecificationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

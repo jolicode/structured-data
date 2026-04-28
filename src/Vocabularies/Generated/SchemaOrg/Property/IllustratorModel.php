@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IllustratorModel
 {
     public const DESCRIPTION = 'The illustrator of the book.';
     public const LABEL = 'illustrator';
     public const NAME = 'schema:illustrator';
-    public const VALUES = ['PersonModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PersonModel'];
-    public const TYPES = ['Book' => 'Jolicode\Vocabularies\SchemaOrg\Type\BookModel'];
+    public const VALUES = ['PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['Book' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BookModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

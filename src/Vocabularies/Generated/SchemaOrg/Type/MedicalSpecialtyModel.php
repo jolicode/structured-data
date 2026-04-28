@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicalSpecialtyModel
 {
     public const DESCRIPTION = 'Any specific branch of medical science or practice. Medical specialities include clinical specialties that pertain to particular organ systems and their respective disease states, as well as allied health specialties. Enumerated type.';
     public const LABEL = 'MedicalSpecialty';
     public const NAME = 'schema:MedicalSpecialty';
-    public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalEnumerationModel', 'SpecialtyModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\SpecialtyModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEnumerationModel', 'SpecialtyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SpecialtyModel'];
     public const ENUMERATION_MEMBERS = ['AnesthesiaModel' => 'EnumerationMember\AnesthesiaModel', 'CardiovascularModel' => 'EnumerationMember\CardiovascularModel', 'CommunityHealthModel' => 'EnumerationMember\CommunityHealthModel', 'DentistryModel' => 'EnumerationMember\DentistryModel', 'DermatologicModel' => 'EnumerationMember\DermatologicModel', 'DermatologyModel' => 'EnumerationMember\DermatologyModel', 'DietNutritionModel' => 'EnumerationMember\DietNutritionModel', 'EmergencyModel' => 'EnumerationMember\EmergencyModel', 'EndocrineModel' => 'EnumerationMember\EndocrineModel', 'GastroenterologicModel' => 'EnumerationMember\GastroenterologicModel', 'GeneticModel' => 'EnumerationMember\GeneticModel', 'GeriatricModel' => 'EnumerationMember\GeriatricModel', 'GynecologicModel' => 'EnumerationMember\GynecologicModel', 'HematologicModel' => 'EnumerationMember\HematologicModel', 'InfectiousModel' => 'EnumerationMember\InfectiousModel', 'LaboratoryScienceModel' => 'EnumerationMember\LaboratoryScienceModel', 'MidwiferyModel' => 'EnumerationMember\MidwiferyModel', 'MusculoskeletalModel' => 'EnumerationMember\MusculoskeletalModel', 'NeurologicModel' => 'EnumerationMember\NeurologicModel', 'NursingModel' => 'EnumerationMember\NursingModel', 'ObstetricModel' => 'EnumerationMember\ObstetricModel', 'OncologicModel' => 'EnumerationMember\OncologicModel', 'OptometricModel' => 'EnumerationMember\OptometricModel', 'OtolaryngologicModel' => 'EnumerationMember\OtolaryngologicModel', 'PathologyModel' => 'EnumerationMember\PathologyModel', 'PediatricModel' => 'EnumerationMember\PediatricModel', 'PharmacySpecialtyModel' => 'EnumerationMember\PharmacySpecialtyModel', 'PhysiotherapyModel' => 'EnumerationMember\PhysiotherapyModel', 'PlasticSurgeryModel' => 'EnumerationMember\PlasticSurgeryModel', 'PodiatricModel' => 'EnumerationMember\PodiatricModel', 'PrimaryCareModel' => 'EnumerationMember\PrimaryCareModel', 'PsychiatricModel' => 'EnumerationMember\PsychiatricModel', 'PublicHealthModel' => 'EnumerationMember\PublicHealthModel', 'PulmonaryModel' => 'EnumerationMember\PulmonaryModel', 'RadiographyModel' => 'EnumerationMember\RadiographyModel', 'RenalModel' => 'EnumerationMember\RenalModel', 'RespiratoryTherapyModel' => 'EnumerationMember\RespiratoryTherapyModel', 'RheumatologicModel' => 'EnumerationMember\RheumatologicModel', 'SpeechPathologyModel' => 'EnumerationMember\SpeechPathologyModel', 'SurgicalModel' => 'EnumerationMember\SurgicalModel', 'ToxicologicModel' => 'EnumerationMember\ToxicologicModel', 'UrologicModel' => 'EnumerationMember\UrologicModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

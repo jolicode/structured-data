@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SeatRowModel
 {
     public const DESCRIPTION = 'The row location of the reserved seat (e.g., B).';
     public const LABEL = 'seatRow';
     public const NAME = 'schema:seatRow';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Seat' => 'Jolicode\Vocabularies\SchemaOrg\Type\SeatModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Seat' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SeatModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

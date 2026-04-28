@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RelevantOccupationModel
 {
     public const DESCRIPTION = 'The Occupation for the JobPosting.';
     public const LABEL = 'relevantOccupation';
     public const NAME = 'schema:relevantOccupation';
-    public const VALUES = ['OccupationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\OccupationModel'];
-    public const TYPES = ['JobPosting' => 'Jolicode\Vocabularies\SchemaOrg\Type\JobPostingModel'];
+    public const VALUES = ['OccupationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OccupationModel'];
+    public const TYPES = ['JobPosting' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\JobPostingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

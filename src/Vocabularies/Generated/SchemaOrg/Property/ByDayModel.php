@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ByDayModel
 {
     public const DESCRIPTION = 'Defines the day(s) of the week on which a recurring [[Event]] takes place. May be specified using either [[DayOfWeek]], or alternatively [[Text]] conforming to iCal\'s syntax for byDay recurrence rules.';
     public const LABEL = 'byDay';
     public const NAME = 'schema:byDay';
-    public const VALUES = ['DayOfWeekModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DayOfWeekModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Schedule' => 'Jolicode\Vocabularies\SchemaOrg\Type\ScheduleModel'];
+    public const VALUES = ['DayOfWeekModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DayOfWeekModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Schedule' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ScheduleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

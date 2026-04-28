@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SolveMathActionModel
 {
     public const DESCRIPTION = 'The action that takes in a math expression and directs users to a page potentially capable of solving/simplifying that expression.';
     public const LABEL = 'SolveMathAction';
     public const NAME = 'schema:SolveMathAction';
-    public const PARENTS = ['ActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ActionModel'];
+    public const PARENTS = ['ActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2740'];

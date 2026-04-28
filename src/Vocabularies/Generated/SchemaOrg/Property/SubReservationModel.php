@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SubReservationModel
 {
     public const DESCRIPTION = 'The individual reservations included in the package. Typically a repeated property.';
     public const LABEL = 'subReservation';
     public const NAME = 'schema:subReservation';
-    public const VALUES = ['ReservationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ReservationModel'];
-    public const TYPES = ['ReservationPackage' => 'Jolicode\Vocabularies\SchemaOrg\Type\ReservationPackageModel'];
+    public const VALUES = ['ReservationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReservationModel'];
+    public const TYPES = ['ReservationPackage' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReservationPackageModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

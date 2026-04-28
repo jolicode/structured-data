@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AcquiredFromModel
 {
     public const DESCRIPTION = 'The organization or person from which the product was acquired.';
     public const LABEL = 'acquiredFrom';
     public const NAME = 'schema:acquiredFrom';
-    public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PersonModel'];
-    public const TYPES = ['OwnershipInfo' => 'Jolicode\Vocabularies\SchemaOrg\Type\OwnershipInfoModel'];
+    public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['OwnershipInfo' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OwnershipInfoModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

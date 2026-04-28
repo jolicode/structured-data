@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PalliativeProcedureModel
 {
     public const DESCRIPTION = 'A medical procedure intended primarily for palliative purposes, aimed at relieving the symptoms of an underlying health condition.';
     public const LABEL = 'PalliativeProcedure';
     public const NAME = 'schema:PalliativeProcedure';
-    public const PARENTS = ['MedicalProcedureModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalProcedureModel', 'MedicalTherapyModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalTherapyModel'];
+    public const PARENTS = ['MedicalProcedureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalProcedureModel', 'MedicalTherapyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTherapyModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

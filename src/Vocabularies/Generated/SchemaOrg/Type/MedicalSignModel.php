@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicalSignModel
 {
     public const DESCRIPTION = 'Any physical manifestation of a person\'s medical condition discoverable by objective diagnostic tests or physical examination.';
     public const LABEL = 'MedicalSign';
     public const NAME = 'schema:MedicalSign';
-    public const PARENTS = ['MedicalSignOrSymptomModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalSignOrSymptomModel'];
+    public const PARENTS = ['MedicalSignOrSymptomModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalSignOrSymptomModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

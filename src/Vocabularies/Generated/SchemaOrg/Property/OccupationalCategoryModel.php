@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OccupationalCategoryModel
 {
@@ -17,8 +17,8 @@ final class OccupationalCategoryModel
 Note: for historical reasons, any textual label and formal code provided as a literal may be assumed to be from O*NET-SOC.';
     public const LABEL = 'occupationalCategory';
     public const NAME = 'schema:occupationalCategory';
-    public const VALUES = ['CategoryCodeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CategoryCodeModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\Vocabularies\SchemaOrg\Type\EducationalOccupationalProgramModel', 'JobPosting' => 'Jolicode\Vocabularies\SchemaOrg\Type\JobPostingModel', 'Occupation' => 'Jolicode\Vocabularies\SchemaOrg\Type\OccupationModel', 'Physician' => 'Jolicode\Vocabularies\SchemaOrg\Type\PhysicianModel', 'WorkBasedProgram' => 'Jolicode\Vocabularies\SchemaOrg\Type\WorkBasedProgramModel'];
+    public const VALUES = ['CategoryCodeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalProgramModel', 'JobPosting' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\JobPostingModel', 'Occupation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OccupationModel', 'Physician' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PhysicianModel', 'WorkBasedProgram' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WorkBasedProgramModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

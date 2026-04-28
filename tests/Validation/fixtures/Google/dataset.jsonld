@@ -15,6 +15,11 @@
     ],
     "license" : "https://creativecommons.org/publicdomain/zero/1.0/",
     "isAccessibleForFree" : true,
+    "citation": "https://doi.org/10.1111/111",
+    "measurementTechnique": "Remote sensing",
+    "variableMeasured": "wind speed",
+    "version": "1.0",
+    "isPartOf": "https://example.com/datasets/weather",
 
     "alternateName": ["Quick Draw Dataset", "quickdraw-dataset"],
     "hasPart" : [

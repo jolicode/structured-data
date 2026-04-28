@@ -11,7 +11,6 @@
 
 namespace Jolicode\JsonLd\Generator\SchemaOrg;
 
-use Jolicode\JsonLd\Generator\Filesystem;
 use Jolicode\JsonLd\Generator\GeneratorInterface;
 use Jolicode\JsonLd\Generator\SchemaOrg\Objects\AbstractSchemaOrgElement;
 use Jolicode\JsonLd\Generator\SchemaOrg\Objects\ClassesContainer;
@@ -25,13 +24,14 @@ use PhpParser\Node\Expr;
 use PhpParser\Node\Scalar;
 use PhpParser\Node\Stmt;
 use PhpParser\PrettyPrinter\Standard;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\DomCrawler\Crawler;
 
 readonly class Generator implements GeneratorInterface
 {
-    private const NAMESPACE_TYPE = 'Jolicode\\Vocabularies\\SchemaOrg\\Type';
-    private const NAMESPACE_PROPERTY = 'Jolicode\\Vocabularies\\SchemaOrg\\Property';
-    private const NAMESPACE_ENUMERATION_MEMBER = 'Jolicode\\Vocabularies\\SchemaOrg\\EnumerationMember';
+    private const NAMESPACE_TYPE = 'Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Type';
+    private const NAMESPACE_PROPERTY = 'Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Property';
+    private const NAMESPACE_ENUMERATION_MEMBER = 'Jolicode\\Vocabularies\\Generated\\SchemaOrg\\EnumerationMember';
 
     public function __construct(
         private BuilderFactory $factory = new BuilderFactory(),
@@ -40,12 +40,12 @@ readonly class Generator implements GeneratorInterface
     ) {
     }
 
-    public function getName(): string
+    public static function getName(): string
     {
         return 'schema.org';
     }
 
-    public function generate(): void
+    public function generate(?SymfonyStyle $io = null): void
     {
         $extractor = new Extractor();
         $this->generateClasses($extractor->extractClasses());

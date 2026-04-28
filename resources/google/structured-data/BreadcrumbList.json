@@ -1,0 +1,52 @@
+{
+    "name": "BreadcrumbList",
+    "documentation": "https://developers.google.com/search/docs/appearance/structured-data/breadcrumb#json-ld",
+    "specialRules": [
+        "google.breadcrumb.last_item_optional"
+    ],
+    "supportedTypes": [
+        "BreadcrumbList"
+    ],
+    "properties": {
+        "itemListElement": {
+            "name": "itemListElement",
+            "severity": "required",
+            "supportedTypes": [
+                "ListItem"
+            ],
+            "properties": {
+                "item": {
+                    "name": "item",
+                    "severity": "required",
+                    "supportedTypes": [
+                        "URL",
+                        "Thing"
+                    ],
+                    "properties": {
+                        "@id": {
+                            "name": "@id",
+                            "severity": "required",
+                            "supportedTypes": [
+                                "URL"
+                            ]
+                        }
+                    }
+                },
+                "name": {
+                    "name": "name",
+                    "severity": "required",
+                    "supportedTypes": [
+                        "Text"
+                    ]
+                },
+                "position": {
+                    "name": "position",
+                    "severity": "required",
+                    "supportedTypes": [
+                        "Integer"
+                    ]
+                }
+            }
+        }
+    }
+}

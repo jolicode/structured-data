@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MusicGroupModel
 {
     public const DESCRIPTION = 'A musical group, such as a band, an orchestra, or a choir. Can also be a solo musician.';
     public const LABEL = 'MusicGroup';
     public const NAME = 'schema:MusicGroup';
-    public const PARENTS = ['PerformingGroupModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PerformingGroupModel'];
+    public const PARENTS = ['PerformingGroupModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PerformingGroupModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

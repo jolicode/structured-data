@@ -1,0 +1,82 @@
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">itemListElement</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/ListItem" class="external-link">ListItem</a></code></p>
+        <p>An array of breadcrumbs listed in a specific order. Specify each breadcrumb with a
+          <a href="#list-item"><code translate="no" dir="ltr">ListItem</code></a>. For example:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Ordered breadcrumbs" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"BreadcrumbList"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"itemListElement"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"ListItem"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"position"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">1</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Books"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"item"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/books"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">},{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"ListItem"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"position"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">2</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Authors"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"item"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/books/authors"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">},{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"ListItem"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"position"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">3</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Ann Leckie"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"item"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/books/authors/annleckie"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}]</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code></td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Required properties</th></tr>
+  </thead>
+    <tbody>
+      <tr>
+        <td><code translate="no" dir="ltr">item</code></td>
+        <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code> or a
+          subtype of <code translate="no" dir="ltr"><a href="https://schema.org/Thing" class="external-link">Thing</a></code></p>
+          <p>The URL to the webpage that represents the breadcrumb. There are two ways to specify
+            <code translate="no" dir="ltr">item</code>:</p>
+            <ul>
+              <li><code translate="no" dir="ltr">URL</code>: Specify the URL of the page. For example:
+              <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Breacrumb URL" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"item": "https://example.com/books"</pre></devsite-code>
+              </li>
+              <li><code translate="no" dir="ltr">Thing</code>: Use an id to specify the URL based on the markup format
+                you're using:
+                <ul>
+                  <li><b>JSON-LD</b>: Use <code translate="no" dir="ltr">@id</code> to specify the URL.</li>
+                  <li><b>Microdata</b>: You can use <code translate="no" dir="ltr">href</code> or <code translate="no" dir="ltr">itemid</code>
+                    to specify the URL.</li>
+                  <li><b>RDFa</b>: You can use <code translate="no" dir="ltr">about</code>, <code translate="no" dir="ltr">href</code>,
+                    or <code translate="no" dir="ltr">resource</code> to specify the URL.</li>
+                </ul>
+              </li>
+          </ul>
+          <p>
+            If the breadcrumb is the last item in the breadcrumb trail, <code translate="no" dir="ltr">item</code> is not
+            required. If <code translate="no" dir="ltr">item</code> isn't included for the last item, Google uses the URL
+            of the containing page.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">name</code></td>
+        <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The title of the breadcrumb displayed for the user. If you're using a
+          <code translate="no" dir="ltr">Thing</code> with a <code translate="no" dir="ltr">name</code> instead of a <code translate="no" dir="ltr">URL</code> to specify <code translate="no" dir="ltr">item</code>, then <code translate="no" dir="ltr">name</code> is not required.</p></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">position</code></td>
+        <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code></p>
+          <p>The position of the breadcrumb in the breadcrumb trail. Position 1 signifies
+        the beginning of the trail.</p></td>
+      </tr>
+    </tbody>
+  </table>

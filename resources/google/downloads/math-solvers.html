@@ -1,0 +1,366 @@
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">potentialAction</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/SolveMathAction" class="external-link">SolveMathAction</a></code></p>
+        <p>The action that leads to a mathematical explanation (for example, step-by-step solution or graph) of a math expression.</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="potential action example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MathSolver"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-s">"potentialAction"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"SolveMathAction"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"target"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://mathdomain.com/solve?q={math_expression_string}"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"mathExpression-input"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"required name=math_expression_string"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"eduQuestionType"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Polynomial Equation"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}]</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+    </tr>
+    <tr>
+      <td id="math-expression-input"><code translate="no" dir="ltr">potentialAction.mathExpression-input</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>
+          A placeholder for a mathematical expression (for example: x^2-3x=0) that is sent by Google
+          to your website. You can then "solve" the math expression, which may involve simplifying,
+          transforming, or solving for a specific variable. The string can take many formats
+          (for example: LaTeX, Ascii-Math, or mathematical expressions that you can write with a
+          keyboard).
+        </p>
+        <aside class="note">
+          <code translate="no" dir="ltr">mathExpression-input</code> is an annotated property. See the
+          <a href="https://schema.org/docs/actions.html#part-4" class="external-link"><code translate="no" dir="ltr">Potential Actions</code></a>
+          page for more information.
+        </aside>
+        <p>For some problem types, the <code translate="no" dir="ltr">math_expression_string</code> indicates both the problem type and
+          parameters of the problem type. Here are some examples of the more complicated problem
+          types so that you can anticipate and parse them correctly.
+        </p>
+        <p><b>Derivatives</b></p>
+        <p>Google will send a <code translate="no" dir="ltr">math_expression_string</code> in one of two forms:</p>
+        <ul>
+          <li><div></div><devsite-code><pre class="devsite-click-to-copy" data-label="derivative form with parenthesis" translate="no" dir="ltr" is-upgraded="" syntax="GDScript" syntax-guessed=""><span class="devsite-syntax-p">(</span><var translate="no"><span class="devsite-syntax-n">math_expression</span></var><span class="devsite-syntax-p">)</span><span class="devsite-syntax-s1">'</span></pre></devsite-code></li>
+<span class="devsite-syntax-w">          </span><li><pre class="prettyprint" data-label="derivative form with variable" translate="no" dir="ltr"><span class="devsite-syntax-n">d</span><span class="devsite-syntax-o">/</span><span class="devsite-syntax-n">d<var translate="no">variable</var></span><span class="devsite-syntax-w"> </span><var translate="no"><span class="devsite-syntax-n">math_expression</span></var></pre></li>
+<span class="devsite-syntax-w">        </span></ul>
+<span class="devsite-syntax-w">        </span><p><span class="devsite-syntax-n">Examples</span><span class="devsite-syntax-p">:</span></p>
+<span class="devsite-syntax-w">        </span><ul>
+<span class="devsite-syntax-w">          </span><li><code translate="no" dir="ltr"><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">x</span><span class="devsite-syntax-o">^</span><span class="devsite-syntax-mi">2</span><span class="devsite-syntax-o">+</span><span class="devsite-syntax-n">x</span><span class="devsite-syntax-p">)</span><span class="devsite-syntax-s1">'</span></code></li>
+<span class="devsite-syntax-w">          </span><li><code translate="no" dir="ltr"><span class="devsite-syntax-n">d</span><span class="devsite-syntax-o">/</span><span class="devsite-syntax-n">dx</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">(</span><span class="devsite-syntax-n">x</span><span class="devsite-syntax-o">^</span><span class="devsite-syntax-mi">2</span><span class="devsite-syntax-o">+</span><span class="devsite-syntax-n">x</span><span class="devsite-syntax-p">)</span></code></li>
+<span class="devsite-syntax-w">          </span><li><code translate="no" dir="ltr"><span class="devsite-syntax-n">d</span><span class="devsite-syntax-o">/</span><span class="devsite-syntax-n">dy</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">y</span><span class="devsite-syntax-o">^</span><span class="devsite-syntax-mi">2</span><span class="devsite-syntax-o">+</span><span class="devsite-syntax-n">y</span></code></li>
+<span class="devsite-syntax-w">        </span></ul>
+<span class="devsite-syntax-w">        </span><p><b><span class="devsite-syntax-n">Integrals</span></b></p>
+<span class="devsite-syntax-w">        </span><p><span class="devsite-syntax-n">Google</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">will</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">send</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">a</span><span class="devsite-syntax-w"> </span><code translate="no" dir="ltr"><span class="devsite-syntax-n">math_expression_string</span></code><span class="devsite-syntax-w"> </span><span class="devsite-syntax-ow">in</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">one</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">of</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">two</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-n">forms</span><span class="devsite-syntax-p">:</span></p>
+<span class="devsite-syntax-w">        </span><ul>
+<span class="devsite-syntax-w">          </span><li><pre class="prettyprint" data-label="integral form" translate="no" dir="ltr">\<span class="devsite-syntax-nb devsite-syntax-nb-Type">int</span><span class="devsite-syntax-w"> </span><var translate="no"><span class="devsite-syntax-n">math_expression</span></var></pre></li>
+          <li><div></div><devsite-code><pre class="devsite-click-to-copy" data-label="integral form with from and to variables" translate="no" dir="ltr" is-upgraded="" syntax="scdoc" syntax-guessed="">\int_{<var translate="no">from</var>}^{<var translate="no">to</var>} <var translate="no">math_expression</var></pre></devsite-code></li>
+        </ul>
+        <p>Examples:</p>
+        <ul>
+          <li><code translate="no" dir="ltr">\int x^2+x</code></li>
+          <li><code translate="no" dir="ltr">\int_{0}^{2} x^2+x</code></li>
+        </ul>
+        <p><b>Limits</b></p>
+        <p>Google will send a <code translate="no" dir="ltr">math_expression_string</code> in one of two forms:</p>
+        <ul>
+          <li><div></div><devsite-code><pre class="devsite-click-to-copy" data-label="limits form" translate="no" dir="ltr" is-upgraded="" syntax="scdoc" syntax-guessed="">\lim <var translate="no">math_expression</var></pre></devsite-code></li>
+          <li><div></div><devsite-code><pre class="devsite-click-to-copy" data-label="derivative form with variable and value" translate="no" dir="ltr" is-upgraded="" syntax="GDScript" syntax-guessed="">\<span class="devsite-syntax-n">lim_</span><span class="devsite-syntax-p">{</span><var translate="no"><span class="devsite-syntax-n">variable</span></var>\<span class="devsite-syntax-n">rightarrow<var translate="no">value</var></span><span class="devsite-syntax-p">}</span><span class="devsite-syntax-w"> </span><var translate="no"><span class="devsite-syntax-n">math_expression</span></var></pre></devsite-code></li>
+        </ul>
+        <p>Examples:</p>
+        <ul>
+          <li><code translate="no" dir="ltr">\lim_{x\rightarrow0} sin(x)/x</code></li>
+          <li><code translate="no" dir="ltr">\lim_{y\rightarrow\infty} sin(y)/y</code></li>
+          <li><code translate="no" dir="ltr">\lim sin(x)/x</code></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">url</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>The URL of the <code translate="no" dir="ltr">MathSolver</code>.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">usageInfo</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>The privacy policy for your math problem solving site.</p>
+      <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="usage info example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MathSolver"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"usageInfo"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://www.mathdomain.com/privacy"</span></strong>
+<span class="devsite-syntax-p">}</span></pre></devsite-code></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">potentialAction.target</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/EntryPoint" class="external-link">EntryPoint</a></code></p>
+        <p>The URL target entrypoint for an action. The <code translate="no" dir="ltr">potentialAction.target</code>
+          property accepts a string to represent the math expression that's being solved by the action.</p>
+      <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="potential action target example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MathSolver"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-s">"potentialAction"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"SolveMathAction"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"target"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://mathdomain.com/solve?q={math_expression_string}"</span></strong>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}]</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">inLanguage</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The language(s) that are supported by your math problem solving site. See <a href="/custom-search/docs/xml_results_appendices#interfaceLanguages" class="external-link">this table</a>
+          for a list of possible languages.</p>
+      <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="in language example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MathSolver"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"inLanguage"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"es"</span></strong>
+<span class="devsite-syntax-p">}</span></pre></devsite-code></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">assesses</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+        list of <a href="#problem-type-definitions">Problem Type Definitions</a></p>
+        <p>The problem type(s) that are solved with the <code translate="no" dir="ltr">HowTo</code>. Use the
+          <code translate="no" dir="ltr">assesses</code> property if you're using <code translate="no" dir="ltr">HowTo</code>
+          markup in addition to <code translate="no" dir="ltr">MathSolver</code> markup.</p>
+      <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="assesses example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MathSolver"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"assesses"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Polynomial Equation"</span></strong>
+<span class="devsite-syntax-p">}</span></pre></devsite-code></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">potentialAction.eduQuestionType</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+        list of <a href="#problem-type-definitions">Problem Type Definitions</a></p>
+        <p>The problem type(s) that are capable of being solved by the <code translate="no" dir="ltr">potentialAction.target</code> property.</p>
+      <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="edu question type example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"SolveMathAction"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"eduQuestionType"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Polynomial Equation"</span></strong>
+<span class="devsite-syntax-p">}</span></pre></devsite-code></td>
+    </tr>
+    </tbody>
+  </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">learningResourceType</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The type of this learning resource. Use this fixed value: <code translate="no" dir="ltr">Math Solver</code>.</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="learning resource type example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span><span class="devsite-syntax-s">"MathSolver"</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"LearningResource"</span><span class="devsite-syntax-p">],</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"learningResourceType"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Math Solver"</span></strong>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+<table class="responsive ">
+    <tbody><tr>
+      <th colspan="2">Example problem types (this isn't an exhaustive list)</th>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Absolute Value Equation</code></td>
+      <td><p>Absolute value equations. For example: |x - 5| = 9</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Algebra</code></td>
+      <td><p>A generic problem type that can be placed with other problem type. For example: polynomial equations, exponential equations, and radical expressions.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Arc Length</code></td>
+      <td><p>Arc length problems. For example: Determine the length of x = 4 (3 + y)^2, 1 &lt; y &lt; 4.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Arithmetic</code></td>
+      <td><p>Arithmetic problems. For example: Find the sum of 5 + 7.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Biquadratic Equation</code></td>
+      <td><p>Biquadratic equations. For example: x^4 - x^2 - 2 = 0.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Calculus</code></td>
+      <td><p>A generic problem type that can be placed with other problem types. For example: integrals, derivatives, and differential equations.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Characteristic Polynomial</code></td>
+      <td><p>Find the characteristic polynomial of <span translate="no">{{1,2,5}, {3,-1,1}, {1,2,3}}</span>.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Circle</code></td>
+      <td><p>Circle related problems. For example: Find the radius of x^2 + y^2 = 3.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Derivative</code></td>
+      <td><p>Derivative of 5x^4 + 2x^3 + 4x - 2.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Differential Equation</code></td>
+      <td><p>Differential equation problems. For example: y+dy/dx=5x.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Distance</code></td>
+      <td><p>Distance problems. For example: Find the distance between (6,-1) and (-3,2).</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Eigenvalue</code></td>
+      <td><p>Eigenvalue problems. For example: Find the eigenvalues for the matrix [[-6, 3], [4, 5]].</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Eigenvector</code></td>
+      <td><p>Eigenvector problems. For example: Find the eigenvector for the matrix [[-6, 3], [4, 5]] with eigenvalues of [-7, 6].</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Ellipse</code></td>
+      <td><p>Ellipse problems. For example: Find the x and y intercepts of 9x^2 + 4y^2 = 36.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Exponential Equation</code></td>
+      <td><p>Exponential equations. For example: 7^x = 9.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Function</code></td>
+      <td><p>Polynomial simplifications. For example: (x-5)^2 * (x+5)^2.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Function Composition</code></td>
+      <td><p>f(g(x)) when f(x)=x^2-2x, g(x)=2x-2</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Geometry</code></td>
+      <td><p>A generic problem type that can be placed with other problem types. For example: circle, ellipse, parabola, slope.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Hyperbola</code></td>
+      <td><p>Hyperbola problems. For example: Find the x-intercept of (x^2)/4 - (y^2)/5 = 1.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Inflection Point</code></td>
+      <td><p>Find the inflection point of f(x) = 1/2x^4 +x^3 - 6x^2.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Integral</code></td>
+      <td><p>Integral of sqrt (x^2 - y^2).</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Intercept</code></td>
+      <td><p>Line intercept problems. For example: Find the x-intercept of the line y = 10x - 5.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Limit</code></td>
+      <td><p>Limit problems. For example: Find the limit of x as x approaches 1 for (x^2-1)/(x-1).</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Line Equation</code></td>
+      <td><p>Line equation problems. For example: Find the equation of a line with points (-7,-4) and (-2,-6).</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Linear Algebra</code></td>
+      <td><p>A generic problem type that can be placed with other problem types. For example: matrix and characteristic polynomial.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Linear Equation</code></td>
+      <td><p>Linear equations. For example: 4x - 3 = 2x + 9.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Linear Inequality</code></td>
+      <td><p>Linear inequalities. For example: 5x - 6 &gt; 3x - 8.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Logarithmic Equation</code></td>
+      <td><p>Logarithmic equations. For example: log(x) = log(100).</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Logarithmic Inequality</code></td>
+      <td><p>Logarithmic inequalities. For example: log(x) &gt; log(100).</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Matrix</code></td>
+      <td><p><span translate="no">{{1,2,5}, {3,-1,1}, {1,2,3}}</span> row reduce</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Midpoint</code></td>
+      <td><p>Midpoint problems. For example: find the midpoint between (-3, 7) and (5, -2).</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Parabola</code></td>
+      <td><p>Parabola problems. For example: Find the vertex of y2 - 4x - 4y = 0.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Parallel</code></td>
+      <td><p>Parallel line problems. For example: Are the two lines parallel (y = 10x + 5, y = 20x + 10)?</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Perpendicular</code></td>
+      <td><p>Perpendicular problems. For example: Are the two lines perpendicular (y = 10x + 5, y = 20x + 10)?</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Polynomial Equation</code></td>
+      <td><p>Polynomial equations. For example: x^5 - 3x = 0.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Polynomial Expression</code></td>
+      <td><p>Polynomial expressions. For example: (x - 5)^4 * (x + 5)^2.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Polynomial Inequality</code></td>
+      <td><p>Polynomial inequalities. For example: x^4 - x^2 - 6 &gt; x^3 - 3x^2.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Quadratic Equation</code></td>
+      <td><p>Quadratic equations. For example: x^2 - 3x - 4 = 0.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Quadratic Expression</code></td>
+      <td><p>Quadratic expressions. For example: x^2 - 3x - 2.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Quadratic Inequality</code></td>
+      <td><p>Quadratic inequalities. For example: x^2 - x - 6 &gt; x^2 - 3x.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Radical Equation</code></td>
+      <td><p>Radical equations. For example: sqrt(x) - x = 0.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Radical Inequality</code></td>
+      <td><p>Radical inequalities. For example: sqrt(x) - x &gt; 0.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Rational Equation</code></td>
+      <td><p>Rational equations. For example: 5/(x - 3) = 2/(x - 1).</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Rational Expression</code></td>
+      <td><p>Rational expressions. For example: 1/(x^3 + 4x^2 + 5x + 2).</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Rational Inequality</code></td>
+      <td><p>Rational inequalities. For example: 5/(x - 3) &gt; 2/(x - 1).</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Slope</code></td>
+      <td><p>Slope problems. For example: Find the slope of y = 10x + 5.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Statistics</code></td>
+      <td><p>Statistics problems. For example: Find the mean of a set of numbers (3, 8, 2, 10).</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">System of Equations</code></td>
+      <td><p>System of equations problems. For example: Solve 2x + 5y = 16;3x - 5y = - 1.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">Trigonometry</code></td>
+      <td><p>Solve sin(t) + cos(t) = 1.</p></td>
+    </tr>
+  </tbody></table>

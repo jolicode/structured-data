@@ -1,0 +1,61 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Example Corporation",
+    "alternateName": "Example Co",
+    "url": "https://www.example.com",
+    "sameAs": [
+        "https://example.net/profile/example1234",
+        "https://example.org/example1234"
+    ],
+    "logo": "https://www.example.com/images/logo.png",
+    "description": "The example corporation is well-known for producing high-quality widgets",
+    "email": "contact@example.com",
+    "telephone": "+47-99-999-9999",
+    "taxID": "FR12-3456789",
+    "vatID": "FR12345678901",
+    "duns": "123456789",
+    "globalLocationNumber": "9501101530003",
+    "iso6523Code": "0199:724500PMK2A2M1SQQ228",
+    "legalName": "Example Corporation LLC",
+    "leiCode": "724500PMK2A2M1SQQ228",
+    "naics": "334220",
+    "foundingDate": "2009-08-10",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rue Improbable 99",
+        "addressLocality": "Paris",
+        "addressCountry": "FR",
+        "addressRegion": "Ile-de-France",
+        "postalCode": "75001"
+    },
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "support@example.com",
+        "telephone": "+47-99-999-9900"
+    },
+    "numberOfEmployees": {
+        "@type": "QuantitativeValue",
+        "value": 2056
+    },
+    "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow"
+    },
+    "hasMemberProgram": {
+        "@type": "MemberProgram",
+        "name": "Example Plus",
+        "description": "Default loyalty program for recurring customers.",
+        "hasTiers": {
+            "@type": "MemberProgramTier",
+            "name": "Silver",
+            "hasTierBenefit": "https://schema.org/TierBenefitLoyaltyPoints"
+        }
+    },
+    "hasShippingService": {
+        "@type": "ShippingService",
+        "shippingConditions": {
+            "@type": "ShippingConditions"
+        }
+    }
+}

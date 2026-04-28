@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CertificationStatusEnumerationModel
 {
     public const DESCRIPTION = 'Enumerates the different statuses of a Certification (Active and Inactive).';
     public const LABEL = 'CertificationStatusEnumeration';
     public const NAME = 'schema:CertificationStatusEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['CertificationActiveModel' => 'EnumerationMember\CertificationActiveModel', 'CertificationInactiveModel' => 'EnumerationMember\CertificationInactiveModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3230'];

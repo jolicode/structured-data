@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ArchiveOrganizationModel
 {
     public const DESCRIPTION = 'An organization with archival holdings. An organization which keeps and preserves archival material and typically makes it accessible to the public.';
     public const LABEL = 'ArchiveOrganization';
     public const NAME = 'schema:ArchiveOrganization';
-    public const PARENTS = ['LocalBusinessModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\LocalBusinessModel'];
+    public const PARENTS = ['LocalBusinessModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LocalBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1758'];

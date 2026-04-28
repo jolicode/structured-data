@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OpinionNewsArticleModel
 {
     public const DESCRIPTION = 'An [[OpinionNewsArticle]] is a [[NewsArticle]] that primarily expresses opinions rather than journalistic reporting of news and events. For example, a [[NewsArticle]] consisting of a column or [[Blog]]/[[BlogPosting]] entry in the Opinions section of a news publication.';
     public const LABEL = 'OpinionNewsArticle';
     public const NAME = 'schema:OpinionNewsArticle';
-    public const PARENTS = ['NewsArticleModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\NewsArticleModel'];
+    public const PARENTS = ['NewsArticleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NewsArticleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1525'];

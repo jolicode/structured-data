@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class NonprofitStatusModel
 {
     public const DESCRIPTION = 'nonprofitStatus indicates the legal status of a non-profit organization in its primary place of business.';
     public const LABEL = 'nonprofitStatus';
     public const NAME = 'schema:nonprofitStatus';
-    public const VALUES = ['NonprofitTypeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\NonprofitTypeModel'];
-    public const TYPES = ['Organization' => 'Jolicode\Vocabularies\SchemaOrg\Type\OrganizationModel'];
+    public const VALUES = ['NonprofitTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NonprofitTypeModel'];
+    public const TYPES = ['Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

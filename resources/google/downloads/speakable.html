@@ -1,0 +1,39 @@
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code translate="no" dir="ltr">cssSelector</code></td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+            <p>Addresses content in the annotated pages (such as class attribute). Use either
+            <code translate="no" dir="ltr">cssSelector</code> or <code translate="no" dir="ltr">xPath</code>; don't use both. For example:</p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="speakable.cssSelector property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"speakable"</span><span class="devsite-syntax-p">:</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"SpeakableSpecification"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"cssSelector"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">".headline"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">".summary"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">]</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+           </td>
+         </tr>
+         <tr>
+           <td><code translate="no" dir="ltr">xPath</code></td>
+           <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+             </p><p>Addresses content using xPaths (assuming an XML view of the content). Use either
+               <code translate="no" dir="ltr">cssSelector</code> or <code translate="no" dir="ltr">xPath</code>; don't use both. For example:</p>
+               <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="speakable.xPath property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"speakable"</span><span class="devsite-syntax-p">:</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"SpeakableSpecification"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"xPath"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"/html/head/title"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"/html/head/meta[@name='description']/@content"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">]</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+           </td>
+        </tr>
+      </tbody>
+    </table>

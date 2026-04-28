@@ -1,0 +1,77 @@
+{
+    "name": "SpecialAnnouncement",
+    "documentation": "https://schema.org/SpecialAnnouncement",
+    "specialRules": [],
+    "supportedTypes": [
+        "SpecialAnnouncement"
+    ],
+    "properties": {
+        "name": {
+            "name": "name",
+            "severity": "required",
+            "supportedTypes": [
+                "Text"
+            ]
+        },
+        "text": {
+            "name": "text",
+            "severity": "required",
+            "supportedTypes": [
+                "Text"
+            ]
+        },
+        "datePosted": {
+            "name": "datePosted",
+            "severity": "required",
+            "supportedTypes": [
+                "DateTime"
+            ]
+        },
+        "expires": {
+            "name": "expires",
+            "severity": "recommended",
+            "supportedTypes": [
+                "DateTime"
+            ]
+        },
+        "diseasePreventionInfo": {
+            "name": "diseasePreventionInfo",
+            "severity": "recommended",
+            "supportedTypes": [
+                "URL"
+            ]
+        },
+        "schoolClosuresInfo": {
+            "name": "schoolClosuresInfo",
+            "severity": "recommended",
+            "supportedTypes": [
+                "URL"
+            ]
+        },
+        "announcementLocation": {
+            "name": "announcementLocation",
+            "severity": "recommended",
+            "supportedTypes": [
+                "Place",
+                "CivicStructure",
+                "LocalBusiness"
+            ],
+            "properties": {
+                "name": {
+                    "name": "name",
+                    "severity": "recommended",
+                    "supportedTypes": [
+                        "Text"
+                    ]
+                },
+                "url": {
+                    "name": "url",
+                    "severity": "recommended",
+                    "supportedTypes": [
+                        "URL"
+                    ]
+                }
+            }
+        }
+    }
+}

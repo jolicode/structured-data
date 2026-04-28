@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DrawActionModel
 {
     public const DESCRIPTION = 'The act of producing a visual/graphical representation of an object, typically with a pen/pencil and paper as instruments.';
     public const LABEL = 'DrawAction';
     public const NAME = 'schema:DrawAction';
-    public const PARENTS = ['CreateActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CreateActionModel'];
+    public const PARENTS = ['CreateActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreateActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

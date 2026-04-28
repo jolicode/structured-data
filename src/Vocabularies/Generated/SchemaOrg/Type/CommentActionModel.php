@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CommentActionModel
 {
     public const DESCRIPTION = 'The act of generating a comment about a subject.';
     public const LABEL = 'CommentAction';
     public const NAME = 'schema:CommentAction';
-    public const PARENTS = ['CommunicateActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CommunicateActionModel'];
+    public const PARENTS = ['CommunicateActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommunicateActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

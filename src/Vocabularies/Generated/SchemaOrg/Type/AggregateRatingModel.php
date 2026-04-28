@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AggregateRatingModel
 {
     public const DESCRIPTION = 'The average rating based on multiple ratings or reviews.';
     public const LABEL = 'AggregateRating';
     public const NAME = 'schema:AggregateRating';
-    public const PARENTS = ['RatingModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\RatingModel'];
+    public const PARENTS = ['RatingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RatingModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

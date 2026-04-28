@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ScholarlyArticleModel
 {
     public const DESCRIPTION = 'A scholarly article.';
     public const LABEL = 'ScholarlyArticle';
     public const NAME = 'schema:ScholarlyArticle';
-    public const PARENTS = ['ArticleModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ArticleModel'];
+    public const PARENTS = ['ArticleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ArticleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

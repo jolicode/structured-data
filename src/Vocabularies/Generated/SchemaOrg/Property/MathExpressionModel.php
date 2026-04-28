@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MathExpressionModel
 {
     public const DESCRIPTION = 'A mathematical expression (e.g. \'x^2-3x=0\') that may be solved for a specific variable, simplified, or transformed. This can take many formats, e.g. LaTeX, Ascii-Math, or math as you would write with a keyboard.';
     public const LABEL = 'mathExpression';
     public const NAME = 'schema:mathExpression';
-    public const VALUES = ['SolveMathActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\SolveMathActionModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['MathSolver' => 'Jolicode\Vocabularies\SchemaOrg\Type\MathSolverModel'];
+    public const VALUES = ['SolveMathActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SolveMathActionModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MathSolver' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MathSolverModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

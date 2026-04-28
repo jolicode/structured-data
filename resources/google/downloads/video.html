@@ -1,0 +1,349 @@
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">name</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The title of the video. Make sure to use unique text in the <code translate="no" dir="ltr">name</code> property
+        for each video on your site.</p></td>
+    </tr>
+    <tr>
+      <td id="thumbnail-url"><code translate="no" dir="ltr">thumbnailUrl</code></td>
+      <td><p>Repeated <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>A URL pointing to the video's unique thumbnail image file. Follow the <a href="/search/docs/appearance/video#valid-thumbnail">thumbnail image guidelines</a>.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">uploadDate</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+        <p>The date and time the video was first published, in
+          <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>.
+          We recommend that you provide timezone information; otherwise, we will default to
+          <a href="/search/docs/crawling-indexing/googlebot#timezone">the timezone used by Googlebot</a>.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+    <tr id="content-url">
+      <td>
+        <code translate="no" dir="ltr">contentUrl</code>
+      </td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <aside class="note">We recommend that your provide the <code translate="no" dir="ltr">contentUrl</code>
+          property, if possible. This is the most effective way for Google to fetch your video
+          content files. If <code translate="no" dir="ltr">contentUrl</code> isn't available, provide <code translate="no" dir="ltr">embedUrl</code> as an alternative.</aside>
+        <p>A URL pointing to the video file's actual content bytes, in one of the
+          <a href="/search/docs/appearance/video#supported-video-files">supported file types</a>.
+          Don't link to the page where the video lives; this must be the
+          URL of the video file's actual content bytes itself.</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="contentUrl property" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"contentUrl": "https://www.example.com/video/123/file.mp4"</pre></devsite-code>
+        <p>Make sure to follow our
+          <a href="/search/docs/appearance/video">video best practices</a>.</p>
+        <aside class="tip"><b>Tip</b>: You can ensure that only Googlebot accesses your
+            content by using a
+          <a href="/search/docs/crawling-indexing/verifying-googlebot">reverse DNS lookup</a>.
+        </aside>
+      </td>
+    </tr>
+    <tr>
+      <td id="description-property"><code translate="no" dir="ltr">description</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The description of the video. Make sure to use unique text in the <code translate="no" dir="ltr">description</code> property
+        for each video on your site. HTML tags are ignored.</p></td>
+    </tr>
+    <tr>
+      <td id="duration-property"><code translate="no" dir="ltr">duration</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Duration" class="external-link">Duration</a></code></p>
+      <p>The duration of the video in
+        <a href="https://en.wikipedia.org/wiki/ISO_8601#Durations" class="external-link">ISO 8601 format</a>.
+        For example, <code translate="no" dir="ltr">PT00H30M5S</code> represents a duration of "thirty minutes and five seconds".</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">embedUrl</code>
+      </td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <aside class="note">We recommend that your provide the <code translate="no" dir="ltr">contentUrl</code>
+        property, if possible. This is the most effective way for Google to fetch your video
+        content files. If <code translate="no" dir="ltr">contentUrl</code> isn't available, provide <code translate="no" dir="ltr">embedUrl</code> as an alternative.</aside>
+        <p>A URL pointing to a player for the specific video. Don't link to the page where the
+          video lives; this must be the URL of the video player itself. Usually this is the information in
+          the <code translate="no" dir="ltr">src</code> attribute of an <code translate="no" dir="ltr">&lt;embed&gt;</code> element.</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="embedUrl property" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"embedUrl": "https://www.example.com/embed/123"</pre></devsite-code>
+        <p>Make sure to follow our
+        <a href="/search/docs/appearance/video">Video best practices</a>.</p>
+        <aside class="tip"><b>Tip</b>: You can ensure that only Googlebot accesses your
+          content by using a <a href="/search/docs/crawling-indexing/verifying-googlebot">reverse DNS lookup</a>.</aside>
+      </td>
+    </tr>
+    <tr>
+      <td id="expires"><code translate="no" dir="ltr">expires</code></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code>
+        <p>If applicable, the date and time after which the video will no longer be available, in
+          <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>. Don't
+          supply this information if your video does not expire. We recommend that you provide
+          timezone information; otherwise, we will default to
+          <a href="/search/docs/crawling-indexing/googlebot#timezone">the timezone used by Googlebot</a>.</p></td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">hasPart</code>
+      </td>
+      <td>
+        <p>If your video has important segments, nest the <a href="#clip">required <code translate="no" dir="ltr">Clip</code> properties</a> in your <code translate="no" dir="ltr">VideoObject</code>. For example:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="video with one clip" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed="">&lt;<span class="devsite-syntax-nx">script</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">type</span><span class="devsite-syntax-p">=</span><span class="devsite-syntax-s">"application/ld+json"</span>&gt;
+<span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org/"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"VideoObject"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Cat video"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"hasPart"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Clip"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Cat jumps"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"startOffset"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">30</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"url"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://www.example.com/example?t=30"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span></strong>
+<span class="devsite-syntax-p">}</span>
+&lt;<span class="devsite-syntax-o">/</span><span class="devsite-syntax-nx">script</span>&gt;</pre></devsite-code>
+      </td>
+    </tr>
+    <tr>
+      <td id="ineligible-region"><code translate="no" dir="ltr">ineligibleRegion</code>
+      </td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Place" class="external-link">Place</a></code></p>
+      <p>The region where the video isn't allowed, if applicable. If not specified, then Google assumes the video is
+        allowed everywhere. Specify the countries in
+        <a href="https://en.wikipedia.org/wiki/ISO_3166-1" class="external-link">two- or three-letter ISO 3166-1 format</a>. For
+        multiple values, use multiple country codes (for example, a JSON-LD array or multiple
+        <code translate="no" dir="ltr">meta</code> tags in Microdata).</p>
+        <aside class="note">We also support the <a href="#regions-allowed"><code translate="no" dir="ltr">regionsAllowed</code></a>
+          property. Add either <code translate="no" dir="ltr">ineligibleRegion</code> or <code translate="no" dir="ltr">regionsAllowed</code>,
+          whichever makes sense for your site.
+        </aside>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">interactionStatistic</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/InteractionCounter" class="external-link">InteractionCounter</a></code></p>
+      <p>The number of times the video has been watched. For example:</p>
+      <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="interactionStatistic property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"interactionStatistic"</span><span class="devsite-syntax-p">:</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"InteractionCounter"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"interactionType"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"WatchAction"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"userInteractionCount"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">12345</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span></pre></devsite-code>
+      <aside class="note">Starting October 2019, we changed our documentation to recommend
+        <code translate="no" dir="ltr">interactionStatistic</code> instead of <code translate="no" dir="ltr">interactionCount</code>. While we continue
+         to support <code translate="no" dir="ltr">interactionCount</code>, we recommend <code translate="no" dir="ltr">interactionStatistic</code>
+          moving forward.</aside>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">publication</code>
+      </td>
+      <td>
+        <p>If your video is happening live and you want to be eligible for the LIVE badge, nest
+          the <a href="#broadcast-event"><code translate="no" dir="ltr">BroadcastEvent</code> properties</a> in your
+          <code translate="no" dir="ltr">VideoObject</code>. For example:</p>
+      <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="livestreaming video" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed="">&lt;<span class="devsite-syntax-nx">script</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-k">type</span><span class="devsite-syntax-p">=</span><span class="devsite-syntax-s">"application/ld+json"</span>&gt;
+<span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org/"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"VideoObject"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Cat video"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"publication"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"BroadcastEvent"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"First scheduled broadcast"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"isLiveBroadcast"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kc">true</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"startDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2018-10-27T14:00:00+00:00"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"endDate"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2018-10-27T14:37:14+00:00"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span></strong>
+<span class="devsite-syntax-p">}</span>
+&lt;<span class="devsite-syntax-o">/</span><span class="devsite-syntax-nx">script</span>&gt;</pre></devsite-code>
+      </td>
+    </tr>
+    <tr>
+      <td id="regions-allowed"><code translate="no" dir="ltr">regionsAllowed</code>
+      </td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Place" class="external-link">Place</a></code></p>
+      <p>The regions where the video is allowed, if applicable. If not specified, then Google assumes the video is
+        allowed everywhere. Specify the countries in
+        <a href="https://en.wikipedia.org/wiki/ISO_3166-1" class="external-link">two- or three-letter ISO 3166-1 format</a>.
+        For multiple values, use multiple country codes (for example, a JSON-LD array or multiple
+        <code translate="no" dir="ltr">meta</code> tags in Microdata).
+      </p>
+        <aside class="note">We also support the <a href="#ineligible-region"><code translate="no" dir="ltr">ineligibleRegion</code></a>
+          property. Add either <code translate="no" dir="ltr">ineligibleRegion</code> or <code translate="no" dir="ltr">regionsAllowed</code>,
+          whichever makes sense for your site.
+        </aside>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+<colgroup><col width="20%"></colgroup>
+<thead>
+  <tr><th colspan="2">Required properties</th></tr>
+</thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">publication</code>
+      </td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/BroadcastEvent" class="external-link">BroadcastEvent</a></code></p>
+      <p>Describes when the video is to be streamed live. Can be a list or a single instance.</p>
+      </td>
+    </tr>
+      <tr>
+      <td><code translate="no" dir="ltr">publication.endDate</code>
+      </td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+        <p>Time and date of when the livestream ends or is expected to end, in
+          <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>.</p>
+        <p>It's required to provide the <code translate="no" dir="ltr">endDate</code> once the video has finished and is no
+          longer live. If the expected <code translate="no" dir="ltr">endDate</code> is unknown prior to the livestream
+          starting, we recommend providing an approximate <code translate="no" dir="ltr">endDate</code>.</p>
+        <p>If <code translate="no" dir="ltr">endDate</code> is in the past or present, it indicates stream actually ended
+          and is no longer live. If <code translate="no" dir="ltr">endDate</code> is in the future, it indicates stream is
+          scheduled to end at that time.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">publication.isLiveBroadcast</code></td>
+      <td><p>Boolean</p>
+        <p>
+          Set to <code translate="no" dir="ltr">true</code> if the video is, has been, or will be streamed live.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">publication.startDate</code>
+      </td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+        <p>Time and date of when the livestream starts or is expected to start, in
+          <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>. If
+          <code translate="no" dir="ltr">startDate</code> is in the past or present, it indicates that the stream actually
+          started. If <code translate="no" dir="ltr">startDate</code> is in the future, it indicates stream is
+          scheduled to start at that time.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">name</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>A descriptive title for the content of the clip.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">startOffset</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+        <p>The start time of the clip expressed as the number of seconds from the beginning of the
+          work.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">url</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>A URL that points to the start time of the clip.</p>
+        <p>The clip URL must point to the same URL path as the video with additional query
+          parameters that specify the time. </p>
+        <p>For example, the following URL means the video starts at 2:00 minutes:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="url property" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"url": "https://www.example.com/example?t=120"</pre></devsite-code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">endOffset</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+        <p>The end time of the clip expressed as the number of seconds from the beginning of the
+          work.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">potentialAction</code>
+      </td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/SeekToAction" class="external-link">SeekToAction</a></code></p>
+        <p>Indicates a potential action. Include the following nested properties</p>
+        <ul>
+          <li><a href="#start-offset-input"><code translate="no" dir="ltr">potentialAction.startOffset-input</code></a></li>
+          <li><a href="#target"><code translate="no" dir="ltr">potentialAction.target</code></a></li>
+        </ul>
+        <p>
+          For example:
+        </p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="potentialAction property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"VideoObject"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"potentialAction"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"SeekToAction"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"target"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://video.example.com/watch/videoID?t={seek_to_second_number}"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"startOffset-input"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"required name=seek_to_second_number"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+    </tr>
+    <tr>
+      <td id="start-offset-input"><code translate="no" dir="ltr">potentialAction.startOffset-input</code>
+      </td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The placeholder string that Google will identify as your timestamp structure and then
+          replace with the number of seconds to skip to. Use the following value:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="startOffset-input property" translate="no" dir="ltr" is-upgraded="" syntax="scdoc" syntax-guessed="">"startOffset-input": "<strong>required name=seek_to_second_number</strong>"</pre></devsite-code>
+        <p>
+          <code translate="no" dir="ltr">startOffset-input</code> is an annotated property. See the
+          <a href="https://schema.org/docs/actions.html#part-4" class="external-link"><code translate="no" dir="ltr">Potential Actions</code></a>
+          page for more information.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td id="target"><code translate="no" dir="ltr">potentialAction.target</code>
+      </td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/EntryPoint" class="external-link">EntryPoint</a></code></p>
+        <p>The URL of the page that contains this <code translate="no" dir="ltr">VideoObject</code>, including a placeholder in the URL structure
+          that indicates where Google can insert the number of seconds to skip to in the video.
+          This is how Google understands your URL structure and how you format your timestamps.
+          Replace the timestamp part of the URL with the following placeholder
+          string:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="placeholder string for potentialAction" translate="no" dir="ltr" is-upgraded="" syntax="scdoc" syntax-guessed="">{seek_to_second_number}</pre></devsite-code>
+        <p>
+          For example, replace the timestamp part of the URL:
+        </p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="target property highlighting the timestamp" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"target": "https://video.example.com/watch/videoID?t=<strong>30</strong>"</pre></devsite-code>
+        <p>So that the timestamp now looks like this:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="target property with a placeholder string" translate="no" dir="ltr" is-upgraded="" syntax="scdoc" syntax-guessed="">"target": "https://video.example.com/watch/videoID?t=<strong>{seek_to_second_number}</strong>"</pre></devsite-code>
+      </td>
+    </tr>
+  </tbody>
+</table>

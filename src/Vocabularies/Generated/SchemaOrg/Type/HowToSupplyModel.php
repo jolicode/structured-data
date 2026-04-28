@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HowToSupplyModel
 {
     public const DESCRIPTION = 'A supply consumed when performing the instructions for how to achieve a result.';
     public const LABEL = 'HowToSupply';
     public const NAME = 'schema:HowToSupply';
-    public const PARENTS = ['HowToItemModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\HowToItemModel'];
+    public const PARENTS = ['HowToItemModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HowToItemModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

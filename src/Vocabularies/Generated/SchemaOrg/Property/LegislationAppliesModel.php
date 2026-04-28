@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LegislationAppliesModel
 {
     public const DESCRIPTION = 'Indicates that this legislation (or part of a legislation) somehow transfers another legislation in a different legislative context. This is an informative link, and it has no legal value. For legally-binding links of transposition, use the <a href="/legislationTransposes">legislationTransposes</a> property. For example an informative consolidated law of a European Union\'s member state "applies" the consolidated version of the European Directive implemented in it.';
     public const LABEL = 'legislationApplies';
     public const NAME = 'schema:legislationApplies';
-    public const VALUES = ['LegislationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\LegislationModel'];
-    public const TYPES = ['Legislation' => 'Jolicode\Vocabularies\SchemaOrg\Type\LegislationModel'];
+    public const VALUES = ['LegislationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LegislationModel'];
+    public const TYPES = ['Legislation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LegislationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

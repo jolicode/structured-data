@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class VideoFormatModel
 {
     public const DESCRIPTION = 'The type of screening or video broadcast used (e.g. IMAX, 3D, SD, HD, etc.).';
     public const LABEL = 'videoFormat';
     public const NAME = 'schema:videoFormat';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['BroadcastEvent' => 'Jolicode\Vocabularies\SchemaOrg\Type\BroadcastEventModel', 'BroadcastService' => 'Jolicode\Vocabularies\SchemaOrg\Type\BroadcastServiceModel', 'ScreeningEvent' => 'Jolicode\Vocabularies\SchemaOrg\Type\ScreeningEventModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['BroadcastEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastEventModel', 'BroadcastService' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastServiceModel', 'ScreeningEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ScreeningEventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

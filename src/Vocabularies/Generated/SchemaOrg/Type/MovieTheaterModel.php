@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MovieTheaterModel
 {
     public const DESCRIPTION = 'A movie theater.';
     public const LABEL = 'MovieTheater';
     public const NAME = 'schema:MovieTheater';
-    public const PARENTS = ['CivicStructureModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CivicStructureModel', 'EntertainmentBusinessModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EntertainmentBusinessModel'];
+    public const PARENTS = ['CivicStructureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CivicStructureModel', 'EntertainmentBusinessModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EntertainmentBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

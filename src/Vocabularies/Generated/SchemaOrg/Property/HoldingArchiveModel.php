@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HoldingArchiveModel
 {
     public const DESCRIPTION = '[[ArchiveOrganization]] that holds, keeps or maintains the [[ArchiveComponent]].';
     public const LABEL = 'holdingArchive';
     public const NAME = 'schema:holdingArchive';
-    public const VALUES = ['ArchiveOrganizationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ArchiveOrganizationModel'];
-    public const TYPES = ['ArchiveComponent' => 'Jolicode\Vocabularies\SchemaOrg\Type\ArchiveComponentModel'];
+    public const VALUES = ['ArchiveOrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ArchiveOrganizationModel'];
+    public const TYPES = ['ArchiveComponent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ArchiveComponentModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

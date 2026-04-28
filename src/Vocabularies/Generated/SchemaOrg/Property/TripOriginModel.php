@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TripOriginModel
 {
     public const DESCRIPTION = 'The location of origin of the trip, prior to any destination(s).';
     public const LABEL = 'tripOrigin';
     public const NAME = 'schema:tripOrigin';
-    public const VALUES = ['PlaceModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PlaceModel'];
-    public const TYPES = ['Trip' => 'Jolicode\Vocabularies\SchemaOrg\Type\TripModel'];
+    public const VALUES = ['PlaceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlaceModel'];
+    public const TYPES = ['Trip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TripModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

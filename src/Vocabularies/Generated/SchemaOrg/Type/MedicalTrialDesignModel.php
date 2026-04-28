@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicalTrialDesignModel
 {
     public const DESCRIPTION = 'Design models for medical trials. Enumerated type.';
     public const LABEL = 'MedicalTrialDesign';
     public const NAME = 'schema:MedicalTrialDesign';
-    public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalEnumerationModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['DoubleBlindedTrialModel' => 'EnumerationMember\DoubleBlindedTrialModel', 'InternationalTrialModel' => 'EnumerationMember\InternationalTrialModel', 'MultiCenterTrialModel' => 'EnumerationMember\MultiCenterTrialModel', 'OpenTrialModel' => 'EnumerationMember\OpenTrialModel', 'PlaceboControlledTrialModel' => 'EnumerationMember\PlaceboControlledTrialModel', 'RandomizedTrialModel' => 'EnumerationMember\RandomizedTrialModel', 'SingleBlindedTrialModel' => 'EnumerationMember\SingleBlindedTrialModel', 'SingleCenterTrialModel' => 'EnumerationMember\SingleCenterTrialModel', 'TripleBlindedTrialModel' => 'EnumerationMember\TripleBlindedTrialModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

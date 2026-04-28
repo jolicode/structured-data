@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class FolloweeModel
 {
     public const DESCRIPTION = 'A sub property of object. The person or organization being followed.';
     public const LABEL = 'followee';
     public const NAME = 'schema:followee';
-    public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PersonModel'];
-    public const TYPES = ['FollowAction' => 'Jolicode\Vocabularies\SchemaOrg\Type\FollowActionModel'];
+    public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['FollowAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FollowActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

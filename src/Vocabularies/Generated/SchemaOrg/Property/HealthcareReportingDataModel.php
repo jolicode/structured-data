@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HealthcareReportingDataModel
 {
     public const DESCRIPTION = 'Indicates data describing a hospital, e.g. a CDC [[CDCPMDRecord]] or as some kind of [[Dataset]].';
     public const LABEL = 'healthcareReportingData';
     public const NAME = 'schema:healthcareReportingData';
-    public const VALUES = ['CDCPMDRecordModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CDCPMDRecordModel', 'DatasetModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DatasetModel'];
-    public const TYPES = ['Hospital' => 'Jolicode\Vocabularies\SchemaOrg\Type\HospitalModel'];
+    public const VALUES = ['CDCPMDRecordModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CDCPMDRecordModel', 'DatasetModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DatasetModel'];
+    public const TYPES = ['Hospital' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HospitalModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

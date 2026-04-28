@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IsLiveBroadcastModel
 {
     public const DESCRIPTION = 'True if the broadcast is of a live event.';
     public const LABEL = 'isLiveBroadcast';
     public const NAME = 'schema:isLiveBroadcast';
-    public const VALUES = ['BooleanModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\BooleanModel'];
-    public const TYPES = ['BroadcastEvent' => 'Jolicode\Vocabularies\SchemaOrg\Type\BroadcastEventModel'];
+    public const VALUES = ['BooleanModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BooleanModel'];
+    public const TYPES = ['BroadcastEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastEventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

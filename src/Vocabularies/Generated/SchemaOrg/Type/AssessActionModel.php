@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AssessActionModel
 {
     public const DESCRIPTION = 'The act of forming one\'s opinion, reaction or sentiment.';
     public const LABEL = 'AssessAction';
     public const NAME = 'schema:AssessAction';
-    public const PARENTS = ['ActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ActionModel'];
+    public const PARENTS = ['ActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

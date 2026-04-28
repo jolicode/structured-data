@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class InformActionModel
 {
     public const DESCRIPTION = 'The act of notifying someone of information pertinent to them, with no expectation of a response.';
     public const LABEL = 'InformAction';
     public const NAME = 'schema:InformAction';
-    public const PARENTS = ['CommunicateActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CommunicateActionModel'];
+    public const PARENTS = ['CommunicateActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommunicateActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

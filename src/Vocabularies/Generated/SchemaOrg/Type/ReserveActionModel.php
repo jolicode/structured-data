@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReserveActionModel
 {
     public const DESCRIPTION = 'Reserving a concrete object.\n\nRelated actions:\n\n* [[ScheduleAction]]: Unlike ScheduleAction, ReserveAction reserves concrete objects (e.g. a table, a hotel) towards a time slot / spatial allocation.';
     public const LABEL = 'ReserveAction';
     public const NAME = 'schema:ReserveAction';
-    public const PARENTS = ['PlanActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PlanActionModel'];
+    public const PARENTS = ['PlanActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlanActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

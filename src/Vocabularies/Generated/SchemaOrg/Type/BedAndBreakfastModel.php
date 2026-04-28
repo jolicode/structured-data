@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BedAndBreakfastModel
 {
@@ -20,7 +20,7 @@ final class BedAndBreakfastModel
 See also the <a href="/docs/hotels.html">dedicated document on the use of schema.org for marking up hotels and other forms of accommodations</a>.';
     public const LABEL = 'BedAndBreakfast';
     public const NAME = 'schema:BedAndBreakfast';
-    public const PARENTS = ['LodgingBusinessModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\LodgingBusinessModel'];
+    public const PARENTS = ['LodgingBusinessModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LodgingBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

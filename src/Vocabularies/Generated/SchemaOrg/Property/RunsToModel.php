@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RunsToModel
 {
     public const DESCRIPTION = 'The vasculature the lymphatic structure runs, or efferents, to.';
     public const LABEL = 'runsTo';
     public const NAME = 'schema:runsTo';
-    public const VALUES = ['VesselModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\VesselModel'];
-    public const TYPES = ['LymphaticVessel' => 'Jolicode\Vocabularies\SchemaOrg\Type\LymphaticVesselModel'];
+    public const VALUES = ['VesselModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VesselModel'];
+    public const TYPES = ['LymphaticVessel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LymphaticVesselModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

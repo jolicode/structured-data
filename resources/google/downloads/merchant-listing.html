@@ -1,0 +1,1104 @@
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Required properties</th></tr></thead>
+        <tbody>
+          <tr id="name">
+            <td><code translate="no" dir="ltr">name</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The name of the product.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">image</code></td>
+            <td>
+              <p>Repeated <code translate="no" dir="ltr"><a href="https://schema.org/ImageObject" class="external-link">ImageObject</a></code> or
+                <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+              <p>The URL of a product photo. Pictures clearly showing the product (for example, against
+                a white background) are preferred.</p>
+              
+<p>Additional image guidelines:
+  </p><ul>
+    <li>Image URLs must be crawlable and indexable. To check if Google can access your URLs, use
+      the <a href="https://support.google.com/webmasters/answer/9012289" class="external-link">URL Inspection tool</a>.</li>
+    <li>Images must represent the marked up content.</li>
+    <li>Images must be in a file format that's <a href="/search/docs/appearance/google-images#supported-image-formats">supported by Google Images</a>.</li>
+    <li>For best results, we recommend providing multiple high-resolution images (minimum of 50K pixels when
+      multiplying width and height) with the following aspect ratios: 16x9, 4x3, and 1x1.</li>
+  </ul>
+          <p>For example:</p>
+  <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="multiple images example in json-ld" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"image": [
+  "https://example.com/photos/1x1/photo.jpg",
+  "https://example.com/photos/4x3/photo.jpg",
+  "https://example.com/photos/16x9/photo.jpg"
+]</pre></devsite-code>
+  
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">offers</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Offer" class="external-link">Offer</a></code></p>
+              <p>A nested <code translate="no" dir="ltr">Offer</code> to sell the product.</p>
+              <p>Product snippets accept an <a href="#offer-properties"><code translate="no" dir="ltr">Offer</code></a>
+                or <code translate="no" dir="ltr">AggregateOffer</code>
+                but merchant listings require an <a href="#offer-properties"><code translate="no" dir="ltr">Offer</code></a>
+                as the merchant has to be the seller of the product in order to be eligible
+                for merchant listing experiences.
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">aggregateRating</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/AggregateRating" class="external-link">AggregateRating</a></code></p>
+              <p>A nested <code translate="no" dir="ltr">aggregateRating</code> of the product. Follow the
+                <a href="/search/docs/appearance/structured-data/review-snippet#guidelines">Review snippet guidelines</a>
+                and the list of required and recommended
+                <a href="/search/docs/appearance/structured-data/review-snippet#aggregated-rating-type-definition"><code translate="no" dir="ltr">AggregateRating</code> properties</a>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">audience</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/PeopleAudience" class="external-link">PeopleAudience</a></code></p>
+              <p>Optional information about the suggested audience for the product, such as the
+                suggested gender and age group. Only the <code translate="no" dir="ltr">PeopleAudience</code> type is supported.
+                See the list of <a href="#people-audience-properties"><code translate="no" dir="ltr">PeopleAudience</code> properties</a>
+                supported by Google.</p>
+            </td>
+          </tr>
+          <tr id="brand">
+            <td><code translate="no" dir="ltr">brand.name</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>Include the brand of the product in the
+                <code translate="no" dir="ltr"><a href="https://schema.org/PeopleAudience" class="external-link">name</a></code>
+                property of the
+                <code translate="no" dir="ltr"><a href="https://schema.org/Brand" class="external-link">Brand</a></code>
+                type if known. Include at most one brand name.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">color</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The color or color combination of the product (for example, "red" or "yellow/sky blue").
+                See also the
+                <a href="https://support.google.com/merchants/answer/6324487" class="external-link">Color attribute</a>
+                in Google Merchant Center Help.</p>
+            </td>
+          </tr>
+          <tr id="description">
+            <td><code translate="no" dir="ltr">description</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The product description. While the product description is not mandatory, it is strongly recommended to
+                provide a description of the product in this property.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">gtin | gtin8 | gtin12 | gtin13 | gtin14 | isbn</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>Include all applicable global identifiers; these are described at
+                <a href="https://schema.org/Product" class="external-link">schema.org/Product</a>.
+                While you can use the generic <code translate="no" dir="ltr">gtin</code> property for all GTINs, we recommend that you
+                use the most specific GTIN that applies to your product, as this is the most accurate
+                representation of the product. Make sure the GTIN value is in the numerical form; we don't
+                support the URL form for GTINs.</p>
+             <p><code translate="no" dir="ltr">isbn</code> is only a valid property on
+              <code translate="no" dir="ltr"><a href="https://schema.org/Book" class="external-link">Book</a></code>. For
+              best results, use ISBN-13 format. To use <code translate="no" dir="ltr">Book</code> correctly, co-type with the
+              <code translate="no" dir="ltr">Product</code>. This will let you
+              use properties of both types on the node. For example:</p>
+              <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Product and Book co-type" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span><span class="devsite-syntax-s">"Product"</span><span class="devsite-syntax-p">,</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Book"</span><span class="devsite-syntax-p">],</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-o">...</span>
+<span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w">              </span></pre></devsite-code>
+            </td>
+          </tr>
+          <tr id="hasCertification">
+            <td><code translate="no" dir="ltr">hasCertification</code></td>
+            <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Certification" class="external-link">Certification</a></code></p>
+            <p>Certifications, such as energy efficiency ratings, associated with a product. Up to
+              10 certifications can be specified. This property is particularly relevant in
+              European countries. See also the list of <a href="#certification-properties"><code translate="no" dir="ltr">Certification</code> properties</a>
+              supported by Google.</p>
+                <aside class="note">
+                  <b>Backwards compatibility</b>: Upon the initial launch of merchant listing, we recommended
+                  the <code translate="no" dir="ltr">hasEnergyConsumptionDetails</code> property. While we continue to support the
+                  earlier markup pattern, we recommend using the new <code translate="no" dir="ltr">hasCertification</code> property
+                  instead, if possible, with the required <a href="#certification-properties"><code translate="no" dir="ltr">Certification</code> properties</a>
+                  supported by Google. Here's an example that shows the original markup style:
+                <div></div><devsite-code><pre translate="no" dir="ltr" is-upgraded="">"hasEnergyConsumptionDetails": {
+  <strong>"@type": "EnergyConsumptionDetails",</strong>
+  "hasEnergyEfficiencyCategory": "https://schema.org/EUEnergyEfficiencyCategoryC",
+  "energyEfficiencyScaleMin": "https://schema.org/EUEnergyEfficiencyCategoryF",
+  "energyEfficiencyScaleMax": "https://schema.org/EUEnergyEfficiencyCategoryA1Plus"
+}</pre></devsite-code>
+                </aside>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">inProductGroupWithID</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The ID of a product group that this product variant belongs to. See also
+                <a href="https://support.google.com/merchants/answer/6324507" class="external-link"><code translate="no" dir="ltr">Item Group Id</code></a>
+                in Google Merchant Center Help. Specify at most one value.</p>
+                For details on how to add markup for product variants, refer to
+              <a href="/search/docs/appearance/structured-data/product-variants">product variant structured data documentation</a>.
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">isVariantOf</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/ProductGroup" class="external-link">ProductGroup</a></code></p>
+              <p>A product group that this product variant belongs to, if applicable. For details on
+                how to add markup for product variants, refer to
+                <a href="/search/docs/appearance/structured-data/product-variants">product variant structured data documentation</a>.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">material</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The material or material combination the product is made from, such as "Leather"
+                or "Cotton/Polyester". See also
+                <code translate="no" dir="ltr"><a href="https://support.google.com/merchants/answer/6324410" class="external-link">Material</a></code>
+                in Google Merchant Center help.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">mpn</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The manufacturer part number. This property uniquely identifies the product
+                for a given manufacturer.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">pattern</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The pattern of the product, such as "polka dots" or "striped". See also
+                <code translate="no" dir="ltr"><a href="https://support.google.com/merchants/answer/6324483" class="external-link">Pattern</a></code>
+                on the Google Merchant Center Product Data Specification page.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">review</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Review" class="external-link">Review</a></code></p>
+              <p>A nested <code translate="no" dir="ltr">Review</code> of the product. Follow the
+                <a href="/search/docs/appearance/structured-data/review-snippet#guidelines">Review snippet
+                  guidelines</a> and the list of required and recommended
+                <a href="/search/docs/appearance/structured-data/review-snippet#review-properties">review properties</a>.
+                See also the list of additional <a href="#/search/docs/appearance/structured-data/product-snippet#review-properties"><code translate="no" dir="ltr">Review</code> properties</a>
+                specific to the <code translate="no" dir="ltr">Product</code> schema.org type.</p>
+              <p>If you add a review for the product, the reviewer's name must be a valid name for a <code translate="no" dir="ltr">Person</code> or
+                <code translate="no" dir="ltr">Team</code>.</p>
+              <p><span class="compare-no" aria-hidden="true"></span><b>Not recommended</b>: 50% off on Black Friday</p>
+              <p><span class="compare-yes" aria-hidden="true"></span><b>Recommended</b>: "James Smith" or "CNET Reviewers"</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">size</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/SizeSpecification" class="external-link">SizeSpecification</a></code></p>
+              <p>The size of the product, such as "XL" or "medium". See also <code translate="no" dir="ltr">size</code> in the
+                <a href="https://support.google.com/merchants/answer/7052112" class="external-link">Google Merchant Center Product Data Specification page</a>.
+                See the list of <a href="#size-specification-properties"><code translate="no" dir="ltr">SizeSpecification</code> properties</a>
+                supported by Google. Specify at most one value.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">sku</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The merchant-specific identifier for the product. Specify at most one value.</p>
+              <ul>
+                <li>The <code translate="no" dir="ltr">sku</code> value must use unicode characters that are valid for interchange.</li>
+                <li>The <code translate="no" dir="ltr">sku</code> value must not contain any whitespace characters (as defined by
+                  the <a href="https://en.wikipedia.org/wiki/Unicode_character_property#Whitespace" class="external-link">Unicode whitespace property</a>).</li>
+                <li>We recommend that the <code translate="no" dir="ltr">sku</code> value only contain ASCII characters.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">subjectOf</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/3DModel" class="external-link">3DModel</a></code></p>
+              <p>A 3D model for the product, if applicable. See the list of <a href="#3d-model-properties"><code translate="no" dir="ltr">3DModel</code> properties</a> properties supported by Google. Specify at most one <code translate="no" dir="ltr">3DModel</code> value.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Required properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">encoding</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/MediaObject" class="external-link">MediaObject</a></code></p>
+              <p>The media for the 3D model.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">encoding.contentUrl</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+              <p>The link to a 3D model definition file in <a href="https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html" class="external-link">glTF</a> format. The file must have a <code translate="no" dir="ltr">.gltf</code> or <code translate="no" dir="ltr">.glb</code> suffix.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+    <colgroup><col width="30%"></colgroup>
+    <thead><tr><th colspan="2">Required properties</th></tr></thead>
+    <tbody>
+      <tr id="price">
+        <td><code translate="no" dir="ltr">price</code> or <code translate="no" dir="ltr">priceSpecification.price</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+          <p>The current, active offer price of a product. Follow the
+            <a href="https://schema.org/price" class="external-link">schema.org usage
+              guidelines</a>.</p>
+          <p>
+            Here's an example of the <code translate="no" dir="ltr">price</code> property:
+          </p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="Price property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"offers"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Offer"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"price"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m devsite-syntax-m-Double">39.99</span><span class="devsite-syntax-p">,</span></strong>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"priceCurrency"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"USD"</span>
+<span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w">          </span></pre></devsite-code>
+          <p>
+            Unlike product snippets, merchant listing experiences require a price greater than zero.
+          </p>
+          <p>
+            The active price is required but may be nested inside a
+            <code translate="no" dir="ltr">priceSpecification</code> property instead of being provided at the
+            <code translate="no" dir="ltr">Offer</code> level.
+          </p>
+          
+    <aside class="note">
+      If you use both the <code translate="no" dir="ltr">offers.price</code> and <code translate="no" dir="ltr">offers.priceSpecification</code>
+      properties to encode an active price, Google will use the price provided through
+      the <code translate="no" dir="ltr">offers.price</code> property and ignore the <code translate="no" dir="ltr">offers.priceSpecification</code>
+      property.
+    </aside>
+        </td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">priceCurrency</code> or <code translate="no" dir="ltr">priceSpecification.priceCurrency</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+          <p>The currency used to describe the product price, in three-letter
+            <a href="https://en.wikipedia.org/wiki/ISO_4217" class="external-link">ISO 4217</a> format.</p>
+          <p>
+            <code translate="no" dir="ltr">priceCurrency</code> is required if <code translate="no" dir="ltr">price</code> is specified, otherwise
+            <code translate="no" dir="ltr">priceSpecification.priceCurrency</code> is required if
+            <code translate="no" dir="ltr">priceSpecification.price</code> is specified.
+          </p>
+        </td>
+      </tr>
+      <tr id="pricespecification">
+        <td><code translate="no" dir="ltr">priceSpecification</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/UnitPriceSpecification" class="external-link">UnitPriceSpecification</a></code></p>
+          <p>The active price can also be specified using <code translate="no" dir="ltr">price</code>
+          and <code translate="no" dir="ltr">priceCurrency</code> inside a <code translate="no" dir="ltr">priceSpecification</code> property.</p>
+          
+    <aside class="note">
+      If you use both the <code translate="no" dir="ltr">offers.price</code> and <code translate="no" dir="ltr">offers.priceSpecification</code>
+      properties to encode an active price, Google will use the price provided through
+      the <code translate="no" dir="ltr">offers.price</code> property and ignore the <code translate="no" dir="ltr">offers.priceSpecification</code>
+      property.
+    </aside>
+          <p>The <code translate="no" dir="ltr">priceSpecification</code> property allows the specification of complex prices
+            by using <code translate="no" dir="ltr">UnitPriceSpecification</code> objects. See the list of supported
+            <a href="#unit-price-specification-properties"><code translate="no" dir="ltr">UnitPriceSpecification</code></a>
+            properties and the <a href="#pricing-examples">pricing examples</a> of how to mark up
+            various kinds of prices.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<table class="responsive fixed">
+    <colgroup><col width="30%"></colgroup>
+    <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+    <tbody>
+      <tr id="availability">
+        <td><code translate="no" dir="ltr">availability</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/ItemAvailability" class="external-link">ItemAvailability</a></code></p>
+          <p>The possible product availability options. The short names without the URL prefix
+            are also supported (for example <code translate="no" dir="ltr">BackOrder</code>).</p>
+          <ul>
+            <li><code translate="no" dir="ltr">https://schema.org/BackOrder</code>: The item is on back order.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/Discontinued</code>: The item has been discontinued.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/InStock</code>: The item is in stock.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/InStoreOnly</code>: The item is only available for purchase in store.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/LimitedAvailability</code>: The item has limited availability.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/OnlineOnly</code>: The item is available online only.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/OutOfStock</code>: The item is currently out of stock.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/PreOrder</code>: The item is available for pre-order.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/PreSale</code>: The item is available for ordering and delivery before general availability.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/SoldOut</code>: The item has been sold out.</li>
+          </ul>
+          <p>
+            Don't specify more than one value.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">hasMerchantReturnPolicy</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/MerchantReturnPolicy" class="external-link">MerchantReturnPolicy</a></code></p>
+          <p>Nested information about the return policies associated with an <code translate="no" dir="ltr">Offer</code>.
+            Add the <a href="#merchant-return-policy-properties">required and recommended
+              <code translate="no" dir="ltr">MerchantReturnPolicy</code> properties</a> for individual offers.</p>
+          <p></p>
+          <aside class="note">
+            We recommend you provide a global return policy for your business under <code translate="no" dir="ltr">Organization</code> markup instead,
+            as documented under the <a href="/search/docs/appearance/structured-data/organization">Organization documentation</a> and
+            the <a href="/search/docs/appearance/structured-data/return-policy">Merchant return policy documentation</a>.
+            Only if some of your products have specific return policies for which you need to override your
+            global return policy, or if you don't provide standard return policy for your business, use
+            this property under <code translate="no" dir="ltr">Offer</code>. Note that the
+            properties supported for offer-level return policies are a subset of the properties
+            supported for organization-level return policies.
+            To unambiguously reference your global return policy (located on a different page) from an <code translate="no" dir="ltr">Offer</code>,
+            using only the <code translate="no" dir="ltr">@id</code> keyword. For example:
+<div></div><devsite-code><pre class="devsite-click-to-copy" data-label="linked return policy json-ld example" translate="no" dir="ltr" is-upgraded="" syntax="JSON"><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-nt">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s2">"https://schema.org"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-nt">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s2">"Offer"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-nt">"hasMerchantReturnPolicy"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-nt">"@id"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s2">"https://example.com/returns#policy"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+            
+          </aside>
+        </td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">itemCondition</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/OfferItemCondition" class="external-link">OfferItemCondition</a></code></p>
+          <p>Condition of the item offered for sale. The short names without the URL prefix
+            are also supported (for example <code translate="no" dir="ltr">NewCondition</code>).</p>
+          <ul>
+            <li><code translate="no" dir="ltr">https://schema.org/NewCondition</code>: The item is new.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/RefurbishedCondition</code>: The item has been refurbished.</li>
+            <li><code translate="no" dir="ltr">https://schema.org/UsedCondition</code>: The item is used (it is not new).</li>
+          </ul>
+          <p>
+            Don't specify more than one value.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">shippingDetails</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/OfferShippingDetails" class="external-link">OfferShippingDetails</a></code></p>
+          <p>Nested information about the shipping policy associated with an
+            <code translate="no" dir="ltr">Offer</code>. If you decide to add <code translate="no" dir="ltr">shippingDetails</code>, add
+            the <a href="#offer-shipping-details-properties">required and recommended
+              <code translate="no" dir="ltr">OfferShippingDetails</code> properties</a>.</p>
+          <aside class="note">
+            We recommend you provide a global shipping policy for your business under <code translate="no" dir="ltr">Organization</code> markup instead,
+            as documented under the <a href="/search/docs/appearance/structured-data/organization">Organization documentation</a> and
+            the <a href="/search/docs/appearance/structured-data/shipping-policy">Merchant shipping policy documentation</a>.
+            Only if some of your products have specific shipping policies for which you need to override your
+            global shipping policy, or if you don't provide a standard shipping policy for your business, use
+            this property under <code translate="no" dir="ltr">Offer</code>. Note that the
+            properties supported for offer-level shipping policies are a subset of the properties
+            supported for organization-level shipping policies.
+            To unambiguously reference your global shipping policy (located on a different page) from an <code translate="no" dir="ltr">Offer</code>, use only
+            the <code translate="no" dir="ltr">hasShippingService</code> property under the <code translate="no" dir="ltr">OfferShippingDetails</code> type
+            using only the <code translate="no" dir="ltr">@id</code> keyword. For example:
+<div></div><devsite-code><pre class="devsite-click-to-copy" data-label="linked shipping policy json-ld example" translate="no" dir="ltr" is-upgraded="" syntax="JSON"><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-nt">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s2">"https://schema.org"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-nt">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s2">"Offer"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-nt">"shippingDetails"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-nt">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s2">"OfferShippingDetails"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-nt">"hasShippingService"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-nt">"@id"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s2">"https://example.com/shipping#policy"</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+          </aside>
+      </td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">url</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+          <p>A URL of the product web page from which a shopper can purchase the product.
+            This URL may be the preferred URL for the current page with all variant options
+            appropriately selected. The URL can be omitted. Don't provide multiple URLs.</p>
+          <p>For details on how to add markup for product variants, refer to
+            <a href="/search/docs/appearance/structured-data/product-variants">product variant structured data documentation</a>.
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Required properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">price</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>
+                The offer price of a product. See also the <code translate="no" dir="ltr">price</code> property of <code translate="no" dir="ltr">Offer</code>.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">priceCurrency</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The currency used to describe the product price, in three-letter
+                <a href="https://en.wikipedia.org/wiki/ISO_4217" class="external-link">ISO 4217</a> format.
+                See also the <code translate="no" dir="ltr">priceCurrency</code> property of <code translate="no" dir="ltr">Offer</code>.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+        <tbody>
+          <tr id="membershipPointsEarned">
+            <td><code translate="no" dir="ltr">membershipPointsEarned</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <aside class="beta"><b>Beta</b>: This property is in beta, and you may not see an
+                effect in Google Search right away.</aside>
+              <p>The (whole) number of points that members of a particular loyalty program earn with
+              this purchase. Use this property only together with <code translate="no" dir="ltr">validForMemberTier</code>.
+              See the fourth example in <a href="#member-price-example">member price examples</a>
+              and the article <a href="https://support.google.com/merchants/answer/12922446" class="external-link">Loyalty program</a> in Google Merchant Center Help.</p>
+              Refer to
+              <a href="/search/docs/appearance/structured-data/loyalty-program">loyalty program markup</a> for
+                information on how to define member programs and tiers for your organization.
+            </td>
+          </tr>
+          <tr id="pricetype">
+            <td><code translate="no" dir="ltr">priceType</code></td>
+            <td>
+              <p>
+                <code translate="no" dir="ltr"><a href="https://schema.org/PriceTypeEnumeration" class="external-link">PriceTypeEnumeration</a></code>
+              </p>
+              <p>
+                The presence of this property marks the full, original listing price of a product,
+                if applicable. Only use this property if you want Google to show sale pricing for
+                your product. You must set the <code translate="no" dir="ltr">priceType</code> to
+                the <code translate="no" dir="ltr">https://schema.org/StrikethroughPrice</code> value (no other values are
+                supported).
+              </p>
+              <p>
+                If you use the <code translate="no" dir="ltr">priceType</code> property to designate a list price,
+                you must also provide a current sale price with the <a href="#price"><code translate="no" dir="ltr">price</code></a> or
+                <a href="#pricespecification"><code translate="no" dir="ltr">priceSpecification</code></a> property on
+                the <code translate="no" dir="ltr">Offer</code> object. Don't mark the current sale price with
+                the <code translate="no" dir="ltr">priceType</code> property. See the <a href="#sale-pricing-example">sale
+                price examples</a>.
+              </p>
+            </td>
+          </tr>
+          <tr id="referenceQuantity">
+            <td><code translate="no" dir="ltr">referenceQuantity</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/QuantitativeValue" class="external-link">QuantitativeValue</a></code>
+              (for unit pricing)</p>
+              <p>The quantity of the product offered for the given price. See the
+              example <a href="#unit-pricing-example">Pricing with unit pricing measures</a> and the
+              article <a href="https://support.google.com/merchants/answer/6324455" class="external-link">Unit pricing measure</a> in Google Merchant Center Help for a
+              detailed discussion of unit pricing.</p>
+            </td>
+          </tr>
+          <tr id="validForMemberTier">
+            <td><code translate="no" dir="ltr">validForMemberTier</code></td>
+            <td>
+              <p>
+                <code translate="no" dir="ltr"><a href="https://schema.org/MemberProgramTier" class="external-link">MemberProgramTier</a></code>
+              </p>
+              <p>
+                The presence of this property indicates that this price is valid for members of a
+                particular loyalty program. You can specify multiple member tiers if
+                the price is the same for them and multiple price specifications with this property
+                if the price is different for different member tiers.
+              </p>
+              <p>
+                If you use the <code translate="no" dir="ltr">validForMemberTier</code> property to designate a member price,
+                you must also provide a current regular price with
+                the <a href="#price"><code translate="no" dir="ltr">price</code></a> or
+                <a href="#pricespecification"><code translate="no" dir="ltr">priceSpecification</code></a> property on
+                the <code translate="no" dir="ltr">Offer</code> object. See the <a href="#member-price-example">member price
+                examples</a>.
+              </p>
+              <p>
+                  The loyalty programs and tiers that you offer for your business should either be
+                  defined in your Merchant Center account or using the <code translate="no" dir="ltr">MemberProgram</code> structured
+                  data type nested under <code translate="no" dir="ltr">Organization</code> structured data on a separate page
+                  that defines your Organization's administrative details and policies. See
+                  <a href="/search/docs/appearance/structured-data/loyalty-program">loyalty program markup</a> for
+                  information on how to define the member programs and tiers for your organization.
+              </p>
+              <p>Here's an example of the <code translate="no" dir="ltr">validForMemberTier</code> property referencing a member
+                program and tier defined in Merchant Center:
+              </p>
+<div></div><devsite-code><pre class="devsite-click-to-copy" data-label="mc member program and tier" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"validForMemberTier"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MemberProgramTier"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"silver"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"isTierOf"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MemberProgram"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"member-plus"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+            <p>Here's an example of the <code translate="no" dir="ltr">validForMemberTier</code> property referencing
+              <code translate="no" dir="ltr">MemberProgramTier</code> structured data nested under
+              <code translate="no" dir="ltr">MemberProgram</code> structured data, which is in turn nested under a <code translate="no" dir="ltr">Organization</code> structured
+              data type on a separate page. The <code translate="no" dir="ltr">MemberProgramTier</code> instance is
+              identified by the <code translate="no" dir="ltr">@id</code> property specifying the unique resource identifier (URI) of its definition:
+              <code translate="no" dir="ltr">https://www.example.com/com/member-plus#tier_silver</code>:
+            </p>
+<div></div><devsite-code><pre class="devsite-click-to-copy" data-label="mc member program and tier" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"validForMemberTier"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MemberProgramTier"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@id"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://www.example.com/com/member-plus#tier_silver"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+            <aside>
+              This property is still in Beta. Off-page <code translate="no" dir="ltr">MemberProgramTier</code>
+              structured data might not show up in Google Search right away.
+            </aside>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Required properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">unitCode</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+              <p>
+                The unit of measurement. Either the UN/CEFACT codes or their human-readable
+                equivalents as listed in Google Merchant Center Help
+                <a href="https://support.google.com/merchants/answer/6324455" class="external-link">Unit pricing measure</a>
+                are supported (except <code translate="no" dir="ltr">sheet</code> and <code translate="no" dir="ltr">item</code>; these two codes are
+                only supported by Merchant Center feeds).
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">value</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The numeric value of the unit sold.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">valueReference</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/QuantitativeValue" class="external-link">QuantitativeValue</a></code></p>
+              <p>The base quantity in which the product is priced.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">name</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>A human readable name for the size, such as <span translate="no">"XL"</span>. See the
+                <a href="https://support.google.com/merchants/answer/6324492" class="external-link">size attribute</a>
+                in Google Merchant Center Help for more details.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">sizeGroup</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/WearableSizeGroupEnumeration" class="external-link">WearableSizeGroupEnumeration</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The suggested size group for the product, if applicable. The interpretation of
+                the group is defined by the <code translate="no" dir="ltr">sizeGroup</code> property.
+                At most two size groups can be provided. Supported values are:</p>
+              <ul>
+                <li><code translate="no" dir="ltr">https://schema.org/WearableSizeGroupRegular</code>: The item size is "regular".</li>
+                <li><code translate="no" dir="ltr">https://schema.org/WearableSizeGroupPetite</code>: The item size is "petite".</li>
+                <li><code translate="no" dir="ltr">https://schema.org/WearableSizeGroupPlus</code>: The item size is "plus".</li>
+                <li><code translate="no" dir="ltr">https://schema.org/WearableSizeGroupTall</code>: The item size is "tall".</li>
+                <li><code translate="no" dir="ltr">https://schema.org/WearableSizeGroupBig</code>: The item size is "big".</li>
+                <li><code translate="no" dir="ltr">https://schema.org/WearableSizeGroupMaternity</code>: The item size is "maternity".</li>
+              </ul>
+              <p>The short names without the URL prefix are also supported (for example, <code translate="no" dir="ltr">WearableSizeGroupRegular</code>).</p>
+              <p>See also <a href="https://support.google.com/merchants/answer/6324497" class="external-link"><code translate="no" dir="ltr">size_type</code></a>
+                in Google Merchant Center Help and
+                <a href="https://support.google.com/merchants/answer/6386198" class="external-link">Supported structured data types and values</a>
+                in Google Merchant Center Help for more information about supported size systems.
+                Google understands the text values for <code translate="no" dir="ltr">size_type</code> as well
+                (<code translate="no" dir="ltr">regular</code>, <code translate="no" dir="ltr">petite</code>, <code translate="no" dir="ltr">plus</code>, <code translate="no" dir="ltr">tall</code>,
+                <code translate="no" dir="ltr">big</code>, and <code translate="no" dir="ltr">maternity</code>), but other search engines may not,
+                so it is recommended to use the standard <code translate="no" dir="ltr">schema.org</code> enumeration values.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">sizeSystem</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/WearableSizeSystemEnumeration" class="external-link">WearableSizeSystemEnumeration</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The size system for the product, if applicable. Supported values are:</p>
+              <ul>
+                <li><code translate="no" dir="ltr">https://schema.org/WearableSizeSystemAU</code>: The size system in Australia.</li>
+                <li><code translate="no" dir="ltr">https://schema.org/WearableSizeSystemBR</code>: The size system in Brazil.</li>
+                <li><code translate="no" dir="ltr">https://schema.org/WearableSizeSystemCN</code>: The size system in China.</li>
+                <li><code translate="no" dir="ltr">https://schema.org/WearableSizeSystemDE</code>: The size system in Germany.</li>
+                <li><code translate="no" dir="ltr">https://schema.org/WearableSizeSystemEurope</code>: The size system in Europe.</li>
+                <li><code translate="no" dir="ltr">https://schema.org/WearableSizeSystemFR</code>: The size system in France.</li>
+                <li><code translate="no" dir="ltr">https://schema.org/WearableSizeSystemIT</code>: The size system in Italy.</li>
+                <li><code translate="no" dir="ltr">https://schema.org/WearableSizeSystemJP</code>: The size system in Japan.</li>
+                <li><code translate="no" dir="ltr">https://schema.org/WearableSizeSystemMX</code>: The size system in Mexico.</li>
+                <li><code translate="no" dir="ltr">https://schema.org/WearableSizeSystemUK</code>: The size system in the United Kingdom.</li>
+                <li><code translate="no" dir="ltr">https://schema.org/WearableSizeSystemUS</code>: The size system in the United States.</li>
+              </ul>
+              <p>The short names without the URL prefix are also supported (for example, <code translate="no" dir="ltr">WearableSizeSystemAU</code>).</p>
+              <p>See also <a href="https://support.google.com/merchants/answer/6324502" class="external-link"><code translate="no" dir="ltr">size_system</code></a>
+                in Google Merchant Center Help.
+                Google understands the text values for <code translate="no" dir="ltr">size_system</code> as well
+                (for example, <code translate="no" dir="ltr">UR</code>, <code translate="no" dir="ltr">BR</code>, <code translate="no" dir="ltr">CN</code>, <code translate="no" dir="ltr">DE</code>, <code translate="no" dir="ltr">EU</code>), but other search engines may not,
+                so it is recommended to use the standard <code translate="no" dir="ltr">schema.org</code> enumeration values.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">suggestedGender</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/GenderType" class="external-link">GenderType</a></code></p>
+              <p>The suggested gender the product is suitable for. Must be one of the following values:</p>
+              <ul>
+                <li><code translate="no" dir="ltr">https://schema.org/Male</code></li>
+                <li><code translate="no" dir="ltr">https://schema.org/Female</code></li>
+                <li><code translate="no" dir="ltr">Unisex</code>: This (case-insensitive) value is not in the schema.org standard and must not have a <code translate="no" dir="ltr">https://schema.org/</code> prefix.</li>
+              </ul>
+              <p>See <a href="https://support.google.com/merchants/answer/6324479" class="external-link"><code translate="no" dir="ltr">Gender</code></a> in
+                Google Merchant Center Help for more details.</p>
+              <p>Note that Google will complete <code translate="no" dir="ltr">GenderType</code> values without schema.org prefix,
+                therefore raw <code translate="no" dir="ltr">male</code> and <code translate="no" dir="ltr">female</code> values are also accepted.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">suggestedMaxAge</code> (or <code translate="no" dir="ltr">suggestedAge.maxValue</code>)</td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The suggested maximum age for the product, in years. Google maps the maximum
+                suggested ages for products onto the following fixed set of numerical values:</p>
+              <ul>
+                <li><code translate="no" dir="ltr">0.25</code>: For newborns</li>
+                <li><code translate="no" dir="ltr">1.0</code>: For infants</li>
+                <li><code translate="no" dir="ltr">5.0</code>: For toddlers</li>
+                <li><code translate="no" dir="ltr">13.0</code>: For kids</li>
+              </ul>
+              <aside class="note">For adults, you don't need to provide the <code translate="no" dir="ltr">suggestedMaxAge</code>
+                (or <code translate="no" dir="ltr">suggestedAge.maxValue</code>)
+                property.</aside>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">suggestedMinAge</code> (or <code translate="no" dir="ltr">suggestedAge.minValue</code>)</td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The suggested minimum age for the product, in years. Google maps the minimum suggested ages for
+                products onto the following fixed set of numerical values:</p>
+                <ul>
+                  <li><code translate="no" dir="ltr">0</code>: For newborns</li>
+                  <li><code translate="no" dir="ltr">0.25</code>: For infants</li>
+                  <li><code translate="no" dir="ltr">1.0</code>: For toddlers</li>
+                  <li><code translate="no" dir="ltr">5.0</code>: For kids</li>
+                  <li><code translate="no" dir="ltr">13.0</code>: For adults</li>
+                </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Required properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">issuedBy</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code></p>
+              <p>The authority or certification body responsible for issuing the certification. Use the property <code translate="no" dir="ltr">name</code> to specify the organization. At this time, we support the following names:</p>
+              <ul>
+                <li><code translate="no" dir="ltr">EC</code> or <code translate="no" dir="ltr">European_Commission</code> for energy labels in the EU</li>
+                <li><code translate="no" dir="ltr">ADEME</code> for French CO2 emissions classes for vehicles</li>
+                <li><code translate="no" dir="ltr">BMWK</code> for German CO2 emissions classes for vehicles</li>
+              </ul>
+          </td></tr>
+          <tr><td><code translate="no" dir="ltr">name</code></td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+            <p>The name of the certification. At this time, we support the following values:</p>
+            <ul>
+              <li><code translate="no" dir="ltr">EPREL</code>, which represents energy efficiency certifications in the EU European Registry for Energy Labeling (EPREL) database.</li>
+              <li><code translate="no" dir="ltr">Vehicle_CO2_Class</code> for the overall CO2 class of a vehicle</li>
+              <li><code translate="no" dir="ltr">Vehicle_CO2_Class_Discharged_Battery</code> for the CO2 class of a vehicle with a discharged battery</li>
+            </ul>
+      </td></tr>
+      </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">certificationIdentification</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The code of the certification. For example, for the EPREL certificate with the link
+                <code translate="no" dir="ltr">https://example.com/product/dishwashers2019/123456</code> the code is
+                <code translate="no" dir="ltr">123456.</code> The code is required for European Energy Labels.</p>
+              <aside class="note">If you're a merchant serving customers in NO, CH, or the UK and
+                you don't have EPREL codes, you can use the <a href="#certification-rating"><code translate="no" dir="ltr">certificationRating</code> property</a>
+                instead of the <code translate="no" dir="ltr">certificationIdentification</code> property.</aside>
+            </td>
+          </tr>
+          <tr id="certification-rating">
+            <td><code translate="no" dir="ltr">certificationRating</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Rating" class="external-link">Rating</a></code></p>
+              <p>The value of the certification. This property is ignored for certifications that
+                have the <code translate="no" dir="ltr">certificationIdentification</code> property (for example, an EPREL
+                code). You can use the <code translate="no" dir="ltr">certificationRating</code> property to provide the CO2
+                Emissions class that's required when listing vehicles in certain countries, or the
+                energy efficiency rating when an EPREL code is not available. The following
+                properties can be nested in the <code translate="no" dir="ltr">certificationRating</code> property:</p>
+              <ul>
+                <li><code translate="no" dir="ltr">ratingValue</code></li>
+                <li><code translate="no" dir="ltr">bestRating</code></li>
+                <li><code translate="no" dir="ltr">worstRating</code></li>
+              </ul>
+              <p>The <code translate="no" dir="ltr">ratingValue</code> property is required when the <code translate="no" dir="ltr">certificationRating</code>
+                property is used. For EU energy efficiency ratings, the <code translate="no" dir="ltr">bestRating</code> and
+                <code translate="no" dir="ltr">worstRating</code> properties are also required.</p>
+              <p>Here's an example of the <code translate="no" dir="ltr">certificationRating</code> property with nested
+                properties that specify an EU energy efficiency rating:</p>
+              <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="EU energy efficiency rating example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-nx">hasCertification</span><span class="devsite-syntax-s">": {</span>
+<span class="devsite-syntax-s">  "</span><span class="devsite-syntax-err">@</span><span class="devsite-syntax-k">type</span><span class="devsite-syntax-s">": "</span><span class="devsite-syntax-nx">Certification</span><span class="devsite-syntax-s">",</span>
+<span class="devsite-syntax-s">  "</span><span class="devsite-syntax-nx">issuedBy</span><span class="devsite-syntax-s">": {</span>
+<span class="devsite-syntax-s">    "</span><span class="devsite-syntax-err">@</span><span class="devsite-syntax-k">type</span><span class="devsite-syntax-s">": "</span><span class="devsite-syntax-nx">Organization</span><span class="devsite-syntax-s">",</span>
+<span class="devsite-syntax-s">    "</span><span class="devsite-syntax-nx">name</span><span class="devsite-syntax-s">": "</span><span class="devsite-syntax-nx">European_Commission</span><span class="devsite-syntax-s">"</span>
+<span class="devsite-syntax-s">  }</span>
+<span class="devsite-syntax-s">  "</span><span class="devsite-syntax-nx">name</span><span class="devsite-syntax-s">": "</span><span class="devsite-syntax-nx">EPREL</span><span class="devsite-syntax-s">",</span>
+<span class="devsite-syntax-s">  "</span><span class="devsite-syntax-nx">url</span><span class="devsite-syntax-s">": "</span><span class="devsite-syntax-nx">https</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-c1">//eprel.ec.europa.eu/screen/product/ovens/53553",</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"certificationIdentification"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"53553"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"certificationRating"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Rating"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"ratingValue"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"A+"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"bestRating"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"A++"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"worstRating"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"D"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+              <p>Here's an example of the <code translate="no" dir="ltr">certificationRating</code> property with nested
+                properties that specify a CO2 emissions class:</p>
+                <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="CO2 emissions class example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"hasCertification"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Certification"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"issuedBy"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Organization"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"ADEME"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Vehicle_CO2_Class"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"certificationRating"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Rating"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"ratingValue"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"E"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"bestRating"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"A"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"worstRating"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"G"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Required properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">deliveryTime</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/ShippingDeliveryTime" class="external-link">ShippingDeliveryTime</a></code></p>
+              <p>The total delay between the receipt of the order and the goods reaching the final
+                customer. The following properties can be nested in the <code translate="no" dir="ltr">deliveryTime</code>
+                property:</p>
+              <ul>
+                <li><code translate="no" dir="ltr">handlingTime</code></li>
+                <li><code translate="no" dir="ltr">transitTime</code></li>
+              </ul>
+              <p>Don't provide more than one <code translate="no" dir="ltr">deliveryTime</code>.
+                See also the list of <a href="#shipping-delivery-time-properties"><code translate="no" dir="ltr">ShippingDeliveryTime</code> properties</a>
+                supported by Google.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">shippingDestination</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/DefinedRegion" class="external-link">DefinedRegion</a></code></p>
+              <p>Indicates shipping destinations. Specify the
+                <code translate="no" dir="ltr">shippingDestination.addressCountry</code> information.
+                See also the list of <a href="#defined-region-properties"><code translate="no" dir="ltr">DefinedRegion</code> properties</a>
+                supported by Google.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">shippingRate</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/MonetaryAmount" class="external-link">MonetaryAmount</a></code></p>
+              <p>Information about the cost of shipping to the specified destination.
+                At least one of <code translate="no" dir="ltr">shippingRate.value</code> or <code translate="no" dir="ltr">shippingRate.maxValue</code>
+                must be specified, along with <code translate="no" dir="ltr">shippingRate.currency</code>.</p>
+              <p>You can only specify one
+                <code translate="no" dir="ltr">shippingRate</code> per <code translate="no" dir="ltr">OfferShippingDetails</code>
+                property. To indicate multiple rates for your product, specify multiple
+                <code translate="no" dir="ltr">OfferShippingDetail</code> properties.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">shippingRate.currency</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The currency of the shipping cost, in 3-letter
+                <a href="https://en.wikipedia.org/wiki/ISO_4217" class="external-link">ISO 4217</a> format.
+                The currency must be the same as the currency of the offer.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">shippingRate.value</code> or <code translate="no" dir="ltr">shippingRate.maxValue</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The cost of shipping to the <code translate="no" dir="ltr">shippingDestination</code>.
+                If a string is used to provide the value, don't
+                include currency symbols, thousands separators, or spaces.</p>
+              <p>To specify free shipping, set the value to <code translate="no" dir="ltr">0</code>.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Required properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">addressCountry</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The two-letter country code, in <a href="https://en.wikipedia.org/wiki/ISO_3166-1" class="external-link">ISO 3166-1 alpha-2</a>
+                format.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Choose either <code translate="no" dir="ltr">addressRegion</code> or <code translate="no" dir="ltr">postalCode</code></td>
+            <td>
+              <p>Identifies the region for the customer delivery area. If omitted,
+                the whole country is the defined region. Multiple regions can be listed,
+                but you cannot mix different ways of specifying the regions in one
+                <code translate="no" dir="ltr">DefinedRegion</code> instance.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">addressRegion</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>If you include this property, the region must be a 2- or 3-digit ISO 3166-2
+                subdivision code, without country prefix. Currently, Google Search only supports
+                the US, Australia, and Japan. Examples: "NY" (for US, state of New York),
+                "NSW" (for Australia, state of New South Wales), or "03" (for Japan,
+                Iwate prefecture).</p>
+              <p>Do not provide both a region and postal code information.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">postalCode</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The postal code. For example, 94043. Currently postal codes are supported for
+                Australia, Canada, and the US.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">handlingTime</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/QuantitativeValue" class="external-link">QuantitativeValue</a></code> (for shipping times)</p>
+              <p>The typical delay between the receipt of the order and the goods leaving the
+                warehouse.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">transitTime</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/QuantitativeValue" class="external-link">QuantitativeValue</a></code> (for shipping times)</p>
+              <p>The typical delay between when the order has been sent for delivery and when
+                the goods reach the final customer.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Required properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">maxValue</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The maximum number of days. The value must be a non-negative, whole number.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">minValue</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The minimum number of days. The value must be a non-negative, whole number.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">unitCode</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The units of the minimum/maximum values. The value must be <code translate="no" dir="ltr">DAY</code> or <code translate="no" dir="ltr">d</code>.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+                <colgroup><col width="30%"></colgroup>
+                <thead><tr><th colspan="2">Required properties</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><code translate="no" dir="ltr">applicableCountry</code></td>
+                    <td>
+                      <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+                      <p>The country code that the return policy applies to, using the two-letter
+                        <a href="https://en.wikipedia.org/wiki/ISO_3166-1" class="external-link">ISO 3166-1 alpha-2</a>
+                        country code formatting. You can specify up to 50 countries.</p>
+                    </td>
+                  </tr>
+                  <tr id="return-policy-category">
+                    <td><code translate="no" dir="ltr">returnPolicyCategory</code></td>
+                    <td>
+                      <p><code translate="no" dir="ltr"><a href="https://schema.org/MerchantReturnEnumeration" class="external-link">MerchantReturnEnumeration</a></code></p>
+                      <p>The type of return policy. Use one of the following values:</p>
+                      <ul>
+                        <li><code translate="no" dir="ltr">https://schema.org/MerchantReturnFiniteReturnWindow</code>: There's a set number of days to return a product.</li>
+                        <li><code translate="no" dir="ltr">https://schema.org/MerchantReturnNotPermitted</code>: Returns aren't permitted.</li>
+                        <li><code translate="no" dir="ltr">https://schema.org/MerchantReturnUnlimitedWindow</code>: There's an unlimited amount of time to return a product.</li>
+                      </ul>
+                      <p>
+                        If you use <code translate="no" dir="ltr">MerchantReturnFiniteReturnWindow</code>, the
+                        <a href="#merchant-return-days"><code translate="no" dir="ltr">merchantReturnDays</code></a> property is required.
+                      </p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+<table class="responsive fixed">
+              <colgroup><col width="30%"></colgroup>
+              <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+              <tbody>
+                <tr id="merchant-return-days">
+                  <td><code translate="no" dir="ltr">merchantReturnDays</code></td>
+                  <td>
+                    <p><code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code></p>
+                    <p>The number of days from the delivery date that a product can be returned. This
+                      property is required if you set the <a href="#return-policy-category"><code translate="no" dir="ltr">returnPolicyCategory</code></a> to <code translate="no" dir="ltr">MerchantReturnFiniteReturnWindow</code>.</p>
+                  </td>
+                </tr>
+                <tr id="return-fees">
+                  <td><code translate="no" dir="ltr">returnFees</code></td>
+                  <td>
+                    <p><code translate="no" dir="ltr"><a href="https://schema.org/ReturnFeesEnumeration" class="external-link">ReturnFeesEnumeration</a></code></p>
+                    <p>The type of return fees. Use one of the following supported values:</p>
+                    <ul>
+                      <li><code translate="no" dir="ltr">https://schema.org/FreeReturn</code>: There's no charge to the consumer to
+                        return the product. If used, don't include the <a href="#return-shipping-fees-amount"><code translate="no" dir="ltr">returnShippingFeesAmount</code></a>
+                        property.</li>
+                      <li><code translate="no" dir="ltr">https://schema.org/ReturnFeesCustomerResponsibility</code>: The consumer
+                        needs to handle and pay for the return shipping themselves. If used, don't include
+                        the <a href="#return-shipping-fees-amount"><code translate="no" dir="ltr">returnShippingFeesAmount</code></a>
+                        property.</li>
+                      <li><code translate="no" dir="ltr">https://schema.org/ReturnShippingFees</code>: There's a shipping fee
+                        charged by the merchant to the consumer to return the product. Specify the
+                        (non-zero) shipping fee using the
+                        <a href="#return-shipping-fees-amount"><code translate="no" dir="ltr">returnShippingFeesAmount</code></a> property.</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td><code translate="no" dir="ltr">returnMethod</code></td>
+                  <td>
+                    <p><code translate="no" dir="ltr"><a href="https://schema.org/ReturnMethodEnumeration" class="external-link">ReturnMethodEnumeration</a></code></p>
+                    <p>The type of return method offered. This is only recommended if you set the
+                      <code translate="no" dir="ltr">returnPolicyCategory</code> to either <code translate="no" dir="ltr">MerchantReturnFiniteReturnWindow</code>
+                       or <code translate="no" dir="ltr">MerchantReturnUnlimitedWindow</code>. Use one or more of the following values:</p>
+                    <ul>
+                      <li><code translate="no" dir="ltr">https://schema.org/ReturnAtKiosk</code>: The item can be returned at a kiosk.</li>
+                      <li><code translate="no" dir="ltr">https://schema.org/ReturnByMail</code>: The item can be returned by mail.</li>
+                      <li><code translate="no" dir="ltr">https://schema.org/ReturnInStore</code>: The item can be returned in a store.</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr id="return-shipping-fees-amount">
+                  <td><code translate="no" dir="ltr">returnShippingFeesAmount</code></td>
+                  <td>
+                    <p><code translate="no" dir="ltr"><a href="https://schema.org/MonetaryAmount" class="external-link">MonetaryAmount</a></code></p>
+                    <p>The cost of shipping for returning a product. This property is only required if there's a
+                       non-zero shipping fee to be paid by the consumer to the merchant to return a product, in which case <a href="#return-fees"><code translate="no" dir="ltr">returnFees</code></a> must be set to <code translate="no" dir="ltr">https://schema.org/ReturnShippingFees</code>.
+                       If the return is free, <a href="#return-fees"><code translate="no" dir="ltr">returnFees</code></a> must be set to <code translate="no" dir="ltr">https://schema.org/FreeReturn</code>.
+                       If the consumer needs to handle, and pay for, the return shipping cost, <a href="#return-fees"><code translate="no" dir="ltr">returnFees</code></a> must be set to <code translate="no" dir="ltr">https://schema.org/ReturnFeesCustomerResponsibility</code>.
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>

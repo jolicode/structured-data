@@ -11,293 +11,174 @@
 
 namespace Jolicode\JsonLd\Generator\Google;
 
-use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Generator\GeneratorInterface;
-use Jolicode\JsonLd\Generator\Google\Objects\MainType;
-use Jolicode\JsonLd\Generator\Google\Objects\PropertyType;
-use PhpParser\Builder;
+use Jolicode\JsonLd\Generator\Google\Filesystem as GoogleFilesystem;
 use PhpParser\BuilderFactory;
 use PhpParser\Node\Stmt;
-use PhpParser\PrettyPrinter\Standard;
-use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 class Generator implements GeneratorInterface
 {
-    private const NAMESPACE_BASE = 'Google';
+    private const NAMESPACE_BASE = 'Jolicode\Vocabularies\Generated\Google';
 
     public function __construct(
         private readonly BuilderFactory $factory = new BuilderFactory(),
-        private readonly Filesystem $filesystem = new Filesystem(),
-        private readonly Standard $printer = new Standard(),
-        /**
-         * @var array<string, MainType>
-         */
-        private array $types = [],
-        private ?string $currentNamespace = null,
-        private ?string $currentFilename = null,
+        private readonly GoogleFilesystem $googleFilesystem = new GoogleFilesystem(),
     ) {
     }
 
-    public function generate(): void
+    public function generate(?SymfonyStyle $io = null): void
     {
-        $extractor = new Extractor($this->filesystem);
+        foreach ($this->decodeJson($io) as $json) {
+            $expectedClassNames = $this->getExpectedClassNames($json);
+            $writtenClassNames = $this->googleFilesystem->writeClass($this->generateClasses($json));
 
-        $this->types = $extractor->extractClasses();
-        $this->filesystem->remove(Extractor::GENERATED_DIR);
+            $missingClassNames = array_diff($expectedClassNames, $writtenClassNames);
 
-        $this->generateClasses();
+            if ([] !== $missingClassNames) {
+                throw new \RuntimeException(\sprintf('Google generator did not write expected class(es): %s', implode(', ', $missingClassNames)));
+            }
+        }
     }
 
-    public function getName(): string
+    public static function getName(): string
     {
         return 'google';
     }
 
-    private function generateClasses(): void
+    private function decodeJson(?SymfonyStyle $io = null): \Generator
     {
-        foreach ($this->types as $type) {
-            $className = $this->defineClassName($type);
+        $jsonFiles = $this->googleFilesystem->getJsonFiles();
 
-            $this->currentNamespace = \sprintf('%s\\%s', self::NAMESPACE_BASE, $className);
-            $this->currentFilename = \sprintf(
-                '%s/%s/%s',
-                Extractor::GENERATED_DIR,
-                $className,
-                $className,
-            );
+        foreach ($jsonFiles as $file) {
+            $content = json_decode($file->getContents(), true);
 
-            $this->writeFullType($type, $className);
-        }
-    }
-
-    private function writeFullType(MainType|PropertyType $type, string $className): void
-    {
-        $namespace = $this->currentNamespace;
-        $filename = $this->currentFilename . '.php';
-
-        $this->filesystem->dumpFile(
-            $filename,
-            $this->printer->prettyPrintFile([$this->generateType($type, $namespace, $className)]),
-        );
-    }
-
-    private function generateType(MainType|PropertyType $type, string $namespace, string $className): Stmt\Namespace_
-    {
-        $node = $this->factory
-            ->namespace($namespace);
-
-        $class = $this->factory
-            ->class($className)
-            ->makeFinal();
-
-        $class->addStmt(
-            $this->factory->classConst('NAME', $type->name)
-                ->makePublic(),
-        );
-
-        $requiredProperties = $this->generateTypeProperties($type->requiredProperties);
-        $recommendedProperties = $this->generateTypeProperties($type->recommendedProperties);
-
-        if ($type instanceof MainType) {
-            if (\count($type->subTypes)) {
-                $this->generateSubTypes($type, $class);
-            }
-
-            $class->addStmt(
-                $this->factory->classConst('DOCUMENTATION_URL', $type->documentationUrl)
-                    ->makePublic(),
-            );
-
-            $class->addStmt(
-                $this->factory->classConst('IS_A_SUBTYPE', $type->isASubtype)
-                    ->makePublic(),
-            );
-
-            if ($type->parentType) {
-                $parentFQCN = str_replace('Subtypes', $type->parentType->name, $this->currentNamespace);
-
-                $class->addStmt(
-                    $this->factory->classConst('PARENT_TYPE', $parentFQCN)
-                        ->makePublic(),
-                );
-            }
-
-            $class->addStmt(
-                $this->factory->classConst('IS_CAROUSEL_ELIGIBLE', $type->isCarouselEligible)
-                    ->makePublic(),
-            );
-
-            if ($type->carousel) {
-                $this->generateCarousel($type->carousel, $class);
-            }
-
-            if ($type->dependsOn) {
-                $additionalRequiredProperties = $this->types[$type->dependsOn]->requiredProperties;
-                $additionalRequiredProperties = $this->generateTypeProperties($additionalRequiredProperties);
-
-                $additionalRecommendedProperties = $this->types[$type->dependsOn]->recommendedProperties;
-                $additionalRecommendedProperties = $this->generateTypeProperties($additionalRecommendedProperties);
-
-                $requiredProperties = array_merge($requiredProperties, $additionalRequiredProperties);
-                $recommendedProperties = array_merge($recommendedProperties, $additionalRecommendedProperties);
-            }
-        }
-
-        $class->addStmt(
-            $this->factory->classConst('REQUIRED_PROPERTIES', $requiredProperties)
-                ->makePublic(),
-        );
-
-        $class->addStmt(
-            $this->factory->classConst('RECOMMENDED_PROPERTIES', $recommendedProperties)
-                ->makePublic(),
-        );
-
-        $node->addStmt($class);
-
-        return $node->getNode();
-    }
-
-    private function generateTypeProperties(array $properties): array
-    {
-        $formattedProperties = [];
-
-        foreach ($properties as $property) {
-            if (\count($property->atLeastOneOf)) {
-                $atLeastOneOf = [];
-
-                array_walk(
-                    $property->atLeastOneOf,
-                    static function (PropertyType $type) use (&$atLeastOneOf, &$formattedProperties, $property) {
-                        $atLeastOneOf[$type->name] = array_keys($property->types);
-
-                        if (!\array_key_exists($type->name, $formattedProperties)) {
-                            $formattedProperties[$type->name] = $atLeastOneOf[$type->name];
-                        }
-                    },
-                );
-
-                $formattedProperties['atLeastOneOf'] = $atLeastOneOf;
-                unset($properties['atLeastOneOf']);
+            if (null === $content) {
+                if ($io) {
+                    $io->error(\sprintf('Failed to decode the following Google json file: %s. Error is: %s', $file->getRealPath(), json_last_error_msg()));
+                }
 
                 continue;
             }
 
-            foreach ($property->types as $type) {
-                if (Keyword::tryFrom($property->name)) {
-                    // We skip keywords... They are not Google properties.
-                    continue;
-                }
+            yield $content;
+        }
+    }
 
-                $formattedProperties[$property->name][] = $type->name;
+    /**
+     * @return \Generator<Stmt\Namespace_>
+     */
+    private function generateClasses(array $json): \Generator
+    {
+        if ($hasMultipleDefinitions = \array_key_exists('subtypes', $json)) {
+            $json = $json['subtypes'];
 
-                if (\count($type->requiredProperties) || \count($type->recommendedProperties)) {
-                    $previousNamespace = $this->currentNamespace;
-                    $previousFilename = $this->currentFilename;
+            yield from $this->generateAbstractClass($json);
 
-                    $newFilename = $this->removeFilenameParentName($this->currentFilename);
+            foreach ($json as $type) {
+                yield from $this->generateClass($type, $hasMultipleDefinitions);
+            }
+        } else {
+            yield from $this->generateClass($json);
+        }
+    }
 
-                    $type->name = $this->toPascalCase($type->name);
-                    $propertyName = ucfirst($property->name);
-                    $className = $this->defineClassName($type);
+    private function generateClass(array $type, bool $hasMultipleDefinitions = false): \Generator
+    {
+        foreach ($type['supportedTypes'] as $currentType) {
+            $node = $this->factory->namespace(self::NAMESPACE_BASE);
 
-                    $this->currentNamespace = \sprintf('%s\\%s', $previousNamespace, $propertyName);
-                    $this->currentFilename = \sprintf('%s/%s/%s', $newFilename, $propertyName, $className);
+            $name = $hasMultipleDefinitions ? ucfirst($currentType) . ucfirst($type['subtype']) : ucfirst($currentType);
 
-                    $this->writeFullType($type, $className);
+            $class = $this->factory
+                ->class($name)
+                ->makeFinal()
+                ->addStmts([
+                    $this->factory->classConst('NAME', $name)
+                        ->makePublic(),
+                    $this->factory->classConst('SUPPORTED_TYPES', $type['supportedTypes'])
+                        ->makePublic(),
+                    $this->factory->classConst('VALUE', $type['value'] ?? [])
+                        ->makePublic(),
+                    $this->factory->classConst('DOCUMENTATION', $type['documentation'] ?? null)
+                        ->makePublic(),
+                    $this->factory->classConst('SUBTYPE', $type['subtype'] ?? null)
+                        ->makePublic(),
+                    $this->factory->classConst('HAS_SPECIAL_RULES', !empty($type['specialRules']))
+                        ->makePublic(),
+                    $this->factory->classConst('SPECIAL_RULE_KEYS', $type['specialRules'] ?? [])
+                        ->makePublic(),
+                    $this->factory->classConst('IS_CAROUSEL_ELIGIBLE', $type['isCarouselEligible'] ?? false)
+                        ->makePublic(),
+                    $this->factory->classConst('CAROUSEL_PROPERTIES', $type['carouselProperties'] ?? [])
+                        ->makePublic(),
+                    $this->factory->classConst('PROPERTIES', $type['properties'] ?? [])
+                        ->makePublic(),
+                ]);
 
-                    $this->currentNamespace = $previousNamespace;
-                    $this->currentFilename = $previousFilename;
+            if ($hasMultipleDefinitions) {
+                $class->extend(ucfirst($type['name']));
+            }
+
+            $node->addStmt($class);
+
+            yield [$node->getNode(), $name];
+        }
+    }
+
+    /**
+     * @return array<string>
+     */
+    private function getExpectedClassNames(array $json): array
+    {
+        $names = [];
+
+        if (\array_key_exists('subtypes', $json)) {
+            foreach ($json['subtypes'] as $type) {
+                foreach (($type['supportedTypes'] ?? []) as $supportedType) {
+                    $names[] = ucfirst($supportedType) . ucfirst($type['subtype'] ?? '');
                 }
             }
+
+            return array_values(array_unique($names));
         }
 
-        return $formattedProperties;
+        foreach (($json['supportedTypes'] ?? []) as $supportedType) {
+            $names[] = ucfirst($supportedType);
+        }
+
+        return array_values(array_unique($names));
     }
 
-    private function generateSubTypes(MainType $type, Builder\Class_ $class): void
+    /**
+     * @return \Generator<Stmt\Namespace_>
+     */
+    private function generateAbstractClass(array $json): \Generator
     {
-        $subTypes = [];
+        $name = ucfirst($json[0]['name']);
+        $children = [];
 
-        $previousNamespace = $this->currentNamespace;
-        $previousFilename = $this->currentFilename;
-
-        foreach ($type->subTypes as $subType) {
-            $className = $this->defineClassName($subType);
-
-            $newNamespace = \sprintf('%s\\Subtypes', $previousNamespace);
-            $newFilename = $this->removeFilenameParentName($previousFilename);
-            $newFilename = \sprintf('%s/Subtypes/%s', $newFilename, $className);
-
-            $this->currentNamespace = $newNamespace;
-            $this->currentFilename = $newFilename;
-
-            $subTypes[$className] = $newNamespace . '\\' . $className;
-
-            $this->writeFullType($subType, $className);
-
-            $this->currentNamespace = $previousNamespace;
-            $this->currentFilename = $previousFilename;
-        }
-
-        $class->addStmt(
-            $this->factory->classConst('SUB_TYPES', $subTypes)
-                ->makePublic(),
+        array_walk(
+            $json,
+            static function (array $item) use (&$children) {
+                $children[] = ucfirst($item['name']) . ucfirst($item['subtype']);
+            },
         );
-    }
 
-    private function generateCarousel(PropertyType $carousel, Builder\Class_ $class): void
-    {
-        $previousNamespace = $this->currentNamespace;
-        $previousFilename = $this->currentFilename;
+        $node = $this->factory->namespace(self::NAMESPACE_BASE);
 
-        $newNamespace = \sprintf('%s\\Carousel', $previousNamespace);
-        $newFilename = $this->removeFilenameParentName($previousFilename);
-        $newFilename = \sprintf('%s/Carousel/Carousel', $newFilename);
+        $class = $this->factory
+            ->class($name)
+            ->makeAbstract()
+            ->addStmts([
+                $this->factory->classConst('NAME', $name)
+                   ->makePublic(),
+                $this->factory->classConst('CHILDREN', $children)
+                   ->makePublic(),
+            ]);
 
-        $this->currentNamespace = $newNamespace;
-        $this->currentFilename = $newFilename;
+        $node->addStmt($class);
 
-        $this->writeFullType($carousel, 'Carousel');
-
-        $this->currentNamespace = $previousNamespace;
-        $this->currentFilename = $previousFilename;
-
-        $class->addStmt(
-            $this->factory->classConst('CAROUSEL', \sprintf('%s\\Carousel', $newNamespace))
-                ->makePublic(),
-        );
-    }
-
-    private function defineClassName(MainType|PropertyType $type): string
-    {
-        $className = $type->name;
-
-        // For nor only main types may have multiple types, but we should keep an eye on it;
-        if ($type instanceof MainType && \count($type->multipleTypes)) {
-            // It is way easier concatenating the multiple types in the class name.
-            // The class name will be weird but the original name will be kept in $type->name and sent to the front.
-            $className = implode(' ', $type->multipleTypes);
-        }
-
-        return $this->toPascalCase($className);
-    }
-
-    private function toPascalCase(string $string): string
-    {
-        $string = explode(' ', $string);
-        array_walk($string, static fn (string &$word) => $word = ucfirst($word));
-        $string = implode('', $string);
-
-        return $string;
-    }
-
-    private function removeFilenameParentName(string $filename): string
-    {
-        $filename = explode('/', $filename);
-        $filename = \array_slice($filename, 0, \count($filename) - 1);
-        $filename = implode('/', $filename);
-
-        return $filename;
+        yield [$node->getNode(), $name];
     }
 }

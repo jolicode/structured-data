@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RentalCarReservationModel
 {
     public const DESCRIPTION = 'A reservation for a rental car.\n\nNote: This type is for information about actual reservations, e.g. in confirmation emails or HTML pages with individual confirmations of reservations.';
     public const LABEL = 'RentalCarReservation';
     public const NAME = 'schema:RentalCarReservation';
-    public const PARENTS = ['ReservationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ReservationModel'];
+    public const PARENTS = ['ReservationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReservationModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

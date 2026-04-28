@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class StadiumOrArenaModel
 {
     public const DESCRIPTION = 'A stadium.';
     public const LABEL = 'StadiumOrArena';
     public const NAME = 'schema:StadiumOrArena';
-    public const PARENTS = ['CivicStructureModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CivicStructureModel', 'SportsActivityLocationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\SportsActivityLocationModel'];
+    public const PARENTS = ['CivicStructureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CivicStructureModel', 'SportsActivityLocationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SportsActivityLocationModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

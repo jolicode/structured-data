@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DislikeActionModel
 {
     public const DESCRIPTION = 'The act of expressing a negative sentiment about the object. An agent dislikes an object (a proposition, topic or theme) with participants.';
     public const LABEL = 'DislikeAction';
     public const NAME = 'schema:DislikeAction';
-    public const PARENTS = ['ReactActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ReactActionModel'];
+    public const PARENTS = ['ReactActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReactActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

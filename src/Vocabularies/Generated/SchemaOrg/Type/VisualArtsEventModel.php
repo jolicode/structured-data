@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class VisualArtsEventModel
 {
     public const DESCRIPTION = 'Event type: Visual arts event.';
     public const LABEL = 'VisualArtsEvent';
     public const NAME = 'schema:VisualArtsEvent';
-    public const PARENTS = ['EventModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EventModel'];
+    public const PARENTS = ['EventModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

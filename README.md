@@ -1,10 +1,10 @@
 ## JSON-LD and schema.org PHP library
 
-This repository provides several tools to work with [JSON-LD](https://json-ld.org/)
-and [schema.org in PHP](https://schema.org/). It includes a JSON-LD validator and
-an implementation of the W3C JSON-LD algorithms described in the
-[JSON-LD 1.1 Processing Algorithms and API Recommendation](https://www.w3.org/TR/json-ld-api),
-published on July 16th, 2020.
+This repository provides several tools to work with [JSON-LD](https://json-ld.org/) and [schema.org in PHP](https://schema.org/).
+It includes :
+- an implementation of the W3C JSON-LD algorithms described in the [JSON-LD 1.1 Processing Algorithms and API Recommendation](https://www.w3.org/TR/json-ld-api) published on July 16th, 2020.
+- a Schema.org validator, able to validate the provided document is a valid json-ld document and that it complies with the schema.org specifications.
+- a Google validator, able to tell if the provided json-ld structure implements all the required properties to be eligible for the Google Rich Results. It will also point out missing recommended Google properties and validate against Google-specific special rules.
 
 ## Dependencies
 
@@ -14,97 +14,98 @@ This library requires:
 - the [ZipArchive PHP extension](https://www.php.net/manual/en/class.ziparchive.php);
 - the PHP task runner [Castor](https://github.com/jolicode/castor/), used for the tooling and the CLI interface.
 
-## Installation
+## Getting started
 
-Install PHP dependancies with Composer:
+Install the PHP dependencies with Castor:
 
 ```bash
-composer install
+castor install
 ```
 
-## Programatic API
+That's it! :)
 
-### Expanding a JSON-LD document
+## Using the JSON-LD algorithms
+
+The currently available algorithms are:
+
+- [ ] [Compaction](https://www.w3.org/TR/json-ld11-api/#compaction-algorithm)
+- [x] [Expansion](https://www.w3.org/TR/json-ld11-api/#expansion-algorithm)
+- [x] [Flattening](https://www.w3.org/TR/json-ld11-api/#flattening-algorithm)
+- [ ] [Framing](https://www.w3.org/TR/json-ld11-framing/#framing-algorithm)
+
+To use them, initialize a new instance of the `Jolicode\JsonLd\Algorithms\Expand\Expander` or of the `Jolicode\JsonLd\Algorithms\Flatten\Flattener` classes, and pass them the JSON-LD document you want to convert.
+
+So, to expand a JSON-LD document you would need to do the following:
 
 ```php
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
 
-// let $jsonString be a JSON-LD document
 $jsonString = '{
-  "@context": {
-    "d": "http://purl.org/dc/elements/1.1/",
-    "e": "http://example.org/vocab#",
-    "f": "http://xmlns.com/foaf/0.1/",
-    "xsd": "http://www.w3.org/2001/XMLSchema#"
-  },
-  "@id": "http://example.org/test",
-  "e:bool": true,
-  "e:int": 123
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "John Doe"
 }';
 
 $expander = new Expander();
-
-// get a json string containing the expanded JSON-LD document
-$expanded = $expander->expand($jsonString);
-
-// $expanded value:
-//
-// [{
-//   "@id": "http://example.org/test",
-//   "http://example.org/vocab#bool": [{"@value": true}],
-//   "http://example.org/vocab#int": [{"@value": 123}]
-// }]
-
-// get a json object containing the expanded JSON-LD document
-$expanded = $expander->expand($jsonString, encodeResult: false);
+$result = $expander->expand($jsonString);
 ```
 
-### Flattening a JSON-LD document
+The result will be a json string containing the expanded JSON-LD document:
 
 ```php
-use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
-
-// let $jsonString be a JSON-LD document
-$jsonString = '{
-  "@context": {"foo": {"@id": "http://example.com/foo", "@container": "@list"}},
-  "foo": [
-    [{"@id": "http://example/a", "@type": "http://example/Bar"}],
-    {"@id": "http://example/b", "@type": "http://example/Baz"}]
-}';
-
-$flattener = new Flattener();
-
-// get a json string containing the flattened JSON-LD document
-$flattened = $flattener->flatten($jsonString);
-
-// $flattened value:
-//
-// [{
-//   "@id": "_:b0",
-//   "http://example.com/foo": [{"@list": [
-//     {"@list": [{"@id": "http://example/a"}]},
-//     {"@id": "http://example/b"}
-//   ]}]
-// },
-// {
-//   "@id": "http://example/a",
-//   "@type": [
-//     "http://example/Bar"
-//   ]
-// },
-// {
-//   "@id": "http://example/b",
-//   "@type": [
-//     "http://example/Baz"
-//   ]
-// }]
+[
+  {
+    "@type": [
+      "http://schema.org/Person"
+    ],
+    "http://schema.org/name": [
+      {
+        "@value": "John Doe"
+      }
+    ]
+  }
+]
 ```
 
-### Validating a JSON-LD document
+If you want a PHP object instead of a JSON string, you can set the `encodeResult` parameter to false when initializing the `Expander` or the `Flattener`:
+You can also pass an array of [JSON-LD options](https://www.w3.org/TR/json-ld-api/#the-jsonldoptions-type) if you want to modify the default behavior of the algorithms :
 
+```php
+use Jolicode\JsonLd\Algorithms\Expand\Expander;
+
+$jsonString = '{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "John Doe"
+}';
+
+$options = [
+  'ordered' => true,
+  'frameExpansion' => true,
+];
+
+$expander = new Expander(encodeResult: false, options: $options);
+$result = $expander->expand($jsonString);
+```
+
+### Command Line Interface
+
+Commands are also available to use the algorithms from the CLI :
+
+```bash
+castor json-ld:expand <file>
+castor json-ld:flatten <file>
+```
+
+They will print the output to STDOUT.
+
+## Validating a JSON-LD document
+
+To validate a JSON-LD document, you must use the `Jolicode\JsonLd\Validator` class.
+
+If you just want to quickly check if a document is valid, you can use the `isValid()` method.
 The `isValid()` method returns a boolean indicating whether the provided document is valid or not.
-If at least one schema.org data structure is found in the document that is not valid, the method
-will return false.
+If at least one invalid schema.org data structure is found in the document, the method will return false.
 
 ```php
 use Jolicode\JsonLd\Validator;
@@ -118,46 +119,52 @@ if (
 }
 ```
 
-For more adavanced usages, you can use the `getTypes()` method to get more informations about the
-parsed structured data and their associated errors.
+For more advanced usages, you can use the `getTypes()` method to get more information about the parsed structured data and their associated errors.
+This method will return an array of `Jolicode\Vocabularies\Mapper\MappedType` objects, each of them containing a lot of information, including the found errors.
 
-## Command Line Interface
+### Command Line Interface
 
-The project provides a Command Line Interface (CLI) to use the JSON-LD algorithms and the schema.org validator:
+A command is also available to validate a JSON-LD document from the CLI:
 
 ```bash
-castor json-ld:expand <file>
-castor json-ld:flatten <file>
 castor schema-org:validate <file-or-url>
 ```
 
-Apart from these usage commands, the project provides additional commands to
-generate the schema.org PHP classes and to run the tests and QA checks
+You can also validate against a specific validator (currently `google` or `schemaorg`):
 
-### Code generation commands
+```bash
+castor schema-org:validate <file-or-url> google
+```
 
-Command | Description
----- | -----
-`castor generator:install` | Installs generator tooling
-`castor generator:update` | Updates generator tooling
-`castor generator:generate` | Generate classes for JSON-LD validation
-`castor generator:schema-org:download-definition` | Download the schema.org types definition file.
-`castor generator:schema-org:update-examples` | Updates the schema.org example files stored in the resources directory
+```bash
+castor schema-org:validate <file-or-url> schemaorg
+```
 
-The usual process to update the schema.org version used by this library is:
+You can pass the `--details` option to get more details (it can be pretty verbose!).
 
-- bump the version of the schema.org definition in the `src/Vocabularies/SchemaOrg.php` file
-- run `castor generator:generate` to update the schema.org classes
-- run `castor generator:schema-org:update-examples` to update the examples. This will add new examples in the `resources/schema.org/examples` directory
-- run the tests to ensure everything is working as expected:
-  ```bash
-  castor qa:phpunit:run
-  ```
-- run the QA checks to ensure the code is compliant with the coding standards:
-  ```bash
-  castor qa:all
-  ```
-- propose a Pull Request with the changes - see the [CONTRIBUTING.md](CONTRIBUTING.md) file for more information.
+## Known limits vs Google Rich Results Test
+
+This project aims to provide deterministic, explainable validation based on [public Google documentation](https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data).
+[Google's Rich Results Test](https://search.google.com/test/rich-results) is a useful signal, but it may produce different outputs (detected item types, warnings, or eligibility) for the same input.
+
+In practice, this validator should be treated as a strong authoring and CI guardrail, while Google's tooling should be treated as an additional external check.
+Passing one tool does not always imply identical output in the other.
+
+## Upgrading the Google or Schema.org versions
+
+### Upgrading Schema.org
+
+Schema.org upgrades are driven by the official schema.org release definition file.
+The complete upgrade process is documented in:
+`resources/schema.org/UPGRADE_GUIDELINES.md`
+
+When upgrading, always review the [schema.org release notes](https://schema.org/docs/releases.html) and verify that the test schema-org-baseline.json changes reflect real upstream changes.
+
+### Upgrading Google
+
+The Google validator tracks the [Google structured-data documentation](https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data), which evolves continuously.
+The complete upgrade process is documented in:
+`resources/google/UPGRADE_GUIDELINES.md`
 
 ### Testing and QA commands
 
@@ -165,18 +172,22 @@ The following commands are available to run the QA checks:
 
 Command | Description
 ---- | -----
-`castor qa:install` | Installs QA tooling
-`castor qa:update` | Updates QA tooling
-`castor qa:all` | Runs all QA tasks
 `castor qa:cs` | Fix CS
 `castor qa:phpstan` | Runs PHPStan
+`castor qa:all` | Runs all QA tasks
 
 The following commands are available to run the tests:
 
-Command | Description
----- | -----
+Command | Description | Aliases
+---- | ----- | ----
 `castor qa:phpunit:prepare` | Download the W3C tests suite
-`castor qa:phpunit:run` | Runs PHPUnit
+`castor qa:phpunit:run` | Runs PHPUnit | `castor test`, `castor tests`
+
+The test suite changes from time to time, so it is recommended to update the test suite before running the tests:
+
+```bash
+castor qa:phpunit:prepare --force
+```
 
 Additional commands are available to run the benchmarks:
 
@@ -185,38 +196,6 @@ Command | Description
 `castor qa:bench:all` | Run all the benchmarks
 `castor qa:bench:algorithms` | Run the JSON-LD manipulation algorithms benchmark
 `castor qa:bench:validators` | Run the schema.org validators benchmark
-
-## The JSON-LD algorithms
-
-Informations about the algorithms are available in the
-["JSON-LD 1.1 Processing Algorithms and API" Recommendation](https://www.w3.org/TR/json-ld11-api/).
-This library provides an implementation of this Recommendation.
-
-The currently available algorithms are:
-
-- [ ] [Compaction](https://www.w3.org/TR/json-ld11-api/#compaction-algorithm)
-- [x] [Expansion](https://www.w3.org/TR/json-ld11-api/#expansion-algorithm)
-- [x] [Flattening](https://www.w3.org/TR/json-ld11-api/#flattening-algorithm)
-- [ ] [Framing](https://www.w3.org/TR/json-ld11-framing/)
-
-## Testing
-
-This library uses the [JSON-LD Test Suite](https://github.com/w3c/json-ld-api/tree/main/tests)
-to test the algorithms implementation.
-
-Tests can be executed with the following command:
-
-```bash
-castor qa:phpunit:run
-```
-
-If required, this will download the test suite from the W3C repository in
-the `var/cache` directory. The test suite changes from time to time, so it is
-recommended to update the test suite before running the tests:
-
-```bash
-castor qa:phpunit:prepare --force
-```
 
 ## Contributing
 

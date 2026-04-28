@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LegislationLegalValueModel
 {
     public const DESCRIPTION = 'The legal value of this legislation file. The same legislation can be written in multiple files with different legal values. Typically a digitally signed PDF have a "stronger" legal value than the HTML file of the same act.';
     public const LABEL = 'legislationLegalValue';
     public const NAME = 'schema:legislationLegalValue';
-    public const VALUES = ['LegalValueLevelModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\LegalValueLevelModel'];
-    public const TYPES = ['LegislationObject' => 'Jolicode\Vocabularies\SchemaOrg\Type\LegislationObjectModel'];
+    public const VALUES = ['LegalValueLevelModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LegalValueLevelModel'];
+    public const TYPES = ['LegislationObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LegislationObjectModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class QualifiedExpenseModel
 {
     public const DESCRIPTION = 'Optional. The types of expenses that are covered by the incentive. For example some incentives are only for the goods (tangible items) but the services (labor) are excluded.';
     public const LABEL = 'qualifiedExpense';
     public const NAME = 'schema:qualifiedExpense';
-    public const VALUES = ['IncentiveQualifiedExpenseTypeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\IncentiveQualifiedExpenseTypeModel'];
-    public const TYPES = ['FinancialIncentive' => 'Jolicode\Vocabularies\SchemaOrg\Type\FinancialIncentiveModel'];
+    public const VALUES = ['IncentiveQualifiedExpenseTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IncentiveQualifiedExpenseTypeModel'];
+    public const TYPES = ['FinancialIncentive' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FinancialIncentiveModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DataFeedModel
 {
     public const DESCRIPTION = 'A single feed providing structured information about one or more entities or topics.';
     public const LABEL = 'DataFeed';
     public const NAME = 'schema:DataFeed';
-    public const PARENTS = ['DatasetModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DatasetModel'];
+    public const PARENTS = ['DatasetModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DatasetModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

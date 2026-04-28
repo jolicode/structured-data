@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class FollowupModel
 {
     public const DESCRIPTION = 'Typical or recommended followup care after the procedure is performed.';
     public const LABEL = 'followup';
     public const NAME = 'schema:followup';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['MedicalProcedure' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalProcedureModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MedicalProcedure' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalProcedureModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

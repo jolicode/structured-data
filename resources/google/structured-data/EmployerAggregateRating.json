@@ -1,0 +1,64 @@
+{
+    "name": "EmployerAggregateRating",
+    "documentation": "https://developers.google.com/search/docs/appearance/structured-data/employer-rating",
+    "specialRules": [],
+    "supportedTypes": [
+        "EmployerAggregateRating"
+    ],
+    "properties": {
+        "itemReviewed": {
+            "name": "itemReviewed",
+            "severity": "required",
+            "supportedTypes": [
+                "Organization"
+            ],
+            "properties": {
+                "name": {
+                    "name": "name",
+                    "severity": "required",
+                    "supportedTypes": [
+                        "Text"
+                    ]
+                },
+                "sameAs": {
+                    "name": "sameAs",
+                    "severity": "recommended",
+                    "supportedTypes": [
+                        "URL"
+                    ]
+                }
+            }
+        },
+        "ratingValue": {
+            "name": "ratingValue",
+            "severity": "required",
+            "supportedTypes": [
+                "Number",
+                "Text"
+            ]
+        },
+        "atLeastOneOf": {
+            "name": "atLeastOneOf",
+            "severity": "required",
+            "value": {
+                "ratingCount": true,
+                "reviewCount": true
+            },
+            "supportedTypes": []
+        },
+        "bestRating": {
+            "name": "bestRating",
+            "severity": "recommended",
+            "supportedTypes": [
+                "Number"
+            ]
+        },
+        "worstRating": {
+            "name": "worstRating",
+            "severity": "recommended",
+            "supportedTypes": [
+                "Number"
+            ]
+        }
+    }
+}

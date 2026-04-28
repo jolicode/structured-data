@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class StepValueModel
 {
     public const DESCRIPTION = 'The stepValue attribute indicates the granularity that is expected (and required) of the value in a PropertyValueSpecification.';
     public const LABEL = 'stepValue';
     public const NAME = 'schema:stepValue';
-    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\NumberModel'];
-    public const TYPES = ['PropertyValueSpecification' => 'Jolicode\Vocabularies\SchemaOrg\Type\PropertyValueSpecificationModel'];
+    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['PropertyValueSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyValueSpecificationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

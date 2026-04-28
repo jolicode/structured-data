@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ProficiencyLevelModel
 {
     public const DESCRIPTION = 'Proficiency needed for this content; expected values: \'Beginner\', \'Expert\'.';
     public const LABEL = 'proficiencyLevel';
     public const NAME = 'schema:proficiencyLevel';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['TechArticle' => 'Jolicode\Vocabularies\SchemaOrg\Type\TechArticleModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['TechArticle' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TechArticleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

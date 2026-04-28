@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class GamePlayModeModel
 {
     public const DESCRIPTION = 'Indicates whether this game is multi-player, co-op or single-player.';
     public const LABEL = 'GamePlayMode';
     public const NAME = 'schema:GamePlayMode';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['CoOpModel' => 'EnumerationMember\CoOpModel', 'MultiPlayerModel' => 'EnumerationMember\MultiPlayerModel', 'SinglePlayerModel' => 'EnumerationMember\SinglePlayerModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

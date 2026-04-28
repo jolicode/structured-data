@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ServiceAudienceModel
 {
     public const DESCRIPTION = 'The audience eligible for this service.';
     public const LABEL = 'serviceAudience';
     public const NAME = 'schema:serviceAudience';
-    public const VALUES = ['AudienceModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AudienceModel'];
-    public const TYPES = ['Service' => 'Jolicode\Vocabularies\SchemaOrg\Type\ServiceModel'];
+    public const VALUES = ['AudienceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AudienceModel'];
+    public const TYPES = ['Service' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EstimatesRiskOfModel
 {
     public const DESCRIPTION = 'The condition, complication, or symptom whose risk is being estimated.';
     public const LABEL = 'estimatesRiskOf';
     public const NAME = 'schema:estimatesRiskOf';
-    public const VALUES = ['MedicalEntityModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalEntityModel'];
-    public const TYPES = ['MedicalRiskEstimator' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalRiskEstimatorModel'];
+    public const VALUES = ['MedicalEntityModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel'];
+    public const TYPES = ['MedicalRiskEstimator' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalRiskEstimatorModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

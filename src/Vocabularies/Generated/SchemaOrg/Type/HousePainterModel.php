@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HousePainterModel
 {
     public const DESCRIPTION = 'A house painting service.';
     public const LABEL = 'HousePainter';
     public const NAME = 'schema:HousePainter';
-    public const PARENTS = ['HomeAndConstructionBusinessModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\HomeAndConstructionBusinessModel'];
+    public const PARENTS = ['HomeAndConstructionBusinessModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HomeAndConstructionBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

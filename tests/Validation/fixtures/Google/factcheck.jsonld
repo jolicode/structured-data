@@ -1,0 +1,28 @@
+{
+    "@context": "https://schema.org",
+    "@type": "ClaimReview",
+    "url": "https://example.com/news/science/worldisflat.html",
+    "claimReviewed": "The world is flat",
+    "itemReviewed": {
+        "@type": "Claim",
+        "author": {
+            "@type": "Organization",
+            "name": "Square World Society",
+            "sameAs": "https://example.flatworlders.com/we-know-that-the-world-is-flat"
+        },
+        "datePublished": "2024-06-20",
+        "appearance": "https://example.com/news/a122121"
+    },
+    "author": {
+        "@type": "Organization",
+        "name": "Example.com science watch",
+        "sameAs": "https://example.com/about"
+    },
+    "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": 1,
+        "bestRating": 5,
+        "worstRating": 1,
+        "alternateName": "False"
+    }
+}

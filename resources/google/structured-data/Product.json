@@ -1,0 +1,185 @@
+{
+    "subtypes": [
+        {
+            "name": "Product",
+            "subtype": "Snippet",
+            "documentation": "https://developers.google.com/search/docs/appearance/structured-data/product-snippet",
+            "supportedTypes": [
+                "Product"
+            ],
+            "properties": {
+                "name": {
+                    "name": "name",
+                    "severity": "required",
+                    "supportedTypes": [
+                        "Text"
+                    ]
+                },
+                "atLeastOneOf": {
+                    "name": "atLeastOneOf",
+                    "severity": "required",
+                    "value": {
+                        "review": {},
+                        "aggregateRating": {},
+                        "offers": {}
+                    }
+                },
+                "review": {
+                    "name": "review",
+                    "severity": "optional",
+                    "supportedTypes": [
+                        "Review"
+                    ]
+                },
+                "aggregateRating": {
+                    "name": "aggregateRating",
+                    "severity": "optional",
+                    "supportedTypes": [
+                        "AggregateRating"
+                    ]
+                },
+                "offers": {
+                    "name": "offers",
+                    "severity": "optional",
+                    "supportedTypes": [
+                        "Offer",
+                        "AggregateOffer"
+                    ],
+                    "properties": {
+                        "price": {
+                            "name": "price",
+                            "severity": "required",
+                            "supportedTypes": [
+                                "Number"
+                            ]
+                        },
+                        "priceCurrency": {
+                            "name": "priceCurrency",
+                            "severity": "recommended",
+                            "supportedTypes": [
+                                "Text"
+                            ]
+                        },
+                        "availability": {
+                            "name": "availability",
+                            "severity": "recommended",
+                            "supportedTypes": [
+                                "ItemAvailability"
+                            ]
+                        },
+                        "priceValidUntil": {
+                            "name": "priceValidUntil",
+                            "severity": "recommended",
+                            "supportedTypes": [
+                                "Date"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Product",
+            "subtype": "MerchantListing",
+            "documentation": "https://developers.google.com/search/docs/appearance/structured-data/merchant-listing",
+            "specialRules": [
+                "google.product.merchant_listing_price_positive"
+            ],
+            "supportedTypes": [
+                "Product"
+            ],
+            "properties": {
+                "name": {
+                    "name": "name",
+                    "severity": "required",
+                    "supportedTypes": [
+                        "Text"
+                    ]
+                },
+                "image": {
+                    "name": "image",
+                    "severity": "required",
+                    "supportedTypes": [
+                        "URL",
+                        "ImageObject"
+                    ]
+                },
+                "offers": {
+                    "name": "offers",
+                    "severity": "required",
+                    "supportedTypes": [
+                        "Offer"
+                    ],
+                    "properties": {
+                        "atLeastOneOf": {
+                            "name": "atLeastOneOf",
+                            "severity": "required",
+                            "value": {
+                                "price": {},
+                                "priceSpecification": {}
+                            }
+                        },
+                        "price": {
+                            "name": "price",
+                            "severity": "optional",
+                            "supportedTypes": [
+                                "Number"
+                            ]
+                        },
+                        "priceCurrency": {
+                            "name": "priceCurrency",
+                            "severity": "optional",
+                            "supportedTypes": [
+                                "Text"
+                            ]
+                        },
+                        "priceSpecification": {
+                            "name": "priceSpecification",
+                            "severity": "optional",
+                            "supportedTypes": [
+                                "UnitPriceSpecification"
+                            ],
+                            "properties": {
+                                "price": {
+                                    "name": "price",
+                                    "severity": "required",
+                                    "supportedTypes": [
+                                        "Number"
+                                    ]
+                                },
+                                "priceCurrency": {
+                                    "name": "priceCurrency",
+                                    "severity": "required",
+                                    "supportedTypes": [
+                                        "Text"
+                                    ]
+                                }
+                            }
+                        },
+                        "availability": {
+                            "name": "availability",
+                            "severity": "recommended",
+                            "supportedTypes": [
+                                "ItemAvailability"
+                            ]
+                        },
+                        "shippingDetails": {
+                            "name": "shippingDetails",
+                            "severity": "recommended",
+                            "supportedTypes": [
+                                "OfferShippingDetails"
+                            ]
+                        },
+                        "hasMerchantReturnPolicy": {
+                            "name": "hasMerchantReturnPolicy",
+                            "severity": "recommended",
+                            "supportedTypes": [
+                                "MerchantReturnPolicy"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

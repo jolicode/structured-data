@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class WinActionModel
 {
     public const DESCRIPTION = 'The act of achieving victory in a competitive activity.';
     public const LABEL = 'WinAction';
     public const NAME = 'schema:WinAction';
-    public const PARENTS = ['AchieveActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AchieveActionModel'];
+    public const PARENTS = ['AchieveActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AchieveActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

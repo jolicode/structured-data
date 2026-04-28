@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ChildMinAgeModel
 {
     public const DESCRIPTION = 'Minimal age of the child.';
     public const LABEL = 'childMinAge';
     public const NAME = 'schema:childMinAge';
-    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\NumberModel'];
-    public const TYPES = ['ParentAudience' => 'Jolicode\Vocabularies\SchemaOrg\Type\ParentAudienceModel'];
+    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['ParentAudience' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ParentAudienceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

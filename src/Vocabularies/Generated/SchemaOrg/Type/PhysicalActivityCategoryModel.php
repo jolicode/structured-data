@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PhysicalActivityCategoryModel
 {
     public const DESCRIPTION = 'Categories of physical activity, organized by physiologic classification.';
     public const LABEL = 'PhysicalActivityCategory';
     public const NAME = 'schema:PhysicalActivityCategory';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['AerobicActivityModel' => 'EnumerationMember\AerobicActivityModel', 'AnaerobicActivityModel' => 'EnumerationMember\AnaerobicActivityModel', 'BalanceModel' => 'EnumerationMember\BalanceModel', 'FlexibilityModel' => 'EnumerationMember\FlexibilityModel', 'LeisureTimeActivityModel' => 'EnumerationMember\LeisureTimeActivityModel', 'OccupationalActivityModel' => 'EnumerationMember\OccupationalActivityModel', 'StrengthTrainingModel' => 'EnumerationMember\StrengthTrainingModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

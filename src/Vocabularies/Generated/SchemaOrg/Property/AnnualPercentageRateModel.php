@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AnnualPercentageRateModel
 {
     public const DESCRIPTION = 'The annual rate that is charged for borrowing (or made by investing), expressed as a single percentage number that represents the actual yearly cost of funds over the term of a loan. This includes any fees or additional costs associated with the transaction.';
     public const LABEL = 'annualPercentageRate';
     public const NAME = 'schema:annualPercentageRate';
-    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\QuantitativeValueModel'];
-    public const TYPES = ['FinancialProduct' => 'Jolicode\Vocabularies\SchemaOrg\Type\FinancialProductModel'];
+    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['FinancialProduct' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FinancialProductModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class GreaterModel
 {
     public const DESCRIPTION = 'This ordering relation for qualitative values indicates that the subject is greater than the object.';
     public const LABEL = 'greater';
     public const NAME = 'schema:greater';
-    public const VALUES = ['QualitativeValueModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\QualitativeValueModel'];
-    public const TYPES = ['QualitativeValue' => 'Jolicode\Vocabularies\SchemaOrg\Type\QualitativeValueModel'];
+    public const VALUES = ['QualitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QualitativeValueModel'];
+    public const TYPES = ['QualitativeValue' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QualitativeValueModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

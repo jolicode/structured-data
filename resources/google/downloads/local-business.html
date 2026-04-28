@@ -1,0 +1,224 @@
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+      <td><code translate="no" dir="ltr">address</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/PostalAddress" class="external-link">PostalAddress</a></code></p>
+      <p>The physical location of the business. Include as many properties as possible. The more
+        properties you provide, the higher quality the result is to users. For example:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="postal address markup example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"address"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"PostalAddress"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"streetAddress"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"148 W 51st St Suit 42 Unit 7"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"addressLocality"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"New York"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"addressRegion"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"NY"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"postalCode"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"10019"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"addressCountry"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"US"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        </td>
+   </tr>
+      <tr>
+      <td><code translate="no" dir="ltr">name</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The name of the business.</p></td>
+   </tr>
+     </tbody>
+  </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+   <tr>
+      <td><code translate="no" dir="ltr">aggregateRating</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/AggregateRating" class="external-link">AggregateRating</a></code></p>
+        <p><b>This property is only recommended for sites that capture reviews about other local businesses</b>: The average rating of
+          the local business based on multiple ratings or reviews. Follow the
+            <a href="/search/docs/appearance/structured-data/review-snippet#guidelines">Review snippet
+              guidelines</a> and the list of required and recommended
+            <a href="/search/docs/appearance/structured-data/review-snippet#aggregated-rating-type-definition">aggregate
+              rating properties</a>.</p></td>
+   </tr>
+   <tr>
+      <td><code translate="no" dir="ltr">department</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/LocalBusiness" class="external-link">LocalBusiness</a></code></p>
+        <p>A nested item for a single department. You can define any of the
+          properties in this table for a department. </p>
+          <p>
+            Additional guidelines:
+        </p>
+        <ul>
+          <li>Include the store name with the department name in the following
+          format: <code translate="no" dir="ltr">{store name} {department name}</code>. For example, <code translate="no" dir="ltr">gMart</code> and
+          <code translate="no" dir="ltr">gMart Pharmacy</code>.</li>
+          <li>If the department name is explicitly branded, specify a department name by itself. For
+            example: <code translate="no" dir="ltr">Best Buy</code> and <code translate="no" dir="ltr">Geek Squad</code>.</li>
+        </ul>
+     </td>
+   </tr>
+   <tr>
+      <td><code translate="no" dir="ltr">geo</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/GeoCoordinates" class="external-link">GeoCoordinates</a></code></p>
+      <p>Geographic coordinates of the business.</p></td>
+   </tr>
+   <tr>
+      <td><code translate="no" dir="ltr">geo.latitude</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+        <p>The latitude of the business location. The precision must be at least 5
+      decimal places.</p></td>
+   </tr>
+   <tr>
+      <td><code translate="no" dir="ltr">geo.longitude</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+        <p>The longitude of the business location. The precision must be at least 5
+      decimal places.</p></td>
+   </tr>
+   <tr>
+      <td><code translate="no" dir="ltr">menu</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code> </p>
+      <p>For food establishments, the fully-qualified URL of the menu.</p></td>
+      </tr>
+   <tr>
+      <td><code translate="no" dir="ltr">openingHoursSpecification</code></td>
+      <td><p>Array or single object (both supported) of
+        <code translate="no" dir="ltr"><a href="https://schema.org/OpeningHoursSpecification" class="external-link">OpeningHoursSpecification</a></code></p>
+      <p>Hours during which the business location is open.</p></td>
+   </tr>
+   <tr>
+      <td><code translate="no" dir="ltr">openingHoursSpecification.closes</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Time" class="external-link">Time</a></code></p>
+      <p>The time the business location closes, in hh:mm:ss format.</p></td>
+   </tr>
+   <tr id="dayofweek">
+      <td><code translate="no" dir="ltr">openingHoursSpecification.dayOfWeek</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DayOfWeek" class="external-link">DayOfWeek</a></code></p>
+        <p>One or more of the following values: </p>
+        <ul>
+          <li><code translate="no" dir="ltr">https://schema.org/Monday</code>: The day known as Monday.</li>
+          <li><code translate="no" dir="ltr">https://schema.org/Tuesday</code>: The day known as Tuesday.</li>
+          <li><code translate="no" dir="ltr">https://schema.org/Wednesday</code>: The day known as Wednesday.</li>
+          <li><code translate="no" dir="ltr">https://schema.org/Thursday</code>: The day known as Thursday.</li>
+          <li><code translate="no" dir="ltr">https://schema.org/Friday</code>: The day known as Friday.</li>
+          <li><code translate="no" dir="ltr">https://schema.org/Saturday</code>: The day known as Saturday.</li>
+          <li><code translate="no" dir="ltr">https://schema.org/Sunday</code>: The day known as Sunday.</li>
+        </ul>
+     <aside class="note">
+      We also support the short names without the URL prefix (for example, <code translate="no" dir="ltr">Monday</code>).</aside>
+     </td>
+   </tr>
+      <tr>
+      <td><code translate="no" dir="ltr">openingHoursSpecification.opens</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Time" class="external-link">Time</a></code></p>
+      <p>The time the business location opens, in hh:mm:ss format.</p></td>
+   </tr>
+   <tr>
+      <td><code translate="no" dir="ltr">openingHoursSpecification.validFrom</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code></p>
+      <p>The start date of a seasonal business closure, in YYYY-MM-DD format.</p></td>
+   </tr>
+   <tr>
+      <td><code translate="no" dir="ltr">openingHoursSpecification.validThrough</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code> </p>
+      <p>The end date of a seasonal business closure, in YYYY-MM-DD format.</p></td>
+   </tr>
+   <tr>
+      <td><code translate="no" dir="ltr">priceRange</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code> </p>
+      <p>The relative price range of a business, commonly specified by either a numerical range
+        (for example, "$10-15") or a normalized number of currency signs (for example, "$$$").</p>
+      <p>This field must be shorter than 100 characters. If it's 100 characters or longer, Google
+        won't show a price range for the business.</p></td>
+   </tr>
+   <tr>
+      <td><code translate="no" dir="ltr">review</code></td>
+      <td><p><a href="https://schema.org/Review" class="external-link">Review</a></p>
+     <p><b>This property is only recommended for sites that capture reviews about other local businesses</b>: A review of the local business. Follow the
+        <a href="/search/docs/appearance/structured-data/review-snippet#guidelines">Review snippet
+          guidelines</a> and the list of required and recommended
+        <a href="/search/docs/appearance/structured-data/review-snippet#review-properties">review
+          properties</a>.</p></td>
+   </tr>
+   <tr>
+      <td><code translate="no" dir="ltr">servesCuisine</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/servesCuisine" class="external-link">servesCuisine</a></code></p>
+      <p>The type of cuisine the restaurant serves.</p></td>
+   </tr>
+   <tr>
+      <td><code translate="no" dir="ltr">telephone</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>A business phone number meant to be the primary contact method for customers.
+      Be sure to include the country code and area code in the phone number.</p></td>
+   </tr>
+      <tr>
+      <td><code translate="no" dir="ltr">url</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>The fully-qualified URL of the specific business location. The URL must be a working link.</p></td>
+   </tr>
+    </tbody>
+  </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">image</code></td>
+      <td><p>Repeated <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/ImageObject" class="external-link">ImageObject</a></code></p>
+        <p>One or more images of the restaurant.</p>
+        
+<p>Additional image guidelines:
+  </p><ul>
+    <li>Image URLs must be crawlable and indexable. To check if Google can access your URLs, use
+      the <a href="https://support.google.com/webmasters/answer/9012289" class="external-link">URL Inspection tool</a>.</li>
+    <li>Images must represent the marked up content.</li>
+    <li>Images must be in a file format that's <a href="/search/docs/appearance/google-images#supported-image-formats">supported by Google Images</a>.</li>
+    <li>For best results, we recommend providing multiple high-resolution images (minimum of 50K pixels when
+      multiplying width and height) with the following aspect ratios: 16x9, 4x3, and 1x1.</li>
+  </ul>
+          <p>For example:</p>
+  <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="multiple images example in json-ld" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"image": [
+  "https://example.com/photos/1x1/photo.jpg",
+  "https://example.com/photos/4x3/photo.jpg",
+  "https://example.com/photos/16x9/photo.jpg"
+]</pre></devsite-code>
+   </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">name</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The name of the restaurant.</p></td>
+     </tr>
+        </tbody>
+  </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">address</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/PostalAddress" class="external-link">PostalAddress</a></code></p>
+      <p>The physical location of the business. Include as many properties as possible. The more
+        properties you provide, the higher quality the result is to users. For example:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="postal address markup example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"address"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"PostalAddress"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"streetAddress"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"148 W 51st St"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"addressLocality"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"New York"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"addressRegion"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"NY"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"postalCode"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"10019"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"addressCountry"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"US"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+   </tr>
+  <tr>
+      <td><code translate="no" dir="ltr">servesCuisine</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/servesCuisine" class="external-link">servesCuisine</a></code></p>
+      <p>The type of cuisine the restaurant serves.</p></td>
+        </tr>
+    </tbody>
+   </table>

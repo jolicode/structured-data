@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ProgramNameModel
 {
     public const DESCRIPTION = 'The program providing the membership. It is preferable to use [:program](https://schema.org/program) instead.';
     public const LABEL = 'programName';
     public const NAME = 'schema:programName';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['ProgramMembership' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProgramMembershipModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['ProgramMembership' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProgramMembershipModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MultipleValuesModel
 {
     public const DESCRIPTION = 'Whether multiple values are allowed for the property.  Default is false.';
     public const LABEL = 'multipleValues';
     public const NAME = 'schema:multipleValues';
-    public const VALUES = ['BooleanModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\BooleanModel'];
-    public const TYPES = ['PropertyValueSpecification' => 'Jolicode\Vocabularies\SchemaOrg\Type\PropertyValueSpecificationModel'];
+    public const VALUES = ['BooleanModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BooleanModel'];
+    public const TYPES = ['PropertyValueSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyValueSpecificationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

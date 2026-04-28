@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ProductCollectionModel
 {
     public const DESCRIPTION = 'A set of products (either [[ProductGroup]]s or specific variants) that are listed together e.g. in an [[Offer]].';
     public const LABEL = 'ProductCollection';
     public const NAME = 'schema:ProductCollection';
-    public const PARENTS = ['CollectionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CollectionModel', 'ProductModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProductModel'];
+    public const PARENTS = ['CollectionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CollectionModel', 'ProductModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2597'];

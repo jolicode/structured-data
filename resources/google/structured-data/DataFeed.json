@@ -1,0 +1,27 @@
+{
+  "name": "DataFeed",
+  "documentation": "https://developers.google.com/search/docs/appearance/structured-data/book#datafeed-entity",
+  "specialRules": [
+    "google.book.offer_pricing_by_category"
+  ],
+  "supportedTypes": [
+    "DataFeed"
+  ],
+  "properties": {
+    "dataFeedElement": {
+      "name": "dataFeedElement",
+      "severity": "required",
+      "supportedTypes": [
+        "@BookWork",
+        "@LibrarySystem"
+      ]
+    },
+    "dateModified": {
+      "name": "dateModified",
+      "severity": "required",
+      "supportedTypes": [
+        "DateTime"
+      ]
+    }
+  }
+}

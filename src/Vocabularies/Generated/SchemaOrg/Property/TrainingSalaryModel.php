@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TrainingSalaryModel
 {
     public const DESCRIPTION = 'The estimated salary earned while in the program.';
     public const LABEL = 'trainingSalary';
     public const NAME = 'schema:trainingSalary';
-    public const VALUES = ['MonetaryAmountDistributionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MonetaryAmountDistributionModel'];
-    public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\Vocabularies\SchemaOrg\Type\EducationalOccupationalProgramModel', 'WorkBasedProgram' => 'Jolicode\Vocabularies\SchemaOrg\Type\WorkBasedProgramModel'];
+    public const VALUES = ['MonetaryAmountDistributionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountDistributionModel'];
+    public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalProgramModel', 'WorkBasedProgram' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WorkBasedProgramModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

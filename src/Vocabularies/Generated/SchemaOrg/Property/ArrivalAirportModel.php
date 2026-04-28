@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ArrivalAirportModel
 {
     public const DESCRIPTION = 'The airport where the flight terminates.';
     public const LABEL = 'arrivalAirport';
     public const NAME = 'schema:arrivalAirport';
-    public const VALUES = ['AirportModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AirportModel'];
-    public const TYPES = ['Flight' => 'Jolicode\Vocabularies\SchemaOrg\Type\FlightModel'];
+    public const VALUES = ['AirportModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AirportModel'];
+    public const TYPES = ['Flight' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FlightModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

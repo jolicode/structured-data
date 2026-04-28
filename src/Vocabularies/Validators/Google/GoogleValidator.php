@@ -16,104 +16,103 @@ use Jolicode\Vocabularies\Mapper\MappedError;
 use Jolicode\Vocabularies\Mapper\MappedProperty;
 use Jolicode\Vocabularies\Mapper\MappedType;
 use Jolicode\Vocabularies\Validators\AbstractValidator;
+use Jolicode\Vocabularies\Validators\Google\SpecialRules\SpecialRulesRegistry;
 
 class GoogleValidator extends AbstractValidator
 {
     public const VALIDATOR_NAME = 'Google';
-
-    private const BASE_NAMESPACE = 'Google';
+    public const DATA_TYPES = [
+        self::DATA_TYPE_DATE,
+        self::DATA_TYPE_TIME,
+        self::DATA_TYPE_DATETIME,
+        self::DATA_TYPE_URL,
+        self::DATA_TYPE_TEXT,
+    ];
 
     private const DATA_TYPE_DATE = 'Date';
     private const DATA_TYPE_TIME = 'Time';
     private const DATA_TYPE_DATETIME = 'DateTime';
     private const DATA_TYPE_URL = 'URL';
+    private const DATA_TYPE_TEXT = 'Text';
 
-    private static string $rootType = '';
+    private const SEVERITY_REQUIRED = 'required';
+    private const SEVERITY_RECOMMENDED = 'recommended';
 
-    public static function validateType(MappedType $type, ?MappedProperty $property, array $typesStack): array
+    public function __construct(
+        private readonly Stack $stack = new Stack(),
+    ) {
+    }
+
+    public function validateType(MappedType $type): array
     {
         $errors = [];
 
         if (null === $type->type) {
-            $message = 'The @type entry of this type is missing. Google will ignore this type.';
-            $target = $property ?: $type;
+            $message = 'The @type entry of this type is missing. Google will ignore this type, which can prevent rich-results eligibility.';
+            $target = $type->parentProperty ?: $type;
 
-            $errors[] = self::addMappedError($target, $message, $type, MappedError::SEVERITY_WARNING);
+            $errors[] = $this->addMappedError($target, $message, $type, MappedError::SEVERITY_WARNING);
 
             return $errors;
         }
 
         if (\is_array($type->type)) {
-            return self::validateMultipleTypesEntry($type, $property, $typesStack);
+            return $this->validateMultipleTypesEntry($type);
         }
 
-        if (!$property) {
-            self::$rootType = $type->type;
-        }
+        $currentProperties = $this->stack
+            ->newType($type)
+            ->getTypeValidationProperties();
 
-        $baseType = self::buildFqcn($type->type);
-        $nestedType = self::buildFqcn($type->type, $typesStack);
-
-        if (!class_exists($baseType) && !class_exists($nestedType)) {
+        if (!$currentProperties) {
             return $errors;
         }
 
-        $requiredProperties = [];
-        $recommendedProperties = [];
-
-        if (class_exists($baseType)) {
-            $requiredProperties = array_merge($requiredProperties, $baseType::REQUIRED_PROPERTIES);
-            $recommendedProperties = array_merge($recommendedProperties, $baseType::RECOMMENDED_PROPERTIES);
-        }
-
-        if (class_exists($nestedType)) {
-            $requiredProperties = array_merge($requiredProperties, $nestedType::REQUIRED_PROPERTIES);
-            $recommendedProperties = array_merge($recommendedProperties, $nestedType::RECOMMENDED_PROPERTIES);
-        }
-
-        self::validateRequiredProperties(
+        $this->findMissingProperties(
             $type,
-            $requiredProperties,
+            $currentProperties,
             $errors,
         );
-        self::validateRecommendedProperties(
-            $type,
-            $recommendedProperties,
-            $errors,
-        );
+
+        foreach ($this->getSpecialTypeViolations($type) as $violation) {
+            $errors[] = $this->addMappedError(
+                $violation['target'],
+                $violation['message'],
+                $type,
+                $violation['severity'],
+            );
+        }
 
         return $errors;
     }
 
-    public static function validateProperty(MappedType $type, MappedProperty $property, array $typesStack, ?MappedProperty $originalProperty = null): array
+    public function validateProperty(MappedType $type, MappedProperty $property, ?MappedProperty $originalProperty = null): array
     {
         $errors = [];
 
-        foreach ((array) $type->type as $label) {
-            $typeFqcn = self::buildFqcn($label, $typesStack);
+        $currentProperty = $this->stack
+            ->newProperty($property)
+            ->getNextValidationProperty($property->key);
 
-            if (!class_exists($typeFqcn)) {
-                continue;
-            }
+        if (!$currentProperty) {
+            // If a property is not found, it might mean it is just a property Google doesn't care about.
+            // Google only cares about what it expects to see, not about what it should not see.
+            // If it should not be present, the Schema.org validator will notify it.
+            return $errors;
+        }
 
-            $propertyKey = $property->key;
+        $propertyValue = \is_array($property->value) ? $property->value : [$property->value];
 
-            $foundProperty = array_filter(
-                [...$typeFqcn::RECOMMENDED_PROPERTIES, ...$typeFqcn::REQUIRED_PROPERTIES],
-                static fn (int|string $key) => $key === $propertyKey,
-                \ARRAY_FILTER_USE_KEY,
-            );
+        foreach ($propertyValue as $value) {
+            if (\is_scalar($value)) {
+                if ($message = $this->hasInvalidDataTypeValue($currentProperty, $value)) {
+                    $errors[] = $this->addMappedError($property, $message, $type, MappedError::SEVERITY_WARNING);
+                }
 
-            if (!\count($foundProperty)) {
-                // If a property is not found, it might mean it is just a property Google doesn't care about.
-                // Google only cares about what it expects to see, not about what it should not see.
-                // If it should not be present, the Schema.org validator will notify it.
-                continue;
-            }
-
-            foreach ($foundProperty[$propertyKey] as $propertyType) {
-                if ($message = self::typeHasInvalidValue($propertyType, $property->value)) {
-                    $errors[] = self::addMappedError($property, $message, $type, MappedError::SEVERITY_WARNING);
+                if (\array_key_exists('value', $currentProperty)) {
+                    if ($message = $this->hasInvalidExactValue($currentProperty['value'], $value)) {
+                        $errors[] = $this->addMappedError($property, $message, $type, MappedError::SEVERITY_WARNING);
+                    }
                 }
             }
         }
@@ -121,121 +120,188 @@ class GoogleValidator extends AbstractValidator
         return $errors;
     }
 
-    private static function validateMultipleTypesEntry(MappedType $type, ?MappedProperty $property, array $typesStack): array
+    private function validateMultipleTypesEntry(MappedType $type): array
     {
-        $className = self::concatenateTypeLabels($type);
-        $fqcn = \sprintf(
-            '%s\\%s\\%s',
-            self::BASE_NAMESPACE,
-            $className,
-            $className,
-        );
+        $totalErrors = [];
 
-        if (class_exists($fqcn)) {
+        foreach ($type->type as $label) {
             $clone = clone $type;
-            $clone->type = $className;
+            $clone->type = $label;
 
-            return self::validateType($clone, $property, $typesStack);
+            $typeErrors = $this->validateType($clone);
+
+            if (!\count($typeErrors)) {
+                return [];
+            }
+
+            $totalErrors[] = [...$typeErrors];
         }
 
-        $cloneErrors = [];
+        // All types in the array failed validation. Root-level errors were added
+        // to clones, so they never propagated to the original type.
+        // Copy any missing root-level errors back to the original type.
+        $flatErrors = array_merge(...$totalErrors);
 
-        if (\is_array($type->type)) {
-            foreach ($type->type as $label) {
-                $clone = clone $type;
-                $clone->type = $label;
-
-                $typeErrors = self::validateType($clone, $property, $typesStack);
-
-                if (!\count($typeErrors)) {
-                    return [];
-                }
-
-                $cloneErrors[] = [...$typeErrors];
+        foreach ($flatErrors as $error) {
+            if (!\in_array($error, $type->errors, true)) {
+                $type->errors[] = $error;
+                $type->isValid = false;
             }
         }
 
-        return $cloneErrors;
+        return $flatErrors;
     }
 
-    private static function validateRequiredProperties(MappedType $type, array $requiredProperties, array &$errors): void
+    private function findMissingProperties(MappedType $type, array $validationProperties, array &$errors): void
     {
-        $missingRequiredProperties = array_diff_key($requiredProperties, $type->properties);
+        $missingProperties = array_diff_key($validationProperties, $type->properties);
 
-        SpecialCasesHandler::handleSpecialRequiredProperties($type, $missingRequiredProperties);
+        foreach ($missingProperties as $property) {
+            if (\array_key_exists('@target', $property)) {
+                continue;
+            }
 
-        if (\array_key_exists('atLeastOneOf', $missingRequiredProperties)) {
-            if (!\count(array_intersect_key($missingRequiredProperties['atLeastOneOf'], $type->properties))) {
+            if (self::SEVERITY_REQUIRED === $property['severity']) {
+                $this->validateRequiredProperty($type, $property, $errors);
+            }
+
+            if (self::SEVERITY_RECOMMENDED === $property['severity']) {
+                $this->validateRecommendedProperty($type, $property, $errors);
+            }
+        }
+    }
+
+    private function validateRequiredProperty(MappedType $type, array $missingProperty, array &$errors): void
+    {
+        if ($this->shouldIgnoreMissingRequiredProperty($type, $missingProperty)) {
+            return;
+        }
+
+        if ('atLeastOneOf' === $missingProperty['name']) {
+            if (!\count(array_intersect_key($missingProperty['value'], $type->properties))) {
                 $message = \sprintf(
                     'Missing required property: at least one of the following properties must be present "%s"',
-                    implode(', ', array_keys($missingRequiredProperties['atLeastOneOf'])),
+                    implode(', ', array_keys($missingProperty['value'])),
                 );
 
-                unset($missingRequiredProperties['atLeastOneOf']);
-
-                $errors[] = self::addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR);
+                $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR);
             }
+
+            return;
         }
 
-        foreach ($missingRequiredProperties as $label => $values) {
-            $message = \sprintf('Missing required property: "%s"', $label);
+        $message = \sprintf('Missing required property: "%s" for the type "%s"', $missingProperty['name'], $type->type);
 
-            $errors[] = self::addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR);
-        }
+        $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR);
     }
 
-    private static function validateRecommendedProperties(MappedType $type, array $recommendedProperties, array &$errors): void
+    private function validateRecommendedProperty(MappedType $type, array $missingProperty, array &$errors): void
     {
-        $missingRecommendedProperties = array_diff_key($recommendedProperties, $type->properties);
-
-        SpecialCasesHandler::handleSpecialRecommendedProperties($type, $missingRecommendedProperties);
-
-        if (\array_key_exists('atLeastOneOf', $missingRecommendedProperties)) {
-            $missingRecommendedProperties = array_merge(
-                $missingRecommendedProperties,
-                array_diff_key($missingRecommendedProperties['atLeastOneOf'], $type->properties),
-            );
-
-            unset($missingRecommendedProperties['atLeastOneOf']);
+        if ($this->shouldIgnoreMissingRecommendedProperty($type, $missingProperty)) {
+            return;
         }
 
-        foreach ($missingRecommendedProperties as $label => $values) {
-            $message = \sprintf('Missing recommended property: "%s"', $label);
+        if ('atLeastOneOf' === $missingProperty['name']) {
+            if (!\count(array_intersect_key($missingProperty['value'], $type->properties))) {
+                $message = \sprintf(
+                    'Missing recommended property: at least one of the following properties should be present "%s"',
+                    implode(', ', array_keys($missingProperty['value'])),
+                );
 
-            $errors[] = self::addMappedError($type, $message, $type, MappedError::SEVERITY_WARNING);
+                $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_WARNING);
+            }
+
+            return;
         }
+
+        $message = \sprintf('Missing recommended property: "%s" for the type "%s"', $missingProperty['name'], $type->type);
+
+        $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_WARNING);
     }
 
-    private static function concatenateTypeLabels(MappedType $type): string
+    private function hasInvalidDataTypeValue(array $expectedProperty, mixed $givenValue): false|string
     {
-        $className = $type->type;
+        $supportedTypes = $expectedProperty['supportedTypes'];
 
-        if (null === $className) {
-            throw new \RuntimeException('The type must not be null.');
-        }
-
-        if (\is_string($className)) {
-            return ucfirst($className);
-        }
-
-        array_walk($className, static fn (string &$word) => $word = ucfirst($word));
-        $className = implode('', $className);
-
-        return $className;
-    }
-
-    private static function typeHasInvalidValue(string $expectedType, string $givenValue): false|string
-    {
-        return match (true) {
-            self::DATA_TYPE_DATE === $expectedType => self::hasIncorrectDate($givenValue),
-            self::DATA_TYPE_TIME === $expectedType => self::hasIncorrectDate($givenValue),
-            self::DATA_TYPE_DATETIME === $expectedType => self::hasIncorrectDate($givenValue),
-            self::DATA_TYPE_URL === $expectedType => self::hasIncorrectUrl($givenValue),
+        return match ($this->getMatchingDataType($supportedTypes, $givenValue)) {
+            self::DATA_TYPE_DATETIME => $this->hasIncorrectDate($givenValue),
+            self::DATA_TYPE_TEXT => $this->hasIncorrectText($givenValue),
+            self::DATA_TYPE_URL => $this->hasIncorrectUrl($givenValue),
             default => false,
         };
     }
 
-    private static function hasIncorrectDate(string $givenValue): false|string
+    private function hasInvalidExactValue(array $expectedValues, string|int $givenValue): false|string
+    {
+        if (\in_array($givenValue, $expectedValues, true)) {
+            return false;
+        }
+
+        if (\in_array(strtolower($givenValue), $expectedValues, true)) {
+            return 'The value is correct, but is not lowercased. Google expects lowercased values.';
+        }
+
+        if (!\in_array($givenValue, $expectedValues, true)) {
+            return \sprintf('Incorrect value: "%s" given, expected one of "%s".', $givenValue, implode(', ', $expectedValues));
+        }
+
+        return false;
+    }
+
+    private function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool
+    {
+        foreach ($this->getSpecialRules() as $specialRule) {
+            if ($specialRule->shouldIgnoreMissingRecommendedProperty($type, $missingProperty)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function getMatchingDataType(array $supportedTypes, mixed $givenValue): string|false
+    {
+        $timeTypes = [self::DATA_TYPE_DATE, self::DATA_TYPE_TIME, self::DATA_TYPE_DATETIME];
+
+        // If given value is any of the 3 time types, and any of the 3 time types are supported, we validate
+        if (
+            \in_array($givenValue, $timeTypes, true)
+            && \count(array_intersect($timeTypes, $supportedTypes))
+        ) {
+            return self::DATA_TYPE_DATETIME;
+        }
+
+        if (
+            \in_array(self::DATA_TYPE_URL, $supportedTypes, true)
+            && \is_string($givenValue)
+        ) {
+            return self::DATA_TYPE_URL;
+        }
+
+        if (
+            \in_array(self::DATA_TYPE_TEXT, $supportedTypes, true)
+            && \is_string($givenValue)
+        ) {
+            return self::DATA_TYPE_TEXT;
+        }
+
+        return false;
+    }
+
+    private function hasIncorrectText(mixed $givenValue, ?string $overwriteType = null): false|string
+    {
+        $type = $overwriteType ?? 'Text';
+
+        $message = \sprintf(
+            'Incorrect "%s" type given: value of type "%s" given.',
+            $type,
+            \gettype($givenValue),
+        );
+
+        return \is_string($givenValue) ? false : $message;
+    }
+
+    private function hasIncorrectDate(string $givenValue): false|string
     {
         if (false === strtotime($givenValue)) {
             return \sprintf('Date/time format is incompatible with the ISO 8601 standard. "%s" given', $givenValue);
@@ -244,35 +310,54 @@ class GoogleValidator extends AbstractValidator
         return false;
     }
 
-    private static function hasIncorrectUrl(string $givenValue): false|string
+    private function hasIncorrectUrl(mixed $givenValue): false|string
     {
+        if ($errorMessage = $this->hasIncorrectText($givenValue, 'URL')) {
+            return $errorMessage;
+        }
+
         return IriResolver::isAbsoluteIri($givenValue) ? false : \sprintf('Incorrect URL: "%s" given.', $givenValue);
     }
 
-    private static function buildFqcn(string $typeName, array $parents = []): string
+    /**
+     * @return array<array{target: MappedType|MappedProperty, message: string, severity: string}>
+     */
+    private function getSpecialTypeViolations(MappedType $type): array
     {
-        $fqcn = self::BASE_NAMESPACE;
+        $violations = [];
 
-        // When no parents are provided, this means we are trying to build a main type.
-        // Main types have no parent and their namespace is Google\TypeName.
-        if (\count($parents)) {
-            array_unshift($parents, self::$rootType);
-        } else {
-            $fqcn .= \sprintf('\\%s', $typeName);
+        foreach ($this->getSpecialRules() as $specialRule) {
+            $violations = [
+                ...$violations,
+                ...$specialRule->getTypeViolations($type),
+            ];
         }
 
-        foreach ($parents as $type) {
-            if (\is_array($type)) {
-                // The array will be full of the same string. It is used to map the errors back to the user, it should not be used
-                // for validation.
-                $type = $type[0];
+        return $violations;
+    }
+
+    private function shouldIgnoreMissingRequiredProperty(MappedType $type, array $missingProperty): bool
+    {
+        foreach ($this->getSpecialRules() as $specialRule) {
+            if ($specialRule->shouldIgnoreMissingRequiredProperty($type, $missingProperty)) {
+                return true;
             }
-
-            $fqcn .= \sprintf('\\%s', ucfirst($type));
         }
 
-        $fqcn .= \sprintf('\\%s', $typeName);
+        return false;
+    }
 
-        return $fqcn;
+    /**
+     * @return array<SpecialRules\SpecialRuleInterface>
+     */
+    private function getSpecialRules(): array
+    {
+        $validationClass = $this->stack->getValidationClass();
+
+        if (null === $validationClass || !class_exists($validationClass)) {
+            return [];
+        }
+
+        return SpecialRulesRegistry::forKeys($validationClass::SPECIAL_RULE_KEYS);
     }
 }

@@ -92,8 +92,8 @@ class MappedType
         );
     }
 
-    public function getKeyPath(): string
+    public function getKeyPath(): ?string
     {
-        return $this->parentProperty?->getKeyPath() ?? '';
+        return $this->parentProperty?->getKeyPath() ?? null;
     }
 }

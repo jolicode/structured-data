@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TimestampModel
 {
     public const DESCRIPTION = 'The instant the event occured.';
     public const LABEL = 'timestamp';
     public const NAME = 'schema:timestamp';
-    public const VALUES = ['DateTimeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DateTimeModel'];
-    public const TYPES = ['InstantaneousEvent' => 'Jolicode\Vocabularies\SchemaOrg\Type\InstantaneousEventModel'];
+    public const VALUES = ['DateTimeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['InstantaneousEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InstantaneousEventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

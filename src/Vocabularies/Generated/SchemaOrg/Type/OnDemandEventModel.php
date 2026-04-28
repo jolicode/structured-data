@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OnDemandEventModel
 {
     public const DESCRIPTION = 'A publication event, e.g. catch-up TV or radio podcast, during which a program is available on-demand.';
     public const LABEL = 'OnDemandEvent';
     public const NAME = 'schema:OnDemandEvent';
-    public const PARENTS = ['PublicationEventModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PublicationEventModel'];
+    public const PARENTS = ['PublicationEventModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PublicationEventModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class UsedToDiagnoseModel
 {
     public const DESCRIPTION = 'A condition the test is used to diagnose.';
     public const LABEL = 'usedToDiagnose';
     public const NAME = 'schema:usedToDiagnose';
-    public const VALUES = ['MedicalConditionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalConditionModel'];
-    public const TYPES = ['MedicalTest' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalTestModel'];
+    public const VALUES = ['MedicalConditionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel'];
+    public const TYPES = ['MedicalTest' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTestModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DisagreeActionModel
 {
     public const DESCRIPTION = 'The act of expressing a difference of opinion with the object. An agent disagrees to/about an object (a proposition, topic or theme) with participants.';
     public const LABEL = 'DisagreeAction';
     public const NAME = 'schema:DisagreeAction';
-    public const PARENTS = ['ReactActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ReactActionModel'];
+    public const PARENTS = ['ReactActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReactActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

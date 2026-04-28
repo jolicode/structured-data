@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IncludesHealthPlanFormularyModel
 {
     public const DESCRIPTION = 'Formularies covered by this plan.';
     public const LABEL = 'includesHealthPlanFormulary';
     public const NAME = 'schema:includesHealthPlanFormulary';
-    public const VALUES = ['HealthPlanFormularyModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\HealthPlanFormularyModel'];
-    public const TYPES = ['HealthInsurancePlan' => 'Jolicode\Vocabularies\SchemaOrg\Type\HealthInsurancePlanModel'];
+    public const VALUES = ['HealthPlanFormularyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HealthPlanFormularyModel'];
+    public const TYPES = ['HealthInsurancePlan' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HealthInsurancePlanModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

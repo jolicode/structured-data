@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TransferActionModel
 {
     public const DESCRIPTION = 'The act of transferring/moving (abstract or concrete) animate or inanimate objects from one place to another.';
     public const LABEL = 'TransferAction';
     public const NAME = 'schema:TransferAction';
-    public const PARENTS = ['ActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ActionModel'];
+    public const PARENTS = ['ActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

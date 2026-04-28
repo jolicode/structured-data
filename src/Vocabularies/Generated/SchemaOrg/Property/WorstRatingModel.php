@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class WorstRatingModel
 {
     public const DESCRIPTION = 'The lowest value allowed in this rating system.';
     public const LABEL = 'worstRating';
     public const NAME = 'schema:worstRating';
-    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\NumberModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Rating' => 'Jolicode\Vocabularies\SchemaOrg\Type\RatingModel'];
+    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Rating' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RatingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

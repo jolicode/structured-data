@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DoseUnitModel
 {
     public const DESCRIPTION = 'The unit of the dose, e.g. \'mg\'.';
     public const LABEL = 'doseUnit';
     public const NAME = 'schema:doseUnit';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['DoseSchedule' => 'Jolicode\Vocabularies\SchemaOrg\Type\DoseScheduleModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['DoseSchedule' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DoseScheduleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

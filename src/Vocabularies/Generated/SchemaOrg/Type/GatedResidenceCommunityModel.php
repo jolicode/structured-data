@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class GatedResidenceCommunityModel
 {
     public const DESCRIPTION = 'Residence type: Gated community.';
     public const LABEL = 'GatedResidenceCommunity';
     public const NAME = 'schema:GatedResidenceCommunity';
-    public const PARENTS = ['ResidenceModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ResidenceModel'];
+    public const PARENTS = ['ResidenceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ResidenceModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SizeGroupModel
 {
     public const DESCRIPTION = 'The size group (also known as "size type") for a product\'s size. Size groups are common in the fashion industry to define size segments and suggested audiences for wearable products. Multiple values can be combined, for example "men\'s big and tall", "petite maternity" or "regular".';
     public const LABEL = 'sizeGroup';
     public const NAME = 'schema:sizeGroup';
-    public const VALUES = ['SizeGroupEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\SizeGroupEnumerationModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['SizeSpecification' => 'Jolicode\Vocabularies\SchemaOrg\Type\SizeSpecificationModel'];
+    public const VALUES = ['SizeGroupEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SizeGroupEnumerationModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['SizeSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SizeSpecificationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

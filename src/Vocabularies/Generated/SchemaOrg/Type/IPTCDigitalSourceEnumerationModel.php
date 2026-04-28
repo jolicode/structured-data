@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IPTCDigitalSourceEnumerationModel
 {
@@ -20,7 +20,7 @@ In general these codes are not declared here to be mutually exclusive, although 
  for <a href="https://cv.iptc.org/newscodes/digitalsourcetype/">detailed definitions</a> of all terms.';
     public const LABEL = 'IPTCDigitalSourceEnumeration';
     public const NAME = 'schema:IPTCDigitalSourceEnumeration';
-    public const PARENTS = ['MediaEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MediaEnumerationModel'];
+    public const PARENTS = ['MediaEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['AlgorithmicMediaDigitalSourceModel' => 'EnumerationMember\AlgorithmicMediaDigitalSourceModel', 'AlgorithmicallyEnhancedDigitalSourceModel' => 'EnumerationMember\AlgorithmicallyEnhancedDigitalSourceModel', 'CompositeCaptureDigitalSourceModel' => 'EnumerationMember\CompositeCaptureDigitalSourceModel', 'CompositeDigitalSourceModel' => 'EnumerationMember\CompositeDigitalSourceModel', 'CompositeSyntheticDigitalSourceModel' => 'EnumerationMember\CompositeSyntheticDigitalSourceModel', 'CompositeWithTrainedAlgorithmicMediaDigitalSourceModel' => 'EnumerationMember\CompositeWithTrainedAlgorithmicMediaDigitalSourceModel', 'DataDrivenMediaDigitalSourceModel' => 'EnumerationMember\DataDrivenMediaDigitalSourceModel', 'DigitalArtDigitalSourceModel' => 'EnumerationMember\DigitalArtDigitalSourceModel', 'DigitalCaptureDigitalSourceModel' => 'EnumerationMember\DigitalCaptureDigitalSourceModel', 'MinorHumanEditsDigitalSourceModel' => 'EnumerationMember\MinorHumanEditsDigitalSourceModel', 'MultiFrameComputationalCaptureDigitalSourceModel' => 'EnumerationMember\MultiFrameComputationalCaptureDigitalSourceModel', 'NegativeFilmDigitalSourceModel' => 'EnumerationMember\NegativeFilmDigitalSourceModel', 'PositiveFilmDigitalSourceModel' => 'EnumerationMember\PositiveFilmDigitalSourceModel', 'PrintDigitalSourceModel' => 'EnumerationMember\PrintDigitalSourceModel', 'ScreenCaptureDigitalSourceModel' => 'EnumerationMember\ScreenCaptureDigitalSourceModel', 'TrainedAlgorithmicMediaDigitalSourceModel' => 'EnumerationMember\TrainedAlgorithmicMediaDigitalSourceModel', 'VirtualRecordingDigitalSourceModel' => 'EnumerationMember\VirtualRecordingDigitalSourceModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3392'];

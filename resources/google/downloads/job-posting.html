@@ -1,0 +1,428 @@
+<table class="responsive fixed">
+      <colgroup>
+        <col width="20%">
+      </colgroup>
+      <thead>
+        <tr>
+          <th colspan="2">Required properties</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="date-posted"><code translate="no" dir="ltr">datePosted</code></td>
+          <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code></p>
+            <p>The original date that employer posted the job in
+              <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>.
+              For example, "2017-01-24" or "2017-01-24T19:33:17+00:00".</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Date posted" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"datePosted": "2016-02-18"</pre></devsite-code>
+          </td>
+        </tr>
+        <tr>
+          <td id="description"><code translate="no" dir="ltr">description</code></td>
+          <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+            <p>The full description of the job in HTML format.</p>
+            <p>The <code translate="no" dir="ltr">description</code> must be a complete representation of the job, including
+              job responsibilities, qualifications, skills, working hours, education requirements, and
+              experience requirements. The <code translate="no" dir="ltr">description</code> can't be the same as the <code translate="no" dir="ltr">title</code>.</p>
+            <p>Additional guidelines:</p>
+            <ul>
+              <li>You must format the description in HTML.</li>
+              <li>At minimum, add paragraph breaks using <code translate="no" dir="ltr">&lt;br&gt;</code>, <code translate="no" dir="ltr">&lt;p&gt;</code>,
+                or <code translate="no" dir="ltr">\n</code>.</li>
+              <li>The feature recognizes the following HTML tags: <code translate="no" dir="ltr">&lt;p&gt;</code>,
+                <code translate="no" dir="ltr">&lt;ul&gt;</code>, and <code translate="no" dir="ltr">&lt;li&gt;</code>.</li>
+             <li>The feature doesn't recognize header and character-level tags, such as
+             <code translate="no" dir="ltr">&lt;h1&gt;</code>, <code translate="no" dir="ltr">&lt;strong&gt;</code>, and <code translate="no" dir="ltr">&lt;em&gt;</code>.
+             While the tags won't affect the formatting in the feature, you can safely include them on
+             the page.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td id="hiring"><code translate="no" dir="ltr">hiringOrganization</code></td>
+          <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code></p>
+            <p>The organization offering the job position. This must be the name of the company (for
+              example, "Starbucks, Inc"), and not the specific location that is hiring (for example,
+              "Starbucks on Main Street"). For example:</p>
+              <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Hiring organization" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"hiringOrganization"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Organization"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MagsRUs Wheel Company"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"sameAs"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"http://www.magsruswheelcompany.com"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+            <p>
+              If the organization is hiring anonymously (for example, a staffing agency on behalf of
+              an anonymous employer or an employer directly on your platform), use the <code translate="no" dir="ltr">confidential</code>
+              value for the <code translate="no" dir="ltr">hiringOrganization.name</code> field. For example:
+            </p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="anonymous hiring organization" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"hiringOrganization"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Organization"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"confidential"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+            <p><b>Logos on third-party job sites</b></p>
+            <p>If you have a third-party job site, you can provide a different logo for a given
+              organization than the image shown in the organization's Google knowledge panel. To
+              request a different logo for a hiring organization, add the logo property to the
+              <code translate="no" dir="ltr">hiringOrganization</code> array. For <code translate="no" dir="ltr">JobPosting</code> structured data, the image width and height ratio must be between 0.75 and 2.5.
+              Make sure that you follow the
+              <a href="/search/docs/appearance/structured-data/organization#logo">logo image guidelines</a> and
+              <a href="#company-logo">Company logo guidelines</a>. For example:
+</p><div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Hiring organization" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"hiringOrganization"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Organization"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MagsRUs Wheel Company"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"sameAs"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"http://www.magsruswheelcompany.com"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"logo"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://www.example.com/images/logo.png"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+    </tr>
+      <tr>
+        <td id="job-location"><code translate="no" dir="ltr">jobLocation</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Place" class="external-link">Place</a></code></p>
+        <p>The physical location(s) of the business where the employee will report to work (such as
+          an office or worksite), not the location where the job was posted. Include as many properties
+          as possible. The more properties you provide, the higher quality the job posting is to our
+          users. Note that you must include the <code translate="no" dir="ltr">addressCountry</code> property. For example:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Job location" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"jobLocation"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Place"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"address"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"PostalAddress"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"streetAddress"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"555 Clancy St"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressLocality"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Detroit"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressRegion"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MI"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"postalCode"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"48201"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressCountry"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"US"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        <p><b>Multiple physical locations</b></p>
+        <p>If the job has multiple locations, add multiple <code translate="no" dir="ltr">jobLocation</code> properties in an array.
+          Google will choose the best location to display based on the job seeker's query.</p>
+        <p><b>Remote jobs</b></p>
+        <p>For jobs in which the employee may or must work remotely 100% of the time, you must use
+          <code translate="no" dir="ltr"><a href="#job-location-type">jobLocationType</a></code>. The <code translate="no" dir="ltr">jobLocation
+          </code> property isn't required if
+          <code translate="no" dir="ltr"><a href="#applicant-location-requirements">applicantLocationRequirements</a></code>
+          is present.</p>
+      </td>
+    </tr>
+      <tr>
+      <td><code translate="no" dir="ltr">title</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The title of the job (not the title of the posting). For example, "Software Engineer" or
+          "Barista". For example:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Job title" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"title": "Software Engineer"</pre></devsite-code>
+        <p>Best practices:</p>
+        <ul>
+          <li>This property must be the title of the job only.</li>
+          <li>Don't include job codes, addresses, dates, salaries, or company names in the <code translate="no" dir="ltr">title</code> property.
+          <p><span class="compare-no" aria-hidden="true"></span><b>Not recommended</b>: Apply now for IT job -FRENCH speaker in Bucharest</p>
+          <p><span class="compare-yes" aria-hidden="true"></span><b>Recommended</b>: Market Specialist, French speaker</p>
+          </li>
+          <li>Provide concise, readable titles.</li>
+          <li>Don't overuse special characters such as <code translate="no" dir="ltr">!</code> and <code translate="no" dir="ltr">*</code>. Abusing special characters might
+            cause your structured data to be considered as
+            <a href="https://support.google.com/webmasters/answer/3498001?&amp;ref_topic=6003164" class="external-link">Spammy Structured Markup</a>. Numbers and characters such as <code translate="no" dir="ltr">/</code> and <code translate="no" dir="ltr">-</code> are acceptable.
+          <p><span class="compare-no" aria-hidden="true"></span><b>Not recommended</b>: *** WAREHOUSE HIRING NOW!! ON A BUS ROUTE!! ***</p>
+          <p><span class="compare-yes" aria-hidden="true"></span><b>Recommended</b>: Shipping and Receiving Warehouse Associate</p></li>
+          <li>Don't use <code translate="no" dir="ltr">name</code> instead of <code translate="no" dir="ltr">title</code>. The properties <code translate="no" dir="ltr">title</code>
+            and <code translate="no" dir="ltr">name</code> aren't interchangeable.</li>
+          <li>If you're a third party job site, don't attempt to modify the job title to follow the
+          <a href="#guidelines">guidelines</a>, as it can make the title unreadable. Instead, provide the title as you
+          received it from the employer.</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="applicant-location-requirements"><code translate="no" dir="ltr">applicantLocationRequirements</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/AdministrativeArea" class="external-link">AdministrativeArea</a></code></p>
+        <p>The geographic location(s) in which employees may be located for to be eligible for the
+          Work from home job. The job description must clearly state that the applicant may be
+          located in certain geographical location(s). This property is required if applicants may
+          be located in one or more geographic locations and the job is 100% remote.</p>
+        <p>The following example suggests a job that can be done remotely anywhere within the United
+          States:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Remote job with broad location requirements" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"applicantLocationRequirements"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Country"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"USA"</span>
+<span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-s">"jobLocationType"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"TELECOMMUTE"</span></pre></devsite-code>
+        <p>The following example suggests a job can either be done remotely from the country of
+          Canada or executed at a physical location in Detroit, MI:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Remote job with specific location requirements" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"jobLocation"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Place"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"address"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"PostalAddress"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"streetAddress"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"555 Clancy St"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressLocality"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Detroit"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressRegion"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MI"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"postalCode"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"48201"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressCountry"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"US"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-s">"applicantLocationRequirements"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Country"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Canada"</span>
+<span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-s">"jobLocationType"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"TELECOMMUTE"</span></pre></devsite-code>
+      </td>
+    </tr>
+
+      <tr>
+         <td id="basesalary"><code translate="no" dir="ltr">baseSalary</code></td>
+        <td><p><code translate="no" dir="ltr"><a href="https://schema.org/MonetaryAmount" class="external-link">MonetaryAmount</a></code></p>
+
+        <p>The actual base salary for the job, as provided by the employer (not an estimate).
+          </p><aside class="note"><b>Note</b>: Only employers can provide
+            <code translate="no" dir="ltr">baseSalary</code>.
+        
+        </aside>
+        <p>For the <code translate="no" dir="ltr">unitText</code> of
+          <code translate="no" dir="ltr"><a href="https://schema.org/QuantitativeValue" class="external-link">QuantitativeValue</a></code>, use one of the
+          following case-sensitive values:</p>
+        <ul>
+          <li><code translate="no" dir="ltr">HOUR</code></li>
+          <li><code translate="no" dir="ltr">DAY</code></li>
+          <li><code translate="no" dir="ltr">WEEK</code></li>
+          <li><code translate="no" dir="ltr">MONTH</code></li>
+          <li><code translate="no" dir="ltr">YEAR</code></li>
+        </ul>
+        <p>For example:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Hourly salary" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"baseSalary"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MonetaryAmount"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"currency"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"USD"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"QuantitativeValue"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m devsite-syntax-m-Double">40.00</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"unitText"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"HOUR"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        <p>To specify a salary range, define a <code translate="no" dir="ltr">minValue</code> and a <code translate="no" dir="ltr">maxValue</code>, rather
+          than a single <code translate="no" dir="ltr">value</code>. For example:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Salary range" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"baseSalary"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MonetaryAmount"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"currency"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"USD"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"QuantitativeValue"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"minValue"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m devsite-syntax-m-Double">40.00</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"maxValue"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-m devsite-syntax-m-Double">50.00</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"unitText"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"HOUR"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+    </tr>
+        <tr>
+      <td id="direct-apply"><code translate="no" dir="ltr">directApply</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Boolean" class="external-link">Boolean</a></code></p>
+        <p>Indicates whether the URL that's associated with this job posting enables direct
+          application for the job.</p>
+        <aside class="note">Since we are still developing how we are using this information, you
+          may not see any appearance or effect in Google Search right away.</aside>
+        <p>We define a direct apply experience in terms of the actions that
+          are required from the user to apply to the job. This means that a user is
+          offered a short and simple application process on your page without unnecessary
+          intermediate steps. If the user has to click apply, complete an application form, sign
+          in or log in more than once in the application journey, it means that you aren't offering
+          a direct apply experience.</p>
+        <p>
+          You likely offer a direct apply experience if you provide one of the following experiences:
+        </p>
+        <ul>
+          <li>The user completes the application process on your site.</li>
+          <li>Once arriving at your page from Google, the user doesn't have to click apply and provide
+            user information more than once to complete the application process</li>
+          <li>The job posting includes instructions on how to apply (for example, the job posting lists the email
+            address, phone number, or physical address where they can submit the application) or directly
+            schedule an interview with an employer. These instructions must be for directly contacting
+            the actual company hiring for the job, or their representative.</li>
+        </ul>
+      </td>
+    </tr>
+      <tr>
+      <td><code translate="no" dir="ltr">employmentType</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>Type of employment. For example:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Contractor employment type" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"employmentType": "CONTRACTOR"</pre></devsite-code>
+        <p>Choose one or more of the following case-sensitive values:</p>
+        <ul>
+          <li><code translate="no" dir="ltr">FULL_TIME</code>: The job is a full-time position.</li>
+          <li><code translate="no" dir="ltr">PART_TIME</code>: The job is a part-time position.</li>
+          <li><code translate="no" dir="ltr">CONTRACTOR</code>: The job is a contractor position.</li>
+          <li><code translate="no" dir="ltr">TEMPORARY</code>: The job is a temporary position.</li>
+          <li><code translate="no" dir="ltr">INTERN</code>: The job is an internship position.</li>
+          <li><code translate="no" dir="ltr">VOLUNTEER</code>: The job is a volunteer position.</li>
+          <li><code translate="no" dir="ltr">PER_DIEM</code>: The job is paid by the day.</li>
+          <li><code translate="no" dir="ltr">OTHER</code>: The job is a different type of position that's not covered by the other possible values.</li>
+        </ul>
+        <p>You can include more than one <code translate="no" dir="ltr">employmentType</code> property. For example:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Full time contractor employment type" translate="no" dir="ltr" is-upgraded="" syntax="scdoc" syntax-guessed="">"employmentType": ["FULL_TIME", "CONTRACTOR"]</pre></devsite-code>
+      </td>
+    </tr>
+   <tr>
+      <td><code translate="no" dir="ltr">identifier</code></td>
+     <td><p><code translate="no" dir="ltr"><a href="https://schema.org/PropertyValue" class="external-link">PropertyValue</a></code></p><p>
+        </p><p>The hiring organization's unique identifier for the job.</p>
+        <p>For example:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Unique identifier" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"identifier"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"PropertyValue"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MagsRUs Wheel Company"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"1234567"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+    </tr>
+    <tr>
+      <td id="job-location-type"><code translate="no" dir="ltr">jobLocationType</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>Set this property with the value <code translate="no" dir="ltr">TELECOMMUTE</code> for jobs in which the employee may
+          or must work remotely 100% of the time (from home or another location of their choosing).
+          In addition to adding <code translate="no" dir="ltr">jobLocationType</code>, the job description must clearly state
+          that the job is 100% remote. The <code translate="no" dir="ltr">jobLocationType</code> property is required if the
+          job is 100% remote.</p>
+        <p><b>Requirements</b></p>
+        <ul>
+          <li>Jobs marked as <code translate="no" dir="ltr">TELECOMMUTE</code> must be fully remote. Don't mark up jobs that
+            allow occasional work-from-home, jobs for which remote work is a negotiable benefit, or
+            have other arrangements that are not 100% remote. The "gig economy" nature of a job
+            doesn't imply that it is or is not remote.</li>
+          <li>You must specify a minimum of one country from which applicants are eligible to work,
+            using
+            <code translate="no" dir="ltr"><a href="#applicant-location-requirements">applicantLocationRequirements</a></code>
+            (preferred), or a default to the
+            country of a <code translate="no" dir="ltr">jobLocation</code> (provided there is an option to work at a physical
+            location as well). If a remote job doesn't contain
+            <code translate="no" dir="ltr">applicantLocationRequirements</code>, Google shows the job to anyone in the
+            country specified in <code translate="no" dir="ltr">jobLocation</code>.</li>
+        </ul>
+         <p>The following example shows that the employee can physically report to work at a job
+         site located in Tucson, AZ OR can work remotely within the US:</p>
+           <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Remote job in the US" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"jobLocation"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Place"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"address"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"PostalAddress"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressLocality"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Tucson"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressRegion"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"AZ"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"addressCountry"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"US"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-s">"jobLocationType"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"TELECOMMUTE"</span></pre></devsite-code>
+
+        <aside class="note">Google continues to support <code translate="no" dir="ltr">TELECOMMUTE</code> as an
+          <code translate="no" dir="ltr">additionalProperty</code> of <code translate="no" dir="ltr">jobLocation</code>. While we don't have immediate
+          plans to deprecate <code translate="no" dir="ltr">additionalProperty</code>, we encourage the use of the new schema
+          where possible.</aside>
+      </td>
+    </tr>
+        <tr>
+      <td id="valid-through"><code translate="no" dir="ltr">validThrough</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+        <aside class="note"><b>Note</b>: This is required for job postings that have an expiration date.</aside>
+        <p>The date when the job posting will expire in
+          <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>.
+          For example, "2017-02-24" or "2017-02-24T19:33:17+00:00".  For example:</p>
+       <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Job expiration date" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"validThrough": "2017-03-18T00:00"</pre></devsite-code>
+        <p>If a job posting never expires, or you do not know when the job will expire, do not
+          include this property. If the job is filled before the expiration date occurs, <a href="#remove">remove the job posting</a>.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+      <colgroup>
+        <col width="20%">
+      </colgroup>
+      <thead>
+        <tr>
+          <th colspan="2">Recommended properties (beta)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code translate="no" dir="ltr">educationRequirements</code></td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/EducationalOccupationalCredential" class="external-link">EducationalOccupationalCredential</a></code> or
+          <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The educational background needed for the job posting. If there aren't any educational
+          requirements, use the <code translate="no" dir="ltr">no requirements</code> value. If you don't know the educational
+          requirements, don't add this property.
+        </p>
+        <p>
+          This property can be repeated in an array. For example:
+        </p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Education requirements" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"educationRequirements"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"EducationalOccupationalCredential"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"credentialCategory"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"bachelor degree"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"EducationalOccupationalCredential"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"credentialCategory"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"postgraduate degree"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">]</span></pre></devsite-code>
+        </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">educationRequirements.credentialCategory</code></td>
+      <td>
+        <p>
+          <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The level of education that's required for the job posting. Use one of the following values:</p>
+        <ul>
+          <li><code translate="no" dir="ltr">high school</code>: The job requires high school education.</li>
+          <li><code translate="no" dir="ltr">associate degree</code>: The job requires an associate degree.</li>
+          <li><code translate="no" dir="ltr">bachelor degree</code>: The job requires a bachelor degree.</li>
+          <li><code translate="no" dir="ltr">professional certificate</code>: The job requires a professional certificate.</li>
+          <li><code translate="no" dir="ltr">postgraduate degree</code>: The job requires a postgraduate degree.</li>
+        </ul>
+        <aside class="note">The list of values may not apply to all countries; you can pick the closest equivalent.</aside>
+        <p>
+          In addition to adding this property, continue to describe the education requirements in
+          the <a href="#description"><code translate="no" dir="ltr">description</code></a> property.
+        </p>
+        </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">experienceRequirements</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/OccupationalExperienceRequirements" class="external-link">OccupationalExperienceRequirements</a></code> or
+          <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The experience that's required for the job posting. If there aren't any
+          requirements, use the <code translate="no" dir="ltr">no requirements</code> value.</p>
+        <p>
+          In addition to adding this property, continue to describe the experience requirements in
+          the <a href="#description"><code translate="no" dir="ltr">description</code></a> property.
+        </p>
+        </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">experienceRequirements.monthsOfExperience</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+        <p>The minimum number of months of experience that are required for the job posting.</p>
+        <p>
+          If there are more complex experience requirements, use the experience that represents the minimum number that is required for a candidate. For example:</p>
+          <ul>
+            <li>
+            12 months as a chef <b>or</b> 24 months as a sous chef: This implies that the candidate may have either experience of the two required options, and the minimum requirement is 12 months.
+            </li>
+            <li>
+            12 months as a chef <b>and</b> 24 months as a sous chef: This is implies that the candidate has to fulfill all given requirements, and the minimum requirement is 24 months.
+            </li>
+        </ul>
+        </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">experienceInPlaceOfEducation</code></td>
+      <td>
+        <p>Boolean</p>
+        <p>If set to true, this property indicates whether a job posting will accept experience in
+          place of its formal educational qualifications. If set to true, you must include both the
+          <code translate="no" dir="ltr">experienceRequirements</code> and <code translate="no" dir="ltr">educationRequirements</code> properties.</p>
+        </td>
+    </tr>
+      </tbody>
+    </table>

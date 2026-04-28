@@ -1,0 +1,382 @@
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><h3 id="mainentity" data-text="         mainEntity         " tabindex="-1">
+        <code translate="no" dir="ltr">mainEntity</code>
+        </h3></td>
+      <td><code translate="no" dir="ltr"><a href="#question">Question</a></code>
+        <p>The <code translate="no" dir="ltr">Question</code> for this page must be nested under the
+          <code translate="no" dir="ltr">mainEntity</code> property of the <code translate="no" dir="ltr">QAPage</code> item.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><h3 id="answercount" data-text="answerCount" tabindex="-1"><code translate="no" dir="ltr">answerCount</code></h3></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code>
+        <p>The total number of answers to the question. For example, if there are 15 answers, but only the first 10 are
+        marked up due to pagination, this value would be 15. This may also be 0 for questions with no answers. <code translate="no" dir="ltr">answerCount</code> +
+            <code translate="no" dir="ltr">commentCount</code> should equal the total number of replies of any type.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Either <code translate="no" dir="ltr">acceptedAnswer</code> or <code translate="no" dir="ltr">suggestedAnswer</code></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Answer" class="external-link">Answer</a></code>
+        <p>To be eligible for the rich result, a question must have at least one answer – either an
+          <code translate="no" dir="ltr">acceptedAnswer</code> or a <code translate="no" dir="ltr">suggestedAnswer</code>. However, questions may not
+          have answers when they are first posted. For questions without answers, set
+          the <code translate="no" dir="ltr">answerCount</code> property to 0. Questions without answers aren't eligible for
+          the rich result.
+        </p>
+        <table>
+          <tbody><tr>
+            <td><h3 id="acceptedanswer" data-text="acceptedAnswer" tabindex="-1"><code translate="no" dir="ltr">acceptedAnswer</code></h3></td>
+            <td><code translate="no" dir="ltr"><a href="https://schema.org/Answer" class="external-link">Answer</a></code>
+              <p>A top answer to the question. There can be zero or more of these per question. This must
+                represent answers that are accepted in some way on your site. For example, accepted as a
+                top answer by question asker, a moderator, or a voting system. Other forms of sorting answers,
+              such as most-recent, must not be used to identify top answers.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><h3 id="suggestedanswer" data-text="suggestedAnswer" tabindex="-1"><code translate="no" dir="ltr">suggestedAnswer</code></h3></td>
+            <td><code translate="no" dir="ltr"><a href="https://schema.org/Answer" class="external-link">Answer</a></code>
+              <p>One possible answer, but not accepted as a top answer (<code translate="no" dir="ltr">acceptedAnswer</code>).
+                There can be zero or more of these per Question.</p>
+            </td>
+          </tr>
+        </tbody></table>
+      </td>
+    </tr>
+    <tr>
+      <td><h3 id="name" data-text="name" tabindex="-1"><code translate="no" dir="ltr">name</code></h3></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+        <p>The full text of the short form of the question. For example, "How many teaspoons in a cup?".</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+          <tbody><tr>
+            <td><h3 id="acceptedanswer" data-text="acceptedAnswer" tabindex="-1"><code translate="no" dir="ltr">acceptedAnswer</code></h3></td>
+            <td><code translate="no" dir="ltr"><a href="https://schema.org/Answer" class="external-link">Answer</a></code>
+              <p>A top answer to the question. There can be zero or more of these per question. This must
+                represent answers that are accepted in some way on your site. For example, accepted as a
+                top answer by question asker, a moderator, or a voting system. Other forms of sorting answers,
+              such as most-recent, must not be used to identify top answers.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><h3 id="suggestedanswer" data-text="suggestedAnswer" tabindex="-1"><code translate="no" dir="ltr">suggestedAnswer</code></h3></td>
+            <td><code translate="no" dir="ltr"><a href="https://schema.org/Answer" class="external-link">Answer</a></code>
+              <p>One possible answer, but not accepted as a top answer (<code translate="no" dir="ltr">acceptedAnswer</code>).
+                There can be zero or more of these per Question.</p>
+            </td>
+          </tr>
+        </tbody></table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><h3 id="author" data-text="author" tabindex="-1"><code translate="no" dir="ltr">author</code></h3></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code>
+        <p>Information about the author of the question. To help Google best understand
+          authors across various features, we recommend following the <a href="/search/docs/appearance/structured-data/article#author-bp">author markup best practices</a>.</p>
+        <p>Include as many properties that make sense for the author, using the supported properties
+          from <a href="/search/docs/appearance/structured-data/articl#article-types">article</a>
+          and <a href="/search/docs/appearance/structured-data/profile-page">profile page</a>
+          structured data as a guide.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><h3 id="author.url" data-text="author.url" tabindex="-1"><code translate="no" dir="ltr">author.url</code></h3></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>A link to a web page that uniquely identifies the author of the question, most likely a profile
+          page of the Q&amp;A website.  We recommend marking up that page using
+          <a href="/search/docs/appearance/structured-data/profile-page">profile page structured data</a>.</p>
+        </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">comment</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Comment" class="external-link">Comment</a></code></p>
+          <p>A comment pertaining to the question, if present. Ideally, this content isn't an answer:
+            it's usually a clarification or discussion about the question.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">commentCount</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code></p>
+          <p>The number of comments about this question, if applicable. <code translate="no" dir="ltr">answerCount</code> +
+            <code translate="no" dir="ltr">commentCount</code> should equal the total number of replies of any type.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">dateModified</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+          <p>The date and time the answer was edited, if applicable, in <a href="https://wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">datePublished</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+          <p>The date and time the question was posted in <a href="https://wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">digitalSourceType</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/IPTCDigitalSourceEnumeration" class="external-link">IPTCDigitalSourceEnumeration</a></code></p>
+        <p>The <code translate="no" dir="ltr">digitalSourceType</code> property indicates the type of digital source
+          associated with the content, if applicable. This property is particularly relevant for distinguishing
+          between human and AI or other machine-generated content.  Google supports the following values:</p>
+          <ul>
+            <li><code translate="no" dir="ltr">TrainedAlgorithmicMediaDigitalSource</code>: Indicates content created by a
+              trained model, such as an LLM.</li>
+            <li><code translate="no" dir="ltr">AlgorithmicMediaDigitalSource</code>: Indicates content created by a simpler
+              algorithmic process, such as an automatic reply bot.</li>
+          </ul>
+          <p>If this property is not specified, Google will assume the content is human-generated.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">image</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/ImageObject" class="external-link">ImageObject</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+          <p>Any inline images within the question, if applicable. If there aren't any images, don't
+          include default, icon, placeholder, or author images in this field.</p></td>
+    </tr>
+    <tr>
+      <td><h3 id="text" data-text="text" tabindex="-1"><code translate="no" dir="ltr">text</code></h3></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+        <p>The full text of the long form of the question. For example, "I'm cooking, and I need to know how many
+          teaspoons are in a cup. How many teaspoons are in 1 cup?"</p>
+      </td>
+    </tr>
+    <tr>
+      <td><h3 id="upvotecount" data-text="upvoteCount" tabindex="-1"><code translate="no" dir="ltr">upvoteCount</code></h3></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code>
+        <p>The total number of votes that this question has received. If the page supports upvotes and
+        downvotes, then set the <code translate="no" dir="ltr">upvoteCount</code> value to a single aggregate value that represents both upvotes and downvotes.
+        For example, if there are 5 upvotes and 2 downvotes, the aggregate value used for <code translate="no" dir="ltr">upvoteCount</code> is 3. If there
+        are 5 upvotes and downvotes are not supported, then the value for <code translate="no" dir="ltr">upvoteCount</code> is 5.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">video</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/VideoObject" class="external-link">VideoObject</a></code></p>
+      <p>Any inline videos within the question, if applicable.</p></td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><h3 id="text_1" data-text="text" tabindex="-1"><code translate="no" dir="ltr">text</code></h3></td>
+    <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+      <p>The full text of the answer. If only a portion is marked up, your
+      content may not be shown and Google cannot determine the best text to display.</p>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><h3 id="author_1" data-text="author" tabindex="-1"><code translate="no" dir="ltr">author</code></h3></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code>
+        <p>Information about the author of the answer. To help Google best understand
+          authors across various features, we recommend following the
+          <a href="/search/docs/appearance/structured-data/article#author-bp">author markup best practices</a>.</p>
+        <p>Include as many properties that makes sense for the author, using the supported properties
+          from <a href="/search/docs/appearance/structured-data/articl#article-types">article</a>
+          and <a href="/search/docs/appearance/structured-data/profile-page">profile page</a>
+          structured data as a guide.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><h3 id="author.url_1" data-text="author.url" tabindex="-1"><code translate="no" dir="ltr">author.url</code></h3></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>A link to a web page that uniquely identifies the author of the answer, most likely a profile
+          page of the Q&amp;A website.  We recommend marking up that page using
+          <a href="/search/docs/appearance/structured-data/profile-page">profile page structured data</a>.</p>
+        </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">comment</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Comment" class="external-link">Comment</a></code></p>
+          <p>A comment pertaining to the answer, usually a clarification or discussion about the answer,
+            if applicable.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">commentCount</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code></p>
+          <p>The number of comments about this answer, if applicable. This is particularly useful
+            if they are not all present in the comment markup.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">dateModified</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+          <p>The date and time the answer was edited in <a href="https://wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>,
+            if applicable.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">datePublished</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+          <p>The date and time the question was answered in
+            <a href="https://wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">digitalSourceType</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/IPTCDigitalSourceEnumeration" class="external-link">IPTCDigitalSourceEnumeration</a></code></p>
+        <p>The <code translate="no" dir="ltr">digitalSourceType</code> property indicates the type of digital source
+          associated with the content, if applicable. This property is particularly relevant for distinguishing
+          between human and AI or other machine-generated content.  Google supports the following values:</p>
+          <ul>
+            <li><code translate="no" dir="ltr">TrainedAlgorithmicMediaDigitalSource</code>: Indicates content created by a
+              trained model, such as an LLM.</li>
+            <li><code translate="no" dir="ltr">AlgorithmicMediaDigitalSource</code>: Indicates content created by a simpler
+              algorithmic process, such as an automatic reply bot.</li>
+          </ul>
+          <p>If this property is not specified, Google will assume the content is human-generated.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">image</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/ImageObject" class="external-link">ImageObject</a></code>
+         or <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+         <p>Any inline images within the answer, if applicable. If there aren't any images, don't
+          include default, icon, placeholder, or author images in this field.</p></td>
+    </tr>
+    <tr>
+      <td><h3 id="upvotecount_1" data-text="upvoteCount" tabindex="-1"><code translate="no" dir="ltr">upvoteCount</code></h3></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code>
+        <p>The total number of votes that this answer has received, if applicable. If the page supports upvotes and
+        downvotes, then set the <code translate="no" dir="ltr">upvoteCount</code> value to a single aggregate value that represents both upvotes and downvotes.
+        For example, if there are 5 upvotes and 2 downvotes, the aggregate value used for <code translate="no" dir="ltr">upvoteCount</code> is 3. If there
+        are 5 upvotes and downvotes are not supported, then the value for <code translate="no" dir="ltr">upvoteCount</code> is 5.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><h3 id="url" data-text="url" tabindex="-1"><code translate="no" dir="ltr">url</code></h3></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code>
+        <p>A URL that links directly to this answer. For example: <code translate="no" dir="ltr">https://www.examplesite.com/question#answer1</code></p>
+        <aside class="note">It is <b>strongly recommended</b> to provide a URL for each answer because
+        it improves the user experience when the user clicks through to your site.</aside>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">video</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/VideoObject" class="external-link">VideoObject</a></code>
+        or <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+      <p>Any inline videos within the answer, if applicable.</p></td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><h3 id="text_2" data-text="text" tabindex="-1"><code translate="no" dir="ltr">text</code></h3></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+        <p>The full text of the comment. If only a portion is marked up, Google might not be able
+          to determine the best text to display.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><h3 id="author_2" data-text="author" tabindex="-1"><code translate="no" dir="ltr">author</code></h3></td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code> or
+        <code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code>
+        <p>Information about the author of the comment. To help Google best understand authors across various features,
+          we recommend following the <a href="/search/docs/appearance/structured-data/article#author-bp">author markup best practices</a>.</p>
+        <p>Include as many properties that make sense for the author, using the supported properties
+          from <a href="/search/docs/appearance/structured-data/articl#article-types">article</a>
+          and <a href="/search/docs/appearance/structured-data/profile-page">profile page</a>
+          structured data as a guide.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><h3 id="author.url_2" data-text="author.url" tabindex="-1"><code translate="no" dir="ltr">author.url</code></h3></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>A link to a web page that uniquely identifies the author of the comment, most likely a profile
+          page of the Q&amp;A website.  We recommend marking up that page using
+          <a href="/search/docs/appearance/structured-data/profile-page">profile page structured data</a>.</p>
+        </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">comment</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Comment" class="external-link">Comment</a></code></p>
+          <p>A nested, threaded comment replying to the comment, if applicable.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">commentCount</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code></p>
+          <p>The number of comments about this comment, if applicable. This is particularly useful
+            if they are not all present in the comment markup.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">dateModified</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+          <p>The date and time the comment was edited in <a href="https://wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>,
+            if applicable.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">datePublished</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+          <p>The date and time the comment was written in <a href="https://wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">digitalSourceType</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/IPTCDigitalSourceEnumeration" class="external-link">IPTCDigitalSourceEnumeration</a></code></p>
+        <p>The <code translate="no" dir="ltr">digitalSourceType</code> property indicates the type of digital source
+          associated with the content, if applicable. This property is particularly relevant for distinguishing
+          between human and AI or other machine-generated content.  Google supports the following values:</p>
+          <ul>
+            <li><code translate="no" dir="ltr">TrainedAlgorithmicMediaDigitalSource</code>: Indicates content created by a
+              trained model, such as an LLM.</li>
+            <li><code translate="no" dir="ltr">AlgorithmicMediaDigitalSource</code>: Indicates content created by a simpler
+              algorithmic process, such as an automatic reply bot.</li>
+          </ul>
+          <p>If this property is not specified, Google will assume the content is human-generated.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">image</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/ImageObject" class="external-link">ImageObject</a></code>
+         or <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>Any inline images within the comment, if applicable. If there aren't any images, don't
+          include default, icon, placeholder, or author images in this field.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">video</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/VideoObject" class="external-link">VideoObject</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+      <p>Any inline videos within the comment, if applicable.</p></td>
+    </tr>
+  </tbody>
+</table>

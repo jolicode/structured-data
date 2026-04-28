@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CreditCardModel
 {
     public const DESCRIPTION = 'A card payment method of a particular brand or name.  Used to mark up a particular payment method and/or the financial product/service that supplies the card account.\n\nCommonly used values:\n\n* http://purl.org/goodrelations/v1#AmericanExpress\n* http://purl.org/goodrelations/v1#DinersClub\n* http://purl.org/goodrelations/v1#Discover\n* http://purl.org/goodrelations/v1#JCB\n* http://purl.org/goodrelations/v1#MasterCard\n* http://purl.org/goodrelations/v1#VISA';
     public const LABEL = 'CreditCard';
     public const NAME = 'schema:CreditCard';
-    public const PARENTS = ['LoanOrCreditModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\LoanOrCreditModel', 'PaymentCardModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PaymentCardModel'];
+    public const PARENTS = ['LoanOrCreditModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LoanOrCreditModel', 'PaymentCardModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PaymentCardModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

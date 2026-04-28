@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OnlineMarketplaceModel
 {
     public const DESCRIPTION = 'An eCommerce marketplace.';
     public const LABEL = 'OnlineMarketplace';
     public const NAME = 'schema:OnlineMarketplace';
-    public const PARENTS = ['OnlineStoreModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\OnlineStoreModel'];
+    public const PARENTS = ['OnlineStoreModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OnlineStoreModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/4470'];

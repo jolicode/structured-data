@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TranscriptModel
 {
     public const DESCRIPTION = 'If this MediaObject is an AudioObject or VideoObject, the transcript of that object.';
     public const LABEL = 'transcript';
     public const NAME = 'schema:transcript';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['AudioObject' => 'Jolicode\Vocabularies\SchemaOrg\Type\AudioObjectModel', 'VideoObject' => 'Jolicode\Vocabularies\SchemaOrg\Type\VideoObjectModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['AudioObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AudioObjectModel', 'VideoObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VideoObjectModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

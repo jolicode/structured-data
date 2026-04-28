@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TicketedSeatModel
 {
     public const DESCRIPTION = 'The seat associated with the ticket.';
     public const LABEL = 'ticketedSeat';
     public const NAME = 'schema:ticketedSeat';
-    public const VALUES = ['SeatModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\SeatModel'];
-    public const TYPES = ['Ticket' => 'Jolicode\Vocabularies\SchemaOrg\Type\TicketModel'];
+    public const VALUES = ['SeatModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SeatModel'];
+    public const TYPES = ['Ticket' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TicketModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

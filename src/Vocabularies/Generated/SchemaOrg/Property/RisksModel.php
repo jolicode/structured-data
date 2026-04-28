@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RisksModel
 {
     public const DESCRIPTION = 'Specific physiologic risks associated to the diet plan.';
     public const LABEL = 'risks';
     public const NAME = 'schema:risks';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Diet' => 'Jolicode\Vocabularies\SchemaOrg\Type\DietModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Diet' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DietModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

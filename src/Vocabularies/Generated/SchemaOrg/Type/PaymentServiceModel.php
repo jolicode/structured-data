@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PaymentServiceModel
 {
     public const DESCRIPTION = 'A Service to transfer funds from a person or organization to a beneficiary person or organization.';
     public const LABEL = 'PaymentService';
     public const NAME = 'schema:PaymentService';
-    public const PARENTS = ['FinancialProductModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\FinancialProductModel', 'PaymentMethodModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PaymentMethodModel'];
+    public const PARENTS = ['FinancialProductModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FinancialProductModel', 'PaymentMethodModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PaymentMethodModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

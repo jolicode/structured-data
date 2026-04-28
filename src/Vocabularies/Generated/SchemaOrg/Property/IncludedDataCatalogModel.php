@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IncludedDataCatalogModel
 {
     public const DESCRIPTION = 'A data catalog which contains this dataset (this property was previously \'catalog\', preferred name is now \'includedInDataCatalog\').';
     public const LABEL = 'includedDataCatalog';
     public const NAME = 'schema:includedDataCatalog';
-    public const VALUES = ['DataCatalogModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DataCatalogModel'];
-    public const TYPES = ['Dataset' => 'Jolicode\Vocabularies\SchemaOrg\Type\DatasetModel'];
+    public const VALUES = ['DataCatalogModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DataCatalogModel'];
+    public const TYPES = ['Dataset' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DatasetModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

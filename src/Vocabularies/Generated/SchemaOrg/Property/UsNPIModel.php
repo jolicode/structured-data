@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class UsNPIModel
 {
@@ -17,8 +17,8 @@ final class UsNPIModel
     is a unique 10-digit identification number issued to health care providers in the United States by the Centers for Medicare and Medicaid Services.';
     public const LABEL = 'usNPI';
     public const NAME = 'schema:usNPI';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Physician' => 'Jolicode\Vocabularies\SchemaOrg\Type\PhysicianModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Physician' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PhysicianModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

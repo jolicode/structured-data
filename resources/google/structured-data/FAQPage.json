@@ -1,0 +1,42 @@
+{
+    "name": "FAQPage",
+    "documentation": "https://developers.google.com/search/docs/appearance/structured-data/faqpage",
+    "specialRules": [],
+    "supportedTypes": [
+        "FAQPage"
+    ],
+    "properties": {
+        "mainEntity": {
+            "name": "mainEntity",
+            "severity": "required",
+            "supportedTypes": [
+                "Question"
+            ],
+            "properties": {
+                "acceptedAnswer": {
+                    "name": "acceptedAnswer",
+                    "severity": "required",
+                    "supportedTypes": [
+                        "Answer"
+                    ],
+                    "properties": {
+                        "text": {
+                            "name": "text",
+                            "severity": "required",
+                            "supportedTypes": [
+                                "Text"
+                            ]
+                        }
+                    }
+                },
+                "name": {
+                    "name": "name",
+                    "severity": "required",
+                    "supportedTypes": [
+                        "Text"
+                    ]
+                }
+            }
+        }
+    }
+}

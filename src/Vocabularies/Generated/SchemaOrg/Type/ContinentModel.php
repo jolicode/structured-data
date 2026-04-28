@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ContinentModel
 {
     public const DESCRIPTION = 'One of the continents (for example, Europe or Africa).';
     public const LABEL = 'Continent';
     public const NAME = 'schema:Continent';
-    public const PARENTS = ['LandformModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\LandformModel'];
+    public const PARENTS = ['LandformModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LandformModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

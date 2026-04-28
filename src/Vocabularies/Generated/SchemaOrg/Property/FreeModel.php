@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class FreeModel
 {
     public const DESCRIPTION = 'A flag to signal that the item, event, or place is accessible for free.';
     public const LABEL = 'free';
     public const NAME = 'schema:free';
-    public const VALUES = ['BooleanModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\BooleanModel'];
-    public const TYPES = ['PublicationEvent' => 'Jolicode\Vocabularies\SchemaOrg\Type\PublicationEventModel'];
+    public const VALUES = ['BooleanModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BooleanModel'];
+    public const TYPES = ['PublicationEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PublicationEventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

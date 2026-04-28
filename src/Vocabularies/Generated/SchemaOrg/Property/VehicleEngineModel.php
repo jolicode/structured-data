@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class VehicleEngineModel
 {
     public const DESCRIPTION = 'Information about the engine or engines of the vehicle.';
     public const LABEL = 'vehicleEngine';
     public const NAME = 'schema:vehicleEngine';
-    public const VALUES = ['EngineSpecificationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EngineSpecificationModel'];
-    public const TYPES = ['Vehicle' => 'Jolicode\Vocabularies\SchemaOrg\Type\VehicleModel'];
+    public const VALUES = ['EngineSpecificationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EngineSpecificationModel'];
+    public const TYPES = ['Vehicle' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VehicleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

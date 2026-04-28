@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ItineraryModel
 {
     public const DESCRIPTION = 'Destination(s) ( [[Place]] ) that make up a trip. For a trip where destination order is important use [[ItemList]] to specify that order (see examples).';
     public const LABEL = 'itinerary';
     public const NAME = 'schema:itinerary';
-    public const VALUES = ['ItemListModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ItemListModel', 'PlaceModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PlaceModel'];
-    public const TYPES = ['Trip' => 'Jolicode\Vocabularies\SchemaOrg\Type\TripModel'];
+    public const VALUES = ['ItemListModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ItemListModel', 'PlaceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlaceModel'];
+    public const TYPES = ['Trip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TripModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

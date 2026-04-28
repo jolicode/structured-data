@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BuyerModel
 {
     public const DESCRIPTION = 'A sub property of participant. The participant/person/organization that bought the object.';
     public const LABEL = 'buyer';
     public const NAME = 'schema:buyer';
-    public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PersonModel'];
-    public const TYPES = ['SellAction' => 'Jolicode\Vocabularies\SchemaOrg\Type\SellActionModel'];
+    public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['SellAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SellActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

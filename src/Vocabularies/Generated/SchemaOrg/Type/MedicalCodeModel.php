@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicalCodeModel
 {
     public const DESCRIPTION = 'A code for a medical entity.';
     public const LABEL = 'MedicalCode';
     public const NAME = 'schema:MedicalCode';
-    public const PARENTS = ['CategoryCodeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CategoryCodeModel', 'MedicalIntangibleModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalIntangibleModel'];
+    public const PARENTS = ['CategoryCodeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeModel', 'MedicalIntangibleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalIntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

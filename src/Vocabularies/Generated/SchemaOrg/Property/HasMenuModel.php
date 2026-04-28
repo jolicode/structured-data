@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HasMenuModel
 {
     public const DESCRIPTION = 'Either the actual menu as a structured representation, as text, or a URL of the menu.';
     public const LABEL = 'hasMenu';
     public const NAME = 'schema:hasMenu';
-    public const VALUES = ['MenuModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MenuModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\URLModel'];
-    public const TYPES = ['FoodEstablishment' => 'Jolicode\Vocabularies\SchemaOrg\Type\FoodEstablishmentModel'];
+    public const VALUES = ['MenuModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MenuModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
+    public const TYPES = ['FoodEstablishment' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FoodEstablishmentModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

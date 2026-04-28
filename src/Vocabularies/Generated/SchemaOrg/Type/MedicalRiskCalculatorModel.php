@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicalRiskCalculatorModel
 {
     public const DESCRIPTION = 'A complex mathematical calculation requiring an online calculator, used to assess prognosis. Note: use the url property of Thing to record any URLs for online calculators.';
     public const LABEL = 'MedicalRiskCalculator';
     public const NAME = 'schema:MedicalRiskCalculator';
-    public const PARENTS = ['MedicalRiskEstimatorModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalRiskEstimatorModel'];
+    public const PARENTS = ['MedicalRiskEstimatorModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalRiskEstimatorModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

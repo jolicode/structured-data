@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\EnumerationMember;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember;
 
 final class AlcoholConsiderationModel
 {

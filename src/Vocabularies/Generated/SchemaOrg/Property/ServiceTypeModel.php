@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ServiceTypeModel
 {
     public const DESCRIPTION = 'The type of service being offered, e.g. veterans\' benefits, emergency relief, etc.';
     public const LABEL = 'serviceType';
     public const NAME = 'schema:serviceType';
-    public const VALUES = ['GovernmentBenefitsTypeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\GovernmentBenefitsTypeModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Service' => 'Jolicode\Vocabularies\SchemaOrg\Type\ServiceModel'];
+    public const VALUES = ['GovernmentBenefitsTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GovernmentBenefitsTypeModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Service' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

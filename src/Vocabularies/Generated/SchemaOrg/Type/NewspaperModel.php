@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class NewspaperModel
 {
     public const DESCRIPTION = 'A publication containing information about varied topics that are pertinent to general information, a geographic area, or a specific subject matter (i.e. business, culture, education). Often published daily.';
     public const LABEL = 'Newspaper';
     public const NAME = 'schema:Newspaper';
-    public const PARENTS = ['PeriodicalModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PeriodicalModel'];
+    public const PARENTS = ['PeriodicalModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PeriodicalModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://bib.schema.org'];
     public const SOURCE = ['http://www.productontology.org/id/Newspaper'];

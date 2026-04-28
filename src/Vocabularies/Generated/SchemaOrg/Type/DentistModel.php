@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DentistModel
 {
     public const DESCRIPTION = 'A dentist.';
     public const LABEL = 'Dentist';
     public const NAME = 'schema:Dentist';
-    public const PARENTS = ['LocalBusinessModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\LocalBusinessModel', 'MedicalBusinessModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalBusinessModel', 'MedicalOrganizationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalOrganizationModel'];
+    public const PARENTS = ['LocalBusinessModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LocalBusinessModel', 'MedicalBusinessModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalBusinessModel', 'MedicalOrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalOrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

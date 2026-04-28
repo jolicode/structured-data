@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DietModel
 {
     public const DESCRIPTION = 'A strategy of regulating the intake of food to achieve or maintain a specific health-related goal.';
     public const LABEL = 'Diet';
     public const NAME = 'schema:Diet';
-    public const PARENTS = ['CreativeWorkModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CreativeWorkModel', 'LifestyleModificationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\LifestyleModificationModel'];
+    public const PARENTS = ['CreativeWorkModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'LifestyleModificationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LifestyleModificationModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

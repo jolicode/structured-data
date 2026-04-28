@@ -1,0 +1,44 @@
+{
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Dave's Steak House",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "148 W 51st St",
+        "addressLocality": "New York",
+        "addressRegion": "NY",
+        "postalCode": "10019",
+        "addressCountry": "US"
+    },
+    "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 40.761293,
+        "longitude": -73.982294
+    },
+    "url": "https://www.example.com/restaurant-locations/manhattan",
+    "telephone": "+12122459600",
+    "servesCuisine": "American",
+    "priceRange": "$$$",
+    "openingHoursSpecification": [
+        {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+                "Monday",
+                "Tuesday"
+            ],
+            "opens": "11:30",
+            "closes": "22:00"
+        },
+        {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+                "Wednesday",
+                "Thursday",
+                "Friday"
+            ],
+            "opens": "11:30",
+            "closes": "23:00"
+        }
+    ],
+    "menu": "https://www.example.com/menu"
+}

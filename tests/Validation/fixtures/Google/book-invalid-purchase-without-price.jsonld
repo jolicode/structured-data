@@ -1,0 +1,52 @@
+[
+    {
+        "@context": "https://schema.org",
+        "@type": "DataFeed",
+        "dataFeedElement": [
+            {
+                "@context": "https://schema.org",
+                "@type": "Book",
+                "@id": "https://example.com/work/the_catcher_in_the_rye",
+                "url": "https://example.com/work/the_catcher_in_the_rye",
+                "name": "The Catcher in the Rye",
+                "author": {
+                    "@type": "Person",
+                    "name": "J.D. Salinger"
+                },
+                "sameAs": "https://en.wikipedia.org/wiki/The_Catcher_in_the_Rye",
+                "workExample": [
+                    {
+                        "@type": "Book",
+                        "@id": "https://example.com/edition/the_catcher_in_the_rye_paperback",
+                        "isbn": "9787543321724",
+                        "bookFormat": "https://schema.org/Paperback",
+                        "inLanguage": "en",
+                        "url": "https://example.com/edition/the_catcher_in_the_rye_paperback",
+                        "potentialAction": {
+                            "@type": "ReadAction",
+                            "target": {
+                                "@type": "EntryPoint",
+                                "urlTemplate": "https://example.com/store/9787543321724",
+                                "actionPlatform": [
+                                    "https://schema.org/DesktopWebPlatform"
+                                ]
+                            },
+                            "expectsAcceptanceOf": {
+                                "@type": "Offer",
+                                "category": "purchase",
+                                "priceCurrency": "USD",
+                                "availabilityStarts": "2020-01-01T11:0:00-04:00",
+                                "availabilityEnds": "2050-06-30T23:59:00-04:00",
+                                "eligibleRegion": {
+                                    "@type": "Country",
+                                    "name": "US"
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ],
+        "dateModified": "2018-09-10T13:58:26.892Z"
+    }
+]

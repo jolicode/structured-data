@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LegalForceStatusModel
 {
     public const DESCRIPTION = 'A list of possible statuses for the legal force of a legislation.';
     public const LABEL = 'LegalForceStatus';
     public const NAME = 'schema:LegalForceStatus';
-    public const PARENTS = ['StatusEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\StatusEnumerationModel'];
+    public const PARENTS = ['StatusEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\StatusEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['InForceModel' => 'EnumerationMember\InForceModel', 'NotInForceModel' => 'EnumerationMember\NotInForceModel', 'PartiallyInForceModel' => 'EnumerationMember\PartiallyInForceModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1156', 'https://op.europa.eu/en/web/eu-vocabularies/model/-/resource/dataset/eli'];

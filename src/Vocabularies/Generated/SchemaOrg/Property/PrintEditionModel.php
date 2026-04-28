@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PrintEditionModel
 {
     public const DESCRIPTION = 'The edition of the print product in which the NewsArticle appears.';
     public const LABEL = 'printEdition';
     public const NAME = 'schema:printEdition';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['NewsArticle' => 'Jolicode\Vocabularies\SchemaOrg\Type\NewsArticleModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['NewsArticle' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NewsArticleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -1,0 +1,37 @@
+{
+  "@context": "https://schema.org",
+  "@type": "VacationRental",
+  "name": "My Beautiful Vacation Rental",
+  "identifier": "abc123",
+  "latitude": 42.12345,
+  "longitude": 101.12345,
+  "containsPlace": {
+    "@type": "Accommodation",
+    "occupancy": {
+      "@type": "QuantitativeValue",
+      "value": 5
+    },
+    "numberOfBedrooms": 3,
+    "numberOfBathroomsTotal": 1.5,
+    "numberOfRooms": 5
+  },
+  "image": [
+    "https://example.com/mylisting/unit_image1.png",
+    "https://example.com/mylisting/unit_image2.png",
+    "https://example.com/mylisting/unit_image3.png",
+    "https://example.com/mylisting/unit_image4.png",
+    "https://example.com/mylisting/unit_image5.png",
+    "https://example.com/mylisting/unit_image6.png",
+    "https://example.com/mylisting/unit_image7.png",
+    "https://example.com/mylisting/unit_image8.png"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "US",
+    "addressLocality": "Mountain View",
+    "addressRegion": "California",
+    "postalCode": "94043",
+    "streetAddress": "1600 Amphitheatre Pkwy, Unit 6E"
+  },
+  "description": "A great vacation rental in the perfect neighborhood."
+}

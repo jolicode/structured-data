@@ -1,0 +1,281 @@
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">author</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code> or
+        <code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code></p>
+        <p>The author of the review. The reviewer's name must be a valid name. For example,
+          "50% off until Saturday" is not a valid name for a reviewer.</p>
+        <p>This field must be shorter than 100 characters. If it's longer than 100 characters,
+          your page won't be eligible for an author-based review snippet.</p>
+        <p>
+          To help Google best
+          understand authors across various features, consider following the
+          <a href="/search/docs/appearance/structured-data/article#author-bp">author markup best practices</a>.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">itemReviewed</code> (if review is not a <a href="#embedded-review-example">Nested Review</a>)
+      </td>
+      <td>
+        <p>One of the valid types</p>
+        <p>The item that is being reviewed. However, if the review is nested into another
+          schema.org type using the
+          <code translate="no" dir="ltr"><a href="https://schema.org/review" class="external-link">review</a></code> property,
+          omit the <code translate="no" dir="ltr">itemReviewed</code> property (we assume the parent item is the reviewed item).</p>
+          <p>
+            The valid types for the reviewed item are:</p>
+          <ul>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/Book" class="external-link">Book</a></code></li>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/Course" class="external-link">Course</a></code></li>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/CreativeWorkSeason" class="external-link">CreativeWorkSeason</a></code></li>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/CreativeWorkSeries" class="external-link">CreativeWorkSeries</a></code></li>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/Episode" class="external-link">Episode</a></code></li>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/Event" class="external-link">Event</a></code></li>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/Game" class="external-link">Game</a></code></li>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/HowTo" class="external-link">HowTo</a></code></li>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/LocalBusiness" class="external-link">LocalBusiness</a></code></li>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/MediaObject" class="external-link">MediaObject</a></code></li>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/Movie" class="external-link">Movie</a></code></li>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/MusicPlaylist" class="external-link">MusicPlaylist</a></code></li>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/MusicRecording" class="external-link">MusicRecording</a></code></li>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code></li>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/Product" class="external-link">Product</a></code></li>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/Recipe" class="external-link">Recipe</a></code></li>
+            <li><code translate="no" dir="ltr"><a href="https://schema.org/SoftwareApplication" class="external-link">SoftwareApplication</a></code></li>
+          </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">itemReviewed.name</code> or parent item <code translate="no" dir="ltr">name</code> in <a href="#embedded-review-example">Nested Review</a>
+      </td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The name of the item that is being reviewed. If the review is nested into another
+          schema.org type using the
+          <code translate="no" dir="ltr"><a href="https://schema.org/review" class="external-link">review</a></code> property,
+          you still need to provide the <code translate="no" dir="ltr">name</code> of the thing that is being reviewed. For example:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="Name of the reviewed item" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org/"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Game"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Firefly"</span><span class="devsite-syntax-p">,</span></strong>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"review"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Review"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"reviewRating"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Rating"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"ratingValue"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">5</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"author"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Person"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"John Doe"</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+        </td>
+      </tr>
+      <tr>
+       <td>
+         <code translate="no" dir="ltr">reviewRating</code>
+       </td>
+       <td>
+         <p><code translate="no" dir="ltr"><a href="https://schema.org/Rating" class="external-link">Rating</a></code></p>
+         <p>The rating given in this review. The rating can be a nested
+           <a href="https://schema.org/Rating" class="external-link"><code translate="no" dir="ltr">Rating</code></a> or more specific subtype. The most typical
+           subtype is <a href="#aggregated-rating-type-definition"><code translate="no" dir="ltr">AggregateRating</code></a>.</p>
+       </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">reviewRating.ratingValue</code>
+        </td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code> or
+             <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+          <p>A numerical quality rating for the item, either a number, fraction, or percentage (for
+            example, <code translate="no" dir="ltr">4</code>, <code translate="no" dir="ltr">60%</code>, or <code translate="no" dir="ltr">6 / 10</code>).
+            Google understands the scale for fractions and percentages, since the scale is
+            implied in the fraction itself or the percentage. The default scale for numbers is a
+            5-point scale, where 1 is the lowest value and 5 is the highest value.  If another scale is
+            intended, use <code translate="no" dir="ltr">bestRating</code> and <code translate="no" dir="ltr">worstRating</code>.</p>
+          <p>For decimal numbers, use a dot instead of a comma to specify the value (for example
+            <code translate="no" dir="ltr">4.4</code> instead of <code translate="no" dir="ltr">4,4</code>). In Microdata and RDFa, you can use
+            <code translate="no" dir="ltr">content</code> attributes to override the visible content. That way, you can show
+            the user whatever style convention you want, while also satisfying the dot requirement
+            for structured data. For example:</p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Overriding the visible content in markup" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">&lt;span itemprop="ratingValue" content="4.4"&gt;4,4&lt;/span&gt; stars</pre></devsite-code>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+    <tbody>
+      <tr>
+        <td><code translate="no" dir="ltr">datePublished</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code></p>
+          <p>The date that the review was published, in
+            <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601</a> date
+            format.
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">reviewRating.bestRating</code>
+        </td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+          <p>The highest value allowed in this rating system. If <code translate="no" dir="ltr">bestRating</code>
+          is omitted, 5 is assumed.</p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">reviewRating.worstRating</code>
+        </td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+          <p>The lowest value allowed in this rating system. If <code translate="no" dir="ltr">worstRating</code>
+          is omitted, 1 is assumed.</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">itemReviewed</code> (if aggregate rating is not a <a href="#embedded-aggregate-rating">Nested Aggregate Rating</a>)
+      </td>
+      <td>
+        <p>One of the valid types</p>
+          <p>The item that is being rated. However, if the aggregate rating is nested into
+            another schema.org type using the
+            <code translate="no" dir="ltr"><a href="https://schema.org/aggregateRating" class="external-link">aggregateRating</a></code>
+            property, omit the <code translate="no" dir="ltr">itemReviewed</code> property.</p>
+            <p>
+              The valid types for the reviewed item are:</p>
+            <ul>
+              <li><code translate="no" dir="ltr"><a href="https://schema.org/Book" class="external-link">Book</a></code></li>
+              <li><code translate="no" dir="ltr"><a href="https://schema.org/Course" class="external-link">Course</a></code></li>
+              <li><code translate="no" dir="ltr"><a href="https://schema.org/CreativeWorkSeason" class="external-link">CreativeWorkSeason</a></code></li>
+              <li><code translate="no" dir="ltr"><a href="https://schema.org/CreativeWorkSeries" class="external-link">CreativeWorkSeries</a></code></li>
+              <li><code translate="no" dir="ltr"><a href="https://schema.org/Episode" class="external-link">Episode</a></code></li>
+              <li><code translate="no" dir="ltr"><a href="https://schema.org/Event" class="external-link">Event</a></code></li>
+              <li><code translate="no" dir="ltr"><a href="https://schema.org/Game" class="external-link">Game</a></code></li>
+              <li><code translate="no" dir="ltr"><a href="https://schema.org/HowTo" class="external-link">HowTo</a></code></li>
+              <li><code translate="no" dir="ltr"><a href="https://schema.org/LocalBusiness" class="external-link">LocalBusiness</a></code></li>
+              <li><code translate="no" dir="ltr"><a href="https://schema.org/MediaObject" class="external-link">MediaObject</a></code></li>
+              <li><code translate="no" dir="ltr"><a href="https://schema.org/Movie" class="external-link">Movie</a></code></li>
+              <li><code translate="no" dir="ltr"><a href="https://schema.org/MusicPlaylist" class="external-link">MusicPlaylist</a></code></li>
+              <li><code translate="no" dir="ltr"><a href="https://schema.org/MusicRecording" class="external-link">MusicRecording</a></code></li>
+              <li><code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code></li>
+              <li><code translate="no" dir="ltr"><a href="https://schema.org/Product" class="external-link">Product</a></code></li>
+              <li><code translate="no" dir="ltr"><a href="https://schema.org/Recipe" class="external-link">Recipe</a></code></li>
+              <li><code translate="no" dir="ltr"><a href="https://schema.org/SoftwareApplication" class="external-link">SoftwareApplication</a></code></li>
+            </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">itemReviewed.name</code> or parent item <code translate="no" dir="ltr">name</code> in <a href="#embedded-aggregate-rating">Nested Aggregate Rating</a>
+      </td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The name of the item that is being reviewed. If the review is nested into another
+          schema.org type using the
+          <code translate="no" dir="ltr"><a href="https://schema.org/aggregateRating" class="external-link">aggregateRating</a></code> property,
+          you still need to provide the <code translate="no" dir="ltr">name</code> of the thing that is being reviewed. For example:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="Name of the reviewed item" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@context"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://schema.org/"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Game"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Firefly"</span><span class="devsite-syntax-p">,</span></strong>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"aggregateRating"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"AggregateRating"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"ratingValue"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">88</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"bestRating"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">100</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"ratingCount"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">20</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">ratingCount</code>
+      </td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+        <p>The total number of ratings for the item on your site. At least one of
+          <code translate="no" dir="ltr">ratingCount</code> or <code translate="no" dir="ltr">reviewCount</code> is required.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">reviewCount</code>
+      </td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+        <p>Specifies the number of people who provided a review with or without an accompanying
+          rating. At least one of <code translate="no" dir="ltr">ratingCount</code> or <code translate="no" dir="ltr">reviewCount</code> is required.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">ratingValue</code>
+      </td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code> or
+           <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>The average rating for the item's quality using a numerical rating of either a number,
+          fraction, or percentage (for example, <code translate="no" dir="ltr">4</code>, <code translate="no" dir="ltr">60%</code>, or <code translate="no" dir="ltr">6 / 10</code>).
+          Google understands the scale for fractions and percentages, since the scale is
+          implied in the fraction itself or the percentage. The default scale for numbers is a
+          5-point scale, where 1 is the lowest value and 5 is the highest value.  If another scale is
+          intended, use <code translate="no" dir="ltr">bestRating</code> and <code translate="no" dir="ltr">worstRating</code>.</p>
+        <p>For decimal numbers, use a dot instead of a comma to specify the value (for example
+          <code translate="no" dir="ltr">4.4</code> instead of <code translate="no" dir="ltr">4,4</code>). In Microdata and RDFa, you can use
+          <code translate="no" dir="ltr">content</code> attributes to override the visible content. That way, you can show
+          the user whatever style convention you want, while also satisfying the dot requirement
+          for structured data. For example:</p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Overriding the visible content in markup" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">&lt;span itemprop="ratingValue" content="4.4"&gt;4,4&lt;/span&gt; stars</pre></devsite-code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+<colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">bestRating</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+        <p>The highest value allowed in this rating system. If <code translate="no" dir="ltr">bestRating</code>
+          is omitted, 5 is assumed.
+        </p></td>
+   </tr>
+   <tr>
+      <td><code translate="no" dir="ltr">worstRating</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+        <p>The lowest value allowed in this rating system. If <code translate="no" dir="ltr">worstRating</code>
+          is omitted, 1 is assumed. </p></td>
+   </tr>
+  </tbody>
+</table>

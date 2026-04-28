@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ShippingDestinationModel
 {
     public const DESCRIPTION = 'indicates (possibly multiple) shipping destinations. These can be defined in several ways, e.g. postalCode ranges.';
     public const LABEL = 'shippingDestination';
     public const NAME = 'schema:shippingDestination';
-    public const VALUES = ['DefinedRegionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DefinedRegionModel'];
-    public const TYPES = ['DeliveryTimeSettings' => 'Jolicode\Vocabularies\SchemaOrg\Type\DeliveryTimeSettingsModel', 'OfferShippingDetails' => 'Jolicode\Vocabularies\SchemaOrg\Type\OfferShippingDetailsModel', 'ShippingConditions' => 'Jolicode\Vocabularies\SchemaOrg\Type\ShippingConditionsModel', 'ShippingRateSettings' => 'Jolicode\Vocabularies\SchemaOrg\Type\ShippingRateSettingsModel'];
+    public const VALUES = ['DefinedRegionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedRegionModel'];
+    public const TYPES = ['DeliveryTimeSettings' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DeliveryTimeSettingsModel', 'OfferShippingDetails' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferShippingDetailsModel', 'ShippingConditions' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ShippingConditionsModel', 'ShippingRateSettings' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ShippingRateSettingsModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

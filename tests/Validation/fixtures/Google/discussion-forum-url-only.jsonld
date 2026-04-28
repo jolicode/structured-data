@@ -1,0 +1,12 @@
+{
+    "@context": "https://schema.org",
+    "@type": "DiscussionForumPosting",
+    "headline": "Very Popular Thread",
+    "url": "https://example.com/post/very-popular-thread",
+    "author": {
+        "@type": "Person",
+        "name": "Katie Pope",
+        "url": "https://example.com/user/katie-pope"
+    },
+    "datePublished": "2024-03-01T08:34:34+02:00"
+}

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5628834b384d007df5ba0a9d6bf3d613",
+    "content-hash": "eb62692e60bde5dfbfca15c8d5feb223",
     "packages": [
         {
             "name": "league/uri",
@@ -1786,7 +1786,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.2"
+        "php": ">=8.4"
     },
     "platform-dev": {},
     "plugin-api-version": "2.9.0"

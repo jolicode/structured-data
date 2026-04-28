@@ -1,0 +1,16 @@
+{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Angry Birds",
+    "operatingSystem": "ANDROID",
+    "applicationCategory": "GameApplication",
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": 4.6,
+        "ratingCount": 8864
+    },
+    "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD"
+    }
+}

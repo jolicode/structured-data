@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HasDefinedTermModel
 {
     public const DESCRIPTION = 'A Defined Term contained in this term set.';
     public const LABEL = 'hasDefinedTerm';
     public const NAME = 'schema:hasDefinedTerm';
-    public const VALUES = ['DefinedTermModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DefinedTermModel'];
-    public const TYPES = ['DefinedTermSet' => 'Jolicode\Vocabularies\SchemaOrg\Type\DefinedTermSetModel', 'Taxon' => 'Jolicode\Vocabularies\SchemaOrg\Type\TaxonModel'];
+    public const VALUES = ['DefinedTermModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel'];
+    public const TYPES = ['DefinedTermSet' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermSetModel', 'Taxon' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TaxonModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

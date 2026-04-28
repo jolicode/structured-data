@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DateIssuedModel
 {
     public const DESCRIPTION = 'The date the ticket was issued.';
     public const LABEL = 'dateIssued';
     public const NAME = 'schema:dateIssued';
-    public const VALUES = ['DateModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DateTimeModel'];
-    public const TYPES = ['Ticket' => 'Jolicode\Vocabularies\SchemaOrg\Type\TicketModel'];
+    public const VALUES = ['DateModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['Ticket' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TicketModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

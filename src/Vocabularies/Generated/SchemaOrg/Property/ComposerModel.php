@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ComposerModel
 {
     public const DESCRIPTION = 'The person or organization who wrote a composition, or who is the composer of a work performed at some event.';
     public const LABEL = 'composer';
     public const NAME = 'schema:composer';
-    public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PersonModel'];
-    public const TYPES = ['Event' => 'Jolicode\Vocabularies\SchemaOrg\Type\EventModel', 'MusicComposition' => 'Jolicode\Vocabularies\SchemaOrg\Type\MusicCompositionModel'];
+    public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['Event' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel', 'MusicComposition' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicCompositionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MolecularFormulaModel
 {
     public const DESCRIPTION = 'The empirical formula is the simplest whole number ratio of all the atoms in a molecule.';
     public const LABEL = 'molecularFormula';
     public const NAME = 'schema:molecularFormula';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['MolecularEntity' => 'Jolicode\Vocabularies\SchemaOrg\Type\MolecularEntityModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MolecularEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MolecularEntityModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class FatContentModel
 {
     public const DESCRIPTION = 'The number of grams of fat.';
     public const LABEL = 'fatContent';
     public const NAME = 'schema:fatContent';
-    public const VALUES = ['MassModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MassModel'];
-    public const TYPES = ['NutritionInformation' => 'Jolicode\Vocabularies\SchemaOrg\Type\NutritionInformationModel'];
+    public const VALUES = ['MassModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MassModel'];
+    public const TYPES = ['NutritionInformation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NutritionInformationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicalObservationalStudyDesignModel
 {
     public const DESCRIPTION = 'Design models for observational medical studies. Enumerated type.';
     public const LABEL = 'MedicalObservationalStudyDesign';
     public const NAME = 'schema:MedicalObservationalStudyDesign';
-    public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalEnumerationModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['CaseSeriesModel' => 'EnumerationMember\CaseSeriesModel', 'CohortStudyModel' => 'EnumerationMember\CohortStudyModel', 'CrossSectionalModel' => 'EnumerationMember\CrossSectionalModel', 'LongitudinalModel' => 'EnumerationMember\LongitudinalModel', 'ObservationalModel' => 'EnumerationMember\ObservationalModel', 'RegistryModel' => 'EnumerationMember\RegistryModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

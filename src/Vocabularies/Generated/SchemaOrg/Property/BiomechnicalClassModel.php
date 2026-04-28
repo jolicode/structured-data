@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BiomechnicalClassModel
 {
     public const DESCRIPTION = 'The biomechanical properties of the bone.';
     public const LABEL = 'biomechnicalClass';
     public const NAME = 'schema:biomechnicalClass';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Joint' => 'Jolicode\Vocabularies\SchemaOrg\Type\JointModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Joint' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\JointModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BodyMeasurementTypeEnumerationModel
 {
     public const DESCRIPTION = 'Enumerates types (or dimensions) of a person\'s body measurements, for example for fitting of clothes.';
     public const LABEL = 'BodyMeasurementTypeEnumeration';
     public const NAME = 'schema:BodyMeasurementTypeEnumeration';
-    public const PARENTS = ['MeasurementTypeEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MeasurementTypeEnumerationModel'];
+    public const PARENTS = ['MeasurementTypeEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MeasurementTypeEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['BodyMeasurementArmModel' => 'EnumerationMember\BodyMeasurementArmModel', 'BodyMeasurementBustModel' => 'EnumerationMember\BodyMeasurementBustModel', 'BodyMeasurementChestModel' => 'EnumerationMember\BodyMeasurementChestModel', 'BodyMeasurementFootModel' => 'EnumerationMember\BodyMeasurementFootModel', 'BodyMeasurementHandModel' => 'EnumerationMember\BodyMeasurementHandModel', 'BodyMeasurementHeadModel' => 'EnumerationMember\BodyMeasurementHeadModel', 'BodyMeasurementHeightModel' => 'EnumerationMember\BodyMeasurementHeightModel', 'BodyMeasurementHipsModel' => 'EnumerationMember\BodyMeasurementHipsModel', 'BodyMeasurementInsideLegModel' => 'EnumerationMember\BodyMeasurementInsideLegModel', 'BodyMeasurementNeckModel' => 'EnumerationMember\BodyMeasurementNeckModel', 'BodyMeasurementUnderbustModel' => 'EnumerationMember\BodyMeasurementUnderbustModel', 'BodyMeasurementWaistModel' => 'EnumerationMember\BodyMeasurementWaistModel', 'BodyMeasurementWeightModel' => 'EnumerationMember\BodyMeasurementWeightModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];

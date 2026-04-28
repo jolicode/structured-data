@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicalGuidelineRecommendationModel
 {
     public const DESCRIPTION = 'A guideline recommendation that is regarded as efficacious and where quality of the data supporting the recommendation is sound.';
     public const LABEL = 'MedicalGuidelineRecommendation';
     public const NAME = 'schema:MedicalGuidelineRecommendation';
-    public const PARENTS = ['MedicalGuidelineModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalGuidelineModel'];
+    public const PARENTS = ['MedicalGuidelineModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalGuidelineModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

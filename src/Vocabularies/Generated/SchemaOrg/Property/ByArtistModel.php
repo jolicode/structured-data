@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ByArtistModel
 {
     public const DESCRIPTION = 'The artist that performed this album or recording.';
     public const LABEL = 'byArtist';
     public const NAME = 'schema:byArtist';
-    public const VALUES = ['MusicGroupModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MusicGroupModel', 'PersonModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PersonModel'];
-    public const TYPES = ['MusicAlbum' => 'Jolicode\Vocabularies\SchemaOrg\Type\MusicAlbumModel', 'MusicRecording' => 'Jolicode\Vocabularies\SchemaOrg\Type\MusicRecordingModel'];
+    public const VALUES = ['MusicGroupModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicGroupModel', 'PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['MusicAlbum' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicAlbumModel', 'MusicRecording' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicRecordingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

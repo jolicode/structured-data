@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OffersPrescriptionByMailModel
 {
     public const DESCRIPTION = 'Whether prescriptions can be delivered by mail.';
     public const LABEL = 'offersPrescriptionByMail';
     public const NAME = 'schema:offersPrescriptionByMail';
-    public const VALUES = ['BooleanModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\BooleanModel'];
-    public const TYPES = ['HealthPlanFormulary' => 'Jolicode\Vocabularies\SchemaOrg\Type\HealthPlanFormularyModel'];
+    public const VALUES = ['BooleanModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BooleanModel'];
+    public const TYPES = ['HealthPlanFormulary' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HealthPlanFormularyModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ApartmentModel
 {
     public const DESCRIPTION = 'An apartment (in American English) or flat (in British English) is a self-contained housing unit (a type of residential real estate) that occupies only part of a building (source: Wikipedia, the free encyclopedia, see <a href="http://en.wikipedia.org/wiki/Apartment">http://en.wikipedia.org/wiki/Apartment</a>).';
     public const LABEL = 'Apartment';
     public const NAME = 'schema:Apartment';
-    public const PARENTS = ['AccommodationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AccommodationModel'];
+    public const PARENTS = ['AccommodationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AccommodationModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

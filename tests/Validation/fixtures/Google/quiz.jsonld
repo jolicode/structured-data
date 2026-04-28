@@ -1,0 +1,40 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Quiz",
+    "about": {
+        "@type": "Thing",
+        "name": "Cell transport"
+    },
+    "educationalAlignment": [
+        {
+            "@type": "AlignmentObject",
+            "alignmentType": "educationalSubject",
+            "targetName": "Biology"
+        },
+        {
+            "@type": "AlignmentObject",
+            "alignmentType": "educationalLevel",
+            "targetName": "Fifth grade"
+        }
+    ],
+    "hasPart": [
+        {
+            "@type": "Question",
+            "eduQuestionType": "Flashcard",
+            "text": "A protein on the surface of HIV can attach to proteins on the surface of healthy human cells. What are the attachment sites on the surface of the cells known as?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Cell receptors"
+            }
+        },
+        {
+            "@type": "Question",
+            "eduQuestionType": "Flashcard",
+            "text": "What type of membrane allows selective transport in a cell?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Cell membrane"
+            }
+        }
+    ]
+}

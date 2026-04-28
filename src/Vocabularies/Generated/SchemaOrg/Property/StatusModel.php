@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class StatusModel
 {
     public const DESCRIPTION = 'The status of the study (enumerated).';
     public const LABEL = 'status';
     public const NAME = 'schema:status';
-    public const VALUES = ['EventStatusTypeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EventStatusTypeModel', 'MedicalStudyStatusModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalStudyStatusModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['MedicalCondition' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalConditionModel', 'MedicalProcedure' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalProcedureModel', 'MedicalStudy' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalStudyModel'];
+    public const VALUES = ['EventStatusTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventStatusTypeModel', 'MedicalStudyStatusModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalStudyStatusModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MedicalCondition' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel', 'MedicalProcedure' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalProcedureModel', 'MedicalStudy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalStudyModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

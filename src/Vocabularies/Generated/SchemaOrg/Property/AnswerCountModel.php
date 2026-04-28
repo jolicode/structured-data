@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AnswerCountModel
 {
     public const DESCRIPTION = 'The number of answers this question has received.';
     public const LABEL = 'answerCount';
     public const NAME = 'schema:answerCount';
-    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\IntegerModel'];
-    public const TYPES = ['Question' => 'Jolicode\Vocabularies\SchemaOrg\Type\QuestionModel'];
+    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['Question' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuestionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -1,0 +1,399 @@
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+    <tr id="listitem">
+      <td><code translate="no" dir="ltr">itemListElement</code></td>
+      <td>
+        <p><a href="https://schema.org/ListItem" class="external-link"><code translate="no" dir="ltr">ListItem</code></a>
+        </p>
+        <p>
+          List of items. To specify a list, define an <code translate="no" dir="ltr">ItemList</code> that contains at least
+          three <code translate="no" dir="ltr">itemListElement.item</code> elements.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">itemListElement.item</code>
+      </td>
+      <td>
+        <p>Subtype of <code translate="no" dir="ltr">LocalBusiness</code>, <code translate="no" dir="ltr">Product</code>, or <code translate="no" dir="ltr">Event</code>
+        </p>
+        <p>
+          An individual item in a list. Populate this object with:
+        </p>
+        <ul>
+          <li>The <a href="#common">general properties</a> that all carousels must have (<code translate="no" dir="ltr">image</code>,
+            <code translate="no" dir="ltr">url</code>, <code translate="no" dir="ltr">name</code>)</li>
+          <li>Any other properties required for this data type, as described for your content type:
+            <ul>
+              <li><a href="#localbusiness"><code translate="no" dir="ltr">LocalBusiness</code> and its subtypes</a></li>
+              <li><a href="#product"><code translate="no" dir="ltr">Product</code></a></li>
+              <li><a href="#event"><code translate="no" dir="ltr">Event</code></a></li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          <b>Example</b>: For a hotel, provide <code translate="no" dir="ltr">priceRange</code> and <code translate="no" dir="ltr">amenityFeature</code> properties.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">itemListElement.position</code>
+      </td>
+      <td>
+        <p>
+          <a href="https://schema.org/Integer" class="external-link"><code translate="no" dir="ltr">Integer</code></a>
+        </p>
+        <p>
+          The item's position in the carousel. This is a 1-based number.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">image</code></td>
+      <td>
+        <p>Repeated <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code> or
+          <code translate="no" dir="ltr"><a href="https://schema.org/ImageObject" class="external-link">ImageObject</a></code>
+        </p>
+        <p>
+          One or more images of the entity or item (for example, an image of the hotel). Don't include
+          logos in this image property.
+        </p>
+        
+<p>Additional image guidelines:
+  </p><ul>
+    <li>Image URLs must be crawlable and indexable. To check if Google can access your URLs, use
+      the <a href="https://support.google.com/webmasters/answer/9012289" class="external-link">URL Inspection tool</a>.</li>
+    <li>Images must represent the marked up content.</li>
+    <li>Images must be in a file format that's <a href="/search/docs/appearance/google-images#supported-image-formats">supported by Google Images</a>.</li>
+    <li>For best results, we recommend providing multiple high-resolution images (minimum of 50K pixels when
+      multiplying width and height) with the following aspect ratios: 16x9, 4x3, and 1x1.</li>
+  </ul>
+          <p>For example:</p>
+  <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="multiple images example in json-ld" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"image": [
+  "https://example.com/photos/1x1/photo.jpg",
+  "https://example.com/photos/4x3/photo.jpg",
+  "https://example.com/photos/16x9/photo.jpg"
+]</pre></devsite-code>
+  
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">name</code></td>
+      <td>
+        <p>
+          <a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a>
+        </p>
+        <p>
+          The string name of the entity or item. For example, the name of a hotel or a vacation
+          listing. The <code translate="no" dir="ltr">item.name</code> is displayed as the title of an individual item in
+          the carousel. HTML formatting is ignored.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">url</code></td>
+      <td>
+        <p>
+          <a href="https://schema.org/URL" class="external-link"><code translate="no" dir="ltr">URL</code></a>
+        </p>
+        <p>
+          The canonical URL of the item detail page (for example, the standalone page for a single
+          hotel or vacation listing that was referenced in the summary page). All URLs in the
+          list must be unique, but live on the same domain (the same domain, or sub or super domain
+          as the summary page).
+        </p>
+        <aside class="note">Anchor links within a summary or category page aren't supported; your
+          site must have standalone detail pages for each item in the list.</aside>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">aggregateRating.bestRating</code>
+      </td>
+      <td>
+        <p>
+          <a href="https://schema.org/Number" class="external-link"><code translate="no" dir="ltr">Number</code></a>
+        </p>
+        <p>
+          The highest value allowed in this rating system (for example, <code translate="no" dir="ltr">5 / 10</code>). If
+          <code translate="no" dir="ltr">bestRating</code> is omitted, <code translate="no" dir="ltr">5</code> is assumed.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">aggregateRating.ratingCount</code>
+      </td>
+      <td>
+        <p>
+          <a href="https://schema.org/Number" class="external-link"><code translate="no" dir="ltr">Number</code></a>
+        </p>
+        <p>
+          The total number of ratings for the item on your site.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">aggregateRating.ratingValue</code>
+      </td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code> or
+          <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>A numerical quality rating for the item, either a number, fraction, or percentage (for
+          example, <code translate="no" dir="ltr">4</code>, <code translate="no" dir="ltr">60%</code>, or <code translate="no" dir="ltr">6 / 10</code>).
+          Google understands the scale for fractions and percentages, since the scale is
+          implied in the fraction itself or the percentage. The default scale for numbers is a
+          5-point scale, where 1 is the lowest value and 5 is the highest value.  If another scale is
+          intended, use <code translate="no" dir="ltr">bestRating</code> and <code translate="no" dir="ltr">worstRating</code>.</p>
+        <p>For decimal numbers, use a dot instead of a comma to specify the value (for example
+          <code translate="no" dir="ltr">4.4</code> instead of <code translate="no" dir="ltr">4,4</code>). In Microdata and RDFa, you can use
+          <code translate="no" dir="ltr">content</code> attributes to override the visible content. That way, you can show
+          the user whatever style convention you want, while also satisfying the dot requirement
+          for structured data. For example:</p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="rating value example" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">&lt;span itemprop="ratingValue" content="4.4"&gt;4,4&lt;/span&gt; stars</pre></devsite-code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">amenityFeature</code></td>
+      <td>
+        <p>
+          <a href="https://schema.org/LocationFeatureSpecification" class="external-link"><code translate="no" dir="ltr">LocationFeatureSpecification</code></a>
+        </p>
+        <p><b>For <code translate="no" dir="ltr">LodgingBusiness</code> only</b>: An amenity feature (for example, a
+          characteristic or service) of the accommodation.</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="amenity feature example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"amenityFeature"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"LocationFeatureSpecification"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"beachAccess"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"value"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-kc">true</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">priceRange</code></td>
+      <td>
+        <p>
+          <a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a>
+        </p>
+        <p>
+          The relative price range of a business, commonly specified by a normalized number of
+          currency signs. Provide the price range in either of the following formats:
+        </p>
+        <ul>
+          <li><b>Price level:</b> for example, "$", "$$", "$$$"</li>
+          <li><b>Range:</b> for example, "$-$$"</li>
+        </ul>
+          <p>
+            This field must be shorter than 12 characters. If it's longer than 12 characters, Google
+            won't show a price range for the business.
+          </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">servesCuisine</code></td>
+      <td>
+        <p>
+          <a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a>
+        </p>
+        <p><b>For restaurants only</b>: The type of cuisine the restaurant serves.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">offers</code></td>
+      <td>
+        <p><a href="https://schema.org/Offer" class="external-link"><code translate="no" dir="ltr">Offer</code></a> or
+          <a href="https://schema.org/AggregateOffer" class="external-link"><code translate="no" dir="ltr">AggregateOffer</code></a></p>
+        <p>A nested <code translate="no" dir="ltr">Offer</code> or <code translate="no" dir="ltr">AggregateOffer</code> to sell the product. Include
+           the recommended properties for either <code translate="no" dir="ltr">Offer</code> or <code translate="no" dir="ltr">AggregateOffer</code>
+          (whichever is applicable to your content).</p>
+        <p>If you're using <code translate="no" dir="ltr">Offer</code>, including the following properties:</p>
+        <ul>
+          <li><code translate="no" dir="ltr">offers.price</code></li>
+          <li><code translate="no" dir="ltr">offers.priceCurrency</code></li>
+        </ul>
+        <p>If you're using <code translate="no" dir="ltr">AggregateOffer</code>, including the following properties:</p>
+        <ul>
+          <li><code translate="no" dir="ltr">offers.highPrice</code></li>
+          <li><code translate="no" dir="ltr">offers.lowPrice</code></li>
+          <li><code translate="no" dir="ltr">offers.priceCurrency</code></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">offers.highPrice</code></td>
+      <td>
+        <p>
+          <a href="https://schema.org/Number" class="external-link"><code translate="no" dir="ltr">Number</code></a>
+        </p>
+        <p>
+          The highest price of all offers available. If you're specifying a single price with
+          <code translate="no" dir="ltr">price</code>, don't need to include the <code translate="no" dir="ltr">highPrice</code> and <code translate="no" dir="ltr">lowPrice</code>
+          properties.
+          </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">offers.lowPrice</code></td>
+      <td>
+        <p>
+          <a href="https://schema.org/Number" class="external-link"><code translate="no" dir="ltr">Number</code></a>
+        </p>
+        <p>
+          The lowest price of all offers available. If you're specifying a single price with
+          <code translate="no" dir="ltr">price</code>, don't need to include the <code translate="no" dir="ltr">highPrice</code> and <code translate="no" dir="ltr">lowPrice</code>
+          properties.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">offers.price</code></td>
+      <td>
+        <p>
+          <a href="https://schema.org/Number" class="external-link"><code translate="no" dir="ltr">Number</code></a>
+        </p>
+        <p>
+          The offer price of a product, or of a price component when attached to <code translate="no" dir="ltr">PriceSpecification</code>
+          and its subtypes. If you're specifying a price range with <code translate="no" dir="ltr">lowPrice</code> and <code translate="no" dir="ltr">highPrice</code>,
+          don't include the <code translate="no" dir="ltr">price</code> property.
+          </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">offers.priceCurrency</code></td>
+      <td>
+        <p>
+          <a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a>
+        </p>
+        <p>
+          The currency used to describe the product price, in three-letter
+          <a href="https://en.wikipedia.org/wiki/ISO_4217" class="external-link">ISO 4217</a> format. If a currency is
+          not provided, Google defaults to <code translate="no" dir="ltr">USD</code>.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">offers</code></td>
+      <td>
+        <p><code translate="no" dir="ltr">Offer</code> or <code translate="no" dir="ltr">AggregateOffer</code></p>
+        <p>A nested <code translate="no" dir="ltr">Offer</code> or <code translate="no" dir="ltr">AggregateOffer</code> to sell the event. Include
+           the recommended propeties for either <code translate="no" dir="ltr">Offer</code> or <code translate="no" dir="ltr">AggregateOffer</code>
+          (whichever is applicable to your content).</p>
+        <p>If you're using <code translate="no" dir="ltr">Offer</code>, including the following properties:</p>
+        <ul>
+          <li><code translate="no" dir="ltr">offers.price</code></li>
+          <li><code translate="no" dir="ltr">offers.priceCurrency</code></li>
+        </ul>
+        <p>If you're using <code translate="no" dir="ltr">AggregateOffer</code>, including the following properties:</p>
+        <ul>
+          <li><code translate="no" dir="ltr">offers.highPrice</code></li>
+          <li><code translate="no" dir="ltr">offers.lowPrice</code></li>
+          <li><code translate="no" dir="ltr">offers.priceCurrency</code></li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">offers.highPrice</code></td>
+      <td>
+        <p>
+          <a href="https://schema.org/Number" class="external-link"><code translate="no" dir="ltr">Number</code></a>
+        </p>
+        <p>
+          The highest price of all offers available. If you're specifying a single price with
+          <code translate="no" dir="ltr">price</code>, don't need to include the <code translate="no" dir="ltr">highPrice</code> and <code translate="no" dir="ltr">lowPrice</code>
+          properties.
+          </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">offers.lowPrice</code></td>
+      <td>
+        <p>
+          <a href="https://schema.org/Number" class="external-link"><code translate="no" dir="ltr">Number</code></a>
+        </p>
+        <p>
+          The lowest price of all offers available. If you're specifying a single price with
+          <code translate="no" dir="ltr">price</code>, don't need to include the <code translate="no" dir="ltr">highPrice</code> and <code translate="no" dir="ltr">lowPrice</code>
+          properties.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">offers.price</code></td>
+      <td>
+        <p>
+          <a href="https://schema.org/Number" class="external-link"><code translate="no" dir="ltr">Number</code></a>
+        </p>
+        <p>
+          The price for your tickets, including service charges and fees. Don't forget to update it
+          as prices change or tickets sell out. If you're specifying a price range with
+          <code translate="no" dir="ltr">lowPrice</code> and <code translate="no" dir="ltr">highPrice</code>, don't include the <code translate="no" dir="ltr">price</code> property.
+        </p>
+        <p>
+          If the event is available without payment, fees, or service charges, set the
+          <code translate="no" dir="ltr">price</code> to <code translate="no" dir="ltr">0</code>.
+        </p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="event price" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"offers"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Offer"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"price"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">0</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">offers.priceCurrency</code></td>
+      <td>
+        <p>
+          <a href="https://schema.org/Text" class="external-link"><code translate="no" dir="ltr">Text</code></a>
+        </p>
+        <p>
+          The currency used to describe the event price, in three-letter
+          <a href="https://en.wikipedia.org/wiki/ISO_4217" class="external-link">ISO 4217</a> format. If a currency is
+          not provided, Google defaults to <code translate="no" dir="ltr">USD</code>.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>

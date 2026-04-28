@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicalAudienceModel
 {
     public const DESCRIPTION = 'Medical audience for page.';
     public const LABEL = 'medicalAudience';
     public const NAME = 'schema:medicalAudience';
-    public const VALUES = ['MedicalAudienceModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalAudienceModel', 'MedicalAudienceTypeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalAudienceTypeModel'];
-    public const TYPES = ['MedicalWebPage' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalWebPageModel'];
+    public const VALUES = ['MedicalAudienceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalAudienceModel', 'MedicalAudienceTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalAudienceTypeModel'];
+    public const TYPES = ['MedicalWebPage' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalWebPageModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

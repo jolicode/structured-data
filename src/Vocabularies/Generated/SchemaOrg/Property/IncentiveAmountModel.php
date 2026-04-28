@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IncentiveAmountModel
 {
@@ -79,8 +79,8 @@ In summary: <ul><li>Use [[QuantitativeValue]] for absolute/percentage-based ince
 </ul>.';
     public const LABEL = 'incentiveAmount';
     public const NAME = 'schema:incentiveAmount';
-    public const VALUES = ['LoanOrCreditModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\LoanOrCreditModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\QuantitativeValueModel', 'UnitPriceSpecificationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\UnitPriceSpecificationModel'];
-    public const TYPES = ['FinancialIncentive' => 'Jolicode\Vocabularies\SchemaOrg\Type\FinancialIncentiveModel'];
+    public const VALUES = ['LoanOrCreditModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LoanOrCreditModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel', 'UnitPriceSpecificationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\UnitPriceSpecificationModel'];
+    public const TYPES = ['FinancialIncentive' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FinancialIncentiveModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

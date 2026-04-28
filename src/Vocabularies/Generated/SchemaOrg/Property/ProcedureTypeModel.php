@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ProcedureTypeModel
 {
     public const DESCRIPTION = 'The type of procedure, for example Surgical, Noninvasive, or Percutaneous.';
     public const LABEL = 'procedureType';
     public const NAME = 'schema:procedureType';
-    public const VALUES = ['MedicalProcedureTypeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalProcedureTypeModel'];
-    public const TYPES = ['MedicalProcedure' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalProcedureModel'];
+    public const VALUES = ['MedicalProcedureTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalProcedureTypeModel'];
+    public const TYPES = ['MedicalProcedure' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalProcedureModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

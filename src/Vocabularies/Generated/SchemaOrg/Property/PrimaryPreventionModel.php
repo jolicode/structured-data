@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PrimaryPreventionModel
 {
     public const DESCRIPTION = 'A preventative therapy used to prevent an initial occurrence of the medical condition, such as vaccination.';
     public const LABEL = 'primaryPrevention';
     public const NAME = 'schema:primaryPrevention';
-    public const VALUES = ['MedicalTherapyModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalTherapyModel'];
-    public const TYPES = ['MedicalCondition' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalConditionModel'];
+    public const VALUES = ['MedicalTherapyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTherapyModel'];
+    public const TYPES = ['MedicalCondition' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

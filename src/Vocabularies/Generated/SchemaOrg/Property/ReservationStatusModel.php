@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReservationStatusModel
 {
     public const DESCRIPTION = 'The current status of the reservation.';
     public const LABEL = 'reservationStatus';
     public const NAME = 'schema:reservationStatus';
-    public const VALUES = ['ReservationStatusTypeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ReservationStatusTypeModel'];
-    public const TYPES = ['Reservation' => 'Jolicode\Vocabularies\SchemaOrg\Type\ReservationModel'];
+    public const VALUES = ['ReservationStatusTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReservationStatusTypeModel'];
+    public const TYPES = ['Reservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

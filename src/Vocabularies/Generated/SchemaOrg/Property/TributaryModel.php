@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TributaryModel
 {
     public const DESCRIPTION = 'The anatomical or organ system that the vein flows into; a larger structure that the vein connects to.';
     public const LABEL = 'tributary';
     public const NAME = 'schema:tributary';
-    public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AnatomicalStructureModel'];
-    public const TYPES = ['Vein' => 'Jolicode\Vocabularies\SchemaOrg\Type\VeinModel'];
+    public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalStructureModel'];
+    public const TYPES = ['Vein' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VeinModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

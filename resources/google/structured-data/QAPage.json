@@ -1,0 +1,19 @@
+{
+    "name": "QAPage",
+    "documentation": "https://developers.google.com/search/docs/appearance/structured-data/qapage",
+    "specialRules": [
+        "google.qapage.answer_comment_count_consistency"
+    ],
+    "supportedTypes": [
+        "QAPage"
+    ],
+    "properties": {
+        "mainEntity": {
+            "name": "mainEntity",
+            "severity": "required",
+            "supportedTypes": [
+                "@Question"
+            ]
+        }
+    }
+}

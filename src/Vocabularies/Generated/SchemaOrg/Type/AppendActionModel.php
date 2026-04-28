@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AppendActionModel
 {
     public const DESCRIPTION = 'The act of inserting at the end if an ordered collection.';
     public const LABEL = 'AppendAction';
     public const NAME = 'schema:AppendAction';
-    public const PARENTS = ['InsertActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\InsertActionModel'];
+    public const PARENTS = ['InsertActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InsertActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

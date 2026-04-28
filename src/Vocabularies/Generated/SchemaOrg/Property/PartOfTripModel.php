@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PartOfTripModel
 {
     public const DESCRIPTION = 'Identifies that this [[Trip]] is a subTrip of another Trip.  For example Day 1, Day 2, etc. of a multi-day trip.';
     public const LABEL = 'partOfTrip';
     public const NAME = 'schema:partOfTrip';
-    public const VALUES = ['TripModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TripModel'];
-    public const TYPES = ['Trip' => 'Jolicode\Vocabularies\SchemaOrg\Type\TripModel'];
+    public const VALUES = ['TripModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TripModel'];
+    public const TYPES = ['Trip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TripModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

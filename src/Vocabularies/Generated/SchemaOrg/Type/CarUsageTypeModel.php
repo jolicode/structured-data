@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CarUsageTypeModel
 {
     public const DESCRIPTION = 'A value indicating a special usage of a car, e.g. commercial rental, driving school, or as a taxi.';
     public const LABEL = 'CarUsageType';
     public const NAME = 'schema:CarUsageType';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['DrivingSchoolVehicleUsageModel' => 'EnumerationMember\DrivingSchoolVehicleUsageModel', 'RentalVehicleUsageModel' => 'EnumerationMember\RentalVehicleUsageModel', 'TaxiVehicleUsageModel' => 'EnumerationMember\TaxiVehicleUsageModel'];
     public const IS_PART_OF = ['https://auto.schema.org'];
     public const SOURCE = [];

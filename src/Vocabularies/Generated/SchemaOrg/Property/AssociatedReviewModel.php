@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AssociatedReviewModel
 {
     public const DESCRIPTION = 'An associated [[Review]].';
     public const LABEL = 'associatedReview';
     public const NAME = 'schema:associatedReview';
-    public const VALUES = ['ReviewModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ReviewModel'];
-    public const TYPES = ['Review' => 'Jolicode\Vocabularies\SchemaOrg\Type\ReviewModel'];
+    public const VALUES = ['ReviewModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReviewModel'];
+    public const TYPES = ['Review' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReviewModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BranchModel
 {
     public const DESCRIPTION = 'The branches that delineate from the nerve bundle. Not to be confused with [[branchOf]].';
     public const LABEL = 'branch';
     public const NAME = 'schema:branch';
-    public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AnatomicalStructureModel'];
-    public const TYPES = ['Nerve' => 'Jolicode\Vocabularies\SchemaOrg\Type\NerveModel'];
+    public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalStructureModel'];
+    public const TYPES = ['Nerve' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NerveModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

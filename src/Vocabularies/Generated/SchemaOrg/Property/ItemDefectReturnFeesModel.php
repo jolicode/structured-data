@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ItemDefectReturnFeesModel
 {
     public const DESCRIPTION = 'The type of return fees for returns of defect products.';
     public const LABEL = 'itemDefectReturnFees';
     public const NAME = 'schema:itemDefectReturnFees';
-    public const VALUES = ['ReturnFeesEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ReturnFeesEnumerationModel'];
-    public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\Vocabularies\SchemaOrg\Type\MerchantReturnPolicyModel'];
+    public const VALUES = ['ReturnFeesEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReturnFeesEnumerationModel'];
+    public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MerchantReturnPolicyModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

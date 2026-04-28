@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DepartureBoatTerminalModel
 {
     public const DESCRIPTION = 'The terminal or port from which the boat departs.';
     public const LABEL = 'departureBoatTerminal';
     public const NAME = 'schema:departureBoatTerminal';
-    public const VALUES = ['BoatTerminalModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\BoatTerminalModel'];
-    public const TYPES = ['BoatTrip' => 'Jolicode\Vocabularies\SchemaOrg\Type\BoatTripModel'];
+    public const VALUES = ['BoatTerminalModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BoatTerminalModel'];
+    public const TYPES = ['BoatTrip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BoatTripModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

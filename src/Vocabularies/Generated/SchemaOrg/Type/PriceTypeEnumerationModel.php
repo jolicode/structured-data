@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PriceTypeEnumerationModel
 {
     public const DESCRIPTION = 'Enumerates different price types, for example list price, invoice price, and sale price.';
     public const LABEL = 'PriceTypeEnumeration';
     public const NAME = 'schema:PriceTypeEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['InvoicePriceModel' => 'EnumerationMember\InvoicePriceModel', 'ListPriceModel' => 'EnumerationMember\ListPriceModel', 'MSRPModel' => 'EnumerationMember\MSRPModel', 'MinimumAdvertisedPriceModel' => 'EnumerationMember\MinimumAdvertisedPriceModel', 'RegularPriceModel' => 'EnumerationMember\RegularPriceModel', 'SRPModel' => 'EnumerationMember\SRPModel', 'SalePriceModel' => 'EnumerationMember\SalePriceModel', 'StrikethroughPriceModel' => 'EnumerationMember\StrikethroughPriceModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2712'];

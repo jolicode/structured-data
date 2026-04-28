@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ScreenCountModel
 {
     public const DESCRIPTION = 'The number of screens in the movie theater.';
     public const LABEL = 'screenCount';
     public const NAME = 'schema:screenCount';
-    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\NumberModel'];
-    public const TYPES = ['MovieTheater' => 'Jolicode\Vocabularies\SchemaOrg\Type\MovieTheaterModel'];
+    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['MovieTheater' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MovieTheaterModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

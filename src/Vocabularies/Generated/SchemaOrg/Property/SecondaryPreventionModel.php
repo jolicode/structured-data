@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SecondaryPreventionModel
 {
     public const DESCRIPTION = 'A preventative therapy used to prevent reoccurrence of the medical condition after an initial episode of the condition.';
     public const LABEL = 'secondaryPrevention';
     public const NAME = 'schema:secondaryPrevention';
-    public const VALUES = ['DrugClassModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DrugClassModel', 'DrugModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DrugModel', 'LifestyleModificationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\LifestyleModificationModel', 'MedicalTherapyModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalTherapyModel'];
-    public const TYPES = ['MedicalCondition' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalConditionModel'];
+    public const VALUES = ['DrugClassModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugClassModel', 'DrugModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugModel', 'LifestyleModificationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LifestyleModificationModel', 'MedicalTherapyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTherapyModel'];
+    public const TYPES = ['MedicalCondition' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

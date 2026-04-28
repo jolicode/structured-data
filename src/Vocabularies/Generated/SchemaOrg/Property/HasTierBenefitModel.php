@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HasTierBenefitModel
 {
     public const DESCRIPTION = 'A member benefit for a particular tier of a loyalty program.';
     public const LABEL = 'hasTierBenefit';
     public const NAME = 'schema:hasTierBenefit';
-    public const VALUES = ['TierBenefitEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TierBenefitEnumerationModel'];
-    public const TYPES = ['MemberProgramTier' => 'Jolicode\Vocabularies\SchemaOrg\Type\MemberProgramTierModel'];
+    public const VALUES = ['TierBenefitEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TierBenefitEnumerationModel'];
+    public const TYPES = ['MemberProgramTier' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MemberProgramTierModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

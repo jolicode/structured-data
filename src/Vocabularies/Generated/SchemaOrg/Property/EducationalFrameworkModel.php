@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EducationalFrameworkModel
 {
     public const DESCRIPTION = 'The framework to which the resource being described is aligned.';
     public const LABEL = 'educationalFramework';
     public const NAME = 'schema:educationalFramework';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['AlignmentObject' => 'Jolicode\Vocabularies\SchemaOrg\Type\AlignmentObjectModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['AlignmentObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AlignmentObjectModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

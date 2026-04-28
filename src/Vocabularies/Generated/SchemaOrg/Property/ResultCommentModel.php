@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ResultCommentModel
 {
     public const DESCRIPTION = 'A sub property of result. The Comment created or sent as a result of this action.';
     public const LABEL = 'resultComment';
     public const NAME = 'schema:resultComment';
-    public const VALUES = ['CommentModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CommentModel'];
-    public const TYPES = ['CommentAction' => 'Jolicode\Vocabularies\SchemaOrg\Type\CommentActionModel', 'ReplyAction' => 'Jolicode\Vocabularies\SchemaOrg\Type\ReplyActionModel'];
+    public const VALUES = ['CommentModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommentModel'];
+    public const TYPES = ['CommentAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommentActionModel', 'ReplyAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReplyActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

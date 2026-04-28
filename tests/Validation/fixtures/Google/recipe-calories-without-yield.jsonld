@@ -1,0 +1,49 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "Recipe",
+  "name": "Party Coffee Cake",
+  "image": [
+    "https://example.com/photos/1x1/photo.jpg",
+    "https://example.com/photos/4x3/photo.jpg",
+    "https://example.com/photos/16x9/photo.jpg"
+  ],
+  "author": {
+    "@type": "Person",
+    "name": "Mary Stone"
+  },
+  "datePublished": "2018-03-10",
+  "description": "This coffee cake is awesome and perfect for parties.",
+  "prepTime": "PT20M",
+  "cookTime": "PT30M",
+  "totalTime": "PT50M",
+  "keywords": "cake for a party, coffee",
+  "recipeCategory": "Dessert",
+  "recipeCuisine": "American",
+  "nutrition": {
+    "@type": "NutritionInformation",
+    "calories": "270 calories"
+  },
+  "recipeIngredient": [
+    "2 cups of flour",
+    "3/4 cup white sugar",
+    "2 teaspoons baking powder",
+    "1/2 teaspoon salt",
+    "1/2 cup butter",
+    "2 eggs",
+    "3/4 cup milk"
+  ],
+  "recipeInstructions": [
+    {
+      "@type": "HowToStep",
+      "name": "Preheat",
+      "text": "Preheat the oven to 350 degrees F. Grease and flour a 9x9 inch pan.",
+      "url": "https://example.com/party-coffee-cake#step1",
+      "image": "https://example.com/photos/party-coffee-cake/step1.jpg"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "ratingCount": "18"
+  }
+}

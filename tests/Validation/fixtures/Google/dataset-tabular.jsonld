@@ -7,73 +7,121 @@
     "@type": "Organization",
     "name": "ProPublica"
     },
+    "alternateName": "AHA Tax Returns",
+    "creator": {
+    "@type": "Organization",
+    "name": "ProPublica"
+    },
+    "citation": "IRS nonprofit tax filings",
+    "funder": {
+    "@type": "Organization",
+    "name": "Public interest grant"
+    },
+    "hasPart": "https://projects.propublica.org/nonprofits/part",
+    "isPartOf": "https://projects.propublica.org/nonprofits",
+    "identifier": "https://projects.propublica.org/nonprofits/datasets/aha-001",
+    "isAccessibleForFree": true,
+    "keywords": "nonprofit, tax, IRS",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "measurementTechnique": "IRS form parsing",
+    "sameAs": "https://projects.propublica.org/nonprofits/",
+    "spatialCoverage": "US",
+    "temporalCoverage": "2001/2016",
+    "variableMeasured": "Total functional expenses",
+    "version": "1.0",
+    "url": "https://projects.propublica.org/nonprofits/",
+    "includedInDataCatalog": {
+    "@type": "DataCatalog",
+    "name": "ProPublica Nonprofit Explorer"
+    },
+    "distribution": {
+    "@type": "DataDownload",
+    "contentUrl": "https://projects.propublica.org/nonprofits/download.csv",
+    "encodingFormat": "text/csv"
+    },
     "mainEntity" : {
     "@type" : "csvw:Table",
     "csvw:tableSchema": {
+        "@type": "Thing",
         "csvw:columns": [
         {
+            "@type": "Thing",
             "csvw:name": "Year",
             "csvw:datatype": "string",
             "csvw:cells": [
             {
+                "@type": "Thing",
                 "csvw:value": "2016",
                 "csvw:primaryKey": "2016"
             },
             {
+                "@type": "Thing",
                 "csvw:value": "2015",
                 "csvw:primaryKey": "2015"
             }]
         },
         {
+            "@type": "Thing",
             "csvw:name": "Organization name",
             "csvw:datatype": "string",
             "csvw:cells": [
             {
+                "@type": "Thing",
                 "csvw:value": "AMERICAN HUMANE ASSOCIATION",
                 "csvw:primaryKey": "2016"
             },
             {
+                "@type": "Thing",
                 "csvw:value": "AMERICAN HUMANE ASSOCIATION",
                 "csvw:primaryKey": "2015"
             }]
         },
         {
+            "@type": "Thing",
             "csvw:name": "Organization address",
             "csvw:datatype": "string",
             "csvw:cells": [
             {
+                "@type": "Thing",
                 "csvw:value": "1400 16TH STREET NW",
                 "csvw:primaryKey": "2016"
             },
             {
+                "@type": "Thing",
                 "csvw:value": "1400 16TH STREET NW",
                 "csvw:primaryKey": "2015"
             }]
         },
         {
+            "@type": "Thing",
             "csvw:name": "Organization NTEE Code",
             "csvw:datatype": "string",
             "csvw:cells": [
             {
+                "@type": "Thing",
                 "csvw:value": "D200",
                 "csvw:notes": "Animal Protection and Welfare",
                 "csvw:primaryKey": "2016"
             },
             {
+                "@type": "Thing",
                 "csvw:value": "D200",
                 "csvw:notes": "Animal Protection and Welfare",
                 "csvw:primaryKey": "2015"
             }]
         },
         {
+            "@type": "Thing",
             "csvw:name": "Total functional expenses ($)",
             "csvw:datatype": "integer",
             "csvw:cells": [
             {
+                "@type": "Thing",
                 "csvw:value": "13800212",
                 "csvw:primaryKey": "2016"
             },
             {
+                "@type": "Thing",
                 "csvw:value": "13800212",
                 "csvw:primaryKey": "2015"
             }]

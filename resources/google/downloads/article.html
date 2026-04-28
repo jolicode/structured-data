@@ -1,0 +1,201 @@
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code translate="no" dir="ltr">author</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code></p>
+    <p>The author of the article. To help Google best understand authors across various features,
+      we recommend following the <a href="#author-bp">author markup best practices</a>.
+      </p>
+    </td>
+    </tr>
+  <tr>
+    <td><code translate="no" dir="ltr">author.name</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+    <p>The name of the author.</p></td>
+    </tr>
+  <tr>
+    <td><code translate="no" dir="ltr">author.url</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+    <p>A link to a web page that uniquely identifies the author of the article. For example, the
+      author's social media page, an "about me" page, or a bio page.</p>
+    <p>If the URL is an internal profile page, we recommend marking up that author using
+      <a href="/search/docs/appearance/structured-data/profile-page">profile page structured data</a>.</p>
+    <aside class="note">You can use the <code translate="no" dir="ltr">sameAs</code> property as an alternative. Google can
+       understand both <code translate="no" dir="ltr">sameAs</code> and <code translate="no" dir="ltr">url</code> when disambiguating authors.</aside></td>
+    </tr>
+  <tr>
+    <td><code translate="no" dir="ltr">dateModified</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+    <p>The date and time the article was most recently modified, in <a href="https://wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>.
+      We recommend that you provide timezone information; otherwise, we will default to <a href="/search/docs/crawling-indexing/googlebot#timezone">the timezone used by Googlebot</a>.</p>
+    <p>Add the <code translate="no" dir="ltr">dateModified</code> property if you want to provide more accurate date information to Google.
+    The <a href="https://search.google.com/test/rich-results" class="external-link">Rich Results Test</a> doesn't show a warning for this property,
+    as it's only recommended if you decide that it's applicable to your site.</p></td>
+    </tr>
+  <tr>
+    <td><code translate="no" dir="ltr">datePublished</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code></p>
+    <p>The date and time the article was first published, in
+      <a href="https://wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>.
+      We recommend that you provide timezone information; otherwise, we will default to <a href="/search/docs/crawling-indexing/googlebot#timezone">the timezone used by Googlebot</a>.</p>
+    <p>Add the <code translate="no" dir="ltr">datePublished</code> property if you want to provide more
+      accurate date information to Google. The
+      <a href="https://search.google.com/test/rich-results" class="external-link">Rich Results Test</a> doesn't show a
+      warning for this property, as it's only recommended if you decide that it's applicable to your site.</p></td>
+  </tr>
+  <tr>
+    <td><code translate="no" dir="ltr">headline</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+    <p>The title of the article. Consider using a concise title, as long titles may be truncated on some devices.</p></td>
+    </tr>
+  <tr>
+    <td><code translate="no" dir="ltr">image</code></td>
+    <td><p>Repeated <code translate="no" dir="ltr"><a href="https://schema.org/ImageObject" class="external-link">ImageObject</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+      <p>The URL to an image that is representative of the article. Use images that are relevant
+        to the article, rather than logos or captions.</p>
+      
+<p>Additional image guidelines:
+  </p><ul>
+    <li>Image URLs must be crawlable and indexable. To check if Google can access your URLs, use
+      the <a href="https://support.google.com/webmasters/answer/9012289" class="external-link">URL Inspection tool</a>.</li>
+    <li>Images must represent the marked up content.</li>
+    <li>Images must be in a file format that's <a href="/search/docs/appearance/google-images#supported-image-formats">supported by Google Images</a>.</li>
+    <li>For best results, we recommend providing multiple high-resolution images (minimum of 50K pixels when
+      multiplying width and height) with the following aspect ratios: 16x9, 4x3, and 1x1.</li>
+  </ul>
+          <p>For example:</p>
+  <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="multiple images example in json-ld" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"image": [
+  "https://example.com/photos/1x1/photo.jpg",
+  "https://example.com/photos/4x3/photo.jpg",
+  "https://example.com/photos/16x9/photo.jpg"
+]</pre></devsite-code>
+  
+    </td>
+    </tr>
+  </tbody>
+</table>
+<table class="properties responsive">
+  <thead>
+    <tr>
+      <th colspan="2">Best practices for author markup</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><h3 id="include-all-authors-in-the-markup" data-text="         Include all authors in the markup         " tabindex="-1">
+        Include all authors in the markup
+        </h3></td>
+      <td>
+        <p>
+          Make sure that all the authors that are presented as authors on the web page are also included in markup.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><h3 id="specifying-multiple-authors" data-text="         Specifying multiple authors         " tabindex="-1">
+        Specifying multiple authors
+        </h3></td>
+      <td>
+        <p>
+          When specifying multiple authors, list each author in their own <code translate="no" dir="ltr">author</code> field:
+        </p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Multiple authors" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"author": [
+  {"name": "Willow Lane"},
+  {"name": "Regula Felix"}
+]</pre></devsite-code>
+        <p>
+          <span class="compare-no" aria-hidden="true"></span>Don't merge multiple authors in the same <code translate="no" dir="ltr">author</code> field:
+        </p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Single author" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"author": {
+  "name": "Willow Lane, Regula Felix"
+}</pre></devsite-code>
+      </td>
+    </tr>
+    <tr>
+      <td><h3 id="use-additional-fields" data-text="         Use additional fields         " tabindex="-1">
+        Use additional fields
+        </h3></td>
+      <td>
+        <p>
+          To help Google better understand who the author is, we strongly recommend using the
+          <code translate="no" dir="ltr">type</code> and <code translate="no" dir="ltr">url</code> (or <code translate="no" dir="ltr">sameAs</code>)
+          properties. Use valid URLs for the <code translate="no" dir="ltr">url</code> or <code translate="no" dir="ltr">sameAs</code> properties.
+        </p>
+        <p>
+          For example, if the author is a person, you could link to an author's page that
+          provides more information about the author:
+        </p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Author with website" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"author"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Person"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Willow Lane"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"url"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://www.example.com/staff/willow_lane"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">]</span></pre></devsite-code>
+        <p>
+          If the author is an organization, you could link to the organization's home page.
+        </p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Organization as an author" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"author"</span><span class="devsite-syntax-p">:</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-s">"Organization"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Some News Agency"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"url"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://www.example.com/"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">]</span></pre></devsite-code>
+      </td>
+    </tr>
+    <tr>
+      <td><h3 id="only-specify-the-authors-name-in-the-author.name-property" data-text="         Only specify the author's name in the author.name property         " tabindex="-1">
+        Only specify the author's name in the <code translate="no" dir="ltr">author.name</code> property
+        </h3></td>
+      <td>
+        <p>
+          In the <code translate="no" dir="ltr">author.name</code> property, only specify the name of the author. Don't add
+          any other piece of information. More specifically, don't add the following information:
+        </p>
+        <ul>
+          <li>The name of the publisher. Instead, use the <code translate="no" dir="ltr">publisher</code> property.</li>
+          <li>The author's job title. Instead, use the appropriate property if you want to specify
+            that information (<a href="https://schema.org/jobTitle" class="external-link"><code translate="no" dir="ltr">jobTitle</code></a>).</li>
+          <li>Honorific prefix or suffix. Instead, use the appropriate property if you want to
+            specify that information (<a href="https://schema.org/honorificPrefix" class="external-link"><code translate="no" dir="ltr">honorificPrefix</code></a>
+            or <a href="https://schema.org/honorificSuffix" class="external-link"><code translate="no" dir="ltr">honorificSuffix</code></a>).</li>
+          <li>Introductory words (for example, don't include words like "posted by").</li>
+        </ul>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Author details" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"author"</span><span class="devsite-syntax-p">:</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Person"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Echidna Jones"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"honorificPrefix"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Dr"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"jobTitle"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Editor in Chief"</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">],</span>
+<span class="devsite-syntax-s">"publisher"</span><span class="devsite-syntax-p">:</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Organization"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Bugs Daily"</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">]</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+    </tr>
+    <tr>
+      <td><h3 id="use-the-appropriate-type" data-text="         Use the appropriate Type         " tabindex="-1">
+        Use the appropriate <code translate="no" dir="ltr">Type</code>
+        </h3></td>
+      <td>
+        <p>
+          Use the <code translate="no" dir="ltr">Person</code> type for people, and the <code translate="no" dir="ltr">Organization</code> type
+          for organizations. Don't use the <code translate="no" dir="ltr">Thing</code> type, and don't use the wrong type
+          (for example, using the <code translate="no" dir="ltr">Organization</code> type for a person).</p>
+      </td>
+    </tr>
+</tbody>
+</table>

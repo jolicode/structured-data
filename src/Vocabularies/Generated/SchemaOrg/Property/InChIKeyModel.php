@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class InChIKeyModel
 {
     public const DESCRIPTION = 'InChIKey is a hashed version of the full InChI (using the SHA-256 algorithm).';
     public const LABEL = 'inChIKey';
     public const NAME = 'schema:inChIKey';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['MolecularEntity' => 'Jolicode\Vocabularies\SchemaOrg\Type\MolecularEntityModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MolecularEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MolecularEntityModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

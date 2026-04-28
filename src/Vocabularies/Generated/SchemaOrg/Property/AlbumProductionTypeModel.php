@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AlbumProductionTypeModel
 {
     public const DESCRIPTION = 'Classification of the album by its type of content: soundtrack, live album, studio album, etc.';
     public const LABEL = 'albumProductionType';
     public const NAME = 'schema:albumProductionType';
-    public const VALUES = ['MusicAlbumProductionTypeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MusicAlbumProductionTypeModel'];
-    public const TYPES = ['MusicAlbum' => 'Jolicode\Vocabularies\SchemaOrg\Type\MusicAlbumModel'];
+    public const VALUES = ['MusicAlbumProductionTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicAlbumProductionTypeModel'];
+    public const TYPES = ['MusicAlbum' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicAlbumModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

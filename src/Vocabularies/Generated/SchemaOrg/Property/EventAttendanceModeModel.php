@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EventAttendanceModeModel
 {
     public const DESCRIPTION = 'The eventAttendanceMode of an event indicates whether it occurs online, offline, or a mix.';
     public const LABEL = 'eventAttendanceMode';
     public const NAME = 'schema:eventAttendanceMode';
-    public const VALUES = ['EventAttendanceModeEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EventAttendanceModeEnumerationModel'];
-    public const TYPES = ['Event' => 'Jolicode\Vocabularies\SchemaOrg\Type\EventModel'];
+    public const VALUES = ['EventAttendanceModeEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventAttendanceModeEnumerationModel'];
+    public const TYPES = ['Event' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

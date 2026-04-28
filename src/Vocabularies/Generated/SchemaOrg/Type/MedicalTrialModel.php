@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicalTrialModel
 {
     public const DESCRIPTION = 'A medical trial is a type of medical study that uses a scientific process to compare the safety and efficacy of medical therapies or medical procedures. In general, medical trials are controlled and subjects are allocated at random to the different treatment and/or control groups.';
     public const LABEL = 'MedicalTrial';
     public const NAME = 'schema:MedicalTrial';
-    public const PARENTS = ['MedicalStudyModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalStudyModel'];
+    public const PARENTS = ['MedicalStudyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalStudyModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

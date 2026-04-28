@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReleasedEventModel
 {
     public const DESCRIPTION = 'The place and time the release was issued, expressed as a PublicationEvent.';
     public const LABEL = 'releasedEvent';
     public const NAME = 'schema:releasedEvent';
-    public const VALUES = ['PublicationEventModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PublicationEventModel'];
-    public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\SchemaOrg\Type\CreativeWorkModel'];
+    public const VALUES = ['PublicationEventModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PublicationEventModel'];
+    public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class FeesAndCommissionsSpecificationModel
 {
     public const DESCRIPTION = 'Description of fees, commissions, and other terms applied either to a class of financial product, or by a financial service organization.';
     public const LABEL = 'feesAndCommissionsSpecification';
     public const NAME = 'schema:feesAndCommissionsSpecification';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\URLModel'];
-    public const TYPES = ['FinancialProduct' => 'Jolicode\Vocabularies\SchemaOrg\Type\FinancialProductModel', 'FinancialService' => 'Jolicode\Vocabularies\SchemaOrg\Type\FinancialServiceModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
+    public const TYPES = ['FinancialProduct' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FinancialProductModel', 'FinancialService' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FinancialServiceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

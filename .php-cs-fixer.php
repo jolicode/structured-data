@@ -30,7 +30,6 @@ $finder = PhpCsFixer\Finder::create()
 ;
 
 return (new PhpCsFixer\Config())
-    ->registerCustomFixers(new PhpCsFixerCustomFixers\Fixers())
     ->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
     ->setRiskyAllowed(true)
     ->setRules([
@@ -66,7 +65,7 @@ return (new PhpCsFixer\Config())
         'concat_space' => ['spacing' => 'one'],
         'php_unit_strict' => false,
         'trailing_comma_in_multiline' => ['elements' => ['arguments', 'parameters', 'arrays']],
-        PhpCsFixerCustomFixers\Fixer\MultilinePromotedPropertiesFixer::name() => true,
+        'multiline_promoted_properties' => true,
     ])
     ->setFinder($finder)
 ;

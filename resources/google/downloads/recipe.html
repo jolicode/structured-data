@@ -1,0 +1,473 @@
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+      <tr id="image">
+        <td>
+          <code translate="no" dir="ltr">image</code>
+          </td>
+        <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/ImageObject" class="external-link">ImageObject</a></code></p>
+          <p>Image of the completed dish.</p>
+          
+<p>Additional image guidelines:
+  </p><ul>
+    <li>Image URLs must be crawlable and indexable. To check if Google can access your URLs, use
+      the <a href="https://support.google.com/webmasters/answer/9012289" class="external-link">URL Inspection tool</a>.</li>
+    <li>Images must represent the marked up content.</li>
+    <li>Images must be in a file format that's <a href="/search/docs/appearance/google-images#supported-image-formats">supported by Google Images</a>.</li>
+    <li>For best results, we recommend providing multiple high-resolution images (minimum of 50K pixels when
+      multiplying width and height) with the following aspect ratios: 16x9, 4x3, and 1x1.</li>
+  </ul>
+          <p>For example:</p>
+  <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="multiple images example in json-ld" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"image": [
+  "https://example.com/photos/1x1/photo.jpg",
+  "https://example.com/photos/4x3/photo.jpg",
+  "https://example.com/photos/16x9/photo.jpg"
+]</pre></devsite-code>
+  
+          <aside class="note">Specifying the <code translate="no" dir="ltr">image</code> property in <code translate="no" dir="ltr">Recipe</code> markup
+            has no impact on the image chosen for a <a href="/search/docs/appearance/visual-elements-gallery#text-result-image">text result image</a>.
+            To optimize for a text result image, follow the <a href="/search/docs/appearance/google-images">image SEO best practices</a>.</aside>
+        </td>
+       </tr>
+      <tr>
+          <td><code translate="no" dir="ltr">name</code></td>
+          <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+          <p>The name of the dish.</p></td>
+       </tr>
+      </tbody>
+   </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+          <td><code translate="no" dir="ltr">aggregateRating</code></td>
+          <td><p><code translate="no" dir="ltr"><a href="https://schema.org/AggregateRating" class="external-link">AggregateRating</a></code></p>
+          <p>Annotation for the average review score assigned to the item. Follow the <a href="/search/docs/appearance/structured-data/review-snippet#guidelines">Review snippet guidelines</a> and list of required and recommended <a href="/search/docs/appearance/structured-data/review-snippet#aggregated-rating-type-definition"><code translate="no" dir="ltr">AggregateRating</code> properties</a>.</p>
+            <p>If the <code translate="no" dir="ltr">Recipe</code> structured data contains a single review, the reviewer's name must be a valid
+              person or organization. For example, "50% off ingredients" is not a valid name for a
+              reviewer.</p></td>
+      </tr>
+      <tr>
+          <td><code translate="no" dir="ltr">author</code></td>
+          <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code>
+              or <code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code></p>
+          <p>The name of the person or organization that wrote the recipe. To help Google best
+            understand authors across various features, consider following the
+            <a href="/search/docs/appearance/structured-data/article#author-bp">author markup best practices</a>.</p></td>
+       </tr>
+      <tr>
+          <td><code translate="no" dir="ltr">cookTime</code></td>
+          <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Duration" class="external-link">Duration</a></code></p>
+            <p>The time it takes to actually cook the dish in <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>, if applicable.
+            </p>
+            <p>Always use in combination with <code translate="no" dir="ltr">prepTime</code>. </p></td>
+       </tr>
+      <tr>
+          <td><code translate="no" dir="ltr">datePublished</code></td>
+          <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code></p>
+          <p>The date the recipe was published in <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>,
+            if applicable.</p></td>
+       </tr>
+       <tr>
+          <td><code translate="no" dir="ltr">description</code></td>
+          <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+          <p>A short summary describing the dish.</p></td>
+       </tr>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">keywords</code>
+          </td>
+        <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+          <p>Other terms for your recipe such as the season ("summer"), the holiday ("Halloween"), or other descriptors ("quick", "easy", "authentic").</p>
+            <p><b>Additional guidelines</b></p>
+            <ul>
+              <li>Separate multiple entries in a keywords list with commas.</li>
+              <li>Don't use a tag that's actually a <code translate="no" dir="ltr">recipeCategory</code>
+            or <code translate="no" dir="ltr">recipeCuisine</code>.
+                <br>
+            <p><span class="compare-no" aria-hidden="true"></span><b>Not recommended</b>:</p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Not recommended keywords property" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"keywords": "dessert, American"</pre></devsite-code>
+            <p><span class="compare-yes" aria-hidden="true"></span><b>Recommended</b>:</p>
+                <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Recommended keywords property" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"keywords": "winter apple pie, nutmeg crust"</pre></devsite-code></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+          <td><code translate="no" dir="ltr">nutrition.calories</code></td>
+          <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Energy" class="external-link">Energy</a></code></p>
+          <p>The number of calories in each serving produced with this
+          recipe. If <code translate="no" dir="ltr">nutrition.calories</code> is defined, <code translate="no" dir="ltr">recipeYield</code> must be defined
+          with the number of servings.</p></td>
+       </tr>
+       <tr>
+          <td><code translate="no" dir="ltr">prepTime</code></td>
+          <td>
+            <p>
+              <code translate="no" dir="ltr"><a href="https://schema.org/Duration" class="external-link">Duration</a></code>
+            </p>
+            <p>
+              The length of time it takes to prepare ingredients and workspace for the dish, in
+              <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>,
+              if applicable.
+            </p>
+            <p>Always use in combination with <code translate="no" dir="ltr">cookTime</code>.</p>
+         </td>
+       </tr>
+      <tr>
+          <td><code translate="no" dir="ltr">recipeCategory</code></td>
+          <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+          <p>The type of meal or course your recipe is about. For example: "dinner", "main course", or "dessert, snack".</p></td>
+       </tr>
+      <tr>
+          <td><code translate="no" dir="ltr">recipeCuisine</code></td>
+          <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+          <p>The region associated with your recipe. For example, "French", Mediterranean", or "American".</p></td>
+       </tr>
+      <tr>
+          <td><code translate="no" dir="ltr">recipeIngredient</code></td>
+          <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+            </p><p>An ingredient used in the recipe. </p>
+            <p>For example:</p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="recipeIngredient property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"recipeIngredient"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"1 (15 ounce) package double crust ready-to-use pie crust"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"6 cups thinly sliced, peeled apples (6 medium)"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"3/4 cup sugar"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"2 tablespoons all-purpose flour"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"3/4 teaspoon ground cinnamon"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"1/4 teaspoon salt"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"1/8 teaspoon ground nutmeg"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"1 tablespoon lemon juice"</span>
+<span class="devsite-syntax-p">]</span></pre></devsite-code>
+  <p><b>Additional guidelines</b>:</p>
+          <ul>
+            <li>Include only the ingredient text that is necessary for making the recipe. </li>
+          <li>Don't include unnecessary information, such as a definition of the ingredient. </li>
+          </ul>
+
+  </td>
+       </tr>
+ <tr>
+   <td><code translate="no" dir="ltr">recipeInstructions</code>
+   </td>
+          <td><p><code translate="no" dir="ltr"><a href="https://schema.org/HowToStep" class="external-link">HowToStep</a></code>, <code translate="no" dir="ltr"><a href="https://schema.org/HowToSection" class="external-link">HowToSection</a></code>, or <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+            </p><p>The steps to make the dish.</p>
+            <p>There are several options for setting the value of <code translate="no" dir="ltr">recipeInstructions</code>. We recommend using <code translate="no" dir="ltr">HowToStep</code>. <code translate="no" dir="ltr">HowToSection</code> can also be used to group HowToSteps when the recipe has sections.</p>
+            <ul>
+              <li><b><code translate="no" dir="ltr">HowToStep</code></b>: Specify this recipe's steps with <code translate="no" dir="ltr">HowToStep</code>.
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="recipeInstructions property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"recipeInstructions"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"HowToStep"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Preheat"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"text"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Heat oven to 425°F."</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"url"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/recipe#step1"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"image"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/photos/recipe/step1.jpg"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">},</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"HowToStep"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Prepare crust"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"text"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Place 1 pie crust in ungreased 9-inch glass pie plate, pressing firmly against side and bottom."</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"url"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/recipe#step2"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"image"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/photos/recipe/step2.jpg"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">},</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"HowToStep"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Make filling"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"text"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"In large bowl, gently mix filling ingredients; spoon into crust-lined pie plate."</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"url"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/recipe#step3"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"image"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/photos/recipe/step3.jpg"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">},</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"HowToStep"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Cover"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"text"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Top with second crust. Cut slits or shapes in several places in top crust."</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"url"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/recipe#step4"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"image"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/photos/recipe/step4.jpg"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">},</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"HowToStep"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Bake"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"text"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Bake 40 to 45 minutes. The pie is ready when the apples are tender and the crust is golden brown."</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"url"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/recipe#step5"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"image"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/photos/recipe/step5.jpg"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">},</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"HowToStep"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Cool"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"text"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Cool on cooling rack at least 2 hours before serving."</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"url"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/recipe#step6"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"image"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://example.com/photos/recipe/step6.jpg"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">]</span></pre></devsite-code>
+              </li>
+              <li><b><code translate="no" dir="ltr">HowToSection</code> (only if a recipe has multiple sections)</b>:
+                Use to group steps into multiple sections. See <code translate="no" dir="ltr"><a href="#how-to-section">HowToSection</a></code> for an example.
+              </li>
+              <li><b>Single or repeated property of text</b>: A block of text that includes one or more steps. Google treats all steps as being in a single section. Repeated
+                property values are concatenated into a single block of text. Google then attempts to
+                automatically split the single block of text into individual steps. Google tries to
+                find and remove any section names, step numbers, keywords, and anything else that
+                can incorrectly appear in recipe step text. For best results, we recommend you
+                unambiguously specify steps with <code translate="no" dir="ltr"><a href="#how-to-step">HowToStep</a></code>.
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="recipeInstructions property with block of text" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"recipeInstructions": [
+  "In large bowl, gently mix filling ingredients; spoon into crust-lined pie
+plate. Top with second crust. Cut slits or shapes in several places in top
+crust. Bake 40 to 45 minutes. The pie is ready when the or until apples are
+tender and the crust is golden brown. Cool on cooling rack at least 2 hours
+before serving."
+]</pre></devsite-code>
+              </li>
+            </ul>
+            <p><b>Additional guidelines</b></p>
+            <ul>
+              <li>Don't include metadata that belongs elsewhere. In particular, use the <code translate="no" dir="ltr">author</code>
+                property to specify the author, <code translate="no" dir="ltr">recipeCuisine</code> for cuisine,
+                <code translate="no" dir="ltr">recipeCategory</code> for category, and <code translate="no" dir="ltr">keywords</code> for other keywords.</li>
+              <li>Include only text on how to make the dish and don't include other text such as
+                "Directions", "Watch the video", "Step 1". Specify those phrases
+                outside of structured data.
+              <p><span class="compare-no" aria-hidden="true"></span><b>Not recommended</b>:</p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="Not recommended recipeInstructions property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"recipeInstructions"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"HowToStep"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"text"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Step 1. Heat oven to 425°F."</span></strong>
+<span class="devsite-syntax-p">}]</span></pre></devsite-code>
+            <p><span class="compare-yes" aria-hidden="true"></span><b>Recommended</b>:</p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="Recommended recipeInstructions property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"recipeInstructions"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"HowToStep"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"text"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Heat oven to 425°F."</span></strong>
+<span class="devsite-syntax-p">}]</span></pre></devsite-code>
+              </li>
+            </ul>
+   </td>
+       </tr>
+       <tr>
+          <td><code translate="no" dir="ltr">recipeYield</code></td>
+          <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code></p>
+            <p>The quantity produced by the recipe, if applicable. Specify the number of servings
+            produced from this recipe with just a number. If you wish to use a different unit (for
+            example, number of items), you may include additional yields. This is required if you
+            specify any nutritional information per serving (such as <code translate="no" dir="ltr">nutrition.calories</code>).
+            </p><p>Example</p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="recipeYield property" translate="no" dir="ltr" is-upgraded="" syntax="Text only" syntax-guessed="">"recipeYield": [
+  "6",
+  "24 cookies"
+]</pre></devsite-code>
+          </td>
+       </tr>
+<tr>
+          <td><code translate="no" dir="ltr">totalTime</code></td>
+   <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Duration" class="external-link">Duration</a></code></p>
+            <p>The total time it takes to prepare
+            the cook the dish, in <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601 format</a>, if applicable.
+          </p>
+           <p>Use <code translate="no" dir="ltr">totalTime</code> or a combination of both <code translate="no" dir="ltr">cookTime</code> and <code translate="no" dir="ltr">prepTime</code>. </p> </td>
+       </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">video</code>
+        </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/VideoObject" class="external-link">VideoObject</a></code>
+        <p>
+          A video depicting the steps to make the dish. Follow the list of required and recommended
+            <a href="/search/docs/appearance/structured-data/video#video-object">Video properties</a>.
+        </p>
+      </td></tr>
+      </tbody>
+   </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">itemListElement</code>
+        </td>
+      <td><code translate="no" dir="ltr"><a href="#how-to-step">HowToStep</a></code>
+        <p>A list of detailed steps for the section, and/or sub-sections. For example, a pizza recipe may have
+        one section of steps for making the crust, one for preparing the
+        toppings, and one for combining and baking.</p>
+        <p>Example:</p>
+        <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="HowToStep properties" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"HowToSection"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Assemble the pie"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"itemListElement"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"HowToStep"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"text"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"In large bowl, gently mix filling ingredients; spoon into crust-lined pie plate."</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">},</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"HowToStep"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">      </span><span class="devsite-syntax-s">"text"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Top with second crust. Cut slits or shapes in several places in top crust."</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">]</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">name</code>
+        </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+        <p>The name of the section.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">itemListElement</code>
+        </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/HowToDirection" class="external-link">HowToDirection</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/HowToTip" class="external-link">HowToTip</a></code>
+        <p>A list of detailed substeps, including directions or tips.</p>
+        <p>Optional if <code translate="no" dir="ltr">text</code> is used.</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">text</code>
+        </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+        <p>The full instruction text of this step.</p>
+        <p>Optional if <code translate="no" dir="ltr">itemListElement</code> is used. Additional guidelines:</p>
+        <ul>
+          <li>Include only instructional text and don't include other text such as
+            "Directions", "Watch the video", "Step 1". Specify those phrases outside of the marked
+            up property.
+            <br>
+          <p><span class="compare-no" aria-hidden="true"></span><b>Not recommended</b>:</p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="Not recommended HowToStep property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"HowToStep"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"text"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Step 1. Heat oven to 425°F."</span></strong>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+            <p><span class="compare-yes" aria-hidden="true"></span><b>Recommended</b>:</p>
+            <div></div><devsite-code><pre class="devsite-click-to-copy devsite-code-highlight" data-label="Recommended HowToStep property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"HowToStep"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><strong><span class="devsite-syntax-s">"text"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Heat oven to 425°F."</span></strong>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">image</code>
+        </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/ImageObject" class="external-link">ImageObject</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code>
+        <p>
+          An image for the step. Additional image guidelines:
+        </p>
+        <ul>
+          <li>Image URLs must be <a href="/search/docs/crawling-indexing/sitemaps/image-sitemaps">crawlable and indexable</a>.</li>
+          <li>Images must represent the marked up content.</li>
+          <li>Images must be in .jpg, .png, or. gif format.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">name</code>
+        </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+        <p>
+          The word or short phrase summarizing the step (for example, "Arrange pie crust").
+          Don't use non-descriptive text (for example, "Step 1: [text]") or other form of step number
+          (for example, "1. [text]").
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">url</code>
+        </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code>
+        <p>
+          A <code translate="no" dir="ltr">URL</code> that directly links to the step (if one is available). For example,
+          an anchor link fragment.
+        </p>
+      </td>
+    </tr>
+    <tr id="how-to-step-video">
+      <td>
+        <code translate="no" dir="ltr">video</code>
+        </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/VideoObject" class="external-link">VideoObject</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/Clip" class="external-link">Clip</a></code>
+        <p> A video for this step or a clip of the video. </p>
+        <p> For <code translate="no" dir="ltr"><a href="https://schema.org/VideoObject" class="external-link">VideoObject</a></code>, follow the list of required and recommended
+          <a href="/search/docs/appearance/structured-data/video#type-definitions">Video</a>
+          or <a href="/search/docs/appearance/structured-data/video#clip">Clip</a> properties.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <code translate="no" dir="ltr">text</code>
+        </td>
+      <td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+        <p>The text of the direction or tip.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr><th colspan="2">Required properties</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <code translate="no" dir="ltr">itemListElement</code>
+          </td>
+        <td><p><code translate="no" dir="ltr"><a href="https://schema.org/ListItem" class="external-link">ListItem</a></code></p>
+        <p>Annotation for a single item page.</p></td>
+     </tr>
+     <tr>
+        <td>
+          <code translate="no" dir="ltr">ListItem.position</code>
+          </td>
+        <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code></p>
+        <p>Ordinal position of the item page in the list. For example:</p>
+        <div></div><devsite-code><pre class="pretty-print" data-label="position property" translate="no" dir="ltr" is-upgraded="">"itemListElement": [
+  {
+    "@type": "ListItem",
+    <strong>"position": 1,</strong>
+  }, {
+    "@type": "ListItem",
+    <strong>"position": 2,</strong>
+  }
+]
+</pre></devsite-code>
+       </td>
+     </tr>
+     <tr>
+        <td>
+          <code translate="no" dir="ltr">ListItem.url</code>
+          </td>
+        <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+        <p>The canonical URL of the item page. Every item must have a unique URL.</p></td>
+     </tr>
+      </tbody>
+    </table>

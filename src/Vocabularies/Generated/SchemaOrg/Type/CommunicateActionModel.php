@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CommunicateActionModel
 {
     public const DESCRIPTION = 'The act of conveying information to another person via a communication medium (instrument) such as speech, email, or telephone conversation.';
     public const LABEL = 'CommunicateAction';
     public const NAME = 'schema:CommunicateAction';
-    public const PARENTS = ['InteractActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\InteractActionModel'];
+    public const PARENTS = ['InteractActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InteractActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

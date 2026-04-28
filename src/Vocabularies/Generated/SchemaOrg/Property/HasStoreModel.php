@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HasStoreModel
 {
     public const DESCRIPTION = 'An eCommerce store part of an online marketplace.';
     public const LABEL = 'hasStore';
     public const NAME = 'schema:hasStore';
-    public const VALUES = ['OnlineStoreModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\OnlineStoreModel'];
-    public const TYPES = ['OnlineMarketplace' => 'Jolicode\Vocabularies\SchemaOrg\Type\OnlineMarketplaceModel'];
+    public const VALUES = ['OnlineStoreModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OnlineStoreModel'];
+    public const TYPES = ['OnlineMarketplace' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OnlineMarketplaceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

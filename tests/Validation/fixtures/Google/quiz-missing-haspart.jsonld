@@ -1,0 +1,15 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Quiz",
+    "about": {
+        "@type": "Thing",
+        "name": "Cell transport"
+    },
+    "educationalAlignment": [
+        {
+            "@type": "AlignmentObject",
+            "alignmentType": "educationalSubject",
+            "targetName": "Biology"
+        }
+    ]
+}

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AdditionalNumberOfGuestsModel
 {
     public const DESCRIPTION = 'If responding yes, the number of guests who will attend in addition to the invitee.';
     public const LABEL = 'additionalNumberOfGuests';
     public const NAME = 'schema:additionalNumberOfGuests';
-    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\NumberModel'];
-    public const TYPES = ['RsvpAction' => 'Jolicode\Vocabularies\SchemaOrg\Type\RsvpActionModel'];
+    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['RsvpAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RsvpActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

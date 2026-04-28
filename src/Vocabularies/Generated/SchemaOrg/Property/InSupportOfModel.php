@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class InSupportOfModel
 {
     public const DESCRIPTION = 'Qualification, candidature, degree, application that Thesis supports.';
     public const LABEL = 'inSupportOf';
     public const NAME = 'schema:inSupportOf';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Thesis' => 'Jolicode\Vocabularies\SchemaOrg\Type\ThesisModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Thesis' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThesisModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

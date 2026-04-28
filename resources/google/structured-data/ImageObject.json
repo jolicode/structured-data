@@ -1,0 +1,72 @@
+{
+    "name": "ImageObject",
+    "documentation": "https://developers.google.com/search/docs/appearance/structured-data/image-license-metadata",
+    "specialRules": [],
+    "supportedTypes": [
+        "ImageObject"
+    ],
+    "properties": {
+        "contentUrl": {
+            "name": "contentUrl",
+            "severity": "required",
+            "supportedTypes": [
+                "URL"
+            ]
+        },
+        "atLeastOneOf": {
+            "name": "atLeastOneOf",
+            "severity": "required",
+            "value": {
+                "creator": {},
+                "creditText": {},
+                "copyrightNotice": {},
+                "license": {}
+            }
+        },
+        "creator": {
+            "name": "creator",
+            "severity": "optional",
+            "supportedTypes": [
+                "Organization",
+                "Person"
+            ],
+            "properties": {
+                "name": {
+                    "name": "name",
+                    "severity": "recommended",
+                    "supportedTypes": [
+                        "Text"
+                    ]
+                }
+            }
+        },
+        "creditText": {
+            "name": "creditText",
+            "severity": "optional",
+            "supportedTypes": [
+                "Text"
+            ]
+        },
+        "copyrightNotice": {
+            "name": "copyrightNotice",
+            "severity": "optional",
+            "supportedTypes": [
+                "Text"
+            ]
+        },
+        "license": {
+            "name": "license",
+            "severity": "optional",
+            "supportedTypes": [
+                "URL"
+            ]
+        },
+        "acquireLicensePage": {
+            "name": "acquireLicensePage",
+            "severity": "recommended",
+            "supportedTypes": [
+                "URL"
+            ]
+        }
+    }
+}

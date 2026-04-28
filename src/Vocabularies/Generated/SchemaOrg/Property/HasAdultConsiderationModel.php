@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HasAdultConsiderationModel
 {
     public const DESCRIPTION = 'Used to tag an item to be intended or suitable for consumption or use by adults only.';
     public const LABEL = 'hasAdultConsideration';
     public const NAME = 'schema:hasAdultConsideration';
-    public const VALUES = ['AdultOrientedEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AdultOrientedEnumerationModel'];
-    public const TYPES = ['Offer' => 'Jolicode\Vocabularies\SchemaOrg\Type\OfferModel', 'Product' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProductModel'];
+    public const VALUES = ['AdultOrientedEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AdultOrientedEnumerationModel'];
+    public const TYPES = ['Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel', 'Product' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

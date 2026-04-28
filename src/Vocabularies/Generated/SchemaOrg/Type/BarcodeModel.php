@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BarcodeModel
 {
     public const DESCRIPTION = 'An image of a visual machine-readable code such as a barcode or QR code.';
     public const LABEL = 'Barcode';
     public const NAME = 'schema:Barcode';
-    public const PARENTS = ['ImageObjectModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ImageObjectModel'];
+    public const PARENTS = ['ImageObjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ImageObjectModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

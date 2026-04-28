@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MerchantReturnEnumerationModel
 {
     public const DESCRIPTION = 'Enumerates several kinds of product return policies.';
     public const LABEL = 'MerchantReturnEnumeration';
     public const NAME = 'schema:MerchantReturnEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['MerchantReturnFiniteReturnWindowModel' => 'EnumerationMember\MerchantReturnFiniteReturnWindowModel', 'MerchantReturnNotPermittedModel' => 'EnumerationMember\MerchantReturnNotPermittedModel', 'MerchantReturnUnlimitedWindowModel' => 'EnumerationMember\MerchantReturnUnlimitedWindowModel', 'MerchantReturnUnspecifiedModel' => 'EnumerationMember\MerchantReturnUnspecifiedModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2288'];

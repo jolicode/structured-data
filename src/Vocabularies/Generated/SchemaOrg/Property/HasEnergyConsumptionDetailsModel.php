@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HasEnergyConsumptionDetailsModel
 {
     public const DESCRIPTION = 'Defines the energy efficiency Category (also known as "class" or "rating") for a product according to an international energy efficiency standard.';
     public const LABEL = 'hasEnergyConsumptionDetails';
     public const NAME = 'schema:hasEnergyConsumptionDetails';
-    public const VALUES = ['EnergyConsumptionDetailsModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EnergyConsumptionDetailsModel'];
-    public const TYPES = ['Product' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProductModel'];
+    public const VALUES = ['EnergyConsumptionDetailsModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnergyConsumptionDetailsModel'];
+    public const TYPES = ['Product' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

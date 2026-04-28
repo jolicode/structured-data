@@ -1,0 +1,35 @@
+{
+    "@context": "https://schema.org",
+    "@type": "DiscussionForumPosting",
+    "headline": "I went to the concert!",
+    "text": "Look at how cool this concert was!",
+    "url": "https://example.com/post/very-popular-thread",
+    "author": {
+        "@type": "Person",
+        "name": "Katie Pope",
+        "url": "https://example.com/user/katie-pope"
+    },
+    "datePublished": "2024-03-01T08:34:34+02:00",
+    "comment": [
+        {
+            "@type": "Comment",
+            "text": "Who's the person you're with?",
+            "author": {
+                "@type": "Person",
+                "name": "Saul Douglas",
+                "url": "https://example.com/user/saul-douglas"
+            },
+            "datePublished": "2024-03-01T09:46:02+02:00"
+        },
+        {
+            "@type": "Comment",
+            "text": "That's my mom, isn't she cool?",
+            "author": {
+                "@type": "Person",
+                "name": "Katie Pope",
+                "url": "https://example.com/user/katie-pope"
+            },
+            "datePublished": "2024-03-01T09:50:25+02:00"
+        }
+    ]
+}

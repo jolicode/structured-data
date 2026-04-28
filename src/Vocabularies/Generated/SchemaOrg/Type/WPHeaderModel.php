@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class WPHeaderModel
 {
     public const DESCRIPTION = 'The header section of the page.';
     public const LABEL = 'WPHeader';
     public const NAME = 'schema:WPHeader';
-    public const PARENTS = ['WebPageElementModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\WebPageElementModel'];
+    public const PARENTS = ['WebPageElementModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebPageElementModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

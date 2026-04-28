@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SportsActivityLocationModel
 {
     public const DESCRIPTION = 'A sub property of location. The sports activity location where this action occurred.';
     public const LABEL = 'sportsActivityLocation';
     public const NAME = 'schema:sportsActivityLocation';
-    public const VALUES = ['SportsActivityLocationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\SportsActivityLocationModel'];
-    public const TYPES = ['ExerciseAction' => 'Jolicode\Vocabularies\SchemaOrg\Type\ExerciseActionModel'];
+    public const VALUES = ['SportsActivityLocationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SportsActivityLocationModel'];
+    public const TYPES = ['ExerciseAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ExerciseActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

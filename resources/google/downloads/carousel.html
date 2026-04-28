@@ -1,0 +1,105 @@
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">itemListElement</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/ListItem" class="external-link">ListItem</a></code></p>
+      <p>List of items. To specify a list, define an <code translate="no" dir="ltr">ItemList</code> that contains at least
+        two <code translate="no" dir="ltr">ListItem</code> elements. All items must be of the same type. See <code translate="no" dir="ltr">
+        <a href="#list-item">ListItem</a></code> for details.</p></td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+      <colgroup><col width="20%"></colgroup>
+      <thead>
+        <tr><th colspan="2">Required properties</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code translate="no" dir="ltr">position</code>
+          </td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code></p>
+            <p>The item's position in the carousel. This is a 1-based number.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code translate="no" dir="ltr">url</code>
+          </td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+            <p>The canonical URL of the item detail page. All URLs in the list must be unique, but live
+              on the same domain (the same domain or sub/super domain as the current page).</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<table class="responsive fixed">
+      <colgroup><col width="20%"></colgroup>
+      <thead>
+        <tr><th colspan="2">Required properties</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code translate="no" dir="ltr">item</code>
+          </td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/Thing" class="external-link">Thing</a></code></p>
+          <p>An individual thing in a list. Populate this object with the following values, plus all the
+            properties of the specific structured data type being described:</p>
+          <ul>
+            <li><code translate="no" dir="ltr"><a href="#item-name">item.name</a></code></li>
+            <li><code translate="no" dir="ltr"><a href="#item-url">item.url</a></code></li>
+            <li>Any other properties required for this data type, as described in schema.org and the rules
+              described in the documents for your content type:
+              <ul>
+                <li><a href="/search/docs/appearance/structured-data/course">Course</a></li>
+                <li><a href="/search/docs/appearance/structured-data/movie">Movie</a></li>
+                <li><a href="/search/docs/appearance/structured-data/recipe">Recipe</a></li>
+                <li><a href="/search/docs/appearance/structured-data/local-business#carousel">Restaurant</a></li>
+              </ul>
+              <b>Example</b>: For a recipe, you would provide <code translate="no" dir="ltr">prepTime</code> and <code translate="no" dir="ltr">image</code>
+              properties.</li>
+          </ul>
+          </td>
+        </tr>
+        <tr id="item-name">
+          <td>
+            <code translate="no" dir="ltr">item.name</code>
+          </td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+            <p>The string name of the item. The <code translate="no" dir="ltr">item.name</code> is displayed as the title of an
+              individual item in the carousel. HTML formatting is ignored.</p>
+          </td>
+        </tr>
+        <tr id="item-url">
+          <td>
+            <code translate="no" dir="ltr">item.url</code>
+          </td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+            <p>The fully-qualified URL and page anchor to this item on the page. The URL must be
+              the current page, and you must include an HTML anchor (<code translate="no" dir="ltr">&lt;a&gt;</code> tag or
+              <code translate="no" dir="ltr">name</code> or <code translate="no" dir="ltr">id</code> value) in your page near the user-visible text.
+              <b>Example</b>: <code translate="no" dir="ltr">https://example.org/recipes/pies#apple_pie</code>.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code translate="no" dir="ltr">position</code>
+          </td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code></p>
+            <p>The item's position in the carousel. This is a 1-based number.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PhotographActionModel
 {
     public const DESCRIPTION = 'The act of capturing still images of objects using a camera.';
     public const LABEL = 'PhotographAction';
     public const NAME = 'schema:PhotographAction';
-    public const PARENTS = ['CreateActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CreateActionModel'];
+    public const PARENTS = ['CreateActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreateActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class VehicleSpecialUsageModel
 {
     public const DESCRIPTION = 'Indicates whether the vehicle has been used for special purposes, like commercial rental, driving school, or as a taxi. The legislation in many countries requires this information to be revealed when offering a car for sale.';
     public const LABEL = 'vehicleSpecialUsage';
     public const NAME = 'schema:vehicleSpecialUsage';
-    public const VALUES = ['CarUsageTypeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CarUsageTypeModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Vehicle' => 'Jolicode\Vocabularies\SchemaOrg\Type\VehicleModel'];
+    public const VALUES = ['CarUsageTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CarUsageTypeModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Vehicle' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VehicleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PassengerSequenceNumberModel
 {
     public const DESCRIPTION = 'The passenger\'s sequence number as assigned by the airline.';
     public const LABEL = 'passengerSequenceNumber';
     public const NAME = 'schema:passengerSequenceNumber';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['FlightReservation' => 'Jolicode\Vocabularies\SchemaOrg\Type\FlightReservationModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['FlightReservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FlightReservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

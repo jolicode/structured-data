@@ -1,0 +1,52 @@
+{
+    "name": "ProductGroup",
+    "documentation": "https://developers.google.com/search/docs/appearance/structured-data/product-variants",
+    "specialRules": [],
+    "supportedTypes": [
+        "ProductGroup"
+    ],
+    "properties": {
+        "name": {
+            "name": "name",
+            "severity": "required",
+            "supportedTypes": [
+                "Text"
+            ]
+        },
+        "variesBy": {
+            "name": "variesBy",
+            "severity": "recommended",
+            "supportedTypes": [
+                "DefinedTerm"
+            ]
+        },
+        "productGroupID": {
+            "name": "productGroupID",
+            "severity": "recommended",
+            "supportedTypes": [
+                "Text"
+            ]
+        },
+        "hasVariant": {
+            "name": "hasVariant",
+            "severity": "recommended",
+            "supportedTypes": [
+                "Product"
+            ]
+        },
+        "aggregateRating": {
+            "name": "aggregateRating",
+            "severity": "recommended",
+            "supportedTypes": [
+                "AggregateRating"
+            ]
+        },
+        "review": {
+            "name": "review",
+            "severity": "recommended",
+            "supportedTypes": [
+                "Review"
+            ]
+        }
+    }
+}

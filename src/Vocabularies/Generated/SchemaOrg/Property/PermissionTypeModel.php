@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PermissionTypeModel
 {
     public const DESCRIPTION = 'The type of permission granted the person, organization, or audience.';
     public const LABEL = 'permissionType';
     public const NAME = 'schema:permissionType';
-    public const VALUES = ['DigitalDocumentPermissionTypeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\DigitalDocumentPermissionTypeModel'];
-    public const TYPES = ['DigitalDocumentPermission' => 'Jolicode\Vocabularies\SchemaOrg\Type\DigitalDocumentPermissionModel'];
+    public const VALUES = ['DigitalDocumentPermissionTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DigitalDocumentPermissionTypeModel'];
+    public const TYPES = ['DigitalDocumentPermission' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DigitalDocumentPermissionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

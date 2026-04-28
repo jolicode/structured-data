@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class GameItemModel
 {
     public const DESCRIPTION = 'An item is an object within the game world that can be collected by a player or, occasionally, a non-player character.';
     public const LABEL = 'gameItem';
     public const NAME = 'schema:gameItem';
-    public const VALUES = ['ThingModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ThingModel'];
-    public const TYPES = ['Game' => 'Jolicode\Vocabularies\SchemaOrg\Type\GameModel', 'VideoGameSeries' => 'Jolicode\Vocabularies\SchemaOrg\Type\VideoGameSeriesModel'];
+    public const VALUES = ['ThingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['Game' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GameModel', 'VideoGameSeries' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VideoGameSeriesModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

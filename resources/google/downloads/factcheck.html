@@ -1,0 +1,331 @@
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr id="claimreview-required"><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">claimReviewed</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+        <p>A short summary of the claim being evaluated. Try to keep this less than 75 characters
+          to minimize wrapping when displayed on a mobile device.</p>
+        <aside class="warning">Don't include the rating in the <code translate="no" dir="ltr">claimReviewed</code> field.
+          Instead, specify the rating in the <code translate="no" dir="ltr">reviewRating</code> field.</aside>
+      </td>
+     </tr>
+     <tr>
+       <td><code translate="no" dir="ltr">reviewRating</code></td>
+       <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Rating" class="external-link">Rating</a></code></p>
+       <p>The assessment of the claim. This object supports both a numeric and a textual assessment.
+         The textual value is currently the only value shown in search results.</p>
+
+        <p>Different fact-checking projects have a variety of rating schemes which can have subtle differences,
+          particularly for intermediate values. It is important to document such rating schemes to clarify
+          the meaning of the numeric ratings. Minimally, there must be a number to text rating system
+          for all your fact checks that carry numeric scores.</p>
+       <ul>
+         <li>1 = "False"</li>
+         <li>2 = "Mostly false"</li>
+         <li>3 = "Half true"</li>
+         <li>4 = "Mostly true"</li>
+         <li>5 = "True"</li>
+       </ul>
+      <p>For more information, see <a href="#rating">Rating</a>.</p></td>
+     </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">url</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+      <p>Link to the page hosting the full article of the fact check.</p>
+        <p>The domain of this URL value must be the same domain as, or a subdomain of, the
+        page hosting this <code translate="no" dir="ltr">ClaimReview</code> element. Redirects or shortened URLs (such
+        as g.co/searchconsole) are not resolved, and so will not work here.</p></td>
+     </tr>
+      </tbody>
+     </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr id="claimreview-recommended"><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+          <tr>
+       <td><code translate="no" dir="ltr">author</code></td>
+       <td>
+         <p><code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code></p>
+         <p>The publisher of the fact check article, not the publisher of the
+           claim. The <code translate="no" dir="ltr">author</code> must be an organization or a person. The
+           <code translate="no" dir="ltr">author</code> have at least one of the following properties:</p>
+         <table class="responsive fixed">
+      <colgroup>
+        <col width="20%">
+      </colgroup>
+      <tbody>
+           <tr>
+             <td>
+               <code translate="no" dir="ltr">name</code>
+             </td>
+             <td>
+               <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+               <p>Name of the organization that is publishing the fact check.</p>
+             </td>
+           </tr>
+           <tr>
+             <td><code translate="no" dir="ltr">url</code>
+             </td>
+             <td>
+               <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+               <p>The URL of the publisher of the fact check. This can be a home page, contact page,
+                 or other appropriate page.</p>
+             </td>
+           </tr>
+           </tbody>
+         </table>
+         <p>
+           To help Google best
+            understand authors across various features, consider following the
+            <a href="/search/docs/appearance/structured-data/article#author-bp">author markup best practices</a>.
+         </p>
+       </td>
+     </tr>
+     <tr>
+        <td><code translate="no" dir="ltr">itemReviewed</code></td>
+        <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Claim" class="external-link">Claim</a></code></p>
+        <p>An object describing the claim being made. For more information, see
+          <a href="#claim"><code translate="no" dir="ltr">Claim</code>.</a></p>
+          <aside class="note"><b>Backwards compatibility</b>: Upon the initial launch
+            of fact check, Google Search recommended <code translate="no" dir="ltr">CreativeWork</code> as the
+            <code translate="no" dir="ltr">itemReviewed</code>. Google Search continues to support earlier markup patterns.
+            Here's an example that shows the original markup style:
+            <br>
+            <form method="post" target="_blank" class="gc-analytics-event" data-category="Search docs" data-label="See markup button" action="https://search.google.com/test/rich-results?utm_campaign=devsite&amp;utm_medium=jsonld&amp;utm_source=factcheck"><input type="submit" value="See Markup"><textarea name="code_snippet" style="display:none">&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;The world is flat&lt;/title&gt;
+    &lt;script type="application/ld+json"&gt;
+    {
+      "@context": "https://schema.org",
+      "@type": "ClaimReview",
+      "datePublished": "2024-06-22",
+      "url": "https://example.com/news/science/worldisflat.html",
+      "itemReviewed":
+      {
+        "@type": "CreativeWork",
+        "author":
+        {
+          "@type": "Organization",
+          "name": "Square World Society",
+          "sameAs": "https://example.flatworlders.com/we-know-that-the-world-is-flat"
+        },
+        "datePublished": "2024-06-20"
+      },
+      "claimReviewed": "The world is flat",
+      "author":
+      {
+        "@type": "Organization",
+        "name": "Example.com science watch"
+      },
+      "reviewRating":
+      {
+        "@type": "Rating",
+        "ratingValue": 1,
+        "bestRating": 5,
+        "worstRating": 1,
+        "alternateName" : "False"
+      }
+    }
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</textarea></form></aside>
+       </td>
+     </tr>
+      </tbody>
+     </table>
+<table class="responsive fixed">
+      <colgroup>
+        <col width="20%">
+      </colgroup>
+      <tbody>
+           <tr>
+             <td>
+               <code translate="no" dir="ltr">name</code>
+             </td>
+             <td>
+               <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+               <p>Name of the organization that is publishing the fact check.</p>
+             </td>
+           </tr>
+           <tr>
+             <td><code translate="no" dir="ltr">url</code>
+             </td>
+             <td>
+               <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+               <p>The URL of the publisher of the fact check. This can be a home page, contact page,
+                 or other appropriate page.</p>
+             </td>
+           </tr>
+           </tbody>
+         </table>
+<table class="responsive fixed">
+    <colgroup><col width="20%"></colgroup>
+    <thead>
+      <tr id="claim-recommended"><th colspan="2">Recommended properties</th></tr>
+    </thead>
+    <tbody>
+     <tr>
+        <td><code translate="no" dir="ltr">appearance</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code> or
+            <code translate="no" dir="ltr"><a href="https://schema.org/CreativeWork" class="external-link">CreativeWork</a></code></p>
+          <p>A link to, or inline description of, a <code translate="no" dir="ltr">CreativeWork</code> in which this claim
+            appears.</p>
+            <p>We recommend that you add either <code translate="no" dir="ltr">appearance</code> or <code translate="no" dir="ltr">firstAppearance</code>.
+            You don't need to add both.</p>
+        </td>
+     </tr>
+     <tr>
+        <td><code translate="no" dir="ltr">author</code></td>
+        <td><p>
+          <code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code> or
+          <code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code></p>
+          <p>The author of the claim, not the author of the fact check. Don't include
+            the <code translate="no" dir="ltr">author</code> property if the claim doesn't have an author. If you add
+            <code translate="no" dir="ltr">author</code>, define the following properties:</p>
+          <table class="responsive fixed">
+            <colgroup>
+              <col width="20%">
+            </colgroup>
+            <tbody>
+              <tr>
+                <td><code translate="no" dir="ltr">name</code></td><td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>, required
+                <p>The publisher of the claim. The publisher can be a person or organization.</p></td></tr>
+              <tr><td><code translate="no" dir="ltr">sameAs</code></td>
+                  <td><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code>, recommended
+                  <p>Indicates the party that is making the claim, regardless of whether the party
+                    is a <code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code> or
+                    <code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code>. When multiple publishers
+                    report on the same claim, the <code translate="no" dir="ltr">appearance</code> property can be repeated. When
+                    multiple parties are making essentially the same claim, the <code translate="no" dir="ltr">author</code>
+                    property can be repeated.</p>
+                  <p>The URL can be:</p>
+                  <ul>
+                    <li>The home page of the organization that is making the claim. </li>
+                    <li>Another definitive URL that provides information about the party that is making
+                      the claim, such as a person or organization's Wikipedia or Wikidata entry.</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+       </td>
+     </tr>
+     <tr>
+        <td><code translate="no" dir="ltr">datePublished</code></td>
+        <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code>
+          or <code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code></p>
+          <p>The date when the claim was made or entered public discourse (for example, when it became
+          popular in social networks).</p>
+        </td>
+     </tr>
+     <tr>
+      <td><code translate="no" dir="ltr">firstAppearance</code></td>
+      <td>
+        <p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code> or
+          <code translate="no" dir="ltr"><a href="https://schema.org/CreativeWork" class="external-link">CreativeWork</a></code></p>
+        <p>A link to, or inline description of, a <code translate="no" dir="ltr">CreativeWork</code> in which this specific
+          claim first appears.</p>
+          <p>We recommend that you add either <code translate="no" dir="ltr">appearance</code> or <code translate="no" dir="ltr">firstAppearance</code>.
+            You don't need to add both.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+            <colgroup>
+              <col width="20%">
+            </colgroup>
+            <tbody>
+              <tr>
+                <td><code translate="no" dir="ltr">name</code></td><td><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>, required
+                <p>The publisher of the claim. The publisher can be a person or organization.</p></td></tr>
+              <tr><td><code translate="no" dir="ltr">sameAs</code></td>
+                  <td><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code>, recommended
+                  <p>Indicates the party that is making the claim, regardless of whether the party
+                    is a <code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code> or
+                    <code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code>. When multiple publishers
+                    report on the same claim, the <code translate="no" dir="ltr">appearance</code> property can be repeated. When
+                    multiple parties are making essentially the same claim, the <code translate="no" dir="ltr">author</code>
+                    property can be repeated.</p>
+                  <p>The URL can be:</p>
+                  <ul>
+                    <li>The home page of the organization that is making the claim. </li>
+                    <li>Another definitive URL that provides information about the party that is making
+                      the claim, such as a person or organization's Wikipedia or Wikidata entry.</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr id="rating-required"><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code translate="no" dir="ltr">alternateName</code></td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The truthfulness rating assigned to <code translate="no" dir="ltr">ClaimReview.reviewRating</code>, as a human-readible
+        short word or phrase. This value is displayed
+        in the fact check in search results. <b>Examples:</b> "True" or
+        "Mostly true".</p>
+      <p>If using a longer sentence, be sure that the beginning of the sentence
+        expresses the meaning, in case the sentence is truncated to fit the display. For example:
+        "Mostly true in the specifics, although the overall claim is somewhat misleading"</p></td>
+     </tr>
+  </tbody>
+</table>
+<table class="responsive fixed">
+<colgroup><col width="20%"></colgroup>
+<thead>
+  <tr id="rating-recommended"><th colspan="2">Recommended properties</th></tr>
+</thead>
+<tbody>
+  <tr>
+    <td><code translate="no" dir="ltr">bestRating</code></td>
+    <td>
+      <p>
+        <code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code>
+      </p>
+      <p>For numeric ratings, the best value possible in the scale from worst to best. Must be greater than
+      <code translate="no" dir="ltr">worstRating</code>. Must be able to be evaluated as a number. <b>Example</b>:  4</p>
+    </td>
+  </tr>
+  <tr>
+    <td><code translate="no" dir="ltr">name</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>Same as <code translate="no" dir="ltr">alternateName</code>, and used when <code translate="no" dir="ltr">alternateName</code> is not
+        provided, but we recommend that you specify <code translate="no" dir="ltr">alternateName</code> instead of <code translate="no" dir="ltr">name</code>.
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td><code translate="no" dir="ltr">ratingValue</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+      <p>A numeric rating of this claim, in the range <code translate="no" dir="ltr">worstRating</code> —
+        <code translate="no" dir="ltr">bestRating</code> inclusive. Integer values are recommended but not required. The closer the numeric
+        rating is to <code translate="no" dir="ltr">bestRating</code>, the more true it is; the closer this value is to
+        <code translate="no" dir="ltr">worstRating</code>, the more false it is. The numeric rating must be able to
+        be evaluated as a number. <b>Example</b>: 4 </p>
+      </td>
+     </tr>
+     <tr>
+       <td><code translate="no" dir="ltr">worstRating</code></td>
+       <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+         <p>For numeric ratings, the worst value possible in a scale from worst to best. Must be less than
+         <code translate="no" dir="ltr">bestRating</code>. Must be able to be evaluated as a number. Must have a minimum value
+           of 1. <b>Example</b>: 1</p>
+       </td>
+     </tr>
+  </tbody>
+</table>

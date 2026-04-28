@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OccupationLocationModel
 {
     public const DESCRIPTION = 'The region/country for which this occupational description is appropriate. Note that educational requirements and qualifications can vary between jurisdictions.';
     public const LABEL = 'occupationLocation';
     public const NAME = 'schema:occupationLocation';
-    public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AdministrativeAreaModel'];
-    public const TYPES = ['Occupation' => 'Jolicode\Vocabularies\SchemaOrg\Type\OccupationModel'];
+    public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AdministrativeAreaModel'];
+    public const TYPES = ['Occupation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OccupationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

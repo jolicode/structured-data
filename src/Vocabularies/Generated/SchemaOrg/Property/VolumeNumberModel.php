@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class VolumeNumberModel
 {
     public const DESCRIPTION = 'Identifies the volume of publication or multi-part work; for example, "iii" or "2".';
     public const LABEL = 'volumeNumber';
     public const NAME = 'schema:volumeNumber';
-    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\IntegerModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['PublicationVolume' => 'Jolicode\Vocabularies\SchemaOrg\Type\PublicationVolumeModel'];
+    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IntegerModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['PublicationVolume' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PublicationVolumeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

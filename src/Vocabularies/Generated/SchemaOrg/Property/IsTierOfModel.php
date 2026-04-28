@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IsTierOfModel
 {
     public const DESCRIPTION = 'The member program this tier is a part of.';
     public const LABEL = 'isTierOf';
     public const NAME = 'schema:isTierOf';
-    public const VALUES = ['MemberProgramModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MemberProgramModel'];
-    public const TYPES = ['MemberProgramTier' => 'Jolicode\Vocabularies\SchemaOrg\Type\MemberProgramTierModel'];
+    public const VALUES = ['MemberProgramModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MemberProgramModel'];
+    public const TYPES = ['MemberProgramTier' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MemberProgramTierModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

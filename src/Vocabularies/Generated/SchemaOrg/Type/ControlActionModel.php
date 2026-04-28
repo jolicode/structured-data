@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ControlActionModel
 {
     public const DESCRIPTION = 'An agent controls a device or application.';
     public const LABEL = 'ControlAction';
     public const NAME = 'schema:ControlAction';
-    public const PARENTS = ['ActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ActionModel'];
+    public const PARENTS = ['ActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DrainsToModel
 {
     public const DESCRIPTION = 'The vasculature that the vein drains into.';
     public const LABEL = 'drainsTo';
     public const NAME = 'schema:drainsTo';
-    public const VALUES = ['VesselModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\VesselModel'];
-    public const TYPES = ['Vein' => 'Jolicode\Vocabularies\SchemaOrg\Type\VeinModel'];
+    public const VALUES = ['VesselModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VesselModel'];
+    public const TYPES = ['Vein' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VeinModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

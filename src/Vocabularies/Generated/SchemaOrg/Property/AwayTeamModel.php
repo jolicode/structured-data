@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AwayTeamModel
 {
     public const DESCRIPTION = 'The away team in a sports event.';
     public const LABEL = 'awayTeam';
     public const NAME = 'schema:awayTeam';
-    public const VALUES = ['PersonModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PersonModel', 'SportsTeamModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\SportsTeamModel'];
-    public const TYPES = ['SportsEvent' => 'Jolicode\Vocabularies\SchemaOrg\Type\SportsEventModel'];
+    public const VALUES = ['PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel', 'SportsTeamModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SportsTeamModel'];
+    public const TYPES = ['SportsEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SportsEventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

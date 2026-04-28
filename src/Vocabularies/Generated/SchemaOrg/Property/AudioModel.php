@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AudioModel
 {
     public const DESCRIPTION = 'An embedded audio object.';
     public const LABEL = 'audio';
     public const NAME = 'schema:audio';
-    public const VALUES = ['AudioObjectModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AudioObjectModel', 'ClipModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ClipModel', 'MusicRecordingModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MusicRecordingModel'];
-    public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\SchemaOrg\Type\CreativeWorkModel'];
+    public const VALUES = ['AudioObjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AudioObjectModel', 'ClipModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ClipModel', 'MusicRecordingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicRecordingModel'];
+    public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

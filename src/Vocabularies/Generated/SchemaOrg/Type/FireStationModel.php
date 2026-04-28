@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class FireStationModel
 {
     public const DESCRIPTION = 'A fire station. With firemen.';
     public const LABEL = 'FireStation';
     public const NAME = 'schema:FireStation';
-    public const PARENTS = ['CivicStructureModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CivicStructureModel', 'EmergencyServiceModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EmergencyServiceModel'];
+    public const PARENTS = ['CivicStructureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CivicStructureModel', 'EmergencyServiceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EmergencyServiceModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

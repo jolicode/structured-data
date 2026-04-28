@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ClaimReviewedModel
 {
     public const DESCRIPTION = 'A short summary of the specific claims reviewed in a ClaimReview.';
     public const LABEL = 'claimReviewed';
     public const NAME = 'schema:claimReviewed';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['ClaimReview' => 'Jolicode\Vocabularies\SchemaOrg\Type\ClaimReviewModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['ClaimReview' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ClaimReviewModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

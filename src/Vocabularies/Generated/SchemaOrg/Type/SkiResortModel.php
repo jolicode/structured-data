@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SkiResortModel
 {
     public const DESCRIPTION = 'A ski resort.';
     public const LABEL = 'SkiResort';
     public const NAME = 'schema:SkiResort';
-    public const PARENTS = ['ResortModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ResortModel', 'SportsActivityLocationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\SportsActivityLocationModel'];
+    public const PARENTS = ['ResortModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ResortModel', 'SportsActivityLocationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SportsActivityLocationModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

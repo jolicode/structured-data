@@ -1,0 +1,136 @@
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Required properties</th></tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code translate="no" dir="ltr">name</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The name of the <code translate="no" dir="ltr">ProductGroup</code> (for example, "Wool winter coat"). Make sure that
+        the name of the variants in each <code translate="no" dir="ltr">Product</code> item is more specific
+        (for example, "Wool winter coat - green, size small", based on the variant-identifying properties.
+        See the <a href="/search/docs/appearance/structured-data/merchant-listing#name">Product documentation</a> for details.
+      </p>
+    </td>
+  </tr>
+</tbody>
+</table>
+<table class="responsive fixed">
+  <colgroup><col width="20%"></colgroup>
+  <thead>
+    <tr><th colspan="2">Recommended properties</th></tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code translate="no" dir="ltr">aggregateRating</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/AggregateRating" class="external-link">AggregateRating</a></code>
+    </p>
+      <p>A nested <code translate="no" dir="ltr">aggregateRating</code> of the <code translate="no" dir="ltr">ProductGroup</code> (which is representative
+        of all variants), if applicable. Follow the
+          <a href="/search/docs/appearance/structured-data/review-snippet#guidelines">Review snippet guidelines</a>
+           and the list of required and recommended
+          <a href="/search/docs/appearance/structured-data/review-snippet#aggregated-rating-type-definition"><code translate="no" dir="ltr">AggregateRating</code> properties</a>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td><code translate="no" dir="ltr">brand</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Brand" class="external-link">Brand</a></code>
+    </p>
+      <p>Brand information about the <code translate="no" dir="ltr">ProductGroup</code> (same across all variants), if applicable.
+        See the <a href="/search/docs/appearance/structured-data/merchant-listing#brand">Product documentation</a>
+        for details on <code translate="no" dir="ltr">brand</code>.
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td><code translate="no" dir="ltr">brand.name</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+    </p>
+      <p>The name of the brand of the <code translate="no" dir="ltr">ProductGroup</code> (same across all variants). If you're
+        already adding the brand at the <code translate="no" dir="ltr">ProductGroup</code> level, you don't need to add it
+        again at the <code translate="no" dir="ltr">Product</code> level.
+        See the <a href="/search/docs/appearance/structured-data/merchant-listing#brand">Product documentation</a>
+        for details on <code translate="no" dir="ltr">brand</code>.
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td><code translate="no" dir="ltr">description</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code> or
+           <code translate="no" dir="ltr"><a href="https://schema.org/TextObject" class="external-link">TextObject</a></code>
+    </p>
+      <p>The description of the <code translate="no" dir="ltr">ProductGroup</code>. For example, "Wool winter coat for cold
+        weather climates". Make sure that the variant description is more specific and ideally uses
+        words that identify the variant (such as color, size, material).
+      </p>
+      <aside class="note">In addition to the description of the <code translate="no" dir="ltr">ProductGroup</code>, we
+        recommend also adding a description of each variant at the <code translate="no" dir="ltr">Product</code>
+        level. See the <a href="/search/docs/appearance/structured-data/merchant-listing#description">Product documentation</a>
+        for details.</aside>
+    </td>
+  </tr>
+  <tr>
+    <td><code translate="no" dir="ltr">hasVariant</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Product" class="external-link">Product</a></code></p>
+      <p>A nested <code translate="no" dir="ltr">Product</code> property that is one of the variants of the
+        <code translate="no" dir="ltr">ProductGroup</code> property, if applicable. A <code translate="no" dir="ltr">ProductGroup</code> typically has multiple
+        nested variant <code translate="no" dir="ltr">Product</code> properties.</p>
+      <p>Alternatively, a variant <code translate="no" dir="ltr">Product</code> property can reference back to its parent
+        <code translate="no" dir="ltr">ProductGroup</code> using the <code translate="no" dir="ltr">isVariantOf</code> property on the <code translate="no" dir="ltr">Product</code>
+        property.
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td><code translate="no" dir="ltr">productGroupID</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The identifier of the product group (also known as the <i>parent sku</i>). This identifier must be
+        provided for the <code translate="no" dir="ltr">ProductGroup</code> property or, alternatively, using <code translate="no" dir="ltr">inProductGroupWithID</code>
+        property for variants of the <code translate="no" dir="ltr">ProductGroup</code> property. If you provide the identifier
+        for both the <code translate="no" dir="ltr">ProductGroup</code> property and its variant <code translate="no" dir="ltr">Product</code>
+        properties, they must match.
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td><code translate="no" dir="ltr">review</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Review" class="external-link">Review</a></code>
+    </p>
+      <p>A nested <code translate="no" dir="ltr">review</code> of the <code translate="no" dir="ltr">ProductGroup</code>, if applicable. Follow the
+        <a href="/search/docs/appearance/structured-data/review-snippet#guidelines">Review snippet guidelines</a>
+        and the list of required and recommended
+        <a href="/search/docs/appearance/structured-data/review-snippet#review-properties">review properties</a>.
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td><code translate="no" dir="ltr">url</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code>
+    </p>
+      <p><b>For <a href="#single-page-website">single-page websites</a> only</b>: The URL (without variant
+        selectors) where the <code translate="no" dir="ltr">ProductGroup</code> property is located, if applicable. Don't use this property
+        for multi-page websites.
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td><code translate="no" dir="ltr">variesBy</code></td>
+    <td><p><code translate="no" dir="ltr"><a href="https://schema.org/DefinedTerm" class="external-link">DefinedTerm</a></code></p>
+      <p>Aspects by which the variants in the <code translate="no" dir="ltr">ProductGroup</code>
+        vary, (for example, size or color), if applicable. Reference these variant-identifying properties through
+        their full Schema.org URL (for example,
+      <code translate="no" dir="ltr">https://schema.org/color</code>). The following properties are supported:
+      </p>
+      <ul>
+        <li><code translate="no" dir="ltr">https://schema.org/color</code></li>
+        <li><code translate="no" dir="ltr">https://schema.org/size</code></li>
+        <li><code translate="no" dir="ltr">https://schema.org/suggestedAge</code></li>
+        <li><code translate="no" dir="ltr">https://schema.org/suggestedGender</code></li>
+        <li><code translate="no" dir="ltr">https://schema.org/material</code></li>
+        <li><code translate="no" dir="ltr">https://schema.org/pattern</code></li>
+      </ul>
+    </td>
+  </tr>
+</tbody>
+</table>

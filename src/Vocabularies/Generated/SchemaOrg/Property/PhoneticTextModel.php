@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PhoneticTextModel
 {
     public const DESCRIPTION = 'Representation of a text [[textValue]] using the specified [[speechToTextMarkup]]. For example the city name of Houston in IPA: /ˈhjuːstən/.';
     public const LABEL = 'phoneticText';
     public const NAME = 'schema:phoneticText';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['PronounceableText' => 'Jolicode\Vocabularies\SchemaOrg\Type\PronounceableTextModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['PronounceableText' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PronounceableTextModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

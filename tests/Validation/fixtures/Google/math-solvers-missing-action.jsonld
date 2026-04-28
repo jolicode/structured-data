@@ -1,0 +1,9 @@
+{
+  "@context": "https://schema.org",
+  "@type": "MathSolver",
+  "name": "An incomplete math solver",
+  "url": "https://www.mathdomain.com/",
+  "usageInfo": "https://www.mathdomain.com/privacy",
+  "inLanguage": "en",
+  "learningResourceType": "Math solver"
+}

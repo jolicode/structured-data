@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OrderItemNumberModel
 {
     public const DESCRIPTION = 'The identifier of the order item.';
     public const LABEL = 'orderItemNumber';
     public const NAME = 'schema:orderItemNumber';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['OrderItem' => 'Jolicode\Vocabularies\SchemaOrg\Type\OrderItemModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['OrderItem' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrderItemModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

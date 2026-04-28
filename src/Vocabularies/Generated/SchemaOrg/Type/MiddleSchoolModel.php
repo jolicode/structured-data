@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MiddleSchoolModel
 {
     public const DESCRIPTION = 'A middle school (typically for children aged around 11-14, although this varies somewhat).';
     public const LABEL = 'MiddleSchool';
     public const NAME = 'schema:MiddleSchool';
-    public const PARENTS = ['EducationalOrganizationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EducationalOrganizationModel'];
+    public const PARENTS = ['EducationalOrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

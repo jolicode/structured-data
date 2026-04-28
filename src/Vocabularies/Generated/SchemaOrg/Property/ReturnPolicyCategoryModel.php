@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReturnPolicyCategoryModel
 {
     public const DESCRIPTION = 'Specifies an applicable return policy (from an enumeration).';
     public const LABEL = 'returnPolicyCategory';
     public const NAME = 'schema:returnPolicyCategory';
-    public const VALUES = ['MerchantReturnEnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MerchantReturnEnumerationModel'];
-    public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\Vocabularies\SchemaOrg\Type\MerchantReturnPolicyModel', 'MerchantReturnPolicySeasonalOverride' => 'Jolicode\Vocabularies\SchemaOrg\Type\MerchantReturnPolicySeasonalOverrideModel'];
+    public const VALUES = ['MerchantReturnEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MerchantReturnEnumerationModel'];
+    public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MerchantReturnPolicyModel', 'MerchantReturnPolicySeasonalOverride' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MerchantReturnPolicySeasonalOverrideModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

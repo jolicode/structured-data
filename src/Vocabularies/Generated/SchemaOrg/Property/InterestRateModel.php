@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class InterestRateModel
 {
     public const DESCRIPTION = 'The interest rate, charged or paid, applicable to the financial product. Note: This is different from the calculated annualPercentageRate.';
     public const LABEL = 'interestRate';
     public const NAME = 'schema:interestRate';
-    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\QuantitativeValueModel'];
-    public const TYPES = ['FinancialProduct' => 'Jolicode\Vocabularies\SchemaOrg\Type\FinancialProductModel'];
+    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['FinancialProduct' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FinancialProductModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

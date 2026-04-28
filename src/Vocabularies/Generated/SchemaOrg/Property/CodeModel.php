@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CodeModel
 {
     public const DESCRIPTION = 'A medical code for the entity, taken from a controlled vocabulary or ontology such as ICD-9, DiseasesDB, MeSH, SNOMED-CT, RxNorm, etc.';
     public const LABEL = 'code';
     public const NAME = 'schema:code';
-    public const VALUES = ['MedicalCodeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalCodeModel'];
-    public const TYPES = ['MedicalEntity' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalEntityModel'];
+    public const VALUES = ['MedicalCodeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalCodeModel'];
+    public const TYPES = ['MedicalEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

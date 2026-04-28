@@ -12,6 +12,8 @@
 namespace Jolicode\JsonLd\Tests\Validation\Benchmark;
 
 use Jolicode\Vocabularies\Validator;
+use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
+use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
 
 class JsonLdValidatorBench
 {
@@ -29,7 +31,8 @@ class JsonLdValidatorBench
      */
     public function benchSimpleExpandedValidation(): void
     {
-        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-expanded.jsonld') ?: '');
+        $this->validator->setValidator(SchemaOrgValidator::class);
+        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/schema-org/simple-expanded.jsonld') ?: '');
     }
 
     /**
@@ -41,7 +44,8 @@ class JsonLdValidatorBench
      */
     public function benchSimpleCompactedValidation(): void
     {
-        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-compacted.jsonld') ?: '');
+        $this->validator->setValidator(SchemaOrgValidator::class);
+        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/schema-org/simple-compacted.jsonld') ?: '');
     }
 
     /**
@@ -53,7 +57,8 @@ class JsonLdValidatorBench
      */
     public function benchSimpleFlattenedValidation(): void
     {
-        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-flattened.jsonld') ?: '');
+        $this->validator->setValidator(SchemaOrgValidator::class);
+        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/schema-org/simple-flattened.jsonld') ?: '');
     }
 
     /**
@@ -65,7 +70,8 @@ class JsonLdValidatorBench
      */
     public function benchSimpleFramedValidation(): void
     {
-        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/simple-framed.jsonld') ?: '');
+        $this->validator->setValidator(SchemaOrgValidator::class);
+        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/schema-org/simple-framed.jsonld') ?: '');
     }
 
     /**
@@ -77,7 +83,8 @@ class JsonLdValidatorBench
      */
     public function benchComplexExpandedValidation(): void
     {
-        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-expanded.jsonld') ?: '');
+        $this->validator->setValidator(SchemaOrgValidator::class);
+        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/schema-org/complex-expanded.jsonld') ?: '');
     }
 
     /**
@@ -89,7 +96,8 @@ class JsonLdValidatorBench
      */
     public function benchComplexCompactedValidation(): void
     {
-        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-compacted.jsonld') ?: '');
+        $this->validator->setValidator(SchemaOrgValidator::class);
+        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/schema-org/complex-compacted.jsonld') ?: '');
     }
 
     /**
@@ -101,7 +109,8 @@ class JsonLdValidatorBench
      */
     public function benchComplexFlattenedValidation(): void
     {
-        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-flattened.jsonld') ?: '');
+        $this->validator->setValidator(SchemaOrgValidator::class);
+        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/schema-org/complex-flattened.jsonld') ?: '');
     }
 
     /**
@@ -113,7 +122,34 @@ class JsonLdValidatorBench
      */
     public function benchComplexFramedValidation(): void
     {
-        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/SchemaOrg/complex-framed.jsonld') ?: '');
+        $this->validator->setValidator(SchemaOrgValidator::class);
+        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/schema-org/complex-framed.jsonld') ?: '');
+    }
+
+    /**
+     * @Revs(50)
+     *
+     * @Iterations(5)
+     *
+     * @RetryThreshold(2.0)
+     */
+    public function benchGoogleBookValidation(): void
+    {
+        $this->validator->setValidator(GoogleValidator::class);
+        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/Google/book.jsonld') ?: '');
+    }
+
+    /**
+     * @Revs(50)
+     *
+     * @Iterations(5)
+     *
+     * @RetryThreshold(2.0)
+     */
+    public function benchGoogleQAPageValidation(): void
+    {
+        $this->validator->setValidator(GoogleValidator::class);
+        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/Google/qapage.jsonld') ?: '');
     }
 
     /**

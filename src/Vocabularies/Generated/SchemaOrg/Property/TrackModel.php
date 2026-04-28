@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TrackModel
 {
     public const DESCRIPTION = 'A music recording (track)&#x2014;usually a single song. If an ItemList is given, the list should contain items of type MusicRecording.';
     public const LABEL = 'track';
     public const NAME = 'schema:track';
-    public const VALUES = ['ItemListModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ItemListModel', 'MusicRecordingModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MusicRecordingModel'];
-    public const TYPES = ['MusicGroup' => 'Jolicode\Vocabularies\SchemaOrg\Type\MusicGroupModel', 'MusicPlaylist' => 'Jolicode\Vocabularies\SchemaOrg\Type\MusicPlaylistModel'];
+    public const VALUES = ['ItemListModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ItemListModel', 'MusicRecordingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicRecordingModel'];
+    public const TYPES = ['MusicGroup' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicGroupModel', 'MusicPlaylist' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicPlaylistModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class InstructorModel
 {
     public const DESCRIPTION = 'A person assigned to instruct or provide instructional assistance for the [[CourseInstance]].';
     public const LABEL = 'instructor';
     public const NAME = 'schema:instructor';
-    public const VALUES = ['PersonModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PersonModel'];
-    public const TYPES = ['CourseInstance' => 'Jolicode\Vocabularies\SchemaOrg\Type\CourseInstanceModel'];
+    public const VALUES = ['PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['CourseInstance' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CourseInstanceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

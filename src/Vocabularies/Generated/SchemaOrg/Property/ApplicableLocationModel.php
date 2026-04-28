@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ApplicableLocationModel
 {
     public const DESCRIPTION = 'The location in which the status applies.';
     public const LABEL = 'applicableLocation';
     public const NAME = 'schema:applicableLocation';
-    public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AdministrativeAreaModel'];
-    public const TYPES = ['DrugCost' => 'Jolicode\Vocabularies\SchemaOrg\Type\DrugCostModel', 'DrugLegalStatus' => 'Jolicode\Vocabularies\SchemaOrg\Type\DrugLegalStatusModel'];
+    public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AdministrativeAreaModel'];
+    public const TYPES = ['DrugCost' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugCostModel', 'DrugLegalStatus' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugLegalStatusModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

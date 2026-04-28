@@ -1,0 +1,24 @@
+{
+    "@context": "https://schema.org",
+    "@type": "QAPage",
+    "mainEntity": {
+        "@type": "Question",
+        "name": "How many ounces are there in a pound?",
+        "answerCount": 0,
+        "text": "I have taken up a new interest in baking and keep running across directions in ounces and pounds.",
+        "commentCount": 0,
+        "upvoteCount": 26,
+        "datePublished": "2024-02-14T15:34:00-05:00",
+        "dateModified": "2024-02-14T15:35:00-05:00",
+        "digitalSourceType": "AlgorithmicMediaDigitalSource",
+        "image": "https://example.com/images/question.jpg",
+        "video": {
+            "@type": "VideoObject"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "Mary Stone",
+            "url": "https://example.com/profiles/mary-stone"
+        }
+    }
+}

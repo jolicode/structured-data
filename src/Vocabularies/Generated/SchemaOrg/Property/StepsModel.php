@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class StepsModel
 {
     public const DESCRIPTION = 'A single step item (as HowToStep, text, document, video, etc.) or a HowToSection (originally misnamed \'steps\'; \'step\' is preferred).';
     public const LABEL = 'steps';
     public const NAME = 'schema:steps';
-    public const VALUES = ['CreativeWorkModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CreativeWorkModel', 'ItemListModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ItemListModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['HowTo' => 'Jolicode\Vocabularies\SchemaOrg\Type\HowToModel', 'HowToSection' => 'Jolicode\Vocabularies\SchemaOrg\Type\HowToSectionModel'];
+    public const VALUES = ['CreativeWorkModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'ItemListModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ItemListModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['HowTo' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HowToModel', 'HowToSection' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HowToSectionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

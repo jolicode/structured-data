@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class NumConstraintsModel
 {
     public const DESCRIPTION = 'Indicates the number of constraints property values defined for a particular [[ConstraintNode]] such as [[StatisticalVariable]]. This helps applications understand if they have access to a sufficiently complete description of a [[StatisticalVariable]] or other construct that is defined using properties on template-style nodes.';
     public const LABEL = 'numConstraints';
     public const NAME = 'schema:numConstraints';
-    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\IntegerModel'];
-    public const TYPES = ['ConstraintNode' => 'Jolicode\Vocabularies\SchemaOrg\Type\ConstraintNodeModel'];
+    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['ConstraintNode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ConstraintNodeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

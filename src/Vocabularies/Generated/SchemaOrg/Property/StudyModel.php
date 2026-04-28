@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class StudyModel
 {
     public const DESCRIPTION = 'A medical study or trial related to this entity.';
     public const LABEL = 'study';
     public const NAME = 'schema:study';
-    public const VALUES = ['MedicalStudyModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalStudyModel'];
-    public const TYPES = ['MedicalEntity' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalEntityModel'];
+    public const VALUES = ['MedicalStudyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalStudyModel'];
+    public const TYPES = ['MedicalEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

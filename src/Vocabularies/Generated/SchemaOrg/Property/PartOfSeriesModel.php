@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PartOfSeriesModel
 {
     public const DESCRIPTION = 'The series to which this episode or season belongs.';
     public const LABEL = 'partOfSeries';
     public const NAME = 'schema:partOfSeries';
-    public const VALUES = ['CreativeWorkSeriesModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CreativeWorkSeriesModel'];
-    public const TYPES = ['Clip' => 'Jolicode\Vocabularies\SchemaOrg\Type\ClipModel', 'CreativeWorkSeason' => 'Jolicode\Vocabularies\SchemaOrg\Type\CreativeWorkSeasonModel', 'Episode' => 'Jolicode\Vocabularies\SchemaOrg\Type\EpisodeModel'];
+    public const VALUES = ['CreativeWorkSeriesModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkSeriesModel'];
+    public const TYPES = ['Clip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ClipModel', 'CreativeWorkSeason' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkSeasonModel', 'Episode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EpisodeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

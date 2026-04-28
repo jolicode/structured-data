@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LoserModel
 {
     public const DESCRIPTION = 'A sub property of participant. The loser of the action.';
     public const LABEL = 'loser';
     public const NAME = 'schema:loser';
-    public const VALUES = ['PersonModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\PersonModel'];
-    public const TYPES = ['WinAction' => 'Jolicode\Vocabularies\SchemaOrg\Type\WinActionModel'];
+    public const VALUES = ['PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['WinAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WinActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

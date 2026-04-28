@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CauseOfModel
 {
     public const DESCRIPTION = 'The condition, complication, symptom, sign, etc. caused.';
     public const LABEL = 'causeOf';
     public const NAME = 'schema:causeOf';
-    public const VALUES = ['MedicalEntityModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalEntityModel'];
-    public const TYPES = ['MedicalCause' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalCauseModel'];
+    public const VALUES = ['MedicalEntityModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel'];
+    public const TYPES = ['MedicalCause' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalCauseModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PodcastSeriesModel
 {
     public const DESCRIPTION = 'A podcast is an episodic series of digital audio or video files which a user can download and listen to.';
     public const LABEL = 'PodcastSeries';
     public const NAME = 'schema:PodcastSeries';
-    public const PARENTS = ['CreativeWorkSeriesModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CreativeWorkSeriesModel'];
+    public const PARENTS = ['CreativeWorkSeriesModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkSeriesModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/373'];

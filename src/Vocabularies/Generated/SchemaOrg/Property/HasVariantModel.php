@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HasVariantModel
 {
     public const DESCRIPTION = 'Indicates a [[Product]] that is a member of this [[ProductGroup]] (or [[ProductModel]]).';
     public const LABEL = 'hasVariant';
     public const NAME = 'schema:hasVariant';
-    public const VALUES = ['ProductModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProductModel'];
-    public const TYPES = ['ProductGroup' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProductGroupModel'];
+    public const VALUES = ['ProductModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel'];
+    public const TYPES = ['ProductGroup' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductGroupModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

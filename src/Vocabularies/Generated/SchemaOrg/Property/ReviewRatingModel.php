@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReviewRatingModel
 {
     public const DESCRIPTION = 'The rating given in this review. Note that reviews can themselves be rated. The ```reviewRating``` applies to rating given by the review. The [[aggregateRating]] property applies to the review itself, as a creative work.';
     public const LABEL = 'reviewRating';
     public const NAME = 'schema:reviewRating';
-    public const VALUES = ['RatingModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\RatingModel'];
-    public const TYPES = ['Review' => 'Jolicode\Vocabularies\SchemaOrg\Type\ReviewModel'];
+    public const VALUES = ['RatingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RatingModel'];
+    public const TYPES = ['Review' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReviewModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

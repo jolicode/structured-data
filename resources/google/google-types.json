@@ -1,0 +1,162 @@
+[
+    {
+        "slug": "article",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/article"
+    },
+    {
+        "slug": "book",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/book",
+        "status": "extra",
+        "note": "Not listed in the search gallery but is a valid structured data type"
+    },
+    {
+        "slug": "breadcrumb",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/breadcrumb"
+    },
+    {
+        "slug": "carousel",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/carousel"
+    },
+    {
+        "slug": "carousels-beta",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/carousels-beta",
+        "note": "Beta carousel documentation for LocalBusiness/Product/Event list markup; tracked separately from the stable carousel page."
+    },
+    {
+        "slug": "course",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/course"
+    },
+    {
+        "slug": "dataset",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/dataset"
+    },
+    {
+        "slug": "discussion-forum",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/discussion-forum"
+    },
+    {
+        "slug": "education-qa",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/education-qa"
+    },
+    {
+        "slug": "employer-rating",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/employer-rating"
+    },
+    {
+        "slug": "event",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/event"
+    },
+    {
+        "slug": "factcheck",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/factcheck",
+        "note": "Concrete structured data page for ClaimReview/Claim/Rating; Google notes Search support is being phased out, but the page still documents a supported implementation."
+    },
+    {
+        "slug": "faqpage",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/faqpage"
+    },
+    {
+        "slug": "image-license-metadata",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/image-license-metadata"
+    },
+    {
+        "slug": "job-posting",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/job-posting"
+    },
+    {
+        "slug": "local-business",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/local-business"
+    },
+    {
+        "slug": "loyalty-program",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/loyalty-program",
+        "note": "Organization-level member program documentation (MemberProgram / MemberProgramTier)."
+    },
+    {
+        "slug": "math-solvers",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/math-solvers"
+    },
+    {
+        "slug": "merchant-listing",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/merchant-listing",
+        "note": "Product rich-result documentation with offer/shipping/return policy constraints for shopping experiences."
+    },
+    {
+        "slug": "movie",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/movie"
+    },
+    {
+        "slug": "organization",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/organization"
+    },
+    {
+        "slug": "paywalled-content",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/paywalled-content",
+        "status": "skip",
+        "note": "Markup pattern applied on top of Article/NewsArticle (isAccessibleForFree + hasPart), not a standalone structured data type"
+    },
+    {
+        "slug": "product",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/product",
+        "status": "skip",
+        "note": "Hub page listing shopping experiences (MerchantListing, Review, etc.), not a concrete structured data type with its own required fields"
+    },
+    {
+        "slug": "product-snippet",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/product-snippet",
+        "note": "Editorial and storefront product snippet documentation (review/aggregateRating/offers)."
+    },
+    {
+        "slug": "product-variants",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/product-variants",
+        "note": "ProductGroup variant modeling documentation (hasVariant, variesBy, productGroupID)."
+    },
+    {
+        "slug": "profile-page",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/profile-page"
+    },
+    {
+        "slug": "qapage",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/qapage"
+    },
+    {
+        "slug": "recipe",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/recipe"
+    },
+    {
+        "slug": "return-policy",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/return-policy",
+        "note": "Organization-level MerchantReturnPolicy documentation."
+    },
+    {
+        "slug": "review-snippet",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/review-snippet"
+    },
+    {
+        "slug": "shipping-policy",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/shipping-policy",
+        "note": "Organization-level ShippingService / ShippingConditions documentation."
+    },
+    {
+        "slug": "software-app",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/software-app"
+    },
+    {
+        "slug": "speakable",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/speakable"
+    },
+    {
+        "slug": "special-announcement",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/special-announcement",
+        "status": "retired",
+        "note": "Retired by Google in 2023 (Covid-19 announcements). Kept for backward compatibility."
+    },
+    {
+        "slug": "vacation-rental",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/vacation-rental"
+    },
+    {
+        "slug": "video",
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/video"
+    }
+]

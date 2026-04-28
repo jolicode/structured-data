@@ -22,7 +22,7 @@ readonly class RegisteredValidatorsContainer
          */
         private readonly array $validators = [
             SchemaOrgValidator::class => new SchemaOrgValidator(),
-            // GoogleValidator::class => new GoogleValidator(),
+            GoogleValidator::class => new GoogleValidator(),
         ],
     ) {
     }
@@ -38,5 +38,15 @@ readonly class RegisteredValidatorsContainer
     public function getValidators(): array
     {
         return $this->validators;
+    }
+
+    public function getValidatorClassName(string $validatorSimpleName): false|string
+    {
+        return match (strtolower($validatorSimpleName)) {
+            'schemaorg' => SchemaOrgValidator::class,
+            'schema.org' => SchemaOrgValidator::class,
+            'google' => GoogleValidator::class,
+            default => false,
+        };
     }
 }

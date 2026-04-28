@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AccountOverdraftLimitModel
 {
     public const DESCRIPTION = 'An overdraft is an extension of credit from a lending institution when an account reaches zero. An overdraft allows the individual to continue withdrawing money even if the account has no funds in it. Basically the bank allows people to borrow a set amount of money.';
     public const LABEL = 'accountOverdraftLimit';
     public const NAME = 'schema:accountOverdraftLimit';
-    public const VALUES = ['MonetaryAmountModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MonetaryAmountModel'];
-    public const TYPES = ['BankAccount' => 'Jolicode\Vocabularies\SchemaOrg\Type\BankAccountModel'];
+    public const VALUES = ['MonetaryAmountModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountModel'];
+    public const TYPES = ['BankAccount' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BankAccountModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

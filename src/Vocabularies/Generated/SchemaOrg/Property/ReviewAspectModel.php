@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReviewAspectModel
 {
     public const DESCRIPTION = 'This Review or Rating is relevant to this part or facet of the itemReviewed.';
     public const LABEL = 'reviewAspect';
     public const NAME = 'schema:reviewAspect';
-    public const VALUES = ['StructuredValueModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\StructuredValueModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Guide' => 'Jolicode\Vocabularies\SchemaOrg\Type\GuideModel', 'Rating' => 'Jolicode\Vocabularies\SchemaOrg\Type\RatingModel', 'Review' => 'Jolicode\Vocabularies\SchemaOrg\Type\ReviewModel'];
+    public const VALUES = ['StructuredValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\StructuredValueModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Guide' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GuideModel', 'Rating' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RatingModel', 'Review' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReviewModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

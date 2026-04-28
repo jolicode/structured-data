@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LegislationRepealsModel
 {
     public const DESCRIPTION = 'Another legislation that this legislation repeals (cancels, abrogates).';
     public const LABEL = 'legislationRepeals';
     public const NAME = 'schema:legislationRepeals';
-    public const VALUES = ['LegislationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\LegislationModel'];
-    public const TYPES = ['Legislation' => 'Jolicode\Vocabularies\SchemaOrg\Type\LegislationModel'];
+    public const VALUES = ['LegislationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LegislationModel'];
+    public const TYPES = ['Legislation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LegislationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

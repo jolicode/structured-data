@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DiagnosisModel
 {
     public const DESCRIPTION = 'One or more alternative conditions considered in the differential diagnosis process as output of a diagnosis process.';
     public const LABEL = 'diagnosis';
     public const NAME = 'schema:diagnosis';
-    public const VALUES = ['MedicalConditionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalConditionModel'];
-    public const TYPES = ['DDxElement' => 'Jolicode\Vocabularies\SchemaOrg\Type\DDxElementModel', 'Patient' => 'Jolicode\Vocabularies\SchemaOrg\Type\PatientModel'];
+    public const VALUES = ['MedicalConditionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel'];
+    public const TYPES = ['DDxElement' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DDxElementModel', 'Patient' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PatientModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

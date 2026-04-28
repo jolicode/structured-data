@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SignificantLinksModel
 {
     public const DESCRIPTION = 'The most significant URLs on the page. Typically, these are the non-navigation links that are clicked on the most.';
     public const LABEL = 'significantLinks';
     public const NAME = 'schema:significantLinks';
-    public const VALUES = ['URLModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\URLModel'];
-    public const TYPES = ['WebPage' => 'Jolicode\Vocabularies\SchemaOrg\Type\WebPageModel'];
+    public const VALUES = ['URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
+    public const TYPES = ['WebPage' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebPageModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SensoryUnitModel
 {
     public const DESCRIPTION = 'The neurological pathway extension that inputs and sends information to the brain or spinal cord.';
     public const LABEL = 'sensoryUnit';
     public const NAME = 'schema:sensoryUnit';
-    public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AnatomicalStructureModel', 'SuperficialAnatomyModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\SuperficialAnatomyModel'];
-    public const TYPES = ['Nerve' => 'Jolicode\Vocabularies\SchemaOrg\Type\NerveModel'];
+    public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalStructureModel', 'SuperficialAnatomyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SuperficialAnatomyModel'];
+    public const TYPES = ['Nerve' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NerveModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

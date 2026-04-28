@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AnswerExplanationModel
 {
     public const DESCRIPTION = 'A step-by-step or full explanation about Answer. Can outline how this Answer was achieved or contain more broad clarification or statement about it.';
     public const LABEL = 'answerExplanation';
     public const NAME = 'schema:answerExplanation';
-    public const VALUES = ['CommentModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CommentModel', 'WebContentModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\WebContentModel'];
-    public const TYPES = ['Answer' => 'Jolicode\Vocabularies\SchemaOrg\Type\AnswerModel'];
+    public const VALUES = ['CommentModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommentModel', 'WebContentModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebContentModel'];
+    public const TYPES = ['Answer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnswerModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -1,0 +1,516 @@
+<table class="responsive fixed">
+      <colgroup><col width="30%"></colgroup>
+      <thead><tr><th colspan="2">Required properties</th></tr></thead>
+      <tbody>
+         <tr id="merchant-shipping-conditions">
+          <td><code translate="no" dir="ltr">shippingConditions</code></td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/ShippingConditions" class="external-link">ShippingConditions</a></code></p>
+            <p>
+              Specify the shipping cost and/or delivery times that apply for a particular set of conditions, for example,
+              a product weight range, product dimensions, order value, or delivery location. A <code translate="no" dir="ltr">ShippingService</code> can have
+              multiple <code translate="no" dir="ltr">shippingConditions</code>. If more than one <code translate="no" dir="ltr">ShippingConditions</code> applies to a product,
+              we'll use the lowest shipping cost for the product for the given situation and display that rate and the associated
+              shipping speed to customers. If the shipping cost is the same, we'll use the shipping information with the
+              fastest shipping speed.
+            </p>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+<table class="responsive fixed">
+    <colgroup><col width="30%"></colgroup>
+    <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+    <tbody>
+      <tr id="name">
+        <td><code translate="no" dir="ltr">name</code></td>
+        <td>
+          <p>
+            <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+          </p>
+          <p>A unique name for your shipping service, if applicable. For example, "Standard Shipping".</p>
+          </td>
+      </tr>
+      <tr id="description">
+        <td><code translate="no" dir="ltr">description</code></td>
+        <td>
+          <p>
+            <code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code>
+          </p>
+          <p>A description of your shipping service, if applicable. This is typically more comprehensive than the name.</p>
+          </td>
+      </tr>
+      <tr id="fulfillmentType">
+        <td><code translate="no" dir="ltr">fulfillmentType</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/FulfillmentTypeEnumeration" class="external-link">FulfillmentTypeEnumeration</a></code></p>
+          <p>How the product is delivered to the customer for this shipping service, if applicable.</p>
+          <ul>
+             <li><code translate="no" dir="ltr">https://schema.org/FulfillmentTypeDelivery</code>: This service ships the product to the customer's address (this is the default if this property is not specified).</li>
+            <li><code translate="no" dir="ltr">https://schema.org/FulfillmentTypeCollectionPoint</code>: The product is shipped to a collection point for customer pickup.</li>
+         </ul>
+        </td>
+      </tr>
+      <tr id="handlingTime">
+        <td><code translate="no" dir="ltr">handlingTime</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/ServicePeriod" class="external-link">ServicePeriod</a></code></p>
+          <p>Optional information about handling times (for example, in a warehouse) after receiving an order, if applicable.</p>
+             See also the list of <a href="#shipping-service-handling-time-properties"><code translate="no" dir="ltr">ServicePeriod</code></a>
+             properties under the <code translate="no" dir="ltr">ShippingService</code> type supported by Google.<p></p>
+        </td>
+      </tr>
+        <tr id="validForMemberTier">
+          <td><code translate="no" dir="ltr">validForMemberTier</code></td>
+          <td>
+            <p>
+              <code translate="no" dir="ltr"><a href="https://schema.org/MemberProgramTier" class="external-link">MemberProgramTier</a></code>
+            </p>
+            <p>
+              The loyalty program and tier that this shipping service is valid for, if applicable.
+              You can specify multiple member tiers if the shipping settings are the same for all of
+              the tiers.
+            </p>
+            <p>
+              If you use the <code translate="no" dir="ltr">validForMemberTier</code> property to designate member shipping benefits,
+              you must also provide at least one regular (non-member) shipping service.
+            </p>
+            <p>
+                The loyalty programs and tiers that you offer for your business can either be
+                defined in your Merchant Center account or using the <code translate="no" dir="ltr">MemberProgram</code> structured
+                data type nested under <code translate="no" dir="ltr">Organization</code> structured data on a separate page
+                that defines your organization's administrative details and policies. See
+                <a href="/search/docs/appearance/structured-data/loyalty-program">loyalty program markup</a> for
+                information on how to define the member programs and tiers for your organization.
+            </p>
+            <p>Here's an example of the <code translate="no" dir="ltr">validForMemberTier</code> property referencing a member
+              program (<em>member-plus</em>) and tier (<em>silver</em>) defined in Merchant Center:
+            </p>
+<div></div><devsite-code><pre class="devsite-click-to-copy" data-label="mc member program and tier" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"validForMemberTier"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MemberProgramTier"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"silver"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"isTierOf"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"MemberProgram"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"member-plus"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+          <p>Here's an example of the <code translate="no" dir="ltr">validForMemberTier</code> property referencing
+            <code translate="no" dir="ltr">MemberProgramTier</code> structured data nested under
+            <code translate="no" dir="ltr">MemberProgram</code> structured data, which is in turn nested under a <code translate="no" dir="ltr">Organization</code> structured
+            data type on a separate page. The <code translate="no" dir="ltr">MemberProgramTier</code> instance is
+            identified by the <code translate="no" dir="ltr">@id</code> property specifying the unique resource identifier (URI) of its definition:
+            <code translate="no" dir="ltr">https://www.example.com/com/member-plus#tier_silver</code>:
+          </p>
+<div></div><devsite-code><pre class="devsite-click-to-copy" data-label="mc member program and tier" translate="no" dir="ltr" is-upgraded="" syntax="Transact-SQL" syntax-guessed=""><span class="devsite-syntax-ss">"validForMemberTier"</span><span class="devsite-syntax-err">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-err">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-ss">"@id"</span><span class="devsite-syntax-err">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-ss">"https://www.example.com/com/member-plus#tier_silver"</span>
+<span class="devsite-syntax-err">}</span></pre></devsite-code>
+          <aside class="beta">
+            This property is still in beta. Off-page <code translate="no" dir="ltr">MemberProgramTier</code>
+            structured data might not show up in Google Search right away.
+          </aside>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">businessDays</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/DayOfWeek" class="external-link">DayOfWeek</a></code></p>
+              <p>The days of the week when received orders are processed, if applicable.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">cutoffTime</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Time" class="external-link">Time</a></code></p>
+              <p>The time after which orders received on a day are not processed that same day, if applicable.
+                For orders processed after cutoff time, one day gets added to the delivery time estimate.
+                The time is indicated using the ISO-8601 time format, for example "23:30:00-05:00"
+                represents 6:30 pm Eastern Standard Time (EST) which is 5 hours behind Coordinated
+                Universal Time (UTC).</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">duration</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/QuantitativeValue" class="external-link">QuantitativeValue</a></code></p>
+              <p>The delay between the receipt of an order and the goods leaving the warehouse, if applicable.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">maxValue</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The maximum number of days. The value must be a non-negative, whole number.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">minValue</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The minimum number of days, if applicable. The value must be a non-negative, whole number.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">unitCode</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The units of the minimum/maximum values. The value must be <code translate="no" dir="ltr">DAY</code> or <code translate="no" dir="ltr">d</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">value</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The exact number of handling days, if known. The value must be a non-negative, whole number.
+                If provided, <code translate="no" dir="ltr">minValue</code> and <code translate="no" dir="ltr">maxValue</code> must not be specified.
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+    <colgroup><col width="30%"></colgroup>
+    <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><code translate="no" dir="ltr">doesNotShip</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Boolean" class="external-link">Boolean</a></code></p>
+          <p>If applicable, set this to <code translate="no" dir="ltr">true</code> if shipping from a location in the specified <code translate="no" dir="ltr">shippingOrigin</code>
+            to a location in the specified <code translate="no" dir="ltr">shippingDestination</code> isn't available for orders with the specified
+            combination of <code translate="no" dir="ltr">weight</code>, <code translate="no" dir="ltr">numItems</code>, and <code translate="no" dir="ltr">orderValue</code> conditions.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">numItems</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/QuantitativeValue" class="external-link">QuantitativeValue</a></code></p>
+          <p>The range of the number of products in the order for this shipping conditions object, if applicable.
+            See also the list of <a href="#shipping-quantitative-value-properties"><code translate="no" dir="ltr">QuantitativeValue</code></a> properties
+            related to the <code translate="no" dir="ltr">ShippingConditions</code> type supported by Google.</p>
+        </td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">orderValue</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/MonetaryAmount" class="external-link">MonetaryAmount</a></code></p>
+          <p>The range of the cost of the order for this shipping conditions object, if applicable.
+            See also the list of <a href="#shipping-conditions-monetary-amount-properties"><code translate="no" dir="ltr">MonetaryAmount</code></a>
+            properties related to the <code translate="no" dir="ltr">ShippingConditions</code> type supported by Google.</p>
+        </td>
+      </tr>
+      <tr id="shippingDestination">
+        <td><code translate="no" dir="ltr">shippingDestination</code></td>
+        <td>
+          <p>
+            <code translate="no" dir="ltr"><a href="https://schema.org/DefinedRegion" class="external-link">DefinedRegion</a></code>
+          </p>
+          <p>Indicates shipping destination, if applicable. See the list of <a href="#defined-region-properties"><code translate="no" dir="ltr">DefinedRegion</code></a>
+            properties under the <code translate="no" dir="ltr">shippingDestination</code> property supported by Google.</p>
+        </td>
+      </tr>
+      <tr id="shippingOrigin">
+        <td><code translate="no" dir="ltr">shippingOrigin</code></td>
+        <td>
+          <p>
+            <code translate="no" dir="ltr"><a href="https://schema.org/DefinedRegion" class="external-link">DefinedRegion</a></code>
+          </p>
+          <p>Indicates shipping origin, if applicable. See the list of <a href="#defined-region-properties"><code translate="no" dir="ltr">DefinedRegion</code></a>
+            properties under the <code translate="no" dir="ltr">shippingOrigin</code> property supported by Google.</p>
+        </td>
+      </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">seasonalOverride</code></td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/OpeningHoursSpecification" class="external-link">OpeningHoursSpecification</a></code></p>
+            <p>If applicable, use this property to specify a limited time period for which this shipping conditions object is valid.
+                See also the list of <a href="#shipping-seasonal-override-properties"><code translate="no" dir="ltr">OpeningHoursSpecification</code></a>
+                properties supported for the <code translate="no" dir="ltr">ShippingConditions</code> type by Google.</p>
+            <p></p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">shippingRate</code></td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/ShippingRateSettings" class="external-link">ShippingRateSettings</a></code> or
+                <code translate="no" dir="ltr"><a href="https://schema.org/MonetaryAmount" class="external-link">MonetaryAmount</a></code>
+            </p>
+            <p>If applicable, use this property to specify the shipping cost for
+                shipments from a location in the specified <code translate="no" dir="ltr">shippingOrigin</code> to a location
+                in the specified <code translate="no" dir="ltr">shippingDestination</code> for orders with the
+                specified combination of <code translate="no" dir="ltr">weight</code>, <code translate="no" dir="ltr">numItems</code>, and <code translate="no" dir="ltr">orderValue</code> conditions.
+                See also the list of <a href="#shipping-rate-settings-properties"><code translate="no" dir="ltr">ShippingRateSettings</code>
+                </a> properties and <a href="#shipping-monetary-amount-properties"><code translate="no" dir="ltr">MonetaryAmount</code>
+                </a> properties supported for the <code translate="no" dir="ltr">ShippingConditions</code> type by Google. This property
+                should only be specified if <code translate="no" dir="ltr">doesNotShip</code> is absent or set to <code translate="no" dir="ltr">false</code>.</p>
+            <p></p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">transitTime</code></td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/ServicePeriod" class="external-link">ServicePeriod</a></code></p>
+            <p>If applicable, use to specify the expected transit time between leaving the shipping origin (typically a warehouse)
+                and arriving at the shipping destination (typically the customer). Applies to
+                shipments from a location in the specified <code translate="no" dir="ltr">shippingOrigin</code> property to a location
+                in the specified <code translate="no" dir="ltr">shippingDestination</code> property for orders with the
+                specified combination of <code translate="no" dir="ltr">weight</code>, <code translate="no" dir="ltr">numItems</code>, and <code translate="no" dir="ltr">orderValue</code> conditions.
+                See also the list of <a href="#shipping-service-transit-time-properties"><code translate="no" dir="ltr">ServicePeriod</code></a>
+                properties supported by Google. This property should only be specified if the <code translate="no" dir="ltr">doesNotShip</code> property
+                is absent or set to <code translate="no" dir="ltr">false</code>.</p>
+            <p></p>
+          </td>
+        </tr>
+        <tr>
+          <td><code translate="no" dir="ltr">weight</code></td>
+          <td>
+            <p><code translate="no" dir="ltr"><a href="https://schema.org/QuantitativeValue" class="external-link">QuantitativeValue</a></code></p>
+            <p>The package's weight range for this shipping conditions object, if applicable.
+              See also the list of <a href="#shipping-quantitative-value-properties"><code translate="no" dir="ltr">QuantitativeValue</code></a>
+              properties related to the <code translate="no" dir="ltr">ShippingConditions</code> type supported by Google.</p>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Required properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">addressCountry</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The two-letter country code, in <a href="https://en.wikipedia.org/wiki/ISO_3166-1" class="external-link">
+                 ISO 3166-1 alpha-2</a> format.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">addressRegion</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The country-specific region code, if applicable. The region must be a 2- or 3-character ISO 3166-2
+                subdivision code, without country prefix. Google Search only supports
+                the US, Australia, and Japan. Examples: <code translate="no" dir="ltr">NY</code> (for US, state of New York),
+                <code translate="no" dir="ltr">NSW</code> (for Australia, state of New South Wales), or <code translate="no" dir="ltr">03</code>
+                (for Japan, Iwate prefecture).</p>
+              <p>Don't provide both a region and postal code information.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">postalCode</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The country-specific postal code, if applicable. For example, <code translate="no" dir="ltr">94043</code>. Postal codes are supported for
+                Australia, Canada, and the US.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">businessDays</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/DayOfWeek" class="external-link">DayOfWeek</a></code></p>
+              <p>The days of the week when an order is an active transit, if applicable. If your organization's
+                business days are Monday through Saturday, you don't need to add this property.
+            </p></td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">duration</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/QuantitativeValue" class="external-link">QuantitativeValue</a></code></p>
+              <p>The number of business days in transit, if applicable.
+                See also the list of <a href="#shipping-quantitative-value-properties"><code translate="no" dir="ltr">QuantitativeValue</code></a> properties
+                for transit times supported by Google.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">maxValue</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The maximum number of days. The value must be a non-negative, whole number.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">minValue</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The minimum number of days, if applicable. The value must be a non-negative, whole number.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">unitCode</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The transit time unit. The value must be <code translate="no" dir="ltr">DAY</code> or <code translate="no" dir="ltr">d</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">value</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The exact number of transit days, if known. The value must be a non-negative, whole number.
+                If provided, <code translate="no" dir="ltr">minValue</code> and <code translate="no" dir="ltr">maxValue</code> must not be specified.
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">maxValue</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The maximum number for the dimension (<code translate="no" dir="ltr">weight</code> or <code translate="no" dir="ltr">numItems</code>), if applicable.
+                 Defaults to infinity when not provided.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">minValue</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The minimum number for the dimension (<code translate="no" dir="ltr">weight</code> or <code translate="no" dir="ltr">numItems</code>), if applicable.
+                Must be less than <code translate="no" dir="ltr">maxValue</code>. Defaults to 0 when not provided.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">unitCode</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>A unit relevant to the dimension (<code translate="no" dir="ltr">weight</code> or <code translate="no" dir="ltr">numItems</code>), if applicable.
+                in UN/CEFACT Common Code (three characters) format:
+                </p><ul>
+                  <li>For weight units, the value must be <code translate="no" dir="ltr">LBR</code> (pound) or <code translate="no" dir="ltr">KGM</code> (kilogram)</li>
+                  <li>For number of items, <code translate="no" dir="ltr">unitCode</code> can be omitted. Alternatively, you can use UN/CEFACT Common Code name <code translate="no" dir="ltr">H87</code>.</li>
+                </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Required properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">currency</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The currency code for the order value in <a href="https://en.wikipedia.org/wiki/ISO_4217" class="external-link">ISO 4217</a> format.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">maxValue</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The maximum value of the order. Defaults to infinity when not provided.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">minValue</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The minimum value of the order. Defaults to 0 when not provided.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Required properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">currency</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+              <p>The currency code for the shipping cost in <a href="https://en.wikipedia.org/wiki/ISO_4217" class="external-link">ISO 4217</a> format.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">maxValue</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The maximum shipping cost for the given shipping condition. If you specify the
+                <code translate="no" dir="ltr">maxValue</code> property, don't specify the <code translate="no" dir="ltr">value</code> property.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">value</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The fixed shipping cost for the given shipping condition. For free shipping, use <code translate="no" dir="ltr">0</code> as the value.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">orderPercentage</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The shipping cost for the given shipping condition as a fraction of the order value.
+                 Use a value between <code translate="no" dir="ltr">0</code> and <code translate="no" dir="ltr">1</code>.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">weightPercentage</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Number" class="external-link">Number</a></code></p>
+              <p>The shipping cost for the given shipping condition as a fraction of the weight of the shipped goods.
+                 Use a value between <code translate="no" dir="ltr">0</code> and <code translate="no" dir="ltr">1</code>.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+<table class="responsive fixed">
+        <colgroup><col width="30%"></colgroup>
+        <thead><tr><th colspan="2">Recommended properties</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code translate="no" dir="ltr">validFrom</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code></p>
+              <p>The first date when the shipping condition is valid, in <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601</a> format.</p>
+            </td>
+          </tr>
+          <tr>
+            <td><code translate="no" dir="ltr">validThrough</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code></p>
+              <p>The last date when the shipping condition is valid, in <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601</a> format.</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>

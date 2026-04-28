@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DietarySupplementModel
 {
     public const DESCRIPTION = 'A product taken by mouth that contains a dietary ingredient intended to supplement the diet. Dietary ingredients may include vitamins, minerals, herbs or other botanicals, amino acids, and substances such as enzymes, organ tissues, glandulars and metabolites.';
     public const LABEL = 'DietarySupplement';
     public const NAME = 'schema:DietarySupplement';
-    public const PARENTS = ['ProductModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ProductModel', 'SubstanceModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\SubstanceModel'];
+    public const PARENTS = ['ProductModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel', 'SubstanceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SubstanceModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

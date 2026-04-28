@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AlternativeOfModel
 {
     public const DESCRIPTION = 'Another gene which is a variation of this one.';
     public const LABEL = 'alternativeOf';
     public const NAME = 'schema:alternativeOf';
-    public const VALUES = ['GeneModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\GeneModel'];
-    public const TYPES = ['Gene' => 'Jolicode\Vocabularies\SchemaOrg\Type\GeneModel'];
+    public const VALUES = ['GeneModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeneModel'];
+    public const TYPES = ['Gene' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeneModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

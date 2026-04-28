@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReservoirModel
 {
     public const DESCRIPTION = 'A reservoir of water, typically an artificially created lake, like the Lake Kariba reservoir.';
     public const LABEL = 'Reservoir';
     public const NAME = 'schema:Reservoir';
-    public const PARENTS = ['BodyOfWaterModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\BodyOfWaterModel'];
+    public const PARENTS = ['BodyOfWaterModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BodyOfWaterModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

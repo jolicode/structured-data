@@ -1,0 +1,24 @@
+{
+  "@context": "https://schema.org",
+  "@type": "VacationRental",
+  "name": "My Beautiful Vacation Rental",
+  "identifier": "abc123",
+  "latitude": 42.12345,
+  "longitude": 101.12345,
+  "containsPlace": {
+    "@type": "Accommodation",
+    "occupancy": {
+      "@type": "QuantitativeValue"
+    }
+  },
+  "image": [
+    "https://example.com/mylisting/unit_image1.png",
+    "https://example.com/mylisting/unit_image2.png",
+    "https://example.com/mylisting/unit_image3.png",
+    "https://example.com/mylisting/unit_image4.png",
+    "https://example.com/mylisting/unit_image5.png",
+    "https://example.com/mylisting/unit_image6.png",
+    "https://example.com/mylisting/unit_image7.png",
+    "https://example.com/mylisting/unit_image8.png"
+  ]
+}

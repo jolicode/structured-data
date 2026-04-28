@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AssociatedArticleModel
 {
     public const DESCRIPTION = 'A NewsArticle associated with the Media Object.';
     public const LABEL = 'associatedArticle';
     public const NAME = 'schema:associatedArticle';
-    public const VALUES = ['NewsArticleModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\NewsArticleModel'];
-    public const TYPES = ['MediaObject' => 'Jolicode\Vocabularies\SchemaOrg\Type\MediaObjectModel'];
+    public const VALUES = ['NewsArticleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NewsArticleModel'];
+    public const TYPES = ['MediaObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaObjectModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

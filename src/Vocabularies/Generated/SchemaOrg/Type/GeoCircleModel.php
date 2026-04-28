@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class GeoCircleModel
 {
@@ -20,7 +20,7 @@ final class GeoCircleModel
           The center of the circle can be indicated via the \'geoMidpoint\' property, or more approximately using \'address\', \'postalCode\'.';
     public const LABEL = 'GeoCircle';
     public const NAME = 'schema:GeoCircle';
-    public const PARENTS = ['GeoShapeModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\GeoShapeModel'];
+    public const PARENTS = ['GeoShapeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeoShapeModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

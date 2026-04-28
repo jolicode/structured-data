@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SubStageSuffixModel
 {
     public const DESCRIPTION = 'The substage, e.g. \'a\' for Stage IIIa.';
     public const LABEL = 'subStageSuffix';
     public const NAME = 'schema:subStageSuffix';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['MedicalConditionStage' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalConditionStageModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MedicalConditionStage' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionStageModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

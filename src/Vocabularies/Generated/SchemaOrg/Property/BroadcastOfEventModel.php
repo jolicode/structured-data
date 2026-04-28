@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BroadcastOfEventModel
 {
     public const DESCRIPTION = 'The event being broadcast such as a sporting event or awards ceremony.';
     public const LABEL = 'broadcastOfEvent';
     public const NAME = 'schema:broadcastOfEvent';
-    public const VALUES = ['EventModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EventModel'];
-    public const TYPES = ['BroadcastEvent' => 'Jolicode\Vocabularies\SchemaOrg\Type\BroadcastEventModel'];
+    public const VALUES = ['EventModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel'];
+    public const TYPES = ['BroadcastEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastEventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RegionDrainedModel
 {
     public const DESCRIPTION = 'The anatomical or organ system drained by this vessel; generally refers to a specific part of an organ.';
     public const LABEL = 'regionDrained';
     public const NAME = 'schema:regionDrained';
-    public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AnatomicalStructureModel', 'AnatomicalSystemModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AnatomicalSystemModel'];
-    public const TYPES = ['LymphaticVessel' => 'Jolicode\Vocabularies\SchemaOrg\Type\LymphaticVesselModel', 'Vein' => 'Jolicode\Vocabularies\SchemaOrg\Type\VeinModel'];
+    public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalStructureModel', 'AnatomicalSystemModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalSystemModel'];
+    public const TYPES = ['LymphaticVessel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LymphaticVesselModel', 'Vein' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VeinModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

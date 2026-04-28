@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PerformanceRoleModel
 {
     public const DESCRIPTION = 'A PerformanceRole is a Role that some entity places with regard to a theatrical performance, e.g. in a Movie, TVSeries etc.';
     public const LABEL = 'PerformanceRole';
     public const NAME = 'schema:PerformanceRole';
-    public const PARENTS = ['RoleModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\RoleModel'];
+    public const PARENTS = ['RoleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RoleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

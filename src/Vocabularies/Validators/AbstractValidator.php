@@ -26,16 +26,16 @@ abstract class AbstractValidator
      *
      * @return MappedError[]
      */
-    abstract public static function validateType(MappedType $type, ?MappedProperty $property, array $typesStack): array;
+    abstract public function validateType(MappedType $type): array;
 
     /**
      * This method must validate a generic property, like a string or a boolean.
      *
      * @return MappedError[]
      */
-    abstract public static function validateProperty(MappedType $type, MappedProperty $property, array $typesStack, ?MappedProperty $originalProperty = null): array;
+    abstract public function validateProperty(MappedType $type, MappedProperty $property, ?MappedProperty $originalProperty = null): array;
 
-    protected static function addMappedError(MappedType|MappedProperty $target, string $message, MappedType $typeWithError, string $severity): MappedError
+    protected function addMappedError(MappedType|MappedProperty $target, string $message, MappedType $typeWithError, string $severity): MappedError
     {
         $typeLabel = $typeWithError->type;
 

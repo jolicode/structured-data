@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReturnMethodEnumerationModel
 {
     public const DESCRIPTION = 'Enumerates several types of product return methods.';
     public const LABEL = 'ReturnMethodEnumeration';
     public const NAME = 'schema:ReturnMethodEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['KeepProductModel' => 'EnumerationMember\KeepProductModel', 'ReturnAtKioskModel' => 'EnumerationMember\ReturnAtKioskModel', 'ReturnByMailModel' => 'EnumerationMember\ReturnByMailModel', 'ReturnInStoreModel' => 'EnumerationMember\ReturnInStoreModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2880'];

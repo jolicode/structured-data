@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MovieSeriesModel
 {
     public const DESCRIPTION = 'A series of movies. Included movies can be indicated with the hasPart property.';
     public const LABEL = 'MovieSeries';
     public const NAME = 'schema:MovieSeries';
-    public const PARENTS = ['CreativeWorkSeriesModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CreativeWorkSeriesModel'];
+    public const PARENTS = ['CreativeWorkSeriesModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkSeriesModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

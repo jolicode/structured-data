@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AmountModel
 {
     public const DESCRIPTION = 'The amount of money.';
     public const LABEL = 'amount';
     public const NAME = 'schema:amount';
-    public const VALUES = ['MonetaryAmountModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MonetaryAmountModel', 'NumberModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\NumberModel'];
-    public const TYPES = ['DatedMoneySpecification' => 'Jolicode\Vocabularies\SchemaOrg\Type\DatedMoneySpecificationModel', 'InvestmentOrDeposit' => 'Jolicode\Vocabularies\SchemaOrg\Type\InvestmentOrDepositModel', 'LoanOrCredit' => 'Jolicode\Vocabularies\SchemaOrg\Type\LoanOrCreditModel', 'MonetaryGrant' => 'Jolicode\Vocabularies\SchemaOrg\Type\MonetaryGrantModel', 'MoneyTransfer' => 'Jolicode\Vocabularies\SchemaOrg\Type\MoneyTransferModel'];
+    public const VALUES = ['MonetaryAmountModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountModel', 'NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['DatedMoneySpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DatedMoneySpecificationModel', 'InvestmentOrDeposit' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InvestmentOrDepositModel', 'LoanOrCredit' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LoanOrCreditModel', 'MonetaryGrant' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryGrantModel', 'MoneyTransfer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MoneyTransferModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

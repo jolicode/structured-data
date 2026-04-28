@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CourseScheduleModel
 {
     public const DESCRIPTION = 'Represents the length and pace of a course, expressed as a [[Schedule]].';
     public const LABEL = 'courseSchedule';
     public const NAME = 'schema:courseSchedule';
-    public const VALUES = ['ScheduleModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\ScheduleModel'];
-    public const TYPES = ['CourseInstance' => 'Jolicode\Vocabularies\SchemaOrg\Type\CourseInstanceModel'];
+    public const VALUES = ['ScheduleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ScheduleModel'];
+    public const TYPES = ['CourseInstance' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CourseInstanceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

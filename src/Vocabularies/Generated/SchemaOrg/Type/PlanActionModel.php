@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PlanActionModel
 {
     public const DESCRIPTION = 'The act of planning the execution of an event/task/action/reservation/plan to a future date.';
     public const LABEL = 'PlanAction';
     public const NAME = 'schema:PlanAction';
-    public const PARENTS = ['OrganizeActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\OrganizeActionModel'];
+    public const PARENTS = ['OrganizeActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizeActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

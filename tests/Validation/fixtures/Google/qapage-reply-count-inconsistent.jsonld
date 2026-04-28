@@ -1,0 +1,75 @@
+{
+    "@context": "https://schema.org",
+    "@type": "QAPage",
+    "mainEntity": {
+        "@type": "Question",
+        "name": "How many ounces are there in a pound?",
+        "text": "I have taken up a new interest in baking and keep running across directions in ounces and pounds.",
+        "answerCount": 1,
+        "commentCount": 1,
+        "upvoteCount": 26,
+        "datePublished": "2024-02-14T15:34:00-05:00",
+        "dateModified": "2024-02-14T15:35:00-05:00",
+        "digitalSourceType": "AlgorithmicMediaDigitalSource",
+        "image": "https://example.com/images/question.jpg",
+        "video": {
+            "@type": "VideoObject"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "Mary Stone",
+            "url": "https://example.com/profiles/mary-stone"
+        },
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "1 pound (lb) is equal to 16 ounces (oz).",
+            "image": "https://example.com/images/conversion-chart.jpg",
+            "commentCount": 0,
+            "upvoteCount": 1337,
+            "url": "https://example.com/question1#acceptedAnswer",
+            "datePublished": "2024-02-14T16:34:00-05:00",
+            "dateModified": "2024-02-14T16:35:00-05:00",
+            "digitalSourceType": "TrainedAlgorithmicMediaDigitalSource",
+            "video": "https://example.com/videos/accepted-answer.mp4",
+            "author": {
+                "@type": "Person",
+                "name": "Julius Fernandez",
+                "url": "https://example.com/profiles/julius-fernandez"
+            }
+        },
+        "suggestedAnswer": [
+            {
+                "@type": "Answer",
+                "text": "If you mean fluid ounces, the answer depends on the ingredient.",
+                "commentCount": 1,
+                "upvoteCount": 42,
+                "image": "https://example.com/images/suggested-answer.jpg",
+                "url": "https://example.com/question1#suggestedAnswer1",
+                "datePublished": "2024-02-14T15:39:00-05:00",
+                "dateModified": "2024-02-14T15:41:00-05:00",
+                "digitalSourceType": "AlgorithmicMediaDigitalSource",
+                "video": "https://example.com/videos/suggested-answer.mp4",
+                "author": {
+                    "@type": "Person",
+                    "name": "Kara Weber",
+                    "url": "https://example.com/profiles/kara-weber"
+                },
+                "comment": {
+                    "@type": "Comment",
+                    "text": "I'm looking for ounces, not fluid ounces.",
+                    "datePublished": "2024-02-14T15:40:00-05:00",
+                    "dateModified": "2024-02-14T15:40:30-05:00",
+                    "commentCount": 0,
+                    "digitalSourceType": "AlgorithmicMediaDigitalSource",
+                    "image": "https://example.com/images/comment.jpg",
+                    "video": "https://example.com/videos/comment.mp4",
+                    "author": {
+                        "@type": "Person",
+                        "name": "Mary Stone",
+                        "url": "https://example.com/profiles/mary-stone"
+                    }
+                }
+            }
+        ]
+    }
+}

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ApprovedIndicationModel
 {
     public const DESCRIPTION = 'An indication for a medical therapy that has been formally specified or approved by a regulatory body that regulates use of the therapy; for example, the US FDA approves indications for most drugs in the US.';
     public const LABEL = 'ApprovedIndication';
     public const NAME = 'schema:ApprovedIndication';
-    public const PARENTS = ['MedicalIndicationModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\MedicalIndicationModel'];
+    public const PARENTS = ['MedicalIndicationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalIndicationModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

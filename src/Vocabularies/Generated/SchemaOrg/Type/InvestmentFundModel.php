@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class InvestmentFundModel
 {
     public const DESCRIPTION = 'A company or fund that gathers capital from a number of investors to create a pool of money that is then re-invested into stocks, bonds and other assets.';
     public const LABEL = 'InvestmentFund';
     public const NAME = 'schema:InvestmentFund';
-    public const PARENTS = ['InvestmentOrDepositModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\InvestmentOrDepositModel'];
+    public const PARENTS = ['InvestmentOrDepositModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InvestmentOrDepositModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1253'];

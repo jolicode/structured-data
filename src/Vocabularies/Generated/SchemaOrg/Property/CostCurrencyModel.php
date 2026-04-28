@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CostCurrencyModel
 {
     public const DESCRIPTION = 'The currency (in 3-letter) of the drug cost. See: http://en.wikipedia.org/wiki/ISO_4217.';
     public const LABEL = 'costCurrency';
     public const NAME = 'schema:costCurrency';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['DrugCost' => 'Jolicode\Vocabularies\SchemaOrg\Type\DrugCostModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['DrugCost' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugCostModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

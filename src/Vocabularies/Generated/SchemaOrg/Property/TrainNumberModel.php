@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TrainNumberModel
 {
     public const DESCRIPTION = 'The unique identifier for the train.';
     public const LABEL = 'trainNumber';
     public const NAME = 'schema:trainNumber';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['TrainTrip' => 'Jolicode\Vocabularies\SchemaOrg\Type\TrainTripModel'];
+    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['TrainTrip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TrainTripModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

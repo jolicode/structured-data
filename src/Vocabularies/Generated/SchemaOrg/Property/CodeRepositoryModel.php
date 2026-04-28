@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CodeRepositoryModel
 {
     public const DESCRIPTION = 'Link to the repository where the un-compiled, human readable code and related code is located (SVN, GitHub, CodePlex).';
     public const LABEL = 'codeRepository';
     public const NAME = 'schema:codeRepository';
-    public const VALUES = ['URLModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\URLModel'];
-    public const TYPES = ['SoftwareSourceCode' => 'Jolicode\Vocabularies\SchemaOrg\Type\SoftwareSourceCodeModel'];
+    public const VALUES = ['URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
+    public const TYPES = ['SoftwareSourceCode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SoftwareSourceCodeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

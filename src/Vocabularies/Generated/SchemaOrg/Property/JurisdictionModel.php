@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class JurisdictionModel
 {
     public const DESCRIPTION = 'Indicates a legal jurisdiction, e.g. of some legislation, or where some government service is based.';
     public const LABEL = 'jurisdiction';
     public const NAME = 'schema:jurisdiction';
-    public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\AdministrativeAreaModel', 'TextModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['GovernmentService' => 'Jolicode\Vocabularies\SchemaOrg\Type\GovernmentServiceModel', 'Legislation' => 'Jolicode\Vocabularies\SchemaOrg\Type\LegislationModel'];
+    public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AdministrativeAreaModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['GovernmentService' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GovernmentServiceModel', 'Legislation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LegislationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

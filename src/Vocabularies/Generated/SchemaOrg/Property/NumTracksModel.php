@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Property;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class NumTracksModel
 {
     public const DESCRIPTION = 'The number of tracks in this album or playlist.';
     public const LABEL = 'numTracks';
     public const NAME = 'schema:numTracks';
-    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\IntegerModel'];
-    public const TYPES = ['MusicPlaylist' => 'Jolicode\Vocabularies\SchemaOrg\Type\MusicPlaylistModel'];
+    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['MusicPlaylist' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicPlaylistModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

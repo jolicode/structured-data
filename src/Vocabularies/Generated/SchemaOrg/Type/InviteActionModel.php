@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\SchemaOrg\Type;
+namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\SchemaOrg\Property;
+use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class InviteActionModel
 {
     public const DESCRIPTION = 'The act of asking someone to attend an event. Reciprocal of RsvpAction.';
     public const LABEL = 'InviteAction';
     public const NAME = 'schema:InviteAction';
-    public const PARENTS = ['CommunicateActionModel' => 'Jolicode\Vocabularies\SchemaOrg\Type\CommunicateActionModel'];
+    public const PARENTS = ['CommunicateActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommunicateActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];
