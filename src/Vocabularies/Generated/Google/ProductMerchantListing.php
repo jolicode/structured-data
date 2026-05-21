@@ -22,5 +22,98 @@ final class ProductMerchantListing extends Product
     public const SPECIAL_RULE_KEYS = ['google.product.merchant_listing_price_positive'];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['name' => ['name' => 'name', 'severity' => 'required', 'supportedTypes' => ['Text']], 'image' => ['name' => 'image', 'severity' => 'required', 'supportedTypes' => ['URL', 'ImageObject']], 'offers' => ['name' => 'offers', 'severity' => 'required', 'supportedTypes' => ['Offer'], 'properties' => ['atLeastOneOf' => ['name' => 'atLeastOneOf', 'severity' => 'required', 'value' => ['price' => [], 'priceSpecification' => []]], 'price' => ['name' => 'price', 'severity' => 'optional', 'supportedTypes' => ['Number']], 'priceCurrency' => ['name' => 'priceCurrency', 'severity' => 'optional', 'supportedTypes' => ['Text']], 'priceSpecification' => ['name' => 'priceSpecification', 'severity' => 'optional', 'supportedTypes' => ['UnitPriceSpecification'], 'properties' => ['price' => ['name' => 'price', 'severity' => 'required', 'supportedTypes' => ['Number']], 'priceCurrency' => ['name' => 'priceCurrency', 'severity' => 'required', 'supportedTypes' => ['Text']]]], 'availability' => ['name' => 'availability', 'severity' => 'recommended', 'supportedTypes' => ['ItemAvailability']], 'shippingDetails' => ['name' => 'shippingDetails', 'severity' => 'recommended', 'supportedTypes' => ['OfferShippingDetails']], 'hasMerchantReturnPolicy' => ['name' => 'hasMerchantReturnPolicy', 'severity' => 'recommended', 'supportedTypes' => ['MerchantReturnPolicy']]]]];
+    public const PROPERTIES = [
+        'name' => [
+            'name' => 'name',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'image' => [
+            'name' => 'image',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'URL',
+                'ImageObject',
+            ],
+        ],
+        'offers' => [
+            'name' => 'offers',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Offer',
+            ],
+            'properties' => [
+                'atLeastOneOf' => [
+                    'name' => 'atLeastOneOf',
+                    'severity' => 'required',
+                    'value' => [
+                        'price' => [
+                        ],
+                        'priceSpecification' => [
+                        ],
+                    ],
+                ],
+                'price' => [
+                    'name' => 'price',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'Number',
+                    ],
+                ],
+                'priceCurrency' => [
+                    'name' => 'priceCurrency',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'priceSpecification' => [
+                    'name' => 'priceSpecification',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'UnitPriceSpecification',
+                    ],
+                    'properties' => [
+                        'price' => [
+                            'name' => 'price',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'Number',
+                            ],
+                        ],
+                        'priceCurrency' => [
+                            'name' => 'priceCurrency',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'Text',
+                            ],
+                        ],
+                    ],
+                ],
+                'availability' => [
+                    'name' => 'availability',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'ItemAvailability',
+                    ],
+                ],
+                'shippingDetails' => [
+                    'name' => 'shippingDetails',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'OfferShippingDetails',
+                    ],
+                ],
+                'hasMerchantReturnPolicy' => [
+                    'name' => 'hasMerchantReturnPolicy',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'MerchantReturnPolicy',
+                    ],
+                ],
+            ],
+        ],
+    ];
 }

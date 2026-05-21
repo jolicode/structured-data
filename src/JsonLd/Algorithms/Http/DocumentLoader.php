@@ -13,9 +13,7 @@ namespace Jolicode\JsonLd\Algorithms\Http;
 
 use Jolicode\JsonLd\Algorithms\Exception\ContextProcessingException;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Symfony\Component\HttpClient\CachingHttpClient;
 use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Component\HttpKernel\HttpCache\Store;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -29,10 +27,7 @@ class DocumentLoader
     public function __construct(
         private string $url,
     ) {
-        $this->httpClient = new CachingHttpClient(
-            new FakeCacheHeaderClient(HttpClient::create()),
-            new Store(__DIR__ . '/../../../../var/cache/http'),
-        );
+        $this->httpClient = new FakeCacheHeaderClient(HttpClient::create());
     }
 
     public function load(): \stdClass

@@ -22,5 +22,66 @@ final class BookWork extends Book
     public const SPECIAL_RULE_KEYS = [];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['@id' => ['name' => '@id', 'severity' => 'required', 'supportedTypes' => ['Text']], 'author' => ['name' => 'author', 'severity' => 'required', 'documentation' => 'https://developers.google.com/search/docs/appearance/structured-data/book#person-or-organization-author', 'supportedTypes' => ['Person', 'Organization'], 'properties' => ['name' => ['name' => 'name', 'severity' => 'required', 'supportedTypes' => ['Text']], 'sameAs' => ['name' => 'sameAs', 'severity' => 'recommended', 'supportedTypes' => ['URL']]]], 'name' => ['name' => 'name', 'severity' => 'required', 'supportedTypes' => ['Text']], 'url' => ['name' => 'url', 'severity' => 'required', 'supportedTypes' => ['URL']], 'workExample' => ['name' => 'workExample', 'severity' => 'required', 'supportedTypes' => ['@BookEdition']], 'sameAs' => ['name' => 'sameAs', 'severity' => 'recommended', 'supportedTypes' => ['URL']]];
+    public const PROPERTIES = [
+        '@id' => [
+            'name' => '@id',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'author' => [
+            'name' => 'author',
+            'severity' => 'required',
+            'documentation' => 'https://developers.google.com/search/docs/appearance/structured-data/book#person-or-organization-author',
+            'supportedTypes' => [
+                'Person',
+                'Organization',
+            ],
+            'properties' => [
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'sameAs' => [
+                    'name' => 'sameAs',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'URL',
+                    ],
+                ],
+            ],
+        ],
+        'name' => [
+            'name' => 'name',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'url' => [
+            'name' => 'url',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'URL',
+            ],
+        ],
+        'workExample' => [
+            'name' => 'workExample',
+            'severity' => 'required',
+            'supportedTypes' => [
+                '@BookEdition',
+            ],
+        ],
+        'sameAs' => [
+            'name' => 'sameAs',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'URL',
+            ],
+        ],
+    ];
 }

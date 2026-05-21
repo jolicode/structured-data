@@ -12,9 +12,12 @@
 namespace Jolicode\JsonLd\Tests\Algorithms;
 
 use Jolicode\JsonLd\Algorithms;
+use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
+use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextCache;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinition;
 use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinitionCreator;
 
 /** @group context */
@@ -43,6 +46,57 @@ class ContextProcesserTest extends AbstractJsonLdTestCase
     public function testValidateContainerEntry(string|array $container, bool $expected): void
     {
         $this->assertSame($expected, TermDefinitionCreator::validateContainerEntry($container));
+    }
+
+    public function testCachedRemoteContextReturnsIsolatedCopies(): void
+    {
+        $path = tempnam(sys_get_temp_dir(), 'jsonld-context-');
+
+        if (false === $path) {
+            self::fail('Failed to create a temporary context file.');
+        }
+
+        file_put_contents($path, '{"@context":{"name":"https://schema.org/name"}}');
+
+        try {
+            $processer = new ContextProcesser();
+
+            $first = $processer->processContext(new Context(), $path);
+            $first->termDefinitions['name'] = new TermDefinition(
+                prefixFlag: false,
+                protected: false,
+                reverseProperty: false,
+                iriMapping: 'https://example.com/mutated',
+            );
+
+            $second = $processer->processContext(new Context(), $path);
+
+            $this->assertSame('https://schema.org/name', $second->termDefinitions['name']->iriMapping);
+            $this->assertNotSame($first, $second);
+            $this->assertNotSame($first->termDefinitions['name'], $second->termDefinitions['name']);
+        } finally {
+            @unlink($path);
+        }
+    }
+
+    public function testSchemaOrgStaticContextIsUsedWhenBaseUrlIsSet(): void
+    {
+        $cache = new ContextCache();
+        $context = new Context(
+            baseIri: 'https://example.com/page',
+            baseUrl: 'https://example.com/page',
+            processingMode: Context::PROCESSING_MODE_11,
+        );
+
+        $remoteContexts = ['https://schema.org/'];
+        $processed = $cache->getProcessedRemoteContext($context, 'https://schema.org/', true, $remoteContexts);
+
+        $this->assertNotNull($processed);
+        $this->assertSame('http://schema.org/', $processed->vocabularyMapping);
+        $this->assertArrayHasKey('name', $processed->termDefinitions);
+        $this->assertSame('http://schema.org/name', $processed->termDefinitions['name']->iriMapping);
+        $this->assertSame('https://example.com/page', $processed->baseUrl);
+        $this->assertSame('https://example.com/page', $processed->baseIri);
     }
 
     public function provideContainerEntries(): iterable

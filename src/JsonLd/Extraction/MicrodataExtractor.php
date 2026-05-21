@@ -13,8 +13,19 @@ namespace Jolicode\JsonLd\Extraction;
 
 class MicrodataExtractor extends AbstractHtmlExtractor
 {
+    /** @var array<string, string|array<string>> */
+    private array $normalizedItemTypesCache = [];
+
+    public function getFormat(): ExtractorFormat
+    {
+        return ExtractorFormat::MICRODATA;
+    }
+
     public function supportsContent(string $body): bool
     {
+        // Microdata support is determined by simple attribute markers
+        // Unlike RDFa, microdata can have invalid itemtypes or other vocabularies
+        // so we don't enforce schema.org IRI requirement here
         return str_contains($body, 'itemscope')
             || str_contains($body, 'itemtype')
             || str_contains($body, 'itemprop');
@@ -25,6 +36,8 @@ class MicrodataExtractor extends AbstractHtmlExtractor
      */
     public function extractStructuredDataContent(string $body): array
     {
+        $this->resetMemoization();
+
         if (!$this->supportsContent($body)) {
             return [];
         }
@@ -35,7 +48,7 @@ class MicrodataExtractor extends AbstractHtmlExtractor
         $allItemScopes = $xpath->query('//*[@itemscope]');
 
         if (false === $allItemScopes) {
-            throw new \RuntimeException('Invalid microdata document: could not query the HTML document.');
+            throw new ExtractionException('Invalid microdata document: could not query the HTML document.');
         }
 
         if (0 === $allItemScopes->count()) {
@@ -50,7 +63,7 @@ class MicrodataExtractor extends AbstractHtmlExtractor
                 }
             }
 
-            throw new \RuntimeException(\sprintf('Invalid microdata document: found microdata attributes but no itemscope attribute%s.', $this->formatLineHint($candidateLines)));
+            throw new ExtractionException(\sprintf('Invalid microdata document: found microdata attributes but no itemscope attribute%s.', $this->formatLineHint($candidateLines)), $this->formatRanges($candidateLines));
         }
 
         $topLevelItems = [];
@@ -81,24 +94,24 @@ class MicrodataExtractor extends AbstractHtmlExtractor
             $encoded = json_encode($item, \JSON_UNESCAPED_SLASHES);
 
             if (false === $encoded) {
-                throw new \RuntimeException('Invalid microdata document: failed to convert to JSON-LD.');
+                throw new ExtractionException('Invalid microdata document: failed to convert to JSON-LD.');
             }
 
-            $elements[] = new JsonLdElement(max(0, $itemElement->getLineNo() - 1), 0, $encoded);
+            $elements[] = new JsonLdElement(max(0, $itemElement->getLineNo() - 1), 0, $encoded, $this->getFormat());
         }
 
         if ([] === $elements) {
             $itemScopeLines = array_map(static fn (\DOMElement $itemElement): int => $itemElement->getLineNo(), $topLevelItems);
 
-            throw new \RuntimeException(\sprintf('Invalid microdata document: at least one top-level itemscope with itemtype is required%s.', $this->formatLineHint($itemScopeLines)));
+            throw new ExtractionException(\sprintf('Invalid microdata document: at least one top-level itemscope with itemtype is required%s.', $this->formatLineHint($itemScopeLines)), $this->formatRanges($itemScopeLines));
         }
 
         return $elements;
     }
 
-    protected function getFormatName(): string
+    private function resetMemoization(): void
     {
-        return 'microdata';
+        $this->normalizedItemTypesCache = [];
     }
 
     private function hasAncestorItemScope(\DOMElement $element): bool
@@ -127,7 +140,7 @@ class MicrodataExtractor extends AbstractHtmlExtractor
             return null;
         }
 
-        $typeName = $this->normalizeItemType($itemTypeAttribute);
+        $typeName = $this->normalizeItemTypes($itemTypeAttribute);
 
         $item = [
             '@context' => 'https://schema.org',
@@ -166,27 +179,38 @@ class MicrodataExtractor extends AbstractHtmlExtractor
         return $itemType;
     }
 
+    private function normalizeItemTypes(string $itemTypeAttribute): string|array
+    {
+        if (\array_key_exists($itemTypeAttribute, $this->normalizedItemTypesCache)) {
+            return $this->normalizedItemTypesCache[$itemTypeAttribute];
+        }
+
+        $itemTypes = preg_split('/\s+/', trim($itemTypeAttribute)) ?: [];
+        $normalizedItemTypes = [];
+
+        foreach ($itemTypes as $itemType) {
+            if ('' === $itemType) {
+                continue;
+            }
+
+            $normalizedItemTypes[] = $this->normalizeItemType($itemType);
+        }
+
+        if ([] === $normalizedItemTypes) {
+            return $this->normalizedItemTypesCache[$itemTypeAttribute] = '';
+        }
+
+        return $this->normalizedItemTypesCache[$itemTypeAttribute] = 1 === \count($normalizedItemTypes) ? $normalizedItemTypes[0] : $normalizedItemTypes;
+    }
+
     /**
      * @return array<string, mixed>
      */
     private function extractProperties(\DOMElement $itemElement, \DOMXPath $xpath): array
     {
         $properties = [];
-        $propertyNodes = $xpath->query('.//*[@itemprop]', $itemElement);
 
-        if (false === $propertyNodes) {
-            return $properties;
-        }
-
-        foreach ($propertyNodes as $propertyNode) {
-            if (!$propertyNode instanceof \DOMElement) {
-                continue;
-            }
-
-            if (!$this->belongsToItem($propertyNode, $itemElement)) {
-                continue;
-            }
-
+        foreach ($this->collectPropertyNodesForItem($itemElement) as $propertyNode) {
             $propertyNames = preg_split('/\s+/', trim($propertyNode->getAttribute('itemprop')));
 
             if (!\is_array($propertyNames)) {
@@ -221,19 +245,40 @@ class MicrodataExtractor extends AbstractHtmlExtractor
         return $properties;
     }
 
-    private function belongsToItem(\DOMElement $propertyNode, \DOMElement $itemElement): bool
+    /**
+     * @return array<\DOMElement>
+     */
+    private function collectPropertyNodesForItem(\DOMElement $itemElement): array
     {
-        $parent = $propertyNode->parentNode;
+        $propertyNodes = [];
+        $stack = [];
 
-        while ($parent instanceof \DOMElement) {
-            if ($parent->hasAttribute('itemscope')) {
-                return $parent->isSameNode($itemElement);
+        foreach ($itemElement->childNodes as $childNode) {
+            if ($childNode instanceof \DOMElement) {
+                $stack[] = $childNode;
             }
-
-            $parent = $parent->parentNode;
         }
 
-        return false;
+        while ($stack) {
+            $node = array_pop($stack);
+
+            if ($node->hasAttribute('itemprop')) {
+                $propertyNodes[] = $node;
+            }
+
+            // Skip descending into nested itemscopes (they will be extracted as nested items)
+            if ($node->hasAttribute('itemscope')) {
+                continue;
+            }
+
+            foreach ($node->childNodes as $childNode) {
+                if ($childNode instanceof \DOMElement) {
+                    $stack[] = $childNode;
+                }
+            }
+        }
+
+        return $propertyNodes;
     }
 
     private function extractPropertyValue(\DOMElement $propertyNode): ?string

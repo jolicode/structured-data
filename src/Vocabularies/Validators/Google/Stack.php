@@ -11,12 +11,19 @@
 
 namespace Jolicode\Vocabularies\Validators\Google;
 
-use Jolicode\Vocabularies\Mapper\MappedProperty;
-use Jolicode\Vocabularies\Mapper\MappedType;
+use Jolicode\JsonLd\Mapper\MappedProperty;
+use Jolicode\JsonLd\Mapper\MappedType;
+use Jolicode\Vocabularies\Generated\GeneratedClassesRegistry;
 
 class Stack
 {
     private const BASE_NAMESPACE = 'Jolicode\\Vocabularies\\Generated\\Google';
+
+    /** @var array<string, array<mixed>> */
+    private static array $normalizedPropertiesByClass = [];
+
+    private ?string $resolvedValidationTypeCacheKey = null;
+    private ?array $resolvedValidationTypeCache = null;
 
     public function __construct(
         private ?MappedType $currentType = null,
@@ -26,18 +33,30 @@ class Stack
 
     public function newType(MappedType $type): self
     {
-        if (null === $type->parentProperty) {
+        if ($this->currentType && spl_object_id($this->currentType) === spl_object_id($type)) {
+            return $this;
+        }
+
+        if (null === $type->getParentProperty()) {
             $this->initialize($type);
         }
 
         $this->currentType = $type;
+        $this->resetResolutionCache();
 
         return $this;
     }
 
     public function newProperty(MappedProperty $property): self
     {
-        $this->currentType = $property->type;
+        $ownerType = $property->getOwnerType();
+
+        if ($this->currentType && spl_object_id($this->currentType) === spl_object_id($ownerType ?? (object) [])) {
+            return $this;
+        }
+
+        $this->currentType = $ownerType;
+        $this->resetResolutionCache();
 
         return $this;
     }
@@ -56,7 +75,9 @@ class Stack
      */
     public function getTypeValidationProperties(): ?array
     {
-        if (!$this->currentType->parentProperty) {
+        $currentType = $this->getCurrentType();
+
+        if (!$currentType->getParentProperty()) {
             if (null === $this->validationClass) {
                 return null;
             }
@@ -71,9 +92,7 @@ class Stack
             return null;
         }
 
-        return isset($validationType['properties'])
-            ? $this->normalizeProperties($validationType['properties'])
-            : null;
+        return $validationType['properties'] ?? null;
     }
 
     /**
@@ -85,7 +104,9 @@ class Stack
      */
     public function getNextValidationProperty(string $propertyKey): ?array
     {
-        if (!$this->currentType->parentProperty) {
+        $currentType = $this->getCurrentType();
+
+        if (!$currentType->getParentProperty()) {
             if (null === $this->validationClass) {
                 return null;
             }
@@ -99,16 +120,17 @@ class Stack
             return null;
         }
 
-        $properties = $this->normalizeProperties($validationType['properties']);
+        $properties = $validationType['properties'];
 
         return $properties[$propertyKey] ?? null;
     }
 
     private function initialize(MappedType $type): self
     {
-        $validationClass = \sprintf('%s\\%s', self::BASE_NAMESPACE, $type->type);
+        $this->resetResolutionCache();
+        $validationClass = \sprintf('%s\\%s', self::BASE_NAMESPACE, $type->getType());
 
-        if (!class_exists($validationClass)) {
+        if (!GeneratedClassesRegistry::has($validationClass)) {
             $this->validationClass = null;
 
             return $this;
@@ -134,6 +156,12 @@ class Stack
             return null;
         }
 
+        $cacheKey = $this->getResolutionCacheKey();
+
+        if ($cacheKey === $this->resolvedValidationTypeCacheKey) {
+            return $this->resolvedValidationTypeCache;
+        }
+
         $path = $this->buildPathToCurrentType();
 
         $validationProperties = $this->validationClass::PROPERTIES;
@@ -148,17 +176,27 @@ class Stack
             $validationType = $validationProperties[$searchedKey] ?? null;
 
             if (null === $validationType) {
+                $this->resolvedValidationTypeCacheKey = $cacheKey;
+                $this->resolvedValidationTypeCache = null;
+
                 return null;
             }
 
             if ($this->isADataType($validationType)) {
+                $this->resolvedValidationTypeCacheKey = $cacheKey;
+                $this->resolvedValidationTypeCache = $validationType;
+
                 return $validationType;
             }
 
             $this->handleSpecialProperties($type, $validationType);
 
-            $validationProperties = $validationType['properties'] ?? [];
+            $validationType['properties'] = $this->normalizeProperties($validationType['properties'] ?? []);
+            $validationProperties = $validationType['properties'];
         }
+
+        $this->resolvedValidationTypeCacheKey = $cacheKey;
+        $this->resolvedValidationTypeCache = $validationType;
 
         return $validationType;
     }
@@ -174,16 +212,16 @@ class Stack
     private function resolveChildValidationClass(MappedType $type, string $parentValidationClass): ?string
     {
         $candidates = [];
-        $presentPropertyKeys = array_keys($type->properties);
+        $presentPropertyKeys = array_keys($type->getProperties());
 
         foreach ($parentValidationClass::CHILDREN as $child) {
             $childValidationClass = \sprintf('%s\\%s', self::BASE_NAMESPACE, $child);
 
-            if (!class_exists($childValidationClass) || !\defined($childValidationClass . '::PROPERTIES')) {
+            if (!GeneratedClassesRegistry::has($childValidationClass) || !\defined($childValidationClass . '::PROPERTIES')) {
                 continue;
             }
 
-            $properties = $this->normalizeProperties($childValidationClass::PROPERTIES);
+            $properties = $this->getNormalizedClassProperties($childValidationClass);
             $missingRequiredCount = 0;
             $matchedPropertiesCount = 0;
 
@@ -271,7 +309,6 @@ class Stack
             // List entries are supported only for the Book-style @target structure,
             // where each entry is either a dedicated @target block or a plain map
             // of base properties.
-
             foreach ($value as $nestedKey => $nestedValue) {
                 if (!\is_string($nestedKey) || !\is_array($nestedValue)) {
                     continue;
@@ -285,26 +322,46 @@ class Stack
     }
 
     /**
+     * @return array<mixed>
+     */
+    private function getNormalizedClassProperties(string $validationClass): array
+    {
+        if (isset(self::$normalizedPropertiesByClass[$validationClass])) {
+            return self::$normalizedPropertiesByClass[$validationClass];
+        }
+
+        return self::$normalizedPropertiesByClass[$validationClass] = $this->normalizeProperties($validationClass::PROPERTIES);
+    }
+
+    /**
      * Builds the full parent chain from the current type by walking up all its parent properties.
      *
      * @return array<array{propertyKey: string, type: MappedType}>
      */
     private function buildPathToCurrentType(): array
     {
-        /** @var MappedType $type */
-        $type = $this->currentType;
+        $type = $this->getCurrentType();
         $path = [];
 
-        while ($parentProperty = $type->parentProperty) {
+        while ($type && ($parentProperty = $type->getParentProperty())) {
             $path[] = [
-                'propertyKey' => $parentProperty->key,
+                'propertyKey' => $parentProperty->getKey(),
                 'type' => $type,
             ];
 
-            $type = $parentProperty->type;
+            $type = $parentProperty->getOwnerType();
         }
 
         return array_reverse($path);
+    }
+
+    private function getCurrentType(): MappedType
+    {
+        if (!$this->currentType) {
+            throw new \RuntimeException('No current mapped type is set in validation stack.');
+        }
+
+        return $this->currentType;
     }
 
     // These methods handle the special cases. They will update the "properties" entry by importing new ones into it.
@@ -323,7 +380,7 @@ class Stack
                 $validationClass = $this->getImportedClass($supportedType);
 
                 $matchingTypes = array_intersect(
-                    (array) $mappedType->type,
+                    (array) $mappedType->getType(),
                     $validationClass::SUPPORTED_TYPES,
                 );
 
@@ -359,7 +416,7 @@ class Stack
         );
 
         foreach ($targets as $target) {
-            if (\in_array($target['@target'], (array) $mappedType->type, true)) {
+            if (\in_array($target['@target'], (array) $mappedType->getType(), true)) {
                 $validationType['properties'] = array_merge(
                     $validationType['properties'] ?: [],
                     $target['properties'],
@@ -373,7 +430,7 @@ class Stack
         $validationClass = str_replace('@', '', $importedType);
         $validationClass = \sprintf('%s\\%s', self::BASE_NAMESPACE, $validationClass);
 
-        if (!class_exists($validationClass)) {
+        if (!GeneratedClassesRegistry::has($validationClass)) {
             throw new \RuntimeException(\sprintf('The "%s" Google validation class was requested, but the class doesn\'t exist. There is probably an issue with the hand-written json files.', $validationClass));
         }
 
@@ -383,5 +440,16 @@ class Stack
     private function isADataType(array $testedType): bool
     {
         return (bool) array_intersect($testedType['supportedTypes'], GoogleValidator::DATA_TYPES);
+    }
+
+    private function getResolutionCacheKey(): string
+    {
+        return $this->validationClass . '|' . spl_object_id($this->getCurrentType());
+    }
+
+    private function resetResolutionCache(): void
+    {
+        $this->resolvedValidationTypeCacheKey = null;
+        $this->resolvedValidationTypeCache = null;
     }
 }

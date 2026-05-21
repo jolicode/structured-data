@@ -11,8 +11,8 @@
 
 namespace Jolicode\Vocabularies\Validators\Google\SpecialRules;
 
-use Jolicode\Vocabularies\Mapper\MappedError;
-use Jolicode\Vocabularies\Mapper\MappedType;
+use Jolicode\JsonLd\Mapper\MappedError;
+use Jolicode\JsonLd\Mapper\MappedType;
 
 final class BookOfferPricingByCategorySpecialRule implements SpecialRuleInterface
 {
@@ -66,7 +66,7 @@ final class BookOfferPricingByCategorySpecialRule implements SpecialRuleInterfac
             return [];
         }
 
-        if (\array_key_exists('price', $type->properties)) {
+        if (\array_key_exists('price', $type->getProperties())) {
             return [];
         }
 
@@ -79,11 +79,11 @@ final class BookOfferPricingByCategorySpecialRule implements SpecialRuleInterfac
 
     private function isReadActionOffer(MappedType $type): bool
     {
-        if (!$this->hasType($type->type, 'Offer')) {
+        if (!$this->hasType($type->getType(), 'Offer')) {
             return false;
         }
 
-        if ('expectsAcceptanceOf' !== $type->parentProperty?->key) {
+        if ('expectsAcceptanceOf' !== $type->getParentProperty()?->getKey()) {
             return false;
         }
 
@@ -92,7 +92,7 @@ final class BookOfferPricingByCategorySpecialRule implements SpecialRuleInterfac
 
     private function getCategoryValue(MappedType $type): ?string
     {
-        $value = $type->properties['category']->value ?? null;
+        $value = $type->getProperty('category')?->getValue();
 
         if (!\is_string($value)) {
             return null;
@@ -104,11 +104,11 @@ final class BookOfferPricingByCategorySpecialRule implements SpecialRuleInterfac
     private function hasBookInAncestors(MappedType $type): bool
     {
         while ($type) {
-            if ($this->hasType($type->type, 'Book')) {
+            if ($this->hasType($type->getType(), 'Book')) {
                 return true;
             }
 
-            $type = $type->parent;
+            $type = $type->getParent();
         }
 
         return false;

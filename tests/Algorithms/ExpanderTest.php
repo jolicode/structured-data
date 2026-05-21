@@ -67,6 +67,7 @@ class ExpanderTest extends AbstractJsonLdTestCase
             // The doc says to expect a "recursive context inclusion" exception, but as written here https://www.w3.org/TR/json-ld-api/#changes-from-cg
             // It now expects a context overflow
             'er02-in.jsonld' => 'context overflow',
+            'er03-in.jsonld' => 'context overflow',
             'er04-in.jsonld' => 'loading remote context failed',
             'er05-in.jsonld' => 'invalid remote context',
             'er06-in.jsonld' => 'invalid local context',
@@ -94,7 +95,7 @@ class ExpanderTest extends AbstractJsonLdTestCase
             'er29-in.jsonld' => 'invalid value object value',
             'er30-in.jsonld' => 'invalid language-tagged string',
             'er31-in.jsonld' => 'invalid @index value',
-            'er32-in.jsonld' => 'invalid @included value',
+            'er32-in.jsonld' => 'list of lists',
             'er33-in.jsonld' => 'invalid @reverse value',
             'er34-in.jsonld' => 'invalid @reverse property value',
             'er35-in.jsonld' => 'invalid language map value',
@@ -172,7 +173,6 @@ class ExpanderTest extends AbstractJsonLdTestCase
             // These ones do not exist in https://w3c.github.io/json-ld-api/tests/expand-manifest.html so we assume they are working
             'er45-in.jsonld' => 'invalid IRI mapping',
             'e052-in.jsonld' => 'context overflow',
-            'er03-in.jsonld' => 'context overflow',
             'e053-in.jsonld' => 'context overflow',
             'e054-in.jsonld' => 'context overflow',
         ];
@@ -187,28 +187,7 @@ class ExpanderTest extends AbstractJsonLdTestCase
 
     protected function shouldSkipThisTest(string $filename): bool
     {
-        $testsToSkip = [
-            // These tests seem wrong. If we paste the input JSON in the JSON-LD playground (https://json-ld.org/playground/) the result is not the one expected.
-            // Instead we have the same result as when running our implementation and changing the options doesn't change anything.
-            'c038-in.jsonld',
-            '0077-in.jsonld',
-            'c037-in.jsonld',
-
-            // This test is weird, it should throw a container mapping related exception but is related to the @context keyword
-            // Anyway, the value sent for the container mapping is fine so we skip it.
-            'es01-in.jsonld',
-
-            // The specVersion of these tests is 1.0, we are using 1.1. They seem to be outdated se we skip them.
-            // Moreover, the playground has the same results as we do so we are pretty confident.
-            'er24-in.jsonld',
-            '0115-in.jsonld',
-            'er32-in.jsonld',
-            '0026-in.jsonld',
-            '0116-in.jsonld',
-            '0071-in.jsonld',
-        ];
-
-        return \in_array($filename, $testsToSkip, true);
+        return false;
     }
 
     protected function getOptions(string $filename): ProcessorOptions
@@ -218,11 +197,20 @@ class ExpanderTest extends AbstractJsonLdTestCase
         $testSpecificOptions = [
             'c029-in.jsonld' => ['processingMode' => Context::PROCESSING_MODE_10],
             '0076-in.jsonld' => ['base' => 'http://example/base/'],
+            '0077-in.jsonld' => ['expandContext' => 'https://w3c.github.io/json-ld-api/tests/expand/0077-context.jsonld'],
             '0089-in.jsonld' => ['base' => 'http://example/base/'],
             '0090-in.jsonld' => ['base' => 'http://example/base/'],
             'm005-in.jsonld' => ['base' => 'http://example.org/'],
+            '0026-in.jsonld' => ['processingMode' => Context::PROCESSING_MODE_10],
+            '0071-in.jsonld' => ['processingMode' => Context::PROCESSING_MODE_10],
+            '0115-in.jsonld' => ['processingMode' => Context::PROCESSING_MODE_10],
+            '0116-in.jsonld' => ['processingMode' => Context::PROCESSING_MODE_10],
             'pi01-in.jsonld' => ['processingMode' => Context::PROCESSING_MODE_10],
             'er21-in.jsonld' => ['processingMode' => Context::PROCESSING_MODE_10],
+            'er24-in.jsonld' => ['processingMode' => Context::PROCESSING_MODE_10],
+            'er32-in.jsonld' => ['processingMode' => Context::PROCESSING_MODE_10],
+            'es02-in.jsonld' => ['processingMode' => Context::PROCESSING_MODE_10],
+            'es03-in.jsonld' => ['processingMode' => Context::PROCESSING_MODE_10],
             'es01-in.jsonld' => ['processingMode' => Context::PROCESSING_MODE_10],
             'er42-in.jsonld' => ['processingMode' => Context::PROCESSING_MODE_10],
             'e053-in.jsonld' => ['processingMode' => Context::PROCESSING_MODE_10],

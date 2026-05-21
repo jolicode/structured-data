@@ -22,5 +22,77 @@ final class ProductSnippet extends Product
     public const SPECIAL_RULE_KEYS = [];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['name' => ['name' => 'name', 'severity' => 'required', 'supportedTypes' => ['Text']], 'atLeastOneOf' => ['name' => 'atLeastOneOf', 'severity' => 'required', 'value' => ['review' => [], 'aggregateRating' => [], 'offers' => []]], 'review' => ['name' => 'review', 'severity' => 'optional', 'supportedTypes' => ['Review']], 'aggregateRating' => ['name' => 'aggregateRating', 'severity' => 'optional', 'supportedTypes' => ['AggregateRating']], 'offers' => ['name' => 'offers', 'severity' => 'optional', 'supportedTypes' => ['Offer', 'AggregateOffer'], 'properties' => ['price' => ['name' => 'price', 'severity' => 'required', 'supportedTypes' => ['Number']], 'priceCurrency' => ['name' => 'priceCurrency', 'severity' => 'recommended', 'supportedTypes' => ['Text']], 'availability' => ['name' => 'availability', 'severity' => 'recommended', 'supportedTypes' => ['ItemAvailability']], 'priceValidUntil' => ['name' => 'priceValidUntil', 'severity' => 'recommended', 'supportedTypes' => ['Date']]]]];
+    public const PROPERTIES = [
+        'name' => [
+            'name' => 'name',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'atLeastOneOf' => [
+            'name' => 'atLeastOneOf',
+            'severity' => 'required',
+            'value' => [
+                'review' => [
+                ],
+                'aggregateRating' => [
+                ],
+                'offers' => [
+                ],
+            ],
+        ],
+        'review' => [
+            'name' => 'review',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Review',
+            ],
+        ],
+        'aggregateRating' => [
+            'name' => 'aggregateRating',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'AggregateRating',
+            ],
+        ],
+        'offers' => [
+            'name' => 'offers',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Offer',
+                'AggregateOffer',
+            ],
+            'properties' => [
+                'price' => [
+                    'name' => 'price',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Number',
+                    ],
+                ],
+                'priceCurrency' => [
+                    'name' => 'priceCurrency',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'availability' => [
+                    'name' => 'availability',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'ItemAvailability',
+                    ],
+                ],
+                'priceValidUntil' => [
+                    'name' => 'priceValidUntil',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Date',
+                    ],
+                ],
+            ],
+        ],
+    ];
 }

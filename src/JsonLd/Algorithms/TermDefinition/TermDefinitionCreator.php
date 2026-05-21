@@ -21,6 +21,21 @@ use Jolicode\JsonLd\Algorithms\Services\DataStructureComparator;
 
 class TermDefinitionCreator
 {
+    private const ALLOWED_TERM_DEFINITION_ENTRIES = [
+        '@id' => true,
+        '@reverse' => true,
+        '@container' => true,
+        '@context' => true,
+        '@direction' => true,
+        '@index' => true,
+        '@language' => true,
+        '@nest' => true,
+        '@prefix' => true,
+        '@protected' => true,
+        '@type' => true,
+    ];
+    private static ?ContextProcesser $contextProcesser = null;
+
     /**
      * This is a PHP implementation of the Create Term Definition based on the
      * JSON-LD 1.1 Processing Algorithms and API W3C Recommendation published on
@@ -38,6 +53,11 @@ class TermDefinitionCreator
         bool $overrideProtected = false,
         array &$remoteContexts = [],
     ): void {
+        $simpleTerm = false;
+        $termHasSlash = str_contains($term, '/');
+        $termHasNonTerminalPrefixSeparator = self::hasNonTerminalPrefixSeparator($term);
+        $termNeedsExpandedMappingConsistencyCheck = $termHasSlash || $termHasNonTerminalPrefixSeparator;
+
         // 1
         if (\array_key_exists($term, $defined)) {
             if ($defined[$term]) {
@@ -72,7 +92,7 @@ class TermDefinitionCreator
                 throw new TermDefinitionCreationException('keyword redefinition');
             }
 
-            if (preg_match('/^@[a-zA-Z]+$/', $term)) {
+            if (IriResolver::isKeywordLikeString($term)) {
                 return;
             }
         }
@@ -100,7 +120,7 @@ class TermDefinitionCreator
         }
 
         // 10
-        $definition = new TermDefinition(false, $protected, false);
+        $definition = new TermDefinitionDraft(false, $protected, false);
 
         // 11
         if (property_exists($value, Keyword::PROTECTED->value)) {
@@ -126,16 +146,25 @@ class TermDefinitionCreator
             property_exists($value, Keyword::ID->value)
             && $value->{Keyword::ID->value} !== $term
         ) {
-            $shouldReturn = self::handleIdValue($activeContext, $definition, $term, $value, $localContext, $defined, isset($simpleTerm) ? $simpleTerm : false);
+            $shouldReturn = self::handleIdValue(
+                $activeContext,
+                $definition,
+                $term,
+                $value,
+                $localContext,
+                $defined,
+                $simpleTerm,
+                $termNeedsExpandedMappingConsistencyCheck,
+            );
 
             if ($shouldReturn) {
                 return;
             }
         // 15
-        } elseif (preg_match('/[^^]:/', $term)) {
+        } elseif ($termHasNonTerminalPrefixSeparator) {
             self::handleTermWithColons($activeContext, $definition, $localContext, $term, $defined);
         // 16
-        } elseif (str_contains($term, '/')) {
+        } elseif ($termHasSlash) {
             // 16.2
             if (IriResolver::isIri($mapping = IriResolver::expand($activeContext, $term))) {
                 $definition->iriMapping = $mapping;
@@ -188,35 +217,19 @@ class TermDefinitionCreator
         }
 
         // 26
-        foreach ($value as $entry => $v) {
-            if (!\in_array(
-                $entry,
-                [
-                    Keyword::ID->value,
-                    Keyword::REVERSE->value,
-                    Keyword::CONTAINER->value,
-                    Keyword::CONTEXT->value,
-                    Keyword::DIRECTION->value,
-                    Keyword::INDEX->value,
-                    Keyword::LANGUAGE->value,
-                    Keyword::NEST->value,
-                    Keyword::PREFIX->value,
-                    Keyword::PROTECTED->value,
-                    Keyword::TYPE->value,
-                ],
-                true,
-            )) {
+        foreach ($value as $entry => $_value) {
+            if (!isset(self::ALLOWED_TERM_DEFINITION_ENTRIES[$entry])) {
                 throw new TermDefinitionCreationException('invalid term definition');
             }
         }
 
         // 27
         if (!$overrideProtected && isset($previousDefinition) && $previousDefinition->protected) {
-            self::switchToPreviousDefinition($definition, $previousDefinition);
+            $definition = self::switchToPreviousDefinition($definition, $previousDefinition);
         }
 
         // 28
-        $activeContext->termDefinitions[$term] = $definition;
+        $activeContext->termDefinitions[$term] = $definition instanceof TermDefinition ? $definition : $definition->toTermDefinition();
         $defined[$term] = true;
     }
 
@@ -280,7 +293,7 @@ class TermDefinitionCreator
 
     private static function setTypeMapping(
         Context $activeContext,
-        TermDefinition $definition,
+        TermDefinitionDraft $definition,
         \stdClass $localContext,
         mixed $value,
         array $defined,
@@ -325,7 +338,7 @@ class TermDefinitionCreator
      */
     private static function setReverseDefinition(
         Context $activeContext,
-        TermDefinition $definition,
+        TermDefinitionDraft $definition,
         \stdClass $localContext,
         string $term,
         mixed $value,
@@ -345,7 +358,7 @@ class TermDefinitionCreator
         }
 
         // 13.3
-        if (preg_match('/^@[a-zA-Z]+$/', $value->{Keyword::REVERSE->value})) {
+        if (IriResolver::isKeywordLikeString($value->{Keyword::REVERSE->value})) {
             return true;
         }
 
@@ -378,7 +391,7 @@ class TermDefinitionCreator
         // 13.6
         $definition->reverseProperty = true;
         // 13.7
-        $activeContext->termDefinitions[$term] = $definition;
+        $activeContext->termDefinitions[$term] = $definition->toTermDefinition();
         $defined[$term] = true;
 
         return false;
@@ -386,12 +399,13 @@ class TermDefinitionCreator
 
     private static function handleIdValue(
         Context $activeContext,
-        TermDefinition $definition,
+        TermDefinitionDraft $definition,
         string $term,
         mixed $value,
         \stdClass $localContext,
         array $defined,
         bool $simpleTerm,
+        bool $termNeedsExpandedMappingConsistencyCheck,
     ): bool {
         // 14.1
         $id = $value->{Keyword::ID->value};
@@ -403,7 +417,7 @@ class TermDefinitionCreator
                 throw new TermDefinitionCreationException('invalid IRI mapping');
             }
 
-            if (!Keyword::tryFrom($id) && preg_match('/^@[a-zA-Z]+$/', $id)) {
+            if (!Keyword::tryFrom($id) && IriResolver::isKeywordLikeString($id)) {
                 return true;
             }
 
@@ -430,8 +444,8 @@ class TermDefinitionCreator
 
             // 14.2.4
             if (
-                str_contains($term, '/')
-                || preg_match('/[^^]:[^$]/', $term)
+                Context::PROCESSING_MODE_11 === $activeContext->processingMode
+                && $termNeedsExpandedMappingConsistencyCheck
             ) {
                 // 14.2.4.1
                 $defined[$term] = true;
@@ -450,16 +464,15 @@ class TermDefinitionCreator
             }
 
             // 14.2.5
+            // In JSON-LD 1.0, any term whose IRI ends with a gen-delim acts as a prefix,
+            // regardless of whether a simple-term or object-style definition was used.
             if (
-                !str_contains(':', $term)
-                && !str_contains('/', $term)
-                && $simpleTerm
+                !str_contains($term, ':')
+                && !str_contains($term, '/')
+                && ($simpleTerm || Context::PROCESSING_MODE_10 === $activeContext->processingMode)
                 && null !== $definition->iriMapping
             ) {
-                $lastChar = mb_substr($definition->iriMapping, -1);
-                $genDelimCharacters = [':', '/', '?', '#', '[', ']', '@'];
-
-                if (IriResolver::isBlankNodeIdentifier($definition->iriMapping) || \in_array($lastChar, $genDelimCharacters, true)) {
+                if (IriResolver::iriMappingActsAsPrefix($definition->iriMapping)) {
                     $definition->prefixFlag = true;
                 }
             }
@@ -468,9 +481,20 @@ class TermDefinitionCreator
         return false;
     }
 
+    private static function hasNonTerminalPrefixSeparator(string $value): bool
+    {
+        $position = strpos($value, ':');
+
+        return false !== $position
+            && 0 !== $position
+            && $position < \strlen($value) - 1
+            && '^' !== $value[$position - 1]
+            && '$' !== $value[$position + 1];
+    }
+
     private static function handleTermWithColons(
         Context $activeContext,
-        TermDefinition $definition,
+        TermDefinitionDraft $definition,
         \stdClass $localContext,
         string $term,
         array $defined,
@@ -496,7 +520,7 @@ class TermDefinitionCreator
 
     private static function handleContainerValue(
         Context $activeContext,
-        TermDefinition $definition,
+        TermDefinitionDraft $definition,
         mixed $value,
     ): void {
         $container = $value->{Keyword::CONTAINER->value};
@@ -508,16 +532,24 @@ class TermDefinitionCreator
 
         // 19.2
         if (
+            Context::PROCESSING_MODE_10 === $activeContext->processingMode
+            && \is_array($container)
+        ) {
+            throw new TermDefinitionCreationException('invalid container mapping');
+        }
+
+        // 19.3
+        if (
             \in_array($container, [Keyword::GRAPH->value, Keyword::ID->value, Keyword::TYPE->value], true)
             && Context::PROCESSING_MODE_10 === $activeContext->processingMode
         ) {
             throw new TermDefinitionCreationException('invalid container mapping');
         }
 
-        // 19.3
+        // 19.4
         $definition->containerMapping = (array) $container;
 
-        // 19.4
+        // 19.5
         if (\in_array(Keyword::TYPE->value, $definition->containerMapping, true)) {
             if (!$definition->typeMapping) {
                 $definition->typeMapping = Keyword::ID->value;
@@ -531,7 +563,7 @@ class TermDefinitionCreator
 
     private static function handleIndexValue(
         Context $activeContext,
-        TermDefinition $definition,
+        TermDefinitionDraft $definition,
         mixed $value,
     ): void {
         // 20.1
@@ -564,7 +596,7 @@ class TermDefinitionCreator
     private static function handleContextValue(
         Context $activeContext,
         \stdClass $localContext,
-        TermDefinition $definition,
+        TermDefinitionDraft $definition,
         mixed $value,
         ?string $baseUrl,
         array &$remoteContexts,
@@ -576,7 +608,7 @@ class TermDefinitionCreator
 
         // 21.2
         $context = $localContext->{Keyword::CONTEXT->value};
-        $processer = new ContextProcesser();
+        $processer = self::$contextProcesser ??= new ContextProcesser();
 
         // 21.4
         // We swap 21.3 and 21.4 because the $activeContext needs the $baseUrl.
@@ -600,7 +632,7 @@ class TermDefinitionCreator
     }
 
     private static function handleLanguageValue(
-        TermDefinition $definition,
+        TermDefinitionDraft $definition,
         mixed $value,
     ): void {
         // 22.1
@@ -615,7 +647,7 @@ class TermDefinitionCreator
     }
 
     private static function handleDirectionValue(
-        TermDefinition $definition,
+        TermDefinitionDraft $definition,
         mixed $value,
     ): void {
         // 23.1
@@ -635,7 +667,7 @@ class TermDefinitionCreator
 
     private static function handleNestValue(
         Context $activeContext,
-        TermDefinition $definition,
+        TermDefinitionDraft $definition,
         mixed $value,
     ): void {
         // 24.1
@@ -659,7 +691,7 @@ class TermDefinitionCreator
 
     private static function setPrefixFlag(
         Context $activeContext,
-        TermDefinition $definition,
+        TermDefinitionDraft $definition,
         string $term,
         mixed $value,
     ): void {
@@ -687,15 +719,15 @@ class TermDefinitionCreator
     }
 
     private static function switchToPreviousDefinition(
-        TermDefinition &$definition,
+        TermDefinitionDraft $definition,
         TermDefinition $previousDefinition,
-    ): void {
+    ): TermDefinition {
         // 27.1
-        if (!DataStructureComparator::objectsHaveSameProperties($previousDefinition, $definition, 'protected')) {
+        if (!DataStructureComparator::objectsHaveSameProperties($previousDefinition, $definition->toTermDefinition(), 'protected')) {
             throw new TermDefinitionCreationException('protected term redefinition');
         }
 
         // 27.2
-        $definition = $previousDefinition;
+        return $previousDefinition;
     }
 }

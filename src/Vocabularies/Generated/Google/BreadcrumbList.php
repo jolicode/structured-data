@@ -22,5 +22,46 @@ final class BreadcrumbList
     public const SPECIAL_RULE_KEYS = ['google.breadcrumb.last_item_optional'];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['itemListElement' => ['name' => 'itemListElement', 'severity' => 'required', 'supportedTypes' => ['ListItem'], 'properties' => ['item' => ['name' => 'item', 'severity' => 'required', 'supportedTypes' => ['URL', 'Thing'], 'properties' => ['@id' => ['name' => '@id', 'severity' => 'required', 'supportedTypes' => ['URL']]]], 'name' => ['name' => 'name', 'severity' => 'required', 'supportedTypes' => ['Text']], 'position' => ['name' => 'position', 'severity' => 'required', 'supportedTypes' => ['Integer']]]]];
+    public const PROPERTIES = [
+        'itemListElement' => [
+            'name' => 'itemListElement',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'ListItem',
+            ],
+            'properties' => [
+                'item' => [
+                    'name' => 'item',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'URL',
+                        'Thing',
+                    ],
+                    'properties' => [
+                        '@id' => [
+                            'name' => '@id',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'URL',
+                            ],
+                        ],
+                    ],
+                ],
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'position' => [
+                    'name' => 'position',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Integer',
+                    ],
+                ],
+            ],
+        ],
+    ];
 }

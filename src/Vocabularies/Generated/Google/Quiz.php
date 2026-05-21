@@ -22,5 +22,91 @@ final class Quiz
     public const SPECIAL_RULE_KEYS = [];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['hasPart' => ['name' => 'hasPart', 'severity' => 'required', 'supportedTypes' => ['Question'], 'properties' => ['acceptedAnswer' => ['name' => 'acceptedAnswer', 'severity' => 'required', 'supportedTypes' => ['Answer'], 'properties' => ['text' => ['name' => 'text', 'severity' => 'required', 'supportedTypes' => ['Text']]]], 'eduQuestionType' => ['name' => 'eduQuestionType', 'severity' => 'required', 'supportedTypes' => ['Text'], 'value' => ['Flashcard']], 'text' => ['name' => 'text', 'severity' => 'required', 'supportedTypes' => ['Text']]]], 'about' => ['name' => 'about', 'severity' => 'recommended', 'supportedTypes' => ['Thing'], 'properties' => ['name' => ['name' => 'name', 'severity' => 'recommended', 'supportedTypes' => ['Text']]]], 'educationalAlignment' => ['name' => 'educationalAlignment', 'severity' => 'recommended', 'supportedTypes' => ['AlignmentObject'], 'properties' => ['alignmentType' => ['name' => 'alignmentType', 'severity' => 'recommended', 'supportedTypes' => ['Text'], 'value' => ['educationalSubject', 'educationalLevel']], 'targetName' => ['name' => 'targetName', 'severity' => 'recommended', 'supportedTypes' => ['Text']]]]];
+    public const PROPERTIES = [
+        'hasPart' => [
+            'name' => 'hasPart',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Question',
+            ],
+            'properties' => [
+                'acceptedAnswer' => [
+                    'name' => 'acceptedAnswer',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Answer',
+                    ],
+                    'properties' => [
+                        'text' => [
+                            'name' => 'text',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'Text',
+                            ],
+                        ],
+                    ],
+                ],
+                'eduQuestionType' => [
+                    'name' => 'eduQuestionType',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                    'value' => [
+                        'Flashcard',
+                    ],
+                ],
+                'text' => [
+                    'name' => 'text',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+            ],
+        ],
+        'about' => [
+            'name' => 'about',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Thing',
+            ],
+            'properties' => [
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+            ],
+        ],
+        'educationalAlignment' => [
+            'name' => 'educationalAlignment',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'AlignmentObject',
+            ],
+            'properties' => [
+                'alignmentType' => [
+                    'name' => 'alignmentType',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                    'value' => [
+                        'educationalSubject',
+                        'educationalLevel',
+                    ],
+                ],
+                'targetName' => [
+                    'name' => 'targetName',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+            ],
+        ],
+    ];
 }

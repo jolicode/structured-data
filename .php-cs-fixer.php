@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /*
  * This file is part of JoliCode's json-ld project.
  *
@@ -40,7 +38,12 @@ return (new PhpCsFixer\Config())
         'ordered_class_elements' => true,
         'ordered_imports' => true,
         'heredoc_to_nowdoc' => true,
-        'php_unit_strict' => true,
+        'php_unit_strict' => [
+            'assertions' => [
+                'assertAttributeEquals',
+                'assertAttributeNotEquals',
+            ],
+        ],
         'php_unit_construct' => true,
         'phpdoc_add_missing_param_annotation' => true,
         'phpdoc_order' => true,
@@ -63,7 +66,6 @@ return (new PhpCsFixer\Config())
             ],
         ],
         'concat_space' => ['spacing' => 'one'],
-        'php_unit_strict' => false,
         'trailing_comma_in_multiline' => ['elements' => ['arguments', 'parameters', 'arrays']],
         'multiline_promoted_properties' => true,
     ])

@@ -1,0 +1,27 @@
+<div vocab="https://schema.org/" typeof="ItemList">
+    <span property="itemListElement" typeof="ListItem">
+        <span property="position">1</span>
+        <span property="item" typeof="MusicGroup">
+            <span property="name">Beatles</span>
+            <span property="url">https://example.com/music-groups/beatles</span>
+        </span>
+    </span>
+</div>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+                "@type": "MusicGroup",
+                "name": "Beatles",
+                "url": "https://example.com/music-groups/beatles"
+            }
+        }
+    ]
+}
+</script>

@@ -12,6 +12,7 @@
 namespace Jolicode\JsonLd\Tests\Algorithms;
 
 use Jolicode\JsonLd\Algorithms;
+use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
 use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
 use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
@@ -33,6 +34,8 @@ class FlattenerTest extends AbstractJsonLdTestCase
         if ($expected instanceof JsonLdException) {
             try {
                 $flattener->flatten($json, $options);
+
+                throw new AssertionFailedError(\sprintf('An exception was expected for this test but none were thrown. Expected error message was : %s', $expected->getMessage()));
             } catch (JsonLdException $exception) {
                 $this->assertSame($expected->getMessage(), $exception->getMessage());
             }
@@ -69,16 +72,9 @@ class FlattenerTest extends AbstractJsonLdTestCase
     protected function shouldSkipThisTest(string $filename): bool
     {
         $testsToSkip = [
-            // The result of our test seem completely fine. The JSON-LD playground has the same result than us, so we skip.
-            '0014-in.jsonld',
-
-            // This one is juste false : it expects to keep the @context entry in the result, but this is wrong, the expander is supposed to remove it.
-            // The playground agrees with us and everything else is fine.
+            // Requires the context-based compaction step inside flatten(), which is not yet implemented.
+            // See TODO comment in Flattener::flatten().
             '0044-in.jsonld',
-
-            // The specVersion of these tests is 1.0, we are using 1.1. They seem to be outdated se we skip them.
-            // Moreover, the playground has the same results as we do so we are pretty confident.
-            '0026-in.jsonld',
         ];
 
         return \in_array($filename, $testsToSkip, true);
@@ -88,14 +84,8 @@ class FlattenerTest extends AbstractJsonLdTestCase
     {
         $options = new ProcessorOptions(base: $this->getBaseUrlForW3CTests($filename));
 
-        $testSpecificOptions = [
-            'fake' => ['base' => $this->getBaseUrlForW3CTests($filename)],
-        ];
-
-        if (\array_key_exists($filename, $testSpecificOptions)) {
-            foreach ($testSpecificOptions[$filename] as $property => $value) {
-                $options->{$property} = $value;
-            }
+        if ('0014-in.jsonld' === $filename || '0026-in.jsonld' === $filename) {
+            $options->processingMode = Context::PROCESSING_MODE_10;
         }
 
         return $options;

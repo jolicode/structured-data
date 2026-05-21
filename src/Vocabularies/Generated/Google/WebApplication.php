@@ -22,5 +22,84 @@ final class WebApplication
     public const SPECIAL_RULE_KEYS = [];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['name' => ['name' => 'name', 'severity' => 'required', 'supportedTypes' => ['Text']], 'offers' => ['name' => 'offers', 'severity' => 'required', 'supportedTypes' => ['Offer'], 'properties' => ['price' => ['name' => 'price', 'severity' => 'required', 'supportedTypes' => ['Number']], 'priceCurrency' => ['name' => 'priceCurrency', 'severity' => 'recommended', 'supportedTypes' => ['Text']]]], 'atLeastOneOf' => ['name' => 'atLeastOneOf', 'severity' => 'required', 'value' => ['aggregateRating' => true, 'review' => true], 'supportedTypes' => []], 'applicationCategory' => ['name' => 'applicationCategory', 'severity' => 'recommended', 'supportedTypes' => ['Text'], 'value' => ['GameApplication', 'SocialNetworkingApplication', 'TravelApplication', 'ShoppingApplication', 'SportsApplication', 'LifestyleApplication', 'BusinessApplication', 'DesignApplication', 'DeveloperApplication', 'DriverApplication', 'EducationalApplication', 'HealthApplication', 'FinanceApplication', 'SecurityApplication', 'BrowserApplication', 'CommunicationApplication', 'DesktopEnhancementApplication', 'EntertainmentApplication', 'MultimediaApplication', 'HomeApplication', 'UtilitiesApplication', 'ReferenceApplication']], 'operatingSystem' => ['name' => 'operatingSystem', 'severity' => 'recommended', 'supportedTypes' => ['Text']]];
+    public const PROPERTIES = [
+        'name' => [
+            'name' => 'name',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'offers' => [
+            'name' => 'offers',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Offer',
+            ],
+            'properties' => [
+                'price' => [
+                    'name' => 'price',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Number',
+                    ],
+                ],
+                'priceCurrency' => [
+                    'name' => 'priceCurrency',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+            ],
+        ],
+        'atLeastOneOf' => [
+            'name' => 'atLeastOneOf',
+            'severity' => 'required',
+            'value' => [
+                'aggregateRating' => true,
+                'review' => true,
+            ],
+            'supportedTypes' => [
+            ],
+        ],
+        'applicationCategory' => [
+            'name' => 'applicationCategory',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+            ],
+            'value' => [
+                'GameApplication',
+                'SocialNetworkingApplication',
+                'TravelApplication',
+                'ShoppingApplication',
+                'SportsApplication',
+                'LifestyleApplication',
+                'BusinessApplication',
+                'DesignApplication',
+                'DeveloperApplication',
+                'DriverApplication',
+                'EducationalApplication',
+                'HealthApplication',
+                'FinanceApplication',
+                'SecurityApplication',
+                'BrowserApplication',
+                'CommunicationApplication',
+                'DesktopEnhancementApplication',
+                'EntertainmentApplication',
+                'MultimediaApplication',
+                'HomeApplication',
+                'UtilitiesApplication',
+                'ReferenceApplication',
+            ],
+        ],
+        'operatingSystem' => [
+            'name' => 'operatingSystem',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+    ];
 }

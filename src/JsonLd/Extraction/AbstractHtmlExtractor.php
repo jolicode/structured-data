@@ -16,16 +16,21 @@ namespace Jolicode\JsonLd\Extraction;
  *
  * Provides shared helpers for loading an HTML document into a DOMDocument and
  * for building line-location hints for diagnostic messages.
- * Concrete subclasses must declare their format name so that error messages
- * remain format-specific.
+ * Concrete subclasses must declare their format so that error messages remain
+ * format-specific.
  */
 abstract class AbstractHtmlExtractor implements FormatExtractorInterface
 {
-    /**
-     * Returns the format name used in error and warning messages
-     * (e.g. 'microdata', 'RDFa').
-     */
-    abstract protected function getFormatName(): string;
+    private static ?string $cachedBody = null;
+
+    private static ?\DOMDocument $cachedDocument = null;
+
+    abstract public function getFormat(): ExtractorFormat;
+
+    protected function getFormatName(): string
+    {
+        return $this->getFormat()->displayName();
+    }
 
     /**
      * Parses $body into a DOMDocument, suppressing libxml noise.
@@ -34,6 +39,10 @@ abstract class AbstractHtmlExtractor implements FormatExtractorInterface
      */
     protected function loadDocument(string $body): \DOMDocument
     {
+        if (self::$cachedBody === $body && null !== self::$cachedDocument) {
+            return self::$cachedDocument;
+        }
+
         $document = new \DOMDocument();
 
         set_error_handler(static fn (): bool => true);
@@ -45,8 +54,11 @@ abstract class AbstractHtmlExtractor implements FormatExtractorInterface
         }
 
         if (false === $loaded) {
-            throw new \RuntimeException(\sprintf('Invalid %s document: malformed HTML content.', $this->getFormatName()));
+            throw new ExtractionException(\sprintf('Invalid %s document: malformed HTML content.', $this->getFormatName()));
         }
+
+        self::$cachedBody = $body;
+        self::$cachedDocument = $document;
 
         return $document;
     }
@@ -73,5 +85,24 @@ abstract class AbstractHtmlExtractor implements FormatExtractorInterface
         return 1 === \count($lineNumbers)
             ? \sprintf(' at line %d', $lineNumbers[0])
             : \sprintf(' at lines %s', implode(', ', $lineNumbers));
+    }
+
+    /**
+     * @param list<int> $lineNumbers
+     */
+    protected function formatRanges(array $lineNumbers): string
+    {
+        $lineNumbers = array_values(
+            array_unique(
+                array_filter($lineNumbers, static fn (int $lineNumber): bool => $lineNumber > 0),
+            ),
+        );
+
+        return implode(', ',
+            array_map(
+                static fn (int $lineNumber): string => \sprintf('line %d', $lineNumber),
+                $lineNumbers,
+            ),
+        );
     }
 }

@@ -22,5 +22,159 @@ final class DiscussionForumPosting
     public const SPECIAL_RULE_KEYS = ['google.discussion_forum.content_or_url'];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['author' => ['name' => 'author', 'severity' => 'required', 'supportedTypes' => ['Person', 'Organization'], 'properties' => ['name' => ['name' => 'name', 'severity' => 'required', 'supportedTypes' => ['Text']], 'url' => ['name' => 'url', 'severity' => 'recommended', 'supportedTypes' => ['URL']]]], 'datePublished' => ['name' => 'datePublished', 'severity' => 'required', 'supportedTypes' => ['DateTime']], 'atLeastOneOf' => ['name' => 'atLeastOneOf', 'severity' => 'required', 'value' => ['text' => true, 'image' => true, 'video' => true], 'supportedTypes' => []], 'headline' => ['name' => 'headline', 'severity' => 'recommended', 'supportedTypes' => ['Text']], 'text' => ['name' => 'text', 'severity' => 'optional', 'supportedTypes' => ['Text']], 'image' => ['name' => 'image', 'severity' => 'optional', 'supportedTypes' => ['ImageObject', 'URL']], 'video' => ['name' => 'video', 'severity' => 'optional', 'supportedTypes' => ['VideoObject', 'URL']], 'url' => ['name' => 'url', 'severity' => 'optional', 'supportedTypes' => ['URL']], 'comment' => ['name' => 'comment', 'severity' => 'optional', 'supportedTypes' => ['Comment'], 'properties' => ['author' => ['name' => 'author', 'severity' => 'required', 'supportedTypes' => ['Person', 'Organization'], 'properties' => ['name' => ['name' => 'name', 'severity' => 'required', 'supportedTypes' => ['Text']], 'url' => ['name' => 'url', 'severity' => 'recommended', 'supportedTypes' => ['URL']]]], 'datePublished' => ['name' => 'datePublished', 'severity' => 'required', 'supportedTypes' => ['DateTime']], 'atLeastOneOf' => ['name' => 'atLeastOneOf', 'severity' => 'required', 'value' => ['text' => true, 'image' => true, 'video' => true], 'supportedTypes' => []], 'text' => ['name' => 'text', 'severity' => 'optional', 'supportedTypes' => ['Text']], 'image' => ['name' => 'image', 'severity' => 'optional', 'supportedTypes' => ['ImageObject', 'URL']], 'video' => ['name' => 'video', 'severity' => 'optional', 'supportedTypes' => ['VideoObject', 'URL']]]]];
+    public const PROPERTIES = [
+        'author' => [
+            'name' => 'author',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Person',
+                'Organization',
+            ],
+            'properties' => [
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'url' => [
+                    'name' => 'url',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'URL',
+                    ],
+                ],
+            ],
+        ],
+        'datePublished' => [
+            'name' => 'datePublished',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'DateTime',
+            ],
+        ],
+        'atLeastOneOf' => [
+            'name' => 'atLeastOneOf',
+            'severity' => 'required',
+            'value' => [
+                'text' => true,
+                'image' => true,
+                'video' => true,
+            ],
+            'supportedTypes' => [
+            ],
+        ],
+        'headline' => [
+            'name' => 'headline',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'text' => [
+            'name' => 'text',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'image' => [
+            'name' => 'image',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'ImageObject',
+                'URL',
+            ],
+        ],
+        'video' => [
+            'name' => 'video',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'VideoObject',
+                'URL',
+            ],
+        ],
+        'url' => [
+            'name' => 'url',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'URL',
+            ],
+        ],
+        'comment' => [
+            'name' => 'comment',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Comment',
+            ],
+            'properties' => [
+                'author' => [
+                    'name' => 'author',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Person',
+                        'Organization',
+                    ],
+                    'properties' => [
+                        'name' => [
+                            'name' => 'name',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'Text',
+                            ],
+                        ],
+                        'url' => [
+                            'name' => 'url',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'URL',
+                            ],
+                        ],
+                    ],
+                ],
+                'datePublished' => [
+                    'name' => 'datePublished',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'DateTime',
+                    ],
+                ],
+                'atLeastOneOf' => [
+                    'name' => 'atLeastOneOf',
+                    'severity' => 'required',
+                    'value' => [
+                        'text' => true,
+                        'image' => true,
+                        'video' => true,
+                    ],
+                    'supportedTypes' => [
+                    ],
+                ],
+                'text' => [
+                    'name' => 'text',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'image' => [
+                    'name' => 'image',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'ImageObject',
+                        'URL',
+                    ],
+                ],
+                'video' => [
+                    'name' => 'video',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'VideoObject',
+                        'URL',
+                    ],
+                ],
+            ],
+        ],
+    ];
 }

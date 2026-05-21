@@ -11,168 +11,86 @@
 
 namespace Jolicode\JsonLd\Tests\Validation\Benchmark;
 
-use Jolicode\Vocabularies\Validator;
-use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
-use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
+use Jolicode\JsonLd\Validator;
 
 class JsonLdValidatorBench
 {
+    private const FIXTURES_BASE_DIR = __DIR__ . '/../fixtures';
+
     public function __construct(
         private readonly Validator $validator = new Validator(),
     ) {
     }
 
     /**
-     * @Revs(100)
+     * @Revs(5)
      *
-     * @Iterations(5)
+     * @Iterations(3)
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleExpandedValidation(): void
+    public function benchJsonLdSmallFixture(): void
     {
-        $this->validator->setValidator(SchemaOrgValidator::class);
-        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/schema-org/simple-expanded.jsonld') ?: '');
+        $this->validator->audit(self::FIXTURES_BASE_DIR . '/schema-org/simple-expanded.jsonld');
     }
 
     /**
-     * @Revs(100)
+     * @Revs(5)
      *
-     * @Iterations(5)
+     * @Iterations(3)
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleCompactedValidation(): void
+    public function benchJsonLdMediumFixture(): void
     {
-        $this->validator->setValidator(SchemaOrgValidator::class);
-        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/schema-org/simple-compacted.jsonld') ?: '');
+        $this->validator->audit(self::FIXTURES_BASE_DIR . '/schema-org/complex-expanded.jsonld');
     }
 
     /**
-     * @Revs(100)
+     * @Revs(3)
      *
-     * @Iterations(5)
+     * @Iterations(3)
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleFlattenedValidation(): void
+    public function benchJsonLdHeavyFixture(): void
     {
-        $this->validator->setValidator(SchemaOrgValidator::class);
-        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/schema-org/simple-flattened.jsonld') ?: '');
+        $this->validator->audit(self::FIXTURES_BASE_DIR . '/google/book.jsonld');
     }
 
     /**
-     * @Revs(100)
+     * @Revs(3)
      *
-     * @Iterations(5)
+     * @Iterations(3)
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleFramedValidation(): void
+    public function benchHtmlSampleHomepagePage(): void
     {
-        $this->validator->setValidator(SchemaOrgValidator::class);
-        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/schema-org/simple-framed.jsonld') ?: '');
+        $this->validator->audit(self::FIXTURES_BASE_DIR . '/benchmark/homepage-sample.html');
     }
 
     /**
-     * @Revs(100)
+     * @Revs(3)
      *
-     * @Iterations(5)
+     * @Iterations(3)
      *
      * @RetryThreshold(2.0)
      */
-    public function benchComplexExpandedValidation(): void
+    public function benchHtmlSampleListingPage(): void
     {
-        $this->validator->setValidator(SchemaOrgValidator::class);
-        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/schema-org/complex-expanded.jsonld') ?: '');
+        $this->validator->audit(self::FIXTURES_BASE_DIR . '/benchmark/listing-sample.html');
     }
 
     /**
-     * @Revs(100)
+     * @Revs(2)
      *
-     * @Iterations(5)
-     *
-     * @RetryThreshold(2.0)
-     */
-    public function benchComplexCompactedValidation(): void
-    {
-        $this->validator->setValidator(SchemaOrgValidator::class);
-        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/schema-org/complex-compacted.jsonld') ?: '');
-    }
-
-    /**
-     * @Revs(100)
-     *
-     * @Iterations(5)
+     * @Iterations(3)
      *
      * @RetryThreshold(2.0)
      */
-    public function benchComplexFlattenedValidation(): void
+    public function benchHtmlJolicampusSymfonyPage(): void
     {
-        $this->validator->setValidator(SchemaOrgValidator::class);
-        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/schema-org/complex-flattened.jsonld') ?: '');
-    }
-
-    /**
-     * @Revs(100)
-     *
-     * @Iterations(5)
-     *
-     * @RetryThreshold(2.0)
-     */
-    public function benchComplexFramedValidation(): void
-    {
-        $this->validator->setValidator(SchemaOrgValidator::class);
-        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/schema-org/complex-framed.jsonld') ?: '');
-    }
-
-    /**
-     * @Revs(50)
-     *
-     * @Iterations(5)
-     *
-     * @RetryThreshold(2.0)
-     */
-    public function benchGoogleBookValidation(): void
-    {
-        $this->validator->setValidator(GoogleValidator::class);
-        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/Google/book.jsonld') ?: '');
-    }
-
-    /**
-     * @Revs(50)
-     *
-     * @Iterations(5)
-     *
-     * @RetryThreshold(2.0)
-     */
-    public function benchGoogleQAPageValidation(): void
-    {
-        $this->validator->setValidator(GoogleValidator::class);
-        $this->validator->getTypes(file_get_contents(__DIR__ . '/../fixtures/Google/qapage.jsonld') ?: '');
-    }
-
-    /**
-     * @Revs(25)
-     *
-     * @Iterations(5)
-     *
-     * @RetryThreshold(2.0)
-     */
-    public function benchHttpCall(): void
-    {
-        $this->validator->getTypes('https://jolicode.com/blog/jouer-de-la-musique-dans-le-navigateur-avec-la-web-audio-api');
-    }
-
-    /**
-     * @Revs(25)
-     *
-     * @Iterations(5)
-     *
-     * @RetryThreshold(2.0)
-     */
-    public function benchHttpCallWithManyTags(): void
-    {
-        $this->validator->getTypes('https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/examples.txt');
+        $this->validator->audit(self::FIXTURES_BASE_DIR . '/benchmark/jolicampus-formations-symfony.html');
     }
 }

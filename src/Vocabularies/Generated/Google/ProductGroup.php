@@ -22,5 +22,48 @@ final class ProductGroup
     public const SPECIAL_RULE_KEYS = [];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['name' => ['name' => 'name', 'severity' => 'required', 'supportedTypes' => ['Text']], 'variesBy' => ['name' => 'variesBy', 'severity' => 'recommended', 'supportedTypes' => ['DefinedTerm']], 'productGroupID' => ['name' => 'productGroupID', 'severity' => 'recommended', 'supportedTypes' => ['Text']], 'hasVariant' => ['name' => 'hasVariant', 'severity' => 'recommended', 'supportedTypes' => ['Product']], 'aggregateRating' => ['name' => 'aggregateRating', 'severity' => 'recommended', 'supportedTypes' => ['AggregateRating']], 'review' => ['name' => 'review', 'severity' => 'recommended', 'supportedTypes' => ['Review']]];
+    public const PROPERTIES = [
+        'name' => [
+            'name' => 'name',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'variesBy' => [
+            'name' => 'variesBy',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'DefinedTerm',
+            ],
+        ],
+        'productGroupID' => [
+            'name' => 'productGroupID',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'hasVariant' => [
+            'name' => 'hasVariant',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Product',
+            ],
+        ],
+        'aggregateRating' => [
+            'name' => 'aggregateRating',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'AggregateRating',
+            ],
+        ],
+        'review' => [
+            'name' => 'review',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Review',
+            ],
+        ],
+    ];
 }

@@ -22,5 +22,119 @@ final class ProfilePage
     public const SPECIAL_RULE_KEYS = [];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['mainEntity' => ['name' => 'mainEntity', 'severity' => 'required', 'supportedTypes' => ['Person', 'Organization'], 'properties' => ['name' => ['name' => 'name', 'severity' => 'recommended', 'supportedTypes' => ['Text']], 'agentInteractionStatistic' => ['name' => 'agentInteractionStatistic', 'severity' => 'recommended', 'supportedTypes' => ['InteractionCounter'], 'properties' => ['interactionType' => ['name' => 'interactionType', 'severity' => 'recommended', 'supportedTypes' => ['URL']], 'userInteractionCount' => ['name' => 'userInteractionCount', 'severity' => 'recommended', 'supportedTypes' => ['Integer']]]], 'alternateName' => ['name' => 'alternateName', 'severity' => 'recommended', 'supportedTypes' => ['Text']], 'description' => ['name' => 'description', 'severity' => 'recommended', 'supportedTypes' => ['Text']], 'identifier' => ['name' => 'identifier', 'severity' => 'recommended', 'supportedTypes' => ['Text']], 'image' => ['name' => 'image', 'severity' => 'recommended', 'supportedTypes' => ['URL', 'ImageObject']], 'interactionStatistic' => ['name' => 'interactionStatistic', 'severity' => 'recommended', 'supportedTypes' => ['InteractionCounter'], 'properties' => ['interactionType' => ['name' => 'interactionType', 'severity' => 'recommended', 'supportedTypes' => ['URL']], 'userInteractionCount' => ['name' => 'userInteractionCount', 'severity' => 'recommended', 'supportedTypes' => ['Integer']]]], 'sameAs' => ['name' => 'sameAs', 'severity' => 'recommended', 'supportedTypes' => ['URL']]]], 'dateCreated' => ['name' => 'dateCreated', 'severity' => 'recommended', 'supportedTypes' => ['DateTime']], 'dateModified' => ['name' => 'dateModified', 'severity' => 'recommended', 'supportedTypes' => ['DateTime']]];
+    public const PROPERTIES = [
+        'mainEntity' => [
+            'name' => 'mainEntity',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Person',
+                'Organization',
+            ],
+            'properties' => [
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'agentInteractionStatistic' => [
+                    'name' => 'agentInteractionStatistic',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'InteractionCounter',
+                    ],
+                    'properties' => [
+                        'interactionType' => [
+                            'name' => 'interactionType',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'URL',
+                            ],
+                        ],
+                        'userInteractionCount' => [
+                            'name' => 'userInteractionCount',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'Integer',
+                            ],
+                        ],
+                    ],
+                ],
+                'alternateName' => [
+                    'name' => 'alternateName',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'description' => [
+                    'name' => 'description',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'identifier' => [
+                    'name' => 'identifier',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'image' => [
+                    'name' => 'image',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'URL',
+                        'ImageObject',
+                    ],
+                ],
+                'interactionStatistic' => [
+                    'name' => 'interactionStatistic',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'InteractionCounter',
+                    ],
+                    'properties' => [
+                        'interactionType' => [
+                            'name' => 'interactionType',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'URL',
+                            ],
+                        ],
+                        'userInteractionCount' => [
+                            'name' => 'userInteractionCount',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'Integer',
+                            ],
+                        ],
+                    ],
+                ],
+                'sameAs' => [
+                    'name' => 'sameAs',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'URL',
+                    ],
+                ],
+            ],
+        ],
+        'dateCreated' => [
+            'name' => 'dateCreated',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'DateTime',
+            ],
+        ],
+        'dateModified' => [
+            'name' => 'dateModified',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'DateTime',
+            ],
+        ],
+    ];
 }

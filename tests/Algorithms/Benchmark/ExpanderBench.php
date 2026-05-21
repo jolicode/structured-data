@@ -25,39 +25,39 @@ class ExpanderBench extends AbstractJsonLdBench
     }
 
     /**
-     * @Revs(500)
+     * @Revs(50)
      *
      * @Iterations(5)
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleExpansion(): void
+    public function benchMinimalDocumentExpansion(): void
     {
         $this->expandJsonFile('0002-in.jsonld');
     }
 
     /**
-     * @Revs(500)
+     * @Revs(50)
      *
      * @Iterations(5)
      *
      * @RetryThreshold(2.0)
      */
-    public function benchComplexExpansion(): void
+    public function benchNestedGraphExpansion(): void
     {
         $this->expandJsonFile('pr25-in.jsonld');
     }
 
     /**
-     * @Revs(500)
+     * @Revs(50)
      *
      * @Iterations(5)
      *
      * @RetryThreshold(2.0)
      */
-    public function benchHttpCallExpansion(): void
+    public function benchContextHeavyExpansion(): void
     {
-        $this->expandJsonFile('so08-in.jsonld');
+        $this->expandJsonFile('0036-in.jsonld');
     }
 
     protected function getAlgorithmName(): string

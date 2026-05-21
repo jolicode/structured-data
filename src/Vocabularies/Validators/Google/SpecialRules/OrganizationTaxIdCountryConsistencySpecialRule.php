@@ -11,8 +11,8 @@
 
 namespace Jolicode\Vocabularies\Validators\Google\SpecialRules;
 
-use Jolicode\Vocabularies\Mapper\MappedError;
-use Jolicode\Vocabularies\Mapper\MappedType;
+use Jolicode\JsonLd\Mapper\MappedError;
+use Jolicode\JsonLd\Mapper\MappedType;
 
 final class OrganizationTaxIdCountryConsistencySpecialRule implements SpecialRuleInterface
 {
@@ -33,7 +33,7 @@ final class OrganizationTaxIdCountryConsistencySpecialRule implements SpecialRul
 
     public function getTypeViolations(MappedType $type): array
     {
-        if (!$this->hasType($type->type, 'Organization') && !$this->hasType($type->type, 'OnlineStore')) {
+        if (!$this->hasType($type->getType(), 'Organization') && !$this->hasType($type->getType(), 'OnlineStore')) {
             return [];
         }
 
@@ -46,7 +46,7 @@ final class OrganizationTaxIdCountryConsistencySpecialRule implements SpecialRul
         $violations = [];
 
         foreach (['taxID', 'vatID'] as $identifierProperty) {
-            $identifier = $type->properties[$identifierProperty]->value ?? null;
+            $identifier = $type->getProperty($identifierProperty)?->getValue();
 
             if (!\is_string($identifier)) {
                 continue;
@@ -59,7 +59,7 @@ final class OrganizationTaxIdCountryConsistencySpecialRule implements SpecialRul
             }
 
             $violations[] = [
-                'target' => $type->properties[$identifierProperty],
+                'target' => $type->getProperties()[$identifierProperty],
                 'message' => \sprintf(
                     'Potential inconsistency: "%s" starts with "%s" but "address.addressCountry" is "%s". Ensure tax identifiers match the declared country.',
                     $identifierProperty,
@@ -75,13 +75,13 @@ final class OrganizationTaxIdCountryConsistencySpecialRule implements SpecialRul
 
     private function extractAddressCountry(MappedType $type): ?string
     {
-        $address = $type->properties['address']->value ?? null;
+        $address = $type->getProperty('address')?->getValue();
 
         if (!$address instanceof MappedType) {
             return null;
         }
 
-        $country = $address->properties['addressCountry']->value ?? null;
+        $country = $address->getProperty('addressCountry')?->getValue();
 
         if (!\is_string($country)) {
             return null;

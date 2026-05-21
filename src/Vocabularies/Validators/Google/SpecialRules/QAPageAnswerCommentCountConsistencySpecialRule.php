@@ -11,8 +11,8 @@
 
 namespace Jolicode\Vocabularies\Validators\Google\SpecialRules;
 
-use Jolicode\Vocabularies\Mapper\MappedError;
-use Jolicode\Vocabularies\Mapper\MappedType;
+use Jolicode\JsonLd\Mapper\MappedError;
+use Jolicode\JsonLd\Mapper\MappedType;
 
 final class QAPageAnswerCommentCountConsistencySpecialRule implements SpecialRuleInterface
 {
@@ -37,8 +37,8 @@ final class QAPageAnswerCommentCountConsistencySpecialRule implements SpecialRul
             return [];
         }
 
-        $answerCount = $this->toInt($type->properties['answerCount']->value ?? null);
-        $commentCount = $this->toInt($type->properties['commentCount']->value ?? null);
+        $answerCount = $this->toInt($type->getProperty('answerCount')?->getValue());
+        $commentCount = $this->toInt($type->getProperty('commentCount')?->getValue());
 
         if (null === $answerCount || null === $commentCount) {
             return [];
@@ -68,26 +68,26 @@ final class QAPageAnswerCommentCountConsistencySpecialRule implements SpecialRul
 
     private function isQAPageQuestion(MappedType $type): bool
     {
-        if (!$this->hasType($type->type, 'Question')) {
+        if (!$this->hasType($type->getType(), 'Question')) {
             return false;
         }
 
-        if ('mainEntity' !== $type->parentProperty?->key) {
+        if ('mainEntity' !== $type->getParentProperty()?->getKey()) {
             return false;
         }
 
-        return $this->hasType($this->getRootType($type)->type, 'QAPage');
+        return $this->hasType($this->getRootType($type)->getType(), 'QAPage');
     }
 
     private function countAnswers(MappedType $question): int
     {
-        return $this->countMappedTypes($question->properties['acceptedAnswer']->value ?? null)
-            + $this->countMappedTypes($question->properties['suggestedAnswer']->value ?? null);
+        return $this->countMappedTypes($question->getProperty('acceptedAnswer')?->getValue())
+            + $this->countMappedTypes($question->getProperty('suggestedAnswer')?->getValue());
     }
 
     private function countQuestionComments(MappedType $question): int
     {
-        return $this->countMappedTypes($question->properties['comment']->value ?? null);
+        return $this->countMappedTypes($question->getProperty('comment')?->getValue());
     }
 
     private function countMappedTypes(mixed $value): int
@@ -99,8 +99,8 @@ final class QAPageAnswerCommentCountConsistencySpecialRule implements SpecialRul
 
     private function getRootType(MappedType $type): MappedType
     {
-        while ($type->parent) {
-            $type = $type->parent;
+        while ($type->getParent()) {
+            $type = $type->getParent();
         }
 
         return $type;

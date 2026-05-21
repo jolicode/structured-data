@@ -11,7 +11,7 @@
 
 namespace Jolicode\JsonLd\Algorithms\TermDefinition;
 
-class TermDefinition
+readonly class TermDefinition
 {
     public function __construct(
         public bool $prefixFlag,

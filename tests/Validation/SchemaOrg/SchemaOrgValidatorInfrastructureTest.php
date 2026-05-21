@@ -11,8 +11,8 @@
 
 namespace Jolicode\JsonLd\Tests\Validation;
 
-use Jolicode\Vocabularies\Mapper\MappedProperty;
-use Jolicode\Vocabularies\Validator;
+use Jolicode\JsonLd\Mapper\MappedProperty;
+use Jolicode\JsonLd\Validator;
 use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
 use PHPUnit\Framework\TestCase;
 
@@ -21,6 +21,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @group validation
  * @group schemaorg
+ * @group schema-org
  */
 class SchemaOrgValidatorInfrastructureTest extends TestCase
 {
@@ -69,7 +70,10 @@ class SchemaOrgValidatorInfrastructureTest extends TestCase
     {
         $fixtureFiles = array_map(
             static fn (string $path): string => basename($path),
-            glob(__DIR__ . '/../fixtures/schema-org/*.jsonld') ?: [],
+            array_merge(
+                glob(__DIR__ . '/../fixtures/schema-org/*.jsonld') ?: [],
+                glob(__DIR__ . '/../fixtures/schema-org/*.html') ?: [],
+            ),
         );
 
         $baseline = json_decode((string) file_get_contents(__DIR__ . '/../fixtures/schema-org-baseline.json'), true);
@@ -109,16 +113,26 @@ class SchemaOrgValidatorInfrastructureTest extends TestCase
         $largeDocument = $this->buildLargeDocumentFromFixture(self::PERFORMANCE_FIXTURE);
 
         $start = hrtime(true);
-        $types = $validator->getTypes($largeDocument);
+        $audit = $validator->audit($largeDocument);
         $elapsedMs = (hrtime(true) - $start) / 1_000_000;
         $thresholdMs = $this->getPerformanceThresholdMs();
 
-        $this->assertNotSame([], $types);
+        $this->assertNotSame([], $audit->getTypes());
         $this->assertLessThan($thresholdMs, $elapsedMs, \sprintf(
             'Schema.org validation performance smoke test exceeded threshold (%.0f ms): %.2f ms',
             $thresholdMs,
             $elapsedMs,
         ));
+    }
+
+    public function testRootValidatorAcceptsSchemaOrgSlug(): void
+    {
+        $validator = new Validator();
+        $validator->setValidator('schema-org');
+
+        $audit = $validator->audit((string) file_get_contents(__DIR__ . '/../fixtures/schema-org/simple-compacted.jsonld'));
+
+        $this->assertNotSame([], $audit->getTypes());
     }
 
     private function getPerformanceThresholdMs(): int

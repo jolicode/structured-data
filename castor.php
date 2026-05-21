@@ -10,7 +10,6 @@
  */
 
 use Castor\Attribute\AsArgument;
-use Castor\Attribute\AsOption;
 use Castor\Attribute\AsTask;
 
 use function Castor\import;
@@ -19,17 +18,17 @@ use function Castor\run;
 
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
 use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
-use Jolicode\Vocabularies\Mapper\MappedError;
-use Jolicode\Vocabularies\Mapper\MappedType;
-use Jolicode\Vocabularies\Validator;
+use Jolicode\JsonLd\Audit\AuditOptions;
+use Jolicode\JsonLd\Mapper\MappedError;
+use Jolicode\JsonLd\Mapper\MappedProperty;
+use Jolicode\JsonLd\Mapper\MappedType;
+use Jolicode\JsonLd\Validator;
 use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
-use Jolicode\Vocabularies\Validators\RegisteredValidatorsContainer;
-use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
+use Symfony\Component\Console\Command\Command;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
 import(__DIR__ . '/tools/castor.php');
-import(__DIR__ . '/tools/generator/castor.php');
 
 #[AsTask(description: 'Installs qa tooling')]
 function install(): void
@@ -95,102 +94,177 @@ function flatten(
     io()->writeln($result);
 }
 
-#[AsTask(name: 'validate', description: 'Validate a local file or a remote URL')]
+#[AsTask(name: 'check', description: 'quickly check the validity of a file or of a remote URL')]
+function check(
+    #[AsArgument(name: 'fileOrUrl', description: 'The file or remote URL to validate')]
+    string $fileOrUrl,
+    #[AsArgument(name: 'validator', description: 'The specific validator to use. Accepted values are: "schema-org", "schemaorg", "google".')]
+    false|string $specificValidator = false,
+): int {
+    return runValidation($fileOrUrl, $specificValidator, false);
+}
+
+#[AsTask(name: 'validate', description: 'Fully validate a local file or a remote URL')]
 function validate(
     #[AsArgument(name: 'fileOrUrl', description: 'The file or remote URL to validate')]
     string $fileOrUrl,
-    #[AsArgument(name: 'validator', description: 'The specific validator to use')]
+    #[AsArgument(name: 'validator', description: 'The specific validator to use. Accepted values are: "schema-org", "schemaorg", "google".')]
     false|string $specificValidator = false,
-    #[AsOption(name: 'details', description: 'Whether to display the details of the validation', shortcut: 'd')]
-    bool $withDetails = false,
-): void {
+): int {
+    return runValidation($fileOrUrl, $specificValidator, true);
+}
+
+function runValidation(string $fileOrUrl, false|string $specificValidator, bool $withDetails): int
+{
     $validator = new Validator();
-    $validatorsContainer = new RegisteredValidatorsContainer();
 
     if ($specificValidator) {
-        $validatorClass = $validatorsContainer->getValidatorClassName($specificValidator);
-
-        if (false === $validatorClass) {
+        try {
+            $validator->setValidator($specificValidator);
+        } catch (InvalidArgumentException) {
             io()->error(sprintf(
                 'Invalid validator specified. Accepted values are: "%s", "%s" (case-insensitive).',
-                SchemaOrgValidator::VALIDATOR_NAME,
-                GoogleValidator::VALIDATOR_NAME,
+                'schema-org, schemaorg',
+                'google',
             ));
 
-            return;
+            return Command::INVALID;
         }
-
-        $validator->setValidator($validatorClass);
     }
 
-    $types = $validator->getTypes($fileOrUrl);
+    $audit = $validator->audit($fileOrUrl);
+    $types = $audit->getTypes();
+    $typesCount = count($types);
 
-    if (0 === count($types)) {
+    if (0 === $typesCount) {
         io()->warning('No schema.org types were found in the provided document.');
-    } else {
-        io()->success(sprintf('%d schema.org types were found in the provided document.', count($types)));
+
+        return Command::FAILURE;
     }
 
-    $errorsCount = 0;
+    if (1 === $typesCount) {
+        io()->info('1 schema.org type was found in the provided document.');
+    } else {
+        io()->info(sprintf('%d schema.org types were found in the provided document.', $typesCount));
+    }
 
-    foreach ($types as $type) {
-        if ($withDetails) {
+    if ($withDetails) {
+        foreach ($types as $index => $type) {
+            io()->section(sprintf('<fg=blue>Type</> <fg=magenta;options=bold>N°</> <fg=blue>%d</>', $index + 1));
+
             displayType($type);
+            io()->writeln('');
 
-            if ($type->errors) {
-                foreach ($type->errors as $error) {
-                    if (MappedError::SEVERITY_ERROR === $error->severity) {
-                        io()->error($error->message);
+            $hasGoogleErrors = false;
+            $hasGoogleWarnings = false;
+            $hasSchemaOrgErrors = false;
+            $hasSchemaOrgWarnings = false;
+
+            if ($errors = $type->getMergedErrors()) {
+                foreach ($errors as $error) {
+                    if (MappedError::SEVERITY_ERROR === $error->getSeverity()) {
+                        io()->writeln(sprintf('<fg=magenta;options=bold>%s</>', $error->getFormattedMessage()));
+
+                        if (GoogleValidator::VALIDATOR_NAME === $error->getValidatorName()) {
+                            $hasGoogleErrors = true;
+                        } else {
+                            $hasSchemaOrgErrors = true;
+                        }
                     } else {
-                        io()->warning($error->message);
+                        io()->writeln(sprintf('<fg=yellow;options=bold>%s</>', $error->getFormattedMessage()));
+
+                        if (GoogleValidator::VALIDATOR_NAME === $error->getValidatorName()) {
+                            $hasGoogleWarnings = true;
+                        } else {
+                            $hasSchemaOrgWarnings = true;
+                        }
                     }
 
                     io()->writeln(sprintf(
-                        'The above error was raised for %s on property "%s" (%s). Found on position %s',
-                        $error->type ? sprintf('the type "%s"', $error->type) : 'an unknown type (with no @type property)',
-                        $error->key,
-                        $error->parent?->getKeyPath(),
-                        $error->ranges,
+                        "<fg=cyan>The above %s was raised for %s%s\nFound on input positions %s (line:col)</>",
+                        $error->getSeverity(),
+                        $error->getType() ? sprintf('the type "%s"', $error->getType()) : 'an unknown type (with no @type property)',
+                        $error->getProperty() ? sprintf(' on its "%s" property', $error->getProperty()) : '',
+                        $error->getRanges(),
                     ));
+                    io()->writeln('');
                 }
-
+            } else {
+                io()->writeln('<fg=cyan>Type is fully valid!</>');
                 io()->writeln('');
             }
-        }
 
-        foreach ($type->warnings as $warning) {
-            io()->warning($warning->message);
-        }
+            $googleSpecific = strtolower(GoogleValidator::VALIDATOR_NAME) === $specificValidator;
 
-        if ($type->errors) {
-            foreach ($type->errors as $error) {
-                if (MappedError::SEVERITY_ERROR === $error->severity) {
-                    ++$errorsCount;
-                }
+            if (!$specificValidator || $googleSpecific) {
+                io()->writeln(sprintf(
+                    '<fg=cyan>Google Validation</>: <fg=%s;options=bold>%s</>',
+                    $hasGoogleErrors ? 'magenta' : ($hasGoogleWarnings ? 'yellow' : 'blue'),
+                    $hasGoogleErrors ? 'FAILURE' : ($hasGoogleWarnings ? 'WARNINGS' : 'PASSES'),
+                ));
             }
+
+            if (!$googleSpecific) {
+                io()->writeln(sprintf(
+                    '<fg=cyan>Schema.org Validation</>: <fg=%s;options=bold>%s</>',
+                    $hasSchemaOrgErrors ? 'magenta' : ($hasSchemaOrgWarnings ? 'yellow' : 'blue'),
+                    $hasSchemaOrgErrors ? 'FAILURE' : ($hasSchemaOrgWarnings ? 'WARNINGS' : 'PASSES'),
+                ));
+            }
+
+            io()->writeln('');
         }
     }
 
-    if (count($types) > 0) {
-        if ($errorsCount > 0) {
-            io()->error(sprintf('The provided document seems to be invalid. %s out of %s types contain an error.', $errorsCount, count($types)));
-        } else {
-            io()->success('The provided document seems to be valid.');
-        }
+    /** @var array<string> $extractionIssues */
+    $extractionIssues = $audit->getDiagnostic(new AuditOptions(
+        severity: AuditOptions::SEVERITY_DOCUMENT,
+    ));
+    /** @var array<string> $warningDiagnostics */
+    $warningDiagnostics = $audit->getDiagnostic(new AuditOptions(
+        severity: AuditOptions::SEVERITY_WARNING,
+    ));
+    /** @var array<string> $errorDiagnostics */
+    $errorDiagnostics = $audit->getDiagnostic(new AuditOptions(
+        severity: AuditOptions::SEVERITY_ERROR,
+    ));
+
+    if ($extractionIssues) {
+        io()->warning(sprintf('The provided document has some malformed data structures that cannot be parsed or validated. %s extraction issues were found.', count($extractionIssues)));
     }
+
+    if ($warningDiagnostics) {
+        io()->warning(sprintf('The provided document has warnings. %s warnings were found.', count($warningDiagnostics)));
+    }
+
+    if (!$audit->isValid()) {
+        io()->error(sprintf('The provided document is invalid. %s validation errors were found.', count($errorDiagnostics)));
+
+        return Command::FAILURE;
+    }
+
+    io()->success('The provided document is a valid JSON-LD object.');
+
+    return Command::SUCCESS;
 }
 
 function displayType(MappedType $type, int $level = 0): void
 {
     $prefix = str_repeat('  ', $level);
-    io()->writeln(sprintf('%s * %s', $prefix, $type->getKeyPath()));
 
-    foreach ($type->properties as $propertyName => $property) {
-        /** @var Jolicode\Vocabularies\Mapper\MappedProperty $property */
-        $value = $property->value;
+    if ($level) {
+        $color = defineDisplayColor($type);
+        io()->writeln(sprintf('%s * %s:', $prefix, formatPathDisplay($type->getPath() ?? '', $color)));
+    }
+
+    foreach ($type->getProperties() as $property) {
+        /** @var MappedProperty $property */
+        $value = $property->getValue();
+        $color = defineDisplayColor($property);
+        $formattedPath = formatPathDisplay($property->getPath(), $color);
 
         if (is_string($value)) {
-            io()->writeln(sprintf('%s   * %s: %s', $prefix, $property->getKeyPath(), $value));
+            io()->writeln(sprintf('%s   * %s: %s', $prefix, $formattedPath, $value));
         } elseif ($value instanceof MappedType) {
             displayType($value, $level + 1);
         } elseif (is_array($value)) {
@@ -198,11 +272,36 @@ function displayType(MappedType $type, int $level = 0): void
                 if ($subValue instanceof MappedType) {
                     displayType($subValue, $level + 1);
                 } else {
-                    io()->writeln(sprintf('%s   * %s: %s', $prefix, $property->getKeyPath(), $subValue));
+                    io()->writeln(sprintf('%s   * %s: %s', $prefix, $formattedPath, $subValue));
                 }
             }
         } else {
-            io()->writeln(sprintf('%s   * %s', $prefix, $property->getKeyPath()));
+            io()->writeln(sprintf('%s   * %s', $prefix, $formattedPath));
         }
     }
+}
+
+function defineDisplayColor(MappedType|MappedProperty $object): string
+{
+    $color = 'blue';
+
+    if ('warning' === $object->getErrorSeverity()) {
+        $color = 'yellow';
+    }
+
+    if ('error' === $object->getErrorSeverity()) {
+        $color = 'magenta';
+    }
+
+    return $color;
+}
+
+function formatPathDisplay(string $path, string $color): string
+{
+    $segments = explode('.', $path);
+    $lastSegment = array_pop($segments);
+    $prefix = !$segments ? '' : implode('.', $segments) . '.';
+
+    // Unreadable but beautiful :D
+    return sprintf('<fg=%s>%s</><fg=%s;options=bold>%s</>', $color, $prefix, $color, $lastSegment);
 }

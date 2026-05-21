@@ -66,10 +66,10 @@ class PointerListener extends IdleListener implements PositionAwareInterface
 
     public function key(string $key): void
     {
-        $this->adjustFilePosition($key);
+        $keyLength = $this->adjustFilePosition($key);
         $endPosition = $this->getCurrentPosition();
         $startPosition = clone $endPosition;
-        $startPosition->column -= mb_strlen($key);
+        $startPosition->column -= $keyLength;
 
         if ($this->currentStructure instanceof ObjectStructure) {
             $this->currentStructure->addKey($key, new Range($startPosition, $endPosition));
@@ -78,20 +78,27 @@ class PointerListener extends IdleListener implements PositionAwareInterface
 
     public function value($value): void
     {
+        $valueLength = \strlen((string) $value);
+
         if (\is_string($value)) {
-            $this->adjustFilePosition($value);
+            $valueLength = $this->adjustFilePosition($value);
         }
 
         $end = $this->getCurrentPosition();
         $start = clone $end;
-        $start->column -= mb_strlen((string) $value);
+        $start->column -= $valueLength;
 
         $this->currentStructure?->addValue($value, new Range($start, $end));
     }
 
-    private function adjustFilePosition(string $string): void
+    private function adjustFilePosition(string $string): int
     {
-        $this->currentColumnAdjustment += mb_strlen($string) - \strlen($string);
+        $byteLength = \strlen($string);
+        $characterLength = mb_strlen($string);
+
+        $this->currentColumnAdjustment += $characterLength - $byteLength;
+
+        return $characterLength;
     }
 
     private function startStructure(string $structureClass): void
@@ -125,9 +132,10 @@ class PointerListener extends IdleListener implements PositionAwareInterface
 
         if (isset($this->currentStructure->belongsTo)) {
             $parent = $this->currentStructure->belongsTo;
+            $lastParentValue = $parent->getLastValue();
 
-            if (null !== $parent->getLastValue()?->range) {
-                $parent->getLastValue()->range->end = $currentPosition;
+            if (null !== $lastParentValue?->range) {
+                $lastParentValue->range->end = $currentPosition;
             }
 
             $this->currentStructure->belongsTo = null;

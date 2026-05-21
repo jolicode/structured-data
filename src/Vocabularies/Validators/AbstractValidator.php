@@ -11,11 +11,10 @@
 
 namespace Jolicode\Vocabularies\Validators;
 
-use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
+use Jolicode\JsonLd\Mapper\MappedError;
+use Jolicode\JsonLd\Mapper\MappedProperty;
+use Jolicode\JsonLd\Mapper\MappedType;
 use Jolicode\JsonLd\Parser\Range;
-use Jolicode\Vocabularies\Mapper\MappedError;
-use Jolicode\Vocabularies\Mapper\MappedProperty;
-use Jolicode\Vocabularies\Mapper\MappedType;
 
 abstract class AbstractValidator
 {
@@ -35,9 +34,25 @@ abstract class AbstractValidator
      */
     abstract public function validateProperty(MappedType $type, MappedProperty $property, ?MappedProperty $originalProperty = null): array;
 
+    /**
+     * @return MappedError[]
+     */
+    protected function validateDuplicateKeys(MappedType $type): array
+    {
+        $errors = [];
+
+        foreach ($type->getDuplicateKeys() as $key) {
+            $target = $type->getProperty($key) ?? $type;
+            $message = \sprintf('Duplicate property key "%s": only the last value is used.', $key);
+            $errors[] = $this->addMappedError($target, $message, $type, MappedError::SEVERITY_WARNING);
+        }
+
+        return $errors;
+    }
+
     protected function addMappedError(MappedType|MappedProperty $target, string $message, MappedType $typeWithError, string $severity): MappedError
     {
-        $typeLabel = $typeWithError->type;
+        $typeLabel = $typeWithError->getType();
 
         if (\is_array($typeLabel)) {
             $typeLabel = \sprintf(
@@ -54,13 +69,14 @@ abstract class AbstractValidator
                 $range->end?->line,
                 $range->end?->column,
             ),
-            $target->valueRanges,
+            $target->getValueRanges(),
         );
 
         $range = implode(\PHP_EOL, $range);
+
         $error = new MappedError(
             $message,
-            Keyword::TYPE->value,
+            $target instanceof MappedProperty ? $target->getKey() : null,
             $typeLabel,
             $severity,
             static::VALIDATOR_NAME,
@@ -68,28 +84,25 @@ abstract class AbstractValidator
             parent: $target,
         );
 
-        $target->errors[] = $error;
-        $target->isValid = false;
+        $target->addError($error);
+        $target->setIsValid(false);
 
-        if (MappedError::SEVERITY_ERROR !== $target->errorSeverity) {
-            $target->errorSeverity = $severity;
+        if (MappedError::SEVERITY_ERROR !== $target->getErrorSeverity()) {
+            $target->setErrorSeverity($severity);
         }
 
-        $parentType = $target instanceof MappedProperty ? $target->type : $target->parent;
+        $parentType = $target instanceof MappedProperty ? $target->getOwnerType() : $target->getParent();
 
         while ($parentType) {
-            if (MappedError::SEVERITY_ERROR !== $parentType->errorSeverity) {
-                $parentType->isValid = false;
+            if (MappedError::SEVERITY_ERROR !== $parentType->getErrorSeverity()) {
+                $parentType->setErrorSeverity($severity);
             }
 
-            $parentType->errorSeverity = $severity;
-
-            // We add all the errors to the base type so it is possible to count them directly without iterating over all its subtypes and properties.
-            if (!$parentType->parent) {
-                $parentType->errors[] = $error;
+            if (!\in_array($error, $parentType->getErrors(), true)) {
+                $parentType->addChildError($error);
             }
 
-            $parentType = $parentType->parent;
+            $parentType = $parentType->getParent();
         }
 
         return $error;

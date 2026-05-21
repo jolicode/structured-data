@@ -11,8 +11,8 @@
 
 namespace Jolicode\Vocabularies\Validators\Google\SpecialRules;
 
-use Jolicode\Vocabularies\Mapper\MappedError;
-use Jolicode\Vocabularies\Mapper\MappedType;
+use Jolicode\JsonLd\Mapper\MappedError;
+use Jolicode\JsonLd\Mapper\MappedType;
 
 final class OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule implements SpecialRuleInterface
 {
@@ -38,21 +38,21 @@ final class OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule impl
 
     public function getTypeViolations(MappedType $type): array
     {
-        if (!$this->hasType($type->type, 'MerchantReturnPolicy')) {
+        if (!$this->hasType($type->getType(), 'MerchantReturnPolicy')) {
             return [];
         }
 
-        if ('hasMerchantReturnPolicy' !== $type->parentProperty?->key) {
+        if ('hasMerchantReturnPolicy' !== $type->getParentProperty()?->getKey()) {
             return [];
         }
 
-        $returnPolicyCategory = $type->properties['returnPolicyCategory']->value ?? null;
+        $returnPolicyCategory = $type->getProperty('returnPolicyCategory')?->getValue();
 
         if (!\in_array($returnPolicyCategory, self::FINITE_RETURN_ENUM_VALUES, true)) {
             return [];
         }
 
-        if (\array_key_exists('merchantReturnDays', $type->properties)) {
+        if (\array_key_exists('merchantReturnDays', $type->getProperties())) {
             return [];
         }
 

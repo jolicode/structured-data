@@ -17,6 +17,7 @@ class JsonLdElement
         public int $startLine,
         public int $startColumn,
         public string $content,
+        public ExtractorFormat $sourceFormat,
     ) {
     }
 }

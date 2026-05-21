@@ -11,8 +11,8 @@
 
 namespace Jolicode\Vocabularies\Validators\Google\SpecialRules;
 
-use Jolicode\Vocabularies\Mapper\MappedError;
-use Jolicode\Vocabularies\Mapper\MappedType;
+use Jolicode\JsonLd\Mapper\MappedError;
+use Jolicode\JsonLd\Mapper\MappedType;
 
 final class RecipeCaloriesRequiresYieldSpecialRule implements SpecialRuleInterface
 {
@@ -32,36 +32,36 @@ final class RecipeCaloriesRequiresYieldSpecialRule implements SpecialRuleInterfa
             return false;
         }
 
-        if (!$this->hasType($type->type, 'Recipe')) {
+        if (!$this->hasType($type->getType(), 'Recipe')) {
             return false;
         }
 
-        $nutrition = $type->properties['nutrition']->value ?? null;
+        $nutrition = $type->getProperty('nutrition')?->getValue();
 
         if (!$nutrition instanceof MappedType) {
             return false;
         }
 
-        return \array_key_exists('calories', $nutrition->properties);
+        return \array_key_exists('calories', $nutrition->getProperties());
     }
 
     public function getTypeViolations(MappedType $type): array
     {
-        if (!$this->hasType($type->type, 'Recipe')) {
+        if (!$this->hasType($type->getType(), 'Recipe')) {
             return [];
         }
 
-        $nutrition = $type->properties['nutrition']->value ?? null;
+        $nutrition = $type->getProperty('nutrition')?->getValue();
 
         if (!$nutrition instanceof MappedType) {
             return [];
         }
 
-        if (!\array_key_exists('calories', $nutrition->properties)) {
+        if (!\array_key_exists('calories', $nutrition->getProperties())) {
             return [];
         }
 
-        if (\array_key_exists('recipeYield', $type->properties)) {
+        if (\array_key_exists('recipeYield', $type->getProperties())) {
             return [];
         }
 

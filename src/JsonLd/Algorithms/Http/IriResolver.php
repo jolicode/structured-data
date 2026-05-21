@@ -18,6 +18,22 @@ use League\Uri\Uri;
 
 class IriResolver
 {
+    private const ASCII_LETTERS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    private const ASCII_SCHEME_CHARS = self::ASCII_LETTERS . '0123456789+-.';
+
+    private const ASCII_WHITESPACE = " \t\n\r\v\f";
+
+    private const GEN_DELIM_ENDINGS = [
+        ':' => true,
+        '/' => true,
+        '?' => true,
+        '#' => true,
+        '[' => true,
+        ']' => true,
+        '@' => true,
+    ];
+
     /**
      * This is a PHP implementation of the IRI Expansion algorithm based on the
      * JSON-LD 1.1 Processing Algorithms and API W3C Recommendation published on
@@ -39,7 +55,7 @@ class IriResolver
         }
 
         // 2
-        if (preg_match('/^@[a-zA-Z]+$/', $value)) {
+        if (self::isKeywordLikeString($value)) {
             return null;
         }
 
@@ -68,7 +84,7 @@ class IriResolver
         }
 
         // 6
-        if (preg_match('/[^^]:/', $value)) {
+        if (self::hasPrefixSeparator($value)) {
             // 6.1
             [$prefix, $suffix] = explode(':', $value, 2);
 
@@ -125,11 +141,7 @@ class IriResolver
             return false;
         }
 
-        if (preg_match('/^.*[\s].*?/', $iri)) {
-            return false;
-        }
-
-        return self::isRelativeIri($iri) || self::isAbsoluteIri($iri);
+        return !self::containsWhitespace($iri);
     }
 
     public static function isRelativeIri(mixed $iri): bool
@@ -138,16 +150,33 @@ class IriResolver
             return false;
         }
 
-        return 1 === preg_match('/^(?:[^\s]*)|(?:\.\.|\.)\/?/', $iri);
+        if (self::containsWhitespace($iri)) {
+            return false;
+        }
+
+        // According to RFC 3986, a relative IRI is any IRI-shaped string (so, without whitespaces) that isn't absolute.
+        // Actually implementing the real relative IRI validation is incredibly complex and overkill for our limited use case.
+        return !self::isAbsoluteIri($iri);
     }
 
+    /**
+     * Permissive absolute IRI/URI shape check.
+     * This is because JSON-LD uses absolute identifiers (URN scheme) that are not fetchable over HTTP.
+     * Use League\Uri when strict web URL validation is required.
+     */
     public static function isAbsoluteIri(mixed $iri): bool
     {
         if (!\is_string($iri)) {
             return false;
         }
 
-        return 1 === preg_match('/^[A-Za-z][A-Za-z0-9+-.]*:[^\s]*$/', $iri);
+        if ('' === $iri || self::containsWhitespace($iri) || !self::isAsciiLetter($iri[0])) {
+            return false;
+        }
+
+        $separatorPosition = strpos($iri, ':');
+
+        return false !== $separatorPosition && $separatorPosition === strspn($iri, self::ASCII_SCHEME_CHARS);
     }
 
     public static function isBlankNodeIdentifier(mixed $iri): bool
@@ -156,7 +185,10 @@ class IriResolver
             return false;
         }
 
-        return 1 === preg_match('/^_:[^\s]*$/', $iri);
+        return isset($iri[0], $iri[1])
+            && '_' === $iri[0]
+            && ':' === $iri[1]
+            && !self::containsWhitespace($iri);
     }
 
     public static function isAbsoluteIriOrBlankNode(mixed $iri): bool
@@ -175,5 +207,42 @@ class IriResolver
         }
 
         return (string) Uri::parse($iri, $base);
+    }
+
+    public static function isKeywordLikeString(string $value): bool
+    {
+        if (!isset($value[0]) || '@' !== $value[0]) {
+            return false;
+        }
+
+        $keywordLength = \strlen($value) - 1;
+
+        return $keywordLength > 0 && strspn($value, self::ASCII_LETTERS, 1) === $keywordLength;
+    }
+
+    public static function iriMappingActsAsPrefix(string $iriMapping): bool
+    {
+        if (self::isBlankNodeIdentifier($iriMapping)) {
+            return true;
+        }
+
+        return isset(self::GEN_DELIM_ENDINGS[$iriMapping[\strlen($iriMapping) - 1]]);
+    }
+
+    private static function hasPrefixSeparator(string $value): bool
+    {
+        $position = strpos($value, ':');
+
+        return false !== $position && 0 !== $position && '^' !== $value[$position - 1];
+    }
+
+    private static function containsWhitespace(string $value): bool
+    {
+        return \strlen($value) !== strcspn($value, self::ASCII_WHITESPACE);
+    }
+
+    private static function isAsciiLetter(string $character): bool
+    {
+        return 1 === strspn($character, self::ASCII_LETTERS);
     }
 }

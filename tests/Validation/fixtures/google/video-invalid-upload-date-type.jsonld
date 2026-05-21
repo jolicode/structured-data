@@ -1,0 +1,19 @@
+{
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Introducing the self-driving bicycle in the Netherlands",
+    "description": "This spring, Google is introducing the self-driving bicycle in Amsterdam. The Dutch cycle more than any other nation in the world.",
+    "thumbnailUrl": "https://example.com/photos/16x9/photo.jpg",
+    "uploadDate": 20240331,
+    "duration": "PT1M54S",
+    "contentUrl": "https://www.example.com/video/123/file.mp4",
+    "embedUrl": "https://www.example.com/embed/123",
+    "expires": "2024-10-30T14:37:14+00:00",
+    "regionsAllowed": "US",
+    "ineligibleRegion": "CN",
+    "interactionStatistic": {
+        "@type": "InteractionCounter",
+        "interactionType": { "@type": "WatchAction" },
+        "userInteractionCount": 5647018
+    }
+}

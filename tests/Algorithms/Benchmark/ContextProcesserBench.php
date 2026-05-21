@@ -22,13 +22,13 @@ class ContextProcesserBench extends AbstractJsonLdBench
     }
 
     /**
-     * @Revs(500)
+     * @Revs(50)
      *
      * @Iterations(5)
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleContext(): void
+    public function benchInlineContextDocument(): void
     {
         $json = $this->loadJson('context02-in.jsonld');
 
@@ -36,13 +36,13 @@ class ContextProcesserBench extends AbstractJsonLdBench
     }
 
     /**
-     * @Revs(500)
+     * @Revs(50)
      *
      * @Iterations(5)
      *
      * @RetryThreshold(2.0)
      */
-    public function benchComplexContext(): void
+    public function benchScopedContextDocument(): void
     {
         $json = $this->loadJson('context01-in.jsonld');
 
@@ -50,15 +50,15 @@ class ContextProcesserBench extends AbstractJsonLdBench
     }
 
     /**
-     * @Revs(500)
+     * @Revs(50)
      *
      * @Iterations(5)
      *
      * @RetryThreshold(2.0)
      */
-    public function benchHttpCallContext(): void
+    public function benchNestedContextDocument(): void
     {
-        $json = $this->loadJson('context09-in.jsonld');
+        $json = $this->loadJson('context03-in.jsonld');
 
         $this->processer->extractContext(json_decode($json) ?? []);
     }

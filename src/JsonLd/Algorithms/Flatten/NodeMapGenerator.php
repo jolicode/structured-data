@@ -29,6 +29,8 @@ class NodeMapGenerator
      * July 16th, 2020.
      *
      * see https://www.w3.org/TR/json-ld11-api/#algorithm-10
+     *
+     * @param array<string, array<string, array<string, mixed>>|null> $nodeMap
      */
     public function buildNode(
         mixed $element,

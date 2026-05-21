@@ -22,5 +22,38 @@ final class FAQPage
     public const SPECIAL_RULE_KEYS = [];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['mainEntity' => ['name' => 'mainEntity', 'severity' => 'required', 'supportedTypes' => ['Question'], 'properties' => ['acceptedAnswer' => ['name' => 'acceptedAnswer', 'severity' => 'required', 'supportedTypes' => ['Answer'], 'properties' => ['text' => ['name' => 'text', 'severity' => 'required', 'supportedTypes' => ['Text']]]], 'name' => ['name' => 'name', 'severity' => 'required', 'supportedTypes' => ['Text']]]]];
+    public const PROPERTIES = [
+        'mainEntity' => [
+            'name' => 'mainEntity',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Question',
+            ],
+            'properties' => [
+                'acceptedAnswer' => [
+                    'name' => 'acceptedAnswer',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Answer',
+                    ],
+                    'properties' => [
+                        'text' => [
+                            'name' => 'text',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'Text',
+                            ],
+                        ],
+                    ],
+                ],
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+            ],
+        ],
+    ];
 }

@@ -1,99 +1,1980 @@
 {
-    "https-schema-org-0643a814f42411f98e4229065615a8b2.jsonld": [
-        "@type: The \"@@@@\" type is not a valid Schema.org type"
-    ],
-    "https-schema-org-174cd6b839af20061459b14293425945.jsonld": [
-        "hasPart.@type: A typed value may only have one type, 2 provided"
-    ],
-    "https-schema-org-4c9d6074efc0a21ff015997ae6780fb5.jsonld": [
-        "offeredBy: The property \"offeredBy\" does not exist on the type \"WorkBasedProgram\""
-    ],
-    "https-schema-org-4e6cf2c959e98935838b1053deccda20.jsonld": [
-        "hasPart.@type: A typed value may only have one type, 2 provided"
-    ],
-    "https-schema-org-5ae1b2e6b7cc52e871bf3dec64d6f02d.jsonld": [
-        "@type: Missing a @type entry. The @type entry is mandatory for root types"
-    ],
-    "https-schema-org-74ed4843445c67e0995ca7bb4cb13784.jsonld": [
-        "amount.minAmount: This property does not exist: minAmount",
-        "availableChannel.serviceMobileApp: This property does not exist: serviceMobileApp"
-    ],
-    "https-schema-org-8d49e9454c85a63d1e1b7e304fcb4724.jsonld": [
-        "amount.maxAmount: This property does not exist: maxAmount",
-        "amount.minAmount: This property does not exist: minAmount"
-    ],
-    "https-schema-org-8f0ed5c3d308671ec8d6598fa4fa2689.jsonld": [
-        "potentialAction.mathExpression-input: The property \"mathExpression\" does not exist on the type \"SolveMathAction\"",
-        "potentialAction.mathExpression-input: The property \"mathExpression\" does not exist on the type \"SolveMathAction\""
-    ],
-    "https-schema-org-a00cda5ffe4ac3b34f1b3c6d63368aa9.jsonld": [
-        "@type: Missing a @type entry. The @type entry is mandatory for root types"
-    ],
-    "https-schema-org-ac74a981e8399650eb20b17d8f79b51c.jsonld": [
-        "endDate: The property \"endDate\" does not exist on the type \"MonetaryGrant\"",
-        "startDate: The property \"startDate\" does not exist on the type \"MonetaryGrant\""
-    ],
-    "https-schema-org-d0defd4b48b483a3172db271da7bd2fd.jsonld": [
-        "healthPlanNetworkTiers: This property does not exist: healthPlanNetworkTiers",
-        "includesHealthPlanFormulary.healthPlanCostSharing.healthPlanCopay.currency: The property \"currency\" does not exist on the type \"PriceSpecification\"",
-        "includesHealthPlanFormulary.healthPlanCostSharing.healthPlanPharmacyType: This property does not exist: healthPlanPharmacyType",
-        "includesHealthPlanFormulary.healthPlanCostSharing.healthPlanCopay.currency: The property \"currency\" does not exist on the type \"PriceSpecification\"",
-        "includesHealthPlanFormulary.healthPlanCostSharing.healthPlanPharmacyType: This property does not exist: healthPlanPharmacyType",
-        "marketingUrl: This property does not exist: marketingUrl",
-        "summaryUrl: This property does not exist: summaryUrl",
-        "usesHealthPlanIdType: This property does not exist: usesHealthPlanIdType"
-    ],
-    "https-schema-org-e4a7db6e7875a6c2b6228532a90d294e.jsonld": [
-        "drug: The property \"drug\" does not exist on the type \"MedicalWebPage\""
-    ],
-    "https-schema-org-e773b0f1560d400d5fc8eea9addb838c.jsonld": [
-        "adverseOutcome: The property \"adverseOutcome\" does not exist on the type \"Drug\"",
-        "contraindication: The property \"contraindication\" does not exist on the type \"Drug\"",
-        "indication: This property does not exist: indication",
-        "seriousAdverseOutcome: The property \"seriousAdverseOutcome\" does not exist on the type \"Drug\""
-    ],
-    "https-schema-org-f929ad89ee52fc24a8010302a47faaf7.jsonld": [
-        "contactPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ContactPoint"
-    ],
-    "https-schema-org-f21ae2fe26743fed63e9c61cf8e5c3fc.jsonld": [
-        "contactPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ContactPoint"
-    ],
-    "https-schema-org-21a1664e55ae6e784c466eb8af1a6c32.jsonld": [
-        "name: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Text",
-        "name: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Text"
-    ],
-    "https-schema-org-fecfb38a45ddda4c1562c0d5557fdf8d.jsonld": [
-        "constrainingProperty: This property does not exist: constrainingProperty",
-        "gender: The property \"gender\" does not exist on the type \"StatisticalVariable\""
-    ],
-    "https-schema-org-beba94f53fe97689f5ed1840a172282b.jsonld": [
-        "mainEntity.hasCredential.@type: The \"Credential\" type is not a valid Schema.org type"
-    ],
-    "https-schema-org-dedfa837501d6efbd9b4aeca4a3b079b.jsonld": [
-        "fundedItem.@type: A typed value may only have one type, 2 provided"
-    ],
-    "https-schema-org-63cee047cb7afc041c813c4b6056835f.jsonld": [
-        "hasPart.@type: A typed value may only have one type, 2 provided"
-    ],
-    "https-schema-org-96d8282739af36a7a8e0f2ceca36607c.jsonld": [
-        "hasPart.@type: A typed value may only have one type, 2 provided"
-    ],
-    "https-schema-org-2c80195f7c456d2123fb503ad43391d0.jsonld": [
-        "name: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Text",
-        "name: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Text"
-    ],
-    "https-schema-org-0aee8d59f25f1386e25436a6c49ea7e1.jsonld": [
-        "offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
-        "offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
-        "offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
-        "offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
-        "offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
-        "offers.shippingDetails.hasShippingService.shippingConditions.transitTime.duration: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: QuantitativeValue"
-
-    ],
-    "https-schema-org-0e4210c7345d903d151c8662407727e1.jsonld": [
-        "description: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: TextObject",
-        "description: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: TextObject",
-        "review.reviewBody: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Text"
-    ]
+    "https-schema-org-01c4ea8225bf47888cd5bf840a4470e1.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-027b892c149608e2b103a2c0a5b005e7.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-04d12f2749a3361462249daf252fbcea.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-0643a814f42411f98e4229065615a8b2.jsonld": {
+        "errors": [
+            "[SchemaOrg error] @type: The \"@@@@\" type is not a valid Schema.org type"
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-06f2910c2b1e13d57293ecb4894b4b40.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-084cbd3c459a6069b9afa0b49dc2c45f.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-086845694a1e8266c226769d014b3fe1.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-0a943c4ca9e63923ca99f6852181e04a.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-0ab1d1800e60ade714d6f3345fba0806.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-0aedac7a63ab0de0113a54c8889a7213.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-0aee8d59f25f1386e25436a6c49ea7e1.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
+            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
+            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
+            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
+            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
+            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.transitTime.duration: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: QuantitativeValue"
+        ],
+        "documentIssues": []
+    },
+    "https-schema-org-0b45fac369d0e0a23b39da95a8f9fcb2.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-0b4fa2eeed537fda4b9bb1cac6eae6d7.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-0caf9be6531c1da560632e1d007e2ed4.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-0cd43851b9d4b0927f916900214cd081.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-0d80f3638735a61267fe42ad57f19c5e.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-0df2d2a95939169559f36bc7a724d949.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-0e4210c7345d903d151c8662407727e1.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[SchemaOrg warning] description: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: TextObject",
+            "[SchemaOrg warning] description: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: TextObject",
+            "[SchemaOrg warning] review.reviewBody: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Text"
+        ],
+        "documentIssues": []
+    },
+    "https-schema-org-0fdaeeb4069fa4d4b08d09ef209ce53d.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-0ff33a9784507780fa3ed091cba0d340.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-107e574e7159cccbd1e656eaaeb7fbf6.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-108e4a5fa305e1ad7dda25504b537f5d.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-11b52c15a63358ca013a3e86745de996.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-12326b6faca382d85865f66e186f6f03.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-12407c2e212ed23408f043becd592f2a.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-12c83c30122f7c4e963e9f57f6f33385.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-1493d17a3a9dd27f7ec7f47555500e36.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-15739c08f19884f5fc2997508dc3d8a4.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-16af55e83fbd42eb582f27f29e878850.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-174cd6b839af20061459b14293425945.jsonld": {
+        "errors": [
+            "[SchemaOrg error] hasPart.@type: A typed value may only have one type, 2 provided"
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-18970129fce5fb1ea4542f86b8071c30.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-1ba47e1ff659d57bb688f03783f3d284.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-1bb1c846d976dd2a03f97ca615eeec86.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-1bd76101f6af00c210bf0bc5e06d1490.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-1db7a38e5cc71346761f91a3448a91fd.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-1ead991f561e61e4929d46b3e422abfd.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-1f9aeedda7ff414a7bf92eb2f6366ea5.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-20c2efc2b2426a8758e4026f671fb8d7.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-20f889a3bdafde9039f194a435ecaad4.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-217ba35b3ca90d5ef9c4c9358a22f499.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-21a1664e55ae6e784c466eb8af1a6c32.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[SchemaOrg warning] name: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Text",
+            "[SchemaOrg warning] name: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Text"
+        ],
+        "documentIssues": []
+    },
+    "https-schema-org-21a714e64869335150f8552a704fa8a3.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-2250f42a086cbfd9917e13d4fdd13631.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-228645e4e552c5f330d1ef5d4bf26edf.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-228c087590e7a673298b5fedd7b67f26.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-233510ed762fc38f085839f4204b1296.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-234d39424659cd30d357aeae31e2fe59.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-23accad326e234409baf84c4a15bcb22.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-243dd0b47311d1216e9d6f4b21d4b62f.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-2447cf6ab8df325d7174b7962120ebd6.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-24d5a0f9fcc7ac2fa13560d16a6ab059.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-252d238dd342c06dbfe4d0ea1e501ad3.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-2564e1eae5e272de2e5d5e05030b4800.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-25710f71bb30c088f8a30a8cb7072eb6.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-258841282b4379bf5477322f5d50b63c.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-27e6538e8ec579140787b42349adb019.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-2899d97d72bf0f5ab03974c5e8db3c74.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-2b207134a765425dd39c507abf7f5acc.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-2b24621eb7b3918a83a6c6ddc0ea427d.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-2c45d96d78b993bfb0ab8c240f26d56c.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-2c80195f7c456d2123fb503ad43391d0.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[SchemaOrg warning] name: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Text",
+            "[SchemaOrg warning] name: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Text"
+        ],
+        "documentIssues": []
+    },
+    "https-schema-org-2c9771b0f231b0fb34ff6c66e185bf65.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-2d12b1e6c0f08e73f2e5eadb013a8832.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-2d57f5abf0904a70e87df2594d9e198b.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-2d797a14f7c71b4e910ecbf92bbb88fd.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-2d9401695b34b80059c15fc4922d1e1f.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-2fea0f0c5de4046dadc4d24d7253e5e9.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-3021dc914adf87705594dc589e0e69a3.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-30a603e0162c92b5946fe149eff05df0.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-30a6467c2c2dc3166eda9c8848c31d97.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-31e5930f7d1638a4ebe05f63d62d7f45.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-3355f084f8b3755b1469ec915814aa66.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-33d539f88974d53153449844578bad74.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-3536adf7a2bc5d37ac8a38e1c6e7e78a.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-354345184e7868d98b54c80370776506.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-3601ef82a47da5cd2034734b913c9269.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-379fb84ae0dad18fbb7669fe32582d2f.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-37d2b74f041f42e740a10f81b55b5354.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-38136d4f1fcb3d5b78df16b8b8dfc7e5.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[SchemaOrg warning] workPerformed.sameAs: Duplicate property key \"sameAs\": only the last value is used."
+        ],
+        "documentIssues": []
+    },
+    "https-schema-org-38239a54b053f95894d299c180d8558f.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-3a5e74e3f3434eabcf1bf39a2456ab7b.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-3b57c29ff6ee5f332a74c0f0ecae57fd.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-3bb9c8a9cb1cacfd31962966eeb1165c.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-3c6a3ba8dfcb25f076e615a7dd1b7eb6.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-3dc77e91d17c3bafb18a74db7d2b3565.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-3e169401bb2144d92e431032d4161afb.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-3e5665a75129d1f2d0e2b760857ce886.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-3f3d9e221e6fb4dcda2c888667aa8abe.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-3f44a3b4f7e2cd4ac05f81285be08731.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-3f582aee6e6927c297b9fce39f7142dd.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-401150cbb04d16485728e94eec15cc85.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-403bf89fe2eae5431be785fc64217efc.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-4081e7661a9025b1a665be24f1f079c3.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-40d5e61fdd5188aa10a3dce471ed8bc3.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-4101b8bbc9174e478dad5e294607899d.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-413903c0d50bd0727679885d17e8723e.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-424ba36ecc85b9a2c2c19937cd4cebcc.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-42ea71a525af1395513bbcca777d3549.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-42f5deb3d5dc5a787f38ddb2f827c405.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-43c275dd5a7b8e5047c206ff32333214.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-43c9ac80b5785ffa89d9014266acd37e.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-44108354c21b29df32a14e0cbda8a84d.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-456abf4a5200709dfc0ab46b1ce280a6.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-4668bb38a5e96e07f3dab7b4a8db662e.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-47bf355128ae6c71ad25e9228f7cb5f5.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-48000e4ae3c42f85fe98f8203f997e52.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-4ad45a80e636be0a4f25c8f94ee046d7.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-4ae013a1f9ce41890b91e64e204ab16c.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-4c28134365b3df0d66351a529627d3cf.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-4c9d6074efc0a21ff015997ae6780fb5.jsonld": {
+        "errors": [
+            "[SchemaOrg error] offeredBy: The property \"offeredBy\" does not exist on the type \"WorkBasedProgram\""
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-4db4ea87abf5b0b44e49f6a83fc0bde1.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-4e6cf2c959e98935838b1053deccda20.jsonld": {
+        "errors": [
+            "[SchemaOrg error] hasPart.@type: A typed value may only have one type, 2 provided"
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-4e91b4c43e6e048b86a37591a9f0bd53.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-4ed69db1dee9f658225540d2b8f984f8.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-4f626a917e0d6d6c891a9737df85b7ba.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-53c9612a4103560adb94c118b705df92.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-541033958d41d305a4cf606d65e09cc8.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-57cd2f113b0311f76bdb140058578d19.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[SchemaOrg warning] about: Duplicate property key \"about\": only the last value is used."
+        ],
+        "documentIssues": []
+    },
+    "https-schema-org-59368f2ffe30000cacefc71fddac126e.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-59c32bead52f72f8200c0f13cada56f9.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-59c7aaf2d053294bc8eadf0222b0cba7.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-59dd7e5f00cd9577ef48633d6bc95838.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-59ea40364c4d4de6db65881174417227.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-5a16b9f57d042722824c8875ac6d3427.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-5a35e8189ec7989d76c5691c9488f7ef.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-5ae1b2e6b7cc52e871bf3dec64d6f02d.jsonld": {
+        "errors": [
+            "[SchemaOrg error] Missing a @type entry. The @type entry is mandatory for root types"
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-5ae377466f1277ff08ccd87f3371edb9.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-5c2da6217a04da73c4d71798c7dc4a85.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-5cd6fd51fd1f6f173eec727db7f4ad23.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-5d975f0014be84a4305ce4883513edbb.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-5e609c863ce77c60b3817fd54a6b449f.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-61b5b9f665aa9e1dd20f5036ed8ea81e.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-627a92243c33307bca66aa4d2bf53980.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-62bfcc1789b67854087e2e7b89b0e800.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-635c0b6cc24a32ec3454113a1e860c6d.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-63cee047cb7afc041c813c4b6056835f.jsonld": {
+        "errors": [
+            "[SchemaOrg error] hasPart.@type: A typed value may only have one type, 2 provided"
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-6443b3b4086516fe19d5415f404eed30.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-64d408910bd61862047a17436c6bf316.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-654316002a6b72f73ad9923167f518a5.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-658189ce6fdc1f85e40bdfcabfc4b671.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-6801e0b31265e0e310bf3a6f353a097b.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-680d1950bd680c91df137424c8014605.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-680df10e2fd96c6155f1e70c5fd796ae.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-68755f72cbea53b34e5bead2db6aa4c1.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-693de46f64cc2c5443849382f0b54355.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-6997c55aef2cc449b081360de47007b9.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-6ae6abe5cd7f0008dc4ed8ab51410008.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-6bc73d0b735c1eb540b55b8e454188f0.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-6cf3a45ec32a8e67c983f2f6afa985fd.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-6d16d5a371719552e1bf768b61bf364b.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-6e007ea18b454d0b7c6783c20c5523e1.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-6e53f3ae77f5d9dca213e7b498171216.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-6f0deb9b3afacc0f0a1ce77d533d8dab.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-704f2eec965bdd9a7724baf6d24ed8f9.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-7188131df4008e5ce0a94a9d5e4c3654.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-71ddfe67fc6b034ecaa1dc9f5bc90138.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-72752a033ca3000594af108d1af8b8f2.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-72e2863089ebd30b4485e3b697a1f660.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-730d7a227385a9d39bfd69e50e12a5c7.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-74845b91fc79a45298ef5772bafab430.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-74c60015bcf9d9e14cd07e320f836cf8.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-74ed4843445c67e0995ca7bb4cb13784.jsonld": {
+        "errors": [
+            "[SchemaOrg error] amount.minAmount: This property does not exist: minAmount",
+            "[SchemaOrg error] availableChannel.serviceMobileApp: This property does not exist: serviceMobileApp"
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-75f97b641bb771ca7c7fcc29bfbbb250.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-7792d35491544353aad45da0acf733f1.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-77f6ef805d6bbb87b5391bd7dfc8a0d0.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-782e5196090799b0e4b586963971ec58.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-790ba39c0b16df7bde820877b9a1654e.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-797df15c13e1d2e3274678f874bc6e1e.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-7b3133c4eac69390531a71da14ebb73b.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-7c43af8bba4acda555bf425ab06df213.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[SchemaOrg warning] subEvent: Duplicate property key \"subEvent\": only the last value is used."
+        ],
+        "documentIssues": []
+    },
+    "https-schema-org-7c51a0bfccbe8d07cb72d053e658f464.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-7c55bf289b731d14b6d76bc1941fd33c.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[SchemaOrg warning] url: Duplicate property key \"url\": only the last value is used."
+        ],
+        "documentIssues": []
+    },
+    "https-schema-org-7ca15c532430a0ab7b64be1cebb25f06.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-7cbb61b37608905a6baed24b8d73e3f5.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-7d72eda565d53c9016a4e18bbac93008.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-7daae92ec29627f8a270c1571c7de9e0.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-7de37742c56a9532ab6930f2cf923ab9.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-7e3522f633890e561dea95b967693203.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-7e57c9c459798772cb29479588c12634.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-7e7b32a8eb12ce2b2b5d12ca6a71a87b.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-7ee9557d48d140af5c43ab9e1e3713b5.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-7fc4c165f0bcd20fef7fe1adb836e35f.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-80227ab9f88d5b72d6fb9e318c95e9fd.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-825b4056757a228ff144ca03d02c8023.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-82b10225d4b8ce8c00974930c896ee6a.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-83bd3cef49bf368a6cf3a9394d0e0580.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-850d0d2e3aa520030159eb85f4bef0fc.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-859ba458f0557c3d9e435918d537dcfa.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-887a3645de6ce57e351de22ccc9dfcba.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-893244e2b1db6ce34898a9bd07a02908.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-8933d84318088e826d58f7f2a9fd2bbc.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-89a678f898ceb3729f79b5e2110a399b.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-8ab579706e4b78d3a64ce4782a8a2a0e.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-8b2922c345b80fe0d940154ab27e24ec.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-8b89d4b1e7c5749375fbc70cfd4dd778.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-8c098f8cd2e797d87555b1da4181f401.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-8c506a2f631693d8f7b500832f9dbf22.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-8d49e9454c85a63d1e1b7e304fcb4724.jsonld": {
+        "errors": [
+            "[SchemaOrg error] amount.maxAmount: This property does not exist: maxAmount",
+            "[SchemaOrg error] amount.minAmount: This property does not exist: minAmount"
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-8e1119da638746167d0e97219960dffc.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-8e374024a9b5ee935548484886a453a7.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-8e3dd81f68eb80ee725c7965bd66bf8b.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-8f0ed5c3d308671ec8d6598fa4fa2689.jsonld": {
+        "errors": [
+            "[SchemaOrg error] potentialAction.mathExpression-input: The property \"mathExpression\" does not exist on the type \"SolveMathAction\"",
+            "[SchemaOrg error] potentialAction.mathExpression-input: The property \"mathExpression\" does not exist on the type \"SolveMathAction\""
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-90abbb66023cd53715d18d2c2f866c47.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-91f22638bcb1e27786c64aa40d37e4a6.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-92146a4cf6205f4a0a4e98293ab13cfa.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-95551ac945d45eadc305d0fdbd1bd45e.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-96d8282739af36a7a8e0f2ceca36607c.jsonld": {
+        "errors": [
+            "[SchemaOrg error] hasPart.@type: A typed value may only have one type, 2 provided"
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-96f23a039f869ff5de9dea83aed57ab8.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-9817a1175e6917f2ee7907ed8a89c6fd.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-993ededd2f4691dff248109a1c8339f4.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-995637b481add0a72a3aba98662fda8b.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-9a2890fe5d8004e01fad454fa85db6a9.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-9a33346bf2fee70b067f205e43442854.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-9abd72bd906e074578029575a1f4db48.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-9af1e3f6fb7afb1bb7a6f5a6a6418deb.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-9cb0dccc43bf7b5e204eded8f59adac9.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-9cb8179ef6b97401219a5822303ca548.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-9ce85d10ee1f55609bfd61a01c847978.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-9d8e5d85b7311e1c1e313a26cd9e43c7.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-9e5e039f8339a896c8fa4ee12ab06712.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-9ee97f0e54d76279803059fb33c35695.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-9fc983a4de8994fb7f62eeaff642cc65.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-a00cda5ffe4ac3b34f1b3c6d63368aa9.jsonld": {
+        "errors": [
+            "[SchemaOrg error] Missing a @type entry. The @type entry is mandatory for root types"
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-a024769514301295596769981c22d1f3.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-a163d4c93a06e2acd4b898fef6adaaae.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-a16d5c5c4902be72aae6c7430a9f4d45.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-a2273d685efb2b4cb74144f36a5ffdd4.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-a29282286c613c8c1fd2a1dcd01ea2d6.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-a2e87929a19d6ce4b84b07a02d9aa3b5.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-a331295a130b8bfe706396e8dbd9e0df.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-a400e448a74243f7e884b1d4af443442.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-a6b186af10d552de11504b5c102c0e4c.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-a6feee5b1ed0cc4151ea3c3683f532fa.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-a86be7a5588adfcc1e80abb09c447889.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-a8c0eee0e404fdf545e28ea9155fad98.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-a8ddadcd54c16d4c372ffcaac3510de8.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-a908013cfa84efcd75dfebbb6dda5a8f.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-aa553d75c613ef148c23311c4358fd1a.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-aa5ab0e8595f448c24a699f4c487fac9.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-aa7ae6842868b456349f750e0388c630.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-abcb405e9505495776583b790730a1a5.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ac74a981e8399650eb20b17d8f79b51c.jsonld": {
+        "errors": [
+            "[SchemaOrg error] endDate: The property \"endDate\" does not exist on the type \"MonetaryGrant\"",
+            "[SchemaOrg error] startDate: The property \"startDate\" does not exist on the type \"MonetaryGrant\""
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ae72f3e001045900f76c6cd1c9b00792.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-af36f8a1619ab2b702d58b68dde12398.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-afae6a6309784d1ff63f0ac20f808c8e.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-b0adcc96c8064b94490c628bf7239935.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-b1436e6dcc9f0e2183e86166f13e2831.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-b15e8543b3e4f608a91a8919bd3b554f.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-b18a00607c2ec1b3666c65b59a27711a.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-b4446c0d0d13153d962e13486a1377ca.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-b4ee5b9f2b4d70db6a79528e5a1da01b.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-b69315ddf17740743ed661fd010b911c.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-b6db27dce437b41b996bf34b28ccbe2a.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-b705aad4a61eb8c3f805cd3c600f8f02.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-b77792400e0b5da738b963bd6aba56fa.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-b88a5e4f6fcf87a530f478caefeb81aa.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-b9533f4419c97a0838b5df911d09fc75.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ba1e5dfaa149155cfc695c1f0e7546d7.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-bb183691c7f88e8e87cd52b0e548897b.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-bc2a637b1702576a5b4dc7c4f99d7760.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-bcba3fc630761bece41a2bcb3e86383c.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-bd11e48663d28c8d08414e570d4ce5d9.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-be342bcc053e07cf2710658c7933e8e2.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-be40c7f102ba1b1389575ac6004b64bb.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-beba94f53fe97689f5ed1840a172282b.jsonld": {
+        "errors": [
+            "[SchemaOrg error] mainEntity.hasCredential.@type: The \"Credential\" type is not a valid Schema.org type"
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-bebe9c481111f50b0b44774e074a0de6.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-bff6f81d243d9ecb16241173b50435b0.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c0c33820cdc066e9890cde8fb066eba8.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c1a186cf0e633422a4750ecc96590625.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c238a6efd2ed074f4df1b8d680c3c1b9.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c243652b3e43390321d2e1a23605f9da.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c2d170f20813ba648bdb73b4037c1c6a.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c532a8b7981c705806bf2f8f5ddd7b67.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c53abe66a7661f6850b1abbe29ef5758.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c55408a44edb71610e43264de401b159.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c68cf42febec305af415229040fa3a48.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c774b349e60cf5bca275f073c3639553.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c782b4563f9c751b63cd2da2dc943c06.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c789cdc7751b00189e5446b41a387804.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c78d3ba6bf931b568a2a88a5fbef6e5e.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c823c59432c50fef2df848850a4a9617.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c83e232049ce2090aa49943928a50a5b.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c90adc2ab58c920e71db860e09ea8f75.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c95054f2b44c756ada3d4bf918d00235.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c9a96f4f568a0bc237d24f6b0cca9ca5.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-c9f74470fd1645e686b0951802e5d7e4.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ca3ee635fd3ef7e71d9b3e39d8731fd0.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-cb2e07fa18837b922ec608e3288dc7c4.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-cb3648bd6c12b7f545bfc8b24dce4a6f.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-cbb6a4f1cadffb0c409c35a8a83af51b.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-cbbe0193531111476eba2cd4ef5d13b6.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ccbf53ed05c65091087b36161687cfa2.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-cd1e6990cdfbd38c39f40f5b3e7d4d61.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-cd4b632cb4280541dc9556b580e3f624.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ce1cc41bef3e3900cec8510c2f017f49.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ce262e002bbc3bcc1d42fc7fcc9caa6b.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-cf236888a9e5331c5f37aa41a69e352e.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-cf717b36140adeffbb9ad59a0ad68f53.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d06ce03cefe8e3bff897b39b1c0a1cc3.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d094da078cec38bb108286de45d07b32.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d0defd4b48b483a3172db271da7bd2fd.jsonld": {
+        "errors": [
+            "[SchemaOrg error] healthPlanNetworkTiers: This property does not exist: healthPlanNetworkTiers",
+            "[SchemaOrg error] includesHealthPlanFormulary.healthPlanCostSharing.healthPlanCopay.currency: The property \"currency\" does not exist on the type \"PriceSpecification\"",
+            "[SchemaOrg error] includesHealthPlanFormulary.healthPlanCostSharing.healthPlanPharmacyType: This property does not exist: healthPlanPharmacyType",
+            "[SchemaOrg error] includesHealthPlanFormulary.healthPlanCostSharing.healthPlanCopay.currency: The property \"currency\" does not exist on the type \"PriceSpecification\"",
+            "[SchemaOrg error] includesHealthPlanFormulary.healthPlanCostSharing.healthPlanPharmacyType: This property does not exist: healthPlanPharmacyType",
+            "[SchemaOrg error] marketingUrl: This property does not exist: marketingUrl",
+            "[SchemaOrg error] summaryUrl: This property does not exist: summaryUrl",
+            "[SchemaOrg error] usesHealthPlanIdType: This property does not exist: usesHealthPlanIdType"
+        ],
+        "warnings": [
+            "[SchemaOrg warning] includesHealthPlanFormulary.healthPlanDrugTier: Duplicate property key \"healthPlanDrugTier\": only the last value is used.",
+            "[SchemaOrg warning] includesHealthPlanFormulary.offersPrescriptionByMail: Duplicate property key \"offersPrescriptionByMail\": only the last value is used.",
+            "[SchemaOrg warning] includesHealthPlanFormulary.healthPlanCostSharing: Duplicate property key \"healthPlanCostSharing\": only the last value is used."
+        ],
+        "documentIssues": []
+    },
+    "https-schema-org-d15882646b8e9b2d2cb863c04823935d.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d1699b0461db616d4aedcdbc94d583a2.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d1aa824030931cd7d2f39cab33f2c9bb.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d2911d39f8aa8f9ec7fb5db32cf64333.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d35eff1928d87b3219dd01c5d78c358a.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d363b869f91004e8482043f65f2424e2.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d420f8542b4c85f860fcc2452a5c844b.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d43c91f29c18ae49eae3c4ead6759510.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d50d0578e4b893786665caf5cf807d33.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d60f1f844784800bcb6edfe597927ace.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d6d965dab70a8256cce6f461dcc46eeb.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d7411c7bfdbeeef543da6d461295057a.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d784c278ffde21e2c3d8630ef1b351ae.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d7cf13220b4ccc7c330b58f28bc47f9d.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d82c86319ecc54dfa65a3d0ec2de1c95.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d86bf916f395e09b6dde3dec91df0ef6.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d8df3c1428ec34a6c161ff65f1778be5.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d8f7cf1a72130ff2ed68c74d4f8bed67.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-d9d62b341cbf0aba1b050ee269434494.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-da1da2dcfbb06d57d65d54cd928d2171.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-dc905d9bd5236de6f32a52b33761bb94.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-dd1a2e3b0103ab28360f009bac7ac196.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-dd3cfcc688ef6bc6383e405ee83a74e5.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[SchemaOrg warning] iso6523Code: Duplicate property key \"iso6523Code\": only the last value is used."
+        ],
+        "documentIssues": []
+    },
+    "https-schema-org-ddcb6ccb2acc5db06bc770cdeb27a4d4.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-de234a27a5e64008c7bfb7ccb04d9504.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-de8cc32b182063425d62c7d6547a3d0e.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-decdc653c9b596b84a3651d2ab799cf7.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-dedfa837501d6efbd9b4aeca4a3b079b.jsonld": {
+        "errors": [
+            "[SchemaOrg error] fundedItem.@type: A typed value may only have one type, 2 provided"
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-deed4b7873e090af77845095f549fcf5.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-defe19cd441313a6b330043d26ec9637.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e0358efba7039a8d173d5096aa7e3355.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e2e9c2f2195832aa88d66786a08de09d.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e3e448b9208e7a0728d38a8d8d9a13e1.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e45512f39e8ea7ec09417f2020959462.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e4a7db6e7875a6c2b6228532a90d294e.jsonld": {
+        "errors": [
+            "[SchemaOrg error] drug: The property \"drug\" does not exist on the type \"MedicalWebPage\""
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e4e6c9b5de2a875099392874a22040d3.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e4f3f2f8099375009898820c409aac80.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e529795a2dd120b2798326f8c40ea247.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e531dc63141795611fcaaadf1ec28bcb.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e537c6098c4a879f6fab10548fe7e7e9.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e5638073976d3d01a974ea7231a85e52.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e6585f6c79b758bfe9685ccc433449d3.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e66f8612af62ee6f900708ab40ef8734.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e697c2ca2b86e3b51504385ee22f9124.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e7308fb939b9ba787a13c6c3aa93232e.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e773b0f1560d400d5fc8eea9addb838c.jsonld": {
+        "errors": [
+            "[SchemaOrg error] adverseOutcome: The property \"adverseOutcome\" does not exist on the type \"Drug\"",
+            "[SchemaOrg error] contraindication: The property \"contraindication\" does not exist on the type \"Drug\"",
+            "[SchemaOrg error] indication: This property does not exist: indication",
+            "[SchemaOrg error] seriousAdverseOutcome: The property \"seriousAdverseOutcome\" does not exist on the type \"Drug\""
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e9258eea0a51125d82071bd725ba067d.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e9dc3dbb3b80af08325ec33115882b98.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ebafe3a9c6c833e1a40cf846ffb843bf.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ebdbf5bad40b117d3c9162b0f5e829dc.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ebf62ded8096fa840c19b9c26d7a1770.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ec1e40d65a895d3bb4d1193532b29c24.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ec499742c8e482330f3fe8a354da0e93.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ec5a2889c387efd90a515645cbb65379.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[SchemaOrg warning] incentivizedItem: Duplicate property key \"incentivizedItem\": only the last value is used."
+        ],
+        "documentIssues": []
+    },
+    "https-schema-org-edc4b0df3c89c799800053ce06a6c08e.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-edef5fa26a11fb63b790c53cb4337742.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ee195c9e91ed3098b3686171fd4595d0.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ef2c310ace8444e9abaaf986640e5323.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ef3d4144a156143f7e6c6e468cb95f2c.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ef89c891024097231d153c1c34e69ea0.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ef9a9ad033ddfbb7243e58ef843b1f17.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-efc40a5bc8ba8e21ca88fba75554e15b.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-f21ae2fe26743fed63e9c61cf8e5c3fc.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[SchemaOrg warning] contactPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ContactPoint"
+        ],
+        "documentIssues": []
+    },
+    "https-schema-org-f471fdcaae37f0a1746dd57237d19912.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-f48278f5e1542bf198b905a53b9d47eb.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-f4b74e0344a971d78c77e3e6d7a2dce4.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-f596909b155d52ea08d37b29c7f9f73c.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-f5b1c388b3a16fc32a5acc44d72180a7.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-f929ad89ee52fc24a8010302a47faaf7.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[SchemaOrg warning] contactPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ContactPoint"
+        ],
+        "documentIssues": []
+    },
+    "https-schema-org-f970a92938e679c8c3b95bc89e6d2232.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-f9e41b84a3592436d366da7a2979f2cc.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-fb051fec156502ae5a9981077e3d8724.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-fb34cbcbcb133341a24e6c4fc4c6c673.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-fbb5a76caac97279d73472afbc42c6a4.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-fe7a403c169b5c19d7fd8c02c133f624.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-fecfb38a45ddda4c1562c0d5557fdf8d.jsonld": {
+        "errors": [
+            "[SchemaOrg error] constrainingProperty: This property does not exist: constrainingProperty",
+            "[SchemaOrg error] gender: The property \"gender\" does not exist on the type \"StatisticalVariable\""
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ff4a6a0225ab9d6d5b3a801211099837.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    }
 }

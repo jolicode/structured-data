@@ -13,31 +13,25 @@ namespace Jolicode\JsonLd\Extraction;
 
 class ExtractorsContainer
 {
-    public const JSONLD = 'jsonld';
-    public const MICRODATA = 'microdata';
-    public const RDFA = 'rdfa';
-
-    public const EXTRACTOR_CLASSES = [
-        self::JSONLD => JsonLdNodeExtractor::class,
-        self::MICRODATA => MicrodataExtractor::class,
-        self::RDFA => RdfaExtractor::class,
-    ];
+    public const JSONLD = ExtractorFormat::JSONLD->value;
+    public const MICRODATA = ExtractorFormat::MICRODATA->value;
+    public const RDFA = ExtractorFormat::RDFA->value;
 
     public function __construct(
         /**
-         * @var array<string, FormatExtractorInterface>
+         * @var list<FormatExtractorInterface>
          */
         private array $extractors = [
-            self::JSONLD => new JsonLdNodeExtractor(),
-            self::MICRODATA => new MicrodataExtractor(),
-            self::RDFA => new RdfaExtractor(),
+            new JsonLdNodeExtractor(),
+            new MicrodataExtractor(),
+            new RdfaExtractor(),
         ],
     ) {
     }
 
     public function resetExtractors(): self
     {
-        $this->setExtractors(...array_keys(self::EXTRACTOR_CLASSES));
+        $this->setExtractors(...$this->getSupportedExtractorNames());
 
         return $this;
     }
@@ -59,24 +53,25 @@ class ExtractorsContainer
 
     public function addExtractor(string $extractorName): self
     {
-        if ($shortName = array_search($extractorName, self::EXTRACTOR_CLASSES, true)) {
-            $extractorName = $shortName;
+        $extractorFormat = ExtractorFormat::tryFrom($extractorName);
+
+        if (null === $extractorFormat) {
+            throw new \InvalidArgumentException(\sprintf('Unknown extractor "%s". Supported extractors are: %s.', $extractorName, implode(', ', $this->getSupportedExtractorNames())));
         }
 
-        $this->assertSupportedExtractorName($extractorName);
-
-        if (\array_key_exists($extractorName, $this->extractors)) {
-            return $this;
+        foreach ($this->extractors as $extractor) {
+            if ($extractorFormat === $extractor->getFormat()) {
+                return $this;
+            }
         }
 
-        $extractorClass = self::EXTRACTOR_CLASSES[$extractorName];
-        $this->extractors[$extractorName] = new $extractorClass();
+        $this->extractors[] = $this->createExtractor($extractorFormat);
 
         return $this;
     }
 
     /**
-     * @return array<string, FormatExtractorInterface>
+     * @return list<FormatExtractorInterface>
      */
     public function getExtractors(): array
     {
@@ -84,24 +79,32 @@ class ExtractorsContainer
     }
 
     /**
-     * @param 'jsonld'|'microdata'|'rdfa'|null $preferredFormat
-     *
-     * @return array<string, FormatExtractorInterface>
+     * @return list<FormatExtractorInterface>
      */
-    public function getOrderedExtractors(?string $preferredFormat = null): array
+    public function getOrderedExtractors(?ExtractorFormat $preferredFormat = null): array
     {
-        if (null === $preferredFormat || !\array_key_exists($preferredFormat, $this->extractors)) {
+        if (null === $preferredFormat) {
             return $this->extractors;
         }
 
-        $orderedExtractors = [$preferredFormat => $this->extractors[$preferredFormat]];
+        $orderedExtractors = [];
 
-        foreach ($this->extractors as $format => $extractor) {
-            if ($format === $preferredFormat) {
+        foreach ($this->extractors as $extractor) {
+            if ($preferredFormat === $extractor->getFormat()) {
+                $orderedExtractors[] = $extractor;
+            }
+        }
+
+        if (!$orderedExtractors) {
+            return $this->extractors;
+        }
+
+        foreach ($this->extractors as $extractor) {
+            if ($preferredFormat === $extractor->getFormat()) {
                 continue;
             }
 
-            $orderedExtractors[$format] = $extractor;
+            $orderedExtractors[] = $extractor;
         }
 
         return $orderedExtractors;
@@ -112,15 +115,29 @@ class ExtractorsContainer
      */
     public function getExtractorNames(): array
     {
-        return array_keys($this->extractors);
+        return array_map(
+            static fn (FormatExtractorInterface $extractor): string => $extractor->getFormat()->value,
+            $this->extractors,
+        );
     }
 
-    private function assertSupportedExtractorName(string $extractorName): void
+    private function createExtractor(ExtractorFormat $extractorFormat): FormatExtractorInterface
     {
-        if (\array_key_exists($extractorName, self::EXTRACTOR_CLASSES)) {
-            return;
-        }
+        return match ($extractorFormat) {
+            ExtractorFormat::JSONLD => new JsonLdNodeExtractor(),
+            ExtractorFormat::MICRODATA => new MicrodataExtractor(),
+            ExtractorFormat::RDFA => new RdfaExtractor(),
+        };
+    }
 
-        throw new \InvalidArgumentException(\sprintf('Unknown extractor "%s". Supported extractors are: %s.', $extractorName, implode(', ', array_keys(self::EXTRACTOR_CLASSES))));
+    /**
+     * @return list<string>
+     */
+    private function getSupportedExtractorNames(): array
+    {
+        return array_map(
+            static fn (ExtractorFormat $extractorFormat): string => $extractorFormat->value,
+            ExtractorFormat::cases(),
+        );
     }
 }

@@ -11,14 +11,15 @@
 
 namespace Jolicode\JsonLd\Tests\Validation;
 
-use Jolicode\Vocabularies\Mapper\MappedType;
-use Jolicode\Vocabularies\Validator;
+use Jolicode\JsonLd\Audit\AuditOptions;
+use Jolicode\JsonLd\Validator;
 use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
  * @group validation
  * @group schemaorg
+ * @group schema-org
  */
 class SchemaOrgValidatorMicrodataTest extends TestCase
 {
@@ -27,25 +28,34 @@ class SchemaOrgValidatorMicrodataTest extends TestCase
         $validator = new Validator();
         $validator->setValidator(SchemaOrgValidator::class);
 
-        $microdata = <<<'HTML'
-<!doctype html>
-<html>
-  <body>
-    <article itemscope itemtype="https://schema.org/Person">
-      <h1 itemprop="name">Jane Doe</h1>
-      <a itemprop="url" href="https://example.com/jane-doe">Profile</a>
-    </article>
-  </body>
-</html>
-HTML;
-
-        $types = $validator->getTypes($microdata);
+        $audit = $validator->audit($this->fixture('microdata-person-valid.html'));
+        $types = $audit->getTypes();
 
         $this->assertNotSame([], $types);
-        $this->assertSame([], $this->collectErrorMessages($types));
+        $this->assertSame([], $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_ERROR,
+        )));
 
         $firstType = $types[0];
-        $this->assertSame('Person', \is_array($firstType->type) ? $firstType->type[0] : $firstType->type);
+        $firstTypeLabel = $firstType->getType();
+        $this->assertSame('Person', \is_array($firstTypeLabel) ? $firstTypeLabel[0] : $firstTypeLabel);
+    }
+
+    public function testValidatorAcceptsMicrodataDocumentWithMultipleItemTypes(): void
+    {
+        $validator = new Validator();
+        $validator->setValidator(SchemaOrgValidator::class);
+
+        $audit = $validator->audit($this->fixture('microdata-item-list-creative-work.html'));
+        $types = $audit->getTypes();
+
+        $this->assertNotSame([], $types);
+        $this->assertSame([], $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_ERROR,
+        )));
+
+        $firstType = $types[0];
+        $this->assertSame(['ItemList', 'CreativeWork'], $firstType->getType());
     }
 
     public function testValidatorReturnsErrorForInvalidMicrodataDocument(): void
@@ -53,23 +63,16 @@ HTML;
         $validator = new Validator();
         $validator->setValidator(SchemaOrgValidator::class);
 
-        $invalidMicrodata = <<<'HTML'
-<!doctype html>
-<html>
-  <body>
-    <div itemscope>
-      <span itemprop="name">Jane Doe</span>
-    </div>
-  </body>
-</html>
-HTML;
+        $audit = $validator->audit($this->fixture('microdata-invalid-missing-itemtype.html'));
+        $types = $audit->getTypes();
 
-        $types = $validator->getTypes($invalidMicrodata);
+        $this->assertCount(0, $types);
+        $this->assertFalse($audit->isValid());
 
-        $this->assertCount(1, $types);
-        $this->assertNotSame([], $types[0]->errors);
-
-        $messages = $types[0]->getErrorMessages();
+        /** @var array<string> $messages */
+        $messages = $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_ERROR,
+        ));
         $this->assertStringContainsString('Invalid microdata document', $messages[0]);
     }
 
@@ -78,43 +81,21 @@ HTML;
         $validator = new Validator();
         $validator->setValidator(SchemaOrgValidator::class);
 
-        $document = <<<'HTML'
-<!doctype html>
-<html>
-  <body>
-    <script type="application/ld+json">
-      {"@context":"https://schema.org","@type":"Person","name":"JsonLd Person"}
-    </script>
-    <div itemscope>
-      <span itemprop="name">Invalid Microdata</span>
-    </div>
-  </body>
-</html>
-HTML;
-
-        $types = $validator->getTypes($document);
+        $audit = $validator->audit($this->fixture('microdata-mixed-valid-jsonld-invalid-microdata.html'));
+        $types = $audit->getTypes();
 
         $this->assertNotSame([], $types);
-        $this->assertSame([], $this->collectErrorMessages($types));
+        $this->assertSame([], $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_ERROR,
+        )));
     }
 
-    /**
-     * @param array<MappedType> $types
-     *
-     * @return array<string>
-     */
-    private function collectErrorMessages(array $types): array
+    private function fixture(string $name): string
     {
-        $messages = [];
+        $content = file_get_contents(__DIR__ . '/../fixtures/schema-org/' . $name);
 
-        foreach ($types as $type) {
-            if ([] === $type->errors) {
-                continue;
-            }
+        $this->assertNotFalse($content);
 
-            $messages = [...$messages, ...$type->getErrorMessages(true)];
-        }
-
-        return $messages;
+        return $content;
     }
 }

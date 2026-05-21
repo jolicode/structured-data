@@ -11,8 +11,13 @@
 
 namespace Jolicode\JsonLd\Extraction;
 
-class JsonLdNodeExtractor implements FormatExtractorInterface
+class JsonLdNodeExtractor extends AbstractHtmlExtractor
 {
+    public function getFormat(): ExtractorFormat
+    {
+        return ExtractorFormat::JSONLD;
+    }
+
     /**
      * @return JsonLdElement[]
      */
@@ -22,19 +27,19 @@ class JsonLdNodeExtractor implements FormatExtractorInterface
 
         if ($this->looksLikeRawJsonDocument($trimmedBody)) {
             // Let the parser report precise syntax errors for raw JSON input.
-            return [new JsonLdElement(0, 0, $body)];
+            return [new JsonLdElement(0, 0, $body, $this->getFormat())];
         }
 
-        [$content, $invalidLocations] = $this->extractJsonLdNodes($body);
+        [$content, $invalidLineNumbers] = $this->extractJsonLdNodes($body);
 
         if ($content) {
             return $content;
         }
 
         if ($this->containsJsonLdScriptTag($body)) {
-            $locationInfo = $invalidLocations ? ' at ' . implode(', ', $invalidLocations) : '';
+            $locationInfo = $this->formatLineHint($invalidLineNumbers);
 
-            throw new \RuntimeException(\sprintf('Invalid JSON-LD document: found JSON-LD script tags but could not extract usable content%s.', $locationInfo));
+            throw new ExtractionException(\sprintf('Invalid JSON-LD document: found JSON-LD script tags but could not extract usable content%s.', $locationInfo), $this->formatRanges($invalidLineNumbers));
         }
 
         return [];
@@ -52,12 +57,12 @@ class JsonLdNodeExtractor implements FormatExtractorInterface
     }
 
     /**
-     * @return array{array<JsonLdElement>, list<string>}
+     * @return array{array<JsonLdElement>, list<int>}
      */
     private function extractJsonLdNodes(string $body): array
     {
         $content = [];
-        $invalidLocations = [];
+        $invalidLineNumbers = [];
 
         if (preg_match_all(
             '/<script[^>]+type=[\"\']application\/ld\+json[\"\'][^>]*>(.*)<\/script>/miUus',
@@ -66,30 +71,32 @@ class JsonLdNodeExtractor implements FormatExtractorInterface
             \PREG_PATTERN_ORDER | \PREG_OFFSET_CAPTURE,
         )) {
             foreach ($matches[1] as $match) {
+                $bodyPrefix = substr($body, 0, $match[1]);
+
                 if (!json_validate(trim($match[0]))) {
-                    $lineNumber = substr_count(substr($body, 0, $match[1]), "\n") + 1;
-                    $invalidLocations[] = "line {$lineNumber}";
+                    $lineNumber = substr_count($bodyPrefix, "\n") + 1;
+                    $invalidLineNumbers[] = $lineNumber;
 
                     continue;
                 }
 
-                $startColumn = mb_strlen(substr($body, 0, $match[1]));
-                $startLine = substr_count(mb_substr($body, 0, $startColumn), "\n");
+                $startLine = substr_count($bodyPrefix, "\n");
 
-                if ($startLine > 0) {
-                    $lastLineReturnPosition = mb_strrpos(mb_substr($body, 0, $startColumn), "\n");
-
-                    if (false !== $lastLineReturnPosition) {
-                        $startColumn = $startColumn - $lastLineReturnPosition - 1;
-                    }
+                if (0 === $startLine) {
+                    $startColumn = mb_strlen($bodyPrefix);
+                } else {
+                    $lastLineReturnPosition = strrpos($bodyPrefix, "\n");
+                    $startColumn = false === $lastLineReturnPosition
+                        ? mb_strlen($bodyPrefix)
+                        : mb_strlen(substr($bodyPrefix, $lastLineReturnPosition + 1));
                 }
 
-                $jsonLdElement = new JsonLdElement($startLine, $startColumn, $match[0]);
+                $jsonLdElement = new JsonLdElement($startLine, $startColumn, $match[0], $this->getFormat());
                 $content[] = $jsonLdElement;
             }
         }
 
-        return [$content, $invalidLocations];
+        return [$content, $invalidLineNumbers];
     }
 
     private function looksLikeRawJsonDocument(string $trimmedBody): bool
@@ -99,11 +106,20 @@ class JsonLdNodeExtractor implements FormatExtractorInterface
         }
 
         // Avoid classifying HTML documents (including malformed ones) as raw JSON.
+        // Quick precheck: look for common HTML tag starts before expensive regex
+        if (!str_contains($trimmedBody, '<')) {
+            return true;
+        }
+
         return 1 !== preg_match('/<\s*(?:!doctype|html|head|body|script|meta|div|span|section|article|main)\b/i', $trimmedBody);
     }
 
     private function containsJsonLdScriptTag(string $body): bool
     {
+        if (!str_contains($body, 'application/ld+json')) {
+            return false;
+        }
+
         return 1 === preg_match('/<script[^>]+type=["\']application\/ld\+json["\'][^>]*>/miu', $body);
     }
 }

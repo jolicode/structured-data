@@ -22,5 +22,68 @@ final class NewsArticle
     public const SPECIAL_RULE_KEYS = ['google.article.author_url_or_sameas'];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['author' => ['name' => 'author', 'severity' => 'recommended', 'supportedTypes' => ['Person', 'Organization'], 'properties' => ['name' => ['name' => 'name', 'severity' => 'recommended', 'supportedTypes' => ['Text']], 'url' => ['name' => 'url', 'severity' => 'recommended', 'supportedTypes' => ['URL']]]], 'dateModified' => ['name' => 'dateModified', 'severity' => 'recommended', 'supportedTypes' => ['DateTime']], 'datePublished' => ['name' => 'datePublished', 'severity' => 'recommended', 'supportedTypes' => ['DateTime']], 'headline' => ['name' => 'headline', 'severity' => 'recommended', 'supportedTypes' => ['Text']], 'image' => ['name' => 'image', 'severity' => 'recommended', 'supportedTypes' => ['ImageObject', 'URL'], 'properties' => ['url' => ['name' => 'url', 'severity' => 'recommended', 'supportedTypes' => ['URL']]]]];
+    public const PROPERTIES = [
+        'author' => [
+            'name' => 'author',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Person',
+                'Organization',
+            ],
+            'properties' => [
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'url' => [
+                    'name' => 'url',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'URL',
+                    ],
+                ],
+            ],
+        ],
+        'dateModified' => [
+            'name' => 'dateModified',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'DateTime',
+            ],
+        ],
+        'datePublished' => [
+            'name' => 'datePublished',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'DateTime',
+            ],
+        ],
+        'headline' => [
+            'name' => 'headline',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'image' => [
+            'name' => 'image',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'ImageObject',
+                'URL',
+            ],
+            'properties' => [
+                'url' => [
+                    'name' => 'url',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'URL',
+                    ],
+                ],
+            ],
+        ],
+    ];
 }

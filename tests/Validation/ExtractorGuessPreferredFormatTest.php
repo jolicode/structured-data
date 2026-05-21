@@ -161,6 +161,6 @@ class ExtractorGuessPreferredFormatTest extends TestCase
         $extractor = new Extractor($container ?? new ExtractorsContainer());
         $method = new \ReflectionMethod($extractor, 'guessPreferredFormat');
 
-        return $method->invoke($extractor, $content);
+        return $method->invoke($extractor, $content)?->value;
     }
 }

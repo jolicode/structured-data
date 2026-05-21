@@ -22,5 +22,43 @@ final class Course
     public const SPECIAL_RULE_KEYS = [];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['name' => ['name' => 'name', 'severity' => 'required', 'supportedTypes' => ['Text']], 'description' => ['name' => 'description', 'severity' => 'recommended', 'supportedTypes' => ['Text']], 'provider' => ['name' => 'provider', 'severity' => 'required', 'supportedTypes' => ['Organization'], 'properties' => ['name' => ['name' => 'name', 'severity' => 'required', 'supportedTypes' => ['Text']], 'sameAs' => ['name' => 'sameAs', 'severity' => 'recommended', 'supportedTypes' => ['URL']]]]];
+    public const PROPERTIES = [
+        'name' => [
+            'name' => 'name',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'description' => [
+            'name' => 'description',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'provider' => [
+            'name' => 'provider',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Organization',
+            ],
+            'properties' => [
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'sameAs' => [
+                    'name' => 'sameAs',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'URL',
+                    ],
+                ],
+            ],
+        ],
+    ];
 }

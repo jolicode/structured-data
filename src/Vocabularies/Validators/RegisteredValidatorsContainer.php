@@ -16,6 +16,11 @@ use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
 
 readonly class RegisteredValidatorsContainer
 {
+    private const VALIDATOR_ALIASES = [
+        'schemaorg' => SchemaOrgValidator::class,
+        'google' => GoogleValidator::class,
+    ];
+
     public function __construct(
         /**
          * @var AbstractValidator[]
@@ -42,11 +47,11 @@ readonly class RegisteredValidatorsContainer
 
     public function getValidatorClassName(string $validatorSimpleName): false|string
     {
-        return match (strtolower($validatorSimpleName)) {
-            'schemaorg' => SchemaOrgValidator::class,
-            'schema.org' => SchemaOrgValidator::class,
-            'google' => GoogleValidator::class,
-            default => false,
-        };
+        return self::VALIDATOR_ALIASES[$this->normalizeValidatorName($validatorSimpleName)] ?? false;
+    }
+
+    private function normalizeValidatorName(string $validatorSimpleName): string
+    {
+        return str_replace(['.', '-', '_'], '', strtolower($validatorSimpleName));
     }
 }

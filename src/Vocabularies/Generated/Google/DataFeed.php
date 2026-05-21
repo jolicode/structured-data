@@ -22,5 +22,21 @@ final class DataFeed
     public const SPECIAL_RULE_KEYS = ['google.book.offer_pricing_by_category'];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['dataFeedElement' => ['name' => 'dataFeedElement', 'severity' => 'required', 'supportedTypes' => ['@BookWork', '@LibrarySystem']], 'dateModified' => ['name' => 'dateModified', 'severity' => 'required', 'supportedTypes' => ['DateTime']]];
+    public const PROPERTIES = [
+        'dataFeedElement' => [
+            'name' => 'dataFeedElement',
+            'severity' => 'required',
+            'supportedTypes' => [
+                '@BookWork',
+                '@LibrarySystem',
+            ],
+        ],
+        'dateModified' => [
+            'name' => 'dateModified',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'DateTime',
+            ],
+        ],
+    ];
 }

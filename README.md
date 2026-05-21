@@ -1,10 +1,10 @@
 ## JSON-LD and schema.org PHP library
 
-This repository provides several tools to work with [JSON-LD](https://json-ld.org/) and [schema.org in PHP](https://schema.org/).
+This repository provides several tools to work with [JSON-LD](https://json-ld.org/) and [schema.org](https://schema.org/) in PHP.
 It includes :
 - an implementation of the W3C JSON-LD algorithms described in the [JSON-LD 1.1 Processing Algorithms and API Recommendation](https://www.w3.org/TR/json-ld-api) published on July 16th, 2020.
-- a Schema.org validator, able to validate the provided document is a valid json-ld document and that it complies with the schema.org specifications.
-- a Google validator, able to tell if the provided json-ld structure implements all the required properties to be eligible for the Google Rich Results. It will also point out missing recommended Google properties and validate against Google-specific special rules.
+- a Schema.org validator.
+- a Google validator, able to tell if your JSON-LD is eligible for [Google Rich Results](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data).
 
 ## Dependencies
 
@@ -12,9 +12,9 @@ This library requires:
 
 - PHP >= 8.4
 - the [ZipArchive PHP extension](https://www.php.net/manual/en/class.ziparchive.php);
-- the PHP task runner [Castor](https://github.com/jolicode/castor/), used for the tooling and the CLI interface.
+- (optional) the PHP task runner [Castor](https://github.com/jolicode/castor/), used for the tooling and the CLI interface.
 
-## Getting started
+## Booting
 
 Install the PHP dependencies with Castor:
 
@@ -23,6 +23,109 @@ castor install
 ```
 
 That's it! :)
+
+## Validating a JSON-LD document
+
+To validate a JSON-LD document, you must use the `Jolicode\JsonLd\Validator` class.
+
+### Accepted inputs
+
+You can validate:
+- a direct (json) string input
+- an absolute URL
+- a relative file
+
+The validator accepts the following data formats:
+- json-ld
+- microdata
+- RDFa (schema.org style RDFa only)
+
+### Using the validator
+
+#### Basic usage
+
+The validator exposes a single validation method: `audit()`.
+It returns a `Jolicode\JsonLd\Audit\Audit` object holding the validation result.
+
+To quickly check the result, use either of `isValid()` or `isFullyValid()`:
+- `isValid` returns true if no errors are detected
+- `isFullyValid` returns true if no errors, no warnings, and no malformed data structures (i.e. unusable) were detected
+
+**Keep it mind that a schema.org type is considered valid even with warnings!**
+
+To access the error messages themselves, use the `getDiagnostic()` method, which will return an array of error messages.
+
+A pretty classic usage example would be doing something like this:
+
+```php
+use Jolicode\JsonLd\Validator;
+
+$validator = new Validator();
+
+$audit = $validator->audit('https://jolicode.com/blog/castor-a-journey-across-the-sea-of-task-runners');
+
+if (!$audit->isValid()) {
+  echo 'The provided document contains non-valid schema.org data!';
+
+  // Returns an array of string error messages
+  $diagnostic = $audit->getDiagnostic();
+
+  foreach ($diagnostic as $message) {
+    // Will look like this
+    // [Google warning] DataFeed.dataFeedElement.workExample: Missing recommended property: "sameAs" for the type "Book"
+    // [Google error] DataFeed.dataFeedElement.workExample.potentialAction.expectsAcceptanceOf: Missing required property: "price" for the type "Offer" when "category" is "purchase" or "rental".
+    echo $message;
+  }
+} else {
+  echo 'The JSON-LD document is valid!';
+}
+```
+
+If you are only interested by the results of one validator, you can call `setValidator` first to set the desired validator:
+```php
+use Jolicode\JsonLd\Validator;
+use Jolicode\Vocabularies\Validators\Google\GoogleValidator
+
+$validator = new Validator();
+$validator->setValidator(GoogleValidator::VALIDATOR_NAME);
+
+$validator->audit('...');
+```
+
+#### Advanced Usage
+
+The `getDiagnostic()` method accepts an optional parameter: a `Jolicode\JsonLd\Audit\AuditOptions` object, allowing you to filter or group the result, or to have a different return format. See the PHPDoc on `Jolicode\JsonLd\Audit\AuditOptions` for more details.
+
+Finally, if you want to access the full parsed PHP tree, use `getTypes()` and inspect the underlying `MappedType` objects directly. These are low-level objects, but they are the most detailed informations you can get, and they respect the inheritance of the document.
+To have an idea of what you can do with these objects, check the output of the `validate()` castor command, or our demo website.
+
+### Reading the results
+
+### Command Line Interface
+
+A command is available to quickly validate a JSON-LD document from the CLI or the CI: `check()`.
+Use the `validate()` command to get a nicely parsed and colored full audit (it can be pretty verbose!).
+Both will return an explicit process exit code for scripting/CI usage.
+
+```bash
+castor check <file-or-url>
+castor validate <file-or-url>
+```
+
+You can validate using a specific validator:
+
+```bash
+castor validate <file-or-url> google
+```
+
+```bash
+castor validate <file-or-url> schema-org
+```
+
+Sample result of the validate command (yes, I'm proud. Who said backend developpers couldn't do frontend?):
+
+# TODO: Add the image!
+![alt text](image-1.png)
 
 ## Using the JSON-LD algorithms
 
@@ -97,83 +200,16 @@ castor json-ld:expand <file>
 castor json-ld:flatten <file>
 ```
 
-They will print the output to STDOUT.
+They will print the output in the console.
 
-## Validating a JSON-LD document
-
-To validate a JSON-LD document, you must use the `Jolicode\JsonLd\Validator` class.
-
-If you just want to quickly check if a document is valid, you can use the `isValid()` method.
-The `isValid()` method returns a boolean indicating whether the provided document is valid or not.
-If at least one invalid schema.org data structure is found in the document, the method will return false.
-
-```php
-use Jolicode\JsonLd\Validator;
-
-$validator = new Validator();
-
-if (
-    !$validator->isValid('https://jolicode.com/blog/castor-a-journey-across-the-sea-of-task-runners')
-) {
-    echo 'The provided document contains non-valid schema.org data.';
-}
-```
-
-For more advanced usages, you can use the `getTypes()` method to get more information about the parsed structured data and their associated errors.
-This method will return an array of `Jolicode\Vocabularies\Mapper\MappedType` objects, each of them containing a lot of information, including the found errors.
-
-### Command Line Interface
-
-A command is also available to validate a JSON-LD document from the CLI:
-
-```bash
-castor schema-org:validate <file-or-url>
-```
-
-You can also validate against a specific validator (currently `google` or `schemaorg`):
-
-```bash
-castor schema-org:validate <file-or-url> google
-```
-
-```bash
-castor schema-org:validate <file-or-url> schemaorg
-```
-
-You can pass the `--details` option to get more details (it can be pretty verbose!).
-
-## Known limits vs Google Rich Results Test
-
-This project aims to provide deterministic, explainable validation based on [public Google documentation](https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data).
-[Google's Rich Results Test](https://search.google.com/test/rich-results) is a useful signal, but it may produce different outputs (detected item types, warnings, or eligibility) for the same input.
-
-In practice, this validator should be treated as a strong authoring and CI guardrail, while Google's tooling should be treated as an additional external check.
-Passing one tool does not always imply identical output in the other.
-
-## Upgrading the Google or Schema.org versions
-
-### Upgrading Schema.org
-
-Schema.org upgrades are driven by the official schema.org release definition file.
-The complete upgrade process is documented in:
-`resources/schema.org/UPGRADE_GUIDELINES.md`
-
-When upgrading, always review the [schema.org release notes](https://schema.org/docs/releases.html) and verify that the test schema-org-baseline.json changes reflect real upstream changes.
-
-### Upgrading Google
-
-The Google validator tracks the [Google structured-data documentation](https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data), which evolves continuously.
-The complete upgrade process is documented in:
-`resources/google/UPGRADE_GUIDELINES.md`
-
-### Testing and QA commands
+## Testing and QA commands
 
 The following commands are available to run the QA checks:
 
-Command | Description
----- | -----
-`castor qa:cs` | Fix CS
-`castor qa:phpstan` | Runs PHPStan
+Command | Description | Aliases
+---- | ----- | -----
+`castor qa:cs` | Fix CS | `castor cs`
+`castor qa:phpstan` | Runs PHPStan | `castor phpstan`
 `castor qa:all` | Runs all QA tasks
 
 The following commands are available to run the tests:
@@ -191,15 +227,30 @@ castor qa:phpunit:prepare --force
 
 Additional commands are available to run the benchmarks:
 
-Command | Description
+Command | Description | Aliases
 ---- | -----
-`castor qa:bench:all` | Run all the benchmarks
+`castor qa:bench:all` | Run all the benchmarks | `castor bench`
 `castor qa:bench:algorithms` | Run the JSON-LD manipulation algorithms benchmark
-`castor qa:bench:validators` | Run the schema.org validators benchmark
+`castor qa:bench:validators` | Run the validators benchmark
+`castor qa:bench:validators -d` | Run the detailed and slow validators benchmark
 
 ## Contributing
 
 See the [CONTRIBUTING.md](CONTRIBUTING.md) file for more information.
+
+### Upgrading Schema.org
+
+Schema.org upgrades are driven by the official schema.org release definition file.
+The complete upgrade process is documented in:
+[resources/schema.org/UPGRADE_GUIDELINES.md](resources/schema.org/UPGRADE_GUIDELINES.md)
+
+When upgrading, always review the [schema.org release notes](https://schema.org/docs/releases.html) and verify that the test schema-org-baseline.json changes reflect real Schema.org changes.
+
+### Upgrading Google
+
+The Google validator tracks the [Google structured-data documentation](https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data), which evolves continuously.
+The complete upgrade process is documented in:
+[resources/google/UPGRADE_GUIDELINES.md](resources/google/UPGRADE_GUIDELINES.md)
 
 ## License
 

@@ -11,8 +11,8 @@
 
 namespace Jolicode\JsonLd\Tests\Validation;
 
-use Jolicode\Vocabularies\Mapper\MappedType;
-use Jolicode\Vocabularies\Validator;
+use Jolicode\JsonLd\Audit\AuditOptions;
+use Jolicode\JsonLd\Validator;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 
@@ -25,35 +25,55 @@ abstract class AbstractValidatorTestCase extends TestCase
         $this->validator = new Validator();
     }
 
-    protected function assertValidationResultMatchesExpectations(string $filePath, bool $isValid, array $expectedMessages, string $specificValidator): void
-    {
+    protected function assertValidationResultMatchesExpectations(
+        string $filePath,
+        bool $isValid,
+        array $expectedErrors,
+        string $specificValidator,
+        array $expectedWarnings = [],
+        array $expectedDocumentIssues = [],
+    ): void {
         $this->validator->setValidator($specificValidator);
-        $types = $this->validator->getTypes($filePath);
+        $audit = $this->validator->audit($filePath);
 
-        $containsErrors = false;
+        // For actual validity check, see if there are errors (warnings alone don't make it invalid)
+        $actualIsValid = $audit->isValid();
 
-        foreach ($types as $type) {
-            if ($type->errors) {
-                $containsErrors = true;
-            }
-        }
+        /** @var array<string> $errorMessages */
+        $errorMessages = $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_ERROR,
+        ));
+        /** @var array<string> $warningMessages */
+        $warningMessages = $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_WARNING,
+        ));
+        /** @var array<string> $documentIssueMessages */
+        $documentIssueMessages = $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_DOCUMENT,
+        ));
 
-        $this->assertSame($isValid, !$containsErrors);
-
-        $errorMessages = $this->collectErrorMessages($types);
-
-        sort($expectedMessages);
+        sort($expectedErrors);
+        sort($expectedWarnings);
+        sort($expectedDocumentIssues);
         sort($errorMessages);
+        sort($warningMessages);
+        sort($documentIssueMessages);
 
-        $this->assertSame($expectedMessages, $errorMessages);
+        $this->assertSame($isValid, $actualIsValid);
+        $this->assertSame($expectedErrors, $errorMessages);
+        $this->assertSame($expectedWarnings, $warningMessages);
+        $this->assertSame($expectedDocumentIssues, $documentIssueMessages);
     }
 
     protected function assertDocumentIsValidForValidator(string $document, string $specificValidator): void
     {
         $this->validator->setValidator($specificValidator);
-        $types = $this->validator->getTypes($document);
+        $audit = $this->validator->audit($document);
 
-        $errorMessages = $this->collectErrorMessages($types);
+        /** @var array<string> $errorMessages */
+        $errorMessages = $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_ERROR,
+        ));
 
         sort($errorMessages);
 
@@ -73,32 +93,36 @@ abstract class AbstractValidatorTestCase extends TestCase
         $baseline = json_decode($baseline, true);
 
         foreach ($finder as $file) {
-            $errors = $baseline[$file->getFilename()] ?? [];
+            $this->assertArrayHasKey(
+                $file->getFilename(),
+                $baseline,
+                \sprintf('Missing baseline entry for "%s" in "%s".', $file->getFilename(), $baselinePath),
+            );
+
+            $baselineEntry = $baseline[$file->getFilename()] ?? [];
+            $expectedErrors = [];
+            $expectedWarnings = [];
+            $expectedDocumentIssues = [];
+
+            if (array_is_list($baselineEntry)) {
+                $expectedErrors = $baselineEntry;
+            } else {
+                $expectedErrors = $baselineEntry['errors'] ?? [];
+                $expectedWarnings = $baselineEntry['warnings'] ?? [];
+                $expectedDocumentIssues = $baselineEntry['documentIssues'] ?? [];
+            }
+
+            sort($expectedErrors);
+            sort($expectedWarnings);
+            sort($expectedDocumentIssues);
+
             yield $file->getFilename() => [
                 $file->getPathname(),
-                empty($errors),
-                $errors,
+                [] === $expectedErrors,
+                $expectedErrors,
+                $expectedWarnings,
+                $expectedDocumentIssues,
             ];
         }
-    }
-
-    /**
-     * @param array<MappedType> $types
-     *
-     * @return array<string>
-     */
-    private function collectErrorMessages(array $types): array
-    {
-        $errorMessages = [];
-        $typesWithError = array_filter(
-            $types,
-            static fn (MappedType $type) => (bool) $type->errors,
-        );
-
-        foreach ($typesWithError as $typeWithError) {
-            $errorMessages = array_merge($errorMessages, $typeWithError->getErrorMessages(true));
-        }
-
-        return $errorMessages;
     }
 }

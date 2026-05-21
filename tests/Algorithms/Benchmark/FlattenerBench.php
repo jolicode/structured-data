@@ -25,25 +25,25 @@ class FlattenerBench extends AbstractJsonLdBench
     }
 
     /**
-     * @Revs(500)
+     * @Revs(50)
      *
      * @Iterations(5)
      *
      * @RetryThreshold(2.0)
      */
-    public function benchSimpleFlattening(): void
+    public function benchMinimalDocumentFlattening(): void
     {
         $this->flattenJsonFile('0002-in.jsonld');
     }
 
     /**
-     * @Revs(500)
+     * @Revs(50)
      *
      * @Iterations(5)
      *
      * @RetryThreshold(2.0)
      */
-    public function benchComplexFlattening(): void
+    public function benchNestedListFlattening(): void
     {
         $this->flattenJsonFile('0036-in.jsonld');
     }

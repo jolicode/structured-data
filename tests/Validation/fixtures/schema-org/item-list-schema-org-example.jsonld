@@ -1,0 +1,32 @@
+{
+  "@context": "https://schema.org",
+  "@type": ["ItemList", "CreativeWork"],
+  "name": "Top 5 covers of Bob Dylan Songs",
+  "itemListOrder": "https://schema.org/ItemListOrderAscending",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "MusicRecording",
+        "name": "If Not For You"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "MusicRecording",
+        "name": "The Times They Are A-Changin'"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "MusicRecording",
+        "name": "It Ain't Me Babe"
+      }
+    }
+  ]
+}

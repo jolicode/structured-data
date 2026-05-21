@@ -1,44 +1,224 @@
 {
-    "bad-attribute-nested-1.jsonld": [
-        "hasPart.hasPart.hasPart.hasPart.imABadAttribute: This property does not exist: imABadAttribute"
-    ],
-    "bad-attribute-nested-2.jsonld": [
-        "creator.contactPoint.badAgain: This property does not exist: badAgain",
-        "distribution.telephone: The property \"telephone\" does not exist on the type \"DataDownload\"",
-        "hasPart.creator.wrongOne: This property does not exist: wrongOne"
-    ],
-    "bad-attribute.jsonld": [
-        "imABadAttribute: This property does not exist: imABadAttribute"
-    ],
-    "compacted-with-lots-of-errors.jsonld": [
-        "creaator.@type: The \"Orgaanization\" type is not a valid Schema.org type",
-        "creaator.contactaPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ContactPoint",
-        "creaator.contactaPoint.badAgain: This property does not exist: badAgain",
-        "creaator.contactaPoint: This property does not exist: contactaPoint",
-        "creaator: This property does not exist: creaator",
-        "distribution.telephone: The property \"telephone\" does not exist on the type \"DataDownload\"",
-        "hasPart.creator.wrongOne: This property does not exist: wrongOne",
-        "includedInDataCatalog.@type: A typed value may only have one type, 2 provided"
-    ],
-    "expansion-exception.jsonld": [
-        "invalid type mapping"
-    ],
-    "invalid-json.jsonld": [
-        "Parsing error in [3:5]. Expected ',' or '}' while parsing object. Got: \""
-    ],
-    "multiple-types-2.jsonld": [
-        "birthPlace.@type: A typed value may only have one type, 2 provided"
-    ],
-    "multiple-types-invalid.jsonld": [
-        "acrissCode: The property \"acrissCode\" does not exist on any of these types: \"Person, Organization\""
-    ],
-    "no-type-main.jsonld": [
-        "@type: Missing a @type entry. The @type entry is mandatory for root types"
-    ],
-    "no-type-nested.jsonld": [
-        "birthPlace: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Place"
-    ],
-    "wrong-parent-attribute.jsonld": [
-        "makesOffer: The \"makesOffer\" property does not accept the \"Intangible\" type as a value"
-    ]
+    "action.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "bad-attribute-nested-1.jsonld": {
+        "errors": [
+            "[SchemaOrg error] hasPart.hasPart.hasPart.hasPart.imABadAttribute: This property does not exist: imABadAttribute"
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "bad-attribute-nested-2.jsonld": {
+        "errors": [
+            "[SchemaOrg error] creator.contactPoint.badAgain: This property does not exist: badAgain",
+            "[SchemaOrg error] distribution.telephone: The property \"telephone\" does not exist on the type \"DataDownload\"",
+            "[SchemaOrg error] hasPart.creator.wrongOne: This property does not exist: wrongOne"
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "bad-attribute.jsonld": {
+        "errors": [
+            "[SchemaOrg error] imABadAttribute: This property does not exist: imABadAttribute"
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "compacted-with-lots-of-errors.jsonld": {
+        "errors": [
+            "[SchemaOrg error] creaator.@type: The \"Orgaanization\" type is not a valid Schema.org type",
+            "[SchemaOrg error] creaator.contactaPoint.badAgain: This property does not exist: badAgain",
+            "[SchemaOrg error] creaator.contactaPoint: This property does not exist: contactaPoint",
+            "[SchemaOrg error] creaator: This property does not exist: creaator",
+            "[SchemaOrg error] distribution.telephone: The property \"telephone\" does not exist on the type \"DataDownload\"",
+            "[SchemaOrg error] hasPart.creator.wrongOne: This property does not exist: wrongOne",
+            "[SchemaOrg error] includedInDataCatalog.@type: A typed value may only have one type, 2 provided"
+        ],
+        "warnings": [
+            "[SchemaOrg warning] creaator.contactaPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ContactPoint"
+        ],
+        "documentIssues": []
+    },
+    "complex-compacted.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "complex-expanded.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "complex-flattened.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "complex-framed.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "expansion-exception.jsonld": {
+        "errors": [
+            "[Expander error] invalid type mapping"
+        ],
+        "warnings": [],
+        "documentIssues": [
+            "[Expander error] invalid type mapping"
+        ]
+    },
+    "external-types.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "html-classic.html": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "html-double-tags.html": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "html-no-tag.html": {
+        "errors": [
+            "[Extractor error] Could not detect any supported structured data format. Supported formats are: jsonld, microdata, rdfa."
+        ],
+        "warnings": [],
+        "documentIssues": [
+            "[Extractor error] Could not detect any supported structured data format. Supported formats are: jsonld, microdata, rdfa."
+        ]
+    },
+    "invalid-json.jsonld": {
+        "errors": [
+            "[Json error] Parsing error in [3:5]. Expected ',' or '}' while parsing object. Got: \""
+        ],
+        "warnings": [],
+        "documentIssues": [
+            "[Json error] Parsing error in [3:5]. Expected ',' or '}' while parsing object. Got: \""
+        ]
+    },
+    "item-list-invalid-enumeration.jsonld": {
+        "errors": [
+            "[SchemaOrg error] itemListOrder: The value \"https:\/\/schema.org\/Monday\" is not a valid enumeration member for the \"itemListOrder\" property"
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "item-list-schema-org-example.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "item-list-valid-enumeration.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "microdata-invalid-missing-itemtype.html": {
+        "errors": [
+            "[Extractor error] Invalid microdata document: at least one top-level itemscope with itemtype is required at line 4."
+        ],
+        "warnings": [],
+        "documentIssues": [
+            "[Extractor error] Invalid microdata document: at least one top-level itemscope with itemtype is required at line 4."
+        ]
+    },
+    "microdata-item-list-creative-work.html": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "microdata-mixed-valid-jsonld-invalid-microdata.html": {
+        "errors": [],
+        "warnings": [
+            "[microdata warning] Invalid microdata document: at least one top-level itemscope with itemtype is required at line 7."
+        ],
+        "documentIssues": [
+            "[microdata warning] Invalid microdata document: at least one top-level itemscope with itemtype is required at line 7."
+        ]
+    },
+    "microdata-person-valid.html": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "multiple-types-1.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "multiple-types-2.jsonld": {
+        "errors": [
+            "[SchemaOrg error] birthPlace.@type: A typed value may only have one type, 2 provided"
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "multiple-types-invalid.jsonld": {
+        "errors": [
+            "[SchemaOrg error] acrissCode: The property \"acrissCode\" does not exist on any of these types: \"Person, Organization\""
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "no-type-main.jsonld": {
+        "errors": [
+            "[SchemaOrg error] Missing a @type entry. The @type entry is mandatory for root types"
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "no-type-nested.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[SchemaOrg warning] birthPlace: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Place"
+        ],
+        "documentIssues": []
+    },
+    "person-duplicate-name.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[SchemaOrg warning] name: Duplicate property key \"name\": only the last value is used."
+        ],
+        "documentIssues": []
+    },
+    "simple-compacted.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "simple-expanded.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "simple-flattened.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "simple-framed.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "valid-parent-attribute.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "wrong-parent-attribute.jsonld": {
+        "errors": [
+            "[SchemaOrg error] makesOffer: The \"makesOffer\" property does not accept the \"Intangible\" type as a value"
+        ],
+        "warnings": [],
+        "documentIssues": []
+    }
 }

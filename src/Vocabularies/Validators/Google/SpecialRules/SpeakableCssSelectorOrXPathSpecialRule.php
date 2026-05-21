@@ -11,9 +11,9 @@
 
 namespace Jolicode\Vocabularies\Validators\Google\SpecialRules;
 
-use Jolicode\Vocabularies\Mapper\MappedError;
-use Jolicode\Vocabularies\Mapper\MappedProperty;
-use Jolicode\Vocabularies\Mapper\MappedType;
+use Jolicode\JsonLd\Mapper\MappedError;
+use Jolicode\JsonLd\Mapper\MappedProperty;
+use Jolicode\JsonLd\Mapper\MappedType;
 
 final class SpeakableCssSelectorOrXPathSpecialRule implements SpecialRuleInterface
 {
@@ -34,12 +34,12 @@ final class SpeakableCssSelectorOrXPathSpecialRule implements SpecialRuleInterfa
 
     public function getTypeViolations(MappedType $type): array
     {
-        if (!$this->hasType($type->type, 'SpeakableSpecification')) {
+        if (!$this->hasType($type->getType(), 'SpeakableSpecification')) {
             return [];
         }
 
-        $hasCssSelector = $this->hasNonEmptyValue($type->properties['cssSelector'] ?? null);
-        $hasXPath = $this->hasNonEmptyValue($type->properties['xPath'] ?? null);
+        $hasCssSelector = $this->hasNonEmptyValue($type->getProperties()['cssSelector'] ?? null);
+        $hasXPath = $this->hasNonEmptyValue($type->getProperties()['xPath'] ?? null);
 
         if ($hasCssSelector xor $hasXPath) {
             return [];
@@ -67,7 +67,7 @@ final class SpeakableCssSelectorOrXPathSpecialRule implements SpecialRuleInterfa
             return false;
         }
 
-        $value = $property->value;
+        $value = $property->getValue();
 
         if (\is_array($value)) {
             return [] !== $value;

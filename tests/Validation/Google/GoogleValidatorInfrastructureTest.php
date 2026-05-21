@@ -11,9 +11,9 @@
 
 namespace Jolicode\JsonLd\Tests\Validation;
 
-use Jolicode\Vocabularies\Mapper\MappedProperty;
-use Jolicode\Vocabularies\Mapper\MappedType;
-use Jolicode\Vocabularies\Validator;
+use Jolicode\JsonLd\Mapper\MappedProperty;
+use Jolicode\JsonLd\Mapper\MappedType;
+use Jolicode\JsonLd\Validator;
 use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
 use Jolicode\Vocabularies\Validators\Google\SpecialRules\SpecialRulesRegistry;
 use Jolicode\Vocabularies\Validators\Google\Stack;
@@ -28,7 +28,7 @@ use PHPUnit\Framework\TestCase;
  */
 class GoogleValidatorInfrastructureTest extends TestCase
 {
-    private const PERFORMANCE_FIXTURE = __DIR__ . '/../fixtures/Google/book.jsonld';
+    private const PERFORMANCE_FIXTURE = __DIR__ . '/../fixtures/google/book.jsonld';
     private const PERFORMANCE_TARGET_BYTES = 64000;
     private const PERFORMANCE_MAX_REPEATS = 12;
     private const PERFORMANCE_THRESHOLD_MS_LOCAL = 3000;
@@ -60,7 +60,7 @@ class GoogleValidatorInfrastructureTest extends TestCase
 
     public function testStackResolvesProductSubtypeToSnippetWhenSnippetSignalsArePresent(): void
     {
-        $type = new MappedType('Product', properties: [
+        $type = new MappedType(sourceFormat: 'json-ld', type: 'Product', properties: [
             'name' => new MappedProperty('name'),
             'review' => new MappedProperty('review'),
         ]);
@@ -75,7 +75,7 @@ class GoogleValidatorInfrastructureTest extends TestCase
 
     public function testStackResolvesProductSubtypeToMerchantListingWhenMerchantSignalsArePresent(): void
     {
-        $type = new MappedType('Product', properties: [
+        $type = new MappedType(sourceFormat: 'json-ld', type: 'Product', properties: [
             'name' => new MappedProperty('name'),
             'image' => new MappedProperty('image'),
         ]);
@@ -116,9 +116,9 @@ class GoogleValidatorInfrastructureTest extends TestCase
 
     public function testGoogleFixtureBaselineHasEntryForEachFixtureFile(): void
     {
-        $fixtureFiles = array_map(
-            static fn (string $path): string => basename($path),
-            glob(__DIR__ . '/../fixtures/Google/*.jsonld') ?: [],
+        $fixtureFiles = array_merge(
+            array_map(static fn (string $path): string => basename($path), glob(__DIR__ . '/../fixtures/google/*.jsonld') ?: []),
+            array_map(static fn (string $path): string => basename($path), glob(__DIR__ . '/../fixtures/google/*.html') ?: []),
         );
         sort($fixtureFiles);
 
@@ -136,9 +136,9 @@ class GoogleValidatorInfrastructureTest extends TestCase
 
     public function testGoogleFixtureBaselineDoesNotContainOrphanEntries(): void
     {
-        $fixtureFiles = array_map(
-            static fn (string $path): string => basename($path),
-            glob(__DIR__ . '/../fixtures/Google/*.jsonld') ?: [],
+        $fixtureFiles = array_merge(
+            array_map(static fn (string $path): string => basename($path), glob(__DIR__ . '/../fixtures/google/*.jsonld') ?: []),
+            array_map(static fn (string $path): string => basename($path), glob(__DIR__ . '/../fixtures/google/*.html') ?: []),
         );
 
         $baseline = json_decode((string) file_get_contents(__DIR__ . '/../fixtures/google-baseline.json'), true);
@@ -160,11 +160,11 @@ class GoogleValidatorInfrastructureTest extends TestCase
         $largeDocument = $this->buildLargeDocumentFromFixture(self::PERFORMANCE_FIXTURE);
 
         $start = hrtime(true);
-        $types = $validator->getTypes($largeDocument);
+        $audit = $validator->audit($largeDocument);
         $elapsedMs = (hrtime(true) - $start) / 1_000_000;
         $thresholdMs = $this->getPerformanceThresholdMs();
 
-        $this->assertNotSame([], $types);
+        $this->assertNotSame([], $audit->getTypes());
         $this->assertLessThan($thresholdMs, $elapsedMs, \sprintf(
             'Google validation performance smoke test exceeded threshold (%.0f ms): %.2f ms',
             $thresholdMs,

@@ -11,8 +11,8 @@
 
 namespace Jolicode\Vocabularies\Validators\Google\SpecialRules;
 
-use Jolicode\Vocabularies\Mapper\MappedError;
-use Jolicode\Vocabularies\Mapper\MappedType;
+use Jolicode\JsonLd\Mapper\MappedError;
+use Jolicode\JsonLd\Mapper\MappedType;
 
 final class ProductMerchantListingPricePositiveSpecialRule implements SpecialRuleInterface
 {
@@ -37,7 +37,7 @@ final class ProductMerchantListingPricePositiveSpecialRule implements SpecialRul
             return [];
         }
 
-        $price = $type->properties['price']->value ?? null;
+        $price = $type->getProperty('price')?->getValue();
 
         if (!is_numeric($price)) {
             return [];
@@ -48,7 +48,7 @@ final class ProductMerchantListingPricePositiveSpecialRule implements SpecialRul
         }
 
         return [[
-            'target' => $type->properties['price'],
+            'target' => $type->getProperties()['price'],
             'message' => 'Invalid value: "price" must be greater than 0 for merchant listing offers.',
             'severity' => MappedError::SEVERITY_ERROR,
         ]];
@@ -56,21 +56,21 @@ final class ProductMerchantListingPricePositiveSpecialRule implements SpecialRul
 
     private function isMerchantListingOffer(MappedType $type): bool
     {
-        if (!$this->hasType($type->type, 'Offer')) {
+        if (!$this->hasType($type->getType(), 'Offer')) {
             return false;
         }
 
-        if ('offers' !== $type->parentProperty?->key) {
+        if ('offers' !== $type->getParentProperty()?->getKey()) {
             return false;
         }
 
-        return $this->hasType($this->getRootType($type)->type, 'Product');
+        return $this->hasType($this->getRootType($type)->getType(), 'Product');
     }
 
     private function getRootType(MappedType $type): MappedType
     {
-        while ($type->parent) {
-            $type = $type->parent;
+        while ($type->getParent()) {
+            $type = $type->getParent();
         }
 
         return $type;

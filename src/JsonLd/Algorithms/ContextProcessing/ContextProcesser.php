@@ -12,7 +12,6 @@
 namespace Jolicode\JsonLd\Algorithms\ContextProcessing;
 
 use Jolicode\JsonLd\Algorithms\Exception\ContextProcessingException;
-use Jolicode\JsonLd\Algorithms\Http\DocumentLoader;
 use Jolicode\JsonLd\Algorithms\Http\IriResolver;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinitionCreator;
@@ -21,8 +20,10 @@ class ContextProcesser
 {
     private const MAX_CONTEXTS = 10;
 
-    /** @var array<string, \stdClass|array<mixed>|string> */
-    private array $alreadyLoadedDocuments = [];
+    public function __construct(
+        private ContextCache $cache = new ContextCache(),
+    ) {
+    }
 
     public function parseJson(string $json): Context
     {
@@ -96,34 +97,6 @@ class ContextProcesser
         return null;
     }
 
-    private function loadRemoteContext(string $url): \stdClass|array|string
-    {
-        if (\array_key_exists($url, $this->alreadyLoadedDocuments)) {
-            $loadedContext = $this->alreadyLoadedDocuments[$url];
-        } else {
-            $documentLoader = new DocumentLoader($url);
-            $document = $documentLoader->load();
-
-            if (!property_exists($document, Keyword::CONTEXT->value)) {
-                throw new ContextProcessingException('invalid remote context');
-            }
-
-            // This will only be true if the response status code is 400 or more
-            if (
-                null === $document->{Keyword::CONTEXT->value}
-                && property_exists($document, 'statusCode')
-                && property_exists($document, 'content')
-            ) {
-                throw new ContextProcessingException(\sprintf('loading remote context failed. Response status code is : %d. Response content is : %s', $document->{'statusCode'}, $document->{'content'}));
-            }
-
-            $loadedContext = $document->{Keyword::CONTEXT->value};
-            $this->alreadyLoadedDocuments[$url] = $loadedContext;
-        }
-
-        return $loadedContext;
-    }
-
     private function updateContext(
         Context $activeContext,
         array $localContext,
@@ -173,7 +146,7 @@ class ContextProcesser
 
             // 5.8
             if (property_exists($context, Keyword::VOCAB->value)) {
-                $this->handleVocabEntry($result, $context);
+                $this->handleVocabEntry($activeContext, $result, $context);
             }
 
             // 5.9
@@ -258,7 +231,7 @@ class ContextProcesser
         // 5.2.1
         // The doc says to instead pass $baseUrl and to use it. However, if we do so, we don't retain the new imported context.
         // To do so, we added the newfound baseUrl to the term definition in the TermDefinitionCreator, which is not written in the doc as well.
-        $context = IriResolver::resolveIri($result->baseUrl, $context);
+        $context = $this->cache->canonicalizeRemoteContextUrl(IriResolver::resolveIri($result->baseUrl, $context));
 
         // 5.2.2
         if (!$validateScopedContext && \in_array($context, $remoteContexts, true)) {
@@ -272,8 +245,17 @@ class ContextProcesser
 
         $remoteContexts[] = $context;
 
+        if ($cachedContext = $this->cache->getProcessedRemoteContext($result, $context, $validateScopedContext, $remoteContexts)) {
+            $result = $cachedContext;
+
+            return;
+        }
+
         // 5.2.4 && 5.2.5 are done by the loadRemoteContext method
-        $loadedContext = $this->loadRemoteContext($context);
+        $loadedContext = $this->cache->loadRemoteContext($context);
+
+        // Save the pre-processing context state for the cacheability check in storeProcessedRemoteContext
+        $preProcessingContext = $result;
 
         // 5.2.6
         $result = $this->processContext(
@@ -283,6 +265,8 @@ class ContextProcesser
             $remoteContexts,
             validateScopedContext: $validateScopedContext,
         );
+
+        $this->cache->storeProcessedRemoteContext($preProcessingContext, $context, $validateScopedContext, $remoteContexts, $result);
     }
 
     private function handleVersionEntry(Context $activeContext, \stdClass $context): void
@@ -314,7 +298,7 @@ class ContextProcesser
         $import = IriResolver::resolveIri($baseUrl, $context->{Keyword::IMPORT->value});
 
         // 5.6.4, 5.6.5 && 5.6.6 are done by the loadRemoteContext method
-        $loadedContext = $this->loadRemoteContext($import);
+        $loadedContext = $this->cache->loadRemoteContext($import);
 
         if (!\is_object($loadedContext)) {
             throw new ContextProcessingException('invalid remote context');
@@ -348,7 +332,7 @@ class ContextProcesser
         }
     }
 
-    private function handleVocabEntry(Context &$result, \stdClass $context): void
+    private function handleVocabEntry(Context $activeContext, Context &$result, \stdClass $context): void
     {
         // 5.8.1
         $value = $context->{Keyword::VOCAB->value};
@@ -356,6 +340,12 @@ class ContextProcesser
         // 5.8.2
         if (null === $value) {
             $result->vocabularyMapping = null;
+        // In JSON-LD 1.0, relative @vocab mappings are invalid, including the empty string.
+        } elseif (
+            Context::PROCESSING_MODE_10 === $activeContext->processingMode
+            && ('' === $value || (!IriResolver::isAbsoluteIri($value) && !IriResolver::isBlankNodeIdentifier($value)))
+        ) {
+            throw new ContextProcessingException('invalid vocab mapping');
         // 5.8.3
         } elseif ('' !== $value && !IriResolver::isIri($value) && !IriResolver::isBlankNodeIdentifier($value)) {
             throw new ContextProcessingException('invalid vocab mapping');

@@ -11,8 +11,8 @@
 
 namespace Jolicode\Vocabularies\Validators\Google\SpecialRules;
 
-use Jolicode\Vocabularies\Mapper\MappedProperty;
-use Jolicode\Vocabularies\Mapper\MappedType;
+use Jolicode\JsonLd\Mapper\MappedProperty;
+use Jolicode\JsonLd\Mapper\MappedType;
 
 final class ArticleAuthorUrlOrSameAsSpecialRule implements SpecialRuleInterface
 {
@@ -32,11 +32,11 @@ final class ArticleAuthorUrlOrSameAsSpecialRule implements SpecialRuleInterface
             return false;
         }
 
-        if ('author' !== $type->parentProperty?->key) {
+        if ('author' !== $type->getParentProperty()?->getKey()) {
             return false;
         }
 
-        if (!$this->hasType($type->type, 'Person') && !$this->hasType($type->type, 'Organization')) {
+        if (!$this->hasType($type->getType(), 'Person') && !$this->hasType($type->getType(), 'Organization')) {
             return false;
         }
 
@@ -44,9 +44,9 @@ final class ArticleAuthorUrlOrSameAsSpecialRule implements SpecialRuleInterface
             return false;
         }
 
-        $sameAs = $type->properties['sameAs'] ?? null;
+        $sameAs = $type->getProperties()['sameAs'] ?? null;
 
-        return $sameAs instanceof MappedProperty && null !== $sameAs->value && [] !== $sameAs->value;
+        return $sameAs instanceof MappedProperty && null !== $sameAs->getValue() && [] !== $sameAs->getValue();
     }
 
     public function getTypeViolations(MappedType $type): array
@@ -56,15 +56,15 @@ final class ArticleAuthorUrlOrSameAsSpecialRule implements SpecialRuleInterface
 
     private function isInsideArticleType(MappedType $type): bool
     {
-        while ($type->parent) {
-            $type = $type->parent;
+        while ($type->getParent()) {
+            $type = $type->getParent();
         }
 
-        if (\is_array($type->type)) {
-            return \count(array_intersect(['Article', 'NewsArticle', 'BlogPosting'], $type->type)) > 0;
+        if (\is_array($type->getType())) {
+            return \count(array_intersect(['Article', 'NewsArticle', 'BlogPosting'], $type->getType())) > 0;
         }
 
-        return \in_array($type->type, ['Article', 'NewsArticle', 'BlogPosting'], true);
+        return \in_array($type->getType(), ['Article', 'NewsArticle', 'BlogPosting'], true);
     }
 
     private function hasType(string|array|null $type, string $searchedType): bool

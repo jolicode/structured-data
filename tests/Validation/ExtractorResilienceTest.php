@@ -11,8 +11,9 @@
 
 namespace Jolicode\JsonLd\Tests\Validation;
 
+use Jolicode\JsonLd\Audit\AuditOptions;
 use Jolicode\JsonLd\Extraction\Extractor;
-use Jolicode\Vocabularies\Validator;
+use Jolicode\JsonLd\Validator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -60,6 +61,14 @@ class ExtractorResilienceTest extends TestCase
         $this->assertCount(1, $elements);
         $this->assertStringContainsString('"@type":"Person"', $elements[0]->content);
         $this->assertStringContainsString('"name":"Single Microdata"', $elements[0]->content);
+    }
+
+    public function testItPreservesMultipleMicrodataItemTypes(): void
+    {
+        $elements = $this->createExtractor()->extract($this->fixture('microdata-valid-multiple-itemtypes.html'));
+
+        $this->assertCount(1, $elements);
+        $this->assertStringContainsString('"@type":["ItemList","CreativeWork"]', $elements[0]->content);
     }
 
     public function testItExtractsMultipleValidMicrodataElementsFromARegularWebPage(): void
@@ -207,29 +216,34 @@ class ExtractorResilienceTest extends TestCase
         $this->assertStringContainsString('jsonld', $warnings[0]);
         $this->assertStringContainsString('malformed', $warnings[0]);
 
-        $extractionWarnings = $extractor->getLastExtractionWarnings();
-        $this->assertCount(1, $extractionWarnings);
-        $this->assertSame('jsonld', $extractionWarnings[0]->format);
-        $this->assertStringContainsString('could not extract usable content', $extractionWarnings[0]->message);
+        $documentIssues = $extractor->getDocumentIssues();
+        $this->assertCount(1, $documentIssues);
+        $this->assertSame('jsonld', $documentIssues[0]->source);
+        $this->assertStringContainsString('could not extract usable content', $documentIssues[0]->message);
     }
 
-    public function testItPropagatesExtractionWarningsToMappedTypeWarningsInTheValidator(): void
+    public function testItPropagatesDocumentIssuesToMappedTypeWarningsInTheValidator(): void
     {
         // This fixture has broken JSON-LD and valid microdata.
-        // Validator::getTypes() must attach a warning to the first root type's $warnings field
-        // so callers can surface the broken snippet — without it affecting validity.
+        // Validator::audit() must expose the warning through the Audit object.
         $validator = new Validator();
-        $types = $validator->getTypes($this->fixture('mixed-invalid-jsonld-valid-microdata.html'));
+        $audit = $validator->audit($this->fixture('mixed-invalid-jsonld-valid-microdata.html'));
+        $types = $audit->getTypes();
 
         $this->assertNotEmpty($types);
 
-        $this->assertCount(1, $types[0]->warnings);
-        $warning = $types[0]->warnings[0];
-        $this->assertStringContainsString('jsonld', $warning->message);
-        $this->assertStringContainsString('malformed', $warning->message);
+        /** @var array<\Jolicode\JsonLd\Mapper\MappedError> $documentIssues */
+        $documentIssues = $audit->getDiagnostic(new AuditOptions(severity: AuditOptions::SEVERITY_DOCUMENT, asObject: true));
+        $this->assertCount(1, $documentIssues);
+        $issue = $documentIssues[0];
+        $this->assertStringContainsString('Invalid JSON-LD document:', $issue->getMessage());
+        $this->assertStringContainsString('could not extract usable content', $issue->getMessage());
         // Extraction warnings must NOT bleed into $errors, which would affect validity.
-        $messagesFromErrors = array_map(static fn ($e) => $e->message, $types[0]->errors);
+        $messagesFromErrors = $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_ERROR,
+        ));
 
+        /** @var array<string> $messagesFromErrors */
         foreach ($messagesFromErrors as $msg) {
             $this->assertStringNotContainsString('malformed', $msg, 'Extraction warning must not appear in $errors.');
         }
@@ -240,10 +254,10 @@ class ExtractorResilienceTest extends TestCase
         $extractor = new Extractor();
         $extractor->extract($this->fixture('mixed-valid-jsonld-invalid-microdata.html'));
 
-        $warnings = $extractor->getLastExtractionWarnings();
+        $warnings = $extractor->getDocumentIssues();
 
         $this->assertCount(1, $warnings);
-        $this->assertSame('microdata', $warnings[0]->format);
+        $this->assertSame('microdata', $warnings[0]->source);
         $this->assertStringContainsString('at line', $warnings[0]->message);
     }
 
@@ -252,10 +266,10 @@ class ExtractorResilienceTest extends TestCase
         $extractor = new Extractor();
         $extractor->extract($this->fixture('mixed-valid-jsonld-invalid-rdfa.html'));
 
-        $warnings = $extractor->getLastExtractionWarnings();
+        $warnings = $extractor->getDocumentIssues();
 
         $this->assertCount(1, $warnings);
-        $this->assertSame('rdfa', $warnings[0]->format);
+        $this->assertSame('rdfa', $warnings[0]->source);
         $this->assertStringContainsString('at line', $warnings[0]->message);
     }
 

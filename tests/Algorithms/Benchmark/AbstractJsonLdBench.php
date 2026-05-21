@@ -37,7 +37,7 @@ abstract class AbstractJsonLdBench
     protected function getBaseUrlForW3CTests(string $filename): string
     {
         return \sprintf(
-            'https://w3c.github.io/json-ld-api/tests/%s/%s',
+            'urn:w3c-json-ld-api-tests:%s:%s',
             $this->getAlgorithmName(),
             $filename,
         );

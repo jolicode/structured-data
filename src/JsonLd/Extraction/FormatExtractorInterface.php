@@ -13,6 +13,8 @@ namespace Jolicode\JsonLd\Extraction;
 
 interface FormatExtractorInterface
 {
+    public function getFormat(): ExtractorFormat;
+
     public function supportsContent(string $body): bool;
 
     /**

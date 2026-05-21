@@ -1,7 +1,7 @@
 {
     "type": "project",
     "require": {
-        "phpbench/phpbench": "^1.4.3"
+        "phpbench/phpbench": "^1.6.1"
     },
     "config": {
         "bump-after-update": true,

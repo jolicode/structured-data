@@ -22,5 +22,94 @@ final class Review
     public const SPECIAL_RULE_KEYS = [];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['author' => ['name' => 'author', 'severity' => 'required', 'supportedTypes' => ['Person', 'Organization'], 'properties' => ['name' => ['name' => 'name', 'severity' => 'required', 'supportedTypes' => ['Text']]]], 'itemReviewed' => ['name' => 'itemReviewed', 'severity' => 'required', 'supportedTypes' => ['Book', 'Course', 'CreativeWorkSeason', 'CreativeWorkSeries', 'Episode', 'Event', 'Game', 'HowTo', 'LocalBusiness', 'MediaObject', 'Movie', 'MusicPlaylist', 'MusicRecording', 'Organization', 'Product', 'Recipe', 'SoftwareApplication'], 'properties' => ['name' => ['name' => 'name', 'severity' => 'required', 'supportedTypes' => ['Text']]]], 'reviewRating' => ['name' => 'reviewRating', 'severity' => 'required', 'supportedTypes' => ['Rating', 'AggregateRating'], 'properties' => ['ratingValue' => ['name' => 'ratingValue', 'severity' => 'required', 'supportedTypes' => ['Number', 'Text']], 'bestRating' => ['name' => 'bestRating', 'severity' => 'recommended', 'supportedTypes' => ['Number']], 'worstRating' => ['name' => 'worstRating', 'severity' => 'recommended', 'supportedTypes' => ['Number']]]], 'datePublished' => ['name' => 'datePublished', 'severity' => 'recommended', 'supportedTypes' => ['Date']]];
+    public const PROPERTIES = [
+        'author' => [
+            'name' => 'author',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Person',
+                'Organization',
+            ],
+            'properties' => [
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+            ],
+        ],
+        'itemReviewed' => [
+            'name' => 'itemReviewed',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Book',
+                'Course',
+                'CreativeWorkSeason',
+                'CreativeWorkSeries',
+                'Episode',
+                'Event',
+                'Game',
+                'HowTo',
+                'LocalBusiness',
+                'MediaObject',
+                'Movie',
+                'MusicPlaylist',
+                'MusicRecording',
+                'Organization',
+                'Product',
+                'Recipe',
+                'SoftwareApplication',
+            ],
+            'properties' => [
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+            ],
+        ],
+        'reviewRating' => [
+            'name' => 'reviewRating',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Rating',
+                'AggregateRating',
+            ],
+            'properties' => [
+                'ratingValue' => [
+                    'name' => 'ratingValue',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Number',
+                        'Text',
+                    ],
+                ],
+                'bestRating' => [
+                    'name' => 'bestRating',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Number',
+                    ],
+                ],
+                'worstRating' => [
+                    'name' => 'worstRating',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Number',
+                    ],
+                ],
+            ],
+        ],
+        'datePublished' => [
+            'name' => 'datePublished',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Date',
+            ],
+        ],
+    ];
 }

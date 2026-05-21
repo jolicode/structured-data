@@ -13,9 +13,31 @@ namespace Jolicode\JsonLd\Extraction;
 
 class RdfaExtractor extends AbstractHtmlExtractor
 {
+    private const RDFa_CANDIDATE_XPATH = '//*[@typeof or @property or @vocab or @prefix or @about or @resource]';
+
+    /** @var array<int, bool> */
+    private array $schemaOrgCandidateCache = [];
+
+    /** @var array<int, bool> */
+    private array $schemaOrgSubjectCache = [];
+
+    /** @var array<string, array<string>> */
+    private array $resolvedTermsCache = [];
+
+    /** @var array<int, ?string> */
+    private array $resolvedVocabCache = [];
+
+    /** @var array<int, array<string, string>> */
+    private array $resolvedPrefixMappingsCache = [];
+
+    public function getFormat(): ExtractorFormat
+    {
+        return ExtractorFormat::RDFA;
+    }
+
     public function supportsContent(string $body): bool
     {
-        return $this->containsSchemaOrgMarkers($body);
+        return $this->hasRdfaAttributeMarkers($body) && $this->containsSchemaOrgIri($body);
     }
 
     /**
@@ -23,57 +45,66 @@ class RdfaExtractor extends AbstractHtmlExtractor
      */
     public function extractStructuredDataContent(string $body): array
     {
-        if (!$this->supportsContent($body)) {
+        $this->resetMemoization();
+
+        if (!$this->hasRdfaAttributeMarkers($body)) {
             return [];
         }
 
         $document = $this->loadDocument($body);
         $xpath = new \DOMXPath($document);
-        $typedNodes = $xpath->query('//*[@typeof]');
+        $candidateNodes = $xpath->query(self::RDFa_CANDIDATE_XPATH);
 
-        if (false === $typedNodes) {
-            throw new \RuntimeException('Invalid RDFa document: could not query the HTML document.');
+        if (false === $candidateNodes) {
+            throw new ExtractionException('Invalid RDFa document: could not query the HTML document.');
+        }
+
+        $schemaOrgCandidateNodes = [];
+
+        foreach ($candidateNodes as $candidateNode) {
+            if (!$candidateNode instanceof \DOMElement) {
+                continue;
+            }
+
+            if ($this->isSchemaOrgCandidate($candidateNode)) {
+                $schemaOrgCandidateNodes[] = $candidateNode;
+            }
+        }
+
+        if ([] === $schemaOrgCandidateNodes) {
+            return [];
+        }
+
+        $typedSchemaOrgNodes = [];
+
+        foreach ($schemaOrgCandidateNodes as $candidateNode) {
+            if (!$candidateNode->hasAttribute('typeof')) {
+                continue;
+            }
+
+            if ($this->isSchemaOrgSubject($candidateNode)) {
+                $typedSchemaOrgNodes[] = $candidateNode;
+            }
         }
 
         $topLevelSubjects = [];
 
-        foreach ($typedNodes as $typedNode) {
-            if (!$typedNode instanceof \DOMElement) {
-                continue;
-            }
-
-            if (!$this->isSchemaOrgSubject($typedNode)) {
-                continue;
-            }
-
+        foreach ($typedSchemaOrgNodes as $typedNode) {
             if (!$this->hasAncestorSchemaOrgSubject($typedNode)) {
                 $topLevelSubjects[] = $typedNode;
             }
         }
 
         if ([] === $topLevelSubjects) {
-            $candidateNodes = $xpath->query('//*[@typeof or @property or @vocab or @prefix or @about or @resource]');
-            $candidateLines = [];
+            $candidateLines = array_map(static fn (\DOMElement $candidateNode): int => $candidateNode->getLineNo(), $schemaOrgCandidateNodes);
 
-            if (false !== $candidateNodes) {
-                foreach ($candidateNodes as $candidateNode) {
-                    if (!$candidateNode instanceof \DOMElement) {
-                        continue;
-                    }
-
-                    if ($this->isSchemaOrgCandidate($candidateNode)) {
-                        $candidateLines[] = $candidateNode->getLineNo();
-                    }
-                }
-            }
-
-            throw new \RuntimeException(\sprintf('Invalid RDFa document: at least one top-level schema.org subject with typeof is required%s.', $this->formatLineHint($candidateLines)));
+            throw new ExtractionException(\sprintf('Invalid RDFa document: at least one top-level schema.org subject with typeof is required%s.', $this->formatLineHint($candidateLines)), $this->formatRanges($candidateLines));
         }
 
         $elements = [];
 
         foreach ($topLevelSubjects as $subjectNode) {
-            $item = $this->extractSubject($subjectNode, $xpath);
+            $item = $this->extractSubject($subjectNode);
 
             if (null === $item) {
                 continue;
@@ -82,65 +113,70 @@ class RdfaExtractor extends AbstractHtmlExtractor
             $encoded = json_encode($item, \JSON_UNESCAPED_SLASHES);
 
             if (false === $encoded) {
-                throw new \RuntimeException('Invalid RDFa document: failed to convert to JSON-LD.');
+                throw new ExtractionException('Invalid RDFa document: failed to convert to JSON-LD.');
             }
 
-            $elements[] = new JsonLdElement(max(0, $subjectNode->getLineNo() - 1), 0, $encoded);
+            $elements[] = new JsonLdElement(max(0, $subjectNode->getLineNo() - 1), 0, $encoded, $this->getFormat());
         }
 
         if ([] === $elements) {
             $subjectLines = array_map(static fn (\DOMElement $subjectNode): int => $subjectNode->getLineNo(), $topLevelSubjects);
 
-            throw new \RuntimeException(\sprintf('Invalid RDFa document: at least one top-level schema.org subject with typeof is required%s.', $this->formatLineHint($subjectLines)));
+            throw new ExtractionException(\sprintf('Invalid RDFa document: at least one top-level schema.org subject with typeof is required%s.', $this->formatLineHint($subjectLines)), $this->formatRanges($subjectLines));
         }
 
         return $elements;
     }
 
-    protected function getFormatName(): string
+    private function containsSchemaOrgIri(string $body): bool
     {
-        return 'RDFa';
+        return false !== stripos($body, 'https://schema.org') || false !== stripos($body, 'http://schema.org');
     }
 
-    private function containsSchemaOrgMarkers(string $body): bool
+    private function hasRdfaAttributeMarkers(string $body): bool
     {
-        $document = $this->loadDocument($body);
-        $xpath = new \DOMXPath($document);
-        $nodes = $xpath->query('//*[@typeof or @property or @vocab or @prefix or @about or @resource]');
-
-        if (false === $nodes) {
-            return false;
-        }
-
-        foreach ($nodes as $node) {
-            if (!$node instanceof \DOMElement) {
-                continue;
-            }
-
-            if ($this->isSchemaOrgCandidate($node)) {
-                return true;
-            }
-        }
-
-        return false;
+        return false !== stripos($body, 'typeof')
+            || false !== stripos($body, 'property')
+            || false !== stripos($body, 'vocab')
+            || false !== stripos($body, 'prefix')
+            || false !== stripos($body, 'about')
+            || false !== stripos($body, 'resource');
     }
 
     private function isSchemaOrgCandidate(\DOMElement $element): bool
     {
+        $cacheKey = $this->getNodeCacheKey($element);
+
+        if (\array_key_exists($cacheKey, $this->schemaOrgCandidateCache)) {
+            return $this->schemaOrgCandidateCache[$cacheKey];
+        }
+
         if ($this->isSchemaOrgVocab($this->resolveVocab($element))) {
-            return true;
+            return $this->schemaOrgCandidateCache[$cacheKey] = true;
         }
 
-        if ([] !== $this->resolveTerms($element->getAttribute('typeof'), $element)) {
-            return true;
+        $typeof = $element->getAttribute('typeof');
+
+        if ('' !== $typeof && [] !== $this->resolveTerms($typeof, $element)) {
+            return $this->schemaOrgCandidateCache[$cacheKey] = true;
         }
 
-        return [] !== $this->resolveTerms($element->getAttribute('property'), $element);
+        $property = $element->getAttribute('property');
+
+        return $this->schemaOrgCandidateCache[$cacheKey] = '' !== $property && [] !== $this->resolveTerms($property, $element);
     }
 
     private function isSchemaOrgSubject(\DOMElement $element): bool
     {
-        return [] !== $this->resolveTerms($element->getAttribute('typeof'), $element);
+        $cacheKey = $this->getNodeCacheKey($element);
+
+        if (\array_key_exists($cacheKey, $this->schemaOrgSubjectCache)) {
+            return $this->schemaOrgSubjectCache[$cacheKey];
+        }
+
+        $typeof = $element->getAttribute('typeof');
+
+        return $this->schemaOrgSubjectCache[$cacheKey] = '' !== $typeof && [] !== $this->resolveTerms($typeof, $element);
     }
 
     private function hasAncestorSchemaOrgSubject(\DOMElement $element): bool
@@ -161,7 +197,7 @@ class RdfaExtractor extends AbstractHtmlExtractor
     /**
      * @return array<string, mixed>|null
      */
-    private function extractSubject(\DOMElement $subjectNode, \DOMXPath $xpath): ?array
+    private function extractSubject(\DOMElement $subjectNode): ?array
     {
         $types = $this->resolveTerms($subjectNode->getAttribute('typeof'), $subjectNode);
 
@@ -180,7 +216,7 @@ class RdfaExtractor extends AbstractHtmlExtractor
             $item['@id'] = $subjectIdentifier;
         }
 
-        foreach ($this->extractProperties($subjectNode, $xpath) as $propertyName => $value) {
+        foreach ($this->extractProperties($subjectNode) as $propertyName => $value) {
             $item[$propertyName] = $value;
         }
 
@@ -190,24 +226,11 @@ class RdfaExtractor extends AbstractHtmlExtractor
     /**
      * @return array<string, mixed>
      */
-    private function extractProperties(\DOMElement $subjectNode, \DOMXPath $xpath): array
+    private function extractProperties(\DOMElement $subjectNode): array
     {
         $properties = [];
-        $propertyNodes = $xpath->query('.//*[@property]', $subjectNode);
 
-        if (false === $propertyNodes) {
-            return $properties;
-        }
-
-        foreach ($propertyNodes as $propertyNode) {
-            if (!$propertyNode instanceof \DOMElement) {
-                continue;
-            }
-
-            if (!$this->belongsToSubject($propertyNode, $subjectNode)) {
-                continue;
-            }
-
+        foreach ($this->collectPropertyNodesForSubject($subjectNode) as $propertyNode) {
             $propertyNames = $this->resolveTerms($propertyNode->getAttribute('property'), $propertyNode);
 
             if ([] === $propertyNames) {
@@ -215,7 +238,7 @@ class RdfaExtractor extends AbstractHtmlExtractor
             }
 
             $value = $propertyNode->hasAttribute('typeof')
-                ? $this->extractSubject($propertyNode, $xpath)
+                ? $this->extractSubject($propertyNode)
                 : $this->extractPropertyValue($propertyNode);
 
             if (null === $value) {
@@ -238,23 +261,41 @@ class RdfaExtractor extends AbstractHtmlExtractor
         return $properties;
     }
 
-    private function belongsToSubject(\DOMElement $propertyNode, \DOMElement $subjectNode): bool
+    /**
+     * @return array<\DOMElement>
+     */
+    private function collectPropertyNodesForSubject(\DOMElement $subjectNode): array
     {
-        $parent = $propertyNode->parentNode;
+        $propertyNodes = [];
+        $stack = [];
 
-        while ($parent instanceof \DOMElement) {
-            if ($parent->isSameNode($subjectNode)) {
-                return true;
+        foreach ($subjectNode->childNodes as $childNode) {
+            if ($childNode instanceof \DOMElement) {
+                $stack[] = $childNode;
             }
-
-            if ($this->isSchemaOrgSubject($parent)) {
-                return false;
-            }
-
-            $parent = $parent->parentNode;
         }
 
-        return false;
+        while ($stack) {
+            $node = array_pop($stack);
+
+            if ($node->hasAttribute('property')) {
+                $propertyNodes[] = $node;
+            }
+
+            // Skip descending into schema.org subjects that don't have property attributes
+            // (property+typeof nodes are handled above and their nested subjects are extracted in extractProperties)
+            if ($this->isSchemaOrgSubject($node) && !$node->hasAttribute('property')) {
+                continue;
+            }
+
+            foreach ($node->childNodes as $childNode) {
+                if ($childNode instanceof \DOMElement) {
+                    $stack[] = $childNode;
+                }
+            }
+        }
+
+        return $propertyNodes;
     }
 
     private function extractSubjectIdentifier(\DOMElement $subjectNode): ?string
@@ -300,7 +341,23 @@ class RdfaExtractor extends AbstractHtmlExtractor
      */
     private function resolveTerms(string $attributeValue, \DOMElement $contextElement): array
     {
-        $tokens = preg_split('/\s+/', trim($attributeValue)) ?: [];
+        if ('' === $attributeValue) {
+            return [];
+        }
+
+        $cacheKey = $this->getNodeCacheKey($contextElement) . '|' . $attributeValue;
+
+        if (\array_key_exists($cacheKey, $this->resolvedTermsCache)) {
+            return $this->resolvedTermsCache[$cacheKey];
+        }
+
+        $attributeValue = trim($attributeValue);
+
+        if ('' === $attributeValue) {
+            return $this->resolvedTermsCache[$cacheKey] = [];
+        }
+
+        $tokens = preg_split('/\s+/', $attributeValue) ?: [];
         $resolvedTerms = [];
 
         foreach ($tokens as $token) {
@@ -313,7 +370,7 @@ class RdfaExtractor extends AbstractHtmlExtractor
             $resolvedTerms[$resolvedTerm] = $resolvedTerm;
         }
 
-        return array_values($resolvedTerms);
+        return $this->resolvedTermsCache[$cacheKey] = array_values($resolvedTerms);
     }
 
     private function resolveTerm(string $token, \DOMElement $contextElement): ?string
@@ -324,8 +381,24 @@ class RdfaExtractor extends AbstractHtmlExtractor
             return null;
         }
 
-        if (preg_match('~^https?://schema\.org/([^\s#/]+)$~', $token, $matches)) {
-            return $matches[1];
+        if (str_starts_with($token, 'https://schema.org/')) {
+            $localName = substr($token, \strlen('https://schema.org/'));
+
+            if ('' !== $localName && !str_contains($localName, '#') && !preg_match('/\s/', $localName)) {
+                return $localName;
+            }
+
+            return null;
+        }
+
+        if (str_starts_with($token, 'http://schema.org/')) {
+            $localName = substr($token, \strlen('http://schema.org/'));
+
+            if ('' !== $localName && !str_contains($localName, '#') && !preg_match('/\s/', $localName)) {
+                return $localName;
+            }
+
+            return null;
         }
 
         if (str_contains($token, ':')) {
@@ -348,18 +421,24 @@ class RdfaExtractor extends AbstractHtmlExtractor
 
     private function resolveVocab(\DOMElement $contextElement): ?string
     {
+        $cacheKey = $this->getNodeCacheKey($contextElement);
+
+        if (\array_key_exists($cacheKey, $this->resolvedVocabCache)) {
+            return $this->resolvedVocabCache[$cacheKey];
+        }
+
         $element = $contextElement;
 
         while ($element instanceof \DOMElement) {
             if ($element->hasAttribute('vocab')) {
-                return trim($element->getAttribute('vocab'));
+                return $this->resolvedVocabCache[$cacheKey] = trim($element->getAttribute('vocab'));
             }
 
             $parent = $element->parentNode;
             $element = $parent instanceof \DOMElement ? $parent : null;
         }
 
-        return null;
+        return $this->resolvedVocabCache[$cacheKey] = null;
     }
 
     /**
@@ -367,6 +446,12 @@ class RdfaExtractor extends AbstractHtmlExtractor
      */
     private function resolvePrefixMappings(\DOMElement $contextElement): array
     {
+        $cacheKey = $this->getNodeCacheKey($contextElement);
+
+        if (\array_key_exists($cacheKey, $this->resolvedPrefixMappingsCache)) {
+            return $this->resolvedPrefixMappingsCache[$cacheKey];
+        }
+
         $ancestors = [];
         $element = $contextElement;
 
@@ -392,7 +477,21 @@ class RdfaExtractor extends AbstractHtmlExtractor
             }
         }
 
-        return $prefixes;
+        return $this->resolvedPrefixMappingsCache[$cacheKey] = $prefixes;
+    }
+
+    private function resetMemoization(): void
+    {
+        $this->schemaOrgCandidateCache = [];
+        $this->schemaOrgSubjectCache = [];
+        $this->resolvedTermsCache = [];
+        $this->resolvedVocabCache = [];
+        $this->resolvedPrefixMappingsCache = [];
+    }
+
+    private function getNodeCacheKey(\DOMElement $element): int
+    {
+        return spl_object_id($element);
     }
 
     private function isSchemaOrgVocab(?string $vocab): bool

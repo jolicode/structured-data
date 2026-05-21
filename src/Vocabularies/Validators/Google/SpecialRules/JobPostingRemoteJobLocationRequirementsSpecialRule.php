@@ -11,8 +11,8 @@
 
 namespace Jolicode\Vocabularies\Validators\Google\SpecialRules;
 
-use Jolicode\Vocabularies\Mapper\MappedError;
-use Jolicode\Vocabularies\Mapper\MappedType;
+use Jolicode\JsonLd\Mapper\MappedError;
+use Jolicode\JsonLd\Mapper\MappedType;
 
 final class JobPostingRemoteJobLocationRequirementsSpecialRule implements SpecialRuleInterface
 {
@@ -27,7 +27,7 @@ final class JobPostingRemoteJobLocationRequirementsSpecialRule implements Specia
             return false;
         }
 
-        if (!$this->hasType($type->type, 'JobPosting')) {
+        if (!$this->hasType($type->getType(), 'JobPosting')) {
             return false;
         }
 
@@ -41,7 +41,7 @@ final class JobPostingRemoteJobLocationRequirementsSpecialRule implements Specia
 
     public function getTypeViolations(MappedType $type): array
     {
-        if (!$this->hasType($type->type, 'JobPosting')) {
+        if (!$this->hasType($type->getType(), 'JobPosting')) {
             return [];
         }
 
@@ -49,11 +49,11 @@ final class JobPostingRemoteJobLocationRequirementsSpecialRule implements Specia
             return [];
         }
 
-        if (\array_key_exists('jobLocation', $type->properties)) {
+        if (\array_key_exists('jobLocation', $type->getProperties())) {
             return [];
         }
 
-        if (\array_key_exists('applicantLocationRequirements', $type->properties)) {
+        if (\array_key_exists('applicantLocationRequirements', $type->getProperties())) {
             return [];
         }
 
@@ -66,7 +66,7 @@ final class JobPostingRemoteJobLocationRequirementsSpecialRule implements Specia
 
     private function isTelecommute(MappedType $type): bool
     {
-        $jobLocationType = $type->properties['jobLocationType']->value ?? null;
+        $jobLocationType = $type->getProperty('jobLocationType')?->getValue();
 
         return 'TELECOMMUTE' === $jobLocationType;
     }

@@ -11,9 +11,9 @@
 
 namespace Jolicode\Vocabularies\Validators\Google\SpecialRules;
 
-use Jolicode\Vocabularies\Mapper\MappedError;
-use Jolicode\Vocabularies\Mapper\MappedProperty;
-use Jolicode\Vocabularies\Mapper\MappedType;
+use Jolicode\JsonLd\Mapper\MappedError;
+use Jolicode\JsonLd\Mapper\MappedProperty;
+use Jolicode\JsonLd\Mapper\MappedType;
 
 final class BreadcrumbListSpecialRule implements SpecialRuleInterface
 {
@@ -28,15 +28,15 @@ final class BreadcrumbListSpecialRule implements SpecialRuleInterface
             return false;
         }
 
-        if (!$this->hasType($type->type, 'ListItem')) {
+        if (!$this->hasType($type->getType(), 'ListItem')) {
             return false;
         }
 
-        if ('itemListElement' !== $type->parentProperty?->key) {
+        if ('itemListElement' !== $type->getParentProperty()?->getKey()) {
             return false;
         }
 
-        if (!$this->hasType($this->getRootType($type)->type, 'BreadcrumbList')) {
+        if (!$this->hasType($this->getRootType($type)->getType(), 'BreadcrumbList')) {
             return false;
         }
 
@@ -50,22 +50,22 @@ final class BreadcrumbListSpecialRule implements SpecialRuleInterface
 
     public function getTypeViolations(MappedType $type): array
     {
-        if (!$this->hasType($type->type, 'BreadcrumbList')) {
+        if (!$this->hasType($type->getType(), 'BreadcrumbList')) {
             return [];
         }
 
-        $itemListElement = $type->properties['itemListElement'] ?? null;
+        $itemListElement = $type->getProperties()['itemListElement'] ?? null;
 
         if (!$itemListElement instanceof MappedProperty) {
             return [];
         }
 
-        $value = $itemListElement->value;
+        $value = $itemListElement->getValue();
         $values = \is_array($value) ? $value : [$value];
 
         $listItems = array_filter(
             $values,
-            fn (mixed $item): bool => $item instanceof MappedType && $this->hasType($item->type, 'ListItem'),
+            fn (mixed $item): bool => $item instanceof MappedType && $this->hasType($item->getType(), 'ListItem'),
         );
 
         if (\count($listItems) >= 2) {
@@ -81,7 +81,7 @@ final class BreadcrumbListSpecialRule implements SpecialRuleInterface
 
     private function isLastItem(MappedType $type): bool
     {
-        $siblings = $type->parentProperty?->value;
+        $siblings = $type->getParentProperty()?->getValue();
 
         if ($siblings instanceof MappedType) {
             $siblings = [$siblings];
@@ -116,7 +116,7 @@ final class BreadcrumbListSpecialRule implements SpecialRuleInterface
 
     private function getListItemPosition(MappedType $type): ?int
     {
-        $position = $type->properties['position']->value ?? null;
+        $position = $type->getProperty('position')?->getValue();
 
         if (\is_int($position)) {
             return $position;
@@ -131,8 +131,8 @@ final class BreadcrumbListSpecialRule implements SpecialRuleInterface
 
     private function getRootType(MappedType $type): MappedType
     {
-        while ($type->parent) {
-            $type = $type->parent;
+        while ($type->getParent()) {
+            $type = $type->getParent();
         }
 
         return $type;

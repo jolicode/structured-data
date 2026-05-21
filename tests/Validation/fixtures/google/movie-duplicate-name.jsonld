@@ -1,0 +1,12 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Movie",
+    "name": "Inception",
+    "name": "Inception (2010)",
+    "image": "https://example.com/photos/inception.jpg",
+    "dateCreated": "2010-07-16",
+    "director": {
+        "@type": "Person",
+        "name": "Christopher Nolan"
+    }
+}

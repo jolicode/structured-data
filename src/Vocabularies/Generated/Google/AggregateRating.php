@@ -22,5 +22,70 @@ final class AggregateRating
     public const SPECIAL_RULE_KEYS = [];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['itemReviewed' => ['name' => 'itemReviewed', 'severity' => 'required', 'supportedTypes' => ['Book', 'Course', 'CreativeWorkSeason', 'CreativeWorkSeries', 'Episode', 'Event', 'Game', 'HowTo', 'LocalBusiness', 'MediaObject', 'Movie', 'MusicPlaylist', 'MusicRecording', 'Organization', 'Product', 'Recipe', 'SoftwareApplication'], 'properties' => ['name' => ['name' => 'name', 'severity' => 'required', 'supportedTypes' => ['Text']]]], 'ratingValue' => ['name' => 'ratingValue', 'severity' => 'required', 'supportedTypes' => ['Number', 'Text']], 'atLeastOneOf' => ['name' => 'atLeastOneOf', 'severity' => 'required', 'value' => ['ratingCount' => true, 'reviewCount' => true], 'supportedTypes' => []], 'bestRating' => ['name' => 'bestRating', 'severity' => 'recommended', 'supportedTypes' => ['Number']], 'worstRating' => ['name' => 'worstRating', 'severity' => 'recommended', 'supportedTypes' => ['Number']]];
+    public const PROPERTIES = [
+        'itemReviewed' => [
+            'name' => 'itemReviewed',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Book',
+                'Course',
+                'CreativeWorkSeason',
+                'CreativeWorkSeries',
+                'Episode',
+                'Event',
+                'Game',
+                'HowTo',
+                'LocalBusiness',
+                'MediaObject',
+                'Movie',
+                'MusicPlaylist',
+                'MusicRecording',
+                'Organization',
+                'Product',
+                'Recipe',
+                'SoftwareApplication',
+            ],
+            'properties' => [
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+            ],
+        ],
+        'ratingValue' => [
+            'name' => 'ratingValue',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Number',
+                'Text',
+            ],
+        ],
+        'atLeastOneOf' => [
+            'name' => 'atLeastOneOf',
+            'severity' => 'required',
+            'value' => [
+                'ratingCount' => true,
+                'reviewCount' => true,
+            ],
+            'supportedTypes' => [
+            ],
+        ],
+        'bestRating' => [
+            'name' => 'bestRating',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Number',
+            ],
+        ],
+        'worstRating' => [
+            'name' => 'worstRating',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Number',
+            ],
+        ],
+    ];
 }

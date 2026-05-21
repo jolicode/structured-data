@@ -63,7 +63,7 @@ class Expander
         );
 
         if ($options->expandContext) {
-            $this->contextProcesser->processContext($activeContext, $options->expandContext, $activeContext->baseUrl);
+            $activeContext = $this->contextProcesser->processContext($activeContext, $options->expandContext, $activeContext->baseUrl);
         }
 
         $element = $this->doExpand(
@@ -526,6 +526,17 @@ class Expander
                 && !$this->isListObject($expandedValue)
                 && !$this->isListObject($value)
             ) {
+                if (\is_array($expandedValue)) {
+                    foreach ($expandedValue as $expandedEntry) {
+                        if (
+                            Context::PROCESSING_MODE_10 === $activeContext->processingMode
+                            && $this->isListObject($expandedEntry)
+                        ) {
+                            throw new ExpansionException('list of lists');
+                        }
+                    }
+                }
+
                 if (!\is_array($expandedValue)) {
                     $expandedValue = [$expandedValue];
                 }
@@ -787,6 +798,15 @@ class Expander
 
             if (!\is_array($expandedValue)) {
                 $expandedValue = [$expandedValue];
+            }
+
+            foreach ($expandedValue as $expandedEntry) {
+                if (
+                    Context::PROCESSING_MODE_10 === $activeContext->processingMode
+                    && $this->isListObject($expandedEntry)
+                ) {
+                    throw new ExpansionException('list of lists');
+                }
             }
         }
 
@@ -1123,6 +1143,19 @@ class Expander
     ): void {
         foreach ($nests as $nestingKey) {
             $element = (array) $element;
+            $nestContext = $activeContext;
+
+            if (
+                \array_key_exists($nestingKey, $activeDefinitions)
+                && false !== $activeDefinitions[$nestingKey]->context
+            ) {
+                $nestContext = $this->contextProcesser->processContext(
+                    $activeContext,
+                    $activeDefinitions[$nestingKey]->context,
+                    $activeDefinitions[$nestingKey]->baseUrl ?: $baseUrl,
+                    overrideProtected: true,
+                );
+            }
 
             // 14.1
             $nestedValues = $element[$nestingKey];
@@ -1148,7 +1181,7 @@ class Expander
                 // 14.2.2
                 $this->processElementEntries(
                     $nestedValue,
-                    $activeContext,
+                    $nestContext,
                     $result,
                     $nests,
                     $activeProperty,
@@ -1156,12 +1189,12 @@ class Expander
                     $typeScopedContext,
                     $baseUrl,
                     $inputType,
-                    $activeDefinitions,
+                    $nestContext->termDefinitions,
                 );
 
                 $this->processNestEntries(
                     $nestedValue,
-                    $activeContext,
+                    $nestContext,
                     $result,
                     $nests,
                     $activeProperty,
@@ -1169,7 +1202,7 @@ class Expander
                     $typeScopedContext,
                     $baseUrl,
                     $inputType,
-                    $activeDefinitions,
+                    $nestContext->termDefinitions,
                 );
             }
         }

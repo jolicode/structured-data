@@ -11,7 +11,8 @@
 
 namespace Jolicode\JsonLd\Extraction;
 
-use Jolicode\JsonLd\Algorithms\Http\IriResolver;
+use Jolicode\JsonLd\Mapper\DocumentWarning;
+use League\Uri\Uri;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Symfony\Component\HttpClient\HttpClient;
@@ -21,10 +22,15 @@ class Extractor
 {
     public const NO_SUPPORTED_FORMATS_DETECTED_MESSAGE_PREFIX = 'Could not detect any supported structured data format.';
 
+    /**
+     * @var array<string, string>
+     */
+    private static array $resolvedInputContentCache = [];
+
     private HttpClientInterface $httpClient;
 
-    /** @var array<ExtractionWarning> */
-    private array $lastWarnings = [];
+    /** @var array<DocumentWarning> */
+    private array $issues = [];
 
     public function __construct(
         private ExtractorsContainer $extractorsContainer = new ExtractorsContainer(),
@@ -35,21 +41,25 @@ class Extractor
     }
 
     /**
-     * @return array<ExtractionWarning>
+     * @return array<DocumentWarning>
      */
-    public function getLastExtractionWarnings(): array
+    public function getDocumentIssues(): array
     {
-        return $this->lastWarnings;
+        return $this->issues;
     }
 
     public function extract(string $input): array
     {
-        $this->lastWarnings = [];
+        $this->issues = [];
         $content = $this->resolveInputContent($input);
-        $preferredFormat = $this->guessPreferredFormat($content);
+
+        // Skip format detection if only one extractor is configured
+        $preferredFormat = \count($this->extractorsContainer->getExtractors()) > 1
+            ? $this->guessPreferredFormat($content)
+            : null;
         $results = $this->runExtractors($content, $preferredFormat);
 
-        return $this->resolveExtractionResults($results);
+        return $this->getResult($results);
     }
 
     public function setExtractors(string ...$extractors): self
@@ -64,24 +74,32 @@ class Extractor
      *
      * @return array<JsonLdElement>
      */
-    private function resolveExtractionResults(array $results): array
+    private function getResult(array $results): array
     {
         $elements = [];
 
         foreach ($results as $result) {
             if ($result['elements']) {
-                $elements = [...$elements, ...$result['elements']];
+                foreach ($result['elements'] as $element) {
+                    $elements[] = $element;
+                }
             }
         }
 
         if ($elements) {
             foreach ($results as $format => $result) {
                 if ($result['exception']) {
-                    $this->lastWarnings[] = new ExtractionWarning($format, $result['exception']->getMessage());
+                    $message = $result['exception']->getMessage();
+                    $ranges = $result['exception'] instanceof ExtractionException ? $result['exception']->getRanges() : '';
+                    $this->issues[] = new DocumentWarning(
+                        $format,
+                        $message,
+                        $ranges,
+                    );
                     $this->logger->warning(\sprintf(
                         'A %s snippet was detected but is malformed and could not be fully processed. Reason: %s',
                         $format,
-                        $result['exception']->getMessage(),
+                        $message,
                     ));
                 }
             }
@@ -105,30 +123,36 @@ class Extractor
     }
 
     /**
-     * @param 'jsonld'|'microdata'|'rdfa'|null $preferredFormat
-     *
      * @return array<string, array{formatDetected: bool, elements: array<JsonLdElement>, exception: ?\RuntimeException}>
      */
-    private function runExtractors(string $content, ?string $preferredFormat): array
+    private function runExtractors(string $content, ?ExtractorFormat $preferredFormat): array
     {
         $results = [];
 
-        foreach ($this->extractorsContainer->getOrderedExtractors($preferredFormat) as $format => $extractor) {
+        foreach ($this->extractorsContainer->getOrderedExtractors($preferredFormat) as $extractor) {
+            $format = $extractor->getFormat()->value;
+
             $results[$format] = [
                 'formatDetected' => false,
                 'elements' => [],
                 'exception' => null,
             ];
 
-            if (!$extractor->supportsContent($content)) {
-                continue;
-            }
-
-            $results[$format]['formatDetected'] = true;
-
             try {
                 $results[$format]['elements'] = $extractor->extractStructuredDataContent($content);
+
+                if ($results[$format]['elements']) {
+                    $results[$format]['formatDetected'] = true;
+
+                    continue;
+                }
+
+                // Microdata can detect format markers but still produce no top-level element.
+                if (ExtractorFormat::MICRODATA === $extractor->getFormat()) {
+                    $results[$format]['formatDetected'] = $extractor->supportsContent($content);
+                }
             } catch (\RuntimeException $runtimeException) {
+                $results[$format]['formatDetected'] = true;
                 $results[$format]['exception'] = $runtimeException;
             }
         }
@@ -138,12 +162,19 @@ class Extractor
 
     private function resolveInputContent(string $input): string
     {
-        if (IriResolver::isAbsoluteIri($input)) {
-            return $this->fetchContent($input);
+        if (isset(self::$resolvedInputContentCache[$input])) {
+            return self::$resolvedInputContentCache[$input];
+        }
+
+        $uri = Uri::parse($input);
+        $scheme = $uri?->getScheme();
+
+        if ('http' === $scheme || 'https' === $scheme) {
+            return self::$resolvedInputContentCache[$input] = $this->fetchContent((string) $uri);
         }
 
         if (!is_file($input)) {
-            return $input;
+            return self::$resolvedInputContentCache[$input] = $input;
         }
 
         $content = file_get_contents($input);
@@ -152,7 +183,7 @@ class Extractor
             throw new \RuntimeException(\sprintf('Could not read the file %s', $input));
         }
 
-        return $content;
+        return self::$resolvedInputContentCache[$input] = $content;
     }
 
     private function fetchContent(string $url): string
@@ -162,18 +193,11 @@ class Extractor
         return $response->getContent();
     }
 
-    /**
-     * @return 'jsonld'|'microdata'|'rdfa'|null
-     */
-    private function guessPreferredFormat(string $content): ?string
+    private function guessPreferredFormat(string $content): ?ExtractorFormat
     {
-        foreach ($this->extractorsContainer->getExtractors() as $format => $extractor) {
-            if (!$extractor->supportsContent($content)) {
-                continue;
-            }
-
-            if (\array_key_exists($format, ExtractorsContainer::EXTRACTOR_CLASSES)) {
-                return $format;
+        foreach ($this->extractorsContainer->getExtractors() as $extractor) {
+            if ($extractor->supportsContent($content)) {
+                return $extractor->getFormat();
             }
         }
 

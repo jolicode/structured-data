@@ -26,6 +26,10 @@ class ObjectStructure extends AbstractStructure
          * @var Property[]
          */
         private array $properties = [],
+        /**
+         * @var string[]
+         */
+        private array $duplicateKeys = [],
     ) {
     }
 
@@ -109,8 +113,20 @@ class ObjectStructure extends AbstractStructure
         return $foundValue[array_key_first($foundValue)];
     }
 
+    /**
+     * @return string[]
+     */
+    public function getDuplicateKeys(): array
+    {
+        return $this->duplicateKeys;
+    }
+
     public function addKey(string $name, Range $range): void
     {
+        if (\array_key_exists($name, $this->properties) && !\in_array($name, $this->duplicateKeys, true)) {
+            $this->duplicateKeys[] = $name;
+        }
+
         $this->properties[$name] = new Property(new Key($name, $range));
     }
 

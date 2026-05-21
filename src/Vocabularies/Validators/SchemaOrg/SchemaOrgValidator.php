@@ -13,22 +13,30 @@ namespace Jolicode\Vocabularies\Validators\SchemaOrg;
 
 use Jolicode\JsonLd\Algorithms\Http\IriResolver;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
+use Jolicode\JsonLd\Mapper\MappedError;
+use Jolicode\JsonLd\Mapper\MappedProperty;
+use Jolicode\JsonLd\Mapper\MappedType;
+use Jolicode\Vocabularies\Generated\GeneratedClassesRegistry;
 use Jolicode\Vocabularies\Generated\SchemaOrg\Property\AdditionalPropertyModel;
 use Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyValueSpecificationModel;
-use Jolicode\Vocabularies\Mapper\MappedError;
-use Jolicode\Vocabularies\Mapper\MappedProperty;
-use Jolicode\Vocabularies\Mapper\MappedType;
 use Jolicode\Vocabularies\Validators\AbstractValidator;
 
 class SchemaOrgValidator extends AbstractValidator
 {
     public const VALIDATOR_NAME = 'SchemaOrg';
+    private const SCHEMA_ORG_DOMAIN = 'http://schema.org/';
+    private const SCHEMA_ORG_DOMAIN_SECURE = 'https://schema.org/';
+
+    /**
+     * @var array<string, string>|null
+     */
+    private static ?array $knownEnumerationMembersByLowercase = null;
 
     public function validateType(MappedType $type): array
     {
-        $errors = [];
-        $typeLabel = $type->type;
-        $parentProperty = $type->parentProperty;
+        $errors = $this->validateDuplicateKeys($type);
+        $typeLabel = $type->getType();
+        $parentProperty = $type->getParentProperty();
         $errorTarget = $parentProperty ?: $type;
 
         if (
@@ -49,7 +57,7 @@ class SchemaOrgValidator extends AbstractValidator
         }
 
         if (null === $typeLabel) {
-            if (!$type->parent) {
+            if (!$type->getParent()) {
                 $message = 'Missing a @type entry. The @type entry is mandatory for root types';
                 $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_ERROR);
 
@@ -58,15 +66,20 @@ class SchemaOrgValidator extends AbstractValidator
 
             // Ignore nested foreign-vocabulary nodes (e.g. JSON-LD security proof graphs)
             // referenced by absolute-IRI properties: they are outside schema.org scope.
-            if ($parentProperty && IriResolver::isAbsoluteIri($parentProperty->key)) {
+            if ($parentProperty && IriResolver::isAbsoluteIri($parentProperty->getKey())) {
                 return $errors;
             }
 
-            $typeLabel = $this->guessTypeFromProperties($type->properties, $parentProperty?->key);
-            $type->type = $typeLabel;
+            $typeLabel = $this->guessTypeFromProperties($type->getProperties(), $parentProperty?->getKey());
+            $type->setType($typeLabel);
             $message = 'The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ' . $typeLabel;
             $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_WARNING);
         }
+
+        $errors = [
+            ...$errors,
+            ...$this->validateTypeCasing($type, $errorTarget),
+        ];
 
         foreach ((array) $typeLabel as $label) {
             if (!$label || IriResolver::isAbsoluteIri($label)) {
@@ -75,7 +88,7 @@ class SchemaOrgValidator extends AbstractValidator
 
             $typeFqcn = $this->getTypeFqcn($label);
 
-            if (!class_exists($typeFqcn)) {
+            if (!GeneratedClassesRegistry::has($typeFqcn)) {
                 $message = \sprintf('The "%s" type is not a valid Schema.org type', $label);
                 $errors[] = self::addMappedError(
                     $type->getProperty(Keyword::TYPE->value) ?? $errorTarget,
@@ -87,19 +100,19 @@ class SchemaOrgValidator extends AbstractValidator
                 continue;
             }
 
-            $type->description = $typeFqcn::DESCRIPTION;
-            $type->isPartOf = array_merge($type->isPartOf, $typeFqcn::IS_PART_OF);
-            $type->source = array_merge($type->source, $typeFqcn::SOURCE);
+            $type->setDescription($typeFqcn::DESCRIPTION);
+            $type->setIsPartOf(array_merge($type->getIsPartOf(), $typeFqcn::IS_PART_OF));
+            $type->setSource(array_merge($type->getSource(), $typeFqcn::SOURCE));
 
-            if ($parentProperty && !IriResolver::isAbsoluteIri($parentProperty->key)) {
-                $parentPropertyKey = $this->stripActionSuffixes($parentProperty->key);
+            if ($parentProperty && !IriResolver::isAbsoluteIri($parentProperty->getKey())) {
+                $parentPropertyKey = $this->stripActionSuffixes($parentProperty->getKey());
 
-                if (!class_exists($this->getPropertyFqcn($parentPropertyKey))) {
+                if (!GeneratedClassesRegistry::has($this->getPropertyFqcn($parentPropertyKey))) {
                     return $errors;
                 }
 
-                if (!self::propertyTypeIsValid($parentProperty->key, $typeFqcn)) {
-                    $message = \sprintf('The "%s" property does not accept the "%s" type as a value', $parentProperty->key, $typeFqcn::LABEL);
+                if (!self::propertyTypeIsValid($parentProperty->getKey(), $typeFqcn)) {
+                    $message = \sprintf('The "%s" property does not accept the "%s" type as a value', $parentProperty->getKey(), $typeFqcn::LABEL);
                     $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_ERROR);
                 }
             }
@@ -110,14 +123,14 @@ class SchemaOrgValidator extends AbstractValidator
 
     public function validateProperty(MappedType $type, MappedProperty $property, ?MappedProperty $originalProperty = null): array
     {
-        $errors = [];
-        $typeLabel = $type->type;
+        $errors = $this->validatePropertyCasing($type, $property);
+        $typeLabel = $type->getType();
 
-        if (!$typeLabel && !$type->parent) {
+        if (!$typeLabel && !$type->getParent()) {
             return $errors;
         }
 
-        $propertyKey = $this->stripActionSuffixes($property->key);
+        $propertyKey = $this->stripActionSuffixes($property->getKey());
 
         if (Keyword::tryFrom($propertyKey) || IriResolver::isAbsoluteIri($propertyKey)) {
             return $errors;
@@ -125,7 +138,7 @@ class SchemaOrgValidator extends AbstractValidator
 
         $propertyFqcn = $this->getPropertyFqcn($propertyKey);
 
-        if (!class_exists($propertyFqcn)) {
+        if (!GeneratedClassesRegistry::has($propertyFqcn)) {
             $message = \sprintf('This property does not exist: %s', $propertyKey);
 
             $errors[] = self::addMappedError($property, $message, $type, MappedError::SEVERITY_ERROR);
@@ -133,31 +146,31 @@ class SchemaOrgValidator extends AbstractValidator
             return $errors;
         }
 
-        $property->description = $propertyFqcn::DESCRIPTION;
-        $property->isPartOf = array_merge($property->isPartOf, $propertyFqcn::IS_PART_OF);
-        $property->source = array_merge($property->source, $propertyFqcn::SOURCE);
+        $property->setDescription($propertyFqcn::DESCRIPTION);
+        $property->addIsPartOf($propertyFqcn::IS_PART_OF);
+        $property->addSource($propertyFqcn::SOURCE);
 
         if (!$typeLabel) {
-            $typeLabel = self::guessTypeFromProperties($type->properties, $originalProperty?->key);
+            $typeLabel = self::guessTypeFromProperties($type->getProperties(), $originalProperty?->getKey());
         }
 
         $typeFqcns = [];
-
-        foreach ((array) $typeLabel as $label) {
-            $typeFqcns[] = self::getTypeFqcn($label);
-        }
-
         $propertyIsValid = false;
         $typeExists = false;
 
-        foreach ($typeFqcns as $typeFqcn) {
-            if (class_exists($typeFqcn)) {
+        foreach ((array) $typeLabel as $label) {
+            $typeFqcn = self::getTypeFqcn($label);
+            $typeFqcns[] = $typeFqcn;
+
+            if (GeneratedClassesRegistry::has($typeFqcn)) {
                 $typeExists = true;
 
                 if (
-                    property_exists($typeFqcn, $propertyKey)
-                    || str_contains($typeFqcn::LABEL, 'Role')
-                    || (AdditionalPropertyModel::LABEL === $propertyKey)
+                    !$propertyIsValid && (
+                        property_exists($typeFqcn, $propertyKey)
+                        || str_contains($typeFqcn::LABEL, 'Role')
+                        || (AdditionalPropertyModel::LABEL === $propertyKey)
+                    )
                 ) {
                     $propertyIsValid = true;
                 }
@@ -177,7 +190,14 @@ class SchemaOrgValidator extends AbstractValidator
             }
 
             $errors[] = self::addMappedError($property, $message, $type, MappedError::SEVERITY_ERROR);
+
+            return $errors;
         }
+
+        $errors = [
+            ...$errors,
+            ...$this->validateEnumerationIriValues($property, $propertyFqcn, $type),
+        ];
 
         return $errors;
     }
@@ -200,14 +220,14 @@ class SchemaOrgValidator extends AbstractValidator
         }
 
         foreach ($typeProperties as $property) {
-            if (Keyword::tryFrom($property->key)) {
+            if (Keyword::tryFrom($property->getKey())) {
                 continue;
             }
 
-            $propertyKey = $this->stripActionSuffixes($property->key);
+            $propertyKey = $this->stripActionSuffixes($property->getKey());
             $propertyFqcn = $this->getPropertyFqcn($propertyKey);
 
-            if (!class_exists($propertyFqcn)) {
+            if (!GeneratedClassesRegistry::has($propertyFqcn)) {
                 continue;
             }
 
@@ -225,7 +245,7 @@ class SchemaOrgValidator extends AbstractValidator
                     ];
                 }
 
-                $possibleTypes[$fqcn]['supportedProperties'][] = $property->key;
+                $possibleTypes[$fqcn]['supportedProperties'][] = $property->getKey();
                 $possibleTypes[$fqcn]['ancestors'] = array_merge($possibleTypes[$fqcn]['ancestors'], $fqcn::PARENTS);
             }
         }
@@ -259,19 +279,174 @@ class SchemaOrgValidator extends AbstractValidator
         return 'Thing';
     }
 
+    /**
+     * @return array<MappedError>
+     */
+    private function validateEnumerationIriValues(MappedProperty $property, string $propertyFqcn, MappedType $type): array
+    {
+        $errors = [];
+
+        // Keep this strict check scoped to itemListOrder where schema.org strongly recommends
+        // Enumeration members and where we observed real-world false negatives.
+        if ('itemListOrder' !== $property->getKey()) {
+            return $errors;
+        }
+
+        $enumerationTypeFqcns = $this->getExpectedEnumerationTypeFqcns($propertyFqcn);
+
+        if ([] === $enumerationTypeFqcns) {
+            return $errors;
+        }
+
+        foreach ($this->extractScalarStringValues($property->getValue()) as $value) {
+            if (!IriResolver::isAbsoluteIri($value) || !$this->isSchemaOrgIri($value)) {
+                continue;
+            }
+
+            $isExpectedEnumerationMemberIri = $this->isExpectedEnumerationMemberIri($value, $enumerationTypeFqcns);
+
+            if (true === $isExpectedEnumerationMemberIri || null === $isExpectedEnumerationMemberIri) {
+                continue;
+            }
+
+            $errors[] = self::addMappedError(
+                $property,
+                \sprintf('The value "%s" is not a valid enumeration member for the "%s" property', $value, $property->getKey()),
+                $type,
+                MappedError::SEVERITY_ERROR,
+            );
+        }
+
+        return $errors;
+    }
+
+    /**
+     * @return array<string>
+     */
+    private function extractScalarStringValues(mixed $value): array
+    {
+        if (\is_string($value)) {
+            return [$value];
+        }
+
+        if (!\is_array($value)) {
+            return [];
+        }
+
+        $scalarValues = [];
+
+        foreach ($value as $entry) {
+            if (\is_string($entry)) {
+                $scalarValues[] = $entry;
+            }
+        }
+
+        return $scalarValues;
+    }
+
+    /**
+     * @return array<string>
+     */
+    private function getExpectedEnumerationTypeFqcns(string $propertyFqcn): array
+    {
+        $enumerationTypeFqcns = [];
+
+        foreach ($propertyFqcn::VALUES as $expectedValueTypeFqcn) {
+            if (!GeneratedClassesRegistry::has($expectedValueTypeFqcn)) {
+                continue;
+            }
+
+            if (!\defined($expectedValueTypeFqcn . '::PARENTS') || !\defined($expectedValueTypeFqcn . '::ENUMERATION_MEMBERS')) {
+                continue;
+            }
+
+            if (!\in_array('Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Type\\EnumerationModel', $expectedValueTypeFqcn::PARENTS, true)) {
+                continue;
+            }
+
+            $enumerationTypeFqcns[] = $expectedValueTypeFqcn;
+        }
+
+        return $enumerationTypeFqcns;
+    }
+
+    /**
+     * @param array<string> $enumerationTypeFqcns
+     */
+    private function isExpectedEnumerationMemberIri(string $value, array $enumerationTypeFqcns): ?bool
+    {
+        $label = str_replace([self::SCHEMA_ORG_DOMAIN, self::SCHEMA_ORG_DOMAIN_SECURE], '', $value);
+        $labelLowercase = strtolower($label);
+
+        foreach ($enumerationTypeFqcns as $enumerationTypeFqcn) {
+            foreach ($enumerationTypeFqcn::ENUMERATION_MEMBERS as $memberClass) {
+                $memberFqcn = $this->resolveEnumerationMemberFqcn($memberClass);
+
+                if (!GeneratedClassesRegistry::has($memberFqcn)) {
+                    continue;
+                }
+
+                if (strtolower($memberFqcn::LABEL) === $labelLowercase) {
+                    return true;
+                }
+            }
+        }
+
+        if (!isset($this->getKnownEnumerationMembersByLowercase()[$labelLowercase])) {
+            // Unknown schema.org term (potentially from a newer schema.org release): ignore it.
+            return null;
+        }
+
+        return false;
+    }
+
+    private function resolveEnumerationMemberFqcn(string $memberClass): string
+    {
+        if (str_starts_with($memberClass, 'Jolicode\\')) {
+            return $memberClass;
+        }
+
+        return \sprintf('Jolicode\\Vocabularies\\Generated\\SchemaOrg\\%s', $memberClass);
+    }
+
+    private function isSchemaOrgIri(string $value): bool
+    {
+        return str_starts_with($value, self::SCHEMA_ORG_DOMAIN)
+            || str_starts_with($value, self::SCHEMA_ORG_DOMAIN_SECURE);
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    private function getKnownEnumerationMembersByLowercase(): array
+    {
+        if (null !== self::$knownEnumerationMembersByLowercase) {
+            return self::$knownEnumerationMembersByLowercase;
+        }
+
+        self::$knownEnumerationMembersByLowercase = [];
+
+        foreach (glob(__DIR__ . '/../../Generated/SchemaOrg/EnumerationMember/*Model.php') ?: [] as $file) {
+            $typeName = str_replace('Model.php', '', basename($file));
+            self::$knownEnumerationMembersByLowercase[strtolower($typeName)] = $typeName;
+        }
+
+        return self::$knownEnumerationMembersByLowercase;
+    }
+
     private function guessFromParentProperty(string $parentProperty, array $typeProperties): ?string
     {
         $parentPropertyKey = $this->stripActionSuffixes($parentProperty);
         $parentPropertyFqcn = $this->getPropertyFqcn($parentPropertyKey);
         $bestMatches = [];
 
-        if (!class_exists($parentPropertyFqcn)) {
+        if (!GeneratedClassesRegistry::has($parentPropertyFqcn)) {
             return null;
         }
 
         foreach ($parentPropertyFqcn::VALUES as $expectedFqcn) {
             $commonProperties = array_intersect_key(
-                array_map(static fn (MappedProperty $property) => $property->key, $typeProperties),
+                array_map(static fn (MappedProperty $property) => $property->getKey(), $typeProperties),
                 get_class_vars($expectedFqcn),
             );
 
@@ -310,9 +485,11 @@ class SchemaOrgValidator extends AbstractValidator
 
     private function stripActionSuffixes(string $propertyLabel): string
     {
-        $propertyLabel = str_replace(['-input', '-output'], '', $propertyLabel);
+        if (!str_contains($propertyLabel, '-')) {
+            return $propertyLabel;
+        }
 
-        return $propertyLabel;
+        return str_replace(['-input', '-output'], '', $propertyLabel);
     }
 
     private function propertyTypeIsValid(string $propertyLabel, string $typeFqcn): bool
@@ -331,7 +508,7 @@ class SchemaOrgValidator extends AbstractValidator
 
         $propertyFqcn = $this->getPropertyFqcn($propertyLabel);
 
-        if (!class_exists($propertyFqcn)) {
+        if (!GeneratedClassesRegistry::has($propertyFqcn)) {
             return false;
         }
 
@@ -348,5 +525,72 @@ class SchemaOrgValidator extends AbstractValidator
         }
 
         return false;
+    }
+
+    /**
+     * @return array<MappedError>
+     */
+    private function validateTypeCasing(MappedType $type, MappedType|MappedProperty $errorTarget): array
+    {
+        $errors = [];
+
+        foreach ((array) $type->getType() as $label) {
+            if (!$label || IriResolver::isAbsoluteIri($label)) {
+                continue;
+            }
+
+            $originalLabel = $this->findOriginalTypeLabel($type, $label);
+
+            if (!$originalLabel || $originalLabel === $label || 0 !== strcasecmp($originalLabel, $label)) {
+                continue;
+            }
+
+            $errors[] = self::addMappedError(
+                $type->getProperty(Keyword::TYPE->value) ?? $errorTarget,
+                \sprintf('Incorrect type casing: "%s" given, expected "%s".', $originalLabel, $label),
+                $type,
+                MappedError::SEVERITY_ERROR,
+            );
+        }
+
+        return $errors;
+    }
+
+    /**
+     * @return array<MappedError>
+     */
+    private function validatePropertyCasing(MappedType $type, MappedProperty $property): array
+    {
+        $originalKey = $property->getOriginalKey();
+
+        if (!$originalKey || $originalKey === $property->getKey() || 0 !== strcasecmp($originalKey, $property->getKey())) {
+            return [];
+        }
+
+        return [
+            self::addMappedError(
+                $property,
+                \sprintf('Incorrect property casing: "%s" given, expected "%s".', $originalKey, $property->getKey()),
+                $type,
+                MappedError::SEVERITY_ERROR,
+            ),
+        ];
+    }
+
+    private function findOriginalTypeLabel(MappedType $type, string $label): ?string
+    {
+        $originalType = $type->getOriginalType();
+
+        if (\is_string($originalType)) {
+            return $originalType;
+        }
+
+        foreach ((array) $originalType as $originalLabel) {
+            if (0 === strcasecmp($originalLabel, $label)) {
+                return $originalLabel;
+            }
+        }
+
+        return null;
     }
 }

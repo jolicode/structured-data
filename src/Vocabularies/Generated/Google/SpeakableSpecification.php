@@ -22,5 +22,20 @@ final class SpeakableSpecification
     public const SPECIAL_RULE_KEYS = ['google.speakable.cssselector_or_xpath'];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['cssSelector' => ['name' => 'cssSelector', 'severity' => 'optional', 'supportedTypes' => ['Text']], 'xPath' => ['name' => 'xPath', 'severity' => 'optional', 'supportedTypes' => ['Text']]];
+    public const PROPERTIES = [
+        'cssSelector' => [
+            'name' => 'cssSelector',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'xPath' => [
+            'name' => 'xPath',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+    ];
 }

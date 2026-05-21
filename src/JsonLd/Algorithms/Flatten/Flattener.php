@@ -48,6 +48,7 @@ class Flattener
         $activeContext = new Context(
             baseIri: $baseUrl,
             baseUrl: $baseUrl,
+            processingMode: $options->processingMode,
         );
 
         // The specs say to set ordered to false but the tests expect it to be true so...
@@ -74,12 +75,14 @@ class Flattener
     public function doFlatten(\stdClass|array|null $element, bool $ordered = false): array
     {
         // 1
+        /** @var array<string, array<string, array<string, mixed>>|null> $nodeMap */
         $nodeMap = [FramingKeyword::DEFAULT->value => []];
 
         // 2
         $this->nodeMapGenerator->buildNode($element, $nodeMap);
 
         // 3
+        /** @var array<string, array<string, mixed>> $defaultGraph */
         $defaultGraph = $nodeMap[FramingKeyword::DEFAULT->value];
 
         // 4
@@ -91,6 +94,10 @@ class Flattener
         foreach ($nodeMap as $graphName => $graph) {
             // 4
             if (FramingKeyword::DEFAULT->value === $graphName) {
+                continue;
+            }
+
+            if (null === $graph) {
                 continue;
             }
 
@@ -114,7 +121,13 @@ class Flattener
                     continue;
                 }
 
-                $defaultGraph[$graphName][FramingKeyword::GRAPH->value][] = $node;
+                /** @var array<string, mixed> $graphNode */
+                $graphNode = $defaultGraph[$graphName];
+                /** @var array<int, array<string, mixed>> $graphNodes */
+                $graphNodes = $graphNode[FramingKeyword::GRAPH->value];
+                $graphNodes[] = $node;
+                $graphNode[FramingKeyword::GRAPH->value] = $graphNodes;
+                $defaultGraph[$graphName] = $graphNode;
             }
         }
 

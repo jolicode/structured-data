@@ -11,8 +11,8 @@
 
 namespace Jolicode\Vocabularies\Validators\Google\SpecialRules;
 
-use Jolicode\Vocabularies\Mapper\MappedProperty;
-use Jolicode\Vocabularies\Mapper\MappedType;
+use Jolicode\JsonLd\Mapper\MappedProperty;
+use Jolicode\JsonLd\Mapper\MappedType;
 
 final class DiscussionForumPostingContentOrUrlSpecialRule implements SpecialRuleInterface
 {
@@ -27,13 +27,13 @@ final class DiscussionForumPostingContentOrUrlSpecialRule implements SpecialRule
             return false;
         }
 
-        if (!$this->hasType($type->type, 'DiscussionForumPosting') && !$this->hasType($type->type, 'SocialMediaPosting')) {
+        if (!$this->hasType($type->getType(), 'DiscussionForumPosting') && !$this->hasType($type->getType(), 'SocialMediaPosting')) {
             return false;
         }
 
-        $url = $type->properties['url'] ?? null;
+        $url = $type->getProperties()['url'] ?? null;
 
-        return $url instanceof MappedProperty && null !== $url->value && [] !== $url->value;
+        return $url instanceof MappedProperty && null !== $url->getValue() && [] !== $url->getValue();
     }
 
     public function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool

@@ -1,4 +1,39 @@
 {
-    "$schema":"./tools/phpbench/vendor/phpbench/phpbench/phpbench.schema.json",
-    "runner.bootstrap": "vendor/autoload.php"
+    "$schema": "./tools/phpbench/vendor/phpbench/phpbench/phpbench.schema.json",
+    "runner.bootstrap": "vendor/autoload.php",
+    "runner.time_unit": "seconds",
+    "runner.timeout": 10,
+    "runner.retry_threshold": 5,
+    "runner.attributes": true,
+    "runner.php_config": {
+        "memory_limit": "512M",
+        "xdebug.mode": "off"
+    },
+    "report.generators": {
+        "readable": {
+            "generator": "expression",
+            "cols": [
+                "benchmark",
+                "subject",
+                "revs",
+                "its",
+                "mode",
+                "mem_peak",
+                "rstdev"
+            ]
+        }
+    },
+    "report.outputs": {
+        "console": {
+            "renderer": "console"
+        },
+        "html-algorithms": {
+            "renderer": "html",
+            "path": "var/cache/benchmark-results-algorithms.html"
+        },
+        "html-validators": {
+            "renderer": "html",
+            "path": "var/cache/benchmark-results-validators.html"
+        }
+    }
 }

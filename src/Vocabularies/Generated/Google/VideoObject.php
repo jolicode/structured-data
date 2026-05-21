@@ -22,5 +22,100 @@ final class VideoObject
     public const SPECIAL_RULE_KEYS = [];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['name' => ['name' => 'name', 'severity' => 'required', 'supportedTypes' => ['Text']], 'thumbnailUrl' => ['name' => 'thumbnailUrl', 'severity' => 'required', 'supportedTypes' => ['URL']], 'uploadDate' => ['name' => 'uploadDate', 'severity' => 'required', 'supportedTypes' => ['DateTime']], 'contentUrl' => ['name' => 'contentUrl', 'severity' => 'recommended', 'supportedTypes' => ['URL']], 'description' => ['name' => 'description', 'severity' => 'recommended', 'supportedTypes' => ['Text']], 'duration' => ['name' => 'duration', 'severity' => 'recommended', 'supportedTypes' => ['Duration']], 'embedUrl' => ['name' => 'embedUrl', 'severity' => 'recommended', 'supportedTypes' => ['URL']], 'expires' => ['name' => 'expires', 'severity' => 'recommended', 'supportedTypes' => ['DateTime']], 'regionsAllowed' => ['name' => 'regionsAllowed', 'severity' => 'recommended', 'supportedTypes' => ['Text']], 'ineligibleRegion' => ['name' => 'ineligibleRegion', 'severity' => 'recommended', 'supportedTypes' => ['Text']], 'interactionStatistic' => ['name' => 'interactionStatistic', 'severity' => 'recommended', 'supportedTypes' => ['InteractionCounter'], 'properties' => ['interactionType' => ['name' => 'interactionType', 'severity' => 'required', 'supportedTypes' => ['WatchAction']], 'userInteractionCount' => ['name' => 'userInteractionCount', 'severity' => 'required', 'supportedTypes' => ['Integer', 'Number']]]]];
+    public const PROPERTIES = [
+        'name' => [
+            'name' => 'name',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'thumbnailUrl' => [
+            'name' => 'thumbnailUrl',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'URL',
+            ],
+        ],
+        'uploadDate' => [
+            'name' => 'uploadDate',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'DateTime',
+            ],
+        ],
+        'contentUrl' => [
+            'name' => 'contentUrl',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'URL',
+            ],
+        ],
+        'description' => [
+            'name' => 'description',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'duration' => [
+            'name' => 'duration',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Duration',
+            ],
+        ],
+        'embedUrl' => [
+            'name' => 'embedUrl',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'URL',
+            ],
+        ],
+        'expires' => [
+            'name' => 'expires',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'DateTime',
+            ],
+        ],
+        'regionsAllowed' => [
+            'name' => 'regionsAllowed',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'ineligibleRegion' => [
+            'name' => 'ineligibleRegion',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'interactionStatistic' => [
+            'name' => 'interactionStatistic',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'InteractionCounter',
+            ],
+            'properties' => [
+                'interactionType' => [
+                    'name' => 'interactionType',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'WatchAction',
+                    ],
+                ],
+                'userInteractionCount' => [
+                    'name' => 'userInteractionCount',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Integer',
+                        'Number',
+                    ],
+                ],
+            ],
+        ],
+    ];
 }

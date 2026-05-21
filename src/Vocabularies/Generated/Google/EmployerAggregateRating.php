@@ -22,5 +22,61 @@ final class EmployerAggregateRating
     public const SPECIAL_RULE_KEYS = [];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['itemReviewed' => ['name' => 'itemReviewed', 'severity' => 'required', 'supportedTypes' => ['Organization'], 'properties' => ['name' => ['name' => 'name', 'severity' => 'required', 'supportedTypes' => ['Text']], 'sameAs' => ['name' => 'sameAs', 'severity' => 'recommended', 'supportedTypes' => ['URL']]]], 'ratingValue' => ['name' => 'ratingValue', 'severity' => 'required', 'supportedTypes' => ['Number', 'Text']], 'atLeastOneOf' => ['name' => 'atLeastOneOf', 'severity' => 'required', 'value' => ['ratingCount' => true, 'reviewCount' => true], 'supportedTypes' => []], 'bestRating' => ['name' => 'bestRating', 'severity' => 'recommended', 'supportedTypes' => ['Number']], 'worstRating' => ['name' => 'worstRating', 'severity' => 'recommended', 'supportedTypes' => ['Number']]];
+    public const PROPERTIES = [
+        'itemReviewed' => [
+            'name' => 'itemReviewed',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Organization',
+            ],
+            'properties' => [
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'sameAs' => [
+                    'name' => 'sameAs',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'URL',
+                    ],
+                ],
+            ],
+        ],
+        'ratingValue' => [
+            'name' => 'ratingValue',
+            'severity' => 'required',
+            'supportedTypes' => [
+                'Number',
+                'Text',
+            ],
+        ],
+        'atLeastOneOf' => [
+            'name' => 'atLeastOneOf',
+            'severity' => 'required',
+            'value' => [
+                'ratingCount' => true,
+                'reviewCount' => true,
+            ],
+            'supportedTypes' => [
+            ],
+        ],
+        'bestRating' => [
+            'name' => 'bestRating',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Number',
+            ],
+        ],
+        'worstRating' => [
+            'name' => 'worstRating',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Number',
+            ],
+        ],
+    ];
 }

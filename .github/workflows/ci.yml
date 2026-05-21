@@ -45,24 +45,17 @@ jobs:
         run: castor install
 
       - name: Check PHP coding standards
-        run: castor qa:cs --dry-run
+        run: castor cs --dry-run
 
       - name: Run PHPStan
-        run: castor qa:phpstan
+        run: castor phpstan
 
       - name: Run the tests
-        run: castor qa:phpunit:run
-
-      - name: Install generator tooling
-        run: composer install --working-dir tools/generator --prefer-dist --no-progress
-
-      - name: Verify Google docs coverage (report-only by default)
-        continue-on-error: ${{ github.event_name != 'workflow_dispatch' || inputs.google_docs_strict != 'true' }}
-        run: castor google:generation:verify-docs
+        run: castor test
 
       - name: Verify Google docs coverage (report-only by default)
         continue-on-error: ${{ github.event_name != 'workflow_dispatch' || inputs.google_docs_strict != 'true' }}
         run: castor google:generation:verify-docs
 
       - name: Check that schema.org types and properties classes can be generated
-        run: castor generation:generate
+        run: castor generate

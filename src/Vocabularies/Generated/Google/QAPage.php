@@ -22,5 +22,13 @@ final class QAPage
     public const SPECIAL_RULE_KEYS = ['google.qapage.answer_comment_count_consistency'];
     public const IS_CAROUSEL_ELIGIBLE = false;
     public const CAROUSEL_PROPERTIES = [];
-    public const PROPERTIES = ['mainEntity' => ['name' => 'mainEntity', 'severity' => 'required', 'supportedTypes' => ['@Question']]];
+    public const PROPERTIES = [
+        'mainEntity' => [
+            'name' => 'mainEntity',
+            'severity' => 'required',
+            'supportedTypes' => [
+                '@Question',
+            ],
+        ],
+    ];
 }

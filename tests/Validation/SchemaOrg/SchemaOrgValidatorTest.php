@@ -11,26 +11,40 @@
 
 namespace Jolicode\JsonLd\Tests\Validation;
 
+use Jolicode\JsonLd\Audit\AuditOptions;
 use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
 
 /**
- * @covers \Jolicode\Vocabularies\JsonLdValidator
- * @covers \Jolicode\Vocabularies\Validators\SchemaOrgValidator
+ * @covers \Jolicode\JsonLd\Validator
+ * @covers \Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator
  *
  * @group validation
  * @group schemaorg
+ * @group schema-org
  */
 class SchemaOrgValidatorTest extends AbstractValidatorTestCase
 {
     /**
      * @dataProvider provideSchemaOrgFiles
      */
-    public function testSchemaOrgValidator(string $filePath, bool $isValid, array $expectedMessages): void
-    {
-        $this->assertValidationResultMatchesExpectations($filePath, $isValid, $expectedMessages, SchemaOrgValidator::class);
+    public function testSchemaOrgValidator(
+        string $filePath,
+        bool $isValid,
+        array $expectedErrors,
+        array $expectedWarnings = [],
+        array $expectedDocumentIssues = [],
+    ): void {
+        $this->assertValidationResultMatchesExpectations(
+            $filePath,
+            $isValid,
+            $expectedErrors,
+            SchemaOrgValidator::class,
+            $expectedWarnings,
+            $expectedDocumentIssues,
+        );
     }
 
-    public function testSchemaOrgValidatorAcceptsMixedCaseTypeAndPropertyKeys(): void
+    public function testSchemaOrgValidatorReportsMixedCaseTypeAndPropertyKeys(): void
     {
         $document = file_get_contents(__DIR__ . '/../fixtures/schema-org/simple-compacted.jsonld');
         $this->assertNotFalse($document);
@@ -38,15 +52,36 @@ class SchemaOrgValidatorTest extends AbstractValidatorTestCase
         $document = str_replace('"@type": "Person"', '"@type": "pErSoN"', $document);
         $document = str_replace('"name": "Jane Doe"', '"Name": "Jane Doe"', $document);
 
-        $this->assertDocumentIsValidForValidator($document, SchemaOrgValidator::class);
+        $this->validator->setValidator(SchemaOrgValidator::class);
+        $audit = $this->validator->audit($document);
+
+        /** @var array<string> $errors */
+        $errors = $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_ERROR,
+        ));
+
+        $this->assertContains('[SchemaOrg error] @type: Incorrect type casing: "pErSoN" given, expected "Person".', $errors);
+        $this->assertContains('[SchemaOrg error] name: Incorrect property casing: "Name" given, expected "name".', $errors);
     }
 
     /**
      * @dataProvider provideSchemaOrgExamples
      */
-    public function testSchemaOrgExamples(string $filePath, bool $isValid = true, array $expectedErrors = []): void
-    {
-        $this->assertValidationResultMatchesExpectations($filePath, $isValid, $expectedErrors, SchemaOrgValidator::class);
+    public function testSchemaOrgExamples(
+        string $filePath,
+        bool $isValid = true,
+        array $expectedErrors = [],
+        array $expectedWarnings = [],
+        array $expectedDocumentIssues = [],
+    ): void {
+        $this->assertValidationResultMatchesExpectations(
+            $filePath,
+            $isValid,
+            $expectedErrors,
+            SchemaOrgValidator::class,
+            $expectedWarnings,
+            $expectedDocumentIssues,
+        );
     }
 
     public function provideSchemaOrgExamples(): \Generator
