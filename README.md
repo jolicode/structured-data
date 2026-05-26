@@ -122,10 +122,9 @@ castor validate <file-or-url> google
 castor validate <file-or-url> schema-org
 ```
 
-Sample result of the validate command (yes, I'm proud. Who said backend developpers couldn't do frontend?):
+Sample result of the validate command:
+<img width="822" height="749" alt="Screenshot from 2026-05-05 14-38-31" src="https://github.com/user-attachments/assets/97912eb8-1e11-4ba9-8cc1-ac0b6248d816" />
 
-# TODO: Add the image!
-![alt text](image-1.png)
 
 ## Using the JSON-LD algorithms
 
@@ -228,7 +227,7 @@ castor qa:phpunit:prepare --force
 Additional commands are available to run the benchmarks:
 
 Command | Description | Aliases
----- | -----
+---- | ----- | ----
 `castor qa:bench:all` | Run all the benchmarks | `castor bench`
 `castor qa:bench:algorithms` | Run the JSON-LD manipulation algorithms benchmark
 `castor qa:bench:validators` | Run the validators benchmark
