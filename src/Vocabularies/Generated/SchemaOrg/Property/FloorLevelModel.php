@@ -18,7 +18,7 @@ final class FloorLevelModel
     public const LABEL = 'floorLevel';
     public const NAME = 'schema:floorLevel';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Accommodation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AccommodationModel'];
+    public const TYPES = ['Accommodation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AccommodationModel', 'LocalBusiness' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LocalBusinessModel', 'Residence' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ResidenceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -13,7 +13,7 @@ namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class VatIDModel
 {
-    public const DESCRIPTION = 'The Value-added Tax ID of the organization or person.';
+    public const DESCRIPTION = 'The value-added Tax ID of the organization or person with national prefix (for example IT123456789). Can also be described as [[iso6523Code]] with proper prefix.';
     public const LABEL = 'vatID';
     public const NAME = 'schema:vatID';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];

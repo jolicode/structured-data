@@ -1,0 +1,49 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Circular Smartphone",
+  "description": "A repairable smartphone designed for circular economy with modular components, supporting product-as-a-service models and extended lifecycle management",
+  "identifier": [
+    {
+      "@type": "PropertyValue",
+      "propertyID": "DID",
+      "value": "did:web:example.com:product:12345",
+      "description": "Decentralized Web Identifier for verifiable supply chain authentication"
+    },
+    {
+      "@type": "PropertyValue",
+      "propertyID": "UUID",
+      "value": "urn:uuid:123e4567-e89b-12d3-a456-426614174000",
+      "description": "Universal Unique Identifier for global lifecycle tracking"
+    }
+  ],
+  "url": "https://id.example.com/01/01234567890128/21/12345",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": 8,
+    "bestRating": 10,
+    "name": "Repairability Index",
+    "description": "Official repairability score (0-10) measuring ease of repair, spare parts availability, and design durability"
+  },
+  "award": "Circular Economy Ready",
+  "additionalProperty": [
+    {
+      "@type": "PropertyValue",
+      "name": "sparePartAvailability",
+      "value": "P5Y",
+      "description": "Spare parts available for 5 years"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "carbonFootprint",
+      "value": "45 kg CO2-eq",
+      "description": "Carbon footprint in CO2 equivalent"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "recyclableContent",
+      "value": "92%",
+      "description": "Percentage of recyclable content"
+    }
+  ]
+}

@@ -34,14 +34,10 @@ final class ImageObject
             'name' => 'atLeastOneOf',
             'severity' => 'required',
             'value' => [
-                'creator' => [
-                ],
-                'creditText' => [
-                ],
-                'copyrightNotice' => [
-                ],
-                'license' => [
-                ],
+                'creator' => true,
+                'creditText' => true,
+                'copyrightNotice' => true,
+                'license' => true,
             ],
         ],
         'creator' => [

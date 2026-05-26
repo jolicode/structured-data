@@ -16,7 +16,7 @@ final class QualificationsModel
     public const DESCRIPTION = 'Specific qualifications required for this role or Occupation.';
     public const LABEL = 'qualifications';
     public const NAME = 'schema:qualifications';
-    public const VALUES = ['EducationalOccupationalCredentialModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalCredentialModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const VALUES = ['CredentialModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CredentialModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['JobPosting' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\JobPostingModel', 'Occupation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OccupationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -42,10 +42,8 @@ final class ItemList
                     'name' => 'atLeastOneOf',
                     'severity' => 'required',
                     'value' => [
-                        'url' => [
-                        ],
-                        'item' => [
-                        ],
+                        'url' => true,
+                        'item' => true,
                     ],
                 ],
                 'item' => [

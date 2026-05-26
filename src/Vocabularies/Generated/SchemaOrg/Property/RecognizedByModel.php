@@ -17,7 +17,7 @@ final class RecognizedByModel
     public const LABEL = 'recognizedBy';
     public const NAME = 'schema:recognizedBy';
     public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel'];
-    public const TYPES = ['EducationalOccupationalCredential' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalCredentialModel'];
+    public const TYPES = ['Credential' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CredentialModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

@@ -112,6 +112,10 @@ class NodeMapGenerator
 
             // 5.3
             if (null === $list) {
+                if (null === $activeProperty) {
+                    throw new FlatteningException('Invalid active property.');
+                }
+
                 $subjectNode[$activeProperty][] = $result;
             // 5.4
             } else {

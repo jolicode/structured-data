@@ -209,12 +209,14 @@ final class GeneratedClassesRegistry
         'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel' => 'CreativeWorkModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkSeasonModel' => 'CreativeWorkSeasonModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkSeriesModel' => 'CreativeWorkSeriesModel',
+        'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CredentialModel' => 'CredentialModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreditCardModel' => 'CreditCardModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CrematoriumModel' => 'CrematoriumModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CriticReviewModel' => 'CriticReviewModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CssSelectorTypeModel' => 'CssSelectorTypeModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CurrencyConversionServiceModel' => 'CurrencyConversionServiceModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DDxElementModel' => 'DDxElementModel',
+        'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DENonprofitTypeModel' => 'DENonprofitTypeModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DanceEventModel' => 'DanceEventModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DanceGroupModel' => 'DanceGroupModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DataCatalogModel' => 'DataCatalogModel',
@@ -398,6 +400,7 @@ final class GeneratedClassesRegistry
         'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HyperTocEntryModel' => 'HyperTocEntryModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HyperTocModel' => 'HyperTocModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IPTCDigitalSourceEnumerationModel' => 'IPTCDigitalSourceEnumerationModel',
+        'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ITNonprofitTypeModel' => 'ITNonprofitTypeModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IceCreamShopModel' => 'IceCreamShopModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IgnoreActionModel' => 'IgnoreActionModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ImageGalleryModel' => 'ImageGalleryModel',
@@ -1721,6 +1724,7 @@ final class GeneratedClassesRegistry
         'Jolicode\Vocabularies\Generated\SchemaOrg\Property\ItineraryModel' => 'ItineraryModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Property\IupacNameModel' => 'IupacNameModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Property\JobBenefitsModel' => 'JobBenefitsModel',
+        'Jolicode\Vocabularies\Generated\SchemaOrg\Property\JobDurationModel' => 'JobDurationModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Property\JobImmediateStartModel' => 'JobImmediateStartModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Property\JobLocationModel' => 'JobLocationModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\Property\JobLocationTypeModel' => 'JobLocationTypeModel',
@@ -2544,6 +2548,13 @@ final class GeneratedClassesRegistry
         'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\CompositeWithTrainedAlgorithmicMediaDigitalSourceModel' => 'CompositeWithTrainedAlgorithmicMediaDigitalSourceModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\ContagiousnessHealthAspectModel' => 'ContagiousnessHealthAspectModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\CrossSectionalModel' => 'CrossSectionalModel',
+        'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\DECooperativeCharityModel' => 'DECooperativeCharityModel',
+        'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\DEFoundationCharityModel' => 'DEFoundationCharityModel',
+        'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\DEJointStockCompanyCharityModel' => 'DEJointStockCompanyCharityModel',
+        'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\DELimitedLiabilityCharityModel' => 'DELimitedLiabilityCharityModel',
+        'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\DENotRegisteredAssociationCharityModel' => 'DENotRegisteredAssociationCharityModel',
+        'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\DEPublicCharityModel' => 'DEPublicCharityModel',
+        'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\DERegisteredAssociationCharityModel' => 'DERegisteredAssociationCharityModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\DJMixAlbumModel' => 'DJMixAlbumModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\DVDFormatModel' => 'DVDFormatModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\DamagedConditionModel' => 'DamagedConditionModel',
@@ -2645,6 +2656,12 @@ final class GeneratedClassesRegistry
         'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\HowItWorksHealthAspectModel' => 'HowItWorksHealthAspectModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\HowOrWhereHealthAspectModel' => 'HowOrWhereHealthAspectModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\IOSPlatformModel' => 'IOSPlatformModel',
+        'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\ITCooperativeCharityModel' => 'ITCooperativeCharityModel',
+        'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\ITMutualAidCharityModel' => 'ITMutualAidCharityModel',
+        'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\ITSocialCompanyCharityModel' => 'ITSocialCompanyCharityModel',
+        'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\ITSocialPromotionCharityModel' => 'ITSocialPromotionCharityModel',
+        'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\ITSportCompanyCharityModel' => 'ITSportCompanyCharityModel',
+        'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\ITVolunteerAssociationCharityModel' => 'ITVolunteerAssociationCharityModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\InForceModel' => 'InForceModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\InStockModel' => 'InStockModel',
         'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember\InStoreOnlyModel' => 'InStoreOnlyModel',
@@ -3055,7 +3072,7 @@ final class GeneratedClassesRegistry
         return array_values(self::getMapByPrefix($namespacePrefix));
     }
 
-    private static function getMapByPrefix(string $prefix): array
+    public static function getMapByPrefix(string $prefix): array
     {
         return match (true) {
             str_starts_with($prefix, \Jolicode\Vocabularies\Generators\SchemaOrg\Generator::NAMESPACE_TYPE) => self::SCHEMA_ORG_TYPES,

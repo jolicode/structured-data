@@ -144,10 +144,8 @@ final class OnlineStore
                     'name' => 'atLeastOneOf',
                     'severity' => 'required',
                     'value' => [
-                        'merchantReturnLink' => [
-                        ],
-                        'returnPolicyCategory' => [
-                        ],
+                        'merchantReturnLink' => true,
+                        'returnPolicyCategory' => true,
                     ],
                 ],
                 'applicableCountry' => [

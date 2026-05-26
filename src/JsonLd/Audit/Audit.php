@@ -186,9 +186,9 @@ final class Audit
         $grouped = [];
 
         foreach ($queryResult as $entry) {
-            $key = AuditOptions::GROUP_BY_VALIDATOR === $query->getGroupBy()
+            $key = (string) (AuditOptions::GROUP_BY_VALIDATOR === $query->getGroupBy()
                 ? $entry->getValidatorName()
-                : $entry->getSeverity();
+                : $entry->getSeverity());
 
             $grouped[$key][] = $entry;
         }

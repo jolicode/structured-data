@@ -38,6 +38,13 @@ final class ProductMerchantListing extends Product
                 'ImageObject',
             ],
         ],
+        'hasAdultConsideration' => [
+            'name' => 'hasAdultConsideration',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'AdultOrientedEnumeration',
+            ],
+        ],
         'offers' => [
             'name' => 'offers',
             'severity' => 'required',
@@ -49,10 +56,8 @@ final class ProductMerchantListing extends Product
                     'name' => 'atLeastOneOf',
                     'severity' => 'required',
                     'value' => [
-                        'price' => [
-                        ],
-                        'priceSpecification' => [
-                        ],
+                        'price' => true,
+                        'priceSpecification' => true,
                     ],
                 ],
                 'price' => [

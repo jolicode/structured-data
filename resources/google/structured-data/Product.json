@@ -19,9 +19,9 @@
                     "name": "atLeastOneOf",
                     "severity": "required",
                     "value": {
-                        "review": {},
-                        "aggregateRating": {},
-                        "offers": {}
+                        "review": true,
+                        "aggregateRating": true,
+                        "offers": true
                     }
                 },
                 "review": {
@@ -104,6 +104,13 @@
                         "ImageObject"
                     ]
                 },
+                "hasAdultConsideration": {
+                    "name": "hasAdultConsideration",
+                    "severity": "recommended",
+                    "supportedTypes": [
+                        "AdultOrientedEnumeration"
+                    ]
+                },
                 "offers": {
                     "name": "offers",
                     "severity": "required",
@@ -115,8 +122,8 @@
                             "name": "atLeastOneOf",
                             "severity": "required",
                             "value": {
-                                "price": {},
-                                "priceSpecification": {}
+                                "price": true,
+                                "priceSpecification": true
                             }
                         },
                         "price": {

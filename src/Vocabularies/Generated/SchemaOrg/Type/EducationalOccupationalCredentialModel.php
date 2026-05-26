@@ -18,7 +18,7 @@ final class EducationalOccupationalCredentialModel
     public const DESCRIPTION = 'An educational or occupational credential. A diploma, academic degree, certification, qualification, badge, etc., that may be awarded to a person or other entity that meets the requirements defined by the credentialer.';
     public const LABEL = 'EducationalOccupationalCredential';
     public const NAME = 'schema:EducationalOccupationalCredential';
-    public const PARENTS = ['CreativeWorkModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel'];
+    public const PARENTS = ['CredentialModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CredentialModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1779'];

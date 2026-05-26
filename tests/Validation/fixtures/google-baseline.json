@@ -405,8 +405,9 @@
             "[Google error] offers.price: Invalid value: \"price\" must be greater than 0 for merchant listing offers."
         ],
         "warnings": [
-            "[Google warning] offers: Missing recommended property: \"shippingDetails\" for the type \"Offer\"",
-            "[Google warning] offers: Missing recommended property: \"hasMerchantReturnPolicy\" for the type \"Offer\""
+            "[Google warning] Product: Missing recommended property: \"hasAdultConsideration\" for the type \"Product\"",
+            "[Google warning] offers: Missing recommended property: \"hasMerchantReturnPolicy\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"shippingDetails\" for the type \"Offer\""
         ],
         "documentIssues": []
     },

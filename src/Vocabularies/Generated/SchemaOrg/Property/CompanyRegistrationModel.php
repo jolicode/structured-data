@@ -13,7 +13,7 @@ namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CompanyRegistrationModel
 {
-    public const DESCRIPTION = 'The official registration number of a business including the organization that issued it such as Company House or Chamber of Commerce.';
+    public const DESCRIPTION = 'The official registration information of a business including the organization that issued it such as Company House or Chamber of Commerce in form of a Certification.';
     public const LABEL = 'companyRegistration';
     public const NAME = 'schema:companyRegistration';
     public const VALUES = ['CertificationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CertificationModel'];

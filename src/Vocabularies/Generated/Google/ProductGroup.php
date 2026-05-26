@@ -30,6 +30,13 @@ final class ProductGroup
                 'Text',
             ],
         ],
+        'hasAdultConsideration' => [
+            'name' => 'hasAdultConsideration',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'AdultOrientedEnumeration',
+            ],
+        ],
         'variesBy' => [
             'name' => 'variesBy',
             'severity' => 'recommended',

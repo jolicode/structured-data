@@ -1321,10 +1321,15 @@ class Expander
 
             // 11.1
             $arrayValue = (array) $value;
+            $lastArrayValueKey = array_key_last($arrayValue);
+
+            if (null === $lastArrayValueKey) {
+                throw new ExpansionException('Invalid @type entry.');
+            }
 
             // 12 : we do 12 here, so we don't loop twice over $element
             $inputType = [
-                IriResolver::expand($activeContext, $key) => IriResolver::expand($activeContext, $arrayValue[array_key_last($arrayValue)]),
+                IriResolver::expand($activeContext, $key) => IriResolver::expand($activeContext, $arrayValue[$lastArrayValueKey]),
             ];
 
             sort($arrayValue);

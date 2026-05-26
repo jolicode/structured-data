@@ -62,6 +62,7 @@ final class MensClothingStoreModel
         public ?Property\EventModel $event = null,
         public ?Property\EventsModel $events = null,
         public ?Property\FaxNumberModel $faxNumber = null,
+        public ?Property\FloorLevelModel $floorLevel = null,
         public ?Property\FounderModel $founder = null,
         public ?Property\FoundersModel $founders = null,
         public ?Property\FoundingDateModel $foundingDate = null,

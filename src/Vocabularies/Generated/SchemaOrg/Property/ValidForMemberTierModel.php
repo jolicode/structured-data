@@ -13,7 +13,7 @@ namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ValidForMemberTierModel
 {
-    public const DESCRIPTION = 'The membership program tier an Offer (or a PriceSpecification, OfferShippingDetails, or MerchantReturnPolicy under an Offer) is valid for.';
+    public const DESCRIPTION = 'The membership program tier(s) an Offer (or a PriceSpecification, OfferShippingDetails, or MerchantReturnPolicy under an Offer) is valid for.';
     public const LABEL = 'validForMemberTier';
     public const NAME = 'schema:validForMemberTier';
     public const VALUES = ['MemberProgramTierModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MemberProgramTierModel'];

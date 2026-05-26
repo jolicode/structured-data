@@ -1,0 +1,13 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ConsumeAction",
+  "agent": {
+    "@type": "Person",
+    "name": "Test Candidate One"
+  },
+  "object": {
+    "@type": "QuantitativeValue",
+    "value": 100,
+    "unitText": "calories"
+  }
+}

@@ -13,7 +13,7 @@ namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AccessModeSufficientModel
 {
-    public const DESCRIPTION = 'A list of single or combined accessModes that are sufficient to understand all the intellectual content of a resource. Values should be drawn from the [approved vocabulary](https://www.w3.org/2021/a11y-discov-vocab/latest/#accessModeSufficient-vocabulary).';
+    public const DESCRIPTION = 'A list of single or combined access modes that are sufficient to understand all the intellectual content of a resource, including any adaptations. Values should be drawn from the [approved vocabulary](https://www.w3.org/2021/a11y-discov-vocab/latest/#accessModeSufficient-vocabulary).';
     public const LABEL = 'accessModeSufficient';
     public const NAME = 'schema:accessModeSufficient';
     public const VALUES = ['ItemListModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ItemListModel'];

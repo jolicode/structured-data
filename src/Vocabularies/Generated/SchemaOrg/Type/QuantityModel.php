@@ -11,32 +11,17 @@
 
 namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
-
 final class QuantityModel
 {
-    public const DESCRIPTION = 'Quantities such as distance, time, mass, weight, etc. Particular instances of say Mass are entities like \'3 kg\' or \'4 milligrams\'.';
+    public const DESCRIPTION = 'Quantities such as distance, time, mass, weight, etc. Particular instances of say Mass are strings like \'3 kg\' or \'4 milligrams\'.';
     public const LABEL = 'Quantity';
     public const NAME = 'schema:Quantity';
-    public const PARENTS = ['IntangibleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IntangibleModel'];
+    public const PARENTS = [];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 
-    public function __construct(
-        public ?Property\AdditionalTypeModel $additionalType = null,
-        public ?Property\AlternateNameModel $alternateName = null,
-        public ?Property\DescriptionModel $description = null,
-        public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
-        public ?Property\IdentifierModel $identifier = null,
-        public ?Property\ImageModel $image = null,
-        public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
-        public ?Property\NameModel $name = null,
-        public ?Property\OwnerModel $owner = null,
-        public ?Property\PotentialActionModel $potentialAction = null,
-        public ?Property\SameAsModel $sameAs = null,
-        public ?Property\SubjectOfModel $subjectOf = null,
-        public ?Property\UrlModel $url = null,
-    ) {
+    public function __construct()
+    {
     }
 }

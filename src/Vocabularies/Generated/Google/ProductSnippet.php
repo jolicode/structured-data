@@ -34,12 +34,9 @@ final class ProductSnippet extends Product
             'name' => 'atLeastOneOf',
             'severity' => 'required',
             'value' => [
-                'review' => [
-                ],
-                'aggregateRating' => [
-                ],
-                'offers' => [
-                ],
+                'review' => true,
+                'aggregateRating' => true,
+                'offers' => true,
             ],
         ],
         'review' => [

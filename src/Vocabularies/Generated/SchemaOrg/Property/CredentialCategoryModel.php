@@ -17,7 +17,7 @@ final class CredentialCategoryModel
     public const LABEL = 'credentialCategory';
     public const NAME = 'schema:credentialCategory';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
-    public const TYPES = ['EducationalOccupationalCredential' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalCredentialModel'];
+    public const TYPES = ['Credential' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CredentialModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
 }

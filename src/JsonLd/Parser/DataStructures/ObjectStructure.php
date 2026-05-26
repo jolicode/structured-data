@@ -110,7 +110,13 @@ class ObjectStructure extends AbstractStructure
             },
         );
 
-        return $foundValue[array_key_first($foundValue)];
+        $firstFoundValueKey = array_key_first($foundValue);
+
+        if (null === $firstFoundValueKey) {
+            throw new \InvalidArgumentException(\sprintf('Graph value not found for reference "%s".', $reference));
+        }
+
+        return $foundValue[$firstFoundValueKey];
     }
 
     /**

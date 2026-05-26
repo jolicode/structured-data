@@ -40,6 +40,7 @@ final class ResidenceModel
         public ?Property\EventModel $event = null,
         public ?Property\EventsModel $events = null,
         public ?Property\FaxNumberModel $faxNumber = null,
+        public ?Property\FloorLevelModel $floorLevel = null,
         public ?Property\GeoModel $geo = null,
         public ?Property\GeoContainsModel $geoContains = null,
         public ?Property\GeoCoveredByModel $geoCoveredBy = null,

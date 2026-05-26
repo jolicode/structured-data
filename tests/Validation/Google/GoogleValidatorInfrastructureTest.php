@@ -152,6 +152,26 @@ class GoogleValidatorInfrastructureTest extends TestCase
         ));
     }
 
+    public function testGoogleStructuredDataNamedPropertiesAllHaveSeverity(): void
+    {
+        $missingSeverityPaths = [];
+
+        foreach (glob(__DIR__ . '/../../../resources/google/structured-data/*.json') ?: [] as $file) {
+            $json = json_decode((string) file_get_contents($file), true);
+
+            if (!\is_array($json)) {
+                continue;
+            }
+
+            $this->collectMissingPropertySeverityPaths($json, basename($file), $missingSeverityPaths);
+        }
+
+        $this->assertSame([], $missingSeverityPaths, \sprintf(
+            'Named Google properties without severity in resources/google/structured-data/*.json: %s',
+            implode(', ', $missingSeverityPaths),
+        ));
+    }
+
     public function testGoogleValidationPerformanceSmokeOnLargeFixture(): void
     {
         $validator = new Validator();
@@ -264,6 +284,43 @@ class GoogleValidatorInfrastructureTest extends TestCase
             if (\is_array($value)) {
                 $this->collectSpecialRuleKeysRecursively($value, $keys);
             }
+        }
+    }
+
+    /**
+     * @param array<mixed>  $node
+     * @param array<string> $missingSeverityPaths
+     */
+    private function collectMissingPropertySeverityPaths(array $node, string $path, array &$missingSeverityPaths): void
+    {
+        if (isset($node['properties']) && \is_array($node['properties'])) {
+            foreach ($node['properties'] as $propertyKey => $propertyDefinition) {
+                if (!\is_array($propertyDefinition) || isset($propertyDefinition['@target'])) {
+                    continue;
+                }
+
+                if (isset($propertyDefinition['name']) && \is_string($propertyDefinition['name']) && !\array_key_exists('severity', $propertyDefinition)) {
+                    $missingSeverityPaths[] = \sprintf('%s:%s', $path, $propertyKey);
+                }
+
+                $this->collectMissingPropertySeverityPaths(
+                    $propertyDefinition,
+                    $path . '.' . (\is_string($propertyKey) ? $propertyKey : (string) $propertyKey),
+                    $missingSeverityPaths,
+                );
+            }
+        }
+
+        foreach ($node as $key => $value) {
+            if ('properties' === $key || !\is_array($value)) {
+                continue;
+            }
+
+            $this->collectMissingPropertySeverityPaths(
+                $value,
+                $path . '.' . (\is_string($key) ? $key : (string) $key),
+                $missingSeverityPaths,
+            );
         }
     }
 

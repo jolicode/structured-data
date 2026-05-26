@@ -16,7 +16,7 @@ final class SuitableForDietModel
     public const DESCRIPTION = 'Indicates a dietary restriction or guideline for which this recipe or menu item is suitable, e.g. diabetic, halal etc.';
     public const LABEL = 'suitableForDiet';
     public const NAME = 'schema:suitableForDiet';
-    public const VALUES = ['RestrictedDietModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RestrictedDietModel'];
+    public const VALUES = ['DietModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DietModel', 'RestrictedDietModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RestrictedDietModel'];
     public const TYPES = ['MenuItem' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MenuItemModel', 'Recipe' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RecipeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

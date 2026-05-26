@@ -16,7 +16,7 @@ final class HasCredentialModel
     public const DESCRIPTION = 'A credential awarded to the Person or Organization.';
     public const LABEL = 'hasCredential';
     public const NAME = 'schema:hasCredential';
-    public const VALUES = ['EducationalOccupationalCredentialModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalCredentialModel'];
+    public const VALUES = ['CredentialModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CredentialModel'];
     public const TYPES = ['Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

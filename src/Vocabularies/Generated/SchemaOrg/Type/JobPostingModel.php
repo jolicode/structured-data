@@ -49,6 +49,7 @@ final class JobPostingModel
         public ?Property\IncentivesModel $incentives = null,
         public ?Property\IndustryModel $industry = null,
         public ?Property\JobBenefitsModel $jobBenefits = null,
+        public ?Property\JobDurationModel $jobDuration = null,
         public ?Property\JobImmediateStartModel $jobImmediateStart = null,
         public ?Property\JobLocationModel $jobLocation = null,
         public ?Property\JobLocationTypeModel $jobLocationType = null,

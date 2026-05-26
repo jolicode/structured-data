@@ -257,6 +257,11 @@
         "warnings": [],
         "documentIssues": []
     },
+    "https-schema-org-240d7f9a595da4bcdfe6272ea95e1986.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
     "https-schema-org-243dd0b47311d1216e9d6f4b21d4b62f.jsonld": {
         "errors": [],
         "warnings": [],
@@ -1373,9 +1378,7 @@
         "documentIssues": []
     },
     "https-schema-org-beba94f53fe97689f5ed1840a172282b.jsonld": {
-        "errors": [
-            "[SchemaOrg error] mainEntity.hasCredential.@type: The \"Credential\" type is not a valid Schema.org type"
-        ],
+        "errors": [],
         "warnings": [],
         "documentIssues": []
     },
@@ -1475,7 +1478,10 @@
         "documentIssues": []
     },
     "https-schema-org-c9a96f4f568a0bc237d24f6b0cca9ca5.jsonld": {
-        "errors": [],
+        "errors": [
+            "[SchemaOrg error] object: The \"object\" property does not accept the \"Energy\" type as a value",
+            "[SchemaOrg error] object.name: The property \"name\" does not exist on the type \"Energy\""
+        ],
         "warnings": [],
         "documentIssues": []
     },
@@ -1955,6 +1961,11 @@
         "documentIssues": []
     },
     "https-schema-org-fbb5a76caac97279d73472afbc42c6a4.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-fe74cb4a3e22234ad633485566240998.jsonld": {
         "errors": [],
         "warnings": [],
         "documentIssues": []

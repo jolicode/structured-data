@@ -11,8 +11,6 @@
 
 namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
-
 final class EnergyModel
 {
     public const DESCRIPTION = 'Properties that take Energy as values are of the form \'&lt;Number&gt; &lt;Energy unit of measure&gt;\'.';
@@ -23,20 +21,7 @@ final class EnergyModel
     public const IS_PART_OF = [];
     public const SOURCE = [];
 
-    public function __construct(
-        public ?Property\AdditionalTypeModel $additionalType = null,
-        public ?Property\AlternateNameModel $alternateName = null,
-        public ?Property\DescriptionModel $description = null,
-        public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
-        public ?Property\IdentifierModel $identifier = null,
-        public ?Property\ImageModel $image = null,
-        public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
-        public ?Property\NameModel $name = null,
-        public ?Property\OwnerModel $owner = null,
-        public ?Property\PotentialActionModel $potentialAction = null,
-        public ?Property\SameAsModel $sameAs = null,
-        public ?Property\SubjectOfModel $subjectOf = null,
-        public ?Property\UrlModel $url = null,
-    ) {
+    public function __construct()
+    {
     }
 }
