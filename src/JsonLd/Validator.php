@@ -342,7 +342,13 @@ class Validator
     private function getValidatedSnippetCacheKey(JsonLdElement $jsonLdElement): string
     {
         if (null === $this->currentValidatorsSignature) {
-            $this->currentValidatorsSignature = implode("\0", array_keys($this->currentValidators));
+            $this->currentValidatorsSignature = implode(
+                "\0",
+                array_map(
+                    static fn (object $validator): string => $validator::class,
+                    $this->currentValidators,
+                ),
+            );
         }
 
         return md5(
@@ -385,7 +391,7 @@ class Validator
             'description' => $type->getDescription(),
             'isPartOf' => $type->getIsPartOf(),
             'source' => $type->getSource(),
-            'documentationLinks' => $type->getDocumentationLinks(),
+            'googleLink' => $type->getGoogleLink(),
             'errors' => $this->buildErrorTemplates($type->getErrors()),
             'properties' => $properties,
         ];
@@ -463,10 +469,7 @@ class Validator
         $type->setDescription($template['description']);
         $type->setIsPartOf($template['isPartOf']);
         $type->setSource($template['source']);
-
-        foreach ($template['documentationLinks'] as $documentationLink) {
-            $type->addDocumentationLink($documentationLink);
-        }
+        $type->setDocumentationLink($template['googleLink']);
 
         foreach ($template['properties'] as $name => $propertyTemplate) {
             $property = $type->getProperty($name);
@@ -545,7 +548,7 @@ class Validator
                     $parentType->setErrorSeverity($errorSeverity);
                 }
 
-                $parentType->addChildError($error);
+                $parentType->addChildrenError($error);
                 $parentType = $parentType->getParent();
             }
 
@@ -559,7 +562,7 @@ class Validator
                 $parentType->setErrorSeverity($errorSeverity);
             }
 
-            $parentType->addChildError($error);
+            $parentType->addChildrenError($error);
             $parentType = $parentType->getParent();
         }
     }

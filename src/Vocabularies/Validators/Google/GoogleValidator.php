@@ -86,7 +86,7 @@ class GoogleValidator extends AbstractValidator
         $validationClass = $this->stack->getValidationClass();
 
         if ($validationClass && \defined($validationClass . '::DOCUMENTATION')) {
-            $type->addDocumentationLink($validationClass::DOCUMENTATION);
+            $type->setDocumentationLink($validationClass::DOCUMENTATION);
         }
 
         if (!$currentProperties) {
@@ -220,6 +220,7 @@ class GoogleValidator extends AbstractValidator
             $clone->setDuplicateKeys([]);
 
             $typeErrors = $this->validateType($clone);
+            $type->setDocumentationLink($clone->getGoogleLink());
 
             if (!$typeErrors) {
                 return [];

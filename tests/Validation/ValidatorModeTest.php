@@ -13,7 +13,10 @@ namespace Jolicode\JsonLd\Tests\Validation;
 
 use Jolicode\JsonLd\Audit\AuditOptions;
 use Jolicode\JsonLd\Mapper\MappedError;
+use Jolicode\JsonLd\Mapper\MappedType;
 use Jolicode\JsonLd\Validator;
+use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
+use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
 use PHPUnit\Framework\TestCase;
 
 class ValidatorModeTest extends TestCase
@@ -74,8 +77,69 @@ JSON;
         );
     }
 
+    public function testSwitchingValidatorModeDoesNotReuseWrongSnippetCache(): void
+    {
+        $validator = new Validator();
+        $fixture = $this->benchmarkFixture('jolicampus-formations-symfony.html');
+
+        $validator->setValidator(SchemaOrgValidator::class);
+        $validator->audit($fixture);
+
+        $validator->setValidator(GoogleValidator::class);
+        $googleAudit = $validator->audit($fixture);
+
+        $this->assertTrue($this->hasAtLeastOneGoogleDocumentationLink($googleAudit->getTypes()));
+    }
+
+    public function testDefaultValidatorModeHydratesGoogleDocumentationLinkForArrayTypes(): void
+    {
+        $validator = new Validator();
+        $fixture = $this->benchmarkFixture('jolicampus-formations-symfony.html');
+
+        $audit = $validator->audit($fixture);
+
+        $this->assertTrue($this->hasAtLeastOneGoogleDocumentationLink($audit->getTypes()));
+    }
+
     private function fixture(string $name): string
     {
         return __DIR__ . '/fixtures/extractor/' . $name;
+    }
+
+    private function benchmarkFixture(string $name): string
+    {
+        return __DIR__ . '/fixtures/benchmark/' . $name;
+    }
+
+    /**
+     * @param array<MappedType> $types
+     */
+    private function hasAtLeastOneGoogleDocumentationLink(array $types): bool
+    {
+        foreach ($types as $type) {
+            if (null !== $type->getGoogleLink()) {
+                return true;
+            }
+
+            foreach ($type->getProperties() as $property) {
+                $value = $property->getValue();
+
+                if ($value instanceof MappedType && $this->hasAtLeastOneGoogleDocumentationLink([$value])) {
+                    return true;
+                }
+
+                if (!\is_array($value)) {
+                    continue;
+                }
+
+                foreach ($value as $entry) {
+                    if ($entry instanceof MappedType && $this->hasAtLeastOneGoogleDocumentationLink([$entry])) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 }

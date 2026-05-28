@@ -99,7 +99,7 @@ abstract class AbstractValidator
             }
 
             if (!\in_array($error, $parentType->getErrors(), true)) {
-                $parentType->addChildError($error);
+                $parentType->addChildrenError($error);
             }
 
             $parentType = $parentType->getParent();

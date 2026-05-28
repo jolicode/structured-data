@@ -65,10 +65,7 @@ class MappedType
          * @var array<string>
          */
         private array $duplicateKeys = [],
-        /**
-         * @var list<string>
-         */
-        private array $documentationLinks = [],
+        private ?string $googleLink = null,
     ) {
     }
 
@@ -128,9 +125,20 @@ class MappedType
         $this->description = $description;
     }
 
+    /**
+     * Returns true if the type itself is valid, even if is children have errors.
+     */
     public function isValid(): bool
     {
         return $this->isValid;
+    }
+
+    /**
+     * Returns true if both the type and all its children are valid.
+     */
+    public function isFullyValid(): bool
+    {
+        return $this->isValid && 0 === \count($this->getChildrenErrors());
     }
 
     public function setIsValid(bool $isValid): void
@@ -138,6 +146,10 @@ class MappedType
         $this->isValid = $isValid;
     }
 
+    /**
+     * Returns the highest error severity found on the type or any of its children
+     * (so if the type in itself only has a warning, but a children has an error, this method will return `error`).
+     */
     public function getErrorSeverity(): ?string
     {
         return $this->errorSeverity;
@@ -183,7 +195,7 @@ class MappedType
         }
     }
 
-    public function addChildError(MappedError $error): void
+    public function addChildrenError(MappedError $error): void
     {
         $this->childrenErrors[] = $error;
 
@@ -358,17 +370,14 @@ class MappedType
         }
     }
 
-    /**
-     * @return list<string>
-     */
-    public function getDocumentationLinks(): array
+    public function getGoogleLink(): ?string
     {
-        return $this->documentationLinks;
+        return $this->googleLink;
     }
 
-    public function addDocumentationLink(string $link): void
+    public function setDocumentationLink(?string $link): void
     {
-        $this->documentationLinks[] = $link;
+        $this->googleLink = $link;
     }
 
     public function getProperty(string $name): ?MappedProperty
