@@ -1,0 +1,22 @@
+{
+    "$schema": "tools/infection/vendor/infection/infection/resources/schema.json",
+    // Mutation testing is scoped to the layers guarded by baseline-snapshot tests,
+    // where a golden-file assert can pass while asserting nothing meaningful.
+    "source": {
+        "directories": [
+            "src/Vocabularies/Validators",
+            "src/JsonLd/Mapper"
+        ]
+    },
+    "timeout": 30,
+    "logs": {
+        "text": "var/cache/infection/infection.log",
+        "summary": "var/cache/infection/summary.log"
+    },
+    "tmpDir": "var/cache/infection",
+    "phpUnit": {
+        "customPath": "tools/phpunit/vendor/bin/phpunit"
+    },
+    "testFramework": "phpunit",
+    "testFrameworkOptions": "--group=validation"
+}

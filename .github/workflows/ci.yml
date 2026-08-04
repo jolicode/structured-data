@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ["8.4"]
+        php-version: ["8.4", "8.5"]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,6 +31,42 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
           tools: castor
+          coverage: pcov
+
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Composer downloads
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: composer-${{ runner.os }}-${{ matrix.php-version }}-${{ hashFiles('composer.lock', 'tools/*/composer.lock') }}
+          restore-keys: |
+            composer-${{ runner.os }}-${{ matrix.php-version }}-
+
+      - name: Cache QA tooling vendors
+        uses: actions/cache@v4
+        with:
+          path: tools/*/vendor
+          key: tools-vendor-${{ runner.os }}-${{ matrix.php-version }}-${{ hashFiles('tools/*/composer.lock') }}
+
+      - name: Cache PHPStan result cache
+        uses: actions/cache@v4
+        with:
+          path: tools/phpstan/var
+          key: phpstan-${{ runner.os }}-${{ matrix.php-version }}-${{ github.sha }}
+          restore-keys: |
+            phpstan-${{ runner.os }}-${{ matrix.php-version }}-
+
+      - name: Cache the W3C test suite (pinned commit)
+        # Skipped on the weekly scheduled run, which re-downloads the suite from the
+        # upstream main branch to surface W3C drift.
+        if: github.event_name != 'schedule'
+        uses: actions/cache@v4
+        with:
+          path: var/cache/w3c-json-ld-api
+          key: w3c-test-suite-${{ hashFiles('tools/castor.php') }}
 
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
@@ -50,8 +86,29 @@ jobs:
       - name: Run PHPStan
         run: castor phpstan
 
-      - name: Run the tests
-        run: castor test
+      - name: Prepare the W3C test suite from upstream main (drift check)
+        if: github.event_name == 'schedule'
+        run: castor qa:phpunit:prepare --force --ref main
+
+      - name: Run the tests with coverage
+        run: castor coverage
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-clover-php${{ matrix.php-version }}
+          path: var/cache/coverage/clover.xml
+
+      - name: Run the benchmarks (weekly, for the record)
+        if: github.event_name == 'schedule'
+        run: castor bench
+
+      - name: Upload benchmark reports
+        if: github.event_name == 'schedule'
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-reports-php${{ matrix.php-version }}
+          path: var/cache/benchmark-results-*.html
 
       - name: Verify Google docs coverage (report-only by default)
         continue-on-error: ${{ github.event_name != 'workflow_dispatch' || inputs.google_docs_strict != 'true' }}
@@ -59,3 +116,6 @@ jobs:
 
       - name: Check that schema.org types and properties classes can be generated
         run: castor generate
+
+      - name: Check that the committed generated classes match their vocabulary definitions
+        run: git diff --exit-code -- src/Vocabularies/Generated

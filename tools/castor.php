@@ -37,6 +37,22 @@ use Symfony\Component\Process\ExecutableFinder;
 require_once \dirname(__DIR__) . '/vendor/autoload.php';
 
 const CACHE_DIR_W3C_TEST_SUITE = __DIR__ . '/../var/cache/w3c-json-ld-api';
+const CACHE_DIR_W3C_FRAMING_TEST_SUITE = __DIR__ . '/../var/cache/w3c-json-ld-framing';
+
+// Commit of https://github.com/w3c/json-ld-api the test suite is pinned to, so an
+// upstream change cannot break an unrelated PR. The weekly scheduled CI run is what
+// surfaces upstream drift: bump this SHA (and rerun `castor qa:phpunit:prepare --force`)
+// to pick up new W3C tests.
+const W3C_TEST_SUITE_REF = '92f07705a0c0ac27aa9bc6fe1322dcc9fad0114d';
+
+// Commit of https://github.com/w3c/json-ld-framing the framing test suite is pinned to.
+const W3C_FRAMING_TEST_SUITE_REF = '3bf782ba9a40dd1b143435abe386d38df64f2b47';
+
+function suiteFixturesAreMissing(): bool
+{
+    return !fs()->exists(\sprintf('%s/tests/flatten/output', CACHE_DIR_W3C_TEST_SUITE))
+        || !fs()->exists(\sprintf('%s/tests/frame/output', CACHE_DIR_W3C_FRAMING_TEST_SUITE));
+}
 
 #[AsTask(aliases: ['generate'], description: 'Generate validation classes for all supported vocabularies. Will use the currently downloaded data.')]
 function generate(
@@ -58,13 +74,13 @@ function generate(
 
         if ('schema-org' === $specific) {
             generateSchemaOrg();
-            warnAboutGeneratedFilesFormatting('SchemaOrg');
+            fixGeneratedFilesFormatting('SchemaOrg');
 
             return;
         }
 
         generateGoogle();
-        warnAboutGeneratedFilesFormatting('Google');
+        fixGeneratedFilesFormatting('Google');
 
         return;
     }
@@ -73,7 +89,7 @@ function generate(
 
     generateSchemaOrg();
     generateGoogle();
-    warnAboutGeneratedFilesFormatting();
+    fixGeneratedFilesFormatting();
 
     io()->success('Classes generated successfully');
 }
@@ -106,26 +122,24 @@ function generateSchemaOrg(): void
 }
 
 /**
- * Generated files are committed CS-fixed in this repository, but generation itself
- * does not run PHP-CS-Fixer to avoid slowing down commands/CI.
+ * Applies the project coding standards to the freshly generated classes, so that
+ * generation is reproducible: regenerating from the same vocabulary definitions
+ * always yields a tree identical to the committed one, and CI can assert it with
+ * a plain `git diff --exit-code` after running `castor generate`.
  */
-function warnAboutGeneratedFilesFormatting(?string $vocabulary = null): void
+function fixGeneratedFilesFormatting(?string $vocabulary = null): void
 {
-    io()->warning('Generated files will differ from committed CS-fixed files after generation.');
+    $directory = match ($vocabulary) {
+        'SchemaOrg' => 'src/Vocabularies/Generated/SchemaOrg',
+        'Google' => 'src/Vocabularies/Generated/Google',
+        default => 'src/Vocabularies/Generated',
+    };
 
-    if ('SchemaOrg' === $vocabulary) {
-        io()->writeln('If needed, discard generated changes with: git restore --worktree -- src/Vocabularies/Generated/SchemaOrg');
+    io()->writeln(\sprintf('Applying the coding standards to %s.', $directory));
 
-        return;
+    if (0 !== cs(directory: $directory)) {
+        throw new \RuntimeException('Could not apply the coding standards to the generated files.');
     }
-
-    if ('Google' === $vocabulary) {
-        io()->writeln('If needed, discard generated changes with: git restore --worktree -- src/Vocabularies/Generated/Google');
-
-        return;
-    }
-
-    io()->writeln('If needed, discard generated changes with: git restore --worktree -- src/Vocabularies/Generated');
 }
 
 #[AsTask(namespace: 'google:generation', description: 'Crawl the Google documentation. Updates resources/google/google-types.json (curated manifest), then downloads HTML for active/extra types.')]
@@ -317,13 +331,17 @@ function phpstan(): int
 #[AsTask(name: 'prepare', namespace: 'qa:phpunit', description: 'Download the W3C tests suite')]
 function phpunitPrepare(
     bool $force = false,
+    #[AsOption(name: 'ref', mode: InputOption::VALUE_REQUIRED, description: 'Git ref of w3c/json-ld-api to download (defaults to the pinned commit; use "main" to track upstream)')]
+    ?string $ref = null,
 ): void {
-    if ($force || !fs()->exists(\sprintf('%s/tests/flatten/output', CACHE_DIR_W3C_TEST_SUITE))) {
-        io()->title('Downloading the W3C tests suite.');
+    $ref ??= W3C_TEST_SUITE_REF;
+
+    if ($force || suiteFixturesAreMissing()) {
+        io()->title(\sprintf('Downloading the W3C tests suite (ref: %s).', $ref));
         fs()->remove(CACHE_DIR_W3C_TEST_SUITE);
 
         $zipFileName = tempnam(sys_get_temp_dir(), 'w3c-json-ld-api');
-        http_download('https://github.com/w3c/json-ld-api/archive/main.zip', $zipFileName);
+        http_download(\sprintf('https://github.com/w3c/json-ld-api/archive/%s.zip', $ref), $zipFileName);
 
         $zip = new \ZipArchive();
         $zip->open($zipFileName);
@@ -331,11 +349,11 @@ function phpunitPrepare(
         $zip->close();
 
         foreach (Algorithms::algorithmNames() as $algorithm) {
-            foreach (['-in.jsonld' => 'input', '-out.jsonld' => 'output'] as $suffix => $directory) {
+            foreach (['-in.jsonld' => 'input', '-out.jsonld' => 'output', '-context.jsonld' => 'context'] as $suffix => $directory) {
                 $targetDirectory = \sprintf('%s/tests/%s/%s', CACHE_DIR_W3C_TEST_SUITE, $algorithm, $directory);
                 fs()->mkdir($targetDirectory);
                 $files = finder()
-                    ->in(\sprintf('%s/json-ld-api-main/tests/%s', CACHE_DIR_W3C_TEST_SUITE, $algorithm))
+                    ->in(\sprintf('%s/json-ld-api-%s/tests/%s', CACHE_DIR_W3C_TEST_SUITE, $ref, $algorithm))
                     ->files()
                     ->name('*' . $suffix)
                 ;
@@ -352,13 +370,47 @@ function phpunitPrepare(
 
         // remove the zip archive and all the files
         fs()->remove($zipFileName);
-        fs()->remove(\sprintf('%s/json-ld-api-main', CACHE_DIR_W3C_TEST_SUITE));
+        fs()->remove(\sprintf('%s/json-ld-api-%s', CACHE_DIR_W3C_TEST_SUITE, $ref));
 
         // copy the context test fixtures
         fs()->mirror(
             __DIR__ . '/../resources/jsonld/context',
             CACHE_DIR_W3C_TEST_SUITE . '/tests/context',
         );
+
+        // The framing test suite lives in its own W3C repository.
+        $framingRef = W3C_FRAMING_TEST_SUITE_REF === $ref || 'main' !== $ref ? W3C_FRAMING_TEST_SUITE_REF : 'main';
+        io()->writeln(\sprintf('Downloading the W3C framing tests suite (ref: %s).', $framingRef));
+        fs()->remove(CACHE_DIR_W3C_FRAMING_TEST_SUITE);
+
+        $framingZipFileName = tempnam(sys_get_temp_dir(), 'w3c-json-ld-framing');
+        http_download(\sprintf('https://github.com/w3c/json-ld-framing/archive/%s.zip', $framingRef), $framingZipFileName);
+
+        $framingZip = new \ZipArchive();
+        $framingZip->open($framingZipFileName);
+        $framingZip->extractTo(CACHE_DIR_W3C_FRAMING_TEST_SUITE);
+        $framingZip->close();
+
+        foreach (['-in.jsonld' => 'input', '-out.jsonld' => 'output', '-frame.jsonld' => 'frame'] as $suffix => $directory) {
+            $targetDirectory = \sprintf('%s/tests/frame/%s', CACHE_DIR_W3C_FRAMING_TEST_SUITE, $directory);
+            fs()->mkdir($targetDirectory);
+            $files = finder()
+                ->in(\sprintf('%s/json-ld-framing-%s/tests/frame', CACHE_DIR_W3C_FRAMING_TEST_SUITE, $framingRef))
+                ->files()
+                ->name('*' . $suffix)
+            ;
+
+            foreach ($files as $file) {
+                fs()->copy(
+                    $file->getPathname(),
+                    \sprintf('%s/%s', $targetDirectory, $file->getFilename()),
+                    true,
+                );
+            }
+        }
+
+        fs()->remove($framingZipFileName);
+        fs()->remove(\sprintf('%s/json-ld-framing-%s', CACHE_DIR_W3C_FRAMING_TEST_SUITE, $framingRef));
 
         io()->success('W3C tests suite downloaded successfully.');
     } else {
@@ -379,7 +431,7 @@ function phpunit(
         install();
     }
 
-    if (!fs()->exists(\sprintf('%s/tests/flatten/output', CACHE_DIR_W3C_TEST_SUITE))) {
+    if (suiteFixturesAreMissing()) {
         phpunitPrepare();
     }
 
@@ -401,6 +453,88 @@ function phpunit(
 
     if ($stopOnError) {
         $command[] = '--stop-on-error';
+    }
+
+    return run(
+        $command,
+        context: context()->withAllowFailure()->withWorkingDirectory(\dirname(__DIR__)),
+    )->getExitCode();
+}
+
+#[AsTask(name: 'coverage', description: 'Runs PHPUnit with code coverage', namespace: 'qa:phpunit', aliases: ['coverage'])]
+function phpunitCoverage(
+    #[AsOption(name: 'html', mode: InputOption::VALUE_NONE, description: 'Also generate an HTML report in var/cache/coverage')]
+    ?bool $html = null,
+): int {
+    if (!is_dir(__DIR__ . '/phpunit/vendor')) {
+        install();
+    }
+
+    if (suiteFixturesAreMissing()) {
+        phpunitPrepare();
+    }
+
+    $command = [
+        'php',
+        '-d memory_limit=-1',
+    ];
+
+    // Coverage needs a driver: prefer pcov (fast), fall back to xdebug.
+    if (\extension_loaded('pcov')) {
+        $command[] = '-d pcov.enabled=1';
+    } elseif (\extension_loaded('xdebug')) {
+        $command[] = '-d xdebug.mode=coverage';
+    } else {
+        io()->error('No code coverage driver available. Install the pcov (recommended) or xdebug PHP extension.');
+
+        return 1;
+    }
+
+    $command = [
+        ...$command,
+        __DIR__ . '/phpunit/vendor/bin/phpunit',
+        'tests',
+        '--coverage-text',
+        '--coverage-clover=var/cache/coverage/clover.xml',
+    ];
+
+    if ($html) {
+        $command[] = '--coverage-html=var/cache/coverage/html';
+    }
+
+    return run(
+        $command,
+        context: context()->withAllowFailure()->withWorkingDirectory(\dirname(__DIR__)),
+    )->getExitCode();
+}
+
+#[AsTask(name: 'infection', description: 'Runs Infection mutation testing on the validator and mapper layers', aliases: ['infection'])]
+function infection(
+    #[AsOption(name: 'min-msi', mode: InputOption::VALUE_REQUIRED, description: 'Fail if the Mutation Score Indicator is below this percentage')]
+    ?string $minMsi = null,
+): int {
+    if (!is_dir(__DIR__ . '/infection/vendor')) {
+        install();
+    }
+
+    if (suiteFixturesAreMissing()) {
+        phpunitPrepare();
+    }
+
+    if (!\extension_loaded('pcov') && !\extension_loaded('xdebug')) {
+        io()->error('Infection needs a code coverage driver. Install the pcov (recommended) or xdebug PHP extension.');
+
+        return 1;
+    }
+
+    $command = [
+        __DIR__ . '/infection/vendor/bin/infection',
+        '--threads=max',
+        '--show-mutations',
+    ];
+
+    if (null !== $minMsi) {
+        $command[] = '--min-msi=' . $minMsi;
     }
 
     return run(
