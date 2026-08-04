@@ -26,8 +26,8 @@ use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
 use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
 use Jolicode\JsonLd\Parser\JsonLdParser;
 use Jolicode\JsonLd\Validator;
-use Jolicode\Vocabularies\Validators\AbstractValidator;
 use Jolicode\Vocabularies\Validators\RegisteredValidatorsContainer;
+use Jolicode\Vocabularies\Validators\ValidatorInterface;
 
 class HtmlValidationPipelineBench
 {
@@ -51,7 +51,7 @@ class HtmlValidationPipelineBench
     /** @var list<MappedType> */
     private array $mappedTypesForValidation = [];
 
-    /** @var array<string, AbstractValidator> */
+    /** @var array<string, ValidatorInterface> */
     private array $validators;
 
     public function __construct(
