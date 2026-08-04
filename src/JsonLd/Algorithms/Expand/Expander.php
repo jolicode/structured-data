@@ -25,6 +25,14 @@ use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinition;
 
 class Expander
 {
+    /**
+     * Sentinel used as the default active property of doExpand(), marking a
+     * top-level invocation. It is distinct from the real "@default" framing
+     * keyword, which can legitimately appear as an active property when
+     * expanding a frame.
+     */
+    public const TOP_LEVEL_ACTIVE_PROPERTY = "\0top-level\0";
+
     public function __construct(
         private ContextProcesser $contextProcesser = new ContextProcesser(),
     ) {
@@ -95,7 +103,7 @@ class Expander
         ProcessorOptions $options,
         ?string $baseUrl = null,
         Context $activeContext = new Context(),
-        ?string $activeProperty = FramingKeyword::DEFAULT->value,
+        ?string $activeProperty = self::TOP_LEVEL_ACTIVE_PROPERTY,
         bool $fromMap = false,
     ): \stdClass|array|null {
         // 1
@@ -104,7 +112,7 @@ class Expander
         }
 
         // 2
-        if (FramingKeyword::DEFAULT->value === $activeProperty) {
+        if (self::TOP_LEVEL_ACTIVE_PROPERTY === $activeProperty) {
             $options->frameExpansion = false;
         }
 
@@ -157,7 +165,7 @@ class Expander
         $inputType = [];
 
         // 11
-        $this->handleTypeEntries($activeContext, $element, $typeScopedContext, $inputType);
+        $this->handleTypeEntries($activeContext, $element, $typeScopedContext, $inputType, $options);
 
         // 12
         $result = [];
@@ -195,7 +203,7 @@ class Expander
 
         // 15
         if (property_exists($result, Keyword::VALUE->value)) {
-            if (false === $this->handleResultValueEntry($result)) {
+            if (false === $this->handleResultValueEntry($result, $options)) {
                 return null;
             }
         // 16
@@ -222,7 +230,7 @@ class Expander
             }
         }
 
-        if (null === $activeProperty || FramingKeyword::DEFAULT->value === $activeProperty) {
+        if (null === $activeProperty || self::TOP_LEVEL_ACTIVE_PROPERTY === $activeProperty) {
             if (
                 \is_object($result)
                 && property_exists($result, Keyword::GRAPH->value)
@@ -339,13 +347,34 @@ class Expander
             // 13.2
             $expandedProperty = IriResolver::expand($activeContext, $key);
 
+            // The framing flag keywords expand to themselves; the generic IRI
+            // expansion returns null for them because they merely have the form
+            // of a keyword.
+            $isFramingFlagKeyword = null === $expandedProperty && \in_array($key, [
+                FramingKeyword::DEFAULT->value,
+                FramingKeyword::EMBED->value,
+                FramingKeyword::EXPLICIT->value,
+                FramingKeyword::OMIT_DEFAULT->value,
+                FramingKeyword::REQUIRE_ALL->value,
+            ], true);
+
+            if ($isFramingFlagKeyword) {
+                // 13.4.2 of the recommendation: framing keywords are dropped
+                // outside of frame expansion.
+                if (!$options->frameExpansion) {
+                    continue;
+                }
+
+                $expandedProperty = $key;
+            }
+
             // 13.3
-            if (!$expandedProperty || (!str_contains($expandedProperty, ':') && !Keyword::tryFrom($expandedProperty))) {
+            if (!$expandedProperty || (!str_contains($expandedProperty, ':') && !Keyword::tryFrom($expandedProperty) && !$isFramingFlagKeyword)) {
                 continue;
             }
 
             // 13.4
-            if (Keyword::tryFrom($expandedProperty)) {
+            if (Keyword::tryFrom($expandedProperty) || $isFramingFlagKeyword) {
                 // 13.4.1
                 if (Keyword::REVERSE->value === $activeProperty) {
                     throw new ExpansionException('invalid reverse property map');
@@ -434,15 +463,24 @@ class Expander
                         continue 2;
                 }
 
-                // 13.4.15
+                // 13.4.15: only the five framing flag keywords are re-expanded here;
+                // the core keywords were already handled above.
                 if ($options->frameExpansion) {
-                    if (FramingKeyword::tryFrom($expandedProperty)) {
+                    $framingFlagKeywords = [
+                        FramingKeyword::DEFAULT->value,
+                        FramingKeyword::EMBED->value,
+                        FramingKeyword::EXPLICIT->value,
+                        FramingKeyword::OMIT_DEFAULT->value,
+                        FramingKeyword::REQUIRE_ALL->value,
+                    ];
+
+                    if (\in_array($expandedProperty, $framingFlagKeywords, true)) {
                         $expandedValue = $this->doExpand(
                             $value,
                             $options,
                             $baseUrl,
                             $activeContext,
-                            $activeProperty,
+                            $expandedProperty,
                         );
                     }
                 }
@@ -586,8 +624,13 @@ class Expander
 
         // 13.4.3.2
         if ($options->frameExpansion) {
-            foreach ((array) $value as $valueEntry) {
-                $expandedValue[] = IriResolver::expand($activeContext, $valueEntry, true, false);
+            $valueEntries = $value instanceof \stdClass ? [$value] : (array) $value;
+
+            foreach ($valueEntries as $valueEntry) {
+                // An empty map is the wildcard @id pattern and is kept as is.
+                $expandedValue[] = $valueEntry instanceof \stdClass
+                    ? $valueEntry
+                    : IriResolver::expand($activeContext, $valueEntry, true, false);
             }
         } else {
             $expandedValue = IriResolver::expand($activeContext, $value, true, false);
@@ -748,8 +791,13 @@ class Expander
         // 13.4.8.1
         $this->validateValueForLanguage($value, $options);
 
-        // 13.4.8.2
-        return $options->frameExpansion ? (array) $value : $value;
+        // 13.4.8.2: language tags are processed case-insensitively; processors
+        // normalize them to lowercase.
+        if (\is_string($value)) {
+            $value = strtolower($value);
+        }
+
+        return $options->frameExpansion ? ($value instanceof \stdClass ? [$value] : (array) $value) : $value;
     }
 
     private function processDirectionKeyword(Context $activeContext, mixed $value, ProcessorOptions $options): mixed
@@ -763,7 +811,7 @@ class Expander
         }
 
         // 13.4.9
-        return $options->frameExpansion ? (array) $value : $value;
+        return $options->frameExpansion ? ($value instanceof \stdClass ? [$value] : (array) $value) : $value;
     }
 
     private function processIndexKeyword(mixed $value): string
@@ -1312,10 +1360,16 @@ class Expander
         return $activeContext;
     }
 
-    private function handleTypeEntries(Context &$activeContext, \stdClass $element, Context $typeScopedContext, array &$inputType): void
+    private function handleTypeEntries(Context &$activeContext, \stdClass $element, Context $typeScopedContext, array &$inputType, ProcessorOptions $options): void
     {
         foreach ($element as $key => $value) {
             if (Keyword::TYPE->value !== IriResolver::expand($activeContext, $key)) {
+                continue;
+            }
+
+            // A frame may use an empty map (wildcard) or an empty array (match none)
+            // as the @type entry: there is then no type-scoped context to select.
+            if ($options->frameExpansion && ($value instanceof \stdClass || [] === $value)) {
                 continue;
             }
 
@@ -1352,21 +1406,30 @@ class Expander
         }
     }
 
-    private function handleResultValueEntry(\stdClass $result): bool
+    private function handleResultValueEntry(\stdClass $result, ProcessorOptions $options): bool
     {
         // 15.1
         $this->validateResultValue($result);
 
+        // In frame expansion, @value, @language and @type entries may hold empty
+        // maps (wildcards) or arrays of values, which relaxes the checks below.
+        $valueIsFramePattern = $options->frameExpansion
+            && ($result->{Keyword::VALUE->value} instanceof \stdClass || \is_array($result->{Keyword::VALUE->value}));
+
         // 15.2
         if (property_exists($result, Keyword::TYPE->value) && Keyword::JSON->value === $result->{Keyword::TYPE->value}) {
             // 15.3
-        } elseif (null === $result->{Keyword::VALUE->value} || [] === $result->{Keyword::VALUE->value}) {
+        } elseif (!$valueIsFramePattern && (null === $result->{Keyword::VALUE->value} || [] === $result->{Keyword::VALUE->value})) {
             return false;
         // 15.4
-        } elseif (!\is_string($result->{Keyword::VALUE->value}) && property_exists($result, Keyword::LANGUAGE->value)) {
+        } elseif (!$valueIsFramePattern && !\is_string($result->{Keyword::VALUE->value}) && property_exists($result, Keyword::LANGUAGE->value)) {
             throw new ExpansionException('invalid language-tagged value');
         // 15.5
-        } elseif (property_exists($result, Keyword::TYPE->value) && !IriResolver::isAbsoluteIri($result->{Keyword::TYPE->value})) {
+        } elseif (
+            property_exists($result, Keyword::TYPE->value)
+            && !IriResolver::isAbsoluteIri($result->{Keyword::TYPE->value})
+            && !($options->frameExpansion && ($result->{Keyword::TYPE->value} instanceof \stdClass || \is_array($result->{Keyword::TYPE->value})))
+        ) {
             throw new ExpansionException('invalid typed value');
         }
 
@@ -1393,6 +1456,12 @@ class Expander
 
     private function handleNullPropertyAndGraphProperty(\stdClass|array &$result, ProcessorOptions $options): bool
     {
+        // Frames keep their free-floating nodes: a frame reduced to a bare @id, a
+        // lone framing flag, or an empty wildcard map is meaningful for matching.
+        if ($options->frameExpansion) {
+            return false;
+        }
+
         // 19.1
         if (\is_object($result)) {
             $objectPropertiesCount = \count(get_object_vars($result));
@@ -1407,11 +1476,7 @@ class Expander
 
             // 19.2
             if (1 === $objectPropertiesCount && property_exists($result, Keyword::ID->value)) {
-                if ($options->frameExpansion) {
-                    $result = (object) [Keyword::ID->value => null];
-                } else {
-                    return true;
-                }
+                return true;
             }
         }
 
@@ -1422,7 +1487,7 @@ class Expander
     private function validateValueForType(mixed $value, ProcessorOptions $options): bool
     {
         if ($options->frameExpansion && \is_object($value)) {
-            if (new \stdClass() === $value) {
+            if ($value instanceof \stdClass && [] === get_object_vars($value)) {
                 return true;
             }
 
@@ -1455,7 +1520,7 @@ class Expander
     private function validateValueForValue(mixed $value, ProcessorOptions $options): bool
     {
         if ($options->frameExpansion) {
-            if (new \stdClass() === $value) {
+            if ($value instanceof \stdClass && [] === get_object_vars($value)) {
                 return true;
             }
 
@@ -1481,7 +1546,7 @@ class Expander
     private function validateValueForLanguage(mixed $value, ProcessorOptions $options): bool
     {
         if ($options->frameExpansion) {
-            if (new \stdClass() === $value) {
+            if ($value instanceof \stdClass && [] === get_object_vars($value)) {
                 return true;
             }
 

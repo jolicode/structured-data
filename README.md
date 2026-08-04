@@ -10,9 +10,8 @@ It includes :
 
 This library requires:
 
-- PHP >= 8.4
-- the [ZipArchive PHP extension](https://www.php.net/manual/en/class.ziparchive.php);
-- (optional) the PHP task runner [Castor](https://github.com/jolicode/castor/), used for the tooling and the CLI interface.
+- PHP >= 8.4, with the `dom`, `json` and `libxml` extensions
+- (optional) the PHP task runner [Castor](https://github.com/jolicode/castor/), used for the tooling and the CLI interface. The development tooling additionally needs the [ZipArchive PHP extension](https://www.php.net/manual/en/class.ziparchive.php) to download the W3C test suites.
 
 ## Booting
 
@@ -130,12 +129,14 @@ Sample result of the validate command:
 
 The currently available algorithms are:
 
-- [ ] [Compaction](https://www.w3.org/TR/json-ld11-api/#compaction-algorithm)
+- [x] [Compaction](https://www.w3.org/TR/json-ld11-api/#compaction-algorithm)
 - [x] [Expansion](https://www.w3.org/TR/json-ld11-api/#expansion-algorithm)
 - [x] [Flattening](https://www.w3.org/TR/json-ld11-api/#flattening-algorithm)
-- [ ] [Framing](https://www.w3.org/TR/json-ld11-framing/#framing-algorithm)
+- [x] [Framing](https://www.w3.org/TR/json-ld11-framing/#framing-algorithm)
 
-To use them, initialize a new instance of the `Jolicode\JsonLd\Algorithms\Expand\Expander` or of the `Jolicode\JsonLd\Algorithms\Flatten\Flattener` classes, and pass them the JSON-LD document you want to convert.
+Each algorithm is validated against the official W3C test suites ([json-ld-api](https://github.com/w3c/json-ld-api) and [json-ld-framing](https://github.com/w3c/json-ld-framing)).
+
+To use them, initialize a new instance of the `Jolicode\JsonLd\Algorithms\Expand\Expander`, `Jolicode\JsonLd\Algorithms\Flatten\Flattener`, `Jolicode\JsonLd\Algorithms\Compact\Compactor` or `Jolicode\JsonLd\Algorithms\Frame\Framer` classes, and pass them the JSON-LD document you want to convert.
 
 So, to expand a JSON-LD document you would need to do the following:
 
@@ -169,11 +170,12 @@ The result will be a json string containing the expanded JSON-LD document:
 ]
 ```
 
-If you want a PHP object instead of a JSON string, you can set the `encodeResult` parameter to false when initializing the `Expander` or the `Flattener`:
-You can also pass an array of [JSON-LD options](https://www.w3.org/TR/json-ld-api/#the-jsonldoptions-type) if you want to modify the default behavior of the algorithms :
+If you want a PHP object instead of a JSON string, set the `encodeResult` parameter to false when calling `expand()`.
+You can also pass a `ProcessorOptions` object holding the [JSON-LD options](https://www.w3.org/TR/json-ld-api/#the-jsonldoptions-type) if you want to modify the default behavior of the algorithms:
 
 ```php
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
+use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 
 $jsonString = '{
   "@context": "https://schema.org",
@@ -181,13 +183,13 @@ $jsonString = '{
   "name": "John Doe"
 }';
 
-$options = [
-  'ordered' => true,
-  'frameExpansion' => true,
-];
+$options = new ProcessorOptions(
+  ordered: true,
+  frameExpansion: true,
+);
 
-$expander = new Expander(encodeResult: false, options: $options);
-$result = $expander->expand($jsonString);
+$expander = new Expander();
+$result = $expander->expand($jsonString, options: $options, encodeResult: false);
 ```
 
 ### Command Line Interface
@@ -197,6 +199,8 @@ Commands are also available to use the algorithms from the CLI :
 ```bash
 castor json-ld:expand <file>
 castor json-ld:flatten <file>
+castor json-ld:compact <file> <context-file>
+castor json-ld:frame <file> <frame-file>
 ```
 
 They will print the output in the console.
@@ -217,11 +221,15 @@ Command | Description | Aliases
 ---- | ----- | ----
 `castor qa:phpunit:prepare` | Download the W3C tests suite
 `castor qa:phpunit:run` | Runs PHPUnit | `castor test`, `castor tests`
+`castor qa:phpunit:coverage` | Runs PHPUnit with code coverage (requires the pcov or xdebug extension) | `castor coverage`
+`castor qa:infection` | Runs Infection mutation testing on the validator and mapper layers (requires the pcov or xdebug extension) | `castor infection`
 
-The test suite changes from time to time, so it is recommended to update the test suite before running the tests:
+The W3C test suite is pinned to a known-good upstream commit (see `W3C_TEST_SUITE_REF` in `tools/castor.php`).
+To re-download it, or to test against the upstream main branch:
 
 ```bash
 castor qa:phpunit:prepare --force
+castor qa:phpunit:prepare --force --ref main
 ```
 
 Additional commands are available to run the benchmarks:

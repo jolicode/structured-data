@@ -16,8 +16,10 @@ use function Castor\import;
 use function Castor\io;
 use function Castor\run;
 
+use Jolicode\JsonLd\Algorithms\Compact\Compactor;
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
 use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
+use Jolicode\JsonLd\Algorithms\Frame\Framer;
 use Jolicode\JsonLd\Audit\AuditOptions;
 use Jolicode\JsonLd\Mapper\MappedError;
 use Jolicode\JsonLd\Mapper\MappedProperty;
@@ -37,6 +39,7 @@ function install(): void
     run(['composer', 'install', '-o', '--working-dir', 'tools/phpstan']);
     run(['composer', 'install', '-o', '--working-dir', 'tools/phpbench']);
     run(['composer', 'install', '-o', '--working-dir', 'tools/phpunit']);
+    run(['composer', 'install', '-o', '--working-dir', 'tools/infection']);
 }
 
 #[AsTask(description: 'Updates qa tooling')]
@@ -46,6 +49,7 @@ function update(): void
     run(['composer', 'update', '-o', '--working-dir', 'tools/phpstan']);
     run(['composer', 'update', '-o', '--working-dir', 'tools/phpbench']);
     run(['composer', 'update', '-o', '--working-dir', 'tools/phpunit']);
+    run(['composer', 'update', '-o', '--working-dir', 'tools/infection']);
 }
 
 #[AsTask(name: 'expand', namespace: 'json-ld', description: 'Applies the expansion algorithm to a JSON-LD document')]
@@ -86,6 +90,58 @@ function flatten(
 
     $flattener = new Flattener();
     $result = $flattener->flatten($file);
+
+    if (!is_string($result)) {
+        $result = json_encode($result, \JSON_PRETTY_PRINT) ?: '';
+    }
+
+    io()->writeln($result);
+}
+
+#[AsTask(name: 'compact', namespace: 'json-ld', description: 'Applies the compaction algorithm to a JSON-LD document, using the provided context')]
+function compactJsonLd(
+    #[AsArgument(name: 'file', description: 'The file to compact')]
+    string $fileName,
+    #[AsArgument(name: 'context-file', description: 'The file holding the context to compact against')]
+    string $contextFileName,
+): void {
+    $file = file_get_contents($fileName);
+    $context = file_get_contents($contextFileName);
+
+    if (false === $file || false === $context) {
+        io()->error(sprintf('The file "%s" or "%s" could not be read.', $fileName, $contextFileName));
+
+        return;
+    }
+
+    $compactor = new Compactor();
+    $result = $compactor->compact($file, $context);
+
+    if (!is_string($result)) {
+        $result = json_encode($result, \JSON_PRETTY_PRINT) ?: '';
+    }
+
+    io()->writeln($result);
+}
+
+#[AsTask(name: 'frame', namespace: 'json-ld', description: 'Applies the framing algorithm to a JSON-LD document, using the provided frame')]
+function frameJsonLd(
+    #[AsArgument(name: 'file', description: 'The file to frame')]
+    string $fileName,
+    #[AsArgument(name: 'frame-file', description: 'The file holding the frame')]
+    string $frameFileName,
+): void {
+    $file = file_get_contents($fileName);
+    $frame = file_get_contents($frameFileName);
+
+    if (false === $file || false === $frame) {
+        io()->error(sprintf('The file "%s" or "%s" could not be read.', $fileName, $frameFileName));
+
+        return;
+    }
+
+    $framer = new Framer();
+    $result = $framer->frame($file, $frame);
 
     if (!is_string($result)) {
         $result = json_encode($result, \JSON_PRETTY_PRINT) ?: '';

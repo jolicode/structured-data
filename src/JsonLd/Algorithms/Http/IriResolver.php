@@ -106,7 +106,12 @@ class IriResolver
             if (\array_key_exists($prefix, $activeContext->termDefinitions)) {
                 $termDefinition = $activeContext->termDefinitions[$prefix];
 
-                if (null !== $termDefinition->iriMapping && $termDefinition->prefixFlag) {
+                // In JSON-LD 1.0, any defined term acts as a prefix during expansion;
+                // the prefix flag only restricts this in 1.1 processing mode.
+                if (
+                    null !== $termDefinition->iriMapping
+                    && ($termDefinition->prefixFlag || Context::PROCESSING_MODE_10 === $activeContext->processingMode)
+                ) {
                     return $termDefinition->iriMapping . $suffix;
                 }
             }

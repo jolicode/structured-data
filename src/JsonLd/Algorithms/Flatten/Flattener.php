@@ -11,6 +11,7 @@
 
 namespace Jolicode\JsonLd\Algorithms\Flatten;
 
+use Jolicode\JsonLd\Algorithms\Compact\Compactor;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
 use Jolicode\JsonLd\Algorithms\Http\DocumentLoader;
@@ -57,10 +58,20 @@ class Flattener
         $expander = new Expander();
         $expandedInput = $expander->doExpand($element, $options, activeContext: $activeContext);
 
-        // TODO: if context is not null, use the compaction algorithm.
-        // See https://www.w3.org/TR/json-ld-api/#the-jsonldprocessor-interface in flatten() 6.1
+        $flattened = $this->doFlatten($expandedInput, $options->ordered);
 
-        return json_encode($this->doFlatten($expandedInput, $options->ordered), \JSON_PRETTY_PRINT) ?: null;
+        // 6.1: if context is not null, the flattened output is compacted against it.
+        if (null !== $context) {
+            $compactor = new Compactor();
+
+            return \is_string($compacted = $compactor->compact(
+                (string) json_encode($flattened),
+                $context,
+                $options,
+            )) ? $compacted : null;
+        }
+
+        return json_encode($flattened, \JSON_PRETTY_PRINT) ?: null;
     }
 
     /**
