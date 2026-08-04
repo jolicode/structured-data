@@ -20,4 +20,5 @@ final class FolloweeModel
     public const TYPES = ['FollowAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FollowActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

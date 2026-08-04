@@ -16,6 +16,7 @@ final class DiagnosticModel
     public const DESCRIPTION = 'A medical device used for diagnostic purposes.';
     public const LABEL = 'Diagnostic';
     public const NAME = 'schema:Diagnostic';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

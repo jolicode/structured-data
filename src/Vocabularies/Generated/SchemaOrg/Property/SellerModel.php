@@ -20,4 +20,5 @@ final class SellerModel
     public const TYPES = ['BuyAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BuyActionModel', 'Demand' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DemandModel', 'Flight' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FlightModel', 'Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel', 'Order' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrderModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

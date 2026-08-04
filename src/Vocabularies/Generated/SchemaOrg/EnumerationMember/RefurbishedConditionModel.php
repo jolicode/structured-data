@@ -18,4 +18,5 @@ final class RefurbishedConditionModel
     public const NAME = 'schema:RefurbishedCondition';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

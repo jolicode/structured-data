@@ -20,4 +20,5 @@ final class VendorModel
     public const TYPES = ['BuyAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BuyActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = 'seller';
 }

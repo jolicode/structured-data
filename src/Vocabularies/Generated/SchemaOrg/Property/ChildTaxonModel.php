@@ -18,6 +18,7 @@ final class ChildTaxonModel
     public const NAME = 'schema:childTaxon';
     public const VALUES = ['TaxonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TaxonModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
     public const TYPES = ['Taxon' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TaxonModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['http://www.bioschemas.org/Taxon'];
+    public const SUPERSEDED_BY = null;
 }

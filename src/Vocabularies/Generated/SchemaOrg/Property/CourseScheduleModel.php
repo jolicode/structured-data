@@ -18,6 +18,7 @@ final class CourseScheduleModel
     public const NAME = 'schema:courseSchedule';
     public const VALUES = ['ScheduleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ScheduleModel'];
     public const TYPES = ['CourseInstance' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CourseInstanceModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3281'];
+    public const SUPERSEDED_BY = null;
 }

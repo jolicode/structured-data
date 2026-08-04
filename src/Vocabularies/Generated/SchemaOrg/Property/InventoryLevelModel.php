@@ -20,4 +20,5 @@ final class InventoryLevelModel
     public const TYPES = ['Demand' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DemandModel', 'Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel', 'SomeProducts' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SomeProductsModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -26,6 +26,7 @@ Examples of funding agencies include ERC, REA, NIH, Bill and Melinda Gates Found
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/383'];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AcceptedPaymentMethodModel $acceptedPaymentMethod = null,

@@ -20,4 +20,5 @@ final class ExerciseCourseModel
     public const TYPES = ['ExerciseAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ExerciseActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

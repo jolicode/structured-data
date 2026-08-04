@@ -16,6 +16,7 @@ final class MulticellularParasiteModel
     public const DESCRIPTION = 'Multicellular parasite that causes an infection.';
     public const LABEL = 'MulticellularParasite';
     public const NAME = 'schema:MulticellularParasite';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

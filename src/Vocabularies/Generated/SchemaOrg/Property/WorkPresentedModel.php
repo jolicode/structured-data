@@ -20,4 +20,5 @@ final class WorkPresentedModel
     public const TYPES = ['ScreeningEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ScreeningEventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

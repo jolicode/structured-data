@@ -20,6 +20,7 @@ In English, formulations such as "they/them", "she/her", and "he/him" are common
     public const NAME = 'schema:pronouns';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel', 'StructuredValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\StructuredValueModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Person' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2935'];
+    public const SUPERSEDED_BY = null;
 }

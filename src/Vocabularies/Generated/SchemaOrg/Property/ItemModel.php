@@ -20,4 +20,5 @@ final class ItemModel
     public const TYPES = ['DataFeedItem' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DataFeedItemModel', 'ListItem' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ListItemModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

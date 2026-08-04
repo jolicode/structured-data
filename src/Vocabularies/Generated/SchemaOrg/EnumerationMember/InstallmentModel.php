@@ -16,6 +16,7 @@ final class InstallmentModel
     public const DESCRIPTION = 'Represents the installment pricing component of the total price for an offered product.';
     public const LABEL = 'Installment';
     public const NAME = 'schema:Installment';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2689'];
+    public const SUPERSEDED_BY = null;
 }

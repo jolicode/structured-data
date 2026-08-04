@@ -16,6 +16,7 @@ final class TierBenefitLoyaltyPriceModel
     public const DESCRIPTION = 'Benefit of the tier is a members-only price.';
     public const LABEL = 'TierBenefitLoyaltyPrice';
     public const NAME = 'schema:TierBenefitLoyaltyPrice';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3563'];
+    public const SUPERSEDED_BY = null;
 }

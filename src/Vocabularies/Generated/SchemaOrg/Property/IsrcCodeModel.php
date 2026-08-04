@@ -20,4 +20,5 @@ final class IsrcCodeModel
     public const TYPES = ['MusicRecording' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicRecordingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -16,6 +16,7 @@ final class OnlineEventAttendanceModeModel
     public const DESCRIPTION = 'OnlineEventAttendanceMode - an event that is primarily conducted online.';
     public const LABEL = 'OnlineEventAttendanceMode';
     public const NAME = 'schema:OnlineEventAttendanceMode';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1842'];
+    public const SUPERSEDED_BY = null;
 }

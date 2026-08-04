@@ -18,6 +18,7 @@ final class MedicalSpecialtyModel
     public const NAME = 'schema:medicalSpecialty';
     public const VALUES = ['MedicalSpecialtyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalSpecialtyModel'];
     public const TYPES = ['Hospital' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HospitalModel', 'MedicalClinic' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalClinicModel', 'MedicalOrganization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalOrganizationModel', 'Physician' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PhysicianModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

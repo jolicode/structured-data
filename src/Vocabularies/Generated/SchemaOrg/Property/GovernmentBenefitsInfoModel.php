@@ -18,6 +18,7 @@ final class GovernmentBenefitsInfoModel
     public const NAME = 'schema:governmentBenefitsInfo';
     public const VALUES = ['GovernmentServiceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GovernmentServiceModel'];
     public const TYPES = ['SpecialAnnouncement' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SpecialAnnouncementModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2534'];
+    public const SUPERSEDED_BY = null;
 }

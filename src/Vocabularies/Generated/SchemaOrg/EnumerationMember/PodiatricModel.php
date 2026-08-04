@@ -16,6 +16,7 @@ final class PodiatricModel
     public const DESCRIPTION = 'Podiatry is the care of the human foot, especially the diagnosis and treatment of foot disorders.';
     public const LABEL = 'Podiatric';
     public const NAME = 'schema:Podiatric';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

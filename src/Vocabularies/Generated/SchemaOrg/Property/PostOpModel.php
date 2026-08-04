@@ -18,6 +18,7 @@ final class PostOpModel
     public const NAME = 'schema:postOp';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalDevice' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalDeviceModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

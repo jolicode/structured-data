@@ -18,6 +18,7 @@ final class HasEnergyConsumptionDetailsModel
     public const NAME = 'schema:hasEnergyConsumptionDetails';
     public const VALUES = ['EnergyConsumptionDetailsModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnergyConsumptionDetailsModel'];
     public const TYPES = ['Product' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2670'];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class SubReservationModel
     public const TYPES = ['ReservationPackage' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReservationPackageModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

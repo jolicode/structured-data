@@ -20,4 +20,5 @@ final class ElevationModel
     public const TYPES = ['GeoCoordinates' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeoCoordinatesModel', 'GeoShape' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeoShapeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

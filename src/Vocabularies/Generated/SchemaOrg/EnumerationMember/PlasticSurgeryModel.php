@@ -16,6 +16,7 @@ final class PlasticSurgeryModel
     public const DESCRIPTION = 'A specific branch of medical science that pertains to therapeutic or cosmetic repair or re-formation of missing, injured or malformed tissues or body parts by manual and instrumental means.';
     public const LABEL = 'PlasticSurgery';
     public const NAME = 'schema:PlasticSurgery';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

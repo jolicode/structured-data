@@ -19,5 +19,6 @@ final class RequiresSubscriptionModel
     public const VALUES = ['BooleanModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BooleanModel', 'MediaSubscriptionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaSubscriptionModel'];
     public const TYPES = ['ActionAccessSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ActionAccessSpecificationModel', 'MediaObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaObjectModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1741'];
+    public const SUPERSEDED_BY = null;
 }

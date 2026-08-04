@@ -22,6 +22,7 @@ final class MedicalAudienceTypeModel
     public const ENUMERATION_MEMBERS = ['ClinicianModel' => 'EnumerationMember\ClinicianModel', 'MedicalResearcherModel' => 'EnumerationMember\MedicalResearcherModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

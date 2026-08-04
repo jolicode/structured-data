@@ -18,6 +18,7 @@ final class IdentifyingTestModel
     public const NAME = 'schema:identifyingTest';
     public const VALUES = ['MedicalTestModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTestModel'];
     public const TYPES = ['MedicalSign' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalSignModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

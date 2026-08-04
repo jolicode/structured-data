@@ -20,4 +20,5 @@ final class DistanceModel
     public const TYPES = ['ExerciseAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ExerciseActionModel', 'TravelAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TravelActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

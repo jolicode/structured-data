@@ -20,4 +20,5 @@ final class AnnualPercentageRateModel
     public const TYPES = ['FinancialProduct' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FinancialProductModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

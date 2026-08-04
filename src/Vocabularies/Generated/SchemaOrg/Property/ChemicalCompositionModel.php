@@ -18,6 +18,7 @@ final class ChemicalCompositionModel
     public const NAME = 'schema:chemicalComposition';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['ChemicalSubstance' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ChemicalSubstanceModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['http://www.bioschemas.org/ChemicalSubstance'];
+    public const SUPERSEDED_BY = null;
 }

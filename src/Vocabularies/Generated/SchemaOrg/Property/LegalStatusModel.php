@@ -18,6 +18,7 @@ final class LegalStatusModel
     public const NAME = 'schema:legalStatus';
     public const VALUES = ['DrugLegalStatusModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugLegalStatusModel', 'MedicalEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEnumerationModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DietarySupplement' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DietarySupplementModel', 'Drug' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugModel', 'MedicalEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

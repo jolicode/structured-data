@@ -20,4 +20,5 @@ final class SeatSectionModel
     public const TYPES = ['Seat' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SeatModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

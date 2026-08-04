@@ -16,6 +16,7 @@ final class BodyMeasurementArmModel
     public const DESCRIPTION = 'Arm length (measured between arms/shoulder line intersection and the prominent wrist bone). Used, for example, to fit shirts.';
     public const LABEL = 'BodyMeasurementArm';
     public const NAME = 'schema:BodyMeasurementArm';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

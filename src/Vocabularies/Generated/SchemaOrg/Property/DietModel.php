@@ -18,6 +18,7 @@ final class DietModel
     public const NAME = 'schema:diet';
     public const VALUES = ['DietModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DietModel'];
     public const TYPES = ['ExerciseAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ExerciseActionModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

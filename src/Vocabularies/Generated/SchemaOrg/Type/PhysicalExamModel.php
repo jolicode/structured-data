@@ -22,6 +22,7 @@ final class PhysicalExamModel
     public const ENUMERATION_MEMBERS = ['AbdomenModel' => 'EnumerationMember\AbdomenModel', 'AppearanceModel' => 'EnumerationMember\AppearanceModel', 'CardiovascularExamModel' => 'EnumerationMember\CardiovascularExamModel', 'EarModel' => 'EnumerationMember\EarModel', 'EyeModel' => 'EnumerationMember\EyeModel', 'GenitourinaryModel' => 'EnumerationMember\GenitourinaryModel', 'HeadModel' => 'EnumerationMember\HeadModel', 'LungModel' => 'EnumerationMember\LungModel', 'MusculoskeletalExamModel' => 'EnumerationMember\MusculoskeletalExamModel', 'NeckModel' => 'EnumerationMember\NeckModel', 'NeuroModel' => 'EnumerationMember\NeuroModel', 'NoseModel' => 'EnumerationMember\NoseModel', 'SkinModel' => 'EnumerationMember\SkinModel', 'ThroatModel' => 'EnumerationMember\ThroatModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

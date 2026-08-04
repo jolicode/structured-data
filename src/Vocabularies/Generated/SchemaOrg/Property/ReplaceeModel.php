@@ -20,4 +20,5 @@ final class ReplaceeModel
     public const TYPES = ['ReplaceAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReplaceActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

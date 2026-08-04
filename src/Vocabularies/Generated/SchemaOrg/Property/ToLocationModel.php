@@ -20,4 +20,5 @@ final class ToLocationModel
     public const TYPES = ['ExerciseAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ExerciseActionModel', 'InsertAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InsertActionModel', 'MoveAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MoveActionModel', 'TransferAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TransferActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

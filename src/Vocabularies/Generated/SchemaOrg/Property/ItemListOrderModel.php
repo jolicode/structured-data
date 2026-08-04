@@ -20,4 +20,5 @@ final class ItemListOrderModel
     public const TYPES = ['ItemList' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ItemListModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

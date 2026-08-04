@@ -16,6 +16,7 @@ final class ITSocialCompanyCharityModel
     public const DESCRIPTION = 'ITSocialCompanyCharity: Non-profit type referring to companies with charitable missions (Ital. Imprese Sociali or IS) according to Italian Law 112 of 2017.';
     public const LABEL = 'ITSocialCompanyCharity';
     public const NAME = 'schema:ITSocialCompanyCharity';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3629'];
+    public const SUPERSEDED_BY = null;
 }

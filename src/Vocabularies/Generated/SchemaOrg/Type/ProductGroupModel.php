@@ -24,6 +24,7 @@ While a ProductGroup itself is not directly offered for sale, the various varyin
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1797'];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalPropertyModel $additionalProperty = null,

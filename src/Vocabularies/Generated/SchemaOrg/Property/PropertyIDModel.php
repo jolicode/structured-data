@@ -23,4 +23,5 @@ Standards bodies should promote a standard prefix for the identifiers of propert
     public const TYPES = ['PropertyValue' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyValueModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -19,5 +19,6 @@ final class AcceptedPaymentMethodModel
     public const VALUES = ['LoanOrCreditModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LoanOrCreditModel', 'PaymentMethodModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PaymentMethodModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Demand' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DemandModel', 'Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel', 'Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3537'];
+    public const SUPERSEDED_BY = null;
 }

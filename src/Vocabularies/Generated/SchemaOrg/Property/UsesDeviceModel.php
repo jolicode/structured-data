@@ -18,6 +18,7 @@ final class UsesDeviceModel
     public const NAME = 'schema:usesDevice';
     public const VALUES = ['MedicalDeviceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalDeviceModel'];
     public const TYPES = ['MedicalTest' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTestModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

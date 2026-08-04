@@ -16,6 +16,7 @@ final class HematologicModel
     public const DESCRIPTION = 'A specific branch of medical science that pertains to diagnosis and treatment of disorders of blood and blood producing organs.';
     public const LABEL = 'Hematologic';
     public const NAME = 'schema:Hematologic';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

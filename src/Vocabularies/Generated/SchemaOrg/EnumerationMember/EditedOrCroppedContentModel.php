@@ -24,6 +24,7 @@ For an [[ImageObject]] with embedded text to be \'edited or cropped content\': P
 For an [[AudioObject]] to be \'edited or cropped content\': The audio has been edited or rearranged. This category applies to time edits, including editing multiple audio clips together to alter the story being told or editing out large portions from the recording.';
     public const LABEL = 'EditedOrCroppedContent';
     public const NAME = 'schema:EditedOrCroppedContent';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2450'];
+    public const SUPERSEDED_BY = null;
 }

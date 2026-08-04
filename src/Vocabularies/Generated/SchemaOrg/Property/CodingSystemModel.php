@@ -18,6 +18,7 @@ final class CodingSystemModel
     public const NAME = 'schema:codingSystem';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalCode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalCodeModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -16,6 +16,7 @@ final class MerchantReturnUnlimitedWindowModel
     public const DESCRIPTION = 'Specifies that there is an unlimited window for product returns.';
     public const LABEL = 'MerchantReturnUnlimitedWindow';
     public const NAME = 'schema:MerchantReturnUnlimitedWindow';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2288'];
+    public const SUPERSEDED_BY = null;
 }

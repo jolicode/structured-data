@@ -20,4 +20,5 @@ final class LearningResourceTypeModel
     public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'LearningResource' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LearningResourceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

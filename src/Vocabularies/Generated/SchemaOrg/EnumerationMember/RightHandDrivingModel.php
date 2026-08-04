@@ -18,4 +18,5 @@ final class RightHandDrivingModel
     public const NAME = 'schema:RightHandDriving';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

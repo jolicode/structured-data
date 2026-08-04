@@ -18,6 +18,7 @@ final class DomainIncludesModel
     public const NAME = 'schema:domainIncludes';
     public const VALUES = ['ClassModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ClassModel'];
     public const TYPES = ['Property' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://meta.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -18,6 +18,7 @@ final class AgentInteractionStatisticModel
     public const NAME = 'schema:agentInteractionStatistic';
     public const VALUES = ['InteractionCounterModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InteractionCounterModel'];
     public const TYPES = ['Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2858'];
+    public const SUPERSEDED_BY = null;
 }

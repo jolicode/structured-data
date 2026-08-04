@@ -18,6 +18,7 @@ final class HospitalAffiliationModel
     public const NAME = 'schema:hospitalAffiliation';
     public const VALUES = ['HospitalModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HospitalModel'];
     public const TYPES = ['Physician' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PhysicianModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

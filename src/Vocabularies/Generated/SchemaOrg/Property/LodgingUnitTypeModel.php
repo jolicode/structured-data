@@ -20,4 +20,5 @@ final class LodgingUnitTypeModel
     public const TYPES = ['LodgingReservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LodgingReservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

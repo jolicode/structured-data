@@ -16,6 +16,7 @@ final class PrescriptionOnlyModel
     public const DESCRIPTION = 'Available by prescription only.';
     public const LABEL = 'PrescriptionOnly';
     public const NAME = 'schema:PrescriptionOnly';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -18,4 +18,5 @@ final class OnlineOnlyModel
     public const NAME = 'schema:OnlineOnly';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

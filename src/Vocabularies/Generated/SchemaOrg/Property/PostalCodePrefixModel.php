@@ -19,5 +19,6 @@ final class PostalCodePrefixModel
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DefinedRegion' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedRegionModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2506'];
+    public const SUPERSEDED_BY = null;
 }

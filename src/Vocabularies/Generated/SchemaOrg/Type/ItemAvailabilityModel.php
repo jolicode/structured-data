@@ -22,6 +22,7 @@ final class ItemAvailabilityModel
     public const ENUMERATION_MEMBERS = ['BackOrderModel' => 'EnumerationMember\BackOrderModel', 'DiscontinuedModel' => 'EnumerationMember\DiscontinuedModel', 'InStockModel' => 'EnumerationMember\InStockModel', 'InStoreOnlyModel' => 'EnumerationMember\InStoreOnlyModel', 'LimitedAvailabilityModel' => 'EnumerationMember\LimitedAvailabilityModel', 'MadeToOrderModel' => 'EnumerationMember\MadeToOrderModel', 'OnlineOnlyModel' => 'EnumerationMember\OnlineOnlyModel', 'OutOfStockModel' => 'EnumerationMember\OutOfStockModel', 'PreOrderModel' => 'EnumerationMember\PreOrderModel', 'PreSaleModel' => 'EnumerationMember\PreSaleModel', 'ReservedModel' => 'EnumerationMember\ReservedModel', 'SoldOutModel' => 'EnumerationMember\SoldOutModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

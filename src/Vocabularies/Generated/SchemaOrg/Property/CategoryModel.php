@@ -19,5 +19,6 @@ final class CategoryModel
     public const VALUES = ['CategoryCodeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeModel', 'PhysicalActivityCategoryModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PhysicalActivityCategoryModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'ThingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
     public const TYPES = ['ActionAccessSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ActionAccessSpecificationModel', 'Guide' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GuideModel', 'Invoice' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InvoiceModel', 'Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel', 'PhysicalActivity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PhysicalActivityModel', 'Product' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel', 'Recommendation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RecommendationModel', 'Service' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceModel', 'SpecialAnnouncement' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SpecialAnnouncementModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1741', 'https://github.com/schemaorg/schemaorg/issues/2490'];
+    public const SUPERSEDED_BY = null;
 }

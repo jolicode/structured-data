@@ -16,6 +16,7 @@ final class DentistryModel
     public const DESCRIPTION = 'A branch of medicine that is involved in the dental care.';
     public const LABEL = 'Dentistry';
     public const NAME = 'schema:Dentistry';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

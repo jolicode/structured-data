@@ -16,6 +16,7 @@ final class SizeSystemImperialModel
     public const DESCRIPTION = 'Imperial size system.';
     public const LABEL = 'SizeSystemImperial';
     public const NAME = 'schema:SizeSystemImperial';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

@@ -22,6 +22,7 @@ The property values can be expressed either as unstructured text (repeated as ne
     public const NAME = 'schema:positiveNotes';
     public const VALUES = ['ItemListModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ItemListModel', 'ListItemModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ListItemModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'WebContentModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebContentModel'];
     public const TYPES = ['Product' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel', 'Review' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReviewModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2832'];
+    public const SUPERSEDED_BY = null;
 }

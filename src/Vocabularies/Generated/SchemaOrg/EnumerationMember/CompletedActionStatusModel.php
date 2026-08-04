@@ -18,4 +18,5 @@ final class CompletedActionStatusModel
     public const NAME = 'schema:CompletedActionStatus';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

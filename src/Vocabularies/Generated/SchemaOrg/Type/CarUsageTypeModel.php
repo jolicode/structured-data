@@ -22,6 +22,7 @@ final class CarUsageTypeModel
     public const ENUMERATION_MEMBERS = ['DrivingSchoolVehicleUsageModel' => 'EnumerationMember\DrivingSchoolVehicleUsageModel', 'RentalVehicleUsageModel' => 'EnumerationMember\RentalVehicleUsageModel', 'TaxiVehicleUsageModel' => 'EnumerationMember\TaxiVehicleUsageModel'];
     public const IS_PART_OF = ['https://auto.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

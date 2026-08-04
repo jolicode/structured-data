@@ -16,6 +16,7 @@ final class RegistryModel
     public const DESCRIPTION = 'A registry-based study design.';
     public const LABEL = 'Registry';
     public const NAME = 'schema:Registry';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

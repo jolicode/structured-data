@@ -16,6 +16,7 @@ final class WithdrawnModel
     public const DESCRIPTION = 'Withdrawn.';
     public const LABEL = 'Withdrawn';
     public const NAME = 'schema:Withdrawn';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -18,6 +18,7 @@ final class ExpressedInModel
     public const NAME = 'schema:expressedIn';
     public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalStructureModel', 'AnatomicalSystemModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalSystemModel', 'BioChemEntityModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BioChemEntityModel', 'DefinedTermModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel'];
     public const TYPES = ['Gene' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeneModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['http://www.bioschemas.org/Gene'];
+    public const SUPERSEDED_BY = null;
 }

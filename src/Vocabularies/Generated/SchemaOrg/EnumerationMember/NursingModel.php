@@ -16,6 +16,7 @@ final class NursingModel
     public const DESCRIPTION = 'A health profession of a person formally educated and trained in the care of the sick or infirm person.';
     public const LABEL = 'Nursing';
     public const NAME = 'schema:Nursing';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

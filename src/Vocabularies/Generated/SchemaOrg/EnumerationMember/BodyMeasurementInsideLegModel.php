@@ -16,6 +16,7 @@ final class BodyMeasurementInsideLegModel
     public const DESCRIPTION = 'Inside leg (measured between crotch and soles of feet). Used, for example, to fit pants.';
     public const LABEL = 'BodyMeasurementInsideLeg';
     public const NAME = 'schema:BodyMeasurementInsideLeg';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

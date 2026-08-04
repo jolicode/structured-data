@@ -20,4 +20,5 @@ final class PhotosModel
     public const TYPES = ['Place' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlaceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = 'photo';
 }

@@ -16,6 +16,7 @@ final class WearableSizeGroupRegularModel
     public const DESCRIPTION = 'Size group "Regular" for wearables.';
     public const LABEL = 'WearableSizeGroupRegular';
     public const NAME = 'schema:WearableSizeGroupRegular';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

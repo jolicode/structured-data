@@ -20,4 +20,5 @@ final class AlbumsModel
     public const TYPES = ['MusicGroup' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicGroupModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = 'album';
 }

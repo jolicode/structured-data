@@ -18,4 +18,5 @@ final class PaymentPastDueModel
     public const NAME = 'schema:PaymentPastDue';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

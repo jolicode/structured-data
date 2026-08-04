@@ -20,4 +20,5 @@ final class NutritionModel
     public const TYPES = ['MenuItem' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MenuItemModel', 'Recipe' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RecipeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -16,6 +16,7 @@ final class WearableSizeGroupMensModel
     public const DESCRIPTION = 'Size group "Mens" for wearables.';
     public const LABEL = 'WearableSizeGroupMens';
     public const NAME = 'schema:WearableSizeGroupMens';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

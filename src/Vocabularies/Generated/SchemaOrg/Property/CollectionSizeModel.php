@@ -18,6 +18,7 @@ final class CollectionSizeModel
     public const NAME = 'schema:collectionSize';
     public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['Collection' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CollectionModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1759'];
+    public const SUPERSEDED_BY = null;
 }

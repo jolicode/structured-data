@@ -16,6 +16,7 @@ final class IncentiveTypeRebateOrSubsidyModel
     public const DESCRIPTION = 'An incentive that reduces the purchase/lease cost of the good/service in question.';
     public const LABEL = 'IncentiveTypeRebateOrSubsidy';
     public const NAME = 'schema:IncentiveTypeRebateOrSubsidy';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3572'];
+    public const SUPERSEDED_BY = null;
 }

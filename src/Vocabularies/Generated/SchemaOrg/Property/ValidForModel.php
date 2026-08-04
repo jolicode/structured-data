@@ -19,5 +19,6 @@ final class ValidForModel
     public const VALUES = ['DurationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DurationModel'];
     public const TYPES = ['Credential' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CredentialModel', 'Permit' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PermitModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1779'];
+    public const SUPERSEDED_BY = null;
 }

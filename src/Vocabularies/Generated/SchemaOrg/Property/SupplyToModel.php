@@ -18,6 +18,7 @@ final class SupplyToModel
     public const NAME = 'schema:supplyTo';
     public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalStructureModel'];
     public const TYPES = ['Artery' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ArteryModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

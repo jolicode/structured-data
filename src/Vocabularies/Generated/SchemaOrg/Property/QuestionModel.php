@@ -20,4 +20,5 @@ final class QuestionModel
     public const TYPES = ['AskAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AskActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

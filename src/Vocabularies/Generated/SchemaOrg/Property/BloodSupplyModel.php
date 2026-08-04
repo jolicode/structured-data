@@ -18,6 +18,7 @@ final class BloodSupplyModel
     public const NAME = 'schema:bloodSupply';
     public const VALUES = ['VesselModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VesselModel'];
     public const TYPES = ['Muscle' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MuscleModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

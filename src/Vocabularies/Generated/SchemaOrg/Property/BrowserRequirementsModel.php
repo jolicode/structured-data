@@ -20,4 +20,5 @@ final class BrowserRequirementsModel
     public const TYPES = ['WebApplication' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebApplicationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

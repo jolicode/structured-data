@@ -18,6 +18,7 @@ final class ArrivalBoatTerminalModel
     public const NAME = 'schema:arrivalBoatTerminal';
     public const VALUES = ['BoatTerminalModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BoatTerminalModel'];
     public const TYPES = ['BoatTrip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BoatTripModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1755'];
+    public const SUPERSEDED_BY = null;
 }

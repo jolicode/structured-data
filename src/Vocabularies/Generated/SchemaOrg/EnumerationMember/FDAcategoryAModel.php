@@ -16,6 +16,7 @@ final class FDAcategoryAModel
     public const DESCRIPTION = 'A designation by the US FDA signifying that adequate and well-controlled studies have failed to demonstrate a risk to the fetus in the first trimester of pregnancy (and there is no evidence of risk in later trimesters).';
     public const LABEL = 'FDAcategoryA';
     public const NAME = 'schema:FDAcategoryA';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

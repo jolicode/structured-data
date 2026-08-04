@@ -18,6 +18,7 @@ final class JobTitleModel
     public const NAME = 'schema:jobTitle';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Person' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2192'];
+    public const SUPERSEDED_BY = null;
 }

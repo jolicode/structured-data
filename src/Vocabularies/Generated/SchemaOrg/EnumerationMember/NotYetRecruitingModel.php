@@ -16,6 +16,7 @@ final class NotYetRecruitingModel
     public const DESCRIPTION = 'Not yet recruiting.';
     public const LABEL = 'NotYetRecruiting';
     public const NAME = 'schema:NotYetRecruiting';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

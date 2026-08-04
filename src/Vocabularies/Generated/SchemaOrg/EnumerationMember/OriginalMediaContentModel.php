@@ -24,6 +24,7 @@ For an [[ImageObject]] with embedded text to be \'original\': No evidence the im
 For an [[AudioObject]] to be \'original\': No evidence the audio has been misleadingly altered or manipulated, though it may contain false or misleading claims.';
     public const LABEL = 'OriginalMediaContent';
     public const NAME = 'schema:OriginalMediaContent';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2450'];
+    public const SUPERSEDED_BY = null;
 }

@@ -18,4 +18,5 @@ final class TollFreeModel
     public const NAME = 'schema:TollFree';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -18,6 +18,7 @@ final class HealthPlanCoinsuranceRateModel
     public const NAME = 'schema:healthPlanCoinsuranceRate';
     public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['HealthPlanCostSharingSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HealthPlanCostSharingSpecificationModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1062'];
+    public const SUPERSEDED_BY = null;
 }

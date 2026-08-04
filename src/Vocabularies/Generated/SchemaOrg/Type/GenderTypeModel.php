@@ -22,6 +22,7 @@ final class GenderTypeModel
     public const ENUMERATION_MEMBERS = ['FemaleModel' => 'EnumerationMember\FemaleModel', 'MaleModel' => 'EnumerationMember\MaleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -18,4 +18,5 @@ final class DiscontinuedModel
     public const NAME = 'schema:Discontinued';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

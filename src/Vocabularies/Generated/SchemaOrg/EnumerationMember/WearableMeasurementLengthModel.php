@@ -16,6 +16,7 @@ final class WearableMeasurementLengthModel
     public const DESCRIPTION = 'Represents the length, for example of a dress.';
     public const LABEL = 'WearableMeasurementLength';
     public const NAME = 'schema:WearableMeasurementLength';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

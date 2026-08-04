@@ -16,6 +16,7 @@ final class BodyMeasurementHeightModel
     public const DESCRIPTION = 'Body height (measured between crown of head and soles of feet). Used, for example, to fit jackets.';
     public const LABEL = 'BodyMeasurementHeight';
     public const NAME = 'schema:BodyMeasurementHeight';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

@@ -16,6 +16,7 @@ final class Nonprofit501c11Model
     public const DESCRIPTION = 'Nonprofit501c11: Non-profit type referring to Teachers\' Retirement Fund Associations.';
     public const LABEL = 'Nonprofit501c11';
     public const NAME = 'schema:Nonprofit501c11';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2543'];
+    public const SUPERSEDED_BY = null;
 }

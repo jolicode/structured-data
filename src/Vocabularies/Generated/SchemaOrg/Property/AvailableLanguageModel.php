@@ -20,4 +20,5 @@ final class AvailableLanguageModel
     public const TYPES = ['ContactPoint' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ContactPointModel', 'Course' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CourseModel', 'LodgingBusiness' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LodgingBusinessModel', 'ServiceChannel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceChannelModel', 'TouristAttraction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TouristAttractionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -25,6 +25,7 @@ See also the <a href="/docs/hotels.html">dedicated document on the use of schema
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AccommodationCategoryModel $accommodationCategory = null,

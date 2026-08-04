@@ -20,4 +20,5 @@ final class OptionModel
     public const TYPES = ['ChooseAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ChooseActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = 'actionOption';
 }

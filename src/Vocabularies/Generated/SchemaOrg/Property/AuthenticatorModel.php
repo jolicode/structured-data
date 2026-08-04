@@ -19,5 +19,6 @@ final class AuthenticatorModel
     public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel'];
     public const TYPES = ['MediaSubscription' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaSubscriptionModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1741'];
+    public const SUPERSEDED_BY = null;
 }

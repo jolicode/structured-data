@@ -16,6 +16,7 @@ final class MerchantReturnUnspecifiedModel
     public const DESCRIPTION = 'Specifies that a product return policy is not provided.';
     public const LABEL = 'MerchantReturnUnspecified';
     public const NAME = 'schema:MerchantReturnUnspecified';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2288'];
+    public const SUPERSEDED_BY = null;
 }

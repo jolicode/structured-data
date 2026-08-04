@@ -18,4 +18,5 @@ final class OutOfStockModel
     public const NAME = 'schema:OutOfStock';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

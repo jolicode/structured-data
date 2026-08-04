@@ -16,6 +16,7 @@ final class IncentiveTypeLoanModel
     public const DESCRIPTION = 'An incentive where the recipient can receive additional funding for the purchase/lease of the good/service, which must be paid back.';
     public const LABEL = 'IncentiveTypeLoan';
     public const NAME = 'schema:IncentiveTypeLoan';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3572'];
+    public const SUPERSEDED_BY = null;
 }

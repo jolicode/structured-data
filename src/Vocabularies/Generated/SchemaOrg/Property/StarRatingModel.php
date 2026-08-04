@@ -20,4 +20,5 @@ final class StarRatingModel
     public const TYPES = ['FoodEstablishment' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FoodEstablishmentModel', 'LodgingBusiness' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LodgingBusinessModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

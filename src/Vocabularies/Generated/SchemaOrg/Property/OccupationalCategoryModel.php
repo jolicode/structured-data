@@ -19,6 +19,7 @@ Note: for historical reasons, any textual label and formal code provided as a li
     public const NAME = 'schema:occupationalCategory';
     public const VALUES = ['CategoryCodeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalProgramModel', 'JobPosting' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\JobPostingModel', 'Occupation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OccupationModel', 'Physician' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PhysicianModel', 'WorkBasedProgram' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WorkBasedProgramModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1698', 'https://github.com/schemaorg/schemaorg/issues/2192', 'https://github.com/schemaorg/schemaorg/issues/2289', 'https://github.com/schemaorg/schemaorg/issues/2460', 'https://github.com/schemaorg/schemaorg/issues/3420'];
+    public const SUPERSEDED_BY = null;
 }

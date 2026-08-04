@@ -16,6 +16,7 @@ final class PurchaseTypeUsedPurchaseModel
     public const DESCRIPTION = 'This is a purchase of a used item.';
     public const LABEL = 'PurchaseTypeUsedPurchase';
     public const NAME = 'schema:PurchaseTypeUsedPurchase';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3572'];
+    public const SUPERSEDED_BY = null;
 }

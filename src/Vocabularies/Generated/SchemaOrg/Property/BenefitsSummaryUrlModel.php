@@ -18,6 +18,7 @@ final class BenefitsSummaryUrlModel
     public const NAME = 'schema:benefitsSummaryUrl';
     public const VALUES = ['URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
     public const TYPES = ['HealthInsurancePlan' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HealthInsurancePlanModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1062'];
+    public const SUPERSEDED_BY = null;
 }

@@ -22,6 +22,7 @@ final class ReservationStatusTypeModel
     public const ENUMERATION_MEMBERS = ['ReservationCancelledModel' => 'EnumerationMember\ReservationCancelledModel', 'ReservationConfirmedModel' => 'EnumerationMember\ReservationConfirmedModel', 'ReservationHoldModel' => 'EnumerationMember\ReservationHoldModel', 'ReservationPendingModel' => 'EnumerationMember\ReservationPendingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

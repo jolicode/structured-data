@@ -20,4 +20,5 @@ final class CarrierRequirementsModel
     public const TYPES = ['MobileApplication' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MobileApplicationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

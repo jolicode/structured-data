@@ -16,6 +16,7 @@ final class InForceModel
     public const DESCRIPTION = 'Indicates that a legislation is in force.';
     public const LABEL = 'InForce';
     public const NAME = 'schema:InForce';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1156', 'https://op.europa.eu/en/web/eu-vocabularies/model/-/resource/dataset/eli'];
+    public const SUPERSEDED_BY = null;
 }

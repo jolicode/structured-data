@@ -16,6 +16,7 @@ final class Nonprofit501c4Model
     public const DESCRIPTION = 'Nonprofit501c4: Non-profit type referring to Civic Leagues, Social Welfare Organizations, and Local Associations of Employees.';
     public const LABEL = 'Nonprofit501c4';
     public const NAME = 'schema:Nonprofit501c4';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2543'];
+    public const SUPERSEDED_BY = null;
 }

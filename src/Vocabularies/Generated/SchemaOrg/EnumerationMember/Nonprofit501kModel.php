@@ -16,6 +16,7 @@ final class Nonprofit501kModel
     public const DESCRIPTION = 'Nonprofit501k: Non-profit type referring to Child Care Organizations.';
     public const LABEL = 'Nonprofit501k';
     public const NAME = 'schema:Nonprofit501k';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2543'];
+    public const SUPERSEDED_BY = null;
 }

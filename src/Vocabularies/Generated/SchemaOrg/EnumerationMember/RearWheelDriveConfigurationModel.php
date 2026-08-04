@@ -18,4 +18,5 @@ final class RearWheelDriveConfigurationModel
     public const NAME = 'schema:RearWheelDriveConfiguration';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

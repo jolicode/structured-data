@@ -20,4 +20,5 @@ final class ExifDataModel
     public const TYPES = ['ImageObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ImageObjectModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

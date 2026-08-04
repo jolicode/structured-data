@@ -18,6 +18,7 @@ final class InsertionModel
     public const NAME = 'schema:insertion';
     public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalStructureModel'];
     public const TYPES = ['Muscle' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MuscleModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

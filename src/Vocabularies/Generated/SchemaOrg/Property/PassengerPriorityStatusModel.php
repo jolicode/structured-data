@@ -20,4 +20,5 @@ final class PassengerPriorityStatusModel
     public const TYPES = ['FlightReservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FlightReservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

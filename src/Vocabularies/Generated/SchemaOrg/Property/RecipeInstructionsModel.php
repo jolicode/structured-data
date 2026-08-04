@@ -20,4 +20,5 @@ final class RecipeInstructionsModel
     public const TYPES = ['Recipe' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RecipeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

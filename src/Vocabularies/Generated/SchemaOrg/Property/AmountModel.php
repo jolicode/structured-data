@@ -19,5 +19,6 @@ final class AmountModel
     public const VALUES = ['MonetaryAmountModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountModel', 'NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['DatedMoneySpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DatedMoneySpecificationModel', 'InvestmentOrDeposit' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InvestmentOrDepositModel', 'LoanOrCredit' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LoanOrCreditModel', 'MonetaryGrant' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryGrantModel', 'MoneyTransfer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MoneyTransferModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1253', 'https://github.com/schemaorg/schemaorg/issues/1698'];
+    public const SUPERSEDED_BY = null;
 }

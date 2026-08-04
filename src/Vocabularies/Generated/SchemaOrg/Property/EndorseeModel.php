@@ -20,4 +20,5 @@ final class EndorseeModel
     public const TYPES = ['EndorseAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EndorseActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

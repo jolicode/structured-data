@@ -20,4 +20,5 @@ final class PartOfInvoiceModel
     public const TYPES = ['Order' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrderModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class MusicReleaseFormatModel
     public const TYPES = ['MusicRelease' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicReleaseModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

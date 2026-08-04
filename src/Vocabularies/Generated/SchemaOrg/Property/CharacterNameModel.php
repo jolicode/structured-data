@@ -20,4 +20,5 @@ final class CharacterNameModel
     public const TYPES = ['PerformanceRole' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PerformanceRoleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

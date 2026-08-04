@@ -18,6 +18,7 @@ final class AggregateElementModel
     public const NAME = 'schema:aggregateElement';
     public const VALUES = ['ThingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
     public const TYPES = ['ItemList' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ItemListModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/4321'];
+    public const SUPERSEDED_BY = null;
 }

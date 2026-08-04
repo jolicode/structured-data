@@ -18,4 +18,5 @@ final class ReservationHoldModel
     public const NAME = 'schema:ReservationHold';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

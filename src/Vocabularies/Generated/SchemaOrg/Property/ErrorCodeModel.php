@@ -20,4 +20,5 @@ final class ErrorCodeModel
     public const TYPES = ['Error' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ErrorModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

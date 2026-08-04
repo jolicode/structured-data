@@ -18,6 +18,7 @@ final class HasParticipationOfferModel
     public const NAME = 'schema:hasParticipationOffer';
     public const VALUES = ['OfferModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel'];
     public const TYPES = ['Event' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/4495'];
+    public const SUPERSEDED_BY = null;
 }

@@ -16,6 +16,7 @@ final class TerminatedModel
     public const DESCRIPTION = 'Terminated.';
     public const LABEL = 'Terminated';
     public const NAME = 'schema:Terminated';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

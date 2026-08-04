@@ -18,6 +18,7 @@ final class AppearanceModel
     public const NAME = 'schema:appearance';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel'];
     public const TYPES = ['Claim' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ClaimModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1828'];
+    public const SUPERSEDED_BY = null;
 }

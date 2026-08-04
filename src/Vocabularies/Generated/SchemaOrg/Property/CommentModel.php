@@ -20,4 +20,5 @@ final class CommentModel
     public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'RsvpAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RsvpActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

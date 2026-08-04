@@ -18,6 +18,7 @@ final class TeachesModel
     public const NAME = 'schema:teaches';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'EducationEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationEventModel', 'LearningResource' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LearningResourceModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2427'];
+    public const SUPERSEDED_BY = null;
 }

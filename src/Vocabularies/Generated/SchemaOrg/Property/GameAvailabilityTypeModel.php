@@ -18,6 +18,7 @@ final class GameAvailabilityTypeModel
     public const NAME = 'schema:gameAvailabilityType';
     public const VALUES = ['GameAvailabilityEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GameAvailabilityEnumerationModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['PlayGameAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlayGameActionModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3058'];
+    public const SUPERSEDED_BY = null;
 }

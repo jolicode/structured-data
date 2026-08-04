@@ -20,4 +20,5 @@ final class ResultCommentModel
     public const TYPES = ['CommentAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommentActionModel', 'ReplyAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReplyActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

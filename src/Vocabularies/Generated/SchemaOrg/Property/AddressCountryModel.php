@@ -19,5 +19,6 @@ final class AddressCountryModel
     public const VALUES = ['CountryModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CountryModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DefinedRegion' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedRegionModel', 'GeoCoordinates' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeoCoordinatesModel', 'GeoShape' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeoShapeModel', 'PostalAddress' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PostalAddressModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2506'];
+    public const SUPERSEDED_BY = null;
 }

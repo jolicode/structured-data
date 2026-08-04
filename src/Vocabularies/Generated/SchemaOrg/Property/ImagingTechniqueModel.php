@@ -18,6 +18,7 @@ final class ImagingTechniqueModel
     public const NAME = 'schema:imagingTechnique';
     public const VALUES = ['MedicalImagingTechniqueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalImagingTechniqueModel'];
     public const TYPES = ['ImagingTest' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ImagingTestModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

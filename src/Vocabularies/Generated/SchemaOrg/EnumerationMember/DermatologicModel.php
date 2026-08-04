@@ -16,6 +16,7 @@ final class DermatologicModel
     public const DESCRIPTION = 'Something relating to or practicing dermatology.';
     public const LABEL = 'Dermatologic';
     public const NAME = 'schema:Dermatologic';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = 'Dermatology';
 }

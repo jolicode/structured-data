@@ -20,4 +20,5 @@ final class HostingOrganizationModel
     public const TYPES = ['MemberProgram' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MemberProgramModel', 'ProgramMembership' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProgramMembershipModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

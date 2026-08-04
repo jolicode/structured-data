@@ -18,6 +18,7 @@ final class DrugModel
     public const NAME = 'schema:drug';
     public const VALUES = ['DrugModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugModel'];
     public const TYPES = ['DrugClass' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugClassModel', 'MedicalCondition' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel', 'Patient' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PatientModel', 'TherapeuticProcedure' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TherapeuticProcedureModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

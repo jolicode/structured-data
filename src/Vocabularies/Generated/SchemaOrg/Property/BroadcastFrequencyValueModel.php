@@ -19,5 +19,6 @@ final class BroadcastFrequencyValueModel
     public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['BroadcastFrequencySpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastFrequencySpecificationModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1004'];
+    public const SUPERSEDED_BY = null;
 }

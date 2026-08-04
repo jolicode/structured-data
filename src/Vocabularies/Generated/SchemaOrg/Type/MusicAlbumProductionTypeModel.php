@@ -22,6 +22,7 @@ final class MusicAlbumProductionTypeModel
     public const ENUMERATION_MEMBERS = ['CompilationAlbumModel' => 'EnumerationMember\CompilationAlbumModel', 'DJMixAlbumModel' => 'EnumerationMember\DJMixAlbumModel', 'DemoAlbumModel' => 'EnumerationMember\DemoAlbumModel', 'LiveAlbumModel' => 'EnumerationMember\LiveAlbumModel', 'MixtapeAlbumModel' => 'EnumerationMember\MixtapeAlbumModel', 'RemixAlbumModel' => 'EnumerationMember\RemixAlbumModel', 'SoundtrackAlbumModel' => 'EnumerationMember\SoundtrackAlbumModel', 'SpokenWordAlbumModel' => 'EnumerationMember\SpokenWordAlbumModel', 'StudioAlbumModel' => 'EnumerationMember\StudioAlbumModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

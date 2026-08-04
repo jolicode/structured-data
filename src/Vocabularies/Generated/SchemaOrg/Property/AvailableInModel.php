@@ -18,6 +18,7 @@ final class AvailableInModel
     public const NAME = 'schema:availableIn';
     public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AdministrativeAreaModel'];
     public const TYPES = ['DrugStrength' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugStrengthModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

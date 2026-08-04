@@ -18,6 +18,7 @@ final class TributaryModel
     public const NAME = 'schema:tributary';
     public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalStructureModel'];
     public const TYPES = ['Vein' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VeinModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

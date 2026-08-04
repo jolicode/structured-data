@@ -20,4 +20,5 @@ final class NextItemModel
     public const TYPES = ['ListItem' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ListItemModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

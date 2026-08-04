@@ -16,6 +16,7 @@ final class HeadModel
     public const DESCRIPTION = 'Head assessment with clinical examination.';
     public const LABEL = 'Head';
     public const NAME = 'schema:Head';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

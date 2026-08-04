@@ -18,4 +18,5 @@ final class MadeToOrderModel
     public const NAME = 'schema:MadeToOrder';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

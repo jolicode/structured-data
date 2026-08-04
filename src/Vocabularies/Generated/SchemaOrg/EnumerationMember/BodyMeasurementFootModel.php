@@ -16,6 +16,7 @@ final class BodyMeasurementFootModel
     public const DESCRIPTION = 'Foot length (measured between end of the most prominent toe and the most prominent part of the heel). Used, for example, to measure socks.';
     public const LABEL = 'BodyMeasurementFoot';
     public const NAME = 'schema:BodyMeasurementFoot';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

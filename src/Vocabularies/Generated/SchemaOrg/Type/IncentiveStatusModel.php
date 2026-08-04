@@ -22,6 +22,7 @@ final class IncentiveStatusModel
     public const ENUMERATION_MEMBERS = ['IncentiveStatusActiveModel' => 'EnumerationMember\IncentiveStatusActiveModel', 'IncentiveStatusInDevelopmentModel' => 'EnumerationMember\IncentiveStatusInDevelopmentModel', 'IncentiveStatusOnHoldModel' => 'EnumerationMember\IncentiveStatusOnHoldModel', 'IncentiveStatusRetiredModel' => 'EnumerationMember\IncentiveStatusRetiredModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3572'];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

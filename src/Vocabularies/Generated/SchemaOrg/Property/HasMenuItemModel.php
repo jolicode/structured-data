@@ -20,4 +20,5 @@ final class HasMenuItemModel
     public const TYPES = ['Menu' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MenuModel', 'MenuSection' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MenuSectionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

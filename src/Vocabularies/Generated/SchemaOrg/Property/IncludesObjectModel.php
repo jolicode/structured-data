@@ -20,4 +20,5 @@ final class IncludesObjectModel
     public const TYPES = ['Demand' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DemandModel', 'Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel', 'ProductCollection' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductCollectionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

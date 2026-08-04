@@ -18,6 +18,7 @@ final class KnowsLanguageModel
     public const NAME = 'schema:knowsLanguage';
     public const VALUES = ['LanguageModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LanguageModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1688'];
+    public const SUPERSEDED_BY = null;
 }

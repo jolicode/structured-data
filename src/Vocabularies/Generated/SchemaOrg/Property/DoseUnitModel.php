@@ -18,6 +18,7 @@ final class DoseUnitModel
     public const NAME = 'schema:doseUnit';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DoseSchedule' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DoseScheduleModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -18,6 +18,7 @@ final class PracticesAtModel
     public const NAME = 'schema:practicesAt';
     public const VALUES = ['MedicalOrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalOrganizationModel'];
     public const TYPES = ['IndividualPhysician' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IndividualPhysicianModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3420'];
+    public const SUPERSEDED_BY = null;
 }

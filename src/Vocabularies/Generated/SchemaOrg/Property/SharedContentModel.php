@@ -20,4 +20,5 @@ final class SharedContentModel
     public const TYPES = ['Comment' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommentModel', 'SocialMediaPosting' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SocialMediaPostingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

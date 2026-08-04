@@ -16,6 +16,7 @@ final class MinimumAdvertisedPriceModel
     public const DESCRIPTION = 'Represents the minimum advertised price ("MAP") (as dictated by the manufacturer) of an offered product.';
     public const LABEL = 'MinimumAdvertisedPrice';
     public const NAME = 'schema:MinimumAdvertisedPrice';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2712'];
+    public const SUPERSEDED_BY = null;
 }

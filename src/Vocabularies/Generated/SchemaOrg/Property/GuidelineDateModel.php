@@ -18,6 +18,7 @@ final class GuidelineDateModel
     public const NAME = 'schema:guidelineDate';
     public const VALUES = ['DateModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateModel'];
     public const TYPES = ['MedicalGuideline' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalGuidelineModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

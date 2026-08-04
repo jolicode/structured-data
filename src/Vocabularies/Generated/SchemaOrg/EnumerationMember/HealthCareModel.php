@@ -16,6 +16,7 @@ final class HealthCareModel
     public const DESCRIPTION = 'HealthCare: this is a benefit for health care.';
     public const LABEL = 'HealthCare';
     public const NAME = 'schema:HealthCare';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2534'];
+    public const SUPERSEDED_BY = null;
 }

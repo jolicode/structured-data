@@ -16,6 +16,7 @@ final class SuspendedModel
     public const DESCRIPTION = 'Suspended.';
     public const LABEL = 'Suspended';
     public const NAME = 'schema:Suspended';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

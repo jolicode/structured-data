@@ -22,6 +22,7 @@ final class DrugCostCategoryModel
     public const ENUMERATION_MEMBERS = ['ReimbursementCapModel' => 'EnumerationMember\ReimbursementCapModel', 'RetailModel' => 'EnumerationMember\RetailModel', 'WholesaleModel' => 'EnumerationMember\WholesaleModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

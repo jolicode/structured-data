@@ -18,6 +18,7 @@ final class ItemLocationModel
     public const NAME = 'schema:itemLocation';
     public const VALUES = ['PlaceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlaceModel', 'PostalAddressModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PostalAddressModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['ArchiveComponent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ArchiveComponentModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1758'];
+    public const SUPERSEDED_BY = null;
 }

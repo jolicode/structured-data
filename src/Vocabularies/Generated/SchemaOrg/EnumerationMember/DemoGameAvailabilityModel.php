@@ -16,6 +16,7 @@ final class DemoGameAvailabilityModel
     public const DESCRIPTION = 'Indicates demo game availability, i.e. a somehow limited demonstration of the full game.';
     public const LABEL = 'DemoGameAvailability';
     public const NAME = 'schema:DemoGameAvailability';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3058'];
+    public const SUPERSEDED_BY = null;
 }

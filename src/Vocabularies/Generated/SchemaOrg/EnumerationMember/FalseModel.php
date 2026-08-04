@@ -18,4 +18,5 @@ final class FalseModel
     public const NAME = 'schema:False';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

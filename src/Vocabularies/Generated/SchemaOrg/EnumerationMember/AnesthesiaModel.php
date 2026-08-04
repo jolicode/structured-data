@@ -16,6 +16,7 @@ final class AnesthesiaModel
     public const DESCRIPTION = 'A specific branch of medical science that pertains to study of anesthetics and their application.';
     public const LABEL = 'Anesthesia';
     public const NAME = 'schema:Anesthesia';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

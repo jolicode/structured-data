@@ -20,4 +20,5 @@ final class InBroadcastLineupModel
     public const TYPES = ['BroadcastChannel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastChannelModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

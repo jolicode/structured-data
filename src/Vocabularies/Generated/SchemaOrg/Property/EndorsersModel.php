@@ -18,6 +18,7 @@ final class EndorsersModel
     public const NAME = 'schema:endorsers';
     public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['Diet' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DietModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

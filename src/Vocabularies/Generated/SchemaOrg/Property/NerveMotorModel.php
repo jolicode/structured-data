@@ -18,6 +18,7 @@ final class NerveMotorModel
     public const NAME = 'schema:nerveMotor';
     public const VALUES = ['MuscleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MuscleModel'];
     public const TYPES = ['Nerve' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NerveModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

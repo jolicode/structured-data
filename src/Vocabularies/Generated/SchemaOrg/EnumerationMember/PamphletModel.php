@@ -18,4 +18,5 @@ final class PamphletModel
     public const NAME = 'schema:Pamphlet';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

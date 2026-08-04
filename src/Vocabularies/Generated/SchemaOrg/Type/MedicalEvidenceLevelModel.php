@@ -22,6 +22,7 @@ final class MedicalEvidenceLevelModel
     public const ENUMERATION_MEMBERS = ['EvidenceLevelAModel' => 'EnumerationMember\EvidenceLevelAModel', 'EvidenceLevelBModel' => 'EnumerationMember\EvidenceLevelBModel', 'EvidenceLevelCModel' => 'EnumerationMember\EvidenceLevelCModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

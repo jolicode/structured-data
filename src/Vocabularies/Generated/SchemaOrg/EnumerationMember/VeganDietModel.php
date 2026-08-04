@@ -18,4 +18,5 @@ final class VeganDietModel
     public const NAME = 'schema:VeganDiet';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

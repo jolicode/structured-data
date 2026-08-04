@@ -22,6 +22,7 @@ final class ContactPointOptionModel
     public const ENUMERATION_MEMBERS = ['HearingImpairedSupportedModel' => 'EnumerationMember\HearingImpairedSupportedModel', 'TollFreeModel' => 'EnumerationMember\TollFreeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

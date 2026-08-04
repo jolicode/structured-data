@@ -18,6 +18,7 @@ final class PotentialUseModel
     public const NAME = 'schema:potentialUse';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel'];
     public const TYPES = ['ChemicalSubstance' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ChemicalSubstanceModel', 'MolecularEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MolecularEntityModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['http://www.bioschemas.org/ChemicalSubstance'];
+    public const SUPERSEDED_BY = null;
 }

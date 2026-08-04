@@ -16,6 +16,7 @@ final class PrionModel
     public const DESCRIPTION = 'A prion is an infectious agent composed of protein in a misfolded form.';
     public const LABEL = 'Prion';
     public const NAME = 'schema:Prion';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

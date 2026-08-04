@@ -18,6 +18,7 @@ final class CustomerRemorseReturnLabelSourceModel
     public const NAME = 'schema:customerRemorseReturnLabelSource';
     public const VALUES = ['ReturnLabelSourceEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReturnLabelSourceEnumerationModel'];
     public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MerchantReturnPolicyModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2880'];
+    public const SUPERSEDED_BY = null;
 }

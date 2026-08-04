@@ -20,4 +20,5 @@ final class AcquiredFromModel
     public const TYPES = ['OwnershipInfo' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OwnershipInfoModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

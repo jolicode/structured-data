@@ -16,6 +16,7 @@ final class BodyMeasurementChestModel
     public const DESCRIPTION = 'Maximum girth of chest. Used, for example, to fit men\'s suits.';
     public const LABEL = 'BodyMeasurementChest';
     public const NAME = 'schema:BodyMeasurementChest';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

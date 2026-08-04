@@ -18,6 +18,7 @@ final class NumConstraintsModel
     public const NAME = 'schema:numConstraints';
     public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['ConstraintNode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ConstraintNodeModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2291'];
+    public const SUPERSEDED_BY = null;
 }

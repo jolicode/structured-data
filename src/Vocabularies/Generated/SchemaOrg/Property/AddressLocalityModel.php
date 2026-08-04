@@ -20,4 +20,5 @@ final class AddressLocalityModel
     public const TYPES = ['PostalAddress' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PostalAddressModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

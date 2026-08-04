@@ -18,6 +18,7 @@ final class MonthsOfExperienceModel
     public const NAME = 'schema:monthsOfExperience';
     public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['OccupationalExperienceRequirements' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OccupationalExperienceRequirementsModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2681'];
+    public const SUPERSEDED_BY = null;
 }

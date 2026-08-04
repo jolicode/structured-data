@@ -18,6 +18,7 @@ final class AdverseOutcomeModel
     public const NAME = 'schema:adverseOutcome';
     public const VALUES = ['MedicalEntityModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel'];
     public const TYPES = ['MedicalDevice' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalDeviceModel', 'TherapeuticProcedure' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TherapeuticProcedureModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

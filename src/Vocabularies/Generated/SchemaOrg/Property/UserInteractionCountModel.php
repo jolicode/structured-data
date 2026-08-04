@@ -20,4 +20,5 @@ final class UserInteractionCountModel
     public const TYPES = ['InteractionCounter' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InteractionCounterModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

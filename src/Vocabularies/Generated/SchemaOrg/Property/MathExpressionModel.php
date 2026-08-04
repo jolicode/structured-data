@@ -18,6 +18,7 @@ final class MathExpressionModel
     public const NAME = 'schema:mathExpression';
     public const VALUES = ['SolveMathActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SolveMathActionModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MathSolver' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MathSolverModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2740'];
+    public const SUPERSEDED_BY = null;
 }

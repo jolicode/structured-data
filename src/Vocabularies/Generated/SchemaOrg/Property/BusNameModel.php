@@ -20,4 +20,5 @@ final class BusNameModel
     public const TYPES = ['BusTrip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BusTripModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

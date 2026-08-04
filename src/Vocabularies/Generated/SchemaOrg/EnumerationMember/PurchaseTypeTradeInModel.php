@@ -16,6 +16,7 @@ final class PurchaseTypeTradeInModel
     public const DESCRIPTION = 'This is a trade-in for an item.';
     public const LABEL = 'PurchaseTypeTradeIn';
     public const NAME = 'schema:PurchaseTypeTradeIn';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3572'];
+    public const SUPERSEDED_BY = null;
 }

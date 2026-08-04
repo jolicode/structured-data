@@ -16,6 +16,7 @@ final class SalePriceModel
     public const DESCRIPTION = 'Represents a sale price (usually active for a limited period) of an offered product.';
     public const LABEL = 'SalePrice';
     public const NAME = 'schema:SalePrice';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2712'];
+    public const SUPERSEDED_BY = null;
 }

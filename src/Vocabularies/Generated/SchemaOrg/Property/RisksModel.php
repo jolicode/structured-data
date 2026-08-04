@@ -18,6 +18,7 @@ final class RisksModel
     public const NAME = 'schema:risks';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Diet' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DietModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

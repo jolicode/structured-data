@@ -13,15 +13,9 @@ namespace Jolicode\Vocabularies\Generated\Google;
 
 final class JobPosting
 {
-    public const NAME = 'JobPosting';
     public const SUPPORTED_TYPES = ['JobPosting'];
-    public const VALUE = [];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/job-posting';
-    public const SUBTYPE = null;
-    public const HAS_SPECIAL_RULES = true;
     public const SPECIAL_RULE_KEYS = ['google.job_posting.remote_job_location_requirements'];
-    public const IS_CAROUSEL_ELIGIBLE = false;
-    public const CAROUSEL_PROPERTIES = [];
     public const PROPERTIES = [
         'title' => [
             'name' => 'title',

@@ -20,4 +20,5 @@ final class AssociatedMediaModel
     public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'HyperTocEntry' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HyperTocEntryModel', 'HyperToc' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HyperTocModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

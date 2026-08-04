@@ -18,6 +18,7 @@ final class HasShippingServiceModel
     public const NAME = 'schema:hasShippingService';
     public const VALUES = ['ShippingServiceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ShippingServiceModel'];
     public const TYPES = ['OfferShippingDetails' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferShippingDetailsModel', 'Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3617'];
+    public const SUPERSEDED_BY = null;
 }

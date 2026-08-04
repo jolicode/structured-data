@@ -20,4 +20,5 @@ final class IssueNumberModel
     public const TYPES = ['PublicationIssue' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PublicationIssueModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

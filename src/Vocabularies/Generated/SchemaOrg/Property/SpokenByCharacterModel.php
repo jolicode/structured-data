@@ -18,6 +18,7 @@ final class SpokenByCharacterModel
     public const NAME = 'schema:spokenByCharacter';
     public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['Quotation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuotationModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/271'];
+    public const SUPERSEDED_BY = null;
 }

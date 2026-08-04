@@ -20,4 +20,5 @@ final class LesserOrEqualModel
     public const TYPES = ['QualitativeValue' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QualitativeValueModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -19,5 +19,6 @@ final class DurationModel
     public const VALUES = ['DurationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DurationModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['Audiobook' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AudiobookModel', 'Episode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EpisodeModel', 'Event' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel', 'MediaObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaObjectModel', 'Movie' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MovieModel', 'MusicRecording' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicRecordingModel', 'MusicRelease' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicReleaseModel', 'QuantitativeValueDistribution' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueDistributionModel', 'Schedule' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ScheduleModel', 'ServicePeriod' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServicePeriodModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1457', 'https://github.com/schemaorg/schemaorg/issues/1698', 'https://github.com/schemaorg/schemaorg/issues/3617'];
+    public const SUPERSEDED_BY = null;
 }

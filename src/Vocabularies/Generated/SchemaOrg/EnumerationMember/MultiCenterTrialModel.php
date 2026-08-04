@@ -16,6 +16,7 @@ final class MultiCenterTrialModel
     public const DESCRIPTION = 'A trial that takes place at multiple centers.';
     public const LABEL = 'MultiCenterTrial';
     public const NAME = 'schema:MultiCenterTrial';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

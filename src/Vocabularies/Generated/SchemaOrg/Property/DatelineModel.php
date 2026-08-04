@@ -24,4 +24,5 @@ Dateline summaries are oriented more towards human readers than towards automate
     public const TYPES = ['NewsArticle' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NewsArticleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

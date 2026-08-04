@@ -19,5 +19,6 @@ final class InteractionStatisticModel
     public const VALUES = ['InteractionCounterModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InteractionCounterModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2421'];
+    public const SUPERSEDED_BY = null;
 }

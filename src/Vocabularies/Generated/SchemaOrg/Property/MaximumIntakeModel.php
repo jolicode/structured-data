@@ -18,6 +18,7 @@ final class MaximumIntakeModel
     public const NAME = 'schema:maximumIntake';
     public const VALUES = ['MaximumDoseScheduleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MaximumDoseScheduleModel'];
     public const TYPES = ['DietarySupplement' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DietarySupplementModel', 'Drug' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugModel', 'DrugStrength' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugStrengthModel', 'Substance' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SubstanceModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

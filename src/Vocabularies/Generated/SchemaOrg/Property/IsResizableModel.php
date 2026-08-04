@@ -18,6 +18,7 @@ final class IsResizableModel
     public const NAME = 'schema:isResizable';
     public const VALUES = ['BooleanModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['3DModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\3DModelModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2394'];
+    public const SUPERSEDED_BY = null;
 }

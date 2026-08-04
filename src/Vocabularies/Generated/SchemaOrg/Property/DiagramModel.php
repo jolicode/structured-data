@@ -18,6 +18,7 @@ final class DiagramModel
     public const NAME = 'schema:diagram';
     public const VALUES = ['ImageObjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ImageObjectModel'];
     public const TYPES = ['AnatomicalStructure' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalStructureModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

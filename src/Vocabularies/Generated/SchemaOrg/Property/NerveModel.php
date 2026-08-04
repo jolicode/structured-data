@@ -18,6 +18,7 @@ final class NerveModel
     public const NAME = 'schema:nerve';
     public const VALUES = ['NerveModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NerveModel'];
     public const TYPES = ['Muscle' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MuscleModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

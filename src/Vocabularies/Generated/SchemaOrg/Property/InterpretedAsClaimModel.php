@@ -18,6 +18,7 @@ final class InterpretedAsClaimModel
     public const NAME = 'schema:interpretedAsClaim';
     public const VALUES = ['ClaimModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ClaimModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'MediaObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaObjectModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2450'];
+    public const SUPERSEDED_BY = null;
 }

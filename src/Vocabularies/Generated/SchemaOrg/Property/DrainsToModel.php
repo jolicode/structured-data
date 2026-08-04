@@ -18,6 +18,7 @@ final class DrainsToModel
     public const NAME = 'schema:drainsTo';
     public const VALUES = ['VesselModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VesselModel'];
     public const TYPES = ['Vein' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VeinModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

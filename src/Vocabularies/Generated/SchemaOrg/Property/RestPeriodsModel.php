@@ -18,6 +18,7 @@ final class RestPeriodsModel
     public const NAME = 'schema:restPeriods';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['ExercisePlan' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ExercisePlanModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class ValidUntilModel
     public const TYPES = ['Permit' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PermitModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

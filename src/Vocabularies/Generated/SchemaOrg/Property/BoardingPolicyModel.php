@@ -20,4 +20,5 @@ final class BoardingPolicyModel
     public const TYPES = ['Airline' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AirlineModel', 'Flight' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FlightModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

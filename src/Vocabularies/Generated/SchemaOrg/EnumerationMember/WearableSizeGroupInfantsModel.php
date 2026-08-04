@@ -16,6 +16,7 @@ final class WearableSizeGroupInfantsModel
     public const DESCRIPTION = 'Size group "Infants" for wearables.';
     public const LABEL = 'WearableSizeGroupInfants';
     public const NAME = 'schema:WearableSizeGroupInfants';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

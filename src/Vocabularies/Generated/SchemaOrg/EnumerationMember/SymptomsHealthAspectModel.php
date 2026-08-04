@@ -16,6 +16,7 @@ final class SymptomsHealthAspectModel
     public const DESCRIPTION = 'Symptoms or related symptoms of a Topic.';
     public const LABEL = 'SymptomsHealthAspect';
     public const NAME = 'schema:SymptomsHealthAspect';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2374'];
+    public const SUPERSEDED_BY = null;
 }

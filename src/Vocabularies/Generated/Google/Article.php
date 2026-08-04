@@ -13,15 +13,9 @@ namespace Jolicode\Vocabularies\Generated\Google;
 
 final class Article
 {
-    public const NAME = 'Article';
     public const SUPPORTED_TYPES = ['Article', 'NewsArticle', 'BlogPosting'];
-    public const VALUE = [];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/article#article-objects';
-    public const SUBTYPE = null;
-    public const HAS_SPECIAL_RULES = true;
     public const SPECIAL_RULE_KEYS = ['google.article.author_url_or_sameas'];
-    public const IS_CAROUSEL_ELIGIBLE = false;
-    public const CAROUSEL_PROPERTIES = [];
     public const PROPERTIES = [
         'author' => [
             'name' => 'author',

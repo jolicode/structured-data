@@ -16,6 +16,7 @@ final class WesternConventionalModel
     public const DESCRIPTION = 'The conventional Western system of medicine, that aims to apply the best available evidence gained from the scientific method to clinical decision making. Also known as conventional or Western medicine.';
     public const LABEL = 'WesternConventional';
     public const NAME = 'schema:WesternConventional';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -18,6 +18,7 @@ final class OriginatesFromModel
     public const NAME = 'schema:originatesFrom';
     public const VALUES = ['VesselModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VesselModel'];
     public const TYPES = ['LymphaticVessel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LymphaticVesselModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

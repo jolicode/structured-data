@@ -16,6 +16,7 @@ final class IncentiveQualifiedExpenseTypeUtilityBillModel
     public const DESCRIPTION = 'This incentive applies to utility bills.';
     public const LABEL = 'IncentiveQualifiedExpenseTypeUtilityBill';
     public const NAME = 'schema:IncentiveQualifiedExpenseTypeUtilityBill';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3572'];
+    public const SUPERSEDED_BY = null;
 }

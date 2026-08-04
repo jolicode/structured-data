@@ -22,6 +22,7 @@ final class EventStatusTypeModel
     public const ENUMERATION_MEMBERS = ['EventCancelledModel' => 'EnumerationMember\EventCancelledModel', 'EventMovedOnlineModel' => 'EnumerationMember\EventMovedOnlineModel', 'EventPostponedModel' => 'EnumerationMember\EventPostponedModel', 'EventRescheduledModel' => 'EnumerationMember\EventRescheduledModel', 'EventScheduledModel' => 'EnumerationMember\EventScheduledModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

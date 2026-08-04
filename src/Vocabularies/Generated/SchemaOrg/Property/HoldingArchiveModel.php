@@ -18,6 +18,7 @@ final class HoldingArchiveModel
     public const NAME = 'schema:holdingArchive';
     public const VALUES = ['ArchiveOrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ArchiveOrganizationModel'];
     public const TYPES = ['ArchiveComponent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ArchiveComponentModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1758'];
+    public const SUPERSEDED_BY = null;
 }

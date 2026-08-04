@@ -16,6 +16,7 @@ final class DigitalCaptureDigitalSourceModel
     public const DESCRIPTION = 'Content coded as \'<a href="https://cv.iptc.org/newscodes/digitalsourcetype/digitalCapture">digital capture</a></a>\' using the IPTC <a href="https://cv.iptc.org/newscodes/digitalsourcetype/">digital source type</a> vocabulary.';
     public const LABEL = 'DigitalCaptureDigitalSource';
     public const NAME = 'schema:DigitalCaptureDigitalSource';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3392'];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class PickupLocationModel
     public const TYPES = ['RentalCarReservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RentalCarReservationModel', 'TaxiReservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TaxiReservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

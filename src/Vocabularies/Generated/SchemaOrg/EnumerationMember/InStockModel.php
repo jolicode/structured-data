@@ -18,4 +18,5 @@ final class InStockModel
     public const NAME = 'schema:InStock';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

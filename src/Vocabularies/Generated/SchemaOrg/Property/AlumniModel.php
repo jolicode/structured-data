@@ -20,4 +20,5 @@ final class AlumniModel
     public const TYPES = ['EducationalOrganization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOrganizationModel', 'Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

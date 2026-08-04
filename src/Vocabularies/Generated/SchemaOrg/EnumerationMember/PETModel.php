@@ -16,6 +16,7 @@ final class PETModel
     public const DESCRIPTION = 'Positron emission tomography imaging.';
     public const LABEL = 'PET';
     public const NAME = 'schema:PET';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

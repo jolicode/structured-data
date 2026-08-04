@@ -16,6 +16,7 @@ final class CardiovascularExamModel
     public const DESCRIPTION = 'Cardiovascular system assessment with clinical examination.';
     public const LABEL = 'CardiovascularExam';
     public const NAME = 'schema:CardiovascularExam';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

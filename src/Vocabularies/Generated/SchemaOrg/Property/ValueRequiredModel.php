@@ -20,4 +20,5 @@ final class ValueRequiredModel
     public const TYPES = ['PropertyValueSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyValueSpecificationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

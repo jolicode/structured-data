@@ -20,4 +20,5 @@ final class WarrantyScopeModel
     public const TYPES = ['WarrantyPromise' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WarrantyPromiseModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

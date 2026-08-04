@@ -16,6 +16,7 @@ final class ReturnAtKioskModel
     public const DESCRIPTION = 'Specifies that product returns must be made at a kiosk.';
     public const LABEL = 'ReturnAtKiosk';
     public const NAME = 'schema:ReturnAtKiosk';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2880'];
+    public const SUPERSEDED_BY = null;
 }

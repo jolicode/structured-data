@@ -20,4 +20,5 @@ final class PaginationModel
     public const TYPES = ['Article' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ArticleModel', 'Chapter' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ChapterModel', 'PublicationIssue' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PublicationIssueModel', 'PublicationVolume' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PublicationVolumeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

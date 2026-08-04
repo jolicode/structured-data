@@ -16,6 +16,7 @@ final class Nonprofit501c24Model
     public const DESCRIPTION = 'Nonprofit501c24: Non-profit type referring to Section 4049 ERISA Trusts.';
     public const LABEL = 'Nonprofit501c24';
     public const NAME = 'schema:Nonprofit501c24';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2543'];
+    public const SUPERSEDED_BY = null;
 }

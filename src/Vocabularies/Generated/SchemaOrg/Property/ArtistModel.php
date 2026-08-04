@@ -20,6 +20,7 @@ final class ArtistModel
     public const NAME = 'schema:artist';
     public const VALUES = ['PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['ComicIssue' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ComicIssueModel', 'ComicStory' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ComicStoryModel', 'VisualArtwork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VisualArtworkModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://bib.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -19,5 +19,6 @@ final class PaymentMethodModel
     public const VALUES = ['PaymentMethodModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PaymentMethodModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Invoice' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InvoiceModel', 'Order' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrderModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3537'];
+    public const SUPERSEDED_BY = null;
 }

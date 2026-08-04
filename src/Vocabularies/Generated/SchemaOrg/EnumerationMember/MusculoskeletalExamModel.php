@@ -16,6 +16,7 @@ final class MusculoskeletalExamModel
     public const DESCRIPTION = 'Musculoskeletal system clinical examination.';
     public const LABEL = 'MusculoskeletalExam';
     public const NAME = 'schema:MusculoskeletalExam';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

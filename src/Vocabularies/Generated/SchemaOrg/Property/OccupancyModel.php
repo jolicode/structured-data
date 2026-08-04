@@ -21,4 +21,5 @@ Typical unit code(s): C62 for person.';
     public const TYPES = ['Accommodation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AccommodationModel', 'Apartment' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ApartmentModel', 'HotelRoom' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HotelRoomModel', 'SingleFamilyResidence' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SingleFamilyResidenceModel', 'Suite' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SuiteModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

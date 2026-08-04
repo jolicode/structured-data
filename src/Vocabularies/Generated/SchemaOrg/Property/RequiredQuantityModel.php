@@ -20,4 +20,5 @@ final class RequiredQuantityModel
     public const TYPES = ['HowToItem' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HowToItemModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

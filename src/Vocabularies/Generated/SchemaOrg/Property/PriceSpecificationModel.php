@@ -20,4 +20,5 @@ final class PriceSpecificationModel
     public const TYPES = ['Demand' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DemandModel', 'DonateAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DonateActionModel', 'Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel', 'TradeAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TradeActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

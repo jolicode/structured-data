@@ -3075,10 +3075,10 @@ final class GeneratedClassesRegistry
     public static function getMapByPrefix(string $prefix): array
     {
         return match (true) {
-            str_starts_with($prefix, \Jolicode\Vocabularies\Generators\SchemaOrg\Generator::NAMESPACE_TYPE) => self::SCHEMA_ORG_TYPES,
-            str_starts_with($prefix, \Jolicode\Vocabularies\Generators\SchemaOrg\Generator::NAMESPACE_PROPERTY) => self::SCHEMA_ORG_PROPERTIES,
-            str_starts_with($prefix, \Jolicode\Vocabularies\Generators\SchemaOrg\Generator::NAMESPACE_ENUMERATION_MEMBER) => self::SCHEMA_ORG_ENUMERATION_MEMBERS,
-            str_starts_with($prefix, \Jolicode\Vocabularies\Generators\Google\Generator::NAMESPACE_BASE) => self::GOOGLE,
+            str_starts_with($prefix, 'Jolicode\Vocabularies\Generated\SchemaOrg\Type') => self::SCHEMA_ORG_TYPES,
+            str_starts_with($prefix, 'Jolicode\Vocabularies\Generated\SchemaOrg\Property') => self::SCHEMA_ORG_PROPERTIES,
+            str_starts_with($prefix, 'Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember') => self::SCHEMA_ORG_ENUMERATION_MEMBERS,
+            str_starts_with($prefix, 'Jolicode\Vocabularies\Generated\Google') => self::GOOGLE,
             default => [],
         };
     }

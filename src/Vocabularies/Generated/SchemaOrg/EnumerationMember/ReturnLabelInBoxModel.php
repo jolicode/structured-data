@@ -16,6 +16,7 @@ final class ReturnLabelInBoxModel
     public const DESCRIPTION = 'Specifies that a return label will be provided by the seller in the shipping box.';
     public const LABEL = 'ReturnLabelInBox';
     public const NAME = 'schema:ReturnLabelInBox';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2880'];
+    public const SUPERSEDED_BY = null;
 }

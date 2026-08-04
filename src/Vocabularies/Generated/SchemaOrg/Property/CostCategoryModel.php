@@ -18,6 +18,7 @@ final class CostCategoryModel
     public const NAME = 'schema:costCategory';
     public const VALUES = ['DrugCostCategoryModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugCostCategoryModel'];
     public const TYPES = ['DrugCost' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugCostModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

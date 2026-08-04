@@ -20,4 +20,5 @@ final class RecipientModel
     public const TYPES = ['AuthorizeAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AuthorizeActionModel', 'CommunicateAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommunicateActionModel', 'DonateAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DonateActionModel', 'GiveAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GiveActionModel', 'Message' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MessageModel', 'PayAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PayActionModel', 'ReturnAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReturnActionModel', 'SendAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SendActionModel', 'TipAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TipActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

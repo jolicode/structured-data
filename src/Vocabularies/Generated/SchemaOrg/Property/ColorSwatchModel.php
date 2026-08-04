@@ -18,6 +18,7 @@ final class ColorSwatchModel
     public const NAME = 'schema:colorSwatch';
     public const VALUES = ['ImageObjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ImageObjectModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
     public const TYPES = ['Product' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3423'];
+    public const SUPERSEDED_BY = null;
 }

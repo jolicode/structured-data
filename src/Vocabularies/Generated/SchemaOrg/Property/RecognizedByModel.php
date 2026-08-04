@@ -18,6 +18,7 @@ final class RecognizedByModel
     public const NAME = 'schema:recognizedBy';
     public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel'];
     public const TYPES = ['Credential' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CredentialModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1779'];
+    public const SUPERSEDED_BY = null;
 }

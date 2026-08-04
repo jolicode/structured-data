@@ -20,4 +20,5 @@ final class SalaryCurrencyModel
     public const TYPES = ['EmployeeRole' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EmployeeRoleModel', 'JobPosting' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\JobPostingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

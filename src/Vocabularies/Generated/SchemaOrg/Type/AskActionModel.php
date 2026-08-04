@@ -22,6 +22,7 @@ final class AskActionModel
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AboutModel $about = null,

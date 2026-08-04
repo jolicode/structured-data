@@ -16,6 +16,7 @@ final class OfflineEventAttendanceModeModel
     public const DESCRIPTION = 'OfflineEventAttendanceMode - an event that is primarily conducted offline.';
     public const LABEL = 'OfflineEventAttendanceMode';
     public const NAME = 'schema:OfflineEventAttendanceMode';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1842'];
+    public const SUPERSEDED_BY = null;
 }

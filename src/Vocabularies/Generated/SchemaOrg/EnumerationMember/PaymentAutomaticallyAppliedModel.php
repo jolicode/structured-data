@@ -18,4 +18,5 @@ final class PaymentAutomaticallyAppliedModel
     public const NAME = 'schema:PaymentAutomaticallyApplied';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

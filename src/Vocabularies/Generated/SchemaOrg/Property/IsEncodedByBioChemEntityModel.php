@@ -18,6 +18,7 @@ final class IsEncodedByBioChemEntityModel
     public const NAME = 'schema:isEncodedByBioChemEntity';
     public const VALUES = ['GeneModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeneModel'];
     public const TYPES = ['BioChemEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BioChemEntityModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['http://www.bioschemas.org/Gene'];
+    public const SUPERSEDED_BY = null;
 }

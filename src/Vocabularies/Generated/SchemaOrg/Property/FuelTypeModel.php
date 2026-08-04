@@ -20,4 +20,5 @@ final class FuelTypeModel
     public const TYPES = ['EngineSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EngineSpecificationModel', 'Vehicle' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VehicleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -16,6 +16,7 @@ final class DoubleBlindedTrialModel
     public const DESCRIPTION = 'A trial design in which neither the researcher nor the patient knows the details of the treatment the patient was randomly assigned to.';
     public const LABEL = 'DoubleBlindedTrial';
     public const NAME = 'schema:DoubleBlindedTrial';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

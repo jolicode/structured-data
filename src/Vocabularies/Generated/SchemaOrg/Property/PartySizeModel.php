@@ -20,4 +20,5 @@ final class PartySizeModel
     public const TYPES = ['FoodEstablishmentReservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FoodEstablishmentReservationModel', 'TaxiReservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TaxiReservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

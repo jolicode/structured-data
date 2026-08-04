@@ -20,4 +20,5 @@ final class HttpMethodModel
     public const TYPES = ['EntryPoint' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EntryPointModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class CreatorModel
     public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'UserComments' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\UserCommentsModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

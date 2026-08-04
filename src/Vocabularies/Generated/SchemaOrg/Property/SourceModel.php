@@ -18,6 +18,7 @@ final class SourceModel
     public const NAME = 'schema:source';
     public const VALUES = ['ThingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
     public const TYPES = ['InstantaneousEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InstantaneousEventModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/4527'];
+    public const SUPERSEDED_BY = null;
 }

@@ -18,6 +18,7 @@ final class EnergyEfficiencyScaleMinModel
     public const NAME = 'schema:energyEfficiencyScaleMin';
     public const VALUES = ['EUEnergyEfficiencyEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EUEnergyEfficiencyEnumerationModel'];
     public const TYPES = ['EnergyConsumptionDetails' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnergyConsumptionDetailsModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2670'];
+    public const SUPERSEDED_BY = null;
 }

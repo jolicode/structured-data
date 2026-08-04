@@ -18,6 +18,7 @@ final class SupersededByModel
     public const NAME = 'schema:supersededBy';
     public const VALUES = ['ClassModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ClassModel', 'EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel', 'PropertyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyModel'];
     public const TYPES = ['Class' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ClassModel', 'Enumeration' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel', 'Property' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://meta.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

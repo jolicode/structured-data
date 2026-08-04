@@ -20,4 +20,5 @@ final class InteractionCountModel
     public const TYPES = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = 'interactionStatistic';
 }

@@ -16,6 +16,7 @@ final class IncentiveTypeTaxDeductionModel
     public const DESCRIPTION = 'An incentive that reduces the recipient\'s amount of taxable income.';
     public const LABEL = 'IncentiveTypeTaxDeduction';
     public const NAME = 'schema:IncentiveTypeTaxDeduction';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3572'];
+    public const SUPERSEDED_BY = null;
 }

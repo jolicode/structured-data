@@ -18,6 +18,7 @@ final class EvidenceOriginModel
     public const NAME = 'schema:evidenceOrigin';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalGuideline' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalGuidelineModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class DeliveryMethodModel
     public const TYPES = ['OrderAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrderActionModel', 'ReceiveAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReceiveActionModel', 'SendAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SendActionModel', 'TrackAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TrackActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

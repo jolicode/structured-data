@@ -18,4 +18,5 @@ final class CoOpModel
     public const NAME = 'schema:CoOp';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

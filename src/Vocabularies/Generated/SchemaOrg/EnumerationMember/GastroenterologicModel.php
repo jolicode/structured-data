@@ -16,6 +16,7 @@ final class GastroenterologicModel
     public const DESCRIPTION = 'A specific branch of medical science that pertains to diagnosis and treatment of disorders of digestive system.';
     public const LABEL = 'Gastroenterologic';
     public const NAME = 'schema:Gastroenterologic';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

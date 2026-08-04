@@ -18,6 +18,7 @@ final class HealthPlanNetworkTierModel
     public const NAME = 'schema:healthPlanNetworkTier';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['HealthPlanNetwork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HealthPlanNetworkModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1062'];
+    public const SUPERSEDED_BY = null;
 }

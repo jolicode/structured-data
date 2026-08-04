@@ -18,6 +18,7 @@ final class StudyModel
     public const NAME = 'schema:study';
     public const VALUES = ['MedicalStudyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalStudyModel'];
     public const TYPES = ['MedicalEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

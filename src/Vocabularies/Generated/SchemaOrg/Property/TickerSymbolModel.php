@@ -20,4 +20,5 @@ final class TickerSymbolModel
     public const TYPES = ['Corporation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CorporationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

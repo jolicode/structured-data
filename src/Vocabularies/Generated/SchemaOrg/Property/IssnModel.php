@@ -20,4 +20,5 @@ final class IssnModel
     public const TYPES = ['Blog' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BlogModel', 'CreativeWorkSeries' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkSeriesModel', 'Dataset' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DatasetModel', 'WebSite' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebSiteModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

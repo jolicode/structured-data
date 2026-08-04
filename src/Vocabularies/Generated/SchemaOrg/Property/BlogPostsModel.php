@@ -20,4 +20,5 @@ final class BlogPostsModel
     public const TYPES = ['Blog' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BlogModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = 'blogPost';
 }

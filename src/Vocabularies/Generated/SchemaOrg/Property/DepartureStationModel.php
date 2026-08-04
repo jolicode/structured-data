@@ -20,4 +20,5 @@ final class DepartureStationModel
     public const TYPES = ['TrainTrip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TrainTripModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -16,6 +16,7 @@ final class DermatologyModel
     public const DESCRIPTION = 'A specific branch of medical science that pertains to diagnosis and treatment of disorders of skin.';
     public const LABEL = 'Dermatology';
     public const NAME = 'schema:Dermatology';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

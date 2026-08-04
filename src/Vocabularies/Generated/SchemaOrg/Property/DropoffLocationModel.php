@@ -20,4 +20,5 @@ final class DropoffLocationModel
     public const TYPES = ['RentalCarReservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RentalCarReservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

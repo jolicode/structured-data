@@ -18,6 +18,7 @@ final class EvidenceLevelModel
     public const NAME = 'schema:evidenceLevel';
     public const VALUES = ['MedicalEvidenceLevelModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEvidenceLevelModel'];
     public const TYPES = ['MedicalGuideline' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalGuidelineModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class ContactPointModel
     public const TYPES = ['HealthInsurancePlan' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HealthInsurancePlanModel', 'Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

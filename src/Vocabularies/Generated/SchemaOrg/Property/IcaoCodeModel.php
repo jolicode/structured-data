@@ -20,4 +20,5 @@ final class IcaoCodeModel
     public const TYPES = ['Airport' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AirportModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

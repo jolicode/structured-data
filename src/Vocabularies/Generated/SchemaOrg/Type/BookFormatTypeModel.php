@@ -22,6 +22,7 @@ final class BookFormatTypeModel
     public const ENUMERATION_MEMBERS = ['AudiobookFormatModel' => 'EnumerationMember\AudiobookFormatModel', 'EBookModel' => 'EnumerationMember\EBookModel', 'GraphicNovelModel' => 'EnumerationMember\GraphicNovelModel', 'HardcoverModel' => 'EnumerationMember\HardcoverModel', 'PamphletModel' => 'EnumerationMember\PamphletModel', 'PaperbackModel' => 'EnumerationMember\PaperbackModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

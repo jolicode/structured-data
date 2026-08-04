@@ -19,5 +19,6 @@ final class HasBroadcastChannelModel
     public const VALUES = ['BroadcastChannelModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastChannelModel'];
     public const TYPES = ['BroadcastService' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastServiceModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1004'];
+    public const SUPERSEDED_BY = null;
 }

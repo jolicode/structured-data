@@ -18,6 +18,7 @@ final class AbridgedModel
     public const NAME = 'schema:abridged';
     public const VALUES = ['BooleanModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['Book' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BookModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://bib.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

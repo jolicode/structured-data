@@ -18,6 +18,7 @@ final class ReadByModel
     public const NAME = 'schema:readBy';
     public const VALUES = ['PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['Audiobook' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AudiobookModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://bib.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

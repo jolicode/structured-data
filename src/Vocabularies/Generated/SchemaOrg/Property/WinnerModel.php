@@ -20,4 +20,5 @@ final class WinnerModel
     public const TYPES = ['LoseAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LoseActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

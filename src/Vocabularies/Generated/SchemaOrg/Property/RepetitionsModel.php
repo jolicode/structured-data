@@ -18,6 +18,7 @@ final class RepetitionsModel
     public const NAME = 'schema:repetitions';
     public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['ExercisePlan' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ExercisePlanModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

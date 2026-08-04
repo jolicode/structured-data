@@ -20,4 +20,5 @@ final class PlayersOnlineModel
     public const TYPES = ['GameServer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GameServerModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

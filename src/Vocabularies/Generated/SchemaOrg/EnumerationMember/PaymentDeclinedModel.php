@@ -18,4 +18,5 @@ final class PaymentDeclinedModel
     public const NAME = 'schema:PaymentDeclined';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

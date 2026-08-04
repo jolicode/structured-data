@@ -22,6 +22,7 @@ final class CodeModel
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = 'SoftwareSourceCode';
 
     public function __construct(
         public ?Property\AboutModel $about = null,

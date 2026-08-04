@@ -16,6 +16,7 @@ final class InfectiousModel
     public const DESCRIPTION = 'Something in medical science that pertains to infectious diseases, i.e. caused by bacterial, viral, fungal or parasitic infections.';
     public const LABEL = 'Infectious';
     public const NAME = 'schema:Infectious';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

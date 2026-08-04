@@ -16,6 +16,7 @@ final class CardiovascularModel
     public const DESCRIPTION = 'A specific branch of medical science that pertains to diagnosis and treatment of disorders of heart and vasculature.';
     public const LABEL = 'Cardiovascular';
     public const NAME = 'schema:Cardiovascular';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

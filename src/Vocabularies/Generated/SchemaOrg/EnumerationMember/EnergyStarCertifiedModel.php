@@ -16,6 +16,7 @@ final class EnergyStarCertifiedModel
     public const DESCRIPTION = 'Represents EnergyStar certification.';
     public const LABEL = 'EnergyStarCertified';
     public const NAME = 'schema:EnergyStarCertified';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2670'];
+    public const SUPERSEDED_BY = null;
 }

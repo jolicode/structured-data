@@ -16,6 +16,7 @@ final class WearableMeasurementCollarModel
     public const DESCRIPTION = 'Measurement of the collar, for example of a shirt.';
     public const LABEL = 'WearableMeasurementCollar';
     public const NAME = 'schema:WearableMeasurementCollar';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

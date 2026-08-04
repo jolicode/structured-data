@@ -16,6 +16,7 @@ final class StoreCreditRefundModel
     public const DESCRIPTION = 'Specifies that the customer receives a store credit as refund when returning a product.';
     public const LABEL = 'StoreCreditRefund';
     public const NAME = 'schema:StoreCreditRefund';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2288'];
+    public const SUPERSEDED_BY = null;
 }

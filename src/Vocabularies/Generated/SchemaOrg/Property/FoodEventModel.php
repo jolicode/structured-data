@@ -20,4 +20,5 @@ final class FoodEventModel
     public const TYPES = ['CookAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CookActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -13,15 +13,9 @@ namespace Jolicode\Vocabularies\Generated\Google;
 
 final class ProductMerchantListing extends Product
 {
-    public const NAME = 'ProductMerchantListing';
     public const SUPPORTED_TYPES = ['Product'];
-    public const VALUE = [];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing';
-    public const SUBTYPE = 'MerchantListing';
-    public const HAS_SPECIAL_RULES = true;
     public const SPECIAL_RULE_KEYS = ['google.product.merchant_listing_price_positive'];
-    public const IS_CAROUSEL_ELIGIBLE = false;
-    public const CAROUSEL_PROPERTIES = [];
     public const PROPERTIES = [
         'name' => [
             'name' => 'name',

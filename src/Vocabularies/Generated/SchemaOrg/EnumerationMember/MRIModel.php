@@ -16,6 +16,7 @@ final class MRIModel
     public const DESCRIPTION = 'Magnetic resonance imaging.';
     public const LABEL = 'MRI';
     public const NAME = 'schema:MRI';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

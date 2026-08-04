@@ -21,4 +21,5 @@ final class BedModel
     public const TYPES = ['Accommodation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AccommodationModel', 'HotelRoom' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HotelRoomModel', 'Suite' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SuiteModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

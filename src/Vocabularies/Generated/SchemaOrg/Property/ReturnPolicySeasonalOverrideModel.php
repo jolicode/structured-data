@@ -18,6 +18,7 @@ final class ReturnPolicySeasonalOverrideModel
     public const NAME = 'schema:returnPolicySeasonalOverride';
     public const VALUES = ['MerchantReturnPolicySeasonalOverrideModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MerchantReturnPolicySeasonalOverrideModel'];
     public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MerchantReturnPolicyModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2880'];
+    public const SUPERSEDED_BY = null;
 }

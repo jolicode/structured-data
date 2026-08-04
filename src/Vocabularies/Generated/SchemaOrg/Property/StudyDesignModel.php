@@ -18,6 +18,7 @@ final class StudyDesignModel
     public const NAME = 'schema:studyDesign';
     public const VALUES = ['MedicalObservationalStudyDesignModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalObservationalStudyDesignModel'];
     public const TYPES = ['MedicalObservationalStudy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalObservationalStudyModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

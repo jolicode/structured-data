@@ -16,6 +16,7 @@ final class ListPriceModel
     public const DESCRIPTION = 'Represents the list price of an offered product. Typically the same as the [MSRP](https://schema.org/MSRP).';
     public const LABEL = 'ListPrice';
     public const NAME = 'schema:ListPrice';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2712'];
+    public const SUPERSEDED_BY = null;
 }

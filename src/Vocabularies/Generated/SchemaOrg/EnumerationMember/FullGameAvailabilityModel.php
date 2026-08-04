@@ -16,6 +16,7 @@ final class FullGameAvailabilityModel
     public const DESCRIPTION = 'Indicates full game availability.';
     public const LABEL = 'FullGameAvailability';
     public const NAME = 'schema:FullGameAvailability';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3058'];
+    public const SUPERSEDED_BY = null;
 }

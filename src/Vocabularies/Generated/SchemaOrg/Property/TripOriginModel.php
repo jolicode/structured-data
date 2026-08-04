@@ -20,4 +20,5 @@ final class TripOriginModel
     public const TYPES = ['Trip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TripModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

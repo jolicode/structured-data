@@ -18,6 +18,7 @@ final class DiagnosisModel
     public const NAME = 'schema:diagnosis';
     public const VALUES = ['MedicalConditionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel'];
     public const TYPES = ['DDxElement' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DDxElementModel', 'Patient' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PatientModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

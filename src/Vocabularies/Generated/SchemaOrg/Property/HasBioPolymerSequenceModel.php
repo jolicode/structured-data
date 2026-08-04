@@ -18,6 +18,7 @@ final class HasBioPolymerSequenceModel
     public const NAME = 'schema:hasBioPolymerSequence';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Gene' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeneModel', 'Protein' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProteinModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['http://www.bioschemas.org/Gene'];
+    public const SUPERSEDED_BY = null;
 }

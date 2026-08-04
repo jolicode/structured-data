@@ -34,6 +34,7 @@ it may also sometimes prove useful to describe a longer-term series as an Event.
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/447'];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AboutModel $about = null,

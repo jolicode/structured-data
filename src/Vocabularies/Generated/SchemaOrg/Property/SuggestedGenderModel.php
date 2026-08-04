@@ -20,4 +20,5 @@ final class SuggestedGenderModel
     public const TYPES = ['PeopleAudience' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PeopleAudienceModel', 'SizeSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SizeSpecificationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

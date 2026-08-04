@@ -16,6 +16,7 @@ final class NoseModel
     public const DESCRIPTION = 'Nose function assessment with clinical examination.';
     public const LABEL = 'Nose';
     public const NAME = 'schema:Nose';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

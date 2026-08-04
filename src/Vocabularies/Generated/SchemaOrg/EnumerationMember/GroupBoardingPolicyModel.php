@@ -18,4 +18,5 @@ final class GroupBoardingPolicyModel
     public const NAME = 'schema:GroupBoardingPolicy';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

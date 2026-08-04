@@ -20,4 +20,5 @@ final class SampleTypeModel
     public const TYPES = ['SoftwareSourceCode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SoftwareSourceCodeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = 'codeSampleType';
 }

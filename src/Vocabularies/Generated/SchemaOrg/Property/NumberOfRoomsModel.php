@@ -21,4 +21,5 @@ Typical unit code(s): ROM for room or C62 for no unit. The type of room can be p
     public const TYPES = ['Accommodation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AccommodationModel', 'Apartment' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ApartmentModel', 'FloorPlan' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FloorPlanModel', 'House' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HouseModel', 'LodgingBusiness' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LodgingBusinessModel', 'SingleFamilyResidence' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SingleFamilyResidenceModel', 'Suite' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SuiteModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

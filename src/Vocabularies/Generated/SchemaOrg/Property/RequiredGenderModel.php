@@ -20,4 +20,5 @@ final class RequiredGenderModel
     public const TYPES = ['PeopleAudience' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PeopleAudienceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -16,6 +16,7 @@ final class DietNutritionModel
     public const DESCRIPTION = 'Dietetics and nutrition as a medical specialty.';
     public const LABEL = 'DietNutrition';
     public const NAME = 'schema:DietNutrition';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

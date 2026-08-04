@@ -13,15 +13,9 @@ namespace Jolicode\Vocabularies\Generated\Google;
 
 final class OnlineStore
 {
-    public const NAME = 'OnlineStore';
     public const SUPPORTED_TYPES = ['Organization', 'OnlineStore'];
-    public const VALUE = [];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/organization';
-    public const SUBTYPE = null;
-    public const HAS_SPECIAL_RULES = true;
     public const SPECIAL_RULE_KEYS = ['google.organization.return_policy_merchant_return_days_when_finite', 'google.organization.tax_id_country_consistency'];
-    public const IS_CAROUSEL_ELIGIBLE = false;
-    public const CAROUSEL_PROPERTIES = [];
     public const PROPERTIES = [
         'address' => [
             'name' => 'address',

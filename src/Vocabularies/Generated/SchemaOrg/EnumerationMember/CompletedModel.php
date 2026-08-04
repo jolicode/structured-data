@@ -16,6 +16,7 @@ final class CompletedModel
     public const DESCRIPTION = 'Completed.';
     public const LABEL = 'Completed';
     public const NAME = 'schema:Completed';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }
