@@ -17,16 +17,37 @@ class ExtractorsContainer
     public const MICRODATA = ExtractorFormat::MICRODATA->value;
     public const RDFA = ExtractorFormat::RDFA->value;
 
-    public function __construct(
-        /**
-         * @var list<FormatExtractorInterface>
-         */
-        private array $extractors = [
+    /**
+     * @var list<FormatExtractorInterface>
+     */
+    private array $extractors;
+
+    /**
+     * Shared by all HTML-based extractors so a page body is only parsed once per
+     * extraction pass, whichever extractor touches it first.
+     */
+    private readonly HtmlDocumentLoader $htmlDocumentLoader;
+
+    /**
+     * @param list<FormatExtractorInterface>|null $extractors
+     */
+    public function __construct(?array $extractors = null)
+    {
+        $this->htmlDocumentLoader = new HtmlDocumentLoader();
+        $this->extractors = $extractors ?? [
             new JsonLdNodeExtractor(),
-            new MicrodataExtractor(),
-            new RdfaExtractor(),
-        ],
-    ) {
+            new MicrodataExtractor($this->htmlDocumentLoader),
+            new RdfaExtractor($this->htmlDocumentLoader),
+        ];
+    }
+
+    /**
+     * Releases the memoized DOM document once an extraction pass is over, so that
+     * a long-lived process does not keep the last processed page pinned in memory.
+     */
+    public function releaseHtmlDocumentCache(): void
+    {
+        $this->htmlDocumentLoader->reset();
     }
 
     public function resetExtractors(): self
@@ -125,8 +146,8 @@ class ExtractorsContainer
     {
         return match ($extractorFormat) {
             ExtractorFormat::JSONLD => new JsonLdNodeExtractor(),
-            ExtractorFormat::MICRODATA => new MicrodataExtractor(),
-            ExtractorFormat::RDFA => new RdfaExtractor(),
+            ExtractorFormat::MICRODATA => new MicrodataExtractor($this->htmlDocumentLoader),
+            ExtractorFormat::RDFA => new RdfaExtractor($this->htmlDocumentLoader),
         };
     }
 

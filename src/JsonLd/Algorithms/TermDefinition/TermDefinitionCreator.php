@@ -34,7 +34,6 @@ class TermDefinitionCreator
         '@protected' => true,
         '@type' => true,
     ];
-    private static ?ContextProcesser $contextProcesser = null;
 
     /**
      * This is a PHP implementation of the Create Term Definition based on the
@@ -464,12 +463,15 @@ class TermDefinitionCreator
             }
 
             // 14.2.5
-            // In JSON-LD 1.0, any term whose IRI ends with a gen-delim acts as a prefix,
-            // regardless of whether a simple-term or object-style definition was used.
+            // Only simple (string-valued) terms get the prefix flag. In JSON-LD 1.0,
+            // IRI expansion treats any defined term as a prefix regardless of this
+            // flag - that case is handled in the IRI Expansion algorithm itself, so
+            // that compaction (which only produces compact IRIs from prefix terms)
+            // keeps an accurate flag.
             if (
                 !str_contains($term, ':')
                 && !str_contains($term, '/')
-                && ($simpleTerm || Context::PROCESSING_MODE_10 === $activeContext->processingMode)
+                && $simpleTerm
                 && null !== $definition->iriMapping
             ) {
                 if (IriResolver::iriMappingActsAsPrefix($definition->iriMapping)) {
@@ -608,7 +610,7 @@ class TermDefinitionCreator
 
         // 21.2
         $context = $localContext->{Keyword::CONTEXT->value};
-        $processer = self::$contextProcesser ??= new ContextProcesser();
+        $processer = new ContextProcesser();
 
         // 21.4
         // We swap 21.3 and 21.4 because the $activeContext needs the $baseUrl.
@@ -676,17 +678,14 @@ class TermDefinitionCreator
         }
 
         // 24.2
-        if (
-            !\is_string($definition->nestValue)
-            && (!\in_array($definition->nestValue, Keyword::cases(), true)
-                // || Keyword::NEST->value === $definition->nestValue
-            )
-        ) {
+        $nestValue = $value->{Keyword::NEST->value};
+
+        if (!\is_string($nestValue) || (null !== Keyword::tryFrom($nestValue) && Keyword::NEST !== Keyword::tryFrom($nestValue))) {
             throw new TermDefinitionCreationException('invalid @nest value');
         }
 
         // 24.2
-        $definition->nestValue = $value->{Keyword::NEST->value};
+        $definition->nestValue = $nestValue;
     }
 
     private static function setPrefixFlag(

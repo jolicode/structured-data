@@ -14,11 +14,10 @@ namespace Jolicode\JsonLd\Tests\Validation;
 use Jolicode\JsonLd\Audit\AuditOptions;
 use Jolicode\JsonLd\Extraction\Extractor;
 use Jolicode\JsonLd\Validator;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @group validation
- */
+#[Group('validation')]
 class ExtractorResilienceTest extends TestCase
 {
     public function testItExtractsASingleValidJsonLdFromARegularWebPage(): void

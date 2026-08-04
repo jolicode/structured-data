@@ -22,11 +22,6 @@ class Extractor
 {
     public const NO_SUPPORTED_FORMATS_DETECTED_MESSAGE_PREFIX = 'Could not detect any supported structured data format.';
 
-    /**
-     * @var array<string, string>
-     */
-    private static array $resolvedInputContentCache = [];
-
     private HttpClientInterface $httpClient;
 
     /** @var array<DocumentWarning> */
@@ -53,11 +48,15 @@ class Extractor
         $this->issues = [];
         $content = $this->resolveInputContent($input);
 
-        // Skip format detection if only one extractor is configured
-        $preferredFormat = \count($this->extractorsContainer->getExtractors()) > 1
-            ? $this->guessPreferredFormat($content)
-            : null;
-        $results = $this->runExtractors($content, $preferredFormat);
+        try {
+            // Skip format detection if only one extractor is configured
+            $preferredFormat = \count($this->extractorsContainer->getExtractors()) > 1
+                ? $this->guessPreferredFormat($content)
+                : null;
+            $results = $this->runExtractors($content, $preferredFormat);
+        } finally {
+            $this->extractorsContainer->releaseHtmlDocumentCache();
+        }
 
         return $this->getResult($results);
     }
@@ -162,19 +161,15 @@ class Extractor
 
     private function resolveInputContent(string $input): string
     {
-        if (isset(self::$resolvedInputContentCache[$input])) {
-            return self::$resolvedInputContentCache[$input];
-        }
-
         $uri = Uri::parse($input);
         $scheme = $uri?->getScheme();
 
         if ('http' === $scheme || 'https' === $scheme) {
-            return self::$resolvedInputContentCache[$input] = $this->fetchContent((string) $uri);
+            return $this->fetchContent((string) $uri);
         }
 
         if (!is_file($input)) {
-            return self::$resolvedInputContentCache[$input] = $input;
+            return $input;
         }
 
         $content = file_get_contents($input);
@@ -183,7 +178,7 @@ class Extractor
             throw new \RuntimeException(\sprintf('Could not read the file %s', $input));
         }
 
-        return self::$resolvedInputContentCache[$input] = $content;
+        return $content;
     }
 
     private function fetchContent(string $url): string

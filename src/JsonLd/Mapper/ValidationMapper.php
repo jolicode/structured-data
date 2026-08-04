@@ -20,19 +20,35 @@ use Jolicode\JsonLd\Parser\Properties\Property;
 use Jolicode\JsonLd\Parser\Properties\Value;
 use Jolicode\Vocabularies\Generated\GeneratedClassesRegistry;
 use Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateModel;
-use Jolicode\Vocabularies\Generators\Google\Generator as GoogleGenerator;
-use Jolicode\Vocabularies\Generators\SchemaOrg\Generator as SchemaOrgGenerator;
 
 class ValidationMapper
 {
     private const SCHEMA_ORG_DOMAIN = 'http://schema.org/';
     private const SCHEMA_ORG_DOMAIN_SECURE = 'https://schema.org/';
+
+    // The library runtime must not depend on the generator classes, so the
+    // generated namespaces are duplicated here.
+    private const GENERATED_SCHEMA_ORG_TYPE_NAMESPACE = 'Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Type';
+    private const GENERATED_GOOGLE_NAMESPACE = 'Jolicode\\Vocabularies\\Generated\\Google';
     private string $sourceFormat;
 
     /**
+     * Immutable vocabulary data derived from the generated classes registry,
+     * legitimately shared process-wide.
+     *
      * @var array<string, string>|null
      */
     private static ?array $knownTypeNamesByLowercase = null;
+
+    /**
+     * @var array<string, string>
+     */
+    private array $strippedSchemaOrgDomainCache = [];
+
+    /**
+     * @var array<string, string>
+     */
+    private array $normalizedTypeLabelCache = [];
 
     public function __construct(
         /**
@@ -67,6 +83,8 @@ class ValidationMapper
         $this->propertiesWithReferences = [];
         $this->propertyReferenceByObjectId = [];
         $this->rootParsedJsonLd = null;
+        $this->strippedSchemaOrgDomainCache = [];
+        $this->normalizedTypeLabelCache = [];
     }
 
     /**
@@ -130,21 +148,19 @@ class ValidationMapper
 
     private function stripSchemaOrgDomain(string $typeName): string
     {
-        static $cache = [];
-
-        if (isset($cache[$typeName])) {
-            return $cache[$typeName];
+        if (isset($this->strippedSchemaOrgDomainCache[$typeName])) {
+            return $this->strippedSchemaOrgDomainCache[$typeName];
         }
 
         if (str_starts_with($typeName, self::SCHEMA_ORG_DOMAIN)) {
-            return $cache[$typeName] = substr($typeName, \strlen(self::SCHEMA_ORG_DOMAIN));
+            return $this->strippedSchemaOrgDomainCache[$typeName] = substr($typeName, \strlen(self::SCHEMA_ORG_DOMAIN));
         }
 
         if (str_starts_with($typeName, self::SCHEMA_ORG_DOMAIN_SECURE)) {
-            return $cache[$typeName] = substr($typeName, \strlen(self::SCHEMA_ORG_DOMAIN_SECURE));
+            return $this->strippedSchemaOrgDomainCache[$typeName] = substr($typeName, \strlen(self::SCHEMA_ORG_DOMAIN_SECURE));
         }
 
-        return $cache[$typeName] = $typeName;
+        return $this->strippedSchemaOrgDomainCache[$typeName] = $typeName;
     }
 
     private function mapType(\stdClass $expandedType): MappedType
@@ -270,9 +286,7 @@ class ValidationMapper
 
     private function normalizeTypeLabelCase(string $typeName): string
     {
-        static $cache = [];
-
-        return $cache[$typeName] ??= self::getKnownTypeNamesByLowercase()[strtolower($typeName)] ?? $typeName;
+        return $this->normalizedTypeLabelCache[$typeName] ??= self::getKnownTypeNamesByLowercase()[strtolower($typeName)] ?? $typeName;
     }
 
     private function normalizePropertyKeyCase(string $propertyKey): string
@@ -303,12 +317,12 @@ class ValidationMapper
 
         self::$knownTypeNamesByLowercase = [];
 
-        foreach (GeneratedClassesRegistry::getShortNamesByPrefix(SchemaOrgGenerator::NAMESPACE_TYPE) as $shortName) {
+        foreach (GeneratedClassesRegistry::getShortNamesByPrefix(self::GENERATED_SCHEMA_ORG_TYPE_NAMESPACE) as $shortName) {
             $typeName = str_replace('Model', '', $shortName);
             self::$knownTypeNamesByLowercase[strtolower($typeName)] = $typeName;
         }
 
-        foreach (GeneratedClassesRegistry::getShortNamesByPrefix(GoogleGenerator::NAMESPACE_BASE) as $typeName) {
+        foreach (GeneratedClassesRegistry::getShortNamesByPrefix(self::GENERATED_GOOGLE_NAMESPACE) as $typeName) {
             self::$knownTypeNamesByLowercase[strtolower($typeName)] = $typeName;
         }
 
