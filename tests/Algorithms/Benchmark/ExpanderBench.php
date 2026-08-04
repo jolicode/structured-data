@@ -60,6 +60,30 @@ class ExpanderBench extends AbstractJsonLdBench
         $this->expandJsonFile('0036-in.jsonld');
     }
 
+    /**
+     * Documents whose graph nodes each repeat the schema.org remote context are
+     * common in the wild. Every repetition applies the context to an already
+     * populated active context, which the processed-context cache cannot serve:
+     * this is the regression guard for applying it from the static data instead
+     * of rebuilding its ~3.000 term definitions.
+     *
+     * @Revs(20)
+     *
+     * @Iterations(5)
+     *
+     * @RetryThreshold(2.0)
+     */
+    public function benchRepeatedRemoteContextExpansion(): void
+    {
+        $nodes = [];
+
+        for ($i = 0; $i < 8; ++$i) {
+            $nodes[] = \sprintf('{"@context": "https://schema.org", "@type": "Person", "name": "person %d"}', $i);
+        }
+
+        $this->expander->expand(\sprintf('{"@context": "https://schema.org", "@graph": [%s]}', implode(',', $nodes)));
+    }
+
     protected function getAlgorithmName(): string
     {
         return Algorithms::EXPAND->value;
