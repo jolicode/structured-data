@@ -38,14 +38,16 @@ class Property extends AbstractSchemaOrgElement
     {
         self::sanitizeEntries($rawType);
 
-        return new self(
-            name: trim($rawType[Extractor::KEY_ID]),
-            description: trim($rawType[Extractor::RDFS_COMMENT]),
-            label: trim($rawType[Extractor::RDFS_LABEL]),
+        $property = new self(
+            name: trim(self::stringEntry($rawType, Extractor::KEY_ID)),
+            description: trim(self::stringEntry($rawType, Extractor::RDFS_COMMENT)),
+            label: trim(self::stringEntry($rawType, Extractor::RDFS_LABEL)),
             possibleTypes: self::findPossibleEntries($rawType, self::INCLUDE_DOMAIN),
             possibleValues: self::findPossibleEntries($rawType, self::INCLUDE_RANGE),
-            className: self::getClassName($rawType[Extractor::RDFS_LABEL]),
+            className: self::getClassName(self::stringEntry($rawType, Extractor::RDFS_LABEL)),
         );
+
+        return self::addSchemaInformation($property, $rawType);
     }
 
     private static function findPossibleEntries(array $rawType, string $keyword): array

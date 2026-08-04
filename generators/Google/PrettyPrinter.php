@@ -32,10 +32,6 @@ class PrettyPrinter extends Standard
         }
 
         foreach ($node->items as $item) {
-            if (null === $item) {
-                continue;
-            }
-
             if ($item->key instanceof Array_ || $item->value instanceof Array_) {
                 return true;
             }

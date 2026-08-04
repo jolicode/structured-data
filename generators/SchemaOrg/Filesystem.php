@@ -16,12 +16,12 @@ use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
 
 class Filesystem extends SymfonyFilesystem
 {
-    public const CACHE_DIR_SCHEMA_ORG = __DIR__ . '/../../../../var/cache/schema-org';
-    public const SCHEMA_ORG_DIR = __DIR__ . '/../../../../resources/schema.org';
+    public const CACHE_DIR_SCHEMA_ORG = __DIR__ . '/../../var/cache/schema-org';
+    public const SCHEMA_ORG_DIR = __DIR__ . '/../../resources/schema.org';
     public const SCHEMA_ORG_EXAMPLES_DIR = self::SCHEMA_ORG_DIR . '/examples';
-    public const SCHEMA_ORG_FIXTURES_DIR = __DIR__ . '/../../../../tests/Validation/fixtures/schema-org';
+    public const SCHEMA_ORG_FIXTURES_DIR = __DIR__ . '/../../tests/Validation/fixtures/schema-org';
 
-    private const GENERATED_CLASSES_DIR = __DIR__ . '/../../../../src/Vocabularies/Generated';
+    private const GENERATED_CLASSES_DIR = __DIR__ . '/../../src/Vocabularies/Generated';
 
     public function hasSchemaOrgTypesDefinitionFile(): bool
     {
@@ -63,7 +63,13 @@ class Filesystem extends SymfonyFilesystem
             throw new IOException(\sprintf('Failed to read file "%s": ', $filename), 0, null, $filename);
         }
 
-        return file_get_contents($filename);
+        $content = file_get_contents($filename);
+
+        if (false === $content) {
+            throw new IOException(\sprintf('Failed to read file "%s": ', $filename), 0, null, $filename);
+        }
+
+        return $content;
     }
 
     private function getSchemaOrgTypesDefinitionFilename(): string

@@ -1,7 +1,11 @@
+includes:
+    - phpstan-baseline.neon
+
 parameters:
-    level: 8
+    level: 9
     paths:
         - src
+        - generators
         - tests
         - castor.php
     scanFiles:
@@ -9,14 +13,10 @@ parameters:
     scanDirectories:
         - tools/phpunit/vendor
         - vendor
-    excludePaths:
-        - src/Vocabularies/Generators/**
     tmpDir: tools/phpstan/var
     inferPrivatePropertyTypeFromConstructor: true
     ignoreErrors:
         - '#Argument of an invalid type stdClass supplied for foreach, only iterables are supported.#'
-        - '#no value type specified in iterable type array#'
-        - '#Test(Case)?::provide[a-zA-Z0-9_]+\(\) return type has no value type specified in iterable type#'
         # ValidationMapper type flexibility for handling both string and array keys
         -
             message: '#Parameter \#1 \$propertyKey of method Jolicode\\JsonLd\\Mapper\\ValidationMapper::normalizePropertyKeyCase\(\) expects string, array\|string given\.#'
@@ -30,9 +30,6 @@ parameters:
             path: src/Vocabularies/Validators/Google/GoogleValidator.php
         -
             message: '#Parameter \#3 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, array\|string\|null given\.#'
-            path: src/Vocabularies/Validators/Google/Stack.php
-        -
-            message: '#Variable \$importFailed in isset\(\) is never defined\.#'
             path: src/Vocabularies/Validators/Google/Stack.php
         # SchemaOrgValidator has type narrowing from is_array check
         -

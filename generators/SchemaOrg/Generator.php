@@ -146,7 +146,12 @@ readonly class Generator implements GeneratorInterface
             );
 
         /* ADD THE PROPERTIES */
-        usort($type->properties, static fn (Property $a, Property $b) => $a->label <=> $b->label);
+        $sortedProperties = $type->properties;
+        usort($sortedProperties, static fn (Property $a, Property $b) => $a->label <=> $b->label);
+        $type->properties = array_combine(
+            array_map(static fn (Property $property): string => $property->name, $sortedProperties),
+            $sortedProperties,
+        );
 
         foreach ($type->properties as $property) {
             $constructor->addParam(
@@ -308,6 +313,11 @@ readonly class Generator implements GeneratorInterface
                     ->makePublic(),
             );
         }
+
+        $class->addStmt(
+            $this->factory->classConst('SUPERSEDED_BY', $element->supersededBy)
+                ->makePublic(),
+        );
 
         return $class;
     }

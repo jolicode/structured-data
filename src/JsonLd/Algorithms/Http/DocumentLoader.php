@@ -27,7 +27,7 @@ class DocumentLoader
     public function __construct(
         private string $url,
     ) {
-        $this->httpClient = new FakeCacheHeaderClient(HttpClient::create());
+        $this->httpClient = HttpClient::create();
     }
 
     public function load(): \stdClass
