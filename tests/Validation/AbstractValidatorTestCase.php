@@ -80,7 +80,7 @@ abstract class AbstractValidatorTestCase extends TestCase
         $this->assertSame([], $errorMessages);
     }
 
-    protected function provideData(string $path, string $baselinePath): \Generator
+    protected static function provideData(string $path, string $baselinePath): \Generator
     {
         $finder = new Finder();
         $finder->files()->in($path);
@@ -93,7 +93,7 @@ abstract class AbstractValidatorTestCase extends TestCase
         $baseline = json_decode($baseline, true);
 
         foreach ($finder as $file) {
-            $this->assertArrayHasKey(
+            self::assertArrayHasKey(
                 $file->getFilename(),
                 $baseline,
                 \sprintf('Missing baseline entry for "%s" in "%s".', $file->getFilename(), $baselinePath),

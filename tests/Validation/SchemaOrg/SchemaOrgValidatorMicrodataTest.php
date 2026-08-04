@@ -14,13 +14,12 @@ namespace Jolicode\JsonLd\Tests\Validation;
 use Jolicode\JsonLd\Audit\AuditOptions;
 use Jolicode\JsonLd\Validator;
 use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @group validation
- * @group schemaorg
- * @group schema-org
- */
+#[Group('validation')]
+#[Group('schemaorg')]
+#[Group('schema-org')]
 class SchemaOrgValidatorMicrodataTest extends TestCase
 {
     public function testValidatorParsesMicrodataDocument(): void

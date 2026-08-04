@@ -13,20 +13,19 @@ namespace Jolicode\JsonLd\Tests\Validation;
 
 use Jolicode\JsonLd\Audit\AuditOptions;
 use Jolicode\JsonLd\Mapper\MappedError;
+use Jolicode\JsonLd\Validator;
 use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
-/**
- * @covers \Jolicode\JsonLd\Validator
- * @covers \Jolicode\Vocabularies\Validators\Google\GoogleValidator
- *
- * @group validation
- * @group google
- */
+#[CoversClass(Validator::class)]
+#[CoversClass(GoogleValidator::class)]
+#[Group('validation')]
+#[Group('google')]
 class GoogleValidatorTest extends AbstractValidatorTestCase
 {
-    /**
-     * @dataProvider provideGoogleFiles
-     */
+    #[DataProvider('provideGoogleFiles')]
     public function testGoogleValidator(
         string $filePath,
         bool $isValid,
@@ -167,9 +166,9 @@ class GoogleValidatorTest extends AbstractValidatorTestCase
         );
     }
 
-    public function provideGoogleFiles(): \Generator
+    public static function provideGoogleFiles(): \Generator
     {
-        return $this->provideData(
+        return self::provideData(
             __DIR__ . '/../fixtures/google',
             __DIR__ . '/../fixtures/google-baseline.json',
         );

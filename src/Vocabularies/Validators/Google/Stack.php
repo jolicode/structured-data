@@ -375,29 +375,30 @@ class Stack
     private function setImportedProperties(MappedType $mappedType, array &$validationType): void
     {
         foreach ($validationType['supportedTypes'] as $supportedType) {
-            if (str_starts_with($supportedType, '@')) {
-                $importFailed = true;
-                $validationClass = $this->getImportedClass($supportedType);
-
-                $matchingTypes = array_intersect(
-                    (array) $mappedType->getType(),
-                    $validationClass::SUPPORTED_TYPES,
-                );
-
-                foreach ($matchingTypes as $victory) {
-                    $validationType['properties'] = array_merge(
-                        $validationType['properties'] ?? [],
-                        $validationClass::PROPERTIES,
-                    );
-                }
-
-                return;
+            if (!str_starts_with($supportedType, '@')) {
+                continue;
             }
-        }
 
-        // It should have already returned
-        if (isset($importFailed)) {
-            throw new \RuntimeException('A validation class import was requested but none of the supported types matched the requested type(s).');
+            $validationClass = $this->getImportedClass($supportedType);
+
+            $matchingTypes = array_intersect(
+                (array) $mappedType->getType(),
+                $validationClass::SUPPORTED_TYPES,
+            );
+
+            // A mismatch is not an authoring error of the validation spec: it happens
+            // whenever the audited document nests an unexpected type where the import
+            // is declared (e.g. a Person under Answer.comment, which imports @Comment).
+            // In that case there simply is nothing to import, and the document must
+            // keep being validated - never crash the audit.
+            if ([] !== $matchingTypes) {
+                $validationType['properties'] = array_merge(
+                    $validationType['properties'] ?? [],
+                    $validationClass::PROPERTIES,
+                );
+            }
+
+            return;
         }
     }
 

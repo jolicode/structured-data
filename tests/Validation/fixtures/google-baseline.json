@@ -406,8 +406,8 @@
         ],
         "warnings": [
             "[Google warning] Product: Missing recommended property: \"hasAdultConsideration\" for the type \"Product\"",
-            "[Google warning] offers: Missing recommended property: \"hasMerchantReturnPolicy\" for the type \"Offer\"",
-            "[Google warning] offers: Missing recommended property: \"shippingDetails\" for the type \"Offer\""
+            "[Google warning] offers: Missing recommended property: \"shippingDetails\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"hasMerchantReturnPolicy\" for the type \"Offer\""
         ],
         "documentIssues": []
     },
