@@ -16,6 +16,7 @@ final class ResultsAvailableModel
     public const DESCRIPTION = 'Results are available.';
     public const LABEL = 'ResultsAvailable';
     public const NAME = 'schema:ResultsAvailable';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class CarrierModel
     public const TYPES = ['Flight' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FlightModel', 'ParcelDelivery' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ParcelDeliveryModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = 'provider';
 }

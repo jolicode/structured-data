@@ -13,15 +13,9 @@ namespace Jolicode\Vocabularies\Generated\Google;
 
 final class Movie
 {
-    public const NAME = 'Movie';
     public const SUPPORTED_TYPES = ['Movie'];
-    public const VALUE = [];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/movie';
-    public const SUBTYPE = null;
-    public const HAS_SPECIAL_RULES = false;
     public const SPECIAL_RULE_KEYS = [];
-    public const IS_CAROUSEL_ELIGIBLE = false;
-    public const CAROUSEL_PROPERTIES = [];
     public const PROPERTIES = [
         'image' => [
             'name' => 'image',

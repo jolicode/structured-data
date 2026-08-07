@@ -16,6 +16,7 @@ final class OsteopathicModel
     public const DESCRIPTION = 'A system of medicine focused on promoting the body\'s innate ability to heal itself.';
     public const LABEL = 'Osteopathic';
     public const NAME = 'schema:Osteopathic';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

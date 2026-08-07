@@ -19,5 +19,6 @@ final class FreeShippingThresholdModel
     public const VALUES = ['DeliveryChargeSpecificationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DeliveryChargeSpecificationModel', 'MonetaryAmountModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountModel'];
     public const TYPES = ['ShippingRateSettings' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ShippingRateSettingsModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2506'];
+    public const SUPERSEDED_BY = null;
 }

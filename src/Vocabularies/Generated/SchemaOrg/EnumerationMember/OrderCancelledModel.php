@@ -18,4 +18,5 @@ final class OrderCancelledModel
     public const NAME = 'schema:OrderCancelled';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

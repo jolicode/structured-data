@@ -16,6 +16,7 @@ final class PaidLeaveModel
     public const DESCRIPTION = 'PaidLeave: this is a benefit for paid leave.';
     public const LABEL = 'PaidLeave';
     public const NAME = 'schema:PaidLeave';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2534'];
+    public const SUPERSEDED_BY = null;
 }

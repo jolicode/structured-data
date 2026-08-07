@@ -18,6 +18,7 @@ final class VariesByModel
     public const NAME = 'schema:variesBy';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['ProductGroup' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductGroupModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1797'];
+    public const SUPERSEDED_BY = null;
 }

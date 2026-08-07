@@ -18,6 +18,7 @@ final class DownPaymentModel
     public const NAME = 'schema:downPayment';
     public const VALUES = ['MonetaryAmountModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountModel', 'NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['RepaymentSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RepaymentSpecificationModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1253'];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class ParentItemModel
     public const TYPES = ['Answer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnswerModel', 'Comment' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommentModel', 'Question' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuestionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

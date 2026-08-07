@@ -20,4 +20,5 @@ final class LanguageModel
     public const TYPES = ['CommunicateAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommunicateActionModel', 'WriteAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WriteActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = 'inLanguage';
 }

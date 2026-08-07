@@ -58,6 +58,6 @@ class FlattenerBench extends AbstractJsonLdBench
         $json = $this->loadJson($filename);
         $this->options->base = $this->getBaseUrlForW3CTests($filename);
 
-        $this->flattener->flatten($json, $this->options);
+        $this->flattener->flatten($json, options: $this->options);
     }
 }

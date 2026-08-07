@@ -19,5 +19,6 @@ final class MenuAddOnModel
     public const VALUES = ['MenuItemModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MenuItemModel', 'MenuSectionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MenuSectionModel'];
     public const TYPES = ['MenuItem' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MenuItemModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1541'];
+    public const SUPERSEDED_BY = null;
 }

@@ -16,6 +16,7 @@ final class CompositeDigitalSourceModel
     public const DESCRIPTION = 'Content coded as \'<a href="https://cv.iptc.org/newscodes/digitalsourcetype/algorithmicMedia">algorithmic media</a>\' using the IPTC <a href="https://cv.iptc.org/newscodes/digitalsourcetype/">digital source type</a> vocabulary.';
     public const LABEL = 'CompositeDigitalSource';
     public const NAME = 'schema:CompositeDigitalSource';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3392'];
+    public const SUPERSEDED_BY = null;
 }

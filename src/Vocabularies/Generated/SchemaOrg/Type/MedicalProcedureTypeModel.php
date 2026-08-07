@@ -22,6 +22,7 @@ final class MedicalProcedureTypeModel
     public const ENUMERATION_MEMBERS = ['NoninvasiveProcedureModel' => 'EnumerationMember\NoninvasiveProcedureModel', 'PercutaneousProcedureModel' => 'EnumerationMember\PercutaneousProcedureModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

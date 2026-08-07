@@ -20,4 +20,5 @@ final class GenreModel
     public const TYPES = ['BroadcastChannel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastChannelModel', 'CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'MusicGroup' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicGroupModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

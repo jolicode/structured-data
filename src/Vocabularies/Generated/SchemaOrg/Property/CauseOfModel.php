@@ -18,6 +18,7 @@ final class CauseOfModel
     public const NAME = 'schema:causeOf';
     public const VALUES = ['MedicalEntityModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel'];
     public const TYPES = ['MedicalCause' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalCauseModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

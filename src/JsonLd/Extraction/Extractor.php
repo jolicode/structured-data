@@ -12,32 +12,20 @@
 namespace Jolicode\JsonLd\Extraction;
 
 use Jolicode\JsonLd\Mapper\DocumentWarning;
-use League\Uri\Uri;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class Extractor
 {
     public const NO_SUPPORTED_FORMATS_DETECTED_MESSAGE_PREFIX = 'Could not detect any supported structured data format.';
-
-    /**
-     * @var array<string, string>
-     */
-    private static array $resolvedInputContentCache = [];
-
-    private HttpClientInterface $httpClient;
 
     /** @var array<DocumentWarning> */
     private array $issues = [];
 
     public function __construct(
         private ExtractorsContainer $extractorsContainer = new ExtractorsContainer(),
-        ?HttpClientInterface $httpClient = null,
         private readonly LoggerInterface $logger = new NullLogger(),
     ) {
-        $this->httpClient = $httpClient ?? HttpClient::create();
     }
 
     /**
@@ -48,16 +36,24 @@ class Extractor
         return $this->issues;
     }
 
-    public function extract(string $input): array
+    /**
+     * @param string $document the raw document to extract structured data from - never a
+     *                         URL nor a file path: fetching those is the caller's responsibility
+     */
+    public function extract(string $document): array
     {
         $this->issues = [];
-        $content = $this->resolveInputContent($input);
+        $content = $document;
 
-        // Skip format detection if only one extractor is configured
-        $preferredFormat = \count($this->extractorsContainer->getExtractors()) > 1
-            ? $this->guessPreferredFormat($content)
-            : null;
-        $results = $this->runExtractors($content, $preferredFormat);
+        try {
+            // Skip format detection if only one extractor is configured
+            $preferredFormat = \count($this->extractorsContainer->getExtractors()) > 1
+                ? $this->guessPreferredFormat($content)
+                : null;
+            $results = $this->runExtractors($content, $preferredFormat);
+        } finally {
+            $this->extractorsContainer->releaseHtmlDocumentCache();
+        }
 
         return $this->getResult($results);
     }
@@ -158,39 +154,6 @@ class Extractor
         }
 
         return $results;
-    }
-
-    private function resolveInputContent(string $input): string
-    {
-        if (isset(self::$resolvedInputContentCache[$input])) {
-            return self::$resolvedInputContentCache[$input];
-        }
-
-        $uri = Uri::parse($input);
-        $scheme = $uri?->getScheme();
-
-        if ('http' === $scheme || 'https' === $scheme) {
-            return self::$resolvedInputContentCache[$input] = $this->fetchContent((string) $uri);
-        }
-
-        if (!is_file($input)) {
-            return self::$resolvedInputContentCache[$input] = $input;
-        }
-
-        $content = file_get_contents($input);
-
-        if (false === $content) {
-            throw new \RuntimeException(\sprintf('Could not read the file %s', $input));
-        }
-
-        return self::$resolvedInputContentCache[$input] = $content;
-    }
-
-    private function fetchContent(string $url): string
-    {
-        $response = $this->httpClient->request('GET', $url);
-
-        return $response->getContent();
     }
 
     private function guessPreferredFormat(string $content): ?ExtractorFormat

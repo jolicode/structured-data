@@ -18,6 +18,7 @@ final class IneligibleRegionModel
     public const NAME = 'schema:ineligibleRegion';
     public const VALUES = ['GeoShapeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeoShapeModel', 'PlaceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlaceModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['ActionAccessSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ActionAccessSpecificationModel', 'DeliveryChargeSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DeliveryChargeSpecificationModel', 'Demand' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DemandModel', 'MediaObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaObjectModel', 'Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2242'];
+    public const SUPERSEDED_BY = null;
 }

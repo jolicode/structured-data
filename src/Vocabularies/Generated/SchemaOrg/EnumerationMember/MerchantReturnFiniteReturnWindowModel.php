@@ -16,6 +16,7 @@ final class MerchantReturnFiniteReturnWindowModel
     public const DESCRIPTION = 'Specifies that there is a finite window for product returns.';
     public const LABEL = 'MerchantReturnFiniteReturnWindow';
     public const NAME = 'schema:MerchantReturnFiniteReturnWindow';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2288'];
+    public const SUPERSEDED_BY = null;
 }

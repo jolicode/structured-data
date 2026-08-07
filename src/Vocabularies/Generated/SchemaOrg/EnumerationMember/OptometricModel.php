@@ -16,6 +16,7 @@ final class OptometricModel
     public const DESCRIPTION = 'The science or practice of testing visual acuity and prescribing corrective lenses.';
     public const LABEL = 'Optometric';
     public const NAME = 'schema:Optometric';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

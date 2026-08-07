@@ -22,6 +22,7 @@ final class ChemicalSubstanceModel
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['http://bioschemas.org', 'https://www.ebi.ac.uk/chebi/searchId.do?chebiId=59999'];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

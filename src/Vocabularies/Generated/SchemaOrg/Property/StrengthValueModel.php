@@ -18,6 +18,7 @@ final class StrengthValueModel
     public const NAME = 'schema:strengthValue';
     public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['DrugStrength' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugStrengthModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -22,6 +22,7 @@ final class SteeringPositionValueModel
     public const ENUMERATION_MEMBERS = ['LeftHandDrivingModel' => 'EnumerationMember\LeftHandDrivingModel', 'RightHandDrivingModel' => 'EnumerationMember\RightHandDrivingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalPropertyModel $additionalProperty = null,

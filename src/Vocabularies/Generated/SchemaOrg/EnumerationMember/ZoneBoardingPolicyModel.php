@@ -18,4 +18,5 @@ final class ZoneBoardingPolicyModel
     public const NAME = 'schema:ZoneBoardingPolicy';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

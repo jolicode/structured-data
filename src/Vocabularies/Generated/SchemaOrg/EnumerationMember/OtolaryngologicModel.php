@@ -16,6 +16,7 @@ final class OtolaryngologicModel
     public const DESCRIPTION = 'A specific branch of medical science that is concerned with the ear, nose and throat and their respective disease states.';
     public const LABEL = 'Otolaryngologic';
     public const NAME = 'schema:Otolaryngologic';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

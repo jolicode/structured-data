@@ -16,6 +16,7 @@ final class OverviewHealthAspectModel
     public const DESCRIPTION = 'Overview of the content. Contains a summarized view of the topic with the most relevant information for an introduction.';
     public const LABEL = 'OverviewHealthAspect';
     public const NAME = 'schema:OverviewHealthAspect';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2374'];
+    public const SUPERSEDED_BY = null;
 }

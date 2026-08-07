@@ -18,6 +18,7 @@ final class SeriousAdverseOutcomeModel
     public const NAME = 'schema:seriousAdverseOutcome';
     public const VALUES = ['MedicalEntityModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel'];
     public const TYPES = ['MedicalDevice' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalDeviceModel', 'MedicalTherapy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTherapyModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class OrderedItemModel
     public const TYPES = ['OrderItem' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrderItemModel', 'Order' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrderModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

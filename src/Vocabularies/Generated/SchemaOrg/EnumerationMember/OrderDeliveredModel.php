@@ -18,4 +18,5 @@ final class OrderDeliveredModel
     public const NAME = 'schema:OrderDelivered';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

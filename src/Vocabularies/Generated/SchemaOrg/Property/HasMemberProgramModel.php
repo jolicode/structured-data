@@ -19,5 +19,6 @@ final class HasMemberProgramModel
     public const VALUES = ['MemberProgramModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MemberProgramModel'];
     public const TYPES = ['Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3563'];
+    public const SUPERSEDED_BY = null;
 }

@@ -22,6 +22,7 @@ final class GameServerStatusModel
     public const ENUMERATION_MEMBERS = ['OfflinePermanentlyModel' => 'EnumerationMember\OfflinePermanentlyModel', 'OfflineTemporarilyModel' => 'EnumerationMember\OfflineTemporarilyModel', 'OnlineFullModel' => 'EnumerationMember\OnlineFullModel', 'OnlineModel' => 'EnumerationMember\OnlineModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

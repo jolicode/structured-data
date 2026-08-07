@@ -582,7 +582,7 @@ class GoogleValidator extends AbstractValidator
             return self::DATA_TYPE_URL;
         }
 
-        if (isset($supportedDataTypesLookup[self::DATA_TYPE_TEXT]) || isset($supportedDataTypesLookup[4])) {
+        if (isset($supportedDataTypesLookup[self::DATA_TYPE_TEXT])) {
             return self::DATA_TYPE_TEXT;
         }
 
@@ -594,7 +594,7 @@ class GoogleValidator extends AbstractValidator
             return self::DATA_TYPE_NUMBER;
         }
 
-        if (isset($supportedDataTypesLookup[self::DATA_TYPE_BOOLEAN]) || isset($supportedDataTypesLookup[7])) {
+        if (isset($supportedDataTypesLookup[self::DATA_TYPE_BOOLEAN])) {
             return self::DATA_TYPE_BOOLEAN;
         }
 

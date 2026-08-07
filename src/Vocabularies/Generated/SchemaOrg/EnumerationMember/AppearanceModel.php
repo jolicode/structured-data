@@ -16,6 +16,7 @@ final class AppearanceModel
     public const DESCRIPTION = 'Appearance assessment with clinical examination.';
     public const LABEL = 'Appearance';
     public const NAME = 'schema:Appearance';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

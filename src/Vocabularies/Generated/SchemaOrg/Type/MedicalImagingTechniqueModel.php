@@ -22,6 +22,7 @@ final class MedicalImagingTechniqueModel
     public const ENUMERATION_MEMBERS = ['CTModel' => 'EnumerationMember\CTModel', 'MRIModel' => 'EnumerationMember\MRIModel', 'PETModel' => 'EnumerationMember\PETModel', 'RadiographyModel' => 'EnumerationMember\RadiographyModel', 'UltrasoundModel' => 'EnumerationMember\UltrasoundModel', 'XRayModel' => 'EnumerationMember\XRayModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

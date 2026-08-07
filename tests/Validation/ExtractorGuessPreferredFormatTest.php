@@ -13,11 +13,10 @@ namespace Jolicode\JsonLd\Tests\Validation;
 
 use Jolicode\JsonLd\Extraction\Extractor;
 use Jolicode\JsonLd\Extraction\ExtractorsContainer;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @group validation
- */
+#[Group('validation')]
 class ExtractorGuessPreferredFormatTest extends TestCase
 {
     public function testItDetectsJsonLdFromScriptTag(): void
@@ -69,6 +68,47 @@ class ExtractorGuessPreferredFormatTest extends TestCase
             HTML;
 
         $this->assertSame(ExtractorsContainer::RDFA, $this->guessPreferredFormat($content));
+    }
+
+    public function testItDoesNotDetectRdfaFromOpenGraphTagsAndOrdinaryProse(): void
+    {
+        // "property", "about" and "resource" are ordinary English words and Open
+        // Graph attribute names: detecting RDFa on them means parsing the whole
+        // document into a DOM tree for nothing on nearly every page of the web.
+        $container = (new ExtractorsContainer())->setExtractors(ExtractorsContainer::RDFA);
+
+        $content = <<<'HTML'
+            <html>
+              <head>
+                <meta property="og:title" content="A page">
+              </head>
+              <body>
+                <a href="/about">About us</a>
+                <p>A resource about https://schema.org and its prefix conventions.</p>
+              </body>
+            </html>
+            HTML;
+
+        $this->assertNull($this->guessPreferredFormat($content, $container));
+    }
+
+    public function testItStillDetectsRdfaFromAVocabAttributeAlone(): void
+    {
+        // A vocab without any typeof is invalid RDFa, and the extractor must be
+        // given the chance to report it rather than silently skip the document.
+        $container = (new ExtractorsContainer())->setExtractors(ExtractorsContainer::RDFA);
+
+        $content = <<<'HTML'
+            <html>
+              <body>
+                <div vocab="https://schema.org/">
+                  <span property="name">Alice</span>
+                </div>
+              </body>
+            </html>
+            HTML;
+
+        $this->assertSame(ExtractorsContainer::RDFA, $this->guessPreferredFormat($content, $container));
     }
 
     public function testItReturnsNullForPlainHtml(): void

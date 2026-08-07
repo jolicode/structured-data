@@ -16,6 +16,7 @@ final class ReturnFeesCustomerResponsibilityModel
     public const DESCRIPTION = 'Specifies that product returns must be paid for, and are the responsibility of, the customer.';
     public const LABEL = 'ReturnFeesCustomerResponsibility';
     public const NAME = 'schema:ReturnFeesCustomerResponsibility';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2880'];
+    public const SUPERSEDED_BY = null;
 }

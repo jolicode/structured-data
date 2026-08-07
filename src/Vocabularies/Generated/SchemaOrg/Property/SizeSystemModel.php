@@ -18,6 +18,7 @@ final class SizeSystemModel
     public const NAME = 'schema:sizeSystem';
     public const VALUES = ['SizeSystemEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SizeSystemEnumerationModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['SizeSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SizeSpecificationModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

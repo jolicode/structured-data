@@ -18,6 +18,7 @@ final class HasAdultConsiderationModel
     public const NAME = 'schema:hasAdultConsideration';
     public const VALUES = ['AdultOrientedEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AdultOrientedEnumerationModel'];
     public const TYPES = ['Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel', 'Product' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2989'];
+    public const SUPERSEDED_BY = null;
 }

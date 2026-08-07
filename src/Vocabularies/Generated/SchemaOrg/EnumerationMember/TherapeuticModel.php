@@ -16,6 +16,7 @@ final class TherapeuticModel
     public const DESCRIPTION = 'A medical device used for therapeutic purposes.';
     public const LABEL = 'Therapeutic';
     public const NAME = 'schema:Therapeutic';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -103,12 +103,23 @@ JSON;
 
     private function fixture(string $name): string
     {
-        return __DIR__ . '/fixtures/extractor/' . $name;
+        return $this->read(__DIR__ . '/fixtures/extractor/' . $name);
     }
 
     private function benchmarkFixture(string $name): string
     {
-        return __DIR__ . '/fixtures/benchmark/' . $name;
+        return $this->read(__DIR__ . '/fixtures/benchmark/' . $name);
+    }
+
+    private function read(string $path): string
+    {
+        $content = file_get_contents($path);
+
+        if (false === $content) {
+            throw new \RuntimeException(\sprintf('The fixture "%s" could not be read.', $path));
+        }
+
+        return $content;
     }
 
     /**

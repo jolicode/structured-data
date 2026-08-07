@@ -22,6 +22,7 @@ final class DrugPrescriptionStatusModel
     public const ENUMERATION_MEMBERS = ['OTCModel' => 'EnumerationMember\OTCModel', 'PrescriptionOnlyModel' => 'EnumerationMember\PrescriptionOnlyModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

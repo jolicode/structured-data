@@ -19,5 +19,6 @@ final class DeliveryTimeModel
     public const VALUES = ['ShippingDeliveryTimeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ShippingDeliveryTimeModel'];
     public const TYPES = ['DeliveryTimeSettings' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DeliveryTimeSettingsModel', 'OfferShippingDetails' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferShippingDetailsModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2506'];
+    public const SUPERSEDED_BY = null;
 }

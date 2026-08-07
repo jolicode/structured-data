@@ -16,6 +16,7 @@ final class BasicIncomeModel
     public const DESCRIPTION = 'BasicIncome: this is a benefit for basic income.';
     public const LABEL = 'BasicIncome';
     public const NAME = 'schema:BasicIncome';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2534'];
+    public const SUPERSEDED_BY = null;
 }

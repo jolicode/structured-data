@@ -16,6 +16,7 @@ final class EUEnergyEfficiencyCategoryFModel
     public const DESCRIPTION = 'Represents EU Energy Efficiency Class F as defined in EU energy labeling regulations.';
     public const LABEL = 'EUEnergyEfficiencyCategoryF';
     public const NAME = 'schema:EUEnergyEfficiencyCategoryF';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2670'];
+    public const SUPERSEDED_BY = null;
 }

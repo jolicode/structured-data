@@ -22,6 +22,7 @@ final class ActionStatusTypeModel
     public const ENUMERATION_MEMBERS = ['ActiveActionStatusModel' => 'EnumerationMember\ActiveActionStatusModel', 'CompletedActionStatusModel' => 'EnumerationMember\CompletedActionStatusModel', 'FailedActionStatusModel' => 'EnumerationMember\FailedActionStatusModel', 'PotentialActionStatusModel' => 'EnumerationMember\PotentialActionStatusModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

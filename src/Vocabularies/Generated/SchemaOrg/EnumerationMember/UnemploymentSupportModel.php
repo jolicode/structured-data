@@ -16,6 +16,7 @@ final class UnemploymentSupportModel
     public const DESCRIPTION = 'UnemploymentSupport: this is a benefit for unemployment support.';
     public const LABEL = 'UnemploymentSupport';
     public const NAME = 'schema:UnemploymentSupport';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2534'];
+    public const SUPERSEDED_BY = null;
 }

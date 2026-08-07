@@ -28,12 +28,14 @@ class EnumerationMember extends AbstractSchemaOrgElement
     {
         self::sanitizeEntries($rawType);
 
-        return new self(
-            name: trim($rawType[Extractor::KEY_ID]),
-            description: trim($rawType[Extractor::RDFS_COMMENT]),
-            label: trim($rawType[Extractor::RDFS_LABEL]),
+        $enumerationMember = new self(
+            name: trim(self::stringEntry($rawType, Extractor::KEY_ID)),
+            description: trim(self::stringEntry($rawType, Extractor::RDFS_COMMENT)),
+            label: trim(self::stringEntry($rawType, Extractor::RDFS_LABEL)),
             inTypes: (array) $rawType[Extractor::KEY_TYPE],
-            className: self::getClassName($rawType[Extractor::RDFS_LABEL]),
+            className: self::getClassName(self::stringEntry($rawType, Extractor::RDFS_LABEL)),
         );
+
+        return self::addSchemaInformation($enumerationMember, $rawType);
     }
 }

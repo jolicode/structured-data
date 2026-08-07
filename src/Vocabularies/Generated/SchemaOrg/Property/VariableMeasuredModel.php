@@ -18,6 +18,7 @@ final class VariableMeasuredModel
     public const NAME = 'schema:variableMeasured';
     public const VALUES = ['PropertyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyModel', 'PropertyValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyValueModel', 'StatisticalVariableModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\StatisticalVariableModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Dataset' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DatasetModel', 'Observation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ObservationModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1083'];
+    public const SUPERSEDED_BY = null;
 }

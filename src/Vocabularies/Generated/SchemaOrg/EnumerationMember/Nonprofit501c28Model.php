@@ -16,6 +16,7 @@ final class Nonprofit501c28Model
     public const DESCRIPTION = 'Nonprofit501c28: Non-profit type referring to National Railroad Retirement Investment Trusts.';
     public const LABEL = 'Nonprofit501c28';
     public const NAME = 'schema:Nonprofit501c28';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2543'];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class OpeningHoursModel
     public const TYPES = ['CivicStructure' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CivicStructureModel', 'LocalBusiness' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LocalBusinessModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

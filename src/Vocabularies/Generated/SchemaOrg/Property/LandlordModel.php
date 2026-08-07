@@ -20,4 +20,5 @@ final class LandlordModel
     public const TYPES = ['RentAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RentActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

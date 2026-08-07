@@ -16,6 +16,7 @@ final class FlexibilityModel
     public const DESCRIPTION = 'Physical activity that is engaged in to improve joint and muscle flexibility.';
     public const LABEL = 'Flexibility';
     public const NAME = 'schema:Flexibility';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

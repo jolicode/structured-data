@@ -20,4 +20,5 @@ final class HasDigitalDocumentPermissionModel
     public const TYPES = ['DigitalDocument' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DigitalDocumentModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

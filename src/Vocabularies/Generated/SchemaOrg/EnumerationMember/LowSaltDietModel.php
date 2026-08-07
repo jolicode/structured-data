@@ -18,4 +18,5 @@ final class LowSaltDietModel
     public const NAME = 'schema:LowSaltDiet';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

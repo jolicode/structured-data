@@ -18,6 +18,7 @@ final class SubTestModel
     public const NAME = 'schema:subTest';
     public const VALUES = ['MedicalTestModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTestModel'];
     public const TYPES = ['MedicalTestPanel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTestPanelModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

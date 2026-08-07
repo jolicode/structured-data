@@ -20,4 +20,5 @@ final class GeoMidpointModel
     public const TYPES = ['GeoCircle' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeoCircleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -18,6 +18,7 @@ final class AspectModel
     public const NAME = 'schema:aspect';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalWebPage' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalWebPageModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = 'mainContentOfPage';
 }

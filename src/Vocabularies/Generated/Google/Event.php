@@ -13,15 +13,9 @@ namespace Jolicode\Vocabularies\Generated\Google;
 
 final class Event
 {
-    public const NAME = 'Event';
     public const SUPPORTED_TYPES = ['Event'];
-    public const VALUE = [];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/event';
-    public const SUBTYPE = null;
-    public const HAS_SPECIAL_RULES = false;
     public const SPECIAL_RULE_KEYS = [];
-    public const IS_CAROUSEL_ELIGIBLE = false;
-    public const CAROUSEL_PROPERTIES = [];
     public const PROPERTIES = [
         'name' => [
             'name' => 'name',

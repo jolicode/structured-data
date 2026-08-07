@@ -18,6 +18,7 @@ final class StatusModel
     public const NAME = 'schema:status';
     public const VALUES = ['EventStatusTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventStatusTypeModel', 'MedicalStudyStatusModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalStudyStatusModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalCondition' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel', 'MedicalProcedure' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalProcedureModel', 'MedicalStudy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalStudyModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

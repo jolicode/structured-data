@@ -18,6 +18,7 @@ final class StudyLocationModel
     public const NAME = 'schema:studyLocation';
     public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AdministrativeAreaModel'];
     public const TYPES = ['MedicalStudy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalStudyModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

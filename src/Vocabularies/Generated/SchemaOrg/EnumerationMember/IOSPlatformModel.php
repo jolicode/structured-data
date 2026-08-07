@@ -16,6 +16,7 @@ final class IOSPlatformModel
     public const DESCRIPTION = 'Represents the broad notion of iOS-based operating systems.';
     public const LABEL = 'IOSPlatform';
     public const NAME = 'schema:IOSPlatform';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3057'];
+    public const SUPERSEDED_BY = null;
 }

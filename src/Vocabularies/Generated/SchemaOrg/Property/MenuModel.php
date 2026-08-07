@@ -20,4 +20,5 @@ final class MenuModel
     public const TYPES = ['FoodEstablishment' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FoodEstablishmentModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = 'hasMenu';
 }

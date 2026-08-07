@@ -18,4 +18,5 @@ final class MultiPlayerModel
     public const NAME = 'schema:MultiPlayer';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

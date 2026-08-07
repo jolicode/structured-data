@@ -17,15 +17,15 @@ use Jolicode\JsonLd\Validator;
 use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
 use Jolicode\Vocabularies\Validators\Google\SpecialRules\SpecialRulesRegistry;
 use Jolicode\Vocabularies\Validators\Google\Stack;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Jolicode\Vocabularies\Validators\Google\Stack
- * @covers \Jolicode\Vocabularies\Validators\Google\SpecialRules\SpecialRulesRegistry
- *
- * @group validation
- * @group google
- */
+#[CoversClass(Stack::class)]
+#[CoversClass(SpecialRulesRegistry::class)]
+#[Group('validation')]
+#[Group('google')]
 class GoogleValidatorInfrastructureTest extends TestCase
 {
     private const PERFORMANCE_FIXTURE = __DIR__ . '/../fixtures/google/book.jsonld';
@@ -35,10 +35,9 @@ class GoogleValidatorInfrastructureTest extends TestCase
     private const PERFORMANCE_THRESHOLD_MS_CI = 5000;
 
     /**
-     * @dataProvider provideGoogleSpecialRuleContracts
-     *
      * @param array<string> $expectedSeverities
      */
+    #[DataProvider('provideGoogleSpecialRuleContracts')]
     public function testGoogleSpecialRuleContract(string $ruleKey, array $expectedSeverities): void
     {
         $rulesByKey = SpecialRulesRegistry::allIndexed();
@@ -86,6 +85,36 @@ class GoogleValidatorInfrastructureTest extends TestCase
             'Jolicode\\Vocabularies\\Generated\\Google\\ProductMerchantListing',
             $stack->getValidationClass(),
         );
+    }
+
+    public function testAuditSurvivesAnUnexpectedNestedTypeWhereAnImportIsDeclared(): void
+    {
+        // Answer.comment declares supportedTypes ["@Comment"]: the property spec is
+        // imported from the Comment validation class. A document nesting a type that
+        // Comment does not support must still be audited, not crash the pipeline.
+        $document = (string) json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'QAPage',
+            'mainEntity' => [
+                '@type' => 'Question',
+                'name' => 'Is this audited?',
+                'text' => 'Is this audited?',
+                'answerCount' => 1,
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text' => 'Yes.',
+                    'upvoteCount' => 1,
+                    'comment' => ['@type' => 'Person', 'name' => 'Unexpected nested type'],
+                ],
+            ],
+        ]);
+
+        $validator = new Validator();
+        $validator->setValidator(GoogleValidator::class);
+
+        $audit = $validator->audit($document);
+
+        $this->assertNotSame([], $audit->getTypes());
     }
 
     public function testAllReferencedGoogleSpecialRulesAreRegistered(): void
@@ -195,7 +224,7 @@ class GoogleValidatorInfrastructureTest extends TestCase
     /**
      * @return \Generator<string, array{string, array<string>}>
      */
-    public function provideGoogleSpecialRuleContracts(): \Generator
+    public static function provideGoogleSpecialRuleContracts(): \Generator
     {
         yield 'article-author-url-or-sameas' => ['google.article.author_url_or_sameas', []];
         yield 'book-offer-pricing-by-category' => ['google.book.offer_pricing_by_category', ['error']];

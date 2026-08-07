@@ -20,4 +20,5 @@ final class IsbnModel
     public const TYPES = ['Book' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BookModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

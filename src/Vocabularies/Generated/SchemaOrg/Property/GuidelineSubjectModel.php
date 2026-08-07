@@ -18,6 +18,7 @@ final class GuidelineSubjectModel
     public const NAME = 'schema:guidelineSubject';
     public const VALUES = ['MedicalEntityModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel'];
     public const TYPES = ['MedicalGuideline' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalGuidelineModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -18,4 +18,5 @@ final class HinduDietModel
     public const NAME = 'schema:HinduDiet';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

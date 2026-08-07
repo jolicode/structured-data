@@ -18,6 +18,7 @@ final class ProgramPrerequisitesModel
     public const NAME = 'schema:programPrerequisites';
     public const VALUES = ['AlignmentObjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AlignmentObjectModel', 'CourseModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CourseModel', 'EducationalOccupationalCredentialModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalCredentialModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalProgramModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2289'];
+    public const SUPERSEDED_BY = null;
 }

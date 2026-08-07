@@ -19,5 +19,6 @@ final class OwnsModel
     public const VALUES = ['ThingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
     public const TYPES = ['Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/4603'];
+    public const SUPERSEDED_BY = null;
 }

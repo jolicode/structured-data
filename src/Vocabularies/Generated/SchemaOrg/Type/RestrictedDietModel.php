@@ -22,6 +22,7 @@ final class RestrictedDietModel
     public const ENUMERATION_MEMBERS = ['DiabeticDietModel' => 'EnumerationMember\DiabeticDietModel', 'GlutenFreeDietModel' => 'EnumerationMember\GlutenFreeDietModel', 'HalalDietModel' => 'EnumerationMember\HalalDietModel', 'HinduDietModel' => 'EnumerationMember\HinduDietModel', 'KosherDietModel' => 'EnumerationMember\KosherDietModel', 'LowCalorieDietModel' => 'EnumerationMember\LowCalorieDietModel', 'LowFatDietModel' => 'EnumerationMember\LowFatDietModel', 'LowLactoseDietModel' => 'EnumerationMember\LowLactoseDietModel', 'LowSaltDietModel' => 'EnumerationMember\LowSaltDietModel', 'VeganDietModel' => 'EnumerationMember\VeganDietModel', 'VegetarianDietModel' => 'EnumerationMember\VegetarianDietModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

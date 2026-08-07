@@ -18,4 +18,5 @@ final class OrderProblemModel
     public const NAME = 'schema:OrderProblem';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

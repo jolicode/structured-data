@@ -19,5 +19,6 @@ final class EndTimeModel
     public const VALUES = ['DateTimeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateTimeModel', 'TimeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TimeModel'];
     public const TYPES = ['Action' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ActionModel', 'FoodEstablishmentReservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FoodEstablishmentReservationModel', 'InteractionCounter' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InteractionCounterModel', 'MediaObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaObjectModel', 'Schedule' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ScheduleModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2493'];
+    public const SUPERSEDED_BY = null;
 }

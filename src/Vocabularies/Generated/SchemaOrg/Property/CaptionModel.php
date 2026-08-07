@@ -20,4 +20,5 @@ final class CaptionModel
     public const TYPES = ['AudioObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AudioObjectModel', 'ImageObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ImageObjectModel', 'VideoObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VideoObjectModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

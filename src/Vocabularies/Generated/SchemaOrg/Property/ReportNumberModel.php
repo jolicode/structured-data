@@ -20,4 +20,5 @@ final class ReportNumberModel
     public const TYPES = ['Report' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReportModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

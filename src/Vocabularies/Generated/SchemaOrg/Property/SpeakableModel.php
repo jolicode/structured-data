@@ -31,5 +31,6 @@ we define a supporting type, [[SpeakableSpecification]]  which is defined to be 
     public const VALUES = ['SpeakableSpecificationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SpeakableSpecificationModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
     public const TYPES = ['Article' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ArticleModel', 'WebPage' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebPageModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1389'];
+    public const SUPERSEDED_BY = null;
 }

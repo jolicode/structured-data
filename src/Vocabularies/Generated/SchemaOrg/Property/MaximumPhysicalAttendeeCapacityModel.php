@@ -18,6 +18,7 @@ final class MaximumPhysicalAttendeeCapacityModel
     public const NAME = 'schema:maximumPhysicalAttendeeCapacity';
     public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['Event' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1842'];
+    public const SUPERSEDED_BY = null;
 }

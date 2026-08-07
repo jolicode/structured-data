@@ -13,15 +13,9 @@ namespace Jolicode\Vocabularies\Generated\Google;
 
 final class Question
 {
-    public const NAME = 'Question';
     public const SUPPORTED_TYPES = ['Question'];
-    public const VALUE = [];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/qapage#question';
-    public const SUBTYPE = null;
-    public const HAS_SPECIAL_RULES = false;
     public const SPECIAL_RULE_KEYS = [];
-    public const IS_CAROUSEL_ELIGIBLE = false;
-    public const CAROUSEL_PROPERTIES = [];
     public const PROPERTIES = [
         'answerCount' => [
             'name' => 'answerCount',

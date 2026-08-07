@@ -20,4 +20,5 @@ final class TelephoneModel
     public const TYPES = ['ContactPoint' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ContactPointModel', 'Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel', 'Place' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlaceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

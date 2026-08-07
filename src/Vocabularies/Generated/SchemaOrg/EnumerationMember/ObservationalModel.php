@@ -16,6 +16,7 @@ final class ObservationalModel
     public const DESCRIPTION = 'An observational study design.';
     public const LABEL = 'Observational';
     public const NAME = 'schema:Observational';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class LenderModel
     public const TYPES = ['BorrowAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BorrowActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

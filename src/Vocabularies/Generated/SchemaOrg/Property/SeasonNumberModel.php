@@ -20,4 +20,5 @@ final class SeasonNumberModel
     public const TYPES = ['CreativeWorkSeason' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkSeasonModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

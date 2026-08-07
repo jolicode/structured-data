@@ -17,6 +17,7 @@ enum Algorithms: string
     case FLATTEN = 'flatten';
     case COMPACT = 'compact';
     case EXPAND = 'expand';
+    case FRAME = 'frame';
 
     /**
      * The list of algorithms that are part of the official test suite.

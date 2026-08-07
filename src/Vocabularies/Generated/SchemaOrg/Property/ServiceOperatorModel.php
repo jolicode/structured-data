@@ -20,4 +20,5 @@ final class ServiceOperatorModel
     public const TYPES = ['GovernmentService' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GovernmentServiceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

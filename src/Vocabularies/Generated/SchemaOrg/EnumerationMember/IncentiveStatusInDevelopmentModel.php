@@ -16,6 +16,7 @@ final class IncentiveStatusInDevelopmentModel
     public const DESCRIPTION = 'This incentive is currently being developed, and may become active/retired in the future.';
     public const LABEL = 'IncentiveStatusInDevelopment';
     public const NAME = 'schema:IncentiveStatusInDevelopment';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3572'];
+    public const SUPERSEDED_BY = null;
 }

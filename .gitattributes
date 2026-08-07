@@ -1,0 +1,24 @@
+# Keep development-only files out of the Composer dist archives.
+/.castor.stub.php export-ignore
+/.gitattributes export-ignore
+/.github export-ignore
+/.gitignore export-ignore
+/.php-cs-fixer.php export-ignore
+/CONTRIBUTING.md export-ignore
+/castor.php export-ignore
+/generators export-ignore
+/infection.json5 export-ignore
+/phpbench.json export-ignore
+/phpstan.neon export-ignore
+/phpunit.xml.dist export-ignore
+/tests export-ignore
+/tools export-ignore
+
+# Only the resources needed at runtime (the schema.org contexts and the
+# standards data) stay in the archive: the vocabulary definitions used for
+# generation, the crawled Google documentation and the examples do not.
+/resources/google export-ignore
+/resources/jsonld export-ignore
+/resources/schema.org/UPGRADE_GUIDELINES.md export-ignore
+/resources/schema.org/examples export-ignore
+/resources/schema.org/examples-baseline.json export-ignore

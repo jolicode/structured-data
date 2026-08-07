@@ -18,6 +18,7 @@ final class RelevantSpecialtyModel
     public const NAME = 'schema:relevantSpecialty';
     public const VALUES = ['MedicalSpecialtyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalSpecialtyModel'];
     public const TYPES = ['MedicalEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

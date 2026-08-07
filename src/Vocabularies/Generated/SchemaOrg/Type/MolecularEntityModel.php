@@ -22,6 +22,7 @@ final class MolecularEntityModel
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['http://bioschemas.org'];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

@@ -18,6 +18,7 @@ final class CostOriginModel
     public const NAME = 'schema:costOrigin';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DrugCost' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugCostModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

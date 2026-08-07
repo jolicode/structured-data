@@ -1,6 +1,12 @@
-/vendor/
+# dependencies
+/composer.lock
+vendor
 
+# QA tools
 .php-cs-fixer.cache
 .phpunit.result.cache
+.phpunit.cache
+phpunit.xml
 
+# Castor stubs
 .castor.stub.php

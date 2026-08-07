@@ -18,4 +18,5 @@ final class LowCalorieDietModel
     public const NAME = 'schema:LowCalorieDiet';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

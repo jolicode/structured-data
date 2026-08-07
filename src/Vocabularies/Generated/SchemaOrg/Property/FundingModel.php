@@ -18,6 +18,7 @@ final class FundingModel
     public const NAME = 'schema:funding';
     public const VALUES = ['GrantModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GrantModel'];
     public const TYPES = ['BioChemEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BioChemEntityModel', 'CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'Event' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel', 'MedicalEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel', 'Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel', 'Product' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/383'];
+    public const SUPERSEDED_BY = null;
 }

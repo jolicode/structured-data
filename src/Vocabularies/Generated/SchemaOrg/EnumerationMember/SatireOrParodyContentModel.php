@@ -24,6 +24,7 @@ For an [[ImageObject]] with embedded text to be \'satire or parody content\': An
 For an [[AudioObject]] to be \'satire or parody content\': Audio that was created as political or humorous commentary and is presented in that context. (Reshares of satire/parody content that do not include relevant context are more likely to fall under the “missing context” rating.)';
     public const LABEL = 'SatireOrParodyContent';
     public const NAME = 'schema:SatireOrParodyContent';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2450'];
+    public const SUPERSEDED_BY = null;
 }

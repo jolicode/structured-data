@@ -16,6 +16,7 @@ final class DrivingSchoolVehicleUsageModel
     public const DESCRIPTION = 'Indicates the usage of the vehicle for driving school.';
     public const LABEL = 'DrivingSchoolVehicleUsage';
     public const NAME = 'schema:DrivingSchoolVehicleUsage';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://auto.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

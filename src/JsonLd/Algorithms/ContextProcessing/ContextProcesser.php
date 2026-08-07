@@ -195,6 +195,7 @@ class ContextProcesser
                     $context->{Keyword::PROTECTED->value} ?? false,
                     $overrideProtected,
                     $remoteContexts,
+                    $this->cache,
                 );
             }
         }
@@ -205,7 +206,10 @@ class ContextProcesser
     private function handleNullContext(Context $activeContext, Context &$result, bool $overrideProtected, bool $propagate): void
     {
         // 5.1.1
-        if (!$overrideProtected && $activeContext->hasProtectedTermDefinitions()) {
+        // The check targets the context accumulated so far in the sequence: a
+        // protected term introduced by a previous entry of the same local context
+        // array also forbids nullification.
+        if (!$overrideProtected && $result->hasProtectedTermDefinitions()) {
             throw new ContextProcessingException('invalid context nullification');
         }
 

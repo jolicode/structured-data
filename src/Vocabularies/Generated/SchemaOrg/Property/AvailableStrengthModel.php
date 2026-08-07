@@ -18,6 +18,7 @@ final class AvailableStrengthModel
     public const NAME = 'schema:availableStrength';
     public const VALUES = ['DrugStrengthModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugStrengthModel'];
     public const TYPES = ['Drug' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

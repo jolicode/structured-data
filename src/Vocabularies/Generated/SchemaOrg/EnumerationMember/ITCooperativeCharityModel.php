@@ -16,6 +16,7 @@ final class ITCooperativeCharityModel
     public const DESCRIPTION = 'ITCooperativeCharity: Non-profit type referring to Cooperatives with charitable missions (Ital. Cooperativa Sociale) according to Italian Law 112 of 2017.';
     public const LABEL = 'ITCooperativeCharity';
     public const NAME = 'schema:ITCooperativeCharity';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3629'];
+    public const SUPERSEDED_BY = null;
 }

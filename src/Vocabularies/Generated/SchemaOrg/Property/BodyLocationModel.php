@@ -18,6 +18,7 @@ final class BodyLocationModel
     public const NAME = 'schema:bodyLocation';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['AnatomicalStructure' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalStructureModel', 'MedicalProcedure' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalProcedureModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

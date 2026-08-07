@@ -22,6 +22,7 @@ final class DeliveryMethodModel
     public const ENUMERATION_MEMBERS = ['LockerDeliveryModel' => 'EnumerationMember\LockerDeliveryModel', 'OnSitePickupModel' => 'EnumerationMember\OnSitePickupModel', 'ParcelServiceModel' => 'EnumerationMember\ParcelServiceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

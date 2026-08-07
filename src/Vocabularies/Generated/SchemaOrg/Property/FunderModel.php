@@ -20,4 +20,5 @@ final class FunderModel
     public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'Event' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel', 'Grant' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GrantModel', 'MonetaryGrant' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryGrantModel', 'Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

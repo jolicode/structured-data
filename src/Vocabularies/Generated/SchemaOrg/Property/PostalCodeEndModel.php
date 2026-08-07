@@ -19,5 +19,6 @@ final class PostalCodeEndModel
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['PostalCodeRangeSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PostalCodeRangeSpecificationModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2506'];
+    public const SUPERSEDED_BY = null;
 }

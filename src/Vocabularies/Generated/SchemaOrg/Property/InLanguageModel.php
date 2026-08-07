@@ -19,5 +19,6 @@ final class InLanguageModel
     public const VALUES = ['LanguageModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LanguageModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['BroadcastService' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastServiceModel', 'CommunicateAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommunicateActionModel', 'CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'Event' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel', 'LinkRole' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LinkRoleModel', 'PronounceableText' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PronounceableTextModel', 'WriteAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WriteActionModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2382'];
+    public const SUPERSEDED_BY = null;
 }

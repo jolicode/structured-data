@@ -20,4 +20,5 @@ final class RuntimePlatformModel
     public const TYPES = ['SoftwareApplication' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SoftwareApplicationModel', 'SoftwareSourceCode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SoftwareSourceCodeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -31,23 +31,23 @@ use PhpParser\Node\Stmt;
  */
 class StaticFileGenerator
 {
-    private const REGISTRY_FILE = __DIR__ . '/../../Vocabularies/Generated/GeneratedClassesRegistry.php';
+    private const REGISTRY_FILE = __DIR__ . '/../src/Vocabularies/Generated/GeneratedClassesRegistry.php';
 
     private const MAPS = [
         'SCHEMA_ORG_TYPES' => [
-            'dir' => __DIR__ . '/../../Vocabularies/Generated/SchemaOrg/Type',
+            'dir' => __DIR__ . '/../src/Vocabularies/Generated/SchemaOrg/Type',
             'namespace' => SchemaOrgGenerator::NAMESPACE_TYPE,
         ],
         'SCHEMA_ORG_PROPERTIES' => [
-            'dir' => __DIR__ . '/../../Vocabularies/Generated/SchemaOrg/Property',
+            'dir' => __DIR__ . '/../src/Vocabularies/Generated/SchemaOrg/Property',
             'namespace' => SchemaOrgGenerator::NAMESPACE_PROPERTY,
         ],
         'SCHEMA_ORG_ENUMERATION_MEMBERS' => [
-            'dir' => __DIR__ . '/../../Vocabularies/Generated/SchemaOrg/EnumerationMember',
+            'dir' => __DIR__ . '/../src/Vocabularies/Generated/SchemaOrg/EnumerationMember',
             'namespace' => SchemaOrgGenerator::NAMESPACE_ENUMERATION_MEMBER,
         ],
         'GOOGLE' => [
-            'dir' => __DIR__ . '/../../Vocabularies/Generated/Google',
+            'dir' => __DIR__ . '/../src/Vocabularies/Generated/Google',
             'namespace' => GoogleGenerator::NAMESPACE_BASE,
         ],
     ];
@@ -329,13 +329,18 @@ PHP;
 
     private function buildPrefixMatchArm(string $generatorClass, string $namespaceConst, string $mapConst): Node\MatchArm
     {
+        // The namespace is emitted as a literal: the generated code must not
+        // depend on the generator classes, which are not part of the library
+        // runtime.
+        $namespace = \constant($generatorClass . '::' . $namespaceConst);
+
         return new Node\MatchArm(
             [
                 new Expr\FuncCall(
                     new Node\Name('str_starts_with'),
                     [
                         new Node\Arg(new Expr\Variable('prefix')),
-                        new Node\Arg(new Expr\ClassConstFetch(new Node\Name\FullyQualified($generatorClass), $namespaceConst)),
+                        new Node\Arg(new Node\Scalar\String_($namespace)),
                     ],
                 ),
             ],
@@ -352,17 +357,11 @@ PHP;
         $value->setAttribute('force_multiline', true);
 
         foreach ($value->items as $item) {
-            if (null === $item) {
-                continue;
-            }
-
             if ($item->key instanceof Expr) {
                 $this->markArraysAsMultiline($item->key);
             }
 
-            if ($item->value instanceof Expr) {
-                $this->markArraysAsMultiline($item->value);
-            }
+            $this->markArraysAsMultiline($item->value);
         }
     }
 }

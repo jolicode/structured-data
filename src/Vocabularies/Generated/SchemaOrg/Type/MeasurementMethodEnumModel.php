@@ -22,6 +22,7 @@ final class MeasurementMethodEnumModel
     public const ENUMERATION_MEMBERS = ['ExampleMeasurementMethodEnumModel' => 'EnumerationMember\ExampleMeasurementMethodEnumModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2564'];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

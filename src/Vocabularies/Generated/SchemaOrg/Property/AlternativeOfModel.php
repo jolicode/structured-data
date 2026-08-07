@@ -18,6 +18,7 @@ final class AlternativeOfModel
     public const NAME = 'schema:alternativeOf';
     public const VALUES = ['GeneModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeneModel'];
     public const TYPES = ['Gene' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeneModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['http://www.bioschemas.org/Gene'];
+    public const SUPERSEDED_BY = null;
 }

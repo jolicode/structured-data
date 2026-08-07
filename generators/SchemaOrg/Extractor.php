@@ -34,6 +34,7 @@ readonly class Extractor
 
     public const SCHEMA_IS_PART_OF = 'schema:isPartOf';
     public const SCHEMA_SOURCE = 'schema:source';
+    public const SCHEMA_SUPERSEDED_BY = 'schema:supersededBy';
 
     public function __construct(
         private Filesystem $filesystem = new Filesystem(),

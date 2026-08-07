@@ -19,5 +19,6 @@ final class XpathModel
     public const VALUES = ['XPathTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\XPathTypeModel'];
     public const TYPES = ['SpeakableSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SpeakableSpecificationModel', 'WebPageElement' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebPageElementModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1389'];
+    public const SUPERSEDED_BY = null;
 }

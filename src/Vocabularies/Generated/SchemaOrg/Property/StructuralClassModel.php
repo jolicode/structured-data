@@ -18,6 +18,7 @@ final class StructuralClassModel
     public const NAME = 'schema:structuralClass';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Joint' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\JointModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class HoursAvailableModel
     public const TYPES = ['ContactPoint' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ContactPointModel', 'LocationFeatureSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LocationFeatureSpecificationModel', 'Service' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

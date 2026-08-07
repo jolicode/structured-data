@@ -18,6 +18,7 @@ final class HasHealthAspectModel
     public const NAME = 'schema:hasHealthAspect';
     public const VALUES = ['HealthAspectEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HealthAspectEnumerationModel'];
     public const TYPES = ['HealthTopicContent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HealthTopicContentModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2373'];
+    public const SUPERSEDED_BY = null;
 }

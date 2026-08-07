@@ -20,4 +20,5 @@ final class NamedPositionModel
     public const TYPES = ['Role' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RoleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = 'roleName';
 }

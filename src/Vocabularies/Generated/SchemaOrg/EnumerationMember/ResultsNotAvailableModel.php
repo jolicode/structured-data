@@ -16,6 +16,7 @@ final class ResultsNotAvailableModel
     public const DESCRIPTION = 'Results are not available.';
     public const LABEL = 'ResultsNotAvailable';
     public const NAME = 'schema:ResultsNotAvailable';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

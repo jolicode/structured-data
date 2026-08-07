@@ -17,30 +17,32 @@ use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
 use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @see https://w3c.github.io/json-ld-api/tests/flatten-manifest.html
- *
- *  @group flatten
  * */
+#[Group('flatten')]
 class FlattenerTest extends AbstractJsonLdTestCase
 {
-    /** @dataProvider provideInputsAndOutputs */
+    #[DataProvider('provideInputsAndOutputs')]
     public function testFlatten(string $json, string|JsonLdException $expected, string $filename): void
     {
-        $flattener = new Flattener();
-        $options = $this->getOptions($filename);
+        $flattener = new Flattener(documentLoader: static::createDocumentLoader());
+        $options = static::getOptions($filename);
+        $context = self::getContextFor($filename);
 
         if ($expected instanceof JsonLdException) {
             try {
-                $flattener->flatten($json, $options);
+                $flattener->flatten($json, $context, $options);
 
                 throw new AssertionFailedError(\sprintf('An exception was expected for this test but none were thrown. Expected error message was : %s', $expected->getMessage()));
             } catch (JsonLdException $exception) {
                 $this->assertSame($expected->getMessage(), $exception->getMessage());
             }
         } else {
-            $flattened = $flattener->flatten($json, options: $options);
+            $flattened = $flattener->flatten($json, $context, options: $options);
 
             if (!\is_string($flattened)) {
                 throw new AssertionFailedError('The expanded JSON is not a string');
@@ -50,12 +52,12 @@ class FlattenerTest extends AbstractJsonLdTestCase
         }
     }
 
-    protected function getAlgorithmName(): string
+    protected static function getAlgorithmName(): string
     {
         return Algorithms::FLATTEN->value;
     }
 
-    protected function getExpectedErrorMessage(string $filename): string
+    protected static function getExpectedErrorMessage(string $filename): string
     {
         $failedTestsErrorMessages = [
             'e001-in.jsonld' => 'Conflicting Index Exception : aborting processing',
@@ -69,25 +71,43 @@ class FlattenerTest extends AbstractJsonLdTestCase
         return $failedTestsErrorMessages[$filename] ?? $defaultErrorMessage;
     }
 
-    protected function shouldSkipThisTest(string $filename): bool
+    protected static function shouldSkipThisTest(string $filename): bool
     {
-        $testsToSkip = [
-            // Requires the context-based compaction step inside flatten(), which is not yet implemented.
-            // See TODO comment in Flattener::flatten().
-            '0044-in.jsonld',
-        ];
-
-        return \in_array($filename, $testsToSkip, true);
+        return false;
     }
 
-    protected function getOptions(string $filename): ProcessorOptions
+    protected static function getOptions(string $filename): ProcessorOptions
     {
-        $options = new ProcessorOptions(base: $this->getBaseUrlForW3CTests($filename));
+        $options = new ProcessorOptions(base: static::getBaseUrlForW3CTests($filename));
 
         if ('0014-in.jsonld' === $filename || '0026-in.jsonld' === $filename) {
             $options->processingMode = Context::PROCESSING_MODE_10;
         }
 
+        if ('0044-in.jsonld' === $filename) {
+            $options->compactArrays = false;
+        }
+
         return $options;
+    }
+
+    /**
+     * Most flatten tests have no context; the few that do exercise the context-based
+     * compaction step of the flatten() API (step 6.1).
+     */
+    private static function getContextFor(string $filename): ?string
+    {
+        $contextFileName = \sprintf(
+            '%s/%s/context/%s',
+            self::DATA_PATH,
+            static::getAlgorithmName(),
+            str_replace('-in', '-context', $filename),
+        );
+
+        if (!is_file($contextFileName)) {
+            return null;
+        }
+
+        return (string) file_get_contents($contextFileName);
     }
 }

@@ -18,6 +18,7 @@ final class SuggestedMeasurementModel
     public const NAME = 'schema:suggestedMeasurement';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['PeopleAudience' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PeopleAudienceModel', 'SizeSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SizeSpecificationModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

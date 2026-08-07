@@ -19,5 +19,6 @@ final class CurrencyModel
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['DatedMoneySpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DatedMoneySpecificationModel', 'ExchangeRateSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ExchangeRateSpecificationModel', 'LoanOrCredit' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LoanOrCreditModel', 'MonetaryAmountDistribution' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountDistributionModel', 'MonetaryAmount' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1253'];
+    public const SUPERSEDED_BY = null;
 }

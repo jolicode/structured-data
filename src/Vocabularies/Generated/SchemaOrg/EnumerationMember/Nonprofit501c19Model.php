@@ -16,6 +16,7 @@ final class Nonprofit501c19Model
     public const DESCRIPTION = 'Nonprofit501c19: Non-profit type referring to Post or Organization of Past or Present Members of the Armed Forces.';
     public const LABEL = 'Nonprofit501c19';
     public const NAME = 'schema:Nonprofit501c19';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2543'];
+    public const SUPERSEDED_BY = null;
 }

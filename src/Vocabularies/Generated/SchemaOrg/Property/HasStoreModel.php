@@ -18,6 +18,7 @@ final class HasStoreModel
     public const NAME = 'schema:hasStore';
     public const VALUES = ['OnlineStoreModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OnlineStoreModel'];
     public const TYPES = ['OnlineMarketplace' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OnlineMarketplaceModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/4470'];
+    public const SUPERSEDED_BY = null;
 }

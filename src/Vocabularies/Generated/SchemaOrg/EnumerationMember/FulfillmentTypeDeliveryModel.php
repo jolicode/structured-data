@@ -16,6 +16,7 @@ final class FulfillmentTypeDeliveryModel
     public const DESCRIPTION = 'Fulfillment to a customer selected address.';
     public const LABEL = 'FulfillmentTypeDelivery';
     public const NAME = 'schema:FulfillmentTypeDelivery';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3617'];
+    public const SUPERSEDED_BY = null;
 }

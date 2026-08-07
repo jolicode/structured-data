@@ -22,6 +22,7 @@ final class FulfillmentTypeEnumerationModel
     public const ENUMERATION_MEMBERS = ['FulfillmentTypeCollectionPointModel' => 'EnumerationMember\FulfillmentTypeCollectionPointModel', 'FulfillmentTypeDeliveryModel' => 'EnumerationMember\FulfillmentTypeDeliveryModel', 'FulfillmentTypePickupDropoffModel' => 'EnumerationMember\FulfillmentTypePickupDropoffModel', 'FulfillmentTypePickupInStoreModel' => 'EnumerationMember\FulfillmentTypePickupInStoreModel', 'FulfillmentTypeScheduledDeliveryModel' => 'EnumerationMember\FulfillmentTypeScheduledDeliveryModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3617'];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

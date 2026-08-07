@@ -16,6 +16,7 @@ final class CrossSectionalModel
     public const DESCRIPTION = 'Studies carried out on pre-existing data (usually from \'snapshot\' surveys), such as that collected by the Census Bureau. Sometimes called Prevalence Studies.';
     public const LABEL = 'CrossSectional';
     public const NAME = 'schema:CrossSectional';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

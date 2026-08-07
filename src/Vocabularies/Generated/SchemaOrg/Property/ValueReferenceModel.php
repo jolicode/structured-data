@@ -20,4 +20,5 @@ final class ValueReferenceModel
     public const TYPES = ['PropertyValue' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyValueModel', 'QualitativeValue' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QualitativeValueModel', 'QuantitativeValue' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

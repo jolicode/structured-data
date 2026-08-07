@@ -16,6 +16,7 @@ final class WholesaleModel
     public const DESCRIPTION = 'The drug\'s cost represents the wholesale acquisition cost of the drug.';
     public const LABEL = 'Wholesale';
     public const NAME = 'schema:Wholesale';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

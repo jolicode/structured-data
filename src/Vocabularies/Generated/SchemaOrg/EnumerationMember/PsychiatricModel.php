@@ -16,6 +16,7 @@ final class PsychiatricModel
     public const DESCRIPTION = 'A specific branch of medical science that is concerned with the study, treatment, and prevention of mental illness, using both medical and psychological therapies.';
     public const LABEL = 'Psychiatric';
     public const NAME = 'schema:Psychiatric';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

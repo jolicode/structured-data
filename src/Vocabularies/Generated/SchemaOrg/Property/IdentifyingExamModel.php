@@ -18,6 +18,7 @@ final class IdentifyingExamModel
     public const NAME = 'schema:identifyingExam';
     public const VALUES = ['PhysicalExamModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PhysicalExamModel'];
     public const TYPES = ['MedicalSign' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalSignModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

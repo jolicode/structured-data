@@ -19,5 +19,6 @@ final class HasTierBenefitModel
     public const VALUES = ['TierBenefitEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TierBenefitEnumerationModel'];
     public const TYPES = ['MemberProgramTier' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MemberProgramTierModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3563'];
+    public const SUPERSEDED_BY = null;
 }

@@ -22,6 +22,7 @@ final class DrugPregnancyCategoryModel
     public const ENUMERATION_MEMBERS = ['FDAcategoryAModel' => 'EnumerationMember\FDAcategoryAModel', 'FDAcategoryBModel' => 'EnumerationMember\FDAcategoryBModel', 'FDAcategoryCModel' => 'EnumerationMember\FDAcategoryCModel', 'FDAcategoryDModel' => 'EnumerationMember\FDAcategoryDModel', 'FDAcategoryXModel' => 'EnumerationMember\FDAcategoryXModel', 'FDAnotEvaluatedModel' => 'EnumerationMember\FDAnotEvaluatedModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

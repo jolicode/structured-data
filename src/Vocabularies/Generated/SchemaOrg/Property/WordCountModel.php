@@ -20,4 +20,5 @@ final class WordCountModel
     public const TYPES = ['Article' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ArticleModel', 'CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

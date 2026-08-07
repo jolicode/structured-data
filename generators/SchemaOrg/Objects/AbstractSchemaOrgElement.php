@@ -19,6 +19,12 @@ abstract class AbstractSchemaOrgElement
     public array $source = [];
 
     /**
+     * Short label of the term schema.org designates as replacing this one
+     * (schema:supersededBy), or null when the term is current.
+     */
+    public ?string $supersededBy = null;
+
+    /**
      * Instantiates a new object from a fetched Schema.org raw type.
      */
     abstract public static function fromRawData(array $rawType): self;
@@ -33,6 +39,27 @@ abstract class AbstractSchemaOrgElement
         return str_replace('schema:', '', $name);
     }
 
+    /**
+     * Returns a raw type entry that sanitizeEntries() guarantees to be a string.
+     */
+    protected static function stringEntry(array $rawType, string $key): string
+    {
+        $value = $rawType[$key];
+
+        if (!\is_string($value)) {
+            throw new \InvalidArgumentException(\sprintf('The "%s" entry of the raw schema.org type is not a string.', $key));
+        }
+
+        return $value;
+    }
+
+    /**
+     * @template T of self
+     *
+     * @param T $object
+     *
+     * @return T
+     */
     protected static function addSchemaInformation(self $object, array $rawType): self
     {
         if (isset($rawType[Extractor::SCHEMA_IS_PART_OF])) {
@@ -41,6 +68,14 @@ abstract class AbstractSchemaOrgElement
 
         if (isset($rawType[Extractor::SCHEMA_SOURCE])) {
             $object->source = self::schemaInformationAsArray($rawType[Extractor::SCHEMA_SOURCE]);
+        }
+
+        if (isset($rawType[Extractor::SCHEMA_SUPERSEDED_BY])) {
+            $supersededBy = self::schemaInformationAsArray($rawType[Extractor::SCHEMA_SUPERSEDED_BY]);
+
+            if (isset($supersededBy[0])) {
+                $object->supersededBy = self::removeSchemaPrefix($supersededBy[0]);
+            }
         }
 
         return $object;

@@ -20,4 +20,5 @@ final class SenderModel
     public const TYPES = ['Message' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MessageModel', 'ReceiveAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReceiveActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

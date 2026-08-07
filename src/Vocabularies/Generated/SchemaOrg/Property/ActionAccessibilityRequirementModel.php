@@ -19,5 +19,6 @@ final class ActionAccessibilityRequirementModel
     public const VALUES = ['ActionAccessSpecificationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ActionAccessSpecificationModel'];
     public const TYPES = ['ConsumeAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ConsumeActionModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1741'];
+    public const SUPERSEDED_BY = null;
 }

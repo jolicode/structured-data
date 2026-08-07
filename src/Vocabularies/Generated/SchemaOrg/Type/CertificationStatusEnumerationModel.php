@@ -22,6 +22,7 @@ final class CertificationStatusEnumerationModel
     public const ENUMERATION_MEMBERS = ['CertificationActiveModel' => 'EnumerationMember\CertificationActiveModel', 'CertificationInactiveModel' => 'EnumerationMember\CertificationInactiveModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3230'];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

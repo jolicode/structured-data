@@ -13,11 +13,10 @@ namespace Jolicode\JsonLd\Tests\Validation;
 
 use Jolicode\JsonLd\Extraction\Extractor;
 use Jolicode\JsonLd\Extraction\ExtractorsContainer;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @group validation
- */
+#[Group('validation')]
 class ExtractorTest extends TestCase
 {
     public function testItExtractsAllSupportedFormatsPresentInTheDocument(): void

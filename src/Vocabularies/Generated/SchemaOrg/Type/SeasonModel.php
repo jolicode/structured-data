@@ -22,6 +22,7 @@ final class SeasonModel
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = 'CreativeWorkSeason';
 
     public function __construct(
         public ?Property\AboutModel $about = null,

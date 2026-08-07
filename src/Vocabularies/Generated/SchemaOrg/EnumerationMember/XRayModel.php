@@ -16,6 +16,7 @@ final class XRayModel
     public const DESCRIPTION = 'X-ray imaging.';
     public const LABEL = 'XRay';
     public const NAME = 'schema:XRay';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

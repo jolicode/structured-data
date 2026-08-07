@@ -18,4 +18,5 @@ final class DigitalAudioTapeFormatModel
     public const NAME = 'schema:DigitalAudioTapeFormat';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

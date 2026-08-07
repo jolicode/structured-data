@@ -18,6 +18,7 @@ final class ApplicationContactModel
     public const NAME = 'schema:applicationContact';
     public const VALUES = ['ContactPointModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ContactPointModel'];
     public const TYPES = ['JobPosting' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\JobPostingModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2396'];
+    public const SUPERSEDED_BY = null;
 }

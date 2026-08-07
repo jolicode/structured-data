@@ -20,4 +20,5 @@ final class NumTracksModel
     public const TYPES = ['MusicPlaylist' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicPlaylistModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

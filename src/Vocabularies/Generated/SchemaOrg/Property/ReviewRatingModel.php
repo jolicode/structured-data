@@ -20,4 +20,5 @@ final class ReviewRatingModel
     public const TYPES = ['Review' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReviewModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

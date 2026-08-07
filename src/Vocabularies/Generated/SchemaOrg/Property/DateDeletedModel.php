@@ -20,4 +20,5 @@ final class DateDeletedModel
     public const TYPES = ['DataFeedItem' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DataFeedItemModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

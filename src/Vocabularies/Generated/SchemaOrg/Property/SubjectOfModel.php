@@ -19,5 +19,6 @@ final class SubjectOfModel
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'EventModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel'];
     public const TYPES = ['Thing' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1670'];
+    public const SUPERSEDED_BY = null;
 }

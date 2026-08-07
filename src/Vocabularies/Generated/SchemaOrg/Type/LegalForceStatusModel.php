@@ -22,6 +22,7 @@ final class LegalForceStatusModel
     public const ENUMERATION_MEMBERS = ['InForceModel' => 'EnumerationMember\InForceModel', 'NotInForceModel' => 'EnumerationMember\NotInForceModel', 'PartiallyInForceModel' => 'EnumerationMember\PartiallyInForceModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1156', 'https://op.europa.eu/en/web/eu-vocabularies/model/-/resource/dataset/eli'];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

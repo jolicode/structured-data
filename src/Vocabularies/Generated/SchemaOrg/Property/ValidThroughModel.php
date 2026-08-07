@@ -20,4 +20,5 @@ final class ValidThroughModel
     public const TYPES = ['Demand' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DemandModel', 'FinancialIncentive' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FinancialIncentiveModel', 'JobPosting' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\JobPostingModel', 'LocationFeatureSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LocationFeatureSpecificationModel', 'MonetaryAmount' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountModel', 'Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel', 'OpeningHoursSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OpeningHoursSpecificationModel', 'PriceSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PriceSpecificationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

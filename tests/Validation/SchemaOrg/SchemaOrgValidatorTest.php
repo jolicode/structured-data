@@ -12,36 +12,77 @@
 namespace Jolicode\JsonLd\Tests\Validation;
 
 use Jolicode\JsonLd\Audit\AuditOptions;
+use Jolicode\JsonLd\Validator;
 use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
-/**
- * @covers \Jolicode\JsonLd\Validator
- * @covers \Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator
- *
- * @group validation
- * @group schemaorg
- * @group schema-org
- */
+#[CoversClass(Validator::class)]
+#[CoversClass(SchemaOrgValidator::class)]
+#[Group('validation')]
+#[Group('schemaorg')]
+#[Group('schema-org')]
 class SchemaOrgValidatorTest extends AbstractValidatorTestCase
 {
-    /**
-     * @dataProvider provideSchemaOrgFiles
-     */
+    #[DataProvider('provideSchemaOrgFiles')]
     public function testSchemaOrgValidator(
-        string $filePath,
+        string $document,
         bool $isValid,
         array $expectedErrors,
         array $expectedWarnings = [],
         array $expectedDocumentIssues = [],
     ): void {
         $this->assertValidationResultMatchesExpectations(
-            $filePath,
+            $document,
             $isValid,
             $expectedErrors,
             SchemaOrgValidator::class,
             $expectedWarnings,
             $expectedDocumentIssues,
         );
+    }
+
+    public function testSchemaOrgValidatorWarnsAboutSupersededTerms(): void
+    {
+        // "episodes" is superseded by "episode", "season" by "containsSeason".
+        $document = (string) json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'TVSeries',
+            'name' => 'My Series',
+            'episodes' => ['@type' => 'Episode', 'name' => 'Pilot'],
+        ]);
+
+        $this->validator->setValidator(SchemaOrgValidator::class);
+        $audit = $this->validator->audit($document);
+
+        /** @var array<string> $warnings */
+        $warnings = $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_WARNING,
+        ));
+
+        $this->assertContains('[SchemaOrg warning] episodes: The "episodes" property is superseded by "episode". Consider using "episode" instead.', $warnings);
+        $this->assertTrue($audit->isValid(), 'A superseded term is a warning, not an error.');
+    }
+
+    public function testSchemaOrgValidatorWarnsAboutSupersededTypes(): void
+    {
+        // The "UserInteraction" type tree is superseded by InteractionCounter.
+        $document = (string) json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'UserLikes',
+            'name' => 'Likes',
+        ]);
+
+        $this->validator->setValidator(SchemaOrgValidator::class);
+        $audit = $this->validator->audit($document);
+
+        /** @var array<string> $warnings */
+        $warnings = $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_WARNING,
+        ));
+
+        $this->assertContains('[SchemaOrg warning] @type: The "UserLikes" type is superseded by "InteractionCounter". Consider using "InteractionCounter" instead.', $warnings);
     }
 
     public function testSchemaOrgValidatorReportsMixedCaseTypeAndPropertyKeys(): void
@@ -64,18 +105,16 @@ class SchemaOrgValidatorTest extends AbstractValidatorTestCase
         $this->assertContains('[SchemaOrg error] name: Incorrect property casing: "Name" given, expected "name".', $errors);
     }
 
-    /**
-     * @dataProvider provideSchemaOrgExamples
-     */
+    #[DataProvider('provideSchemaOrgExamples')]
     public function testSchemaOrgExamples(
-        string $filePath,
+        string $document,
         bool $isValid = true,
         array $expectedErrors = [],
         array $expectedWarnings = [],
         array $expectedDocumentIssues = [],
     ): void {
         $this->assertValidationResultMatchesExpectations(
-            $filePath,
+            $document,
             $isValid,
             $expectedErrors,
             SchemaOrgValidator::class,
@@ -84,17 +123,17 @@ class SchemaOrgValidatorTest extends AbstractValidatorTestCase
         );
     }
 
-    public function provideSchemaOrgExamples(): \Generator
+    public static function provideSchemaOrgExamples(): \Generator
     {
-        return $this->provideData(
+        return self::provideData(
             __DIR__ . '/../../../resources/schema.org/examples',
             __DIR__ . '/../../../resources/schema.org/examples-baseline.json',
         );
     }
 
-    public function provideSchemaOrgFiles(): \Generator
+    public static function provideSchemaOrgFiles(): \Generator
     {
-        return $this->provideData(
+        return self::provideData(
             __DIR__ . '/../fixtures/schema-org',
             __DIR__ . '/../fixtures/schema-org-baseline.json',
         );

@@ -22,6 +22,12 @@ class ProcessorOptions
         public ?string $expandContext = null,
         public bool $extractAllScripts = false,
         public bool $frameExpansion = false,
+        /**
+         * Framing only: whether a single top-level node object is returned without a
+         * surrounding @graph entry. Defaults to true in JSON-LD 1.1 processing mode
+         * and false in JSON-LD 1.0.
+         */
+        public ?bool $omitGraph = null,
         public bool $ordered = false,
         public string $processingMode = Context::PROCESSING_MODE_11,
         public bool $produceGeneralizedRdf = true,

@@ -20,4 +20,5 @@ final class LowPriceModel
     public const TYPES = ['AggregateOffer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AggregateOfferModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

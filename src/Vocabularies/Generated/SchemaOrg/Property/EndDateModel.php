@@ -19,5 +19,6 @@ final class EndDateModel
     public const VALUES = ['DateModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateTimeModel'];
     public const TYPES = ['CreativeWorkSeason' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkSeasonModel', 'CreativeWorkSeries' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkSeriesModel', 'DatedMoneySpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DatedMoneySpecificationModel', 'EducationalOccupationalProgram' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalProgramModel', 'Event' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel', 'MerchantReturnPolicySeasonalOverride' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MerchantReturnPolicySeasonalOverrideModel', 'Role' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RoleModel', 'Schedule' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ScheduleModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2486'];
+    public const SUPERSEDED_BY = null;
 }

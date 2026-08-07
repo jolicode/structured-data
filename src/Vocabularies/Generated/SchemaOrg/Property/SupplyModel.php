@@ -20,4 +20,5 @@ final class SupplyModel
     public const TYPES = ['HowToDirection' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HowToDirectionModel', 'HowTo' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HowToModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

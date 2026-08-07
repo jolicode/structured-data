@@ -20,4 +20,5 @@ final class AudienceTypeModel
     public const TYPES = ['Audience' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AudienceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

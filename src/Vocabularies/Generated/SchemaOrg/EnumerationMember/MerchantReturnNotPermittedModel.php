@@ -16,6 +16,7 @@ final class MerchantReturnNotPermittedModel
     public const DESCRIPTION = 'Specifies that product returns are not permitted.';
     public const LABEL = 'MerchantReturnNotPermitted';
     public const NAME = 'schema:MerchantReturnNotPermitted';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2288'];
+    public const SUPERSEDED_BY = null;
 }

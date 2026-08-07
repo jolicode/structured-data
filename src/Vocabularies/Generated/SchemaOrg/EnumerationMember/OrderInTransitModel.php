@@ -18,4 +18,5 @@ final class OrderInTransitModel
     public const NAME = 'schema:OrderInTransit';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

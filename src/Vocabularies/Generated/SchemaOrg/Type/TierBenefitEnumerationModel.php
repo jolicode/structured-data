@@ -22,6 +22,7 @@ final class TierBenefitEnumerationModel
     public const ENUMERATION_MEMBERS = ['TierBenefitLoyaltyPointsModel' => 'EnumerationMember\TierBenefitLoyaltyPointsModel', 'TierBenefitLoyaltyPriceModel' => 'EnumerationMember\TierBenefitLoyaltyPriceModel', 'TierBenefitLoyaltyReturnsModel' => 'EnumerationMember\TierBenefitLoyaltyReturnsModel', 'TierBenefitLoyaltyShippingModel' => 'EnumerationMember\TierBenefitLoyaltyShippingModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3563'];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

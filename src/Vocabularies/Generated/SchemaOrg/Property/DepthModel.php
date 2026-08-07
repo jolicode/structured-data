@@ -19,5 +19,6 @@ final class DepthModel
     public const VALUES = ['DistanceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DistanceModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['OfferShippingDetails' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferShippingDetailsModel', 'Product' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel', 'ShippingConditions' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ShippingConditionsModel', 'VisualArtwork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VisualArtworkModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3617'];
+    public const SUPERSEDED_BY = null;
 }

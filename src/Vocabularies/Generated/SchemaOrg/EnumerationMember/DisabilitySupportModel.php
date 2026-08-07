@@ -16,6 +16,7 @@ final class DisabilitySupportModel
     public const DESCRIPTION = 'DisabilitySupport: this is a benefit for disability support.';
     public const LABEL = 'DisabilitySupport';
     public const NAME = 'schema:DisabilitySupport';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2534'];
+    public const SUPERSEDED_BY = null;
 }

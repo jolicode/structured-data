@@ -18,4 +18,5 @@ final class OnlineFullModel
     public const NAME = 'schema:OnlineFull';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

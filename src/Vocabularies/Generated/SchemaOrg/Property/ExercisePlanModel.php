@@ -18,6 +18,7 @@ final class ExercisePlanModel
     public const NAME = 'schema:exercisePlan';
     public const VALUES = ['ExercisePlanModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ExercisePlanModel'];
     public const TYPES = ['ExerciseAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ExerciseActionModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

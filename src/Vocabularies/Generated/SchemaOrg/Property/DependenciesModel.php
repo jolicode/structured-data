@@ -20,4 +20,5 @@ final class DependenciesModel
     public const TYPES = ['TechArticle' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TechArticleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

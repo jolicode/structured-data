@@ -18,4 +18,5 @@ final class ReservedModel
     public const NAME = 'schema:Reserved';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

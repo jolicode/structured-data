@@ -18,6 +18,7 @@ final class InteractingDrugModel
     public const NAME = 'schema:interactingDrug';
     public const VALUES = ['DrugModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugModel'];
     public const TYPES = ['Drug' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -16,6 +16,7 @@ final class SingleCenterTrialModel
     public const DESCRIPTION = 'A trial that takes place at a single center.';
     public const LABEL = 'SingleCenterTrial';
     public const NAME = 'schema:SingleCenterTrial';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

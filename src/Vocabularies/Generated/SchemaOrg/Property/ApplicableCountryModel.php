@@ -18,6 +18,7 @@ final class ApplicableCountryModel
     public const NAME = 'schema:applicableCountry';
     public const VALUES = ['CountryModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CountryModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MerchantReturnPolicy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MerchantReturnPolicyModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3001'];
+    public const SUPERSEDED_BY = null;
 }

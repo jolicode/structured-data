@@ -18,6 +18,7 @@ final class TranslationOfWorkModel
     public const NAME = 'schema:translationOfWork';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://bib.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

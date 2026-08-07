@@ -23,6 +23,7 @@ Should not be used where the nature of the alignment can be described using a si
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

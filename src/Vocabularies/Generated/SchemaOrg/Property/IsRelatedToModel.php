@@ -20,4 +20,5 @@ final class IsRelatedToModel
     public const TYPES = ['Product' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel', 'Service' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

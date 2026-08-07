@@ -18,4 +18,5 @@ final class LowLactoseDietModel
     public const NAME = 'schema:LowLactoseDiet';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

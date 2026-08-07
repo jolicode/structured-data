@@ -22,6 +22,7 @@ final class DigitalDocumentPermissionTypeModel
     public const ENUMERATION_MEMBERS = ['CommentPermissionModel' => 'EnumerationMember\CommentPermissionModel', 'ReadPermissionModel' => 'EnumerationMember\ReadPermissionModel', 'WritePermissionModel' => 'EnumerationMember\WritePermissionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

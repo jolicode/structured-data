@@ -18,6 +18,7 @@ final class ApplicableLocationModel
     public const NAME = 'schema:applicableLocation';
     public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AdministrativeAreaModel'];
     public const TYPES = ['DrugCost' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugCostModel', 'DrugLegalStatus' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugLegalStatusModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class ScreenCountModel
     public const TYPES = ['MovieTheater' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MovieTheaterModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

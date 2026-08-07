@@ -18,4 +18,5 @@ final class ReservationPendingModel
     public const NAME = 'schema:ReservationPending';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

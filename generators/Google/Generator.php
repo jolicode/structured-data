@@ -72,7 +72,7 @@ class Generator implements GeneratorInterface
     }
 
     /**
-     * @return \Generator<Stmt\Namespace_>
+     * @return \Generator<int, array{Stmt\Namespace_, string}>
      */
     private function generateClasses(array $json): \Generator
     {
@@ -103,23 +103,11 @@ class Generator implements GeneratorInterface
                 ->class($name)
                 ->makeFinal()
                 ->addStmts([
-                    $this->factory->classConst('NAME', $name)
-                        ->makePublic(),
                     $this->factory->classConst('SUPPORTED_TYPES', $type['supportedTypes'])
-                        ->makePublic(),
-                    $this->factory->classConst('VALUE', $type['value'] ?? [])
                         ->makePublic(),
                     $this->factory->classConst('DOCUMENTATION', $type['documentation'] ?? null)
                         ->makePublic(),
-                    $this->factory->classConst('SUBTYPE', $type['subtype'] ?? null)
-                        ->makePublic(),
-                    $this->factory->classConst('HAS_SPECIAL_RULES', !empty($type['specialRules']))
-                        ->makePublic(),
                     $this->factory->classConst('SPECIAL_RULE_KEYS', $type['specialRules'] ?? [])
-                        ->makePublic(),
-                    $this->factory->classConst('IS_CAROUSEL_ELIGIBLE', $type['isCarouselEligible'] ?? false)
-                        ->makePublic(),
-                    $this->factory->classConst('CAROUSEL_PROPERTIES', $type['carouselProperties'] ?? [])
                         ->makePublic(),
                     $this->factory->classConst('PROPERTIES', $properties)
                         ->makePublic(),
@@ -144,17 +132,11 @@ class Generator implements GeneratorInterface
         $value->setAttribute('force_multiline', true);
 
         foreach ($value->items as $item) {
-            if (null === $item) {
-                continue;
-            }
-
             if ($item->key instanceof Expr) {
                 $this->markArraysAsMultiline($item->key);
             }
 
-            if ($item->value instanceof Expr) {
-                $this->markArraysAsMultiline($item->value);
-            }
+            $this->markArraysAsMultiline($item->value);
         }
     }
 
@@ -183,7 +165,7 @@ class Generator implements GeneratorInterface
     }
 
     /**
-     * @return \Generator<Stmt\Namespace_>
+     * @return \Generator<int, array{Stmt\Namespace_, string}>
      */
     private function generateAbstractClass(array $json): \Generator
     {

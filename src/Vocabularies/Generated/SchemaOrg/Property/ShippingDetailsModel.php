@@ -19,5 +19,6 @@ final class ShippingDetailsModel
     public const VALUES = ['OfferShippingDetailsModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferShippingDetailsModel'];
     public const TYPES = ['Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2506'];
+    public const SUPERSEDED_BY = null;
 }

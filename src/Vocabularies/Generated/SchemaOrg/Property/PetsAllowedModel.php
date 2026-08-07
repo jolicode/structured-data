@@ -20,4 +20,5 @@ final class PetsAllowedModel
     public const TYPES = ['Accommodation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AccommodationModel', 'ApartmentComplex' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ApartmentComplexModel', 'FloorPlan' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FloorPlanModel', 'LodgingBusiness' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LodgingBusinessModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

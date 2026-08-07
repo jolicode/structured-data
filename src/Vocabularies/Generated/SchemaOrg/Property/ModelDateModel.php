@@ -18,6 +18,7 @@ final class ModelDateModel
     public const NAME = 'schema:modelDate';
     public const VALUES = ['DateModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateModel'];
     public const TYPES = ['Vehicle' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VehicleModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://auto.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

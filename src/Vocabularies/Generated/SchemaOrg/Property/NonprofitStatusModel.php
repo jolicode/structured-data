@@ -18,6 +18,7 @@ final class NonprofitStatusModel
     public const NAME = 'schema:nonprofitStatus';
     public const VALUES = ['NonprofitTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NonprofitTypeModel'];
     public const TYPES = ['Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2543'];
+    public const SUPERSEDED_BY = null;
 }

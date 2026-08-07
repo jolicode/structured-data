@@ -20,4 +20,5 @@ final class CheckoutTimeModel
     public const TYPES = ['LodgingBusiness' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LodgingBusinessModel', 'LodgingReservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LodgingReservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

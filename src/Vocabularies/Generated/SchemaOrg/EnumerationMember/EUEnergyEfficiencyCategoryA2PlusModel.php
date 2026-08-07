@@ -16,6 +16,7 @@ final class EUEnergyEfficiencyCategoryA2PlusModel
     public const DESCRIPTION = 'Represents EU Energy Efficiency Class A++ as defined in EU energy labeling regulations.';
     public const LABEL = 'EUEnergyEfficiencyCategoryA2Plus';
     public const NAME = 'schema:EUEnergyEfficiencyCategoryA2Plus';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2670'];
+    public const SUPERSEDED_BY = null;
 }

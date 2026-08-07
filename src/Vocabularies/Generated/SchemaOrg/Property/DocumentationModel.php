@@ -18,6 +18,7 @@ final class DocumentationModel
     public const NAME = 'schema:documentation';
     public const VALUES = ['CreativeWorkModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
     public const TYPES = ['WebAPI' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebAPIModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1423'];
+    public const SUPERSEDED_BY = null;
 }

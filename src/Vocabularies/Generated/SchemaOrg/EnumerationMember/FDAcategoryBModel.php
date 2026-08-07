@@ -16,6 +16,7 @@ final class FDAcategoryBModel
     public const DESCRIPTION = 'A designation by the US FDA signifying that animal reproduction studies have failed to demonstrate a risk to the fetus and there are no adequate and well-controlled studies in pregnant women.';
     public const LABEL = 'FDAcategoryB';
     public const NAME = 'schema:FDAcategoryB';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

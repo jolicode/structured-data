@@ -11,6 +11,9 @@
 
 namespace Jolicode\JsonLd\Tests\Validation;
 
+use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
+use Jolicode\JsonLd\Algorithms\Http\HttpDocumentLoader;
+use Jolicode\JsonLd\Algorithms\Http\RemoteContextPolicy;
 use Jolicode\JsonLd\Audit\AuditOptions;
 use Jolicode\JsonLd\Validator;
 use PHPUnit\Framework\TestCase;
@@ -22,11 +25,36 @@ abstract class AbstractValidatorTestCase extends TestCase
 
     protected function setUp(): void
     {
-        $this->validator = new Validator();
+        $this->validator = new Validator(documentLoader: static::createDocumentLoader());
+    }
+
+    /**
+     * A handful of the schema.org examples pull a context from outside schema.org
+     * itself. The library default refuses every host, so the suite widens it to
+     * exactly the hosts those fixtures need, and to nothing else.
+     */
+    protected static function createDocumentLoader(): DocumentLoaderInterface
+    {
+        return new HttpDocumentLoader(
+            RemoteContextPolicy::allowHosts('schema.org', 'health-lifesci.schema.org', 'www.w3.org')
+                ->withSchemes('http', 'https')
+                ->withTimeouts(timeout: 10.0, maxDuration: 30.0),
+        );
+    }
+
+    protected function fixture(string $path): string
+    {
+        $content = file_get_contents($path);
+
+        if (false === $content) {
+            throw new \RuntimeException(\sprintf('The fixture "%s" could not be read.', $path));
+        }
+
+        return $content;
     }
 
     protected function assertValidationResultMatchesExpectations(
-        string $filePath,
+        string $document,
         bool $isValid,
         array $expectedErrors,
         string $specificValidator,
@@ -34,7 +62,7 @@ abstract class AbstractValidatorTestCase extends TestCase
         array $expectedDocumentIssues = [],
     ): void {
         $this->validator->setValidator($specificValidator);
-        $audit = $this->validator->audit($filePath);
+        $audit = $this->validator->audit($document);
 
         // For actual validity check, see if there are errors (warnings alone don't make it invalid)
         $actualIsValid = $audit->isValid();
@@ -80,7 +108,7 @@ abstract class AbstractValidatorTestCase extends TestCase
         $this->assertSame([], $errorMessages);
     }
 
-    protected function provideData(string $path, string $baselinePath): \Generator
+    protected static function provideData(string $path, string $baselinePath): \Generator
     {
         $finder = new Finder();
         $finder->files()->in($path);
@@ -93,7 +121,7 @@ abstract class AbstractValidatorTestCase extends TestCase
         $baseline = json_decode($baseline, true);
 
         foreach ($finder as $file) {
-            $this->assertArrayHasKey(
+            self::assertArrayHasKey(
                 $file->getFilename(),
                 $baseline,
                 \sprintf('Missing baseline entry for "%s" in "%s".', $file->getFilename(), $baselinePath),
@@ -117,7 +145,7 @@ abstract class AbstractValidatorTestCase extends TestCase
             sort($expectedDocumentIssues);
 
             yield $file->getFilename() => [
-                $file->getPathname(),
+                $file->getContents(),
                 [] === $expectedErrors,
                 $expectedErrors,
                 $expectedWarnings,

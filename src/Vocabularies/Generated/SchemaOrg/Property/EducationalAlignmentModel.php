@@ -22,4 +22,5 @@ This property should not be used where the nature of the alignment can be descri
     public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'LearningResource' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LearningResourceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -18,6 +18,7 @@ final class AccountOverdraftLimitModel
     public const NAME = 'schema:accountOverdraftLimit';
     public const VALUES = ['MonetaryAmountModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountModel'];
     public const TYPES = ['BankAccount' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BankAccountModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1253'];
+    public const SUPERSEDED_BY = null;
 }

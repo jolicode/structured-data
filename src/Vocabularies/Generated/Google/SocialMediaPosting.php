@@ -13,15 +13,9 @@ namespace Jolicode\Vocabularies\Generated\Google;
 
 final class SocialMediaPosting
 {
-    public const NAME = 'SocialMediaPosting';
     public const SUPPORTED_TYPES = ['DiscussionForumPosting', 'SocialMediaPosting'];
-    public const VALUE = [];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/discussion-forum';
-    public const SUBTYPE = null;
-    public const HAS_SPECIAL_RULES = true;
     public const SPECIAL_RULE_KEYS = ['google.discussion_forum.content_or_url'];
-    public const IS_CAROUSEL_ELIGIBLE = false;
-    public const CAROUSEL_PROPERTIES = [];
     public const PROPERTIES = [
         'author' => [
             'name' => 'author',

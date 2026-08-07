@@ -16,6 +16,7 @@ final class UnclassifiedAdultConsiderationModel
     public const DESCRIPTION = 'The item is suitable only for adults, without indicating why. Due to widespread use of "adult" as a euphemism for "sexual", many such items are likely suited also for the SexualContentConsideration code.';
     public const LABEL = 'UnclassifiedAdultConsideration';
     public const NAME = 'schema:UnclassifiedAdultConsideration';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2989'];
+    public const SUPERSEDED_BY = null;
 }

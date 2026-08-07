@@ -13,15 +13,9 @@ namespace Jolicode\Vocabularies\Generated\Google;
 
 final class ProductGroup
 {
-    public const NAME = 'ProductGroup';
     public const SUPPORTED_TYPES = ['ProductGroup'];
-    public const VALUE = [];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/product-variants';
-    public const SUBTYPE = null;
-    public const HAS_SPECIAL_RULES = false;
     public const SPECIAL_RULE_KEYS = [];
-    public const IS_CAROUSEL_ELIGIBLE = false;
-    public const CAROUSEL_PROPERTIES = [];
     public const PROPERTIES = [
         'name' => [
             'name' => 'name',

@@ -22,6 +22,7 @@ final class MedicalObservationalStudyDesignModel
     public const ENUMERATION_MEMBERS = ['CaseSeriesModel' => 'EnumerationMember\CaseSeriesModel', 'CohortStudyModel' => 'EnumerationMember\CohortStudyModel', 'CrossSectionalModel' => 'EnumerationMember\CrossSectionalModel', 'LongitudinalModel' => 'EnumerationMember\LongitudinalModel', 'ObservationalModel' => 'EnumerationMember\ObservationalModel', 'RegistryModel' => 'EnumerationMember\RegistryModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

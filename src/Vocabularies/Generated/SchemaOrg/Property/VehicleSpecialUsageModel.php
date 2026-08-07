@@ -18,6 +18,7 @@ final class VehicleSpecialUsageModel
     public const NAME = 'schema:vehicleSpecialUsage';
     public const VALUES = ['CarUsageTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CarUsageTypeModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Vehicle' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VehicleModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://auto.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

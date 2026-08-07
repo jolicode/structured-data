@@ -16,6 +16,7 @@ final class SizeSystemMetricModel
     public const DESCRIPTION = 'Metric size system.';
     public const LABEL = 'SizeSystemMetric';
     public const NAME = 'schema:SizeSystemMetric';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

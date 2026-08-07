@@ -18,6 +18,7 @@ final class IncludedRiskFactorModel
     public const NAME = 'schema:includedRiskFactor';
     public const VALUES = ['MedicalRiskFactorModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalRiskFactorModel'];
     public const TYPES = ['MedicalRiskEstimator' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalRiskEstimatorModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

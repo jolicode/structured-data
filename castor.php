@@ -12,12 +12,15 @@
 use Castor\Attribute\AsArgument;
 use Castor\Attribute\AsTask;
 
+use function Castor\http_request;
 use function Castor\import;
 use function Castor\io;
 use function Castor\run;
 
+use Jolicode\JsonLd\Algorithms\Compact\Compactor;
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
 use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
+use Jolicode\JsonLd\Algorithms\Frame\Framer;
 use Jolicode\JsonLd\Audit\AuditOptions;
 use Jolicode\JsonLd\Mapper\MappedError;
 use Jolicode\JsonLd\Mapper\MappedProperty;
@@ -25,6 +28,7 @@ use Jolicode\JsonLd\Mapper\MappedType;
 use Jolicode\JsonLd\Validator;
 use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -37,6 +41,7 @@ function install(): void
     run(['composer', 'install', '-o', '--working-dir', 'tools/phpstan']);
     run(['composer', 'install', '-o', '--working-dir', 'tools/phpbench']);
     run(['composer', 'install', '-o', '--working-dir', 'tools/phpunit']);
+    run(['composer', 'install', '-o', '--working-dir', 'tools/infection']);
 }
 
 #[AsTask(description: 'Updates qa tooling')]
@@ -46,6 +51,7 @@ function update(): void
     run(['composer', 'update', '-o', '--working-dir', 'tools/phpstan']);
     run(['composer', 'update', '-o', '--working-dir', 'tools/phpbench']);
     run(['composer', 'update', '-o', '--working-dir', 'tools/phpunit']);
+    run(['composer', 'update', '-o', '--working-dir', 'tools/infection']);
 }
 
 #[AsTask(name: 'expand', namespace: 'json-ld', description: 'Applies the expansion algorithm to a JSON-LD document')]
@@ -94,6 +100,58 @@ function flatten(
     io()->writeln($result);
 }
 
+#[AsTask(name: 'compact', namespace: 'json-ld', description: 'Applies the compaction algorithm to a JSON-LD document, using the provided context')]
+function compactJsonLd(
+    #[AsArgument(name: 'file', description: 'The file to compact')]
+    string $fileName,
+    #[AsArgument(name: 'context-file', description: 'The file holding the context to compact against')]
+    string $contextFileName,
+): void {
+    $file = file_get_contents($fileName);
+    $context = file_get_contents($contextFileName);
+
+    if (false === $file || false === $context) {
+        io()->error(sprintf('The file "%s" or "%s" could not be read.', $fileName, $contextFileName));
+
+        return;
+    }
+
+    $compactor = new Compactor();
+    $result = $compactor->compact($file, $context);
+
+    if (!is_string($result)) {
+        $result = json_encode($result, \JSON_PRETTY_PRINT) ?: '';
+    }
+
+    io()->writeln($result);
+}
+
+#[AsTask(name: 'frame', namespace: 'json-ld', description: 'Applies the framing algorithm to a JSON-LD document, using the provided frame')]
+function frameJsonLd(
+    #[AsArgument(name: 'file', description: 'The file to frame')]
+    string $fileName,
+    #[AsArgument(name: 'frame-file', description: 'The file holding the frame')]
+    string $frameFileName,
+): void {
+    $file = file_get_contents($fileName);
+    $frame = file_get_contents($frameFileName);
+
+    if (false === $file || false === $frame) {
+        io()->error(sprintf('The file "%s" or "%s" could not be read.', $fileName, $frameFileName));
+
+        return;
+    }
+
+    $framer = new Framer();
+    $result = $framer->frame($file, $frame);
+
+    if (!is_string($result)) {
+        $result = json_encode($result, \JSON_PRETTY_PRINT) ?: '';
+    }
+
+    io()->writeln($result);
+}
+
 #[AsTask(name: 'check', description: 'quickly check the validity of a file or of a remote URL')]
 function check(
     #[AsArgument(name: 'fileOrUrl', description: 'The file or remote URL to validate')]
@@ -114,6 +172,34 @@ function validate(
     return runValidation($fileOrUrl, $specificValidator, true);
 }
 
+/**
+ * Resolves the CLI argument into the document to validate.
+ *
+ * The library deliberately does not do this: it never guesses whether a string is
+ * a URL, a file path, or a document. Here the input comes from the operator running
+ * the command, not from an untrusted source, so both are safe to resolve.
+ *
+ * @throws RuntimeException when the document cannot be read
+ */
+function resolveInput(string $fileOrUrl): string
+{
+    if (preg_match('#^https?://#i', $fileOrUrl)) {
+        try {
+            return http_request('GET', $fileOrUrl)->getContent();
+        } catch (ExceptionInterface $exception) {
+            throw new RuntimeException(sprintf('The URL "%s" could not be fetched: %s', $fileOrUrl, $exception->getMessage()), previous: $exception);
+        }
+    }
+
+    $content = is_file($fileOrUrl) ? @file_get_contents($fileOrUrl) : false;
+
+    if (false === $content) {
+        throw new RuntimeException(sprintf('The file "%s" could not be read.', $fileOrUrl));
+    }
+
+    return $content;
+}
+
 function runValidation(string $fileOrUrl, false|string $specificValidator, bool $withDetails): int
 {
     $validator = new Validator();
@@ -132,7 +218,15 @@ function runValidation(string $fileOrUrl, false|string $specificValidator, bool 
         }
     }
 
-    $audit = $validator->audit($fileOrUrl);
+    try {
+        $document = resolveInput($fileOrUrl);
+    } catch (RuntimeException $exception) {
+        io()->error($exception->getMessage());
+
+        return Command::INVALID;
+    }
+
+    $audit = $validator->audit($document);
     $types = $audit->getTypes();
     $typesCount = count($types);
 

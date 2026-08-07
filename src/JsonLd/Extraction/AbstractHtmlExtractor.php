@@ -21,9 +21,10 @@ namespace Jolicode\JsonLd\Extraction;
  */
 abstract class AbstractHtmlExtractor implements FormatExtractorInterface
 {
-    private static ?string $cachedBody = null;
-
-    private static ?\DOMDocument $cachedDocument = null;
+    public function __construct(
+        protected readonly HtmlDocumentLoader $documentLoader = new HtmlDocumentLoader(),
+    ) {
+    }
 
     abstract public function getFormat(): ExtractorFormat;
 
@@ -39,28 +40,7 @@ abstract class AbstractHtmlExtractor implements FormatExtractorInterface
      */
     protected function loadDocument(string $body): \DOMDocument
     {
-        if (self::$cachedBody === $body && null !== self::$cachedDocument) {
-            return self::$cachedDocument;
-        }
-
-        $document = new \DOMDocument();
-
-        set_error_handler(static fn (): bool => true);
-
-        try {
-            $loaded = $document->loadHTML($body, \LIBXML_NOERROR | \LIBXML_NOWARNING | \LIBXML_NONET);
-        } finally {
-            restore_error_handler();
-        }
-
-        if (false === $loaded) {
-            throw new ExtractionException(\sprintf('Invalid %s document: malformed HTML content.', $this->getFormatName()));
-        }
-
-        self::$cachedBody = $body;
-        self::$cachedDocument = $document;
-
-        return $document;
+        return $this->documentLoader->load($body, $this->getFormatName());
     }
 
     /**

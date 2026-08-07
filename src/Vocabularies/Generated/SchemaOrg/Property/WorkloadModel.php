@@ -18,6 +18,7 @@ final class WorkloadModel
     public const NAME = 'schema:workload';
     public const VALUES = ['EnergyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnergyModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['ExercisePlan' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ExercisePlanModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -17,9 +17,30 @@ class JsonLdValidatorBench
 {
     private const FIXTURES_BASE_DIR = __DIR__ . '/../fixtures';
 
+    /** @var array<string, string> */
+    private array $documents = [];
+
     public function __construct(
         private readonly Validator $validator = new Validator(),
     ) {
+        // Fixtures are read once, outside of the measured code paths: the validator
+        // only ever receives document contents.
+        foreach ([
+            '/schema-org/simple-expanded.jsonld',
+            '/schema-org/complex-expanded.jsonld',
+            '/google/book.jsonld',
+            '/benchmark/homepage-sample.html',
+            '/benchmark/listing-sample.html',
+            '/benchmark/jolicampus-formations-symfony.html',
+        ] as $fixture) {
+            $content = file_get_contents(self::FIXTURES_BASE_DIR . $fixture);
+
+            if (false === $content) {
+                throw new \RuntimeException(\sprintf('The fixture "%s" could not be read.', $fixture));
+            }
+
+            $this->documents[$fixture] = $content;
+        }
     }
 
     /**
@@ -31,7 +52,7 @@ class JsonLdValidatorBench
      */
     public function benchJsonLdSmallFixture(): void
     {
-        $this->validator->audit(self::FIXTURES_BASE_DIR . '/schema-org/simple-expanded.jsonld');
+        $this->validator->audit($this->documents['/schema-org/simple-expanded.jsonld']);
     }
 
     /**
@@ -43,7 +64,7 @@ class JsonLdValidatorBench
      */
     public function benchJsonLdMediumFixture(): void
     {
-        $this->validator->audit(self::FIXTURES_BASE_DIR . '/schema-org/complex-expanded.jsonld');
+        $this->validator->audit($this->documents['/schema-org/complex-expanded.jsonld']);
     }
 
     /**
@@ -55,7 +76,7 @@ class JsonLdValidatorBench
      */
     public function benchJsonLdHeavyFixture(): void
     {
-        $this->validator->audit(self::FIXTURES_BASE_DIR . '/google/book.jsonld');
+        $this->validator->audit($this->documents['/google/book.jsonld']);
     }
 
     /**
@@ -67,7 +88,7 @@ class JsonLdValidatorBench
      */
     public function benchHtmlSampleHomepagePage(): void
     {
-        $this->validator->audit(self::FIXTURES_BASE_DIR . '/benchmark/homepage-sample.html');
+        $this->validator->audit($this->documents['/benchmark/homepage-sample.html']);
     }
 
     /**
@@ -79,7 +100,7 @@ class JsonLdValidatorBench
      */
     public function benchHtmlSampleListingPage(): void
     {
-        $this->validator->audit(self::FIXTURES_BASE_DIR . '/benchmark/listing-sample.html');
+        $this->validator->audit($this->documents['/benchmark/listing-sample.html']);
     }
 
     /**
@@ -91,6 +112,6 @@ class JsonLdValidatorBench
      */
     public function benchHtmlJolicampusSymfonyPage(): void
     {
-        $this->validator->audit(self::FIXTURES_BASE_DIR . '/benchmark/jolicampus-formations-symfony.html');
+        $this->validator->audit($this->documents['/benchmark/jolicampus-formations-symfony.html']);
     }
 }

@@ -44,7 +44,10 @@ final class ContextCloner
 
         $copy->termDefinitions = $context->termDefinitions;
 
-        $copy->inverseContext = $context->inverseContext ? self::duplicateContext($context->inverseContext, $copies) : null;
+        // The inverse context is a derived structure: it is cheap to rebuild and
+        // only valid for an unchanged set of term definitions, so a copy starts
+        // without one and rebuilds it on demand.
+        $copy->inverseContext = null;
         $copy->previousContext = $context->previousContext ? self::duplicateContext($context->previousContext, $copies) : null;
 
         return $copy;

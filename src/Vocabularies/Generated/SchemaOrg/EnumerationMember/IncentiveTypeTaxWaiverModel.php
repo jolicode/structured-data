@@ -16,6 +16,7 @@ final class IncentiveTypeTaxWaiverModel
     public const DESCRIPTION = 'An incentive that reduces/exempts the recipient from taxation applicable to the incentivized good/service (e.g. luxury taxes, registration taxes, circulation tax).';
     public const LABEL = 'IncentiveTypeTaxWaiver';
     public const NAME = 'schema:IncentiveTypeTaxWaiver';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3572'];
+    public const SUPERSEDED_BY = null;
 }

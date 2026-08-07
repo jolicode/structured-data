@@ -20,4 +20,5 @@ final class PriceComponentModel
     public const TYPES = ['CompoundPriceSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CompoundPriceSpecificationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class FeesAndCommissionsSpecificationModel
     public const TYPES = ['FinancialProduct' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FinancialProductModel', 'FinancialService' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FinancialServiceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

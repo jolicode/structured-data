@@ -18,6 +18,7 @@ final class PublishedByModel
     public const NAME = 'schema:publishedBy';
     public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['PublicationEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PublicationEventModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://bib.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

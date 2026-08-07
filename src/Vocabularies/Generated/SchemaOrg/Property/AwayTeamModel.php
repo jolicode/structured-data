@@ -20,4 +20,5 @@ final class AwayTeamModel
     public const TYPES = ['SportsEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SportsEventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

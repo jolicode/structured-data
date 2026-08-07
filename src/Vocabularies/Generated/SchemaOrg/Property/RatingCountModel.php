@@ -20,4 +20,5 @@ final class RatingCountModel
     public const TYPES = ['AggregateRating' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AggregateRatingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

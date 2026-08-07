@@ -18,6 +18,7 @@ final class DistinguishingSignModel
     public const NAME = 'schema:distinguishingSign';
     public const VALUES = ['MedicalSignOrSymptomModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalSignOrSymptomModel'];
     public const TYPES = ['DDxElement' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DDxElementModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

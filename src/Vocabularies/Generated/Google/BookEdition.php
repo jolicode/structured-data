@@ -13,15 +13,9 @@ namespace Jolicode\Vocabularies\Generated\Google;
 
 final class BookEdition extends Book
 {
-    public const NAME = 'BookEdition';
     public const SUPPORTED_TYPES = ['Book'];
-    public const VALUE = [];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/book#book-edition';
-    public const SUBTYPE = 'Edition';
-    public const HAS_SPECIAL_RULES = true;
     public const SPECIAL_RULE_KEYS = ['google.book.offer_pricing_by_category'];
-    public const IS_CAROUSEL_ELIGIBLE = false;
-    public const CAROUSEL_PROPERTIES = [];
     public const PROPERTIES = [
         '@id' => [
             'name' => '@id',

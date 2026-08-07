@@ -18,6 +18,7 @@ final class UsedToDiagnoseModel
     public const NAME = 'schema:usedToDiagnose';
     public const VALUES = ['MedicalConditionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel'];
     public const TYPES = ['MedicalTest' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTestModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

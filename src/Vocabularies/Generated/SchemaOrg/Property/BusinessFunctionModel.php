@@ -20,4 +20,5 @@ final class BusinessFunctionModel
     public const TYPES = ['Demand' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DemandModel', 'Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel', 'TypeAndQuantityNode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TypeAndQuantityNodeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

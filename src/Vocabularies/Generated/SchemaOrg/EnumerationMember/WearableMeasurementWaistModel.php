@@ -16,6 +16,7 @@ final class WearableMeasurementWaistModel
     public const DESCRIPTION = 'Measurement of the waist section, for example of pants.';
     public const LABEL = 'WearableMeasurementWaist';
     public const NAME = 'schema:WearableMeasurementWaist';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

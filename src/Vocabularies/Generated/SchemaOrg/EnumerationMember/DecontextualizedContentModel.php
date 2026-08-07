@@ -24,6 +24,7 @@ For an [[ImageObject]] with embedded text to be \'missing context\': An unaltere
 For an [[AudioObject]] to be \'missing context\': Unaltered audio presented in an inaccurate manner that misrepresents it. For example, using incorrect dates or locations, or sharing brief clips from a longer recording to mislead viewers. (Audio rated “original” can also be missing context.)';
     public const LABEL = 'DecontextualizedContent';
     public const NAME = 'schema:DecontextualizedContent';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2450'];
+    public const SUPERSEDED_BY = null;
 }

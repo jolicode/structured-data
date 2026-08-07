@@ -18,6 +18,7 @@ final class BiologicalRoleModel
     public const NAME = 'schema:biologicalRole';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel'];
     public const TYPES = ['BioChemEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BioChemEntityModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['http://www.bioschemas.org'];
+    public const SUPERSEDED_BY = null;
 }

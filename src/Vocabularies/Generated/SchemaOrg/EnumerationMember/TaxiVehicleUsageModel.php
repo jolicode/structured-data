@@ -16,6 +16,7 @@ final class TaxiVehicleUsageModel
     public const DESCRIPTION = 'Indicates the usage of the car as a taxi.';
     public const LABEL = 'TaxiVehicleUsage';
     public const NAME = 'schema:TaxiVehicleUsage';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://auto.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

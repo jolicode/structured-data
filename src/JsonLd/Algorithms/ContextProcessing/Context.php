@@ -23,7 +23,14 @@ class Context
         public array $termDefinitions = [],
         public ?string $baseIri = null,
         public ?string $baseUrl = null,
-        public ?self $inverseContext = null,
+        /**
+         * The inverse context map derived from the term definitions by the Inverse
+         * Context Creation algorithm, lazily built during compaction. Reset to null
+         * whenever the term definitions change.
+         *
+         * @var array<string, array<string, array<string, array<string, string>>>>|null
+         */
+        public ?array $inverseContext = null,
         public ?string $vocabularyMapping = null,
         public ?string $defaultLangage = null,
         public ?string $defaultBaseDirection = null,

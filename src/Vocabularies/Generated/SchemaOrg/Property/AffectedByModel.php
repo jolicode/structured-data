@@ -18,6 +18,7 @@ final class AffectedByModel
     public const NAME = 'schema:affectedBy';
     public const VALUES = ['DrugModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugModel'];
     public const TYPES = ['MedicalTest' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTestModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

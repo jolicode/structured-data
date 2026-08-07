@@ -18,6 +18,7 @@ final class AnswerExplanationModel
     public const NAME = 'schema:answerExplanation';
     public const VALUES = ['CommentModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommentModel', 'WebContentModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebContentModel'];
     public const TYPES = ['Answer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnswerModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2636'];
+    public const SUPERSEDED_BY = null;
 }

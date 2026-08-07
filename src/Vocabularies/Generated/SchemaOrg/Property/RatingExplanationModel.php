@@ -18,6 +18,7 @@ final class RatingExplanationModel
     public const NAME = 'schema:ratingExplanation';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Rating' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RatingModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2300'];
+    public const SUPERSEDED_BY = null;
 }

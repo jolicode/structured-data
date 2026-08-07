@@ -17,19 +17,20 @@ use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  *  @see https://w3c.github.io/json-ld-api/tests/expand-manifest.html
- *
- *  @group expand
  * */
+#[Group('expand')]
 class ExpanderTest extends AbstractJsonLdTestCase
 {
-    /** @dataProvider provideInputsAndOutputs */
+    #[DataProvider('provideInputsAndOutputs')]
     public function testExpand(string $json, string|JsonLdException $expected, string $filename): void
     {
-        $expander = new Expander();
-        $options = $this->getOptions($filename);
+        $expander = new Expander(documentLoader: static::createDocumentLoader());
+        $options = static::getOptions($filename);
 
         if ($expected instanceof JsonLdException) {
             try {
@@ -50,12 +51,12 @@ class ExpanderTest extends AbstractJsonLdTestCase
         }
     }
 
-    protected function getAlgorithmName(): string
+    protected static function getAlgorithmName(): string
     {
         return Algorithms::EXPAND->value;
     }
 
-    protected function getExpectedErrorMessage(string $filename): string
+    protected static function getExpectedErrorMessage(string $filename): string
     {
         $failedTestsErrorMessages = [
             'pi01-in.jsonld' => 'invalid term definition',
@@ -185,14 +186,14 @@ class ExpanderTest extends AbstractJsonLdTestCase
         return $failedTestsErrorMessages[$filename] ?? $defaultErrorMessage;
     }
 
-    protected function shouldSkipThisTest(string $filename): bool
+    protected static function shouldSkipThisTest(string $filename): bool
     {
         return false;
     }
 
-    protected function getOptions(string $filename): ProcessorOptions
+    protected static function getOptions(string $filename): ProcessorOptions
     {
-        $options = new ProcessorOptions(base: $this->getBaseUrlForW3CTests($filename));
+        $options = new ProcessorOptions(base: static::getBaseUrlForW3CTests($filename));
 
         $testSpecificOptions = [
             'c029-in.jsonld' => ['processingMode' => Context::PROCESSING_MODE_10],

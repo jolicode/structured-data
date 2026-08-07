@@ -16,6 +16,7 @@ final class UsageOrScheduleHealthAspectModel
     public const DESCRIPTION = 'Content about how, when, frequency and dosage of a topic.';
     public const LABEL = 'UsageOrScheduleHealthAspect';
     public const NAME = 'schema:UsageOrScheduleHealthAspect';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2374'];
+    public const SUPERSEDED_BY = null;
 }

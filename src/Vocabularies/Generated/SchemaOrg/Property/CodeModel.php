@@ -18,6 +18,7 @@ final class CodeModel
     public const NAME = 'schema:code';
     public const VALUES = ['MedicalCodeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalCodeModel'];
     public const TYPES = ['MedicalEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

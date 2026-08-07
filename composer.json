@@ -14,7 +14,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Jolicode\\JsonLd\\Tests\\": "tests/"
+            "Jolicode\\JsonLd\\Tests\\": "tests/",
+            "Jolicode\\Vocabularies\\Generators\\": "generators/"
         }
     },
     "authors": [
@@ -31,19 +32,23 @@
         "sort-packages": true
     },
     "require-dev": {
-        "nikic/php-parser": "^4.15|^5.0",
-        "symfony/css-selector": "8.0.*",
-        "symfony/var-dumper": "8.0.*"
+        "ext-zip": "*",
+        "nikic/php-parser": "^5.0",
+        "symfony/console": "^8.0",
+        "symfony/css-selector": "^8.0",
+        "symfony/dom-crawler": "^8.0",
+        "symfony/filesystem": "^8.0",
+        "symfony/finder": "^8.0",
+        "symfony/var-dumper": "^8.0"
     },
     "require": {
         "php": ">=8.4",
+        "ext-dom": "*",
+        "ext-json": "*",
+        "ext-libxml": "*",
         "league/uri": "^7.8",
         "psr/log": "^1|^2|^3",
         "salsify/json-streaming-parser": "^8.3",
-        "symfony/dom-crawler": "^8.0",
-        "symfony/filesystem": "^8.0",
-        "symfony/finder": "8.0.*",
-        "symfony/http-client": "8.0.*",
-        "symfony/http-kernel": "^8.0"
+        "symfony/http-client": "^8.0"
     }
 }

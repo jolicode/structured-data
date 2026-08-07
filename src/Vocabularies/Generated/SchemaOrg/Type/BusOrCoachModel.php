@@ -22,6 +22,7 @@ final class BusOrCoachModel
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://auto.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AccelerationTimeModel $accelerationTime = null,

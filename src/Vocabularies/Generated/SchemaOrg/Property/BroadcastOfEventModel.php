@@ -20,4 +20,5 @@ final class BroadcastOfEventModel
     public const TYPES = ['BroadcastEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastEventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

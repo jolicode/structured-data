@@ -16,6 +16,7 @@ final class ChiropracticModel
     public const DESCRIPTION = 'A system of medicine focused on the relationship between the body\'s structure, mainly the spine, and its functioning.';
     public const LABEL = 'Chiropractic';
     public const NAME = 'schema:Chiropractic';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -18,6 +18,7 @@ final class InSupportOfModel
     public const NAME = 'schema:inSupportOf';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Thesis' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThesisModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://bib.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

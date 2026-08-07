@@ -18,6 +18,7 @@ final class PartOfSystemModel
     public const NAME = 'schema:partOfSystem';
     public const VALUES = ['AnatomicalSystemModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalSystemModel'];
     public const TYPES = ['AnatomicalStructure' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalStructureModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

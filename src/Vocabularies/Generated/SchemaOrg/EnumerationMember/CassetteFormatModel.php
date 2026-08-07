@@ -18,4 +18,5 @@ final class CassetteFormatModel
     public const NAME = 'schema:CassetteFormat';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -13,15 +13,9 @@ namespace Jolicode\Vocabularies\Generated\Google;
 
 final class LibrarySystem
 {
-    public const NAME = 'LibrarySystem';
     public const SUPPORTED_TYPES = ['LibrarySystem'];
-    public const VALUE = [];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/book#librarysystem';
-    public const SUBTYPE = null;
-    public const HAS_SPECIAL_RULES = false;
     public const SPECIAL_RULE_KEYS = [];
-    public const IS_CAROUSEL_ELIGIBLE = false;
-    public const CAROUSEL_PROPERTIES = [];
     public const PROPERTIES = [
         '@id' => [
             'name' => '@id',

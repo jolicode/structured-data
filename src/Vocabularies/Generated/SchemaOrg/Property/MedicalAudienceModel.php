@@ -18,6 +18,7 @@ final class MedicalAudienceModel
     public const NAME = 'schema:medicalAudience';
     public const VALUES = ['MedicalAudienceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalAudienceModel', 'MedicalAudienceTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalAudienceTypeModel'];
     public const TYPES = ['MedicalWebPage' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalWebPageModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

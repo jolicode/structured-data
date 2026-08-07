@@ -16,6 +16,7 @@ final class LaboratoryScienceModel
     public const DESCRIPTION = 'A medical science pertaining to chemical, hematological, immunologic, microscopic, or bacteriological diagnostic analyses or research.';
     public const LABEL = 'LaboratoryScience';
     public const NAME = 'schema:LaboratoryScience';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

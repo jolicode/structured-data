@@ -23,5 +23,6 @@ In the context of [[ShippingService]], use the [[ServicePeriod]] format, that co
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel', 'ServicePeriodModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServicePeriodModel'];
     public const TYPES = ['ShippingDeliveryTime' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ShippingDeliveryTimeModel', 'ShippingService' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ShippingServiceModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2506', 'https://github.com/schemaorg/schemaorg/issues/3617'];
+    public const SUPERSEDED_BY = null;
 }

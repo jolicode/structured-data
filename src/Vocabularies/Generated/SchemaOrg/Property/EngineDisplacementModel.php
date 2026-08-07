@@ -18,6 +18,7 @@ final class EngineDisplacementModel
     public const NAME = 'schema:engineDisplacement';
     public const VALUES = ['QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['EngineSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EngineSpecificationModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://auto.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

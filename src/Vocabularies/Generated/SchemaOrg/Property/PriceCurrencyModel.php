@@ -20,4 +20,5 @@ final class PriceCurrencyModel
     public const TYPES = ['DonateAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DonateActionModel', 'Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel', 'PriceSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PriceSpecificationModel', 'Reservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReservationModel', 'Ticket' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TicketModel', 'TradeAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TradeActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

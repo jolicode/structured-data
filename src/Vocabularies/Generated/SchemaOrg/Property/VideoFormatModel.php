@@ -20,4 +20,5 @@ final class VideoFormatModel
     public const TYPES = ['BroadcastEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastEventModel', 'BroadcastService' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastServiceModel', 'ScreeningEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ScreeningEventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

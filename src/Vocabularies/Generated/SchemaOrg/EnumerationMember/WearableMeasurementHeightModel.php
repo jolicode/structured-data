@@ -16,6 +16,7 @@ final class WearableMeasurementHeightModel
     public const DESCRIPTION = 'Measurement of the height, for example the heel height of a shoe.';
     public const LABEL = 'WearableMeasurementHeight';
     public const NAME = 'schema:WearableMeasurementHeight';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

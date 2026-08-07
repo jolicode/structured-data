@@ -20,4 +20,5 @@ final class TranslatorModel
     public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'Event' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

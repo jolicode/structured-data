@@ -20,4 +20,5 @@ final class CourseModeModel
     public const TYPES = ['CourseInstance' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CourseInstanceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -16,6 +16,7 @@ final class EnrollingByInvitationModel
     public const DESCRIPTION = 'Enrolling participants by invitation only.';
     public const LABEL = 'EnrollingByInvitation';
     public const NAME = 'schema:EnrollingByInvitation';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

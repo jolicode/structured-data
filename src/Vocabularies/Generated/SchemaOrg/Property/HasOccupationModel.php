@@ -19,5 +19,6 @@ final class HasOccupationModel
     public const VALUES = ['OccupationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OccupationModel'];
     public const TYPES = ['Person' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1698'];
+    public const SUPERSEDED_BY = null;
 }

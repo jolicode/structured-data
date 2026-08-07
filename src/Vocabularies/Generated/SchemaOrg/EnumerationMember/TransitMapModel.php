@@ -18,4 +18,5 @@ final class TransitMapModel
     public const NAME = 'schema:TransitMap';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

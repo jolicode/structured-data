@@ -19,5 +19,6 @@ final class OffersModel
     public const VALUES = ['DemandModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DemandModel', 'OfferModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel'];
     public const TYPES = ['AggregateOffer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AggregateOfferModel', 'CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'EducationalOccupationalProgram' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalProgramModel', 'Event' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel', 'MenuItem' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MenuItemModel', 'Product' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel', 'Service' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceModel', 'Trip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TripModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2289'];
+    public const SUPERSEDED_BY = null;
 }

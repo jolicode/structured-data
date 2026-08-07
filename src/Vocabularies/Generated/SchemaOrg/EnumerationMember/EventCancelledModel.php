@@ -18,4 +18,5 @@ final class EventCancelledModel
     public const NAME = 'schema:EventCancelled';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

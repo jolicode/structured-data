@@ -20,4 +20,5 @@ final class ItemReviewedModel
     public const TYPES = ['AggregateRating' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AggregateRatingModel', 'Review' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReviewModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class DataFeedElementModel
     public const TYPES = ['DataFeed' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DataFeedModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

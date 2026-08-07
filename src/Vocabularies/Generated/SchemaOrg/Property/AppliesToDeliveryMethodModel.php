@@ -20,4 +20,5 @@ final class AppliesToDeliveryMethodModel
     public const TYPES = ['DeliveryChargeSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DeliveryChargeSpecificationModel', 'PaymentChargeSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PaymentChargeSpecificationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

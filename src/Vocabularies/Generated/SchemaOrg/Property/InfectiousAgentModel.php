@@ -18,6 +18,7 @@ final class InfectiousAgentModel
     public const NAME = 'schema:infectiousAgent';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['InfectiousDisease' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InfectiousDiseaseModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

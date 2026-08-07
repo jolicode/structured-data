@@ -20,4 +20,5 @@ final class TargetCollectionModel
     public const TYPES = ['UpdateAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\UpdateActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class EventModel
     public const TYPES = ['InformAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InformActionModel', 'InviteAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InviteActionModel', 'JoinAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\JoinActionModel', 'LeaveAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LeaveActionModel', 'Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'Place' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlaceModel', 'PlayAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlayActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -18,6 +18,7 @@ final class ProcedureTypeModel
     public const NAME = 'schema:procedureType';
     public const VALUES = ['MedicalProcedureTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalProcedureTypeModel'];
     public const TYPES = ['MedicalProcedure' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalProcedureModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

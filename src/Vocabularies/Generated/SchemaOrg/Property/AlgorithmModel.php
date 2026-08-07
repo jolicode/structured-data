@@ -18,6 +18,7 @@ final class AlgorithmModel
     public const NAME = 'schema:algorithm';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalRiskScore' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalRiskScoreModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

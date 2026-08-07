@@ -21,12 +21,12 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 readonly class Filesystem
 {
-    public const GOOGLE_FIXTURES_DIR = __DIR__ . '/../../../../tests/Validation/fixtures/google';
+    public const GOOGLE_FIXTURES_DIR = __DIR__ . '/../../tests/Validation/fixtures/google';
 
-    private const MANIFEST_DIRECTORY = __DIR__ . '/../../../../resources/google';
-    private const DOWNLOAD_DIRECTORY = __DIR__ . '/../../../../resources/google/downloads';
-    private const DATA_DIRECTORY = __DIR__ . '/../../../../resources/google/structured-data';
-    private const GENERATED_CLASSES_DIR = __DIR__ . '/../../../../src/Vocabularies/Generated/Google';
+    private const MANIFEST_DIRECTORY = __DIR__ . '/../../resources/google';
+    private const DOWNLOAD_DIRECTORY = __DIR__ . '/../../resources/google/downloads';
+    private const DATA_DIRECTORY = __DIR__ . '/../../resources/google/structured-data';
+    private const GENERATED_CLASSES_DIR = __DIR__ . '/../../src/Vocabularies/Generated/Google';
     private const GOOGLE_DOMAIN = 'https://developers.google.com';
     private const TYPES_SOURCE_URL = self::GOOGLE_DOMAIN . '/search/docs/appearance/structured-data';
     private const MANIFEST_FILE = self::MANIFEST_DIRECTORY . '/google-types.json';
@@ -161,7 +161,7 @@ readonly class Filesystem
     }
 
     /**
-     * @param \Generator<Stmt\Namespace_> $types
+     * @param \Generator<int, array{\PhpParser\Node\Stmt\Namespace_, string}> $types
      *
      * @return array<string>
      */
@@ -463,6 +463,7 @@ readonly class Filesystem
     private function extractDocumentationUrls(array $content): array
     {
         $urls = [];
+        /** @var array<mixed> $stack */
         $stack = [$content];
 
         while ([] !== $stack) {

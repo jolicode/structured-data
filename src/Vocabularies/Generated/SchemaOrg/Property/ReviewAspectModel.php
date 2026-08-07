@@ -19,5 +19,6 @@ final class ReviewAspectModel
     public const VALUES = ['StructuredValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\StructuredValueModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Guide' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GuideModel', 'Rating' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RatingModel', 'Review' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReviewModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1689'];
+    public const SUPERSEDED_BY = null;
 }

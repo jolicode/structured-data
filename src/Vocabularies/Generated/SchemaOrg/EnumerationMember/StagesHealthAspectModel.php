@@ -16,6 +16,7 @@ final class StagesHealthAspectModel
     public const DESCRIPTION = 'Stages that can be observed from a topic.';
     public const LABEL = 'StagesHealthAspect';
     public const NAME = 'schema:StagesHealthAspect';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2374'];
+    public const SUPERSEDED_BY = null;
 }

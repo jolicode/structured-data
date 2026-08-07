@@ -16,6 +16,7 @@ final class LungModel
     public const DESCRIPTION = 'Lung and respiratory system clinical examination.';
     public const LABEL = 'Lung';
     public const NAME = 'schema:Lung';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

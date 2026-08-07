@@ -16,6 +16,7 @@ final class ThroatModel
     public const DESCRIPTION = 'Throat assessment with  clinical examination.';
     public const LABEL = 'Throat';
     public const NAME = 'schema:Throat';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

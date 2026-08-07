@@ -16,6 +16,7 @@ final class InternationalTrialModel
     public const DESCRIPTION = 'An international trial.';
     public const LABEL = 'InternationalTrial';
     public const NAME = 'schema:InternationalTrial';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

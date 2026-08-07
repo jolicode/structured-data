@@ -18,4 +18,5 @@ final class TuesdayModel
     public const NAME = 'schema:Tuesday';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

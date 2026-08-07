@@ -18,4 +18,5 @@ final class OrderProcessingModel
     public const NAME = 'schema:OrderProcessing';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

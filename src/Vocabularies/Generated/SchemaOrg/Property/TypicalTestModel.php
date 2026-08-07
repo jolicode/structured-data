@@ -18,6 +18,7 @@ final class TypicalTestModel
     public const NAME = 'schema:typicalTest';
     public const VALUES = ['MedicalTestModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTestModel'];
     public const TYPES = ['MedicalCondition' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

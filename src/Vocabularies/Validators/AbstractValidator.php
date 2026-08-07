@@ -16,23 +16,14 @@ use Jolicode\JsonLd\Mapper\MappedProperty;
 use Jolicode\JsonLd\Mapper\MappedType;
 use Jolicode\JsonLd\Parser\Range;
 
-abstract class AbstractValidator
+abstract class AbstractValidator implements ValidatorInterface
 {
     public const VALIDATOR_NAME = 'AbstractValidator';
 
-    /**
-     * This method must validate a type exists.
-     *
-     * @return MappedError[]
-     */
-    abstract public function validateType(MappedType $type): array;
-
-    /**
-     * This method must validate a generic property, like a string or a boolean.
-     *
-     * @return MappedError[]
-     */
-    abstract public function validateProperty(MappedType $type, MappedProperty $property, ?MappedProperty $originalProperty = null): array;
+    public function getValidatorName(): string
+    {
+        return static::VALIDATOR_NAME;
+    }
 
     /**
      * @return MappedError[]

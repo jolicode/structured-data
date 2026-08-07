@@ -16,6 +16,7 @@ final class WearableMeasurementCupModel
     public const DESCRIPTION = 'Measurement of the cup, for example of a bra.';
     public const LABEL = 'WearableMeasurementCup';
     public const NAME = 'schema:WearableMeasurementCup';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

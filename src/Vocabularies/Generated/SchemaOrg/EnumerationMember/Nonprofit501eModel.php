@@ -16,6 +16,7 @@ final class Nonprofit501eModel
     public const DESCRIPTION = 'Nonprofit501e: Non-profit type referring to Cooperative Hospital Service Organizations.';
     public const LABEL = 'Nonprofit501e';
     public const NAME = 'schema:Nonprofit501e';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2543'];
+    public const SUPERSEDED_BY = null;
 }

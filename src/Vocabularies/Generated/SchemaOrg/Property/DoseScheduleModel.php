@@ -18,6 +18,7 @@ final class DoseScheduleModel
     public const NAME = 'schema:doseSchedule';
     public const VALUES = ['DoseScheduleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DoseScheduleModel'];
     public const TYPES = ['Drug' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugModel', 'TherapeuticProcedure' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TherapeuticProcedureModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

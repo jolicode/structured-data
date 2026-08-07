@@ -18,6 +18,7 @@ final class AssociatedPathophysiologyModel
     public const NAME = 'schema:associatedPathophysiology';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['AnatomicalStructure' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalStructureModel', 'AnatomicalSystem' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalSystemModel', 'SuperficialAnatomy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SuperficialAnatomyModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

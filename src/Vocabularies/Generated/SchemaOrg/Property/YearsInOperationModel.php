@@ -20,4 +20,5 @@ final class YearsInOperationModel
     public const TYPES = ['BusinessAudience' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BusinessAudienceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

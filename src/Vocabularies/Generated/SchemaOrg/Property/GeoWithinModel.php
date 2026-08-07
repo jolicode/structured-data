@@ -20,4 +20,5 @@ final class GeoWithinModel
     public const TYPES = ['GeospatialGeometry' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeospatialGeometryModel', 'Place' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlaceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

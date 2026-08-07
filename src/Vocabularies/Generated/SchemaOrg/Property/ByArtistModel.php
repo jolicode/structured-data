@@ -20,4 +20,5 @@ final class ByArtistModel
     public const TYPES = ['MusicAlbum' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicAlbumModel', 'MusicRecording' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicRecordingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -16,6 +16,7 @@ final class SideEffectsHealthAspectModel
     public const DESCRIPTION = 'Side effects that can be observed from the usage of the topic.';
     public const LABEL = 'SideEffectsHealthAspect';
     public const NAME = 'schema:SideEffectsHealthAspect';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2374'];
+    public const SUPERSEDED_BY = null;
 }

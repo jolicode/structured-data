@@ -18,6 +18,7 @@ final class GraphicNovelModel
 Book format: GraphicNovel. May represent a bound collection of ComicIssue instances.';
     public const LABEL = 'GraphicNovel';
     public const NAME = 'schema:GraphicNovel';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://bib.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

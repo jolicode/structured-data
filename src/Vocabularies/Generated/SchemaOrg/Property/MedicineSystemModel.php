@@ -18,6 +18,7 @@ final class MedicineSystemModel
     public const NAME = 'schema:medicineSystem';
     public const VALUES = ['MedicineSystemModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicineSystemModel'];
     public const TYPES = ['MedicalEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

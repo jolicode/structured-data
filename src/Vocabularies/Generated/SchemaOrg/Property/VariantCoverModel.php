@@ -20,6 +20,7 @@ final class VariantCoverModel
     public const NAME = 'schema:variantCover';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['ComicIssue' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ComicIssueModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://bib.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

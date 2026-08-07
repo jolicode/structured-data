@@ -15,23 +15,25 @@ use Jolicode\JsonLd\Algorithms;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextCache;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
+use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinition;
 use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinitionCreator;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
-/** @group context */
+#[Group('context')]
 class ContextProcesserTest extends AbstractJsonLdTestCase
 {
     /**
      * The files provided by the W3C only test that the context is correctly extracted, it doesn't test the processing algorithm in itself.
      * The algorithm doesn't have its own proper tests : its validity is tested in the other algorithms tests.
-     *
-     * @dataProvider provideInputsAndOutputs
      * */
-    public function testProcessContext(string $json, string $expected): void
+    #[DataProvider('provideInputsAndOutputs')]
+    public function testProcessContext(string $json, string $expected, string $filename): void
     {
-        $processer = new ContextProcesser();
+        $processer = new ContextProcesser(new ContextCache(static::createDocumentLoader()));
         $actual = new \stdClass();
         $extractedContext = $processer->extractContext(json_decode($json));
 
@@ -42,7 +44,7 @@ class ContextProcesserTest extends AbstractJsonLdTestCase
         $this->assertEquals(json_decode($expected), $actual);
     }
 
-    /** @dataProvider provideContainerEntries */
+    #[DataProvider('provideContainerEntries')]
     public function testValidateContainerEntry(string|array $container, bool $expected): void
     {
         $this->assertSame($expected, TermDefinitionCreator::validateContainerEntry($container));
@@ -50,33 +52,37 @@ class ContextProcesserTest extends AbstractJsonLdTestCase
 
     public function testCachedRemoteContextReturnsIsolatedCopies(): void
     {
-        $path = tempnam(sys_get_temp_dir(), 'jsonld-context-');
+        $loader = new class implements DocumentLoaderInterface {
+            public function load(string $url): \stdClass
+            {
+                return (object) json_decode('{"@context":{"name":"https://schema.org/name"}}');
+            }
 
-        if (false === $path) {
-            self::fail('Failed to create a temporary context file.');
-        }
+            public function getCacheNamespace(): string
+            {
+                // Own namespace: the processed context cache is process-wide and
+                // the test execution order is random.
+                return 'test:isolated-copies';
+            }
+        };
 
-        file_put_contents($path, '{"@context":{"name":"https://schema.org/name"}}');
+        $processer = new ContextProcesser(new ContextCache($loader));
+        $url = 'https://tests.invalid/isolated-copies/context.jsonld';
+        $baseContext = static fn (): Context => new Context(baseUrl: 'https://tests.invalid/');
 
-        try {
-            $processer = new ContextProcesser();
+        $first = $processer->processContext($baseContext(), $url);
+        $first->termDefinitions['name'] = new TermDefinition(
+            prefixFlag: false,
+            protected: false,
+            reverseProperty: false,
+            iriMapping: 'https://example.com/mutated',
+        );
 
-            $first = $processer->processContext(new Context(), $path);
-            $first->termDefinitions['name'] = new TermDefinition(
-                prefixFlag: false,
-                protected: false,
-                reverseProperty: false,
-                iriMapping: 'https://example.com/mutated',
-            );
+        $second = $processer->processContext($baseContext(), $url);
 
-            $second = $processer->processContext(new Context(), $path);
-
-            $this->assertSame('https://schema.org/name', $second->termDefinitions['name']->iriMapping);
-            $this->assertNotSame($first, $second);
-            $this->assertNotSame($first->termDefinitions['name'], $second->termDefinitions['name']);
-        } finally {
-            @unlink($path);
-        }
+        $this->assertSame('https://schema.org/name', $second->termDefinitions['name']->iriMapping);
+        $this->assertNotSame($first, $second);
+        $this->assertNotSame($first->termDefinitions['name'], $second->termDefinitions['name']);
     }
 
     public function testSchemaOrgStaticContextIsUsedWhenBaseUrlIsSet(): void
@@ -99,7 +105,7 @@ class ContextProcesserTest extends AbstractJsonLdTestCase
         $this->assertSame('https://example.com/page', $processed->baseIri);
     }
 
-    public function provideContainerEntries(): iterable
+    public static function provideContainerEntries(): iterable
     {
         yield 'correct keyword returns true' => [
             'container' => Keyword::GRAPH->value,
@@ -131,12 +137,12 @@ class ContextProcesserTest extends AbstractJsonLdTestCase
         ];
     }
 
-    protected function getAlgorithmName(): string
+    protected static function getAlgorithmName(): string
     {
         return Algorithms::CONTEXT->value;
     }
 
-    protected function getExpectedErrorMessage(string $filename): string
+    protected static function getExpectedErrorMessage(string $filename): string
     {
         $failedTestsErrorMessages = [
             'fake' => 'Add below the error message you expect for this test',
@@ -150,7 +156,7 @@ class ContextProcesserTest extends AbstractJsonLdTestCase
         return $failedTestsErrorMessages[$filename] ?? $defaultErrorMessage;
     }
 
-    protected function shouldSkipThisTest(string $filename): bool
+    protected static function shouldSkipThisTest(string $filename): bool
     {
         $testsToSkip = [
             'fake', // Add below the filename of the test you want to skip
@@ -159,7 +165,7 @@ class ContextProcesserTest extends AbstractJsonLdTestCase
         return \in_array($filename, $testsToSkip, true);
     }
 
-    protected function getOptions(string $filename): ProcessorOptions
+    protected static function getOptions(string $filename): ProcessorOptions
     {
         // contexts don't use options
         return new ProcessorOptions();

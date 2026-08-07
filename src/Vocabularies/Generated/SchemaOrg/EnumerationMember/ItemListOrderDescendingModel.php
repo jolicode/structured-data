@@ -18,4 +18,5 @@ final class ItemListOrderDescendingModel
     public const NAME = 'schema:ItemListOrderDescending';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

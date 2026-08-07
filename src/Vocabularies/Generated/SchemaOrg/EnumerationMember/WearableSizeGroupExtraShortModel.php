@@ -16,6 +16,7 @@ final class WearableSizeGroupExtraShortModel
     public const DESCRIPTION = 'Size group "Extra Short" for wearables.';
     public const LABEL = 'WearableSizeGroupExtraShort';
     public const NAME = 'schema:WearableSizeGroupExtraShort';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

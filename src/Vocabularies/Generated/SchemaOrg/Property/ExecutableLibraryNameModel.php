@@ -20,4 +20,5 @@ final class ExecutableLibraryNameModel
     public const TYPES = ['APIReference' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\APIReferenceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -18,6 +18,7 @@ final class EncodesBioChemEntityModel
     public const NAME = 'schema:encodesBioChemEntity';
     public const VALUES = ['BioChemEntityModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BioChemEntityModel'];
     public const TYPES = ['Gene' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeneModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['http://www.bioschemas.org/Gene'];
+    public const SUPERSEDED_BY = null;
 }

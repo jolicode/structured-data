@@ -20,4 +20,5 @@ final class LoanTermModel
     public const TYPES = ['LoanOrCredit' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LoanOrCreditModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

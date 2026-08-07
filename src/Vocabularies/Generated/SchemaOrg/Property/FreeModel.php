@@ -20,4 +20,5 @@ final class FreeModel
     public const TYPES = ['PublicationEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PublicationEventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = 'isAccessibleForFree';
 }

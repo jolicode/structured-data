@@ -16,6 +16,7 @@ final class IncentiveQualifiedExpenseTypeGoodsOnlyModel
     public const DESCRIPTION = 'This incentive applies to goods only.';
     public const LABEL = 'IncentiveQualifiedExpenseTypeGoodsOnly';
     public const NAME = 'schema:IncentiveQualifiedExpenseTypeGoodsOnly';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3572'];
+    public const SUPERSEDED_BY = null;
 }

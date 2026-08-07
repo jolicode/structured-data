@@ -20,4 +20,5 @@ final class AvailableFromModel
     public const TYPES = ['DeliveryEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DeliveryEventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

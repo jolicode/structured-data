@@ -16,6 +16,7 @@ final class BodyMeasurementWaistModel
     public const DESCRIPTION = 'Girth of natural waistline (between hip bones and lower ribs). Used, for example, to fit pants.';
     public const LABEL = 'BodyMeasurementWaist';
     public const NAME = 'schema:BodyMeasurementWaist';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
+    public const SUPERSEDED_BY = null;
 }

@@ -18,6 +18,7 @@ final class AntagonistModel
     public const NAME = 'schema:antagonist';
     public const VALUES = ['MuscleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MuscleModel'];
     public const TYPES = ['Muscle' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MuscleModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

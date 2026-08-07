@@ -20,4 +20,5 @@ final class EducationalRoleModel
     public const TYPES = ['EducationalAudience' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalAudienceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

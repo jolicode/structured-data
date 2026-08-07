@@ -19,5 +19,6 @@ final class CertificationStatusModel
     public const VALUES = ['CertificationStatusEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CertificationStatusEnumerationModel'];
     public const TYPES = ['Certification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CertificationModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3230'];
+    public const SUPERSEDED_BY = null;
 }

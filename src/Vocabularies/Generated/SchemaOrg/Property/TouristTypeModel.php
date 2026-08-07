@@ -20,4 +20,5 @@ final class TouristTypeModel
     public const TYPES = ['TouristAttraction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TouristAttractionModel', 'TouristDestination' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TouristDestinationModel', 'TouristTrip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TouristTripModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

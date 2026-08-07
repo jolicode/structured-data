@@ -20,4 +20,5 @@ final class PurchaseDateModel
     public const TYPES = ['Product' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel', 'Vehicle' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VehicleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

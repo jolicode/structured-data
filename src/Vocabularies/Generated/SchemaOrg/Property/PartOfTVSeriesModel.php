@@ -20,4 +20,5 @@ final class PartOfTVSeriesModel
     public const TYPES = ['TVClip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TVClipModel', 'TVEpisode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TVEpisodeModel', 'TVSeason' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TVSeasonModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = 'partOfSeries';
 }

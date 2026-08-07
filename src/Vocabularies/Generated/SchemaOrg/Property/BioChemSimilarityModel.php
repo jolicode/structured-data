@@ -18,6 +18,7 @@ final class BioChemSimilarityModel
     public const NAME = 'schema:bioChemSimilarity';
     public const VALUES = ['BioChemEntityModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BioChemEntityModel'];
     public const TYPES = ['BioChemEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BioChemEntityModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['http://www.bioschemas.org'];
+    public const SUPERSEDED_BY = null;
 }

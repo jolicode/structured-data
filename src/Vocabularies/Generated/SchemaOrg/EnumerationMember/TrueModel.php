@@ -18,4 +18,5 @@ final class TrueModel
     public const NAME = 'schema:True';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

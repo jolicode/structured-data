@@ -16,6 +16,7 @@ final class RecruitingModel
     public const DESCRIPTION = 'Recruiting participants.';
     public const LABEL = 'Recruiting';
     public const NAME = 'schema:Recruiting';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

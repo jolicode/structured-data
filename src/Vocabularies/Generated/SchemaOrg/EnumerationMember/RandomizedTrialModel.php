@@ -16,6 +16,7 @@ final class RandomizedTrialModel
     public const DESCRIPTION = 'A randomized trial design.';
     public const LABEL = 'RandomizedTrial';
     public const NAME = 'schema:RandomizedTrial';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

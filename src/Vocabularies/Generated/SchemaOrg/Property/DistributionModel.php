@@ -20,4 +20,5 @@ final class DistributionModel
     public const TYPES = ['Dataset' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DatasetModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -41,16 +41,16 @@ class Type extends AbstractSchemaOrgElement
         self::sanitizeEntries($rawType);
 
         $type = new self(
-            name: trim($rawType[Extractor::KEY_ID]),
-            description: trim($rawType[Extractor::RDFS_COMMENT]),
-            label: trim($rawType[Extractor::RDFS_LABEL]),
-            equivalentClass: $rawType[Extractor::OWL_EQUIVALENT_CLASS] ?? [],
-            className: self::getClassName($rawType[Extractor::RDFS_LABEL]),
+            name: trim(self::stringEntry($rawType, Extractor::KEY_ID)),
+            description: trim(self::stringEntry($rawType, Extractor::RDFS_COMMENT)),
+            label: trim(self::stringEntry($rawType, Extractor::RDFS_LABEL)),
+            equivalentClass: (array) ($rawType[Extractor::OWL_EQUIVALENT_CLASS] ?? []),
+            className: self::getClassName(self::stringEntry($rawType, Extractor::RDFS_LABEL)),
         );
 
         $parents = $rawType[Extractor::RDFS_SUB_CLASS_OF] ?? null;
 
-        if ($parents) {
+        if (\is_array($parents) && [] !== $parents) {
             if (\array_key_exists(Extractor::KEY_ID, $parents)) {
                 $type->addParent($type, $parents[Extractor::KEY_ID]);
             } else {

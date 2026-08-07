@@ -14,15 +14,14 @@ namespace Jolicode\JsonLd\Tests\Validation;
 use Jolicode\JsonLd\Mapper\MappedProperty;
 use Jolicode\JsonLd\Validator;
 use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator
- *
- * @group validation
- * @group schemaorg
- * @group schema-org
- */
+#[CoversClass(SchemaOrgValidator::class)]
+#[Group('validation')]
+#[Group('schemaorg')]
+#[Group('schema-org')]
 class SchemaOrgValidatorInfrastructureTest extends TestCase
 {
     private const PERFORMANCE_FIXTURE = __DIR__ . '/../fixtures/schema-org/complex-framed.jsonld';

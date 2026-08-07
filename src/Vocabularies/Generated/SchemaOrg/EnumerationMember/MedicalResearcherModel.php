@@ -16,6 +16,7 @@ final class MedicalResearcherModel
     public const DESCRIPTION = 'Medical researchers.';
     public const LABEL = 'MedicalResearcher';
     public const NAME = 'schema:MedicalResearcher';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

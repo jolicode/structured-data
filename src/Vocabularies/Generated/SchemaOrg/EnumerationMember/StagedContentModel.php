@@ -24,6 +24,7 @@ For an [[ImageObject]] with embedded text to be \'staged content\': An image tha
 For an [[AudioObject]] to be \'staged content\': Audio that has been created using actors or similarly contrived.';
     public const LABEL = 'StagedContent';
     public const NAME = 'schema:StagedContent';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2450'];
+    public const SUPERSEDED_BY = null;
 }

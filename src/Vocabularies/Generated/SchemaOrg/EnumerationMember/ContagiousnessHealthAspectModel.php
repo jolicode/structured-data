@@ -16,6 +16,7 @@ final class ContagiousnessHealthAspectModel
     public const DESCRIPTION = 'Content about contagion mechanisms and contagiousness information over the topic.';
     public const LABEL = 'ContagiousnessHealthAspect';
     public const NAME = 'schema:ContagiousnessHealthAspect';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2374'];
+    public const SUPERSEDED_BY = null;
 }

@@ -18,6 +18,7 @@ final class AssociatedAnatomyModel
     public const NAME = 'schema:associatedAnatomy';
     public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalStructureModel', 'AnatomicalSystemModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalSystemModel', 'SuperficialAnatomyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SuperficialAnatomyModel'];
     public const TYPES = ['MedicalCondition' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel', 'PhysicalActivity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PhysicalActivityModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

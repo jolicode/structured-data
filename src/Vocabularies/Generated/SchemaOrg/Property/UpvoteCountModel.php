@@ -20,4 +20,5 @@ final class UpvoteCountModel
     public const TYPES = ['Comment' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommentModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

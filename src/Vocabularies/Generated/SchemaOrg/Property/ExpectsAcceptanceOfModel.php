@@ -19,5 +19,6 @@ final class ExpectsAcceptanceOfModel
     public const VALUES = ['OfferModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel'];
     public const TYPES = ['ActionAccessSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ActionAccessSpecificationModel', 'ConsumeAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ConsumeActionModel', 'MediaSubscription' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaSubscriptionModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1741'];
+    public const SUPERSEDED_BY = null;
 }

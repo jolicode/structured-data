@@ -20,4 +20,5 @@ final class TicketTokenModel
     public const TYPES = ['Ticket' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TicketModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

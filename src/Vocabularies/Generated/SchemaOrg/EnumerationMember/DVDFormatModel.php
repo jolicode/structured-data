@@ -18,4 +18,5 @@ final class DVDFormatModel
     public const NAME = 'schema:DVDFormat';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

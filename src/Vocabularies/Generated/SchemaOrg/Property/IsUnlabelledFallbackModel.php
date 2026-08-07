@@ -19,5 +19,6 @@ final class IsUnlabelledFallbackModel
     public const VALUES = ['BooleanModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['DeliveryTimeSettings' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DeliveryTimeSettingsModel', 'ShippingRateSettings' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ShippingRateSettingsModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2506'];
+    public const SUPERSEDED_BY = null;
 }

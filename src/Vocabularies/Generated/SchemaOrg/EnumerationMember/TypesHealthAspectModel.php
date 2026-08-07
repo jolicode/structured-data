@@ -16,6 +16,7 @@ final class TypesHealthAspectModel
     public const DESCRIPTION = 'Categorization and other types related to a topic.';
     public const LABEL = 'TypesHealthAspect';
     public const NAME = 'schema:TypesHealthAspect';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2374'];
+    public const SUPERSEDED_BY = null;
 }

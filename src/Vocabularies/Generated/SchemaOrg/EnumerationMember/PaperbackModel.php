@@ -18,4 +18,5 @@ final class PaperbackModel
     public const NAME = 'schema:Paperback';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

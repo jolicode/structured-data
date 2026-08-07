@@ -18,6 +18,7 @@ final class WebFeedModel
     public const NAME = 'schema:webFeed';
     public const VALUES = ['DataFeedModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DataFeedModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
     public const TYPES = ['PodcastSeries' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PodcastSeriesModel', 'SpecialAnnouncement' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SpecialAnnouncementModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/373'];
+    public const SUPERSEDED_BY = null;
 }

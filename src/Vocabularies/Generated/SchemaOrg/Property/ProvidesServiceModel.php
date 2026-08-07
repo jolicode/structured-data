@@ -20,4 +20,5 @@ final class ProvidesServiceModel
     public const TYPES = ['ServiceChannel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceChannelModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class DateSentModel
     public const TYPES = ['Message' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MessageModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

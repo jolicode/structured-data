@@ -18,6 +18,7 @@ final class CompetencyRequiredModel
     public const NAME = 'schema:competencyRequired';
     public const VALUES = ['DefinedTermModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
     public const TYPES = ['EducationalOccupationalCredential' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalCredentialModel', 'LearningResource' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LearningResourceModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1779'];
+    public const SUPERSEDED_BY = null;
 }

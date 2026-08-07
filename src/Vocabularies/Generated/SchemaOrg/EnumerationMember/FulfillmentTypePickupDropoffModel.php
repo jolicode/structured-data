@@ -16,6 +16,7 @@ final class FulfillmentTypePickupDropoffModel
     public const DESCRIPTION = 'Fulfillment through pick-up drop-off locations.';
     public const LABEL = 'FulfillmentTypePickupDropoff';
     public const NAME = 'schema:FulfillmentTypePickupDropoff';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3617'];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class AuthorModel
     public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'Rating' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RatingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

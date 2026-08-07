@@ -16,6 +16,7 @@ final class SubscriptionModel
     public const DESCRIPTION = 'Represents the subscription pricing component of the total price for an offered product.';
     public const LABEL = 'Subscription';
     public const NAME = 'schema:Subscription';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2689'];
+    public const SUPERSEDED_BY = null;
 }

@@ -22,6 +22,7 @@ final class MapCategoryTypeModel
     public const ENUMERATION_MEMBERS = ['ParkingMapModel' => 'EnumerationMember\ParkingMapModel', 'SeatingMapModel' => 'EnumerationMember\SeatingMapModel', 'TransitMapModel' => 'EnumerationMember\TransitMapModel', 'VenueMapModel' => 'EnumerationMember\VenueMapModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

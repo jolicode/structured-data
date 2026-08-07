@@ -13,15 +13,9 @@ namespace Jolicode\Vocabularies\Generated\Google;
 
 final class BreadcrumbList
 {
-    public const NAME = 'BreadcrumbList';
     public const SUPPORTED_TYPES = ['BreadcrumbList'];
-    public const VALUE = [];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/breadcrumb#json-ld';
-    public const SUBTYPE = null;
-    public const HAS_SPECIAL_RULES = true;
     public const SPECIAL_RULE_KEYS = ['google.breadcrumb.last_item_optional'];
-    public const IS_CAROUSEL_ELIGIBLE = false;
-    public const CAROUSEL_PROPERTIES = [];
     public const PROPERTIES = [
         'itemListElement' => [
             'name' => 'itemListElement',

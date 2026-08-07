@@ -18,6 +18,7 @@ final class SignDetectedModel
     public const NAME = 'schema:signDetected';
     public const VALUES = ['MedicalSignModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalSignModel'];
     public const TYPES = ['MedicalTest' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTestModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

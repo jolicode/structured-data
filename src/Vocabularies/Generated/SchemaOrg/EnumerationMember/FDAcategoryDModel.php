@@ -16,6 +16,7 @@ final class FDAcategoryDModel
     public const DESCRIPTION = 'A designation by the US FDA signifying that there is positive evidence of human fetal risk based on adverse reaction data from investigational or marketing experience or studies in humans, but potential benefits may warrant use of the drug in pregnant women despite potential risks.';
     public const LABEL = 'FDAcategoryD';
     public const NAME = 'schema:FDAcategoryD';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

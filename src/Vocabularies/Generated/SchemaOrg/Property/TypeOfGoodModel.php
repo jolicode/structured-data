@@ -20,4 +20,5 @@ final class TypeOfGoodModel
     public const TYPES = ['OwnershipInfo' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OwnershipInfoModel', 'TypeAndQuantityNode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TypeAndQuantityNodeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

@@ -18,6 +18,7 @@ final class BroadcastSubChannelModel
     public const NAME = 'schema:broadcastSubChannel';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['BroadcastFrequencySpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastFrequencySpecificationModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2111'];
+    public const SUPERSEDED_BY = null;
 }

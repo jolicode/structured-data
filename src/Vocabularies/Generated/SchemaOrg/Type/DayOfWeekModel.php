@@ -24,6 +24,7 @@ Originally, URLs from [GoodRelations](http://purl.org/goodrelations/v1) were use
     public const ENUMERATION_MEMBERS = ['FridayModel' => 'EnumerationMember\FridayModel', 'MondayModel' => 'EnumerationMember\MondayModel', 'PublicHolidaysModel' => 'EnumerationMember\PublicHolidaysModel', 'SaturdayModel' => 'EnumerationMember\SaturdayModel', 'SundayModel' => 'EnumerationMember\SundayModel', 'ThursdayModel' => 'EnumerationMember\ThursdayModel', 'TuesdayModel' => 'EnumerationMember\TuesdayModel', 'WednesdayModel' => 'EnumerationMember\WednesdayModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

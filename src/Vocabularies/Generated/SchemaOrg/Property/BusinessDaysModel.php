@@ -19,5 +19,6 @@ final class BusinessDaysModel
     public const VALUES = ['DayOfWeekModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DayOfWeekModel', 'OpeningHoursSpecificationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OpeningHoursSpecificationModel'];
     public const TYPES = ['ServicePeriod' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServicePeriodModel', 'ShippingDeliveryTime' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ShippingDeliveryTimeModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2506', 'https://github.com/schemaorg/schemaorg/issues/3617'];
+    public const SUPERSEDED_BY = null;
 }

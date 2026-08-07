@@ -22,6 +22,7 @@ final class MusicAlbumReleaseTypeModel
     public const ENUMERATION_MEMBERS = ['AlbumReleaseModel' => 'EnumerationMember\AlbumReleaseModel', 'BroadcastReleaseModel' => 'EnumerationMember\BroadcastReleaseModel', 'EPReleaseModel' => 'EnumerationMember\EPReleaseModel', 'SingleReleaseModel' => 'EnumerationMember\SingleReleaseModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

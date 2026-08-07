@@ -18,6 +18,7 @@ final class SensoryUnitModel
     public const NAME = 'schema:sensoryUnit';
     public const VALUES = ['AnatomicalStructureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnatomicalStructureModel', 'SuperficialAnatomyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SuperficialAnatomyModel'];
     public const TYPES = ['Nerve' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NerveModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

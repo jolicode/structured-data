@@ -14,6 +14,7 @@ namespace Jolicode\JsonLd\Audit;
 use Jolicode\JsonLd\Mapper\MappedError;
 use Jolicode\JsonLd\Mapper\MappedType;
 use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
+use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
 
 final class Audit
 {
@@ -228,9 +229,12 @@ final class Audit
                     $this->byWarnings[] = $error;
                 }
 
+                // Errors are bucketed strictly by the validator that produced them:
+                // an error from a third-party validator belongs to neither bucket
+                // (it stays reachable through the unfiltered diagnostics).
                 if (GoogleValidator::VALIDATOR_NAME === $error->getValidatorName()) {
                     $this->byGoogle[] = $error;
-                } else {
+                } elseif (SchemaOrgValidator::VALIDATOR_NAME === $error->getValidatorName()) {
                     $this->bySchemaOrg[] = $error;
                 }
 

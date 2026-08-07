@@ -19,5 +19,6 @@ final class HasTiersModel
     public const VALUES = ['MemberProgramTierModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MemberProgramTierModel'];
     public const TYPES = ['MemberProgram' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MemberProgramModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3563'];
+    public const SUPERSEDED_BY = null;
 }

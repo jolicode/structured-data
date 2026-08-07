@@ -18,6 +18,7 @@ final class RecommendationStrengthModel
     public const NAME = 'schema:recommendationStrength';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MedicalGuidelineRecommendation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalGuidelineRecommendationModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

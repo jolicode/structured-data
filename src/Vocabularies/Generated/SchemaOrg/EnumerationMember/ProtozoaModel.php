@@ -16,6 +16,7 @@ final class ProtozoaModel
     public const DESCRIPTION = 'Single-celled organism that causes an infection.';
     public const LABEL = 'Protozoa';
     public const NAME = 'schema:Protozoa';
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

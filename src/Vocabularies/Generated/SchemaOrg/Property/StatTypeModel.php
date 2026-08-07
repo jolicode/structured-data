@@ -18,6 +18,7 @@ final class StatTypeModel
     public const NAME = 'schema:statType';
     public const VALUES = ['PropertyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
     public const TYPES = ['StatisticalVariable' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\StatisticalVariableModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2564'];
+    public const SUPERSEDED_BY = null;
 }

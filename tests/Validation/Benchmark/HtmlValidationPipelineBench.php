@@ -26,8 +26,8 @@ use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
 use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
 use Jolicode\JsonLd\Parser\JsonLdParser;
 use Jolicode\JsonLd\Validator;
-use Jolicode\Vocabularies\Validators\AbstractValidator;
 use Jolicode\Vocabularies\Validators\RegisteredValidatorsContainer;
+use Jolicode\Vocabularies\Validators\ValidatorInterface;
 
 class HtmlValidationPipelineBench
 {
@@ -51,7 +51,7 @@ class HtmlValidationPipelineBench
     /** @var list<MappedType> */
     private array $mappedTypesForValidation = [];
 
-    /** @var array<string, AbstractValidator> */
+    /** @var array<string, ValidatorInterface> */
     private array $validators;
 
     public function __construct(
@@ -461,7 +461,7 @@ class HtmlValidationPipelineBench
      */
     public function benchHtmlHomepageFullProcess(): void
     {
-        $this->validator->audit(self::FIXTURES_BASE_DIR . '/benchmark/homepage-sample.html');
+        $this->validator->audit($this->documents[self::SCENARIO_HOMEPAGE]);
     }
 
     /**
@@ -473,7 +473,7 @@ class HtmlValidationPipelineBench
      */
     public function benchHtmlHeavyCourseFullProcess(): void
     {
-        $this->validator->audit(self::FIXTURES_BASE_DIR . '/benchmark/jolicampus-formations-symfony.html');
+        $this->validator->audit($this->documents[self::SCENARIO_HEAVY]);
     }
 
     /**
@@ -485,7 +485,7 @@ class HtmlValidationPipelineBench
      */
     public function benchHtmlBlogListingFullProcess(): void
     {
-        $this->validator->audit(self::FIXTURES_BASE_DIR . '/benchmark/listing-sample.html');
+        $this->validator->audit($this->documents[self::SCENARIO_LISTING]);
     }
 
     /** @noinspection PhpUnused */

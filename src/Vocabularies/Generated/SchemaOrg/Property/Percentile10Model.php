@@ -19,5 +19,6 @@ final class Percentile10Model
     public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['QuantitativeValueDistribution' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueDistributionModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1698'];
+    public const SUPERSEDED_BY = null;
 }

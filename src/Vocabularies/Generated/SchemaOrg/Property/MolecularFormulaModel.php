@@ -18,6 +18,7 @@ final class MolecularFormulaModel
     public const NAME = 'schema:molecularFormula';
     public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MolecularEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MolecularEntityModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['http://www.bioschemas.org/MolecularEntity'];
+    public const SUPERSEDED_BY = null;
 }

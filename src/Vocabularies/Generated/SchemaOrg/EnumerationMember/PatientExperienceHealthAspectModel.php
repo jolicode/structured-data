@@ -16,6 +16,7 @@ final class PatientExperienceHealthAspectModel
     public const DESCRIPTION = 'Content about the real life experience of patients or people that have lived a similar experience about the topic. May be forums, topics, Q-and-A and related material.';
     public const LABEL = 'PatientExperienceHealthAspect';
     public const NAME = 'schema:PatientExperienceHealthAspect';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2374'];
+    public const SUPERSEDED_BY = null;
 }

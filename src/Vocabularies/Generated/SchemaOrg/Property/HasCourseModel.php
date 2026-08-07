@@ -18,6 +18,7 @@ final class HasCourseModel
     public const NAME = 'schema:hasCourse';
     public const VALUES = ['CourseModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CourseModel'];
     public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalProgramModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2483'];
+    public const SUPERSEDED_BY = null;
 }

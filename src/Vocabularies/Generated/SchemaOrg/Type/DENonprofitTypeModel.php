@@ -22,6 +22,7 @@ final class DENonprofitTypeModel
     public const ENUMERATION_MEMBERS = ['DECooperativeCharityModel' => 'EnumerationMember\DECooperativeCharityModel', 'DEFoundationCharityModel' => 'EnumerationMember\DEFoundationCharityModel', 'DEJointStockCompanyCharityModel' => 'EnumerationMember\DEJointStockCompanyCharityModel', 'DELimitedLiabilityCharityModel' => 'EnumerationMember\DELimitedLiabilityCharityModel', 'DENotRegisteredAssociationCharityModel' => 'EnumerationMember\DENotRegisteredAssociationCharityModel', 'DEPublicCharityModel' => 'EnumerationMember\DEPublicCharityModel', 'DERegisteredAssociationCharityModel' => 'EnumerationMember\DERegisteredAssociationCharityModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3629'];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,

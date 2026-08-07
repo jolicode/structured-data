@@ -11,9 +11,11 @@
 
 namespace Jolicode\JsonLd\Algorithms\Flatten;
 
+use Jolicode\JsonLd\Algorithms\Compact\Compactor;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
-use Jolicode\JsonLd\Algorithms\Http\DocumentLoader;
+use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
+use Jolicode\JsonLd\Algorithms\Http\HttpDocumentLoader;
 use Jolicode\JsonLd\Algorithms\JsonLd\FramingKeyword;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use Jolicode\JsonLd\Algorithms\Services\IdentifierGenerator;
@@ -23,8 +25,18 @@ class Flattener
     private IdentifierGenerator $identifierGenerator;
     private NodeMapGenerator $nodeMapGenerator;
 
-    public function __construct()
-    {
+    private readonly Expander $expander;
+    private readonly Compactor $compactor;
+    private readonly DocumentLoaderInterface $documentLoader;
+
+    public function __construct(
+        ?Expander $expander = null,
+        ?Compactor $compactor = null,
+        ?DocumentLoaderInterface $documentLoader = null,
+    ) {
+        $this->documentLoader = $documentLoader ?? new HttpDocumentLoader();
+        $this->expander = $expander ?? new Expander(documentLoader: $this->documentLoader);
+        $this->compactor = $compactor ?? new Compactor(documentLoader: $this->documentLoader);
         $this->identifierGenerator = new IdentifierGenerator();
         $this->nodeMapGenerator = new NodeMapGenerator($this->identifierGenerator);
     }
@@ -41,8 +53,7 @@ class Flattener
         if (\is_string($element)) {
             $baseUrl = $element;
 
-            $documentLoader = new DocumentLoader($baseUrl);
-            $element = $documentLoader->load();
+            $element = $this->documentLoader->load($baseUrl);
         }
 
         $activeContext = new Context(
@@ -54,13 +65,20 @@ class Flattener
         // The specs say to set ordered to false but the tests expect it to be true so...
         $options->ordered = true;
 
-        $expander = new Expander();
-        $expandedInput = $expander->doExpand($element, $options, activeContext: $activeContext);
+        $expandedInput = $this->expander->doExpand($element, $options, activeContext: $activeContext);
 
-        // TODO: if context is not null, use the compaction algorithm.
-        // See https://www.w3.org/TR/json-ld-api/#the-jsonldprocessor-interface in flatten() 6.1
+        $flattened = $this->doFlatten($expandedInput, $options->ordered);
 
-        return json_encode($this->doFlatten($expandedInput, $options->ordered), \JSON_PRETTY_PRINT) ?: null;
+        // 6.1: if context is not null, the flattened output is compacted against it.
+        if (null !== $context) {
+            return \is_string($compacted = $this->compactor->compact(
+                (string) json_encode($flattened),
+                $context,
+                $options,
+            )) ? $compacted : null;
+        }
+
+        return json_encode($flattened, \JSON_PRETTY_PRINT) ?: null;
     }
 
     /**

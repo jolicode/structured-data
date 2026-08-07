@@ -20,4 +20,5 @@ final class AudienceModel
     public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'Event' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel', 'LodgingBusiness' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LodgingBusinessModel', 'PlayAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlayActionModel', 'Product' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel', 'Service' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

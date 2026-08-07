@@ -16,6 +16,7 @@ final class Nonprofit501c13Model
     public const DESCRIPTION = 'Nonprofit501c13: Non-profit type referring to Cemetery Companies.';
     public const LABEL = 'Nonprofit501c13';
     public const NAME = 'schema:Nonprofit501c13';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2543'];
+    public const SUPERSEDED_BY = null;
 }

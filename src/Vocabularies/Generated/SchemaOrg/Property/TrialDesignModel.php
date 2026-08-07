@@ -18,6 +18,7 @@ final class TrialDesignModel
     public const NAME = 'schema:trialDesign';
     public const VALUES = ['MedicalTrialDesignModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTrialDesignModel'];
     public const TYPES = ['MedicalTrial' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTrialModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

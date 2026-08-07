@@ -20,4 +20,5 @@ final class WorstRatingModel
     public const TYPES = ['Rating' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RatingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

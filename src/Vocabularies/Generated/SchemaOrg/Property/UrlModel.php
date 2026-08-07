@@ -20,4 +20,5 @@ final class UrlModel
     public const TYPES = ['Thing' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

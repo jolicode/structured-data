@@ -22,6 +22,7 @@ final class EducationalOccupationalCredentialModel
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1779'];
+    public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AboutModel $about = null,

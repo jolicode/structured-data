@@ -18,4 +18,5 @@ final class StudioAlbumModel
     public const NAME = 'schema:StudioAlbum';
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

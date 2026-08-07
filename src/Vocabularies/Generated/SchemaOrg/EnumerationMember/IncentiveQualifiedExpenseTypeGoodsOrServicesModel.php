@@ -16,6 +16,7 @@ final class IncentiveQualifiedExpenseTypeGoodsOrServicesModel
     public const DESCRIPTION = 'This incentive can apply to either goods or services (or both).';
     public const LABEL = 'IncentiveQualifiedExpenseTypeGoodsOrServices';
     public const NAME = 'schema:IncentiveQualifiedExpenseTypeGoodsOrServices';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3572'];
+    public const SUPERSEDED_BY = null;
 }

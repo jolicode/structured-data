@@ -19,5 +19,6 @@ final class AudioModel
     public const VALUES = ['AudioObjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AudioObjectModel', 'ClipModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ClipModel', 'MusicRecordingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicRecordingModel'];
     public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2420'];
+    public const SUPERSEDED_BY = null;
 }

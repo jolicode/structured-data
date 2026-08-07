@@ -19,5 +19,6 @@ final class HasTierRequirementModel
     public const VALUES = ['CreditCardModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreditCardModel', 'MonetaryAmountModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'UnitPriceSpecificationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\UnitPriceSpecificationModel'];
     public const TYPES = ['MemberProgramTier' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MemberProgramTierModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3563'];
+    public const SUPERSEDED_BY = null;
 }

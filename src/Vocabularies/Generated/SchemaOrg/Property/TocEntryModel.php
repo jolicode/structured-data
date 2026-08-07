@@ -18,6 +18,7 @@ final class TocEntryModel
     public const NAME = 'schema:tocEntry';
     public const VALUES = ['HyperTocEntryModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HyperTocEntryModel'];
     public const TYPES = ['HyperToc' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HyperTocModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2766'];
+    public const SUPERSEDED_BY = null;
 }

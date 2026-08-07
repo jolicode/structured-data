@@ -28,6 +28,16 @@ class SchemaOrgValidator extends AbstractValidator
     private const SCHEMA_ORG_DOMAIN_SECURE = 'https://schema.org/';
 
     /**
+     * Terms hosted under pending.schema.org are still under development and may
+     * change or be removed: using them deserves a warning. The other hosted
+     * extensions (health-lifesci, bib, auto, meta) are stable vocabulary; their
+     * provenance is exposed through getIsPartOf() without a warning.
+     */
+    private const PENDING_EXTENSION_DOMAIN = 'https://pending.schema.org';
+
+    private const GENERATED_ENUMERATION_MEMBER_NAMESPACE = 'Jolicode\\Vocabularies\\Generated\\SchemaOrg\\EnumerationMember';
+
+    /**
      * @var array<string, string>|null
      */
     private static ?array $knownEnumerationMembersByLowercase = null;
@@ -104,6 +114,24 @@ class SchemaOrgValidator extends AbstractValidator
             $type->setIsPartOf(array_merge($type->getIsPartOf(), $typeFqcn::IS_PART_OF));
             $type->setSource(array_merge($type->getSource(), $typeFqcn::SOURCE));
 
+            if (null !== $typeFqcn::SUPERSEDED_BY) {
+                $errors[] = self::addMappedError(
+                    $type->getProperty(Keyword::TYPE->value) ?? $errorTarget,
+                    \sprintf('The "%s" type is superseded by "%s". Consider using "%s" instead.', $label, $typeFqcn::SUPERSEDED_BY, $typeFqcn::SUPERSEDED_BY),
+                    $type,
+                    MappedError::SEVERITY_WARNING,
+                );
+            }
+
+            if (\in_array(self::PENDING_EXTENSION_DOMAIN, $typeFqcn::IS_PART_OF, true)) {
+                $errors[] = self::addMappedError(
+                    $type->getProperty(Keyword::TYPE->value) ?? $errorTarget,
+                    \sprintf('The "%s" type is part of the pending.schema.org extension: it is still under development and subject to change.', $label),
+                    $type,
+                    MappedError::SEVERITY_WARNING,
+                );
+            }
+
             if ($parentProperty && !IriResolver::isAbsoluteIri($parentProperty->getKey())) {
                 $parentPropertyKey = $this->stripActionSuffixes($parentProperty->getKey());
 
@@ -149,6 +177,24 @@ class SchemaOrgValidator extends AbstractValidator
         $property->setDescription($propertyFqcn::DESCRIPTION);
         $property->addIsPartOf($propertyFqcn::IS_PART_OF);
         $property->addSource($propertyFqcn::SOURCE);
+
+        if (null !== $propertyFqcn::SUPERSEDED_BY) {
+            $errors[] = self::addMappedError(
+                $property,
+                \sprintf('The "%s" property is superseded by "%s". Consider using "%s" instead.', $propertyKey, $propertyFqcn::SUPERSEDED_BY, $propertyFqcn::SUPERSEDED_BY),
+                $type,
+                MappedError::SEVERITY_WARNING,
+            );
+        }
+
+        if (\in_array(self::PENDING_EXTENSION_DOMAIN, $propertyFqcn::IS_PART_OF, true)) {
+            $errors[] = self::addMappedError(
+                $property,
+                \sprintf('The "%s" property is part of the pending.schema.org extension: it is still under development and subject to change.', $propertyKey),
+                $type,
+                MappedError::SEVERITY_WARNING,
+            );
+        }
 
         if (!$typeLabel) {
             $typeLabel = self::guessTypeFromProperties($type->getProperties(), $originalProperty?->getKey());
@@ -426,8 +472,8 @@ class SchemaOrgValidator extends AbstractValidator
 
         self::$knownEnumerationMembersByLowercase = [];
 
-        foreach (glob(__DIR__ . '/../../Generated/SchemaOrg/EnumerationMember/*Model.php') ?: [] as $file) {
-            $typeName = str_replace('Model.php', '', basename($file));
+        foreach (GeneratedClassesRegistry::getShortNamesByPrefix(self::GENERATED_ENUMERATION_MEMBER_NAMESPACE) as $shortName) {
+            $typeName = str_replace('Model', '', $shortName);
             self::$knownEnumerationMembersByLowercase[strtolower($typeName)] = $typeName;
         }
 

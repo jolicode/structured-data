@@ -18,6 +18,7 @@ final class DuplicateTherapyModel
     public const NAME = 'schema:duplicateTherapy';
     public const VALUES = ['MedicalTherapyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTherapyModel'];
     public const TYPES = ['MedicalTherapy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTherapyModel'];
-    public const IS_PART_OF = [];
+    public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

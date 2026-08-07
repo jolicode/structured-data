@@ -13,15 +13,9 @@ namespace Jolicode\Vocabularies\Generated\Google;
 
 final class SpecialAnnouncement
 {
-    public const NAME = 'SpecialAnnouncement';
     public const SUPPORTED_TYPES = ['SpecialAnnouncement'];
-    public const VALUE = [];
     public const DOCUMENTATION = 'https://schema.org/SpecialAnnouncement';
-    public const SUBTYPE = null;
-    public const HAS_SPECIAL_RULES = false;
     public const SPECIAL_RULE_KEYS = [];
-    public const IS_CAROUSEL_ELIGIBLE = false;
-    public const CAROUSEL_PROPERTIES = [];
     public const PROPERTIES = [
         'name' => [
             'name' => 'name',

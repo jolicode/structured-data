@@ -18,6 +18,7 @@ final class LayoutImageModel
     public const NAME = 'schema:layoutImage';
     public const VALUES = ['ImageObjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ImageObjectModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
     public const TYPES = ['FloorPlan' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FloorPlanModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2690'];
+    public const SUPERSEDED_BY = null;
 }

@@ -20,4 +20,5 @@ final class ReplyToUrlModel
     public const TYPES = ['UserComments' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\UserCommentsModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
+    public const SUPERSEDED_BY = null;
 }

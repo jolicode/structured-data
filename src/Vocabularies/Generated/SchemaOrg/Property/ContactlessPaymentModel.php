@@ -18,6 +18,7 @@ final class ContactlessPaymentModel
     public const NAME = 'schema:contactlessPayment';
     public const VALUES = ['BooleanModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['PaymentCard' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PaymentCardModel'];
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1253'];
+    public const SUPERSEDED_BY = null;
 }

@@ -24,6 +24,7 @@ For an [[ImageObject]] with embedded text to be \'transformed content\': Adding 
 For an [[AudioObject]] to be \'transformed content\': Part or all of the audio has been manipulated to alter the words or sounds, or the audio has been synthetically generated, such as to create a sound-alike voice.';
     public const LABEL = 'TransformedContent';
     public const NAME = 'schema:TransformedContent';
-    public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2450'];
+    public const SUPERSEDED_BY = null;
 }
