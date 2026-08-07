@@ -29,7 +29,7 @@ class FlattenerTest extends AbstractJsonLdTestCase
     #[DataProvider('provideInputsAndOutputs')]
     public function testFlatten(string $json, string|JsonLdException $expected, string $filename): void
     {
-        $flattener = new Flattener();
+        $flattener = new Flattener(documentLoader: static::createDocumentLoader());
         $options = static::getOptions($filename);
         $context = self::getContextFor($filename);
 

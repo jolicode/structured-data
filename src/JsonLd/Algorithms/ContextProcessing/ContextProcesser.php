@@ -195,6 +195,7 @@ class ContextProcesser
                     $context->{Keyword::PROTECTED->value} ?? false,
                     $overrideProtected,
                     $remoteContexts,
+                    $this->cache,
                 );
             }
         }

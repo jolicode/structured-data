@@ -13,6 +13,7 @@ namespace Jolicode\JsonLd;
 
 use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
+use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
 use Jolicode\JsonLd\Algorithms\Http\IriResolver;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Audit\Audit;
@@ -48,14 +49,27 @@ class Validator
 
     private array $currentValidators = [];
 
+    private readonly Expander $expander;
+
+    /**
+     * @param DocumentLoaderInterface|null $documentLoader how the "@context" URLs found
+     *                                                     in the audited documents may be
+     *                                                     resolved. Defaults to a loader
+     *                                                     that refuses every host, so no
+     *                                                     request ever leaves the process.
+     *                                                     See the "Loading remote contexts"
+     *                                                     section of the README.
+     */
     public function __construct(
         private readonly ValidationMapper $validationMapper = new ValidationMapper(),
         private readonly JsonLdParser $parser = new JsonLdParser(),
         private readonly RegisteredValidatorsContainer $validatorsContainer = new RegisteredValidatorsContainer(),
         private readonly Extractor $extractor = new Extractor(),
-        private readonly Expander $expander = new Expander(),
+        ?Expander $expander = null,
         private readonly ValidationSnippetCache $snippetCache = new ValidationSnippetCache(),
+        ?DocumentLoaderInterface $documentLoader = null,
     ) {
+        $this->expander = $expander ?? new Expander(documentLoader: $documentLoader);
     }
 
     public function resetValidators(): void

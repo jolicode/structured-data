@@ -29,7 +29,7 @@ class CompactorTest extends AbstractJsonLdTestCase
     #[DataProvider('provideInputsAndOutputs')]
     public function testCompact(string $json, string|JsonLdException $expected, string $filename): void
     {
-        $compactor = new Compactor();
+        $compactor = new Compactor(documentLoader: static::createDocumentLoader());
         $options = static::getOptions($filename);
         $context = self::getContextFor($filename);
 

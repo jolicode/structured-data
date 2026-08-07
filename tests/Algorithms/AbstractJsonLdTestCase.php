@@ -12,6 +12,9 @@
 namespace Jolicode\JsonLd\Tests\Algorithms;
 
 use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
+use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
+use Jolicode\JsonLd\Algorithms\Http\HttpDocumentLoader;
+use Jolicode\JsonLd\Algorithms\Http\RemoteContextPolicy;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
@@ -45,6 +48,19 @@ abstract class AbstractJsonLdTestCase extends TestCase
                 'filename' => $filename,
             ];
         }
+    }
+
+    /**
+     * The W3C test suites reference contexts hosted alongside their fixtures, so
+     * these two hosts are explicitly allowed here. The library default refuses
+     * every host: widening it is always an explicit, per-integration decision.
+     */
+    protected static function createDocumentLoader(): DocumentLoaderInterface
+    {
+        return new HttpDocumentLoader(
+            RemoteContextPolicy::allowHosts('w3c.github.io', 'json-ld.org')
+                ->withTimeouts(timeout: 10.0, maxDuration: 30.0),
+        );
     }
 
     protected static function getDataPath(): string

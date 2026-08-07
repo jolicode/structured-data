@@ -13,11 +13,13 @@ namespace Jolicode\JsonLd\Algorithms\Frame;
 
 use Jolicode\JsonLd\Algorithms\Compact\Compactor;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
+use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextCache;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
 use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
 use Jolicode\JsonLd\Algorithms\Expand\Expander;
 use Jolicode\JsonLd\Algorithms\Flatten\NodeMapGenerator;
-use Jolicode\JsonLd\Algorithms\Http\DocumentLoader;
+use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
+use Jolicode\JsonLd\Algorithms\Http\HttpDocumentLoader;
 use Jolicode\JsonLd\Algorithms\Http\IriResolver;
 use Jolicode\JsonLd\Algorithms\JsonLd\FramingKeyword;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
@@ -87,11 +89,21 @@ class Framer
      */
     private array $frameOptions = self::DEFAULT_FLAGS;
 
+    private readonly ContextProcesser $contextProcesser;
+    private readonly Expander $expander;
+    private readonly Compactor $compactor;
+    private readonly DocumentLoaderInterface $documentLoader;
+
     public function __construct(
-        private readonly ContextProcesser $contextProcesser = new ContextProcesser(),
-        private readonly Expander $expander = new Expander(),
-        private readonly Compactor $compactor = new Compactor(),
+        ?ContextProcesser $contextProcesser = null,
+        ?Expander $expander = null,
+        ?Compactor $compactor = null,
+        ?DocumentLoaderInterface $documentLoader = null,
     ) {
+        $this->documentLoader = $documentLoader ?? new HttpDocumentLoader();
+        $this->contextProcesser = $contextProcesser ?? new ContextProcesser(new ContextCache($this->documentLoader));
+        $this->expander = $expander ?? new Expander(documentLoader: $this->documentLoader);
+        $this->compactor = $compactor ?? new Compactor(documentLoader: $this->documentLoader);
     }
 
     /**
@@ -119,8 +131,7 @@ class Framer
         if (\is_string($element)) {
             $baseUrl = $element;
 
-            $documentLoader = new DocumentLoader($baseUrl);
-            $element = $documentLoader->load();
+            $element = $this->documentLoader->load($baseUrl);
         }
 
         $frameDocument = \is_string($frame) ? json_decode($frame) : $frame;

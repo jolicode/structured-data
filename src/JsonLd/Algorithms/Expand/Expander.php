@@ -12,10 +12,12 @@
 namespace Jolicode\JsonLd\Algorithms\Expand;
 
 use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
+use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextCache;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
 use Jolicode\JsonLd\Algorithms\Exception\ExpansionException;
 use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
-use Jolicode\JsonLd\Algorithms\Http\DocumentLoader;
+use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
+use Jolicode\JsonLd\Algorithms\Http\HttpDocumentLoader;
 use Jolicode\JsonLd\Algorithms\Http\IriResolver;
 use Jolicode\JsonLd\Algorithms\JsonLd\FramingKeyword;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
@@ -33,9 +35,15 @@ class Expander
      */
     public const TOP_LEVEL_ACTIVE_PROPERTY = "\0top-level\0";
 
+    private ContextProcesser $contextProcesser;
+    private DocumentLoaderInterface $documentLoader;
+
     public function __construct(
-        private ContextProcesser $contextProcesser = new ContextProcesser(),
+        ?ContextProcesser $contextProcesser = null,
+        ?DocumentLoaderInterface $documentLoader = null,
     ) {
+        $this->documentLoader = $documentLoader ?? new HttpDocumentLoader();
+        $this->contextProcesser = $contextProcesser ?? new ContextProcesser(new ContextCache($this->documentLoader));
     }
 
     /**
@@ -60,8 +68,7 @@ class Expander
         if (\is_string($element)) {
             $baseUrl = $element;
 
-            $documentLoader = new DocumentLoader($baseUrl);
-            $element = $documentLoader->load();
+            $element = $this->documentLoader->load($baseUrl);
         }
 
         $activeContext = new Context(

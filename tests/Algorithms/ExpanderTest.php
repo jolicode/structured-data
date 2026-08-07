@@ -29,7 +29,7 @@ class ExpanderTest extends AbstractJsonLdTestCase
     #[DataProvider('provideInputsAndOutputs')]
     public function testExpand(string $json, string|JsonLdException $expected, string $filename): void
     {
-        $expander = new Expander();
+        $expander = new Expander(documentLoader: static::createDocumentLoader());
         $options = static::getOptions($filename);
 
         if ($expected instanceof JsonLdException) {

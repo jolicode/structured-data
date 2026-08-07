@@ -31,7 +31,7 @@ class FramerTest extends AbstractJsonLdTestCase
     #[DataProvider('provideInputsAndOutputs')]
     public function testFrame(string $json, string|JsonLdException $expected, string $filename): void
     {
-        $framer = new Framer();
+        $framer = new Framer(documentLoader: static::createDocumentLoader());
         $options = static::getOptions($filename);
         $frame = self::getFrameFor($filename);
 

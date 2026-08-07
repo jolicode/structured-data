@@ -12,6 +12,7 @@
 namespace Jolicode\JsonLd\Algorithms\TermDefinition;
 
 use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
+use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextCache;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
 use Jolicode\JsonLd\Algorithms\Exception\ContextProcessingException;
 use Jolicode\JsonLd\Algorithms\Exception\TermDefinitionCreationException;
@@ -51,6 +52,7 @@ class TermDefinitionCreator
         bool $protected = false,
         bool $overrideProtected = false,
         array &$remoteContexts = [],
+        ?ContextCache $cache = null,
     ): void {
         $simpleTerm = false;
         $termHasSlash = str_contains($term, '/');
@@ -192,7 +194,7 @@ class TermDefinitionCreator
 
         // 21
         if (property_exists($value, Keyword::CONTEXT->value)) {
-            self::handleContextValue($activeContext, $value, $definition, $value, $baseUrl, $remoteContexts);
+            self::handleContextValue($activeContext, $value, $definition, $value, $baseUrl, $remoteContexts, $cache);
         }
 
         // 22
@@ -602,6 +604,7 @@ class TermDefinitionCreator
         mixed $value,
         ?string $baseUrl,
         array &$remoteContexts,
+        ?ContextCache $cache = null,
     ): void {
         // 21.1
         if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
@@ -610,7 +613,7 @@ class TermDefinitionCreator
 
         // 21.2
         $context = $localContext->{Keyword::CONTEXT->value};
-        $processer = new ContextProcesser();
+        $processer = new ContextProcesser($cache ?? new ContextCache());
 
         // 21.4
         // We swap 21.3 and 21.4 because the $activeContext needs the $baseUrl.

@@ -12,7 +12,8 @@
 namespace Jolicode\JsonLd\Algorithms\ContextProcessing;
 
 use Jolicode\JsonLd\Algorithms\Exception\ContextProcessingException;
-use Jolicode\JsonLd\Algorithms\Http\DocumentLoader;
+use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
+use Jolicode\JsonLd\Algorithms\Http\HttpDocumentLoader;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinition;
 
@@ -54,6 +55,23 @@ final class ContextCache
 
     /** @var array<string, \stdClass|array<mixed>|string> */
     private array $alreadyLoadedDocuments = [];
+
+    private readonly DocumentLoaderInterface $documentLoader;
+
+    public function __construct(?DocumentLoaderInterface $documentLoader = null)
+    {
+        $this->documentLoader = $documentLoader ?? new HttpDocumentLoader();
+    }
+
+    /**
+     * Drops the process-wide processed context cache.
+     *
+     * @internal for test isolation only
+     */
+    public static function resetProcessedRemoteContexts(): void
+    {
+        self::$processedRemoteContexts = [];
+    }
 
     public function canonicalizeRemoteContextUrl(string $resolvedContext): string
     {
@@ -120,19 +138,10 @@ final class ContextCache
             return self::$schemaOrgContext;
         }
 
-        $documentLoader = new DocumentLoader($url);
-        $document = $documentLoader->load();
+        $document = $this->documentLoader->load($url);
 
         if (!property_exists($document, Keyword::CONTEXT->value)) {
             throw new ContextProcessingException('invalid remote context');
-        }
-
-        if (
-            null === $document->{Keyword::CONTEXT->value}
-            && property_exists($document, 'statusCode')
-            && property_exists($document, 'content')
-        ) {
-            throw new ContextProcessingException(\sprintf('loading remote context failed. Response status code is : %d. Response content is : %s', $document->{'statusCode'}, $document->{'content'}));
         }
 
         $loadedContext = $document->{Keyword::CONTEXT->value};
@@ -246,8 +255,19 @@ final class ContextCache
             && Context::PROCESSING_MODE_11 === $context->processingMode;
     }
 
+    /**
+     * The key is namespaced by the document loader, because the cache below is
+     * process-wide: without it, a context resolved under a permissive loader would
+     * be served to a restrictive one, bypassing its policy entirely.
+     */
     private function buildProcessedContextCacheKey(Context $context, string $resolvedContext): string
     {
-        return \sprintf('%s|%s|%s', $resolvedContext, $context->processingMode ?? '', $context->baseUrl ?? '');
+        return \sprintf(
+            '%s|%s|%s|%s',
+            $this->documentLoader->getCacheNamespace(),
+            $resolvedContext,
+            $context->processingMode ?? '',
+            $context->baseUrl ?? '',
+        );
     }
 }

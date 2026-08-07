@@ -11,6 +11,9 @@
 
 namespace Jolicode\JsonLd\Tests\Validation;
 
+use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
+use Jolicode\JsonLd\Algorithms\Http\HttpDocumentLoader;
+use Jolicode\JsonLd\Algorithms\Http\RemoteContextPolicy;
 use Jolicode\JsonLd\Audit\AuditOptions;
 use Jolicode\JsonLd\Validator;
 use PHPUnit\Framework\TestCase;
@@ -22,7 +25,21 @@ abstract class AbstractValidatorTestCase extends TestCase
 
     protected function setUp(): void
     {
-        $this->validator = new Validator();
+        $this->validator = new Validator(documentLoader: static::createDocumentLoader());
+    }
+
+    /**
+     * A handful of the schema.org examples pull a context from outside schema.org
+     * itself. The library default refuses every host, so the suite widens it to
+     * exactly the hosts those fixtures need, and to nothing else.
+     */
+    protected static function createDocumentLoader(): DocumentLoaderInterface
+    {
+        return new HttpDocumentLoader(
+            RemoteContextPolicy::allowHosts('schema.org', 'health-lifesci.schema.org', 'www.w3.org')
+                ->withSchemes('http', 'https')
+                ->withTimeouts(timeout: 10.0, maxDuration: 30.0),
+        );
     }
 
     protected function fixture(string $path): string

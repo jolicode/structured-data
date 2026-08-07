@@ -15,6 +15,7 @@ use Jolicode\JsonLd\Algorithms;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextCache;
 use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
+use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
 use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
 use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinition;
@@ -32,7 +33,7 @@ class ContextProcesserTest extends AbstractJsonLdTestCase
     #[DataProvider('provideInputsAndOutputs')]
     public function testProcessContext(string $json, string $expected, string $filename): void
     {
-        $processer = new ContextProcesser();
+        $processer = new ContextProcesser(new ContextCache(static::createDocumentLoader()));
         $actual = new \stdClass();
         $extractedContext = $processer->extractContext(json_decode($json));
 
@@ -51,33 +52,37 @@ class ContextProcesserTest extends AbstractJsonLdTestCase
 
     public function testCachedRemoteContextReturnsIsolatedCopies(): void
     {
-        $path = tempnam(sys_get_temp_dir(), 'jsonld-context-');
+        $loader = new class implements DocumentLoaderInterface {
+            public function load(string $url): \stdClass
+            {
+                return (object) json_decode('{"@context":{"name":"https://schema.org/name"}}');
+            }
 
-        if (false === $path) {
-            self::fail('Failed to create a temporary context file.');
-        }
+            public function getCacheNamespace(): string
+            {
+                // Own namespace: the processed context cache is process-wide and
+                // the test execution order is random.
+                return 'test:isolated-copies';
+            }
+        };
 
-        file_put_contents($path, '{"@context":{"name":"https://schema.org/name"}}');
+        $processer = new ContextProcesser(new ContextCache($loader));
+        $url = 'https://tests.invalid/isolated-copies/context.jsonld';
+        $baseContext = static fn (): Context => new Context(baseUrl: 'https://tests.invalid/');
 
-        try {
-            $processer = new ContextProcesser();
+        $first = $processer->processContext($baseContext(), $url);
+        $first->termDefinitions['name'] = new TermDefinition(
+            prefixFlag: false,
+            protected: false,
+            reverseProperty: false,
+            iriMapping: 'https://example.com/mutated',
+        );
 
-            $first = $processer->processContext(new Context(), $path);
-            $first->termDefinitions['name'] = new TermDefinition(
-                prefixFlag: false,
-                protected: false,
-                reverseProperty: false,
-                iriMapping: 'https://example.com/mutated',
-            );
+        $second = $processer->processContext($baseContext(), $url);
 
-            $second = $processer->processContext(new Context(), $path);
-
-            $this->assertSame('https://schema.org/name', $second->termDefinitions['name']->iriMapping);
-            $this->assertNotSame($first, $second);
-            $this->assertNotSame($first->termDefinitions['name'], $second->termDefinitions['name']);
-        } finally {
-            @unlink($path);
-        }
+        $this->assertSame('https://schema.org/name', $second->termDefinitions['name']->iriMapping);
+        $this->assertNotSame($first, $second);
+        $this->assertNotSame($first->termDefinitions['name'], $second->termDefinitions['name']);
     }
 
     public function testSchemaOrgStaticContextIsUsedWhenBaseUrlIsSet(): void
