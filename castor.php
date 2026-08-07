@@ -12,6 +12,7 @@
 use Castor\Attribute\AsArgument;
 use Castor\Attribute\AsTask;
 
+use function Castor\http_request;
 use function Castor\import;
 use function Castor\io;
 use function Castor\run;
@@ -27,6 +28,7 @@ use Jolicode\JsonLd\Mapper\MappedType;
 use Jolicode\JsonLd\Validator;
 use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -170,6 +172,34 @@ function validate(
     return runValidation($fileOrUrl, $specificValidator, true);
 }
 
+/**
+ * Resolves the CLI argument into the document to validate.
+ *
+ * The library deliberately does not do this: it never guesses whether a string is
+ * a URL, a file path, or a document. Here the input comes from the operator running
+ * the command, not from an untrusted source, so both are safe to resolve.
+ *
+ * @throws RuntimeException when the document cannot be read
+ */
+function resolveInput(string $fileOrUrl): string
+{
+    if (preg_match('#^https?://#i', $fileOrUrl)) {
+        try {
+            return http_request('GET', $fileOrUrl)->getContent();
+        } catch (ExceptionInterface $exception) {
+            throw new RuntimeException(sprintf('The URL "%s" could not be fetched: %s', $fileOrUrl, $exception->getMessage()), previous: $exception);
+        }
+    }
+
+    $content = is_file($fileOrUrl) ? @file_get_contents($fileOrUrl) : false;
+
+    if (false === $content) {
+        throw new RuntimeException(sprintf('The file "%s" could not be read.', $fileOrUrl));
+    }
+
+    return $content;
+}
+
 function runValidation(string $fileOrUrl, false|string $specificValidator, bool $withDetails): int
 {
     $validator = new Validator();
@@ -188,7 +218,15 @@ function runValidation(string $fileOrUrl, false|string $specificValidator, bool 
         }
     }
 
-    $audit = $validator->audit($fileOrUrl);
+    try {
+        $document = resolveInput($fileOrUrl);
+    } catch (RuntimeException $exception) {
+        io()->error($exception->getMessage());
+
+        return Command::INVALID;
+    }
+
+    $audit = $validator->audit($document);
     $types = $audit->getTypes();
     $typesCount = count($types);
 

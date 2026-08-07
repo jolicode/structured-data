@@ -126,7 +126,13 @@ class WorkerReuseTest extends TestCase
      */
     private function diagnose(Validator $validator, string $fixture): array
     {
-        $audit = $validator->audit($fixture);
+        $document = file_get_contents($fixture);
+
+        if (false === $document) {
+            throw new \RuntimeException(\sprintf('The fixture "%s" could not be read.', $fixture));
+        }
+
+        $audit = $validator->audit($document);
 
         /** @var array<string> $messages */
         $messages = $audit->getDiagnostic(new AuditOptions());

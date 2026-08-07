@@ -461,7 +461,7 @@ class HtmlValidationPipelineBench
      */
     public function benchHtmlHomepageFullProcess(): void
     {
-        $this->validator->audit(self::FIXTURES_BASE_DIR . '/benchmark/homepage-sample.html');
+        $this->validator->audit($this->documents[self::SCENARIO_HOMEPAGE]);
     }
 
     /**
@@ -473,7 +473,7 @@ class HtmlValidationPipelineBench
      */
     public function benchHtmlHeavyCourseFullProcess(): void
     {
-        $this->validator->audit(self::FIXTURES_BASE_DIR . '/benchmark/jolicampus-formations-symfony.html');
+        $this->validator->audit($this->documents[self::SCENARIO_HEAVY]);
     }
 
     /**
@@ -485,7 +485,7 @@ class HtmlValidationPipelineBench
      */
     public function benchHtmlBlogListingFullProcess(): void
     {
-        $this->validator->audit(self::FIXTURES_BASE_DIR . '/benchmark/listing-sample.html');
+        $this->validator->audit($this->documents[self::SCENARIO_LISTING]);
     }
 
     /** @noinspection PhpUnused */

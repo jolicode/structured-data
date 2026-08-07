@@ -29,10 +29,29 @@ To validate a JSON-LD document, you must use the `Jolicode\JsonLd\Validator` cla
 
 ### Accepted inputs
 
-You can validate:
-- a direct (json) string input
-- an absolute URL
-- a relative file
+`audit()` takes **the document itself**, as a string — never a URL, never a file path.
+
+This library deliberately does not guess what a string is, and never fetches anything on
+your behalf. Guessing is a security hazard: an application that forwards user input to a
+validator would silently offer an attacker a way to reach its internal network
+(`http://127.0.0.1:9200/`, cloud metadata endpoints), or to read local files through a
+path or a stream wrapper (`/var/www/.env`, `file://`, `phar://`).
+
+Whether a document may be fetched, from where, and under which restrictions, is a decision
+only your application can make. So it makes it:
+
+```php
+// From a local file - the path comes from you, not from a user
+$document = file_get_contents('/path/to/document.html');
+
+// From the network - your HTTP client, your allow-list, your timeouts
+$document = $httpClient->request('GET', $trustedUrl)->getContent();
+
+$audit = $validator->audit($document);
+```
+
+The same rule applies to the `@context` URLs found *inside* a document: see
+[Loading remote contexts](#loading-remote-contexts).
 
 The validator accepts the following data formats:
 - json-ld
@@ -61,7 +80,8 @@ use Jolicode\JsonLd\Validator;
 
 $validator = new Validator();
 
-$audit = $validator->audit('https://jolicode.com/blog/castor-a-journey-across-the-sea-of-task-runners');
+$document = file_get_contents('/path/to/a-page.html');
+$audit = $validator->audit($document);
 
 if (!$audit->isValid()) {
   echo 'The provided document contains non-valid schema.org data!';
@@ -88,7 +108,7 @@ use Jolicode\Vocabularies\Validators\Google\GoogleValidator
 $validator = new Validator();
 $validator->setValidator(GoogleValidator::VALIDATOR_NAME);
 
-$validator->audit('...');
+$validator->audit($document);
 ```
 
 #### Advanced Usage

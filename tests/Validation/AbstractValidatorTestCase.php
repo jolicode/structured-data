@@ -25,8 +25,19 @@ abstract class AbstractValidatorTestCase extends TestCase
         $this->validator = new Validator();
     }
 
+    protected function fixture(string $path): string
+    {
+        $content = file_get_contents($path);
+
+        if (false === $content) {
+            throw new \RuntimeException(\sprintf('The fixture "%s" could not be read.', $path));
+        }
+
+        return $content;
+    }
+
     protected function assertValidationResultMatchesExpectations(
-        string $filePath,
+        string $document,
         bool $isValid,
         array $expectedErrors,
         string $specificValidator,
@@ -34,7 +45,7 @@ abstract class AbstractValidatorTestCase extends TestCase
         array $expectedDocumentIssues = [],
     ): void {
         $this->validator->setValidator($specificValidator);
-        $audit = $this->validator->audit($filePath);
+        $audit = $this->validator->audit($document);
 
         // For actual validity check, see if there are errors (warnings alone don't make it invalid)
         $actualIsValid = $audit->isValid();
@@ -117,7 +128,7 @@ abstract class AbstractValidatorTestCase extends TestCase
             sort($expectedDocumentIssues);
 
             yield $file->getFilename() => [
-                $file->getPathname(),
+                $file->getContents(),
                 [] === $expectedErrors,
                 $expectedErrors,
                 $expectedWarnings,

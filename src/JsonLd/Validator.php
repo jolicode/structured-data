@@ -36,8 +36,8 @@ class Validator
 {
     /**
      * Maximum number of extracted documents kept in memory. The cache is keyed by
-     * the raw input, so without a bound a long-lived process auditing many distinct
-     * documents would grow indefinitely.
+     * the document itself, so without a bound a long-lived process auditing many
+     * distinct documents would grow indefinitely.
      */
     private const EXTRACTED_ELEMENTS_CACHE_MAX_ENTRIES = 32;
 
@@ -84,9 +84,12 @@ class Validator
      * This method returns an audit report for the schema.org types found in the
      * provided document, along with their properties, errors, and warnings.
      *
-     * If required, it will make HTTP requests.
+     * The $document argument is the document itself, not a URL nor a file path:
+     * this library never guesses what an input is, and never fetches it for you.
+     * Deciding what may be fetched, and under which restrictions, belongs to the
+     * application - see the "Accepted inputs" section of the README.
      */
-    public function audit(string $input): Audit
+    public function audit(string $document): Audit
     {
         $this->validationMapper->reset();
 
@@ -94,7 +97,7 @@ class Validator
             $this->resetValidators();
         }
 
-        $extractCacheKey = $input;
+        $extractCacheKey = $document;
         $documentIssues = [];
 
         if (isset($this->extractedElementsCache[$extractCacheKey])) {
@@ -102,7 +105,7 @@ class Validator
             $documentIssues = $this->extractedElementsCache[$extractCacheKey]['documentIssues'];
         } else {
             try {
-                $elements = $this->extractor->extract($input);
+                $elements = $this->extractor->extract($document);
                 $documentIssues = $this->extractor->getDocumentIssues();
             } catch (\RuntimeException $exception) {
                 return $this->createInvalidDocumentAudit($exception->getMessage(), 0, 'extractor');

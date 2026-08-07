@@ -27,14 +27,14 @@ class GoogleValidatorTest extends AbstractValidatorTestCase
 {
     #[DataProvider('provideGoogleFiles')]
     public function testGoogleValidator(
-        string $filePath,
+        string $document,
         bool $isValid,
         array $expectedErrors,
         array $expectedWarnings = [],
         array $expectedDocumentIssues = [],
     ): void {
         $this->assertValidationResultMatchesExpectations(
-            $filePath,
+            $document,
             $isValid,
             $expectedErrors,
             GoogleValidator::class,
@@ -66,7 +66,7 @@ class GoogleValidatorTest extends AbstractValidatorTestCase
     public function testItClassifiesInvalidRequiredEnumValueAsError(): void
     {
         $this->validator->setValidator(GoogleValidator::class);
-        $audit = $this->validator->audit(__DIR__ . '/../../../resources/schema.org/examples/https-schema-org-de234a27a5e64008c7bfb7ccb04d9504.jsonld');
+        $audit = $this->validator->audit($this->fixture(__DIR__ . '/../../../resources/schema.org/examples/https-schema-org-de234a27a5e64008c7bfb7ccb04d9504.jsonld'));
 
         $errors = $audit->getDiagnostic(new AuditOptions(
             severity: AuditOptions::SEVERITY_ERROR,
@@ -81,7 +81,7 @@ class GoogleValidatorTest extends AbstractValidatorTestCase
     public function testItClassifiesInvalidRecommendedEnumValueAsWarning(): void
     {
         $this->validator->setValidator(GoogleValidator::class);
-        $audit = $this->validator->audit(__DIR__ . '/../fixtures/google/softwareapplication-invalid-category.jsonld');
+        $audit = $this->validator->audit($this->fixture(__DIR__ . '/../fixtures/google/softwareapplication-invalid-category.jsonld'));
 
         $warnings = $audit->getDiagnostic(new AuditOptions(
             severity: AuditOptions::SEVERITY_WARNING,
@@ -113,7 +113,7 @@ class GoogleValidatorTest extends AbstractValidatorTestCase
     {
         $this->validator->setValidator(GoogleValidator::class);
 
-        $audit = $this->validator->audit(__DIR__ . '/../fixtures/google/softwareapplication-invalid-category.jsonld');
+        $audit = $this->validator->audit($this->fixture(__DIR__ . '/../fixtures/google/softwareapplication-invalid-category.jsonld'));
         $diagnosticJson = $audit->getDiagnostic(new AuditOptions(
             severity: AuditOptions::SEVERITY_WARNING,
             jsonEncode: true,
@@ -134,7 +134,7 @@ class GoogleValidatorTest extends AbstractValidatorTestCase
     {
         $this->validator->setValidator(GoogleValidator::class);
 
-        $audit = $this->validator->audit(__DIR__ . '/../fixtures/google/softwareapplication-invalid-category.jsonld');
+        $audit = $this->validator->audit($this->fixture(__DIR__ . '/../fixtures/google/softwareapplication-invalid-category.jsonld'));
         $diagnosticJson = $audit->getDiagnostic(new AuditOptions(
             severity: AuditOptions::SEVERITY_WARNING,
             asObject: true,
@@ -153,7 +153,7 @@ class GoogleValidatorTest extends AbstractValidatorTestCase
     public function testRootArrayTypeEntryPassesWhenOneCandidateFails(): void
     {
         $this->assertDocumentIsValidForValidator(
-            __DIR__ . '/../fixtures/google/course-multiple-types-one-candidate-fails.jsonld',
+            $this->fixture(__DIR__ . '/../fixtures/google/course-multiple-types-one-candidate-fails.jsonld'),
             GoogleValidator::class,
         );
     }
@@ -161,7 +161,7 @@ class GoogleValidatorTest extends AbstractValidatorTestCase
     public function testNestedArrayTypeEntryPassesWhenOneTargetCandidateFails(): void
     {
         $this->assertDocumentIsValidForValidator(
-            __DIR__ . '/../fixtures/google/carousel-all-in-one-course-multiple-types-item.jsonld',
+            $this->fixture(__DIR__ . '/../fixtures/google/carousel-all-in-one-course-multiple-types-item.jsonld'),
             GoogleValidator::class,
         );
     }

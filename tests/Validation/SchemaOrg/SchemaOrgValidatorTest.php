@@ -27,14 +27,14 @@ class SchemaOrgValidatorTest extends AbstractValidatorTestCase
 {
     #[DataProvider('provideSchemaOrgFiles')]
     public function testSchemaOrgValidator(
-        string $filePath,
+        string $document,
         bool $isValid,
         array $expectedErrors,
         array $expectedWarnings = [],
         array $expectedDocumentIssues = [],
     ): void {
         $this->assertValidationResultMatchesExpectations(
-            $filePath,
+            $document,
             $isValid,
             $expectedErrors,
             SchemaOrgValidator::class,
@@ -107,14 +107,14 @@ class SchemaOrgValidatorTest extends AbstractValidatorTestCase
 
     #[DataProvider('provideSchemaOrgExamples')]
     public function testSchemaOrgExamples(
-        string $filePath,
+        string $document,
         bool $isValid = true,
         array $expectedErrors = [],
         array $expectedWarnings = [],
         array $expectedDocumentIssues = [],
     ): void {
         $this->assertValidationResultMatchesExpectations(
-            $filePath,
+            $document,
             $isValid,
             $expectedErrors,
             SchemaOrgValidator::class,
