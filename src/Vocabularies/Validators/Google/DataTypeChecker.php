@@ -238,7 +238,7 @@ final class DataTypeChecker
 
     private function hasIncorrectNumber(mixed $givenValue): false|string
     {
-        if (\is_int($givenValue) || \is_float($givenValue)) {
+        if (\is_int($givenValue) || \is_float($givenValue) || (\is_string($givenValue) && is_numeric($givenValue))) {
             return false;
         }
 
@@ -254,7 +254,7 @@ final class DataTypeChecker
 
     private function hasIncorrectInteger(mixed $givenValue): false|string
     {
-        if (\is_int($givenValue)) {
+        if (\is_int($givenValue) || (\is_string($givenValue) && preg_match('/^-?\d+$/', $givenValue))) {
             return false;
         }
 

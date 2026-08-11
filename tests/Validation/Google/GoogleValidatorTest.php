@@ -166,6 +166,29 @@ class GoogleValidatorTest extends AbstractValidatorTestCase
         );
     }
 
+    public function testItAcceptsNumericStringsForNumberAndIntegerDataTypes(): void
+    {
+        $softwareApplicationDocument = file_get_contents(__DIR__ . '/../fixtures/google/softwareapplication.jsonld');
+        $this->assertNotFalse($softwareApplicationDocument);
+
+        $softwareApplicationDocument = str_replace('"price": 1', '"price": "1"', $softwareApplicationDocument);
+
+        $this->assertDocumentIsValidForValidator(
+            $softwareApplicationDocument,
+            GoogleValidator::class,
+        );
+
+        $breadcrumbDocument = file_get_contents(__DIR__ . '/../fixtures/google/breadcrumb.jsonld');
+        $this->assertNotFalse($breadcrumbDocument);
+
+        $breadcrumbDocument = str_replace('"position": 1', '"position": "1"', $breadcrumbDocument);
+
+        $this->assertDocumentIsValidForValidator(
+            $breadcrumbDocument,
+            GoogleValidator::class,
+        );
+    }
+
     public static function provideGoogleFiles(): \Generator
     {
         return self::provideData(

@@ -72,9 +72,7 @@
         "documentIssues": []
     },
     "breadcrumb-invalid-position-type.jsonld": {
-        "errors": [
-            "[Google error] itemListElement.position: Incorrect type value: value of type \"Integer\" expected, but \"Text\" was given (\"1\")."
-        ],
+        "errors": [],
         "warnings": [],
         "documentIssues": []
     },
@@ -472,9 +470,7 @@
         "documentIssues": []
     },
     "recipe-calories-without-yield.jsonld": {
-        "errors": [
-            "[Google error] aggregateRating.ratingCount: Incorrect type value: value of type \"Integer\" expected, but \"Text\" was given (\"18\")."
-        ],
+        "errors": [],
         "warnings": [
             "[Google warning] Recipe: Advisory: when \"nutrition.calories\" is provided, include \"recipeYield\" so calories are interpreted per serving."
         ],
@@ -488,9 +484,7 @@
         "documentIssues": []
     },
     "recipe.jsonld": {
-        "errors": [
-            "[Google error] aggregateRating.ratingCount: Incorrect type value: value of type \"Integer\" expected, but \"Text\" was given (\"18\")."
-        ],
+        "errors": [],
         "warnings": [],
         "documentIssues": []
     },
@@ -514,9 +508,7 @@
         "documentIssues": []
     },
     "softwareapplication-invalid-price-type.jsonld": {
-        "errors": [
-            "[Google error] offers.price: Incorrect type value: value of type \"Number\" expected, but \"Text\" was given (\"1\")."
-        ],
+        "errors": [],
         "warnings": [],
         "documentIssues": []
     },
