@@ -5,10 +5,13 @@
     "source": {
         "directories": [
             "src/Vocabularies/Validators",
-            "src/JsonLd/Mapper"
+            "src/Mapper"
         ]
     },
     "timeout": 30,
+    // Floor for the covered-code mutation score, kept a little below the current
+    // value (~60%) so the weekly run flags regressions without flapping.
+    "minCoveredMsi": 55,
     "logs": {
         "text": "var/cache/infection/infection.log",
         "summary": "var/cache/infection/summary.log"
