@@ -9,10 +9,10 @@ You should not normally need to read these files directly — they are primarily
 First, you will need to check if Google made adjustments to its documentation. This is very likely. Run:
 
 ```bash
-castor google:generation:crawle
+castor google:generation:crawl-google
 ```
 
-This will crawle Google and try to discover all the Google types.
+This will crawl Google and try to discover all the Google types.
 The first checked source will be [the search gallery](https://developers.google.com/search/docs/appearance/structured-data/search-gallery). This lists most of the Google types.
 However, this list alone cannot be trusted. So, then we will search through all the links pointing to a possible structured-data type.
 It will then update the manifest file, which holds informations about all the structured-data Google URLs this project knows about, along with their curent status.

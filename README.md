@@ -1,31 +1,53 @@
-## JSON-LD and schema.org PHP library
+# Structured Data — JSON-LD & schema.org for PHP
 
-This repository provides several tools to work with [JSON-LD](https://json-ld.org/) and [schema.org](https://schema.org/) in PHP.
-It includes :
+[![CI](https://github.com/jolicode/structured-data/actions/workflows/ci.yml/badge.svg)](https://github.com/jolicode/structured-data/actions/workflows/ci.yml)
+[![Latest version](https://img.shields.io/packagist/v/jolicode/structured-data.svg)](https://packagist.org/packages/jolicode/structured-data)
+[![PHP version](https://img.shields.io/packagist/php-v/jolicode/structured-data.svg)](https://packagist.org/packages/jolicode/structured-data)
+[![License](https://img.shields.io/packagist/l/jolicode/structured-data.svg)](LICENSE)
+
+This library provides several tools to work with [JSON-LD](https://json-ld.org/) and [schema.org](https://schema.org/) in PHP.
+It includes:
 - an implementation of the W3C JSON-LD algorithms described in the [JSON-LD 1.1 Processing Algorithms and API Recommendation](https://www.w3.org/TR/json-ld-api) published on July 16th, 2020.
 - a Schema.org validator.
 - a Google validator, able to tell if your JSON-LD is eligible for [Google Rich Results](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data).
+- extraction of JSON-LD, microdata and RDFa from HTML documents.
+
+## Installation
+
+Install the library with [Composer](https://getcomposer.org/):
+
+```bash
+composer require jolicode/structured-data
+```
+
+Resolving remote `@context` documents is **off by default** and needs no extra
+dependency. If you opt into it (see [Loading remote contexts](#loading-remote-contexts)),
+also install an HTTP client:
+
+```bash
+composer require symfony/http-client
+```
 
 ## Dependencies
 
 This library requires:
 
 - PHP >= 8.4, with the `dom`, `json` and `libxml` extensions
+- (optional, only for remote `@context` resolution) an implementation of `symfony/http-client-contracts`, such as [`symfony/http-client`](https://symfony.com/doc/current/http_client.html)
 - (optional) the PHP task runner [Castor](https://github.com/jolicode/castor/), used for the tooling and the CLI interface. The development tooling additionally needs the [ZipArchive PHP extension](https://www.php.net/manual/en/class.ziparchive.php) to download the W3C test suites.
 
-## Booting
+## Working on the library
 
-Install the PHP dependencies with Castor:
+Clone the repository, then install the library's dependencies and the QA tooling:
 
 ```bash
-castor install
+composer install   # the library's own dependencies (Composer, not Castor)
+castor install     # the QA tooling: php-cs-fixer, phpstan, phpunit, phpbench, infection
 ```
-
-That's it! :)
 
 ## Validating a JSON-LD document
 
-To validate a JSON-LD document, you must use the `Jolicode\JsonLd\Validator` class.
+To validate a JSON-LD document, you must use the `JoliCode\StructuredData\Validator` class.
 
 ### Accepted inputs
 
@@ -63,7 +85,7 @@ The validator accepts the following data formats:
 #### Basic usage
 
 The validator exposes a single validation method: `audit()`.
-It returns a `Jolicode\JsonLd\Audit\Audit` object holding the validation result.
+It returns a `JoliCode\StructuredData\Audit\Audit` object holding the validation result.
 
 To quickly check the result, use either of `isValid()` or `isFullyValid()`:
 - `isValid` returns true if no errors are detected
@@ -76,7 +98,7 @@ To access the error messages themselves, use the `getDiagnostic()` method, which
 A pretty classic usage example would be doing something like this:
 
 ```php
-use Jolicode\JsonLd\Validator;
+use JoliCode\StructuredData\Validator;
 
 $validator = new Validator();
 
@@ -102,8 +124,8 @@ if (!$audit->isValid()) {
 
 If you are only interested by the results of one validator, you can call `setValidator` first to set the desired validator:
 ```php
-use Jolicode\JsonLd\Validator;
-use Jolicode\Vocabularies\Validators\Google\GoogleValidator
+use JoliCode\StructuredData\Validator;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\GoogleValidator;
 
 $validator = new Validator();
 $validator->setValidator(GoogleValidator::VALIDATOR_NAME);
@@ -113,12 +135,10 @@ $validator->audit($document);
 
 #### Advanced Usage
 
-The `getDiagnostic()` method accepts an optional parameter: a `Jolicode\JsonLd\Audit\AuditOptions` object, allowing you to filter or group the result, or to have a different return format. See the PHPDoc on `Jolicode\JsonLd\Audit\AuditOptions` for more details.
+The `getDiagnostic()` method accepts an optional parameter: a `JoliCode\StructuredData\Audit\AuditOptions` object, allowing you to filter or group the result, or to have a different return format. See the PHPDoc on `JoliCode\StructuredData\Audit\AuditOptions` for more details.
 
 Finally, if you want to access the full parsed PHP tree, use `getTypes()` and inspect the underlying `MappedType` objects directly. These are low-level objects, but they are the most detailed informations you can get, and they respect the inheritance of the document.
-To have an idea of what you can do with these objects, check the output of the `validate()` castor command, or our demo website.
-
-### Reading the results
+To have an idea of what you can do with these objects, check the output of the `validate()` castor command.
 
 ### Command Line Interface
 
@@ -130,6 +150,11 @@ Both will return an explicit process exit code for scripting/CI usage.
 castor check <file-or-url>
 castor validate <file-or-url>
 ```
+
+Unlike the `Validator::audit()` API, these CLI commands **do** accept a file path or a
+URL, and will read or fetch it for you. That is safe here precisely because the argument
+comes from the operator running the command, not from a document being processed — the
+distinction the [Accepted inputs](#accepted-inputs) section is about.
 
 You can validate using a specific validator:
 
@@ -154,14 +179,18 @@ The currently available algorithms are:
 - [x] [Flattening](https://www.w3.org/TR/json-ld11-api/#flattening-algorithm)
 - [x] [Framing](https://www.w3.org/TR/json-ld11-framing/#framing-algorithm)
 
-Each algorithm is validated against the official W3C test suites ([json-ld-api](https://github.com/w3c/json-ld-api) and [json-ld-framing](https://github.com/w3c/json-ld-framing)).
+### Conformance
 
-To use them, initialize a new instance of the `Jolicode\JsonLd\Algorithms\Expand\Expander`, `Jolicode\JsonLd\Algorithms\Flatten\Flattener`, `Jolicode\JsonLd\Algorithms\Compact\Compactor` or `Jolicode\JsonLd\Algorithms\Frame\Framer` classes, and pass them the JSON-LD document you want to convert.
+Each algorithm is validated against the official W3C test suites ([json-ld-api](https://github.com/w3c/json-ld-api) and [json-ld-framing](https://github.com/w3c/json-ld-framing)), pinned to a known-good upstream commit and re-run weekly against `main` to surface drift.
+
+The full suites pass, covering expansion, compaction, flattening and framing. The only skipped fixtures are a handful that target JSON-LD 1.0-specific behaviour (declared `specVersion: json-ld-1.0` in the upstream manifest), which this library does not implement; each skip is documented in the corresponding test. Serialization to and from RDF (`toRdf` / `fromRdf`) is out of scope and not implemented.
+
+To use them, initialize a new instance of the `JoliCode\StructuredData\JsonLd\Algorithms\Expand\Expander`, `JoliCode\StructuredData\JsonLd\Algorithms\Flatten\Flattener`, `JoliCode\StructuredData\JsonLd\Algorithms\Compact\Compactor` or `JoliCode\StructuredData\JsonLd\Algorithms\Frame\Framer` classes, and pass them the JSON-LD document you want to convert.
 
 So, to expand a JSON-LD document you would need to do the following:
 
 ```php
-use Jolicode\JsonLd\Algorithms\Expand\Expander;
+use JoliCode\StructuredData\JsonLd\Algorithms\Expand\Expander;
 
 $jsonString = '{
   "@context": "https://schema.org",
@@ -194,8 +223,8 @@ If you want a PHP object instead of a JSON string, set the `encodeResult` parame
 You can also pass a `ProcessorOptions` object holding the [JSON-LD options](https://www.w3.org/TR/json-ld-api/#the-jsonldoptions-type) if you want to modify the default behavior of the algorithms:
 
 ```php
-use Jolicode\JsonLd\Algorithms\Expand\Expander;
-use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms\Expand\Expander;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 
 $jsonString = '{
   "@context": "https://schema.org",
@@ -256,9 +285,9 @@ If your documents legitimately reference contexts you trust, allow those hosts, 
 nothing else:
 
 ```php
-use Jolicode\JsonLd\Algorithms\Http\HttpDocumentLoader;
-use Jolicode\JsonLd\Algorithms\Http\RemoteContextPolicy;
-use Jolicode\JsonLd\Validator;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\HttpDocumentLoader;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\RemoteContextPolicy;
+use JoliCode\StructuredData\Validator;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\NoPrivateNetworkHttpClient;
 
@@ -284,14 +313,22 @@ $expander = new Expander(documentLoader: new HttpDocumentLoader($policy, $httpCl
 ```
 
 Host matching is exact, so allowing `schema.org` does not allow `evil.schema.org.example`.
-Only `http` and `https` may ever be allowed, and `http` requires an explicit
-`withSchemes('http', 'https')`. The policy is re-checked on every hop: the URL you asked
-for, each alternate location, each `Link` header, and the URL a response was ultimately
-served from once redirects were followed.
+A URL carrying userinfo (`https://user:pass@schema.org/`) or a non-default port
+(`https://schema.org:8080/`) is refused. Only `http` and `https` may ever be allowed, and
+`http` requires an explicit `withSchemes('http', 'https')`. The policy is re-checked on
+every hop: the URL you asked for, **each intermediate redirect**, each alternate location,
+each `Link` header, and the URL a response was ultimately served from. As an additional
+barrier against a hostile DNS answer pointing an allowed host at an internal address, wrap
+your client in `NoPrivateNetworkHttpClient` as shown above.
+
+The `@context` URL is not the only document-controlled value that can reach the loader:
+`Expander::expand()` (and, through it, `Validator::audit()`) also accepts a bare IRI as its
+input and will resolve it. That path is bound by the very same policy, so the default
+deny-all loader refuses it too — but keep it in mind when you widen the allow-list.
 
 #### Writing your own loader
 
-Implement `Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface` to resolve contexts
+Implement `JoliCode\StructuredData\JsonLd\Algorithms\Http\DocumentLoaderInterface` to resolve contexts
 your own way, for instance from a local mirror or a PSR-6 cache:
 
 ```php

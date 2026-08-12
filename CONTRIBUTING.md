@@ -4,7 +4,7 @@ First of all, **thank you** for contributing, **you are awesome**!
 
 Everybody should be able to help. Here's how you can do it:
 
-1. [Fork it](https://github.com/jolicode/json-ld/fork)
+1. [Fork it](https://github.com/jolicode/structured-data/fork)
 2. improve it
 3. submit a [pull request](https://help.github.com/articles/creating-a-pull-request)
 
@@ -21,8 +21,12 @@ Here are a few rules to follow in order to ease code reviews, and discussions
 before maintainers accept and merge your work.
 
 * You MUST follow the [PSR-1](https://www.php-fig.org/psr/psr-1/) and
-[PSR-2](https://www.php-fig.org/psr/psr-2/) (see [Rules](#rules)).
+[PSR-12](https://www.php-fig.org/psr/psr-12/) coding standards. In practice, the project
+enforces the `@Symfony` rule set through PHP CS Fixer — just run `castor cs` (see
+[Standard code](#standard-code)) and it is taken care of for you.
 * You MUST run the test suite (see [Green tests](#green-tests)).
+* Your code MUST pass the static analysis: `castor phpstan` (PHPStan, level 9). CI fails on
+any error.
 * You MUST write (or update) unit tests.
 * You SHOULD write documentation.
 
@@ -51,11 +55,11 @@ Run the tests using the following command:
 castor qa:phpunit:run
 ```
 
-Both schema.org and Google validator tests are included. You can run them individually with:
+Both schema.org and Google validator tests are included. You can run a single group with:
 
 ```shell
-castor qa:phpunit:run -- --filter testSchemaOrgValidator
-castor qa:phpunit:run -- --filter testGoogleValidator
+castor test -g schema-org
+castor test -g google
 ```
 
 ## Working with validators
@@ -88,7 +92,7 @@ To keep your fork up-to-date, you should track the upstream (original) one
 using the following command:
 
 ```shell
-git remote add upstream https://github.com/jolicode/json-ld.git
+git remote add upstream https://github.com/jolicode/structured-data.git
 ```
 
 Then get the upstream changes:
