@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BloodTestModel
 {
     public const DESCRIPTION = 'A medical test performed on a sample of a patient\'s blood.';
     public const LABEL = 'BloodTest';
     public const NAME = 'schema:BloodTest';
-    public const PARENTS = ['MedicalTestModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTestModel'];
+    public const PARENTS = ['MedicalTestModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalTestModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

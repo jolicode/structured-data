@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DissolutionDateModel
 {
     public const DESCRIPTION = 'The date that this organization was dissolved.';
     public const LABEL = 'dissolutionDate';
     public const NAME = 'schema:dissolutionDate';
-    public const VALUES = ['DateModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateModel'];
-    public const TYPES = ['Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel'];
+    public const VALUES = ['DateModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DateModel'];
+    public const TYPES = ['Organization' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

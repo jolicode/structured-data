@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd;
+namespace JoliCode\StructuredData\JsonLd;
 
 enum Algorithms: string
 {

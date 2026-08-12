@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReviewNewsArticleModel
 {
     public const DESCRIPTION = 'A [[NewsArticle]] and [[CriticReview]] providing a professional critic\'s assessment of a service, product, performance, or artistic or literary work.';
     public const LABEL = 'ReviewNewsArticle';
     public const NAME = 'schema:ReviewNewsArticle';
-    public const PARENTS = ['CriticReviewModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CriticReviewModel', 'NewsArticleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NewsArticleModel'];
+    public const PARENTS = ['CriticReviewModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CriticReviewModel', 'NewsArticleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NewsArticleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1525'];

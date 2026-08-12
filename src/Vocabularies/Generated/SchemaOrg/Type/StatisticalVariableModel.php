@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class StatisticalVariableModel
 {
     public const DESCRIPTION = '[[StatisticalVariable]] represents any type of statistical metric that can be measured at a place and time. The usage pattern for [[StatisticalVariable]] is typically expressed using [[Observation]] with an explicit [[populationType]], which is a type, typically drawn from Schema.org. Each [[StatisticalVariable]] is marked as a [[ConstraintNode]], meaning that some properties (those listed using [[constraintProperty]]) serve in this setting solely to define the statistical variable rather than literally describe a specific person, place or thing. For example, a [[StatisticalVariable]] Median_Height_Person_Female representing the median height of women, could be written as follows: the population type is [[Person]]; the measuredProperty [[height]]; the [[statType]] [[median]]; the [[gender]] [[Female]]. It is important to note that there are many kinds of scientific quantitative observation which are not fully, perfectly or unambiguously described following this pattern, or with solely Schema.org terminology. The approach taken here is designed to allow partial, incremental or minimal description of [[StatisticalVariable]]s, and the use of detailed sets of entity and property IDs from external repositories. The [[measurementMethod]], [[unitCode]] and [[unitText]] properties can also be used to clarify the specific nature and notation of an observed measurement.';
     public const LABEL = 'StatisticalVariable';
     public const NAME = 'schema:StatisticalVariable';
-    public const PARENTS = ['ConstraintNodeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ConstraintNodeModel'];
+    public const PARENTS = ['ConstraintNodeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ConstraintNodeModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2564'];

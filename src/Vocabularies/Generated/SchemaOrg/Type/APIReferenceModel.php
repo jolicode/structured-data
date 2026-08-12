@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class APIReferenceModel
 {
     public const DESCRIPTION = 'Reference documentation for application programming interfaces (APIs).';
     public const LABEL = 'APIReference';
     public const NAME = 'schema:APIReference';
-    public const PARENTS = ['TechArticleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TechArticleModel'];
+    public const PARENTS = ['TechArticleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TechArticleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MissionCoveragePrioritiesPolicyModel
 {
     public const DESCRIPTION = 'For a [[NewsMediaOrganization]], a statement on coverage priorities, including any public agenda or stance on issues.';
     public const LABEL = 'missionCoveragePrioritiesPolicy';
     public const NAME = 'schema:missionCoveragePrioritiesPolicy';
-    public const VALUES = ['CreativeWorkModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
-    public const TYPES = ['NewsMediaOrganization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NewsMediaOrganizationModel'];
+    public const VALUES = ['CreativeWorkModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'URLModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
+    public const TYPES = ['NewsMediaOrganization' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NewsMediaOrganizationModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1525'];
     public const SUPERSEDED_BY = null;

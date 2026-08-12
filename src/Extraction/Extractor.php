@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Extraction;
+namespace JoliCode\StructuredData\Extraction;
 
-use Jolicode\JsonLd\Mapper\DocumentWarning;
+use JoliCode\StructuredData\Mapper\DocumentWarning;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 

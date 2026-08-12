@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\Google;
+namespace JoliCode\StructuredData\Vocabularies\Generated\Google;
 
 final class ItemList
 {

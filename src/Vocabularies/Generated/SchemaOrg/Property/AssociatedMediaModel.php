@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AssociatedMediaModel
 {
     public const DESCRIPTION = 'A media object that encodes this CreativeWork. This property is a synonym for encoding.';
     public const LABEL = 'associatedMedia';
     public const NAME = 'schema:associatedMedia';
-    public const VALUES = ['MediaObjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaObjectModel'];
-    public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'HyperTocEntry' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HyperTocEntryModel', 'HyperToc' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HyperTocModel'];
+    public const VALUES = ['MediaObjectModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MediaObjectModel'];
+    public const TYPES = ['CreativeWork' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'HyperTocEntry' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\HyperTocEntryModel', 'HyperToc' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\HyperTocModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

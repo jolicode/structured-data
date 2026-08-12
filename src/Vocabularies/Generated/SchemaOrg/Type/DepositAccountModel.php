@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DepositAccountModel
 {
     public const DESCRIPTION = 'A type of Bank Account with a main purpose of depositing funds to gain interest or other benefits.';
     public const LABEL = 'DepositAccount';
     public const NAME = 'schema:DepositAccount';
-    public const PARENTS = ['BankAccountModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BankAccountModel', 'InvestmentOrDepositModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InvestmentOrDepositModel'];
+    public const PARENTS = ['BankAccountModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BankAccountModel', 'InvestmentOrDepositModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\InvestmentOrDepositModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

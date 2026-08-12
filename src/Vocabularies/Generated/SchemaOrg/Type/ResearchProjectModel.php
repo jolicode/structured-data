@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ResearchProjectModel
 {
     public const DESCRIPTION = 'A Research project.';
     public const LABEL = 'ResearchProject';
     public const NAME = 'schema:ResearchProject';
-    public const PARENTS = ['ProjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProjectModel'];
+    public const PARENTS = ['ProjectModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ProjectModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/383', 'https://schema.org/docs/collab/FundInfoCollab'];

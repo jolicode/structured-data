@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Algorithms\JsonLd;
+namespace JoliCode\StructuredData\JsonLd\Algorithms\JsonLd;
 
-use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\Context;
 
 class ProcessorOptions
 {

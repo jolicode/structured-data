@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AudioObjectSnapshotModel
 {
     public const DESCRIPTION = 'A specific and exact (byte-for-byte) version of an [[AudioObject]]. Two byte-for-byte identical files, for the purposes of this type, considered identical. If they have different embedded metadata the files will differ. Different external facts about the files, e.g. creator or dateCreated that aren\'t represented in their actual content, do not affect this notion of identity.';
     public const LABEL = 'AudioObjectSnapshot';
     public const NAME = 'schema:AudioObjectSnapshot';
-    public const PARENTS = ['AudioObjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AudioObjectModel'];
+    public const PARENTS = ['AudioObjectModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\AudioObjectModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2450'];

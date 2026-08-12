@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Parser\DataStructures;
+namespace JoliCode\StructuredData\JsonLd\Parser\DataStructures;
 
-use Jolicode\JsonLd\Parser\Properties\Value;
-use Jolicode\JsonLd\Parser\Range;
+use JoliCode\StructuredData\JsonLd\Parser\Properties\Value;
+use JoliCode\StructuredData\JsonLd\Parser\Range;
 
 abstract class AbstractStructure
 {

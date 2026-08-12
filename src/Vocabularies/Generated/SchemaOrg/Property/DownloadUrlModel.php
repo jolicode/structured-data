@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DownloadUrlModel
 {
     public const DESCRIPTION = 'If the file can be downloaded, URL to download the binary.';
     public const LABEL = 'downloadUrl';
     public const NAME = 'schema:downloadUrl';
-    public const VALUES = ['URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
-    public const TYPES = ['SoftwareApplication' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SoftwareApplicationModel'];
+    public const VALUES = ['URLModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
+    public const TYPES = ['SoftwareApplication' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SoftwareApplicationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

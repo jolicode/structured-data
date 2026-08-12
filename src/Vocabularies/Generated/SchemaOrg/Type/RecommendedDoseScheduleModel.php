@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RecommendedDoseScheduleModel
 {
     public const DESCRIPTION = 'A recommended dosing schedule for a drug or supplement as prescribed or recommended by an authority or by the drug/supplement\'s manufacturer. Capture the recommending authority in the recognizingAuthority property of MedicalEntity.';
     public const LABEL = 'RecommendedDoseSchedule';
     public const NAME = 'schema:RecommendedDoseSchedule';
-    public const PARENTS = ['DoseScheduleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DoseScheduleModel'];
+    public const PARENTS = ['DoseScheduleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DoseScheduleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

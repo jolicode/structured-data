@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BusOrCoachModel
 {
     public const DESCRIPTION = 'A bus (also omnibus or autobus) is a road vehicle designed to carry passengers. Coaches are luxury buses, usually in service for long distance travel.';
     public const LABEL = 'BusOrCoach';
     public const NAME = 'schema:BusOrCoach';
-    public const PARENTS = ['VehicleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VehicleModel'];
+    public const PARENTS = ['VehicleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\VehicleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://auto.schema.org'];
     public const SOURCE = [];

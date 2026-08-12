@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SeeksModel
 {
     public const DESCRIPTION = 'A pointer to products or services sought by the organization or person (demand).';
     public const LABEL = 'seeks';
     public const NAME = 'schema:seeks';
-    public const VALUES = ['DemandModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DemandModel'];
-    public const TYPES = ['Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'Person' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
+    public const VALUES = ['DemandModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DemandModel'];
+    public const TYPES = ['Organization' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'Person' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

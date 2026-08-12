@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generators\SchemaOrg\Objects;
+namespace JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Objects;
 
-use Jolicode\Vocabularies\Generators\SchemaOrg\Extractor;
+use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Extractor;
 
 class EnumerationMember extends AbstractSchemaOrgElement
 {

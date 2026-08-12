@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicalEvidenceLevelModel
 {
     public const DESCRIPTION = 'Level of evidence for a medical guideline. Enumerated type.';
     public const LABEL = 'MedicalEvidenceLevel';
     public const NAME = 'schema:MedicalEvidenceLevel';
-    public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEnumerationModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['EvidenceLevelAModel' => 'EnumerationMember\EvidenceLevelAModel', 'EvidenceLevelBModel' => 'EnumerationMember\EvidenceLevelBModel', 'EvidenceLevelCModel' => 'EnumerationMember\EvidenceLevelCModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

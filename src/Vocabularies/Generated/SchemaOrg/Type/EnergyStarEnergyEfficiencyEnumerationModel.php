@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EnergyStarEnergyEfficiencyEnumerationModel
 {
     public const DESCRIPTION = 'Used to indicate whether a product is EnergyStar certified.';
     public const LABEL = 'EnergyStarEnergyEfficiencyEnumeration';
     public const NAME = 'schema:EnergyStarEnergyEfficiencyEnumeration';
-    public const PARENTS = ['EnergyEfficiencyEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnergyEfficiencyEnumerationModel'];
+    public const PARENTS = ['EnergyEfficiencyEnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnergyEfficiencyEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['EnergyStarCertifiedModel' => 'EnumerationMember\EnergyStarCertifiedModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2670'];

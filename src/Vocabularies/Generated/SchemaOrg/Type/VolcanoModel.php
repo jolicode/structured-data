@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class VolcanoModel
 {
     public const DESCRIPTION = 'A volcano, like Fujisan.';
     public const LABEL = 'Volcano';
     public const NAME = 'schema:Volcano';
-    public const PARENTS = ['LandformModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LandformModel'];
+    public const PARENTS = ['LandformModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\LandformModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

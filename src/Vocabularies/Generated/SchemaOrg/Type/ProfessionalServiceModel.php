@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ProfessionalServiceModel
 {
@@ -20,7 +20,7 @@ final class ProfessionalServiceModel
         [[HousePainter]], [[Locksmith]], [[Plumber]], [[RoofingContractor]]. [[LegalService]] was introduced as a more inclusive supertype of [[Attorney]].';
     public const LABEL = 'ProfessionalService';
     public const NAME = 'schema:ProfessionalService';
-    public const PARENTS = ['LocalBusinessModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LocalBusinessModel'];
+    public const PARENTS = ['LocalBusinessModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\LocalBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

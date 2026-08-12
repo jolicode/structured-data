@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class GeographicAreaModel
 {
     public const DESCRIPTION = 'The geographic area associated with the audience.';
     public const LABEL = 'geographicArea';
     public const NAME = 'schema:geographicArea';
-    public const VALUES = ['AdministrativeAreaModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AdministrativeAreaModel'];
-    public const TYPES = ['Audience' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AudienceModel'];
+    public const VALUES = ['AdministrativeAreaModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\AdministrativeAreaModel'];
+    public const TYPES = ['Audience' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\AudienceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AlumniModel
 {
     public const DESCRIPTION = 'Alumni of an organization.';
     public const LABEL = 'alumni';
     public const NAME = 'schema:alumni';
-    public const VALUES = ['PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
-    public const TYPES = ['EducationalOrganization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOrganizationModel', 'Organization' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel'];
+    public const VALUES = ['PersonModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['EducationalOrganization' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EducationalOrganizationModel', 'Organization' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

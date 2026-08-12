@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Algorithms;
+namespace JoliCode\StructuredData\Tests\Algorithms;
 
-use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
-use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
-use Jolicode\JsonLd\Algorithms\Http\HttpDocumentLoader;
-use Jolicode\JsonLd\Algorithms\Http\RemoteContextPolicy;
-use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\JsonLdException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\DocumentLoaderInterface;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\HttpDocumentLoader;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\RemoteContextPolicy;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 
@@ -100,7 +100,7 @@ abstract class AbstractJsonLdTestCase extends TestCase
         $directoryName = \sprintf('%s/%s/input/', static::getDataPath(), static::getAlgorithmName());
 
         if (!file_exists($directoryName)) {
-            throw new \RuntimeException(\sprintf('The input directory "%s" does not exist. Did you forget to install the test suite? Please run the following command : `castor qa:phpunit:install-fixtures`', $directoryName));
+            throw new \RuntimeException(\sprintf('The input directory "%s" does not exist. Did you forget to install the test suite? Please run the following command : `castor qa:phpunit:prepare`', $directoryName));
         }
 
         return (new Finder())

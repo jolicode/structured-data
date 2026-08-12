@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SyllabusModel
 {
     public const DESCRIPTION = 'A syllabus that describes the material covered in a course, often with several such sections per [[Course]] so that a distinct [[timeRequired]] can be provided for that section of the [[Course]].';
     public const LABEL = 'Syllabus';
     public const NAME = 'schema:Syllabus';
-    public const PARENTS = ['LearningResourceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LearningResourceModel'];
+    public const PARENTS = ['LearningResourceModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\LearningResourceModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3281'];

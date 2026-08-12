@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Algorithms\Http;
+namespace JoliCode\StructuredData\JsonLd\Algorithms\Http;
 
-use Jolicode\JsonLd\Algorithms\Exception\ContextProcessingException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\ContextProcessingException;
 
 /**
  * Resolves the remote documents referenced by a JSON-LD document, typically the

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CostCategoryModel
 {
     public const DESCRIPTION = 'The category of cost, such as wholesale, retail, reimbursement cap, etc.';
     public const LABEL = 'costCategory';
     public const NAME = 'schema:costCategory';
-    public const VALUES = ['DrugCostCategoryModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugCostCategoryModel'];
-    public const TYPES = ['DrugCost' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugCostModel'];
+    public const VALUES = ['DrugCostCategoryModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DrugCostCategoryModel'];
+    public const TYPES = ['DrugCost' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DrugCostModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

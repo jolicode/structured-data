@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class VendorModel
 {
     public const DESCRIPTION = '\'vendor\' is an earlier term for \'seller\'.';
     public const LABEL = 'vendor';
     public const NAME = 'schema:vendor';
-    public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
-    public const TYPES = ['BuyAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BuyActionModel'];
+    public const VALUES = ['OrganizationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['BuyAction' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BuyActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = 'seller';

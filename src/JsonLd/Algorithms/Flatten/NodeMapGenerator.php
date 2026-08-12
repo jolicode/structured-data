@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Algorithms\Flatten;
+namespace JoliCode\StructuredData\JsonLd\Algorithms\Flatten;
 
-use Jolicode\JsonLd\Algorithms\Exception\FlatteningException;
-use Jolicode\JsonLd\Algorithms\JsonLd\FramingKeyword;
-use Jolicode\JsonLd\Algorithms\Services\DataStructureComparator;
-use Jolicode\JsonLd\Algorithms\Services\IdentifierGenerator;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\FlatteningException;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\FramingKeyword;
+use JoliCode\StructuredData\JsonLd\Algorithms\Services\DataStructureComparator;
+use JoliCode\StructuredData\JsonLd\Algorithms\Services\IdentifierGenerator;
 
 class NodeMapGenerator
 {

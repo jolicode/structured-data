@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CaptionModel
 {
     public const DESCRIPTION = 'The caption for this object. For downloadable machine formats (closed caption, subtitles etc.) use MediaObject and indicate the [[encodingFormat]].';
     public const LABEL = 'caption';
     public const NAME = 'schema:caption';
-    public const VALUES = ['MediaObjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaObjectModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['AudioObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AudioObjectModel', 'ImageObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ImageObjectModel', 'VideoObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VideoObjectModel'];
+    public const VALUES = ['MediaObjectModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MediaObjectModel', 'TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['AudioObject' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\AudioObjectModel', 'ImageObject' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ImageObjectModel', 'VideoObject' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\VideoObjectModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

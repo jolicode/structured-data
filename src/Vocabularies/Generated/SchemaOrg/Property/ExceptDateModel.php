@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ExceptDateModel
 {
@@ -19,8 +19,8 @@ final class ExceptDateModel
       excluded from the schedule. This allows a whole day to be excluded from the schedule without having to itemise every scheduled event.';
     public const LABEL = 'exceptDate';
     public const NAME = 'schema:exceptDate';
-    public const VALUES = ['DateModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateTimeModel'];
-    public const TYPES = ['Schedule' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ScheduleModel'];
+    public const VALUES = ['DateModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['Schedule' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ScheduleModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1457'];
     public const SUPERSEDED_BY = null;

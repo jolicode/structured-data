@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TextValueModel
 {
     public const DESCRIPTION = 'Text value being annotated.';
     public const LABEL = 'textValue';
     public const NAME = 'schema:textValue';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['PronounceableText' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PronounceableTextModel'];
+    public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['PronounceableText' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PronounceableTextModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2108'];
     public const SUPERSEDED_BY = null;

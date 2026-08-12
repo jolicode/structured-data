@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SequentialArtModel
 {
     public const DESCRIPTION = 'An art forms that use images deployed in a specific order for the purpose of graphic storytelling (i.e., narration of graphic stories) or conveying information. Examples of SequentialArt are Franco-Belgian Bande Dessinée, Comics in the USA and 漫画 (Manga) in Japan.';
     public const LABEL = 'SequentialArt';
     public const NAME = 'schema:SequentialArt';
-    public const PARENTS = ['BookModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BookModel', 'VisualArtworkModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VisualArtworkModel'];
+    public const PARENTS = ['BookModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BookModel', 'VisualArtworkModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\VisualArtworkModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://bib.schema.org'];
     public const SOURCE = [];

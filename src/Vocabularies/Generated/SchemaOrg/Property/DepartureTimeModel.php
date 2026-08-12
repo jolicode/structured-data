@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DepartureTimeModel
 {
     public const DESCRIPTION = 'The expected departure time.';
     public const LABEL = 'departureTime';
     public const NAME = 'schema:departureTime';
-    public const VALUES = ['DateTimeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateTimeModel', 'TimeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TimeModel'];
-    public const TYPES = ['Trip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TripModel'];
+    public const VALUES = ['DateTimeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DateTimeModel', 'TimeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TimeModel'];
+    public const TYPES = ['Trip' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TripModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Algorithms\ContextProcessing;
+namespace JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing;
 
-use Jolicode\JsonLd\Algorithms\Exception\ContextProcessingException;
-use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinitionCreator;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\ContextProcessingException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\IriResolver;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
+use JoliCode\StructuredData\JsonLd\Algorithms\TermDefinition\TermDefinitionCreator;
 
-class ContextProcesser
+class ContextProcessor
 {
     private const MAX_CONTEXTS = 10;
 

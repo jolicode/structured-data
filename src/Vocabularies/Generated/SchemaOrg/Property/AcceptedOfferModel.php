@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AcceptedOfferModel
 {
     public const DESCRIPTION = 'The offer(s) -- e.g., product, quantity and price combinations -- included in the order.';
     public const LABEL = 'acceptedOffer';
     public const NAME = 'schema:acceptedOffer';
-    public const VALUES = ['OfferModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel'];
-    public const TYPES = ['Order' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrderModel'];
+    public const VALUES = ['OfferModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OfferModel'];
+    public const TYPES = ['Order' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrderModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

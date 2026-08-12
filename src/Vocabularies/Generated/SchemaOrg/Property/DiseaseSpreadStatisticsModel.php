@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DiseaseSpreadStatisticsModel
 {
@@ -18,8 +18,8 @@ final class DiseaseSpreadStatisticsModel
   provided, the page indicated might also contain more such markup.';
     public const LABEL = 'diseaseSpreadStatistics';
     public const NAME = 'schema:diseaseSpreadStatistics';
-    public const VALUES = ['DatasetModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DatasetModel', 'ObservationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ObservationModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel', 'WebContentModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebContentModel'];
-    public const TYPES = ['SpecialAnnouncement' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SpecialAnnouncementModel'];
+    public const VALUES = ['DatasetModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DatasetModel', 'ObservationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ObservationModel', 'URLModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\URLModel', 'WebContentModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\WebContentModel'];
+    public const TYPES = ['SpecialAnnouncement' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SpecialAnnouncementModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2490'];
     public const SUPERSEDED_BY = null;

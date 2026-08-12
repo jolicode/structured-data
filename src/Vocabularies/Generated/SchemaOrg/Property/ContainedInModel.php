@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ContainedInModel
 {
     public const DESCRIPTION = 'The basic containment relation between a place and one that contains it.';
     public const LABEL = 'containedIn';
     public const NAME = 'schema:containedIn';
-    public const VALUES = ['PlaceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlaceModel'];
-    public const TYPES = ['Place' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlaceModel'];
+    public const VALUES = ['PlaceModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PlaceModel'];
+    public const TYPES = ['Place' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PlaceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = 'containedInPlace';

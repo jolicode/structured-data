@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SupersededByModel
 {
     public const DESCRIPTION = 'Relates a term (i.e. a property, class or enumeration) to one that supersedes it.';
     public const LABEL = 'supersededBy';
     public const NAME = 'schema:supersededBy';
-    public const VALUES = ['ClassModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ClassModel', 'EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel', 'PropertyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyModel'];
-    public const TYPES = ['Class' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ClassModel', 'Enumeration' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel', 'Property' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyModel'];
+    public const VALUES = ['ClassModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ClassModel', 'EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel', 'PropertyModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PropertyModel'];
+    public const TYPES = ['Class' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ClassModel', 'Enumeration' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel', 'Property' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PropertyModel'];
     public const IS_PART_OF = ['https://meta.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

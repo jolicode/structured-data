@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PhysicalTherapyModel
 {
     public const DESCRIPTION = 'A process of progressive physical care and rehabilitation aimed at improving a health condition.';
     public const LABEL = 'PhysicalTherapy';
     public const NAME = 'schema:PhysicalTherapy';
-    public const PARENTS = ['MedicalTherapyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTherapyModel'];
+    public const PARENTS = ['MedicalTherapyModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalTherapyModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

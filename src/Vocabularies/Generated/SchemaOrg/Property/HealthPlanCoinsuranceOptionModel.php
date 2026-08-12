@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HealthPlanCoinsuranceOptionModel
 {
     public const DESCRIPTION = 'Whether the coinsurance applies before or after deductible, etc. TODO: Is this a closed set?';
     public const LABEL = 'healthPlanCoinsuranceOption';
     public const NAME = 'schema:healthPlanCoinsuranceOption';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['HealthPlanCostSharingSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HealthPlanCostSharingSpecificationModel'];
+    public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['HealthPlanCostSharingSpecification' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\HealthPlanCostSharingSpecificationModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1062'];
     public const SUPERSEDED_BY = null;

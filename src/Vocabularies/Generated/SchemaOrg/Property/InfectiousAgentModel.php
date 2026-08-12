@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class InfectiousAgentModel
 {
     public const DESCRIPTION = 'The actual infectious agent, such as a specific bacterium.';
     public const LABEL = 'infectiousAgent';
     public const NAME = 'schema:infectiousAgent';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['InfectiousDisease' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InfectiousDiseaseModel'];
+    public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['InfectiousDisease' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\InfectiousDiseaseModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

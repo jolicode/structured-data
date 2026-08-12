@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ProgrammingLanguageModel
 {
     public const DESCRIPTION = 'The computer programming language.';
     public const LABEL = 'programmingLanguage';
     public const NAME = 'schema:programmingLanguage';
-    public const VALUES = ['ComputerLanguageModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ComputerLanguageModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['SoftwareSourceCode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SoftwareSourceCodeModel'];
+    public const VALUES = ['ComputerLanguageModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ComputerLanguageModel', 'TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['SoftwareSourceCode' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SoftwareSourceCodeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

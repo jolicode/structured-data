@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BorrowActionModel
 {
     public const DESCRIPTION = 'The act of obtaining an object under an agreement to return it at a later date. Reciprocal of LendAction.\n\nRelated actions:\n\n* [[LendAction]]: Reciprocal of BorrowAction.';
     public const LABEL = 'BorrowAction';
     public const NAME = 'schema:BorrowAction';
-    public const PARENTS = ['TransferActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TransferActionModel'];
+    public const PARENTS = ['TransferActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TransferActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

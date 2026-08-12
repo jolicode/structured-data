@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TouristTypeModel
 {
     public const DESCRIPTION = 'Attraction suitable for type(s) of tourist. E.g. children, visitors from a particular country, etc.';
     public const LABEL = 'touristType';
     public const NAME = 'schema:touristType';
-    public const VALUES = ['AudienceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AudienceModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['TouristAttraction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TouristAttractionModel', 'TouristDestination' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TouristDestinationModel', 'TouristTrip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TouristTripModel'];
+    public const VALUES = ['AudienceModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\AudienceModel', 'TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['TouristAttraction' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TouristAttractionModel', 'TouristDestination' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TouristDestinationModel', 'TouristTrip' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TouristTripModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

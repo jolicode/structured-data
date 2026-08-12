@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\EnumerationMember;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\EnumerationMember;
 
 final class UnemploymentSupportModel
 {

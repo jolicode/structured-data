@@ -9,17 +9,25 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Extraction;
+namespace JoliCode\StructuredData\Mapper;
 
-final class ExtractionException extends \RuntimeException
+readonly class DocumentError implements DocumentIssueInterface
 {
     public function __construct(
-        string $message,
-        private readonly string $ranges = '',
-        int $code = 0,
-        ?\Throwable $previous = null,
+        public string $source,
+        public string $message,
+        public string $ranges = '',
     ) {
-        parent::__construct($message, $code, $previous);
+    }
+
+    public function getSource(): string
+    {
+        return $this->source;
+    }
+
+    public function getMessage(): string
+    {
+        return $this->message;
     }
 
     public function getRanges(): string

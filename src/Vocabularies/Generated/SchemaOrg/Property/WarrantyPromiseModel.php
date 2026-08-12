@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class WarrantyPromiseModel
 {
     public const DESCRIPTION = 'The warranty promise(s) included in the offer.';
     public const LABEL = 'warrantyPromise';
     public const NAME = 'schema:warrantyPromise';
-    public const VALUES = ['WarrantyPromiseModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WarrantyPromiseModel'];
-    public const TYPES = ['BuyAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BuyActionModel', 'SellAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SellActionModel'];
+    public const VALUES = ['WarrantyPromiseModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\WarrantyPromiseModel'];
+    public const TYPES = ['BuyAction' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BuyActionModel', 'SellAction' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SellActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = 'warranty';

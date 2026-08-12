@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RecordedAsModel
 {
     public const DESCRIPTION = 'An audio recording of the work.';
     public const LABEL = 'recordedAs';
     public const NAME = 'schema:recordedAs';
-    public const VALUES = ['MusicRecordingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicRecordingModel'];
-    public const TYPES = ['MusicComposition' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicCompositionModel'];
+    public const VALUES = ['MusicRecordingModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MusicRecordingModel'];
+    public const TYPES = ['MusicComposition' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MusicCompositionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PurchaseTypeModel
 {
     public const DESCRIPTION = 'Optional. The type of purchase the consumer must make in order to qualify for this incentive.';
     public const LABEL = 'purchaseType';
     public const NAME = 'schema:purchaseType';
-    public const VALUES = ['PurchaseTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PurchaseTypeModel'];
-    public const TYPES = ['FinancialIncentive' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FinancialIncentiveModel'];
+    public const VALUES = ['PurchaseTypeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PurchaseTypeModel'];
+    public const TYPES = ['FinancialIncentive' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\FinancialIncentiveModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3572'];
     public const SUPERSEDED_BY = null;

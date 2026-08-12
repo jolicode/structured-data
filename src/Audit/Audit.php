@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Audit;
+namespace JoliCode\StructuredData\Audit;
 
-use Jolicode\JsonLd\Mapper\MappedError;
-use Jolicode\JsonLd\Mapper\MappedType;
-use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
-use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
+use JoliCode\StructuredData\Mapper\MappedError;
+use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\GoogleValidator;
+use JoliCode\StructuredData\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
 
 final class Audit
 {
@@ -84,7 +84,7 @@ final class Audit
      * If a query is provided, the output can be filtered, grouped, and returned
      * as either messages or MappedError objects.
      *
-     * @see Jolicode\JsonLd\Audit\AuditOptions for all available options and their meaning.
+     * @see JoliCode\StructuredData\Audit\AuditOptions for all available options and their meaning.
      *
      * @return array<string>|array<MappedError>|array<string, array<string>>|array<string, array<MappedError>>|string
      */

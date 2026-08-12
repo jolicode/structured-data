@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PublicToiletModel
 {
     public const DESCRIPTION = 'A public toilet is a room or small building containing one or more toilets (and possibly also urinals) which is available for use by the general public, or by customers or employees of certain businesses.';
     public const LABEL = 'PublicToilet';
     public const NAME = 'schema:PublicToilet';
-    public const PARENTS = ['CivicStructureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CivicStructureModel'];
+    public const PARENTS = ['CivicStructureModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CivicStructureModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1624'];

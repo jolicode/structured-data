@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PostalAddressModel
 {
     public const DESCRIPTION = 'The mailing address.';
     public const LABEL = 'PostalAddress';
     public const NAME = 'schema:PostalAddress';
-    public const PARENTS = ['ContactPointModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ContactPointModel'];
+    public const PARENTS = ['ContactPointModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ContactPointModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

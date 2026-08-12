@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ExercisePlanModel
 {
     public const DESCRIPTION = 'A sub property of instrument. The exercise plan used on this action.';
     public const LABEL = 'exercisePlan';
     public const NAME = 'schema:exercisePlan';
-    public const VALUES = ['ExercisePlanModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ExercisePlanModel'];
-    public const TYPES = ['ExerciseAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ExerciseActionModel'];
+    public const VALUES = ['ExercisePlanModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ExercisePlanModel'];
+    public const TYPES = ['ExerciseAction' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ExerciseActionModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

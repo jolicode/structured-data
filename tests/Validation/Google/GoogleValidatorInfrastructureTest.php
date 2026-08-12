@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Validation;
+namespace JoliCode\StructuredData\Tests\Validation;
 
-use Jolicode\JsonLd\Mapper\MappedProperty;
-use Jolicode\JsonLd\Mapper\MappedType;
-use Jolicode\JsonLd\Validator;
-use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
-use Jolicode\Vocabularies\Validators\Google\SpecialRules\SpecialRulesRegistry;
-use Jolicode\Vocabularies\Validators\Google\Stack;
+use JoliCode\StructuredData\Mapper\MappedProperty;
+use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Validator;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\GoogleValidator;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules\SpecialRulesRegistry;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\Stack;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
@@ -67,7 +67,7 @@ class GoogleValidatorInfrastructureTest extends TestCase
         $stack = (new Stack())->newType($type);
 
         $this->assertSame(
-            'Jolicode\\Vocabularies\\Generated\\Google\\ProductSnippet',
+            'JoliCode\\StructuredData\\Vocabularies\\Generated\\Google\\ProductSnippet',
             $stack->getValidationClass(),
         );
     }
@@ -82,7 +82,7 @@ class GoogleValidatorInfrastructureTest extends TestCase
         $stack = (new Stack())->newType($type);
 
         $this->assertSame(
-            'Jolicode\\Vocabularies\\Generated\\Google\\ProductMerchantListing',
+            'JoliCode\\StructuredData\\Vocabularies\\Generated\\Google\\ProductMerchantListing',
             $stack->getValidationClass(),
         );
     }

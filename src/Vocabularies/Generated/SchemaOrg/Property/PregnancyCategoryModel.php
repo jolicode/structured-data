@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PregnancyCategoryModel
 {
     public const DESCRIPTION = 'Pregnancy category of this drug.';
     public const LABEL = 'pregnancyCategory';
     public const NAME = 'schema:pregnancyCategory';
-    public const VALUES = ['DrugPregnancyCategoryModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugPregnancyCategoryModel'];
-    public const TYPES = ['Drug' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugModel'];
+    public const VALUES = ['DrugPregnancyCategoryModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DrugPregnancyCategoryModel'];
+    public const TYPES = ['Drug' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DrugModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

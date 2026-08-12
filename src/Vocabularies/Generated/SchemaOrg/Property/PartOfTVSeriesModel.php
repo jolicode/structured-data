@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PartOfTVSeriesModel
 {
     public const DESCRIPTION = 'The TV series to which this episode or season belongs.';
     public const LABEL = 'partOfTVSeries';
     public const NAME = 'schema:partOfTVSeries';
-    public const VALUES = ['TVSeriesModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TVSeriesModel'];
-    public const TYPES = ['TVClip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TVClipModel', 'TVEpisode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TVEpisodeModel', 'TVSeason' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TVSeasonModel'];
+    public const VALUES = ['TVSeriesModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TVSeriesModel'];
+    public const TYPES = ['TVClip' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TVClipModel', 'TVEpisode' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TVEpisodeModel', 'TVSeason' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TVSeasonModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = 'partOfSeries';

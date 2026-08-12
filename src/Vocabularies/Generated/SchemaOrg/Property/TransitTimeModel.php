@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TransitTimeModel
 {
@@ -20,8 +20,8 @@ final class TransitTimeModel
   In the context of [[ShippingConditions]], use the [[ServicePeriod]]. It has a duration (as a [[QuantitativeValue]]) and also business days and a cut-off time.';
     public const LABEL = 'transitTime';
     public const NAME = 'schema:transitTime';
-    public const VALUES = ['QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel', 'ServicePeriodModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServicePeriodModel'];
-    public const TYPES = ['ShippingConditions' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ShippingConditionsModel', 'ShippingDeliveryTime' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ShippingDeliveryTimeModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel', 'ServicePeriodModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ServicePeriodModel'];
+    public const TYPES = ['ShippingConditions' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ShippingConditionsModel', 'ShippingDeliveryTime' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ShippingDeliveryTimeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2506', 'https://github.com/schemaorg/schemaorg/issues/3617'];
     public const SUPERSEDED_BY = null;

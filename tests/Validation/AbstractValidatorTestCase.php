@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Validation;
+namespace JoliCode\StructuredData\Tests\Validation;
 
-use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
-use Jolicode\JsonLd\Algorithms\Http\HttpDocumentLoader;
-use Jolicode\JsonLd\Algorithms\Http\RemoteContextPolicy;
-use Jolicode\JsonLd\Audit\AuditOptions;
-use Jolicode\JsonLd\Validator;
+use JoliCode\StructuredData\Audit\AuditOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\DocumentLoaderInterface;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\HttpDocumentLoader;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\RemoteContextPolicy;
+use JoliCode\StructuredData\Validator;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 

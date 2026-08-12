@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SiteNavigationElementModel
 {
     public const DESCRIPTION = 'A navigation element of the page.';
     public const LABEL = 'SiteNavigationElement';
     public const NAME = 'schema:SiteNavigationElement';
-    public const PARENTS = ['WebPageElementModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebPageElementModel'];
+    public const PARENTS = ['WebPageElementModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\WebPageElementModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

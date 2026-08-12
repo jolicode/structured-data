@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicalClinicModel
 {
     public const DESCRIPTION = 'A facility, often associated with a hospital or medical school, that is devoted to the specific diagnosis and/or healthcare. Previously limited to outpatients but with evolution it may be open to inpatients as well.';
     public const LABEL = 'MedicalClinic';
     public const NAME = 'schema:MedicalClinic';
-    public const PARENTS = ['MedicalBusinessModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalBusinessModel', 'MedicalOrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalOrganizationModel'];
+    public const PARENTS = ['MedicalBusinessModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalBusinessModel', 'MedicalOrganizationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalOrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

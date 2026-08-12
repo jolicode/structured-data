@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DietModel
 {
     public const DESCRIPTION = 'A sub property of instrument. The diet used in this action.';
     public const LABEL = 'diet';
     public const NAME = 'schema:diet';
-    public const VALUES = ['DietModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DietModel'];
-    public const TYPES = ['ExerciseAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ExerciseActionModel'];
+    public const VALUES = ['DietModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DietModel'];
+    public const TYPES = ['ExerciseAction' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ExerciseActionModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

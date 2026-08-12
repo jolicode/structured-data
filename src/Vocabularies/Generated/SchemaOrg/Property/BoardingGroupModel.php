@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BoardingGroupModel
 {
     public const DESCRIPTION = 'The airline-specific indicator of boarding order / preference.';
     public const LABEL = 'boardingGroup';
     public const NAME = 'schema:boardingGroup';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['FlightReservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FlightReservationModel'];
+    public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['FlightReservation' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\FlightReservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

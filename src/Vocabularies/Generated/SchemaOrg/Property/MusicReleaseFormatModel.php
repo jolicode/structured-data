@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MusicReleaseFormatModel
 {
     public const DESCRIPTION = 'Format of this release (the type of recording media used, i.e. compact disc, digital media, LP, etc.).';
     public const LABEL = 'musicReleaseFormat';
     public const NAME = 'schema:musicReleaseFormat';
-    public const VALUES = ['MusicReleaseFormatTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicReleaseFormatTypeModel'];
-    public const TYPES = ['MusicRelease' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicReleaseModel'];
+    public const VALUES = ['MusicReleaseFormatTypeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MusicReleaseFormatTypeModel'];
+    public const TYPES = ['MusicRelease' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MusicReleaseModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MonetaryAmountDistributionModel
 {
     public const DESCRIPTION = 'A statistical distribution of monetary amounts.';
     public const LABEL = 'MonetaryAmountDistribution';
     public const NAME = 'schema:MonetaryAmountDistribution';
-    public const PARENTS = ['QuantitativeValueDistributionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueDistributionModel'];
+    public const PARENTS = ['QuantitativeValueDistributionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueDistributionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1698'];

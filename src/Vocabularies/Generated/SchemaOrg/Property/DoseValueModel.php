@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DoseValueModel
 {
     public const DESCRIPTION = 'The value of the dose, e.g. 500.';
     public const LABEL = 'doseValue';
     public const NAME = 'schema:doseValue';
-    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel', 'QualitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QualitativeValueModel'];
-    public const TYPES = ['DoseSchedule' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DoseScheduleModel'];
+    public const VALUES = ['NumberModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NumberModel', 'QualitativeValueModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\QualitativeValueModel'];
+    public const TYPES = ['DoseSchedule' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DoseScheduleModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

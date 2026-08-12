@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicalAudienceModel
 {
     public const DESCRIPTION = 'Target audiences for medical web pages.';
     public const LABEL = 'MedicalAudience';
     public const NAME = 'schema:MedicalAudience';
-    public const PARENTS = ['AudienceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AudienceModel', 'PeopleAudienceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PeopleAudienceModel'];
+    public const PARENTS = ['AudienceModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\AudienceModel', 'PeopleAudienceModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PeopleAudienceModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

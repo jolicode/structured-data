@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EventSeriesModel
 {
@@ -30,7 +30,7 @@ may seem more Event-like when the period of time is compact and when aspects suc
 it may also sometimes prove useful to describe a longer-term series as an Event.';
     public const LABEL = 'EventSeries';
     public const NAME = 'schema:EventSeries';
-    public const PARENTS = ['EventModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel', 'SeriesModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SeriesModel'];
+    public const PARENTS = ['EventModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EventModel', 'SeriesModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SeriesModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/447'];

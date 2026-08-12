@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generators;
+namespace JoliCode\StructuredData\Vocabularies\Generators;
 
 use Symfony\Component\Console\Style\SymfonyStyle;
 

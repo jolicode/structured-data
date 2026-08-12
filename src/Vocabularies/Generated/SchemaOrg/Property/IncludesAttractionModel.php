@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IncludesAttractionModel
 {
     public const DESCRIPTION = 'Attraction located at destination.';
     public const LABEL = 'includesAttraction';
     public const NAME = 'schema:includesAttraction';
-    public const VALUES = ['TouristAttractionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TouristAttractionModel'];
-    public const TYPES = ['TouristDestination' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TouristDestinationModel'];
+    public const VALUES = ['TouristAttractionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TouristAttractionModel'];
+    public const TYPES = ['TouristDestination' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TouristDestinationModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1810'];
     public const SUPERSEDED_BY = null;

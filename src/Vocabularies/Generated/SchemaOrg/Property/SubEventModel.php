@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SubEventModel
 {
     public const DESCRIPTION = 'An Event that is part of this event. For example, a conference event includes many presentations, each of which is a subEvent of the conference.';
     public const LABEL = 'subEvent';
     public const NAME = 'schema:subEvent';
-    public const VALUES = ['EventModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel'];
-    public const TYPES = ['Event' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel'];
+    public const VALUES = ['EventModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EventModel'];
+    public const TYPES = ['Event' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

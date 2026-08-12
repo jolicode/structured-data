@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MoveActionModel
 {
     public const DESCRIPTION = 'The act of an agent relocating to a place.\n\nRelated actions:\n\n* [[TransferAction]]: Unlike TransferAction, the subject of the move is a living Person or Organization rather than an inanimate object.';
     public const LABEL = 'MoveAction';
     public const NAME = 'schema:MoveAction';
-    public const PARENTS = ['ActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ActionModel'];
+    public const PARENTS = ['ActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Algorithms\TermDefinition;
+namespace JoliCode\StructuredData\JsonLd\Algorithms\TermDefinition;
 
 readonly class TermDefinition
 {

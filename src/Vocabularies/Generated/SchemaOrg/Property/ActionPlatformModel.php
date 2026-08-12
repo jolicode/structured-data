@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ActionPlatformModel
 {
     public const DESCRIPTION = 'The high level platform(s) where the Action can be performed for the given URL. To specify a specific application or operating system instance, use actionApplication.';
     public const LABEL = 'actionPlatform';
     public const NAME = 'schema:actionPlatform';
-    public const VALUES = ['DigitalPlatformEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DigitalPlatformEnumerationModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
-    public const TYPES = ['EntryPoint' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EntryPointModel'];
+    public const VALUES = ['DigitalPlatformEnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DigitalPlatformEnumerationModel', 'TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'URLModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
+    public const TYPES = ['EntryPoint' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EntryPointModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LenderModel
 {
     public const DESCRIPTION = 'A sub property of participant. The person that lends the object being borrowed.';
     public const LABEL = 'lender';
     public const NAME = 'schema:lender';
-    public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
-    public const TYPES = ['BorrowAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BorrowActionModel'];
+    public const VALUES = ['OrganizationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['BorrowAction' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BorrowActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

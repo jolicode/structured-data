@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PublishedByModel
 {
     public const DESCRIPTION = 'An agent associated with the publication event.';
     public const LABEL = 'publishedBy';
     public const NAME = 'schema:publishedBy';
-    public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
-    public const TYPES = ['PublicationEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PublicationEventModel'];
+    public const VALUES = ['OrganizationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['PublicationEvent' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PublicationEventModel'];
     public const IS_PART_OF = ['https://bib.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

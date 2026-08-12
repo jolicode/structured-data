@@ -9,35 +9,35 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Algorithms\Compact;
+namespace JoliCode\StructuredData\JsonLd\Algorithms\Compact;
 
-use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextCache;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
-use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
-use Jolicode\JsonLd\Algorithms\Expand\Expander;
-use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
-use Jolicode\JsonLd\Algorithms\Http\HttpDocumentLoader;
-use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
-use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinition;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\Context;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextCache;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextProcessor;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\JsonLdException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Expand\Expander;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\DocumentLoaderInterface;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\HttpDocumentLoader;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\IriResolver;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms\TermDefinition\TermDefinition;
 
 class Compactor
 {
     private IriCompactor $iriCompactor;
 
-    private readonly ContextProcesser $contextProcesser;
+    private readonly ContextProcessor $contextProcessor;
     private readonly Expander $expander;
     private readonly DocumentLoaderInterface $documentLoader;
 
     public function __construct(
-        ?ContextProcesser $contextProcesser = null,
+        ?ContextProcessor $contextProcessor = null,
         ?Expander $expander = null,
         ?DocumentLoaderInterface $documentLoader = null,
     ) {
         $this->documentLoader = $documentLoader ?? new HttpDocumentLoader();
-        $this->contextProcesser = $contextProcesser ?? new ContextProcesser(new ContextCache($this->documentLoader));
+        $this->contextProcessor = $contextProcessor ?? new ContextProcessor(new ContextCache($this->documentLoader));
         $this->expander = $expander ?? new Expander(documentLoader: $this->documentLoader);
         $this->iriCompactor = new IriCompactor();
     }
@@ -105,7 +105,7 @@ class Compactor
 
         // 6
         // 7
-        $activeContext = $this->contextProcesser->processContext(new Context(
+        $activeContext = $this->contextProcessor->processContext(new Context(
             baseIri: $options->compactToRelative ? $baseUrl : null,
             baseUrl: $baseUrl,
             processingMode: $options->processingMode,
@@ -236,7 +236,7 @@ class Compactor
         $inputPropertyDefinition = $this->getTermDefinition($inputContext, $activeProperty);
 
         if ($inputPropertyDefinition && false !== $inputPropertyDefinition->context && null !== $inputPropertyDefinition->context) {
-            $activeContext = $this->contextProcesser->processContext(
+            $activeContext = $this->contextProcessor->processContext(
                 $activeContext,
                 $inputPropertyDefinition->context,
                 $inputPropertyDefinition->baseUrl,
@@ -286,7 +286,7 @@ class Compactor
 
                 // 11.3
                 if ($termDefinition && false !== $termDefinition->context && null !== $termDefinition->context) {
-                    $activeContext = $this->contextProcesser->processContext(
+                    $activeContext = $this->contextProcessor->processContext(
                         $activeContext,
                         $termDefinition->context,
                         $termDefinition->baseUrl,

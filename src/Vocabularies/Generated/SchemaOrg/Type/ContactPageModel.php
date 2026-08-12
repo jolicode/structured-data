@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ContactPageModel
 {
     public const DESCRIPTION = 'Web page type: Contact page.';
     public const LABEL = 'ContactPage';
     public const NAME = 'schema:ContactPage';
-    public const PARENTS = ['WebPageModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebPageModel'];
+    public const PARENTS = ['WebPageModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\WebPageModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

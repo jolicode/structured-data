@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Mapper;
+namespace JoliCode\StructuredData\Mapper;
 
-use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Jolicode\JsonLd\Parser\DataStructures\AbstractStructure;
-use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
-use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
-use Jolicode\JsonLd\Parser\Properties\Property;
-use Jolicode\JsonLd\Parser\Properties\Value;
-use Jolicode\Vocabularies\Generated\GeneratedClassesRegistry;
-use Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateModel;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\IriResolver;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
+use JoliCode\StructuredData\JsonLd\Parser\DataStructures\AbstractStructure;
+use JoliCode\StructuredData\JsonLd\Parser\DataStructures\ArrayStructure;
+use JoliCode\StructuredData\JsonLd\Parser\DataStructures\ObjectStructure;
+use JoliCode\StructuredData\JsonLd\Parser\Properties\Property;
+use JoliCode\StructuredData\JsonLd\Parser\Properties\Value;
+use JoliCode\StructuredData\Vocabularies\Generated\GeneratedClassesRegistry;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DateModel;
 
 class ValidationMapper
 {
@@ -28,8 +28,8 @@ class ValidationMapper
 
     // The library runtime must not depend on the generator classes, so the
     // generated namespaces are duplicated here.
-    private const GENERATED_SCHEMA_ORG_TYPE_NAMESPACE = 'Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Type';
-    private const GENERATED_GOOGLE_NAMESPACE = 'Jolicode\\Vocabularies\\Generated\\Google';
+    private const GENERATED_SCHEMA_ORG_TYPE_NAMESPACE = 'JoliCode\\StructuredData\\Vocabularies\\Generated\\SchemaOrg\\Type';
+    private const GENERATED_GOOGLE_NAMESPACE = 'JoliCode\\StructuredData\\Vocabularies\\Generated\\Google';
     private string $sourceFormat;
 
     /**

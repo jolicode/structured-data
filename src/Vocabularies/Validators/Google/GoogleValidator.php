@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Validators\Google;
+namespace JoliCode\StructuredData\Vocabularies\Validators\Google;
 
-use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Mapper\MappedError;
-use Jolicode\JsonLd\Mapper\MappedProperty;
-use Jolicode\JsonLd\Mapper\MappedType;
-use Jolicode\Vocabularies\Validators\AbstractValidator;
-use Jolicode\Vocabularies\Validators\Google\SpecialRules\SpecialRulesRegistry;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\IriResolver;
+use JoliCode\StructuredData\Mapper\MappedError;
+use JoliCode\StructuredData\Mapper\MappedProperty;
+use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Validators\AbstractValidator;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules\SpecialRulesRegistry;
 
 class GoogleValidator extends AbstractValidator
 {

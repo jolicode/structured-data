@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MonetaryGrantModel
 {
     public const DESCRIPTION = 'A monetary grant.';
     public const LABEL = 'MonetaryGrant';
     public const NAME = 'schema:MonetaryGrant';
-    public const PARENTS = ['GrantModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GrantModel'];
+    public const PARENTS = ['GrantModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\GrantModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/383', 'https://schema.org/docs/collab/FundInfoCollab'];

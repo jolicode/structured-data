@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OriginatesFromModel
 {
     public const DESCRIPTION = 'The vasculature the lymphatic structure originates, or afferents, from.';
     public const LABEL = 'originatesFrom';
     public const NAME = 'schema:originatesFrom';
-    public const VALUES = ['VesselModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VesselModel'];
-    public const TYPES = ['LymphaticVessel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LymphaticVesselModel'];
+    public const VALUES = ['VesselModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\VesselModel'];
+    public const TYPES = ['LymphaticVessel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\LymphaticVesselModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

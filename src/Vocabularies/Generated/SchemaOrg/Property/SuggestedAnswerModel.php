@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SuggestedAnswerModel
 {
     public const DESCRIPTION = 'An answer (possibly one of several, possibly incorrect) to a Question, e.g. on a Question/Answer site.';
     public const LABEL = 'suggestedAnswer';
     public const NAME = 'schema:suggestedAnswer';
-    public const VALUES = ['AnswerModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AnswerModel', 'ItemListModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ItemListModel'];
-    public const TYPES = ['Question' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuestionModel'];
+    public const VALUES = ['AnswerModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\AnswerModel', 'ItemListModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ItemListModel'];
+    public const TYPES = ['Question' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\QuestionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

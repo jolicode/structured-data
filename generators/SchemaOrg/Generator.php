@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generators\SchemaOrg;
+namespace JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg;
 
-use Jolicode\Vocabularies\Generators\GeneratorInterface;
-use Jolicode\Vocabularies\Generators\SchemaOrg\Objects\AbstractSchemaOrgElement;
-use Jolicode\Vocabularies\Generators\SchemaOrg\Objects\ClassesContainer;
-use Jolicode\Vocabularies\Generators\SchemaOrg\Objects\EnumerationMember;
-use Jolicode\Vocabularies\Generators\SchemaOrg\Objects\Property;
-use Jolicode\Vocabularies\Generators\SchemaOrg\Objects\Type;
-use Jolicode\Vocabularies\Generators\StaticFileGenerator;
+use JoliCode\StructuredData\Vocabularies\Generators\GeneratorInterface;
+use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Objects\AbstractSchemaOrgElement;
+use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Objects\ClassesContainer;
+use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Objects\EnumerationMember;
+use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Objects\Property;
+use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Objects\Type;
+use JoliCode\StructuredData\Vocabularies\Generators\StaticFileGenerator;
 use PhpParser\Builder\Class_;
 use PhpParser\BuilderFactory;
 use PhpParser\Node\ArrayItem;
@@ -30,9 +30,9 @@ use Symfony\Component\DomCrawler\Crawler;
 
 readonly class Generator implements GeneratorInterface
 {
-    public const NAMESPACE_TYPE = 'Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Type';
-    public const NAMESPACE_PROPERTY = 'Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Property';
-    public const NAMESPACE_ENUMERATION_MEMBER = 'Jolicode\\Vocabularies\\Generated\\SchemaOrg\\EnumerationMember';
+    public const NAMESPACE_TYPE = 'JoliCode\\StructuredData\\Vocabularies\\Generated\\SchemaOrg\\Type';
+    public const NAMESPACE_PROPERTY = 'JoliCode\\StructuredData\\Vocabularies\\Generated\\SchemaOrg\\Property';
+    public const NAMESPACE_ENUMERATION_MEMBER = 'JoliCode\\StructuredData\\Vocabularies\\Generated\\SchemaOrg\\EnumerationMember';
 
     public function __construct(
         private BuilderFactory $factory = new BuilderFactory(),

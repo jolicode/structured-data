@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Validators;
+namespace JoliCode\StructuredData\Vocabularies\Validators;
 
-use Jolicode\JsonLd\Mapper\MappedError;
-use Jolicode\JsonLd\Mapper\MappedProperty;
-use Jolicode\JsonLd\Mapper\MappedType;
-use Jolicode\JsonLd\Parser\Range;
+use JoliCode\StructuredData\JsonLd\Parser\Range;
+use JoliCode\StructuredData\Mapper\MappedError;
+use JoliCode\StructuredData\Mapper\MappedProperty;
+use JoliCode\StructuredData\Mapper\MappedType;
 
 abstract class AbstractValidator implements ValidatorInterface
 {

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OrderedItemModel
 {
     public const DESCRIPTION = 'The item ordered.';
     public const LABEL = 'orderedItem';
     public const NAME = 'schema:orderedItem';
-    public const VALUES = ['OrderItemModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrderItemModel', 'ProductModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel', 'ServiceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceModel'];
-    public const TYPES = ['OrderItem' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrderItemModel', 'Order' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrderModel'];
+    public const VALUES = ['OrderItemModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrderItemModel', 'ProductModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ProductModel', 'ServiceModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ServiceModel'];
+    public const TYPES = ['OrderItem' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrderItemModel', 'Order' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrderModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

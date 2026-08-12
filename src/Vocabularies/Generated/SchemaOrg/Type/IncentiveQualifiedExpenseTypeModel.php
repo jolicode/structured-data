@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IncentiveQualifiedExpenseTypeModel
 {
     public const DESCRIPTION = 'The types of expenses that are covered by the incentive. For example some incentives are only for the goods (tangible items) but the services (labor) are excluded.';
     public const LABEL = 'IncentiveQualifiedExpenseType';
     public const NAME = 'schema:IncentiveQualifiedExpenseType';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['IncentiveQualifiedExpenseTypeGoodsOnlyModel' => 'EnumerationMember\IncentiveQualifiedExpenseTypeGoodsOnlyModel', 'IncentiveQualifiedExpenseTypeGoodsOrServicesModel' => 'EnumerationMember\IncentiveQualifiedExpenseTypeGoodsOrServicesModel', 'IncentiveQualifiedExpenseTypeServicesOnlyModel' => 'EnumerationMember\IncentiveQualifiedExpenseTypeServicesOnlyModel', 'IncentiveQualifiedExpenseTypeUtilityBillModel' => 'EnumerationMember\IncentiveQualifiedExpenseTypeUtilityBillModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3572'];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ContraindicationModel
 {
     public const DESCRIPTION = 'A contraindication for this therapy.';
     public const LABEL = 'contraindication';
     public const NAME = 'schema:contraindication';
-    public const VALUES = ['MedicalContraindicationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalContraindicationModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['MedicalDevice' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalDeviceModel', 'MedicalTherapy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTherapyModel'];
+    public const VALUES = ['MedicalContraindicationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalContraindicationModel', 'TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MedicalDevice' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalDeviceModel', 'MedicalTherapy' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalTherapyModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OfferItemConditionModel
 {
     public const DESCRIPTION = 'A list of possible conditions for the item.';
     public const LABEL = 'OfferItemCondition';
     public const NAME = 'schema:OfferItemCondition';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['DamagedConditionModel' => 'EnumerationMember\DamagedConditionModel', 'NewConditionModel' => 'EnumerationMember\NewConditionModel', 'RefurbishedConditionModel' => 'EnumerationMember\RefurbishedConditionModel', 'UsedConditionModel' => 'EnumerationMember\UsedConditionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

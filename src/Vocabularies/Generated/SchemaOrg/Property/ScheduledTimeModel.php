@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ScheduledTimeModel
 {
     public const DESCRIPTION = 'The time the object is scheduled to.';
     public const LABEL = 'scheduledTime';
     public const NAME = 'schema:scheduledTime';
-    public const VALUES = ['DateModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateTimeModel'];
-    public const TYPES = ['PlanAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlanActionModel'];
+    public const VALUES = ['DateModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['PlanAction' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PlanActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

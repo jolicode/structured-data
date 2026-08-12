@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReservationForModel
 {
     public const DESCRIPTION = 'The thing -- flight, event, restaurant, etc. being reserved.';
     public const LABEL = 'reservationFor';
     public const NAME = 'schema:reservationFor';
-    public const VALUES = ['ThingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
-    public const TYPES = ['Reservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReservationModel'];
+    public const VALUES = ['ThingModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['Reservation' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ReservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

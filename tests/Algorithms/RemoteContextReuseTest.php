@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Algorithms;
+namespace JoliCode\StructuredData\Tests\Algorithms;
 
-use Jolicode\JsonLd\Algorithms\Exception\TermDefinitionCreationException;
-use Jolicode\JsonLd\Algorithms\Expand\Expander;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\TermDefinitionCreationException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Expand\Expander;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 

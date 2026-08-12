@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RangeIncludesModel
 {
     public const DESCRIPTION = 'Relates a property to a class that constitutes (one of) the expected type(s) for values of the property.';
     public const LABEL = 'rangeIncludes';
     public const NAME = 'schema:rangeIncludes';
-    public const VALUES = ['ClassModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ClassModel'];
-    public const TYPES = ['Property' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyModel'];
+    public const VALUES = ['ClassModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ClassModel'];
+    public const TYPES = ['Property' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PropertyModel'];
     public const IS_PART_OF = ['https://meta.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

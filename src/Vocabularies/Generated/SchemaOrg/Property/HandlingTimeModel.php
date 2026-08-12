@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HandlingTimeModel
 {
@@ -20,8 +20,8 @@ In the context of [[ShippingDeliveryTime]], Typical properties: minValue, maxVal
 In the context of [[ShippingService]], use the [[ServicePeriod]] format, that contains the same information in a structured form, with cut-off time, business days and duration.';
     public const LABEL = 'handlingTime';
     public const NAME = 'schema:handlingTime';
-    public const VALUES = ['QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel', 'ServicePeriodModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServicePeriodModel'];
-    public const TYPES = ['ShippingDeliveryTime' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ShippingDeliveryTimeModel', 'ShippingService' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ShippingServiceModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel', 'ServicePeriodModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ServicePeriodModel'];
+    public const TYPES = ['ShippingDeliveryTime' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ShippingDeliveryTimeModel', 'ShippingService' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ShippingServiceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2506', 'https://github.com/schemaorg/schemaorg/issues/3617'];
     public const SUPERSEDED_BY = null;

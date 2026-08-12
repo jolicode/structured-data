@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PartOfEpisodeModel
 {
     public const DESCRIPTION = 'The episode to which this clip belongs.';
     public const LABEL = 'partOfEpisode';
     public const NAME = 'schema:partOfEpisode';
-    public const VALUES = ['EpisodeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EpisodeModel'];
-    public const TYPES = ['Clip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ClipModel'];
+    public const VALUES = ['EpisodeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EpisodeModel'];
+    public const TYPES = ['Clip' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ClipModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

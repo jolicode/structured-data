@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SellActionModel
 {
     public const DESCRIPTION = 'The act of taking money from a buyer in exchange for goods or services rendered. An agent sells an object, product, or service to a buyer for a price. Reciprocal of BuyAction.';
     public const LABEL = 'SellAction';
     public const NAME = 'schema:SellAction';
-    public const PARENTS = ['TradeActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TradeActionModel'];
+    public const PARENTS = ['TradeActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TradeActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

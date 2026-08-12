@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ActionStatusTypeModel
 {
     public const DESCRIPTION = 'The status of an Action.';
     public const LABEL = 'ActionStatusType';
     public const NAME = 'schema:ActionStatusType';
-    public const PARENTS = ['StatusEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\StatusEnumerationModel'];
+    public const PARENTS = ['StatusEnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\StatusEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['ActiveActionStatusModel' => 'EnumerationMember\ActiveActionStatusModel', 'CompletedActionStatusModel' => 'EnumerationMember\CompletedActionStatusModel', 'FailedActionStatusModel' => 'EnumerationMember\FailedActionStatusModel', 'PotentialActionStatusModel' => 'EnumerationMember\PotentialActionStatusModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

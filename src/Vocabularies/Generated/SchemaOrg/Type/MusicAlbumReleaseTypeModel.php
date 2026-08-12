@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MusicAlbumReleaseTypeModel
 {
     public const DESCRIPTION = 'The kind of release which this album is: single, EP or album.';
     public const LABEL = 'MusicAlbumReleaseType';
     public const NAME = 'schema:MusicAlbumReleaseType';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['AlbumReleaseModel' => 'EnumerationMember\AlbumReleaseModel', 'BroadcastReleaseModel' => 'EnumerationMember\BroadcastReleaseModel', 'EPReleaseModel' => 'EnumerationMember\EPReleaseModel', 'SingleReleaseModel' => 'EnumerationMember\SingleReleaseModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

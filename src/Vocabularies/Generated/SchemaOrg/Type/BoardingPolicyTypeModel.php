@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BoardingPolicyTypeModel
 {
     public const DESCRIPTION = 'A type of boarding policy used by an airline.';
     public const LABEL = 'BoardingPolicyType';
     public const NAME = 'schema:BoardingPolicyType';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['GroupBoardingPolicyModel' => 'EnumerationMember\GroupBoardingPolicyModel', 'ZoneBoardingPolicyModel' => 'EnumerationMember\ZoneBoardingPolicyModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CategoryCodeSetModel
 {
     public const DESCRIPTION = 'A set of Category Code values.';
     public const LABEL = 'CategoryCodeSet';
     public const NAME = 'schema:CategoryCodeSet';
-    public const PARENTS = ['DefinedTermSetModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermSetModel'];
+    public const PARENTS = ['DefinedTermSetModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DefinedTermSetModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/894'];

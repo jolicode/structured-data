@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CompleteDataFeedModel
 {
@@ -20,7 +20,7 @@ final class CompleteDataFeedModel
 This is the equivalent of Atom\'s element as defined in Feed Paging and Archiving [RFC 5005](https://tools.ietf.org/html/rfc5005), for example (and as defined for Atom), when using data from a feed that represents a collection of items that varies over time (e.g. "Top Twenty Records") there is no need to have newer entries mixed in alongside older, obsolete entries. By marking this feed as a CompleteDataFeed, old entries can be safely discarded when the feed is refreshed, since we can assume the feed has provided descriptions for all current items.';
     public const LABEL = 'CompleteDataFeed';
     public const NAME = 'schema:CompleteDataFeed';
-    public const PARENTS = ['DataFeedModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DataFeedModel'];
+    public const PARENTS = ['DataFeedModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DataFeedModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1397'];

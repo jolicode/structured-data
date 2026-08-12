@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SpeakableModel
 {
@@ -28,8 +28,8 @@ For more sophisticated markup of speakable sections beyond simple ID references,
 we define a supporting type, [[SpeakableSpecification]]  which is defined to be a possible value of the *speakable* property.';
     public const LABEL = 'speakable';
     public const NAME = 'schema:speakable';
-    public const VALUES = ['SpeakableSpecificationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SpeakableSpecificationModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
-    public const TYPES = ['Article' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ArticleModel', 'WebPage' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebPageModel'];
+    public const VALUES = ['SpeakableSpecificationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SpeakableSpecificationModel', 'URLModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
+    public const TYPES = ['Article' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ArticleModel', 'WebPage' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\WebPageModel'];
     public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1389'];
     public const SUPERSEDED_BY = null;

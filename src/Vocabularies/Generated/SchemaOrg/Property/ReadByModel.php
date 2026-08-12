@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReadByModel
 {
     public const DESCRIPTION = 'A person who reads (performs) the audiobook.';
     public const LABEL = 'readBy';
     public const NAME = 'schema:readBy';
-    public const VALUES = ['PersonModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
-    public const TYPES = ['Audiobook' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AudiobookModel'];
+    public const VALUES = ['PersonModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
+    public const TYPES = ['Audiobook' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\AudiobookModel'];
     public const IS_PART_OF = ['https://bib.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

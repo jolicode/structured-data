@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class YearlyRevenueModel
 {
     public const DESCRIPTION = 'The size of the business in annual revenue.';
     public const LABEL = 'yearlyRevenue';
     public const NAME = 'schema:yearlyRevenue';
-    public const VALUES = ['QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
-    public const TYPES = ['BusinessAudience' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BusinessAudienceModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['BusinessAudience' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BusinessAudienceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

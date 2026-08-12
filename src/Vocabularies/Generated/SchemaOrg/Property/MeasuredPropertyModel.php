@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MeasuredPropertyModel
 {
     public const DESCRIPTION = 'The measuredProperty of an [[Observation]], typically via its [[StatisticalVariable]]. There are various kinds of applicable [[Property]]: a schema.org property, a property from other RDF-compatible systems, e.g. W3C RDF Data Cube, Data Commons, Wikidata, or schema.org extensions such as [GS1\'s](https://www.gs1.org/voc/?show=properties).';
     public const LABEL = 'measuredProperty';
     public const NAME = 'schema:measuredProperty';
-    public const VALUES = ['PropertyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyModel'];
-    public const TYPES = ['Observation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ObservationModel', 'StatisticalVariable' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\StatisticalVariableModel'];
+    public const VALUES = ['PropertyModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PropertyModel'];
+    public const TYPES = ['Observation' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ObservationModel', 'StatisticalVariable' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\StatisticalVariableModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2291'];
     public const SUPERSEDED_BY = null;

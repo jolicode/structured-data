@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Algorithms\Exception;
+namespace JoliCode\StructuredData\JsonLd\Algorithms\Exception;
 
 class JsonLdException extends \Exception
 {

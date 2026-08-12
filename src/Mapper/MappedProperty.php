@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Mapper;
+namespace JoliCode\StructuredData\Mapper;
 
-use Jolicode\JsonLd\Parser\Range;
+use JoliCode\StructuredData\JsonLd\Parser\Range;
 
 class MappedProperty
 {

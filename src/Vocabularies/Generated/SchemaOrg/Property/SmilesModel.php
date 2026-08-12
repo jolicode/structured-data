@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SmilesModel
 {
     public const DESCRIPTION = 'A specification in form of a line notation for describing the structure of chemical species using short ASCII strings.  Double bond stereochemistry \ indicators may need to be escaped in the string in formats where the backslash is an escape character.';
     public const LABEL = 'smiles';
     public const NAME = 'schema:smiles';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['MolecularEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MolecularEntityModel'];
+    public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MolecularEntity' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MolecularEntityModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['http://www.bioschemas.org/MolecularEntity'];
     public const SUPERSEDED_BY = null;

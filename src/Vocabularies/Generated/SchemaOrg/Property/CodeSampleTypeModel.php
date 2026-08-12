@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CodeSampleTypeModel
 {
     public const DESCRIPTION = 'What type of code sample: full (compile ready) solution, code snippet, inline code, scripts, template.';
     public const LABEL = 'codeSampleType';
     public const NAME = 'schema:codeSampleType';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['SoftwareSourceCode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SoftwareSourceCodeModel'];
+    public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['SoftwareSourceCode' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SoftwareSourceCodeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

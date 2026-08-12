@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Extraction;
+namespace JoliCode\StructuredData\Extraction;
 
 /**
  * Base class for extractors that parse structured data from HTML DOM trees.

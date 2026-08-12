@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ValueNameModel
 {
     public const DESCRIPTION = 'Indicates the name of the PropertyValueSpecification to be used in URL templates and form encoding in a manner analogous to HTML\'s input@name.';
     public const LABEL = 'valueName';
     public const NAME = 'schema:valueName';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['PropertyValueSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyValueSpecificationModel'];
+    public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['PropertyValueSpecification' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PropertyValueSpecificationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

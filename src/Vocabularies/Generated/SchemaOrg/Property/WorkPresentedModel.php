@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class WorkPresentedModel
 {
     public const DESCRIPTION = 'The movie presented during this event.';
     public const LABEL = 'workPresented';
     public const NAME = 'schema:workPresented';
-    public const VALUES = ['MovieModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MovieModel'];
-    public const TYPES = ['ScreeningEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ScreeningEventModel'];
+    public const VALUES = ['MovieModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MovieModel'];
+    public const TYPES = ['ScreeningEvent' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ScreeningEventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

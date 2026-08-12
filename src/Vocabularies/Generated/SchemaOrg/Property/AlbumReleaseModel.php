@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AlbumReleaseModel
 {
     public const DESCRIPTION = 'A release of this album.';
     public const LABEL = 'albumRelease';
     public const NAME = 'schema:albumRelease';
-    public const VALUES = ['MusicReleaseModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicReleaseModel'];
-    public const TYPES = ['MusicAlbum' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicAlbumModel'];
+    public const VALUES = ['MusicReleaseModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MusicReleaseModel'];
+    public const TYPES = ['MusicAlbum' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MusicAlbumModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

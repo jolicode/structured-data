@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Extraction;
+namespace JoliCode\StructuredData\Extraction;
 
 /**
  * Parses an HTML body into a DOMDocument, memoizing the last parsed document.

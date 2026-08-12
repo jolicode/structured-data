@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TrackingUrlModel
 {
     public const DESCRIPTION = 'Tracking url for the parcel delivery.';
     public const LABEL = 'trackingUrl';
     public const NAME = 'schema:trackingUrl';
-    public const VALUES = ['URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
-    public const TYPES = ['ParcelDelivery' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ParcelDeliveryModel'];
+    public const VALUES = ['URLModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
+    public const TYPES = ['ParcelDelivery' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ParcelDeliveryModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

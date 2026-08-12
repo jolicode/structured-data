@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class FoodEstablishmentModel
 {
     public const DESCRIPTION = 'A sub property of location. The specific food establishment where the action occurred.';
     public const LABEL = 'foodEstablishment';
     public const NAME = 'schema:foodEstablishment';
-    public const VALUES = ['FoodEstablishmentModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FoodEstablishmentModel', 'PlaceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlaceModel'];
-    public const TYPES = ['CookAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CookActionModel'];
+    public const VALUES = ['FoodEstablishmentModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\FoodEstablishmentModel', 'PlaceModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PlaceModel'];
+    public const TYPES = ['CookAction' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CookActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

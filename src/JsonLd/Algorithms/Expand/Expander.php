@@ -9,21 +9,21 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Algorithms\Expand;
+namespace JoliCode\StructuredData\JsonLd\Algorithms\Expand;
 
-use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextCache;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
-use Jolicode\JsonLd\Algorithms\Exception\ExpansionException;
-use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
-use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
-use Jolicode\JsonLd\Algorithms\Http\HttpDocumentLoader;
-use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Algorithms\JsonLd\FramingKeyword;
-use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
-use Jolicode\JsonLd\Algorithms\Services\ValueAdder;
-use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinition;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\Context;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextCache;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextProcessor;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\ExpansionException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\JsonLdException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\DocumentLoaderInterface;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\HttpDocumentLoader;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\IriResolver;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\FramingKeyword;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms\Services\ValueAdder;
+use JoliCode\StructuredData\JsonLd\Algorithms\TermDefinition\TermDefinition;
 
 class Expander
 {
@@ -35,15 +35,15 @@ class Expander
      */
     public const TOP_LEVEL_ACTIVE_PROPERTY = "\0top-level\0";
 
-    private ContextProcesser $contextProcesser;
+    private ContextProcessor $contextProcessor;
     private DocumentLoaderInterface $documentLoader;
 
     public function __construct(
-        ?ContextProcesser $contextProcesser = null,
+        ?ContextProcessor $contextProcessor = null,
         ?DocumentLoaderInterface $documentLoader = null,
     ) {
         $this->documentLoader = $documentLoader ?? new HttpDocumentLoader();
-        $this->contextProcesser = $contextProcesser ?? new ContextProcesser(new ContextCache($this->documentLoader));
+        $this->contextProcessor = $contextProcessor ?? new ContextProcessor(new ContextCache($this->documentLoader));
     }
 
     /**
@@ -78,7 +78,7 @@ class Expander
         );
 
         if ($options->expandContext) {
-            $activeContext = $this->contextProcesser->processContext($activeContext, $options->expandContext, $activeContext->baseUrl);
+            $activeContext = $this->contextProcessor->processContext($activeContext, $options->expandContext, $activeContext->baseUrl);
         }
 
         $element = $this->doExpand(
@@ -150,7 +150,7 @@ class Expander
 
         // 8
         if (false !== $propertyScopedContext) {
-            $activeContext = $this->contextProcesser->processContext(
+            $activeContext = $this->contextProcessor->processContext(
                 $activeContext,
                 $propertyScopedContext,
                 $baseUrl,
@@ -160,7 +160,7 @@ class Expander
 
         // 9
         if (property_exists($element, Keyword::CONTEXT->value)) {
-            $activeContext = $this->contextProcesser->processContext(
+            $activeContext = $this->contextProcessor->processContext(
                 $activeContext,
                 $element->{Keyword::CONTEXT->value},
                 $baseUrl,
@@ -1034,7 +1034,7 @@ class Expander
                 && \array_key_exists($index, $mapContext->termDefinitions)
                 && false !== $mapContext->termDefinitions[$index]->context
             ) {
-                $mapContext = $this->contextProcesser->processContext(
+                $mapContext = $this->contextProcessor->processContext(
                     $mapContext,
                     $mapContext->termDefinitions[$index]->context,
                     $mapContext->termDefinitions[$index]->baseUrl,
@@ -1204,7 +1204,7 @@ class Expander
                 \array_key_exists($nestingKey, $activeDefinitions)
                 && false !== $activeDefinitions[$nestingKey]->context
             ) {
-                $nestContext = $this->contextProcesser->processContext(
+                $nestContext = $this->contextProcessor->processContext(
                     $activeContext,
                     $activeDefinitions[$nestingKey]->context,
                     $activeDefinitions[$nestingKey]->baseUrl ?: $baseUrl,
@@ -1276,7 +1276,7 @@ class Expander
 
         // 4.2
         if (false !== $propertyScopedContext) {
-            $activeContext = $this->contextProcesser->processContext(
+            $activeContext = $this->contextProcessor->processContext(
                 $activeContext,
                 $propertyScopedContext,
                 $activeContext->termDefinitions[$activeProperty]->baseUrl,
@@ -1402,7 +1402,7 @@ class Expander
                     && \array_key_exists($term, $typeScopedContext->termDefinitions)
                     && false !== $typeScopedContext->termDefinitions[$term]->context
                 ) {
-                    $activeContext = $this->contextProcesser->processContext(
+                    $activeContext = $this->contextProcessor->processContext(
                         $activeContext,
                         $typeScopedContext->termDefinitions[$term]->context,
                         $typeScopedContext->termDefinitions[$term]->baseUrl,

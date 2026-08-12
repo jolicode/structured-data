@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RentActionModel
 {
     public const DESCRIPTION = 'The act of giving money in return for temporary use, but not ownership, of an object such as a vehicle or property. For example, an agent rents a property from a landlord in exchange for a periodic payment.';
     public const LABEL = 'RentAction';
     public const NAME = 'schema:RentAction';
-    public const PARENTS = ['TradeActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TradeActionModel'];
+    public const PARENTS = ['TradeActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TradeActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

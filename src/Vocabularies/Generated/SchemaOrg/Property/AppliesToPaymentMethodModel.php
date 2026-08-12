@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AppliesToPaymentMethodModel
 {
     public const DESCRIPTION = 'The payment method(s) to which the payment charge specification applies.';
     public const LABEL = 'appliesToPaymentMethod';
     public const NAME = 'schema:appliesToPaymentMethod';
-    public const VALUES = ['PaymentMethodModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PaymentMethodModel'];
-    public const TYPES = ['PaymentChargeSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PaymentChargeSpecificationModel'];
+    public const VALUES = ['PaymentMethodModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PaymentMethodModel'];
+    public const TYPES = ['PaymentChargeSpecification' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PaymentChargeSpecificationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

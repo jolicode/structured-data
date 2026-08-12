@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MainContentOfPageModel
 {
     public const DESCRIPTION = 'Indicates if this web page element is the main subject of the page.';
     public const LABEL = 'mainContentOfPage';
     public const NAME = 'schema:mainContentOfPage';
-    public const VALUES = ['WebPageElementModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebPageElementModel'];
-    public const TYPES = ['WebPage' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebPageModel'];
+    public const VALUES = ['WebPageElementModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\WebPageElementModel'];
+    public const TYPES = ['WebPage' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\WebPageModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

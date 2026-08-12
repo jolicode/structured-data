@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AdvertiserContentArticleModel
 {
     public const DESCRIPTION = 'An [[Article]] that an external entity has paid to place or to produce to its specifications. Includes [advertorials](https://en.wikipedia.org/wiki/Advertorial), sponsored content, native advertising and other paid content.';
     public const LABEL = 'AdvertiserContentArticle';
     public const NAME = 'schema:AdvertiserContentArticle';
-    public const PARENTS = ['ArticleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ArticleModel'];
+    public const PARENTS = ['ArticleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ArticleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1525'];

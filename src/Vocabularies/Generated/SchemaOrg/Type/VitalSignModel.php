@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class VitalSignModel
 {
     public const DESCRIPTION = 'Vital signs are measures of various physiological functions in order to assess the most basic body functions.';
     public const LABEL = 'VitalSign';
     public const NAME = 'schema:VitalSign';
-    public const PARENTS = ['MedicalSignModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalSignModel'];
+    public const PARENTS = ['MedicalSignModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalSignModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

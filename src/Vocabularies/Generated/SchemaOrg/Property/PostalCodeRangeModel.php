@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PostalCodeRangeModel
 {
     public const DESCRIPTION = 'A defined range of postal codes.';
     public const LABEL = 'postalCodeRange';
     public const NAME = 'schema:postalCodeRange';
-    public const VALUES = ['PostalCodeRangeSpecificationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PostalCodeRangeSpecificationModel'];
-    public const TYPES = ['DefinedRegion' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedRegionModel'];
+    public const VALUES = ['PostalCodeRangeSpecificationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PostalCodeRangeSpecificationModel'];
+    public const TYPES = ['DefinedRegion' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DefinedRegionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2506'];
     public const SUPERSEDED_BY = null;

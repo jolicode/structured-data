@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EducationalRoleModel
 {
     public const DESCRIPTION = 'An educationalRole of an EducationalAudience.';
     public const LABEL = 'educationalRole';
     public const NAME = 'schema:educationalRole';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['EducationalAudience' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalAudienceModel'];
+    public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['EducationalAudience' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EducationalAudienceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

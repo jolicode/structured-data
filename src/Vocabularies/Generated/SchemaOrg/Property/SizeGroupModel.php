@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SizeGroupModel
 {
     public const DESCRIPTION = 'The size group (also known as "size type") for a product\'s size. Size groups are common in the fashion industry to define size segments and suggested audiences for wearable products. Multiple values can be combined, for example "men\'s big and tall", "petite maternity" or "regular".';
     public const LABEL = 'sizeGroup';
     public const NAME = 'schema:sizeGroup';
-    public const VALUES = ['SizeGroupEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SizeGroupEnumerationModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['SizeSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SizeSpecificationModel'];
+    public const VALUES = ['SizeGroupEnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SizeGroupEnumerationModel', 'TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['SizeSpecification' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SizeSpecificationModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
     public const SUPERSEDED_BY = null;

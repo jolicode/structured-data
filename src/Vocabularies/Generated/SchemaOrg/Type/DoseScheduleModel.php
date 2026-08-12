@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DoseScheduleModel
 {
     public const DESCRIPTION = 'A specific dosing schedule for a drug or supplement.';
     public const LABEL = 'DoseSchedule';
     public const NAME = 'schema:DoseSchedule';
-    public const PARENTS = ['MedicalIntangibleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalIntangibleModel'];
+    public const PARENTS = ['MedicalIntangibleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalIntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

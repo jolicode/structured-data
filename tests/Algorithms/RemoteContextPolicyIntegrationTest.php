@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Algorithms;
+namespace JoliCode\StructuredData\Tests\Algorithms;
 
-use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextCache;
-use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
-use Jolicode\JsonLd\Algorithms\Expand\Expander;
-use Jolicode\JsonLd\Algorithms\Http\HttpDocumentLoader;
-use Jolicode\JsonLd\Algorithms\Http\RemoteContextPolicy;
-use Jolicode\JsonLd\Audit\AuditOptions;
-use Jolicode\JsonLd\Validator;
+use JoliCode\StructuredData\Audit\AuditOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\Context;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextCache;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\JsonLdException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Expand\Expander;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\HttpDocumentLoader;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\RemoteContextPolicy;
+use JoliCode\StructuredData\Validator;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\MockHttpClient;

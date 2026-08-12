@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class NonEqualModel
 {
     public const DESCRIPTION = 'This ordering relation for qualitative values indicates that the subject is not equal to the object.';
     public const LABEL = 'nonEqual';
     public const NAME = 'schema:nonEqual';
-    public const VALUES = ['QualitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QualitativeValueModel'];
-    public const TYPES = ['QualitativeValue' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QualitativeValueModel'];
+    public const VALUES = ['QualitativeValueModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\QualitativeValueModel'];
+    public const TYPES = ['QualitativeValue' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\QualitativeValueModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Mapper;
+namespace JoliCode\StructuredData\Mapper;
 
 readonly class MappedError implements \JsonSerializable
 {

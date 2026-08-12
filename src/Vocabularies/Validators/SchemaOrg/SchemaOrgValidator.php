@@ -9,21 +9,29 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Validators\SchemaOrg;
+namespace JoliCode\StructuredData\Vocabularies\Validators\SchemaOrg;
 
-use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Jolicode\JsonLd\Mapper\MappedError;
-use Jolicode\JsonLd\Mapper\MappedProperty;
-use Jolicode\JsonLd\Mapper\MappedType;
-use Jolicode\Vocabularies\Generated\GeneratedClassesRegistry;
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property\AdditionalPropertyModel;
-use Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyValueSpecificationModel;
-use Jolicode\Vocabularies\Validators\AbstractValidator;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\IriResolver;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
+use JoliCode\StructuredData\Mapper\MappedError;
+use JoliCode\StructuredData\Mapper\MappedProperty;
+use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Generated\GeneratedClassesRegistry;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property\AdditionalPropertyModel;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PropertyValueSpecificationModel;
+use JoliCode\StructuredData\Vocabularies\Validators\AbstractValidator;
 
 class SchemaOrgValidator extends AbstractValidator
 {
     public const VALIDATOR_NAME = 'SchemaOrg';
+
+    /**
+     * Version of the schema.org vocabulary the shipped, generated classes were built
+     * from. Bump it together with the generator's version when upgrading schema.org
+     * (see resources/schema.org/UPGRADE_GUIDELINES.md).
+     */
+    public const VOCABULARY_VERSION = '30.0';
+
     private const SCHEMA_ORG_DOMAIN = 'http://schema.org/';
     private const SCHEMA_ORG_DOMAIN_SECURE = 'https://schema.org/';
 
@@ -35,7 +43,7 @@ class SchemaOrgValidator extends AbstractValidator
      */
     private const PENDING_EXTENSION_DOMAIN = 'https://pending.schema.org';
 
-    private const GENERATED_ENUMERATION_MEMBER_NAMESPACE = 'Jolicode\\Vocabularies\\Generated\\SchemaOrg\\EnumerationMember';
+    private const GENERATED_ENUMERATION_MEMBER_NAMESPACE = 'JoliCode\\StructuredData\\Vocabularies\\Generated\\SchemaOrg\\EnumerationMember';
 
     /**
      * @var array<string, string>|null
@@ -406,7 +414,7 @@ class SchemaOrgValidator extends AbstractValidator
                 continue;
             }
 
-            if (!\in_array('Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Type\\EnumerationModel', $expectedValueTypeFqcn::PARENTS, true)) {
+            if (!\in_array('JoliCode\\StructuredData\\Vocabularies\\Generated\\SchemaOrg\\Type\\EnumerationModel', $expectedValueTypeFqcn::PARENTS, true)) {
                 continue;
             }
 
@@ -448,11 +456,11 @@ class SchemaOrgValidator extends AbstractValidator
 
     private function resolveEnumerationMemberFqcn(string $memberClass): string
     {
-        if (str_starts_with($memberClass, 'Jolicode\\')) {
+        if (str_starts_with($memberClass, 'JoliCode\\StructuredData\\')) {
             return $memberClass;
         }
 
-        return \sprintf('Jolicode\\Vocabularies\\Generated\\SchemaOrg\\%s', $memberClass);
+        return \sprintf('JoliCode\\StructuredData\\Vocabularies\\Generated\\SchemaOrg\\%s', $memberClass);
     }
 
     private function isSchemaOrgIri(string $value): bool
@@ -521,12 +529,12 @@ class SchemaOrgValidator extends AbstractValidator
 
     private function getTypeFqcn(string $typeShortName): string
     {
-        return \sprintf('Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Type\\%sModel', $typeShortName);
+        return \sprintf('JoliCode\\StructuredData\\Vocabularies\\Generated\\SchemaOrg\\Type\\%sModel', $typeShortName);
     }
 
     private function getPropertyFqcn(string $propertyShortName): string
     {
-        return \sprintf('Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Property\\%sModel', ucfirst($propertyShortName));
+        return \sprintf('JoliCode\\StructuredData\\Vocabularies\\Generated\\SchemaOrg\\Property\\%sModel', ucfirst($propertyShortName));
     }
 
     private function stripActionSuffixes(string $propertyLabel): string

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ITNonprofitTypeModel
 {
     public const DESCRIPTION = 'ITNonprofitType: Non-profit organization type originating from Italy.';
     public const LABEL = 'ITNonprofitType';
     public const NAME = 'schema:ITNonprofitType';
-    public const PARENTS = ['NonprofitTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NonprofitTypeModel'];
+    public const PARENTS = ['NonprofitTypeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NonprofitTypeModel'];
     public const ENUMERATION_MEMBERS = ['ITCooperativeCharityModel' => 'EnumerationMember\ITCooperativeCharityModel', 'ITMutualAidCharityModel' => 'EnumerationMember\ITMutualAidCharityModel', 'ITSocialCompanyCharityModel' => 'EnumerationMember\ITSocialCompanyCharityModel', 'ITSocialPromotionCharityModel' => 'EnumerationMember\ITSocialPromotionCharityModel', 'ITSportCompanyCharityModel' => 'EnumerationMember\ITSportCompanyCharityModel', 'ITVolunteerAssociationCharityModel' => 'EnumerationMember\ITVolunteerAssociationCharityModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3629'];

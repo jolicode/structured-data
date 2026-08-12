@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LegislativeBuildingModel
 {
     public const DESCRIPTION = 'A legislative building&#x2014;for example, the state capitol.';
     public const LABEL = 'LegislativeBuilding';
     public const NAME = 'schema:LegislativeBuilding';
-    public const PARENTS = ['GovernmentBuildingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GovernmentBuildingModel'];
+    public const PARENTS = ['GovernmentBuildingModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\GovernmentBuildingModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

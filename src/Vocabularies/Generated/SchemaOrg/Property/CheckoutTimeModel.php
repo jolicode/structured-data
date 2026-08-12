@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CheckoutTimeModel
 {
     public const DESCRIPTION = 'The latest someone may check out of a lodging establishment.';
     public const LABEL = 'checkoutTime';
     public const NAME = 'schema:checkoutTime';
-    public const VALUES = ['DateTimeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateTimeModel', 'TimeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TimeModel'];
-    public const TYPES = ['LodgingBusiness' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LodgingBusinessModel', 'LodgingReservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LodgingReservationModel'];
+    public const VALUES = ['DateTimeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DateTimeModel', 'TimeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TimeModel'];
+    public const TYPES = ['LodgingBusiness' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\LodgingBusinessModel', 'LodgingReservation' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\LodgingReservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

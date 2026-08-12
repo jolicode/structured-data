@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class StatusModel
 {
     public const DESCRIPTION = 'The status of the study (enumerated).';
     public const LABEL = 'status';
     public const NAME = 'schema:status';
-    public const VALUES = ['EventStatusTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventStatusTypeModel', 'MedicalStudyStatusModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalStudyStatusModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['MedicalCondition' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel', 'MedicalProcedure' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalProcedureModel', 'MedicalStudy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalStudyModel'];
+    public const VALUES = ['EventStatusTypeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EventStatusTypeModel', 'MedicalStudyStatusModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalStudyStatusModel', 'TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MedicalCondition' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel', 'MedicalProcedure' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalProcedureModel', 'MedicalStudy' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalStudyModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

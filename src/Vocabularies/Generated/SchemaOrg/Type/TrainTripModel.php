@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TrainTripModel
 {
     public const DESCRIPTION = 'A trip on a commercial train line.';
     public const LABEL = 'TrainTrip';
     public const NAME = 'schema:TrainTrip';
-    public const PARENTS = ['TripModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TripModel'];
+    public const PARENTS = ['TripModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TripModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

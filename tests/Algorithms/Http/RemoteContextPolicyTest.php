@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Algorithms\Http;
+namespace JoliCode\StructuredData\Tests\Algorithms\Http;
 
-use Jolicode\JsonLd\Algorithms\Http\RemoteContextPolicy;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\RemoteContextPolicy;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OrderItemStatusModel
 {
     public const DESCRIPTION = 'The current status of the order item.';
     public const LABEL = 'orderItemStatus';
     public const NAME = 'schema:orderItemStatus';
-    public const VALUES = ['OrderStatusModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrderStatusModel'];
-    public const TYPES = ['OrderItem' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrderItemModel'];
+    public const VALUES = ['OrderStatusModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrderStatusModel'];
+    public const TYPES = ['OrderItem' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrderItemModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

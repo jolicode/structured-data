@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ExpectsAcceptanceOfModel
 {
     public const DESCRIPTION = 'An Offer which must be accepted before the user can perform the Action. For example, the user may need to buy a movie before being able to watch it.';
     public const LABEL = 'expectsAcceptanceOf';
     public const NAME = 'schema:expectsAcceptanceOf';
-    public const VALUES = ['OfferModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel'];
-    public const TYPES = ['ActionAccessSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ActionAccessSpecificationModel', 'ConsumeAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ConsumeActionModel', 'MediaSubscription' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaSubscriptionModel'];
+    public const VALUES = ['OfferModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OfferModel'];
+    public const TYPES = ['ActionAccessSpecification' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ActionAccessSpecificationModel', 'ConsumeAction' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ConsumeActionModel', 'MediaSubscription' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MediaSubscriptionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1741'];
     public const SUPERSEDED_BY = null;

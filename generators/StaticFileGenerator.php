@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generators;
+namespace JoliCode\StructuredData\Vocabularies\Generators;
 
-use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
-use Jolicode\Vocabularies\Generators\Google\Generator as GoogleGenerator;
-use Jolicode\Vocabularies\Generators\Google\PrettyPrinter;
-use Jolicode\Vocabularies\Generators\SchemaOrg\Filesystem;
-use Jolicode\Vocabularies\Generators\SchemaOrg\Generator as SchemaOrgGenerator;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\Context;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextProcessor;
+use JoliCode\StructuredData\Vocabularies\Generators\Google\Generator as GoogleGenerator;
+use JoliCode\StructuredData\Vocabularies\Generators\Google\PrettyPrinter;
+use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Filesystem;
+use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Generator as SchemaOrgGenerator;
 use PhpParser\BuilderFactory;
 use PhpParser\BuilderHelpers;
 use PhpParser\Modifiers;
@@ -31,6 +31,17 @@ use PhpParser\Node\Stmt;
  */
 class StaticFileGenerator
 {
+    private const FILE_HEADER = <<<'PHP'
+        /*
+         * This file is part of JoliCode's json-ld project.
+         *
+         * (c) jolicode.com <coucou@jolicode.com>
+         *
+         * For the full copyright and license information, please view the LICENSE
+         * file that was distributed with this source code.
+         */
+        PHP;
+
     private const REGISTRY_FILE = __DIR__ . '/../src/Vocabularies/Generated/GeneratedClassesRegistry.php';
 
     private const MAPS = [
@@ -121,7 +132,7 @@ class StaticFileGenerator
             $localContext->{$term} = 'http://schema.org/' . $term;
         }
 
-        $processer = new ContextProcesser();
+        $processer = new ContextProcessor();
         $remoteContexts = [];
         $context = $processer->processContext(new Context(), $localContext, null, $remoteContexts, false, true, true);
 
@@ -161,11 +172,10 @@ class StaticFileGenerator
             new ArrayItem(new Array_($terms, ['kind' => Array_::KIND_SHORT]), $this->factory->val('terms')),
         ], ['kind' => Array_::KIND_SHORT]);
 
-        $staticPhp = $this->printer->prettyPrintFile([
-            new Stmt\Return_($staticContext),
-        ]);
+        $staticPhp = "<?php\n\n" . self::FILE_HEADER . "\n\n"
+            . $this->printer->prettyPrint([new Stmt\Return_($staticContext)]) . "\n";
 
-        file_put_contents($staticOutputFile, $staticPhp . "\n");
+        file_put_contents($staticOutputFile, $staticPhp);
     }
 
     /** @return array<string, string> */
@@ -186,24 +196,10 @@ class StaticFileGenerator
     /** @param array<string, array<string, string>> $maps */
     private function render(array $maps): string
     {
-        $namespace = $this->factory->namespace('Jolicode\\Vocabularies\\Generated')
+        $namespace = $this->factory->namespace('JoliCode\\StructuredData\\Vocabularies\\Generated')
             ->addStmt($this->buildRegistryClassNode($maps));
 
-        $header = <<<'PHP'
-/*
- * This file is part of JoliCode's json-ld project.
- *
- * (c) jolicode.com <coucou@jolicode.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
-// THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
-// Run `castor generate` to regenerate this file.
-PHP;
-
-        return "<?php\n\n{$header}\n\n" . $this->printer->prettyPrint([$namespace->getNode()]) . "\n";
+        return "<?php\n\n" . self::FILE_HEADER . "\n\n// THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.\n// Run `castor generate` to regenerate this file.\n\n" . $this->printer->prettyPrint([$namespace->getNode()]) . "\n";
     }
 
     /** @param array<string, array<string, string>> $maps */

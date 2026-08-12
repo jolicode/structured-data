@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EndDateModel
 {
     public const DESCRIPTION = 'The end date and time of the item (in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601)).';
     public const LABEL = 'endDate';
     public const NAME = 'schema:endDate';
-    public const VALUES = ['DateModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateTimeModel'];
-    public const TYPES = ['CreativeWorkSeason' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkSeasonModel', 'CreativeWorkSeries' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkSeriesModel', 'DatedMoneySpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DatedMoneySpecificationModel', 'EducationalOccupationalProgram' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalProgramModel', 'Event' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel', 'MerchantReturnPolicySeasonalOverride' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MerchantReturnPolicySeasonalOverrideModel', 'Role' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RoleModel', 'Schedule' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ScheduleModel'];
+    public const VALUES = ['DateModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DateModel', 'DateTimeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['CreativeWorkSeason' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkSeasonModel', 'CreativeWorkSeries' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkSeriesModel', 'DatedMoneySpecification' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DatedMoneySpecificationModel', 'EducationalOccupationalProgram' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalProgramModel', 'Event' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EventModel', 'MerchantReturnPolicySeasonalOverride' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MerchantReturnPolicySeasonalOverrideModel', 'Role' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\RoleModel', 'Schedule' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ScheduleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2486'];
     public const SUPERSEDED_BY = null;

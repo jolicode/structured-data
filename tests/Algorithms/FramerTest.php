@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Algorithms;
+namespace JoliCode\StructuredData\Tests\Algorithms;
 
-use Jolicode\JsonLd\Algorithms;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
-use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
-use Jolicode\JsonLd\Algorithms\Frame\Framer;
-use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\Context;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\JsonLdException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Frame\Framer;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;

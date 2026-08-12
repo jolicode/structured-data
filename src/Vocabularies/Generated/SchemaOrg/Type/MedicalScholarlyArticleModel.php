@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicalScholarlyArticleModel
 {
     public const DESCRIPTION = 'A scholarly article in the medical domain.';
     public const LABEL = 'MedicalScholarlyArticle';
     public const NAME = 'schema:MedicalScholarlyArticle';
-    public const PARENTS = ['ScholarlyArticleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ScholarlyArticleModel'];
+    public const PARENTS = ['ScholarlyArticleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ScholarlyArticleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

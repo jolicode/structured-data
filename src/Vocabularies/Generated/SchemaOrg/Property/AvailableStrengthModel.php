@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AvailableStrengthModel
 {
     public const DESCRIPTION = 'An available dosage strength for the drug.';
     public const LABEL = 'availableStrength';
     public const NAME = 'schema:availableStrength';
-    public const VALUES = ['DrugStrengthModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugStrengthModel'];
-    public const TYPES = ['Drug' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugModel'];
+    public const VALUES = ['DrugStrengthModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DrugStrengthModel'];
+    public const TYPES = ['Drug' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DrugModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

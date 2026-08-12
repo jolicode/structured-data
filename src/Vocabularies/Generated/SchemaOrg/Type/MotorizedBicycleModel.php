@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MotorizedBicycleModel
 {
     public const DESCRIPTION = 'A motorized bicycle is a bicycle with an attached motor used to power the vehicle, or to assist with pedaling.';
     public const LABEL = 'MotorizedBicycle';
     public const NAME = 'schema:MotorizedBicycle';
-    public const PARENTS = ['VehicleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VehicleModel'];
+    public const PARENTS = ['VehicleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\VehicleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://auto.schema.org'];
     public const SOURCE = [];

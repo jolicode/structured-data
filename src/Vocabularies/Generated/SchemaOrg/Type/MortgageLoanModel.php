@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MortgageLoanModel
 {
     public const DESCRIPTION = 'A loan in which property or real estate is used as collateral. (A loan securitized against some real estate.)';
     public const LABEL = 'MortgageLoan';
     public const NAME = 'schema:MortgageLoan';
-    public const PARENTS = ['LoanOrCreditModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LoanOrCreditModel'];
+    public const PARENTS = ['LoanOrCreditModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\LoanOrCreditModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1253'];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HasVariantModel
 {
     public const DESCRIPTION = 'Indicates a [[Product]] that is a member of this [[ProductGroup]] (or [[ProductModel]]).';
     public const LABEL = 'hasVariant';
     public const NAME = 'schema:hasVariant';
-    public const VALUES = ['ProductModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel'];
-    public const TYPES = ['ProductGroup' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductGroupModel'];
+    public const VALUES = ['ProductModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ProductModel'];
+    public const TYPES = ['ProductGroup' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ProductGroupModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1797'];
     public const SUPERSEDED_BY = null;

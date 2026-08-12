@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ActionProcessModel
 {
     public const DESCRIPTION = 'Description of the process by which the action was performed.';
     public const LABEL = 'actionProcess';
     public const NAME = 'schema:actionProcess';
-    public const VALUES = ['HowToModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HowToModel'];
-    public const TYPES = ['Action' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ActionModel'];
+    public const VALUES = ['HowToModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\HowToModel'];
+    public const TYPES = ['Action' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

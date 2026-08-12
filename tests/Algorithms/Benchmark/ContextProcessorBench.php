@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Algorithms\Benchmark;
+namespace JoliCode\StructuredData\Tests\Algorithms\Benchmark;
 
-use Jolicode\JsonLd\Algorithms;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
+use JoliCode\StructuredData\JsonLd\Algorithms;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextProcessor;
 
-class ContextProcesserBench extends AbstractJsonLdBench
+class ContextProcessorBench extends AbstractJsonLdBench
 {
     public function __construct(
-        private readonly ContextProcesser $processer = new ContextProcesser(),
+        private readonly ContextProcessor $processer = new ContextProcessor(),
     ) {
     }
 

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ApplicationModel
 {
     public const DESCRIPTION = 'An application that can complete the request.';
     public const LABEL = 'application';
     public const NAME = 'schema:application';
-    public const VALUES = ['SoftwareApplicationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SoftwareApplicationModel'];
-    public const TYPES = ['EntryPoint' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EntryPointModel'];
+    public const VALUES = ['SoftwareApplicationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SoftwareApplicationModel'];
+    public const TYPES = ['EntryPoint' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EntryPointModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = 'actionApplication';

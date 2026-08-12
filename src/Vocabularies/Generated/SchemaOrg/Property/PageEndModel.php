@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PageEndModel
 {
     public const DESCRIPTION = 'The page on which the work ends; for example "138" or "xvi".';
     public const LABEL = 'pageEnd';
     public const NAME = 'schema:pageEnd';
-    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IntegerModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Article' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ArticleModel', 'Chapter' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ChapterModel', 'PublicationIssue' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PublicationIssueModel', 'PublicationVolume' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PublicationVolumeModel'];
+    public const VALUES = ['IntegerModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\IntegerModel', 'TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Article' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ArticleModel', 'Chapter' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ChapterModel', 'PublicationIssue' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PublicationIssueModel', 'PublicationVolume' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PublicationVolumeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

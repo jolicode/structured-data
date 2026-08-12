@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Validation;
+namespace JoliCode\StructuredData\Tests\Validation;
 
-use Jolicode\JsonLd\Audit\AuditOptions;
-use Jolicode\JsonLd\Validator;
-use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
-use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
+use JoliCode\StructuredData\Audit\AuditOptions;
+use JoliCode\StructuredData\Validator;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\GoogleValidator;
+use JoliCode\StructuredData\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ProductGroupIDModel
 {
     public const DESCRIPTION = 'Indicates a textual identifier for a ProductGroup.';
     public const LABEL = 'productGroupID';
     public const NAME = 'schema:productGroupID';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['ProductGroup' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductGroupModel'];
+    public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['ProductGroup' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ProductGroupModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1797'];
     public const SUPERSEDED_BY = null;

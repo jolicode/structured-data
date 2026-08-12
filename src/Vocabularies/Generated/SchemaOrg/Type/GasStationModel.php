@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class GasStationModel
 {
     public const DESCRIPTION = 'A gas station.';
     public const LABEL = 'GasStation';
     public const NAME = 'schema:GasStation';
-    public const PARENTS = ['AutomotiveBusinessModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AutomotiveBusinessModel'];
+    public const PARENTS = ['AutomotiveBusinessModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\AutomotiveBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

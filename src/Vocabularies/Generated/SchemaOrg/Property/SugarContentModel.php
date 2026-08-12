@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SugarContentModel
 {
     public const DESCRIPTION = 'The number of grams of sugar.';
     public const LABEL = 'sugarContent';
     public const NAME = 'schema:sugarContent';
-    public const VALUES = ['MassModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MassModel'];
-    public const TYPES = ['NutritionInformation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NutritionInformationModel'];
+    public const VALUES = ['MassModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MassModel'];
+    public const TYPES = ['NutritionInformation' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NutritionInformationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

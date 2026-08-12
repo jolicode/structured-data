@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CommentTextModel
 {
     public const DESCRIPTION = 'The text of the UserComment.';
     public const LABEL = 'commentText';
     public const NAME = 'schema:commentText';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['UserComments' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\UserCommentsModel'];
+    public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['UserComments' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\UserCommentsModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

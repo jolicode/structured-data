@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class NoteDigitalDocumentModel
 {
     public const DESCRIPTION = 'A file containing a note, primarily for the author.';
     public const LABEL = 'NoteDigitalDocument';
     public const NAME = 'schema:NoteDigitalDocument';
-    public const PARENTS = ['DigitalDocumentModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DigitalDocumentModel'];
+    public const PARENTS = ['DigitalDocumentModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DigitalDocumentModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

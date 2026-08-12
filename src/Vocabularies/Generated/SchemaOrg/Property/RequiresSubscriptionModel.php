@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RequiresSubscriptionModel
 {
     public const DESCRIPTION = 'Indicates if use of the media require a subscription  (either paid or free). Allowed values are ```true``` or ```false``` (note that an earlier version had \'yes\', \'no\').';
     public const LABEL = 'requiresSubscription';
     public const NAME = 'schema:requiresSubscription';
-    public const VALUES = ['BooleanModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BooleanModel', 'MediaSubscriptionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaSubscriptionModel'];
-    public const TYPES = ['ActionAccessSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ActionAccessSpecificationModel', 'MediaObject' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaObjectModel'];
+    public const VALUES = ['BooleanModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BooleanModel', 'MediaSubscriptionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MediaSubscriptionModel'];
+    public const TYPES = ['ActionAccessSpecification' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ActionAccessSpecificationModel', 'MediaObject' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MediaObjectModel'];
     public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1741'];
     public const SUPERSEDED_BY = null;

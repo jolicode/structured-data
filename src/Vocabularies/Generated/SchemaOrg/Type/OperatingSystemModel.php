@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OperatingSystemModel
 {
     public const DESCRIPTION = 'System software that manages computer hardware and software resources, and provides common services for computer programs.';
     public const LABEL = 'OperatingSystem';
     public const NAME = 'schema:OperatingSystem';
-    public const PARENTS = ['SoftwareApplicationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SoftwareApplicationModel'];
+    public const PARENTS = ['SoftwareApplicationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SoftwareApplicationModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/4575'];

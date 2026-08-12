@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HospitalAffiliationModel
 {
     public const DESCRIPTION = 'A hospital with which the physician or office is affiliated.';
     public const LABEL = 'hospitalAffiliation';
     public const NAME = 'schema:hospitalAffiliation';
-    public const VALUES = ['HospitalModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HospitalModel'];
-    public const TYPES = ['Physician' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PhysicianModel'];
+    public const VALUES = ['HospitalModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\HospitalModel'];
+    public const TYPES = ['Physician' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PhysicianModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

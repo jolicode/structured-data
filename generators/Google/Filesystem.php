@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generators\Google;
+namespace JoliCode\StructuredData\Vocabularies\Generators\Google;
 
 use PhpParser\PrettyPrinter\Standard;
 use Symfony\Component\DomCrawler\Crawler;
@@ -46,7 +46,7 @@ readonly class Filesystem
     ) {
     }
 
-    public function crawleGoogleDoc(): void
+    public function crawlGoogleDoc(): void
     {
         $client = HttpClient::create();
         $galleryUrls = $this->fetchGalleryUrls($client);

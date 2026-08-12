@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AvailableDeliveryMethodModel
 {
     public const DESCRIPTION = 'The delivery method(s) available for this offer.';
     public const LABEL = 'availableDeliveryMethod';
     public const NAME = 'schema:availableDeliveryMethod';
-    public const VALUES = ['DeliveryMethodModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DeliveryMethodModel'];
-    public const TYPES = ['Demand' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DemandModel', 'Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel'];
+    public const VALUES = ['DeliveryMethodModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DeliveryMethodModel'];
+    public const TYPES = ['Demand' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DemandModel', 'Offer' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OfferModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

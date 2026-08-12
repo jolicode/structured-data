@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Mapper;
+namespace JoliCode\StructuredData\Mapper;
 
-use Jolicode\JsonLd\Extraction\JsonLdElement;
-use Jolicode\JsonLd\Parser\Range;
+use JoliCode\StructuredData\Extraction\JsonLdElement;
+use JoliCode\StructuredData\JsonLd\Parser\Range;
 
 /**
  * Caches the validation outcome of a JSON-LD snippet so that a snippet repeated

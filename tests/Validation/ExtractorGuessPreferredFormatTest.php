@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Validation;
+namespace JoliCode\StructuredData\Tests\Validation;
 
-use Jolicode\JsonLd\Extraction\Extractor;
-use Jolicode\JsonLd\Extraction\ExtractorsContainer;
+use JoliCode\StructuredData\Extraction\Extractor;
+use JoliCode\StructuredData\Extraction\ExtractorsContainer;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 

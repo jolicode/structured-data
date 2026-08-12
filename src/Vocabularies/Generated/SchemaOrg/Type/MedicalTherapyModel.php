@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicalTherapyModel
 {
     public const DESCRIPTION = 'Any medical intervention designed to prevent, treat, and cure human diseases and medical conditions, including both curative and palliative therapies. Medical therapies are typically processes of care relying upon pharmacotherapy, behavioral therapy, supportive therapy (with fluid or nutrition for example), or detoxification (e.g. hemodialysis) aimed at improving or preventing a health condition.';
     public const LABEL = 'MedicalTherapy';
     public const NAME = 'schema:MedicalTherapy';
-    public const PARENTS = ['TherapeuticProcedureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TherapeuticProcedureModel'];
+    public const PARENTS = ['TherapeuticProcedureModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TherapeuticProcedureModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

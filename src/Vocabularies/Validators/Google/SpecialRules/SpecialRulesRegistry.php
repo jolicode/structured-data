@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Validators\Google\SpecialRules;
+namespace JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules;
 
 final class SpecialRulesRegistry
 {

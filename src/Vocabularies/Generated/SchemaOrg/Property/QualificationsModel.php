@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class QualificationsModel
 {
     public const DESCRIPTION = 'Specific qualifications required for this role or Occupation.';
     public const LABEL = 'qualifications';
     public const NAME = 'schema:qualifications';
-    public const VALUES = ['CredentialModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CredentialModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['JobPosting' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\JobPostingModel', 'Occupation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OccupationModel'];
+    public const VALUES = ['CredentialModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CredentialModel', 'TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['JobPosting' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\JobPostingModel', 'Occupation' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OccupationModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1698', 'https://github.com/schemaorg/schemaorg/issues/1779'];
     public const SUPERSEDED_BY = null;

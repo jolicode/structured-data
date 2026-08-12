@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DiscoverActionModel
 {
     public const DESCRIPTION = 'The act of discovering/finding an object.';
     public const LABEL = 'DiscoverAction';
     public const NAME = 'schema:DiscoverAction';
-    public const PARENTS = ['FindActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FindActionModel'];
+    public const PARENTS = ['FindActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\FindActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

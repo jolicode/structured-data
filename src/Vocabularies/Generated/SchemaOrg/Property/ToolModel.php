@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ToolModel
 {
     public const DESCRIPTION = 'A sub property of instrument. An object used (but not consumed) when performing instructions or a direction.';
     public const LABEL = 'tool';
     public const NAME = 'schema:tool';
-    public const VALUES = ['HowToToolModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HowToToolModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['HowToDirection' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HowToDirectionModel', 'HowTo' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HowToModel'];
+    public const VALUES = ['HowToToolModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\HowToToolModel', 'TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['HowToDirection' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\HowToDirectionModel', 'HowTo' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\HowToModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

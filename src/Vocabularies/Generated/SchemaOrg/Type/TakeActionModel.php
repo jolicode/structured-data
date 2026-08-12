@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TakeActionModel
 {
     public const DESCRIPTION = 'The act of gaining ownership of an object from an origin. Reciprocal of GiveAction.\n\nRelated actions:\n\n* [[GiveAction]]: The reciprocal of TakeAction.\n* [[ReceiveAction]]: Unlike ReceiveAction, TakeAction implies that ownership has been transferred.';
     public const LABEL = 'TakeAction';
     public const NAME = 'schema:TakeAction';
-    public const PARENTS = ['TransferActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TransferActionModel'];
+    public const PARENTS = ['TransferActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TransferActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

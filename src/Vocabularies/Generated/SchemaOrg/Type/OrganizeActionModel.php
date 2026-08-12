@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OrganizeActionModel
 {
     public const DESCRIPTION = 'The act of manipulating/administering/supervising/controlling one or more objects.';
     public const LABEL = 'OrganizeAction';
     public const NAME = 'schema:OrganizeAction';
-    public const PARENTS = ['ActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ActionModel'];
+    public const PARENTS = ['ActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

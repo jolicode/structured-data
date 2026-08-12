@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TipActionModel
 {
     public const DESCRIPTION = 'The act of giving money voluntarily to a beneficiary in recognition of services rendered.';
     public const LABEL = 'TipAction';
     public const NAME = 'schema:TipAction';
-    public const PARENTS = ['TradeActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TradeActionModel'];
+    public const PARENTS = ['TradeActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TradeActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

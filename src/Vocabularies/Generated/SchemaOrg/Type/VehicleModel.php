@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class VehicleModel
 {
     public const DESCRIPTION = 'A vehicle is a device that is designed or used to transport people or cargo over land, water, air, or through space.';
     public const LABEL = 'Vehicle';
     public const NAME = 'schema:Vehicle';
-    public const PARENTS = ['ProductModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProductModel'];
+    public const PARENTS = ['ProductModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ProductModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

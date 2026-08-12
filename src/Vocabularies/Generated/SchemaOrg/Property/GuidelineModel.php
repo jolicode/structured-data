@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class GuidelineModel
 {
     public const DESCRIPTION = 'A medical guideline related to this entity.';
     public const LABEL = 'guideline';
     public const NAME = 'schema:guideline';
-    public const VALUES = ['MedicalGuidelineModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalGuidelineModel'];
-    public const TYPES = ['MedicalEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel'];
+    public const VALUES = ['MedicalGuidelineModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalGuidelineModel'];
+    public const TYPES = ['MedicalEntity' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

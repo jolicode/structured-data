@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AddActionModel
 {
     public const DESCRIPTION = 'The act of editing by adding an object to a collection.';
     public const LABEL = 'AddAction';
     public const NAME = 'schema:AddAction';
-    public const PARENTS = ['UpdateActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\UpdateActionModel'];
+    public const PARENTS = ['UpdateActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\UpdateActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

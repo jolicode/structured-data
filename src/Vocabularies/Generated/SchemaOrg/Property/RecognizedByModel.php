@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RecognizedByModel
 {
     public const DESCRIPTION = 'An organization that acknowledges the validity, value or utility of a credential. Note: recognition may include a process of quality assurance or accreditation.';
     public const LABEL = 'recognizedBy';
     public const NAME = 'schema:recognizedBy';
-    public const VALUES = ['OrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel'];
-    public const TYPES = ['Credential' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CredentialModel'];
+    public const VALUES = ['OrganizationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel'];
+    public const TYPES = ['Credential' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CredentialModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1779'];
     public const SUPERSEDED_BY = null;

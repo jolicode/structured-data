@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Algorithms\Compact;
+namespace JoliCode\StructuredData\JsonLd\Algorithms\Compact;
 
-use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
-use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
-use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
-use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinition;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\Context;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\JsonLdException;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms\TermDefinition\TermDefinition;
 
 final class IriCompactor
 {

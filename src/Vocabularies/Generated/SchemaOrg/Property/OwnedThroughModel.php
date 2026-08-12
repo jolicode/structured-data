@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OwnedThroughModel
 {
     public const DESCRIPTION = 'The date and time of giving up ownership on the product.';
     public const LABEL = 'ownedThrough';
     public const NAME = 'schema:ownedThrough';
-    public const VALUES = ['DateTimeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateTimeModel'];
-    public const TYPES = ['OwnershipInfo' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OwnershipInfoModel'];
+    public const VALUES = ['DateTimeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['OwnershipInfo' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OwnershipInfoModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

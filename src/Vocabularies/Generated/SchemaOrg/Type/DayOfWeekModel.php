@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DayOfWeekModel
 {
@@ -20,7 +20,7 @@ final class DayOfWeekModel
 Originally, URLs from [GoodRelations](http://purl.org/goodrelations/v1) were used (for [[Monday]], [[Tuesday]], [[Wednesday]], [[Thursday]], [[Friday]], [[Saturday]], [[Sunday]] plus a special entry for [[PublicHolidays]]); these have now been integrated directly into schema.org.';
     public const LABEL = 'DayOfWeek';
     public const NAME = 'schema:DayOfWeek';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['FridayModel' => 'EnumerationMember\FridayModel', 'MondayModel' => 'EnumerationMember\MondayModel', 'PublicHolidaysModel' => 'EnumerationMember\PublicHolidaysModel', 'SaturdayModel' => 'EnumerationMember\SaturdayModel', 'SundayModel' => 'EnumerationMember\SundayModel', 'ThursdayModel' => 'EnumerationMember\ThursdayModel', 'TuesdayModel' => 'EnumerationMember\TuesdayModel', 'WednesdayModel' => 'EnumerationMember\WednesdayModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

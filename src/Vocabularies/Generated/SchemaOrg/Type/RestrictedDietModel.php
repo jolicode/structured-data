@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RestrictedDietModel
 {
     public const DESCRIPTION = 'A diet restricted to certain foods or preparations for cultural, religious, health or lifestyle reasons.';
     public const LABEL = 'RestrictedDiet';
     public const NAME = 'schema:RestrictedDiet';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['DiabeticDietModel' => 'EnumerationMember\DiabeticDietModel', 'GlutenFreeDietModel' => 'EnumerationMember\GlutenFreeDietModel', 'HalalDietModel' => 'EnumerationMember\HalalDietModel', 'HinduDietModel' => 'EnumerationMember\HinduDietModel', 'KosherDietModel' => 'EnumerationMember\KosherDietModel', 'LowCalorieDietModel' => 'EnumerationMember\LowCalorieDietModel', 'LowFatDietModel' => 'EnumerationMember\LowFatDietModel', 'LowLactoseDietModel' => 'EnumerationMember\LowLactoseDietModel', 'LowSaltDietModel' => 'EnumerationMember\LowSaltDietModel', 'VeganDietModel' => 'EnumerationMember\VeganDietModel', 'VegetarianDietModel' => 'EnumerationMember\VegetarianDietModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

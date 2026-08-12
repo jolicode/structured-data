@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EatActionModel
 {
     public const DESCRIPTION = 'The act of swallowing solid objects.';
     public const LABEL = 'EatAction';
     public const NAME = 'schema:EatAction';
-    public const PARENTS = ['ConsumeActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ConsumeActionModel'];
+    public const PARENTS = ['ConsumeActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ConsumeActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -1,3 +1,10 @@
+# PHPStan runs at level 9 (see phpstan.neon). The entries below are not accumulated
+# debt from a migration: they share one systemic cause. The JSON-LD algorithms operate
+# on \stdClass trees decoded from arbitrary JSON, where every offset is genuinely `mixed`
+# by construction, and level 9 has no way to express a "JSON-LD node object" shape. Almost
+# all entries live in the spec-algorithm files (Expander, Framer, Compactor, NodeMapGenerator,
+# TermDefinitionCreator); the rest are dev-only code (generators/, tests/) that never ships.
+# New code is expected to be clean; do not grow this baseline to silence real findings.
 parameters:
 	ignoreErrors:
 		-
@@ -7,13 +14,13 @@ parameters:
 			path: castor.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\Google\\Filesystem\:\:extractDocumentationUrls\(\) has parameter \$content with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\Google\\Filesystem\:\:extractDocumentationUrls\(\) has parameter \$content with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/Google/Filesystem.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\Google\\Filesystem\:\:loadManifest\(\) should return array\<int, array\<string, mixed\>\> but returns mixed\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\Google\\Filesystem\:\:loadManifest\(\) should return array\<int, array\<string, mixed\>\> but returns mixed\.$#'
 			identifier: return.type
 			count: 1
 			path: generators/Google/Filesystem.php
@@ -25,13 +32,13 @@ parameters:
 			path: generators/Google/Filesystem.php
 
 		-
-			message: '#^Parameter \#2 \$seedUrls of method Jolicode\\Vocabularies\\Generators\\Google\\Filesystem\:\:discoverStructuredDataDocs\(\) expects array\<int, string\>, list\<mixed\> given\.$#'
+			message: '#^Parameter \#2 \$seedUrls of method JoliCode\\StructuredData\\Vocabularies\\Generators\\Google\\Filesystem\:\:discoverStructuredDataDocs\(\) expects array\<int, string\>, list\<mixed\> given\.$#'
 			identifier: argument.type
 			count: 1
 			path: generators/Google/Filesystem.php
 
 		-
-			message: '#^Parameter \#2 \$url of method Jolicode\\Vocabularies\\Generators\\Google\\Filesystem\:\:downloadStructuredDataTables\(\) expects string, mixed given\.$#'
+			message: '#^Parameter \#2 \$url of method JoliCode\\StructuredData\\Vocabularies\\Generators\\Google\\Filesystem\:\:downloadStructuredDataTables\(\) expects string, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: generators/Google/Filesystem.php
@@ -61,37 +68,37 @@ parameters:
 			path: generators/Google/Generator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\Google\\Generator\:\:generateAbstractClass\(\) has parameter \$json with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\Google\\Generator\:\:generateAbstractClass\(\) has parameter \$json with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/Google/Generator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\Google\\Generator\:\:generateClass\(\) has parameter \$type with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\Google\\Generator\:\:generateClass\(\) has parameter \$type with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/Google/Generator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\Google\\Generator\:\:generateClasses\(\) has parameter \$json with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\Google\\Generator\:\:generateClasses\(\) has parameter \$json with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/Google/Generator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\Google\\Generator\:\:getExpectedClassNames\(\) has parameter \$json with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\Google\\Generator\:\:getExpectedClassNames\(\) has parameter \$json with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/Google/Generator.php
 
 		-
-			message: '#^Parameter \#1 \$json of method Jolicode\\Vocabularies\\Generators\\Google\\Generator\:\:generateClasses\(\) expects array, mixed given\.$#'
+			message: '#^Parameter \#1 \$json of method JoliCode\\StructuredData\\Vocabularies\\Generators\\Google\\Generator\:\:generateClasses\(\) expects array, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: generators/Google/Generator.php
 
 		-
-			message: '#^Parameter \#1 \$json of method Jolicode\\Vocabularies\\Generators\\Google\\Generator\:\:getExpectedClassNames\(\) expects array, mixed given\.$#'
+			message: '#^Parameter \#1 \$json of method JoliCode\\StructuredData\\Vocabularies\\Generators\\Google\\Generator\:\:getExpectedClassNames\(\) expects array, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: generators/Google/Generator.php
@@ -103,79 +110,79 @@ parameters:
 			path: generators/SchemaOrg/Extractor.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Extractor\:\:createContainer\(\) has parameter \$graph with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Extractor\:\:createContainer\(\) has parameter \$graph with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Extractor.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Extractor\:\:isClassType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Extractor\:\:isClassType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Extractor.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Extractor\:\:isEnumerationType\(\) has parameter \$rawType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Extractor\:\:isEnumerationType\(\) has parameter \$rawType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Extractor.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Extractor\:\:isPropertyType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Extractor\:\:isPropertyType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Extractor.php
 
 		-
-			message: '#^Parameter \#1 \$graph of method Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Extractor\:\:createContainer\(\) expects array, mixed given\.$#'
+			message: '#^Parameter \#1 \$graph of method JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Extractor\:\:createContainer\(\) expects array, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: generators/SchemaOrg/Extractor.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Objects\\AbstractSchemaOrgElement\:\:addSchemaInformation\(\) has parameter \$rawType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Objects\\AbstractSchemaOrgElement\:\:addSchemaInformation\(\) has parameter \$rawType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Objects/AbstractSchemaOrgElement.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Objects\\AbstractSchemaOrgElement\:\:fromRawData\(\) has parameter \$rawType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Objects\\AbstractSchemaOrgElement\:\:fromRawData\(\) has parameter \$rawType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Objects/AbstractSchemaOrgElement.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Objects\\AbstractSchemaOrgElement\:\:sanitizeEntries\(\) has parameter \$rawType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Objects\\AbstractSchemaOrgElement\:\:sanitizeEntries\(\) has parameter \$rawType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Objects/AbstractSchemaOrgElement.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Objects\\AbstractSchemaOrgElement\:\:schemaInformationAsArray\(\) has parameter \$schemaInformation with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Objects\\AbstractSchemaOrgElement\:\:schemaInformationAsArray\(\) has parameter \$schemaInformation with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Objects/AbstractSchemaOrgElement.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Objects\\AbstractSchemaOrgElement\:\:schemaInformationAsArray\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Objects\\AbstractSchemaOrgElement\:\:schemaInformationAsArray\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Objects/AbstractSchemaOrgElement.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Objects\\AbstractSchemaOrgElement\:\:stringEntry\(\) has parameter \$rawType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Objects\\AbstractSchemaOrgElement\:\:stringEntry\(\) has parameter \$rawType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Objects/AbstractSchemaOrgElement.php
 
 		-
-			message: '#^Property Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Objects\\AbstractSchemaOrgElement\:\:\$isPartOf type has no value type specified in iterable type array\.$#'
+			message: '#^Property JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Objects\\AbstractSchemaOrgElement\:\:\$isPartOf type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Objects/AbstractSchemaOrgElement.php
 
 		-
-			message: '#^Property Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Objects\\AbstractSchemaOrgElement\:\:\$source type has no value type specified in iterable type array\.$#'
+			message: '#^Property JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Objects\\AbstractSchemaOrgElement\:\:\$source type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Objects/AbstractSchemaOrgElement.php
@@ -187,43 +194,43 @@ parameters:
 			path: generators/SchemaOrg/Objects/ClassesContainer.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Objects\\EnumerationMember\:\:__construct\(\) has parameter \$inTypes with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Objects\\EnumerationMember\:\:__construct\(\) has parameter \$inTypes with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Objects/EnumerationMember.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Objects\\EnumerationMember\:\:fromRawData\(\) has parameter \$rawType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Objects\\EnumerationMember\:\:fromRawData\(\) has parameter \$rawType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Objects/EnumerationMember.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Objects\\Property\:\:findPossibleEntries\(\) has parameter \$rawType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Objects\\Property\:\:findPossibleEntries\(\) has parameter \$rawType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Objects/Property.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Objects\\Property\:\:findPossibleEntries\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Objects\\Property\:\:findPossibleEntries\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Objects/Property.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Objects\\Property\:\:fromRawData\(\) has parameter \$rawType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Objects\\Property\:\:fromRawData\(\) has parameter \$rawType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Objects/Property.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Objects\\Type\:\:__construct\(\) has parameter \$equivalentClass with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Objects\\Type\:\:__construct\(\) has parameter \$equivalentClass with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Objects/Type.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generators\\SchemaOrg\\Objects\\Type\:\:fromRawData\(\) has parameter \$rawType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\SchemaOrg\\Objects\\Type\:\:fromRawData\(\) has parameter \$rawType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: generators/SchemaOrg/Objects/Type.php
@@ -277,19 +284,19 @@ parameters:
 			path: src/JsonLd/Algorithms/Compact/Compactor.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Compact\\Compactor\:\:compact\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Compact\\Compactor\:\:compact\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Compact/Compactor.php
 
 		-
-			message: '#^Parameter \#1 \$element of method Jolicode\\JsonLd\\Algorithms\\Compact\\Compactor\:\:isSubjectReference\(\) expects stdClass, mixed given\.$#'
+			message: '#^Parameter \#1 \$element of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Compact\\Compactor\:\:isSubjectReference\(\) expects stdClass, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Algorithms/Compact/Compactor.php
 
 		-
-			message: '#^Parameter \#1 \$json of method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:expand\(\) expects stdClass\|string, mixed given\.$#'
+			message: '#^Parameter \#1 \$json of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:expand\(\) expects stdClass\|string, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Algorithms/Compact/Compactor.php
@@ -307,25 +314,25 @@ parameters:
 			path: src/JsonLd/Algorithms/Compact/Compactor.php
 
 		-
-			message: '#^Parameter \#2 \$variable of method Jolicode\\JsonLd\\Algorithms\\Compact\\IriCompactor\:\:compactIri\(\) expects string\|null, mixed given\.$#'
+			message: '#^Parameter \#2 \$variable of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Compact\\IriCompactor\:\:compactIri\(\) expects string\|null, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Algorithms/Compact/Compactor.php
 
 		-
-			message: '#^Parameter \#3 \$value of method Jolicode\\JsonLd\\Algorithms\\Compact\\IriCompactor\:\:compactValue\(\) expects stdClass, mixed given\.$#'
+			message: '#^Parameter \#3 \$value of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Compact\\IriCompactor\:\:compactValue\(\) expects stdClass, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Algorithms/Compact/Compactor.php
 
 		-
-			message: '#^Parameter \#5 \$expandedItem of method Jolicode\\JsonLd\\Algorithms\\Compact\\Compactor\:\:compactGraphItem\(\) expects stdClass, mixed given\.$#'
+			message: '#^Parameter \#5 \$expandedItem of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Compact\\Compactor\:\:compactGraphItem\(\) expects stdClass, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Algorithms/Compact/Compactor.php
 
 		-
-			message: '#^Parameter \#6 \$expandedItem of method Jolicode\\JsonLd\\Algorithms\\Compact\\Compactor\:\:compactMapItem\(\) expects stdClass, mixed given\.$#'
+			message: '#^Parameter \#6 \$expandedItem of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Compact\\Compactor\:\:compactMapItem\(\) expects stdClass, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Algorithms/Compact/Compactor.php
@@ -349,70 +356,70 @@ parameters:
 			path: src/JsonLd/Algorithms/ContextProcessing/ContextCache.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\ContextProcessing\\ContextCache\:\:getProcessedRemoteContext\(\) has parameter \$remoteContexts with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\ContextProcessing\\ContextCache\:\:getProcessedRemoteContext\(\) has parameter \$remoteContexts with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/ContextProcessing/ContextCache.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\ContextProcessing\\ContextCache\:\:isCacheableRemoteContextProcessing\(\) has parameter \$remoteContexts with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\ContextProcessing\\ContextCache\:\:isCacheableRemoteContextProcessing\(\) has parameter \$remoteContexts with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/ContextProcessing/ContextCache.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\ContextProcessing\\ContextCache\:\:loadRemoteContext\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\ContextProcessing\\ContextCache\:\:loadRemoteContext\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/ContextProcessing/ContextCache.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\ContextProcessing\\ContextCache\:\:storeProcessedRemoteContext\(\) has parameter \$remoteContexts with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\ContextProcessing\\ContextCache\:\:storeProcessedRemoteContext\(\) has parameter \$remoteContexts with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/ContextProcessing/ContextCache.php
 
 		-
-			message: '#^Property Jolicode\\JsonLd\\Algorithms\\ContextProcessing\\ContextCache\:\:\$schemaOrgContext type has no value type specified in iterable type array\.$#'
+			message: '#^Property JoliCode\\StructuredData\\JsonLd\\Algorithms\\ContextProcessing\\ContextCache\:\:\$schemaOrgContext type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/ContextProcessing/ContextCache.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\ContextProcessing\\ContextProcesser\:\:extractContext\(\) has parameter \$json with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\ContextProcessing\\ContextProcessor\:\:extractContext\(\) has parameter \$json with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Algorithms/ContextProcessing/ContextProcesser.php
+			path: src/JsonLd/Algorithms/ContextProcessing/ContextProcessor.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\ContextProcessing\\ContextProcesser\:\:handleStringContext\(\) has parameter \$remoteContexts with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\ContextProcessing\\ContextProcessor\:\:handleStringContext\(\) has parameter \$remoteContexts with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Algorithms/ContextProcessing/ContextProcesser.php
+			path: src/JsonLd/Algorithms/ContextProcessing/ContextProcessor.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\ContextProcessing\\ContextProcesser\:\:processContext\(\) has parameter \$remoteContexts with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\ContextProcessing\\ContextProcessor\:\:processContext\(\) has parameter \$remoteContexts with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Algorithms/ContextProcessing/ContextProcesser.php
+			path: src/JsonLd/Algorithms/ContextProcessing/ContextProcessor.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\ContextProcessing\\ContextProcesser\:\:updateContext\(\) has parameter \$localContext with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\ContextProcessing\\ContextProcessor\:\:updateContext\(\) has parameter \$localContext with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Algorithms/ContextProcessing/ContextProcesser.php
+			path: src/JsonLd/Algorithms/ContextProcessing/ContextProcessor.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\ContextProcessing\\ContextProcesser\:\:updateContext\(\) has parameter \$remoteContexts with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\ContextProcessing\\ContextProcessor\:\:updateContext\(\) has parameter \$remoteContexts with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Algorithms/ContextProcessing/ContextProcesser.php
+			path: src/JsonLd/Algorithms/ContextProcessing/ContextProcessor.php
 
 		-
-			message: '#^Parameter \#1 \$json of method Jolicode\\JsonLd\\Algorithms\\ContextProcessing\\ContextProcesser\:\:extractContext\(\) expects array\|stdClass, mixed given\.$#'
+			message: '#^Parameter \#1 \$json of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\ContextProcessing\\ContextProcessor\:\:extractContext\(\) expects array\|stdClass, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/JsonLd/Algorithms/ContextProcessing/ContextProcesser.php
+			path: src/JsonLd/Algorithms/ContextProcessing/ContextProcessor.php
 
 		-
 			message: '#^Cannot access offset ''@reverse'' on mixed\.$#'
@@ -427,223 +434,223 @@ parameters:
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:doExpand\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:doExpand\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:expand\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:expand\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:handleArrayElement\(\) has parameter \$element with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:handleArrayElement\(\) has parameter \$element with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:handleArrayElement\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:handleArrayElement\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:handleNullPropertyAndGraphProperty\(\) has parameter \$result with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:handleNullPropertyAndGraphProperty\(\) has parameter \$result with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:handleTypeEntries\(\) has parameter \$inputType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:handleTypeEntries\(\) has parameter \$inputType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processContainerMapping\(\) has parameter \$containerMapping with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processContainerMapping\(\) has parameter \$containerMapping with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processContainerMapping\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processContainerMapping\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processElementEntries\(\) has parameter \$inputType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processElementEntries\(\) has parameter \$inputType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processElementEntries\(\) has parameter \$nests with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processElementEntries\(\) has parameter \$nests with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processElementEntries\(\) has parameter \$result with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processElementEntries\(\) has parameter \$result with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processGraphKeyword\(\) has parameter \$expandedValue with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processGraphKeyword\(\) has parameter \$expandedValue with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processGraphKeyword\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processGraphKeyword\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processIdKeyword\(\) has parameter \$expandedValue with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processIdKeyword\(\) has parameter \$expandedValue with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processIdKeyword\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processIdKeyword\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processIncludedKeyword\(\) has parameter \$expandedValue with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processIncludedKeyword\(\) has parameter \$expandedValue with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processIncludedKeyword\(\) has parameter \$result with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processIncludedKeyword\(\) has parameter \$result with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processIncludedKeyword\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processIncludedKeyword\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processLanguageContainerMapping\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processLanguageContainerMapping\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processListKeyword\(\) has parameter \$expandedValue with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processListKeyword\(\) has parameter \$expandedValue with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processListKeyword\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processListKeyword\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processNestEntries\(\) has parameter \$activeDefinitions with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processNestEntries\(\) has parameter \$activeDefinitions with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processNestEntries\(\) has parameter \$inputType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processNestEntries\(\) has parameter \$inputType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processNestEntries\(\) has parameter \$nests with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processNestEntries\(\) has parameter \$nests with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processNestEntries\(\) has parameter \$result with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processNestEntries\(\) has parameter \$result with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processReverseProperty\(\) has parameter \$expandedValue with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processReverseProperty\(\) has parameter \$expandedValue with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processReverseProperty\(\) has parameter \$result with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processReverseProperty\(\) has parameter \$result with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processTypeKeyword\(\) has parameter \$expandedValue with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processTypeKeyword\(\) has parameter \$expandedValue with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processTypeKeyword\(\) has parameter \$result with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processTypeKeyword\(\) has parameter \$result with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processValueKeyword\(\) has parameter \$expandedValue with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processValueKeyword\(\) has parameter \$expandedValue with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processValueKeyword\(\) has parameter \$inputType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processValueKeyword\(\) has parameter \$inputType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processValueKeyword\(\) has parameter \$result with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processValueKeyword\(\) has parameter \$result with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Parameter \#2 \$value of static method Jolicode\\JsonLd\\Algorithms\\Http\\IriResolver\:\:expand\(\) expects string, mixed given\.$#'
+			message: '#^Parameter \#2 \$value of static method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Http\\IriResolver\:\:expand\(\) expects string, mixed given\.$#'
 			identifier: argument.type
 			count: 3
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Parameter \#3 \$object of static method Jolicode\\JsonLd\\Algorithms\\Services\\ValueAdder\:\:addValue\(\) expects array\|stdClass, mixed given\.$#'
+			message: '#^Parameter \#3 \$object of static method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Services\\ValueAdder\:\:addValue\(\) expects array\|stdClass, mixed given\.$#'
 			identifier: argument.type
 			count: 2
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Parameter &\$result by\-ref type of method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:processElementEntries\(\) expects array\|stdClass, mixed given\.$#'
+			message: '#^Parameter &\$result by\-ref type of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:processElementEntries\(\) expects array\|stdClass, mixed given\.$#'
 			identifier: parameterByRef.type
 			count: 1
 			path: src/JsonLd/Algorithms/Expand/Expander.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Flatten\\Flattener\:\:doFlatten\(\) has parameter \$element with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Flatten\\Flattener\:\:doFlatten\(\) has parameter \$element with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Flatten/Flattener.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Flatten\\Flattener\:\:doFlatten\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Flatten\\Flattener\:\:doFlatten\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Flatten/Flattener.php
@@ -697,19 +704,19 @@ parameters:
 			path: src/JsonLd/Algorithms/Flatten/NodeMapGenerator.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Flatten\\NodeMapGenerator\:\:buildNode\(\) has parameter \$list with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Flatten\\NodeMapGenerator\:\:buildNode\(\) has parameter \$list with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Flatten/NodeMapGenerator.php
 
 		-
-			message: '#^Parameter \#1 \$identifier of method Jolicode\\JsonLd\\Algorithms\\Services\\IdentifierGenerator\:\:getIdentifier\(\) expects array\|string\|null, mixed given\.$#'
+			message: '#^Parameter \#1 \$identifier of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Services\\IdentifierGenerator\:\:getIdentifier\(\) expects array\|string\|null, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Algorithms/Flatten/NodeMapGenerator.php
 
 		-
-			message: '#^Parameter \#1 \$object of static method Jolicode\\JsonLd\\Algorithms\\Services\\DataStructureComparator\:\:objectAlreadyInArray\(\) expects stdClass, mixed given\.$#'
+			message: '#^Parameter \#1 \$object of static method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Services\\DataStructureComparator\:\:objectAlreadyInArray\(\) expects stdClass, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Algorithms/Flatten/NodeMapGenerator.php
@@ -721,7 +728,7 @@ parameters:
 			path: src/JsonLd/Algorithms/Flatten/NodeMapGenerator.php
 
 		-
-			message: '#^Parameter \#2 \$array of static method Jolicode\\JsonLd\\Algorithms\\Services\\DataStructureComparator\:\:objectAlreadyInArray\(\) expects array, mixed given\.$#'
+			message: '#^Parameter \#2 \$array of static method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Services\\DataStructureComparator\:\:objectAlreadyInArray\(\) expects array, mixed given\.$#'
 			identifier: argument.type
 			count: 3
 			path: src/JsonLd/Algorithms/Flatten/NodeMapGenerator.php
@@ -781,19 +788,19 @@ parameters:
 			path: src/JsonLd/Algorithms/Frame/Framer.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Frame\\Framer\:\:frame\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Frame\\Framer\:\:frame\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Frame/Framer.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Frame\\Framer\:\:frame\(\) should return array\|stdClass\|string\|false\|null but returns mixed\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Frame\\Framer\:\:frame\(\) should return array\|stdClass\|string\|false\|null but returns mixed\.$#'
 			identifier: return.type
 			count: 1
 			path: src/JsonLd/Algorithms/Frame/Framer.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Frame\\Framer\:\:frameMergedOrDefault\(\) should return array\<int, array\<string, mixed\>\> but returns array\<mixed\>\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Frame\\Framer\:\:frameMergedOrDefault\(\) should return array\<int, array\<string, mixed\>\> but returns array\<mixed\>\.$#'
 			identifier: return.type
 			count: 1
 			path: src/JsonLd/Algorithms/Frame/Framer.php
@@ -805,25 +812,25 @@ parameters:
 			path: src/JsonLd/Algorithms/Frame/Framer.php
 
 		-
-			message: '#^Parameter \#1 \$graphMap of method Jolicode\\JsonLd\\Algorithms\\Frame\\Framer\:\:mergeNodeMapGraphs\(\) expects array\<string, array\<string, array\<string, mixed\>\>\>, array\<string, array\<string, mixed\>\> given\.$#'
+			message: '#^Parameter \#1 \$graphMap of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Frame\\Framer\:\:mergeNodeMapGraphs\(\) expects array\<string, array\<string, array\<string, mixed\>\>\>, array\<string, array\<string, mixed\>\> given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Algorithms/Frame/Framer.php
 
 		-
-			message: '#^Parameter \#1 \$json of method Jolicode\\JsonLd\\Algorithms\\Expand\\Expander\:\:expand\(\) expects stdClass\|string, mixed given\.$#'
+			message: '#^Parameter \#1 \$json of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:expand\(\) expects stdClass\|string, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Algorithms/Frame/Framer.php
 
 		-
-			message: '#^Parameter \#1 \$pattern of method Jolicode\\JsonLd\\Algorithms\\Frame\\Framer\:\:nodeMatch\(\) expects array\<string, mixed\>, mixed given\.$#'
+			message: '#^Parameter \#1 \$pattern of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Frame\\Framer\:\:nodeMatch\(\) expects array\<string, mixed\>, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Algorithms/Frame/Framer.php
 
 		-
-			message: '#^Parameter \#1 \$pattern of static method Jolicode\\JsonLd\\Algorithms\\Frame\\Framer\:\:patternValues\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			message: '#^Parameter \#1 \$pattern of static method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Frame\\Framer\:\:patternValues\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
 			identifier: argument.type
 			count: 3
 			path: src/JsonLd/Algorithms/Frame/Framer.php
@@ -835,79 +842,79 @@ parameters:
 			path: src/JsonLd/Algorithms/Frame/Framer.php
 
 		-
-			message: '#^Parameter \#2 \$subjects of method Jolicode\\JsonLd\\Algorithms\\Frame\\Framer\:\:frameEmbedded\(\) expects array\<string\>, array\<int, mixed\> given\.$#'
+			message: '#^Parameter \#2 \$subjects of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Frame\\Framer\:\:frameEmbedded\(\) expects array\<string\>, array\<int, mixed\> given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Algorithms/Frame/Framer.php
 
 		-
-			message: '#^Parameter \#3 \$frame of method Jolicode\\JsonLd\\Algorithms\\Frame\\Framer\:\:frameEmbedded\(\) expects array\<int, array\<string, mixed\>\>, mixed given\.$#'
+			message: '#^Parameter \#3 \$frame of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Frame\\Framer\:\:frameEmbedded\(\) expects array\<int, array\<string, mixed\>\>, mixed given\.$#'
 			identifier: argument.type
 			count: 3
 			path: src/JsonLd/Algorithms/Frame/Framer.php
 
 		-
-			message: '#^Parameter \#4 \$parent of method Jolicode\\JsonLd\\Algorithms\\Frame\\Framer\:\:frameEmbedded\(\) expects array\<mixed\>, mixed given\.$#'
+			message: '#^Parameter \#4 \$parent of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Frame\\Framer\:\:frameEmbedded\(\) expects array\<mixed\>, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Algorithms/Frame/Framer.php
 
 		-
-			message: '#^Property Jolicode\\JsonLd\\Algorithms\\Frame\\Framer\:\:\$graphMap \(array\<string, array\<string, array\<string, mixed\>\>\>\) does not accept array\<string, array\<string, mixed\>\>\.$#'
+			message: '#^Property JoliCode\\StructuredData\\JsonLd\\Algorithms\\Frame\\Framer\:\:\$graphMap \(array\<string, array\<string, array\<string, mixed\>\>\>\) does not accept array\<string, array\<string, mixed\>\>\.$#'
 			identifier: assign.propertyType
 			count: 1
 			path: src/JsonLd/Algorithms/Frame/Framer.php
 
 		-
-			message: '#^Property Jolicode\\JsonLd\\Algorithms\\Frame\\Framer\:\:\$subjects \(array\<string, array\<string, mixed\>\>\) does not accept array\<string, mixed\>\.$#'
+			message: '#^Property JoliCode\\StructuredData\\JsonLd\\Algorithms\\Frame\\Framer\:\:\$subjects \(array\<string, array\<string, mixed\>\>\) does not accept array\<string, mixed\>\.$#'
 			identifier: assign.propertyType
 			count: 1
 			path: src/JsonLd/Algorithms/Frame/Framer.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Http\\IriResolver\:\:expand\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Http\\IriResolver\:\:expand\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Http/IriResolver.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Services\\DataStructureComparator\:\:objectAlreadyInArray\(\) has parameter \$array with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Services\\DataStructureComparator\:\:objectAlreadyInArray\(\) has parameter \$array with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Services/DataStructureComparator.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Services\\IdentifierGenerator\:\:getIdentifier\(\) has parameter \$identifier with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Services\\IdentifierGenerator\:\:getIdentifier\(\) has parameter \$identifier with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Services/IdentifierGenerator.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Services\\IdentifierGenerator\:\:getIdentifier\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Services\\IdentifierGenerator\:\:getIdentifier\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Services/IdentifierGenerator.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Services\\IdentifierGenerator\:\:handleArrayIdentifier\(\) has parameter \$identifiers with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Services\\IdentifierGenerator\:\:handleArrayIdentifier\(\) has parameter \$identifiers with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Services/IdentifierGenerator.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Services\\IdentifierGenerator\:\:handleArrayIdentifier\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Services\\IdentifierGenerator\:\:handleArrayIdentifier\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Services/IdentifierGenerator.php
 
 		-
-			message: '#^Property Jolicode\\JsonLd\\Algorithms\\Services\\IdentifierGenerator\:\:\$existing type has no value type specified in iterable type array\.$#'
+			message: '#^Property JoliCode\\StructuredData\\JsonLd\\Algorithms\\Services\\IdentifierGenerator\:\:\$existing type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Services/IdentifierGenerator.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\Services\\ValueAdder\:\:addValue\(\) has parameter \$object with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Services\\ValueAdder\:\:addValue\(\) has parameter \$object with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/Services/ValueAdder.php
@@ -919,7 +926,7 @@ parameters:
 			path: src/JsonLd/Algorithms/Services/ValueAdder.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\TermDefinition\\TermDefinition\:\:__construct\(\) has parameter \$containerMapping with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermDefinition\:\:__construct\(\) has parameter \$containerMapping with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/TermDefinition/TermDefinition.php
@@ -985,49 +992,49 @@ parameters:
 			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:create\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:create\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:create\(\) has parameter \$remoteContexts with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:create\(\) has parameter \$remoteContexts with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:handleContextValue\(\) has parameter \$remoteContexts with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:handleContextValue\(\) has parameter \$remoteContexts with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:handleIdValue\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:handleIdValue\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:handleTermWithColons\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:handleTermWithColons\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:setReverseDefinition\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:setReverseDefinition\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:setTypeMapping\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:setTypeMapping\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:validateContainerEntry\(\) has parameter \$container with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:validateContainerEntry\(\) has parameter \$container with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
@@ -1039,256 +1046,256 @@ parameters:
 			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionDraft\:\:__construct\(\) has parameter \$containerMapping with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionDraft\:\:__construct\(\) has parameter \$containerMapping with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionDraft.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Extraction\\Extractor\:\:extract\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Extraction\\Extractor\:\:extract\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Extraction/Extractor.php
+			path: src/Extraction/Extractor.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Extraction\\MicrodataExtractor\:\:normalizeItemTypes\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Extraction\\MicrodataExtractor\:\:normalizeItemTypes\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Extraction/MicrodataExtractor.php
+			path: src/Extraction/MicrodataExtractor.php
 
 		-
 			message: '#^Cannot access an offset on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
-			path: src/JsonLd/Mapper/MappedProperty.php
+			path: src/Mapper/MappedProperty.php
 
 		-
 			message: '#^Cannot access offset int\|string on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
-			path: src/JsonLd/Mapper/MappedProperty.php
+			path: src/Mapper/MappedProperty.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Mapper\\MappedProperty\:\:addIsPartOf\(\) has parameter \$items with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Mapper\\MappedProperty\:\:addIsPartOf\(\) has parameter \$items with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Mapper/MappedProperty.php
+			path: src/Mapper/MappedProperty.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Mapper\\MappedProperty\:\:addSource\(\) has parameter \$items with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Mapper\\MappedProperty\:\:addSource\(\) has parameter \$items with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Mapper/MappedProperty.php
+			path: src/Mapper/MappedProperty.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Mapper\\MappedType\:\:__construct\(\) has parameter \$originalType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Mapper\\MappedType\:\:__construct\(\) has parameter \$originalType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Mapper/MappedType.php
+			path: src/Mapper/MappedType.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Mapper\\MappedType\:\:__construct\(\) has parameter \$type with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Mapper\\MappedType\:\:__construct\(\) has parameter \$type with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Mapper/MappedType.php
+			path: src/Mapper/MappedType.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Mapper\\MappedType\:\:getOriginalType\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Mapper\\MappedType\:\:getOriginalType\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Mapper/MappedType.php
+			path: src/Mapper/MappedType.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Mapper\\MappedType\:\:getType\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Mapper\\MappedType\:\:getType\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Mapper/MappedType.php
+			path: src/Mapper/MappedType.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Mapper\\MappedType\:\:setOriginalType\(\) has parameter \$originalType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Mapper\\MappedType\:\:setOriginalType\(\) has parameter \$originalType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Mapper/MappedType.php
+			path: src/Mapper/MappedType.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Mapper\\MappedType\:\:setType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Mapper\\MappedType\:\:setType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Mapper/MappedType.php
+			path: src/Mapper/MappedType.php
 
 		-
 			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
 			identifier: foreach.nonIterable
 			count: 1
-			path: src/JsonLd/Mapper/ValidationMapper.php
+			path: src/Mapper/ValidationMapper.php
 
 		-
 			message: '#^Cannot access property \$@id on mixed\.$#'
 			identifier: property.nonObject
 			count: 1
-			path: src/JsonLd/Mapper/ValidationMapper.php
+			path: src/Mapper/ValidationMapper.php
 
 		-
 			message: '#^Cannot access property \$range on mixed\.$#'
 			identifier: property.nonObject
 			count: 1
-			path: src/JsonLd/Mapper/ValidationMapper.php
+			path: src/Mapper/ValidationMapper.php
 
 		-
 			message: '#^Cannot call method getDuplicateKeys\(\) on mixed\.$#'
 			identifier: method.nonObject
 			count: 1
-			path: src/JsonLd/Mapper/ValidationMapper.php
+			path: src/Mapper/ValidationMapper.php
 
 		-
 			message: '#^Cannot call method getProperty\(\) on mixed\.$#'
 			identifier: method.nonObject
 			count: 1
-			path: src/JsonLd/Mapper/ValidationMapper.php
+			path: src/Mapper/ValidationMapper.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Mapper\\ValidationMapper\:\:isTypeProperty\(\) has parameter \$valueEntry with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Mapper\\ValidationMapper\:\:isTypeProperty\(\) has parameter \$valueEntry with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Mapper/ValidationMapper.php
+			path: src/Mapper/ValidationMapper.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Mapper\\ValidationMapper\:\:map\(\) has parameter \$expandedJsonLd with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Mapper\\ValidationMapper\:\:map\(\) has parameter \$expandedJsonLd with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Mapper/ValidationMapper.php
+			path: src/Mapper/ValidationMapper.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Mapper\\ValidationMapper\:\:removeSchemaOrgDomain\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Mapper\\ValidationMapper\:\:removeSchemaOrgDomain\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Mapper/ValidationMapper.php
+			path: src/Mapper/ValidationMapper.php
 
 		-
-			message: '#^Parameter \#1 \$basicProperty of method Jolicode\\JsonLd\\Mapper\\ValidationMapper\:\:retrieveValueOrId\(\) expects stdClass, mixed given\.$#'
+			message: '#^Parameter \#1 \$basicProperty of method JoliCode\\StructuredData\\Mapper\\ValidationMapper\:\:retrieveValueOrId\(\) expects stdClass, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/JsonLd/Mapper/ValidationMapper.php
+			path: src/Mapper/ValidationMapper.php
 
 		-
-			message: '#^Parameter \#1 \$type of method Jolicode\\JsonLd\\Mapper\\ValidationMapper\:\:isParsedFlattenedTypeReference\(\) expects Jolicode\\JsonLd\\Parser\\DataStructures\\AbstractStructure, mixed given\.$#'
+			message: '#^Parameter \#1 \$type of method JoliCode\\StructuredData\\Mapper\\ValidationMapper\:\:isParsedFlattenedTypeReference\(\) expects JoliCode\\StructuredData\\JsonLd\\Parser\\DataStructures\\AbstractStructure, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/JsonLd/Mapper/ValidationMapper.php
+			path: src/Mapper/ValidationMapper.php
 
 		-
-			message: '#^Parameter \#1 \$valueEntry of method Jolicode\\JsonLd\\Mapper\\ValidationMapper\:\:isValueOrId\(\) expects Jolicode\\JsonLd\\Mapper\\MappedType\|stdClass\|string, mixed given\.$#'
+			message: '#^Parameter \#1 \$valueEntry of method JoliCode\\StructuredData\\Mapper\\ValidationMapper\:\:isValueOrId\(\) expects JoliCode\\StructuredData\\Mapper\\MappedType\|stdClass\|string, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/JsonLd/Mapper/ValidationMapper.php
+			path: src/Mapper/ValidationMapper.php
 
 		-
-			message: '#^Parameter \#2 \$parsedJsonLd of method Jolicode\\JsonLd\\Mapper\\ValidationMapper\:\:setOriginalTypeFromParsedJsonLd\(\) expects Jolicode\\JsonLd\\Parser\\DataStructures\\ObjectStructure, mixed given\.$#'
+			message: '#^Parameter \#2 \$parsedJsonLd of method JoliCode\\StructuredData\\Mapper\\ValidationMapper\:\:setOriginalTypeFromParsedJsonLd\(\) expects JoliCode\\StructuredData\\JsonLd\\Parser\\DataStructures\\ObjectStructure, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/JsonLd/Mapper/ValidationMapper.php
+			path: src/Mapper/ValidationMapper.php
 
 		-
 			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
 			identifier: foreach.nonIterable
 			count: 4
-			path: src/JsonLd/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetCache.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Mapper\\ValidationSnippetCache\:\:formatTypeLabel\(\) has parameter \$typeLabel with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Mapper\\ValidationSnippetCache\:\:formatTypeLabel\(\) has parameter \$typeLabel with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetCache.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Mapper\\ValidationSnippetCache\:\:get\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Mapper\\ValidationSnippetCache\:\:get\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetCache.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Mapper\\ValidationSnippetCache\:\:store\(\) has parameter \$expandedJsonLd with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Mapper\\ValidationSnippetCache\:\:store\(\) has parameter \$expandedJsonLd with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetCache.php
 
 		-
-			message: '#^Parameter \#1 \$description of method Jolicode\\JsonLd\\Mapper\\MappedProperty\:\:setDescription\(\) expects string\|null, mixed given\.$#'
+			message: '#^Parameter \#1 \$description of method JoliCode\\StructuredData\\Mapper\\MappedProperty\:\:setDescription\(\) expects string\|null, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/JsonLd/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetCache.php
 
 		-
-			message: '#^Parameter \#1 \$description of method Jolicode\\JsonLd\\Mapper\\MappedType\:\:setDescription\(\) expects string\|null, mixed given\.$#'
+			message: '#^Parameter \#1 \$description of method JoliCode\\StructuredData\\Mapper\\MappedType\:\:setDescription\(\) expects string\|null, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/JsonLd/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetCache.php
 
 		-
-			message: '#^Parameter \#1 \$isPartOf of method Jolicode\\JsonLd\\Mapper\\MappedType\:\:setIsPartOf\(\) expects array\<string\>, mixed given\.$#'
+			message: '#^Parameter \#1 \$isPartOf of method JoliCode\\StructuredData\\Mapper\\MappedType\:\:setIsPartOf\(\) expects array\<string\>, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/JsonLd/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetCache.php
 
 		-
-			message: '#^Parameter \#1 \$items of method Jolicode\\JsonLd\\Mapper\\MappedProperty\:\:addIsPartOf\(\) expects array, mixed given\.$#'
+			message: '#^Parameter \#1 \$items of method JoliCode\\StructuredData\\Mapper\\MappedProperty\:\:addIsPartOf\(\) expects array, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/JsonLd/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetCache.php
 
 		-
-			message: '#^Parameter \#1 \$items of method Jolicode\\JsonLd\\Mapper\\MappedProperty\:\:addSource\(\) expects array, mixed given\.$#'
+			message: '#^Parameter \#1 \$items of method JoliCode\\StructuredData\\Mapper\\MappedProperty\:\:addSource\(\) expects array, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/JsonLd/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetCache.php
 
 		-
-			message: '#^Parameter \#1 \$link of method Jolicode\\JsonLd\\Mapper\\MappedType\:\:setDocumentationLink\(\) expects string\|null, mixed given\.$#'
+			message: '#^Parameter \#1 \$link of method JoliCode\\StructuredData\\Mapper\\MappedType\:\:setDocumentationLink\(\) expects string\|null, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/JsonLd/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetCache.php
 
 		-
-			message: '#^Parameter \#1 \$name of method Jolicode\\JsonLd\\Mapper\\MappedType\:\:getProperty\(\) expects string, mixed given\.$#'
+			message: '#^Parameter \#1 \$name of method JoliCode\\StructuredData\\Mapper\\MappedType\:\:getProperty\(\) expects string, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/JsonLd/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetCache.php
 
 		-
-			message: '#^Parameter \#1 \$source of method Jolicode\\JsonLd\\Mapper\\MappedType\:\:setSource\(\) expects array\<string\>, mixed given\.$#'
+			message: '#^Parameter \#1 \$source of method JoliCode\\StructuredData\\Mapper\\MappedType\:\:setSource\(\) expects array\<string\>, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/JsonLd/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetCache.php
 
 		-
-			message: '#^Parameter \#2 \$template of method Jolicode\\JsonLd\\Mapper\\ValidationSnippetCache\:\:applyValidatedTypeTemplate\(\) expects array\<string, mixed\>, mixed given\.$#'
+			message: '#^Parameter \#2 \$template of method JoliCode\\StructuredData\\Mapper\\ValidationSnippetCache\:\:applyValidatedTypeTemplate\(\) expects array\<string, mixed\>, mixed given\.$#'
 			identifier: argument.type
 			count: 2
-			path: src/JsonLd/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetCache.php
 
 		-
-			message: '#^Parameter \#3 \$errorTemplate of method Jolicode\\JsonLd\\Mapper\\ValidationSnippetCache\:\:replayMappedError\(\) expects array\{message\: string, severity\: string, validatorName\: string\|null\}, mixed given\.$#'
+			message: '#^Parameter \#3 \$errorTemplate of method JoliCode\\StructuredData\\Mapper\\ValidationSnippetCache\:\:replayMappedError\(\) expects array\{message\: string, severity\: string, validatorName\: string\|null\}, mixed given\.$#'
 			identifier: argument.type
 			count: 2
-			path: src/JsonLd/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetCache.php
 
 		-
-			message: '#^Parameter \#3 \$template of method Jolicode\\JsonLd\\Mapper\\ValidationSnippetCache\:\:applyValidatedPropertyTemplate\(\) expects array\<string, mixed\>, mixed given\.$#'
+			message: '#^Parameter \#3 \$template of method JoliCode\\StructuredData\\Mapper\\ValidationSnippetCache\:\:applyValidatedPropertyTemplate\(\) expects array\<string, mixed\>, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/JsonLd/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetCache.php
 
 		-
 			message: '#^Possibly invalid array key type mixed\.$#'
 			identifier: offsetAccess.invalidOffset
 			count: 1
-			path: src/JsonLd/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetCache.php
 
 		-
-			message: '#^Property Jolicode\\JsonLd\\Mapper\\ValidationSnippetCache\:\:\$entries type has no value type specified in iterable type array\.$#'
+			message: '#^Property JoliCode\\StructuredData\\Mapper\\ValidationSnippetCache\:\:\$entries type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetCache.php
 
 		-
 			message: '#^Cannot call method getProperty\(\) on mixed\.$#'
@@ -1303,139 +1310,139 @@ parameters:
 			path: src/JsonLd/Parser/PointerListener.php
 
 		-
-			message: '#^Parameter \#1 \$value of method Jolicode\\JsonLd\\Parser\\DataStructures\\AbstractStructure\:\:addValue\(\) expects bool\|Jolicode\\JsonLd\\Parser\\DataStructures\\AbstractStructure\|string\|null, mixed given\.$#'
+			message: '#^Parameter \#1 \$value of method JoliCode\\StructuredData\\JsonLd\\Parser\\DataStructures\\AbstractStructure\:\:addValue\(\) expects bool\|JoliCode\\StructuredData\\JsonLd\\Parser\\DataStructures\\AbstractStructure\|string\|null, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Parser/PointerListener.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Validator\:\:mapJsonLdElement\(\) has parameter \$expandedJsonLd with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Validator\:\:mapJsonLdElement\(\) has parameter \$expandedJsonLd with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Validator.php
+			path: src/Validator.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Validator\:\:validateJsonLdElement\(\) has parameter \$expandedJsonLd with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Validator\:\:validateJsonLdElement\(\) has parameter \$expandedJsonLd with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Validator.php
+			path: src/Validator.php
 
 		-
-			message: '#^Property Jolicode\\JsonLd\\Validator\:\:\$currentValidators type has no value type specified in iterable type array\.$#'
+			message: '#^Property JoliCode\\StructuredData\\Validator\:\:\$currentValidators type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Validator.php
+			path: src/Validator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Generated\\GeneratedClassesRegistry\:\:getMapByPrefix\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Vocabularies/Generated/GeneratedClassesRegistry.php
-
-		-
-			message: '#^Method Jolicode\\Vocabularies\\Generated\\GeneratedClassesRegistry\:\:getShortNamesByPrefix\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generated\\GeneratedClassesRegistry\:\:getMapByPrefix\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Generated/GeneratedClassesRegistry.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:coerceScalarForSourceFormat\(\) has parameter \$supportedTypes with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generated\\GeneratedClassesRegistry\:\:getShortNamesByPrefix\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Vocabularies/Generated/GeneratedClassesRegistry.php
+
+		-
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:coerceScalarForSourceFormat\(\) has parameter \$supportedTypes with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:definePropertyViolationSeverity\(\) has parameter \$property with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:definePropertyViolationSeverity\(\) has parameter \$property with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:findMissingProperties\(\) has parameter \$errors with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:findMissingProperties\(\) has parameter \$errors with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:findMissingProperties\(\) has parameter \$validationProperties with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:findMissingProperties\(\) has parameter \$validationProperties with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:findOriginalTypeLabel\(\) should return string\|null but returns mixed\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:findOriginalTypeLabel\(\) should return string\|null but returns mixed\.$#'
 			identifier: return.type
 			count: 1
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:getMatchingDataType\(\) has parameter \$supportedTypes with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:getMatchingDataType\(\) has parameter \$supportedTypes with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:hasAnyPropertyKey\(\) has parameter \$expectedProperties with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:hasAnyPropertyKey\(\) has parameter \$expectedProperties with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:hasInvalidDataTypeValue\(\) has parameter \$expectedProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:hasInvalidDataTypeValue\(\) has parameter \$expectedProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:hasInvalidExactValue\(\) has parameter \$expectedValues with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:hasInvalidExactValue\(\) has parameter \$expectedValues with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:validateMultipleTypesEntry\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:validateMultipleTypesEntry\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:validatePropertyForMultipleTypesEntry\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:validatePropertyForMultipleTypesEntry\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:validateRecommendedProperty\(\) has parameter \$errors with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:validateRecommendedProperty\(\) has parameter \$errors with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:validateRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:validateRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:validateRequiredProperty\(\) has parameter \$errors with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:validateRequiredProperty\(\) has parameter \$errors with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:validateRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:validateRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
@@ -1483,259 +1490,259 @@ parameters:
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\ArticleAuthorUrlOrSameAsSpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\ArticleAuthorUrlOrSameAsSpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/ArticleAuthorUrlOrSameAsSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\ArticleAuthorUrlOrSameAsSpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\ArticleAuthorUrlOrSameAsSpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/ArticleAuthorUrlOrSameAsSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\ArticleAuthorUrlOrSameAsSpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\ArticleAuthorUrlOrSameAsSpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/ArticleAuthorUrlOrSameAsSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\BookOfferPricingByCategorySpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\BookOfferPricingByCategorySpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/BookOfferPricingByCategorySpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\BookOfferPricingByCategorySpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\BookOfferPricingByCategorySpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/BookOfferPricingByCategorySpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\BookOfferPricingByCategorySpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\BookOfferPricingByCategorySpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/BookOfferPricingByCategorySpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\BreadcrumbListSpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\BreadcrumbListSpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/BreadcrumbListSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\BreadcrumbListSpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\BreadcrumbListSpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/BreadcrumbListSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\BreadcrumbListSpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\BreadcrumbListSpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/BreadcrumbListSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\DiscussionForumPostingContentOrUrlSpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\DiscussionForumPostingContentOrUrlSpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/DiscussionForumPostingContentOrUrlSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\DiscussionForumPostingContentOrUrlSpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\DiscussionForumPostingContentOrUrlSpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/DiscussionForumPostingContentOrUrlSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\DiscussionForumPostingContentOrUrlSpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\DiscussionForumPostingContentOrUrlSpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/DiscussionForumPostingContentOrUrlSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\JobPostingRemoteJobLocationRequirementsSpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\JobPostingRemoteJobLocationRequirementsSpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/JobPostingRemoteJobLocationRequirementsSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\JobPostingRemoteJobLocationRequirementsSpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\JobPostingRemoteJobLocationRequirementsSpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/JobPostingRemoteJobLocationRequirementsSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\JobPostingRemoteJobLocationRequirementsSpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\JobPostingRemoteJobLocationRequirementsSpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/JobPostingRemoteJobLocationRequirementsSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\OrganizationTaxIdCountryConsistencySpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\OrganizationTaxIdCountryConsistencySpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/OrganizationTaxIdCountryConsistencySpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\OrganizationTaxIdCountryConsistencySpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\OrganizationTaxIdCountryConsistencySpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/OrganizationTaxIdCountryConsistencySpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\OrganizationTaxIdCountryConsistencySpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\OrganizationTaxIdCountryConsistencySpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/OrganizationTaxIdCountryConsistencySpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\ProductMerchantListingPricePositiveSpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\ProductMerchantListingPricePositiveSpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/ProductMerchantListingPricePositiveSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\ProductMerchantListingPricePositiveSpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\ProductMerchantListingPricePositiveSpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/ProductMerchantListingPricePositiveSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\ProductMerchantListingPricePositiveSpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\ProductMerchantListingPricePositiveSpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/ProductMerchantListingPricePositiveSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\QAPageAnswerCommentCountConsistencySpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\QAPageAnswerCommentCountConsistencySpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/QAPageAnswerCommentCountConsistencySpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\QAPageAnswerCommentCountConsistencySpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\QAPageAnswerCommentCountConsistencySpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/QAPageAnswerCommentCountConsistencySpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\QAPageAnswerCommentCountConsistencySpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\QAPageAnswerCommentCountConsistencySpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/QAPageAnswerCommentCountConsistencySpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\RecipeCaloriesRequiresYieldSpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\RecipeCaloriesRequiresYieldSpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/RecipeCaloriesRequiresYieldSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\RecipeCaloriesRequiresYieldSpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\RecipeCaloriesRequiresYieldSpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/RecipeCaloriesRequiresYieldSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\RecipeCaloriesRequiresYieldSpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\RecipeCaloriesRequiresYieldSpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/RecipeCaloriesRequiresYieldSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\SpeakableCssSelectorOrXPathSpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\SpeakableCssSelectorOrXPathSpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/SpeakableCssSelectorOrXPathSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\SpeakableCssSelectorOrXPathSpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\SpeakableCssSelectorOrXPathSpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/SpeakableCssSelectorOrXPathSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\SpeakableCssSelectorOrXPathSpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\SpeakableCssSelectorOrXPathSpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/SpeakableCssSelectorOrXPathSpecialRule.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\SpecialRuleInterface\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\SpecialRuleInterface\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/SpecialRuleInterface.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\SpecialRules\\SpecialRuleInterface\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\SpecialRuleInterface\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/SpecialRules/SpecialRuleInterface.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\Stack\:\:getNextValidationProperty\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\Stack\:\:getNextValidationProperty\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/Stack.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\Stack\:\:getTypeValidationProperties\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\Stack\:\:getTypeValidationProperties\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/Stack.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\Stack\:\:handleSpecialProperties\(\) has parameter \$validationType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\Stack\:\:handleSpecialProperties\(\) has parameter \$validationType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/Stack.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\Stack\:\:isADataType\(\) has parameter \$testedType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\Stack\:\:isADataType\(\) has parameter \$testedType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/Stack.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\Stack\:\:resolveValidationType\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\Stack\:\:resolveValidationType\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/Stack.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\Stack\:\:resolveValidationType\(\) should return array\|null but returns mixed\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\Stack\:\:resolveValidationType\(\) should return array\|null but returns mixed\.$#'
 			identifier: return.type
 			count: 1
 			path: src/Vocabularies/Validators/Google/Stack.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\Stack\:\:setImportedProperties\(\) has parameter \$validationType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\Stack\:\:setImportedProperties\(\) has parameter \$validationType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/Stack.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\Google\\Stack\:\:setTargettedProperties\(\) has parameter \$validationType with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\Stack\:\:setTargettedProperties\(\) has parameter \$validationType with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/Stack.php
@@ -1747,7 +1754,7 @@ parameters:
 			path: src/Vocabularies/Validators/Google/Stack.php
 
 		-
-			message: '#^Parameter \#1 \$testedType of method Jolicode\\Vocabularies\\Validators\\Google\\Stack\:\:isADataType\(\) expects array, mixed given\.$#'
+			message: '#^Parameter \#1 \$testedType of method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\Stack\:\:isADataType\(\) expects array, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/Vocabularies/Validators/Google/Stack.php
@@ -1759,58 +1766,58 @@ parameters:
 			path: src/Vocabularies/Validators/Google/Stack.php
 
 		-
-			message: '#^Parameter \#2 \$validationType of method Jolicode\\Vocabularies\\Validators\\Google\\Stack\:\:handleSpecialProperties\(\) expects array, mixed given\.$#'
+			message: '#^Parameter \#2 \$validationType of method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\Stack\:\:handleSpecialProperties\(\) expects array, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/Vocabularies/Validators/Google/Stack.php
 
 		-
-			message: '#^Property Jolicode\\Vocabularies\\Validators\\Google\\Stack\:\:\$resolvedValidationTypeCache \(array\|null\) does not accept mixed\.$#'
+			message: '#^Property JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\Stack\:\:\$resolvedValidationTypeCache \(array\|null\) does not accept mixed\.$#'
 			identifier: assign.propertyType
 			count: 1
 			path: src/Vocabularies/Validators/Google/Stack.php
 
 		-
-			message: '#^Property Jolicode\\Vocabularies\\Validators\\Google\\Stack\:\:\$resolvedValidationTypeCache type has no value type specified in iterable type array\.$#'
+			message: '#^Property JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\Stack\:\:\$resolvedValidationTypeCache type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/Stack.php
 
 		-
-			message: '#^Method Jolicode\\Vocabularies\\Validators\\SchemaOrg\\SchemaOrgValidator\:\:guessFromParentProperty\(\) has parameter \$typeProperties with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\SchemaOrg\\SchemaOrgValidator\:\:guessFromParentProperty\(\) has parameter \$typeProperties with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/SchemaOrg/SchemaOrgValidator.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Tests\\Algorithms\\AbstractJsonLdTestCase\:\:provideInputsAndOutputs\(\) return type has no value type specified in iterable type iterable\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Tests\\Algorithms\\AbstractJsonLdTestCase\:\:provideInputsAndOutputs\(\) return type has no value type specified in iterable type iterable\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Algorithms/AbstractJsonLdTestCase.php
 
 		-
-			message: '#^Parameter \#1 \$json of method Jolicode\\JsonLd\\Algorithms\\ContextProcessing\\ContextProcesser\:\:extractContext\(\) expects array\|stdClass, mixed given\.$#'
+			message: '#^Parameter \#1 \$json of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\ContextProcessing\\ContextProcessor\:\:extractContext\(\) expects array\|stdClass, mixed given\.$#'
 			identifier: argument.type
 			count: 3
-			path: tests/Algorithms/Benchmark/ContextProcesserBench.php
+			path: tests/Algorithms/Benchmark/ContextProcessorBench.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Tests\\Algorithms\\ContextProcesserTest\:\:provideContainerEntries\(\) return type has no value type specified in iterable type iterable\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Tests\\Algorithms\\ContextProcessorTest\:\:provideContainerEntries\(\) return type has no value type specified in iterable type iterable\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: tests/Algorithms/ContextProcesserTest.php
+			path: tests/Algorithms/ContextProcessorTest.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Tests\\Algorithms\\ContextProcesserTest\:\:testValidateContainerEntry\(\) has parameter \$container with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Tests\\Algorithms\\ContextProcessorTest\:\:testValidateContainerEntry\(\) has parameter \$container with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: tests/Algorithms/ContextProcesserTest.php
+			path: tests/Algorithms/ContextProcessorTest.php
 
 		-
-			message: '#^Parameter \#1 \$json of method Jolicode\\JsonLd\\Algorithms\\ContextProcessing\\ContextProcesser\:\:extractContext\(\) expects array\|stdClass, mixed given\.$#'
+			message: '#^Parameter \#1 \$json of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\ContextProcessing\\ContextProcessor\:\:extractContext\(\) expects array\|stdClass, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: tests/Algorithms/ContextProcesserTest.php
+			path: tests/Algorithms/ContextProcessorTest.php
 
 		-
 			message: '#^Cannot access offset ''documentIssues'' on mixed\.$#'
@@ -1837,19 +1844,19 @@ parameters:
 			path: tests/Validation/AbstractValidatorTestCase.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Tests\\Validation\\AbstractValidatorTestCase\:\:assertValidationResultMatchesExpectations\(\) has parameter \$expectedDocumentIssues with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Tests\\Validation\\AbstractValidatorTestCase\:\:assertValidationResultMatchesExpectations\(\) has parameter \$expectedDocumentIssues with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Validation/AbstractValidatorTestCase.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Tests\\Validation\\AbstractValidatorTestCase\:\:assertValidationResultMatchesExpectations\(\) has parameter \$expectedErrors with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Tests\\Validation\\AbstractValidatorTestCase\:\:assertValidationResultMatchesExpectations\(\) has parameter \$expectedErrors with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Validation/AbstractValidatorTestCase.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Tests\\Validation\\AbstractValidatorTestCase\:\:assertValidationResultMatchesExpectations\(\) has parameter \$expectedWarnings with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Tests\\Validation\\AbstractValidatorTestCase\:\:assertValidationResultMatchesExpectations\(\) has parameter \$expectedWarnings with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Validation/AbstractValidatorTestCase.php
@@ -1873,25 +1880,25 @@ parameters:
 			path: tests/Validation/AbstractValidatorTestCase.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Tests\\Validation\\Benchmark\\HtmlValidationPipelineBench\:\:buildValidationJobs\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Tests\\Validation\\Benchmark\\HtmlValidationPipelineBench\:\:buildValidationJobs\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Validation/Benchmark/HtmlValidationPipelineBench.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Tests\\Validation\\Benchmark\\HtmlValidationPipelineBench\:\:runMappingJobs\(\) has parameter \$jobs with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Tests\\Validation\\Benchmark\\HtmlValidationPipelineBench\:\:runMappingJobs\(\) has parameter \$jobs with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Validation/Benchmark/HtmlValidationPipelineBench.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Tests\\Validation\\Benchmark\\HtmlValidationPipelineBench\:\:runMappingJobs\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Tests\\Validation\\Benchmark\\HtmlValidationPipelineBench\:\:runMappingJobs\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Validation/Benchmark/HtmlValidationPipelineBench.php
 
 		-
-			message: '#^Property Jolicode\\JsonLd\\Tests\\Validation\\Benchmark\\HtmlValidationPipelineBench\:\:\$validationJobsByScenario type has no value type specified in iterable type array\.$#'
+			message: '#^Property JoliCode\\StructuredData\\Tests\\Validation\\Benchmark\\HtmlValidationPipelineBench\:\:\$validationJobsByScenario type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Validation/Benchmark/HtmlValidationPipelineBench.php
@@ -1909,19 +1916,19 @@ parameters:
 			path: tests/Validation/Google/GoogleValidatorInfrastructureTest.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Tests\\Validation\\GoogleValidatorTest\:\:testGoogleValidator\(\) has parameter \$expectedDocumentIssues with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Tests\\Validation\\GoogleValidatorTest\:\:testGoogleValidator\(\) has parameter \$expectedDocumentIssues with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Validation/Google/GoogleValidatorTest.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Tests\\Validation\\GoogleValidatorTest\:\:testGoogleValidator\(\) has parameter \$expectedErrors with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Tests\\Validation\\GoogleValidatorTest\:\:testGoogleValidator\(\) has parameter \$expectedErrors with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Validation/Google/GoogleValidatorTest.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Tests\\Validation\\GoogleValidatorTest\:\:testGoogleValidator\(\) has parameter \$expectedWarnings with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Tests\\Validation\\GoogleValidatorTest\:\:testGoogleValidator\(\) has parameter \$expectedWarnings with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Validation/Google/GoogleValidatorTest.php
@@ -1939,37 +1946,37 @@ parameters:
 			path: tests/Validation/SchemaOrg/SchemaOrgValidatorInfrastructureTest.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Tests\\Validation\\SchemaOrgValidatorTest\:\:testSchemaOrgExamples\(\) has parameter \$expectedDocumentIssues with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Tests\\Validation\\SchemaOrgValidatorTest\:\:testSchemaOrgExamples\(\) has parameter \$expectedDocumentIssues with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Validation/SchemaOrg/SchemaOrgValidatorTest.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Tests\\Validation\\SchemaOrgValidatorTest\:\:testSchemaOrgExamples\(\) has parameter \$expectedErrors with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Tests\\Validation\\SchemaOrgValidatorTest\:\:testSchemaOrgExamples\(\) has parameter \$expectedErrors with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Validation/SchemaOrg/SchemaOrgValidatorTest.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Tests\\Validation\\SchemaOrgValidatorTest\:\:testSchemaOrgExamples\(\) has parameter \$expectedWarnings with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Tests\\Validation\\SchemaOrgValidatorTest\:\:testSchemaOrgExamples\(\) has parameter \$expectedWarnings with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Validation/SchemaOrg/SchemaOrgValidatorTest.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Tests\\Validation\\SchemaOrgValidatorTest\:\:testSchemaOrgValidator\(\) has parameter \$expectedDocumentIssues with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Tests\\Validation\\SchemaOrgValidatorTest\:\:testSchemaOrgValidator\(\) has parameter \$expectedDocumentIssues with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Validation/SchemaOrg/SchemaOrgValidatorTest.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Tests\\Validation\\SchemaOrgValidatorTest\:\:testSchemaOrgValidator\(\) has parameter \$expectedErrors with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Tests\\Validation\\SchemaOrgValidatorTest\:\:testSchemaOrgValidator\(\) has parameter \$expectedErrors with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Validation/SchemaOrg/SchemaOrgValidatorTest.php
 
 		-
-			message: '#^Method Jolicode\\JsonLd\\Tests\\Validation\\SchemaOrgValidatorTest\:\:testSchemaOrgValidator\(\) has parameter \$expectedWarnings with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Tests\\Validation\\SchemaOrgValidatorTest\:\:testSchemaOrgValidator\(\) has parameter \$expectedWarnings with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: tests/Validation/SchemaOrg/SchemaOrgValidatorTest.php

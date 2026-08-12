@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SteeringPositionValueModel
 {
     public const DESCRIPTION = 'A value indicating a steering position.';
     public const LABEL = 'SteeringPositionValue';
     public const NAME = 'schema:SteeringPositionValue';
-    public const PARENTS = ['QualitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QualitativeValueModel'];
+    public const PARENTS = ['QualitativeValueModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\QualitativeValueModel'];
     public const ENUMERATION_MEMBERS = ['LeftHandDrivingModel' => 'EnumerationMember\LeftHandDrivingModel', 'RightHandDrivingModel' => 'EnumerationMember\RightHandDrivingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generators\Google;
+namespace JoliCode\StructuredData\Vocabularies\Generators\Google;
 
 use PhpParser\Node\Expr\Array_;
 use PhpParser\PrettyPrinter\Standard;

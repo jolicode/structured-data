@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CvdNumC19MechVentPatsModel
 {
     public const DESCRIPTION = 'numc19mechventpats - HOSPITALIZED and VENTILATED: Patients hospitalized in an NHSN inpatient care location who have suspected or confirmed COVID-19 and are on a mechanical ventilator.';
     public const LABEL = 'cvdNumC19MechVentPats';
     public const NAME = 'schema:cvdNumC19MechVentPats';
-    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
-    public const TYPES = ['CDCPMDRecord' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CDCPMDRecordModel'];
+    public const VALUES = ['NumberModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['CDCPMDRecord' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CDCPMDRecordModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2521'];
     public const SUPERSEDED_BY = null;

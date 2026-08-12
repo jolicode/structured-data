@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class WorkloadModel
 {
     public const DESCRIPTION = 'Quantitative measure of the physiologic output of the exercise; also referred to as energy expenditure.';
     public const LABEL = 'workload';
     public const NAME = 'schema:workload';
-    public const VALUES = ['EnergyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnergyModel', 'QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
-    public const TYPES = ['ExercisePlan' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ExercisePlanModel'];
+    public const VALUES = ['EnergyModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnergyModel', 'QuantitativeValueModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['ExercisePlan' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ExercisePlanModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

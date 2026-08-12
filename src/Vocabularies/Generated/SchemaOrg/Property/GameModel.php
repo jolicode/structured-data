@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class GameModel
 {
     public const DESCRIPTION = 'Video game which is played on this server.';
     public const LABEL = 'game';
     public const NAME = 'schema:game';
-    public const VALUES = ['VideoGameModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VideoGameModel'];
-    public const TYPES = ['GameServer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GameServerModel'];
+    public const VALUES = ['VideoGameModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\VideoGameModel'];
+    public const TYPES = ['GameServer' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\GameServerModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CvdNumTotBedsModel
 {
     public const DESCRIPTION = 'numtotbeds - ALL HOSPITAL BEDS: Total number of all inpatient and outpatient beds, including all staffed, ICU, licensed, and overflow (surge) beds used for inpatients or outpatients.';
     public const LABEL = 'cvdNumTotBeds';
     public const NAME = 'schema:cvdNumTotBeds';
-    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
-    public const TYPES = ['CDCPMDRecord' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CDCPMDRecordModel'];
+    public const VALUES = ['NumberModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['CDCPMDRecord' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CDCPMDRecordModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2521'];
     public const SUPERSEDED_BY = null;

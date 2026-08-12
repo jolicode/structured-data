@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SharedContentModel
 {
     public const DESCRIPTION = 'A CreativeWork such as an image, video, or audio clip shared as part of this posting.';
     public const LABEL = 'sharedContent';
     public const NAME = 'schema:sharedContent';
-    public const VALUES = ['CreativeWorkModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel'];
-    public const TYPES = ['Comment' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommentModel', 'SocialMediaPosting' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SocialMediaPostingModel'];
+    public const VALUES = ['CreativeWorkModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel'];
+    public const TYPES = ['Comment' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CommentModel', 'SocialMediaPosting' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SocialMediaPostingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

@@ -9,22 +9,22 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Algorithms\Frame;
+namespace JoliCode\StructuredData\JsonLd\Algorithms\Frame;
 
-use Jolicode\JsonLd\Algorithms\Compact\Compactor;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextCache;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
-use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
-use Jolicode\JsonLd\Algorithms\Expand\Expander;
-use Jolicode\JsonLd\Algorithms\Flatten\NodeMapGenerator;
-use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
-use Jolicode\JsonLd\Algorithms\Http\HttpDocumentLoader;
-use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Algorithms\JsonLd\FramingKeyword;
-use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
-use Jolicode\JsonLd\Algorithms\Services\IdentifierGenerator;
+use JoliCode\StructuredData\JsonLd\Algorithms\Compact\Compactor;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\Context;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextCache;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextProcessor;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\JsonLdException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Expand\Expander;
+use JoliCode\StructuredData\JsonLd\Algorithms\Flatten\NodeMapGenerator;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\DocumentLoaderInterface;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\HttpDocumentLoader;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\IriResolver;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\FramingKeyword;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms\Services\IdentifierGenerator;
 
 /**
  * This is a PHP implementation of the Framing algorithm based on the JSON-LD 1.1
@@ -89,19 +89,19 @@ class Framer
      */
     private array $frameOptions = self::DEFAULT_FLAGS;
 
-    private readonly ContextProcesser $contextProcesser;
+    private readonly ContextProcessor $contextProcessor;
     private readonly Expander $expander;
     private readonly Compactor $compactor;
     private readonly DocumentLoaderInterface $documentLoader;
 
     public function __construct(
-        ?ContextProcesser $contextProcesser = null,
+        ?ContextProcessor $contextProcessor = null,
         ?Expander $expander = null,
         ?Compactor $compactor = null,
         ?DocumentLoaderInterface $documentLoader = null,
     ) {
         $this->documentLoader = $documentLoader ?? new HttpDocumentLoader();
-        $this->contextProcesser = $contextProcesser ?? new ContextProcesser(new ContextCache($this->documentLoader));
+        $this->contextProcessor = $contextProcessor ?? new ContextProcessor(new ContextCache($this->documentLoader));
         $this->expander = $expander ?? new Expander(documentLoader: $this->documentLoader);
         $this->compactor = $compactor ?? new Compactor(documentLoader: $this->documentLoader);
     }
@@ -145,7 +145,7 @@ class Framer
             : new \stdClass();
 
         // The frame's context drives processing-mode-specific defaults.
-        $activeContext = $this->contextProcesser->processContext(new Context(
+        $activeContext = $this->contextProcessor->processContext(new Context(
             baseIri: $baseUrl,
             baseUrl: $baseUrl,
             processingMode: $options->processingMode,

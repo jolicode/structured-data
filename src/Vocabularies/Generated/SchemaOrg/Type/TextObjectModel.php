@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TextObjectModel
 {
     public const DESCRIPTION = 'A text file. The text can be unformatted or contain markup, html, etc.';
     public const LABEL = 'TextObject';
     public const NAME = 'schema:TextObject';
-    public const PARENTS = ['MediaObjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MediaObjectModel'];
+    public const PARENTS = ['MediaObjectModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MediaObjectModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IncentiveTypeModel
 {
     public const DESCRIPTION = 'Enumerates common financial incentives for products, including tax credits, tax deductions, rebates and subsidies, etc.';
     public const LABEL = 'IncentiveType';
     public const NAME = 'schema:IncentiveType';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['IncentiveTypeLoanModel' => 'EnumerationMember\IncentiveTypeLoanModel', 'IncentiveTypeRebateOrSubsidyModel' => 'EnumerationMember\IncentiveTypeRebateOrSubsidyModel', 'IncentiveTypeTaxCreditModel' => 'EnumerationMember\IncentiveTypeTaxCreditModel', 'IncentiveTypeTaxDeductionModel' => 'EnumerationMember\IncentiveTypeTaxDeductionModel', 'IncentiveTypeTaxWaiverModel' => 'EnumerationMember\IncentiveTypeTaxWaiverModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3572'];

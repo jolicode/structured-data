@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CheckActionModel
 {
     public const DESCRIPTION = 'An agent inspects, determines, investigates, inquires, or examines an object\'s accuracy, quality, condition, or state.';
     public const LABEL = 'CheckAction';
     public const NAME = 'schema:CheckAction';
-    public const PARENTS = ['FindActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FindActionModel'];
+    public const PARENTS = ['FindActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\FindActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

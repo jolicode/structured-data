@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IssuedThroughModel
 {
     public const DESCRIPTION = 'The service through which the permit was granted.';
     public const LABEL = 'issuedThrough';
     public const NAME = 'schema:issuedThrough';
-    public const VALUES = ['ServiceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceModel'];
-    public const TYPES = ['Permit' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PermitModel'];
+    public const VALUES = ['ServiceModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ServiceModel'];
+    public const TYPES = ['Permit' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PermitModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

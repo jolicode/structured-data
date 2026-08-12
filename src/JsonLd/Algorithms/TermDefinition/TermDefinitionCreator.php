@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Algorithms\TermDefinition;
+namespace JoliCode\StructuredData\JsonLd\Algorithms\TermDefinition;
 
-use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextCache;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
-use Jolicode\JsonLd\Algorithms\Exception\ContextProcessingException;
-use Jolicode\JsonLd\Algorithms\Exception\TermDefinitionCreationException;
-use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Jolicode\JsonLd\Algorithms\Services\DataStructureComparator;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\Context;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextCache;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextProcessor;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\ContextProcessingException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\TermDefinitionCreationException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\IriResolver;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
+use JoliCode\StructuredData\JsonLd\Algorithms\Services\DataStructureComparator;
 
 class TermDefinitionCreator
 {
@@ -613,7 +613,7 @@ class TermDefinitionCreator
 
         // 21.2
         $context = $localContext->{Keyword::CONTEXT->value};
-        $processer = new ContextProcesser($cache ?? new ContextCache());
+        $processer = new ContextProcessor($cache ?? new ContextCache());
 
         // 21.4
         // We swap 21.3 and 21.4 because the $activeContext needs the $baseUrl.

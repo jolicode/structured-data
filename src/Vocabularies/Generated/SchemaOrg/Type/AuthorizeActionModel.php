@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AuthorizeActionModel
 {
     public const DESCRIPTION = 'The act of granting permission to an object.';
     public const LABEL = 'AuthorizeAction';
     public const NAME = 'schema:AuthorizeAction';
-    public const PARENTS = ['AllocateActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AllocateActionModel'];
+    public const PARENTS = ['AllocateActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\AllocateActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

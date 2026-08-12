@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReturnLabelSourceEnumerationModel
 {
     public const DESCRIPTION = 'Enumerates several types of return labels for product returns.';
     public const LABEL = 'ReturnLabelSourceEnumeration';
     public const NAME = 'schema:ReturnLabelSourceEnumeration';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['ReturnLabelCustomerResponsibilityModel' => 'EnumerationMember\ReturnLabelCustomerResponsibilityModel', 'ReturnLabelDownloadAndPrintModel' => 'EnumerationMember\ReturnLabelDownloadAndPrintModel', 'ReturnLabelInBoxModel' => 'EnumerationMember\ReturnLabelInBoxModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2880'];

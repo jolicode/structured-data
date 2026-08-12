@@ -9,22 +9,22 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Algorithms;
+namespace JoliCode\StructuredData\Tests\Algorithms;
 
-use Jolicode\JsonLd\Algorithms;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextCache;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
-use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
-use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
-use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinition;
-use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinitionCreator;
+use JoliCode\StructuredData\JsonLd\Algorithms;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\Context;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextCache;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextProcessor;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\DocumentLoaderInterface;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms\TermDefinition\TermDefinition;
+use JoliCode\StructuredData\JsonLd\Algorithms\TermDefinition\TermDefinitionCreator;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 
 #[Group('context')]
-class ContextProcesserTest extends AbstractJsonLdTestCase
+class ContextProcessorTest extends AbstractJsonLdTestCase
 {
     /**
      * The files provided by the W3C only test that the context is correctly extracted, it doesn't test the processing algorithm in itself.
@@ -33,7 +33,7 @@ class ContextProcesserTest extends AbstractJsonLdTestCase
     #[DataProvider('provideInputsAndOutputs')]
     public function testProcessContext(string $json, string $expected, string $filename): void
     {
-        $processer = new ContextProcesser(new ContextCache(static::createDocumentLoader()));
+        $processer = new ContextProcessor(new ContextCache(static::createDocumentLoader()));
         $actual = new \stdClass();
         $extractedContext = $processer->extractContext(json_decode($json));
 
@@ -66,7 +66,7 @@ class ContextProcesserTest extends AbstractJsonLdTestCase
             }
         };
 
-        $processer = new ContextProcesser(new ContextCache($loader));
+        $processer = new ContextProcessor(new ContextCache($loader));
         $url = 'https://tests.invalid/isolated-copies/context.jsonld';
         $baseContext = static fn (): Context => new Context(baseUrl: 'https://tests.invalid/');
 
@@ -150,7 +150,7 @@ class ContextProcesserTest extends AbstractJsonLdTestCase
 
         $defaultErrorMessage = <<<'ERROR'
             Something went wrong with this test : it does not have an output file, which implies it expects an error to be thrown.
-            However, there is no expected error message in the tests. Maybe the output file was deleted, or the ContextProcesser is actually broken.
+            However, there is no expected error message in the tests. Maybe the output file was deleted, or the ContextProcessor is actually broken.
         ERROR;
 
         return $failedTestsErrorMessages[$filename] ?? $defaultErrorMessage;

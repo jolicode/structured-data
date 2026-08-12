@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PhysicalActivityModel
 {
     public const DESCRIPTION = 'Any bodily activity that enhances or maintains physical fitness and overall health and wellness. Includes activity that is part of daily living and routine, structured exercise, and exercise prescribed as part of a medical treatment or recovery plan.';
     public const LABEL = 'PhysicalActivity';
     public const NAME = 'schema:PhysicalActivity';
-    public const PARENTS = ['LifestyleModificationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LifestyleModificationModel'];
+    public const PARENTS = ['LifestyleModificationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\LifestyleModificationModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

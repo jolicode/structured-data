@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CorrectionCommentModel
 {
     public const DESCRIPTION = 'A [[comment]] that corrects [[CreativeWork]].';
     public const LABEL = 'CorrectionComment';
     public const NAME = 'schema:CorrectionComment';
-    public const PARENTS = ['CommentModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommentModel'];
+    public const PARENTS = ['CommentModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CommentModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1950'];

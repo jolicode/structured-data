@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IataCodeModel
 {
     public const DESCRIPTION = 'IATA identifier for an airline or airport.';
     public const LABEL = 'iataCode';
     public const NAME = 'schema:iataCode';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Airline' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AirlineModel', 'Airport' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AirportModel'];
+    public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Airline' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\AirlineModel', 'Airport' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\AirportModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

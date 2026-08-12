@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DurationOfWarrantyModel
 {
     public const DESCRIPTION = 'The duration of the warranty promise. Common unitCode values are ANN for year, MON for months, or DAY for days.';
     public const LABEL = 'durationOfWarranty';
     public const NAME = 'schema:durationOfWarranty';
-    public const VALUES = ['QuantitativeValueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
-    public const TYPES = ['WarrantyPromise' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WarrantyPromiseModel'];
+    public const VALUES = ['QuantitativeValueModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
+    public const TYPES = ['WarrantyPromise' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\WarrantyPromiseModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

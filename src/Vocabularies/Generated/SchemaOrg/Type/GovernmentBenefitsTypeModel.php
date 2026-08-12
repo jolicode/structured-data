@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class GovernmentBenefitsTypeModel
 {
     public const DESCRIPTION = 'GovernmentBenefitsType enumerates several kinds of government benefits to support the COVID-19 situation. Note that this structure may not capture all benefits offered.';
     public const LABEL = 'GovernmentBenefitsType';
     public const NAME = 'schema:GovernmentBenefitsType';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['BasicIncomeModel' => 'EnumerationMember\BasicIncomeModel', 'BusinessSupportModel' => 'EnumerationMember\BusinessSupportModel', 'DisabilitySupportModel' => 'EnumerationMember\DisabilitySupportModel', 'HealthCareModel' => 'EnumerationMember\HealthCareModel', 'OneTimePaymentsModel' => 'EnumerationMember\OneTimePaymentsModel', 'PaidLeaveModel' => 'EnumerationMember\PaidLeaveModel', 'ParentalSupportModel' => 'EnumerationMember\ParentalSupportModel', 'UnemploymentSupportModel' => 'EnumerationMember\UnemploymentSupportModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2534'];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Validators\Google;
+namespace JoliCode\StructuredData\Vocabularies\Validators\Google;
 
-use Jolicode\JsonLd\Mapper\MappedProperty;
-use Jolicode\JsonLd\Mapper\MappedType;
-use Jolicode\Vocabularies\Generated\GeneratedClassesRegistry;
+use JoliCode\StructuredData\Mapper\MappedProperty;
+use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Generated\GeneratedClassesRegistry;
 
 class Stack
 {
-    private const BASE_NAMESPACE = 'Jolicode\\Vocabularies\\Generated\\Google';
+    private const BASE_NAMESPACE = 'JoliCode\\StructuredData\\Vocabularies\\Generated\\Google';
 
     /** @var array<string, array<mixed>> */
     private static array $normalizedPropertiesByClass = [];

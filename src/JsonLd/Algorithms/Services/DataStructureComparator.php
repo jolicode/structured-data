@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Algorithms\Services;
+namespace JoliCode\StructuredData\JsonLd\Algorithms\Services;
 
 /**
  * This class is made to perform better comparisons between referenced data structures.

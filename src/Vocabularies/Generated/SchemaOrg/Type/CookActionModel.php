@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CookActionModel
 {
     public const DESCRIPTION = 'The act of producing/preparing food.';
     public const LABEL = 'CookAction';
     public const NAME = 'schema:CookAction';
-    public const PARENTS = ['CreateActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreateActionModel'];
+    public const PARENTS = ['CreateActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CreateActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

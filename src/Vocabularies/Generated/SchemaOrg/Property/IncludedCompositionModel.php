@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IncludedCompositionModel
 {
     public const DESCRIPTION = 'Smaller compositions included in this work (e.g. a movement in a symphony).';
     public const LABEL = 'includedComposition';
     public const NAME = 'schema:includedComposition';
-    public const VALUES = ['MusicCompositionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicCompositionModel'];
-    public const TYPES = ['MusicComposition' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MusicCompositionModel'];
+    public const VALUES = ['MusicCompositionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MusicCompositionModel'];
+    public const TYPES = ['MusicComposition' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MusicCompositionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

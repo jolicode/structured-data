@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BackgroundNewsArticleModel
 {
     public const DESCRIPTION = 'A [[NewsArticle]] providing historical context, definition and detail on a specific topic (aka "explainer" or "backgrounder"). For example, an in-depth article or frequently-asked-questions ([FAQ](https://en.wikipedia.org/wiki/FAQ)) document on topics such as Climate Change or the European Union. Other kinds of background material from a non-news setting are often described using [[Book]] or [[Article]], in particular [[ScholarlyArticle]]. See also [[NewsArticle]] for related vocabulary from a learning/education perspective.';
     public const LABEL = 'BackgroundNewsArticle';
     public const NAME = 'schema:BackgroundNewsArticle';
-    public const PARENTS = ['NewsArticleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NewsArticleModel'];
+    public const PARENTS = ['NewsArticleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NewsArticleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1525'];

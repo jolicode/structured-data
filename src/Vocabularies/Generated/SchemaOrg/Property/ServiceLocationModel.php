@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ServiceLocationModel
 {
     public const DESCRIPTION = 'The location (e.g. civic structure, local business, etc.) where a person can go to access the service.';
     public const LABEL = 'serviceLocation';
     public const NAME = 'schema:serviceLocation';
-    public const VALUES = ['PlaceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlaceModel'];
-    public const TYPES = ['ServiceChannel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceChannelModel'];
+    public const VALUES = ['PlaceModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PlaceModel'];
+    public const TYPES = ['ServiceChannel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ServiceChannelModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class GameServerStatusModel
 {
     public const DESCRIPTION = 'Status of a game server.';
     public const LABEL = 'GameServerStatus';
     public const NAME = 'schema:GameServerStatus';
-    public const PARENTS = ['StatusEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\StatusEnumerationModel'];
+    public const PARENTS = ['StatusEnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\StatusEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['OfflinePermanentlyModel' => 'EnumerationMember\OfflinePermanentlyModel', 'OfflineTemporarilyModel' => 'EnumerationMember\OfflineTemporarilyModel', 'OnlineFullModel' => 'EnumerationMember\OnlineFullModel', 'OnlineModel' => 'EnumerationMember\OnlineModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

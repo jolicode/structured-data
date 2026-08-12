@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DiagnosticLabModel
 {
     public const DESCRIPTION = 'A medical laboratory that offers on-site or off-site diagnostic services.';
     public const LABEL = 'DiagnosticLab';
     public const NAME = 'schema:DiagnosticLab';
-    public const PARENTS = ['MedicalOrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalOrganizationModel'];
+    public const PARENTS = ['MedicalOrganizationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalOrganizationModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

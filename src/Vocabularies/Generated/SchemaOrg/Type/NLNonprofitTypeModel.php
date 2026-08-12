@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class NLNonprofitTypeModel
 {
     public const DESCRIPTION = 'NLNonprofitType: Non-profit organization type originating from the Netherlands.';
     public const LABEL = 'NLNonprofitType';
     public const NAME = 'schema:NLNonprofitType';
-    public const PARENTS = ['NonprofitTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NonprofitTypeModel'];
+    public const PARENTS = ['NonprofitTypeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NonprofitTypeModel'];
     public const ENUMERATION_MEMBERS = ['NonprofitANBIModel' => 'EnumerationMember\NonprofitANBIModel', 'NonprofitSBBIModel' => 'EnumerationMember\NonprofitSBBIModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2543'];

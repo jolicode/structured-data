@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OrderStatusModel
 {
     public const DESCRIPTION = 'Enumerated status values for Order.';
     public const LABEL = 'OrderStatus';
     public const NAME = 'schema:OrderStatus';
-    public const PARENTS = ['StatusEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\StatusEnumerationModel'];
+    public const PARENTS = ['StatusEnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\StatusEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['OrderCancelledModel' => 'EnumerationMember\OrderCancelledModel', 'OrderDeliveredModel' => 'EnumerationMember\OrderDeliveredModel', 'OrderInTransitModel' => 'EnumerationMember\OrderInTransitModel', 'OrderPaymentDueModel' => 'EnumerationMember\OrderPaymentDueModel', 'OrderPickupAvailableModel' => 'EnumerationMember\OrderPickupAvailableModel', 'OrderProblemModel' => 'EnumerationMember\OrderProblemModel', 'OrderProcessingModel' => 'EnumerationMember\OrderProcessingModel', 'OrderReturnedModel' => 'EnumerationMember\OrderReturnedModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

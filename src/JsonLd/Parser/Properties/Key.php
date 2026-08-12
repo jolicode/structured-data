@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Parser\Properties;
+namespace JoliCode\StructuredData\JsonLd\Parser\Properties;
 
-use Jolicode\JsonLd\Parser\Range;
+use JoliCode\StructuredData\JsonLd\Parser\Range;
 
 class Key
 {

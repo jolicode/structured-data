@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HealthPlanNetworkTierModel
 {
     public const DESCRIPTION = 'The tier(s) for this network.';
     public const LABEL = 'healthPlanNetworkTier';
     public const NAME = 'schema:healthPlanNetworkTier';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['HealthPlanNetwork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HealthPlanNetworkModel'];
+    public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['HealthPlanNetwork' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\HealthPlanNetworkModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1062'];
     public const SUPERSEDED_BY = null;

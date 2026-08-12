@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AboutModel
 {
     public const DESCRIPTION = 'The subject matter of an object.';
     public const LABEL = 'about';
     public const NAME = 'schema:about';
-    public const VALUES = ['ThingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
-    public const TYPES = ['Certification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CertificationModel', 'CommunicateAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommunicateActionModel', 'CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'DefinedTerm' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel', 'DefinedTermSet' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermSetModel', 'Event' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EventModel'];
+    public const VALUES = ['ThingModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['Certification' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CertificationModel', 'CommunicateAction' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CommunicateActionModel', 'CreativeWork' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel', 'DefinedTerm' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel', 'DefinedTermSet' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DefinedTermSetModel', 'Event' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1670', 'https://github.com/schemaorg/schemaorg/issues/4588'];
     public const SUPERSEDED_BY = null;

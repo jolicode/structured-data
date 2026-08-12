@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LastReviewedModel
 {
     public const DESCRIPTION = 'Date on which the content on this web page was last reviewed for accuracy and/or completeness.';
     public const LABEL = 'lastReviewed';
     public const NAME = 'schema:lastReviewed';
-    public const VALUES = ['DateModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateModel'];
-    public const TYPES = ['WebPage' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebPageModel'];
+    public const VALUES = ['DateModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DateModel'];
+    public const TYPES = ['WebPage' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\WebPageModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ComicSeriesModel
 {
@@ -20,7 +20,7 @@ final class ComicSeriesModel
     	Wanderer".';
     public const LABEL = 'ComicSeries';
     public const NAME = 'schema:ComicSeries';
-    public const PARENTS = ['PeriodicalModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PeriodicalModel'];
+    public const PARENTS = ['PeriodicalModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PeriodicalModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://bib.schema.org'];
     public const SOURCE = [];

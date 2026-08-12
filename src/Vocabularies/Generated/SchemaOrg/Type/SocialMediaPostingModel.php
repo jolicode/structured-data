@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SocialMediaPostingModel
 {
     public const DESCRIPTION = 'A post to a social media platform, including blog posts, tweets, Facebook posts, etc.';
     public const LABEL = 'SocialMediaPosting';
     public const NAME = 'schema:SocialMediaPosting';
-    public const PARENTS = ['ArticleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ArticleModel'];
+    public const PARENTS = ['ArticleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ArticleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

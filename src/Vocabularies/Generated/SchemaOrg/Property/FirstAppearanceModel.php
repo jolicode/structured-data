@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class FirstAppearanceModel
 {
     public const DESCRIPTION = 'Indicates the first known occurrence of a [[Claim]] in some [[CreativeWork]].';
     public const LABEL = 'firstAppearance';
     public const NAME = 'schema:firstAppearance';
-    public const VALUES = ['CreativeWorkModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel'];
-    public const TYPES = ['Claim' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ClaimModel'];
+    public const VALUES = ['CreativeWorkModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel'];
+    public const TYPES = ['Claim' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ClaimModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1828'];
     public const SUPERSEDED_BY = null;
