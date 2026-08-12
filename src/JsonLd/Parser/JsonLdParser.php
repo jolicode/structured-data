@@ -9,10 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Parser;
+namespace JoliCode\StructuredData\JsonLd\Parser;
 
-use Jolicode\JsonLd\Extraction\JsonLdElement;
-use Jolicode\JsonLd\Parser\DataStructures\AbstractStructure;
+use JoliCode\StructuredData\Extraction\JsonLdElement;
+use JoliCode\StructuredData\JsonLd\Parser\DataStructures\AbstractStructure;
+use JsonStreamingParser\Exception\ParsingException;
 use JsonStreamingParser\Parser;
 
 class JsonLdParser
@@ -23,6 +24,17 @@ class JsonLdParser
      * parsing many distinct documents would grow this cache indefinitely.
      */
     private const PARSE_CACHE_MAX_ENTRIES = 32;
+
+    /**
+     * Documents nested more deeply than this are refused before any structure is
+     * built. The parsed structure graph is a linked tree that PHP releases
+     * recursively; past a few tens of thousands of levels that release overflows
+     * the C stack and crashes the whole process with an uncatchable SIGSEGV. The
+     * limit is therefore set far below that and comfortably above any real
+     * schema.org / JSON-LD document, and matches json_decode()'s own default
+     * nesting limit so both parsing paths behave consistently.
+     */
+    private const MAX_DEPTH = 512;
 
     /** @var array<string, AbstractStructure|null> */
     private array $parseCache = [];
@@ -43,10 +55,23 @@ class JsonLdParser
             return $this->parseCache[$cacheKey];
         }
 
+        // Refuse pathologically deep documents before building (and later
+        // releasing) the structure graph, which happens recursively and would
+        // otherwise overflow the C stack. json_decode() reports JSON_ERROR_DEPTH
+        // for any document nested deeper than the limit, whether or not it is
+        // otherwise well-formed, because it descends into every container before
+        // checking that it is closed. This is caught before the streaming-parser
+        // fallback below could build the dangerous graph.
+        $decoded = json_decode($jsonLdElement->content, depth: self::MAX_DEPTH);
+
+        if (\JSON_ERROR_DEPTH === json_last_error()) {
+            throw new ParsingException($jsonLdElement->startLine, $jsonLdElement->startColumn, \sprintf('Document nesting exceeds the maximum supported depth of %d.', self::MAX_DEPTH));
+        }
+
         // Well-formed documents go through the fast single-pass parser; malformed
         // ones fall back to the streaming parser, whose errors carry the position
         // of the failure.
-        if (null !== json_decode($jsonLdElement->content) || 'null' === trim($jsonLdElement->content)) {
+        if (null !== $decoded || 'null' === trim($jsonLdElement->content)) {
             $result = $this->positionAwareParser->parse(
                 $jsonLdElement->content,
                 $jsonLdElement->startLine,

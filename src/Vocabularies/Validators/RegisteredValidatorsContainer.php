@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Validators;
+namespace JoliCode\StructuredData\Vocabularies\Validators;
 
-use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
-use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\GoogleValidator;
+use JoliCode\StructuredData\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
 
 readonly class RegisteredValidatorsContainer
 {
@@ -34,6 +34,10 @@ readonly class RegisteredValidatorsContainer
 
     public function getValidator(string $validator): ValidatorInterface
     {
+        if (!isset($this->validators[$validator])) {
+            throw new \InvalidArgumentException(\sprintf('Unknown validator "%s".', $validator));
+        }
+
         return $this->validators[$validator];
     }
 

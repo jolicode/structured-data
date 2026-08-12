@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Algorithms\Http;
+namespace JoliCode\StructuredData\JsonLd\Algorithms\Http;
 
 /**
  * Decides which remote documents an HttpDocumentLoader may fetch, and under which
@@ -115,6 +115,10 @@ final readonly class RemoteContextPolicy
 
     public function withTimeouts(float $timeout, float $maxDuration): self
     {
+        if ($timeout <= 0 || $maxDuration <= 0) {
+            throw new \InvalidArgumentException('Timeouts must be strictly positive.');
+        }
+
         return new self(
             allowedHosts: $this->allowedHosts,
             allowedSchemes: $this->allowedSchemes,
@@ -128,6 +132,10 @@ final readonly class RemoteContextPolicy
 
     public function withMaxRedirects(int $maxRedirects): self
     {
+        if ($maxRedirects < 0) {
+            throw new \InvalidArgumentException('The maximum number of redirects cannot be negative.');
+        }
+
         return new self(
             allowedHosts: $this->allowedHosts,
             allowedSchemes: $this->allowedSchemes,
@@ -141,6 +149,10 @@ final readonly class RemoteContextPolicy
 
     public function withMaxResponseBytes(int $maxResponseBytes): self
     {
+        if ($maxResponseBytes <= 0) {
+            throw new \InvalidArgumentException('The maximum response size must be strictly positive.');
+        }
+
         return new self(
             allowedHosts: $this->allowedHosts,
             allowedSchemes: $this->allowedSchemes,
@@ -154,6 +166,10 @@ final readonly class RemoteContextPolicy
 
     public function withMaxHops(int $maxHops): self
     {
+        if ($maxHops < 1) {
+            throw new \InvalidArgumentException('The maximum number of hops must be at least 1.');
+        }
+
         return new self(
             allowedHosts: $this->allowedHosts,
             allowedSchemes: $this->allowedSchemes,
@@ -182,7 +198,21 @@ final readonly class RemoteContextPolicy
             return false;
         }
 
-        return \in_array(mb_strtolower($parts['scheme']), $this->allowedSchemes, true)
+        // Userinfo in the URL ("https://user:pass@schema.org/") would make an
+        // allowed host carry credentials to the server; refuse it outright.
+        if (isset($parts['user']) || isset($parts['pass'])) {
+            return false;
+        }
+
+        $scheme = mb_strtolower($parts['scheme']);
+
+        // A port other than the scheme default would let an allowed host be probed
+        // on arbitrary ports; only the default port (or none) is accepted.
+        if (isset($parts['port']) && $parts['port'] !== self::defaultPortForScheme($scheme)) {
+            return false;
+        }
+
+        return \in_array($scheme, $this->allowedSchemes, true)
             && \in_array(mb_strtolower($parts['host']), $this->allowedHosts, true);
     }
 
@@ -197,5 +227,14 @@ final readonly class RemoteContextPolicy
             $this->maxResponseBytes,
             $this->maxHops,
         ]));
+    }
+
+    private static function defaultPortForScheme(string $scheme): ?int
+    {
+        return match ($scheme) {
+            'https' => 443,
+            'http' => 80,
+            default => null,
+        };
     }
 }

@@ -9,28 +9,28 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd;
+namespace JoliCode\StructuredData;
 
-use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
-use Jolicode\JsonLd\Algorithms\Expand\Expander;
-use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
-use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Jolicode\JsonLd\Audit\Audit;
-use Jolicode\JsonLd\Extraction\Extractor;
-use Jolicode\JsonLd\Extraction\ExtractorFormat;
-use Jolicode\JsonLd\Extraction\JsonLdElement;
-use Jolicode\JsonLd\Mapper\DocumentError;
-use Jolicode\JsonLd\Mapper\DocumentIssueInterface;
-use Jolicode\JsonLd\Mapper\MappedError;
-use Jolicode\JsonLd\Mapper\MappedProperty;
-use Jolicode\JsonLd\Mapper\MappedType;
-use Jolicode\JsonLd\Mapper\ValidationMapper;
-use Jolicode\JsonLd\Mapper\ValidationSnippetCache;
-use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
-use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
-use Jolicode\JsonLd\Parser\JsonLdParser;
-use Jolicode\Vocabularies\Validators\RegisteredValidatorsContainer;
+use JoliCode\StructuredData\Audit\Audit;
+use JoliCode\StructuredData\Extraction\Extractor;
+use JoliCode\StructuredData\Extraction\ExtractorFormat;
+use JoliCode\StructuredData\Extraction\JsonLdElement;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\JsonLdException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Expand\Expander;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\DocumentLoaderInterface;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\IriResolver;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
+use JoliCode\StructuredData\JsonLd\Parser\DataStructures\ArrayStructure;
+use JoliCode\StructuredData\JsonLd\Parser\DataStructures\ObjectStructure;
+use JoliCode\StructuredData\JsonLd\Parser\JsonLdParser;
+use JoliCode\StructuredData\Mapper\DocumentError;
+use JoliCode\StructuredData\Mapper\DocumentIssueInterface;
+use JoliCode\StructuredData\Mapper\MappedError;
+use JoliCode\StructuredData\Mapper\MappedProperty;
+use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Mapper\ValidationMapper;
+use JoliCode\StructuredData\Mapper\ValidationSnippetCache;
+use JoliCode\StructuredData\Vocabularies\Validators\RegisteredValidatorsContainer;
 use JsonStreamingParser\Exception\ParsingException;
 
 class Validator
@@ -111,7 +111,9 @@ class Validator
             $this->resetValidators();
         }
 
-        $extractCacheKey = $document;
+        // Hash the document rather than keying the cache by the full string, so a
+        // handful of large documents cannot pin their whole content in memory.
+        $extractCacheKey = md5($document);
         $documentIssues = [];
 
         if (isset($this->extractedElementsCache[$extractCacheKey])) {
@@ -145,12 +147,17 @@ class Validator
 
         foreach ($elements as $jsonLdElement) {
             try {
-                /**
-                 * @var ArrayStructure|ObjectStructure $parsedJsonLd
-                 */
                 $parsedJsonLd = $this->parser->parse($jsonLdElement);
             } catch (ParsingException $exception) {
                 return $this->createInvalidDocumentAudit($exception->getMessage(), $jsonLdElement->startLine, 'json');
+            }
+
+            // The parser returns null for a document whose top level is neither an
+            // object nor an array (a bare string, number or boolean). Such a
+            // document carries no schema.org node, and passing null further down
+            // would raise an uncaught TypeError.
+            if (null === $parsedJsonLd) {
+                return $this->createInvalidDocumentAudit('The JSON-LD document is not a valid node object or array.', $jsonLdElement->startLine, 'json');
             }
 
             $validatedTypeTemplatesByElement = null;
@@ -197,7 +204,7 @@ class Validator
                 if (null === $validatedTypeTemplatesByElement) {
                     $this->snippetCache->store($cacheKey, $expansionResult, $validatedTypesByElement);
                 }
-            } else {
+            } elseif ($parsedJsonLd instanceof ObjectStructure) {
                 if (null !== $validatedTypeTemplatesByElement) {
                     $validatedTypes = $this->mapJsonLdElement($expansionResult, $parsedJsonLd, $jsonLdElement->sourceFormat);
                     $this->snippetCache->applyValidatedTypeTemplates($validatedTypes, $validatedTypeTemplatesByElement[0] ?? []);
