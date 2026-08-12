@@ -23,14 +23,14 @@ use function Castor\http_download;
 use function Castor\io;
 use function Castor\run;
 
-use Jolicode\JsonLd\Algorithms;
-use Jolicode\JsonLd\Audit\AuditOptions;
-use Jolicode\JsonLd\Validator;
-use Jolicode\Vocabularies\Generators\Google\Filesystem as GoogleFilesystem;
-use Jolicode\Vocabularies\Generators\Google\Generator as GoogleGenerator;
-use Jolicode\Vocabularies\Generators\SchemaOrg\Filesystem as SchemaOrgFilesystem;
-use Jolicode\Vocabularies\Generators\SchemaOrg\Generator as SchemaOrgGenerator;
-use Jolicode\Vocabularies\Generators\SchemaOrg\SchemaOrg;
+use JoliCode\StructuredData\Audit\AuditOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms;
+use JoliCode\StructuredData\Validator;
+use JoliCode\StructuredData\Vocabularies\Generators\Google\Filesystem as GoogleFilesystem;
+use JoliCode\StructuredData\Vocabularies\Generators\Google\Generator as GoogleGenerator;
+use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Filesystem as SchemaOrgFilesystem;
+use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Generator as SchemaOrgGenerator;
+use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\SchemaOrg;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Process\ExecutableFinder;
 
@@ -38,6 +38,20 @@ require_once \dirname(__DIR__) . '/vendor/autoload.php';
 
 const CACHE_DIR_W3C_TEST_SUITE = __DIR__ . '/../var/cache/w3c-json-ld-api';
 const CACHE_DIR_W3C_FRAMING_TEST_SUITE = __DIR__ . '/../var/cache/w3c-json-ld-framing';
+const CACHE_DIR_BENCHMARK_FIXTURES = __DIR__ . '/../var/cache/benchmark-fixtures';
+
+// Large, real-world pages used only by the benchmarks. They are downloaded on
+// demand rather than committed, and exclusively from hosts JoliCode owns or
+// operates, so no third-party page ever lives in the repository. The download is
+// host-checked against BENCHMARK_FIXTURE_ALLOWED_DOMAINS below.
+const BENCHMARK_FIXTURE_URLS = [
+    'jolicode-homepage.html' => 'https://jolicode.com/',
+    'jolicampus-homepage.html' => 'https://jolicampus.com/',
+    'google-structured-data-intro.html' => 'https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data',
+];
+
+// Only these registrable domains (and their subdomains) may be downloaded from.
+const BENCHMARK_FIXTURE_ALLOWED_DOMAINS = ['jolicode.com', 'jolicampus.com', 'google.com'];
 
 // Commit of https://github.com/w3c/json-ld-api the test suite is pinned to, so an
 // upstream change cannot break an unrelated PR. The weekly scheduled CI run is what
@@ -143,12 +157,12 @@ function fixGeneratedFilesFormatting(?string $vocabulary = null): void
 }
 
 #[AsTask(namespace: 'google:generation', description: 'Crawl the Google documentation. Updates resources/google/google-types.json (curated manifest), then downloads HTML for active/extra types.')]
-function crawleGoogle(): void
+function crawlGoogle(): void
 {
     $googleFilesystem = new GoogleFilesystem();
 
     io()->title('Crawling Google documentation');
-    $googleFilesystem->crawleGoogleDoc();
+    $googleFilesystem->crawlGoogleDoc();
 
     io()->success('Google documentation successfully crawled and HTML files successfully extracted.');
 }
@@ -416,6 +430,49 @@ function phpunitPrepare(
     } else {
         io()->warning('The W3C tests suite is already downloaded. Use --force to download it again.');
     }
+}
+
+#[AsTask(name: 'download-fixtures', namespace: 'qa:phpunit', description: 'Download the (JoliCode-owned) benchmark fixtures')]
+function phpunitDownloadFixtures(bool $force = false): void
+{
+    fs()->mkdir(CACHE_DIR_BENCHMARK_FIXTURES);
+
+    foreach (BENCHMARK_FIXTURE_URLS as $name => $url) {
+        $host = parse_url($url, \PHP_URL_HOST);
+
+        if (!\is_string($host) || !benchmarkFixtureHostIsAllowed($host)) {
+            throw new \RuntimeException(\sprintf('Refusing to download benchmark fixture "%s": host "%s" is not one of %s.', $name, (string) $host, implode(', ', BENCHMARK_FIXTURE_ALLOWED_DOMAINS)));
+        }
+
+        $target = \sprintf('%s/%s', CACHE_DIR_BENCHMARK_FIXTURES, $name);
+
+        if (!$force && fs()->exists($target)) {
+            continue;
+        }
+
+        io()->writeln(\sprintf('Downloading benchmark fixture "%s" from %s', $name, $url));
+        http_download($url, $target);
+    }
+
+    io()->success('Benchmark fixtures downloaded successfully.');
+}
+
+/**
+ * A host is allowed when it equals one of the allow-listed registrable domains or
+ * is a subdomain of it (so "developers.google.com" passes for "google.com", but
+ * "google.com.evil.example" does not).
+ */
+function benchmarkFixtureHostIsAllowed(string $host): bool
+{
+    $host = mb_strtolower($host);
+
+    foreach (BENCHMARK_FIXTURE_ALLOWED_DOMAINS as $domain) {
+        if ($host === $domain || str_ends_with($host, '.' . $domain)) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 #[AsTask(name: 'run', description: 'Runs PHPUnit', namespace: 'qa:phpunit', aliases: ['phpunit', 'test', 'tests'])]
@@ -743,17 +800,17 @@ function summarizeValidatorBenchResults(string $dumpFile): void
     summarizeHtmlBenchCategory(
         $results,
         categoryPrefix: 'benchHtmlHomepage',
-        categoryLabel: 'a classic homepage — homepage-sample.html (2 root types)',
+        categoryLabel: 'a classic homepage — jolicode-homepage.html',
     );
     summarizeHtmlBenchCategory(
         $results,
         categoryPrefix: 'benchHtmlHeavyCourse',
-        categoryLabel: 'a very detailed course page — jolicampus-formations-symfony.html (162 KB, 96 nested types)',
+        categoryLabel: 'a documentation page — google-structured-data-intro.html',
     );
     summarizeHtmlBenchCategory(
         $results,
         categoryPrefix: 'benchHtmlBlogListing',
-        categoryLabel: 'a classic listing page — listing-sample.html (14 root types)',
+        categoryLabel: 'a listing page — jolicampus-homepage.html',
     );
 
     $htmlReportPath = \dirname(__DIR__) . '/var/cache/benchmark-results-validators.html';
