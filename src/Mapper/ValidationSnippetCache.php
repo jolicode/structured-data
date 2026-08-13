@@ -12,7 +12,6 @@
 namespace JoliCode\StructuredData\Mapper;
 
 use JoliCode\StructuredData\Extraction\JsonLdElement;
-use JoliCode\StructuredData\JsonLd\Parser\Range;
 
 /**
  * Caches the validation outcome of a JSON-LD snippet so that a snippet repeated
@@ -269,10 +268,10 @@ class ValidationSnippetCache
         $error = new MappedError(
             message: $errorTemplate['message'],
             property: $target instanceof MappedProperty ? $target->getKey() : null,
-            type: $this->formatTypeLabel($typeWithError->getType()),
+            type: MappedErrorFormatter::formatTypeLabel($typeWithError->getType()),
             severity: $errorTemplate['severity'],
             validatorName: $errorTemplate['validatorName'],
-            ranges: $this->formatRanges($target->getValueRanges()),
+            ranges: MappedErrorFormatter::formatRanges($target->getValueRanges()),
             parent: $target,
         );
 
@@ -311,41 +310,5 @@ class ValidationSnippetCache
             $parentType->addChildrenError($error);
             $parentType = $parentType->getParent();
         }
-    }
-
-    private function formatTypeLabel(string|array|null $typeLabel): ?string
-    {
-        if (!\is_array($typeLabel)) {
-            return $typeLabel;
-        }
-
-        if (!isset($typeLabel[1])) {
-            return '[' . ($typeLabel[0] ?? '') . ']';
-        }
-
-        return '[' . implode(', ', $typeLabel) . ']';
-    }
-
-    /**
-     * @param array<Range> $ranges
-     */
-    private function formatRanges(array $ranges): string
-    {
-        if (!$ranges) {
-            return '';
-        }
-
-        $formattedRanges = [];
-
-        foreach ($ranges as $range) {
-            $startLine = (int) $range->start?->line;
-            $startColumn = (int) $range->start?->column;
-            $endLine = (int) $range->end?->line;
-            $endColumn = (int) $range->end?->column;
-
-            $formattedRanges[] = $startLine . ':' . $startColumn . ' to ' . $endLine . ':' . $endColumn;
-        }
-
-        return implode(\PHP_EOL, $formattedRanges);
     }
 }

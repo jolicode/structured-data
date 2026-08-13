@@ -13,8 +13,8 @@ namespace JoliCode\StructuredData\Vocabularies\Validators;
 
 use JoliCode\StructuredData\JsonLd\Algorithms\Http\IriResolver;
 use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
-use JoliCode\StructuredData\JsonLd\Parser\Range;
 use JoliCode\StructuredData\Mapper\MappedError;
+use JoliCode\StructuredData\Mapper\MappedErrorFormatter;
 use JoliCode\StructuredData\Mapper\MappedProperty;
 use JoliCode\StructuredData\Mapper\MappedType;
 
@@ -95,27 +95,8 @@ abstract class AbstractValidator implements ValidatorInterface
 
     protected function addMappedError(MappedType|MappedProperty $target, string $message, MappedType $typeWithError, string $severity): MappedError
     {
-        $typeLabel = $typeWithError->getType();
-
-        if (\is_array($typeLabel)) {
-            $typeLabel = \sprintf(
-                '[%s]',
-                implode(', ', $typeLabel),
-            );
-        }
-
-        $range = array_map(
-            static fn (Range $range) => \sprintf(
-                '%d:%d to %d:%d',
-                $range->start?->line,
-                $range->start?->column,
-                $range->end?->line,
-                $range->end?->column,
-            ),
-            $target->getValueRanges(),
-        );
-
-        $range = implode(\PHP_EOL, $range);
+        $typeLabel = MappedErrorFormatter::formatTypeLabel($typeWithError->getType());
+        $range = MappedErrorFormatter::formatRanges($target->getValueRanges());
 
         $error = new MappedError(
             $message,

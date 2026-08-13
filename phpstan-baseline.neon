@@ -1225,12 +1225,6 @@ parameters:
 			path: src/Mapper/ValidationSnippetCache.php
 
 		-
-			message: '#^Method JoliCode\\StructuredData\\Mapper\\ValidationSnippetCache\:\:formatTypeLabel\(\) has parameter \$typeLabel with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Mapper/ValidationSnippetCache.php
-
-		-
 			message: '#^Method JoliCode\\StructuredData\\Mapper\\ValidationSnippetCache\:\:get\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
