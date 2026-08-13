@@ -11,8 +11,6 @@
 
 namespace JoliCode\StructuredData\Vocabularies\Generators;
 
-use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\Context;
-use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextProcessor;
 use JoliCode\StructuredData\Vocabularies\Generators\Google\Generator as GoogleGenerator;
 use JoliCode\StructuredData\Vocabularies\Generators\Google\PrettyPrinter;
 use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Filesystem;
@@ -21,7 +19,6 @@ use PhpParser\BuilderFactory;
 use PhpParser\BuilderHelpers;
 use PhpParser\Modifiers;
 use PhpParser\Node;
-use PhpParser\Node\ArrayItem;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Stmt;
@@ -31,7 +28,7 @@ use PhpParser\Node\Stmt;
  */
 class StaticFileGenerator
 {
-    private const FILE_HEADER = <<<'PHP'
+    public const FILE_HEADER = <<<'PHP'
         /*
          * This file is part of JoliCode's json-ld project.
          *
@@ -67,13 +64,14 @@ class StaticFileGenerator
         private readonly BuilderFactory $factory = new BuilderFactory(),
         private readonly PrettyPrinter $printer = new PrettyPrinter(),
         private readonly Filesystem $filesystem = new Filesystem(),
+        private readonly StaticSchemaOrgContextGenerator $staticSchemaOrgContextGenerator = new StaticSchemaOrgContextGenerator(),
     ) {
     }
 
     public function generate(): void
     {
         $this->generateClassesRegistry();
-        $this->generateStaticSchemaOrgContext();
+        $this->staticSchemaOrgContextGenerator->generate();
     }
 
     /**
@@ -89,93 +87,6 @@ class StaticFileGenerator
         }
 
         $this->filesystem->dumpFile(self::REGISTRY_FILE, $this->render($maps));
-    }
-
-    /**
-     * Uses the Context Processing algorithm on schema.org definitions and pre-build a PHP and a JSON version of it.
-     * This way, we can completely skip the context processing (which is slooow) for schema.org.
-     */
-    private function generateStaticSchemaOrgContext(): void
-    {
-        $schemaOrgDefinitions = json_decode(
-            $this->filesystem->getSchemaOrgTypesDefinition(),
-        );
-
-        $localContext = (object) [
-            '@vocab' => 'http://schema.org/',
-            '@version' => 1.1,
-            'id' => '@id',
-            'type' => '@type',
-        ];
-
-        foreach ((array) $schemaOrgDefinitions->{'@context'} as $term => $mapping) {
-            if (\is_string($mapping)) {
-                $localContext->{$term} = $mapping;
-            }
-        }
-
-        foreach ((array) $schemaOrgDefinitions->{'@graph'} as $entry) {
-            if (!\is_object($entry) || !isset($entry->{'@id'}) || !\is_string($entry->{'@id'})) {
-                continue;
-            }
-
-            if (!str_starts_with($entry->{'@id'}, 'schema:')) {
-                continue;
-            }
-
-            $term = substr($entry->{'@id'}, 7);
-
-            if ('' === $term || isset($localContext->{$term})) {
-                continue;
-            }
-
-            $localContext->{$term} = 'http://schema.org/' . $term;
-        }
-
-        $processer = new ContextProcessor();
-        $remoteContexts = [];
-        $context = $processer->processContext(new Context(), $localContext, null, $remoteContexts, false, true, true);
-
-        $outputDirectory = $this->filesystem::SCHEMA_ORG_DIR . '/context';
-
-        if (!is_dir($outputDirectory) && !mkdir($outputDirectory, 0777, true) && !is_dir($outputDirectory)) {
-            throw new \RuntimeException(\sprintf('Could not create output directory "%s".', $outputDirectory));
-        }
-
-        $jsonOutputFile = $outputDirectory . '/schemaorg-context.jsonld';
-        $staticOutputFile = $outputDirectory . '/schemaorg-static-context.php';
-
-        $jsonContextDocument = [
-            '@context' => $localContext,
-        ];
-
-        file_put_contents(
-            $jsonOutputFile,
-            (string) json_encode($jsonContextDocument, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES) . "\n",
-        );
-
-        $terms = [];
-
-        foreach ($context->termDefinitions as $term => $termDefinition) {
-            $terms[] = new ArrayItem(
-                new Array_([
-                    new ArrayItem($this->factory->val($termDefinition->iriMapping)),
-                    new ArrayItem($this->factory->val($termDefinition->prefixFlag)),
-                    new ArrayItem($this->factory->val($termDefinition->typeMapping)),
-                ], ['kind' => Array_::KIND_SHORT]),
-                $this->factory->val($term),
-            );
-        }
-
-        $staticContext = new Array_([
-            new ArrayItem($this->factory->val($context->vocabularyMapping), $this->factory->val('vocab')),
-            new ArrayItem(new Array_($terms, ['kind' => Array_::KIND_SHORT]), $this->factory->val('terms')),
-        ], ['kind' => Array_::KIND_SHORT]);
-
-        $staticPhp = "<?php\n\n" . self::FILE_HEADER . "\n\n"
-            . $this->printer->prettyPrint([new Stmt\Return_($staticContext)]) . "\n";
-
-        file_put_contents($staticOutputFile, $staticPhp);
     }
 
     /** @return array<string, string> */
