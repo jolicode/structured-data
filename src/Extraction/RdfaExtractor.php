@@ -21,14 +21,16 @@ class RdfaExtractor extends AbstractHtmlExtractor
     /** @var array<int, bool> */
     private array $schemaOrgSubjectCache = [];
 
-    /** @var array<string, array<string>> */
-    private array $resolvedTermsCache = [];
+    private readonly RdfaTermResolver $termResolver;
 
-    /** @var array<int, ?string> */
-    private array $resolvedVocabCache = [];
+    public function __construct(
+        HtmlDocumentLoader $documentLoader = new HtmlDocumentLoader(),
+        ?RdfaTermResolver $termResolver = null,
+    ) {
+        parent::__construct($documentLoader);
 
-    /** @var array<int, array<string, string>> */
-    private array $resolvedPrefixMappingsCache = [];
+        $this->termResolver = $termResolver ?? new RdfaTermResolver();
+    }
 
     public function getFormat(): ExtractorFormat
     {
@@ -147,30 +149,30 @@ class RdfaExtractor extends AbstractHtmlExtractor
 
     private function isSchemaOrgCandidate(\DOMElement $element): bool
     {
-        $cacheKey = $this->getNodeCacheKey($element);
+        $cacheKey = $this->termResolver->getNodeCacheKey($element);
 
         if (\array_key_exists($cacheKey, $this->schemaOrgCandidateCache)) {
             return $this->schemaOrgCandidateCache[$cacheKey];
         }
 
-        if ($this->isSchemaOrgVocab($this->resolveVocab($element))) {
+        if ($this->termResolver->isSchemaOrgVocab($this->termResolver->resolveVocab($element))) {
             return $this->schemaOrgCandidateCache[$cacheKey] = true;
         }
 
         $typeof = $element->getAttribute('typeof');
 
-        if ('' !== $typeof && [] !== $this->resolveTerms($typeof, $element)) {
+        if ('' !== $typeof && [] !== $this->termResolver->resolveTerms($typeof, $element)) {
             return $this->schemaOrgCandidateCache[$cacheKey] = true;
         }
 
         $property = $element->getAttribute('property');
 
-        return $this->schemaOrgCandidateCache[$cacheKey] = '' !== $property && [] !== $this->resolveTerms($property, $element);
+        return $this->schemaOrgCandidateCache[$cacheKey] = '' !== $property && [] !== $this->termResolver->resolveTerms($property, $element);
     }
 
     private function isSchemaOrgSubject(\DOMElement $element): bool
     {
-        $cacheKey = $this->getNodeCacheKey($element);
+        $cacheKey = $this->termResolver->getNodeCacheKey($element);
 
         if (\array_key_exists($cacheKey, $this->schemaOrgSubjectCache)) {
             return $this->schemaOrgSubjectCache[$cacheKey];
@@ -178,7 +180,7 @@ class RdfaExtractor extends AbstractHtmlExtractor
 
         $typeof = $element->getAttribute('typeof');
 
-        return $this->schemaOrgSubjectCache[$cacheKey] = '' !== $typeof && [] !== $this->resolveTerms($typeof, $element);
+        return $this->schemaOrgSubjectCache[$cacheKey] = '' !== $typeof && [] !== $this->termResolver->resolveTerms($typeof, $element);
     }
 
     private function hasAncestorSchemaOrgSubject(\DOMElement $element): bool
@@ -201,7 +203,7 @@ class RdfaExtractor extends AbstractHtmlExtractor
      */
     private function extractSubject(\DOMElement $subjectNode): ?array
     {
-        $types = $this->resolveTerms($subjectNode->getAttribute('typeof'), $subjectNode);
+        $types = $this->termResolver->resolveTerms($subjectNode->getAttribute('typeof'), $subjectNode);
 
         if ([] === $types) {
             return null;
@@ -233,7 +235,7 @@ class RdfaExtractor extends AbstractHtmlExtractor
         $properties = [];
 
         foreach ($this->collectPropertyNodesForSubject($subjectNode) as $propertyNode) {
-            $propertyNames = $this->resolveTerms($propertyNode->getAttribute('property'), $propertyNode);
+            $propertyNames = $this->termResolver->resolveTerms($propertyNode->getAttribute('property'), $propertyNode);
 
             if ([] === $propertyNames) {
                 continue;
@@ -338,166 +340,10 @@ class RdfaExtractor extends AbstractHtmlExtractor
         return '' === $text ? null : $text;
     }
 
-    /**
-     * @return array<string>
-     */
-    private function resolveTerms(string $attributeValue, \DOMElement $contextElement): array
-    {
-        if ('' === $attributeValue) {
-            return [];
-        }
-
-        $cacheKey = $this->getNodeCacheKey($contextElement) . '|' . $attributeValue;
-
-        if (\array_key_exists($cacheKey, $this->resolvedTermsCache)) {
-            return $this->resolvedTermsCache[$cacheKey];
-        }
-
-        $attributeValue = trim($attributeValue);
-
-        if ('' === $attributeValue) {
-            return $this->resolvedTermsCache[$cacheKey] = [];
-        }
-
-        $tokens = preg_split('/\s+/', $attributeValue) ?: [];
-        $resolvedTerms = [];
-
-        foreach ($tokens as $token) {
-            $resolvedTerm = $this->resolveTerm($token, $contextElement);
-
-            if (null === $resolvedTerm) {
-                continue;
-            }
-
-            $resolvedTerms[$resolvedTerm] = $resolvedTerm;
-        }
-
-        return $this->resolvedTermsCache[$cacheKey] = array_values($resolvedTerms);
-    }
-
-    private function resolveTerm(string $token, \DOMElement $contextElement): ?string
-    {
-        $token = trim($token);
-
-        if ('' === $token) {
-            return null;
-        }
-
-        if (str_starts_with($token, 'https://schema.org/')) {
-            $localName = substr($token, \strlen('https://schema.org/'));
-
-            if ('' !== $localName && !str_contains($localName, '#') && !preg_match('/\s/', $localName)) {
-                return $localName;
-            }
-
-            return null;
-        }
-
-        if (str_starts_with($token, 'http://schema.org/')) {
-            $localName = substr($token, \strlen('http://schema.org/'));
-
-            if ('' !== $localName && !str_contains($localName, '#') && !preg_match('/\s/', $localName)) {
-                return $localName;
-            }
-
-            return null;
-        }
-
-        if (str_contains($token, ':')) {
-            [$prefix, $localName] = explode(':', $token, 2);
-            $prefixes = $this->resolvePrefixMappings($contextElement);
-
-            if (isset($prefixes[$prefix]) && $this->isSchemaOrgVocab($prefixes[$prefix]) && '' !== $localName) {
-                return $localName;
-            }
-
-            return null;
-        }
-
-        if ($this->isSchemaOrgVocab($this->resolveVocab($contextElement))) {
-            return $token;
-        }
-
-        return null;
-    }
-
-    private function resolveVocab(\DOMElement $contextElement): ?string
-    {
-        $cacheKey = $this->getNodeCacheKey($contextElement);
-
-        if (\array_key_exists($cacheKey, $this->resolvedVocabCache)) {
-            return $this->resolvedVocabCache[$cacheKey];
-        }
-
-        $element = $contextElement;
-
-        while ($element instanceof \DOMElement) {
-            if ($element->hasAttribute('vocab')) {
-                return $this->resolvedVocabCache[$cacheKey] = trim($element->getAttribute('vocab'));
-            }
-
-            $parent = $element->parentNode;
-            $element = $parent instanceof \DOMElement ? $parent : null;
-        }
-
-        return $this->resolvedVocabCache[$cacheKey] = null;
-    }
-
-    /**
-     * @return array<string, string>
-     */
-    private function resolvePrefixMappings(\DOMElement $contextElement): array
-    {
-        $cacheKey = $this->getNodeCacheKey($contextElement);
-
-        if (\array_key_exists($cacheKey, $this->resolvedPrefixMappingsCache)) {
-            return $this->resolvedPrefixMappingsCache[$cacheKey];
-        }
-
-        $ancestors = [];
-        $element = $contextElement;
-
-        while ($element instanceof \DOMElement) {
-            $ancestors[] = $element;
-
-            $parent = $element->parentNode;
-            $element = $parent instanceof \DOMElement ? $parent : null;
-        }
-
-        $ancestors = array_reverse($ancestors);
-        $prefixes = [];
-
-        foreach ($ancestors as $ancestor) {
-            if (!$ancestor->hasAttribute('prefix')) {
-                continue;
-            }
-
-            preg_match_all('/([A-Za-z][\w-]*):\s*(\S+)/', $ancestor->getAttribute('prefix'), $matches, \PREG_SET_ORDER);
-
-            foreach ($matches as $match) {
-                $prefixes[$match[1]] = $match[2];
-            }
-        }
-
-        return $this->resolvedPrefixMappingsCache[$cacheKey] = $prefixes;
-    }
-
     private function resetMemoization(): void
     {
+        $this->termResolver->reset();
         $this->schemaOrgCandidateCache = [];
         $this->schemaOrgSubjectCache = [];
-        $this->resolvedTermsCache = [];
-        $this->resolvedVocabCache = [];
-        $this->resolvedPrefixMappingsCache = [];
-    }
-
-    private function getNodeCacheKey(\DOMElement $element): int
-    {
-        return spl_object_id($element);
-    }
-
-    private function isSchemaOrgVocab(?string $vocab): bool
-    {
-        return \in_array($vocab, ['http://schema.org/', 'https://schema.org/'], true);
     }
 }
