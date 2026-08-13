@@ -295,7 +295,7 @@ parameters:
 			path: src/JsonLd/Algorithms/Compact/Compactor.php
 
 		-
-			message: '#^Parameter \#1 \$element of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Compact\\Compactor\:\:isSubjectReference\(\) expects stdClass, mixed given\.$#'
+			message: '#^Parameter \#1 \$element of static method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Compact\\TermLookup\:\:isSubjectReference\(\) expects stdClass, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Algorithms/Compact/Compactor.php
@@ -331,13 +331,13 @@ parameters:
 			path: src/JsonLd/Algorithms/Compact/Compactor.php
 
 		-
-			message: '#^Parameter \#5 \$expandedItem of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Compact\\Compactor\:\:compactGraphItem\(\) expects stdClass, mixed given\.$#'
+			message: '#^Parameter \#6 \$expandedItem of static method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Compact\\ItemMapFiler\:\:compactGraphItem\(\) expects stdClass, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Algorithms/Compact/Compactor.php
 
 		-
-			message: '#^Parameter \#6 \$expandedItem of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Compact\\Compactor\:\:compactMapItem\(\) expects stdClass, mixed given\.$#'
+			message: '#^Parameter \#8 \$expandedItem of static method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Compact\\ItemMapFiler\:\:compactMapItem\(\) expects stdClass, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Algorithms/Compact/Compactor.php
