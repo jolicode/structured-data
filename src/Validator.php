@@ -30,6 +30,8 @@ use JoliCode\StructuredData\Mapper\MappedProperty;
 use JoliCode\StructuredData\Mapper\MappedType;
 use JoliCode\StructuredData\Mapper\ValidationMapper;
 use JoliCode\StructuredData\Mapper\ValidationSnippetCache;
+use JoliCode\StructuredData\Mapper\ValidationSnippetTemplateApplier;
+use JoliCode\StructuredData\Mapper\ValidationSnippetTemplateBuilder;
 use JoliCode\StructuredData\Vocabularies\Validators\RegisteredValidatorsContainer;
 use JsonStreamingParser\Exception\ParsingException;
 
@@ -190,10 +192,10 @@ class Validator
 
                     if (null !== $validatedTypeTemplatesByElement) {
                         $validatedTypes = $this->mapJsonLdElement([$expansionResult[$index]], $objectStructure, $jsonLdElement->sourceFormat);
-                        $this->snippetCache->applyValidatedTypeTemplates($validatedTypes, $validatedTypeTemplatesByElement[$index] ?? []);
+                        ValidationSnippetTemplateApplier::applyValidatedTypeTemplates($validatedTypes, $validatedTypeTemplatesByElement[$index] ?? []);
                     } else {
                         $validatedTypes = $this->validateJsonLdElement([$expansionResult[$index]], $objectStructure, $jsonLdElement->sourceFormat);
-                        $validatedTypesByElement[$index] = $this->snippetCache->buildValidatedTypeTemplates($validatedTypes);
+                        $validatedTypesByElement[$index] = ValidationSnippetTemplateBuilder::buildValidatedTypeTemplates($validatedTypes);
                     }
 
                     foreach ($validatedTypes as $validatedType) {
@@ -207,11 +209,11 @@ class Validator
             } elseif ($parsedJsonLd instanceof ObjectStructure) {
                 if (null !== $validatedTypeTemplatesByElement) {
                     $validatedTypes = $this->mapJsonLdElement($expansionResult, $parsedJsonLd, $jsonLdElement->sourceFormat);
-                    $this->snippetCache->applyValidatedTypeTemplates($validatedTypes, $validatedTypeTemplatesByElement[0] ?? []);
+                    ValidationSnippetTemplateApplier::applyValidatedTypeTemplates($validatedTypes, $validatedTypeTemplatesByElement[0] ?? []);
                 } else {
                     $validatedTypes = $this->validateJsonLdElement($expansionResult, $parsedJsonLd, $jsonLdElement->sourceFormat);
 
-                    $this->snippetCache->store($cacheKey, $expansionResult, [0 => $this->snippetCache->buildValidatedTypeTemplates($validatedTypes)]);
+                    $this->snippetCache->store($cacheKey, $expansionResult, [0 => ValidationSnippetTemplateBuilder::buildValidatedTypeTemplates($validatedTypes)]);
                 }
 
                 foreach ($validatedTypes as $validatedType) {

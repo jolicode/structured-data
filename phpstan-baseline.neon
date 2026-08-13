@@ -1219,12 +1219,6 @@ parameters:
 			path: src/Mapper/ValidationMapper.php
 
 		-
-			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
-			identifier: foreach.nonIterable
-			count: 4
-			path: src/Mapper/ValidationSnippetCache.php
-
-		-
 			message: '#^Method JoliCode\\StructuredData\\Mapper\\ValidationSnippetCache\:\:get\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -1237,82 +1231,88 @@ parameters:
 			path: src/Mapper/ValidationSnippetCache.php
 
 		-
+			message: '#^Property JoliCode\\StructuredData\\Mapper\\ValidationSnippetCache\:\:\$entries type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Mapper/ValidationSnippetCache.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 4
+			path: src/Mapper/ValidationSnippetTemplateApplier.php
+
+		-
 			message: '#^Parameter \#1 \$description of method JoliCode\\StructuredData\\Mapper\\MappedProperty\:\:setDescription\(\) expects string\|null, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetTemplateApplier.php
 
 		-
 			message: '#^Parameter \#1 \$description of method JoliCode\\StructuredData\\Mapper\\MappedType\:\:setDescription\(\) expects string\|null, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetTemplateApplier.php
 
 		-
 			message: '#^Parameter \#1 \$isPartOf of method JoliCode\\StructuredData\\Mapper\\MappedType\:\:setIsPartOf\(\) expects array\<string\>, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetTemplateApplier.php
 
 		-
 			message: '#^Parameter \#1 \$items of method JoliCode\\StructuredData\\Mapper\\MappedProperty\:\:addIsPartOf\(\) expects array, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetTemplateApplier.php
 
 		-
 			message: '#^Parameter \#1 \$items of method JoliCode\\StructuredData\\Mapper\\MappedProperty\:\:addSource\(\) expects array, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetTemplateApplier.php
 
 		-
 			message: '#^Parameter \#1 \$link of method JoliCode\\StructuredData\\Mapper\\MappedType\:\:setDocumentationLink\(\) expects string\|null, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetTemplateApplier.php
 
 		-
 			message: '#^Parameter \#1 \$name of method JoliCode\\StructuredData\\Mapper\\MappedType\:\:getProperty\(\) expects string, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetTemplateApplier.php
 
 		-
 			message: '#^Parameter \#1 \$source of method JoliCode\\StructuredData\\Mapper\\MappedType\:\:setSource\(\) expects array\<string\>, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetTemplateApplier.php
 
 		-
-			message: '#^Parameter \#2 \$template of method JoliCode\\StructuredData\\Mapper\\ValidationSnippetCache\:\:applyValidatedTypeTemplate\(\) expects array\<string, mixed\>, mixed given\.$#'
+			message: '#^Parameter \#2 \$template of static method JoliCode\\StructuredData\\Mapper\\ValidationSnippetTemplateApplier\:\:applyValidatedTypeTemplate\(\) expects array\<string, mixed\>, mixed given\.$#'
 			identifier: argument.type
 			count: 2
-			path: src/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetTemplateApplier.php
 
 		-
-			message: '#^Parameter \#3 \$errorTemplate of method JoliCode\\StructuredData\\Mapper\\ValidationSnippetCache\:\:replayMappedError\(\) expects array\{message\: string, severity\: string, validatorName\: string\|null\}, mixed given\.$#'
+			message: '#^Parameter \#3 \$errorTemplate of static method JoliCode\\StructuredData\\Mapper\\ValidationSnippetTemplateApplier\:\:replayMappedError\(\) expects array\{message\: string, severity\: string, validatorName\: string\|null\}, mixed given\.$#'
 			identifier: argument.type
 			count: 2
-			path: src/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetTemplateApplier.php
 
 		-
-			message: '#^Parameter \#3 \$template of method JoliCode\\StructuredData\\Mapper\\ValidationSnippetCache\:\:applyValidatedPropertyTemplate\(\) expects array\<string, mixed\>, mixed given\.$#'
+			message: '#^Parameter \#3 \$template of static method JoliCode\\StructuredData\\Mapper\\ValidationSnippetTemplateApplier\:\:applyValidatedPropertyTemplate\(\) expects array\<string, mixed\>, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: src/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetTemplateApplier.php
 
 		-
 			message: '#^Possibly invalid array key type mixed\.$#'
 			identifier: offsetAccess.invalidOffset
 			count: 1
-			path: src/Mapper/ValidationSnippetCache.php
-
-		-
-			message: '#^Property JoliCode\\StructuredData\\Mapper\\ValidationSnippetCache\:\:\$entries type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Mapper/ValidationSnippetCache.php
+			path: src/Mapper/ValidationSnippetTemplateApplier.php
 
 		-
 			message: '#^Method JoliCode\\StructuredData\\Validator\:\:mapJsonLdElement\(\) has parameter \$expandedJsonLd with no value type specified in iterable type array\.$#'
