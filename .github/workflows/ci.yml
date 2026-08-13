@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       google_docs_strict:
-        description: "Fail job if google:generation:verify-docs reports gaps"
+        description: "Fail job if google:check reports gaps"
         required: false
         default: "false"
   schedule:
@@ -18,6 +18,141 @@ permissions:
   contents: read
 
 jobs:
+  # Coding standards and static analysis are PHP-version agnostic here, so they run
+  # once, in a dedicated job. Keeping them out of the test matrix also keeps pcov
+  # disabled for them: setup-php enables coverage globally in php.ini, and pcov makes
+  # php-cs-fixer roughly four times slower.
+  qa:
+    name: Coding standards and static analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          # Matches the platform the QA tooling is pinned to in tools/*/composer.json.
+          php-version: "8.4"
+          tools: castor
+          coverage: none
+
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Composer downloads
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: composer-qa-${{ runner.os }}-${{ hashFiles('composer.json', 'tools/*/composer.lock') }}
+          restore-keys: |
+            composer-qa-${{ runner.os }}-
+
+      - name: Cache QA tooling vendors
+        uses: actions/cache@v4
+        with:
+          path: tools/*/vendor
+          key: tools-vendor-qa-${{ runner.os }}-${{ hashFiles('tools/*/composer.lock') }}
+
+      # PHP CS Fixer skips any file whose content hash is already known, so a restored
+      # cache turns the run into a no-op for everything the branch did not touch. The
+      # cache embeds the fixer version and the rule set, and invalidates itself when
+      # either changes.
+      - name: Cache the PHP CS Fixer result cache
+        uses: actions/cache@v4
+        with:
+          path: .php-cs-fixer.cache
+          key: php-cs-fixer-qa-${{ runner.os }}-${{ hashFiles('.php-cs-fixer.php', 'tools/php-cs-fixer/composer.lock') }}-${{ github.sha }}
+          restore-keys: |
+            php-cs-fixer-qa-${{ runner.os }}-${{ hashFiles('.php-cs-fixer.php', 'tools/php-cs-fixer/composer.lock') }}-
+
+      - name: Cache PHPStan result cache
+        uses: actions/cache@v4
+        with:
+          path: tools/phpstan/var
+          key: phpstan-${{ runner.os }}-${{ github.sha }}
+          restore-keys: |
+            phpstan-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Install qa tooling
+        run: castor qa:install
+
+      - name: Check PHP coding standards
+        run: castor qa:cs --dry-run
+
+      - name: Run PHPStan
+        run: castor qa:phpstan
+
+  # The generators do not depend on the PHP version either, and regenerating the whole
+  # schema.org vocabulary is the slowest thing this workflow does, so it runs once here
+  # rather than inside the test matrix.
+  vocabularies:
+    name: Vocabulary generation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          tools: castor
+          coverage: none
+
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Composer downloads
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: composer-vocabularies-${{ runner.os }}-${{ hashFiles('composer.json', 'tools/*/composer.lock') }}
+          restore-keys: |
+            composer-vocabularies-${{ runner.os }}-
+
+      - name: Cache QA tooling vendors
+        uses: actions/cache@v4
+        with:
+          path: tools/*/vendor
+          key: tools-vendor-vocabularies-${{ runner.os }}-${{ hashFiles('tools/*/composer.lock') }}
+
+      # No PHP CS Fixer cache here on purpose: the generators emit code that still needs
+      # fixing, so every file they write misses the cache, which only knows the hashes of
+      # already fixed files.
+
+      # Keyed on the file holding SchemaOrg::VERSION, so bumping the vocabulary version
+      # is what triggers a fresh download of the definition file.
+      - name: Cache the schema.org definition file
+        uses: actions/cache@v4
+        with:
+          path: var/cache/schema-org
+          key: schema-org-definition-${{ hashFiles('generators/SchemaOrg/SchemaOrg.php') }}
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Install qa tooling
+        run: castor qa:install
+
+      - name: Verify Google docs coverage (report-only by default)
+        continue-on-error: ${{ github.event_name != 'workflow_dispatch' || inputs.google_docs_strict != 'true' }}
+        run: castor google:check
+
+      - name: Check that schema.org types and properties classes can be generated
+        run: castor schema-org:generate
+
+      - name: Check that Google types and properties classes can be generated
+        run: castor google:generate
+
+      - name: Check that the committed generated classes match their vocabulary definitions
+        run: git diff --exit-code -- src/Vocabularies/Generated
+
   ci:
     name: Test with PHP ${{ matrix.php-version }}
     strategy:
@@ -54,14 +189,6 @@ jobs:
           path: tools/*/vendor
           key: tools-vendor-${{ runner.os }}-${{ matrix.php-version }}-${{ hashFiles('tools/*/composer.lock') }}
 
-      - name: Cache PHPStan result cache
-        uses: actions/cache@v4
-        with:
-          path: tools/phpstan/var
-          key: phpstan-${{ runner.os }}-${{ matrix.php-version }}-${{ github.sha }}
-          restore-keys: |
-            phpstan-${{ runner.os }}-${{ matrix.php-version }}-
-
       - name: Cache the W3C test suite (pinned commit)
         # Skipped on the weekly scheduled run, which re-downloads the suite from the
         # upstream main branch to surface W3C drift.
@@ -69,7 +196,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: var/cache/w3c-json-ld-api
-          key: w3c-test-suite-${{ hashFiles('tools/castor.php') }}
+          key: w3c-test-suite-${{ hashFiles('.castor/qa.php') }}
 
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
@@ -81,20 +208,14 @@ jobs:
         run: composer check-platform-reqs
 
       - name: Install qa tooling
-        run: castor install
-
-      - name: Check PHP coding standards
-        run: castor cs --dry-run
-
-      - name: Run PHPStan
-        run: castor phpstan
+        run: castor qa:install
 
       - name: Prepare the W3C test suite from upstream main (drift check)
         if: github.event_name == 'schedule'
         run: castor qa:phpunit:prepare --force --ref main
 
       - name: Run the tests with coverage
-        run: castor coverage
+        run: castor qa:phpunit:coverage
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
@@ -104,7 +225,7 @@ jobs:
 
       - name: Run mutation testing (weekly)
         if: github.event_name == 'schedule'
-        run: castor infection
+        run: castor qa:infection
 
       - name: Download the benchmark fixtures (weekly)
         if: github.event_name == 'schedule'
@@ -112,7 +233,7 @@ jobs:
 
       - name: Run the benchmarks (weekly, for the record)
         if: github.event_name == 'schedule'
-        run: castor bench
+        run: castor qa:bench:all
 
       - name: Upload benchmark reports
         if: github.event_name == 'schedule'
@@ -120,13 +241,3 @@ jobs:
         with:
           name: benchmark-reports-php${{ matrix.php-version }}
           path: var/cache/benchmark-results-*.html
-
-      - name: Verify Google docs coverage (report-only by default)
-        continue-on-error: ${{ github.event_name != 'workflow_dispatch' || inputs.google_docs_strict != 'true' }}
-        run: castor google:generation:verify-docs
-
-      - name: Check that schema.org types and properties classes can be generated
-        run: castor generate
-
-      - name: Check that the committed generated classes match their vocabulary definitions
-        run: git diff --exit-code -- src/Vocabularies/Generated

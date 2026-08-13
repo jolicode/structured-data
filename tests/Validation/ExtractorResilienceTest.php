@@ -171,7 +171,7 @@ class ExtractorResilienceTest extends TestCase
         // 1 RDFa (Wicked Valid RDFa).
         // The malformed JSON-LD script and the untyped ("Broken RDFa") section are
         // detected but dropped as unusable. The stub Person has itemscope+itemtype but
-        // only a misspelled itemprop attribute — it is extractable but content-less.
+        // only a misspelled itemprop attribute - it is extractable but content-less.
         $this->assertCount(7, $elements);
 
         $contents = implode("\n", array_map(static fn ($element) => $element->content, $elements));
@@ -206,7 +206,7 @@ class ExtractorResilienceTest extends TestCase
         };
 
         // This fixture has broken JSON-LD and valid microdata.
-        // The JSON-LD extractor throws, but microdata saves the day — the exception is currently
+        // The JSON-LD extractor throws, but microdata saves the day - the exception is currently
         // swallowed silently. With a logger injected, it should produce a warning instead.
         $extractor = new Extractor(logger: $logger);
         $elements = $extractor->extract($this->fixture('mixed-invalid-jsonld-valid-microdata.html'));

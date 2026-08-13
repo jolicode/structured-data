@@ -10,7 +10,7 @@
  */
 
 // THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.
-// Run `castor generate` to regenerate this file.
+// Run `castor schema-org:generate` or `castor google:generate` to regenerate this file.
 
 namespace JoliCode\StructuredData\Vocabularies\Generated;
 

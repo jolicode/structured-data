@@ -1,70 +1,101 @@
-## Schema.org Validator Upgrade Guidelines
+# Upgrading the schema.org vocabulary
 
-### 1. Select the target schema.org version
+The schema.org validator is generated from the official schema.org release definition file.
+Upgrading to a new release means regenerating those classes, then checking that every
+difference reported by the tests is a genuine vocabulary change.
 
-Head to [https://schema.org/docs/releases.html](https://schema.org/docs/releases.html) and select the latest release (ideally).
+## 1. Select the target schema.org version
 
-Update `generators/SchemaOrg/SchemaOrg.php` (`SchemaOrg::VERSION`) to use this release, and
-update the runtime constant `SchemaOrgValidator::VOCABULARY_VERSION` in
-`src/Vocabularies/Validators/SchemaOrg/SchemaOrgValidator.php` to the same value.
+Run `castor schema-org:update-version`. It picks the latest release whose definition file is
+actually published on GitHub, and updates the two constants that must always describe the
+same release:
 
-### 2. Download the schema.org definition file
+- `SchemaOrg::VERSION` in `generators/SchemaOrg/SchemaOrg.php`, which drives the generation;
+- `SchemaOrgValidator::VOCABULARY_VERSION` in
+  `src/Vocabularies/Validators/SchemaOrg/SchemaOrgValidator.php`, which the validator reports
+  at runtime.
 
-Run `castor schema-org:generation:download-definition`.
+Add `--dry-run` to only report the release that would be selected, without writing anything.
 
-This fetches the schema.org JSON-LD definition for the configured release.
+To target another release, pick it on the
+[schema.org releases page](https://schema.org/docs/releases.html) and update both constants
+by hand.
 
-You will see it in the `var/cache/schema-org` directory.
+## 2. Download the schema.org definition file
 
-### 3. Regenerate schema.org classes
+Run `castor schema-org:download`.
 
-Run `castor schema-org:generation:generate-schema-org` (or simply `castor generate` to
-regenerate every vocabulary).
+This fetches the JSON-LD definition of the configured release into `var/cache/schema-org/`.
+Every release is stored under its own file name, so bumping the version never overwrites a
+previously downloaded file. Use `--overwrite` to force a fresh download of the current one.
 
-This will refresh the generated classes (used for validation) in `src/Vocabularies/Generated/SchemaOrg/`.
+This step is optional: `castor schema-org:generate` downloads the file on its own when it is
+missing.
 
-The generation may be broken at this point. If this is the case, you will need to update the [Schema.org Generator](../../generators/SchemaOrg/Generator.php).
+## 3. Regenerate the schema.org classes
 
-This will probably be because there are new, unexpected entries in the definition file. Or because schema.org introduced a new behavior.
+Run `castor schema-org:generate`.
 
-The release page lists all the PR merged for this release, you will need to inspect them.
+This refreshes the generated validation classes in `src/Vocabularies/Generated/SchemaOrg/`.
+The task also applies the coding standards to the generated files, so that regenerating from
+the same definition file always yields the same tree and CI can check it with a plain
+`git diff --exit-code`. The whole vocabulary is a few thousand classes, so this takes a while:
+[go grab a coffee](https://www.youtube.com/watch?v=E4WlUXrJgy4).
 
-Run `castor cs` to apply CS rules to the generated files. (and [go grab a coffee](https://www.youtube.com/watch?v=E4WlUXrJgy4), this takes somes time).
+The generation may break at this point, usually because the definition file contains new,
+unexpected entries, or because schema.org introduced a new behavior. You will then need to
+update the [generator](../../generators/SchemaOrg/Generator.php). The release page lists every
+pull request merged for the release, which is the best place to look for the cause.
 
-### 4. Refresh schema.org examples used by tests
+## 4. Refresh the schema.org examples used by the tests
 
-Run `castor schema-org:generation:update-examples`.
+Run `castor schema-org:download-examples`.
 
-This updates examples in `resources/schema.org/examples/`.
+This clones the schema.org repository and updates the examples stored in
+`resources/schema.org/examples/`.
 
-### 5. Run the Schema.org test suite
+## 5. Run the schema.org tests
 
-Run Schema.org targeted tests with `tools/phpunit/vendor/bin/phpunit tests/Validation/SchemaOrg/SchemaOrgValidatorTest.php` (to run the SchemaOrgValidatorTest) or `castor test -g schema-org` (to run all tests belonging to the schema.org group).
+Run the targeted test class:
 
-### 6. Fix the introduced errors
+```bash
+tools/phpunit/vendor/bin/phpunit tests/Validation/SchemaOrg/SchemaOrgValidatorTest.php
+```
 
-Most of the time, you won't need to update the codebase. The new properties/types will update themselves.
+or every test belonging to the schema.org group:
 
-If errors are nevertheless introduced, you will probably need to update the [Schema.org Validator](../../src/Vocabularies/Validators/SchemaOrg/SchemaOrgValidator.php).
+```bash
+castor qa:phpunit:run -g schema-org
+```
 
-Carefully read errors spotted by the tests and find why are they here in the Schema.org release description.
+## 6. Fix the errors that showed up
 
-### 7. Manually update schema.org test baselines
+Most of the time, nothing has to be changed: new types and properties are picked up
+automatically.
 
-Review and update expected errors in:
+If errors do appear, you will probably need to update the
+[schema.org validator](../../src/Vocabularies/Validators/SchemaOrg/SchemaOrgValidator.php).
+Read the reported errors carefully, then look for their cause in the schema.org release
+description.
+
+## 7. Update the test baselines
+
+Review and update the expected errors in:
+
 - `resources/schema.org/examples-baseline.json`
 - `tests/Validation/fixtures/schema-org-baseline.json`
 
-Only keep baseline changes that reflect real schema.org updates.
+Only keep the baseline changes that reflect a real schema.org update. Anything else is a
+regression to fix in the code, not in the baseline.
 
-### 8. Run the full tests suite
+## 8. Run the full test suite
 
-To ensure no regression in the shared validation path was introduced, run
-`castor test`
+Run `castor qa:phpunit:run`, to make sure no regression was introduced in the validation paths
+shared with the other vocabularies.
 
-### 9. Keep docs and commands aligned
+## 9. Keep the docs and the commands aligned
 
-If needed, update castor.php.
-Ensure command examples and upgrade notes in `README.md` remain accurate.
+Update the tasks in `.castor/` if needed, and check that the command examples and the upgrade
+notes in `README.md` are still accurate.
 
-### 10. Submit a PR!
+## 10. Submit a pull request!
