@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class QuestModel
 {
     public const DESCRIPTION = 'The task that a player-controlled character, or group of characters may complete in order to gain a reward.';
     public const LABEL = 'quest';
     public const NAME = 'schema:quest';
-    public const VALUES = ['ThingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
-    public const TYPES = ['Game' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GameModel', 'VideoGameSeries' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VideoGameSeriesModel'];
+    public const VALUES = ['ThingModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['Game' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\GameModel', 'VideoGameSeries' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\VideoGameSeriesModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

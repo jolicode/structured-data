@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BookFormatModel
 {
     public const DESCRIPTION = 'The format of the book.';
     public const LABEL = 'bookFormat';
     public const NAME = 'schema:bookFormat';
-    public const VALUES = ['BookFormatTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BookFormatTypeModel'];
-    public const TYPES = ['Book' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BookModel'];
+    public const VALUES = ['BookFormatTypeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BookFormatTypeModel'];
+    public const TYPES = ['Book' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BookModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

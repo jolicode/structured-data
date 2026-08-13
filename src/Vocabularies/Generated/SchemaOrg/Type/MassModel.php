@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
 final class MassModel
 {
     public const DESCRIPTION = 'Properties that take Mass as values are of the form \'&lt;Number&gt; &lt;Mass unit of measure&gt;\'. E.g., \'7 kg\'.';
     public const LABEL = 'Mass';
     public const NAME = 'schema:Mass';
-    public const PARENTS = ['QuantityModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantityModel'];
+    public const PARENTS = ['QuantityModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\QuantityModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

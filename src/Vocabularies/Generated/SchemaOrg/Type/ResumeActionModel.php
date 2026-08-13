@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ResumeActionModel
 {
     public const DESCRIPTION = 'The act of resuming a device or application which was formerly paused (e.g. resume music playback or resume a timer).';
     public const LABEL = 'ResumeAction';
     public const NAME = 'schema:ResumeAction';
-    public const PARENTS = ['ControlActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ControlActionModel'];
+    public const PARENTS = ['ControlActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ControlActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

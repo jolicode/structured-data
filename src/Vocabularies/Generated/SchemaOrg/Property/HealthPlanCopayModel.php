@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HealthPlanCopayModel
 {
     public const DESCRIPTION = 'The copay amount.';
     public const LABEL = 'healthPlanCopay';
     public const NAME = 'schema:healthPlanCopay';
-    public const VALUES = ['PriceSpecificationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PriceSpecificationModel'];
-    public const TYPES = ['HealthPlanCostSharingSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HealthPlanCostSharingSpecificationModel'];
+    public const VALUES = ['PriceSpecificationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PriceSpecificationModel'];
+    public const TYPES = ['HealthPlanCostSharingSpecification' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\HealthPlanCostSharingSpecificationModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1062'];
     public const SUPERSEDED_BY = null;

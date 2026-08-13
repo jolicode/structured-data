@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Algorithms\JsonLd;
+namespace JoliCode\StructuredData\JsonLd\Algorithms\JsonLd;
 
 enum FramingKeyword: string
 {

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class GeoRadiusModel
 {
     public const DESCRIPTION = 'Indicates the approximate radius of a GeoCircle (metres unless indicated otherwise via Distance notation).';
     public const LABEL = 'geoRadius';
     public const NAME = 'schema:geoRadius';
-    public const VALUES = ['DistanceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DistanceModel', 'NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['GeoCircle' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeoCircleModel'];
+    public const VALUES = ['DistanceModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DistanceModel', 'NumberModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NumberModel', 'TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['GeoCircle' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\GeoCircleModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HasMenuItemModel
 {
     public const DESCRIPTION = 'A food or drink item contained in a menu or menu section.';
     public const LABEL = 'hasMenuItem';
     public const NAME = 'schema:hasMenuItem';
-    public const VALUES = ['MenuItemModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MenuItemModel'];
-    public const TYPES = ['Menu' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MenuModel', 'MenuSection' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MenuSectionModel'];
+    public const VALUES = ['MenuItemModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MenuItemModel'];
+    public const TYPES = ['Menu' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MenuModel', 'MenuSection' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MenuSectionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

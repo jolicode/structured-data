@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AccountingServiceModel
 {
     public const DESCRIPTION = 'Accountancy business.\n\nAs a [[LocalBusiness]] it can be described as a [[provider]] of one or more [[Service]]\(s).';
     public const LABEL = 'AccountingService';
     public const NAME = 'schema:AccountingService';
-    public const PARENTS = ['FinancialServiceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FinancialServiceModel'];
+    public const PARENTS = ['FinancialServiceModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\FinancialServiceModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

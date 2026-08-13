@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AttorneyModel
 {
     public const DESCRIPTION = 'Professional service: Attorney. \n\nThis type is deprecated - [[LegalService]] is more inclusive and less ambiguous.';
     public const LABEL = 'Attorney';
     public const NAME = 'schema:Attorney';
-    public const PARENTS = ['LegalServiceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LegalServiceModel'];
+    public const PARENTS = ['LegalServiceModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\LegalServiceModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

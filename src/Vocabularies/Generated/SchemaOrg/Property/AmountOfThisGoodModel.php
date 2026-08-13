@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AmountOfThisGoodModel
 {
     public const DESCRIPTION = 'The quantity of the goods included in the offer.';
     public const LABEL = 'amountOfThisGood';
     public const NAME = 'schema:amountOfThisGood';
-    public const VALUES = ['NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
-    public const TYPES = ['TypeAndQuantityNode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TypeAndQuantityNodeModel'];
+    public const VALUES = ['NumberModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['TypeAndQuantityNode' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TypeAndQuantityNodeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

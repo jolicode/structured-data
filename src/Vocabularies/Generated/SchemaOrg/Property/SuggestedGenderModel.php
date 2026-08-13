@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SuggestedGenderModel
 {
     public const DESCRIPTION = 'The suggested gender of the intended person or audience, for example "male", "female", or "unisex".';
     public const LABEL = 'suggestedGender';
     public const NAME = 'schema:suggestedGender';
-    public const VALUES = ['GenderTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GenderTypeModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['PeopleAudience' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PeopleAudienceModel', 'SizeSpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SizeSpecificationModel'];
+    public const VALUES = ['GenderTypeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\GenderTypeModel', 'TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['PeopleAudience' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PeopleAudienceModel', 'SizeSpecification' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SizeSpecificationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PrependActionModel
 {
     public const DESCRIPTION = 'The act of inserting at the beginning if an ordered collection.';
     public const LABEL = 'PrependAction';
     public const NAME = 'schema:PrependAction';
-    public const PARENTS = ['InsertActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InsertActionModel'];
+    public const PARENTS = ['InsertActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\InsertActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

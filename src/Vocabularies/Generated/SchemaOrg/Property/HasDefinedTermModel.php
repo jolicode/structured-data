@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HasDefinedTermModel
 {
     public const DESCRIPTION = 'A Defined Term contained in this term set.';
     public const LABEL = 'hasDefinedTerm';
     public const NAME = 'schema:hasDefinedTerm';
-    public const VALUES = ['DefinedTermModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel'];
-    public const TYPES = ['DefinedTermSet' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermSetModel', 'Taxon' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TaxonModel'];
+    public const VALUES = ['DefinedTermModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel'];
+    public const TYPES = ['DefinedTermSet' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DefinedTermSetModel', 'Taxon' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TaxonModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/894'];
     public const SUPERSEDED_BY = null;

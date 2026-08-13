@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MotorcycleModel
 {
     public const DESCRIPTION = 'A motorcycle or motorbike is a single-track, two-wheeled motor vehicle.';
     public const LABEL = 'Motorcycle';
     public const NAME = 'schema:Motorcycle';
-    public const PARENTS = ['VehicleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VehicleModel'];
+    public const PARENTS = ['VehicleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\VehicleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://auto.schema.org'];
     public const SOURCE = [];

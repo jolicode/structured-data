@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AffectedByModel
 {
     public const DESCRIPTION = 'Drugs that affect the test\'s results.';
     public const LABEL = 'affectedBy';
     public const NAME = 'schema:affectedBy';
-    public const VALUES = ['DrugModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugModel'];
-    public const TYPES = ['MedicalTest' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTestModel'];
+    public const VALUES = ['DrugModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DrugModel'];
+    public const TYPES = ['MedicalTest' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalTestModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

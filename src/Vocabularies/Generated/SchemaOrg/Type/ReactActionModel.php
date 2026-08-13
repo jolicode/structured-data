@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReactActionModel
 {
     public const DESCRIPTION = 'The act of responding instinctively and emotionally to an object, expressing a sentiment.';
     public const LABEL = 'ReactAction';
     public const NAME = 'schema:ReactAction';
-    public const PARENTS = ['AssessActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AssessActionModel'];
+    public const PARENTS = ['AssessActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\AssessActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

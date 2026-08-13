@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ItemListElementModel
 {
     public const DESCRIPTION = 'For itemListElement values, you can use simple strings (e.g. "Peter", "Paul", "Mary"), existing entities, or use ListItem.\n\nText values are best if the elements in the list are plain strings. Existing entities are best for a simple, unordered list of existing things in your data. ListItem is used with ordered lists when you want to provide additional context about the element in that list or when the same item might be in different places in different lists.\n\nNote: The order of elements in your mark-up is not sufficient for indicating the order or elements.  Use ListItem with a \'position\' property in such cases.';
     public const LABEL = 'itemListElement';
     public const NAME = 'schema:itemListElement';
-    public const VALUES = ['ListItemModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ListItemModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'ThingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
-    public const TYPES = ['ItemList' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ItemListModel'];
+    public const VALUES = ['ListItemModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ListItemModel', 'TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'ThingModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['ItemList' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ItemListModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

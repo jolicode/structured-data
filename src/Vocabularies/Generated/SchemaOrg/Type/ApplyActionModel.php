@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ApplyActionModel
 {
     public const DESCRIPTION = 'The act of registering to an organization/service without the guarantee to receive it.\n\nRelated actions:\n\n* [[RegisterAction]]: Unlike RegisterAction, ApplyAction has no guarantees that the application will be accepted.';
     public const LABEL = 'ApplyAction';
     public const NAME = 'schema:ApplyAction';
-    public const PARENTS = ['OrganizeActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizeActionModel'];
+    public const PARENTS = ['OrganizeActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrganizeActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

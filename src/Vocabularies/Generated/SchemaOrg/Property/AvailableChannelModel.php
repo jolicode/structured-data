@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AvailableChannelModel
 {
     public const DESCRIPTION = 'A means of accessing the service (e.g. a phone bank, a web site, a location, etc.).';
     public const LABEL = 'availableChannel';
     public const NAME = 'schema:availableChannel';
-    public const VALUES = ['ServiceChannelModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceChannelModel'];
-    public const TYPES = ['Service' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ServiceModel'];
+    public const VALUES = ['ServiceChannelModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ServiceChannelModel'];
+    public const TYPES = ['Service' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ServiceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IsEncodedByBioChemEntityModel
 {
     public const DESCRIPTION = 'Another BioChemEntity encoding by this one.';
     public const LABEL = 'isEncodedByBioChemEntity';
     public const NAME = 'schema:isEncodedByBioChemEntity';
-    public const VALUES = ['GeneModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeneModel'];
-    public const TYPES = ['BioChemEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BioChemEntityModel'];
+    public const VALUES = ['GeneModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\GeneModel'];
+    public const TYPES = ['BioChemEntity' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BioChemEntityModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['http://www.bioschemas.org/Gene'];
     public const SUPERSEDED_BY = null;

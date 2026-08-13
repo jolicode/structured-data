@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generators\Google;
+namespace JoliCode\StructuredData\Vocabularies\Generators\Google;
 
-use Jolicode\Vocabularies\Generators\GeneratorInterface;
-use Jolicode\Vocabularies\Generators\Google\Filesystem as GoogleFilesystem;
-use Jolicode\Vocabularies\Generators\StaticFileGenerator;
+use JoliCode\StructuredData\Vocabularies\Generators\GeneratorInterface;
+use JoliCode\StructuredData\Vocabularies\Generators\Google\Filesystem as GoogleFilesystem;
+use JoliCode\StructuredData\Vocabularies\Generators\StaticFileGenerator;
 use PhpParser\BuilderFactory;
 use PhpParser\BuilderHelpers;
 use PhpParser\Node\Expr;
@@ -23,7 +23,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class Generator implements GeneratorInterface
 {
-    public const NAMESPACE_BASE = 'Jolicode\Vocabularies\Generated\Google';
+    public const NAMESPACE_BASE = 'JoliCode\StructuredData\Vocabularies\Generated\Google';
 
     public function __construct(
         private readonly BuilderFactory $factory = new BuilderFactory(),

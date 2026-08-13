@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class InfectiousAgentClassModel
 {
     public const DESCRIPTION = 'Classes of agents or pathogens that transmit infectious diseases. Enumerated type.';
     public const LABEL = 'InfectiousAgentClass';
     public const NAME = 'schema:InfectiousAgentClass';
-    public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEnumerationModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['BacteriaModel' => 'EnumerationMember\BacteriaModel', 'FungusModel' => 'EnumerationMember\FungusModel', 'MulticellularParasiteModel' => 'EnumerationMember\MulticellularParasiteModel', 'PrionModel' => 'EnumerationMember\PrionModel', 'ProtozoaModel' => 'EnumerationMember\ProtozoaModel', 'VirusModel' => 'EnumerationMember\VirusModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Validators\Google\SpecialRules;
+namespace JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules;
 
-use Jolicode\JsonLd\Mapper\MappedError;
-use Jolicode\JsonLd\Mapper\MappedProperty;
-use Jolicode\JsonLd\Mapper\MappedType;
+use JoliCode\StructuredData\Mapper\MappedError;
+use JoliCode\StructuredData\Mapper\MappedProperty;
+use JoliCode\StructuredData\Mapper\MappedType;
 
 final class SpeakableCssSelectorOrXPathSpecialRule implements SpecialRuleInterface
 {

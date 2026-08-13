@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReferencesOrderModel
 {
     public const DESCRIPTION = 'The Order(s) related to this Invoice. One or more Orders may be combined into a single Invoice.';
     public const LABEL = 'referencesOrder';
     public const NAME = 'schema:referencesOrder';
-    public const VALUES = ['OrderModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrderModel'];
-    public const TYPES = ['Invoice' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InvoiceModel'];
+    public const VALUES = ['OrderModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrderModel'];
+    public const TYPES = ['Invoice' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\InvoiceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

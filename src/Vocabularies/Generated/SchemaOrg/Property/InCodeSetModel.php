@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class InCodeSetModel
 {
     public const DESCRIPTION = 'A [[CategoryCodeSet]] that contains this category code.';
     public const LABEL = 'inCodeSet';
     public const NAME = 'schema:inCodeSet';
-    public const VALUES = ['CategoryCodeSetModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeSetModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
-    public const TYPES = ['CategoryCode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeModel'];
+    public const VALUES = ['CategoryCodeSetModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeSetModel', 'URLModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
+    public const TYPES = ['CategoryCode' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/894'];
     public const SUPERSEDED_BY = null;

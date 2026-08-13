@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AudiobookModel
 {
     public const DESCRIPTION = 'An audiobook.';
     public const LABEL = 'Audiobook';
     public const NAME = 'schema:Audiobook';
-    public const PARENTS = ['AudioObjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AudioObjectModel', 'BookModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BookModel'];
+    public const PARENTS = ['AudioObjectModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\AudioObjectModel', 'BookModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BookModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://bib.schema.org'];
     public const SOURCE = [];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AmountModel
 {
     public const DESCRIPTION = 'The amount of money.';
     public const LABEL = 'amount';
     public const NAME = 'schema:amount';
-    public const VALUES = ['MonetaryAmountModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountModel', 'NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
-    public const TYPES = ['DatedMoneySpecification' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DatedMoneySpecificationModel', 'InvestmentOrDeposit' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InvestmentOrDepositModel', 'LoanOrCredit' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LoanOrCreditModel', 'MonetaryGrant' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryGrantModel', 'MoneyTransfer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MoneyTransferModel'];
+    public const VALUES = ['MonetaryAmountModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountModel', 'NumberModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['DatedMoneySpecification' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DatedMoneySpecificationModel', 'InvestmentOrDeposit' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\InvestmentOrDepositModel', 'LoanOrCredit' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\LoanOrCreditModel', 'MonetaryGrant' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MonetaryGrantModel', 'MoneyTransfer' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MoneyTransferModel'];
     public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1253', 'https://github.com/schemaorg/schemaorg/issues/1698'];
     public const SUPERSEDED_BY = null;

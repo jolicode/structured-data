@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ArrivalBoatTerminalModel
 {
     public const DESCRIPTION = 'The terminal or port from which the boat arrives.';
     public const LABEL = 'arrivalBoatTerminal';
     public const NAME = 'schema:arrivalBoatTerminal';
-    public const VALUES = ['BoatTerminalModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BoatTerminalModel'];
-    public const TYPES = ['BoatTrip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BoatTripModel'];
+    public const VALUES = ['BoatTerminalModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BoatTerminalModel'];
+    public const TYPES = ['BoatTrip' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BoatTripModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1755'];
     public const SUPERSEDED_BY = null;

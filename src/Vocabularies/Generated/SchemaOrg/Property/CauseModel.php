@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CauseModel
 {
     public const DESCRIPTION = 'The cause of a medical condition.';
     public const LABEL = 'cause';
     public const NAME = 'schema:cause';
-    public const VALUES = ['MedicalCauseModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalCauseModel'];
-    public const TYPES = ['MedicalCondition' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel'];
+    public const VALUES = ['MedicalCauseModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalCauseModel'];
+    public const TYPES = ['MedicalCondition' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

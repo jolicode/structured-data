@@ -9,23 +9,28 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Validators\SchemaOrg;
+namespace JoliCode\StructuredData\Vocabularies\Validators\SchemaOrg;
 
-use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Jolicode\JsonLd\Mapper\MappedError;
-use Jolicode\JsonLd\Mapper\MappedProperty;
-use Jolicode\JsonLd\Mapper\MappedType;
-use Jolicode\Vocabularies\Generated\GeneratedClassesRegistry;
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property\AdditionalPropertyModel;
-use Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyValueSpecificationModel;
-use Jolicode\Vocabularies\Validators\AbstractValidator;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\IriResolver;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
+use JoliCode\StructuredData\Mapper\MappedError;
+use JoliCode\StructuredData\Mapper\MappedProperty;
+use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Generated\GeneratedClassesRegistry;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property\AdditionalPropertyModel;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PropertyValueSpecificationModel;
+use JoliCode\StructuredData\Vocabularies\Validators\AbstractValidator;
 
 class SchemaOrgValidator extends AbstractValidator
 {
     public const VALIDATOR_NAME = 'SchemaOrg';
-    private const SCHEMA_ORG_DOMAIN = 'http://schema.org/';
-    private const SCHEMA_ORG_DOMAIN_SECURE = 'https://schema.org/';
+
+    /**
+     * Version of the schema.org vocabulary the shipped, generated classes were built
+     * from. Bump it together with the generator's version when upgrading schema.org
+     * (see resources/schema.org/UPGRADE_GUIDELINES.md).
+     */
+    public const VOCABULARY_VERSION = '30.0';
 
     /**
      * Terms hosted under pending.schema.org are still under development and may
@@ -34,13 +39,6 @@ class SchemaOrgValidator extends AbstractValidator
      * provenance is exposed through getIsPartOf() without a warning.
      */
     private const PENDING_EXTENSION_DOMAIN = 'https://pending.schema.org';
-
-    private const GENERATED_ENUMERATION_MEMBER_NAMESPACE = 'Jolicode\\Vocabularies\\Generated\\SchemaOrg\\EnumerationMember';
-
-    /**
-     * @var array<string, string>|null
-     */
-    private static ?array $knownEnumerationMembersByLowercase = null;
 
     public function validateType(MappedType $type): array
     {
@@ -80,7 +78,7 @@ class SchemaOrgValidator extends AbstractValidator
                 return $errors;
             }
 
-            $typeLabel = $this->guessTypeFromProperties($type->getProperties(), $parentProperty?->getKey());
+            $typeLabel = TypeGuesser::guessTypeFromProperties($type->getProperties(), $parentProperty?->getKey());
             $type->setType($typeLabel);
             $message = 'The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ' . $typeLabel;
             $errors[] = self::addMappedError($errorTarget, $message, $type, MappedError::SEVERITY_WARNING);
@@ -96,7 +94,7 @@ class SchemaOrgValidator extends AbstractValidator
                 continue;
             }
 
-            $typeFqcn = $this->getTypeFqcn($label);
+            $typeFqcn = TypeGuesser::getTypeFqcn($label);
 
             if (!GeneratedClassesRegistry::has($typeFqcn)) {
                 $message = \sprintf('The "%s" type is not a valid Schema.org type', $label);
@@ -133,9 +131,9 @@ class SchemaOrgValidator extends AbstractValidator
             }
 
             if ($parentProperty && !IriResolver::isAbsoluteIri($parentProperty->getKey())) {
-                $parentPropertyKey = $this->stripActionSuffixes($parentProperty->getKey());
+                $parentPropertyKey = TypeGuesser::stripActionSuffixes($parentProperty->getKey());
 
-                if (!GeneratedClassesRegistry::has($this->getPropertyFqcn($parentPropertyKey))) {
+                if (!GeneratedClassesRegistry::has(TypeGuesser::getPropertyFqcn($parentPropertyKey))) {
                     return $errors;
                 }
 
@@ -158,13 +156,13 @@ class SchemaOrgValidator extends AbstractValidator
             return $errors;
         }
 
-        $propertyKey = $this->stripActionSuffixes($property->getKey());
+        $propertyKey = TypeGuesser::stripActionSuffixes($property->getKey());
 
         if (Keyword::tryFrom($propertyKey) || IriResolver::isAbsoluteIri($propertyKey)) {
             return $errors;
         }
 
-        $propertyFqcn = $this->getPropertyFqcn($propertyKey);
+        $propertyFqcn = TypeGuesser::getPropertyFqcn($propertyKey);
 
         if (!GeneratedClassesRegistry::has($propertyFqcn)) {
             $message = \sprintf('This property does not exist: %s', $propertyKey);
@@ -197,7 +195,7 @@ class SchemaOrgValidator extends AbstractValidator
         }
 
         if (!$typeLabel) {
-            $typeLabel = self::guessTypeFromProperties($type->getProperties(), $originalProperty?->getKey());
+            $typeLabel = TypeGuesser::guessTypeFromProperties($type->getProperties(), $originalProperty?->getKey());
         }
 
         $typeFqcns = [];
@@ -205,7 +203,7 @@ class SchemaOrgValidator extends AbstractValidator
         $typeExists = false;
 
         foreach ((array) $typeLabel as $label) {
-            $typeFqcn = self::getTypeFqcn($label);
+            $typeFqcn = TypeGuesser::getTypeFqcn($label);
             $typeFqcns[] = $typeFqcn;
 
             if (GeneratedClassesRegistry::has($typeFqcn)) {
@@ -249,83 +247,6 @@ class SchemaOrgValidator extends AbstractValidator
     }
 
     /**
-     * @param array<MappedProperty> $typeProperties
-     */
-    public function guessTypeFromProperties(
-        array $typeProperties,
-        ?string $parentProperty = null,
-    ): string {
-        /**
-         * @var array<string, array{fqcn: string, shortName: string, supportedProperties: string[], ancestors: string[], parentsChainLength: int}> $possibleTypes
-         */
-        $possibleTypes = [];
-        $evaluatedPropertiesCount = 0;
-
-        if ($parentProperty && $guessedType = self::guessFromParentProperty($parentProperty, $typeProperties)) {
-            return $guessedType;
-        }
-
-        foreach ($typeProperties as $property) {
-            if (Keyword::tryFrom($property->getKey())) {
-                continue;
-            }
-
-            $propertyKey = $this->stripActionSuffixes($property->getKey());
-            $propertyFqcn = $this->getPropertyFqcn($propertyKey);
-
-            if (!GeneratedClassesRegistry::has($propertyFqcn)) {
-                continue;
-            }
-
-            ++$evaluatedPropertiesCount;
-
-            /** @var string $fqcn */
-            foreach ($propertyFqcn::TYPES as $shortName => $fqcn) {
-                if (!isset($possibleTypes[$fqcn])) {
-                    $possibleTypes[$fqcn] = [
-                        'fqcn' => $fqcn,
-                        'shortName' => $shortName,
-                        'supportedProperties' => [],
-                        'ancestors' => [],
-                        'parentsChainLength' => 0,
-                    ];
-                }
-
-                $possibleTypes[$fqcn]['supportedProperties'][] = $property->getKey();
-                $possibleTypes[$fqcn]['ancestors'] = array_merge($possibleTypes[$fqcn]['ancestors'], $fqcn::PARENTS);
-            }
-        }
-
-        foreach ($possibleTypes as $fqcn => $possibleType) {
-            foreach ($possibleType['ancestors'] as $ancestor) {
-                if (isset($possibleTypes[$ancestor])) {
-                    $possibleTypes[$fqcn]['supportedProperties'] = array_unique(array_merge($possibleType['supportedProperties'], $possibleTypes[$ancestor]['supportedProperties']));
-                }
-            }
-        }
-
-        // filter out the found types that do not have all the properties
-        /** @var array<string,array{shortName:string,parentsChainLength:int}> $possibleTypes */
-        $possibleTypes = array_filter($possibleTypes, static fn ($possibleType) => \count($possibleType['supportedProperties']) === $evaluatedPropertiesCount);
-
-        if (\count($possibleTypes) > 1) {
-            foreach ($possibleTypes as $fqcn => $possibleType) {
-                $possibleTypes[$fqcn]['parentsChainLength'] = $this->countLonguestParentsChain($fqcn);
-            }
-
-            usort($possibleTypes, static fn (array $a, array $b) => $a['parentsChainLength'] <=> $b['parentsChainLength']);
-
-            return $possibleTypes[0]['shortName'];
-        }
-
-        if (1 === \count($possibleTypes)) {
-            return array_pop($possibleTypes)['shortName'];
-        }
-
-        return 'Thing';
-    }
-
-    /**
      * @return array<MappedError>
      */
     private function validateEnumerationIriValues(MappedProperty $property, string $propertyFqcn, MappedType $type): array
@@ -338,18 +259,18 @@ class SchemaOrgValidator extends AbstractValidator
             return $errors;
         }
 
-        $enumerationTypeFqcns = $this->getExpectedEnumerationTypeFqcns($propertyFqcn);
+        $enumerationTypeFqcns = EnumerationMemberIndex::getExpectedEnumerationTypeFqcns($propertyFqcn);
 
         if ([] === $enumerationTypeFqcns) {
             return $errors;
         }
 
         foreach ($this->extractScalarStringValues($property->getValue()) as $value) {
-            if (!IriResolver::isAbsoluteIri($value) || !$this->isSchemaOrgIri($value)) {
+            if (!IriResolver::isAbsoluteIri($value) || !EnumerationMemberIndex::isSchemaOrgIri($value)) {
                 continue;
             }
 
-            $isExpectedEnumerationMemberIri = $this->isExpectedEnumerationMemberIri($value, $enumerationTypeFqcns);
+            $isExpectedEnumerationMemberIri = EnumerationMemberIndex::isExpectedEnumerationMemberIri($value, $enumerationTypeFqcns);
 
             if (true === $isExpectedEnumerationMemberIri || null === $isExpectedEnumerationMemberIri) {
                 continue;
@@ -390,154 +311,6 @@ class SchemaOrgValidator extends AbstractValidator
         return $scalarValues;
     }
 
-    /**
-     * @return array<string>
-     */
-    private function getExpectedEnumerationTypeFqcns(string $propertyFqcn): array
-    {
-        $enumerationTypeFqcns = [];
-
-        foreach ($propertyFqcn::VALUES as $expectedValueTypeFqcn) {
-            if (!GeneratedClassesRegistry::has($expectedValueTypeFqcn)) {
-                continue;
-            }
-
-            if (!\defined($expectedValueTypeFqcn . '::PARENTS') || !\defined($expectedValueTypeFqcn . '::ENUMERATION_MEMBERS')) {
-                continue;
-            }
-
-            if (!\in_array('Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Type\\EnumerationModel', $expectedValueTypeFqcn::PARENTS, true)) {
-                continue;
-            }
-
-            $enumerationTypeFqcns[] = $expectedValueTypeFqcn;
-        }
-
-        return $enumerationTypeFqcns;
-    }
-
-    /**
-     * @param array<string> $enumerationTypeFqcns
-     */
-    private function isExpectedEnumerationMemberIri(string $value, array $enumerationTypeFqcns): ?bool
-    {
-        $label = str_replace([self::SCHEMA_ORG_DOMAIN, self::SCHEMA_ORG_DOMAIN_SECURE], '', $value);
-        $labelLowercase = strtolower($label);
-
-        foreach ($enumerationTypeFqcns as $enumerationTypeFqcn) {
-            foreach ($enumerationTypeFqcn::ENUMERATION_MEMBERS as $memberClass) {
-                $memberFqcn = $this->resolveEnumerationMemberFqcn($memberClass);
-
-                if (!GeneratedClassesRegistry::has($memberFqcn)) {
-                    continue;
-                }
-
-                if (strtolower($memberFqcn::LABEL) === $labelLowercase) {
-                    return true;
-                }
-            }
-        }
-
-        if (!isset($this->getKnownEnumerationMembersByLowercase()[$labelLowercase])) {
-            // Unknown schema.org term (potentially from a newer schema.org release): ignore it.
-            return null;
-        }
-
-        return false;
-    }
-
-    private function resolveEnumerationMemberFqcn(string $memberClass): string
-    {
-        if (str_starts_with($memberClass, 'Jolicode\\')) {
-            return $memberClass;
-        }
-
-        return \sprintf('Jolicode\\Vocabularies\\Generated\\SchemaOrg\\%s', $memberClass);
-    }
-
-    private function isSchemaOrgIri(string $value): bool
-    {
-        return str_starts_with($value, self::SCHEMA_ORG_DOMAIN)
-            || str_starts_with($value, self::SCHEMA_ORG_DOMAIN_SECURE);
-    }
-
-    /**
-     * @return array<string, string>
-     */
-    private function getKnownEnumerationMembersByLowercase(): array
-    {
-        if (null !== self::$knownEnumerationMembersByLowercase) {
-            return self::$knownEnumerationMembersByLowercase;
-        }
-
-        self::$knownEnumerationMembersByLowercase = [];
-
-        foreach (GeneratedClassesRegistry::getShortNamesByPrefix(self::GENERATED_ENUMERATION_MEMBER_NAMESPACE) as $shortName) {
-            $typeName = str_replace('Model', '', $shortName);
-            self::$knownEnumerationMembersByLowercase[strtolower($typeName)] = $typeName;
-        }
-
-        return self::$knownEnumerationMembersByLowercase;
-    }
-
-    private function guessFromParentProperty(string $parentProperty, array $typeProperties): ?string
-    {
-        $parentPropertyKey = $this->stripActionSuffixes($parentProperty);
-        $parentPropertyFqcn = $this->getPropertyFqcn($parentPropertyKey);
-        $bestMatches = [];
-
-        if (!GeneratedClassesRegistry::has($parentPropertyFqcn)) {
-            return null;
-        }
-
-        foreach ($parentPropertyFqcn::VALUES as $expectedFqcn) {
-            $commonProperties = array_intersect_key(
-                array_map(static fn (MappedProperty $property) => $property->getKey(), $typeProperties),
-                get_class_vars($expectedFqcn),
-            );
-
-            $bestMatches[\count($commonProperties)] = $expectedFqcn::LABEL;
-        }
-
-        ksort($bestMatches);
-
-        return array_pop($bestMatches);
-    }
-
-    private function countLonguestParentsChain(string $fqcn): int
-    {
-        if (!$fqcn::PARENTS) {
-            return 0;
-        }
-
-        $longuestParentsChainLength = 0;
-
-        foreach ($fqcn::PARENTS as $parentType) {
-            $longuestParentsChainLength = max($this->countLonguestParentsChain($parentType), $longuestParentsChainLength);
-        }
-
-        return $longuestParentsChainLength + 1;
-    }
-
-    private function getTypeFqcn(string $typeShortName): string
-    {
-        return \sprintf('Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Type\\%sModel', $typeShortName);
-    }
-
-    private function getPropertyFqcn(string $propertyShortName): string
-    {
-        return \sprintf('Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Property\\%sModel', ucfirst($propertyShortName));
-    }
-
-    private function stripActionSuffixes(string $propertyLabel): string
-    {
-        if (!str_contains($propertyLabel, '-')) {
-            return $propertyLabel;
-        }
-
-        return str_replace(['-input', '-output'], '', $propertyLabel);
-    }
-
     private function propertyTypeIsValid(string $propertyLabel, string $typeFqcn): bool
     {
         // Ok this may look weird but take a look at http://blog.schema.org/2014/06/introducing-role.html
@@ -552,7 +325,7 @@ class SchemaOrgValidator extends AbstractValidator
             return true;
         }
 
-        $propertyFqcn = $this->getPropertyFqcn($propertyLabel);
+        $propertyFqcn = TypeGuesser::getPropertyFqcn($propertyLabel);
 
         if (!GeneratedClassesRegistry::has($propertyFqcn)) {
             return false;
@@ -571,72 +344,5 @@ class SchemaOrgValidator extends AbstractValidator
         }
 
         return false;
-    }
-
-    /**
-     * @return array<MappedError>
-     */
-    private function validateTypeCasing(MappedType $type, MappedType|MappedProperty $errorTarget): array
-    {
-        $errors = [];
-
-        foreach ((array) $type->getType() as $label) {
-            if (!$label || IriResolver::isAbsoluteIri($label)) {
-                continue;
-            }
-
-            $originalLabel = $this->findOriginalTypeLabel($type, $label);
-
-            if (!$originalLabel || $originalLabel === $label || 0 !== strcasecmp($originalLabel, $label)) {
-                continue;
-            }
-
-            $errors[] = self::addMappedError(
-                $type->getProperty(Keyword::TYPE->value) ?? $errorTarget,
-                \sprintf('Incorrect type casing: "%s" given, expected "%s".', $originalLabel, $label),
-                $type,
-                MappedError::SEVERITY_ERROR,
-            );
-        }
-
-        return $errors;
-    }
-
-    /**
-     * @return array<MappedError>
-     */
-    private function validatePropertyCasing(MappedType $type, MappedProperty $property): array
-    {
-        $originalKey = $property->getOriginalKey();
-
-        if (!$originalKey || $originalKey === $property->getKey() || 0 !== strcasecmp($originalKey, $property->getKey())) {
-            return [];
-        }
-
-        return [
-            self::addMappedError(
-                $property,
-                \sprintf('Incorrect property casing: "%s" given, expected "%s".', $originalKey, $property->getKey()),
-                $type,
-                MappedError::SEVERITY_ERROR,
-            ),
-        ];
-    }
-
-    private function findOriginalTypeLabel(MappedType $type, string $label): ?string
-    {
-        $originalType = $type->getOriginalType();
-
-        if (\is_string($originalType)) {
-            return $originalType;
-        }
-
-        foreach ((array) $originalType as $originalLabel) {
-            if (0 === strcasecmp($originalLabel, $label)) {
-                return $originalLabel;
-            }
-        }
-
-        return null;
     }
 }

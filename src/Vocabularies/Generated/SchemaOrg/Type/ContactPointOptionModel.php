@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ContactPointOptionModel
 {
     public const DESCRIPTION = 'Enumerated options related to a ContactPoint.';
     public const LABEL = 'ContactPointOption';
     public const NAME = 'schema:ContactPointOption';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['HearingImpairedSupportedModel' => 'EnumerationMember\HearingImpairedSupportedModel', 'TollFreeModel' => 'EnumerationMember\TollFreeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

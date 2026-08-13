@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PracticesAtModel
 {
     public const DESCRIPTION = 'A [[MedicalOrganization]] where the [[IndividualPhysician]] practices.';
     public const LABEL = 'practicesAt';
     public const NAME = 'schema:practicesAt';
-    public const VALUES = ['MedicalOrganizationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalOrganizationModel'];
-    public const TYPES = ['IndividualPhysician' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IndividualPhysicianModel'];
+    public const VALUES = ['MedicalOrganizationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalOrganizationModel'];
+    public const TYPES = ['IndividualPhysician' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\IndividualPhysicianModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3420'];
     public const SUPERSEDED_BY = null;

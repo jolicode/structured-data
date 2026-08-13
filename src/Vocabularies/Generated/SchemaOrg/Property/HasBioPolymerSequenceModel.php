@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HasBioPolymerSequenceModel
 {
     public const DESCRIPTION = 'A symbolic representation of a BioChemEntity. For example, a nucleotide sequence of a Gene or an amino acid sequence of a Protein.';
     public const LABEL = 'hasBioPolymerSequence';
     public const NAME = 'schema:hasBioPolymerSequence';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['Gene' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GeneModel', 'Protein' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProteinModel'];
+    public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['Gene' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\GeneModel', 'Protein' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ProteinModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['http://www.bioschemas.org/Gene'];
     public const SUPERSEDED_BY = null;

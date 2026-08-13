@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Parser;
+namespace JoliCode\StructuredData\JsonLd\Parser;
 
-use Jolicode\JsonLd\Parser\DataStructures\AbstractStructure;
-use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
-use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
+use JoliCode\StructuredData\JsonLd\Parser\DataStructures\AbstractStructure;
+use JoliCode\StructuredData\JsonLd\Parser\DataStructures\ArrayStructure;
+use JoliCode\StructuredData\JsonLd\Parser\DataStructures\ObjectStructure;
 use JsonStreamingParser\ParserHelper;
 
 /**

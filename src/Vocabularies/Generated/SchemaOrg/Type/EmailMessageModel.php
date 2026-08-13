@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EmailMessageModel
 {
     public const DESCRIPTION = 'An email message.';
     public const LABEL = 'EmailMessage';
     public const NAME = 'schema:EmailMessage';
-    public const PARENTS = ['MessageModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MessageModel'];
+    public const PARENTS = ['MessageModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MessageModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

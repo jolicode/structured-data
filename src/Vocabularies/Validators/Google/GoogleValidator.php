@@ -9,38 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Validators\Google;
+namespace JoliCode\StructuredData\Vocabularies\Validators\Google;
 
-use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Mapper\MappedError;
-use Jolicode\JsonLd\Mapper\MappedProperty;
-use Jolicode\JsonLd\Mapper\MappedType;
-use Jolicode\Vocabularies\Validators\AbstractValidator;
-use Jolicode\Vocabularies\Validators\Google\SpecialRules\SpecialRulesRegistry;
+use JoliCode\StructuredData\Mapper\MappedError;
+use JoliCode\StructuredData\Mapper\MappedProperty;
+use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Validators\AbstractValidator;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules\SpecialRulesRegistry;
 
 class GoogleValidator extends AbstractValidator
 {
     public const VALIDATOR_NAME = 'Google';
-
-    public const DATA_TYPES = [
-        self::DATA_TYPE_DATE,
-        self::DATA_TYPE_TIME,
-        self::DATA_TYPE_DATETIME,
-        self::DATA_TYPE_URL,
-        self::DATA_TYPE_TEXT,
-        self::DATA_TYPE_NUMBER,
-        self::DATA_TYPE_INTEGER,
-        self::DATA_TYPE_BOOLEAN,
-    ];
-
-    private const DATA_TYPE_DATE = 'Date';
-    private const DATA_TYPE_TIME = 'Time';
-    private const DATA_TYPE_DATETIME = 'DateTime';
-    private const DATA_TYPE_URL = 'URL';
-    private const DATA_TYPE_TEXT = 'Text';
-    private const DATA_TYPE_NUMBER = 'Number';
-    private const DATA_TYPE_INTEGER = 'Integer';
-    private const DATA_TYPE_BOOLEAN = 'Boolean';
 
     private const SEVERITY_REQUIRED = 'required';
     private const SEVERITY_RECOMMENDED = 'recommended';
@@ -48,11 +27,9 @@ class GoogleValidator extends AbstractValidator
     /** @var array<string, array<SpecialRules\SpecialRuleInterface>> */
     private array $specialRulesByValidationClass = [];
 
-    /** @var array<string, false|string> */
-    private array $urlValidationResults = [];
-
     public function __construct(
         private readonly Stack $stack = new Stack(),
+        private readonly DataTypeChecker $dataTypeChecker = new DataTypeChecker(),
     ) {
     }
 
@@ -69,7 +46,7 @@ class GoogleValidator extends AbstractValidator
             return $errors;
         }
 
-        $typeCasingErrors = $this->validateTypeCasing($type);
+        $typeCasingErrors = $this->validateTypeCasing($type, $type);
 
         if ($typeCasingErrors) {
             array_push($errors, ...$typeCasingErrors);
@@ -117,17 +94,7 @@ class GoogleValidator extends AbstractValidator
             return $this->validatePropertyForMultipleTypesEntry($type, $property, $originalProperty);
         }
 
-        $errors = [];
-        $originalKey = $property->getOriginalKey();
-
-        if ($originalKey && $originalKey !== $property->getKey() && 0 === strcasecmp($originalKey, $property->getKey())) {
-            $errors[] = $this->addMappedError(
-                $property,
-                \sprintf('Incorrect property casing: "%s" given, expected "%s".', $originalKey, $property->getKey()),
-                $type,
-                MappedError::SEVERITY_ERROR,
-            );
-        }
+        $errors = $this->validatePropertyCasing($type, $property);
 
         $currentProperty = $this->stack
             ->newType($type)
@@ -149,7 +116,7 @@ class GoogleValidator extends AbstractValidator
                 continue;
             }
 
-            if ($message = $this->hasInvalidDataTypeValue($type, $currentProperty, $value)) {
+            if ($message = $this->dataTypeChecker->hasInvalidDataTypeValue($type, $currentProperty, $value)) {
                 $errors[] = $this->addMappedError(
                     $property,
                     $message,
@@ -159,7 +126,7 @@ class GoogleValidator extends AbstractValidator
             }
 
             if (isset($currentProperty['value'])) {
-                if ($message = $this->hasInvalidExactValue($currentProperty['value'], $value)) {
+                if ($message = $this->dataTypeChecker->hasInvalidExactValue($currentProperty['value'], $value)) {
                     $errors[] = $this->addMappedError(
                         $property,
                         $message,
@@ -220,7 +187,7 @@ class GoogleValidator extends AbstractValidator
             $clone->setDuplicateKeys([]);
 
             $typeErrors = $this->validateType($clone);
-            $type->setDocumentationLink($clone->getGoogleLink());
+            $type->setDocumentationLink($clone->getDocumentationLink());
 
             if (!$typeErrors) {
                 return [];
@@ -355,82 +322,6 @@ class GoogleValidator extends AbstractValidator
         $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_WARNING);
     }
 
-    private function hasInvalidDataTypeValue(MappedType $type, array $expectedProperty, mixed $givenValue): false|string
-    {
-        $givenValue = $this->coerceScalarForSourceFormat($type, $expectedProperty['supportedTypes'], $givenValue);
-        $supportedTypes = $expectedProperty['supportedTypes'];
-
-        return match ($this->getMatchingDataType($supportedTypes, $givenValue)) {
-            self::DATA_TYPE_DATE => $this->hasIncorrectDate($givenValue, self::DATA_TYPE_DATE),
-            self::DATA_TYPE_TIME => $this->hasIncorrectDate($givenValue, self::DATA_TYPE_TIME),
-            self::DATA_TYPE_DATETIME => $this->hasIncorrectDate($givenValue, self::DATA_TYPE_DATETIME),
-            self::DATA_TYPE_TEXT => $this->hasIncorrectText($givenValue),
-            self::DATA_TYPE_URL => $this->hasIncorrectUrl($givenValue),
-            self::DATA_TYPE_NUMBER => $this->hasIncorrectNumber($givenValue),
-            self::DATA_TYPE_INTEGER => $this->hasIncorrectInteger($givenValue),
-            self::DATA_TYPE_BOOLEAN => $this->hasIncorrectBoolean($givenValue),
-            default => false,
-        };
-    }
-
-    private function coerceScalarForSourceFormat(MappedType $type, array $supportedTypes, mixed $givenValue): mixed
-    {
-        if (!\is_string($givenValue) || !$supportedTypes) {
-            return $givenValue;
-        }
-
-        $sourceFormat = $type->getSourceFormat();
-
-        if ('microdata' !== $sourceFormat && 'rdfa' !== $sourceFormat) {
-            return $givenValue;
-        }
-
-        $supportedTypesLookup = array_fill_keys($supportedTypes, true);
-
-        if (isset($supportedTypesLookup[self::DATA_TYPE_INTEGER]) && preg_match('/^-?\d+$/', $givenValue)) {
-            return (int) $givenValue;
-        }
-
-        if (isset($supportedTypesLookup[self::DATA_TYPE_NUMBER]) && is_numeric($givenValue)) {
-            return (float) $givenValue;
-        }
-
-        if (isset($supportedTypesLookup[self::DATA_TYPE_BOOLEAN])) {
-            if ('' === $givenValue) {
-                return $givenValue;
-            }
-
-            return match (strtolower($givenValue)) {
-                'true' => true,
-                'false' => false,
-                default => $givenValue,
-            };
-        }
-
-        return $givenValue;
-    }
-
-    private function hasInvalidExactValue(array $expectedValues, string|int $givenValue): false|string
-    {
-        if (isset($expectedValues[0]) && $expectedValues[0] === $givenValue) {
-            return false;
-        }
-
-        if (\in_array($givenValue, $expectedValues, true)) {
-            return false;
-        }
-
-        if (\is_string($givenValue)) {
-            $lowercasedValue = strtolower($givenValue);
-
-            if ($lowercasedValue !== $givenValue && \in_array($lowercasedValue, $expectedValues, true)) {
-                return 'The value is correct, but is not lowercased. Google expects lowercased values.';
-            }
-        }
-
-        return \sprintf('Incorrect value: "%s" given, expected one of "%s".', $givenValue, implode(', ', $expectedValues));
-    }
-
     private function definePropertyViolationSeverity(array $property, ?string $message = null): string
     {
         if ('The value is correct, but is not lowercased. Google expects lowercased values.' === $message) {
@@ -442,64 +333,6 @@ class GoogleValidator extends AbstractValidator
         }
 
         return MappedError::SEVERITY_WARNING;
-    }
-
-    /**
-     * @return array<MappedError>
-     */
-    private function validateTypeCasing(MappedType $type): array
-    {
-        $typeLabels = (array) $type->getType();
-        $originalType = $type->getOriginalType();
-
-        if (!$typeLabels || !$originalType) {
-            return [];
-        }
-
-        $errors = [];
-        $typeCasingTarget = null;
-
-        foreach ($typeLabels as $label) {
-            if (!$label || (str_contains($label, ':') && IriResolver::isAbsoluteIri($label))) {
-                continue;
-            }
-
-            $originalLabel = $this->findOriginalTypeLabel($originalType, $label);
-
-            if (!$originalLabel || $originalLabel === $label) {
-                continue;
-            }
-
-            $typeCasingTarget ??= $type->getProperty('@type') ?? $type;
-
-            $errors[] = $this->addMappedError(
-                $typeCasingTarget,
-                \sprintf('Incorrect type casing: "%s" given, expected "%s".', $originalLabel, $label),
-                $type,
-                MappedError::SEVERITY_ERROR,
-            );
-        }
-
-        return $errors;
-    }
-
-    private function findOriginalTypeLabel(mixed $originalType, string $label): ?string
-    {
-        if (\is_string($originalType)) {
-            return $originalType === $label || 0 === strcasecmp($originalType, $label) ? $originalType : null;
-        }
-
-        if (!\is_array($originalType)) {
-            return null;
-        }
-
-        foreach ($originalType as $originalLabel) {
-            if ($originalLabel === $label || 0 === strcasecmp($originalLabel, $label)) {
-                return $originalLabel;
-            }
-        }
-
-        return null;
     }
 
     private function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool
@@ -526,201 +359,6 @@ class GoogleValidator extends AbstractValidator
     private function hasAnyPropertyKey(MappedType $type, array $expectedProperties): bool
     {
         return (bool) array_intersect_key($expectedProperties, $type->getProperties());
-    }
-
-    private function getMatchingDataType(array $supportedTypes, mixed $givenValue): string|false
-    {
-        $supportedDataTypes = array_values(array_intersect($supportedTypes, self::DATA_TYPES));
-
-        if (!$supportedDataTypes) {
-            return false;
-        }
-
-        if (!isset($supportedDataTypes[1])) {
-            return $supportedDataTypes[0];
-        }
-
-        $supportedDataTypesLookup = array_fill_keys($supportedDataTypes, true);
-
-        if (isset($supportedDataTypesLookup[self::DATA_TYPE_DATE])) {
-            return self::DATA_TYPE_DATE;
-        }
-
-        if (isset($supportedDataTypesLookup[self::DATA_TYPE_TIME])) {
-            return self::DATA_TYPE_TIME;
-        }
-
-        if (isset($supportedDataTypesLookup[self::DATA_TYPE_DATETIME])) {
-            return self::DATA_TYPE_DATETIME;
-        }
-
-        $isString = \is_string($givenValue);
-
-        if ($isString && isset($supportedDataTypesLookup[self::DATA_TYPE_URL])) {
-            return self::DATA_TYPE_URL;
-        }
-
-        $givenValueDataType = match (true) {
-            $isString => self::DATA_TYPE_TEXT,
-            \is_int($givenValue) => self::DATA_TYPE_INTEGER,
-            \is_float($givenValue) => self::DATA_TYPE_NUMBER,
-            \is_bool($givenValue) => self::DATA_TYPE_BOOLEAN,
-            default => false,
-        };
-
-        if (false !== $givenValueDataType) {
-            if (isset($supportedDataTypesLookup[$givenValueDataType])) {
-                return $givenValueDataType;
-            }
-
-            if (self::DATA_TYPE_INTEGER === $givenValueDataType && isset($supportedDataTypesLookup[self::DATA_TYPE_NUMBER])) {
-                return self::DATA_TYPE_NUMBER;
-            }
-        }
-
-        if (isset($supportedDataTypesLookup[self::DATA_TYPE_URL])) {
-            return self::DATA_TYPE_URL;
-        }
-
-        if (isset($supportedDataTypesLookup[self::DATA_TYPE_TEXT])) {
-            return self::DATA_TYPE_TEXT;
-        }
-
-        if (isset($supportedDataTypesLookup[self::DATA_TYPE_INTEGER])) {
-            return self::DATA_TYPE_INTEGER;
-        }
-
-        if (isset($supportedDataTypesLookup[self::DATA_TYPE_NUMBER])) {
-            return self::DATA_TYPE_NUMBER;
-        }
-
-        if (isset($supportedDataTypesLookup[self::DATA_TYPE_BOOLEAN])) {
-            return self::DATA_TYPE_BOOLEAN;
-        }
-
-        return $supportedDataTypes[0];
-    }
-
-    private function getScalarDataType(mixed $value): string|false
-    {
-        return match (true) {
-            \is_string($value) => self::DATA_TYPE_TEXT,
-            \is_int($value) => self::DATA_TYPE_INTEGER,
-            \is_float($value) => self::DATA_TYPE_NUMBER,
-            \is_bool($value) => self::DATA_TYPE_BOOLEAN,
-            default => false,
-        };
-    }
-
-    private function hasIncorrectText(mixed $givenValue, ?string $overwriteType = null): false|string
-    {
-        if (\is_string($givenValue)) {
-            return false;
-        }
-
-        return \sprintf(
-            'Incorrect type value: value of type "%s" expected, but "%s" was given ("%s").',
-            $overwriteType ?? 'Text',
-            $this->getSchemaOrgDataType($givenValue),
-            $givenValue,
-        );
-    }
-
-    private function getSchemaOrgDataType(mixed $value): string
-    {
-        return $this->getScalarDataType($value) ?: get_debug_type($value);
-    }
-
-    private function hasIncorrectDate(mixed $givenValue, string $expectedType): false|string
-    {
-        if ($errorMessage = $this->hasIncorrectText($givenValue, $expectedType)) {
-            return $errorMessage;
-        }
-
-        if (false === strtotime($givenValue)) {
-            return \sprintf('Date/time format is incompatible with the ISO 8601 standard. "%s" given', $givenValue);
-        }
-
-        return false;
-    }
-
-    private function hasIncorrectNumber(mixed $givenValue): false|string
-    {
-        if (\is_int($givenValue) || \is_float($givenValue)) {
-            return false;
-        }
-
-        $schemaOrgDataType = $this->getScalarDataType($givenValue) ?: get_debug_type($givenValue);
-
-        return \sprintf(
-            'Incorrect type value: value of type "%s" expected, but "%s" was given (%s).',
-            self::DATA_TYPE_NUMBER,
-            $schemaOrgDataType,
-            self::DATA_TYPE_TEXT === $schemaOrgDataType ? \sprintf('"%s"', $givenValue) : $givenValue,
-        );
-    }
-
-    private function hasIncorrectInteger(mixed $givenValue): false|string
-    {
-        if (\is_int($givenValue)) {
-            return false;
-        }
-
-        $schemaOrgDataType = $this->getScalarDataType($givenValue) ?: get_debug_type($givenValue);
-
-        return \sprintf(
-            'Incorrect type value: value of type "%s" expected, but "%s" was given (%s).',
-            self::DATA_TYPE_INTEGER,
-            $schemaOrgDataType,
-            self::DATA_TYPE_TEXT === $schemaOrgDataType ? \sprintf('"%s"', $givenValue) : $givenValue,
-        );
-    }
-
-    private function hasIncorrectBoolean(mixed $givenValue): false|string
-    {
-        if (\is_bool($givenValue)) {
-            return false;
-        }
-
-        $schemaOrgDataType = $this->getScalarDataType($givenValue) ?: get_debug_type($givenValue);
-
-        return \sprintf(
-            'Incorrect type value: value of type "%s" expected, but "%s" was given (%s).',
-            self::DATA_TYPE_BOOLEAN,
-            $schemaOrgDataType,
-            self::DATA_TYPE_TEXT === $schemaOrgDataType ? \sprintf('"%s"', $givenValue) : $givenValue,
-        );
-    }
-
-    private function hasIncorrectUrl(mixed $givenValue): false|string
-    {
-        if ($errorMessage = $this->hasIncorrectText($givenValue, 'URL')) {
-            return $errorMessage;
-        }
-
-        if (isset($this->urlValidationResults[$givenValue])) {
-            return $this->urlValidationResults[$givenValue];
-        }
-
-        $parts = parse_url($givenValue);
-
-        if (false === $parts) {
-            return $this->urlValidationResults[$givenValue] = \sprintf('Incorrect URL: "%s" given.', $givenValue);
-        }
-
-        $scheme = $parts['scheme'] ?? null;
-
-        if ('http' === $scheme || 'https' === $scheme) {
-            return $this->urlValidationResults[$givenValue] = false;
-        }
-
-        // Per RFC 3986, a relative reference is any URL-shaped string without a scheme.
-        // A string with whitespace is not URL-shaped.
-        if (null === $scheme && !str_contains($givenValue, ' ')) {
-            return $this->urlValidationResults[$givenValue] = false;
-        }
-
-        return $this->urlValidationResults[$givenValue] = \sprintf('Incorrect URL: "%s" given. Expected an HTTP(S) URL or a relative URL.', $givenValue);
     }
 
     /**

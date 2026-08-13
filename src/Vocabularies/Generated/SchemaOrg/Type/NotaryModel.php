@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class NotaryModel
 {
     public const DESCRIPTION = 'A notary.';
     public const LABEL = 'Notary';
     public const NAME = 'schema:Notary';
-    public const PARENTS = ['LegalServiceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\LegalServiceModel'];
+    public const PARENTS = ['LegalServiceModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\LegalServiceModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SpecialtyModel
 {
     public const DESCRIPTION = 'One of the domain specialities to which this web page\'s content applies.';
     public const LABEL = 'specialty';
     public const NAME = 'schema:specialty';
-    public const VALUES = ['SpecialtyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SpecialtyModel'];
-    public const TYPES = ['WebPage' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebPageModel'];
+    public const VALUES = ['SpecialtyModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SpecialtyModel'];
+    public const TYPES = ['WebPage' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\WebPageModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

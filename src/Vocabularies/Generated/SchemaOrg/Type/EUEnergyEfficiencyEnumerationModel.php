@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EUEnergyEfficiencyEnumerationModel
 {
     public const DESCRIPTION = 'Enumerates the EU energy efficiency classes A-G as well as A+, A++, and A+++ as defined in EU directive 2017/1369.';
     public const LABEL = 'EUEnergyEfficiencyEnumeration';
     public const NAME = 'schema:EUEnergyEfficiencyEnumeration';
-    public const PARENTS = ['EnergyEfficiencyEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnergyEfficiencyEnumerationModel'];
+    public const PARENTS = ['EnergyEfficiencyEnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnergyEfficiencyEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['EUEnergyEfficiencyCategoryA1PlusModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryA1PlusModel', 'EUEnergyEfficiencyCategoryA2PlusModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryA2PlusModel', 'EUEnergyEfficiencyCategoryA3PlusModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryA3PlusModel', 'EUEnergyEfficiencyCategoryAModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryAModel', 'EUEnergyEfficiencyCategoryBModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryBModel', 'EUEnergyEfficiencyCategoryCModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryCModel', 'EUEnergyEfficiencyCategoryDModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryDModel', 'EUEnergyEfficiencyCategoryEModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryEModel', 'EUEnergyEfficiencyCategoryFModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryFModel', 'EUEnergyEfficiencyCategoryGModel' => 'EnumerationMember\EUEnergyEfficiencyCategoryGModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2670'];

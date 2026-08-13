@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class WebFeedModel
 {
     public const DESCRIPTION = 'The URL for a feed, e.g. associated with a podcast series, blog, or series of date-stamped updates. This is usually RSS or Atom.';
     public const LABEL = 'webFeed';
     public const NAME = 'schema:webFeed';
-    public const VALUES = ['DataFeedModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DataFeedModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
-    public const TYPES = ['PodcastSeries' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PodcastSeriesModel', 'SpecialAnnouncement' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SpecialAnnouncementModel'];
+    public const VALUES = ['DataFeedModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DataFeedModel', 'URLModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
+    public const TYPES = ['PodcastSeries' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PodcastSeriesModel', 'SpecialAnnouncement' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SpecialAnnouncementModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/373'];
     public const SUPERSEDED_BY = null;

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MeasurementTechniqueModel
 {
@@ -22,8 +22,8 @@ For example, if [[variableMeasured]] is: molecule concentration, [[measurementTe
 If there are several [[variableMeasured]] properties recorded for some given data object, use a [[PropertyValue]] for each [[variableMeasured]] and attach the corresponding [[measurementTechnique]]. The value can also be from an enumeration, organized as a [[MeasurementMethodEnum]].';
     public const LABEL = 'measurementTechnique';
     public const NAME = 'schema:measurementTechnique';
-    public const VALUES = ['DefinedTermModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel', 'MeasurementMethodEnumModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MeasurementMethodEnumModel', 'TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'URLModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
-    public const TYPES = ['DataCatalog' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DataCatalogModel', 'DataDownload' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DataDownloadModel', 'Dataset' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DatasetModel', 'Observation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ObservationModel', 'PropertyValue' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyValueModel', 'StatisticalVariable' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\StatisticalVariableModel'];
+    public const VALUES = ['DefinedTermModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel', 'MeasurementMethodEnumModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MeasurementMethodEnumModel', 'TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'URLModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
+    public const TYPES = ['DataCatalog' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DataCatalogModel', 'DataDownload' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DataDownloadModel', 'Dataset' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DatasetModel', 'Observation' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ObservationModel', 'PropertyValue' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PropertyValueModel', 'StatisticalVariable' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\StatisticalVariableModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1425'];
     public const SUPERSEDED_BY = null;

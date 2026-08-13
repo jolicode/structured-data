@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ShippingDetailsModel
 {
     public const DESCRIPTION = 'Indicates information about the shipping policies and options associated with an [[Offer]].';
     public const LABEL = 'shippingDetails';
     public const NAME = 'schema:shippingDetails';
-    public const VALUES = ['OfferShippingDetailsModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferShippingDetailsModel'];
-    public const TYPES = ['Offer' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OfferModel'];
+    public const VALUES = ['OfferShippingDetailsModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OfferShippingDetailsModel'];
+    public const TYPES = ['Offer' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OfferModel'];
     public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2506'];
     public const SUPERSEDED_BY = null;

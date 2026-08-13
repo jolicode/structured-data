@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RsvpActionModel
 {
     public const DESCRIPTION = 'The act of notifying an event organizer as to whether you expect to attend the event.';
     public const LABEL = 'RsvpAction';
     public const NAME = 'schema:RsvpAction';
-    public const PARENTS = ['InformActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InformActionModel'];
+    public const PARENTS = ['InformActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\InformActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

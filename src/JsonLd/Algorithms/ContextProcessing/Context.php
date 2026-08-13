@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Algorithms\ContextProcessing;
+namespace JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing;
 
-use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinition;
+use JoliCode\StructuredData\JsonLd\Algorithms\TermDefinition\TermDefinition;
 
 class Context
 {

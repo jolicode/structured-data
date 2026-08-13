@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ArteryModel
 {
     public const DESCRIPTION = 'A type of blood vessel that specifically carries blood away from the heart.';
     public const LABEL = 'Artery';
     public const NAME = 'schema:Artery';
-    public const PARENTS = ['VesselModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VesselModel'];
+    public const PARENTS = ['VesselModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\VesselModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RecommendationStrengthModel
 {
     public const DESCRIPTION = 'Strength of the guideline\'s recommendation (e.g. \'class I\').';
     public const LABEL = 'recommendationStrength';
     public const NAME = 'schema:recommendationStrength';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['MedicalGuidelineRecommendation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalGuidelineRecommendationModel'];
+    public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['MedicalGuidelineRecommendation' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalGuidelineRecommendationModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

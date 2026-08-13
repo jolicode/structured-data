@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Validation\Benchmark;
+namespace JoliCode\StructuredData\Tests\Validation\Benchmark;
 
-use Jolicode\JsonLd\Validator;
+use JoliCode\StructuredData\Validator;
 
 /**
  * Benchmarks the worker deployment scenario: one long-lived Validator instance

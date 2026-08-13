@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ValidUntilModel
 {
     public const DESCRIPTION = 'The date when the item is no longer valid.';
     public const LABEL = 'validUntil';
     public const NAME = 'schema:validUntil';
-    public const VALUES = ['DateModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateModel'];
-    public const TYPES = ['Permit' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PermitModel'];
+    public const VALUES = ['DateModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DateModel'];
+    public const TYPES = ['Permit' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PermitModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

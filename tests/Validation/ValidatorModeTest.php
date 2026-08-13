@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Validation;
+namespace JoliCode\StructuredData\Tests\Validation;
 
-use Jolicode\JsonLd\Audit\AuditOptions;
-use Jolicode\JsonLd\Mapper\MappedError;
-use Jolicode\JsonLd\Mapper\MappedType;
-use Jolicode\JsonLd\Validator;
-use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
-use Jolicode\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
+use JoliCode\StructuredData\Audit\AuditOptions;
+use JoliCode\StructuredData\Mapper\MappedError;
+use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Validator;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\GoogleValidator;
+use JoliCode\StructuredData\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
 use PHPUnit\Framework\TestCase;
 
 class ValidatorModeTest extends TestCase
@@ -80,7 +80,7 @@ JSON;
     public function testSwitchingValidatorModeDoesNotReuseWrongSnippetCache(): void
     {
         $validator = new Validator();
-        $fixture = $this->benchmarkFixture('jolicampus-formations-symfony.html');
+        $fixture = $this->benchmarkFixture('array-types-with-google-support.html');
 
         $validator->setValidator(SchemaOrgValidator::class);
         $validator->audit($fixture);
@@ -94,7 +94,7 @@ JSON;
     public function testDefaultValidatorModeHydratesGoogleDocumentationLinkForArrayTypes(): void
     {
         $validator = new Validator();
-        $fixture = $this->benchmarkFixture('jolicampus-formations-symfony.html');
+        $fixture = $this->benchmarkFixture('array-types-with-google-support.html');
 
         $audit = $validator->audit($fixture);
 
@@ -128,7 +128,7 @@ JSON;
     private function hasAtLeastOneGoogleDocumentationLink(array $types): bool
     {
         foreach ($types as $type) {
-            if (null !== $type->getGoogleLink()) {
+            if (null !== $type->getDocumentationLink()) {
                 return true;
             }
 

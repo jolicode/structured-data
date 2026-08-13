@@ -9,12 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Validators;
+namespace JoliCode\StructuredData\Vocabularies\Validators;
 
-use Jolicode\JsonLd\Mapper\MappedError;
-use Jolicode\JsonLd\Mapper\MappedProperty;
-use Jolicode\JsonLd\Mapper\MappedType;
-use Jolicode\JsonLd\Parser\Range;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\IriResolver;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
+use JoliCode\StructuredData\Mapper\MappedError;
+use JoliCode\StructuredData\Mapper\MappedErrorFormatter;
+use JoliCode\StructuredData\Mapper\MappedProperty;
+use JoliCode\StructuredData\Mapper\MappedType;
 
 abstract class AbstractValidator implements ValidatorInterface
 {
@@ -41,29 +43,60 @@ abstract class AbstractValidator implements ValidatorInterface
         return $errors;
     }
 
-    protected function addMappedError(MappedType|MappedProperty $target, string $message, MappedType $typeWithError, string $severity): MappedError
+    /**
+     * @return MappedError[]
+     */
+    protected function validateTypeCasing(MappedType $type, MappedType|MappedProperty $errorTarget): array
     {
-        $typeLabel = $typeWithError->getType();
+        $errors = [];
 
-        if (\is_array($typeLabel)) {
-            $typeLabel = \sprintf(
-                '[%s]',
-                implode(', ', $typeLabel),
+        foreach ((array) $type->getType() as $label) {
+            if (!$label || IriResolver::isAbsoluteIri($label)) {
+                continue;
+            }
+
+            $originalLabel = $this->findOriginalTypeLabel($type, $label);
+
+            if (!$originalLabel || $originalLabel === $label || 0 !== strcasecmp($originalLabel, $label)) {
+                continue;
+            }
+
+            $errors[] = $this->addMappedError(
+                $type->getProperty(Keyword::TYPE->value) ?? $errorTarget,
+                \sprintf('Incorrect type casing: "%s" given, expected "%s".', $originalLabel, $label),
+                $type,
+                MappedError::SEVERITY_ERROR,
             );
         }
 
-        $range = array_map(
-            static fn (Range $range) => \sprintf(
-                '%d:%d to %d:%d',
-                $range->start?->line,
-                $range->start?->column,
-                $range->end?->line,
-                $range->end?->column,
-            ),
-            $target->getValueRanges(),
-        );
+        return $errors;
+    }
 
-        $range = implode(\PHP_EOL, $range);
+    /**
+     * @return MappedError[]
+     */
+    protected function validatePropertyCasing(MappedType $type, MappedProperty $property): array
+    {
+        $originalKey = $property->getOriginalKey();
+
+        if (!$originalKey || $originalKey === $property->getKey() || 0 !== strcasecmp($originalKey, $property->getKey())) {
+            return [];
+        }
+
+        return [
+            $this->addMappedError(
+                $property,
+                \sprintf('Incorrect property casing: "%s" given, expected "%s".', $originalKey, $property->getKey()),
+                $type,
+                MappedError::SEVERITY_ERROR,
+            ),
+        ];
+    }
+
+    protected function addMappedError(MappedType|MappedProperty $target, string $message, MappedType $typeWithError, string $severity): MappedError
+    {
+        $typeLabel = MappedErrorFormatter::formatTypeLabel($typeWithError->getType());
+        $range = MappedErrorFormatter::formatRanges($target->getValueRanges());
 
         $error = new MappedError(
             $message,
@@ -97,5 +130,22 @@ abstract class AbstractValidator implements ValidatorInterface
         }
 
         return $error;
+    }
+
+    private function findOriginalTypeLabel(MappedType $type, string $label): ?string
+    {
+        $originalType = $type->getOriginalType();
+
+        if (\is_string($originalType)) {
+            return $originalType;
+        }
+
+        foreach ((array) $originalType as $originalLabel) {
+            if (0 === strcasecmp($originalLabel, $label)) {
+                return $originalLabel;
+            }
+        }
+
+        return null;
     }
 }

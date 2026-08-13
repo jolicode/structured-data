@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CampingPitchModel
 {
@@ -21,7 +21,7 @@ In British English a campsite, or campground, is an area, usually divided into a
 See also the dedicated [document on the use of schema.org for marking up hotels and other forms of accommodations](/docs/hotels.html).';
     public const LABEL = 'CampingPitch';
     public const NAME = 'schema:CampingPitch';
-    public const PARENTS = ['AccommodationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AccommodationModel'];
+    public const PARENTS = ['AccommodationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\AccommodationModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

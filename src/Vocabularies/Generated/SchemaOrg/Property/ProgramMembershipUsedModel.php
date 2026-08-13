@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ProgramMembershipUsedModel
 {
     public const DESCRIPTION = 'Any membership in a frequent flyer, hotel loyalty program, etc. being applied to the reservation.';
     public const LABEL = 'programMembershipUsed';
     public const NAME = 'schema:programMembershipUsed';
-    public const VALUES = ['ProgramMembershipModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProgramMembershipModel'];
-    public const TYPES = ['Reservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReservationModel'];
+    public const VALUES = ['ProgramMembershipModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ProgramMembershipModel'];
+    public const TYPES = ['Reservation' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ReservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

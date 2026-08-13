@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MusicAlbumProductionTypeModel
 {
     public const DESCRIPTION = 'Classification of the album by its type of content: soundtrack, live album, studio album, etc.';
     public const LABEL = 'MusicAlbumProductionType';
     public const NAME = 'schema:MusicAlbumProductionType';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['CompilationAlbumModel' => 'EnumerationMember\CompilationAlbumModel', 'DJMixAlbumModel' => 'EnumerationMember\DJMixAlbumModel', 'DemoAlbumModel' => 'EnumerationMember\DemoAlbumModel', 'LiveAlbumModel' => 'EnumerationMember\LiveAlbumModel', 'MixtapeAlbumModel' => 'EnumerationMember\MixtapeAlbumModel', 'RemixAlbumModel' => 'EnumerationMember\RemixAlbumModel', 'SoundtrackAlbumModel' => 'EnumerationMember\SoundtrackAlbumModel', 'SpokenWordAlbumModel' => 'EnumerationMember\SpokenWordAlbumModel', 'StudioAlbumModel' => 'EnumerationMember\StudioAlbumModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

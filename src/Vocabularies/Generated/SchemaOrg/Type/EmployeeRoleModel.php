@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EmployeeRoleModel
 {
     public const DESCRIPTION = 'A subclass of OrganizationRole used to describe employee relationships.';
     public const LABEL = 'EmployeeRole';
     public const NAME = 'schema:EmployeeRole';
-    public const PARENTS = ['OrganizationRoleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizationRoleModel'];
+    public const PARENTS = ['OrganizationRoleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrganizationRoleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

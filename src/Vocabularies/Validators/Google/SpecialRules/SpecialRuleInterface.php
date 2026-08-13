@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Validators\Google\SpecialRules;
+namespace JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules;
 
-use Jolicode\JsonLd\Mapper\MappedType;
+use JoliCode\StructuredData\Mapper\MappedType;
 
 interface SpecialRuleInterface
 {
@@ -22,7 +22,7 @@ interface SpecialRuleInterface
     public function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool;
 
     /**
-     * @return array<int, array{target: MappedType|\Jolicode\JsonLd\Mapper\MappedProperty, message: string, severity: string}>
+     * @return array<int, array{target: MappedType|\JoliCode\StructuredData\Mapper\MappedProperty, message: string, severity: string}>
      */
     public function getTypeViolations(MappedType $type): array;
 }

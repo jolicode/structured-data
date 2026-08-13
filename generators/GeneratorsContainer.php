@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generators;
+namespace JoliCode\StructuredData\Vocabularies\Generators;
 
-use Jolicode\Vocabularies\Generators\Google\Generator as GoogleGenerator;
-use Jolicode\Vocabularies\Generators\SchemaOrg\Generator as SchemaOrgGenerator;
+use JoliCode\StructuredData\Vocabularies\Generators\Google\Generator as GoogleGenerator;
+use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Generator as SchemaOrgGenerator;
 
 readonly class GeneratorsContainer
 {

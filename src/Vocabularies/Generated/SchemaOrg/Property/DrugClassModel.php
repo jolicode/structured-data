@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DrugClassModel
 {
     public const DESCRIPTION = 'The class of drug this belongs to (e.g., statins).';
     public const LABEL = 'drugClass';
     public const NAME = 'schema:drugClass';
-    public const VALUES = ['DrugClassModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugClassModel'];
-    public const TYPES = ['Drug' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugModel'];
+    public const VALUES = ['DrugClassModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DrugClassModel'];
+    public const TYPES = ['Drug' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DrugModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

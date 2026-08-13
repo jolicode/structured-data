@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LiveBlogPostingModel
 {
     public const DESCRIPTION = 'A [[LiveBlogPosting]] is a [[BlogPosting]] intended to provide a rolling textual coverage of an ongoing event through continuous updates.';
     public const LABEL = 'LiveBlogPosting';
     public const NAME = 'schema:LiveBlogPosting';
-    public const PARENTS = ['BlogPostingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BlogPostingModel'];
+    public const PARENTS = ['BlogPostingModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BlogPostingModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

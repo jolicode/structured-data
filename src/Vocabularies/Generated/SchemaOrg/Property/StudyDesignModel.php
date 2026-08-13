@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class StudyDesignModel
 {
     public const DESCRIPTION = 'Specifics about the observational study design (enumerated).';
     public const LABEL = 'studyDesign';
     public const NAME = 'schema:studyDesign';
-    public const VALUES = ['MedicalObservationalStudyDesignModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalObservationalStudyDesignModel'];
-    public const TYPES = ['MedicalObservationalStudy' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalObservationalStudyModel'];
+    public const VALUES = ['MedicalObservationalStudyDesignModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalObservationalStudyDesignModel'];
+    public const TYPES = ['MedicalObservationalStudy' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalObservationalStudyModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

@@ -1,0 +1,19 @@
+version: 2
+updates:
+  # Keep the GitHub Actions used by the CI workflow up to date.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # The library itself ships no committed lock file, but the QA tooling does:
+  # keep those pinned dependencies fresh.
+  - package-ecosystem: "composer"
+    directories:
+      - "/tools/php-cs-fixer"
+      - "/tools/phpstan"
+      - "/tools/phpunit"
+      - "/tools/phpbench"
+      - "/tools/infection"
+    schedule:
+      interval: "weekly"

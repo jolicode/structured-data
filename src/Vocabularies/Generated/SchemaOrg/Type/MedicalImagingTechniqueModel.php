@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicalImagingTechniqueModel
 {
     public const DESCRIPTION = 'Any medical imaging modality typically used for diagnostic purposes. Enumerated type.';
     public const LABEL = 'MedicalImagingTechnique';
     public const NAME = 'schema:MedicalImagingTechnique';
-    public const PARENTS = ['MedicalEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEnumerationModel'];
+    public const PARENTS = ['MedicalEnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['CTModel' => 'EnumerationMember\CTModel', 'MRIModel' => 'EnumerationMember\MRIModel', 'PETModel' => 'EnumerationMember\PETModel', 'RadiographyModel' => 'EnumerationMember\RadiographyModel', 'UltrasoundModel' => 'EnumerationMember\UltrasoundModel', 'XRayModel' => 'EnumerationMember\XRayModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

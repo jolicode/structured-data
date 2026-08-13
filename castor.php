@@ -17,16 +17,16 @@ use function Castor\import;
 use function Castor\io;
 use function Castor\run;
 
-use Jolicode\JsonLd\Algorithms\Compact\Compactor;
-use Jolicode\JsonLd\Algorithms\Expand\Expander;
-use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
-use Jolicode\JsonLd\Algorithms\Frame\Framer;
-use Jolicode\JsonLd\Audit\AuditOptions;
-use Jolicode\JsonLd\Mapper\MappedError;
-use Jolicode\JsonLd\Mapper\MappedProperty;
-use Jolicode\JsonLd\Mapper\MappedType;
-use Jolicode\JsonLd\Validator;
-use Jolicode\Vocabularies\Validators\Google\GoogleValidator;
+use JoliCode\StructuredData\Audit\AuditOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms\Compact\Compactor;
+use JoliCode\StructuredData\JsonLd\Algorithms\Expand\Expander;
+use JoliCode\StructuredData\JsonLd\Algorithms\Flatten\Flattener;
+use JoliCode\StructuredData\JsonLd\Algorithms\Frame\Framer;
+use JoliCode\StructuredData\Mapper\MappedError;
+use JoliCode\StructuredData\Mapper\MappedProperty;
+use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Validator;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\GoogleValidator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 
@@ -37,6 +37,10 @@ import(__DIR__ . '/tools/castor.php');
 #[AsTask(description: 'Installs qa tooling')]
 function install(): void
 {
+    // The library's own dependencies. Castor already needs these to boot (this file
+    // requires vendor/autoload.php), so this is mostly a convenience/no-op that keeps
+    // "castor install" a complete one-stop setup once the root vendor exists.
+    run(['composer', 'install', '-o']);
     run(['composer', 'install', '-o', '--working-dir', 'tools/php-cs-fixer']);
     run(['composer', 'install', '-o', '--working-dir', 'tools/phpstan']);
     run(['composer', 'install', '-o', '--working-dir', 'tools/phpbench']);

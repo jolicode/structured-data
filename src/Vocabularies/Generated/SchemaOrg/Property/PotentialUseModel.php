@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PotentialUseModel
 {
     public const DESCRIPTION = 'Intended use of the BioChemEntity by humans.';
     public const LABEL = 'potentialUse';
     public const NAME = 'schema:potentialUse';
-    public const VALUES = ['DefinedTermModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel'];
-    public const TYPES = ['ChemicalSubstance' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ChemicalSubstanceModel', 'MolecularEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MolecularEntityModel'];
+    public const VALUES = ['DefinedTermModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel'];
+    public const TYPES = ['ChemicalSubstance' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ChemicalSubstanceModel', 'MolecularEntity' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MolecularEntityModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['http://www.bioschemas.org/ChemicalSubstance'];
     public const SUPERSEDED_BY = null;

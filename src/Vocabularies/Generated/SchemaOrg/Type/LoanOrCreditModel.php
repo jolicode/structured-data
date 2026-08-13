@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LoanOrCreditModel
 {
     public const DESCRIPTION = 'A financial product for the loaning of an amount of money, or line of credit, under agreed terms and charges.';
     public const LABEL = 'LoanOrCredit';
     public const NAME = 'schema:LoanOrCredit';
-    public const PARENTS = ['FinancialProductModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FinancialProductModel'];
+    public const PARENTS = ['FinancialProductModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\FinancialProductModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

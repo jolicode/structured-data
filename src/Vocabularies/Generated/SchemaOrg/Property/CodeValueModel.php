@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CodeValueModel
 {
     public const DESCRIPTION = 'A short textual code that uniquely identifies the value.';
     public const LABEL = 'codeValue';
     public const NAME = 'schema:codeValue';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['CategoryCode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeModel', 'MedicalCode' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalCodeModel'];
+    public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['CategoryCode' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeModel', 'MedicalCode' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalCodeModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/894'];
     public const SUPERSEDED_BY = null;

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TechArticleModel
 {
     public const DESCRIPTION = 'A technical article - Example: How-to (task) topics, step-by-step, procedural troubleshooting, specifications, etc.';
     public const LABEL = 'TechArticle';
     public const NAME = 'schema:TechArticle';
-    public const PARENTS = ['ArticleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ArticleModel'];
+    public const PARENTS = ['ArticleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ArticleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

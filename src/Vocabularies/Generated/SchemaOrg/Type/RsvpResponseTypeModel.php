@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RsvpResponseTypeModel
 {
     public const DESCRIPTION = 'RsvpResponseType is an enumeration type whose instances represent responding to an RSVP request.';
     public const LABEL = 'RsvpResponseType';
     public const NAME = 'schema:RsvpResponseType';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['RsvpResponseMaybeModel' => 'EnumerationMember\RsvpResponseMaybeModel', 'RsvpResponseNoModel' => 'EnumerationMember\RsvpResponseNoModel', 'RsvpResponseYesModel' => 'EnumerationMember\RsvpResponseYesModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

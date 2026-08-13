@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Algorithms\Benchmark;
+namespace JoliCode\StructuredData\Tests\Algorithms\Benchmark;
 
-use Jolicode\JsonLd\Algorithms;
-use Jolicode\JsonLd\Algorithms\Expand\Expander;
-use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms;
+use JoliCode\StructuredData\JsonLd\Algorithms\Expand\Expander;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 
 class ExpanderBench extends AbstractJsonLdBench
 {

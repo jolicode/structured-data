@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Parser\DataStructures;
+namespace JoliCode\StructuredData\JsonLd\Parser\DataStructures;
 
-use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Jolicode\JsonLd\Parser\Properties\Key;
-use Jolicode\JsonLd\Parser\Properties\Property;
-use Jolicode\JsonLd\Parser\Properties\Value;
-use Jolicode\JsonLd\Parser\Range;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
+use JoliCode\StructuredData\JsonLd\Parser\Properties\Key;
+use JoliCode\StructuredData\JsonLd\Parser\Properties\Property;
+use JoliCode\StructuredData\JsonLd\Parser\Properties\Value;
+use JoliCode\StructuredData\JsonLd\Parser\Range;
 
 class ObjectStructure extends AbstractStructure
 {

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class QuestionModel
 {
     public const DESCRIPTION = 'A sub property of object. A question.';
     public const LABEL = 'question';
     public const NAME = 'schema:question';
-    public const VALUES = ['QuestionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuestionModel'];
-    public const TYPES = ['AskAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AskActionModel'];
+    public const VALUES = ['QuestionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\QuestionModel'];
+    public const TYPES = ['AskAction' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\AskActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

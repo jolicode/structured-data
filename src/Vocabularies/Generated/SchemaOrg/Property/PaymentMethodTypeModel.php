@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PaymentMethodTypeModel
 {
     public const DESCRIPTION = 'The type of a payment method.';
     public const LABEL = 'paymentMethodType';
     public const NAME = 'schema:paymentMethodType';
-    public const VALUES = ['PaymentMethodTypeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PaymentMethodTypeModel'];
-    public const TYPES = ['PaymentMethod' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PaymentMethodModel'];
+    public const VALUES = ['PaymentMethodTypeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PaymentMethodTypeModel'];
+    public const TYPES = ['PaymentMethod' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PaymentMethodModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3537'];
     public const SUPERSEDED_BY = null;

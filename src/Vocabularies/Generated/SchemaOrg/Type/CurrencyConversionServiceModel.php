@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CurrencyConversionServiceModel
 {
     public const DESCRIPTION = 'A service to convert funds from one currency to another currency.';
     public const LABEL = 'CurrencyConversionService';
     public const NAME = 'schema:CurrencyConversionService';
-    public const PARENTS = ['FinancialProductModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\FinancialProductModel'];
+    public const PARENTS = ['FinancialProductModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\FinancialProductModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

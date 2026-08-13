@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicineSystemModel
 {
     public const DESCRIPTION = 'The system of medicine that includes this MedicalEntity, for example \'evidence-based\', \'homeopathic\', \'chiropractic\', etc.';
     public const LABEL = 'medicineSystem';
     public const NAME = 'schema:medicineSystem';
-    public const VALUES = ['MedicineSystemModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicineSystemModel'];
-    public const TYPES = ['MedicalEntity' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel'];
+    public const VALUES = ['MedicineSystemModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicineSystemModel'];
+    public const TYPES = ['MedicalEntity' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalEntityModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

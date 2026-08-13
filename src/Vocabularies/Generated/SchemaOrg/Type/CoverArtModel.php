@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CoverArtModel
 {
     public const DESCRIPTION = 'The artwork on the outer surface of a CreativeWork.';
     public const LABEL = 'CoverArt';
     public const NAME = 'schema:CoverArt';
-    public const PARENTS = ['VisualArtworkModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VisualArtworkModel'];
+    public const PARENTS = ['VisualArtworkModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\VisualArtworkModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://bib.schema.org'];
     public const SOURCE = [];

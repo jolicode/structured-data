@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HasEnergyEfficiencyCategoryModel
 {
     public const DESCRIPTION = 'Defines the energy efficiency Category (which could be either a rating out of range of values or a yes/no certification) for a product according to an international energy efficiency standard.';
     public const LABEL = 'hasEnergyEfficiencyCategory';
     public const NAME = 'schema:hasEnergyEfficiencyCategory';
-    public const VALUES = ['EnergyEfficiencyEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnergyEfficiencyEnumerationModel'];
-    public const TYPES = ['EnergyConsumptionDetails' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnergyConsumptionDetailsModel'];
+    public const VALUES = ['EnergyEfficiencyEnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnergyEfficiencyEnumerationModel'];
+    public const TYPES = ['EnergyConsumptionDetails' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnergyConsumptionDetailsModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2670'];
     public const SUPERSEDED_BY = null;

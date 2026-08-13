@@ -9,35 +9,33 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Algorithms\Compact;
+namespace JoliCode\StructuredData\JsonLd\Algorithms\Compact;
 
-use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextCache;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
-use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
-use Jolicode\JsonLd\Algorithms\Expand\Expander;
-use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
-use Jolicode\JsonLd\Algorithms\Http\HttpDocumentLoader;
-use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
-use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinition;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\Context;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextCache;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextProcessor;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\JsonLdException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Expand\Expander;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\DocumentLoaderInterface;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\HttpDocumentLoader;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 
 class Compactor
 {
     private IriCompactor $iriCompactor;
 
-    private readonly ContextProcesser $contextProcesser;
+    private readonly ContextProcessor $contextProcessor;
     private readonly Expander $expander;
     private readonly DocumentLoaderInterface $documentLoader;
 
     public function __construct(
-        ?ContextProcesser $contextProcesser = null,
+        ?ContextProcessor $contextProcessor = null,
         ?Expander $expander = null,
         ?DocumentLoaderInterface $documentLoader = null,
     ) {
         $this->documentLoader = $documentLoader ?? new HttpDocumentLoader();
-        $this->contextProcesser = $contextProcesser ?? new ContextProcesser(new ContextCache($this->documentLoader));
+        $this->contextProcessor = $contextProcessor ?? new ContextProcessor(new ContextCache($this->documentLoader));
         $this->expander = $expander ?? new Expander(documentLoader: $this->documentLoader);
         $this->iriCompactor = new IriCompactor();
     }
@@ -105,12 +103,15 @@ class Compactor
 
         // 6
         // 7
-        $activeContext = $this->contextProcesser->processContext(new Context(
+        $activeContext = $this->contextProcessor->processContext(new Context(
             baseIri: $options->compactToRelative ? $baseUrl : null,
             baseUrl: $baseUrl,
             processingMode: $options->processingMode,
         ), $context, $baseUrl);
 
+        // The IRI compactor carries the caller options, so it is rebuilt here rather
+        // than being readonly. Collaborators must receive it as an argument: holding
+        // on to the constructor instance would ignore the options given to compact().
         $this->iriCompactor = new IriCompactor($options);
 
         // 8
@@ -203,7 +204,7 @@ class Compactor
             }
 
             // 3.3
-            $activePropertyDefinition = $this->getTermDefinition($activeContext, $activeProperty);
+            $activePropertyDefinition = TermLookup::getTermDefinition($activeContext, $activeProperty);
 
             if (
                 1 === \count($result)
@@ -227,16 +228,16 @@ class Compactor
         if (
             null !== $activeContext->previousContext
             && !property_exists($element, Keyword::VALUE->value)
-            && !$this->isSubjectReference($element)
+            && !TermLookup::isSubjectReference($element)
         ) {
             $activeContext = $activeContext->previousContext;
         }
 
         // 6
-        $inputPropertyDefinition = $this->getTermDefinition($inputContext, $activeProperty);
+        $inputPropertyDefinition = TermLookup::getTermDefinition($inputContext, $activeProperty);
 
         if ($inputPropertyDefinition && false !== $inputPropertyDefinition->context && null !== $inputPropertyDefinition->context) {
-            $activeContext = $this->contextProcesser->processContext(
+            $activeContext = $this->contextProcessor->processContext(
                 $activeContext,
                 $inputPropertyDefinition->context,
                 $inputPropertyDefinition->baseUrl,
@@ -244,7 +245,7 @@ class Compactor
             );
         }
 
-        $activePropertyDefinition = $this->getTermDefinition($activeContext, $activeProperty);
+        $activePropertyDefinition = TermLookup::getTermDefinition($activeContext, $activeProperty);
 
         // 7
         if (property_exists($element, Keyword::VALUE->value) || property_exists($element, Keyword::ID->value)) {
@@ -282,11 +283,11 @@ class Compactor
             sort($compactedTypes);
 
             foreach ($compactedTypes as $term) {
-                $termDefinition = $this->getTermDefinition($typeScopedContext, $term);
+                $termDefinition = TermLookup::getTermDefinition($typeScopedContext, $term);
 
                 // 11.3
                 if ($termDefinition && false !== $termDefinition->context && null !== $termDefinition->context) {
-                    $activeContext = $this->contextProcesser->processContext(
+                    $activeContext = $this->contextProcessor->processContext(
                         $activeContext,
                         $termDefinition->context,
                         $termDefinition->baseUrl,
@@ -342,14 +343,14 @@ class Compactor
                 $alias = (string) $this->iriCompactor->compactIri($activeContext, $expandedProperty, vocab: true);
 
                 // 12.2.4
-                $aliasDefinition = $this->getTermDefinition($activeContext, $alias);
+                $aliasDefinition = TermLookup::getTermDefinition($activeContext, $alias);
                 $asArray = (
                     Context::PROCESSING_MODE_10 !== $activeContext->processingMode
                     && \in_array(Keyword::SET->value, $aliasDefinition->containerMapping ?? [], true)
                 ) || !$compactArrays;
 
                 // 12.2.5
-                self::addValue($result, $alias, $compactedValue, $asArray);
+                CompactionValueAdder::addValue($result, $alias, $compactedValue, $asArray);
 
                 // 12.2.6
                 continue;
@@ -363,7 +364,7 @@ class Compactor
 
                 // 12.3.2
                 foreach (get_object_vars($compactedMap) as $property => $value) {
-                    $propertyDefinition = $this->getTermDefinition($activeContext, $property);
+                    $propertyDefinition = TermLookup::getTermDefinition($activeContext, $property);
 
                     // 12.3.2.1
                     if ($propertyDefinition?->reverseProperty) {
@@ -371,7 +372,7 @@ class Compactor
                         $asArray = \in_array(Keyword::SET->value, $propertyDefinition->containerMapping ?? [], true) || !$compactArrays;
 
                         // 12.3.2.1.2
-                        self::addValue($result, $property, $value, $asArray);
+                        CompactionValueAdder::addValue($result, $property, $value, $asArray);
 
                         // 12.3.2.1.3
                         unset($compactedMap->{$property});
@@ -438,7 +439,7 @@ class Compactor
                 $nestResult = $this->resolveNestResult($activeContext, $result, $itemActiveProperty);
 
                 // 12.7.4
-                self::addValue($nestResult, $itemActiveProperty, [], true);
+                CompactionValueAdder::addValue($nestResult, $itemActiveProperty, [], true);
             }
 
             // 12.8
@@ -456,7 +457,7 @@ class Compactor
                 $nestResult = $this->resolveNestResult($activeContext, $result, $itemActiveProperty);
 
                 // 12.8.3
-                $itemActivePropertyDefinition = $this->getTermDefinition($activeContext, $itemActiveProperty);
+                $itemActivePropertyDefinition = TermLookup::getTermDefinition($activeContext, $itemActiveProperty);
                 $container = $itemActivePropertyDefinition->containerMapping ?? [];
 
                 // 12.8.4
@@ -496,7 +497,7 @@ class Compactor
                         }
 
                         // 12.8.6.2.3
-                        self::addValue($nestResult, $itemActiveProperty, $compactedItem, $asArray);
+                        CompactionValueAdder::addValue($nestResult, $itemActiveProperty, $compactedItem, $asArray);
                     } else {
                         // 12.8.6.3
                         $nestResult->{$itemActiveProperty} = $compactedItem;
@@ -507,235 +508,27 @@ class Compactor
 
                 // 12.8.7
                 if (IriCompactor::isGraphObject($expandedItem)) {
-                    $this->compactGraphItem($activeContext, $nestResult, $itemActiveProperty, $container, $expandedItem, $compactedItem, $asArray, $compactArrays);
+                    ItemMapFiler::compactGraphItem($this->iriCompactor, $activeContext, $nestResult, $itemActiveProperty, $container, $expandedItem, $compactedItem, $asArray, $compactArrays);
 
                     continue;
                 }
 
                 // 12.8.8
-                $mapContainerKeyword = $this->getMapContainerKeyword($container);
+                $mapContainerKeyword = TermLookup::getMapContainerKeyword($container);
 
                 if (null !== $mapContainerKeyword && !\in_array(Keyword::GRAPH->value, $container, true)) {
-                    $this->compactMapItem($activeContext, $nestResult, $itemActiveProperty, $mapContainerKeyword, $itemActivePropertyDefinition, $expandedItem, $compactedItem, $asArray);
+                    ItemMapFiler::compactMapItem($this, $this->iriCompactor, $activeContext, $nestResult, $itemActiveProperty, $mapContainerKeyword, $itemActivePropertyDefinition, $expandedItem, $compactedItem, $asArray);
 
                     continue;
                 }
 
                 // 12.8.9
-                self::addValue($nestResult, $itemActiveProperty, $compactedItem, $asArray);
+                CompactionValueAdder::addValue($nestResult, $itemActiveProperty, $compactedItem, $asArray);
             }
         }
 
         // 13
         return $result;
-    }
-
-    /**
-     * Step 12.8.7 of the Compaction algorithm: compacting an expanded item that is
-     * a graph object.
-     *
-     * @param array<string> $container
-     */
-    private function compactGraphItem(
-        Context $activeContext,
-        \stdClass $nestResult,
-        string $itemActiveProperty,
-        array $container,
-        \stdClass $expandedItem,
-        mixed $compactedItem,
-        bool $asArray,
-        bool $compactArrays,
-    ): void {
-        $containsGraph = \in_array(Keyword::GRAPH->value, $container, true);
-
-        // 12.8.7.1
-        if ($containsGraph && \in_array(Keyword::ID->value, $container, true)) {
-            // 12.8.7.1.1
-            $mapObject = $this->resolveMapObject($nestResult, $itemActiveProperty);
-
-            // 12.8.7.1.2
-            $mapKey = property_exists($expandedItem, Keyword::ID->value)
-                ? (string) $this->iriCompactor->compactIri($activeContext, $expandedItem->{Keyword::ID->value})
-                : (string) $this->iriCompactor->compactIri($activeContext, Keyword::NONE->value, vocab: true);
-
-            // 12.8.7.1.3
-            self::addValue($mapObject, $mapKey, $compactedItem, $asArray);
-
-            return;
-        }
-
-        // 12.8.7.2
-        if ($containsGraph && \in_array(Keyword::INDEX->value, $container, true) && IriCompactor::isSimpleGraphObject($expandedItem)) {
-            // 12.8.7.2.1
-            $mapObject = $this->resolveMapObject($nestResult, $itemActiveProperty);
-
-            // 12.8.7.2.2
-            $mapKey = property_exists($expandedItem, Keyword::INDEX->value)
-                ? $expandedItem->{Keyword::INDEX->value}
-                : Keyword::NONE->value;
-
-            // 12.8.7.2.3
-            self::addValue($mapObject, $mapKey, $compactedItem, $asArray);
-
-            return;
-        }
-
-        // 12.8.7.3
-        if ($containsGraph && IriCompactor::isSimpleGraphObject($expandedItem)) {
-            // 12.8.7.3.1
-            if (\is_array($compactedItem) && \count($compactedItem) > 1) {
-                $includedObject = new \stdClass();
-                $includedObject->{(string) $this->iriCompactor->compactIri($activeContext, Keyword::INCLUDED->value, vocab: true)} = $compactedItem;
-                $compactedItem = $includedObject;
-            }
-
-            // 12.8.7.3.2
-            self::addValue($nestResult, $itemActiveProperty, $compactedItem, $asArray);
-
-            return;
-        }
-
-        // 12.8.7.4
-        // 12.8.7.4.1
-        // A single-item array collapses before wrapping, so that the wrapped graph
-        // reads as one value.
-        if (\is_array($compactedItem) && 1 === \count($compactedItem) && $compactArrays) {
-            $compactedItem = $compactedItem[0];
-        }
-
-        $graphObject = new \stdClass();
-        $graphObject->{(string) $this->iriCompactor->compactIri($activeContext, Keyword::GRAPH->value, vocab: true)} = $compactedItem;
-        $compactedItem = $graphObject;
-
-        // 12.8.7.4.2
-        if (property_exists($expandedItem, Keyword::ID->value)) {
-            $compactedItem->{(string) $this->iriCompactor->compactIri($activeContext, Keyword::ID->value, vocab: true)} = $this->iriCompactor->compactIri($activeContext, $expandedItem->{Keyword::ID->value});
-        }
-
-        // 12.8.7.4.3
-        if (property_exists($expandedItem, Keyword::INDEX->value)) {
-            $compactedItem->{(string) $this->iriCompactor->compactIri($activeContext, Keyword::INDEX->value, vocab: true)} = $expandedItem->{Keyword::INDEX->value};
-        }
-
-        // 12.8.7.4.4
-        self::addValue($nestResult, $itemActiveProperty, $compactedItem, $asArray);
-    }
-
-    /**
-     * Step 12.8.8 of the Compaction algorithm: filing the compacted item into a
-     * language, index, id or type map.
-     */
-    private function compactMapItem(
-        Context $activeContext,
-        \stdClass $nestResult,
-        string $itemActiveProperty,
-        string $mapContainerKeyword,
-        ?TermDefinition $itemActivePropertyDefinition,
-        \stdClass $expandedItem,
-        mixed $compactedItem,
-        bool $asArray,
-    ): void {
-        // 12.8.8.1
-        $mapObject = $this->resolveMapObject($nestResult, $itemActiveProperty);
-
-        // 12.8.8.2
-        $containerKey = (string) $this->iriCompactor->compactIri($activeContext, $mapContainerKeyword, vocab: true);
-
-        // 12.8.8.3
-        $indexKey = $itemActivePropertyDefinition->indexMapping ?? Keyword::INDEX->value;
-        $mapKey = null;
-
-        if (Keyword::LANGUAGE->value === $mapContainerKeyword && property_exists($expandedItem, Keyword::VALUE->value)) {
-            // 12.8.8.4
-            $compactedItem = $expandedItem->{Keyword::VALUE->value};
-
-            if (property_exists($expandedItem, Keyword::LANGUAGE->value)) {
-                $mapKey = $expandedItem->{Keyword::LANGUAGE->value};
-            }
-        } elseif (Keyword::INDEX->value === $mapContainerKeyword && Keyword::INDEX->value === $indexKey) {
-            // 12.8.8.5
-            if (property_exists($expandedItem, Keyword::INDEX->value)) {
-                $mapKey = $expandedItem->{Keyword::INDEX->value};
-            }
-        } elseif (Keyword::INDEX->value === $mapContainerKeyword && Keyword::INDEX->value !== $indexKey) {
-            // 12.8.8.6
-            // 12.8.8.6.1
-            // The index property is looked up in the compacted item under the index
-            // key as authored in the term definition (the usual form the property
-            // compacted to), falling back to IRI compacting its expanded form (when
-            // the term definition authored a full IRI).
-            $containerKey = $indexKey;
-
-            if ($compactedItem instanceof \stdClass && !property_exists($compactedItem, $containerKey)) {
-                $containerKey = (string) $this->iriCompactor->compactIri(
-                    $activeContext,
-                    IriResolver::expand($activeContext, $indexKey),
-                    vocab: true,
-                );
-            }
-
-            // 12.8.8.6.2
-            if ($compactedItem instanceof \stdClass && property_exists($compactedItem, $containerKey)) {
-                $containerValue = $compactedItem->{$containerKey};
-                $containerValues = \is_array($containerValue) ? $containerValue : [$containerValue];
-                $mapKey = array_shift($containerValues);
-
-                if (!\is_string($mapKey)) {
-                    // A non-string index value cannot be used as a map key: the item
-                    // is filed under @none and keeps its index entry untouched.
-                    $mapKey = null;
-                } elseif ([] === $containerValues) {
-                    // 12.8.8.6.3
-                    unset($compactedItem->{$containerKey});
-                } elseif (1 === \count($containerValues)) {
-                    $compactedItem->{$containerKey} = $containerValues[0];
-                } else {
-                    $compactedItem->{$containerKey} = $containerValues;
-                }
-            }
-        } elseif (Keyword::ID->value === $mapContainerKeyword) {
-            // 12.8.8.7
-            if ($compactedItem instanceof \stdClass && property_exists($compactedItem, $containerKey)) {
-                $mapKey = $compactedItem->{$containerKey};
-                unset($compactedItem->{$containerKey});
-            }
-        } elseif (Keyword::TYPE->value === $mapContainerKeyword) {
-            // 12.8.8.8
-            // 12.8.8.8.1
-            $types = $compactedItem instanceof \stdClass && property_exists($compactedItem, $containerKey)
-                ? (array) $compactedItem->{$containerKey}
-                : [];
-            $mapKey = array_shift($types);
-
-            if ($compactedItem instanceof \stdClass) {
-                // 12.8.8.8.2
-                if ([] === $types) {
-                    unset($compactedItem->{$containerKey});
-                } elseif (1 === \count($types)) {
-                    $compactedItem->{$containerKey} = $types[0];
-                } else {
-                    $compactedItem->{$containerKey} = $types;
-                }
-
-                // 12.8.8.8.3
-                if (
-                    1 === \count(get_object_vars($compactedItem))
-                    && property_exists($expandedItem, Keyword::ID->value)
-                ) {
-                    $idOnlyItem = new \stdClass();
-                    $idOnlyItem->{Keyword::ID->value} = $expandedItem->{Keyword::ID->value};
-                    $compactedItem = $this->doCompact($activeContext, $itemActiveProperty, $idOnlyItem);
-                }
-            }
-        }
-
-        // 12.8.8.9
-        if (null === $mapKey) {
-            $mapKey = (string) $this->iriCompactor->compactIri($activeContext, Keyword::NONE->value, vocab: true);
-        }
-
-        // 12.8.8.10
-        self::addValue($mapObject, $mapKey, $compactedItem, $asArray);
     }
 
     /**
@@ -745,7 +538,7 @@ class Compactor
      */
     private function resolveNestResult(Context $activeContext, \stdClass $result, string $itemActiveProperty): \stdClass
     {
-        $definition = $this->getTermDefinition($activeContext, $itemActiveProperty);
+        $definition = TermLookup::getTermDefinition($activeContext, $itemActiveProperty);
 
         if (null === $definition?->nestValue) {
             return $result;
@@ -755,7 +548,7 @@ class Compactor
 
         // The nest term must expand to @nest.
         if (Keyword::NEST->value !== $nestTerm) {
-            $nestTermDefinition = $this->getTermDefinition($activeContext, $nestTerm);
+            $nestTermDefinition = TermLookup::getTermDefinition($activeContext, $nestTerm);
 
             if (Keyword::NEST->value !== $nestTermDefinition?->iriMapping) {
                 throw new JsonLdException('invalid @nest value');
@@ -767,83 +560,5 @@ class Compactor
         }
 
         return $result->{$nestTerm};
-    }
-
-    private function resolveMapObject(\stdClass $nestResult, string $itemActiveProperty): \stdClass
-    {
-        if (!property_exists($nestResult, $itemActiveProperty) || !$nestResult->{$itemActiveProperty} instanceof \stdClass) {
-            $nestResult->{$itemActiveProperty} = new \stdClass();
-        }
-
-        return $nestResult->{$itemActiveProperty};
-    }
-
-    /**
-     * @param array<string> $container
-     */
-    private function getMapContainerKeyword(array $container): ?string
-    {
-        foreach ([Keyword::LANGUAGE->value, Keyword::INDEX->value, Keyword::ID->value, Keyword::TYPE->value] as $keyword) {
-            if (\in_array($keyword, $container, true)) {
-                return $keyword;
-            }
-        }
-
-        return null;
-    }
-
-    private function getTermDefinition(Context $activeContext, ?string $term): ?TermDefinition
-    {
-        if (null === $term) {
-            return null;
-        }
-
-        $definition = $activeContext->termDefinitions[$term] ?? null;
-
-        return $definition instanceof TermDefinition ? $definition : null;
-    }
-
-    private function isSubjectReference(\stdClass $element): bool
-    {
-        $entries = get_object_vars($element);
-
-        return 1 === \count($entries) && \array_key_exists(Keyword::ID->value, $entries);
-    }
-
-    /**
-     * The Add Value macro from the JSON-LD 1.1 Processing Algorithms and API W3C
-     * Recommendation, with the exact semantics compaction relies on (an existing
-     * scalar entry is wrapped into an array before appending).
-     *
-     * @see https://www.w3.org/TR/json-ld-api/#dfn-add-value
-     */
-    private static function addValue(\stdClass $object, string $key, mixed $value, bool $asArray = false): void
-    {
-        // 1
-        if ($asArray && !property_exists($object, $key)) {
-            $object->{$key} = [];
-        }
-
-        // 2
-        if (\is_array($value)) {
-            foreach ($value as $item) {
-                self::addValue($object, $key, $item);
-            }
-
-            return;
-        }
-
-        // 3
-        if (!property_exists($object, $key)) {
-            $object->{$key} = $asArray ? [$value] : $value;
-
-            return;
-        }
-
-        if (!\is_array($object->{$key})) {
-            $object->{$key} = [$object->{$key}];
-        }
-
-        $object->{$key}[] = $value;
     }
 }

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class InverseOfModel
 {
     public const DESCRIPTION = 'Relates a property to a property that is its inverse. Inverse properties relate the same pairs of items to each other, but in reversed direction. For example, the \'alumni\' and \'alumniOf\' properties are inverseOf each other. Some properties don\'t have explicit inverses; in these situations RDFa and JSON-LD syntax for reverse properties can be used.';
     public const LABEL = 'inverseOf';
     public const NAME = 'schema:inverseOf';
-    public const VALUES = ['PropertyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyModel'];
-    public const TYPES = ['Property' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PropertyModel'];
+    public const VALUES = ['PropertyModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PropertyModel'];
+    public const TYPES = ['Property' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PropertyModel'];
     public const IS_PART_OF = ['https://meta.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

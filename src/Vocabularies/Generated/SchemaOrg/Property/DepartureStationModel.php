@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DepartureStationModel
 {
     public const DESCRIPTION = 'The station from which the train departs.';
     public const LABEL = 'departureStation';
     public const NAME = 'schema:departureStation';
-    public const VALUES = ['TrainStationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TrainStationModel'];
-    public const TYPES = ['TrainTrip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TrainTripModel'];
+    public const VALUES = ['TrainStationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TrainStationModel'];
+    public const TYPES = ['TrainTrip' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TrainTripModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

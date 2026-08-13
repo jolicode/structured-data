@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class HasCourseModel
 {
     public const DESCRIPTION = 'A course or class that is one of the learning opportunities that constitute an educational / occupational program. No information is implied about whether the course is mandatory or optional; no guarantee is implied about whether the course will be available to everyone on the program.';
     public const LABEL = 'hasCourse';
     public const NAME = 'schema:hasCourse';
-    public const VALUES = ['CourseModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CourseModel'];
-    public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalProgramModel'];
+    public const VALUES = ['CourseModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CourseModel'];
+    public const TYPES = ['EducationalOccupationalProgram' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalProgramModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2483'];
     public const SUPERSEDED_BY = null;

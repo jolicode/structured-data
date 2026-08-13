@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class OpticianModel
 {
     public const DESCRIPTION = 'A store that sells reading glasses and similar devices for improving vision.';
     public const LABEL = 'Optician';
     public const NAME = 'schema:Optician';
-    public const PARENTS = ['MedicalBusinessModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalBusinessModel'];
+    public const PARENTS = ['MedicalBusinessModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

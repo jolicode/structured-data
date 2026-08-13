@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class IndividualPhysicianModel
 {
@@ -19,7 +19,7 @@ final class IndividualPhysicianModel
 The [[practicesAt]] property can be used to indicate [[MedicalOrganization]] hospitals, clinics, pharmacies etc. where this physician practices.';
     public const LABEL = 'IndividualPhysician';
     public const NAME = 'schema:IndividualPhysician';
-    public const PARENTS = ['PhysicianModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PhysicianModel'];
+    public const PARENTS = ['PhysicianModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PhysicianModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

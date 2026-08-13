@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Validation;
+namespace JoliCode\StructuredData\Tests\Validation;
 
-use Jolicode\JsonLd\Audit\AuditOptions;
-use Jolicode\JsonLd\Extraction\Extractor;
-use Jolicode\JsonLd\Validator;
+use JoliCode\StructuredData\Audit\AuditOptions;
+use JoliCode\StructuredData\Extraction\Extractor;
+use JoliCode\StructuredData\Validator;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
@@ -166,12 +166,13 @@ class ExtractorResilienceTest extends TestCase
     {
         $elements = $this->createExtractor()->extract($this->fixture('wicked-mixed-document.html'));
 
-        // 9 elements: 4 JSON-LD (Valid Json, Speechless Bar, Monthly Program, Course, Product),
-        // 3 Microdata (Valid Micro, Speechless program highlights, stub Person with no properties),
-        // 1 RDFa (Valid RDFa).
-        // The stub Person comes from a wicked-invalid-micro-b element that has itemscope+itemtype
-        // but only misspelled itemprop attributes — it is extractable but content-less.
-        $this->assertCount(9, $elements);
+        // 7 elements: 3 JSON-LD (Wicked Valid Json, Speechless Bar, Monthly Program),
+        // 3 Microdata (Wicked Valid Micro, Speechless program highlights, stub Person with no properties),
+        // 1 RDFa (Wicked Valid RDFa).
+        // The malformed JSON-LD script and the untyped ("Broken RDFa") section are
+        // detected but dropped as unusable. The stub Person has itemscope+itemtype but
+        // only a misspelled itemprop attribute — it is extractable but content-less.
+        $this->assertCount(7, $elements);
 
         $contents = implode("\n", array_map(static fn ($element) => $element->content, $elements));
 
@@ -231,7 +232,7 @@ class ExtractorResilienceTest extends TestCase
 
         $this->assertNotEmpty($types);
 
-        /** @var array<\Jolicode\JsonLd\Mapper\MappedError> $documentIssues */
+        /** @var array<\JoliCode\StructuredData\Mapper\MappedError> $documentIssues */
         $documentIssues = $audit->getDiagnostic(new AuditOptions(severity: AuditOptions::SEVERITY_DOCUMENT, asObject: true));
         $this->assertCount(1, $documentIssues);
         $issue = $documentIssues[0];

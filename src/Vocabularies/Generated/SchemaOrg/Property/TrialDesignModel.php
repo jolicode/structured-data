@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TrialDesignModel
 {
     public const DESCRIPTION = 'Specifics about the trial design (enumerated).';
     public const LABEL = 'trialDesign';
     public const NAME = 'schema:trialDesign';
-    public const VALUES = ['MedicalTrialDesignModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTrialDesignModel'];
-    public const TYPES = ['MedicalTrial' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalTrialModel'];
+    public const VALUES = ['MedicalTrialDesignModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalTrialDesignModel'];
+    public const TYPES = ['MedicalTrial' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalTrialModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

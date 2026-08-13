@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TrainingSalaryModel
 {
     public const DESCRIPTION = 'The estimated salary earned while in the program.';
     public const LABEL = 'trainingSalary';
     public const NAME = 'schema:trainingSalary';
-    public const VALUES = ['MonetaryAmountDistributionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountDistributionModel'];
-    public const TYPES = ['EducationalOccupationalProgram' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalProgramModel', 'WorkBasedProgram' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WorkBasedProgramModel'];
+    public const VALUES = ['MonetaryAmountDistributionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountDistributionModel'];
+    public const TYPES = ['EducationalOccupationalProgram' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalProgramModel', 'WorkBasedProgram' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\WorkBasedProgramModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2289', 'https://github.com/schemaorg/schemaorg/issues/2460'];
     public const SUPERSEDED_BY = null;

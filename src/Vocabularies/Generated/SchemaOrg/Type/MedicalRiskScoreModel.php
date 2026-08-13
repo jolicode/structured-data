@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicalRiskScoreModel
 {
     public const DESCRIPTION = 'A simple system that adds up the number of risk factors to yield a score that is associated with prognosis, e.g. CHAD score, TIMI risk score.';
     public const LABEL = 'MedicalRiskScore';
     public const NAME = 'schema:MedicalRiskScore';
-    public const PARENTS = ['MedicalRiskEstimatorModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalRiskEstimatorModel'];
+    public const PARENTS = ['MedicalRiskEstimatorModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalRiskEstimatorModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

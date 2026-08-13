@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Algorithms\Benchmark;
+namespace JoliCode\StructuredData\Tests\Algorithms\Benchmark;
 
-use Jolicode\JsonLd\Algorithms;
-use Jolicode\JsonLd\Algorithms\Flatten\Flattener;
-use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms;
+use JoliCode\StructuredData\JsonLd\Algorithms\Flatten\Flattener;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 
 class FlattenerBench extends AbstractJsonLdBench
 {

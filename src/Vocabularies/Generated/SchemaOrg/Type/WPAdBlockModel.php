@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class WPAdBlockModel
 {
     public const DESCRIPTION = 'An advertising section of the page.';
     public const LABEL = 'WPAdBlock';
     public const NAME = 'schema:WPAdBlock';
-    public const PARENTS = ['WebPageElementModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\WebPageElementModel'];
+    public const PARENTS = ['WebPageElementModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\WebPageElementModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReplacerModel
 {
     public const DESCRIPTION = 'A sub property of object. The object that replaces.';
     public const LABEL = 'replacer';
     public const NAME = 'schema:replacer';
-    public const VALUES = ['ThingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
-    public const TYPES = ['ReplaceAction' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReplaceActionModel'];
+    public const VALUES = ['ThingModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
+    public const TYPES = ['ReplaceAction' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ReplaceActionModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

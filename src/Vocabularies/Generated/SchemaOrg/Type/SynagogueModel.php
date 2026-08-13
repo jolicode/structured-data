@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SynagogueModel
 {
     public const DESCRIPTION = 'A synagogue.';
     public const LABEL = 'Synagogue';
     public const NAME = 'schema:Synagogue';
-    public const PARENTS = ['PlaceOfWorshipModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlaceOfWorshipModel'];
+    public const PARENTS = ['PlaceOfWorshipModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PlaceOfWorshipModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DropoffLocationModel
 {
     public const DESCRIPTION = 'Where a rental car can be dropped off.';
     public const LABEL = 'dropoffLocation';
     public const NAME = 'schema:dropoffLocation';
-    public const VALUES = ['PlaceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PlaceModel'];
-    public const TYPES = ['RentalCarReservation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RentalCarReservationModel'];
+    public const VALUES = ['PlaceModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PlaceModel'];
+    public const TYPES = ['RentalCarReservation' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\RentalCarReservationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RiverBodyOfWaterModel
 {
     public const DESCRIPTION = 'A river (for example, the broad majestic Shannon).';
     public const LABEL = 'RiverBodyOfWater';
     public const NAME = 'schema:RiverBodyOfWater';
-    public const PARENTS = ['BodyOfWaterModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BodyOfWaterModel'];
+    public const PARENTS = ['BodyOfWaterModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BodyOfWaterModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

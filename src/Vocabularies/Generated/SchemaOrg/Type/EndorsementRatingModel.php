@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EndorsementRatingModel
 {
@@ -23,7 +23,7 @@ An [[EndorsementRating]] may be part of a numeric scale or organized system, but
 endorsement rating is particularly useful in the absence of numeric scales as it helps consumers understand that the rating is broadly positive.';
     public const LABEL = 'EndorsementRating';
     public const NAME = 'schema:EndorsementRating';
-    public const PARENTS = ['RatingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RatingModel'];
+    public const PARENTS = ['RatingModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\RatingModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1293'];

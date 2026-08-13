@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MedicalSymptomModel
 {
     public const DESCRIPTION = 'Any complaint sensed and expressed by the patient (therefore defined as subjective)  like stomachache, lower-back pain, or fatigue.';
     public const LABEL = 'MedicalSymptom';
     public const NAME = 'schema:MedicalSymptom';
-    public const PARENTS = ['MedicalSignOrSymptomModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalSignOrSymptomModel'];
+    public const PARENTS = ['MedicalSignOrSymptomModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalSignOrSymptomModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Algorithms\Http;
+namespace JoliCode\StructuredData\Tests\Algorithms\Http;
 
-use Jolicode\JsonLd\Algorithms\Exception\ContextProcessingException;
-use Jolicode\JsonLd\Algorithms\Http\HttpDocumentLoader;
-use Jolicode\JsonLd\Algorithms\Http\RemoteContextPolicy;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\ContextProcessingException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\HttpDocumentLoader;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\RemoteContextPolicy;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
@@ -166,6 +166,66 @@ class HttpDocumentLoaderTest extends TestCase
         $this->expectException(ContextProcessingException::class);
 
         $loader->load('https://example.com/context.jsonld');
+    }
+
+    /**
+     * A redirect to a host outside the allow-list must be refused at the hop, not
+     * only once the whole chain has been followed.
+     */
+    public function testARedirectToADisallowedHostIsRefusedAtTheHop(): void
+    {
+        $loader = new HttpDocumentLoader(
+            RemoteContextPolicy::allowHosts('example.com'),
+            new MockHttpClient([
+                new MockResponse('', ['http_code' => 302, 'response_headers' => ['Location' => 'https://evil.example/context.jsonld']]),
+                new MockResponse('{"@context":{}}'),
+            ]),
+        );
+
+        $this->expectException(ContextProcessingException::class);
+
+        $loader->load('https://example.com/context.jsonld');
+    }
+
+    /**
+     * A redirect that stays inside the allow-list is followed normally.
+     */
+    public function testARedirectInsideTheAllowListIsFollowed(): void
+    {
+        $loader = new HttpDocumentLoader(
+            RemoteContextPolicy::allowHosts('example.com'),
+            new MockHttpClient([
+                new MockResponse('', ['http_code' => 302, 'response_headers' => ['Location' => 'https://example.com/real.jsonld']]),
+                new MockResponse('{"@context":{"name":"https://schema.org/name"}}'),
+            ]),
+        );
+
+        $document = $loader->load('https://example.com/context.jsonld');
+
+        $this->assertSame('https://schema.org/name', $document->{'@context'}->name);
+    }
+
+    #[DataProvider('provideUrlsRefusedByPolicyRefinements')]
+    public function testUrlsWithUserinfoOrNonDefaultPortsAreRefused(string $url): void
+    {
+        $loader = new HttpDocumentLoader(
+            RemoteContextPolicy::allowHosts('example.com'),
+            $this->clientThatMustNotBeCalled(),
+        );
+
+        $this->expectException(ContextProcessingException::class);
+
+        $loader->load($url);
+    }
+
+    /**
+     * @return iterable<string, array{string}>
+     */
+    public static function provideUrlsRefusedByPolicyRefinements(): iterable
+    {
+        yield 'userinfo' => ['https://user:pass@example.com/context.jsonld'];
+        yield 'non-default port' => ['https://example.com:8080/context.jsonld'];
+        yield 'ssh port' => ['https://example.com:22/context.jsonld'];
     }
 
     public function testATransportFailureIsReportedOpaquely(): void

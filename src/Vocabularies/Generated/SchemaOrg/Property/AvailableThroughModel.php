@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class AvailableThroughModel
 {
     public const DESCRIPTION = 'After this date, the item will no longer be available for pickup.';
     public const LABEL = 'availableThrough';
     public const NAME = 'schema:availableThrough';
-    public const VALUES = ['DateTimeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DateTimeModel'];
-    public const TYPES = ['DeliveryEvent' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DeliveryEventModel'];
+    public const VALUES = ['DateTimeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DateTimeModel'];
+    public const TYPES = ['DeliveryEvent' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DeliveryEventModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

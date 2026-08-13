@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ItemAvailabilityModel
 {
     public const DESCRIPTION = 'A list of possible product availability options.';
     public const LABEL = 'ItemAvailability';
     public const NAME = 'schema:ItemAvailability';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['BackOrderModel' => 'EnumerationMember\BackOrderModel', 'DiscontinuedModel' => 'EnumerationMember\DiscontinuedModel', 'InStockModel' => 'EnumerationMember\InStockModel', 'InStoreOnlyModel' => 'EnumerationMember\InStoreOnlyModel', 'LimitedAvailabilityModel' => 'EnumerationMember\LimitedAvailabilityModel', 'MadeToOrderModel' => 'EnumerationMember\MadeToOrderModel', 'OnlineOnlyModel' => 'EnumerationMember\OnlineOnlyModel', 'OutOfStockModel' => 'EnumerationMember\OutOfStockModel', 'PreOrderModel' => 'EnumerationMember\PreOrderModel', 'PreSaleModel' => 'EnumerationMember\PreSaleModel', 'ReservedModel' => 'EnumerationMember\ReservedModel', 'SoldOutModel' => 'EnumerationMember\SoldOutModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

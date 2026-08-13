@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EmployerAggregateRatingModel
 {
     public const DESCRIPTION = 'An aggregate rating of an Organization related to its role as an employer.';
     public const LABEL = 'EmployerAggregateRating';
     public const NAME = 'schema:EmployerAggregateRating';
-    public const PARENTS = ['AggregateRatingModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\AggregateRatingModel'];
+    public const PARENTS = ['AggregateRatingModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\AggregateRatingModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1689'];

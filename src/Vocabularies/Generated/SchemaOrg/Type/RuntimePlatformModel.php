@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class RuntimePlatformModel
 {
     public const DESCRIPTION = 'Specialized software environment that provides the essential infrastructure, libraries, and services required to execute a program.';
     public const LABEL = 'RuntimePlatform';
     public const NAME = 'schema:RuntimePlatform';
-    public const PARENTS = ['SoftwareApplicationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SoftwareApplicationModel'];
+    public const PARENTS = ['SoftwareApplicationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SoftwareApplicationModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/4575'];

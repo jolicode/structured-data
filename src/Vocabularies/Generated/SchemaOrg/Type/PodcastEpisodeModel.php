@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PodcastEpisodeModel
 {
     public const DESCRIPTION = 'A single episode of a podcast series.';
     public const LABEL = 'PodcastEpisode';
     public const NAME = 'schema:PodcastEpisode';
-    public const PARENTS = ['EpisodeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EpisodeModel'];
+    public const PARENTS = ['EpisodeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EpisodeModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/373'];

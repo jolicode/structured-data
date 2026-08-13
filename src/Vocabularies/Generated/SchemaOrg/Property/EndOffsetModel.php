@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EndOffsetModel
 {
     public const DESCRIPTION = 'The end time of the clip expressed as the number of seconds from the beginning of the work.';
     public const LABEL = 'endOffset';
     public const NAME = 'schema:endOffset';
-    public const VALUES = ['HyperTocEntryModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\HyperTocEntryModel', 'NumberModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
-    public const TYPES = ['Clip' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ClipModel'];
+    public const VALUES = ['HyperTocEntryModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\HyperTocEntryModel', 'NumberModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
+    public const TYPES = ['Clip' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ClipModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2021'];
     public const SUPERSEDED_BY = null;

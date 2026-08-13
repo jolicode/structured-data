@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DatasetModel
 {
     public const DESCRIPTION = 'A dataset contained in this catalog.';
     public const LABEL = 'dataset';
     public const NAME = 'schema:dataset';
-    public const VALUES = ['DatasetModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DatasetModel'];
-    public const TYPES = ['DataCatalog' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DataCatalogModel'];
+    public const VALUES = ['DatasetModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DatasetModel'];
+    public const TYPES = ['DataCatalog' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DataCatalogModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

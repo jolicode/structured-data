@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Array of types including Google-supported ones</title>
+
+    <!-- A single JSON-LD script whose top level is an array of nodes. At least
+         one node is a Google Rich Results supported type, so the Google validator
+         hydrates a documentation link for it. Used to check that link hydration
+         works when types come as an array rather than a single node. -->
+    <script type="application/ld+json">
+    [
+        {
+            "@context": "https://schema.org",
+            "@type": "Recipe",
+            "name": "Speechless Pancakes",
+            "recipeIngredient": ["flour", "milk", "eggs"],
+            "recipeInstructions": "Mix, then cook on a hot pan."
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "How we bake at JoliCampus",
+            "author": {
+                "@type": "Person",
+                "name": "JoliCampus"
+            }
+        }
+    ]
+    </script>
+</head>
+<body>
+    <h1>Training menu</h1>
+</body>
+</html>

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class EndorseActionModel
 {
     public const DESCRIPTION = 'An agent approves/certifies/likes/supports/sanctions an object.';
     public const LABEL = 'EndorseAction';
     public const NAME = 'schema:EndorseAction';
-    public const PARENTS = ['ReactActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReactActionModel'];
+    public const PARENTS = ['ReactActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ReactActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

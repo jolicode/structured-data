@@ -9,18 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Validators\Google;
+namespace JoliCode\StructuredData\Vocabularies\Validators\Google;
 
-use Jolicode\JsonLd\Mapper\MappedProperty;
-use Jolicode\JsonLd\Mapper\MappedType;
-use Jolicode\Vocabularies\Generated\GeneratedClassesRegistry;
+use JoliCode\StructuredData\Mapper\MappedProperty;
+use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Generated\GeneratedClassesRegistry;
 
 class Stack
 {
-    private const BASE_NAMESPACE = 'Jolicode\\Vocabularies\\Generated\\Google';
-
-    /** @var array<string, array<mixed>> */
-    private static array $normalizedPropertiesByClass = [];
+    public const BASE_NAMESPACE = 'JoliCode\\StructuredData\\Vocabularies\\Generated\\Google';
 
     private ?string $resolvedValidationTypeCacheKey = null;
     private ?array $resolvedValidationTypeCache = null;
@@ -171,7 +168,7 @@ class Stack
             $searchedKey = $segment['propertyKey'];
             $type = $segment['type'];
 
-            $validationProperties = $this->normalizeProperties($validationProperties);
+            $validationProperties = ValidationPropertiesNormalizer::normalizeProperties($validationProperties);
 
             $validationType = $validationProperties[$searchedKey] ?? null;
 
@@ -189,9 +186,9 @@ class Stack
                 return $validationType;
             }
 
-            $this->handleSpecialProperties($type, $validationType);
+            ValidationPropertiesNormalizer::handleSpecialProperties($type, $validationType);
 
-            $validationType['properties'] = $this->normalizeProperties($validationType['properties'] ?? []);
+            $validationType['properties'] = ValidationPropertiesNormalizer::normalizeProperties($validationType['properties'] ?? []);
             $validationProperties = $validationType['properties'];
         }
 
@@ -221,7 +218,7 @@ class Stack
                 continue;
             }
 
-            $properties = $this->getNormalizedClassProperties($childValidationClass);
+            $properties = ValidationPropertiesNormalizer::getNormalizedClassProperties($childValidationClass);
             $missingRequiredCount = 0;
             $matchedPropertiesCount = 0;
 
@@ -277,63 +274,6 @@ class Stack
     }
 
     /**
-     * Normalize the only two supported property shapes:
-     * - a regular associative property map
-     * - a list of blocks, where each block is either a plain property map or an @target block
-     *
-     * @param array<mixed> $properties
-     *
-     * @return array<mixed>
-     */
-    private function normalizeProperties(array $properties): array
-    {
-        $normalized = [];
-
-        foreach ($properties as $key => $value) {
-            if (!\is_array($value)) {
-                continue;
-            }
-
-            if (\array_key_exists('@target', $value)) {
-                $normalized[$key] = $value;
-
-                continue;
-            }
-
-            if (\is_string($key)) {
-                $normalized[$key] = $value;
-
-                continue;
-            }
-
-            // List entries are supported only for the Book-style @target structure,
-            // where each entry is either a dedicated @target block or a plain map
-            // of base properties.
-            foreach ($value as $nestedKey => $nestedValue) {
-                if (!\is_string($nestedKey) || !\is_array($nestedValue)) {
-                    continue;
-                }
-
-                $normalized[$nestedKey] = $nestedValue;
-            }
-        }
-
-        return $normalized;
-    }
-
-    /**
-     * @return array<mixed>
-     */
-    private function getNormalizedClassProperties(string $validationClass): array
-    {
-        if (isset(self::$normalizedPropertiesByClass[$validationClass])) {
-            return self::$normalizedPropertiesByClass[$validationClass];
-        }
-
-        return self::$normalizedPropertiesByClass[$validationClass] = $this->normalizeProperties($validationClass::PROPERTIES);
-    }
-
-    /**
      * Builds the full parent chain from the current type by walking up all its parent properties.
      *
      * @return array<array{propertyKey: string, type: MappedType}>
@@ -366,81 +306,9 @@ class Stack
 
     // These methods handle the special cases. They will update the "properties" entry by importing new ones into it.
     // If multiple types are found on the MappedType, all the potentially needed properties are imported.
-    private function handleSpecialProperties(MappedType $mappedType, array &$validationType): void
-    {
-        $this->setImportedProperties($mappedType, $validationType);
-        $this->setTargettedProperties($mappedType, $validationType);
-    }
-
-    private function setImportedProperties(MappedType $mappedType, array &$validationType): void
-    {
-        foreach ($validationType['supportedTypes'] as $supportedType) {
-            if (!str_starts_with($supportedType, '@')) {
-                continue;
-            }
-
-            $validationClass = $this->getImportedClass($supportedType);
-
-            $matchingTypes = array_intersect(
-                (array) $mappedType->getType(),
-                $validationClass::SUPPORTED_TYPES,
-            );
-
-            // A mismatch is not an authoring error of the validation spec: it happens
-            // whenever the audited document nests an unexpected type where the import
-            // is declared (e.g. a Person under Answer.comment, which imports @Comment).
-            // In that case there simply is nothing to import, and the document must
-            // keep being validated - never crash the audit.
-            if ([] !== $matchingTypes) {
-                $validationType['properties'] = array_merge(
-                    $validationType['properties'] ?? [],
-                    $validationClass::PROPERTIES,
-                );
-            }
-
-            return;
-        }
-    }
-
-    // This method "loads" the targetted validation properties needed for the requested type
-    // Targetted validation properties are properties that validate only a single type of a property (the target) while this property supports several types.
-    private function setTargettedProperties(MappedType $mappedType, array &$validationType): void
-    {
-        if (!isset($validationType['properties']) || !\is_array($validationType['properties'])) {
-            return;
-        }
-
-        $targets = array_filter(
-            $validationType['properties'],
-            static fn (array $value) => \array_key_exists('@target', $value),
-            \ARRAY_FILTER_USE_BOTH,
-        );
-
-        foreach ($targets as $target) {
-            if (\in_array($target['@target'], (array) $mappedType->getType(), true)) {
-                $validationType['properties'] = array_merge(
-                    $validationType['properties'] ?: [],
-                    $target['properties'],
-                );
-            }
-        }
-    }
-
-    private function getImportedClass(string $importedType): string
-    {
-        $validationClass = str_replace('@', '', $importedType);
-        $validationClass = \sprintf('%s\\%s', self::BASE_NAMESPACE, $validationClass);
-
-        if (!GeneratedClassesRegistry::has($validationClass)) {
-            throw new \RuntimeException(\sprintf('The "%s" Google validation class was requested, but the class doesn\'t exist. There is probably an issue with the hand-written json files.', $validationClass));
-        }
-
-        return $validationClass;
-    }
-
     private function isADataType(array $testedType): bool
     {
-        return (bool) array_intersect($testedType['supportedTypes'], GoogleValidator::DATA_TYPES);
+        return (bool) array_intersect($testedType['supportedTypes'], DataTypeChecker::DATA_TYPES);
     }
 
     private function getResolutionCacheKey(): string

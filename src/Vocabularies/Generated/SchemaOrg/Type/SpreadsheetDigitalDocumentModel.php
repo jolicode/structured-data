@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class SpreadsheetDigitalDocumentModel
 {
     public const DESCRIPTION = 'A spreadsheet file.';
     public const LABEL = 'SpreadsheetDigitalDocument';
     public const NAME = 'schema:SpreadsheetDigitalDocument';
-    public const PARENTS = ['DigitalDocumentModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DigitalDocumentModel'];
+    public const PARENTS = ['DigitalDocumentModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DigitalDocumentModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

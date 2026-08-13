@@ -1,23 +1,18 @@
 {
-    "name": "jolicode/json-ld",
-    "description": "A structured data library used for Schema.org validation and JSON-LD format conversion.",
+    "name": "jolicode/structured-data",
+    "description": "A PHP toolkit to validate and convert structured data: Schema.org and Google Rich Results validation, microdata/RDFa/JSON-LD extraction, and the W3C JSON-LD 1.1 algorithms.",
     "type": "library",
+    "keywords": [
+        "json-ld",
+        "schema.org",
+        "structured-data",
+        "rich-results",
+        "microdata",
+        "rdfa",
+        "seo"
+    ],
+    "homepage": "https://github.com/jolicode/structured-data",
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Jolicode\\Vocabularies\\Generated\\SchemaOrg\\EnumerationMember\\": "src/Vocabularies/Generated/SchemaOrg/EnumerationMember/",
-            "Jolicode\\Vocabularies\\Generated\\Google\\": "src/Vocabularies/Generated/Google/",
-            "Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Property\\": "src/Vocabularies/Generated/SchemaOrg/Property/",
-            "Jolicode\\Vocabularies\\Generated\\SchemaOrg\\Type\\": "src/Vocabularies/Generated/SchemaOrg/Type/",
-            "Jolicode\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Jolicode\\JsonLd\\Tests\\": "tests/",
-            "Jolicode\\Vocabularies\\Generators\\": "generators/"
-        }
-    },
     "authors": [
         {
             "name": "Hédic Guibert",
@@ -28,8 +23,33 @@
             "email": "xlacot@jolicode.com"
         }
     ],
+    "support": {
+        "issues": "https://github.com/jolicode/structured-data/issues",
+        "source": "https://github.com/jolicode/structured-data"
+    },
+    "autoload": {
+        "psr-4": {
+            "JoliCode\\StructuredData\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JoliCode\\StructuredData\\Tests\\": "tests/",
+            "JoliCode\\StructuredData\\Vocabularies\\Generators\\": "generators/"
+        }
+    },
     "config": {
         "sort-packages": true
+    },
+    "require": {
+        "php": "^8.4",
+        "ext-dom": "*",
+        "ext-json": "*",
+        "ext-libxml": "*",
+        "league/uri": "^7.8",
+        "psr/log": "^1|^2|^3",
+        "salsify/json-streaming-parser": "^8.3",
+        "symfony/http-client-contracts": "^3.0"
     },
     "require-dev": {
         "ext-zip": "*",
@@ -39,16 +59,10 @@
         "symfony/dom-crawler": "^8.0",
         "symfony/filesystem": "^8.0",
         "symfony/finder": "^8.0",
+        "symfony/http-client": "^7.2|^8.0",
         "symfony/var-dumper": "^8.0"
     },
-    "require": {
-        "php": ">=8.4",
-        "ext-dom": "*",
-        "ext-json": "*",
-        "ext-libxml": "*",
-        "league/uri": "^7.8",
-        "psr/log": "^1|^2|^3",
-        "salsify/json-streaming-parser": "^8.3",
-        "symfony/http-client": "^8.0"
+    "suggest": {
+        "symfony/http-client": "To resolve remote JSON-LD @context documents (off by default; see the \"Loading remote contexts\" section of the README)."
     }
 }

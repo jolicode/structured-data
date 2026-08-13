@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class UserInteractionCountModel
 {
     public const DESCRIPTION = 'The number of interactions for the CreativeWork using the WebSite or SoftwareApplication.';
     public const LABEL = 'userInteractionCount';
     public const NAME = 'schema:userInteractionCount';
-    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IntegerModel'];
-    public const TYPES = ['InteractionCounter' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InteractionCounterModel'];
+    public const VALUES = ['IntegerModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['InteractionCounter' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\InteractionCounterModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

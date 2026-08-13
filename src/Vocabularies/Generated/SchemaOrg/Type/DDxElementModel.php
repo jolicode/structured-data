@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DDxElementModel
 {
     public const DESCRIPTION = 'An alternative, closely-related condition typically considered later in the differential diagnosis process along with the signs that are used to distinguish it.';
     public const LABEL = 'DDxElement';
     public const NAME = 'schema:DDxElement';
-    public const PARENTS = ['MedicalIntangibleModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalIntangibleModel'];
+    public const PARENTS = ['MedicalIntangibleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalIntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

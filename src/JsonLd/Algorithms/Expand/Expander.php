@@ -9,21 +9,21 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Algorithms\Expand;
+namespace JoliCode\StructuredData\JsonLd\Algorithms\Expand;
 
-use Jolicode\JsonLd\Algorithms\ContextProcessing\Context;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextCache;
-use Jolicode\JsonLd\Algorithms\ContextProcessing\ContextProcesser;
-use Jolicode\JsonLd\Algorithms\Exception\ExpansionException;
-use Jolicode\JsonLd\Algorithms\Exception\JsonLdException;
-use Jolicode\JsonLd\Algorithms\Http\DocumentLoaderInterface;
-use Jolicode\JsonLd\Algorithms\Http\HttpDocumentLoader;
-use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Algorithms\JsonLd\FramingKeyword;
-use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Jolicode\JsonLd\Algorithms\JsonLd\ProcessorOptions;
-use Jolicode\JsonLd\Algorithms\Services\ValueAdder;
-use Jolicode\JsonLd\Algorithms\TermDefinition\TermDefinition;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\Context;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextCache;
+use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextProcessor;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\ExpansionException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\JsonLdException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\DocumentLoaderInterface;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\HttpDocumentLoader;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\IriResolver;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\FramingKeyword;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms\Services\ValueAdder;
+use JoliCode\StructuredData\JsonLd\Algorithms\TermDefinition\TermDefinition;
 
 class Expander
 {
@@ -35,15 +35,15 @@ class Expander
      */
     public const TOP_LEVEL_ACTIVE_PROPERTY = "\0top-level\0";
 
-    private ContextProcesser $contextProcesser;
+    private ContextProcessor $contextProcessor;
     private DocumentLoaderInterface $documentLoader;
 
     public function __construct(
-        ?ContextProcesser $contextProcesser = null,
+        ?ContextProcessor $contextProcessor = null,
         ?DocumentLoaderInterface $documentLoader = null,
     ) {
         $this->documentLoader = $documentLoader ?? new HttpDocumentLoader();
-        $this->contextProcesser = $contextProcesser ?? new ContextProcesser(new ContextCache($this->documentLoader));
+        $this->contextProcessor = $contextProcessor ?? new ContextProcessor(new ContextCache($this->documentLoader));
     }
 
     /**
@@ -78,7 +78,7 @@ class Expander
         );
 
         if ($options->expandContext) {
-            $activeContext = $this->contextProcesser->processContext($activeContext, $options->expandContext, $activeContext->baseUrl);
+            $activeContext = $this->contextProcessor->processContext($activeContext, $options->expandContext, $activeContext->baseUrl);
         }
 
         $element = $this->doExpand(
@@ -150,7 +150,7 @@ class Expander
 
         // 8
         if (false !== $propertyScopedContext) {
-            $activeContext = $this->contextProcesser->processContext(
+            $activeContext = $this->contextProcessor->processContext(
                 $activeContext,
                 $propertyScopedContext,
                 $baseUrl,
@@ -160,7 +160,7 @@ class Expander
 
         // 9
         if (property_exists($element, Keyword::CONTEXT->value)) {
-            $activeContext = $this->contextProcesser->processContext(
+            $activeContext = $this->contextProcessor->processContext(
                 $activeContext,
                 $element->{Keyword::CONTEXT->value},
                 $baseUrl,
@@ -210,7 +210,7 @@ class Expander
 
         // 15
         if (property_exists($result, Keyword::VALUE->value)) {
-            if (false === $this->handleResultValueEntry($result, $options)) {
+            if (false === ExpansionResultFinalizer::handleResultValueEntry($result, $options)) {
                 return null;
             }
         // 16
@@ -221,7 +221,7 @@ class Expander
             property_exists($result, Keyword::SET->value)
             || property_exists($result, Keyword::LIST->value)
         ) {
-            $this->handleResultSetAndListEntries($result);
+            ExpansionResultFinalizer::handleResultSetAndListEntries($result);
         }
 
         // 18
@@ -232,7 +232,7 @@ class Expander
 
         // 19
         if (null === $activeProperty || Keyword::GRAPH->value === $activeProperty) {
-            if ($this->handleNullPropertyAndGraphProperty($result, $options)) {
+            if (ExpansionResultFinalizer::handleNullPropertyAndGraphProperty($result, $options)) {
                 return [];
             }
         }
@@ -403,12 +403,12 @@ class Expander
                 switch ($expandedProperty) {
                     case Keyword::ID->value:
                         // 13.4.3
-                        $expandedValue = $this->processIdKeyword($activeContext, $value, $options, $expandedValue);
+                        $expandedValue = KeywordValueExpander::processIdKeyword($activeContext, $value, $options, $expandedValue);
 
                         break;
                     case Keyword::TYPE->value:
                         // 13.4.4
-                        $expandedValue = $this->processTypeKeyword($typeScopedContext, $result, $value, $options, $expandedValue);
+                        $expandedValue = KeywordValueExpander::processTypeKeyword($typeScopedContext, $result, $value, $options, $expandedValue);
 
                         break;
                     case Keyword::GRAPH->value:
@@ -423,22 +423,22 @@ class Expander
                         break;
                     case Keyword::VALUE->value:
                         // 13.4.7
-                        $expandedValue = $this->processValueKeyword($activeContext, $value, $result, $inputType, $options, $expandedValue);
+                        $expandedValue = KeywordValueExpander::processValueKeyword($activeContext, $value, $result, $inputType, $options, $expandedValue);
 
                         break;
                     case Keyword::LANGUAGE->value:
                         // 13.4.8
-                        $expandedValue = $this->processLanguageKeyword($value, $options);
+                        $expandedValue = KeywordValueExpander::processLanguageKeyword($value, $options);
 
                         break;
                     case Keyword::DIRECTION->value:
                         // 13.4.9
-                        $expandedValue = $this->processDirectionKeyword($activeContext, $value, $options);
+                        $expandedValue = KeywordValueExpander::processDirectionKeyword($activeContext, $value, $options);
 
                         break;
                     case Keyword::INDEX->value:
                         // 13.4.10
-                        $expandedValue = $this->processIndexKeyword($value);
+                        $expandedValue = KeywordValueExpander::processIndexKeyword($value);
 
                         break;
                     case Keyword::LIST->value:
@@ -521,7 +521,7 @@ class Expander
                 null !== $keyDefinition
                 && Keyword::JSON->value === $keyDefinition->typeMapping
             ) {
-                $expandedValue = $this->processJsonTypeMapping($value);
+                $expandedValue = KeywordValueExpander::processJsonTypeMapping($value);
             // 13.7
             } elseif (
                 $containerMapping
@@ -568,14 +568,14 @@ class Expander
             if (
                 $containerMapping
                 && \in_array(Keyword::LIST->value, $containerMapping, true)
-                && !$this->isListObject($expandedValue)
-                && !$this->isListObject($value)
+                && !ExpandedObjectShape::isListObject($expandedValue)
+                && !ExpandedObjectShape::isListObject($value)
             ) {
                 if (\is_array($expandedValue)) {
                     foreach ($expandedValue as $expandedEntry) {
                         if (
                             Context::PROCESSING_MODE_10 === $activeContext->processingMode
-                            && $this->isListObject($expandedEntry)
+                            && ExpandedObjectShape::isListObject($expandedEntry)
                         ) {
                             throw new ExpansionException('list of lists');
                         }
@@ -618,80 +618,6 @@ class Expander
         }
     }
 
-    private function processIdKeyword(
-        Context $activeContext,
-        mixed $value,
-        ProcessorOptions $options,
-        array $expandedValue,
-    ): array|string|null {
-        // 13.4.3.1
-        if (!\is_string($value) && !$options->frameExpansion) {
-            throw new ExpansionException('invalid @id value');
-        }
-
-        // 13.4.3.2
-        if ($options->frameExpansion) {
-            $valueEntries = $value instanceof \stdClass ? [$value] : (array) $value;
-
-            foreach ($valueEntries as $valueEntry) {
-                // An empty map is the wildcard @id pattern and is kept as is.
-                $expandedValue[] = $valueEntry instanceof \stdClass
-                    ? $valueEntry
-                    : IriResolver::expand($activeContext, $valueEntry, true, false);
-            }
-        } else {
-            $expandedValue = IriResolver::expand($activeContext, $value, true, false);
-        }
-
-        return $expandedValue;
-    }
-
-    private function processTypeKeyword(
-        Context $typeScopedContext,
-        array &$result,
-        mixed $value,
-        ProcessorOptions $options,
-        array $expandedValue,
-    ): mixed {
-        // 13.4.4.1
-        $this->validateValueForType($value, $options);
-
-        // 13.4.4.2
-        if (\is_object($value) && !\count(get_object_vars($value))) {
-            $expandedValue = $value;
-        // 13.4.4.3
-        } elseif (\is_object($value) && property_exists($value, FramingKeyword::DEFAULT->value)) {
-            $expandedValue = new \stdClass();
-            $expandedValue->{FramingKeyword::DEFAULT->value} = IriResolver::expand(
-                $typeScopedContext,
-                $value->{FramingKeyword::DEFAULT->value},
-                true,
-            );
-        // 13.4.4.4
-        } else {
-            foreach ((array) $value as $valueEntry) {
-                $expandedValue[] = IriResolver::expand($typeScopedContext, $valueEntry, true);
-            }
-        }
-
-        // 13.4.4.5
-        if (\array_key_exists(Keyword::TYPE->value, $result) && \is_array($expandedValue)) {
-            if (\is_array($result[Keyword::TYPE->value])) {
-                $expandedValue = [...$result[Keyword::TYPE->value], ...$expandedValue];
-            } else {
-                $expandedValue = [$result[Keyword::TYPE->value], ...$expandedValue];
-            }
-
-            sort($expandedValue);
-        }
-
-        if (\is_array($expandedValue) && 1 === \count($expandedValue)) {
-            $expandedValue = $expandedValue[0];
-        }
-
-        return $expandedValue;
-    }
-
     private function processGraphKeyword(
         Context $activeContext,
         mixed $value,
@@ -731,7 +657,7 @@ class Expander
         // 13.4.6.1
         if (Context::PROCESSING_MODE_11 === $activeContext->processingMode) {
             // This is not in the specs but the in08-in.jsonld test explicitely say that a value/list object @included is invalid
-            if ($this->isValueObject($value) || $this->isListObject($value)) {
+            if (ExpandedObjectShape::isValueObject($value) || ExpandedObjectShape::isListObject($value)) {
                 throw new ExpansionException('invalid @included value');
             }
 
@@ -748,7 +674,7 @@ class Expander
 
             // 13.4.6.3
             foreach ($expandedValue as $expandedElement) {
-                if (!$this->isNodeObject($expandedElement)) {
+                if (!ExpandedObjectShape::isNodeObject($expandedElement)) {
                     throw new ExpansionException('invalid @included value');
                 }
             }
@@ -760,76 +686,6 @@ class Expander
         }
 
         return $expandedValue;
-    }
-
-    private function processValueKeyword(
-        Context $activeContext,
-        mixed $value,
-        array &$result,
-        array $inputType,
-        ProcessorOptions $options,
-        array $expandedValue,
-    ): mixed {
-        // 13.4.7.1
-        if (\in_array(Keyword::JSON->value, $inputType, true)) {
-            $expandedValue = $value;
-
-            if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
-                throw new ExpansionException('invalid term definition');
-            }
-        } else {
-            // 13.4.7.2
-            $this->validateValueForValue($value, $options);
-
-            // 13.4.7.3
-            $expandedValue = $value;
-        }
-
-        // 13.4.7.4
-        if (null === $expandedValue) {
-            $result[Keyword::VALUE->value] = null;
-        }
-
-        return $expandedValue;
-    }
-
-    private function processLanguageKeyword(mixed $value, ProcessorOptions $options): mixed
-    {
-        // 13.4.8.1
-        $this->validateValueForLanguage($value, $options);
-
-        // 13.4.8.2: language tags are processed case-insensitively; processors
-        // normalize them to lowercase.
-        if (\is_string($value)) {
-            $value = strtolower($value);
-        }
-
-        return $options->frameExpansion ? ($value instanceof \stdClass ? [$value] : (array) $value) : $value;
-    }
-
-    private function processDirectionKeyword(Context $activeContext, mixed $value, ProcessorOptions $options): mixed
-    {
-        // 13.4.9.1
-        if (Context::PROCESSING_MODE_11 === $activeContext->processingMode) {
-            // 13.4.9.2
-            if (!\in_array($value, ['ltr', 'rtl'], true)) {
-                throw new ExpansionException('invalid base direction');
-            }
-        }
-
-        // 13.4.9
-        return $options->frameExpansion ? ($value instanceof \stdClass ? [$value] : (array) $value) : $value;
-    }
-
-    private function processIndexKeyword(mixed $value): string
-    {
-        // 13.4.10.1
-        if (!\is_string($value)) {
-            throw new ExpansionException('invalid @index value');
-        }
-
-        // 13.4.10.2
-        return $value;
     }
 
     private function processListKeyword(
@@ -858,7 +714,7 @@ class Expander
             foreach ($expandedValue as $expandedEntry) {
                 if (
                     Context::PROCESSING_MODE_10 === $activeContext->processingMode
-                    && $this->isListObject($expandedEntry)
+                    && ExpandedObjectShape::isListObject($expandedEntry)
                 ) {
                     throw new ExpansionException('list of lists');
                 }
@@ -916,7 +772,7 @@ class Expander
                 // 13.4.13.4.2.1
                 foreach ($items as $item) {
                     // 13.4.13.4.2.1.1
-                    if ($this->isValueObject($item) || $this->isListObject($item)) {
+                    if (ExpandedObjectShape::isValueObject($item) || ExpandedObjectShape::isListObject($item)) {
                         throw new ExpansionException('invalid @reverse property value');
                     }
 
@@ -927,15 +783,6 @@ class Expander
 
             $result[$expandedProperty] = $reverseMap;
         }
-
-        return $expandedValue;
-    }
-
-    private function processJsonTypeMapping(mixed $value): \stdClass
-    {
-        $expandedValue = new \stdClass();
-        $expandedValue->{Keyword::VALUE->value} = $value;
-        $expandedValue->{Keyword::TYPE->value} = Keyword::JSON->value;
 
         return $expandedValue;
     }
@@ -1034,7 +881,7 @@ class Expander
                 && \array_key_exists($index, $mapContext->termDefinitions)
                 && false !== $mapContext->termDefinitions[$index]->context
             ) {
-                $mapContext = $this->contextProcesser->processContext(
+                $mapContext = $this->contextProcessor->processContext(
                     $mapContext,
                     $mapContext->termDefinitions[$index]->context,
                     $mapContext->termDefinitions[$index]->baseUrl,
@@ -1069,7 +916,7 @@ class Expander
             // 13.8.3.7
             foreach ($indexValue as $item) {
                 // 13.8.3.7.1
-                if (\in_array(Keyword::GRAPH->value, $containerMapping, true) && !$this->isGraphObject($item)) {
+                if (\in_array(Keyword::GRAPH->value, $containerMapping, true) && !ExpandedObjectShape::isGraphObject($item)) {
                     $item = (object) [Keyword::GRAPH->value => [$item]];
                 }
 
@@ -1096,7 +943,7 @@ class Expander
                     $item->$expandedIndexKey = $indexPropertyValues;
 
                     // 13.8.3.7.2.5
-                    if ($this->isValueObject($item)) {
+                    if (ExpandedObjectShape::isValueObject($item)) {
                         if (1 < \count(get_object_vars($item))) {
                             throw new ExpansionException('invalid value object');
                         }
@@ -1169,7 +1016,7 @@ class Expander
 
         // 13.13.4
         foreach ($expandedValue as $item) {
-            if ($this->isValueObject($item) || $this->isListObject($item)) {
+            if (ExpandedObjectShape::isValueObject($item) || ExpandedObjectShape::isListObject($item)) {
                 // 13.13.4.1
                 throw new ExpansionException('invalid reverse property value');
             }
@@ -1204,7 +1051,7 @@ class Expander
                 \array_key_exists($nestingKey, $activeDefinitions)
                 && false !== $activeDefinitions[$nestingKey]->context
             ) {
-                $nestContext = $this->contextProcesser->processContext(
+                $nestContext = $this->contextProcessor->processContext(
                     $activeContext,
                     $activeDefinitions[$nestingKey]->context,
                     $activeDefinitions[$nestingKey]->baseUrl ?: $baseUrl,
@@ -1276,7 +1123,7 @@ class Expander
 
         // 4.2
         if (false !== $propertyScopedContext) {
-            $activeContext = $this->contextProcesser->processContext(
+            $activeContext = $this->contextProcessor->processContext(
                 $activeContext,
                 $propertyScopedContext,
                 $activeContext->termDefinitions[$activeProperty]->baseUrl,
@@ -1318,7 +1165,7 @@ class Expander
                 && \in_array(Keyword::LIST->value, $activeContext->termDefinitions[$activeProperty]->containerMapping, true)
                 && \is_array($expandedItem)
                 && \is_array($item)
-                && !$this->isListObject($item)
+                && !ExpandedObjectShape::isListObject($item)
             ) {
                 $expandedItem = (object) [Keyword::LIST->value => $expandedItem];
             }
@@ -1402,7 +1249,7 @@ class Expander
                     && \array_key_exists($term, $typeScopedContext->termDefinitions)
                     && false !== $typeScopedContext->termDefinitions[$term]->context
                 ) {
-                    $activeContext = $this->contextProcesser->processContext(
+                    $activeContext = $this->contextProcessor->processContext(
                         $activeContext,
                         $typeScopedContext->termDefinitions[$term]->context,
                         $typeScopedContext->termDefinitions[$term]->baseUrl,
@@ -1411,237 +1258,5 @@ class Expander
                 }
             }
         }
-    }
-
-    private function handleResultValueEntry(\stdClass $result, ProcessorOptions $options): bool
-    {
-        // 15.1
-        $this->validateResultValue($result);
-
-        // In frame expansion, @value, @language and @type entries may hold empty
-        // maps (wildcards) or arrays of values, which relaxes the checks below.
-        $valueIsFramePattern = $options->frameExpansion
-            && ($result->{Keyword::VALUE->value} instanceof \stdClass || \is_array($result->{Keyword::VALUE->value}));
-
-        // 15.2
-        if (property_exists($result, Keyword::TYPE->value) && Keyword::JSON->value === $result->{Keyword::TYPE->value}) {
-            // 15.3
-        } elseif (!$valueIsFramePattern && (null === $result->{Keyword::VALUE->value} || [] === $result->{Keyword::VALUE->value})) {
-            return false;
-        // 15.4
-        } elseif (!$valueIsFramePattern && !\is_string($result->{Keyword::VALUE->value}) && property_exists($result, Keyword::LANGUAGE->value)) {
-            throw new ExpansionException('invalid language-tagged value');
-        // 15.5
-        } elseif (
-            property_exists($result, Keyword::TYPE->value)
-            && !IriResolver::isAbsoluteIri($result->{Keyword::TYPE->value})
-            && !($options->frameExpansion && ($result->{Keyword::TYPE->value} instanceof \stdClass || \is_array($result->{Keyword::TYPE->value})))
-        ) {
-            throw new ExpansionException('invalid typed value');
-        }
-
-        return true;
-    }
-
-    private function handleResultSetAndListEntries(\stdClass &$result): void
-    {
-        // 17.1
-        if (2 < \count(get_object_vars($result))) {
-            throw new ExpansionException('invalid set or list object');
-        }
-
-        // 17.1
-        if (2 === \count(get_object_vars($result)) && !property_exists($result, Keyword::INDEX->value)) {
-            throw new ExpansionException('invalid set or list object');
-        }
-
-        // 17.2
-        if (property_exists($result, Keyword::SET->value)) {
-            $result = $result->{Keyword::SET->value};
-        }
-    }
-
-    private function handleNullPropertyAndGraphProperty(\stdClass|array &$result, ProcessorOptions $options): bool
-    {
-        // Frames keep their free-floating nodes: a frame reduced to a bare @id, a
-        // lone framing flag, or an empty wildcard map is meaningful for matching.
-        if ($options->frameExpansion) {
-            return false;
-        }
-
-        // 19.1
-        if (\is_object($result)) {
-            $objectPropertiesCount = \count(get_object_vars($result));
-
-            if (0 === $objectPropertiesCount) {
-                return true;
-            }
-
-            if (property_exists($result, Keyword::VALUE->value) || property_exists($result, Keyword::LIST->value)) {
-                return true;
-            }
-
-            // 19.2
-            if (1 === $objectPropertiesCount && property_exists($result, Keyword::ID->value)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    // 13.4.4.1
-    private function validateValueForType(mixed $value, ProcessorOptions $options): bool
-    {
-        if ($options->frameExpansion && \is_object($value)) {
-            if ($value instanceof \stdClass && [] === get_object_vars($value)) {
-                return true;
-            }
-
-            if (
-                property_exists($value, FramingKeyword::DEFAULT->value)
-                && IriResolver::isIri($value->{FramingKeyword::DEFAULT->value})
-            ) {
-                return true;
-            }
-        }
-
-        if (\is_array($value)) {
-            foreach ($value as $valueEntry) {
-                if (!\is_string($valueEntry)) {
-                    throw new ExpansionException('invalid type value');
-                }
-            }
-
-            return true;
-        }
-
-        if (\is_string($value)) {
-            return true;
-        }
-
-        throw new ExpansionException('invalid type value');
-    }
-
-    // 13.4.7.2
-    private function validateValueForValue(mixed $value, ProcessorOptions $options): bool
-    {
-        if ($options->frameExpansion) {
-            if ($value instanceof \stdClass && [] === get_object_vars($value)) {
-                return true;
-            }
-
-            if (\is_array($value)) {
-                foreach ($value as $valueEntry) {
-                    if (!\is_scalar($valueEntry)) {
-                        throw new ExpansionException('invalid type value');
-                    }
-                }
-
-                return true;
-            }
-        }
-
-        if (\is_scalar($value) || null === $value) {
-            return true;
-        }
-
-        throw new ExpansionException('invalid value object value');
-    }
-
-    // 13.4.8.1
-    private function validateValueForLanguage(mixed $value, ProcessorOptions $options): bool
-    {
-        if ($options->frameExpansion) {
-            if ($value instanceof \stdClass && [] === get_object_vars($value)) {
-                return true;
-            }
-
-            if (\is_array($value)) {
-                foreach ($value as $valueEntry) {
-                    if (!\is_string($valueEntry)) {
-                        throw new ExpansionException('invalid type value');
-                    }
-                }
-
-                return true;
-            }
-        }
-
-        if (\is_string($value)) {
-            return true;
-        }
-
-        throw new ExpansionException('invalid language-tagged string');
-    }
-
-    private function validateResultValue(\stdClass $result): bool
-    {
-        if (
-            (property_exists($result, Keyword::LANGUAGE->value) || property_exists($result, Keyword::DIRECTION->value))
-            && property_exists($result, Keyword::TYPE->value)
-        ) {
-            throw new ExpansionException('invalid value object');
-        }
-
-        foreach ($result as $resultKey => $resultEntry) {
-            if (!\in_array(
-                $resultKey,
-                [Keyword::DIRECTION->value, Keyword::INDEX->value, Keyword::LANGUAGE->value, Keyword::TYPE->value, Keyword::VALUE->value],
-                true,
-            )) {
-                throw new ExpansionException('invalid value object');
-            }
-        }
-
-        return true;
-    }
-
-    private function isGraphObject(mixed $object): bool
-    {
-        return \is_object($object) && property_exists($object, Keyword::GRAPH->value);
-    }
-
-    private function isValueObject(mixed $object): bool
-    {
-        return \is_object($object) && property_exists($object, Keyword::VALUE->value);
-    }
-
-    private function isListObject(mixed $object): bool
-    {
-        if (!\is_object($object) || !property_exists($object, Keyword::LIST->value)) {
-            return false;
-        }
-
-        if (property_exists($object, Keyword::INDEX->value)) {
-            return 2 === \count(get_object_vars($object));
-        }
-
-        return 1 === \count(get_object_vars($object));
-    }
-
-    private function isNodeObject(mixed $object): bool
-    {
-        if (!\is_object($object)) {
-            return false;
-        }
-
-        if (
-            property_exists($object, Keyword::VALUE->value)
-            || property_exists($object, Keyword::LIST->value)
-            || property_exists($object, Keyword::SET->value)
-        ) {
-            return false;
-        }
-
-        if (
-            2 === \count(get_object_vars($object))
-            && property_exists($object, Keyword::GRAPH->value)
-            && property_exists($object, Keyword::CONTEXT->value)
-        ) {
-            return false;
-        }
-
-        return true;
     }
 }

@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class FundingAgencyModel
 {
@@ -22,7 +22,7 @@ final class FundingAgencyModel
 Examples of funding agencies include ERC, REA, NIH, Bill and Melinda Gates Foundation, ...';
     public const LABEL = 'FundingAgency';
     public const NAME = 'schema:FundingAgency';
-    public const PARENTS = ['ProjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ProjectModel'];
+    public const PARENTS = ['ProjectModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ProjectModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/383'];

@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class NutritionModel
 {
     public const DESCRIPTION = 'Nutrition information about the recipe or menu item.';
     public const LABEL = 'nutrition';
     public const NAME = 'schema:nutrition';
-    public const VALUES = ['NutritionInformationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NutritionInformationModel'];
-    public const TYPES = ['MenuItem' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MenuItemModel', 'Recipe' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\RecipeModel'];
+    public const VALUES = ['NutritionInformationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NutritionInformationModel'];
+    public const TYPES = ['MenuItem' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MenuItemModel', 'Recipe' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\RecipeModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

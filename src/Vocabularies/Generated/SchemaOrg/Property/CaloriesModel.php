@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class CaloriesModel
 {
     public const DESCRIPTION = 'The number of calories.';
     public const LABEL = 'calories';
     public const NAME = 'schema:calories';
-    public const VALUES = ['EnergyModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnergyModel'];
-    public const TYPES = ['NutritionInformation' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\NutritionInformationModel'];
+    public const VALUES = ['EnergyModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnergyModel'];
+    public const TYPES = ['NutritionInformation' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NutritionInformationModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class WearableSizeSystemEnumerationModel
 {
     public const DESCRIPTION = 'Enumerates common size systems specific for wearable products.';
     public const LABEL = 'WearableSizeSystemEnumeration';
     public const NAME = 'schema:WearableSizeSystemEnumeration';
-    public const PARENTS = ['SizeSystemEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SizeSystemEnumerationModel'];
+    public const PARENTS = ['SizeSystemEnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SizeSystemEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['WearableSizeSystemAUModel' => 'EnumerationMember\WearableSizeSystemAUModel', 'WearableSizeSystemBRModel' => 'EnumerationMember\WearableSizeSystemBRModel', 'WearableSizeSystemCNModel' => 'EnumerationMember\WearableSizeSystemCNModel', 'WearableSizeSystemContinentalModel' => 'EnumerationMember\WearableSizeSystemContinentalModel', 'WearableSizeSystemDEModel' => 'EnumerationMember\WearableSizeSystemDEModel', 'WearableSizeSystemEN13402Model' => 'EnumerationMember\WearableSizeSystemEN13402Model', 'WearableSizeSystemEuropeModel' => 'EnumerationMember\WearableSizeSystemEuropeModel', 'WearableSizeSystemFRModel' => 'EnumerationMember\WearableSizeSystemFRModel', 'WearableSizeSystemGS1Model' => 'EnumerationMember\WearableSizeSystemGS1Model', 'WearableSizeSystemITModel' => 'EnumerationMember\WearableSizeSystemITModel', 'WearableSizeSystemJPModel' => 'EnumerationMember\WearableSizeSystemJPModel', 'WearableSizeSystemMXModel' => 'EnumerationMember\WearableSizeSystemMXModel', 'WearableSizeSystemUKModel' => 'EnumerationMember\WearableSizeSystemUKModel', 'WearableSizeSystemUSModel' => 'EnumerationMember\WearableSizeSystemUSModel'];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DeactivateActionModel
 {
     public const DESCRIPTION = 'The act of stopping or deactivating a device or application (e.g. stopping a timer or turning off a flashlight).';
     public const LABEL = 'DeactivateAction';
     public const NAME = 'schema:DeactivateAction';
-    public const PARENTS = ['ControlActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ControlActionModel'];
+    public const PARENTS = ['ControlActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ControlActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

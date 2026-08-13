@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class VideoModel
 {
     public const DESCRIPTION = 'An embedded video object.';
     public const LABEL = 'video';
     public const NAME = 'schema:video';
-    public const VALUES = ['ClipModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ClipModel', 'VideoObjectModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VideoObjectModel'];
-    public const TYPES = ['CreativeWork' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel'];
+    public const VALUES = ['ClipModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ClipModel', 'VideoObjectModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\VideoObjectModel'];
+    public const TYPES = ['CreativeWork' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

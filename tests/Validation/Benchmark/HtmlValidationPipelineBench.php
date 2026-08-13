@@ -9,29 +9,31 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Validation\Benchmark;
+namespace JoliCode\StructuredData\Tests\Validation\Benchmark;
 
-use Jolicode\JsonLd\Algorithms\Expand\Expander;
-use Jolicode\JsonLd\Algorithms\Http\IriResolver;
-use Jolicode\JsonLd\Algorithms\JsonLd\Keyword;
-use Jolicode\JsonLd\Extraction\Extractor;
-use Jolicode\JsonLd\Extraction\JsonLdElement;
-use Jolicode\JsonLd\Extraction\JsonLdNodeExtractor;
-use Jolicode\JsonLd\Extraction\MicrodataExtractor;
-use Jolicode\JsonLd\Extraction\RdfaExtractor;
-use Jolicode\JsonLd\Mapper\MappedProperty;
-use Jolicode\JsonLd\Mapper\MappedType;
-use Jolicode\JsonLd\Mapper\ValidationMapper;
-use Jolicode\JsonLd\Parser\DataStructures\ArrayStructure;
-use Jolicode\JsonLd\Parser\DataStructures\ObjectStructure;
-use Jolicode\JsonLd\Parser\JsonLdParser;
-use Jolicode\JsonLd\Validator;
-use Jolicode\Vocabularies\Validators\RegisteredValidatorsContainer;
-use Jolicode\Vocabularies\Validators\ValidatorInterface;
+use JoliCode\StructuredData\Extraction\Extractor;
+use JoliCode\StructuredData\Extraction\JsonLdElement;
+use JoliCode\StructuredData\Extraction\JsonLdNodeExtractor;
+use JoliCode\StructuredData\Extraction\MicrodataExtractor;
+use JoliCode\StructuredData\Extraction\RdfaExtractor;
+use JoliCode\StructuredData\JsonLd\Algorithms\Expand\Expander;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\IriResolver;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
+use JoliCode\StructuredData\JsonLd\Parser\DataStructures\ArrayStructure;
+use JoliCode\StructuredData\JsonLd\Parser\DataStructures\ObjectStructure;
+use JoliCode\StructuredData\JsonLd\Parser\JsonLdParser;
+use JoliCode\StructuredData\Mapper\MappedProperty;
+use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Mapper\ValidationMapper;
+use JoliCode\StructuredData\Validator;
+use JoliCode\StructuredData\Vocabularies\Validators\RegisteredValidatorsContainer;
+use JoliCode\StructuredData\Vocabularies\Validators\ValidatorInterface;
 
 class HtmlValidationPipelineBench
 {
-    private const FIXTURES_BASE_DIR = __DIR__ . '/../fixtures';
+    // Large, real-world HTML pages downloaded on demand from JoliCode-owned hosts
+    // by `castor qa:phpunit:download-fixtures`. They are never committed.
+    private const FIXTURES_BASE_DIR = __DIR__ . '/../../../var/cache/benchmark-fixtures';
 
     private const SCENARIO_HOMEPAGE = 'homepage';
 
@@ -66,9 +68,9 @@ class HtmlValidationPipelineBench
         private readonly Expander $expander = new Expander(),
     ) {
         $this->documents = [
-            self::SCENARIO_HOMEPAGE => $this->loadFixture('benchmark/homepage-sample.html'),
-            self::SCENARIO_HEAVY => $this->loadFixture('benchmark/jolicampus-formations-symfony.html'),
-            self::SCENARIO_LISTING => $this->loadFixture('benchmark/listing-sample.html'),
+            self::SCENARIO_HOMEPAGE => $this->loadFixture('jolicode-homepage.html'),
+            self::SCENARIO_HEAVY => $this->loadFixture('google-structured-data-intro.html'),
+            self::SCENARIO_LISTING => $this->loadFixture('jolicampus-homepage.html'),
         ];
 
         $this->validators = $this->validatorsContainer->getValidators();
@@ -509,10 +511,10 @@ class HtmlValidationPipelineBench
     private function loadFixture(string $relativePath): string
     {
         $fullPath = self::FIXTURES_BASE_DIR . '/' . $relativePath;
-        $document = file_get_contents($fullPath);
+        $document = @file_get_contents($fullPath);
 
         if (false === $document) {
-            throw new \RuntimeException(\sprintf('Could not load benchmark fixture "%s".', $fullPath));
+            throw new \RuntimeException(\sprintf('Could not load benchmark fixture "%s". Run "castor qa:phpunit:download-fixtures" first.', $fullPath));
         }
 
         return $document;

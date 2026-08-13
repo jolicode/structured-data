@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class VideoGameModel
 {
     public const DESCRIPTION = 'A video game is an electronic game that involves human interaction with a user interface to generate visual feedback on a video device.';
     public const LABEL = 'VideoGame';
     public const NAME = 'schema:VideoGame';
-    public const PARENTS = ['GameModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GameModel', 'SoftwareApplicationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\SoftwareApplicationModel'];
+    public const PARENTS = ['GameModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\GameModel', 'SoftwareApplicationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SoftwareApplicationModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

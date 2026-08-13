@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class UpvoteCountModel
 {
     public const DESCRIPTION = 'The number of upvotes this question, answer or comment has received from the community.';
     public const LABEL = 'upvoteCount';
     public const NAME = 'schema:upvoteCount';
-    public const VALUES = ['IntegerModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\IntegerModel'];
-    public const TYPES = ['Comment' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\CommentModel'];
+    public const VALUES = ['IntegerModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\IntegerModel'];
+    public const TYPES = ['Comment' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CommentModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

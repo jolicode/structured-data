@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class UserTweetsModel
 {
     public const DESCRIPTION = 'UserInteraction and its subtypes is an old way of talking about users interacting with pages. It is generally better to use [[Action]]-based vocabulary, alongside types such as [[Comment]].';
     public const LABEL = 'UserTweets';
     public const NAME = 'schema:UserTweets';
-    public const PARENTS = ['UserInteractionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\UserInteractionModel'];
+    public const PARENTS = ['UserInteractionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\UserInteractionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

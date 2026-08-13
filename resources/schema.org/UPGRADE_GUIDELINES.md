@@ -4,7 +4,9 @@
 
 Head to [https://schema.org/docs/releases.html](https://schema.org/docs/releases.html) and select the latest release (ideally).
 
-Update `src/Vocabularies/SchemaOrg.php` (`SchemaOrg::VERSION`) to use this release.
+Update `generators/SchemaOrg/SchemaOrg.php` (`SchemaOrg::VERSION`) to use this release, and
+update the runtime constant `SchemaOrgValidator::VOCABULARY_VERSION` in
+`src/Vocabularies/Validators/SchemaOrg/SchemaOrgValidator.php` to the same value.
 
 ### 2. Download the schema.org definition file
 
@@ -16,11 +18,12 @@ You will see it in the `var/cache/schema-org` directory.
 
 ### 3. Regenerate schema.org classes
 
-Run `castor schema-org:generation`.
+Run `castor schema-org:generation:generate-schema-org` (or simply `castor generate` to
+regenerate every vocabulary).
 
 This will refresh the generated classes (used for validation) in `src/Vocabularies/Generated/SchemaOrg/`.
 
-The generation may be broken at this point. If this is the case, you will need to update the [Schema.org Generator](src/Vocabularies/Generators/SchemaOrg/Generator.php).
+The generation may be broken at this point. If this is the case, you will need to update the [Schema.org Generator](../../generators/SchemaOrg/Generator.php).
 
 This will probably be because there are new, unexpected entries in the definition file. Or because schema.org introduced a new behavior.
 
@@ -42,7 +45,7 @@ Run Schema.org targeted tests with `tools/phpunit/vendor/bin/phpunit tests/Valid
 
 Most of the time, you won't need to update the codebase. The new properties/types will update themselves.
 
-If errors are nevertheless introduced, you will probably need to update the [Schema.org Validator](src/Vocabularies/Validators/SchemaOrg/SchemaOrgValidator.php).
+If errors are nevertheless introduced, you will probably need to update the [Schema.org Validator](../../src/Vocabularies/Validators/SchemaOrg/SchemaOrgValidator.php).
 
 Carefully read errors spotted by the tests and find why are they here in the Schema.org release description.
 

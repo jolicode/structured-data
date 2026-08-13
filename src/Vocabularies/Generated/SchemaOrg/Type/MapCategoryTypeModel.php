@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MapCategoryTypeModel
 {
     public const DESCRIPTION = 'An enumeration of several kinds of Map.';
     public const LABEL = 'MapCategoryType';
     public const NAME = 'schema:MapCategoryType';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['ParkingMapModel' => 'EnumerationMember\ParkingMapModel', 'SeatingMapModel' => 'EnumerationMember\SeatingMapModel', 'TransitMapModel' => 'EnumerationMember\TransitMapModel', 'VenueMapModel' => 'EnumerationMember\VenueMapModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Algorithms\Benchmark;
+namespace JoliCode\StructuredData\Tests\Algorithms\Benchmark;
 
 abstract class AbstractJsonLdBench
 {

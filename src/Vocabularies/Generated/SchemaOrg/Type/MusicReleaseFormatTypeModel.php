@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class MusicReleaseFormatTypeModel
 {
     public const DESCRIPTION = 'Format of this release (the type of recording media used, i.e. compact disc, digital media, LP, etc.).';
     public const LABEL = 'MusicReleaseFormatType';
     public const NAME = 'schema:MusicReleaseFormatType';
-    public const PARENTS = ['EnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
+    public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['CDFormatModel' => 'EnumerationMember\CDFormatModel', 'CassetteFormatModel' => 'EnumerationMember\CassetteFormatModel', 'DVDFormatModel' => 'EnumerationMember\DVDFormatModel', 'DigitalAudioTapeFormatModel' => 'EnumerationMember\DigitalAudioTapeFormatModel', 'DigitalFormatModel' => 'EnumerationMember\DigitalFormatModel', 'LaserDiscFormatModel' => 'EnumerationMember\LaserDiscFormatModel', 'VinylFormatModel' => 'EnumerationMember\VinylFormatModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

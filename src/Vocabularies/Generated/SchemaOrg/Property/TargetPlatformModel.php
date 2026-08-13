@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class TargetPlatformModel
 {
     public const DESCRIPTION = 'Type of app development: phone, Metro style, desktop, XBox, etc.';
     public const LABEL = 'targetPlatform';
     public const NAME = 'schema:targetPlatform';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['APIReference' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\APIReferenceModel'];
+    public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['APIReference' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\APIReferenceModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

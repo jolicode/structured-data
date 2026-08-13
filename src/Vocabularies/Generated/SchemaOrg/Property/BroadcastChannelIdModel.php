@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BroadcastChannelIdModel
 {
     public const DESCRIPTION = 'The unique address by which the BroadcastService can be identified in a provider lineup. In US, this is typically a number.';
     public const LABEL = 'broadcastChannelId';
     public const NAME = 'schema:broadcastChannelId';
-    public const VALUES = ['TextModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
-    public const TYPES = ['BroadcastChannel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\BroadcastChannelModel'];
+    public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
+    public const TYPES = ['BroadcastChannel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BroadcastChannelModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
 final class EnergyModel
 {
     public const DESCRIPTION = 'Properties that take Energy as values are of the form \'&lt;Number&gt; &lt;Energy unit of measure&gt;\'.';
     public const LABEL = 'Energy';
     public const NAME = 'schema:Energy';
-    public const PARENTS = ['QuantityModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\QuantityModel'];
+    public const PARENTS = ['QuantityModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\QuantityModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

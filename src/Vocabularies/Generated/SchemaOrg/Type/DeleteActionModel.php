@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DeleteActionModel
 {
     public const DESCRIPTION = 'The act of editing a recipient by removing one of its objects.';
     public const LABEL = 'DeleteAction';
     public const NAME = 'schema:DeleteAction';
-    public const PARENTS = ['UpdateActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\UpdateActionModel'];
+    public const PARENTS = ['UpdateActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\UpdateActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

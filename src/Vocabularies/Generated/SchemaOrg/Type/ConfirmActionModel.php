@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ConfirmActionModel
 {
     public const DESCRIPTION = 'The act of notifying someone that a future event/action is going to happen as expected.\n\nRelated actions:\n\n* [[CancelAction]]: The antonym of ConfirmAction.';
     public const LABEL = 'ConfirmAction';
     public const NAME = 'schema:ConfirmAction';
-    public const PARENTS = ['InformActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InformActionModel'];
+    public const PARENTS = ['InformActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\InformActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

@@ -9,13 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Tests\Validation\Benchmark;
+namespace JoliCode\StructuredData\Tests\Validation\Benchmark;
 
-use Jolicode\JsonLd\Validator;
+use JoliCode\StructuredData\Validator;
 
 class JsonLdValidatorBench
 {
     private const FIXTURES_BASE_DIR = __DIR__ . '/../fixtures';
+
+    // Large, real-world HTML pages downloaded on demand from JoliCode-owned hosts
+    // by `castor qa:phpunit:download-fixtures`. They are never committed.
+    private const DOWNLOADED_FIXTURES_DIR = __DIR__ . '/../../../var/cache/benchmark-fixtures';
 
     /** @var array<string, string> */
     private array $documents = [];
@@ -23,23 +27,22 @@ class JsonLdValidatorBench
     public function __construct(
         private readonly Validator $validator = new Validator(),
     ) {
-        // Fixtures are read once, outside of the measured code paths: the validator
-        // only ever receives document contents.
+        // Small committed fixtures, read once outside of the measured code paths.
         foreach ([
             '/schema-org/simple-expanded.jsonld',
             '/schema-org/complex-expanded.jsonld',
             '/google/book.jsonld',
-            '/benchmark/homepage-sample.html',
-            '/benchmark/listing-sample.html',
-            '/benchmark/jolicampus-formations-symfony.html',
         ] as $fixture) {
-            $content = file_get_contents(self::FIXTURES_BASE_DIR . $fixture);
+            $this->documents[$fixture] = $this->read(self::FIXTURES_BASE_DIR . $fixture);
+        }
 
-            if (false === $content) {
-                throw new \RuntimeException(\sprintf('The fixture "%s" could not be read.', $fixture));
-            }
-
-            $this->documents[$fixture] = $content;
+        // Large downloaded pages.
+        foreach ([
+            '/jolicode-homepage.html',
+            '/jolicampus-homepage.html',
+            '/google-structured-data-intro.html',
+        ] as $fixture) {
+            $this->documents[$fixture] = $this->read(self::DOWNLOADED_FIXTURES_DIR . $fixture);
         }
     }
 
@@ -86,9 +89,9 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchHtmlSampleHomepagePage(): void
+    public function benchHtmlJolicodeHomepagePage(): void
     {
-        $this->validator->audit($this->documents['/benchmark/homepage-sample.html']);
+        $this->validator->audit($this->documents['/jolicode-homepage.html']);
     }
 
     /**
@@ -98,9 +101,9 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchHtmlSampleListingPage(): void
+    public function benchHtmlJolicampusHomepagePage(): void
     {
-        $this->validator->audit($this->documents['/benchmark/listing-sample.html']);
+        $this->validator->audit($this->documents['/jolicampus-homepage.html']);
     }
 
     /**
@@ -110,8 +113,19 @@ class JsonLdValidatorBench
      *
      * @RetryThreshold(2.0)
      */
-    public function benchHtmlJolicampusSymfonyPage(): void
+    public function benchHtmlGoogleStructuredDataPage(): void
     {
-        $this->validator->audit($this->documents['/benchmark/jolicampus-formations-symfony.html']);
+        $this->validator->audit($this->documents['/google-structured-data-intro.html']);
+    }
+
+    private function read(string $path): string
+    {
+        $content = @file_get_contents($path);
+
+        if (false === $content) {
+            throw new \RuntimeException(\sprintf('The benchmark fixture "%s" could not be read. Run "castor qa:phpunit:download-fixtures" first.', $path));
+        }
+
+        return $content;
     }
 }

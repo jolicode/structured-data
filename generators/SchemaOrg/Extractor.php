@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generators\SchemaOrg;
+namespace JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg;
 
-use Jolicode\Vocabularies\Generators\SchemaOrg\Objects\ClassesContainer;
-use Jolicode\Vocabularies\Generators\SchemaOrg\Objects\EnumerationMember;
-use Jolicode\Vocabularies\Generators\SchemaOrg\Objects\Property;
-use Jolicode\Vocabularies\Generators\SchemaOrg\Objects\Type;
+use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Objects\ClassesContainer;
+use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Objects\EnumerationMember;
+use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Objects\Property;
+use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Objects\Type;
 
 readonly class Extractor
 {

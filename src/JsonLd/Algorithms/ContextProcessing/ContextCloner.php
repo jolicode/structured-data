@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\JsonLd\Algorithms\ContextProcessing;
+namespace JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing;
 
 final class ContextCloner
 {

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReplaceActionModel
 {
     public const DESCRIPTION = 'The act of editing a recipient by replacing an old object with a new object.';
     public const LABEL = 'ReplaceAction';
     public const NAME = 'schema:ReplaceAction';
-    public const PARENTS = ['UpdateActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\UpdateActionModel'];
+    public const PARENTS = ['UpdateActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\UpdateActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

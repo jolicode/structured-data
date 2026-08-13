@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class BookmarkActionModel
 {
     public const DESCRIPTION = 'An agent bookmarks/flags/labels/tags/marks an object.';
     public const LABEL = 'BookmarkAction';
     public const NAME = 'schema:BookmarkAction';
-    public const PARENTS = ['OrganizeActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrganizeActionModel'];
+    public const PARENTS = ['OrganizeActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrganizeActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

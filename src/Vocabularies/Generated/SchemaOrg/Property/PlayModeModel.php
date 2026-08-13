@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PlayModeModel
 {
     public const DESCRIPTION = 'Indicates whether this game is multi-player, co-op or single-player.  The game can be marked as multi-player, co-op and single-player at the same time.';
     public const LABEL = 'playMode';
     public const NAME = 'schema:playMode';
-    public const VALUES = ['GamePlayModeModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\GamePlayModeModel'];
-    public const TYPES = ['VideoGame' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VideoGameModel', 'VideoGameSeries' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\VideoGameSeriesModel'];
+    public const VALUES = ['GamePlayModeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\GamePlayModeModel'];
+    public const TYPES = ['VideoGame' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\VideoGameModel', 'VideoGameSeries' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\VideoGameSeriesModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

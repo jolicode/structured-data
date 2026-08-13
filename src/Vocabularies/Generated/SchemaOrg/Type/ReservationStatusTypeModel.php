@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ReservationStatusTypeModel
 {
     public const DESCRIPTION = 'Enumerated status values for Reservation.';
     public const LABEL = 'ReservationStatusType';
     public const NAME = 'schema:ReservationStatusType';
-    public const PARENTS = ['StatusEnumerationModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\StatusEnumerationModel'];
+    public const PARENTS = ['StatusEnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\StatusEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['ReservationCancelledModel' => 'EnumerationMember\ReservationCancelledModel', 'ReservationConfirmedModel' => 'EnumerationMember\ReservationConfirmedModel', 'ReservationHoldModel' => 'EnumerationMember\ReservationHoldModel', 'ReservationPendingModel' => 'EnumerationMember\ReservationPendingModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];

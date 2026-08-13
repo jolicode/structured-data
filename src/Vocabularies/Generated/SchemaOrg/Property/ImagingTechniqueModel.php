@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class ImagingTechniqueModel
 {
     public const DESCRIPTION = 'Imaging technique used.';
     public const LABEL = 'imagingTechnique';
     public const NAME = 'schema:imagingTechnique';
-    public const VALUES = ['MedicalImagingTechniqueModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalImagingTechniqueModel'];
-    public const TYPES = ['ImagingTest' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ImagingTestModel'];
+    public const VALUES = ['MedicalImagingTechniqueModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalImagingTechniqueModel'];
+    public const TYPES = ['ImagingTest' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ImagingTestModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

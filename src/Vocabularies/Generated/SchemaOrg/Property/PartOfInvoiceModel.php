@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PartOfInvoiceModel
 {
     public const DESCRIPTION = 'The order is being paid as part of the referenced Invoice.';
     public const LABEL = 'partOfInvoice';
     public const NAME = 'schema:partOfInvoice';
-    public const VALUES = ['InvoiceModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\InvoiceModel'];
-    public const TYPES = ['Order' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\OrderModel'];
+    public const VALUES = ['InvoiceModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\InvoiceModel'];
+    public const TYPES = ['Order' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrderModel'];
     public const IS_PART_OF = [];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;

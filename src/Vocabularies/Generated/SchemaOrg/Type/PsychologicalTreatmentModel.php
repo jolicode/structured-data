@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PsychologicalTreatmentModel
 {
     public const DESCRIPTION = 'A process of care relying upon counseling, dialogue and communication  aimed at improving a mental health condition without use of drugs.';
     public const LABEL = 'PsychologicalTreatment';
     public const NAME = 'schema:PsychologicalTreatment';
-    public const PARENTS = ['TherapeuticProcedureModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TherapeuticProcedureModel'];
+    public const PARENTS = ['TherapeuticProcedureModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TherapeuticProcedureModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];

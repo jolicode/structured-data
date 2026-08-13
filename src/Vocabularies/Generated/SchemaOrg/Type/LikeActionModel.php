@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class LikeActionModel
 {
     public const DESCRIPTION = 'The act of expressing a positive sentiment about the object. An agent likes an object (a proposition, topic or theme) with participants.';
     public const LABEL = 'LikeAction';
     public const NAME = 'schema:LikeAction';
-    public const PARENTS = ['ReactActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ReactActionModel'];
+    public const PARENTS = ['ReactActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ReactActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = [];
     public const SOURCE = [];

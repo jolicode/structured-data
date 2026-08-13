@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Type;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type;
 
-use Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class PlayGameActionModel
 {
     public const DESCRIPTION = 'The act of playing a video game.';
     public const LABEL = 'PlayGameAction';
     public const NAME = 'schema:PlayGameAction';
-    public const PARENTS = ['ConsumeActionModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\ConsumeActionModel'];
+    public const PARENTS = ['ConsumeActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ConsumeActionModel'];
     public const ENUMERATION_MEMBERS = [];
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3058'];

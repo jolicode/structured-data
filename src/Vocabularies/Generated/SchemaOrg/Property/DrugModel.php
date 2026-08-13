@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Jolicode\Vocabularies\Generated\SchemaOrg\Property;
+namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Property;
 
 final class DrugModel
 {
     public const DESCRIPTION = 'Specifying a drug or medicine used in a medication procedure.';
     public const LABEL = 'drug';
     public const NAME = 'schema:drug';
-    public const VALUES = ['DrugModel' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugModel'];
-    public const TYPES = ['DrugClass' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\DrugClassModel', 'MedicalCondition' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel', 'Patient' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\PatientModel', 'TherapeuticProcedure' => 'Jolicode\Vocabularies\Generated\SchemaOrg\Type\TherapeuticProcedureModel'];
+    public const VALUES = ['DrugModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DrugModel'];
+    public const TYPES = ['DrugClass' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DrugClassModel', 'MedicalCondition' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalConditionModel', 'Patient' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PatientModel', 'TherapeuticProcedure' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TherapeuticProcedureModel'];
     public const IS_PART_OF = ['https://health-lifesci.schema.org'];
     public const SOURCE = [];
     public const SUPERSEDED_BY = null;
