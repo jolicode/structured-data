@@ -187,7 +187,7 @@ class GoogleValidator extends AbstractValidator
             $clone->setDuplicateKeys([]);
 
             $typeErrors = $this->validateType($clone);
-            $type->setDocumentationLink($clone->getGoogleLink());
+            $type->setDocumentationLink($clone->getDocumentationLink());
 
             if (!$typeErrors) {
                 return [];

@@ -50,7 +50,7 @@ final class ValidationSnippetTemplateBuilder
             'description' => $type->getDescription(),
             'isPartOf' => $type->getIsPartOf(),
             'source' => $type->getSource(),
-            'googleLink' => $type->getGoogleLink(),
+            'documentationLink' => $type->getDocumentationLink(),
             'errors' => self::buildErrorTemplates($type->getErrors()),
             'properties' => $properties,
         ];

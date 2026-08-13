@@ -41,7 +41,7 @@ final class ValidationSnippetTemplateApplier
         $type->setDescription($template['description']);
         $type->setIsPartOf($template['isPartOf']);
         $type->setSource($template['source']);
-        $type->setDocumentationLink($template['googleLink']);
+        $type->setDocumentationLink($template['documentationLink']);
 
         foreach ($template['properties'] as $name => $propertyTemplate) {
             $property = $type->getProperty($name);

@@ -128,7 +128,7 @@ JSON;
     private function hasAtLeastOneGoogleDocumentationLink(array $types): bool
     {
         foreach ($types as $type) {
-            if (null !== $type->getGoogleLink()) {
+            if (null !== $type->getDocumentationLink()) {
                 return true;
             }
 

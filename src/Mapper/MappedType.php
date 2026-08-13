@@ -65,7 +65,7 @@ class MappedType
          * @var array<string>
          */
         private array $duplicateKeys = [],
-        private ?string $googleLink = null,
+        private ?string $documentationLink = null,
     ) {
     }
 
@@ -370,14 +370,14 @@ class MappedType
         }
     }
 
-    public function getGoogleLink(): ?string
+    public function getDocumentationLink(): ?string
     {
-        return $this->googleLink;
+        return $this->documentationLink;
     }
 
     public function setDocumentationLink(?string $link): void
     {
-        $this->googleLink = $link;
+        $this->documentationLink = $link;
     }
 
     public function getProperty(string $name): ?MappedProperty
