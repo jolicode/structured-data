@@ -1,72 +1,124 @@
-## Google Validator Upgrade Guidelines
+# Upgrading the Google vocabulary
 
-### 1. Refresh Google documentation corpus
+The Google validator tracks the Google structured-data documentation, which evolves
+continuously and without any release or version number. Upgrading means crawling the
+documentation again, deciding what to do with the changes it reports, and reflecting them in
+the JSON definitions the validation classes are generated from.
+
+## 1. Refresh the Google documentation corpus
+
 Run `castor google:download`, then `castor google:check`.
 
-This will crawl the google docs and generate a full report of all the updates found in the google documentation.
+The first task crawls the Google documentation, rewrites the curated manifest in
+[google-types.json](./google-types.json), and downloads the HTML of the tracked types into
+`resources/google/downloads/`. The second one compares the live documentation with the
+manifest and the current JSON definitions, and reports everything that drifted.
 
-### 2. Update the manifest
-We use a [manifest](./google-types.json) to keep track of what we currently support.
+## 2. Update the manifest
 
-It should be updated whenever relevant changes are spotted by the command: it could be a new, insupported type, the removal of a type, a deprecated type...
+The [manifest](./google-types.json) keeps track of what we support, and the crawl only
+refreshes it with what it found. Reviewing its git diff and curating it by hand is up to you:
+a new type may have appeared, a type may have been removed, deprecated, or renamed.
 
-We also use some extracted HTML for each type to keep track of the changes. They may be found in the `resources/google/downloads` directory.
+Each entry holds a `slug` and a `url`, plus two optional keys:
 
-Update the manifest to register the changes discovered by the command.
+- `status`, which defaults to `active`. Use `skip` for a page that is not a real structured
+  data type, and `retired` for a type Google no longer documents. Both take the page out of
+  the generation. `extra` marks a page that is not listed in the search gallery but is still
+  worth tracking.
+- `note`, a short sentence explaining the decision, so the next person does not have to
+  investigate it again.
 
-Use the git diff in the corresponding HTML file to better describe what happened if needed.
+The extracted HTML stored in `resources/google/downloads/` is versioned too, so its git diff
+is usually the quickest way to understand what changed on a page.
 
-/!\ We only extract a portion of the docs, not the full page. Sometimes, the reason for a change may not be present in the extracted HTML. If this is the case, you will need to read the page of the element and try to find the reason by yourself /!\
+> [!WARNING]
+> Only a portion of each page is extracted, not the whole document. The reason
+> for a change is sometimes outside that portion, and you will then need to open the page
+> itself to find out what happened.
 
-### 3. Update structured-data JSON definitions
-Edit files in `resources/google/structured-data/` accordingly to the results of the two previous commands.
+## 3. Update the structured-data JSON definitions
 
-Usually, all changes should be visible in the HTML diff and should be easy to update. They should just be about new or updated required/recommended properties.
+Edit the files in `resources/google/structured-data/` according to the results of the two
+previous commands.
 
-However, sometimes, some very specific rules are introduced. We can't really handle them programatically, so for these we use the `specialRules` key. You may need to add a special rule here and implement it later.
+Most changes are visible in the HTML diff and are straightforward to apply: they are usually
+new or updated required and recommended properties.
 
-You may need to add a completely new type. Strictly follow the structure we use. There is [a dedicated readme](./structured-data/README.md) to help understanding our JSON files.
+Google occasionally introduces very specific rules that cannot be expressed declaratively.
+These live under the `specialRules` key: register the rule here, and implement it in step 5.
 
-### 4. Regenerate Google classes
-Run `castor google:generate`
+You may also need to add a completely new type. Follow the existing structure strictly, and
+read [the dedicated readme](./structured-data/README.md) to understand how these JSON files
+are organized.
 
-This will refresh the generated classes in `src/Vocabularies/Generated/Google/`.
+## 4. Regenerate the Google classes
 
-The coding standards are applied to the generated files by the task itself.
+Run `castor google:generate`.
 
-### 5. Validate special rules wiring
-Ensure each special rule class exists in `src/Vocabularies/Validators/Google/SpecialRules/` and each rule key is referenced in the right `resources/google/structured-data/*.json` file.
+This refreshes the generated validation classes in `src/Vocabularies/Generated/Google/`. The
+task also applies the coding standards to the generated files, so that regenerating from the
+same JSON definitions always yields the same tree and CI can check it with a plain
+`git diff --exit-code`.
 
-Ensure severities/messages are intentional (`ERROR` vs `WARNING`).
+## 5. Check how the special rules are wired
 
-If you added a special rule yourself, you will need to create the class and implement the logic. Also, if you add a new special rule, please add a test for it.
+Make sure every special rule class exists in `src/Vocabularies/Validators/Google/SpecialRules/`
+and that every rule key is referenced in the right `resources/google/structured-data/*.json`
+file.
 
-### 6. Update the tests
-If needed, add fixtures in `tests/Validation/fixtures/Google/` and update the expectations in `tests/Validation/fixtures/google-baseline.json`.
+Check that the severities and messages are intentional: `ERROR` marks an invalid document,
+`WARNING` only reports something suspicious.
 
-Try to isolate one problematic behavior per fixture when possible. Keep a clear name.
+A special rule you added yourself needs its class, its logic, and a test.
 
-### 7. Run the tests
-Run Google targeted tests with `tools/phpunit/vendor/bin/phpunit tests/Validation/Google/GoogleValidatorTest.php` (to run the GoogleValidatorTest) or `castor qa:phpunit:run -g google` (to run all tests belonging to the google group).
+## 6. Update the tests
 
-### 8. Check for regressions outside Google
-If behavior touches shared extractor/mapper/validator paths, run schema.org-focused validation tests and confirm no baseline/message regressions.
-Then run `castor qa:phpunit:run`.
+If needed, add fixtures in `tests/Validation/fixtures/google/` and update the expectations in
+`tests/Validation/fixtures/google-baseline.json`.
 
-### 9. Keep docs aligned
-Ensure command examples in `README.md` and `resources/google/structured-data/README.md` match actual task names and behavior.
+Isolate one problematic behavior per fixture whenever possible, and give it a clear name.
 
-Update the tasks in `.castor/` if needed.
+## 7. Run the Google tests
 
-### 10. CI note for `castor google:check`:
-/!\ `google:check` should not be blocking by default /!\\
+Run the targeted test class:
 
-Google can add, remove, or rename documentation pages at any time, which can fail the CI without any code change in this repository.
+```bash
+tools/phpunit/vendor/bin/phpunit tests/Validation/Google/GoogleValidatorTest.php
+```
 
-- Prefer report-only mode by default (do not fail the pipeline when Google changes docs upstream).
-- Run strict/failing mode only for explicit Google upgrade branches.
-- In GitHub Actions CI, strict mode is available via manual trigger (`workflow_dispatch`) with `google_docs_strict=true`.
+or every test belonging to the google group:
 
-Recommended policy:
-- `push`/`pull_request` pipelines: run `google:check` in report-only mode.
-- Dedicated upgrade work: run strict mode and treat failures as upgrade tasks.
+```bash
+castor qa:phpunit:run -g google
+```
+
+## 8. Check for regressions outside Google
+
+If the changes touch the extractor, the mapper, or the shared validation paths, run the
+schema.org validation tests too and confirm that no baseline or message regressed.
+
+Then run the full suite with `castor qa:phpunit:run`.
+
+## 9. Keep the docs aligned
+
+Check that the command examples in `README.md` and in
+`resources/google/structured-data/README.md` still match the actual task names and behavior,
+and update the tasks in `.castor/` if needed.
+
+## 10. A note about `castor google:check` on CI
+
+> [!WARNING]
+> `google:check` must not block the pipeline by default.
+
+Google can add, remove, or rename documentation pages at any time, which would fail CI without
+a single change in this repository. The policy is therefore:
+
+- on `push` and `pull_request`, run `google:check` in report-only mode;
+- on a dedicated upgrade branch, run it in strict mode and treat every failure as an upgrade
+  task.
+
+In GitHub Actions, strict mode is available through a manual trigger (`workflow_dispatch`)
+with `google_docs_strict=true`.
+
+## 11. Submit a pull request!
