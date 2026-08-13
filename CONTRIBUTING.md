@@ -22,7 +22,7 @@ before maintainers accept and merge your work.
 
 * You MUST follow the [PSR-1](https://www.php-fig.org/psr/psr-1/) and
 [PSR-12](https://www.php-fig.org/psr/psr-12/) coding standards. In practice, the project
-enforces the `@Symfony` rule set through PHP CS Fixer — just run `castor qa:cs` (see
+enforces the `@Symfony` rule set through PHP CS Fixer - just run `castor qa:cs` (see
 [Standard code](#standard-code)) and it is taken care of for you.
 * You MUST run the test suite (see [Green tests](#green-tests)).
 * Your code MUST pass the static analysis: `castor qa:phpstan` (PHPStan, level 9). CI fails on

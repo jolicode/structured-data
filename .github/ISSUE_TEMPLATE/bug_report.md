@@ -13,7 +13,7 @@ assignees: ""
 ## Input document
 
 <!-- The SMALLEST document that reproduces the problem. Paste the raw JSON-LD,
-     microdata or RDFa / HTML — not a screenshot, not a URL. -->
+     microdata or RDFa / HTML - not a screenshot, not a URL. -->
 
 ```
 paste your document here

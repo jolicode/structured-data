@@ -2,7 +2,7 @@
 
 These JSON files are manually written and define the Google structured-data type specifications and are used to generate PHP validation classes. They are based on the official Google documentation.
 
-You should not normally need to read these files directly — they are primarily used for code generation. However, if you're updating or maintaining the validator, you'll very likely need to work with these files.
+You should not normally need to read these files directly - they are primarily used for code generation. However, if you're updating or maintaining the validator, you'll very likely need to work with these files.
 
 ### UPDATING THESE FILES
 

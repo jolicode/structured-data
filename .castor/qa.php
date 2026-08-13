@@ -641,17 +641,17 @@ function summarizeValidatorBenchResults(string $dumpFile): void
     summarizeHtmlBenchCategory(
         $results,
         categoryPrefix: 'benchHtmlHomepage',
-        categoryLabel: 'a classic homepage — jolicode-homepage.html',
+        categoryLabel: 'a classic homepage - jolicode-homepage.html',
     );
     summarizeHtmlBenchCategory(
         $results,
         categoryPrefix: 'benchHtmlHeavyCourse',
-        categoryLabel: 'a documentation page — google-structured-data-intro.html',
+        categoryLabel: 'a documentation page - google-structured-data-intro.html',
     );
     summarizeHtmlBenchCategory(
         $results,
         categoryPrefix: 'benchHtmlBlogListing',
-        categoryLabel: 'a listing page — jolicampus-homepage.html',
+        categoryLabel: 'a listing page - jolicampus-homepage.html',
     );
 
     $htmlReportPath = rootDir() . '/var/cache/benchmark-results-validators.html';

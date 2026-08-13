@@ -18,6 +18,63 @@ permissions:
   contents: read
 
 jobs:
+  # Coding standards and static analysis are PHP-version agnostic here, so they run
+  # once, in a dedicated job. Keeping them out of the test matrix also keeps pcov
+  # disabled for them: setup-php enables coverage globally in php.ini, and pcov makes
+  # php-cs-fixer roughly four times slower.
+  qa:
+    name: Coding standards and static analysis
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          # Matches the platform the QA tooling is pinned to in tools/*/composer.json.
+          php-version: "8.4"
+          tools: castor
+          coverage: none
+
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Composer downloads
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: composer-qa-${{ runner.os }}-${{ hashFiles('composer.json', 'tools/*/composer.lock') }}
+          restore-keys: |
+            composer-qa-${{ runner.os }}-
+
+      - name: Cache QA tooling vendors
+        uses: actions/cache@v4
+        with:
+          path: tools/*/vendor
+          key: tools-vendor-qa-${{ runner.os }}-${{ hashFiles('tools/*/composer.lock') }}
+
+      - name: Cache PHPStan result cache
+        uses: actions/cache@v4
+        with:
+          path: tools/phpstan/var
+          key: phpstan-${{ runner.os }}-${{ github.sha }}
+          restore-keys: |
+            phpstan-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Install qa tooling
+        run: castor qa:install
+
+      - name: Check PHP coding standards
+        run: castor qa:cs --dry-run
+
+      - name: Run PHPStan
+        run: castor qa:phpstan
+
   ci:
     name: Test with PHP ${{ matrix.php-version }}
     strategy:
@@ -54,14 +111,6 @@ jobs:
           path: tools/*/vendor
           key: tools-vendor-${{ runner.os }}-${{ matrix.php-version }}-${{ hashFiles('tools/*/composer.lock') }}
 
-      - name: Cache PHPStan result cache
-        uses: actions/cache@v4
-        with:
-          path: tools/phpstan/var
-          key: phpstan-${{ runner.os }}-${{ matrix.php-version }}-${{ github.sha }}
-          restore-keys: |
-            phpstan-${{ runner.os }}-${{ matrix.php-version }}-
-
       - name: Cache the W3C test suite (pinned commit)
         # Skipped on the weekly scheduled run, which re-downloads the suite from the
         # upstream main branch to surface W3C drift.
@@ -82,12 +131,6 @@ jobs:
 
       - name: Install qa tooling
         run: castor qa:install
-
-      - name: Check PHP coding standards
-        run: castor qa:cs --dry-run
-
-      - name: Run PHPStan
-        run: castor qa:phpstan
 
       - name: Prepare the W3C test suite from upstream main (drift check)
         if: github.event_name == 'schedule'
