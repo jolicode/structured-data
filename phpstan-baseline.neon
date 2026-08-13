@@ -757,27 +757,45 @@ parameters:
 			path: src/JsonLd/Algorithms/Flatten/NodeMapGenerator.php
 
 		-
+			message: '#^Cannot access an offset on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: src/JsonLd/Algorithms/Frame/FrameData.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/JsonLd/Algorithms/Frame/FrameData.php
+
+		-
+			message: '#^Cannot access offset ''@list'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/JsonLd/Algorithms/Frame/FrameMatcher.php
+
+		-
+			message: '#^Parameter \#1 \$pattern of static method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Frame\\FrameMatcher\:\:nodeMatch\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/JsonLd/Algorithms/Frame/FrameMatcher.php
+
+		-
+			message: '#^Parameter \#1 \$pattern of static method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Frame\\FrameMatcher\:\:patternValues\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 3
+			path: src/JsonLd/Algorithms/Frame/FrameMatcher.php
+
+		-
 			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
 			identifier: foreach.nonIterable
 			count: 4
 			path: src/JsonLd/Algorithms/Frame/Framer.php
 
 		-
-			message: '#^Cannot access an offset on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 2
-			path: src/JsonLd/Algorithms/Frame/Framer.php
-
-		-
 			message: '#^Cannot access offset ''@id'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 3
-			path: src/JsonLd/Algorithms/Frame/Framer.php
-
-		-
-			message: '#^Cannot access offset ''@list'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
 			path: src/JsonLd/Algorithms/Frame/Framer.php
 
 		-
@@ -823,31 +841,13 @@ parameters:
 			path: src/JsonLd/Algorithms/Frame/Framer.php
 
 		-
-			message: '#^Parameter \#1 \$graphMap of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Frame\\Framer\:\:mergeNodeMapGraphs\(\) expects array\<string, array\<string, array\<string, mixed\>\>\>, array\<string, array\<string, mixed\>\> given\.$#'
+			message: '#^Parameter \#1 \$graphMap of static method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Frame\\FrameData\:\:mergeNodeMapGraphs\(\) expects array\<string, array\<string, array\<string, mixed\>\>\>, array\<string, array\<string, mixed\>\> given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Algorithms/Frame/Framer.php
 
 		-
 			message: '#^Parameter \#1 \$json of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Expand\\Expander\:\:expand\(\) expects stdClass\|string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/JsonLd/Algorithms/Frame/Framer.php
-
-		-
-			message: '#^Parameter \#1 \$pattern of method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Frame\\Framer\:\:nodeMatch\(\) expects array\<string, mixed\>, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/JsonLd/Algorithms/Frame/Framer.php
-
-		-
-			message: '#^Parameter \#1 \$pattern of static method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Frame\\Framer\:\:patternValues\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
-			identifier: argument.type
-			count: 3
-			path: src/JsonLd/Algorithms/Frame/Framer.php
-
-		-
-			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: src/JsonLd/Algorithms/Frame/Framer.php

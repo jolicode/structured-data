@@ -189,7 +189,7 @@ class Framer
 
         $framed = $this->frameMergedOrDefault(
             $expandedInput,
-            self::asArrayData($expandedFrame),
+            FrameData::asArrayData($expandedFrame),
             $merged,
             $pruneBlankNodeIdentifiers,
             $options,
@@ -204,7 +204,7 @@ class Framer
             forceGraph: !$omitGraph,
         );
 
-        $compacted = $this->cleanupNull($compacted);
+        $compacted = FrameOutputCleaner::cleanupNull($compacted);
 
         if ($encodeResult) {
             return json_encode($compacted, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES);
@@ -244,14 +244,14 @@ class Framer
         /* @var array<string, array<string, array<string, mixed>>> $nodeMap */
         $this->graphMap = array_map(
             static fn (?array $graph): array => array_map(
-                static fn (mixed $node): mixed => self::convertToArrays($node),
+                static fn (mixed $node): mixed => FrameData::convertToArrays($node),
                 $graph ?? [],
             ),
             $nodeMap,
         );
 
         if ($merged) {
-            $this->graphMap['@merged'] = $this->mergeNodeMapGraphs($this->graphMap);
+            $this->graphMap['@merged'] = FrameData::mergeNodeMapGraphs($this->graphMap);
             $this->graph = '@merged';
         }
 
@@ -269,7 +269,7 @@ class Framer
             );
         }
 
-        $cleaned = $this->cleanupPreserve($framed);
+        $cleaned = FrameOutputCleaner::cleanupPreserve($framed, $this->bnodesToClear);
 
         return \is_array($cleaned) ? $cleaned : [$cleaned];
     }
@@ -284,8 +284,8 @@ class Framer
     private function doFrame(array $subjects, array $frame, array &$parent, ?string $property): void
     {
         // Validate the frame.
-        $this->validateFrame($frame);
-        $frameObject = self::isEmptyMap($frame[0]) ? [] : $frame[0];
+        FrameMatcher::validateFrame($frame);
+        $frameObject = FrameMatcher::isEmptyMap($frame[0]) ? [] : $frame[0];
 
         // Get the flags for the current frame.
         $flags = [
@@ -315,7 +315,7 @@ class Framer
             }
 
             if ('@link' === $flags['embed'] && isset($this->link[$this->graph][$id])) {
-                self::addFrameOutput($parent, $property, $this->link[$this->graph][$id]);
+                FrameData::addFrameOutput($parent, $property, $this->link[$this->graph][$id]);
 
                 continue;
             }
@@ -345,7 +345,7 @@ class Framer
                 $this->embedded
                 && ('@never' === $flags['embed'] || $this->createsCircularReference($subject))
             ) {
-                self::addFrameOutput($parent, $property, $output);
+                FrameData::addFrameOutput($parent, $property, $output);
 
                 continue;
             }
@@ -356,7 +356,7 @@ class Framer
                 && \in_array($flags['embed'], ['@first', '@once'], true)
                 && isset($this->uniqueEmbeds[$this->graph][$id])
             ) {
-                self::addFrameOutput($parent, $property, $output);
+                FrameData::addFrameOutput($parent, $property, $output);
 
                 continue;
             }
@@ -422,30 +422,30 @@ class Framer
                 foreach ($subject[$subjectProperty] as $item) {
                     $subframe = \array_key_exists($subjectProperty, $frameObject)
                         ? $frameObject[$subjectProperty]
-                        : $this->createImplicitFrame($flags);
+                        : FrameMatcher::createImplicitFrame($flags);
 
                     if (\is_array($item) && \array_key_exists(Keyword::LIST->value, $item)) {
                         // Lists are framed item by item.
                         $firstSubframe = $frameObject[$subjectProperty][0] ?? null;
                         $listSubframe = \is_array($firstSubframe) && \array_key_exists(Keyword::LIST->value, $firstSubframe)
                             ? $firstSubframe[Keyword::LIST->value]
-                            : $this->createImplicitFrame($flags);
+                            : FrameMatcher::createImplicitFrame($flags);
 
                         $list = [Keyword::LIST->value => []];
 
                         foreach ($item[Keyword::LIST->value] as $listItem) {
-                            if ($this->isSubjectReference($listItem)) {
+                            if (FrameMatcher::isSubjectReference($listItem)) {
                                 $this->frameEmbedded(true, [$listItem[Keyword::ID->value]], $listSubframe, $list, Keyword::LIST->value);
                             } else {
-                                self::addFrameOutput($list, Keyword::LIST->value, $listItem);
+                                FrameData::addFrameOutput($list, Keyword::LIST->value, $listItem);
                             }
                         }
 
-                        self::addFrameOutput($output, $subjectProperty, $list);
-                    } elseif ($this->isSubjectReference($item)) {
+                        FrameData::addFrameOutput($output, $subjectProperty, $list);
+                    } elseif (FrameMatcher::isSubjectReference($item)) {
                         $this->frameEmbedded(true, [$item[Keyword::ID->value]], $subframe, $output, $subjectProperty);
-                    } elseif ($this->valueMatch($subframe[0] ?? [], $item)) {
-                        self::addFrameOutput($output, $subjectProperty, $item);
+                    } elseif (FrameMatcher::valueMatch($subframe[0] ?? [], $item)) {
+                        FrameData::addFrameOutput($output, $subjectProperty, $item);
                     }
                 }
             }
@@ -503,7 +503,7 @@ class Framer
             }
 
             // Add the output to the parent.
-            self::addFrameOutput($parent, $property, $output);
+            FrameData::addFrameOutput($parent, $property, $output);
 
             array_pop($this->subjectStack);
         }
@@ -550,42 +550,6 @@ class Framer
     }
 
     /**
-     * @param array<string, array<string, array<string, mixed>>> $graphMap
-     *
-     * @return array<string, array<string, mixed>>
-     */
-    private function mergeNodeMapGraphs(array $graphMap): array
-    {
-        $merged = [];
-
-        foreach ($graphMap as $graph) {
-            foreach ($graph as $id => $node) {
-                $merged[$id] ??= [Keyword::ID->value => $id];
-
-                foreach ($node as $nodeProperty => $values) {
-                    if (Keyword::ID->value === $nodeProperty) {
-                        continue;
-                    }
-
-                    if (Keyword::tryFrom((string) $nodeProperty) && Keyword::TYPE->value !== $nodeProperty) {
-                        $merged[$id][$nodeProperty] = $values;
-
-                        continue;
-                    }
-
-                    foreach ((array) $values as $value) {
-                        if (!\in_array($value, $merged[$id][$nodeProperty] ?? [], true)) {
-                            $merged[$id][$nodeProperty][] = $value;
-                        }
-                    }
-                }
-            }
-        }
-
-        return $merged;
-    }
-
-    /**
      * @param array<string>        $subjects
      * @param array<string, mixed> $frame
      * @param array<string, mixed> $flags
@@ -599,222 +563,12 @@ class Framer
         foreach ($subjects as $id) {
             $subject = $this->graphMap[$this->graph][$id] ?? null;
 
-            if (null !== $subject && $this->filterSubject($subject, $frame, $flags)) {
+            if (null !== $subject && FrameMatcher::matchesSubject($subject, $frame, $flags, $this->subjects)) {
                 $matches[$id] = $subject;
             }
         }
 
         return $matches;
-    }
-
-    /**
-     * Returns true if the given subject matches the given frame, either on explicit.
-     *
-     * @id or @var inclusion, or by duck typing on the frame properties.
-     *
-     * @param array<string, mixed> $subject
-     * @param array<string, mixed> $frame
-     * @param array<string, mixed> $flags
-     */
-    private function filterSubject(array $subject, array $frame, array $flags): bool
-    {
-        $wildcard = true;
-        $matchesSome = false;
-
-        foreach ($frame as $key => $frameValues) {
-            $matchThis = false;
-            $nodeValues = $this->getValues($subject, (string) $key);
-            $isEmpty = [] === (array) $frameValues;
-
-            if (Keyword::ID->value === $key) {
-                $frameIds = (array) $frameValues;
-
-                if (self::isEmptyMap($frameIds[0] ?? null)) {
-                    $matchThis = true;
-                } else {
-                    $matchThis = \in_array($nodeValues[0] ?? null, $frameIds, true);
-                }
-
-                if (!$flags['requireAll']) {
-                    return $matchThis;
-                }
-            } elseif (Keyword::TYPE->value === $key) {
-                $wildcard = false;
-                $frameTypes = (array) $frameValues;
-
-                if ($isEmpty) {
-                    if (\count($nodeValues) > 0) {
-                        return false;
-                    }
-
-                    $matchThis = true;
-                } elseif (1 === \count($frameTypes) && self::isEmptyMap($frameTypes[0])) {
-                    $matchThis = \count($nodeValues) > 0;
-                } else {
-                    foreach ($frameTypes as $type) {
-                        if (\is_array($type) && \array_key_exists('@default', $type)) {
-                            $matchThis = true;
-                        } else {
-                            $matchThis = $matchThis || \in_array($type, $nodeValues, true);
-                        }
-                    }
-                }
-
-                if (!$flags['requireAll']) {
-                    return $matchThis;
-                }
-            } elseif (self::isKeywordString((string) $key)) {
-                continue;
-            } else {
-                $thisFrame = ((array) $frameValues)[0] ?? null;
-                $hasDefault = false;
-
-                if (null !== $thisFrame) {
-                    $this->validateFrame([$thisFrame]);
-                    $hasDefault = \is_array($thisFrame) && \array_key_exists('@default', $thisFrame);
-                }
-
-                // No longer a wildcard pattern once the frame has any non-keyword property.
-                $wildcard = false;
-
-                // A node without a value matches when the frame provides a default.
-                if ([] === $nodeValues && $hasDefault) {
-                    continue;
-                }
-
-                // A match-none frame value forbids any node value.
-                if (\count($nodeValues) > 0 && $isEmpty) {
-                    return false;
-                }
-
-                if (null === $thisFrame) {
-                    $matchThis = [] === $nodeValues;
-                } elseif (\is_array($thisFrame) && \array_key_exists(Keyword::LIST->value, $thisFrame)) {
-                    $listValue = $thisFrame[Keyword::LIST->value][0] ?? null;
-                    $nodeList = $nodeValues[0][Keyword::LIST->value] ?? null;
-
-                    if (\is_array($listValue) && \is_array($nodeList)) {
-                        if (\array_key_exists(Keyword::VALUE->value, $listValue)) {
-                            foreach ($nodeList as $listItem) {
-                                if ($this->valueMatch($listValue, $listItem)) {
-                                    $matchThis = true;
-
-                                    break;
-                                }
-                            }
-                        } else {
-                            foreach ($nodeList as $listItem) {
-                                if ($this->nodeMatch($listValue, $listItem, $flags)) {
-                                    $matchThis = true;
-
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                } elseif (\is_array($thisFrame) && \array_key_exists(Keyword::VALUE->value, $thisFrame)) {
-                    foreach ($nodeValues as $nodeValue) {
-                        if ($this->valueMatch($thisFrame, $nodeValue)) {
-                            $matchThis = true;
-
-                            break;
-                        }
-                    }
-                } elseif ($this->isSubjectReference($thisFrame)) {
-                    foreach ($nodeValues as $nodeValue) {
-                        if ($this->nodeMatch($thisFrame, $nodeValue, $flags)) {
-                            $matchThis = true;
-
-                            break;
-                        }
-                    }
-                } elseif (\is_array($thisFrame) || self::isEmptyMap($thisFrame)) {
-                    $matchThis = \count($nodeValues) > 0;
-                }
-            }
-
-            if (!$matchThis && $flags['requireAll']) {
-                return false;
-            }
-
-            $matchesSome = $matchesSome || $matchThis;
-        }
-
-        return $wildcard || $matchesSome;
-    }
-
-    /**
-     * @param array<string, mixed> $pattern
-     * @param array<string, mixed> $flags
-     */
-    private function nodeMatch(array $pattern, mixed $value, array $flags): bool
-    {
-        if (!\is_array($value) || !\array_key_exists(Keyword::ID->value, $value)) {
-            return false;
-        }
-
-        $nodeObject = $this->subjects[$value[Keyword::ID->value]] ?? null;
-
-        return null !== $nodeObject && $this->filterSubject($nodeObject, $pattern, $flags);
-    }
-
-    /**
-     * A value object matches the value pattern when the pattern is empty, or when
-     * its "@value", "@type" and "@language" entries all match (an empty map is a
-     * wildcard, an empty array matches only a missing entry).
-     */
-    private function valueMatch(mixed $pattern, mixed $value): bool
-    {
-        if (!\is_array($value) || !\array_key_exists(Keyword::VALUE->value, $value)) {
-            return false;
-        }
-
-        // A wildcard pattern matches any value object.
-        if (self::isEmptyMap($pattern)) {
-            return true;
-        }
-
-        if (!\is_array($pattern)) {
-            return false;
-        }
-
-        $v1 = $value[Keyword::VALUE->value];
-        $t1 = $value[Keyword::TYPE->value] ?? null;
-        $l1 = $value[Keyword::LANGUAGE->value] ?? null;
-
-        $v2 = self::patternValues($pattern, Keyword::VALUE->value);
-        $t2 = self::patternValues($pattern, Keyword::TYPE->value);
-        $l2 = self::patternValues($pattern, Keyword::LANGUAGE->value);
-
-        if ([] === $v2 && [] === $t2 && [] === $l2) {
-            return true;
-        }
-
-        if (!(\in_array($v1, $v2, true) || self::isEmptyMap($v2[0] ?? null))) {
-            return false;
-        }
-
-        if (!((null === $t1 && [] === $t2) || \in_array($t1, $t2, true) || (null !== $t1 && self::isEmptyMap($t2[0] ?? null)))) {
-            return false;
-        }
-
-        return (null === $l1 && [] === $l2) || \in_array($l1, $l2, true) || (null !== $l1 && self::isEmptyMap($l2[0] ?? null));
-    }
-
-    /**
-     * @param array<string, mixed> $flags
-     *
-     * @return array<int, array<string, mixed>>
-     */
-    private function createImplicitFrame(array $flags): array
-    {
-        $frame = [];
-
-        foreach ($flags as $name => $value) {
-            $frame['@' . $name] = [$value];
-        }
-
-        return [$frame];
     }
 
     /**
@@ -871,46 +625,6 @@ class Framer
         return $value;
     }
 
-    /**
-     * @param array<mixed> $frame
-     */
-    private function validateFrame(array $frame): void
-    {
-        if (1 !== \count($frame)) {
-            throw new JsonLdException('invalid frame');
-        }
-
-        if (self::isEmptyMap($frame[0])) {
-            return;
-        }
-
-        if (!\is_array($frame[0]) || (array_is_list($frame[0]) && [] !== $frame[0])) {
-            throw new JsonLdException('invalid frame');
-        }
-
-        $frameObject = $frame[0];
-
-        foreach ((array) ($frameObject[Keyword::ID->value] ?? []) as $id) {
-            if (self::isEmptyMap($id)) {
-                continue;
-            }
-
-            if (!\is_string($id) || !IriResolver::isAbsoluteIri($id) || str_starts_with($id, '_:')) {
-                throw new JsonLdException('invalid frame');
-            }
-        }
-
-        foreach ((array) ($frameObject[Keyword::TYPE->value] ?? []) as $type) {
-            if (self::isEmptyMap($type) || (\is_array($type) && \array_key_exists('@default', $type))) {
-                continue;
-            }
-
-            if (!\is_string($type) || !(IriResolver::isAbsoluteIri($type) || Keyword::JSON->value === $type) || str_starts_with($type, '_:')) {
-                throw new JsonLdException('invalid frame');
-            }
-        }
-    }
-
     private function removeEmbed(string $id): void
     {
         $embed = $this->uniqueEmbeds[$this->graph][$id];
@@ -956,171 +670,5 @@ class Framer
                 $this->removeDependentEmbeds($next);
             }
         }
-    }
-
-    /**
-     * Removes the @preserve entries from the framing output, and clears the
-     * identifiers of blank nodes that are only referenced once.
-     */
-    private function cleanupPreserve(mixed $input): mixed
-    {
-        if (\is_array($input) && array_is_list($input)) {
-            return array_map(fn (mixed $value): mixed => $this->cleanupPreserve($value), $input);
-        }
-
-        if (\is_array($input)) {
-            if (\array_key_exists('@preserve', $input)) {
-                return $input['@preserve'][0];
-            }
-
-            if (\array_key_exists(Keyword::VALUE->value, $input)) {
-                return $input;
-            }
-
-            if (\array_key_exists(Keyword::LIST->value, $input)) {
-                $input[Keyword::LIST->value] = $this->cleanupPreserve($input[Keyword::LIST->value]);
-
-                return $input;
-            }
-
-            foreach ($input as $key => $value) {
-                if (Keyword::ID->value === $key && \in_array($value, $this->bnodesToClear, true)) {
-                    unset($input[Keyword::ID->value]);
-
-                    continue;
-                }
-
-                $input[$key] = $this->cleanupPreserve($value);
-            }
-        }
-
-        return $input;
-    }
-
-    /**
-     * Replaces "@null" with null, removing it from arrays.
-     */
-    private function cleanupNull(mixed $input): mixed
-    {
-        if (\is_array($input)) {
-            $cleaned = array_map(fn (mixed $value): mixed => $this->cleanupNull($value), $input);
-
-            return array_values(array_filter($cleaned, static fn (mixed $value): bool => null !== $value));
-        }
-
-        if ('@null' === $input) {
-            return null;
-        }
-
-        if ($input instanceof \stdClass) {
-            foreach (get_object_vars($input) as $key => $value) {
-                $input->{$key} = $this->cleanupNull($value);
-            }
-        }
-
-        return $input;
-    }
-
-    /**
-     * @param array<mixed>|array<string, mixed> $parent
-     */
-    private static function addFrameOutput(array &$parent, ?string $property, mixed $output): void
-    {
-        if (null !== $property) {
-            $parent[$property] ??= [];
-            $parent[$property][] = $output;
-
-            return;
-        }
-
-        $parent[] = $output;
-    }
-
-    /**
-     * @param array<string, mixed> $subject
-     *
-     * @return array<mixed>
-     */
-    private function getValues(array $subject, string $key): array
-    {
-        $values = $subject[$key] ?? [];
-
-        return \is_array($values) && array_is_list($values) ? $values : [$values];
-    }
-
-    private function isSubjectReference(mixed $value): bool
-    {
-        return \is_array($value)
-            && 1 === \count($value)
-            && \array_key_exists(Keyword::ID->value, $value);
-    }
-
-    /**
-     * @param array<string, mixed> $pattern
-     *
-     * @return array<mixed>
-     */
-    private static function patternValues(array $pattern, string $key): array
-    {
-        if (!\array_key_exists($key, $pattern)) {
-            return [];
-        }
-
-        $values = $pattern[$key];
-
-        return \is_array($values) && array_is_list($values) ? $values : [$values];
-    }
-
-    private static function isEmptyMap(mixed $value): bool
-    {
-        return $value instanceof \stdClass && [] === get_object_vars($value);
-    }
-
-    private static function isKeywordString(string $value): bool
-    {
-        return null !== Keyword::tryFrom($value)
-            || null !== FramingKeyword::tryFrom($value)
-            || '@preserve' === $value
-            || '@default' === $value
-            || '@null' === $value;
-    }
-
-    /**
-     * Normalizes the expander output (stdClass-based) into nested associative
-     * arrays, which the framing algorithm manipulates. Empty maps are kept as
-     * stdClass instances: in a frame, an empty map is a wildcard while an empty
-     * array matches the absence of a value, and the distinction must survive.
-     *
-     * @return array<int, array<string, mixed>>
-     */
-    private static function asArrayData(mixed $data): array
-    {
-        $converted = self::convertToArrays($data);
-
-        if ($converted instanceof \stdClass || [] === $converted || !\is_array($converted)) {
-            // An empty (or dropped-empty) frame is the wildcard frame.
-            return [[]];
-        }
-
-        return array_is_list($converted) ? $converted : [$converted];
-    }
-
-    private static function convertToArrays(mixed $data): mixed
-    {
-        if ($data instanceof \stdClass) {
-            $entries = get_object_vars($data);
-
-            if ([] === $entries) {
-                return $data;
-            }
-
-            return array_map(static fn (mixed $value): mixed => self::convertToArrays($value), $entries);
-        }
-
-        if (\is_array($data)) {
-            return array_map(static fn (mixed $value): mixed => self::convertToArrays($value), $data);
-        }
-
-        return $data;
     }
 }
