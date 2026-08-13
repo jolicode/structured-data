@@ -95,7 +95,10 @@ class ValidationMapper
             $this->addRangesToType($type, $parsedJsonLd);
         }
 
-        unset($this->propertiesWithReferences);
+        // Reset rather than unset: unsetting a typed property leaves it
+        // uninitialized, and a second map() on the same instance would then fail
+        // in mapFlattenedTypes().
+        $this->propertiesWithReferences = [];
 
         return $this->mappedTypes;
     }
