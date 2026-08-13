@@ -440,7 +440,7 @@ class Stack
 
     private function isADataType(array $testedType): bool
     {
-        return (bool) array_intersect($testedType['supportedTypes'], GoogleValidator::DATA_TYPES);
+        return (bool) array_intersect($testedType['supportedTypes'], DataTypeChecker::DATA_TYPES);
     }
 
     private function getResolutionCacheKey(): string

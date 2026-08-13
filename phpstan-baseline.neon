@@ -1345,10 +1345,64 @@ parameters:
 			path: src/Vocabularies/Generated/GeneratedClassesRegistry.php
 
 		-
-			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:coerceScalarForSourceFormat\(\) has parameter \$supportedTypes with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\DataTypeChecker\:\:coerceScalarForSourceFormat\(\) has parameter \$supportedTypes with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/Vocabularies/Validators/Google/GoogleValidator.php
+			path: src/Vocabularies/Validators/Google/DataTypeChecker.php
+
+		-
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\DataTypeChecker\:\:getMatchingDataType\(\) has parameter \$supportedTypes with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Vocabularies/Validators/Google/DataTypeChecker.php
+
+		-
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\DataTypeChecker\:\:hasInvalidDataTypeValue\(\) has parameter \$expectedProperty with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Vocabularies/Validators/Google/DataTypeChecker.php
+
+		-
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\DataTypeChecker\:\:hasInvalidExactValue\(\) has parameter \$expectedValues with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Vocabularies/Validators/Google/DataTypeChecker.php
+
+		-
+			message: '#^Parameter \#1 \$datetime of function strtotime expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Vocabularies/Validators/Google/DataTypeChecker.php
+
+		-
+			message: '#^Parameter \#1 \$haystack of function str_contains expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Vocabularies/Validators/Google/DataTypeChecker.php
+
+		-
+			message: '#^Parameter \#1 \$url of function parse_url expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Vocabularies/Validators/Google/DataTypeChecker.php
+
+		-
+			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 6
+			path: src/Vocabularies/Validators/Google/DataTypeChecker.php
+
+		-
+			message: '#^Parameter \#4 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 4
+			path: src/Vocabularies/Validators/Google/DataTypeChecker.php
+
+		-
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 6
+			path: src/Vocabularies/Validators/Google/DataTypeChecker.php
 
 		-
 			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:definePropertyViolationSeverity\(\) has parameter \$property with no value type specified in iterable type array\.$#'
@@ -1369,25 +1423,7 @@ parameters:
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
-			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:getMatchingDataType\(\) has parameter \$supportedTypes with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Vocabularies/Validators/Google/GoogleValidator.php
-
-		-
 			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:hasAnyPropertyKey\(\) has parameter \$expectedProperties with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Vocabularies/Validators/Google/GoogleValidator.php
-
-		-
-			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:hasInvalidDataTypeValue\(\) has parameter \$expectedProperty with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Vocabularies/Validators/Google/GoogleValidator.php
-
-		-
-			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:hasInvalidExactValue\(\) has parameter \$expectedValues with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
@@ -1438,42 +1474,6 @@ parameters:
 			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\GoogleValidator\:\:validateRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/Vocabularies/Validators/Google/GoogleValidator.php
-
-		-
-			message: '#^Parameter \#1 \$datetime of function strtotime expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Vocabularies/Validators/Google/GoogleValidator.php
-
-		-
-			message: '#^Parameter \#1 \$haystack of function str_contains expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Vocabularies/Validators/Google/GoogleValidator.php
-
-		-
-			message: '#^Parameter \#1 \$url of function parse_url expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Vocabularies/Validators/Google/GoogleValidator.php
-
-		-
-			message: '#^Parameter \#2 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
-			identifier: argument.type
-			count: 6
-			path: src/Vocabularies/Validators/Google/GoogleValidator.php
-
-		-
-			message: '#^Parameter \#4 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
-			identifier: argument.type
-			count: 4
-			path: src/Vocabularies/Validators/Google/GoogleValidator.php
-
-		-
-			message: '#^Possibly invalid array key type mixed\.$#'
-			identifier: offsetAccess.invalidOffset
-			count: 6
 			path: src/Vocabularies/Validators/Google/GoogleValidator.php
 
 		-
