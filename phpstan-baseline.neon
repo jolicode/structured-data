@@ -229,22 +229,22 @@ parameters:
 			path: generators/SchemaOrg/Objects/Type.php
 
 		-
+			message: '#^Parameter \#1 \$value of class PhpParser\\Node\\Scalar\\String_ constructor expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: generators/StaticFileGenerator.php
+
+		-
 			message: '#^Cannot access property \$@context on mixed\.$#'
 			identifier: property.nonObject
 			count: 1
-			path: generators/StaticFileGenerator.php
+			path: generators/StaticSchemaOrgContextGenerator.php
 
 		-
 			message: '#^Cannot access property \$@graph on mixed\.$#'
 			identifier: property.nonObject
 			count: 1
-			path: generators/StaticFileGenerator.php
-
-		-
-			message: '#^Parameter \#1 \$value of class PhpParser\\Node\\Scalar\\String_ constructor expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: generators/StaticFileGenerator.php
+			path: generators/StaticSchemaOrgContextGenerator.php
 
 		-
 			message: '#^Method JoliCode\\StructuredData\\Extraction\\Extractor\:\:extract\(\) return type has no value type specified in iterable type array\.$#'
