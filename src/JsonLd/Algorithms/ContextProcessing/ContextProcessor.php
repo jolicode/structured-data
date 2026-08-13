@@ -110,7 +110,7 @@ class ContextProcessor
         foreach ($localContext as $context) {
             // 5.1
             if (null === $context) {
-                $this->handleNullContext($activeContext, $result, $overrideProtected, $propagate);
+                ContextEntryHandler::handleNullContext($activeContext, $result, $overrideProtected, $propagate);
 
                 // 5.1.3
                 continue;
@@ -131,7 +131,7 @@ class ContextProcessor
 
             // 5.5
             if (property_exists($context, Keyword::VERSION->value)) {
-                $this->handleVersionEntry($activeContext, $context);
+                ContextEntryHandler::handleVersionEntry($activeContext, $context);
             }
 
             // 5.6
@@ -141,27 +141,27 @@ class ContextProcessor
 
             // 5.7
             if (property_exists($context, Keyword::BASE->value) && !\count($remoteContexts)) {
-                $this->handleBaseEntry($result, $context);
+                ContextEntryHandler::handleBaseEntry($result, $context);
             }
 
             // 5.8
             if (property_exists($context, Keyword::VOCAB->value)) {
-                $this->handleVocabEntry($activeContext, $result, $context);
+                ContextEntryHandler::handleVocabEntry($activeContext, $result, $context);
             }
 
             // 5.9
             if (property_exists($context, Keyword::LANGUAGE->value)) {
-                $this->handleLanguageEntry($result, $context);
+                ContextEntryHandler::handleLanguageEntry($result, $context);
             }
 
             // 5.10
             if (property_exists($context, Keyword::DIRECTION->value)) {
-                $this->handleDirectionEntry($activeContext, $result, $context);
+                ContextEntryHandler::handleDirectionEntry($activeContext, $result, $context);
             }
 
             // 5.11
             if (property_exists($context, Keyword::PROPAGATE->value)) {
-                $this->handlePropagateEntry($activeContext, $context);
+                ContextEntryHandler::handlePropagateEntry($activeContext, $context);
             }
 
             // 5.12
@@ -201,24 +201,6 @@ class ContextProcessor
         }
 
         return $result;
-    }
-
-    private function handleNullContext(Context $activeContext, Context &$result, bool $overrideProtected, bool $propagate): void
-    {
-        // 5.1.1
-        // The check targets the context accumulated so far in the sequence: a
-        // protected term introduced by a previous entry of the same local context
-        // array also forbids nullification.
-        if (!$overrideProtected && $result->hasProtectedTermDefinitions()) {
-            throw new ContextProcessingException('invalid context nullification');
-        }
-
-        // 5.1.2
-        $result = new Context(
-            baseIri: $activeContext->baseUrl,
-            baseUrl: $activeContext->baseUrl,
-            previousContext: false === $propagate ? $result : null,
-        );
     }
 
     private function handleStringContext(
@@ -273,19 +255,6 @@ class ContextProcessor
         $this->cache->storeProcessedRemoteContext($preProcessingContext, $context, $validateScopedContext, $remoteContexts, $result);
     }
 
-    private function handleVersionEntry(Context $activeContext, \stdClass $context): void
-    {
-        // 5.5.1
-        if (1.1 !== (float) $context->{Keyword::VERSION->value}) {
-            throw new ContextProcessingException('invalid @version value');
-        }
-
-        // 5.5.2
-        if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
-            throw new ContextProcessingException('processing mode conflict');
-        }
-    }
-
     private function handleImportEntry(Context $activeContext, \stdClass &$context, ?string $baseUrl): void
     {
         // 5.6.1
@@ -315,96 +284,5 @@ class ContextProcessor
 
         // 5.6.8
         $context = (object) array_replace((array) $loadedContext, (array) $context);
-    }
-
-    private function handleBaseEntry(Context &$result, \stdClass $context): void
-    {
-        $value = $context->{Keyword::BASE->value};
-
-        // 5.7.2
-        if (null === $value) {
-            $result->baseIri = null;
-        // 5.7.4 : we invert 5.7.3 and 5.7.4 because it doesn't make sense to do it the other way around
-        } elseif (IriResolver::isRelativeIri($value) && $result->baseIri) {
-            $result->baseIri = IriResolver::resolveIri($result->baseIri, $value);
-        // 5.7.3
-        } elseif (IriResolver::isIri($value)) {
-            $result->baseIri = $value;
-        // 5.7.5
-        } else {
-            throw new ContextProcessingException('invalid base IRI');
-        }
-    }
-
-    private function handleVocabEntry(Context $activeContext, Context &$result, \stdClass $context): void
-    {
-        // 5.8.1
-        $value = $context->{Keyword::VOCAB->value};
-
-        // 5.8.2
-        if (null === $value) {
-            $result->vocabularyMapping = null;
-        // In JSON-LD 1.0, relative @vocab mappings are invalid, including the empty string.
-        } elseif (
-            Context::PROCESSING_MODE_10 === $activeContext->processingMode
-            && ('' === $value || (!IriResolver::isAbsoluteIri($value) && !IriResolver::isBlankNodeIdentifier($value)))
-        ) {
-            throw new ContextProcessingException('invalid vocab mapping');
-        // 5.8.3
-        } elseif ('' !== $value && !IriResolver::isIri($value) && !IriResolver::isBlankNodeIdentifier($value)) {
-            throw new ContextProcessingException('invalid vocab mapping');
-        } else {
-            $result->vocabularyMapping = IriResolver::expand($result, $value, true);
-        }
-    }
-
-    private function handleLanguageEntry(Context &$result, \stdClass $context): void
-    {
-        // 5.9.1
-        $value = $context->{Keyword::LANGUAGE->value};
-
-        // 5.9.2
-        if (!$value) {
-            $result->defaultLangage = null;
-        // 5.9.3
-        } elseif (\is_string($value)) {
-            $result->defaultLangage = $value;
-        } else {
-            throw new ContextProcessingException('invalid default language');
-        }
-    }
-
-    private function handleDirectionEntry(Context $activeContext, Context &$result, \stdClass $context): void
-    {
-        // 5.10.1
-        if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
-            throw new ContextProcessingException('invalid context entry');
-        }
-
-        // 5.10.2
-        $value = $context->{Keyword::DIRECTION->value};
-
-        // 5.10.3
-        if (!$value) {
-            $result->defaultBaseDirection = null;
-        // 5.10.4
-        } elseif (!\is_string($value) || !\in_array($value, ['ltr', 'rtl'], true)) {
-            throw new ContextProcessingException('invalid base direction');
-        } else {
-            $result->defaultBaseDirection = $value;
-        }
-    }
-
-    private function handlePropagateEntry(Context $activeContext, \stdClass $context): void
-    {
-        // 5.11.1
-        if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
-            throw new ContextProcessingException('invalid context entry');
-        }
-
-        // 5.11.2
-        if (!\is_bool($context->{Keyword::PROPAGATE->value})) {
-            throw new ContextProcessingException('invalid @propagate value');
-        }
     }
 }
