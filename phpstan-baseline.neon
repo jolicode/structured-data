@@ -651,7 +651,7 @@ parameters:
 		-
 			message: '#^Parameter \#2 \$value of static method JoliCode\\StructuredData\\JsonLd\\Algorithms\\Http\\IriResolver\:\:expand\(\) expects string, mixed given\.$#'
 			identifier: argument.type
-			count: 3
+			count: 2
 			path: src/JsonLd/Algorithms/Expand/KeywordValueExpander.php
 
 		-
