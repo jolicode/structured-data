@@ -1771,10 +1771,10 @@ parameters:
 			path: src/Vocabularies/Validators/Google/Stack.php
 
 		-
-			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\SchemaOrg\\SchemaOrgValidator\:\:guessFromParentProperty\(\) has parameter \$typeProperties with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\SchemaOrg\\TypeGuesser\:\:guessFromParentProperty\(\) has parameter \$typeProperties with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/Vocabularies/Validators/SchemaOrg/SchemaOrgValidator.php
+			path: src/Vocabularies/Validators/SchemaOrg/TypeGuesser.php
 
 		-
 			message: '#^Method JoliCode\\StructuredData\\Tests\\Algorithms\\AbstractJsonLdTestCase\:\:provideInputsAndOutputs\(\) return type has no value type specified in iterable type iterable\.$#'

@@ -14,6 +14,7 @@ namespace JoliCode\StructuredData\Tests\Validation;
 use JoliCode\StructuredData\Mapper\MappedProperty;
 use JoliCode\StructuredData\Validator;
 use JoliCode\StructuredData\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
+use JoliCode\StructuredData\Vocabularies\Validators\SchemaOrg\TypeGuesser;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
@@ -32,9 +33,7 @@ class SchemaOrgValidatorInfrastructureTest extends TestCase
 
     public function testGuessTypeFromPropertiesReturnsOfferForOfferSignals(): void
     {
-        $validator = new SchemaOrgValidator();
-
-        $guessedType = $validator->guessTypeFromProperties([
+        $guessedType = TypeGuesser::guessTypeFromProperties([
             new MappedProperty('price'),
             new MappedProperty('priceCurrency'),
         ]);
@@ -44,9 +43,7 @@ class SchemaOrgValidatorInfrastructureTest extends TestCase
 
     public function testGuessTypeFromPropertiesUsesParentPropertyHintWhenAvailable(): void
     {
-        $validator = new SchemaOrgValidator();
-
-        $guessedType = $validator->guessTypeFromProperties([
+        $guessedType = TypeGuesser::guessTypeFromProperties([
             new MappedProperty('addressLocality'),
             new MappedProperty('addressCountry'),
         ], 'birthPlace');
@@ -56,9 +53,7 @@ class SchemaOrgValidatorInfrastructureTest extends TestCase
 
     public function testGuessTypeFromPropertiesFallsBackToThingWhenUnknownProperties(): void
     {
-        $validator = new SchemaOrgValidator();
-
-        $guessedType = $validator->guessTypeFromProperties([
+        $guessedType = TypeGuesser::guessTypeFromProperties([
             new MappedProperty('definitelyUnknownProperty'),
         ]);
 
