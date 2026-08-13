@@ -110,19 +110,11 @@ class RdfaExtractor extends AbstractHtmlExtractor
                 continue;
             }
 
-            $encoded = json_encode($item, \JSON_UNESCAPED_SLASHES);
-
-            if (false === $encoded) {
-                throw new ExtractionException('Invalid RDFa document: failed to convert to JSON-LD.');
-            }
-
-            $elements[] = new JsonLdElement(max(0, $subjectNode->getLineNo() - 1), 0, $encoded, $this->getFormat());
+            $elements[] = $this->encodeAsJsonLdElement($subjectNode, $item, 'Invalid RDFa document: failed to convert to JSON-LD.');
         }
 
         if ([] === $elements) {
-            $subjectLines = array_map(static fn (\DOMElement $subjectNode): int => $subjectNode->getLineNo(), $topLevelSubjects);
-
-            throw new ExtractionException(\sprintf('Invalid RDFa document: at least one top-level schema.org subject with typeof is required%s.', $this->formatLineHint($subjectLines)), $this->formatRanges($subjectLines));
+            $this->throwEmptyResult($topLevelSubjects, 'Invalid RDFa document: at least one top-level schema.org subject with typeof is required');
         }
 
         return $elements;

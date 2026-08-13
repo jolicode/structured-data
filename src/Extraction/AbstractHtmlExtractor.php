@@ -68,6 +68,38 @@ abstract class AbstractHtmlExtractor implements FormatExtractorInterface
     }
 
     /**
+     * Encodes one extracted item into a JsonLdElement anchored on its DOM node.
+     *
+     * @throws ExtractionException when the item cannot be encoded
+     */
+    protected function encodeAsJsonLdElement(\DOMElement $node, mixed $item, string $encodeFailureMessage): JsonLdElement
+    {
+        $encoded = json_encode($item, \JSON_UNESCAPED_SLASHES);
+
+        if (false === $encoded) {
+            throw new ExtractionException($encodeFailureMessage);
+        }
+
+        return new JsonLdElement(max(0, $node->getLineNo() - 1), 0, $encoded, $this->getFormat());
+    }
+
+    /**
+     * Reports that no element could be extracted, pointing at the candidate nodes.
+     *
+     * @param array<\DOMElement> $nodes
+     *
+     * @throws ExtractionException
+     */
+    protected function throwEmptyResult(array $nodes, string $message): never
+    {
+        $lineNumbers = array_values(
+            array_map(static fn (\DOMElement $node): int => $node->getLineNo(), $nodes),
+        );
+
+        throw new ExtractionException($message . $this->formatLineHint($lineNumbers) . '.', $this->formatRanges($lineNumbers));
+    }
+
+    /**
      * @param list<int> $lineNumbers
      */
     protected function formatRanges(array $lineNumbers): string

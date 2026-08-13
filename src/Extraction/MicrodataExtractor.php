@@ -91,19 +91,11 @@ class MicrodataExtractor extends AbstractHtmlExtractor
                 continue;
             }
 
-            $encoded = json_encode($item, \JSON_UNESCAPED_SLASHES);
-
-            if (false === $encoded) {
-                throw new ExtractionException('Invalid microdata document: failed to convert to JSON-LD.');
-            }
-
-            $elements[] = new JsonLdElement(max(0, $itemElement->getLineNo() - 1), 0, $encoded, $this->getFormat());
+            $elements[] = $this->encodeAsJsonLdElement($itemElement, $item, 'Invalid microdata document: failed to convert to JSON-LD.');
         }
 
         if ([] === $elements) {
-            $itemScopeLines = array_map(static fn (\DOMElement $itemElement): int => $itemElement->getLineNo(), $topLevelItems);
-
-            throw new ExtractionException(\sprintf('Invalid microdata document: at least one top-level itemscope with itemtype is required%s.', $this->formatLineHint($itemScopeLines)), $this->formatRanges($itemScopeLines));
+            $this->throwEmptyResult($topLevelItems, 'Invalid microdata document: at least one top-level itemscope with itemtype is required');
         }
 
         return $elements;
