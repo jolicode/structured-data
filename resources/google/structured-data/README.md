@@ -9,7 +9,7 @@ You should not normally need to read these files directly — they are primarily
 First, you will need to check if Google made adjustments to its documentation. This is very likely. Run:
 
 ```bash
-castor google:generation:crawl-google
+castor google:download
 ```
 
 This will crawl Google and try to discover all the Google types.
@@ -21,7 +21,7 @@ Finally, it will extract the tables holding the validation properties out of eac
 Once you downloaded everything you need, you can audit the changes by running:
 
 ```bash
-castor google:generation:verify-docs
+castor google:check
 ```
 
 It will give you detailed informations about the current support the project has of the Google documentation.
@@ -30,7 +30,7 @@ If you need to manually update a specific type definition (e.g., to refine a spe
 first edit the corresponding JSON file directly and then regenerate the classes by running:
 
 ```bash
-castor generate google
+castor google:generate
 ```
 
 For a complete update workflow, use the dedicated upgrade guidelines at `../UPGRADE_GUIDELINES.md`.

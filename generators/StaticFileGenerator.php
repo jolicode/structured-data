@@ -110,7 +110,7 @@ class StaticFileGenerator
         $namespace = $this->factory->namespace('JoliCode\\StructuredData\\Vocabularies\\Generated')
             ->addStmt($this->buildRegistryClassNode($maps));
 
-        return "<?php\n\n" . self::FILE_HEADER . "\n\n// THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.\n// Run `castor generate` to regenerate this file.\n\n" . $this->printer->prettyPrint([$namespace->getNode()]) . "\n";
+        return "<?php\n\n" . self::FILE_HEADER . "\n\n// THIS FILE IS AUTO-GENERATED. DO NOT EDIT MANUALLY.\n// Run `castor schema-org:generate` or `castor google:generate` to regenerate this file.\n\n" . $this->printer->prettyPrint([$namespace->getNode()]) . "\n";
     }
 
     /** @param array<string, array<string, string>> $maps */

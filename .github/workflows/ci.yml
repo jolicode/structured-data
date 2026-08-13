@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       google_docs_strict:
-        description: "Fail job if google:generation:verify-docs reports gaps"
+        description: "Fail job if google:check reports gaps"
         required: false
         default: "false"
   schedule:
@@ -69,7 +69,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: var/cache/w3c-json-ld-api
-          key: w3c-test-suite-${{ hashFiles('tools/castor.php') }}
+          key: w3c-test-suite-${{ hashFiles('.castor/qa.php') }}
 
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
@@ -81,20 +81,20 @@ jobs:
         run: composer check-platform-reqs
 
       - name: Install qa tooling
-        run: castor install
+        run: castor qa:install
 
       - name: Check PHP coding standards
-        run: castor cs --dry-run
+        run: castor qa:cs --dry-run
 
       - name: Run PHPStan
-        run: castor phpstan
+        run: castor qa:phpstan
 
       - name: Prepare the W3C test suite from upstream main (drift check)
         if: github.event_name == 'schedule'
         run: castor qa:phpunit:prepare --force --ref main
 
       - name: Run the tests with coverage
-        run: castor coverage
+        run: castor qa:phpunit:coverage
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
@@ -104,7 +104,7 @@ jobs:
 
       - name: Run mutation testing (weekly)
         if: github.event_name == 'schedule'
-        run: castor infection
+        run: castor qa:infection
 
       - name: Download the benchmark fixtures (weekly)
         if: github.event_name == 'schedule'
@@ -112,7 +112,7 @@ jobs:
 
       - name: Run the benchmarks (weekly, for the record)
         if: github.event_name == 'schedule'
-        run: castor bench
+        run: castor qa:bench:all
 
       - name: Upload benchmark reports
         if: github.event_name == 'schedule'
@@ -123,10 +123,13 @@ jobs:
 
       - name: Verify Google docs coverage (report-only by default)
         continue-on-error: ${{ github.event_name != 'workflow_dispatch' || inputs.google_docs_strict != 'true' }}
-        run: castor google:generation:verify-docs
+        run: castor google:check
 
       - name: Check that schema.org types and properties classes can be generated
-        run: castor generate
+        run: castor schema-org:generate
+
+      - name: Check that Google types and properties classes can be generated
+        run: castor google:generate
 
       - name: Check that the committed generated classes match their vocabulary definitions
         run: git diff --exit-code -- src/Vocabularies/Generated

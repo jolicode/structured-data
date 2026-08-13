@@ -22,10 +22,10 @@ before maintainers accept and merge your work.
 
 * You MUST follow the [PSR-1](https://www.php-fig.org/psr/psr-1/) and
 [PSR-12](https://www.php-fig.org/psr/psr-12/) coding standards. In practice, the project
-enforces the `@Symfony` rule set through PHP CS Fixer — just run `castor cs` (see
+enforces the `@Symfony` rule set through PHP CS Fixer — just run `castor qa:cs` (see
 [Standard code](#standard-code)) and it is taken care of for you.
 * You MUST run the test suite (see [Green tests](#green-tests)).
-* Your code MUST pass the static analysis: `castor phpstan` (PHPStan, level 9). CI fails on
+* Your code MUST pass the static analysis: `castor qa:phpstan` (PHPStan, level 9). CI fails on
 any error.
 * You MUST write (or update) unit tests.
 * You SHOULD write documentation.
@@ -58,8 +58,8 @@ castor qa:phpunit:run
 Both schema.org and Google validator tests are included. You can run a single group with:
 
 ```shell
-castor test -g schema-org
-castor test -g google
+castor qa:phpunit:run -g schema-org
+castor qa:phpunit:run -g google
 ```
 
 ## Working with validators

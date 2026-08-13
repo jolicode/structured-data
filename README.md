@@ -42,7 +42,7 @@ Clone the repository, then install the library's dependencies and the QA tooling
 
 ```bash
 composer install   # the library's own dependencies (Composer, not Castor)
-castor install     # the QA tooling: php-cs-fixer, phpstan, phpunit, phpbench, infection
+castor qa:install  # the QA tooling: php-cs-fixer, phpstan, phpunit, phpbench, infection
 ```
 
 ## Validating a JSON-LD document
@@ -370,24 +370,28 @@ They will print the output in the console.
 
 ## Testing and QA commands
 
+All the tasks are defined in the `.castor` directory, one file per namespace.
+
 The following commands are available to run the QA checks:
 
-Command | Description | Aliases
----- | ----- | -----
-`castor qa:cs` | Fix CS | `castor cs`
-`castor qa:phpstan` | Runs PHPStan | `castor phpstan`
+Command | Description
+---- | -----
+`castor qa:install` | Install the QA tooling
+`castor qa:update` | Update the QA tooling
+`castor qa:cs` | Fix CS
+`castor qa:phpstan` | Runs PHPStan
 `castor qa:all` | Runs all QA tasks
 
 The following commands are available to run the tests:
 
-Command | Description | Aliases
----- | ----- | ----
+Command | Description
+---- | -----
 `castor qa:phpunit:prepare` | Download the W3C tests suite
-`castor qa:phpunit:run` | Runs PHPUnit | `castor test`, `castor tests`
-`castor qa:phpunit:coverage` | Runs PHPUnit with code coverage (requires the pcov or xdebug extension) | `castor coverage`
-`castor qa:infection` | Runs Infection mutation testing on the validator and mapper layers (requires the pcov or xdebug extension) | `castor infection`
+`castor qa:phpunit:run` | Runs PHPUnit
+`castor qa:phpunit:coverage` | Runs PHPUnit with code coverage (requires the pcov or xdebug extension)
+`castor qa:infection` | Runs Infection mutation testing on the validator and mapper layers (requires the pcov or xdebug extension)
 
-The W3C test suite is pinned to a known-good upstream commit (see `W3C_TEST_SUITE_REF` in `tools/castor.php`).
+The W3C test suite is pinned to a known-good upstream commit (see `W3C_TEST_SUITE_REF` in `.castor/qa.php`).
 To re-download it, or to test against the upstream main branch:
 
 ```bash
@@ -397,12 +401,31 @@ castor qa:phpunit:prepare --force --ref main
 
 Additional commands are available to run the benchmarks:
 
-Command | Description | Aliases
----- | ----- | ----
-`castor qa:bench:all` | Run all the benchmarks | `castor bench`
+Command | Description
+---- | -----
+`castor qa:bench:all` | Run all the benchmarks
 `castor qa:bench:algorithms` | Run the JSON-LD manipulation algorithms benchmark
 `castor qa:bench:validators` | Run the validators benchmark
 `castor qa:bench:validators -d` | Run the detailed and slow validators benchmark
+
+## Vocabulary generation commands
+
+The validation classes shipped in `src/Vocabularies/Generated` are generated from the
+vocabulary definitions. These commands refresh them:
+
+Command | Description
+---- | -----
+`castor schema-org:update-version` | Bump the schema.org version to the latest release published on GitHub
+`castor schema-org:download` | Download the schema.org types definition file
+`castor schema-org:generate` | Generate the schema.org validation classes
+`castor schema-org:download-examples` | Refresh the schema.org examples used by the tests
+`castor google:download` | Crawl the Google structured-data documentation
+`castor google:generate` | Generate the Google validation classes
+`castor google:check` | Check the Google documentation coverage against the curated manifest
+
+The full procedures are described in the
+[schema.org](resources/schema.org/UPGRADE_GUIDELINES.md) and
+[Google](resources/google/UPGRADE_GUIDELINES.md) upgrade guidelines.
 
 ## Contributing
 

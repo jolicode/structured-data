@@ -11,11 +11,9 @@
 
 namespace qa;
 
-use Castor\Attribute\AsArgument;
 use Castor\Attribute\AsOption;
 use Castor\Attribute\AsTask;
 
-use function Castor\check;
 use function Castor\context;
 use function Castor\finder;
 use function Castor\fs;
@@ -26,17 +24,9 @@ use function Castor\run;
 use JoliCode\StructuredData\Audit\AuditOptions;
 use JoliCode\StructuredData\JsonLd\Algorithms;
 use JoliCode\StructuredData\Validator;
-use JoliCode\StructuredData\Vocabularies\Generators\Google\DocumentationCoverageAuditor as GoogleDocumentationCoverageAuditor;
-use JoliCode\StructuredData\Vocabularies\Generators\Google\DocumentationCrawler as GoogleDocumentationCrawler;
 use JoliCode\StructuredData\Vocabularies\Generators\Google\Filesystem as GoogleFilesystem;
-use JoliCode\StructuredData\Vocabularies\Generators\Google\Generator as GoogleGenerator;
 use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Filesystem as SchemaOrgFilesystem;
-use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Generator as SchemaOrgGenerator;
-use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\SchemaOrg;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Process\ExecutableFinder;
-
-require_once \dirname(__DIR__) . '/vendor/autoload.php';
 
 const CACHE_DIR_W3C_TEST_SUITE = __DIR__ . '/../var/cache/w3c-json-ld-api';
 const CACHE_DIR_W3C_FRAMING_TEST_SUITE = __DIR__ . '/../var/cache/w3c-json-ld-framing';
@@ -66,228 +56,50 @@ const W3C_TEST_SUITE_REF = '92f07705a0c0ac27aa9bc6fe1322dcc9fad0114d';
 // Commit of https://github.com/w3c/json-ld-framing the framing test suite is pinned to.
 const W3C_FRAMING_TEST_SUITE_REF = '3bf782ba9a40dd1b143435abe386d38df64f2b47';
 
+/**
+ * The project root: the tasks live in ".castor/", one level below it.
+ */
+function rootDir(): string
+{
+    return \dirname(__DIR__);
+}
+
+/**
+ * The directory holding the QA tooling, each with its own Composer installation.
+ */
+function toolsDir(): string
+{
+    return \dirname(__DIR__) . '/tools';
+}
+
 function suiteFixturesAreMissing(): bool
 {
     return !fs()->exists(\sprintf('%s/tests/flatten/output', CACHE_DIR_W3C_TEST_SUITE))
         || !fs()->exists(\sprintf('%s/tests/frame/output', CACHE_DIR_W3C_FRAMING_TEST_SUITE));
 }
 
-#[AsTask(aliases: ['generate'], description: 'Generate validation classes for all supported vocabularies. Will use the currently downloaded data.')]
-function generate(
-    #[AsArgument(name: 'specific-generator', description: 'to only generate classes for a specific generator. Accepted values are: "schema-org", "schemaorg", "google".')]
-    ?string $specific = null,
-): void {
-    if ($specific) {
-        $specific = strtolower($specific);
-
-        if ('schemaorg' === str_replace(['.', '-', '_'], '', $specific)) {
-            $specific = 'schema-org';
-        }
-
-        if (!\in_array($specific, ['schema-org', 'google'], true)) {
-            io()->error('Invalid generator specified. Accepted values are: "schema-org", "schemaorg", "google".');
-
-            return;
-        }
-
-        if ('schema-org' === $specific) {
-            generateSchemaOrg();
-            fixGeneratedFilesFormatting('SchemaOrg');
-
-            return;
-        }
-
-        generateGoogle();
-        fixGeneratedFilesFormatting('Google');
-
-        return;
-    }
-
-    io()->title('Generating classes for all supported vocabularies.');
-
-    generateSchemaOrg();
-    generateGoogle();
-    fixGeneratedFilesFormatting();
-
-    io()->success('Classes generated successfully');
-}
-
-#[AsTask(namespace: 'google:generation', description: 'Extract requirements from the Google documentation and generate the validation classes')]
-function generateGoogle(): void
+#[AsTask(description: 'Installs qa tooling')]
+function install(): void
 {
-    $generator = new GoogleGenerator();
-    io()->title('Generating Google classes');
-
-    $generator->generate(io());
-    io()->success('Google classes successfully generated.');
+    // The library's own dependencies. Castor already needs these to boot (the entry
+    // point requires vendor/autoload.php), so this is mostly a convenience/no-op that
+    // keeps "castor qa:install" a complete one-stop setup once the root vendor exists.
+    run(['composer', 'install', '-o']);
+    run(['composer', 'install', '-o', '--working-dir', 'tools/php-cs-fixer']);
+    run(['composer', 'install', '-o', '--working-dir', 'tools/phpstan']);
+    run(['composer', 'install', '-o', '--working-dir', 'tools/phpbench']);
+    run(['composer', 'install', '-o', '--working-dir', 'tools/phpunit']);
+    run(['composer', 'install', '-o', '--working-dir', 'tools/infection']);
 }
 
-#[AsTask(namespace: 'schema-org:generation', description: 'Generate classes for JSON-LD validation based on the schema.org types definition file')]
-function generateSchemaOrg(): void
+#[AsTask(description: 'Updates qa tooling')]
+function update(): void
 {
-    io()->title('Generating schema.org classes');
-
-    if (!file_exists(getCurrentSchemaOrgDefinitionFileName())) {
-        io()->info('The schema.org types definition file is missing, downloading it.');
-        downloadSchemaOrgTypesFile();
-    }
-
-    $generator = new SchemaOrgGenerator();
-
-    $generator->generate();
-
-    io()->success('Schema.org classes successfully generated.');
-}
-
-/**
- * Applies the project coding standards to the freshly generated classes, so that
- * generation is reproducible: regenerating from the same vocabulary definitions
- * always yields a tree identical to the committed one, and CI can assert it with
- * a plain `git diff --exit-code` after running `castor generate`.
- */
-function fixGeneratedFilesFormatting(?string $vocabulary = null): void
-{
-    $directory = match ($vocabulary) {
-        'SchemaOrg' => 'src/Vocabularies/Generated/SchemaOrg',
-        'Google' => 'src/Vocabularies/Generated/Google',
-        default => 'src/Vocabularies/Generated',
-    };
-
-    io()->writeln(\sprintf('Applying the coding standards to %s.', $directory));
-
-    if (0 !== cs(directory: $directory)) {
-        throw new \RuntimeException('Could not apply the coding standards to the generated files.');
-    }
-}
-
-#[AsTask(namespace: 'google:generation', description: 'Crawl the Google documentation. Updates resources/google/google-types.json (curated manifest), then downloads HTML for active/extra types.')]
-function crawlGoogle(): void
-{
-    $crawler = new GoogleDocumentationCrawler();
-
-    io()->title('Crawling Google documentation');
-    $crawler->crawlGoogleDoc();
-
-    io()->success('Google documentation successfully crawled and HTML files successfully extracted.');
-}
-
-#[AsTask(name: 'verify-docs', namespace: 'google:generation', description: 'Compare live Google structured-data docs against resources/google/google-types.json and the current JSON implementations.')]
-function verifyGoogleDocs(): int
-{
-    $auditor = new GoogleDocumentationCoverageAuditor();
-
-    io()->title('Verifying Google structured-data documentation coverage');
-    $report = $auditor->verifyGoogleDocCoverage();
-
-    if ([] !== $report['fetch_failures']) {
-        io()->section('Fetch failures');
-
-        foreach ($report['fetch_failures'] as $url => $message) {
-            io()->warning(\sprintf('%s: %s', $url, $message));
-        }
-    }
-
-    if ([] !== $report['missing_from_manifest']) {
-        io()->section('Docs pages missing from resources/google/google-types.json');
-
-        foreach ($report['missing_from_manifest'] as $url => $metadata) {
-            io()->writeln(\sprintf('- [%s] %s', $metadata['classification'], $url));
-        }
-    }
-
-    if ([] !== $report['missing_implementations']) {
-        io()->section('Concrete docs pages missing JSON implementations');
-
-        foreach ($report['missing_implementations'] as $url => $metadata) {
-            io()->writeln(\sprintf('- %s', $url));
-        }
-    }
-
-    if ([] !== $report['stale_manifest_entries']) {
-        io()->section('Manifest entries no longer discoverable from live docs');
-
-        foreach ($report['stale_manifest_entries'] as $entry) {
-            io()->writeln(\sprintf('- [%s] %s', $entry['status'] ?? 'active', $entry['url']));
-        }
-    }
-
-    if (
-        [] === $report['fetch_failures']
-        && [] === $report['missing_from_manifest']
-        && [] === $report['missing_implementations']
-        && [] === $report['stale_manifest_entries']
-    ) {
-        io()->success('Google docs, manifest, and implementations are aligned.');
-
-        return 0;
-    }
-
-    io()->warning('Google docs verification found gaps.');
-
-    return 1;
-}
-
-#[AsTask(name: 'download-definition', namespace: 'schema-org:generation', description: 'Download the schema.org types definition file')]
-function downloadSchemaOrgTypesFile(
-    bool $overwrite = false,
-): void {
-    io()->title('Downloading the schema.org types definition file');
-    $filename = getCurrentSchemaOrgDefinitionFileName();
-
-    if (!$overwrite && file_exists($filename)) {
-        io()->warning("
-            The definition file already exists. Skipping.\n
-            Run `castor schema-org:generation:download-definition --overwrite` if you want to overwrite it.
-        ");
-
-        return;
-    }
-
-    http_download(
-        \sprintf(
-            'https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/releases/%s/schemaorg-current-https.jsonld',
-            SchemaOrg::VERSION,
-        ),
-        $filename,
-    );
-
-    io()->success('Schema.org types definition file downloaded successfully');
-}
-
-#[AsTask(name: 'update-examples', namespace: 'schema-org:generation', description: 'Updates the schema.org example files stored in the resources directory')]
-function downloadSchemaOrgExamples(): void
-{
-    io()->title('Downloading the schema.org examples file');
-    check(
-        'Check if Git is installed',
-        'Git is not installed. Please install it before.',
-        static fn () => (new ExecutableFinder())->find('git'),
-    );
-
-    fs()->remove(SchemaOrgFilesystem::CACHE_DIR_SCHEMA_ORG . '/git');
-    run('git clone --filter=blob:none --sparse --depth=1 https://github.com/schemaorg/schemaorg.git ' . SchemaOrgFilesystem::CACHE_DIR_SCHEMA_ORG . '/git');
-
-    $context = context()->withWorkingDirectory(SchemaOrgFilesystem::CACHE_DIR_SCHEMA_ORG . '/git');
-    run('git sparse-checkout set --no-cone "/data/ext" "/data/examples.txt"', $context);
-    run('git checkout main', $context);
-
-    $generator = new SchemaOrgGenerator();
-
-    foreach (finder()->name('*.txt')->in(SchemaOrgFilesystem::CACHE_DIR_SCHEMA_ORG . '/git/data')->files() as $file) {
-        $generator->generateExamples($file->getContents());
-    }
-
-    fs()->remove(SchemaOrgFilesystem::CACHE_DIR_SCHEMA_ORG . '/git');
-    io()->success('Schema.org examples file downloaded successfully');
-}
-
-function getCurrentSchemaOrgDefinitionFileName(): string
-{
-    return \sprintf(
-        '%s/schemaorg-%s-https.jsonld',
-        SchemaOrgFilesystem::CACHE_DIR_SCHEMA_ORG,
-        SchemaOrg::VERSION,
-    );
+    run(['composer', 'update', '-o', '--working-dir', 'tools/php-cs-fixer']);
+    run(['composer', 'update', '-o', '--working-dir', 'tools/phpstan']);
+    run(['composer', 'update', '-o', '--working-dir', 'tools/phpbench']);
+    run(['composer', 'update', '-o', '--working-dir', 'tools/phpunit']);
+    run(['composer', 'update', '-o', '--working-dir', 'tools/infection']);
 }
 
 #[AsTask(description: 'Runs all QA tasks')]
@@ -300,23 +112,14 @@ function all(): int
     return max($cs, $phpstan);
 }
 
-#[AsTask(name: 'all', namespace: 'qa:bench', description: 'Run all the benchmarks', aliases: ['bench'])]
-function bench(): int
-{
-    return max(
-        benchAlgorithms(),
-        benchValidators(false),
-    );
-}
-
-#[AsTask(description: 'Fix CS', aliases: ['cs'])]
+#[AsTask(description: 'Fix CS')]
 function cs(bool $dryRun = false, ?string $directory = null): int
 {
-    if (!is_dir(__DIR__ . '/php-cs-fixer/vendor')) {
+    if (!is_dir(toolsDir() . '/php-cs-fixer/vendor')) {
         install();
     }
 
-    $command = [__DIR__ . '/php-cs-fixer/vendor/bin/php-cs-fixer', 'fix', '--config', \dirname(__DIR__) . '/.php-cs-fixer.php'];
+    $command = [toolsDir() . '/php-cs-fixer/vendor/bin/php-cs-fixer', 'fix', '--config', rootDir() . '/.php-cs-fixer.php'];
 
     if ($dryRun) {
         $command[] = '--dry-run';
@@ -329,21 +132,43 @@ function cs(bool $dryRun = false, ?string $directory = null): int
 
     return run(
         $command,
-        context: context()->withAllowFailure()->withWorkingDirectory(\dirname(__DIR__)),
-    )->getExitCode();
+        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
+    )->getExitCode() ?? 1;
 }
 
-#[AsTask(description: 'Runs PHPStan', aliases: ['phpstan'])]
+#[AsTask(description: 'Runs PHPStan')]
 function phpstan(): int
 {
-    if (!is_dir(__DIR__ . '/phpstan/vendor')) {
+    if (!is_dir(toolsDir() . '/phpstan/vendor')) {
         install();
     }
 
     return run(
-        __DIR__ . '/phpstan/vendor/bin/phpstan',
-        context: context()->withAllowFailure()->withWorkingDirectory(\dirname(__DIR__)),
-    )->getExitCode();
+        toolsDir() . '/phpstan/vendor/bin/phpstan',
+        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
+    )->getExitCode() ?? 1;
+}
+
+/**
+ * Applies the project coding standards to the freshly generated classes, so that
+ * generation is reproducible: regenerating from the same vocabulary definitions
+ * always yields a tree identical to the committed one, and CI can assert it with
+ * a plain `git diff --exit-code` after running the generation tasks.
+ */
+function fixGeneratedFilesFormatting(string $vocabulary): void
+{
+    $directory = match ($vocabulary) {
+        'SchemaOrg' => 'src/Vocabularies/Generated/SchemaOrg',
+        'Google' => 'src/Vocabularies/Generated/Google',
+        default => throw new \InvalidArgumentException(\sprintf('Unknown vocabulary "%s".', $vocabulary)),
+    };
+
+    io()->writeln(\sprintf('Applying the coding standards to %s.', $directory));
+
+    // The registry is shared by every vocabulary, and rewritten by each generation.
+    if (0 !== cs(directory: $directory) || 0 !== cs(directory: 'src/Vocabularies/Generated/GeneratedClassesRegistry.php')) {
+        throw new \RuntimeException('Could not apply the coding standards to the generated files.');
+    }
 }
 
 #[AsTask(name: 'prepare', namespace: 'qa:phpunit', description: 'Download the W3C tests suite')]
@@ -392,7 +217,7 @@ function phpunitPrepare(
 
         // copy the context test fixtures
         fs()->mirror(
-            __DIR__ . '/../resources/jsonld/context',
+            rootDir() . '/resources/jsonld/context',
             CACHE_DIR_W3C_TEST_SUITE . '/tests/context',
         );
 
@@ -444,8 +269,8 @@ function phpunitDownloadFixtures(bool $force = false): void
     foreach (BENCHMARK_FIXTURE_URLS as $name => $url) {
         $host = parse_url($url, \PHP_URL_HOST);
 
-        if (!\is_string($host) || !benchmarkFixtureHostIsAllowed($host)) {
-            throw new \RuntimeException(\sprintf('Refusing to download benchmark fixture "%s": host "%s" is not one of %s.', $name, (string) $host, implode(', ', BENCHMARK_FIXTURE_ALLOWED_DOMAINS)));
+        if (!benchmarkFixtureHostIsAllowed($host)) {
+            throw new \RuntimeException(\sprintf('Refusing to download benchmark fixture "%s": host "%s" is not one of %s.', $name, $host, implode(', ', BENCHMARK_FIXTURE_ALLOWED_DOMAINS)));
         }
 
         $target = \sprintf('%s/%s', CACHE_DIR_BENCHMARK_FIXTURES, $name);
@@ -479,7 +304,7 @@ function benchmarkFixtureHostIsAllowed(string $host): bool
     return false;
 }
 
-#[AsTask(name: 'run', description: 'Runs PHPUnit', namespace: 'qa:phpunit', aliases: ['phpunit', 'test', 'tests'])]
+#[AsTask(name: 'run', description: 'Runs PHPUnit', namespace: 'qa:phpunit')]
 function phpunit(
     #[AsOption(name: 'group', shortcut: 'g', mode: InputOption::VALUE_REQUIRED, description: 'Only run tests from the specified group')]
     ?string $group = null,
@@ -488,7 +313,7 @@ function phpunit(
     #[AsOption(name: 'stop-on-error', shortcut: 'e', mode: InputOption::VALUE_NONE, description: 'Stop execution upon first error')]
     ?bool $stopOnError = null,
 ): int {
-    if (!is_dir(__DIR__ . '/phpunit/vendor')) {
+    if (!is_dir(toolsDir() . '/phpunit/vendor')) {
         install();
     }
 
@@ -499,7 +324,7 @@ function phpunit(
     $command = [
         'php',
         '-d memory_limit=-1',
-        __DIR__ . '/phpunit/vendor/bin/phpunit',
+        toolsDir() . '/phpunit/vendor/bin/phpunit',
         'tests',
     ];
 
@@ -518,16 +343,16 @@ function phpunit(
 
     return run(
         $command,
-        context: context()->withAllowFailure()->withWorkingDirectory(\dirname(__DIR__)),
-    )->getExitCode();
+        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
+    )->getExitCode() ?? 1;
 }
 
-#[AsTask(name: 'coverage', description: 'Runs PHPUnit with code coverage', namespace: 'qa:phpunit', aliases: ['coverage'])]
+#[AsTask(name: 'coverage', description: 'Runs PHPUnit with code coverage', namespace: 'qa:phpunit')]
 function phpunitCoverage(
     #[AsOption(name: 'html', mode: InputOption::VALUE_NONE, description: 'Also generate an HTML report in var/cache/coverage')]
     ?bool $html = null,
 ): int {
-    if (!is_dir(__DIR__ . '/phpunit/vendor')) {
+    if (!is_dir(toolsDir() . '/phpunit/vendor')) {
         install();
     }
 
@@ -553,7 +378,7 @@ function phpunitCoverage(
 
     $command = [
         ...$command,
-        __DIR__ . '/phpunit/vendor/bin/phpunit',
+        toolsDir() . '/phpunit/vendor/bin/phpunit',
         'tests',
         '--coverage-text',
         '--coverage-clover=var/cache/coverage/clover.xml',
@@ -565,16 +390,16 @@ function phpunitCoverage(
 
     return run(
         $command,
-        context: context()->withAllowFailure()->withWorkingDirectory(\dirname(__DIR__)),
-    )->getExitCode();
+        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
+    )->getExitCode() ?? 1;
 }
 
-#[AsTask(name: 'infection', description: 'Runs Infection mutation testing on the validator and mapper layers', aliases: ['infection'])]
+#[AsTask(name: 'infection', description: 'Runs Infection mutation testing on the validator and mapper layers')]
 function infection(
     #[AsOption(name: 'min-msi', mode: InputOption::VALUE_REQUIRED, description: 'Fail if the Mutation Score Indicator is below this percentage')]
     ?string $minMsi = null,
 ): int {
-    if (!is_dir(__DIR__ . '/infection/vendor')) {
+    if (!is_dir(toolsDir() . '/infection/vendor')) {
         install();
     }
 
@@ -589,7 +414,7 @@ function infection(
     }
 
     $command = [
-        __DIR__ . '/infection/vendor/bin/infection',
+        toolsDir() . '/infection/vendor/bin/infection',
         '--threads=max',
         '--show-mutations',
     ];
@@ -600,8 +425,8 @@ function infection(
 
     return run(
         $command,
-        context: context()->withAllowFailure()->withWorkingDirectory(\dirname(__DIR__)),
-    )->getExitCode();
+        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
+    )->getExitCode() ?? 1;
 }
 
 #[AsTask(name: 'examples:baseline', description: 'Update the examples baseline files. Will make all the tests green. Use with CARE!')]
@@ -643,12 +468,15 @@ function updateBaseline(
 
     foreach ($finder as $file) {
         $audit = $validator->audit($file->getContents());
+        /** @var array<string> $documentIssues */
         $documentIssues = $audit->getDiagnostic(new AuditOptions(
             severity: AuditOptions::SEVERITY_DOCUMENT,
         ));
+        /** @var array<string> $warningMessages */
         $warningMessages = $audit->getDiagnostic(new AuditOptions(
             severity: AuditOptions::SEVERITY_WARNING,
         ));
+        /** @var array<string> $errorMessages */
         $errorMessages = $audit->getDiagnostic(new AuditOptions(
             severity: AuditOptions::SEVERITY_ERROR,
         ));
@@ -680,19 +508,28 @@ function updateBaseline(
 
     fs()->dumpFile(
         $baselinePath,
-        json_encode($baseline, \JSON_PRETTY_PRINT),
+        json_encode($baseline, \JSON_PRETTY_PRINT | \JSON_THROW_ON_ERROR),
+    );
+}
+
+#[AsTask(name: 'all', namespace: 'qa:bench', description: 'Run all the benchmarks')]
+function bench(): int
+{
+    return max(
+        benchAlgorithms(),
+        benchValidators(false),
     );
 }
 
 #[AsTask(name: 'algorithms', namespace: 'qa:bench', description: 'Run the algorithms benchmark')]
 function benchAlgorithms(): int
 {
-    if (!is_dir(__DIR__ . '/phpbench/vendor')) {
+    if (!is_dir(toolsDir() . '/phpbench/vendor')) {
         install();
     }
 
     $exitCode = run([
-        __DIR__ . '/phpbench/vendor/bin/phpbench',
+        toolsDir() . '/phpbench/vendor/bin/phpbench',
         'run',
         'tests/Algorithms/Benchmark',
         '--no-interaction',
@@ -700,11 +537,11 @@ function benchAlgorithms(): int
         '--output=console',
         '--output=html-algorithms',
     ],
-        context: context()->withAllowFailure()->withWorkingDirectory(\dirname(__DIR__)),
-    )->getExitCode();
+        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
+    )->getExitCode() ?? 1;
 
     if (0 === $exitCode) {
-        $htmlReportPath = \dirname(__DIR__) . '/var/cache/benchmark-results-algorithms.html';
+        $htmlReportPath = rootDir() . '/var/cache/benchmark-results-algorithms.html';
         io()->info(\sprintf('Open HTML benchmark report: file://%s', $htmlReportPath));
     }
 
@@ -716,7 +553,7 @@ function benchValidators(
     #[AsOption(name: 'detailed', shortcut: 'd', mode: InputOption::VALUE_NONE, description: 'Run the detailed pipeline breakdown benchmark. CAUTION: this is very slow (several minutes) but provides average timings for each step of the validation process.')]
     bool $detailed,
 ): int {
-    if (!is_dir(__DIR__ . '/phpbench/vendor')) {
+    if (!is_dir(toolsDir() . '/phpbench/vendor')) {
         install();
     }
 
@@ -731,7 +568,7 @@ function benchValidators(
     }
 
     $exitCode = run([
-        __DIR__ . '/phpbench/vendor/bin/phpbench',
+        toolsDir() . '/phpbench/vendor/bin/phpbench',
         'run',
         'tests/Validation/Benchmark/JsonLdValidatorBench.php',
         '--no-interaction',
@@ -740,8 +577,8 @@ function benchValidators(
         '--output=html-validators',
         '--dump-file=' . $dumpFile,
     ],
-        context: context()->withAllowFailure()->withWorkingDirectory(\dirname(__DIR__)),
-    )->getExitCode();
+        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
+    )->getExitCode() ?? 1;
 
     if (0 === $exitCode) {
         $results = loadValidatorBenchResults($dumpFile);
@@ -758,7 +595,7 @@ function benchValidators(
             $htmlAverage / 1_000_000,
         ));
 
-        $htmlReportPath = \dirname(__DIR__) . '/var/cache/benchmark-results-validators.html';
+        $htmlReportPath = rootDir() . '/var/cache/benchmark-results-validators.html';
         io()->info(\sprintf('Open HTML benchmark report: file://%s', $htmlReportPath));
     }
 
@@ -776,7 +613,7 @@ function benchValidatorsDetailed(): int
     }
 
     $exitCode = run([
-        __DIR__ . '/phpbench/vendor/bin/phpbench',
+        toolsDir() . '/phpbench/vendor/bin/phpbench',
         'run',
         'tests/Validation/Benchmark/HtmlValidationPipelineBench.php',
         '--no-interaction',
@@ -785,8 +622,8 @@ function benchValidatorsDetailed(): int
         '--output=html-validators',
         '--dump-file=' . $dumpFile,
     ],
-        context: context()->withAllowFailure()->withWorkingDirectory(\dirname(__DIR__)),
-    )->getExitCode();
+        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
+    )->getExitCode() ?? 1;
 
     if (0 === $exitCode) {
         summarizeValidatorBenchResults($dumpFile);
@@ -817,7 +654,7 @@ function summarizeValidatorBenchResults(string $dumpFile): void
         categoryLabel: 'a listing page — jolicampus-homepage.html',
     );
 
-    $htmlReportPath = \dirname(__DIR__) . '/var/cache/benchmark-results-validators.html';
+    $htmlReportPath = rootDir() . '/var/cache/benchmark-results-validators.html';
     io()->info(\sprintf('Open HTML benchmark report: file://%s', $htmlReportPath));
 }
 

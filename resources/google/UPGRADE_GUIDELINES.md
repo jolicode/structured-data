@@ -1,7 +1,7 @@
 ## Google Validator Upgrade Guidelines
 
 ### 1. Refresh Google documentation corpus
-Run `castor google:generation:crawl-google`, then `castor google:generation:verify-docs`.
+Run `castor google:download`, then `castor google:check`.
 
 This will crawl the google docs and generate a full report of all the updates found in the google documentation.
 
@@ -28,11 +28,11 @@ However, sometimes, some very specific rules are introduced. We can't really han
 You may need to add a completely new type. Strictly follow the structure we use. There is [a dedicated readme](./structured-data/README.md) to help understanding our JSON files.
 
 ### 4. Regenerate Google classes
-Run `castor generate google`
+Run `castor google:generate`
 
 This will refresh the generated classes in `src/Vocabularies/Generated/Google/`.
 
-Run `castor cs` to apply CS rules to the generated files.
+The coding standards are applied to the generated files by the task itself.
 
 ### 5. Validate special rules wiring
 Ensure each special rule class exists in `src/Vocabularies/Validators/Google/SpecialRules/` and each rule key is referenced in the right `resources/google/structured-data/*.json` file.
@@ -47,19 +47,19 @@ If needed, add fixtures in `tests/Validation/fixtures/Google/` and update the ex
 Try to isolate one problematic behavior per fixture when possible. Keep a clear name.
 
 ### 7. Run the tests
-Run Google targeted tests with `tools/phpunit/vendor/bin/phpunit tests/Validation/Google/GoogleValidatorTest.php` (to run the GoogleValidatorTest) or `castor test -g google` (to run all tests belonging to the google group).
+Run Google targeted tests with `tools/phpunit/vendor/bin/phpunit tests/Validation/Google/GoogleValidatorTest.php` (to run the GoogleValidatorTest) or `castor qa:phpunit:run -g google` (to run all tests belonging to the google group).
 
 ### 8. Check for regressions outside Google
 If behavior touches shared extractor/mapper/validator paths, run schema.org-focused validation tests and confirm no baseline/message regressions.
-Then run `castor test`.
+Then run `castor qa:phpunit:run`.
 
 ### 9. Keep docs aligned
 Ensure command examples in `README.md` and `resources/google/structured-data/README.md` match actual task names and behavior.
 
-Update `castor.php` if needed.
+Update the tasks in `.castor/` if needed.
 
-### 10. CI note for `castor google:generation:verify-docs`:
-/!\ `verify-docs` should not be blocking by default /!\\
+### 10. CI note for `castor google:check`:
+/!\ `google:check` should not be blocking by default /!\\
 
 Google can add, remove, or rename documentation pages at any time, which can fail the CI without any code change in this repository.
 
@@ -68,5 +68,5 @@ Google can add, remove, or rename documentation pages at any time, which can fai
 - In GitHub Actions CI, strict mode is available via manual trigger (`workflow_dispatch`) with `google_docs_strict=true`.
 
 Recommended policy:
-- `push`/`pull_request` pipelines: run `verify-docs` in report-only mode.
+- `push`/`pull_request` pipelines: run `google:check` in report-only mode.
 - Dedicated upgrade work: run strict mode and treat failures as upgrade tasks.

@@ -1,4 +1,5 @@
 # Keep development-only files out of the Composer dist archives.
+/.castor export-ignore
 /.castor.stub.php export-ignore
 /.editorconfig export-ignore
 /.gitattributes export-ignore
