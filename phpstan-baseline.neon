@@ -343,16 +343,22 @@ parameters:
 			path: src/JsonLd/Algorithms/Compact/Compactor.php
 
 		-
+			message: '#^Parameter \#1 \$object_or_class of function property_exists expects object\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/JsonLd/Algorithms/Compact/IriCompactor.php
+
+		-
 			message: '#^Cannot access property \$@list on mixed\.$#'
 			identifier: property.nonObject
 			count: 2
-			path: src/JsonLd/Algorithms/Compact/IriCompactor.php
+			path: src/JsonLd/Algorithms/Compact/TermSelector.php
 
 		-
 			message: '#^Parameter \#1 \$object_or_class of function property_exists expects object\|string, mixed given\.$#'
 			identifier: argument.type
-			count: 2
-			path: src/JsonLd/Algorithms/Compact/IriCompactor.php
+			count: 1
+			path: src/JsonLd/Algorithms/Compact/TermSelector.php
 
 		-
 			message: '#^Cannot access property \$@context on mixed\.$#'
