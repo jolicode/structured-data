@@ -13,8 +13,6 @@ namespace JoliCode\StructuredData\Tests\Validation;
 
 use JoliCode\StructuredData\Audit\AuditOptions;
 use JoliCode\StructuredData\JsonLd\Algorithms\Http\DocumentLoaderInterface;
-use JoliCode\StructuredData\JsonLd\Algorithms\Http\HttpDocumentLoader;
-use JoliCode\StructuredData\JsonLd\Algorithms\Http\RemoteContextPolicy;
 use JoliCode\StructuredData\Validator;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
@@ -30,16 +28,13 @@ abstract class AbstractValidatorTestCase extends TestCase
 
     /**
      * A handful of the schema.org examples pull a context from outside schema.org
-     * itself. The library default refuses every host, so the suite widens it to
-     * exactly the hosts those fixtures need, and to nothing else.
+     * itself. Those are served from committed snapshots rather than fetched, so
+     * that a third-party host being down, slow or rate-limiting never decides
+     * whether this suite is green: see SnapshotDocumentLoader.
      */
     protected static function createDocumentLoader(): DocumentLoaderInterface
     {
-        return new HttpDocumentLoader(
-            RemoteContextPolicy::allowHosts('schema.org', 'health-lifesci.schema.org', 'www.w3.org')
-                ->withSchemes('http', 'https')
-                ->withTimeouts(timeout: 10.0, maxDuration: 30.0),
-        );
+        return new SnapshotDocumentLoader();
     }
 
     protected function fixture(string $path): string
