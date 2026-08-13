@@ -93,16 +93,11 @@ class HttpDocumentLoader implements DocumentLoaderInterface
         $externalContextNode = null;
 
         if ('application/ld+json' !== $contentType) {
-            $parsedLinkHeaders = $this->parseLinkHeaders($headers['link'] ?? []);
+            $parsedLinkHeaders = LinkHeaderParser::parse($headers['link'] ?? []);
 
             if ($parsedLinkHeaders) {
                 // try to see at an alternate location https://www.w3.org/TR/json-ld/#alternate-document-location
-                $alternateLocationHeader = array_values(array_filter($parsedLinkHeaders, static function ($link) {
-                    return isset($link['rel'])
-                        && isset($link['type'])
-                        && \in_array('alternate', explode(' ', $link['rel']), true)
-                        && 'application/ld+json' === $link['type'];
-                }));
+                $alternateLocationHeader = LinkHeaderParser::selectAlternateJsonLdLocations($parsedLinkHeaders);
 
                 if (\count($alternateLocationHeader) > 1) {
                     // The spec forbids more than one alternate link header, but the
@@ -127,10 +122,7 @@ class HttpDocumentLoader implements DocumentLoaderInterface
                     // check for a Link rel="http://www.w3.org/ns/json-ld#context"
                     // see https://www.w3.org/TR/json-ld/#interpreting-json-as-json-ld
                     // if found, get the context at this URL
-                    $externalContextURLs = array_values(array_filter($parsedLinkHeaders, static function ($link) {
-                        return isset($link['rel'])
-                            && \in_array('http://www.w3.org/ns/json-ld#context', explode(' ', $link['rel']), true);
-                    }));
+                    $externalContextURLs = LinkHeaderParser::selectJsonLdContexts($parsedLinkHeaders);
 
                     if (\count($externalContextURLs) > 1) {
                         // The spec forbids more than one context link header, but the
@@ -265,63 +257,5 @@ class HttpDocumentLoader implements DocumentLoaderInterface
         }
 
         return $content;
-    }
-
-    /**
-     * @param array<string> $headers
-     *
-     * @return array<array<string, string>>
-     */
-    private function parseLinkHeaders(array $headers): array
-    {
-        $parsed = [];
-
-        foreach ($headers as $key => $header) {
-            if (str_contains($header, ',')) {
-                $parts = preg_split('/,(?=\s*<.*>([^"]*"[^"]*")*[^"]*$)/', $header);
-
-                if (false === $parts) {
-                    throw new ContextProcessingException('loading remote context failed');
-                }
-
-                foreach ($parts as $part) {
-                    $headers[] = trim($part);
-                }
-
-                unset($headers[$key]);
-            }
-        }
-
-        foreach ($headers as $header) {
-            if (preg_match('/^<([^>]*)>(?:\s?;\s?(.+))?$/', trim($header), $matches)) {
-                $item = [
-                    'uri' => $matches[1],
-                ];
-
-                if (isset($matches[2])) {
-                    $parameters = preg_split('/;(?=([^"]*"[^"]*")*[^"]*$)/', $matches[2]);
-
-                    if (false === $parameters) {
-                        throw new ContextProcessingException('loading remote context failed');
-                    }
-
-                    foreach ($parameters as $parameter) {
-                        $keyValue = preg_split('/=(?=([^"]*"[^"]*")*$)/', $parameter);
-
-                        // Skip valueless parameters (e.g. a bare "rel"); the trim
-                        // char-list strips only surrounding whitespace and quotes.
-                        if (false === $keyValue || !isset($keyValue[1])) {
-                            continue;
-                        }
-
-                        $item[trim($keyValue[0])] = trim($keyValue[1], " \t\"'");
-                    }
-                }
-
-                $parsed[] = $item;
-            }
-        }
-
-        return $parsed;
     }
 }
