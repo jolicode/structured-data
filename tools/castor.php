@@ -26,6 +26,8 @@ use function Castor\run;
 use JoliCode\StructuredData\Audit\AuditOptions;
 use JoliCode\StructuredData\JsonLd\Algorithms;
 use JoliCode\StructuredData\Validator;
+use JoliCode\StructuredData\Vocabularies\Generators\Google\DocumentationCoverageAuditor as GoogleDocumentationCoverageAuditor;
+use JoliCode\StructuredData\Vocabularies\Generators\Google\DocumentationCrawler as GoogleDocumentationCrawler;
 use JoliCode\StructuredData\Vocabularies\Generators\Google\Filesystem as GoogleFilesystem;
 use JoliCode\StructuredData\Vocabularies\Generators\Google\Generator as GoogleGenerator;
 use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Filesystem as SchemaOrgFilesystem;
@@ -161,10 +163,10 @@ function fixGeneratedFilesFormatting(?string $vocabulary = null): void
 #[AsTask(namespace: 'google:generation', description: 'Crawl the Google documentation. Updates resources/google/google-types.json (curated manifest), then downloads HTML for active/extra types.')]
 function crawlGoogle(): void
 {
-    $googleFilesystem = new GoogleFilesystem();
+    $crawler = new GoogleDocumentationCrawler();
 
     io()->title('Crawling Google documentation');
-    $googleFilesystem->crawlGoogleDoc();
+    $crawler->crawlGoogleDoc();
 
     io()->success('Google documentation successfully crawled and HTML files successfully extracted.');
 }
@@ -172,10 +174,10 @@ function crawlGoogle(): void
 #[AsTask(name: 'verify-docs', namespace: 'google:generation', description: 'Compare live Google structured-data docs against resources/google/google-types.json and the current JSON implementations.')]
 function verifyGoogleDocs(): int
 {
-    $googleFilesystem = new GoogleFilesystem();
+    $auditor = new GoogleDocumentationCoverageAuditor();
 
     io()->title('Verifying Google structured-data documentation coverage');
-    $report = $googleFilesystem->verifyGoogleDocCoverage();
+    $report = $auditor->verifyGoogleDocCoverage();
 
     if ([] !== $report['fetch_failures']) {
         io()->section('Fetch failures');

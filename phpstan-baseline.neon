@@ -7,46 +7,40 @@ parameters:
 			path: castor.php
 
 		-
-			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\Google\\Filesystem\:\:extractDocumentationUrls\(\) has parameter \$content with no value type specified in iterable type array\.$#'
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\Google\\DocumentationCoverageAuditor\:\:extractDocumentationUrls\(\) has parameter \$content with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: generators/Google/Filesystem.php
-
-		-
-			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\Google\\Filesystem\:\:loadManifest\(\) should return array\<int, array\<string, mixed\>\> but returns mixed\.$#'
-			identifier: return.type
-			count: 1
-			path: generators/Google/Filesystem.php
+			path: generators/Google/DocumentationCoverageAuditor.php
 
 		-
 			message: '#^Parameter \#1 \$array of function array_unique expects an array of values castable to string, list\<mixed\> given\.$#'
 			identifier: argument.type
 			count: 1
-			path: generators/Google/Filesystem.php
+			path: generators/Google/DocumentationCoverageAuditor.php
 
 		-
-			message: '#^Parameter \#2 \$seedUrls of method JoliCode\\StructuredData\\Vocabularies\\Generators\\Google\\Filesystem\:\:discoverStructuredDataDocs\(\) expects array\<int, string\>, list\<mixed\> given\.$#'
+			message: '#^Parameter \#2 \$seedUrls of method JoliCode\\StructuredData\\Vocabularies\\Generators\\Google\\DocumentationCrawler\:\:discoverStructuredDataDocs\(\) expects array\<int, string\>, list\<mixed\> given\.$#'
 			identifier: argument.type
 			count: 1
-			path: generators/Google/Filesystem.php
+			path: generators/Google/DocumentationCoverageAuditor.php
 
 		-
-			message: '#^Parameter \#2 \$url of method JoliCode\\StructuredData\\Vocabularies\\Generators\\Google\\Filesystem\:\:downloadStructuredDataTables\(\) expects string, mixed given\.$#'
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: generators/Google/DocumentationCoverageAuditor.php
+
+		-
+			message: '#^Parameter \#2 \$url of method JoliCode\\StructuredData\\Vocabularies\\Generators\\Google\\DocumentationCrawler\:\:downloadStructuredDataTables\(\) expects string, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: generators/Google/Filesystem.php
+			path: generators/Google/DocumentationCrawler.php
 
 		-
 			message: '#^Parameter \#3 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: generators/Google/Filesystem.php
-
-		-
-			message: '#^Possibly invalid array key type mixed\.$#'
-			identifier: offsetAccess.invalidOffset
-			count: 2
-			path: generators/Google/Filesystem.php
+			path: generators/Google/DocumentationCrawler.php
 
 		-
 			message: '#^Generator expects key type int, mixed given\.$#'
@@ -95,6 +89,18 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: generators/Google/Generator.php
+
+		-
+			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Generators\\Google\\ManifestStore\:\:loadManifest\(\) should return array\<int, array\<string, mixed\>\> but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: generators/Google/ManifestStore.php
+
+		-
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: generators/Google/ManifestStore.php
 
 		-
 			message: '#^Cannot access offset ''@graph'' on mixed\.$#'
