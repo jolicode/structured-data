@@ -82,7 +82,7 @@ class ValidationMapper
 
             if (
                 !property_exists($expandedType, Keyword::ID->value)
-                || (!$this->isTypeReference($expandedType)
+                || (!ExpandedValueShape::isTypeReference($expandedType)
                     || '_:b0' === $expandedType->{Keyword::ID->value})
             ) {
                 $this->mappedTypes[] = $mappedType;
@@ -166,11 +166,11 @@ class ValidationMapper
             }
 
             if ($valueEntry instanceof \stdClass) {
-                if ($this->isTypeReference($valueEntry)) {
+                if (ExpandedValueShape::isTypeReference($valueEntry)) {
                     $this->savePropertyWithReference($valueEntry, $property);
                 }
 
-                if ($this->isTypeProperty($valueEntry)) {
+                if (ExpandedValueShape::isTypeProperty($valueEntry)) {
                     if (Keyword::REVERSE->value === $key) {
                         foreach ($valueEntry as $reverseValue) {
                             $property->appendValue($this->createPropertyType($reverseValue, $property));
@@ -182,7 +182,7 @@ class ValidationMapper
                     $valueEntry = $this->createPropertyType($valueEntry, $property);
                 }
 
-                if ($this->isValueOrId($valueEntry)) {
+                if (ExpandedValueShape::isValueOrId($valueEntry)) {
                     $valueEntry = $valueEntry->{Keyword::VALUE->value} ?? ($valueEntry->{Keyword::ID->value} ?? null);
                 }
             }
@@ -211,8 +211,8 @@ class ValidationMapper
         if (\is_array($propertyValue) && 1 === \count($propertyValue)) {
             $propertyValue = $propertyValue[0];
 
-            if ($this->isValueOrId($propertyValue)) {
-                $property->setValue($this->retrieveValueOrId($propertyValue));
+            if (ExpandedValueShape::isValueOrId($propertyValue)) {
+                $property->setValue(ExpandedValueShape::retrieveValueOrId($propertyValue));
             } else {
                 $property->setValue($propertyValue);
             }
@@ -244,7 +244,7 @@ class ValidationMapper
                 }
             }
 
-            if ($this->rootParsedJsonLd instanceof ObjectStructure && $this->isParsedFlattenedTypeReference($parsedJsonLd)) {
+            if ($this->rootParsedJsonLd instanceof ObjectStructure && ExpandedValueShape::isParsedFlattenedTypeReference($parsedJsonLd)) {
                 $identifier = $parsedJsonLd->getProperty(Keyword::ID->value)->value->content;
                 $parsedJsonLd = $this->rootParsedJsonLd->getGraphValue($identifier)->content;
             }
@@ -416,32 +416,6 @@ class ValidationMapper
         return $this->propertyReferenceByObjectId[spl_object_id($property)] ?? null;
     }
 
-    private function isParsedFlattenedTypeReference(AbstractStructure $type): bool
-    {
-        if (!$type instanceof ObjectStructure) {
-            return false;
-        }
-
-        $properties = $type->getProperties();
-
-        return 1 === \count($properties)
-            && \array_key_exists('id', $properties)
-            && IriResolver::isBlankNodeIdentifier($properties['id']->value?->content);
-    }
-
-    private function isTypeReference(\stdClass|MappedType|string $valueEntry): bool
-    {
-        if (!$valueEntry instanceof \stdClass) {
-            return false;
-        }
-
-        $properties = get_object_vars($valueEntry);
-
-        return 1 === \count($properties)
-            && Keyword::ID->value === array_key_first($properties)
-            && IriResolver::isBlankNodeIdentifier($valueEntry->{Keyword::ID->value});
-    }
-
     private function getFlattenedTypeReference(string $identifier): MappedType
     {
         return $this->flattenedTypeReferences[$identifier];
@@ -476,27 +450,6 @@ class ValidationMapper
         }
     }
 
-    private function isTypeProperty(\stdClass|array|string $valueEntry): bool
-    {
-        if (!$valueEntry instanceof \stdClass) {
-            return false;
-        }
-
-        $properties = get_object_vars($valueEntry);
-
-        if (1 === \count($properties)) {
-            if (property_exists($valueEntry, Keyword::ID->value)) {
-                return IriResolver::isBlankNodeIdentifier($valueEntry->{Keyword::ID->value});
-            }
-
-            if (property_exists($valueEntry, Keyword::VALUE->value)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     private function createPropertyType(\stdClass $expandedType, MappedProperty $property): MappedType
     {
         $propertyType = $this->mapType($expandedType);
@@ -504,28 +457,5 @@ class ValidationMapper
         $propertyType->setParentProperty($property);
 
         return $propertyType;
-    }
-
-    private function isValueOrId(\stdClass|MappedType|string $valueEntry): bool
-    {
-        if ($valueEntry instanceof MappedType) {
-            return false;
-        }
-
-        if (!$valueEntry instanceof \stdClass) {
-            return false;
-        }
-
-        return property_exists($valueEntry, Keyword::VALUE->value)
-            || property_exists($valueEntry, Keyword::ID->value);
-    }
-
-    /**
-     * Both values will not be present at the same time.
-     * Value is used for regular values, while ID is used for URIs.
-     */
-    private function retrieveValueOrId(\stdClass $basicProperty): string|int|float|bool|null
-    {
-        return $basicProperty->{Keyword::VALUE->value} ?? $basicProperty->{Keyword::ID->value};
     }
 }
