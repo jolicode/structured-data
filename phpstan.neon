@@ -19,7 +19,7 @@ parameters:
         - '#Argument of an invalid type stdClass supplied for foreach, only iterables are supported.#'
         # ValidationMapper type flexibility for handling both string and array keys
         -
-            message: '#Parameter \#1 \$propertyKey of method JoliCode\\StructuredData\\Mapper\\ValidationMapper::normalizePropertyKeyCase\(\) expects string, array\|string given\.#'
+            message: '#Parameter \#1 \$propertyKey of method JoliCode\\StructuredData\\Mapper\\SchemaOrgNameNormalizer::normalizePropertyKeyCase\(\) expects string, array\|string given\.#'
             path: src/Mapper/ValidationMapper.php
         # GoogleValidator intentionally flexible with value types for generic validation
         -

@@ -18,37 +18,11 @@ use JoliCode\StructuredData\JsonLd\Parser\DataStructures\ArrayStructure;
 use JoliCode\StructuredData\JsonLd\Parser\DataStructures\ObjectStructure;
 use JoliCode\StructuredData\JsonLd\Parser\Properties\Property;
 use JoliCode\StructuredData\JsonLd\Parser\Properties\Value;
-use JoliCode\StructuredData\Vocabularies\Generated\GeneratedClassesRegistry;
 use JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DateModel;
 
 class ValidationMapper
 {
-    private const SCHEMA_ORG_DOMAIN = 'http://schema.org/';
-    private const SCHEMA_ORG_DOMAIN_SECURE = 'https://schema.org/';
-
-    // The library runtime must not depend on the generator classes, so the
-    // generated namespaces are duplicated here.
-    private const GENERATED_SCHEMA_ORG_TYPE_NAMESPACE = 'JoliCode\\StructuredData\\Vocabularies\\Generated\\SchemaOrg\\Type';
-    private const GENERATED_GOOGLE_NAMESPACE = 'JoliCode\\StructuredData\\Vocabularies\\Generated\\Google';
     private string $sourceFormat;
-
-    /**
-     * Immutable vocabulary data derived from the generated classes registry,
-     * legitimately shared process-wide.
-     *
-     * @var array<string, string>|null
-     */
-    private static ?array $knownTypeNamesByLowercase = null;
-
-    /**
-     * @var array<string, string>
-     */
-    private array $strippedSchemaOrgDomainCache = [];
-
-    /**
-     * @var array<string, string>
-     */
-    private array $normalizedTypeLabelCache = [];
 
     public function __construct(
         /**
@@ -72,6 +46,7 @@ class ValidationMapper
          */
         private array $propertyReferenceByObjectId = [],
         private ?ObjectStructure $rootParsedJsonLd = null,
+        private readonly SchemaOrgNameNormalizer $nameNormalizer = new SchemaOrgNameNormalizer(),
     ) {
     }
 
@@ -83,8 +58,7 @@ class ValidationMapper
         $this->propertiesWithReferences = [];
         $this->propertyReferenceByObjectId = [];
         $this->rootParsedJsonLd = null;
-        $this->strippedSchemaOrgDomainCache = [];
-        $this->normalizedTypeLabelCache = [];
+        $this->nameNormalizer->reset();
     }
 
     /**
@@ -126,53 +100,16 @@ class ValidationMapper
         return $this->mappedTypes;
     }
 
-    /**
-     * Since we are expanding the user input, all properties will be prefixed with the schema.org domain.
-     * This is not really frontend friendly, plus users would not necessarilly understand why their input has changed.
-     * For these reasons, we strip the schema.org domain from the properties keys.
-     */
-    public function removeSchemaOrgDomain(string ...$typesEntry): string|array
-    {
-        if (1 === \count($typesEntry)) {
-            return $this->stripSchemaOrgDomain($typesEntry[0]);
-        }
-
-        $typeShortNames = [];
-
-        foreach ($typesEntry as $typeName) {
-            $typeShortNames[] = $this->stripSchemaOrgDomain($typeName);
-        }
-
-        return $typeShortNames;
-    }
-
-    private function stripSchemaOrgDomain(string $typeName): string
-    {
-        if (isset($this->strippedSchemaOrgDomainCache[$typeName])) {
-            return $this->strippedSchemaOrgDomainCache[$typeName];
-        }
-
-        if (str_starts_with($typeName, self::SCHEMA_ORG_DOMAIN)) {
-            return $this->strippedSchemaOrgDomainCache[$typeName] = substr($typeName, \strlen(self::SCHEMA_ORG_DOMAIN));
-        }
-
-        if (str_starts_with($typeName, self::SCHEMA_ORG_DOMAIN_SECURE)) {
-            return $this->strippedSchemaOrgDomainCache[$typeName] = substr($typeName, \strlen(self::SCHEMA_ORG_DOMAIN_SECURE));
-        }
-
-        return $this->strippedSchemaOrgDomainCache[$typeName] = $typeName;
-    }
-
     private function mapType(\stdClass $expandedType): MappedType
     {
         $type = new MappedType(sourceFormat: $this->sourceFormat);
 
         if (property_exists($expandedType, Keyword::TYPE->value)) {
-            $types = $this->removeSchemaOrgDomain(...(array) $expandedType->{Keyword::TYPE->value});
+            $types = $this->nameNormalizer->removeSchemaOrgDomain(...(array) $expandedType->{Keyword::TYPE->value});
             $normalizedTypes = [];
 
             foreach ((array) $types as $mappedType) {
-                $normalizedTypes[] = $this->normalizeTypeLabelCase($mappedType);
+                $normalizedTypes[] = $this->nameNormalizer->normalizeTypeLabelCase($mappedType);
             }
 
             $type->setType($normalizedTypes);
@@ -202,7 +139,7 @@ class ValidationMapper
                 if ('@' === ($label[0] ?? '')) {
                     $propertyKey = $label;
                 } else {
-                    $propertyKey = $this->normalizePropertyKeyCase($this->removeSchemaOrgDomain($label));
+                    $propertyKey = $this->nameNormalizer->normalizePropertyKeyCase($this->nameNormalizer->removeSchemaOrgDomain($label));
                 }
 
                 $type->setProperty($propertyKey, $this->mapProperty($value, $propertyKey, $type));
@@ -251,7 +188,7 @@ class ValidationMapper
             }
 
             if ($isTypeKeywordProperty && \is_string($valueEntry)) {
-                $valueEntry = $this->removeSchemaOrgDomain($valueEntry);
+                $valueEntry = $this->nameNormalizer->removeSchemaOrgDomain($valueEntry);
             }
 
             if (\is_string($valueKey)) {
@@ -261,8 +198,8 @@ class ValidationMapper
                     continue;
                 }
 
-                $valueKey = $this->removeSchemaOrgDomain($valueKey);
-                $valueKey = $this->normalizePropertyKeyCase($valueKey);
+                $valueKey = $this->nameNormalizer->removeSchemaOrgDomain($valueKey);
+                $valueKey = $this->nameNormalizer->normalizePropertyKeyCase($valueKey);
                 $property->appendValue($valueEntry, $valueKey);
             } else {
                 $property->appendValue($valueEntry);
@@ -282,51 +219,6 @@ class ValidationMapper
         }
 
         return $property;
-    }
-
-    private function normalizeTypeLabelCase(string $typeName): string
-    {
-        return $this->normalizedTypeLabelCache[$typeName] ??= self::getKnownTypeNamesByLowercase()[strtolower($typeName)] ?? $typeName;
-    }
-
-    private function normalizePropertyKeyCase(string $propertyKey): string
-    {
-        $first = $propertyKey[0];
-
-        // Fast-exit for lowercase/non-alpha first char (most schema.org props) and '@' keywords
-        if ($first < 'A' || $first > 'Z') {
-            return $propertyKey;
-        }
-
-        // Starts with uppercase ASCII
-        if (strtoupper($propertyKey) === $propertyKey) {
-            return strtolower($propertyKey);
-        }
-
-        return lcfirst($propertyKey);
-    }
-
-    /**
-     * @return array<string, string>
-     */
-    private static function getKnownTypeNamesByLowercase(): array
-    {
-        if (self::$knownTypeNamesByLowercase) {
-            return self::$knownTypeNamesByLowercase;
-        }
-
-        self::$knownTypeNamesByLowercase = [];
-
-        foreach (GeneratedClassesRegistry::getShortNamesByPrefix(self::GENERATED_SCHEMA_ORG_TYPE_NAMESPACE) as $shortName) {
-            $typeName = str_replace('Model', '', $shortName);
-            self::$knownTypeNamesByLowercase[strtolower($typeName)] = $typeName;
-        }
-
-        foreach (GeneratedClassesRegistry::getShortNamesByPrefix(self::GENERATED_GOOGLE_NAMESPACE) as $typeName) {
-            self::$knownTypeNamesByLowercase[strtolower($typeName)] = $typeName;
-        }
-
-        return self::$knownTypeNamesByLowercase;
     }
 
     private function addRangesToType(MappedType $type, AbstractStructure $parsedJsonLd): void
@@ -478,7 +370,7 @@ class ValidationMapper
             return false;
         }
 
-        $expandedPropertyKey = $this->appendSchemaOrgDomain($shortPropertyKey);
+        $expandedPropertyKey = $this->nameNormalizer->appendSchemaOrgDomain($shortPropertyKey);
 
         // Expanded
         if ($parsed = $parsedProperties[$expandedPropertyKey] ?? null) {
@@ -635,10 +527,5 @@ class ValidationMapper
     private function retrieveValueOrId(\stdClass $basicProperty): string|int|float|bool|null
     {
         return $basicProperty->{Keyword::VALUE->value} ?? $basicProperty->{Keyword::ID->value};
-    }
-
-    private function appendSchemaOrgDomain(string $property): string
-    {
-        return self::SCHEMA_ORG_DOMAIN . $property;
     }
 }
