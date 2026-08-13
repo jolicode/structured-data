@@ -27,10 +27,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
         with:
           # Matches the platform the QA tooling is pinned to in tools/*/composer.json.
           php-version: "8.4"
@@ -42,7 +44,7 @@ jobs:
         run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
 
       - name: Cache Composer downloads
-        uses: actions/cache@v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: composer-qa-${{ runner.os }}-${{ hashFiles('composer.json', 'tools/*/composer.lock') }}
@@ -50,7 +52,7 @@ jobs:
             composer-qa-${{ runner.os }}-
 
       - name: Cache QA tooling vendors
-        uses: actions/cache@v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: tools/*/vendor
           key: tools-vendor-qa-${{ runner.os }}-${{ hashFiles('tools/*/composer.lock') }}
@@ -60,7 +62,7 @@ jobs:
       # cache embeds the fixer version and the rule set, and invalidates itself when
       # either changes.
       - name: Cache the PHP CS Fixer result cache
-        uses: actions/cache@v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .php-cs-fixer.cache
           key: php-cs-fixer-qa-${{ runner.os }}-${{ hashFiles('.php-cs-fixer.php', 'tools/php-cs-fixer/composer.lock') }}-${{ github.sha }}
@@ -68,7 +70,7 @@ jobs:
             php-cs-fixer-qa-${{ runner.os }}-${{ hashFiles('.php-cs-fixer.php', 'tools/php-cs-fixer/composer.lock') }}-
 
       - name: Cache PHPStan result cache
-        uses: actions/cache@v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: tools/phpstan/var
           key: phpstan-${{ runner.os }}-${{ github.sha }}
@@ -95,10 +97,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
         with:
           php-version: "8.4"
           tools: castor
@@ -109,7 +113,7 @@ jobs:
         run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
 
       - name: Cache Composer downloads
-        uses: actions/cache@v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: composer-vocabularies-${{ runner.os }}-${{ hashFiles('composer.json', 'tools/*/composer.lock') }}
@@ -117,7 +121,7 @@ jobs:
             composer-vocabularies-${{ runner.os }}-
 
       - name: Cache QA tooling vendors
-        uses: actions/cache@v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: tools/*/vendor
           key: tools-vendor-vocabularies-${{ runner.os }}-${{ hashFiles('tools/*/composer.lock') }}
@@ -129,7 +133,7 @@ jobs:
       # Keyed on the file holding SchemaOrg::VERSION, so bumping the vocabulary version
       # is what triggers a fresh download of the definition file.
       - name: Cache the schema.org definition file
-        uses: actions/cache@v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: var/cache/schema-org
           key: schema-org-definition-${{ hashFiles('generators/SchemaOrg/SchemaOrg.php') }}
@@ -162,10 +166,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
         with:
           php-version: ${{ matrix.php-version }}
           tools: castor
@@ -176,7 +182,7 @@ jobs:
         run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
 
       - name: Cache Composer downloads
-        uses: actions/cache@v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: composer-${{ runner.os }}-${{ matrix.php-version }}-${{ hashFiles('composer.json', 'tools/*/composer.lock') }}
@@ -184,7 +190,7 @@ jobs:
             composer-${{ runner.os }}-${{ matrix.php-version }}-
 
       - name: Cache QA tooling vendors
-        uses: actions/cache@v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: tools/*/vendor
           key: tools-vendor-${{ runner.os }}-${{ matrix.php-version }}-${{ hashFiles('tools/*/composer.lock') }}
@@ -193,7 +199,7 @@ jobs:
         # Skipped on the weekly scheduled run, which re-downloads the suite from the
         # upstream main branch to surface W3C drift.
         if: github.event_name != 'schedule'
-        uses: actions/cache@v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: var/cache/w3c-json-ld-api
           key: w3c-test-suite-${{ hashFiles('.castor/qa.php') }}
@@ -218,7 +224,7 @@ jobs:
         run: castor qa:phpunit:coverage
 
       - name: Upload coverage report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: coverage-clover-php${{ matrix.php-version }}
           path: var/cache/coverage/clover.xml
@@ -237,7 +243,7 @@ jobs:
 
       - name: Upload benchmark reports
         if: github.event_name == 'schedule'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: benchmark-reports-php${{ matrix.php-version }}
           path: var/cache/benchmark-results-*.html

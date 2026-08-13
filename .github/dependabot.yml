@@ -10,6 +10,8 @@ updates:
       github-actions:
         patterns:
           - "*"
+    cooldown:
+      default-days: 7
 
   # The library itself ships no committed lock file, but the QA tooling does:
   # keep those pinned dependencies fresh, in a single pull request covering
@@ -27,3 +29,5 @@ updates:
       tools:
         patterns:
           - "*"
+    cooldown:
+      default-days: 7
