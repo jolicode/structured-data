@@ -119,7 +119,12 @@ function cs(bool $dryRun = false, ?string $directory = null): int
         install();
     }
 
-    $command = [toolsDir() . '/php-cs-fixer/vendor/bin/php-cs-fixer', 'fix', '--config', rootDir() . '/.php-cs-fixer.php'];
+    // PHP CS Fixer compiles every analysed file, so a globally enabled pcov makes it
+    // about four times slower. This bites on CI, where setup-php enables coverage in
+    // php.ini for the whole job, and on any machine with pcov enabled by default.
+    // composer/xdebug-handler already restarts the process without Xdebug, but it
+    // knows nothing about pcov, hence the explicit -d.
+    $command = [\PHP_BINARY, '-d', 'pcov.enabled=0', toolsDir() . '/php-cs-fixer/vendor/bin/php-cs-fixer', 'fix', '--config', rootDir() . '/.php-cs-fixer.php'];
 
     if ($dryRun) {
         $command[] = '--dry-run';
