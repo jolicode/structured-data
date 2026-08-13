@@ -1,7 +1,7 @@
 {
     "type": "project",
     "require": {
-        "infection/infection": "^0.32.7"
+        "infection/infection": "^0.34.2"
     },
     "config": {
         "allow-plugins": {
