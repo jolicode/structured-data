@@ -28,7 +28,7 @@ class ValidationMapper
         /**
          * @var array<string,MappedType>
          */
-        public array $flattenedTypeReferences = [],
+        private array $flattenedTypeReferences = [],
         /**
          * @var array<MappedType>
          */
