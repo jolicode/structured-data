@@ -46,7 +46,9 @@ const CACHE_DIR_BENCHMARK_FIXTURES = __DIR__ . '/../var/cache/benchmark-fixtures
 // host-checked against BENCHMARK_FIXTURE_ALLOWED_DOMAINS below.
 const BENCHMARK_FIXTURE_URLS = [
     'jolicode-homepage.html' => 'https://jolicode.com/',
+    'jolicode-blog-post.html' => 'https://jolicode.com/blog/jolimediasyliusbundle-a-new-bridge-for-your-sylius-projects',
     'jolicampus-homepage.html' => 'https://jolicampus.com/',
+    'jolicampus-formation-symfony.html' => 'https://jolicampus.com/formations/symfony',
     'google-structured-data-intro.html' => 'https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data',
 ];
 
