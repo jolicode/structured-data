@@ -11,7 +11,6 @@
 
 namespace JoliCode\StructuredData\Vocabularies\Validators\Google;
 
-use JoliCode\StructuredData\JsonLd\Algorithms\Http\IriResolver;
 use JoliCode\StructuredData\Mapper\MappedError;
 use JoliCode\StructuredData\Mapper\MappedProperty;
 use JoliCode\StructuredData\Mapper\MappedType;
@@ -69,7 +68,7 @@ class GoogleValidator extends AbstractValidator
             return $errors;
         }
 
-        $typeCasingErrors = $this->validateTypeCasing($type);
+        $typeCasingErrors = $this->validateTypeCasing($type, $type);
 
         if ($typeCasingErrors) {
             array_push($errors, ...$typeCasingErrors);
@@ -117,17 +116,7 @@ class GoogleValidator extends AbstractValidator
             return $this->validatePropertyForMultipleTypesEntry($type, $property, $originalProperty);
         }
 
-        $errors = [];
-        $originalKey = $property->getOriginalKey();
-
-        if ($originalKey && $originalKey !== $property->getKey() && 0 === strcasecmp($originalKey, $property->getKey())) {
-            $errors[] = $this->addMappedError(
-                $property,
-                \sprintf('Incorrect property casing: "%s" given, expected "%s".', $originalKey, $property->getKey()),
-                $type,
-                MappedError::SEVERITY_ERROR,
-            );
-        }
+        $errors = $this->validatePropertyCasing($type, $property);
 
         $currentProperty = $this->stack
             ->newType($type)
@@ -442,64 +431,6 @@ class GoogleValidator extends AbstractValidator
         }
 
         return MappedError::SEVERITY_WARNING;
-    }
-
-    /**
-     * @return array<MappedError>
-     */
-    private function validateTypeCasing(MappedType $type): array
-    {
-        $typeLabels = (array) $type->getType();
-        $originalType = $type->getOriginalType();
-
-        if (!$typeLabels || !$originalType) {
-            return [];
-        }
-
-        $errors = [];
-        $typeCasingTarget = null;
-
-        foreach ($typeLabels as $label) {
-            if (!$label || (str_contains($label, ':') && IriResolver::isAbsoluteIri($label))) {
-                continue;
-            }
-
-            $originalLabel = $this->findOriginalTypeLabel($originalType, $label);
-
-            if (!$originalLabel || $originalLabel === $label) {
-                continue;
-            }
-
-            $typeCasingTarget ??= $type->getProperty('@type') ?? $type;
-
-            $errors[] = $this->addMappedError(
-                $typeCasingTarget,
-                \sprintf('Incorrect type casing: "%s" given, expected "%s".', $originalLabel, $label),
-                $type,
-                MappedError::SEVERITY_ERROR,
-            );
-        }
-
-        return $errors;
-    }
-
-    private function findOriginalTypeLabel(mixed $originalType, string $label): ?string
-    {
-        if (\is_string($originalType)) {
-            return $originalType === $label || 0 === strcasecmp($originalType, $label) ? $originalType : null;
-        }
-
-        if (!\is_array($originalType)) {
-            return null;
-        }
-
-        foreach ($originalType as $originalLabel) {
-            if ($originalLabel === $label || 0 === strcasecmp($originalLabel, $label)) {
-                return $originalLabel;
-            }
-        }
-
-        return null;
     }
 
     private function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool

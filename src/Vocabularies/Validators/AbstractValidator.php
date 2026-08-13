@@ -11,6 +11,8 @@
 
 namespace JoliCode\StructuredData\Vocabularies\Validators;
 
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\IriResolver;
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
 use JoliCode\StructuredData\JsonLd\Parser\Range;
 use JoliCode\StructuredData\Mapper\MappedError;
 use JoliCode\StructuredData\Mapper\MappedProperty;
@@ -39,6 +41,56 @@ abstract class AbstractValidator implements ValidatorInterface
         }
 
         return $errors;
+    }
+
+    /**
+     * @return MappedError[]
+     */
+    protected function validateTypeCasing(MappedType $type, MappedType|MappedProperty $errorTarget): array
+    {
+        $errors = [];
+
+        foreach ((array) $type->getType() as $label) {
+            if (!$label || IriResolver::isAbsoluteIri($label)) {
+                continue;
+            }
+
+            $originalLabel = $this->findOriginalTypeLabel($type, $label);
+
+            if (!$originalLabel || $originalLabel === $label || 0 !== strcasecmp($originalLabel, $label)) {
+                continue;
+            }
+
+            $errors[] = $this->addMappedError(
+                $type->getProperty(Keyword::TYPE->value) ?? $errorTarget,
+                \sprintf('Incorrect type casing: "%s" given, expected "%s".', $originalLabel, $label),
+                $type,
+                MappedError::SEVERITY_ERROR,
+            );
+        }
+
+        return $errors;
+    }
+
+    /**
+     * @return MappedError[]
+     */
+    protected function validatePropertyCasing(MappedType $type, MappedProperty $property): array
+    {
+        $originalKey = $property->getOriginalKey();
+
+        if (!$originalKey || $originalKey === $property->getKey() || 0 !== strcasecmp($originalKey, $property->getKey())) {
+            return [];
+        }
+
+        return [
+            $this->addMappedError(
+                $property,
+                \sprintf('Incorrect property casing: "%s" given, expected "%s".', $originalKey, $property->getKey()),
+                $type,
+                MappedError::SEVERITY_ERROR,
+            ),
+        ];
     }
 
     protected function addMappedError(MappedType|MappedProperty $target, string $message, MappedType $typeWithError, string $severity): MappedError
@@ -97,5 +149,22 @@ abstract class AbstractValidator implements ValidatorInterface
         }
 
         return $error;
+    }
+
+    private function findOriginalTypeLabel(MappedType $type, string $label): ?string
+    {
+        $originalType = $type->getOriginalType();
+
+        if (\is_string($originalType)) {
+            return $originalType;
+        }
+
+        foreach ((array) $originalType as $originalLabel) {
+            if (0 === strcasecmp($originalLabel, $label)) {
+                return $originalLabel;
+            }
+        }
+
+        return null;
     }
 }
