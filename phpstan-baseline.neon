@@ -1,10 +1,3 @@
-# PHPStan runs at level 9 (see phpstan.neon). The entries below are not accumulated
-# debt from a migration: they share one systemic cause. The JSON-LD algorithms operate
-# on \stdClass trees decoded from arbitrary JSON, where every offset is genuinely `mixed`
-# by construction, and level 9 has no way to express a "JSON-LD node object" shape. Almost
-# all entries live in the spec-algorithm files (Expander, Framer, Compactor, NodeMapGenerator,
-# TermDefinitionCreator); the rest are dev-only code (generators/, tests/) that never ships.
-# New code is expected to be clean; do not grow this baseline to silence real findings.
 parameters:
 	ignoreErrors:
 		-
@@ -252,6 +245,18 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: generators/StaticFileGenerator.php
+
+		-
+			message: '#^Method JoliCode\\StructuredData\\Extraction\\Extractor\:\:extract\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Extraction/Extractor.php
+
+		-
+			message: '#^Method JoliCode\\StructuredData\\Extraction\\MicrodataExtractor\:\:normalizeItemTypes\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Extraction/MicrodataExtractor.php
 
 		-
 			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
@@ -932,60 +937,6 @@ parameters:
 			path: src/JsonLd/Algorithms/TermDefinition/TermDefinition.php
 
 		-
-			message: '#^Cannot access property \$@container on mixed\.$#'
-			identifier: property.nonObject
-			count: 5
-			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
-
-		-
-			message: '#^Cannot access property \$@context on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
-
-		-
-			message: '#^Cannot access property \$@direction on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
-
-		-
-			message: '#^Cannot access property \$@id on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
-
-		-
-			message: '#^Cannot access property \$@index on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
-
-		-
-			message: '#^Cannot access property \$@language on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
-
-		-
-			message: '#^Cannot access property \$@nest on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
-
-		-
-			message: '#^Cannot access property \$@prefix on mixed\.$#'
-			identifier: property.nonObject
-			count: 2
-			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
-
-		-
-			message: '#^Cannot access property \$@reverse on mixed\.$#'
-			identifier: property.nonObject
-			count: 3
-			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
-
-		-
 			message: '#^Cannot access property \$@type on mixed\.$#'
 			identifier: property.nonObject
 			count: 1
@@ -1004,45 +955,9 @@ parameters:
 			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
 
 		-
-			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:handleContextValue\(\) has parameter \$remoteContexts with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
-
-		-
-			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:handleIdValue\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
-
-		-
-			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:handleTermWithColons\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
-
-		-
-			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:setReverseDefinition\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
-
-		-
 			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:setTypeMapping\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
-
-		-
-			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionCreator\:\:validateContainerEntry\(\) has parameter \$container with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
-
-		-
-			message: '#^Parameter \#1 \$object_or_class of function property_exists expects object\|string, mixed given\.$#'
-			identifier: argument.type
-			count: 3
 			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionCreator.php
 
 		-
@@ -1052,16 +967,118 @@ parameters:
 			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionDraft.php
 
 		-
-			message: '#^Method JoliCode\\StructuredData\\Extraction\\Extractor\:\:extract\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
+			message: '#^Cannot access property \$@container on mixed\.$#'
+			identifier: property.nonObject
 			count: 1
-			path: src/Extraction/Extractor.php
+			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionEntryHandler.php
 
 		-
-			message: '#^Method JoliCode\\StructuredData\\Extraction\\MicrodataExtractor\:\:normalizeItemTypes\(\) return type has no value type specified in iterable type array\.$#'
+			message: '#^Cannot access property \$@context on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionEntryHandler.php
+
+		-
+			message: '#^Cannot access property \$@direction on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionEntryHandler.php
+
+		-
+			message: '#^Cannot access property \$@index on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionEntryHandler.php
+
+		-
+			message: '#^Cannot access property \$@language on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionEntryHandler.php
+
+		-
+			message: '#^Cannot access property \$@nest on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionEntryHandler.php
+
+		-
+			message: '#^Cannot access property \$@prefix on mixed\.$#'
+			identifier: property.nonObject
+			count: 2
+			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionEntryHandler.php
+
+		-
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionEntryHandler\:\:handleContextValue\(\) has parameter \$remoteContexts with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
-			path: src/Extraction/MicrodataExtractor.php
+			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionEntryHandler.php
+
+		-
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermDefinitionEntryHandler\:\:validateContainerEntry\(\) has parameter \$container with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/JsonLd/Algorithms/TermDefinition/TermDefinitionEntryHandler.php
+
+		-
+			message: '#^Cannot access property \$@container on mixed\.$#'
+			identifier: property.nonObject
+			count: 4
+			path: src/JsonLd/Algorithms/TermDefinition/TermIriMappingResolver.php
+
+		-
+			message: '#^Cannot access property \$@id on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/JsonLd/Algorithms/TermDefinition/TermIriMappingResolver.php
+
+		-
+			message: '#^Cannot access property \$@reverse on mixed\.$#'
+			identifier: property.nonObject
+			count: 3
+			path: src/JsonLd/Algorithms/TermDefinition/TermIriMappingResolver.php
+
+		-
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermIriMappingResolver\:\:handleIdValue\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/JsonLd/Algorithms/TermDefinition/TermIriMappingResolver.php
+
+		-
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermIriMappingResolver\:\:handleTermWithColons\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/JsonLd/Algorithms/TermDefinition/TermIriMappingResolver.php
+
+		-
+			message: '#^Method JoliCode\\StructuredData\\JsonLd\\Algorithms\\TermDefinition\\TermIriMappingResolver\:\:setReverseDefinition\(\) has parameter \$defined with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/JsonLd/Algorithms/TermDefinition/TermIriMappingResolver.php
+
+		-
+			message: '#^Parameter \#1 \$object_or_class of function property_exists expects object\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: src/JsonLd/Algorithms/TermDefinition/TermIriMappingResolver.php
+
+		-
+			message: '#^Cannot call method getProperty\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: src/JsonLd/Parser/DataStructures/ObjectStructure.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: src/JsonLd/Parser/PointerListener.php
+
+		-
+			message: '#^Parameter \#1 \$value of method JoliCode\\StructuredData\\JsonLd\\Parser\\DataStructures\\AbstractStructure\:\:addValue\(\) expects bool\|JoliCode\\StructuredData\\JsonLd\\Parser\\DataStructures\\AbstractStructure\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/JsonLd/Parser/PointerListener.php
 
 		-
 			message: '#^Cannot access an offset on mixed\.$#'
@@ -1296,24 +1313,6 @@ parameters:
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/Mapper/ValidationSnippetCache.php
-
-		-
-			message: '#^Cannot call method getProperty\(\) on mixed\.$#'
-			identifier: method.nonObject
-			count: 1
-			path: src/JsonLd/Parser/DataStructures/ObjectStructure.php
-
-		-
-			message: '#^Cannot cast mixed to string\.$#'
-			identifier: cast.string
-			count: 1
-			path: src/JsonLd/Parser/PointerListener.php
-
-		-
-			message: '#^Parameter \#1 \$value of method JoliCode\\StructuredData\\JsonLd\\Parser\\DataStructures\\AbstractStructure\:\:addValue\(\) expects bool\|JoliCode\\StructuredData\\JsonLd\\Parser\\DataStructures\\AbstractStructure\|string\|null, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/JsonLd/Parser/PointerListener.php
 
 		-
 			message: '#^Method JoliCode\\StructuredData\\Validator\:\:mapJsonLdElement\(\) has parameter \$expandedJsonLd with no value type specified in iterable type array\.$#'

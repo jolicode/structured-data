@@ -19,7 +19,7 @@ use JoliCode\StructuredData\JsonLd\Algorithms\Http\DocumentLoaderInterface;
 use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
 use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use JoliCode\StructuredData\JsonLd\Algorithms\TermDefinition\TermDefinition;
-use JoliCode\StructuredData\JsonLd\Algorithms\TermDefinition\TermDefinitionCreator;
+use JoliCode\StructuredData\JsonLd\Algorithms\TermDefinition\TermDefinitionEntryHandler;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 
@@ -47,7 +47,7 @@ class ContextProcessorTest extends AbstractJsonLdTestCase
     #[DataProvider('provideContainerEntries')]
     public function testValidateContainerEntry(string|array $container, bool $expected): void
     {
-        $this->assertSame($expected, TermDefinitionCreator::validateContainerEntry($container));
+        $this->assertSame($expected, TermDefinitionEntryHandler::validateContainerEntry($container));
     }
 
     public function testCachedRemoteContextReturnsIsolatedCopies(): void
