@@ -11,8 +11,6 @@
 
 namespace JoliCode\StructuredData\Vocabularies\Validators\Google;
 
-use JoliCode\StructuredData\Mapper\MappedType;
-
 /**
  * Checks a property value against the data types Google expects.
  *
@@ -44,9 +42,8 @@ final class DataTypeChecker
     /** @var array<string, false|string> */
     private array $urlValidationResults = [];
 
-    public function hasInvalidDataTypeValue(MappedType $type, array $expectedProperty, mixed $givenValue): false|string
+    public function hasInvalidDataTypeValue(array $expectedProperty, mixed $givenValue): false|string
     {
-        $givenValue = $this->coerceScalarForSourceFormat($type, $expectedProperty['supportedTypes'], $givenValue);
         $supportedTypes = $expectedProperty['supportedTypes'];
 
         return match ($this->getMatchingDataType($supportedTypes, $givenValue)) {
@@ -81,43 +78,6 @@ final class DataTypeChecker
         }
 
         return \sprintf('Incorrect value: "%s" given, expected one of "%s".', $givenValue, implode(', ', $expectedValues));
-    }
-
-    private function coerceScalarForSourceFormat(MappedType $type, array $supportedTypes, mixed $givenValue): mixed
-    {
-        if (!\is_string($givenValue) || !$supportedTypes) {
-            return $givenValue;
-        }
-
-        $sourceFormat = $type->getSourceFormat();
-
-        if ('microdata' !== $sourceFormat && 'rdfa' !== $sourceFormat) {
-            return $givenValue;
-        }
-
-        $supportedTypesLookup = array_fill_keys($supportedTypes, true);
-
-        if (isset($supportedTypesLookup[self::DATA_TYPE_INTEGER]) && preg_match('/^-?\d+$/', $givenValue)) {
-            return (int) $givenValue;
-        }
-
-        if (isset($supportedTypesLookup[self::DATA_TYPE_NUMBER]) && is_numeric($givenValue)) {
-            return (float) $givenValue;
-        }
-
-        if (isset($supportedTypesLookup[self::DATA_TYPE_BOOLEAN])) {
-            if ('' === $givenValue) {
-                return $givenValue;
-            }
-
-            return match (strtolower($givenValue)) {
-                'true' => true,
-                'false' => false,
-                default => $givenValue,
-            };
-        }
-
-        return $givenValue;
     }
 
     private function getMatchingDataType(array $supportedTypes, mixed $givenValue): string|false
@@ -220,7 +180,94 @@ final class DataTypeChecker
 
     private function getSchemaOrgDataType(mixed $value): string
     {
+        // A string is judged on the value it carries, not on the JSON type it was written
+        // with: Google reads "1800" as the number 1800, so reporting it as Text would send
+        // the author looking for a problem that is not there.
+        if (\is_string($value)) {
+            return match (true) {
+                $this->isIntegerLiteral($value) => self::DATA_TYPE_INTEGER,
+                $this->isNumberLiteral($value) => self::DATA_TYPE_NUMBER,
+                default => self::DATA_TYPE_TEXT,
+            };
+        }
+
         return $this->getScalarDataType($value) ?: get_debug_type($value);
+    }
+
+    /**
+     * Google accepts a number written as a string, and so does schema.org: both the
+     * schema.org examples and the Google documentation quote prices, positions and counts
+     * indifferently as JSON numbers or as strings.
+     *
+     * @see https://developers.google.com/search/docs/appearance/structured-data/product-snippet#offer-properties
+     */
+    private function isNumberLiteral(string $value): bool
+    {
+        return is_numeric(trim($value));
+    }
+
+    private function isIntegerLiteral(string $value): bool
+    {
+        return 1 === preg_match('/^[+-]?\d+$/', trim($value));
+    }
+
+    private function isBooleanLiteral(string $value): bool
+    {
+        return \in_array(strtolower(trim($value)), ['true', 'false'], true);
+    }
+
+    /**
+     * Recovers the number a decorated value was meant to carry.
+     *
+     * Google parses the value itself: a currency symbol, a thousands separator or a decimal
+     * comma makes the whole property unreadable, however obvious it looks to a human. Being
+     * able to name the plain number turns "this is not a Number" into something the author
+     * can act on.
+     *
+     * @see https://developers.google.com/search/docs/appearance/structured-data/product-snippet#offer-properties
+     */
+    private function getPlainNumber(string $value): ?string
+    {
+        // Currency symbols, and spaces including the non-breaking ones a CMS inserts.
+        $candidate = preg_replace('/[\p{Sc}\s\x{00A0}\x{202F}]+/u', '', $value);
+
+        if (null === $candidate || '' === $candidate) {
+            return null;
+        }
+
+        // An ISO 4217 code sits against the amount once the spaces are gone: "EUR1800", "1800EUR".
+        $candidate = preg_replace('/^[A-Z]{3}(?=[\d+-])|(?<=\d)[A-Z]{3}$/', '', $candidate) ?? $candidate;
+
+        $candidate = match (true) {
+            // 1,800 and 1,800.00
+            1 === preg_match('/^[+-]?\d{1,3}(?:,\d{3})+(?:\.\d+)?$/', $candidate) => str_replace(',', '', $candidate),
+            // 1.800 and 1.800,00
+            1 === preg_match('/^[+-]?\d{1,3}(?:\.\d{3})+(?:,\d+)?$/', $candidate) => str_replace(['.', ','], ['', '.'], $candidate),
+            // 1800,00
+            1 === preg_match('/^[+-]?\d+,\d+$/', $candidate) => str_replace(',', '.', $candidate),
+            default => $candidate,
+        };
+
+        return is_numeric($candidate) ? $candidate : null;
+    }
+
+    private function getNumberFormattingViolation(string $givenValue, string $plainNumber): string
+    {
+        return \sprintf(
+            'Incorrect number format: "%s" given. Google expects a plain number, without currency symbol, thousands separator or unit: "%s".',
+            $givenValue,
+            $plainNumber,
+        );
+    }
+
+    private function getDataTypeViolation(string $expectedType, mixed $givenValue): string
+    {
+        return \sprintf(
+            'Incorrect type value: value of type "%s" expected, but "%s" was given (%s).',
+            $expectedType,
+            $this->getSchemaOrgDataType($givenValue),
+            \is_string($givenValue) ? \sprintf('"%s"', $givenValue) : $givenValue,
+        );
     }
 
     private function hasIncorrectDate(mixed $givenValue, string $expectedType): false|string
@@ -238,34 +285,42 @@ final class DataTypeChecker
 
     private function hasIncorrectNumber(mixed $givenValue): false|string
     {
-        if (\is_int($givenValue) || \is_float($givenValue) || (\is_string($givenValue) && is_numeric($givenValue))) {
+        if (\is_int($givenValue) || \is_float($givenValue)) {
             return false;
         }
 
-        $schemaOrgDataType = $this->getScalarDataType($givenValue) ?: get_debug_type($givenValue);
+        if (\is_string($givenValue)) {
+            if ($this->isNumberLiteral($givenValue)) {
+                return false;
+            }
 
-        return \sprintf(
-            'Incorrect type value: value of type "%s" expected, but "%s" was given (%s).',
-            self::DATA_TYPE_NUMBER,
-            $schemaOrgDataType,
-            self::DATA_TYPE_TEXT === $schemaOrgDataType ? \sprintf('"%s"', $givenValue) : $givenValue,
-        );
+            if (null !== ($plainNumber = $this->getPlainNumber($givenValue))) {
+                return $this->getNumberFormattingViolation($givenValue, $plainNumber);
+            }
+        }
+
+        return $this->getDataTypeViolation(self::DATA_TYPE_NUMBER, $givenValue);
     }
 
     private function hasIncorrectInteger(mixed $givenValue): false|string
     {
-        if (\is_int($givenValue) || (\is_string($givenValue) && preg_match('/^-?\d+$/', $givenValue))) {
+        if (\is_int($givenValue)) {
             return false;
         }
 
-        $schemaOrgDataType = $this->getScalarDataType($givenValue) ?: get_debug_type($givenValue);
+        if (\is_string($givenValue)) {
+            if ($this->isIntegerLiteral($givenValue)) {
+                return false;
+            }
 
-        return \sprintf(
-            'Incorrect type value: value of type "%s" expected, but "%s" was given (%s).',
-            self::DATA_TYPE_INTEGER,
-            $schemaOrgDataType,
-            self::DATA_TYPE_TEXT === $schemaOrgDataType ? \sprintf('"%s"', $givenValue) : $givenValue,
-        );
+            $plainNumber = $this->getPlainNumber($givenValue);
+
+            if (null !== $plainNumber && $this->isIntegerLiteral($plainNumber)) {
+                return $this->getNumberFormattingViolation($givenValue, $plainNumber);
+            }
+        }
+
+        return $this->getDataTypeViolation(self::DATA_TYPE_INTEGER, $givenValue);
     }
 
     private function hasIncorrectBoolean(mixed $givenValue): false|string
@@ -274,14 +329,11 @@ final class DataTypeChecker
             return false;
         }
 
-        $schemaOrgDataType = $this->getScalarDataType($givenValue) ?: get_debug_type($givenValue);
+        if (\is_string($givenValue) && $this->isBooleanLiteral($givenValue)) {
+            return false;
+        }
 
-        return \sprintf(
-            'Incorrect type value: value of type "%s" expected, but "%s" was given (%s).',
-            self::DATA_TYPE_BOOLEAN,
-            $schemaOrgDataType,
-            self::DATA_TYPE_TEXT === $schemaOrgDataType ? \sprintf('"%s"', $givenValue) : $givenValue,
-        );
+        return $this->getDataTypeViolation(self::DATA_TYPE_BOOLEAN, $givenValue);
     }
 
     private function hasIncorrectUrl(mixed $givenValue): false|string

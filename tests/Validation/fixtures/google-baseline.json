@@ -72,7 +72,9 @@
         "documentIssues": []
     },
     "breadcrumb-invalid-position-type.jsonld": {
-        "errors": [],
+        "errors": [
+            "[Google error] itemListElement.position: Incorrect type value: value of type \"Integer\" expected, but \"Text\" was given (\"first\")."
+        ],
         "warnings": [],
         "documentIssues": []
     },
@@ -184,7 +186,7 @@
     "dataset-invalid-is-accessible-for-free-type.jsonld": {
         "errors": [],
         "warnings": [
-            "[Google warning] isAccessibleForFree: Incorrect type value: value of type \"Boolean\" expected, but \"Text\" was given (\"true\")."
+            "[Google warning] isAccessibleForFree: Incorrect type value: value of type \"Boolean\" expected, but \"Text\" was given (\"yes\")."
         ],
         "documentIssues": []
     },
@@ -508,7 +510,9 @@
         "documentIssues": []
     },
     "softwareapplication-invalid-price-type.jsonld": {
-        "errors": [],
+        "errors": [
+            "[Google error] offers.price: Incorrect type value: value of type \"Number\" expected, but \"Text\" was given (\"free\")."
+        ],
         "warnings": [],
         "documentIssues": []
     },
@@ -522,6 +526,13 @@
     "softwareapplication-missing-rating-or-review.jsonld": {
         "errors": [
             "[Google error] SoftwareApplication: Missing required property: at least one of the following properties must be present \"aggregateRating, review\" for the type \"SoftwareApplication\""
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "softwareapplication-price-with-currency-symbol.jsonld": {
+        "errors": [
+            "[Google error] offers.price: Incorrect number format: \"1 800,00 €\" given. Google expects a plain number, without currency symbol, thousands separator or unit: \"1800.00\"."
         ],
         "warnings": [],
         "documentIssues": []

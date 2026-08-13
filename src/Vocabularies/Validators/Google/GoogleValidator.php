@@ -116,7 +116,7 @@ class GoogleValidator extends AbstractValidator
                 continue;
             }
 
-            if ($message = $this->dataTypeChecker->hasInvalidDataTypeValue($type, $currentProperty, $value)) {
+            if ($message = $this->dataTypeChecker->hasInvalidDataTypeValue($currentProperty, $value)) {
                 $errors[] = $this->addMappedError(
                     $property,
                     $message,

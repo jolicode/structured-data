@@ -11,7 +11,7 @@
     },
     "offers": {
         "@type": "Offer",
-        "price": "free",
-        "priceCurrency": "USD"
+        "price": "1 800,00 €",
+        "priceCurrency": "EUR"
     }
 }
