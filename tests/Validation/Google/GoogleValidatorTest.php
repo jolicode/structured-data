@@ -166,6 +166,77 @@ class GoogleValidatorTest extends AbstractValidatorTestCase
         );
     }
 
+    public function testItAcceptsNumbersWrittenAsStrings(): void
+    {
+        $softwareApplication = $this->fixture(__DIR__ . '/../fixtures/google/softwareapplication.jsonld');
+
+        $this->assertDocumentIsValidForValidator(
+            str_replace('"price": 1', '"price": "1"', $softwareApplication),
+            GoogleValidator::class,
+        );
+
+        $breadcrumb = $this->fixture(__DIR__ . '/../fixtures/google/breadcrumb.jsonld');
+
+        $this->assertDocumentIsValidForValidator(
+            str_replace('"position": 1', '"position": "1"', $breadcrumb),
+            GoogleValidator::class,
+        );
+    }
+
+    public function testItAcceptsBooleansWrittenAsStrings(): void
+    {
+        $this->validator->setValidator(GoogleValidator::class);
+
+        $dataset = $this->fixture(__DIR__ . '/../fixtures/google/dataset.jsonld');
+        $audit = $this->validator->audit(
+            str_replace('"isAccessibleForFree" : true', '"isAccessibleForFree" : "True"', $dataset),
+        );
+
+        /** @var array<string> $warnings */
+        $warnings = $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_WARNING,
+        ));
+
+        $this->assertNull($this->findMessageBySubstring($warnings, 'isAccessibleForFree'));
+        $this->assertTrue($audit->isValid());
+    }
+
+    public function testItNamesThePlainNumberADecoratedValueWasMeantToCarry(): void
+    {
+        $this->validator->setValidator(GoogleValidator::class);
+
+        $breadcrumb = $this->fixture(__DIR__ . '/../fixtures/google/breadcrumb.jsonld');
+        $audit = $this->validator->audit(str_replace('"position": 3', '"position": "1,300"', $breadcrumb));
+
+        /** @var array<string> $errors */
+        $errors = $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_ERROR,
+        ));
+
+        $this->assertContains(
+            '[Google error] itemListElement.position: Incorrect number format: "1,300" given. Google expects a plain number, without currency symbol, thousands separator or unit: "1300".',
+            $errors,
+        );
+    }
+
+    public function testItReportsAStringThatCarriesNoNumberAsItsLexicalDataType(): void
+    {
+        $this->validator->setValidator(GoogleValidator::class);
+
+        $breadcrumb = $this->fixture(__DIR__ . '/../fixtures/google/breadcrumb.jsonld');
+        $audit = $this->validator->audit(str_replace('"position": 1,', '"position": "1.5",', $breadcrumb));
+
+        /** @var array<string> $errors */
+        $errors = $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_ERROR,
+        ));
+
+        $this->assertContains(
+            '[Google error] itemListElement.position: Incorrect type value: value of type "Integer" expected, but "Number" was given ("1.5").',
+            $errors,
+        );
+    }
+
     public static function provideGoogleFiles(): \Generator
     {
         return self::provideData(

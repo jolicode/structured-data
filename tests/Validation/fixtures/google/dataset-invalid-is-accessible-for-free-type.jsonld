@@ -14,7 +14,7 @@
         "ATMOSPHERE > ATMOSPHERIC PHENOMENA > FREEZE"
     ],
     "license" : "https://creativecommons.org/publicdomain/zero/1.0/",
-    "isAccessibleForFree" : "true",
+    "isAccessibleForFree" : "yes",
     "citation": "https://doi.org/10.1111/111",
     "measurementTechnique": "Remote sensing",
     "variableMeasured": "wind speed",

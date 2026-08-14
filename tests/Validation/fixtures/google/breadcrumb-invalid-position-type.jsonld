@@ -3,7 +3,7 @@
     "@type": "BreadcrumbList",
     "itemListElement": [{
         "@type": "ListItem",
-        "position": "1",
+        "position": "first",
         "name": "Books",
         "item": "https://example.com/books"
     },{
