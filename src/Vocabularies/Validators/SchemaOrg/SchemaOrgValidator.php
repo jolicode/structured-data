@@ -34,11 +34,25 @@ class SchemaOrgValidator extends AbstractValidator
 
     /**
      * Terms hosted under pending.schema.org are still under development and may
-     * change or be removed: using them deserves a warning. The other hosted
-     * extensions (health-lifesci, bib, auto, meta) are stable vocabulary; their
-     * provenance is exposed through getIsPartOf() without a warning.
+     * change or be removed. Their usage is legitimate and accepted silently by
+     * default; opting in to $reportPendingVocabularyUsage reports each of them
+     * as a warning. The other hosted extensions (health-lifesci, bib, auto,
+     * meta) are stable vocabulary; their provenance is exposed through
+     * getIsPartOf() without ever deserving a warning.
      */
     private const PENDING_EXTENSION_DOMAIN = 'https://pending.schema.org';
+
+    private bool $reportPendingVocabularyUsage = false;
+
+    public function setReportPendingVocabularyUsage(bool $reportPendingVocabularyUsage): void
+    {
+        $this->reportPendingVocabularyUsage = $reportPendingVocabularyUsage;
+    }
+
+    public function getConfigurationSignature(): string
+    {
+        return $this->reportPendingVocabularyUsage ? 'report-pending-vocabulary' : '';
+    }
 
     public function validateType(MappedType $type): array
     {
@@ -121,7 +135,7 @@ class SchemaOrgValidator extends AbstractValidator
                 );
             }
 
-            if (\in_array(self::PENDING_EXTENSION_DOMAIN, $typeFqcn::IS_PART_OF, true)) {
+            if ($this->reportPendingVocabularyUsage && \in_array(self::PENDING_EXTENSION_DOMAIN, $typeFqcn::IS_PART_OF, true)) {
                 $errors[] = self::addMappedError(
                     $type->getProperty(Keyword::TYPE->value) ?? $errorTarget,
                     \sprintf('The "%s" type is part of the pending.schema.org extension: it is still under development and subject to change.', $label),
@@ -185,7 +199,7 @@ class SchemaOrgValidator extends AbstractValidator
             );
         }
 
-        if (\in_array(self::PENDING_EXTENSION_DOMAIN, $propertyFqcn::IS_PART_OF, true)) {
+        if ($this->reportPendingVocabularyUsage && \in_array(self::PENDING_EXTENSION_DOMAIN, $propertyFqcn::IS_PART_OF, true)) {
             $errors[] = self::addMappedError(
                 $property,
                 \sprintf('The "%s" property is part of the pending.schema.org extension: it is still under development and subject to change.', $propertyKey),

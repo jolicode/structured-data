@@ -55,9 +55,10 @@ abstract class AbstractValidatorTestCase extends TestCase
         string $specificValidator,
         array $expectedWarnings = [],
         array $expectedDocumentIssues = [],
+        bool $reportPendingVocabularyUsage = false,
     ): void {
         $this->validator->setValidator($specificValidator);
-        $audit = $this->validator->audit($document);
+        $audit = $this->validator->audit($document, reportPendingVocabularyUsage: $reportPendingVocabularyUsage);
 
         // For actual validity check, see if there are errors (warnings alone don't make it invalid)
         $actualIsValid = $audit->isValid();

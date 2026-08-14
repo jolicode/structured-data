@@ -132,6 +132,15 @@ $validator->setValidator(GoogleValidator::VALIDATOR_NAME);
 $validator->audit($document);
 ```
 
+Terms hosted under [pending.schema.org](https://pending.schema.org) are still under
+development and may change or be removed. Using them is legitimate, so the validator
+accepts them silently by default; opt in to `$reportPendingVocabularyUsage` to get a
+warning for each of these usages instead:
+
+```php
+$audit = $validator->audit($document, reportPendingVocabularyUsage: true);
+```
+
 #### Advanced usage
 
 The `getDiagnostic()` method accepts an optional parameter: a `JoliCode\StructuredData\Audit\AuditOptions` object, which lets you filter or group the results, or change the return format. See the PHPDoc on `JoliCode\StructuredData\Audit\AuditOptions` for more details.

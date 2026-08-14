@@ -33,6 +33,7 @@ use JoliCode\StructuredData\Mapper\ValidationSnippetCache;
 use JoliCode\StructuredData\Mapper\ValidationSnippetTemplateApplier;
 use JoliCode\StructuredData\Mapper\ValidationSnippetTemplateBuilder;
 use JoliCode\StructuredData\Vocabularies\Validators\RegisteredValidatorsContainer;
+use JoliCode\StructuredData\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
 use JsonStreamingParser\Exception\ParsingException;
 
 class Validator
@@ -104,13 +105,27 @@ class Validator
      * this library never guesses what an input is, and never fetches it for you.
      * Deciding what may be fetched, and under which restrictions, belongs to the
      * application - see the "Accepted inputs" section of the README.
+     *
+     * @param bool $reportPendingVocabularyUsage Terms hosted under
+     *                                           pending.schema.org are still
+     *                                           under development and may change
+     *                                           or be removed. Using them is
+     *                                           accepted silently by default;
+     *                                           pass true to report each usage
+     *                                           as a warning.
      */
-    public function audit(string $document): Audit
+    public function audit(string $document, bool $reportPendingVocabularyUsage = false): Audit
     {
         $this->validationMapper->reset();
 
         if (!$this->currentValidators) {
             $this->resetValidators();
+        }
+
+        foreach ($this->currentValidators as $validator) {
+            if ($validator instanceof SchemaOrgValidator) {
+                $validator->setReportPendingVocabularyUsage($reportPendingVocabularyUsage);
+            }
         }
 
         // Hash the document rather than keying the cache by the full string, so a

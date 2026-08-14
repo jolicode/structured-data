@@ -27,6 +27,11 @@ abstract class AbstractValidator implements ValidatorInterface
         return static::VALIDATOR_NAME;
     }
 
+    public function getConfigurationSignature(): string
+    {
+        return '';
+    }
+
     /**
      * @return MappedError[]
      */

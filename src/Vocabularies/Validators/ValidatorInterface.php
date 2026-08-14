@@ -24,6 +24,14 @@ interface ValidatorInterface
     public function getValidatorName(): string;
 
     /**
+     * A stable string describing the parts of the validator configuration that
+     * affect its output. It participates in the validation caches keys, so two
+     * configurations leading to different validation results must produce
+     * different signatures.
+     */
+    public function getConfigurationSignature(): string;
+
+    /**
      * This method must validate a type exists.
      *
      * @return MappedError[]
