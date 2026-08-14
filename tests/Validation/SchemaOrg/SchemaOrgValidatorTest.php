@@ -33,6 +33,10 @@ class SchemaOrgValidatorTest extends AbstractValidatorTestCase
         array $expectedWarnings = [],
         array $expectedDocumentIssues = [],
     ): void {
+        // The baselines are recorded with the pending.schema.org reporting
+        // enabled, so they also document which fixtures use pending vocabulary.
+        // The default, silent behavior is covered by the dedicated
+        // testPendingVocabularyUsage* tests below.
         $this->assertValidationResultMatchesExpectations(
             $document,
             $isValid,
@@ -40,6 +44,7 @@ class SchemaOrgValidatorTest extends AbstractValidatorTestCase
             SchemaOrgValidator::class,
             $expectedWarnings,
             $expectedDocumentIssues,
+            reportPendingVocabularyUsage: true,
         );
     }
 
@@ -85,6 +90,70 @@ class SchemaOrgValidatorTest extends AbstractValidatorTestCase
         $this->assertContains('[SchemaOrg warning] @type: The "UserLikes" type is superseded by "InteractionCounter". Consider using "InteractionCounter" instead.', $warnings);
     }
 
+    public function testPendingVocabularyUsageIsIgnoredByDefault(): void
+    {
+        // "jobTitle" is hosted under pending.schema.org.
+        $document = (string) json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'Person',
+            'name' => 'Jane Doe',
+            'jobTitle' => 'Professor',
+        ]);
+
+        $this->validator->setValidator(SchemaOrgValidator::class);
+        $audit = $this->validator->audit($document);
+
+        $this->assertSame([], $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_WARNING,
+        )));
+        $this->assertTrue($audit->isValid());
+    }
+
+    public function testPendingVocabularyUsageIsReportedWhenOptedIn(): void
+    {
+        $document = (string) json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'Person',
+            'name' => 'Jane Doe',
+            'jobTitle' => 'Professor',
+        ]);
+
+        $this->validator->setValidator(SchemaOrgValidator::class);
+        $audit = $this->validator->audit($document, reportPendingVocabularyUsage: true);
+
+        /** @var array<string> $warnings */
+        $warnings = $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_WARNING,
+        ));
+
+        $this->assertContains('[SchemaOrg warning] jobTitle: The "jobTitle" property is part of the pending.schema.org extension: it is still under development and subject to change.', $warnings);
+        $this->assertTrue($audit->isValid(), 'Pending vocabulary usage is a warning, not an error.');
+    }
+
+    public function testPendingVocabularyReportingDoesNotLeakThroughTheValidationCaches(): void
+    {
+        // Auditing the same document with the same validator instance while
+        // toggling the option must never serve a result computed under the
+        // other configuration.
+        $document = (string) json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'Person',
+            'name' => 'Jane Doe',
+            'jobTitle' => 'Professor',
+        ]);
+
+        $this->validator->setValidator(SchemaOrgValidator::class);
+
+        $warningOptions = new AuditOptions(severity: AuditOptions::SEVERITY_WARNING);
+        $reported = $this->validator->audit($document, reportPendingVocabularyUsage: true)->getDiagnostic($warningOptions);
+        $ignored = $this->validator->audit($document)->getDiagnostic($warningOptions);
+        $reportedAgain = $this->validator->audit($document, reportPendingVocabularyUsage: true)->getDiagnostic($warningOptions);
+
+        $this->assertNotSame([], $reported);
+        $this->assertSame([], $ignored);
+        $this->assertSame($reported, $reportedAgain);
+    }
+
     public function testSchemaOrgValidatorReportsMixedCaseTypeAndPropertyKeys(): void
     {
         $document = file_get_contents(__DIR__ . '/../fixtures/schema-org/simple-compacted.jsonld');
@@ -113,6 +182,7 @@ class SchemaOrgValidatorTest extends AbstractValidatorTestCase
         array $expectedWarnings = [],
         array $expectedDocumentIssues = [],
     ): void {
+        // See testSchemaOrgValidator about reportPendingVocabularyUsage.
         $this->assertValidationResultMatchesExpectations(
             $document,
             $isValid,
@@ -120,6 +190,7 @@ class SchemaOrgValidatorTest extends AbstractValidatorTestCase
             SchemaOrgValidator::class,
             $expectedWarnings,
             $expectedDocumentIssues,
+            reportPendingVocabularyUsage: true,
         );
     }
 

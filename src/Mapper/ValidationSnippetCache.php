@@ -12,6 +12,7 @@
 namespace JoliCode\StructuredData\Mapper;
 
 use JoliCode\StructuredData\Extraction\JsonLdElement;
+use JoliCode\StructuredData\Vocabularies\Validators\ValidatorInterface;
 
 /**
  * Caches the validation outcome of a JSON-LD snippet so that a snippet repeated
@@ -39,14 +40,16 @@ class ValidationSnippetCache
     }
 
     /**
-     * @param array<object> $validators
+     * @param array<ValidatorInterface> $validators
      */
     public function getKey(JsonLdElement $jsonLdElement, array $validators): string
     {
+        // the configuration signature keeps entries produced under different
+        // validator configurations from being served interchangeably
         $validatorsSignature = implode(
             "\0",
             array_map(
-                static fn (object $validator): string => $validator::class,
+                static fn (ValidatorInterface $validator): string => $validator::class . ':' . $validator->getConfigurationSignature(),
                 $validators,
             ),
         );
