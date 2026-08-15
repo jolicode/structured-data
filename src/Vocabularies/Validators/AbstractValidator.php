@@ -80,7 +80,7 @@ abstract class AbstractValidator implements ValidatorInterface
     /**
      * @return MappedError[]
      */
-    protected function validatePropertyCasing(MappedType $type, MappedProperty $property): array
+    protected function validatePropertyCasing(MappedType $type, MappedProperty $property, ?string $documentationLink = null): array
     {
         $originalKey = $property->getOriginalKey();
 
@@ -94,11 +94,12 @@ abstract class AbstractValidator implements ValidatorInterface
                 \sprintf('Incorrect property casing: "%s" given, expected "%s".', $originalKey, $property->getKey()),
                 $type,
                 MappedError::SEVERITY_ERROR,
+                $documentationLink,
             ),
         ];
     }
 
-    protected function addMappedError(MappedType|MappedProperty $target, string $message, MappedType $typeWithError, string $severity): MappedError
+    protected function addMappedError(MappedType|MappedProperty $target, string $message, MappedType $typeWithError, string $severity, ?string $documentationLink = null): MappedError
     {
         $typeLabel = MappedErrorFormatter::formatTypeLabel($typeWithError->getType());
         $range = MappedErrorFormatter::formatRanges($target->getValueRanges());
@@ -111,6 +112,7 @@ abstract class AbstractValidator implements ValidatorInterface
             static::VALIDATOR_NAME,
             $range,
             parent: $target,
+            documentationLink: $documentationLink,
         );
 
         $target->addError($error);

@@ -24,6 +24,7 @@ readonly class MappedError implements \JsonSerializable
         private ?string $validatorName,
         private string $ranges,
         private MappedType|MappedProperty|null $parent = null,
+        private ?string $documentationLink = null,
     ) {
     }
 
@@ -38,6 +39,7 @@ readonly class MappedError implements \JsonSerializable
             'validatorName' => $this->getValidatorName(),
             'ranges' => $this->getRanges(),
             'path' => $this->getPath(),
+            'documentationLink' => $this->getDocumentationLink(),
         ];
     }
 
@@ -87,6 +89,11 @@ readonly class MappedError implements \JsonSerializable
     public function getParent(): MappedType|MappedProperty|null
     {
         return $this->parent;
+    }
+
+    public function getDocumentationLink(): ?string
+    {
+        return $this->documentationLink;
     }
 
     public function getPath(): string

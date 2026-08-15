@@ -88,7 +88,7 @@ final class ValidationSnippetTemplateBuilder
     /**
      * @param array<MappedError> $errors
      *
-     * @return array<int, array{message: string, severity: string, validatorName: ?string}>
+     * @return array<int, array{message: string, severity: string, validatorName: ?string, documentationLink: ?string}>
      */
     private static function buildErrorTemplates(array $errors): array
     {
@@ -99,6 +99,7 @@ final class ValidationSnippetTemplateBuilder
                 'message' => $error->getMessage(),
                 'severity' => $error->getSeverity(),
                 'validatorName' => $error->getValidatorName(),
+                'documentationLink' => $error->getDocumentationLink(),
             ];
         }
 

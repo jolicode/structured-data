@@ -88,7 +88,7 @@ final class ValidationSnippetTemplateApplier
     }
 
     /**
-     * @param array{message: string, severity: string, validatorName: ?string} $errorTemplate
+     * @param array{message: string, severity: string, validatorName: ?string, documentationLink?: ?string} $errorTemplate
      */
     private static function replayMappedError(MappedType|MappedProperty $target, MappedType $typeWithError, array $errorTemplate): void
     {
@@ -100,6 +100,7 @@ final class ValidationSnippetTemplateApplier
             validatorName: $errorTemplate['validatorName'],
             ranges: MappedErrorFormatter::formatRanges($target->getValueRanges()),
             parent: $target,
+            documentationLink: $errorTemplate['documentationLink'] ?? null,
         );
 
         $target->addError($error);

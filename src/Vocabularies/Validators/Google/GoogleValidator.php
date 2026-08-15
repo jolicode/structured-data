@@ -82,6 +82,7 @@ class GoogleValidator extends AbstractValidator
                 $violation['message'],
                 $type,
                 $violation['severity'],
+                $violation['documentation'] ?? $this->resolveDocumentationLink(),
             );
         }
 
@@ -94,11 +95,11 @@ class GoogleValidator extends AbstractValidator
             return $this->validatePropertyForMultipleTypesEntry($type, $property, $originalProperty);
         }
 
-        $errors = $this->validatePropertyCasing($type, $property);
-
         $currentProperty = $this->stack
             ->newType($type)
             ->getNextValidationProperty($property->getKey());
+
+        $errors = $this->validatePropertyCasing($type, $property, $this->resolveDocumentationLink($currentProperty));
 
         if (!$currentProperty) {
             // If a property is not found, it might mean it is just a property Google doesn't care about.
@@ -122,6 +123,7 @@ class GoogleValidator extends AbstractValidator
                     $message,
                     $type,
                     $this->definePropertyViolationSeverity($currentProperty),
+                    $this->resolveDocumentationLink($currentProperty),
                 );
             }
 
@@ -132,6 +134,7 @@ class GoogleValidator extends AbstractValidator
                         $message,
                         $type,
                         $this->definePropertyViolationSeverity($currentProperty, $message),
+                        $this->resolveDocumentationLink($currentProperty),
                     );
                 }
             }
@@ -285,7 +288,7 @@ class GoogleValidator extends AbstractValidator
                     $type->getType(),
                 );
 
-                $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR);
+                $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR, $this->resolveDocumentationLink($missingProperty));
             }
 
             return;
@@ -293,7 +296,7 @@ class GoogleValidator extends AbstractValidator
 
         $message = \sprintf('Missing required property: "%s" for the type "%s"', $missingProperty['name'], $type->getType());
 
-        $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR);
+        $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR, $this->resolveDocumentationLink($missingProperty));
     }
 
     private function validateRecommendedProperty(MappedType $type, array $missingProperty, array &$errors): void
@@ -311,7 +314,7 @@ class GoogleValidator extends AbstractValidator
                     $expectedProperties,
                 );
 
-                $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_WARNING);
+                $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_WARNING, $this->resolveDocumentationLink($missingProperty));
             }
 
             return;
@@ -319,7 +322,29 @@ class GoogleValidator extends AbstractValidator
 
         $message = \sprintf('Missing recommended property: "%s" for the type "%s"', $missingProperty['name'], $type->getType());
 
-        $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_WARNING);
+        $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_WARNING, $this->resolveDocumentationLink($missingProperty));
+    }
+
+    /**
+     * Resolve the Google documentation page describing the current requirement:
+     * the property-level "documentation" entry when the vocabulary defines one,
+     * or the DOCUMENTATION constant of the validation class resolved by the stack.
+     *
+     * @param array<string, mixed>|null $validationProperty
+     */
+    private function resolveDocumentationLink(?array $validationProperty = null): ?string
+    {
+        if (isset($validationProperty['documentation']) && \is_string($validationProperty['documentation'])) {
+            return $validationProperty['documentation'];
+        }
+
+        $validationClass = $this->stack->getValidationClass();
+
+        if ($validationClass && \defined($validationClass . '::DOCUMENTATION')) {
+            return $validationClass::DOCUMENTATION;
+        }
+
+        return null;
     }
 
     private function definePropertyViolationSeverity(array $property, ?string $message = null): string
@@ -362,7 +387,7 @@ class GoogleValidator extends AbstractValidator
     }
 
     /**
-     * @return array<array{target: MappedType|MappedProperty, message: string, severity: string}>
+     * @return array<array{target: MappedType|MappedProperty, message: string, severity: string, documentation?: string}>
      */
     private function getSpecialTypeViolations(MappedType $type): array
     {

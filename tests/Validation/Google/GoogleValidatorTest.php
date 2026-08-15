@@ -14,6 +14,8 @@ namespace JoliCode\StructuredData\Tests\Validation;
 use JoliCode\StructuredData\Audit\AuditOptions;
 use JoliCode\StructuredData\Mapper\MappedError;
 use JoliCode\StructuredData\Validator;
+use JoliCode\StructuredData\Vocabularies\Generated\Google\BookWork;
+use JoliCode\StructuredData\Vocabularies\Generated\Google\NewsArticle;
 use JoliCode\StructuredData\Vocabularies\Validators\Google\GoogleValidator;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -93,6 +95,84 @@ class GoogleValidatorTest extends AbstractValidatorTestCase
         $this->assertStringContainsString('Incorrect value: "NotAValidCategory"', $matchingWarning);
     }
 
+    public function testItAttachesTheGoogleDocumentationLinkToMissingPropertyIssues(): void
+    {
+        $this->validator->setValidator(GoogleValidator::class);
+        $audit = $this->validator->audit($this->fixture(__DIR__ . '/../fixtures/google/article-author-missing-url-and-sameas.jsonld'));
+
+        /** @var array<MappedError> $warnings */
+        $warnings = $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_WARNING,
+            asObject: true,
+        ));
+
+        $this->assertNotSame([], $warnings);
+
+        foreach ($warnings as $warning) {
+            $this->assertSame(NewsArticle::DOCUMENTATION, $warning->getDocumentationLink());
+        }
+    }
+
+    public function testItPrefersThePropertyLevelDocumentationLinkWhenDefined(): void
+    {
+        $this->validator->setValidator(GoogleValidator::class);
+
+        $document = <<<'JSON'
+            {
+                "@context": "https://schema.org",
+                "@type": "Book",
+                "@id": "https://example.com/work/a-book",
+                "name": "A Book",
+                "url": "https://example.com/work/a-book",
+                "workExample": [{"@type": "Book", "@id": "https://example.com/edition/a-book"}]
+            }
+            JSON;
+
+        $audit = $this->validator->audit($document);
+
+        /** @var array<MappedError> $errors */
+        $errors = $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_ERROR,
+            asObject: true,
+        ));
+
+        $missingAuthor = $this->findErrorByMessageSubstring($errors, 'Missing required property: "author"');
+        $missingIsbn = $this->findErrorByMessageSubstring($errors, 'Missing required property: "isbn"');
+
+        $this->assertNotNull($missingAuthor);
+        $this->assertSame('https://developers.google.com/search/docs/appearance/structured-data/book#person-or-organization-author', $missingAuthor->getDocumentationLink());
+
+        // A property without its own "documentation" entry falls back to the validation class page.
+        $this->assertNotNull($missingIsbn);
+        $this->assertSame(BookWork::DOCUMENTATION, $missingIsbn->getDocumentationLink());
+    }
+
+    public function testItAttachesTheGoogleDocumentationLinkWhenTypeEntryIsAnArray(): void
+    {
+        $this->validator->setValidator(GoogleValidator::class);
+
+        $document = file_get_contents(__DIR__ . '/../../../resources/schema.org/examples/https-schema-org-de234a27a5e64008c7bfb7ccb04d9504.jsonld');
+        $this->assertNotFalse($document);
+
+        $document = str_replace('"@type": "Book"', '"@type": ["Book"]', $document);
+
+        $audit = $this->validator->audit($document);
+
+        /** @var array<MappedError> $errors */
+        $errors = $audit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_ERROR,
+            asObject: true,
+        ));
+
+        $missingProperty = $this->findErrorByMessageSubstring($errors, 'Missing required property');
+
+        $this->assertNotNull($missingProperty);
+        $this->assertStringStartsWith(
+            'https://developers.google.com/search/docs/appearance/structured-data/book',
+            (string) $missingProperty->getDocumentationLink(),
+        );
+    }
+
     public function testItKeepsRootTypeErrorSeverityWhenTypeEntryIsAnArray(): void
     {
         $this->validator->setValidator(GoogleValidator::class);
@@ -148,6 +228,7 @@ class GoogleValidatorTest extends AbstractValidatorTestCase
         $this->assertNotSame([], $decoded);
         $this->assertArrayHasKey('message', $decoded[0]);
         $this->assertArrayHasKey('severity', $decoded[0]);
+        $this->assertArrayHasKey('documentationLink', $decoded[0]);
     }
 
     public function testRootArrayTypeEntryPassesWhenOneCandidateFails(): void
@@ -253,6 +334,20 @@ class GoogleValidatorTest extends AbstractValidatorTestCase
         foreach ($messages as $message) {
             if (str_contains($message, $messageSubstring)) {
                 return $message;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @param array<MappedError> $errors
+     */
+    private function findErrorByMessageSubstring(array $errors, string $messageSubstring): ?MappedError
+    {
+        foreach ($errors as $error) {
+            if (str_contains($error->getMessage(), $messageSubstring)) {
+                return $error;
             }
         }
 
