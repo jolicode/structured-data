@@ -77,6 +77,39 @@ JSON;
         );
     }
 
+    public function testRepeatedSnippetValidationKeepsErrorDocumentationLinks(): void
+    {
+        $validator = new Validator();
+        $validator->setValidator(GoogleValidator::class);
+
+        $snippet = file_get_contents(__DIR__ . '/fixtures/google/article-author-missing-url-and-sameas.jsonld');
+        $this->assertNotFalse($snippet);
+
+        $firstAudit = $validator->audit("<html>\n<script type=\"application/ld+json\">{$snippet}</script>\n</html>");
+        $secondAudit = $validator->audit("<html>\n\n\n<script type=\"application/ld+json\">{$snippet}</script>\n</html>");
+
+        /** @var array<MappedError> $firstWarnings */
+        $firstWarnings = $firstAudit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_WARNING,
+            asObject: true,
+        ));
+
+        /** @var array<MappedError> $secondWarnings */
+        $secondWarnings = $secondAudit->getDiagnostic(new AuditOptions(
+            severity: AuditOptions::SEVERITY_WARNING,
+            asObject: true,
+        ));
+
+        $firstLinks = array_map(static fn (MappedError $error): ?string => $error->getDocumentationLink(), $firstWarnings);
+
+        $this->assertNotEmpty($firstWarnings);
+        $this->assertContains('https://developers.google.com/search/docs/appearance/structured-data/article#article-objects', $firstLinks);
+        $this->assertSame(
+            $firstLinks,
+            array_map(static fn (MappedError $error): ?string => $error->getDocumentationLink(), $secondWarnings),
+        );
+    }
+
     public function testSwitchingValidatorModeDoesNotReuseWrongSnippetCache(): void
     {
         $validator = new Validator();

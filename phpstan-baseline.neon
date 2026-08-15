@@ -1297,7 +1297,7 @@ parameters:
 			path: src/Mapper/ValidationSnippetTemplateApplier.php
 
 		-
-			message: '#^Parameter \#3 \$errorTemplate of static method JoliCode\\StructuredData\\Mapper\\ValidationSnippetTemplateApplier\:\:replayMappedError\(\) expects array\{message\: string, severity\: string, validatorName\: string\|null\}, mixed given\.$#'
+			message: '#^Parameter \#3 \$errorTemplate of static method JoliCode\\StructuredData\\Mapper\\ValidationSnippetTemplateApplier\:\:replayMappedError\(\) expects array\{message\: string, severity\: string, validatorName\: string\|null, documentationLink\?\: string\|null\}, mixed given\.$#'
 			identifier: argument.type
 			count: 2
 			path: src/Mapper/ValidationSnippetTemplateApplier.php
@@ -1917,7 +1917,7 @@ parameters:
 		-
 			message: '#^Parameter \#2 \$array of method PHPUnit\\Framework\\Assert\:\:assertArrayHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), covariant mixed\>, mixed given\.$#'
 			identifier: argument.type
-			count: 2
+			count: 3
 			path: tests/Validation/Google/GoogleValidatorTest.php
 
 		-
