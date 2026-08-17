@@ -103,10 +103,10 @@ class MappedProperty
      */
     public function appendValue(mixed $item, string|int|null $key = null): void
     {
-        if (null !== $key) {
-            $this->value[$key] = $item;
-        } else {
+        if (null === $key) {
             $this->value[] = $item;
+        } else {
+            $this->value[$key] = $item;
         }
     }
 
