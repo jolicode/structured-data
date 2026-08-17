@@ -15,6 +15,7 @@ use Castor\Attribute\AsOption;
 use Castor\Attribute\AsTask;
 
 use function Castor\context;
+use function Castor\exit_code;
 use function Castor\finder;
 use function Castor\fs;
 use function Castor\http_download;
@@ -84,7 +85,6 @@ function install(): void
     // The library's own dependencies. Castor already needs these to boot (the entry
     // point requires vendor/autoload.php), so this is mostly a convenience/no-op that
     // keeps "castor qa:install" a complete one-stop setup once the root vendor exists.
-    run(['composer', 'install', '-o']);
     run(['composer', 'install', '-o', '--working-dir', 'tools/php-cs-fixer']);
     run(['composer', 'install', '-o', '--working-dir', 'tools/phpstan']);
     run(['composer', 'install', '-o', '--working-dir', 'tools/phpbench']);
@@ -135,10 +135,7 @@ function cs(bool $dryRun = false, ?string $directory = null): int
         $command[] = $directory;
     }
 
-    return run(
-        $command,
-        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
-    )->getExitCode() ?? 1;
+    return exit_code($command);
 }
 
 #[AsTask(description: 'Runs PHPStan')]
@@ -148,10 +145,7 @@ function phpstan(): int
         install();
     }
 
-    return run(
-        toolsDir() . '/phpstan/vendor/bin/phpstan',
-        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
-    )->getExitCode() ?? 1;
+    return exit_code(toolsDir() . '/phpstan/vendor/bin/phpstan');
 }
 
 /**
@@ -346,10 +340,7 @@ function phpunit(
         $command[] = '--stop-on-error';
     }
 
-    return run(
-        $command,
-        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
-    )->getExitCode() ?? 1;
+    return exit_code($command);
 }
 
 #[AsTask(name: 'coverage', description: 'Runs PHPUnit with code coverage', namespace: 'qa:phpunit')]
@@ -393,10 +384,7 @@ function phpunitCoverage(
         $command[] = '--coverage-html=var/cache/coverage/html';
     }
 
-    return run(
-        $command,
-        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
-    )->getExitCode() ?? 1;
+    return exit_code($command);
 }
 
 #[AsTask(name: 'infection', description: 'Runs Infection mutation testing on the validator and mapper layers')]
@@ -428,10 +416,7 @@ function infection(
         $command[] = '--min-msi=' . $minMsi;
     }
 
-    return run(
-        $command,
-        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
-    )->getExitCode() ?? 1;
+    return exit_code($command);
 }
 
 #[AsTask(name: 'examples:baseline', description: 'Update the examples baseline files. Will make all the tests green. Use with CARE!')]
@@ -533,7 +518,7 @@ function benchAlgorithms(): int
         install();
     }
 
-    $exitCode = run([
+    $exitCode = exit_code([
         toolsDir() . '/phpbench/vendor/bin/phpbench',
         'run',
         'tests/Algorithms/Benchmark',
@@ -541,9 +526,7 @@ function benchAlgorithms(): int
         '--report=readable',
         '--output=console',
         '--output=html-algorithms',
-    ],
-        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
-    )->getExitCode() ?? 1;
+    ]);
 
     if (0 === $exitCode) {
         $htmlReportPath = rootDir() . '/var/cache/benchmark-results-algorithms.html';
@@ -572,7 +555,7 @@ function benchValidators(
         throw new \RuntimeException('Could not create a temporary phpbench dump file.');
     }
 
-    $exitCode = run([
+    $exitCode = exit_code([
         toolsDir() . '/phpbench/vendor/bin/phpbench',
         'run',
         'tests/Validation/Benchmark/JsonLdValidatorBench.php',
@@ -581,9 +564,7 @@ function benchValidators(
         '--output=console',
         '--output=html-validators',
         '--dump-file=' . $dumpFile,
-    ],
-        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
-    )->getExitCode() ?? 1;
+    ]);
 
     if (0 === $exitCode) {
         $results = loadValidatorBenchResults($dumpFile);
@@ -617,7 +598,7 @@ function benchValidatorsDetailed(): int
         throw new \RuntimeException('Could not create a temporary phpbench dump file.');
     }
 
-    $exitCode = run([
+    $exitCode = exit_code([
         toolsDir() . '/phpbench/vendor/bin/phpbench',
         'run',
         'tests/Validation/Benchmark/HtmlValidationPipelineBench.php',
@@ -626,9 +607,7 @@ function benchValidatorsDetailed(): int
         '--output=console',
         '--output=html-validators',
         '--dump-file=' . $dumpFile,
-    ],
-        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
-    )->getExitCode() ?? 1;
+    ]);
 
     if (0 === $exitCode) {
         summarizeValidatorBenchResults($dumpFile);
