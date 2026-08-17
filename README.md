@@ -127,7 +127,7 @@ use JoliCode\StructuredData\Validator;
 use JoliCode\StructuredData\Vocabularies\Validators\Google\GoogleValidator;
 
 $validator = new Validator();
-$validator->setValidator(GoogleValidator::VALIDATOR_NAME);
+$validator->setValidator(GoogleValidator::class);
 
 $validator->audit($document);
 ```
