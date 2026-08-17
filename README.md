@@ -104,20 +104,20 @@ $validator = new Validator();
 $document = file_get_contents('/path/to/a-page.html');
 $audit = $validator->audit($document);
 
-if (!$audit->isValid()) {
-  echo 'The provided document contains invalid schema.org data!';
-
-  // Returns an array of string diagnostic messages
-  $diagnostic = $audit->getDiagnostic();
-
-  foreach ($diagnostic as $message) {
-    // Messages look like this:
-    // [Google warning] DataFeed.dataFeedElement.workExample: Missing recommended property: "sameAs" for the type "Book"
-    // [Google error] DataFeed.dataFeedElement.workExample.potentialAction.expectsAcceptanceOf: Missing required property: "price" for the type "Offer" when "category" is "purchase" or "rental".
-    echo $message;
-  }
+if ($audit->isValid()) {
+    echo 'The document contains valid structured data!';
 } else {
-  echo 'The document contains valid structured data!';
+    echo 'The provided document contains invalid schema.org data!';
+
+    // Returns an array of string diagnostic messages
+    $diagnostic = $audit->getDiagnostic();
+
+    foreach ($diagnostic as $message) {
+        // Messages look like this:
+        // [Google warning] DataFeed.dataFeedElement.workExample: Missing recommended property: "sameAs" for the type "Book"
+        // [Google error] DataFeed.dataFeedElement.workExample.potentialAction.expectsAcceptanceOf: Missing required property: "price" for the type "Offer" when "category" is "purchase" or "rental".
+        echo $message;
+    }
 }
 ```
 
