@@ -181,15 +181,15 @@ class Validator
             $cacheKey = $this->snippetCache->getKey($jsonLdElement, $this->currentValidators);
             $cacheEntry = $this->snippetCache->get($cacheKey);
 
-            if (null !== $cacheEntry) {
-                $expansionResult = $cacheEntry['expandedJsonLd'];
-                $validatedTypeTemplatesByElement = $cacheEntry['validatedTypesByElement'];
-            } else {
+            if (null === $cacheEntry) {
                 try {
                     $expansionResult = $this->expander->expand($jsonLdElement->content, encodeResult: false);
                 } catch (JsonLdException $exception) {
                     return $this->createInvalidDocumentAudit($exception->getMessage(), $jsonLdElement->startLine, 'expander');
                 }
+            } else {
+                $expansionResult = $cacheEntry['expandedJsonLd'];
+                $validatedTypeTemplatesByElement = $cacheEntry['validatedTypesByElement'];
             }
 
             if (!\is_array($expansionResult)) {
@@ -205,12 +205,12 @@ class Validator
                      */
                     $objectStructure = $jsonLdNode->content;
 
-                    if (null !== $validatedTypeTemplatesByElement) {
-                        $validatedTypes = $this->mapJsonLdElement([$expansionResult[$index]], $objectStructure, $jsonLdElement->sourceFormat);
-                        ValidationSnippetTemplateApplier::applyValidatedTypeTemplates($validatedTypes, $validatedTypeTemplatesByElement[$index] ?? []);
-                    } else {
+                    if (null === $validatedTypeTemplatesByElement) {
                         $validatedTypes = $this->validateJsonLdElement([$expansionResult[$index]], $objectStructure, $jsonLdElement->sourceFormat);
                         $validatedTypesByElement[$index] = ValidationSnippetTemplateBuilder::buildValidatedTypeTemplates($validatedTypes);
+                    } else {
+                        $validatedTypes = $this->mapJsonLdElement([$expansionResult[$index]], $objectStructure, $jsonLdElement->sourceFormat);
+                        ValidationSnippetTemplateApplier::applyValidatedTypeTemplates($validatedTypes, $validatedTypeTemplatesByElement[$index] ?? []);
                     }
 
                     foreach ($validatedTypes as $validatedType) {
@@ -222,13 +222,13 @@ class Validator
                     $this->snippetCache->store($cacheKey, $expansionResult, $validatedTypesByElement);
                 }
             } elseif ($parsedJsonLd instanceof ObjectStructure) {
-                if (null !== $validatedTypeTemplatesByElement) {
-                    $validatedTypes = $this->mapJsonLdElement($expansionResult, $parsedJsonLd, $jsonLdElement->sourceFormat);
-                    ValidationSnippetTemplateApplier::applyValidatedTypeTemplates($validatedTypes, $validatedTypeTemplatesByElement[0] ?? []);
-                } else {
+                if (null === $validatedTypeTemplatesByElement) {
                     $validatedTypes = $this->validateJsonLdElement($expansionResult, $parsedJsonLd, $jsonLdElement->sourceFormat);
 
                     $this->snippetCache->store($cacheKey, $expansionResult, [0 => ValidationSnippetTemplateBuilder::buildValidatedTypeTemplates($validatedTypes)]);
+                } else {
+                    $validatedTypes = $this->mapJsonLdElement($expansionResult, $parsedJsonLd, $jsonLdElement->sourceFormat);
+                    ValidationSnippetTemplateApplier::applyValidatedTypeTemplates($validatedTypes, $validatedTypeTemplatesByElement[0] ?? []);
                 }
 
                 foreach ($validatedTypes as $validatedType) {
