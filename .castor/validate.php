@@ -74,6 +74,8 @@ function resolveInput(string $fileOrUrl): string
 
 function runValidation(string $fileOrUrl, false|string $specificValidator, bool $withDetails): int
 {
+    io()->title(sprintf($withDetails ? 'Validating %s' : 'Checking %s', $fileOrUrl));
+
     $validator = new Validator();
 
     if ($specificValidator) {

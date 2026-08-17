@@ -15,6 +15,7 @@ use Castor\Attribute\AsOption;
 use Castor\Attribute\AsTask;
 
 use function Castor\context;
+use function Castor\exit_code;
 use function Castor\finder;
 use function Castor\fs;
 use function Castor\http_download;
@@ -81,10 +82,11 @@ function suiteFixturesAreMissing(): bool
 #[AsTask(description: 'Installs qa tooling')]
 function install(): void
 {
+    io()->title('Installing QA tooling');
+
     // The library's own dependencies. Castor already needs these to boot (the entry
     // point requires vendor/autoload.php), so this is mostly a convenience/no-op that
     // keeps "castor qa:install" a complete one-stop setup once the root vendor exists.
-    run(['composer', 'install', '-o']);
     run(['composer', 'install', '-o', '--working-dir', 'tools/php-cs-fixer']);
     run(['composer', 'install', '-o', '--working-dir', 'tools/phpstan']);
     run(['composer', 'install', '-o', '--working-dir', 'tools/phpbench']);
@@ -95,6 +97,8 @@ function install(): void
 #[AsTask(description: 'Updates qa tooling')]
 function update(): void
 {
+    io()->title('Updating QA tooling');
+
     run(['composer', 'update', '-o', '--working-dir', 'tools/php-cs-fixer']);
     run(['composer', 'update', '-o', '--working-dir', 'tools/phpstan']);
     run(['composer', 'update', '-o', '--working-dir', 'tools/phpbench']);
@@ -105,6 +109,8 @@ function update(): void
 #[AsTask(description: 'Runs all QA tasks')]
 function all(): int
 {
+    io()->title('Running all QA tasks');
+
     install();
     $cs = cs();
     $phpstan = phpstan();
@@ -115,6 +121,8 @@ function all(): int
 #[AsTask(description: 'Fix CS')]
 function cs(bool $dryRun = false, ?string $directory = null): int
 {
+    io()->title($dryRun ? 'Checking coding standards' : 'Fixing coding standards');
+
     if (!is_dir(toolsDir() . '/php-cs-fixer/vendor')) {
         install();
     }
@@ -135,23 +143,19 @@ function cs(bool $dryRun = false, ?string $directory = null): int
         $command[] = $directory;
     }
 
-    return run(
-        $command,
-        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
-    )->getExitCode() ?? 1;
+    return exit_code($command);
 }
 
 #[AsTask(description: 'Runs PHPStan')]
 function phpstan(): int
 {
+    io()->title('Running PHPStan');
+
     if (!is_dir(toolsDir() . '/phpstan/vendor')) {
         install();
     }
 
-    return run(
-        toolsDir() . '/phpstan/vendor/bin/phpstan',
-        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
-    )->getExitCode() ?? 1;
+    return exit_code(toolsDir() . '/phpstan/vendor/bin/phpstan');
 }
 
 /**
@@ -269,6 +273,8 @@ function phpunitPrepare(
 #[AsTask(name: 'download-fixtures', namespace: 'qa:phpunit', description: 'Download the (JoliCode-owned) benchmark fixtures')]
 function phpunitDownloadFixtures(bool $force = false): void
 {
+    io()->title('Downloading benchmark fixtures');
+
     fs()->mkdir(CACHE_DIR_BENCHMARK_FIXTURES);
 
     foreach (BENCHMARK_FIXTURE_URLS as $name => $url) {
@@ -318,6 +324,8 @@ function phpunit(
     #[AsOption(name: 'stop-on-error', shortcut: 'e', mode: InputOption::VALUE_NONE, description: 'Stop execution upon first error')]
     ?bool $stopOnError = null,
 ): int {
+    io()->title('Running PHPUnit');
+
     if (!is_dir(toolsDir() . '/phpunit/vendor')) {
         install();
     }
@@ -346,10 +354,7 @@ function phpunit(
         $command[] = '--stop-on-error';
     }
 
-    return run(
-        $command,
-        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
-    )->getExitCode() ?? 1;
+    return exit_code($command);
 }
 
 #[AsTask(name: 'coverage', description: 'Runs PHPUnit with code coverage', namespace: 'qa:phpunit')]
@@ -357,6 +362,8 @@ function phpunitCoverage(
     #[AsOption(name: 'html', mode: InputOption::VALUE_NONE, description: 'Also generate an HTML report in var/cache/coverage')]
     ?bool $html = null,
 ): int {
+    io()->title('Running PHPUnit with code coverage');
+
     if (!is_dir(toolsDir() . '/phpunit/vendor')) {
         install();
     }
@@ -393,10 +400,7 @@ function phpunitCoverage(
         $command[] = '--coverage-html=var/cache/coverage/html';
     }
 
-    return run(
-        $command,
-        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
-    )->getExitCode() ?? 1;
+    return exit_code($command);
 }
 
 #[AsTask(name: 'infection', description: 'Runs Infection mutation testing on the validator and mapper layers')]
@@ -404,6 +408,8 @@ function infection(
     #[AsOption(name: 'min-msi', mode: InputOption::VALUE_REQUIRED, description: 'Fail if the Mutation Score Indicator is below this percentage')]
     ?string $minMsi = null,
 ): int {
+    io()->title('Running Infection mutation testing');
+
     if (!is_dir(toolsDir() . '/infection/vendor')) {
         install();
     }
@@ -428,15 +434,14 @@ function infection(
         $command[] = '--min-msi=' . $minMsi;
     }
 
-    return run(
-        $command,
-        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
-    )->getExitCode() ?? 1;
+    return exit_code($command);
 }
 
 #[AsTask(name: 'examples:baseline', description: 'Update the examples baseline files. Will make all the tests green. Use with CARE!')]
 function updateExamplesBaselines(): void
 {
+    io()->title('Updating examples baselines');
+
     io()->confirm(
         "This command will take the results of the tests and write them in their respective baseline files.\n
         This will change the expected outputs of the tests.\n
@@ -520,6 +525,8 @@ function updateBaseline(
 #[AsTask(name: 'all', namespace: 'qa:bench', description: 'Run all the benchmarks')]
 function bench(): int
 {
+    io()->title('Running all benchmarks');
+
     return max(
         benchAlgorithms(),
         benchValidators(false),
@@ -529,11 +536,13 @@ function bench(): int
 #[AsTask(name: 'algorithms', namespace: 'qa:bench', description: 'Run the algorithms benchmark')]
 function benchAlgorithms(): int
 {
+    io()->title('Running the algorithms benchmark');
+
     if (!is_dir(toolsDir() . '/phpbench/vendor')) {
         install();
     }
 
-    $exitCode = run([
+    $exitCode = exit_code([
         toolsDir() . '/phpbench/vendor/bin/phpbench',
         'run',
         'tests/Algorithms/Benchmark',
@@ -541,9 +550,7 @@ function benchAlgorithms(): int
         '--report=readable',
         '--output=console',
         '--output=html-algorithms',
-    ],
-        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
-    )->getExitCode() ?? 1;
+    ]);
 
     if (0 === $exitCode) {
         $htmlReportPath = rootDir() . '/var/cache/benchmark-results-algorithms.html';
@@ -558,6 +565,8 @@ function benchValidators(
     #[AsOption(name: 'detailed', shortcut: 'd', mode: InputOption::VALUE_NONE, description: 'Run the detailed pipeline breakdown benchmark. CAUTION: this is very slow (several minutes) but provides average timings for each step of the validation process.')]
     bool $detailed,
 ): int {
+    io()->title($detailed ? 'Running the detailed validators benchmark' : 'Running the validators benchmark');
+
     if (!is_dir(toolsDir() . '/phpbench/vendor')) {
         install();
     }
@@ -572,7 +581,7 @@ function benchValidators(
         throw new \RuntimeException('Could not create a temporary phpbench dump file.');
     }
 
-    $exitCode = run([
+    $exitCode = exit_code([
         toolsDir() . '/phpbench/vendor/bin/phpbench',
         'run',
         'tests/Validation/Benchmark/JsonLdValidatorBench.php',
@@ -581,9 +590,7 @@ function benchValidators(
         '--output=console',
         '--output=html-validators',
         '--dump-file=' . $dumpFile,
-    ],
-        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
-    )->getExitCode() ?? 1;
+    ]);
 
     if (0 === $exitCode) {
         $results = loadValidatorBenchResults($dumpFile);
@@ -617,7 +624,7 @@ function benchValidatorsDetailed(): int
         throw new \RuntimeException('Could not create a temporary phpbench dump file.');
     }
 
-    $exitCode = run([
+    $exitCode = exit_code([
         toolsDir() . '/phpbench/vendor/bin/phpbench',
         'run',
         'tests/Validation/Benchmark/HtmlValidationPipelineBench.php',
@@ -626,9 +633,7 @@ function benchValidatorsDetailed(): int
         '--output=console',
         '--output=html-validators',
         '--dump-file=' . $dumpFile,
-    ],
-        context: context()->withAllowFailure()->withWorkingDirectory(rootDir()),
-    )->getExitCode() ?? 1;
+    ]);
 
     if (0 === $exitCode) {
         summarizeValidatorBenchResults($dumpFile);
