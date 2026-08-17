@@ -2,6 +2,7 @@
     "name": "jolicode/structured-data",
     "description": "A PHP toolkit to validate and convert structured data: Schema.org and Google Rich Results validation, microdata/RDFa/JSON-LD extraction, and the W3C JSON-LD 1.1 algorithms.",
     "type": "library",
+    "license": "MIT",
     "keywords": [
         "json-ld",
         "schema.org",
@@ -12,7 +13,6 @@
         "seo"
     ],
     "homepage": "https://github.com/jolicode/structured-data",
-    "license": "MIT",
     "authors": [
         {
             "name": "Hédic Guibert",
@@ -26,20 +26,6 @@
     "support": {
         "issues": "https://github.com/jolicode/structured-data/issues",
         "source": "https://github.com/jolicode/structured-data"
-    },
-    "autoload": {
-        "psr-4": {
-            "JoliCode\\StructuredData\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "JoliCode\\StructuredData\\Tests\\": "tests/",
-            "JoliCode\\StructuredData\\Vocabularies\\Generators\\": "generators/"
-        }
-    },
-    "config": {
-        "sort-packages": true
     },
     "require": {
         "php": "^8.4",
@@ -64,5 +50,19 @@
     },
     "suggest": {
         "symfony/http-client": "To resolve remote JSON-LD @context documents (off by default; see the \"Loading remote contexts\" section of the README)."
+    },
+    "autoload": {
+        "psr-4": {
+            "JoliCode\\StructuredData\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JoliCode\\StructuredData\\Tests\\": "tests/",
+            "JoliCode\\StructuredData\\Vocabularies\\Generators\\": "generators/"
+        }
+    },
+    "config": {
+        "sort-packages": true
     }
 }
