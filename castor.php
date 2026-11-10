@@ -15,6 +15,8 @@ use function Castor\import;
 use function Castor\io;
 use function Castor\run;
 
+defined('CASTOR_USE_CHDIR') || define('CASTOR_USE_CHDIR', true);
+
 if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
     io()->title('Installing dependencies');
 
