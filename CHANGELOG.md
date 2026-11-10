@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- JSON-LD script tags whose `type` attribute has no quotes (valid HTML, and what minifiers
+  produce) or has whitespace around the `=` are no longer ignored.
+- A `data-type="application/ld+json"` attribute no longer makes a script tag count as JSON-LD.
+
+## [0.1.0] - 2026-08-17
+
 ### Added
 
 - Schema.org validator, covering the schema.org vocabulary (version exposed at runtime as

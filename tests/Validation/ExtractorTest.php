@@ -13,6 +13,7 @@ namespace JoliCode\StructuredData\Tests\Validation;
 
 use JoliCode\StructuredData\Extraction\Extractor;
 use JoliCode\StructuredData\Extraction\ExtractorsContainer;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
@@ -199,6 +200,45 @@ HTML;
 
         $this->assertCount(1, $elements);
         $this->assertStringContainsString('"name":"Jane"', $elements[0]->content);
+    }
+
+    #[DataProvider('provideScriptTagsWithAnUnquotedType')]
+    public function testItExtractsJsonLdFromAScriptTagWithAnUnquotedType(string $openingTag): void
+    {
+        $elements = (new Extractor())->extract('<!doctype html><html><head>' . $openingTag . '{"@context":"https://schema.org","@type":"Person","name":"Jane"}</script></head><body></body></html>');
+
+        $this->assertCount(1, $elements);
+        $this->assertStringContainsString('"name":"Jane"', $elements[0]->content);
+    }
+
+    /**
+     * @return iterable<string, array{string}>
+     */
+    public static function provideScriptTagsWithAnUnquotedType(): iterable
+    {
+        yield 'type only' => ['<script type=application/ld+json>'];
+        yield 'followed by another attribute' => ['<script type=application/ld+json id=data>'];
+        yield 'preceded by another attribute' => ['<script id=data type=application/ld+json>'];
+        yield 'whitespace around the equals sign' => ['<script type = "application/ld+json">'];
+    }
+
+    #[DataProvider('provideScriptTagsThatAreNotJsonLd')]
+    public function testItIgnoresScriptTagsThatAreNotJsonLd(string $openingTag): void
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Could not detect any supported structured data format.');
+
+        (new Extractor())->extract('<html><body>' . $openingTag . '{"@context":"https://schema.org","@type":"Person","name":"Jane"}</script></body></html>');
+    }
+
+    /**
+     * @return iterable<string, array{string}>
+     */
+    public static function provideScriptTagsThatAreNotJsonLd(): iterable
+    {
+        yield 'unquoted type only starting with the JSON-LD media type' => ['<script type=application/ld+jsonp>'];
+        yield 'media type in another attribute' => ['<script data-type="application/ld+json">'];
+        yield 'mismatched quotes' => ['<script type="application/ld+json\'>'];
     }
 
     public function testItSurfacesAGenericExceptionWhenNoSupportedFormatIsDetected(): void
