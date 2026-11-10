@@ -36,7 +36,11 @@ jobs:
         with:
           # Matches the platform the QA tooling is pinned to in tools/*/composer.json.
           php-version: "8.4"
-          tools: castor
+          # Dependabot does not track tools installed by setup-php: bump these
+          # versions and their SHA-256 checksums by hand, in every job.
+          tools: >-
+            composer:2.11.1@sha256:6f1b891e1d4927d62740276c540fb490e47689e19e102c49e8da849794882f8c,
+            castor:1.9.1@sha256:3312568da9a593ad7d3ef6548f05c12d994dbc7140634e401531dc8d7de41764
           coverage: none
 
       - name: Get Composer cache directory
@@ -105,7 +109,11 @@ jobs:
         uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: "8.4"
-          tools: castor
+          # Dependabot does not track tools installed by setup-php: bump these
+          # versions and their SHA-256 checksums by hand, in every job.
+          tools: >-
+            composer:2.11.1@sha256:6f1b891e1d4927d62740276c540fb490e47689e19e102c49e8da849794882f8c,
+            castor:1.9.1@sha256:3312568da9a593ad7d3ef6548f05c12d994dbc7140634e401531dc8d7de41764
           coverage: none
 
       - name: Get Composer cache directory
@@ -174,7 +182,11 @@ jobs:
         uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: ${{ matrix.php-version }}
-          tools: castor
+          # Dependabot does not track tools installed by setup-php: bump these
+          # versions and their SHA-256 checksums by hand, in every job.
+          tools: >-
+            composer:2.11.1@sha256:6f1b891e1d4927d62740276c540fb490e47689e19e102c49e8da849794882f8c,
+            castor:1.9.1@sha256:3312568da9a593ad7d3ef6548f05c12d994dbc7140634e401531dc8d7de41764
           coverage: pcov
 
       - name: Get Composer cache directory
