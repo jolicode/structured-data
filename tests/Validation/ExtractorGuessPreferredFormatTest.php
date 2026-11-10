@@ -32,6 +32,14 @@ class ExtractorGuessPreferredFormatTest extends TestCase
         $this->assertSame(ExtractorsContainer::JSONLD, $this->guessPreferredFormat($content));
     }
 
+    public function testItDetectsJsonLdFromAScriptTagWithAnUnquotedType(): void
+    {
+        $this->assertSame(
+            ExtractorsContainer::JSONLD,
+            $this->guessPreferredFormat('<html><body><script type=application/ld+json>{"@context":"https://schema.org","@type":"Person","name":"Alice"}</script></body></html>'),
+        );
+    }
+
     public function testItDetectsJsonLdFromRawJsonDocument(): void
     {
         $this->assertSame(

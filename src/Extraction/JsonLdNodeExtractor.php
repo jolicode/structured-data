@@ -13,6 +13,10 @@ namespace JoliCode\StructuredData\Extraction;
 
 class JsonLdNodeExtractor extends AbstractHtmlExtractor
 {
+    // The quotes are optional in HTML, and minifiers remove them. Whitespace may surround
+    // the "=", and "type" must be a whole attribute name (not "data-type").
+    private const SCRIPT_OPENING_TAG_PATTERN = '<script\b[^>]*[\s\/]type\s*=\s*(?:"application\/ld\+json"|\'application\/ld\+json\'|application\/ld\+json(?=[\s>]))[^>]*>';
+
     public function getFormat(): ExtractorFormat
     {
         return ExtractorFormat::JSONLD;
@@ -65,7 +69,7 @@ class JsonLdNodeExtractor extends AbstractHtmlExtractor
         $invalidLineNumbers = [];
 
         if (preg_match_all(
-            '/<script[^>]+type=[\"\']application\/ld\+json[\"\'][^>]*>(.*)<\/script>/miUus',
+            '/' . self::SCRIPT_OPENING_TAG_PATTERN . '(.*)<\/script>/miUus',
             $body,
             $matches,
             \PREG_PATTERN_ORDER | \PREG_OFFSET_CAPTURE,
@@ -120,6 +124,6 @@ class JsonLdNodeExtractor extends AbstractHtmlExtractor
             return false;
         }
 
-        return 1 === preg_match('/<script[^>]+type=["\']application\/ld\+json["\'][^>]*>/miu', $body);
+        return 1 === preg_match('/' . self::SCRIPT_OPENING_TAG_PATTERN . '/miu', $body);
     }
 }
