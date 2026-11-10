@@ -1,0 +1,74 @@
+name: Mutation testing
+
+# Mutation testing is slow, so it does not run on every pull request: only weekly,
+# on demand, and on the pull requests that change Infection or its configuration
+# (such as the Dependabot updates of the QA tooling). It lives in its own workflow
+# because GitHub only supports path filters at the workflow level.
+on:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "tools/infection/**"
+      - "infection.json5"
+      - ".github/workflows/infection.yml"
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * SUN"
+
+permissions:
+  contents: read
+
+jobs:
+  infection:
+    name: Mutation testing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        with:
+          # Matches the platform the QA tooling is pinned to in tools/*/composer.json.
+          php-version: "8.4"
+          # Dependabot does not track tools installed by setup-php: bump these
+          # versions and their SHA-256 checksums by hand, in every job.
+          tools: >-
+            composer:2.11.1@sha256:6f1b891e1d4927d62740276c540fb490e47689e19e102c49e8da849794882f8c,
+            castor:1.9.1@sha256:3312568da9a593ad7d3ef6548f05c12d994dbc7140634e401531dc8d7de41764
+          coverage: pcov
+
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Composer downloads
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: composer-infection-${{ runner.os }}-${{ hashFiles('composer.json', 'tools/*/composer.lock') }}
+          restore-keys: |
+            composer-infection-${{ runner.os }}-
+
+      - name: Cache QA tooling vendors
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: tools/*/vendor
+          key: tools-vendor-infection-${{ runner.os }}-${{ hashFiles('tools/*/composer.lock') }}
+
+      - name: Cache the W3C test suite (pinned commit)
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: var/cache/w3c-json-ld-api
+          key: w3c-test-suite-${{ hashFiles('.castor/qa.php') }}
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Install qa tooling
+        run: castor qa:install
+
+      - name: Run mutation testing
+        run: castor qa:infection
