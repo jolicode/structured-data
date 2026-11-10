@@ -525,7 +525,6 @@ class Expander
             // 13.7
             } elseif (
                 $containerMapping
-                && null !== $keyDefinition
                 && \in_array(Keyword::LANGUAGE->value, $containerMapping, true)
                 && \is_object($value)
             ) {
@@ -534,7 +533,6 @@ class Expander
             } elseif (
                 \is_object($value)
                 && $containerMapping
-                && null !== $keyDefinition
                 && \count(array_intersect($containerMapping, [
                     Keyword::INDEX->value, Keyword::TYPE->value, Keyword::ID->value,
                 ]))

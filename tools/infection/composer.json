@@ -1,7 +1,7 @@
 {
     "type": "project",
     "require": {
-        "infection/infection": "^0.34.2"
+        "infection/infection": "^0.35.10"
     },
     "config": {
         "allow-plugins": {
@@ -9,7 +9,7 @@
         },
         "bump-after-update": true,
         "platform": {
-            "php": "8.4"
+            "php": "8.4.1"
         },
         "sort-packages": true
     }

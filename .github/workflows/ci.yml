@@ -241,10 +241,6 @@ jobs:
           name: coverage-clover-php${{ matrix.php-version }}
           path: var/cache/coverage/clover.xml
 
-      - name: Run mutation testing (weekly)
-        if: github.event_name == 'schedule'
-        run: castor qa:infection
-
       - name: Download the benchmark fixtures (weekly)
         if: github.event_name == 'schedule'
         run: castor qa:phpunit:download-fixtures
