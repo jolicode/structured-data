@@ -7,6 +7,8 @@
 - Schema.org vocabulary upgraded from 30.0 to 30.1. This release promotes most of the
   pending.schema.org terms to the core vocabulary (`jobTitle`, `Legislation`, `DefinedTerm`,
   `MemberProgram`...): they are no longer reported as pending vocabulary usage.
+- The FAQ rich result is marked as retired by Google. `FAQPage` is still validated, for
+  backward compatibility.
 
 ### Fixed
 

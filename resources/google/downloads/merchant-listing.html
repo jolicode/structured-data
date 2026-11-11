@@ -85,6 +85,40 @@
                 type if known. Include at most one brand name.</p>
             </td>
           </tr>
+          <tr id="category">
+            <td><code translate="no" dir="ltr">category</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/CategoryCode" class="external-link">CategoryCode</a></code></p>
+              <p>Specifies the product's categories. This property can accept an array of values, mixing plain text strings and <code translate="no" dir="ltr">CategoryCode</code> objects.</p>
+              <ul>
+                <li><strong>Custom product types:</strong> Plain <code translate="no" dir="ltr">Text</code> values represent your custom product category, similar to the <a href="https://support.google.com/merchants/answer/6324406" class="external-link"><code translate="no" dir="ltr">product_type</code> attribute</a> in product feeds. We recommend keeping custom product types under the 750-character limit.</li>
+                <li><strong>Google Product Category (GPC):</strong> To specify a GPC, similar to the <a href="https://support.google.com/merchants/answer/6324436" class="external-link"><code translate="no" dir="ltr">google_product_category</code> attribute</a> in product feeds, use the <code translate="no" dir="ltr">CategoryCode</code> type.
+                  <ul>
+                    <li>Set <code translate="no" dir="ltr">@type</code> to <code translate="no" dir="ltr">CategoryCode</code>.</li>
+                    <li>Set <code translate="no" dir="ltr">inCodeSet</code> to a Google Product Taxonomy URL (for example, <code translate="no" dir="ltr">"https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt"</code>).</li>
+                    <li>Set <code translate="no" dir="ltr">codeValue</code> to the GPC ID (for example, <code translate="no" dir="ltr">"2271"</code>) or the full category path (for example, <code translate="no" dir="ltr">"Apparel &amp; Accessories &gt; Clothing &gt; Dresses"</code>).</li>
+                    <li>When using the path format, use <code translate="no" dir="ltr">&gt;</code> as the separator between levels. Each segment in the path must contain at least one letter. Numeric IDs are also accepted.</li>
+                  </ul>
+                </li>
+              </ul>
+              <p>You can provide multiple category values. For example, you can include several GPC codes or paths and several custom product type strings.</p>
+              <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="Product category example" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"category"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">[</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"CategoryCode"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"inCodeSet"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"codeValue"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"2271"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"CategoryCode"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"inCodeSet"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"codeValue"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Apparel &amp; Accessories &gt; Clothing &gt; Dresses"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"Dresses"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"Special Occasion &gt; Wedding &amp; Bridal Party Dresses"</span>
+<span class="devsite-syntax-p">]</span>
+<span class="devsite-syntax-w">              </span></pre></devsite-code>
+            </td>
+          </tr>
           <tr>
             <td><code translate="no" dir="ltr">color</code></td>
             <td>
@@ -423,6 +457,13 @@
           </p>
         </td>
       </tr>
+      <tr id="priceValidUntil">
+        <td><code translate="no" dir="ltr">priceValidUntil</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code></p>
+          <p>The date and time after which the price will no longer be available, in <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601</a> format. Your listing may not display if the <code translate="no" dir="ltr">priceValidUntil</code> property indicates a past date. For details and markup examples, see <a href="#sale-duration">Sale duration</a>.</p>
+        </td>
+      </tr>
       <tr>
         <td><code translate="no" dir="ltr">shippingDetails</code></td>
         <td>
@@ -466,6 +507,20 @@
           <p>For details on how to add markup for product variants, refer to
             <a href="/search/docs/appearance/structured-data/product-variants">product variant structured data documentation</a>.
           </p>
+        </td>
+      </tr>
+      <tr id="validFrom">
+        <td><code translate="no" dir="ltr">validFrom</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code></p>
+          <p>The start date and time when the price is valid, in <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601</a> format. For details and markup examples, see <a href="#sale-duration">Sale duration</a>.</p>
+        </td>
+      </tr>
+      <tr id="validThrough">
+        <td><code translate="no" dir="ltr">validThrough</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code></p>
+          <p>The end date and time when the price is valid, in <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601</a> format. For details and markup examples, see <a href="#sale-duration">Sale duration</a>.</p>
         </td>
       </tr>
     </tbody>
@@ -601,6 +656,20 @@
               This property is still in Beta. Off-page <code translate="no" dir="ltr">MemberProgramTier</code>
               structured data might not show up in Google Search right away.
             </aside>
+            </td>
+          </tr>
+          <tr id="UnitPriceSpecification-validFrom">
+            <td><code translate="no" dir="ltr">validFrom</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code></p>
+              <p>The start date and time when the price is valid, in <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601</a> format. For details and markup examples, see <a href="#sale-duration">Sale duration</a>.</p>
+            </td>
+          </tr>
+          <tr id="UnitPriceSpecification-validThrough">
+            <td><code translate="no" dir="ltr">validThrough</code></td>
+            <td>
+              <p><code translate="no" dir="ltr"><a href="https://schema.org/DateTime" class="external-link">DateTime</a></code> or <code translate="no" dir="ltr"><a href="https://schema.org/Date" class="external-link">Date</a></code></p>
+              <p>The end date and time when the price is valid, in <a href="https://en.wikipedia.org/wiki/ISO_8601" class="external-link">ISO 8601</a> format. For details and markup examples, see <a href="#sale-duration">Sale duration</a>.</p>
             </td>
           </tr>
         </tbody>

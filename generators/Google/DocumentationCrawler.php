@@ -130,9 +130,27 @@ readonly class DocumentationCrawler
             $visited[$currentUrl] = true;
 
             try {
-                $content = $client->request('GET', $currentUrl)->getContent();
+                $response = $client->request('GET', $currentUrl);
+                $content = $response->getContent();
             } catch (\Throwable $exception) {
                 $failures[$currentUrl] = $exception->getMessage();
+
+                continue;
+            }
+
+            // Google retires a type by redirecting its page, either to the "What's
+            // new" log or to the page that now covers it ("logo" to "organization"):
+            // the original URL is no longer a page of its own. Only the target is
+            // worth crawling, and only when it is a structured data page itself.
+            $effectiveUrl = $response->getInfo('url');
+            $effectiveUrl = \is_string($effectiveUrl) ? strtok($effectiveUrl, '#?') : false;
+
+            if (false !== $effectiveUrl && $effectiveUrl !== $currentUrl) {
+                $redirectTarget = $this->normalizeStructuredDataUrl($effectiveUrl);
+
+                if (null !== $redirectTarget && !isset($visited[$redirectTarget])) {
+                    $queue[] = $redirectTarget;
+                }
 
                 continue;
             }
