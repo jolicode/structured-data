@@ -33,6 +33,11 @@
 
 ### Fixed
 
+- The static schema.org context is now generated from the context schema.org publishes with
+  each release, instead of being rebuilt from the vocabulary definition file. Documents
+  expand as with `"@context": "https://schema.org"`: `schema:` compact IRIs expand to
+  `http://schema.org/` (they expanded to `https://schema.org/`), and the definition file's
+  own prefixes can no longer shadow a schema.org term (such as `geo` since 30.1).
 - Google validator: a property accepting either a data type or a structured type (such as
   "Text or CategoryCode") now validates the nested properties of an object value. The
   `ImageObject` of an article image, the `HowToStep` of recipe instructions and an object

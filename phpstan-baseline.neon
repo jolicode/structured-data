@@ -235,18 +235,6 @@ parameters:
 			path: generators/StaticFileGenerator.php
 
 		-
-			message: '#^Cannot access property \$@context on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: generators/StaticSchemaOrgContextGenerator.php
-
-		-
-			message: '#^Cannot access property \$@graph on mixed\.$#'
-			identifier: property.nonObject
-			count: 1
-			path: generators/StaticSchemaOrgContextGenerator.php
-
-		-
 			message: '#^Method JoliCode\\StructuredData\\Extraction\\Extractor\:\:extract\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1

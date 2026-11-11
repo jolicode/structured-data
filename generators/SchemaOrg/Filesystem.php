@@ -57,9 +57,46 @@ class Filesystem extends SymfonyFilesystem
 
     public function getSchemaOrgTypesDefinition(): string
     {
-        $filename = $this->getSchemaOrgTypesDefinitionFilename();
+        return $this->readCachedFile($this->getSchemaOrgTypesDefinitionFilename());
+    }
 
-        if (!$this->hasSchemaOrgTypesDefinitionFile()) {
+    public function hasSchemaOrgContextFile(): bool
+    {
+        return $this->exists(
+            $this->getSchemaOrgContextFilename(),
+        );
+    }
+
+    /**
+     * The JSON-LD context schema.org publishes along with each release: the one a JSON-LD
+     * processor gets when it resolves "@context": "https://schema.org".
+     */
+    public function getSchemaOrgContext(): string
+    {
+        return $this->readCachedFile($this->getSchemaOrgContextFilename());
+    }
+
+    public function getSchemaOrgTypesDefinitionFilename(): string
+    {
+        return \sprintf(
+            '%s/schemaorg-%s-https.jsonld',
+            self::CACHE_DIR_SCHEMA_ORG,
+            SchemaOrg::VERSION,
+        );
+    }
+
+    public function getSchemaOrgContextFilename(): string
+    {
+        return \sprintf(
+            '%s/schemaorg-%s-context.jsonld',
+            self::CACHE_DIR_SCHEMA_ORG,
+            SchemaOrg::VERSION,
+        );
+    }
+
+    private function readCachedFile(string $filename): string
+    {
+        if (!$this->exists($filename)) {
             throw new IOException(\sprintf('Failed to read file "%s": ', $filename), 0, null, $filename);
         }
 
@@ -70,14 +107,5 @@ class Filesystem extends SymfonyFilesystem
         }
 
         return $content;
-    }
-
-    private function getSchemaOrgTypesDefinitionFilename(): string
-    {
-        return \sprintf(
-            '%s/schemaorg-%s-https.jsonld',
-            self::CACHE_DIR_SCHEMA_ORG,
-            SchemaOrg::VERSION,
-        );
     }
 }

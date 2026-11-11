@@ -6,8 +6,8 @@ difference reported by the tests is a genuine vocabulary change.
 
 ## 1. Select the target schema.org version
 
-Run `castor schema-org:update-version`. It picks the latest release whose definition file is
-actually published on GitHub, and updates the two constants that must always describe the
+Run `castor schema-org:update-version`. It picks the latest release whose definition file and
+JSON-LD context are actually published on GitHub, and updates the two constants that must always describe the
 same release:
 
 - `SchemaOrg::VERSION` in `generators/SchemaOrg/SchemaOrg.php`, which drives the generation;
@@ -25,12 +25,18 @@ by hand.
 
 Run `castor schema-org:download`.
 
-This fetches the JSON-LD definition of the configured release into `var/cache/schema-org/`.
-Every release is stored under its own file name, so bumping the version never overwrites a
-previously downloaded file. Use `--overwrite` to force a fresh download of the current one.
+This fetches two files of the configured release into `var/cache/schema-org/`:
 
-This step is optional: `castor schema-org:generate` downloads the file on its own when it is
-missing.
+- the JSON-LD definition of the vocabulary, which the validation classes are generated from;
+- the JSON-LD context schema.org publishes along with it (`schemaorgcontext.jsonld`), which
+  becomes the static context used in place of `"@context": "https://schema.org"`. It is
+  used as is, so that documents expand exactly as with the published context.
+
+Every release is stored under its own file names, so bumping the version never overwrites
+previously downloaded files. Use `--overwrite` to force a fresh download of the current ones.
+
+This step is optional: `castor schema-org:generate` downloads the files on its own when they
+are missing.
 
 ## 3. Regenerate the schema.org classes
 

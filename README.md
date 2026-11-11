@@ -422,7 +422,7 @@ vocabulary definitions. These commands refresh them:
 Command | Description
 ---- | -----
 `castor schema-org:update-version` | Bump the schema.org version to the latest release published on GitHub
-`castor schema-org:download` | Download the schema.org types definition file
+`castor schema-org:download` | Download the schema.org types definition file and JSON-LD context
 `castor schema-org:generate` | Generate the schema.org validation classes
 `castor schema-org:download-examples` | Refresh the schema.org examples used by the tests
 `castor google:download` | Crawl the Google structured-data documentation

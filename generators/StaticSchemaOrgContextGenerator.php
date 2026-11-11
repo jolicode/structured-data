@@ -36,56 +36,25 @@ class StaticSchemaOrgContextGenerator
     }
 
     /**
-     * Uses the Context Processing algorithm on schema.org definitions and pre-build a PHP and a JSON version of it.
+     * Uses the Context Processing algorithm on the official schema.org context and pre-build a PHP and a JSON version of it.
      * This way, we can completely skip the context processing (which is slooow) for schema.org.
+     *
+     * The context is the one schema.org publishes with each release, which is what a JSON-LD
+     * processor gets when it resolves "@context": "https://schema.org". It is used as is
+     * rather than rebuilt from the definition file: the prefixes the definition file
+     * declares for its own use can clash with schema.org terms (since 30.1, a "geo" prefix
+     * for GeoSPARQL shadows the "geo" property) and do not match the published ones (its
+     * "schema" prefix is https, the published one is http).
      */
     public function generate(): void
     {
-        $schemaOrgDefinitions = json_decode(
-            $this->filesystem->getSchemaOrgTypesDefinition(),
-        );
+        $officialContext = json_decode($this->filesystem->getSchemaOrgContext());
 
-        $localContext = (object) [
-            '@vocab' => 'http://schema.org/',
-            '@version' => 1.1,
-            'id' => '@id',
-            'type' => '@type',
-        ];
-
-        $prefixes = [];
-
-        foreach ((array) $schemaOrgDefinitions->{'@context'} as $term => $mapping) {
-            if (\is_string($mapping)) {
-                $localContext->{$term} = $mapping;
-                $prefixes[$term] = true;
-            }
+        if (!\is_object($officialContext) || !isset($officialContext->{'@context'}) || !\is_object($officialContext->{'@context'})) {
+            throw new \RuntimeException('The schema.org context file does not hold a "@context" object.');
         }
 
-        foreach ((array) $schemaOrgDefinitions->{'@graph'} as $entry) {
-            if (!\is_object($entry) || !isset($entry->{'@id'}) || !\is_string($entry->{'@id'})) {
-                continue;
-            }
-
-            if (!str_starts_with($entry->{'@id'}, 'schema:')) {
-                continue;
-            }
-
-            $term = substr($entry->{'@id'}, 7);
-
-            if ('' === $term) {
-                continue;
-            }
-
-            // A schema.org term wins over a namespace prefix of the same name, as in
-            // the official schemaorgcontext.jsonld: since 30.1, the definition file
-            // declares a "geo" prefix (GeoSPARQL) that would otherwise shadow the
-            // schema.org "geo" property.
-            if (isset($localContext->{$term}) && !isset($prefixes[$term])) {
-                continue;
-            }
-
-            $localContext->{$term} = 'http://schema.org/' . $term;
-        }
+        $localContext = $officialContext->{'@context'};
 
         $processer = new ContextProcessor();
         $remoteContexts = [];
