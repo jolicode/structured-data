@@ -18,11 +18,26 @@ use JoliCode\StructuredData\Vocabularies\Generated\GeneratedClassesRegistry;
  * Normalizes the hand-written Google validation property maps: flattens the
  * list-style entries, and expands the "@" imports and "@target" blocks that apply
  * to the audited type.
+ *
+ * The shapes below describe the PROPERTIES constant of the generated Google
+ * validation classes: a property definition, or a block of definitions that only
+ * applies to one of the types a property supports.
+ *
+ * @phpstan-type ValidationProperty array{
+ *     name: string,
+ *     severity: 'required'|'recommended'|'optional',
+ *     supportedTypes: list<string>,
+ *     documentation?: string,
+ *     value?: list<string>|array<string, true>,
+ *     properties?: array<mixed>,
+ * }
+ * @phpstan-type TargetBlock array{'@target': string, properties: array<mixed>, documentation?: string}
+ * @phpstan-type ValidationProperties array<array-key, ValidationProperty|TargetBlock>
  */
 final class ValidationPropertiesNormalizer
 {
     /**
-     * @var array<string, array<mixed>>
+     * @var array<string, ValidationProperties>
      */
     private static array $normalizedPropertiesByClass = [];
 
@@ -33,7 +48,7 @@ final class ValidationPropertiesNormalizer
      *
      * @param array<mixed> $properties
      *
-     * @return array<mixed>
+     * @return ValidationProperties
      */
     public static function normalizeProperties(array $properties): array
     {
@@ -68,11 +83,31 @@ final class ValidationPropertiesNormalizer
             }
         }
 
-        return $normalized;
+        // The entries come from the generated validation classes, whose shape is
+        // guaranteed by the generator.
+        /** @var ValidationProperties $validationProperties */
+        $validationProperties = $normalized;
+
+        return $validationProperties;
     }
 
     /**
-     * @return array<mixed>
+     * The nested property definitions of a validation property, once normalized.
+     *
+     * @param ValidationProperty|TargetBlock $validationType
+     *
+     * @return ValidationProperties
+     */
+    public static function nestedProperties(array $validationType): array
+    {
+        /** @var ValidationProperties $properties */
+        $properties = $validationType['properties'] ?? [];
+
+        return $properties;
+    }
+
+    /**
+     * @return ValidationProperties
      */
     public static function getNormalizedClassProperties(string $validationClass): array
     {
@@ -83,15 +118,21 @@ final class ValidationPropertiesNormalizer
         return self::$normalizedPropertiesByClass[$validationClass] = self::normalizeProperties($validationClass::PROPERTIES);
     }
 
+    /**
+     * @param ValidationProperty|TargetBlock $validationType
+     */
     public static function handleSpecialProperties(MappedType $mappedType, array &$validationType): void
     {
         self::setImportedProperties($mappedType, $validationType);
         self::setTargettedProperties($mappedType, $validationType);
     }
 
+    /**
+     * @param ValidationProperty|TargetBlock $validationType
+     */
     private static function setImportedProperties(MappedType $mappedType, array &$validationType): void
     {
-        foreach ($validationType['supportedTypes'] as $supportedType) {
+        foreach ($validationType['supportedTypes'] ?? [] as $supportedType) {
             if (!str_starts_with($supportedType, '@')) {
                 continue;
             }
@@ -121,23 +162,24 @@ final class ValidationPropertiesNormalizer
 
     // This method "loads" the targetted validation properties needed for the requested type
     // Targetted validation properties are properties that validate only a single type of a property (the target) while this property supports several types.
+    /**
+     * @param ValidationProperty|TargetBlock $validationType
+     */
     private static function setTargettedProperties(MappedType $mappedType, array &$validationType): void
     {
-        if (!isset($validationType['properties']) || !\is_array($validationType['properties'])) {
+        if (!isset($validationType['properties'])) {
             return;
         }
 
-        $targets = array_filter(
-            $validationType['properties'],
-            static fn (array $value) => \array_key_exists('@target', $value),
-            \ARRAY_FILTER_USE_BOTH,
-        );
+        foreach ($validationType['properties'] as $target) {
+            if (!\is_array($target) || !\array_key_exists('@target', $target)) {
+                continue;
+            }
 
-        foreach ($targets as $target) {
             if (\in_array($target['@target'], (array) $mappedType->getType(), true)) {
                 $validationType['properties'] = array_merge(
-                    $validationType['properties'] ?: [],
-                    $target['properties'],
+                    $validationType['properties'],
+                    (array) ($target['properties'] ?? []),
                 );
             }
         }

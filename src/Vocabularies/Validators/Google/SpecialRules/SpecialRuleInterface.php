@@ -11,18 +11,29 @@
 
 namespace JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules;
 
+use JoliCode\StructuredData\Mapper\MappedProperty;
 use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\ValidationPropertiesNormalizer;
 
+/**
+ * @phpstan-import-type ValidationProperty from ValidationPropertiesNormalizer
+ */
 interface SpecialRuleInterface
 {
     public static function getKey(): string;
 
+    /**
+     * @param ValidationProperty $missingProperty
+     */
     public function shouldIgnoreMissingRequiredProperty(MappedType $type, array $missingProperty): bool;
 
+    /**
+     * @param ValidationProperty $missingProperty
+     */
     public function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool;
 
     /**
-     * @return array<int, array{target: MappedType|\JoliCode\StructuredData\Mapper\MappedProperty, message: string, severity: string}>
+     * @return array<int, array{target: MappedType|MappedProperty, message: string, severity: string, documentation?: string}>
      */
     public function getTypeViolations(MappedType $type): array;
 }

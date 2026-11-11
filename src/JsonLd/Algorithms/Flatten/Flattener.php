@@ -89,6 +89,10 @@ class Flattener
      * July 16th, 2020.
      *
      * see https://www.w3.org/TR/json-ld11-api/#algorithm-9
+     *
+     * @param \stdClass|array<mixed>|null $element
+     *
+     * @return list<array<string, mixed>>
      */
     public function doFlatten(\stdClass|array|null $element, bool $ordered = false): array
     {

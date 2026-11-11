@@ -44,6 +44,9 @@ class ContextProcessorTest extends AbstractJsonLdTestCase
         $this->assertEquals(json_decode($expected), $actual);
     }
 
+    /**
+     * @param string|list<string> $container
+     */
     #[DataProvider('provideContainerEntries')]
     public function testValidateContainerEntry(string|array $container, bool $expected): void
     {
@@ -122,6 +125,9 @@ class ContextProcessorTest extends AbstractJsonLdTestCase
         $this->assertSame('http://schema.org/geo', $processed->termDefinitions['geo']->iriMapping);
     }
 
+    /**
+     * @return iterable<string, array{container: string|list<string>, expected: bool}>
+     */
     public static function provideContainerEntries(): iterable
     {
         yield 'correct keyword returns true' => [

@@ -12,8 +12,8 @@
 namespace JoliCode\StructuredData\Mapper;
 
 /**
- * Serializes the validation outcome of a mapped type tree into the plain-array
- * templates the snippet cache stores.
+ * Serializes the validation outcome of a mapped type tree into the templates
+ * the snippet cache stores.
  *
  * Mirror image of ValidationSnippetTemplateApplier: the two must stay in sync.
  */
@@ -22,7 +22,7 @@ final class ValidationSnippetTemplateBuilder
     /**
      * @param array<MappedType> $types
      *
-     * @return array<int, array<string, mixed>>
+     * @return list<ValidatedTypeTemplate>
      */
     public static function buildValidatedTypeTemplates(array $types): array
     {
@@ -35,10 +35,7 @@ final class ValidationSnippetTemplateBuilder
         return $templates;
     }
 
-    /**
-     * @return array<string, mixed>
-     */
-    private static function buildValidatedTypeTemplate(MappedType $type): array
+    private static function buildValidatedTypeTemplate(MappedType $type): ValidatedTypeTemplate
     {
         $properties = [];
 
@@ -46,20 +43,17 @@ final class ValidationSnippetTemplateBuilder
             $properties[$name] = self::buildValidatedPropertyTemplate($property);
         }
 
-        return [
-            'description' => $type->getDescription(),
-            'isPartOf' => $type->getIsPartOf(),
-            'source' => $type->getSource(),
-            'documentationLink' => $type->getDocumentationLink(),
-            'errors' => self::buildErrorTemplates($type->getErrors()),
-            'properties' => $properties,
-        ];
+        return new ValidatedTypeTemplate(
+            description: $type->getDescription(),
+            isPartOf: $type->getIsPartOf(),
+            source: $type->getSource(),
+            documentationLink: $type->getDocumentationLink(),
+            errors: self::buildErrorTemplates($type->getErrors()),
+            properties: $properties,
+        );
     }
 
-    /**
-     * @return array<string, mixed>
-     */
-    private static function buildValidatedPropertyTemplate(MappedProperty $property): array
+    private static function buildValidatedPropertyTemplate(MappedProperty $property): ValidatedPropertyTemplate
     {
         $nestedType = null;
         $nestedTypes = [];
@@ -75,32 +69,32 @@ final class ValidationSnippetTemplateBuilder
             }
         }
 
-        return [
-            'description' => $property->getDescription(),
-            'isPartOf' => $property->getIsPartOf(),
-            'source' => $property->getSource(),
-            'errors' => self::buildErrorTemplates($property->getErrors()),
-            'nestedType' => $nestedType,
-            'nestedTypes' => $nestedTypes,
-        ];
+        return new ValidatedPropertyTemplate(
+            description: $property->getDescription(),
+            isPartOf: $property->getIsPartOf(),
+            source: $property->getSource(),
+            errors: self::buildErrorTemplates($property->getErrors()),
+            nestedType: $nestedType,
+            nestedTypes: $nestedTypes,
+        );
     }
 
     /**
      * @param array<MappedError> $errors
      *
-     * @return array<int, array{message: string, severity: string, validatorName: ?string, documentationLink: ?string}>
+     * @return list<MappedErrorTemplate>
      */
     private static function buildErrorTemplates(array $errors): array
     {
         $templates = [];
 
         foreach ($errors as $error) {
-            $templates[] = [
-                'message' => $error->getMessage(),
-                'severity' => $error->getSeverity(),
-                'validatorName' => $error->getValidatorName(),
-                'documentationLink' => $error->getDocumentationLink(),
-            ];
+            $templates[] = new MappedErrorTemplate(
+                message: $error->getMessage(),
+                severity: $error->getSeverity(),
+                validatorName: $error->getValidatorName(),
+                documentationLink: $error->getDocumentationLink(),
+            );
         }
 
         return $templates;

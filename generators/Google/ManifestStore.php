@@ -15,6 +15,8 @@ use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
 
 /**
  * Reads and writes the curated Google documentation manifest.
+ *
+ * @phpstan-type ManifestEntry array{slug: string, url: string, status?: 'extra'|'retired'|'skip', note?: string}
  */
 readonly class ManifestStore
 {
@@ -27,7 +29,7 @@ readonly class ManifestStore
     }
 
     /**
-     * @return array<int, array<string, mixed>>
+     * @return list<ManifestEntry>
      */
     public function loadManifest(): array
     {
@@ -35,11 +37,22 @@ readonly class ManifestStore
             return [];
         }
 
-        return json_decode((string) file_get_contents(self::MANIFEST_FILE), true) ?? [];
+        $manifest = json_decode((string) file_get_contents(self::MANIFEST_FILE), true);
+
+        if (!\is_array($manifest)) {
+            throw new \RuntimeException(\sprintf('The Google types manifest "%s" could not be decoded.', self::MANIFEST_FILE));
+        }
+
+        // The manifest is curated by hand and saved by saveManifest(): its entries
+        // follow the ManifestEntry shape.
+        /** @var list<ManifestEntry> $manifestEntries */
+        $manifestEntries = $manifest;
+
+        return $manifestEntries;
     }
 
     /**
-     * @param array<int, array<string, mixed>> $manifestEntries
+     * @param list<ManifestEntry> $manifestEntries
      */
     public function saveManifest(array $manifestEntries): void
     {
@@ -50,9 +63,9 @@ readonly class ManifestStore
     }
 
     /**
-     * @param array<int, array<string, mixed>> $manifest
+     * @param list<ManifestEntry> $manifest
      *
-     * @return array<string, array<string, mixed>>
+     * @return array<string, ManifestEntry>
      */
     public function indexManifestEntriesBySlug(array $manifest): array
     {
@@ -66,7 +79,7 @@ readonly class ManifestStore
     }
 
     /**
-     * @param array<string, mixed> $entry
+     * @param ManifestEntry $entry
      */
     public function shouldDownloadManifestEntry(array $entry): bool
     {

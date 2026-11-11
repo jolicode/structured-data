@@ -3099,11 +3099,17 @@ final class GeneratedClassesRegistry
         return isset(self::getMapByPrefix($fqcn)[$fqcn]);
     }
 
+    /**
+     * @return list<string>
+     */
     public static function getShortNamesByPrefix(string $namespacePrefix): array
     {
         return array_values(self::getMapByPrefix($namespacePrefix));
     }
 
+    /**
+     * @return array<string, string>
+     */
     public static function getMapByPrefix(string $prefix): array
     {
         return match (true) {

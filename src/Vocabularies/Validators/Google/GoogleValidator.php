@@ -17,6 +17,10 @@ use JoliCode\StructuredData\Mapper\MappedType;
 use JoliCode\StructuredData\Vocabularies\Validators\AbstractValidator;
 use JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules\SpecialRulesRegistry;
 
+/**
+ * @phpstan-import-type ValidationProperty from ValidationPropertiesNormalizer
+ * @phpstan-import-type ValidationProperties from ValidationPropertiesNormalizer
+ */
 class GoogleValidator extends AbstractValidator
 {
     public const VALIDATOR_NAME = 'Google';
@@ -156,6 +160,9 @@ class GoogleValidator extends AbstractValidator
         return $value;
     }
 
+    /**
+     * @return array<MappedError>
+     */
     private function validatePropertyForMultipleTypesEntry(MappedType $type, MappedProperty $property, ?MappedProperty $originalProperty = null): array
     {
         $typeLabels = $this->getUniqueTypeLabels($type);
@@ -178,6 +185,9 @@ class GoogleValidator extends AbstractValidator
         return $totalErrors;
     }
 
+    /**
+     * @return array<MappedError>
+     */
     private function validateMultipleTypesEntry(MappedType $type): array
     {
         $typeLabels = $this->getUniqueTypeLabels($type);
@@ -239,12 +249,26 @@ class GoogleValidator extends AbstractValidator
         }
 
         if (!isset($typeLabels[1])) {
-            return array_values($typeLabels);
+            return $typeLabels;
         }
 
         return array_values(array_unique($typeLabels));
     }
 
+    /**
+     * The label of a single-typed entry, as displayed in the validation messages.
+     */
+    private function getTypeLabel(MappedType $type): string
+    {
+        $typeLabel = $type->getType();
+
+        return \is_string($typeLabel) ? $typeLabel : implode(', ', (array) $typeLabel);
+    }
+
+    /**
+     * @param ValidationProperties $validationProperties
+     * @param array<MappedError>   $errors
+     */
     private function findMissingProperties(MappedType $type, array $validationProperties, array &$errors): void
     {
         $typeProperties = $type->getProperties();
@@ -272,6 +296,10 @@ class GoogleValidator extends AbstractValidator
         }
     }
 
+    /**
+     * @param ValidationProperty $missingProperty
+     * @param array<MappedError> $errors
+     */
     private function validateRequiredProperty(MappedType $type, array $missingProperty, array &$errors): void
     {
         if ($this->shouldIgnoreMissingRequiredProperty($type, $missingProperty)) {
@@ -279,13 +307,13 @@ class GoogleValidator extends AbstractValidator
         }
 
         if ('atLeastOneOf' === $missingProperty['name']) {
-            if (!$this->hasAnyPropertyKey($type, $missingProperty['value'])) {
-                $expectedProperties = implode(', ', array_keys($missingProperty['value']));
+            $expectedProperties = $missingProperty['value'] ?? [];
 
+            if (!$this->hasAnyPropertyKey($type, $expectedProperties)) {
                 $message = \sprintf(
                     'Missing required property: at least one of the following properties must be present "%s" for the type "%s"',
-                    $expectedProperties,
-                    $type->getType(),
+                    implode(', ', array_keys($expectedProperties)),
+                    $this->getTypeLabel($type),
                 );
 
                 $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR, $this->resolveDocumentationLink($missingProperty));
@@ -294,11 +322,15 @@ class GoogleValidator extends AbstractValidator
             return;
         }
 
-        $message = \sprintf('Missing required property: "%s" for the type "%s"', $missingProperty['name'], $type->getType());
+        $message = \sprintf('Missing required property: "%s" for the type "%s"', $missingProperty['name'], $this->getTypeLabel($type));
 
         $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR, $this->resolveDocumentationLink($missingProperty));
     }
 
+    /**
+     * @param ValidationProperty $missingProperty
+     * @param array<MappedError> $errors
+     */
     private function validateRecommendedProperty(MappedType $type, array $missingProperty, array &$errors): void
     {
         if ($this->shouldIgnoreMissingRecommendedProperty($type, $missingProperty)) {
@@ -306,12 +338,12 @@ class GoogleValidator extends AbstractValidator
         }
 
         if ('atLeastOneOf' === $missingProperty['name']) {
-            if (!$this->hasAnyPropertyKey($type, $missingProperty['value'])) {
-                $expectedProperties = implode(', ', array_keys($missingProperty['value']));
+            $expectedProperties = $missingProperty['value'] ?? [];
 
+            if (!$this->hasAnyPropertyKey($type, $expectedProperties)) {
                 $message = \sprintf(
                     'Missing recommended property: at least one of the following properties should be present "%s"',
-                    $expectedProperties,
+                    implode(', ', array_keys($expectedProperties)),
                 );
 
                 $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_WARNING, $this->resolveDocumentationLink($missingProperty));
@@ -320,7 +352,7 @@ class GoogleValidator extends AbstractValidator
             return;
         }
 
-        $message = \sprintf('Missing recommended property: "%s" for the type "%s"', $missingProperty['name'], $type->getType());
+        $message = \sprintf('Missing recommended property: "%s" for the type "%s"', $missingProperty['name'], $this->getTypeLabel($type));
 
         $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_WARNING, $this->resolveDocumentationLink($missingProperty));
     }
@@ -347,6 +379,9 @@ class GoogleValidator extends AbstractValidator
         return null;
     }
 
+    /**
+     * @param ValidationProperty|array{'@target': string} $property
+     */
     private function definePropertyViolationSeverity(array $property, ?string $message = null): string
     {
         if ('The value is correct, but is not lowercased. Google expects lowercased values.' === $message) {
@@ -360,6 +395,9 @@ class GoogleValidator extends AbstractValidator
         return MappedError::SEVERITY_WARNING;
     }
 
+    /**
+     * @param ValidationProperty $missingProperty
+     */
     private function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool
     {
         $specialRules = $this->getSpecialRules();
@@ -381,6 +419,9 @@ class GoogleValidator extends AbstractValidator
         return false;
     }
 
+    /**
+     * @param array<array-key, mixed> $expectedProperties
+     */
     private function hasAnyPropertyKey(MappedType $type, array $expectedProperties): bool
     {
         return (bool) array_intersect_key($expectedProperties, $type->getProperties());
@@ -416,6 +457,9 @@ class GoogleValidator extends AbstractValidator
         return $violations;
     }
 
+    /**
+     * @param ValidationProperty $missingProperty
+     */
     private function shouldIgnoreMissingRequiredProperty(MappedType $type, array $missingProperty): bool
     {
         $specialRules = $this->getSpecialRules();

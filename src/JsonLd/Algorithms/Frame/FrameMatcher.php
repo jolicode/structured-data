@@ -112,7 +112,8 @@ final class FrameMatcher
                     $matchThis = [] === $nodeValues;
                 } elseif (\is_array($thisFrame) && \array_key_exists(Keyword::LIST->value, $thisFrame)) {
                     $listValue = $thisFrame[Keyword::LIST->value][0] ?? null;
-                    $nodeList = $nodeValues[0][Keyword::LIST->value] ?? null;
+                    $firstNodeValue = $nodeValues[0] ?? null;
+                    $nodeList = \is_array($firstNodeValue) ? ($firstNodeValue[Keyword::LIST->value] ?? null) : null;
 
                     if (\is_array($listValue) && \is_array($nodeList)) {
                         if (\array_key_exists(Keyword::VALUE->value, $listValue)) {
@@ -141,7 +142,7 @@ final class FrameMatcher
                             break;
                         }
                     }
-                } elseif (self::isSubjectReference($thisFrame)) {
+                } elseif (\is_array($thisFrame) && self::isSubjectReference($thisFrame)) {
                     foreach ($nodeValues as $nodeValue) {
                         if (self::nodeMatch($thisFrame, $nodeValue, $flags, $subjects)) {
                             $matchThis = true;
@@ -270,13 +271,27 @@ final class FrameMatcher
             && \array_key_exists(Keyword::ID->value, $value);
     }
 
+    /**
+     * The identifier of a subject reference, or null when the value is not one.
+     */
+    public static function subjectReferenceId(mixed $value): ?string
+    {
+        if (!self::isSubjectReference($value) || !\is_array($value)) {
+            return null;
+        }
+
+        $id = $value[Keyword::ID->value];
+
+        return \is_string($id) ? $id : null;
+    }
+
     public static function isEmptyMap(mixed $value): bool
     {
         return $value instanceof \stdClass && [] === get_object_vars($value);
     }
 
     /**
-     * @param array<string, mixed>                $pattern
+     * @param array<mixed>                        $pattern
      * @param array<string, mixed>                $flags
      * @param array<string, array<string, mixed>> $subjects
      */
@@ -304,7 +319,7 @@ final class FrameMatcher
     }
 
     /**
-     * @param array<string, mixed> $pattern
+     * @param array<mixed> $pattern
      *
      * @return array<mixed>
      */

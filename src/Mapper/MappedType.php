@@ -15,6 +15,10 @@ use JoliCode\StructuredData\JsonLd\Parser\Range;
 
 class MappedType
 {
+    /**
+     * @param string|list<string>|null $type
+     * @param string|list<string>|null $originalType
+     */
     public function __construct(
         private string $sourceFormat,
         private string|array|null $type = null,
@@ -69,6 +73,9 @@ class MappedType
     ) {
     }
 
+    /**
+     * @return string|list<string>|null
+     */
     public function getType(): string|array|null
     {
         return $this->type;
@@ -90,16 +97,25 @@ class MappedType
         $this->duplicateKeys = $duplicateKeys;
     }
 
+    /**
+     * @return string|list<string>|null
+     */
     public function getOriginalType(): string|array|null
     {
         return $this->originalType;
     }
 
+    /**
+     * @param string|list<string>|null $originalType
+     */
     public function setOriginalType(string|array|null $originalType): void
     {
         $this->originalType = $originalType;
     }
 
+    /**
+     * @param string|list<string>|null $type
+     */
     public function setType(string|array|null $type): void
     {
         $this->type = $type;

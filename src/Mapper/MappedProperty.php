@@ -103,6 +103,14 @@ class MappedProperty
      */
     public function appendValue(mixed $item, string|int|null $key = null): void
     {
+        if (null === $this->value) {
+            $this->value = [];
+        }
+
+        if (!\is_array($this->value)) {
+            throw new \LogicException('A value can only be appended to a multi-valued property.');
+        }
+
         if (null === $key) {
             $this->value[] = $item;
         } else {
@@ -181,6 +189,9 @@ class MappedProperty
         return $this->isPartOf;
     }
 
+    /**
+     * @param array<string> $items
+     */
     public function addIsPartOf(array $items): void
     {
         $this->isPartOf = array_merge($this->isPartOf, $items);
@@ -194,6 +205,9 @@ class MappedProperty
         return $this->source;
     }
 
+    /**
+     * @param array<string> $items
+     */
     public function addSource(array $items): void
     {
         $this->source = array_merge($this->source, $items);

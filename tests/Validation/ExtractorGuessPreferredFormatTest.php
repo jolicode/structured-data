@@ -12,6 +12,7 @@
 namespace JoliCode\StructuredData\Tests\Validation;
 
 use JoliCode\StructuredData\Extraction\Extractor;
+use JoliCode\StructuredData\Extraction\ExtractorFormat;
 use JoliCode\StructuredData\Extraction\ExtractorsContainer;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
@@ -209,6 +210,8 @@ class ExtractorGuessPreferredFormatTest extends TestCase
         $extractor = new Extractor($container ?? new ExtractorsContainer());
         $method = new \ReflectionMethod($extractor, 'guessPreferredFormat');
 
-        return $method->invoke($extractor, $content)?->value;
+        $format = $method->invoke($extractor, $content);
+
+        return $format instanceof ExtractorFormat ? $format->value : null;
     }
 }

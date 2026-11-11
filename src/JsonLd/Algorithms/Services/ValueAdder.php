@@ -19,8 +19,10 @@ class ValueAdder
      * July 16th, 2020.
      *
      * see https://www.w3.org/TR/json-ld-api/#algorithm-terms
+     *
+     * @param \stdClass|array<mixed> $object
      */
-    public static function addValue(mixed $value, mixed $key, \stdClass|array $object, bool $asArray = false): \stdClass
+    public static function addValue(mixed $value, string $key, \stdClass|array $object, bool $asArray = false): \stdClass
     {
         if (\is_array($object) && \array_key_exists(0, $object)) {
             // We don't want to convert 0 keys to objects so we directly access the object itself.

@@ -72,6 +72,9 @@ final class ExpansionResultFinalizer
         }
     }
 
+    /**
+     * @param \stdClass|array<mixed> $result
+     */
     public static function handleNullPropertyAndGraphProperty(\stdClass|array &$result, ProcessorOptions $options): bool
     {
         // Frames keep their free-floating nodes: a frame reduced to a bare @id, a

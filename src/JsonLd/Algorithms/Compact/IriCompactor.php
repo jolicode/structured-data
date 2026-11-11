@@ -327,7 +327,7 @@ final class IriCompactor
 
     public static function isSimpleGraphObject(mixed $value): bool
     {
-        return self::isGraphObject($value) && !property_exists($value, Keyword::ID->value);
+        return $value instanceof \stdClass && self::isGraphObject($value) && !property_exists($value, Keyword::ID->value);
     }
 
     public static function isValueObject(mixed $value): bool

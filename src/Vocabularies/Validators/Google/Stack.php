@@ -15,11 +15,18 @@ use JoliCode\StructuredData\Mapper\MappedProperty;
 use JoliCode\StructuredData\Mapper\MappedType;
 use JoliCode\StructuredData\Vocabularies\Generated\GeneratedClassesRegistry;
 
+/**
+ * @phpstan-import-type ValidationProperty from ValidationPropertiesNormalizer
+ * @phpstan-import-type ValidationProperties from ValidationPropertiesNormalizer
+ * @phpstan-import-type TargetBlock from ValidationPropertiesNormalizer
+ */
 class Stack
 {
     public const BASE_NAMESPACE = 'JoliCode\\StructuredData\\Vocabularies\\Generated\\Google';
 
     private ?string $resolvedValidationTypeCacheKey = null;
+
+    /** @var ValidationProperty|TargetBlock|null */
     private ?array $resolvedValidationTypeCache = null;
 
     public function __construct(
@@ -64,11 +71,12 @@ class Stack
     }
 
     /**
-     * Return all the validation properties of the current type.
+     * Return all the validation properties of the current type, or null if the
+     * current type is a Data Type, or if the current type is not a type supported
+     * by the Google vocabulary.
      * Used to validate a type.
      *
-     * @return array The validation properties found on the current type
-     * @return null  if the current type is a Data Type, or if the current type is not a type supported by the Google vocabulary
+     * @return ValidationProperties|null
      */
     public function getTypeValidationProperties(): ?array
     {
@@ -89,15 +97,19 @@ class Stack
             return null;
         }
 
-        return $validationType['properties'] ?? null;
+        if (!isset($validationType['properties'])) {
+            return null;
+        }
+
+        return ValidationPropertiesNormalizer::nestedProperties($validationType);
     }
 
     /**
-     * Return the full definition of a child property of the current type by its key.
+     * Return the full definition of a child property of the current type by its
+     * key, or null if the property was not found.
      * Used to validate a property.
      *
-     * @return array The requested validation property found on the current type
-     * @return null  If the property was not found
+     * @return ValidationProperty|TargetBlock|null
      */
     public function getNextValidationProperty(string $propertyKey): ?array
     {
@@ -117,15 +129,21 @@ class Stack
             return null;
         }
 
-        $properties = $validationType['properties'];
-
-        return $properties[$propertyKey] ?? null;
+        return ValidationPropertiesNormalizer::nestedProperties($validationType)[$propertyKey] ?? null;
     }
 
     private function initialize(MappedType $type): self
     {
         $this->resetResolutionCache();
-        $validationClass = \sprintf('%s\\%s', self::BASE_NAMESPACE, $type->getType());
+        $typeLabel = $type->getType();
+
+        if (!\is_string($typeLabel)) {
+            $this->validationClass = null;
+
+            return $this;
+        }
+
+        $validationClass = \sprintf('%s\\%s', self::BASE_NAMESPACE, $typeLabel);
 
         if (!GeneratedClassesRegistry::has($validationClass)) {
             $this->validationClass = null;
@@ -146,6 +164,8 @@ class Stack
 
     /**
      * Build the currently inspected validation type by walking up the parent chain and handling special properties.
+     *
+     * @return ValidationProperty|TargetBlock|null
      */
     private function resolveValidationType(): ?array
     {
@@ -223,10 +243,6 @@ class Stack
             $matchedPropertiesCount = 0;
 
             foreach ($properties as $propertyKey => $propertyDefinition) {
-                if (!\is_array($propertyDefinition)) {
-                    continue;
-                }
-
                 $isAtLeastOneOf = 'atLeastOneOf' === ($propertyDefinition['name'] ?? null);
                 $isPresent = \in_array($propertyKey, $presentPropertyKeys, true);
 
@@ -306,12 +322,15 @@ class Stack
 
     // These methods handle the special cases. They will update the "properties" entry by importing new ones into it.
     // If multiple types are found on the MappedType, all the potentially needed properties are imported.
+    /**
+     * @param ValidationProperty|TargetBlock $testedType
+     */
     private function isADataType(array $testedType): bool
     {
         // A property may accept either a data type or a structured type ("Text or
         // CategoryCode"). The stack only reaches it through an object, so the nested
         // properties defined for the structured type still apply.
-        if (isset($testedType['properties']) || isset($testedType['@target'])) {
+        if (isset($testedType['@target']) || isset($testedType['properties'])) {
             return false;
         }
 

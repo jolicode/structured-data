@@ -16,6 +16,9 @@ namespace JoliCode\StructuredData\Vocabularies\Validators\Google;
  *
  * Every method returns either false (the value is fine) or the message describing
  * what is wrong: creating the MappedError stays the validator responsibility.
+ *
+ * @phpstan-import-type ValidationProperty from ValidationPropertiesNormalizer
+ * @phpstan-import-type TargetBlock from ValidationPropertiesNormalizer
  */
 final class DataTypeChecker
 {
@@ -42,9 +45,12 @@ final class DataTypeChecker
     /** @var array<string, false|string> */
     private array $urlValidationResults = [];
 
-    public function hasInvalidDataTypeValue(array $expectedProperty, mixed $givenValue): false|string
+    /**
+     * @param ValidationProperty|TargetBlock $expectedProperty
+     */
+    public function hasInvalidDataTypeValue(array $expectedProperty, bool|float|int|string $givenValue): false|string
     {
-        $supportedTypes = $expectedProperty['supportedTypes'];
+        $supportedTypes = $expectedProperty['supportedTypes'] ?? [];
 
         return match ($this->getMatchingDataType($supportedTypes, $givenValue)) {
             self::DATA_TYPE_DATE => $this->hasIncorrectDate($givenValue, self::DATA_TYPE_DATE),
@@ -59,7 +65,10 @@ final class DataTypeChecker
         };
     }
 
-    public function hasInvalidExactValue(array $expectedValues, string|int $givenValue): false|string
+    /**
+     * @param list<string>|array<string, true> $expectedValues
+     */
+    public function hasInvalidExactValue(array $expectedValues, bool|float|int|string $givenValue): false|string
     {
         if (isset($expectedValues[0]) && $expectedValues[0] === $givenValue) {
             return false;
@@ -80,7 +89,10 @@ final class DataTypeChecker
         return \sprintf('Incorrect value: "%s" given, expected one of "%s".', $givenValue, implode(', ', $expectedValues));
     }
 
-    private function getMatchingDataType(array $supportedTypes, mixed $givenValue): string|false
+    /**
+     * @param list<string> $supportedTypes
+     */
+    private function getMatchingDataType(array $supportedTypes, bool|float|int|string $givenValue): string|false
     {
         $supportedDataTypes = array_values(array_intersect($supportedTypes, self::DATA_TYPES));
 
@@ -116,18 +128,15 @@ final class DataTypeChecker
             $isString => self::DATA_TYPE_TEXT,
             \is_int($givenValue) => self::DATA_TYPE_INTEGER,
             \is_float($givenValue) => self::DATA_TYPE_NUMBER,
-            \is_bool($givenValue) => self::DATA_TYPE_BOOLEAN,
-            default => false,
+            default => self::DATA_TYPE_BOOLEAN,
         };
 
-        if (false !== $givenValueDataType) {
-            if (isset($supportedDataTypesLookup[$givenValueDataType])) {
-                return $givenValueDataType;
-            }
+        if (isset($supportedDataTypesLookup[$givenValueDataType])) {
+            return $givenValueDataType;
+        }
 
-            if (self::DATA_TYPE_INTEGER === $givenValueDataType && isset($supportedDataTypesLookup[self::DATA_TYPE_NUMBER])) {
-                return self::DATA_TYPE_NUMBER;
-            }
+        if (self::DATA_TYPE_INTEGER === $givenValueDataType && isset($supportedDataTypesLookup[self::DATA_TYPE_NUMBER])) {
+            return self::DATA_TYPE_NUMBER;
         }
 
         if (isset($supportedDataTypesLookup[self::DATA_TYPE_URL])) {
@@ -164,7 +173,7 @@ final class DataTypeChecker
         };
     }
 
-    private function hasIncorrectText(mixed $givenValue, ?string $overwriteType = null): false|string
+    private function hasIncorrectText(bool|float|int|string $givenValue, ?string $overwriteType = null): false|string
     {
         if (\is_string($givenValue)) {
             return false;
@@ -260,7 +269,7 @@ final class DataTypeChecker
         );
     }
 
-    private function getDataTypeViolation(string $expectedType, mixed $givenValue): string
+    private function getDataTypeViolation(string $expectedType, bool|float|int|string $givenValue): string
     {
         return \sprintf(
             'Incorrect type value: value of type "%s" expected, but "%s" was given (%s).',
@@ -270,10 +279,10 @@ final class DataTypeChecker
         );
     }
 
-    private function hasIncorrectDate(mixed $givenValue, string $expectedType): false|string
+    private function hasIncorrectDate(bool|float|int|string $givenValue, string $expectedType): false|string
     {
-        if ($errorMessage = $this->hasIncorrectText($givenValue, $expectedType)) {
-            return $errorMessage;
+        if (!\is_string($givenValue)) {
+            return $this->hasIncorrectText($givenValue, $expectedType);
         }
 
         if (false === strtotime($givenValue)) {
@@ -283,7 +292,7 @@ final class DataTypeChecker
         return false;
     }
 
-    private function hasIncorrectNumber(mixed $givenValue): false|string
+    private function hasIncorrectNumber(bool|float|int|string $givenValue): false|string
     {
         if (\is_int($givenValue) || \is_float($givenValue)) {
             return false;
@@ -302,7 +311,7 @@ final class DataTypeChecker
         return $this->getDataTypeViolation(self::DATA_TYPE_NUMBER, $givenValue);
     }
 
-    private function hasIncorrectInteger(mixed $givenValue): false|string
+    private function hasIncorrectInteger(bool|float|int|string $givenValue): false|string
     {
         if (\is_int($givenValue)) {
             return false;
@@ -323,7 +332,7 @@ final class DataTypeChecker
         return $this->getDataTypeViolation(self::DATA_TYPE_INTEGER, $givenValue);
     }
 
-    private function hasIncorrectBoolean(mixed $givenValue): false|string
+    private function hasIncorrectBoolean(bool|float|int|string $givenValue): false|string
     {
         if (\is_bool($givenValue)) {
             return false;
@@ -336,10 +345,10 @@ final class DataTypeChecker
         return $this->getDataTypeViolation(self::DATA_TYPE_BOOLEAN, $givenValue);
     }
 
-    private function hasIncorrectUrl(mixed $givenValue): false|string
+    private function hasIncorrectUrl(bool|float|int|string $givenValue): false|string
     {
-        if ($errorMessage = $this->hasIncorrectText($givenValue, 'URL')) {
-            return $errorMessage;
+        if (!\is_string($givenValue)) {
+            return $this->hasIncorrectText($givenValue, 'URL');
         }
 
         if (isset($this->urlValidationResults[$givenValue])) {

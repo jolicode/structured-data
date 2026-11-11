@@ -13,6 +13,7 @@ namespace JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules;
 
 use JoliCode\StructuredData\Mapper\MappedError;
 use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\ValidationPropertiesNormalizer;
 
 /**
  * Some properties of a merchant listing return policy depend on another one:
@@ -22,6 +23,8 @@ use JoliCode\StructuredData\Mapper\MappedType;
  * only when returns are accepted.
  *
  * @see https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#returns
+ *
+ * @phpstan-import-type ValidationProperty from ValidationPropertiesNormalizer
  */
 final class ProductMerchantListingReturnPolicySpecialRule implements SpecialRuleInterface
 {
@@ -48,7 +51,7 @@ final class ProductMerchantListingReturnPolicySpecialRule implements SpecialRule
     }
 
     /**
-     * @param array<string, mixed> $missingProperty
+     * @param ValidationProperty $missingProperty
      */
     public function shouldIgnoreMissingRequiredProperty(MappedType $type, array $missingProperty): bool
     {
@@ -56,7 +59,7 @@ final class ProductMerchantListingReturnPolicySpecialRule implements SpecialRule
     }
 
     /**
-     * @param array<string, mixed> $missingProperty
+     * @param ValidationProperty $missingProperty
      */
     public function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool
     {

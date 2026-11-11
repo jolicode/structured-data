@@ -48,7 +48,7 @@ final class ExpandedValueShape
             && IriResolver::isBlankNodeIdentifier($valueEntry->{Keyword::ID->value});
     }
 
-    public static function isTypeProperty(\stdClass|array|string $valueEntry): bool
+    public static function isTypeProperty(\stdClass|string $valueEntry): bool
     {
         if (!$valueEntry instanceof \stdClass) {
             return false;

@@ -50,6 +50,8 @@ final class SchemaOrgNameNormalizer
      * Since we are expanding the user input, all properties will be prefixed with the schema.org domain.
      * This is not really frontend friendly, plus users would not necessarilly understand why their input has changed.
      * For these reasons, we strip the schema.org domain from the properties keys.
+     *
+     * @return string|list<string> a single short name when a single entry is given, the list of short names otherwise
      */
     public function removeSchemaOrgDomain(string ...$typesEntry): string|array
     {
@@ -93,7 +95,7 @@ final class SchemaOrgNameNormalizer
         return self::SCHEMA_ORG_DOMAIN . $property;
     }
 
-    private function stripSchemaOrgDomain(string $typeName): string
+    public function stripSchemaOrgDomain(string $typeName): string
     {
         if (isset($this->strippedSchemaOrgDomainCache[$typeName])) {
             return $this->strippedSchemaOrgDomainCache[$typeName];

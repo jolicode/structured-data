@@ -70,8 +70,7 @@ class SchemaOrgValidatorInfrastructureTest extends TestCase
             ),
         );
 
-        $baseline = json_decode((string) file_get_contents(__DIR__ . '/../fixtures/schema-org-baseline.json'), true);
-        $baselineKeys = array_keys($baseline ?: []);
+        $baselineKeys = array_keys(FixtureBaseline::load(__DIR__ . '/../fixtures/schema-org-baseline.json'));
 
         $orphanBaselineEntries = array_values(array_diff($baselineKeys, $fixtureFiles));
 
@@ -88,8 +87,7 @@ class SchemaOrgValidatorInfrastructureTest extends TestCase
             glob(__DIR__ . '/../../../resources/schema.org/examples/*.jsonld') ?: [],
         );
 
-        $baseline = json_decode((string) file_get_contents(__DIR__ . '/../../../resources/schema.org/examples-baseline.json'), true);
-        $baselineKeys = array_keys($baseline ?: []);
+        $baselineKeys = array_keys(FixtureBaseline::load(__DIR__ . '/../../../resources/schema.org/examples-baseline.json'));
 
         $orphanBaselineEntries = array_values(array_diff($baselineKeys, $exampleFiles));
 

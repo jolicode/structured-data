@@ -13,7 +13,11 @@ namespace JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules;
 
 use JoliCode\StructuredData\Mapper\MappedError;
 use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\ValidationPropertiesNormalizer;
 
+/**
+ * @phpstan-import-type ValidationProperty from ValidationPropertiesNormalizer
+ */
 final class BookOfferPricingByCategorySpecialRule implements SpecialRuleInterface
 {
     private const PURCHASE_CATEGORIES = ['purchase', 'rental'];
@@ -23,18 +27,24 @@ final class BookOfferPricingByCategorySpecialRule implements SpecialRuleInterfac
         return 'google.book.offer_pricing_by_category';
     }
 
+    /**
+     * @param ValidationProperty $missingProperty
+     */
     public function shouldIgnoreMissingRequiredProperty(MappedType $type, array $missingProperty): bool
     {
         return false;
     }
 
+    /**
+     * @param ValidationProperty $missingProperty
+     */
     public function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool
     {
         if (!$this->isReadActionOffer($type)) {
             return false;
         }
 
-        $missingPropertyName = $missingProperty['name'] ?? '';
+        $missingPropertyName = $missingProperty['name'];
 
         if (!\in_array($missingPropertyName, ['price', 'priceCurrency'], true)) {
             return false;
@@ -114,6 +124,9 @@ final class BookOfferPricingByCategorySpecialRule implements SpecialRuleInterfac
         return false;
     }
 
+    /**
+     * @param string|array<string>|null $type
+     */
     private function hasType(string|array|null $type, string $searchedType): bool
     {
         if (\is_array($type)) {

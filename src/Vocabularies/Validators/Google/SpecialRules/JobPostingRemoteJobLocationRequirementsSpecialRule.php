@@ -13,7 +13,11 @@ namespace JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules;
 
 use JoliCode\StructuredData\Mapper\MappedError;
 use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\ValidationPropertiesNormalizer;
 
+/**
+ * @phpstan-import-type ValidationProperty from ValidationPropertiesNormalizer
+ */
 final class JobPostingRemoteJobLocationRequirementsSpecialRule implements SpecialRuleInterface
 {
     public static function getKey(): string
@@ -21,9 +25,12 @@ final class JobPostingRemoteJobLocationRequirementsSpecialRule implements Specia
         return 'google.job_posting.remote_job_location_requirements';
     }
 
+    /**
+     * @param ValidationProperty $missingProperty
+     */
     public function shouldIgnoreMissingRequiredProperty(MappedType $type, array $missingProperty): bool
     {
-        if ('jobLocation' !== ($missingProperty['name'] ?? null)) {
+        if ('jobLocation' !== $missingProperty['name']) {
             return false;
         }
 
@@ -34,6 +41,9 @@ final class JobPostingRemoteJobLocationRequirementsSpecialRule implements Specia
         return $this->isTelecommute($type);
     }
 
+    /**
+     * @param ValidationProperty $missingProperty
+     */
     public function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool
     {
         return false;
@@ -71,6 +81,9 @@ final class JobPostingRemoteJobLocationRequirementsSpecialRule implements Specia
         return 'TELECOMMUTE' === $jobLocationType;
     }
 
+    /**
+     * @param string|array<string>|null $type
+     */
     private function hasType(string|array|null $type, string $searchedType): bool
     {
         if (\is_array($type)) {

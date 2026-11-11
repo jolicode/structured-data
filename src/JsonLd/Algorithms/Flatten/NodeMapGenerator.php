@@ -16,6 +16,11 @@ use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\FramingKeyword;
 use JoliCode\StructuredData\JsonLd\Algorithms\Services\DataStructureComparator;
 use JoliCode\StructuredData\JsonLd\Algorithms\Services\IdentifierGenerator;
 
+/**
+ * @phpstan-type Node array<string, mixed>
+ * @phpstan-type Graph array<string, Node>
+ * @phpstan-type NodeMap array<string, Graph|null>
+ */
 class NodeMapGenerator
 {
     public function __construct(
@@ -30,13 +35,14 @@ class NodeMapGenerator
      *
      * see https://www.w3.org/TR/json-ld11-api/#algorithm-10
      *
-     * @param array<string, array<string, array<string, mixed>>|null> $nodeMap
+     * @param NodeMap                          $nodeMap
+     * @param array{'@list': list<mixed>}|null $list
      */
     public function buildNode(
         mixed $element,
         array &$nodeMap,
         string $activeGraph = FramingKeyword::DEFAULT->value,
-        mixed $activeSubject = null,
+        string|\stdClass|null $activeSubject = null,
         ?string $activeProperty = null,
         ?array &$list = null,
     ): void {
@@ -48,6 +54,10 @@ class NodeMapGenerator
             }
 
             return;
+        }
+
+        if (!$element instanceof \stdClass) {
+            throw new FlatteningException('A node map element must be a map.');
         }
 
         // 2
@@ -64,17 +74,19 @@ class NodeMapGenerator
 
         // 3
         if (property_exists($element, FramingKeyword::TYPE->value)) {
+            $types = $element->{FramingKeyword::TYPE->value};
+
             // 3.1
-            if (\is_array($element->{FramingKeyword::TYPE->value}) || \is_object($element->{FramingKeyword::TYPE->value})) {
-                if (!\is_array($element->{FramingKeyword::TYPE->value})) {
-                    $element->{FramingKeyword::TYPE->value} = (array) $element->{FramingKeyword::TYPE->value};
+            if (\is_array($types) || \is_object($types)) {
+                $identifiers = [];
+
+                foreach ((array) $types as $key => $type) {
+                    $identifiers[$key] = $this->identifier($type);
                 }
 
-                foreach ($element->{FramingKeyword::TYPE->value} as &$item) {
-                    $item = $this->identifierGenerator->getIdentifier($item);
-                }
+                $element->{FramingKeyword::TYPE->value} = $identifiers;
             } else {
-                $element->{FramingKeyword::TYPE->value} = $this->identifierGenerator->getIdentifier($element->{FramingKeyword::TYPE->value});
+                $element->{FramingKeyword::TYPE->value} = $this->identifier($types);
             }
         }
 
@@ -86,8 +98,11 @@ class NodeMapGenerator
                     $subjectNode[$activeProperty] = [$element];
                 // 4.1.2
                 } else {
-                    if (!DataStructureComparator::objectAlreadyInArray($element, $subjectNode[$activeProperty])) {
-                        $subjectNode[$activeProperty][] = $element;
+                    $values = self::propertyValues($subjectNode, $activeProperty);
+
+                    if (!DataStructureComparator::objectAlreadyInArray($element, $values)) {
+                        $values[] = $element;
+                        $subjectNode[$activeProperty] = $values;
                     }
                 }
             // 4.2
@@ -102,12 +117,8 @@ class NodeMapGenerator
             // 5.2
             $this->buildNode($element->{FramingKeyword::LIST->value}, $nodeMap, $activeGraph, $activeSubject, $activeProperty, $result);
 
-            if (null === $result || !\array_key_exists(FramingKeyword::LIST->value, $result)) {
+            if (null === $result) {
                 throw new FlatteningException('The result must have a LIST key');
-            }
-
-            if (\is_object($result[FramingKeyword::LIST->value])) {
-                $result[FramingKeyword::LIST->value] = [$result[FramingKeyword::LIST->value]];
             }
 
             // 5.3
@@ -116,7 +127,9 @@ class NodeMapGenerator
                     throw new FlatteningException('Invalid active property.');
                 }
 
-                $subjectNode[$activeProperty][] = $result;
+                $values = self::propertyValues($subjectNode ?? [], $activeProperty);
+                $values[] = $result;
+                $subjectNode[$activeProperty] = $values;
             // 5.4
             } else {
                 $list[FramingKeyword::LIST->value][] = $result;
@@ -129,15 +142,11 @@ class NodeMapGenerator
 
             // 6.1
             if (property_exists($element, FramingKeyword::ID->value)) {
-                $id = $this->identifierGenerator->getIdentifier($element->{FramingKeyword::ID->value});
+                $id = $this->identifier($element->{FramingKeyword::ID->value});
                 unset($element->{FramingKeyword::ID->value});
             // 6.2
             } else {
-                $id = $this->identifierGenerator->getIdentifier(null);
-            }
-
-            if (!\is_string($id)) {
-                throw new FlatteningException('The identifier must be a string');
+                $id = $this->identifier(null);
             }
 
             // 6.3
@@ -155,8 +164,13 @@ class NodeMapGenerator
                     if (!\array_key_exists($activeProperty, $node)) {
                         $node[$activeProperty] = [$activeSubject];
                     // 6.5.2
-                    } elseif (!DataStructureComparator::objectAlreadyInArray($activeSubject, $node[$activeProperty])) {
-                        $node[$activeProperty][] = $activeSubject;
+                    } else {
+                        $values = self::propertyValues($node, $activeProperty);
+
+                        if (!DataStructureComparator::objectAlreadyInArray($activeSubject, $values)) {
+                            $values[] = $activeSubject;
+                            $node[$activeProperty] = $values;
+                        }
                     }
                 // 6.6
                 } else {
@@ -173,8 +187,13 @@ class NodeMapGenerator
                         if (!\array_key_exists($activeProperty, $subjectNode)) {
                             $subjectNode[$activeProperty] = [$reference];
                         // 6.6.2.2
-                        } elseif (!DataStructureComparator::objectAlreadyInArray($reference, $subjectNode[$activeProperty])) {
-                            $subjectNode[$activeProperty][] = $reference;
+                        } else {
+                            $values = self::propertyValues($subjectNode, $activeProperty);
+
+                            if (!DataStructureComparator::objectAlreadyInArray($reference, $values)) {
+                                $values[] = $reference;
+                                $subjectNode[$activeProperty] = $values;
+                            }
                         }
                     // 6.6.3
                     } else {
@@ -186,13 +205,13 @@ class NodeMapGenerator
             // 6.7
             if (property_exists($element, FramingKeyword::TYPE->value)) {
                 foreach ((array) $element->{FramingKeyword::TYPE->value} as $type) {
-                    if (!\array_key_exists(FramingKeyword::TYPE->value, $node)) {
-                        $node[FramingKeyword::TYPE->value] = [];
+                    $types = self::propertyValues($node, FramingKeyword::TYPE->value);
+
+                    if (!\in_array($type, $types, true)) {
+                        $types[] = $type;
                     }
 
-                    if (!\in_array($type, $node[FramingKeyword::TYPE->value], true)) {
-                        $node[FramingKeyword::TYPE->value][] = $type;
-                    }
+                    $node[FramingKeyword::TYPE->value] = $types;
                 }
 
                 unset($element->{FramingKeyword::TYPE->value});
@@ -215,10 +234,14 @@ class NodeMapGenerator
                 // 6.9.2
                 $reverseMap = $element->{FramingKeyword::REVERSE->value};
 
+                if (!$reverseMap instanceof \stdClass) {
+                    throw new FlatteningException('The @reverse value must be a map.');
+                }
+
                 // 6.9.3
-                foreach ($reverseMap as $property => $values) {
+                foreach (get_object_vars($reverseMap) as $property => $values) {
                     // 6.9.3.1
-                    foreach ($values as $value) {
+                    foreach ((array) $values as $value) {
                         // 6.9.3.1.1
                         $this->buildNode($value, $nodeMap, $activeGraph, $referencedNode, $property);
                     }
@@ -246,11 +269,7 @@ class NodeMapGenerator
             // 6.12
             foreach ($sortedElementProperties as $property => $value) {
                 // 6.12.1
-                $property = $this->identifierGenerator->getIdentifier($property);
-
-                if (!\is_string($property)) {
-                    throw new FlatteningException('The identifier must be a string');
-                }
+                $property = $this->identifier((string) $property);
 
                 // 6.12.2
                 if (!\array_key_exists($property, $node)) {
@@ -261,5 +280,34 @@ class NodeMapGenerator
                 $this->buildNode($value, $nodeMap, $activeGraph, $id, $property);
             }
         }
+    }
+
+    /**
+     * Blank node identifiers are replaced by a generated identifier, any other
+     * identifier is kept as is.
+     */
+    private function identifier(mixed $value): string
+    {
+        if (null !== $value && !\is_string($value)) {
+            throw new FlatteningException('The identifier must be a string');
+        }
+
+        return $this->identifierGenerator->getIdentifier($value);
+    }
+
+    /**
+     * @param Node $node
+     *
+     * @return list<mixed>
+     */
+    private static function propertyValues(array $node, string $property): array
+    {
+        $values = $node[$property] ?? [];
+
+        if (!\is_array($values)) {
+            throw new FlatteningException(\sprintf('The values of the "%s" property must be an array.', $property));
+        }
+
+        return array_values($values);
     }
 }

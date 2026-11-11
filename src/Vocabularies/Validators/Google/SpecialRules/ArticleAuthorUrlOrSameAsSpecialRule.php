@@ -13,7 +13,11 @@ namespace JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules;
 
 use JoliCode\StructuredData\Mapper\MappedProperty;
 use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\ValidationPropertiesNormalizer;
 
+/**
+ * @phpstan-import-type ValidationProperty from ValidationPropertiesNormalizer
+ */
 final class ArticleAuthorUrlOrSameAsSpecialRule implements SpecialRuleInterface
 {
     public static function getKey(): string
@@ -21,14 +25,20 @@ final class ArticleAuthorUrlOrSameAsSpecialRule implements SpecialRuleInterface
         return 'google.article.author_url_or_sameas';
     }
 
+    /**
+     * @param ValidationProperty $missingProperty
+     */
     public function shouldIgnoreMissingRequiredProperty(MappedType $type, array $missingProperty): bool
     {
         return false;
     }
 
+    /**
+     * @param ValidationProperty $missingProperty
+     */
     public function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool
     {
-        if ('url' !== ($missingProperty['name'] ?? null)) {
+        if ('url' !== $missingProperty['name']) {
             return false;
         }
 
@@ -67,6 +77,9 @@ final class ArticleAuthorUrlOrSameAsSpecialRule implements SpecialRuleInterface
         return \in_array($type->getType(), ['Article', 'NewsArticle', 'BlogPosting'], true);
     }
 
+    /**
+     * @param string|array<string>|null $type
+     */
     private function hasType(string|array|null $type, string $searchedType): bool
     {
         if (\is_array($type)) {

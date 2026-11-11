@@ -13,6 +13,7 @@ namespace JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules;
 
 use JoliCode\StructuredData\Mapper\MappedError;
 use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\ValidationPropertiesNormalizer;
 
 /**
  * Accepting experience in place of education only makes sense when both are
@@ -20,6 +21,8 @@ use JoliCode\StructuredData\Mapper\MappedType;
  * "educationRequirements" and "experienceRequirements" properties.
  *
  * @see https://developers.google.com/search/docs/appearance/structured-data/job-posting#education-and-experience-properties-beta
+ *
+ * @phpstan-import-type ValidationProperty from ValidationPropertiesNormalizer
  */
 final class JobPostingExperienceInPlaceOfEducationSpecialRule implements SpecialRuleInterface
 {
@@ -34,7 +37,7 @@ final class JobPostingExperienceInPlaceOfEducationSpecialRule implements Special
     }
 
     /**
-     * @param array<string, mixed> $missingProperty
+     * @param ValidationProperty $missingProperty
      */
     public function shouldIgnoreMissingRequiredProperty(MappedType $type, array $missingProperty): bool
     {
@@ -42,7 +45,7 @@ final class JobPostingExperienceInPlaceOfEducationSpecialRule implements Special
     }
 
     /**
-     * @param array<string, mixed> $missingProperty
+     * @param ValidationProperty $missingProperty
      */
     public function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool
     {

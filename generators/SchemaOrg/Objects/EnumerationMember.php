@@ -19,20 +19,35 @@ class EnumerationMember extends AbstractSchemaOrgElement
         public string $name,
         public string $description,
         public string $label,
+        /**
+         * @var list<string>
+         */
         public array $inTypes,
         public string $className,
     ) {
     }
 
+    /**
+     * @param array<mixed> $rawType
+     */
     public static function fromRawData(array $rawType): self
     {
         self::sanitizeEntries($rawType);
+        $inTypes = [];
+
+        foreach ((array) $rawType[Extractor::KEY_TYPE] as $inType) {
+            if (!\is_string($inType)) {
+                throw new \InvalidArgumentException('The "@type" entries of a raw schema.org enumeration member must be strings.');
+            }
+
+            $inTypes[] = $inType;
+        }
 
         $enumerationMember = new self(
             name: trim(self::stringEntry($rawType, Extractor::KEY_ID)),
             description: trim(self::stringEntry($rawType, Extractor::RDFS_COMMENT)),
             label: trim(self::stringEntry($rawType, Extractor::RDFS_LABEL)),
-            inTypes: (array) $rawType[Extractor::KEY_TYPE],
+            inTypes: $inTypes,
             className: self::getClassName(self::stringEntry($rawType, Extractor::RDFS_LABEL)),
         );
 

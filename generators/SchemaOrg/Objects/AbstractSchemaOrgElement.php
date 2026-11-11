@@ -15,7 +15,10 @@ use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Extractor;
 
 abstract class AbstractSchemaOrgElement
 {
+    /** @var list<string> */
     public array $isPartOf = [];
+
+    /** @var list<string> */
     public array $source = [];
 
     /**
@@ -26,6 +29,8 @@ abstract class AbstractSchemaOrgElement
 
     /**
      * Instantiates a new object from a fetched Schema.org raw type.
+     *
+     * @param array<mixed> $rawType
      */
     abstract public static function fromRawData(array $rawType): self;
 
@@ -41,6 +46,8 @@ abstract class AbstractSchemaOrgElement
 
     /**
      * Returns a raw type entry that sanitizeEntries() guarantees to be a string.
+     *
+     * @param array<mixed> $rawType
      */
     protected static function stringEntry(array $rawType, string $key): string
     {
@@ -56,7 +63,8 @@ abstract class AbstractSchemaOrgElement
     /**
      * @template T of self
      *
-     * @param T $object
+     * @param T            $object
+     * @param array<mixed> $rawType
      *
      * @return T
      */
@@ -84,19 +92,46 @@ abstract class AbstractSchemaOrgElement
     /**
      * The comment and label keys may be an array with a language key, which we don't need.
      *
-     * @param array<string, string|array> $rawType
+     * @param array<mixed> $rawType
      */
     protected static function sanitizeEntries(array &$rawType): void
     {
         if (\array_key_exists(Extractor::RDFS_COMMENT, $rawType) && \is_array($rawType[Extractor::RDFS_COMMENT])) {
-            // @phpstan-ignore parameterByRef.type
             $rawType[Extractor::RDFS_COMMENT] = $rawType[Extractor::RDFS_COMMENT][Extractor::KEY_VALUE];
         }
 
         if (\array_key_exists(Extractor::RDFS_LABEL, $rawType) && \is_array($rawType[Extractor::RDFS_LABEL])) {
-            // @phpstan-ignore parameterByRef.type
             $rawType[Extractor::RDFS_LABEL] = $rawType[Extractor::RDFS_LABEL][Extractor::KEY_VALUE];
         }
+    }
+
+    /**
+     * The identifiers referenced by a raw type entry, which schema.org writes
+     * either as a single {"@id": ...} reference or as a list of them.
+     *
+     * @return list<string>
+     */
+    protected static function schemaInformationAsArray(mixed $schemaInformation): array
+    {
+        if (!\is_array($schemaInformation)) {
+            throw new \InvalidArgumentException('A schema.org reference must be a map or a list of maps.');
+        }
+
+        if (isset($schemaInformation[Extractor::KEY_ID])) {
+            return [self::stringEntry($schemaInformation, Extractor::KEY_ID)];
+        }
+
+        $identifiers = [];
+
+        foreach ($schemaInformation as $schema) {
+            if (!\is_array($schema)) {
+                throw new \InvalidArgumentException('A schema.org reference must be a map.');
+            }
+
+            $identifiers[] = self::stringEntry($schema, Extractor::KEY_ID);
+        }
+
+        return $identifiers;
     }
 
     private static function replaceStartNumbers(string $name): string
@@ -117,17 +152,5 @@ abstract class AbstractSchemaOrgElement
         }
 
         return $name;
-    }
-
-    private static function schemaInformationAsArray(array $schemaInformation): array
-    {
-        if (isset($schemaInformation[Extractor::KEY_ID])) {
-            return [$schemaInformation[Extractor::KEY_ID]];
-        }
-
-        return array_map(
-            static fn (array $schema) => $schema[Extractor::KEY_ID],
-            $schemaInformation,
-        );
     }
 }

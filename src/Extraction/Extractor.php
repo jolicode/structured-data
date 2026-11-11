@@ -39,6 +39,8 @@ class Extractor
     /**
      * @param string $document the raw document to extract structured data from - never a
      *                         URL nor a file path: fetching those is the caller's responsibility
+     *
+     * @return array<JsonLdElement>
      */
     public function extract(string $document): array
     {

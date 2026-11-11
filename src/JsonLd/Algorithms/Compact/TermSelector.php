@@ -69,7 +69,7 @@ final class TermSelector
             $typeLanguage = Keyword::TYPE->value;
             $typeLanguageValue = Keyword::REVERSE->value;
             $containers[] = Keyword::SET->value;
-        } elseif (IriCompactor::isListObject($value)) {
+        } elseif ($value instanceof \stdClass && IriCompactor::isListObject($value)) {
             // 4.7
             // 4.7.1
             if (!property_exists($value, Keyword::INDEX->value)) {
@@ -84,7 +84,7 @@ final class TermSelector
             $commonLanguage = [] === $list ? $defaultLanguage : null;
 
             // 4.7.4
-            foreach ($list as $item) {
+            foreach ((array) $list as $item) {
                 // 4.7.4.1
                 $itemLanguage = Keyword::NONE->value;
                 $itemType = Keyword::NONE->value;
@@ -279,7 +279,7 @@ final class TermSelector
             $preferredValues[] = $typeLanguageValue;
             $preferredValues[] = Keyword::NONE->value;
 
-            if (IriCompactor::isListObject($value) && [] === $value->{Keyword::LIST->value}) {
+            if ($value instanceof \stdClass && IriCompactor::isListObject($value) && [] === $value->{Keyword::LIST->value}) {
                 $typeLanguage = InverseContextCreator::ANY;
             }
         }

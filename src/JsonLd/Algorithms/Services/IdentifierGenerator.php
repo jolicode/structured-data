@@ -11,8 +11,11 @@
 
 namespace JoliCode\StructuredData\JsonLd\Algorithms\Services;
 
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\JsonLdException;
+
 class IdentifierGenerator
 {
+    /** @var array<string, string> */
     private array $existing = [];
     private string $generalPrefix = '_:';
     private string $prefix = '_:b';
@@ -26,6 +29,10 @@ class IdentifierGenerator
      *      - a string with an existing identifier if the one provided already exists
      *      - a string with the original value if input is not a blank node identifier
      *      - an array of string identifiers if multiple identifiers are provided
+     *
+     * @param array<mixed>|string|null $identifier
+     *
+     * @return ($identifier is array ? list<string|array<mixed>> : string)
      */
     public function getIdentifier(array|string|null $identifier): string|array
     {
@@ -53,11 +60,20 @@ class IdentifierGenerator
         return $identifier;
     }
 
+    /**
+     * @param array<mixed> $identifiers
+     *
+     * @return list<string|array<mixed>>
+     */
     private function handleArrayIdentifier(array $identifiers): array
     {
         $newIdentifiers = [];
 
         foreach ($identifiers as $identifierEntry) {
+            if (null !== $identifierEntry && !\is_string($identifierEntry) && !\is_array($identifierEntry)) {
+                throw new JsonLdException('An identifier must be a string.');
+            }
+
             $newIdentifiers[] = $this->getIdentifier($identifierEntry);
         }
 

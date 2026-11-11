@@ -80,9 +80,7 @@ function check(): int
         io()->section('Manifest entries no longer discoverable from live docs');
 
         foreach ($report['stale_manifest_entries'] as $url => $entry) {
-            $status = $entry['status'] ?? 'active';
-
-            io()->writeln(\sprintf('- [%s] %s', \is_string($status) ? $status : 'active', $url));
+            io()->writeln(\sprintf('- [%s] %s', $entry['status'] ?? 'active', $url));
         }
     }
 

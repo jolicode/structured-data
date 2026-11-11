@@ -48,6 +48,8 @@ class Compactor
      * Recommendation published on July 16th, 2020.
      *
      * @see https://www.w3.org/TR/json-ld-api/#dom-jsonldprocessor-compact
+     *
+     * @return \stdClass|array<mixed>|string|false|null
      */
     public function compact(
         string|\stdClass $json,
@@ -81,6 +83,10 @@ class Compactor
             // valid JSON-LD) goes through its JSON representation.
             if (\is_array($element)) {
                 $element = (string) json_encode($element);
+            }
+
+            if (!\is_string($element) && !$element instanceof \stdClass) {
+                throw new JsonLdException('The JSON-LD document must be a map or an array.');
             }
 
             $expandedInput = $this->expander->expand($element, new ProcessorOptions(
@@ -218,6 +224,10 @@ class Compactor
             return $result;
         }
 
+        if (!$element instanceof \stdClass) {
+            throw new JsonLdException('The element to compact must be a map.');
+        }
+
         // 4: element is a map.
         // The property-scoped context of the active property is looked up in the
         // context as received (which may be type-scoped), while the revert below
@@ -333,7 +343,11 @@ class Compactor
                     $compactedValue = [];
 
                     // 12.2.2.1
-                    foreach ($expandedValue as $expandedType) {
+                    foreach ((array) $expandedValue as $expandedType) {
+                        if (!\is_string($expandedType)) {
+                            throw new JsonLdException('invalid @type value');
+                        }
+
                         // 12.2.2.2
                         $compactedValue[] = (string) $this->iriCompactor->compactIri($typeScopedContext, $expandedType, vocab: true);
                     }
@@ -469,16 +483,16 @@ class Compactor
                 // 12.8.5
                 $itemToCompact = $expandedItem;
 
-                if (IriCompactor::isListObject($expandedItem)) {
+                if ($expandedItem instanceof \stdClass && IriCompactor::isListObject($expandedItem)) {
                     $itemToCompact = $expandedItem->{Keyword::LIST->value};
-                } elseif (IriCompactor::isGraphObject($expandedItem)) {
+                } elseif ($expandedItem instanceof \stdClass && IriCompactor::isGraphObject($expandedItem)) {
                     $itemToCompact = $expandedItem->{Keyword::GRAPH->value};
                 }
 
                 $compactedItem = $this->doCompact($activeContext, $itemActiveProperty, $itemToCompact, $compactArrays, $ordered);
 
                 // 12.8.6
-                if (IriCompactor::isListObject($expandedItem)) {
+                if ($expandedItem instanceof \stdClass && IriCompactor::isListObject($expandedItem)) {
                     // 12.8.6.1
                     if (!\is_array($compactedItem)) {
                         $compactedItem = [$compactedItem];
@@ -507,7 +521,7 @@ class Compactor
                 }
 
                 // 12.8.7
-                if (IriCompactor::isGraphObject($expandedItem)) {
+                if ($expandedItem instanceof \stdClass && IriCompactor::isGraphObject($expandedItem)) {
                     ItemMapFiler::compactGraphItem($this->iriCompactor, $activeContext, $nestResult, $itemActiveProperty, $container, $expandedItem, $compactedItem, $asArray, $compactArrays);
 
                     continue;
@@ -517,6 +531,10 @@ class Compactor
                 $mapContainerKeyword = TermLookup::getMapContainerKeyword($container);
 
                 if (null !== $mapContainerKeyword && !\in_array(Keyword::GRAPH->value, $container, true)) {
+                    if (!$expandedItem instanceof \stdClass) {
+                        throw new JsonLdException('The items of a map container must be maps.');
+                    }
+
                     ItemMapFiler::compactMapItem($this, $this->iriCompactor, $activeContext, $nestResult, $itemActiveProperty, $mapContainerKeyword, $itemActivePropertyDefinition, $expandedItem, $compactedItem, $asArray);
 
                     continue;
