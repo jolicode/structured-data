@@ -40,6 +40,8 @@ class ContextProcessor
      * July 16th, 2020.
      *
      * see https://www.w3.org/TR/json-ld-api/#context-processing-algorithms
+     *
+     * @param list<string> $remoteContexts
      */
     public function processContext(
         Context $activeContext,
@@ -88,7 +90,7 @@ class ContextProcessor
         );
     }
 
-    public function extractContext(\stdClass|array $json): mixed
+    public function extractContext(mixed $json): mixed
     {
         if (\is_object($json) && property_exists($json, Keyword::CONTEXT->value)) {
             return $json->{Keyword::CONTEXT->value};
@@ -97,6 +99,10 @@ class ContextProcessor
         return null;
     }
 
+    /**
+     * @param array<mixed> $localContext
+     * @param list<string> $remoteContexts
+     */
     private function updateContext(
         Context $activeContext,
         array $localContext,
@@ -203,6 +209,9 @@ class ContextProcessor
         return $result;
     }
 
+    /**
+     * @param list<string> $remoteContexts
+     */
     private function handleStringContext(
         Context &$result,
         string $context,

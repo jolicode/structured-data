@@ -26,6 +26,11 @@ use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
  */
 final class KeywordValueExpander
 {
+    /**
+     * @param array<mixed> $expandedValue
+     *
+     * @return array<mixed>|string|null
+     */
     public static function processIdKeyword(
         Context $activeContext,
         mixed $value,
@@ -43,9 +48,17 @@ final class KeywordValueExpander
 
             foreach ($valueEntries as $valueEntry) {
                 // An empty map is the wildcard @id pattern and is kept as is.
-                $expandedValue[] = $valueEntry instanceof \stdClass
-                    ? $valueEntry
-                    : IriResolver::expand($activeContext, $valueEntry, true, false);
+                if ($valueEntry instanceof \stdClass) {
+                    $expandedValue[] = $valueEntry;
+
+                    continue;
+                }
+
+                if (!\is_string($valueEntry)) {
+                    throw new ExpansionException('invalid @id value');
+                }
+
+                $expandedValue[] = IriResolver::expand($activeContext, $valueEntry, true, false);
             }
         } else {
             $expandedValue = IriResolver::expand($activeContext, $value, true, false);
@@ -54,6 +67,10 @@ final class KeywordValueExpander
         return $expandedValue;
     }
 
+    /**
+     * @param array<string, mixed> $result
+     * @param array<mixed>         $expandedValue
+     */
     public static function processTypeKeyword(
         Context $typeScopedContext,
         array &$result,
@@ -69,15 +86,21 @@ final class KeywordValueExpander
             $expandedValue = $value;
         // 13.4.4.3
         } elseif (\is_object($value) && property_exists($value, FramingKeyword::DEFAULT->value)) {
+            $defaultValue = $value->{FramingKeyword::DEFAULT->value};
+
+            if (!\is_string($defaultValue)) {
+                throw new ExpansionException('invalid type value');
+            }
+
             $expandedValue = new \stdClass();
-            $expandedValue->{FramingKeyword::DEFAULT->value} = IriResolver::expand(
-                $typeScopedContext,
-                $value->{FramingKeyword::DEFAULT->value},
-                true,
-            );
+            $expandedValue->{FramingKeyword::DEFAULT->value} = IriResolver::expand($typeScopedContext, $defaultValue, true);
         // 13.4.4.4
         } else {
             foreach ((array) $value as $valueEntry) {
+                if (!\is_string($valueEntry)) {
+                    throw new ExpansionException('invalid type value');
+                }
+
                 $expandedValue[] = IriResolver::expand($typeScopedContext, $valueEntry, true);
             }
         }
@@ -100,6 +123,11 @@ final class KeywordValueExpander
         return $expandedValue;
     }
 
+    /**
+     * @param array<string, mixed>   $result
+     * @param array<string, ?string> $inputType
+     * @param array<mixed>           $expandedValue
+     */
     public static function processValueKeyword(
         Context $activeContext,
         mixed $value,

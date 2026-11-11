@@ -40,6 +40,8 @@ class IriResolver
      * July 16th, 2020.
      *
      * see https://www.w3.org/TR/json-ld-api/#iri-expansion
+     *
+     * @param array<string, bool> $defined
      */
     public static function expand(
         Context $activeContext,

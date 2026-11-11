@@ -31,6 +31,8 @@ use JoliCode\StructuredData\JsonLd\Algorithms\Services\IdentifierGenerator;
  * Framing W3C Recommendation published on July 16th, 2020.
  *
  * @see https://www.w3.org/TR/json-ld11-framing/#framing-algorithm
+ *
+ * @phpstan-import-type NodeMap from NodeMapGenerator
  */
 class Framer
 {
@@ -114,6 +116,8 @@ class Framer
      * on July 16th, 2020.
      *
      * @see https://www.w3.org/TR/json-ld11-framing/#dom-jsonldprocessor-frame
+     *
+     * @return \stdClass|array<mixed>|string|false|null
      */
     public function frame(
         string|\stdClass $json,
@@ -158,6 +162,10 @@ class Framer
         // Expand the input.
         if (\is_array($element)) {
             $element = (string) json_encode($element);
+        }
+
+        if (!\is_string($element) && !$element instanceof \stdClass) {
+            throw new JsonLdException('The JSON-LD document must be a map or an array.');
         }
 
         $expandedInput = $this->expander->expand($element, new ProcessorOptions(
@@ -206,6 +214,10 @@ class Framer
 
         $compacted = FrameOutputCleaner::cleanupNull($compacted);
 
+        if (!$compacted instanceof \stdClass && !\is_array($compacted)) {
+            throw new JsonLdException('The framing result must be a map or an array.');
+        }
+
         if ($encodeResult) {
             return json_encode($compacted, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES);
         }
@@ -218,7 +230,7 @@ class Framer
      *
      * @param array<int, array<string, mixed>> $expandedFrame
      *
-     * @return array<int, array<string, mixed>>
+     * @return list<mixed>
      */
     private function frameMergedOrDefault(
         mixed $expandedInput,
@@ -238,17 +250,21 @@ class Framer
         $this->frameOptions['ordered'] = $options->ordered;
 
         // Build a map of all graphs, naming each blank node.
+        /** @var NodeMap $nodeMap */
         $nodeMap = [FramingKeyword::DEFAULT->value => []];
         (new NodeMapGenerator(new IdentifierGenerator()))->buildNode($expandedInput, $nodeMap);
 
-        /* @var array<string, array<string, array<string, mixed>>> $nodeMap */
-        $this->graphMap = array_map(
-            static fn (?array $graph): array => array_map(
-                static fn (mixed $node): mixed => FrameData::convertToArrays($node),
-                $graph ?? [],
-            ),
-            $nodeMap,
-        );
+        $graphMap = [];
+
+        foreach ($nodeMap as $graphName => $graph) {
+            $graphMap[$graphName] = [];
+
+            foreach ($graph ?? [] as $id => $node) {
+                $graphMap[$graphName][$id] = FrameData::nodeToArrays($node);
+            }
+        }
+
+        $this->graphMap = $graphMap;
 
         if ($merged) {
             $this->graphMap['@merged'] = FrameData::mergeNodeMapGraphs($this->graphMap);
@@ -271,7 +287,7 @@ class Framer
 
         $cleaned = FrameOutputCleaner::cleanupPreserve($framed, $this->bnodesToClear);
 
-        return \is_array($cleaned) ? $cleaned : [$cleaned];
+        return \is_array($cleaned) ? array_values($cleaned) : [$cleaned];
     }
 
     /**
@@ -379,7 +395,7 @@ class Framer
                 if (!\array_key_exists(Keyword::GRAPH->value, $frameObject)) {
                     $recurse = '@merged' !== $this->graph;
                 } else {
-                    $graphSubframe = $frameObject[Keyword::GRAPH->value][0] ?? [];
+                    $graphSubframe = FrameData::firstEntry($frameObject[Keyword::GRAPH->value]) ?? [];
                     $subframe = [\is_array($graphSubframe) && !array_is_list($graphSubframe) ? $graphSubframe : []];
                     $recurse = !\in_array($id, ['@merged', FramingKeyword::DEFAULT->value], true);
                 }
@@ -391,7 +407,7 @@ class Framer
 
             // If the frame has @included, recurse over its subframe.
             if (\array_key_exists(Keyword::INCLUDED->value, $frameObject)) {
-                $this->frameEmbedded(false, $subjects, $frameObject[Keyword::INCLUDED->value], $output, Keyword::INCLUDED->value);
+                $this->frameEmbedded(false, $subjects, FrameData::asFrameList($frameObject[Keyword::INCLUDED->value]), $output, Keyword::INCLUDED->value);
             }
 
             // Iterate over the subject properties.
@@ -404,7 +420,7 @@ class Framer
                     $output[$subjectProperty] = $subject[$subjectProperty];
 
                     if (Keyword::TYPE->value === $subjectProperty) {
-                        foreach ($subject[Keyword::TYPE->value] as $type) {
+                        foreach ((array) $subject[Keyword::TYPE->value] as $type) {
                             if (\is_string($type) && str_starts_with($type, '_:')) {
                                 $this->bnodeMap[$type] = ($this->bnodeMap[$type] ?? 0) + 1;
                             }
@@ -419,31 +435,33 @@ class Framer
                     continue;
                 }
 
-                foreach ($subject[$subjectProperty] as $item) {
+                foreach ((array) $subject[$subjectProperty] as $item) {
                     $subframe = \array_key_exists($subjectProperty, $frameObject)
-                        ? $frameObject[$subjectProperty]
+                        ? FrameData::asFrameList($frameObject[$subjectProperty])
                         : FrameMatcher::createImplicitFrame($flags);
 
                     if (\is_array($item) && \array_key_exists(Keyword::LIST->value, $item)) {
                         // Lists are framed item by item.
-                        $firstSubframe = $frameObject[$subjectProperty][0] ?? null;
+                        $firstSubframe = FrameData::firstEntry($frameObject[$subjectProperty] ?? null);
                         $listSubframe = \is_array($firstSubframe) && \array_key_exists(Keyword::LIST->value, $firstSubframe)
-                            ? $firstSubframe[Keyword::LIST->value]
+                            ? FrameData::asFrameList($firstSubframe[Keyword::LIST->value])
                             : FrameMatcher::createImplicitFrame($flags);
 
                         $list = [Keyword::LIST->value => []];
 
-                        foreach ($item[Keyword::LIST->value] as $listItem) {
-                            if (FrameMatcher::isSubjectReference($listItem)) {
-                                $this->frameEmbedded(true, [$listItem[Keyword::ID->value]], $listSubframe, $list, Keyword::LIST->value);
+                        foreach ((array) $item[Keyword::LIST->value] as $listItem) {
+                            $referenceId = FrameMatcher::subjectReferenceId($listItem);
+
+                            if (null !== $referenceId) {
+                                $this->frameEmbedded(true, [$referenceId], $listSubframe, $list, Keyword::LIST->value);
                             } else {
                                 FrameData::addFrameOutput($list, Keyword::LIST->value, $listItem);
                             }
                         }
 
                         FrameData::addFrameOutput($output, $subjectProperty, $list);
-                    } elseif (FrameMatcher::isSubjectReference($item)) {
-                        $this->frameEmbedded(true, [$item[Keyword::ID->value]], $subframe, $output, $subjectProperty);
+                    } elseif (null !== ($referenceId = FrameMatcher::subjectReferenceId($item))) {
+                        $this->frameEmbedded(true, [$referenceId], $subframe, $output, $subjectProperty);
                     } elseif (FrameMatcher::valueMatch($subframe[0] ?? [], $item)) {
                         FrameData::addFrameOutput($output, $subjectProperty, $item);
                     }
@@ -458,7 +476,7 @@ class Framer
                 if (Keyword::TYPE->value === $frameProperty) {
                     // A default object on @type passes through; any other @type frame
                     // entry is only used for matching.
-                    $typeFrame = $frameObject[Keyword::TYPE->value][0] ?? null;
+                    $typeFrame = FrameData::firstEntry($frameObject[Keyword::TYPE->value]);
 
                     if (!\is_array($typeFrame) || !\array_key_exists('@default', $typeFrame)) {
                         continue;
@@ -467,7 +485,7 @@ class Framer
                     continue;
                 }
 
-                $next = $frameObject[$frameProperty][0] ?? [];
+                $next = FrameData::firstEntry($frameObject[$frameProperty]) ?? [];
                 $omitDefaultOn = $this->getFrameFlag(\is_array($next) ? $next : [], 'omitDefault');
 
                 if (!$omitDefaultOn && !\array_key_exists($frameProperty, $output)) {
@@ -484,16 +502,28 @@ class Framer
             }
 
             // Embed reverse values, finding the nodes referencing this subject.
-            foreach (array_keys($frameObject[Keyword::REVERSE->value] ?? []) as $reverseProperty) {
-                $subframe = $frameObject[Keyword::REVERSE->value][$reverseProperty];
+            $reverseFrame = $frameObject[Keyword::REVERSE->value] ?? [];
+
+            foreach (\is_array($reverseFrame) ? $reverseFrame : [] as $reverseProperty => $reverseSubframe) {
+                $reverseProperty = (string) $reverseProperty;
+                $subframe = FrameData::asFrameList($reverseSubframe);
 
                 foreach ($this->subjects as $subjectName => $subjectNode) {
                     $nodeValues = $subjectNode[$reverseProperty] ?? [];
 
-                    foreach ($nodeValues as $nodeValue) {
+                    foreach ((array) $nodeValues as $nodeValue) {
                         if (\is_array($nodeValue) && ($nodeValue[Keyword::ID->value] ?? null) === $id) {
-                            $output[Keyword::REVERSE->value] ??= [];
-                            $output[Keyword::REVERSE->value][$reverseProperty] ??= [];
+                            // The embedded output is passed by reference on purpose: the
+                            // unique embeds map keeps a reference to it so that a later
+                            // "@last" embed can replace it with a subject reference.
+                            if (!\is_array($output[Keyword::REVERSE->value] ?? null)) {
+                                $output[Keyword::REVERSE->value] = [];
+                            }
+
+                            if (!\is_array($output[Keyword::REVERSE->value][$reverseProperty] ?? null)) {
+                                $output[Keyword::REVERSE->value][$reverseProperty] = [];
+                            }
+
                             $this->frameEmbedded(true, [$subjectName], $subframe, $output[Keyword::REVERSE->value][$reverseProperty], $property);
 
                             break;
@@ -629,23 +659,30 @@ class Framer
     {
         $embed = $this->uniqueEmbeds[$this->graph][$id];
         $property = $embed['property'];
+        // The parent entry is a reference to the output the node was embedded in:
+        // assigning it below replaces the embedded node in that output.
+        $parent = $embed['parent'];
 
         $subjectReference = [Keyword::ID->value => $id];
 
-        if (null !== $property && \is_array($embed['parent']) && !array_is_list($embed['parent'])) {
-            $values = $embed['parent'][$property] ?? [];
+        if (null !== $property && \is_array($parent) && !array_is_list($parent)) {
+            $values = $parent[$property] ?? [];
+            $values = \is_array($values) ? $values : [];
 
             foreach ($values as $index => $value) {
-                if (($value[Keyword::ID->value] ?? null) === $id) {
-                    $embed['parent'][$property][$index] = $subjectReference;
+                if (\is_array($value) && ($value[Keyword::ID->value] ?? null) === $id) {
+                    $values[$index] = $subjectReference;
+                    $parent[$property] = $values;
+                    $embed['parent'] = $parent;
 
                     break;
                 }
             }
-        } elseif (\is_array($embed['parent'])) {
-            foreach ($embed['parent'] as $index => $value) {
-                if (($value[Keyword::ID->value] ?? null) === $id) {
-                    $embed['parent'][$index] = $subjectReference;
+        } elseif (\is_array($parent)) {
+            foreach ($parent as $index => $value) {
+                if (\is_array($value) && ($value[Keyword::ID->value] ?? null) === $id) {
+                    $parent[$index] = $subjectReference;
+                    $embed['parent'] = $parent;
 
                     break;
                 }

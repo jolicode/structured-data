@@ -52,6 +52,8 @@ class Expander
      * @param bool             $encodeResult Whether to encode the result as a JSON string or not.
      *
      * see https://www.w3.org/TR/json-ld11/#expansion-algorithm
+     *
+     * @return \stdClass|array<mixed>|string|false|null
      */
     public function expand(
         string|\stdClass $json,
@@ -104,6 +106,8 @@ class Expander
      * July 16th, 2020.
      *
      * see https://www.w3.org/TR/json-ld-api/#expansion-algorithm
+     *
+     * @return \stdClass|list<mixed>|null
      */
     public function doExpand(
         mixed $element,
@@ -249,7 +253,7 @@ class Expander
         }
 
         // 20
-        return \is_array($result) ? $result : [$result];
+        return \is_array($result) ? array_values($result) : [$result];
     }
 
     /**
@@ -326,7 +330,10 @@ class Expander
     }
 
     /**
-     * @param TermDefinition[] $activeDefinitions
+     * @param array<string, mixed>|\stdClass $result
+     * @param list<string>                   $nests
+     * @param array<string, ?string>         $inputType
+     * @param array<string, TermDefinition>  $activeDefinitions
      */
     private function processElementEntries(
         mixed $element,
@@ -387,7 +394,7 @@ class Expander
                     throw new ExpansionException('invalid reverse property map');
                 }
 
-                $result = (array) $result;
+                $result = self::resultAsArray($result);
                 $expandedValue = [];
 
                 // 13.4.2
@@ -465,7 +472,7 @@ class Expander
                         continue 2;
                     case Keyword::NEST->value:
                         // 13.4.14
-                        $nests[] = $key ?: [];
+                        $nests[] = (string) $key;
 
                         continue 2;
                 }
@@ -604,7 +611,7 @@ class Expander
                 $expandedValue = $graphExpandedValue;
             }
 
-            $result = (array) $result;
+            $result = self::resultAsArray($result);
 
             // 13.13
             if (\array_key_exists($key, $activeDefinitions) && $activeDefinitions[$key]->reverseProperty) {
@@ -616,6 +623,11 @@ class Expander
         }
     }
 
+    /**
+     * @param array<mixed> $expandedValue
+     *
+     * @return array<mixed>
+     */
     private function processGraphKeyword(
         Context $activeContext,
         mixed $value,
@@ -644,6 +656,12 @@ class Expander
         return $expandedValue;
     }
 
+    /**
+     * @param array<string, mixed> $result
+     * @param array<mixed>         $expandedValue
+     *
+     * @return array<mixed>
+     */
     private function processIncludedKeyword(
         Context $activeContext,
         mixed $value,
@@ -679,13 +697,18 @@ class Expander
 
             // 13.4.6.4
             if (\array_key_exists(Keyword::INCLUDED->value, $result)) {
-                $expandedValue = [...$result[Keyword::INCLUDED->value], ...$expandedValue];
+                $expandedValue = [...(array) $result[Keyword::INCLUDED->value], ...$expandedValue];
             }
         }
 
         return $expandedValue;
     }
 
+    /**
+     * @param array<mixed> $expandedValue
+     *
+     * @return array<mixed>
+     */
     private function processListKeyword(
         Context $activeContext,
         ?string $activeProperty,
@@ -722,14 +745,17 @@ class Expander
         return $expandedValue;
     }
 
+    /**
+     * @param array<string, mixed> $result
+     */
     private function processReverseKeyword(
         Context $activeContext,
         mixed $value,
-        mixed &$result,
-        ?string $expandedProperty,
+        array &$result,
+        string $expandedProperty,
         ?string $baseUrl,
         ProcessorOptions $options,
-    ): mixed {
+    ): \stdClass {
         // 13.4.13.1
         if (!\is_object($value)) {
             throw new ExpansionException('invalid @reverse value');
@@ -745,14 +771,24 @@ class Expander
         );
 
         if (\is_array($expandedValue)) {
-            $expandedValue = $expandedValue[0];
+            $expandedValue = $expandedValue[0] ?? null;
+        }
+
+        if (!$expandedValue instanceof \stdClass) {
+            throw new ExpansionException('invalid @reverse value');
         }
 
         // 13.4.13.3
         if (property_exists($expandedValue, Keyword::REVERSE->value)) {
+            $reverseEntries = $expandedValue->{Keyword::REVERSE->value};
+
+            if (!$reverseEntries instanceof \stdClass) {
+                throw new ExpansionException('invalid @reverse value');
+            }
+
             // 13.4.13.3.1
-            foreach ($expandedValue->{Keyword::REVERSE->value} as $property => $item) {
-                $result = ValueAdder::addValue($item, $property, $result, true);
+            foreach (get_object_vars($reverseEntries) as $property => $item) {
+                $result = self::resultAsArray(ValueAdder::addValue($item, $property, $result, true));
             }
         }
 
@@ -761,14 +797,18 @@ class Expander
             // 13.4.13.4.1
             $reverseMap = $result[Keyword::REVERSE->value] ?? new \stdClass();
 
+            if (!$reverseMap instanceof \stdClass) {
+                throw new ExpansionException('invalid @reverse value');
+            }
+
             // 13.4.13.4.2
-            foreach ($expandedValue as $property => $items) {
+            foreach (get_object_vars($expandedValue) as $property => $items) {
                 if (Keyword::REVERSE->value === $property) {
                     continue;
                 }
 
                 // 13.4.13.4.2.1
-                foreach ($items as $item) {
+                foreach ((array) $items as $item) {
                     // 13.4.13.4.2.1.1
                     if (ExpandedObjectShape::isValueObject($item) || ExpandedObjectShape::isListObject($item)) {
                         throw new ExpansionException('invalid @reverse property value');
@@ -785,6 +825,9 @@ class Expander
         return $expandedValue;
     }
 
+    /**
+     * @return list<\stdClass>
+     */
     private function processLanguageContainerMapping(
         Context $activeContext,
         TermDefinition $keyDefinition,
@@ -846,6 +889,11 @@ class Expander
         return $expandedValue;
     }
 
+    /**
+     * @param list<string> $containerMapping
+     *
+     * @return list<mixed>
+     */
     private function processContainerMapping(
         Context $activeContext,
         TermDefinition $keyDefinition,
@@ -994,6 +1042,10 @@ class Expander
         return $expandedValue;
     }
 
+    /**
+     * @param array<string, mixed>   $result
+     * @param \stdClass|array<mixed> $expandedValue
+     */
     private function processReverseProperty(
         array &$result,
         string $expandedProperty,
@@ -1006,6 +1058,10 @@ class Expander
 
         // 13.13.2
         $reverseMap = $result[Keyword::REVERSE->value];
+
+        if (!$reverseMap instanceof \stdClass) {
+            throw new ExpansionException('invalid reverse property map');
+        }
 
         // 13.13.3
         if (!\is_array($expandedValue)) {
@@ -1029,6 +1085,12 @@ class Expander
         }
     }
 
+    /**
+     * @param array<string, mixed>|\stdClass $result
+     * @param list<string>                   $nests
+     * @param array<string, ?string>         $inputType
+     * @param array<string, TermDefinition>  $activeDefinitions
+     */
     private function processNestEntries(
         mixed $element,
         Context $activeContext,
@@ -1132,6 +1194,11 @@ class Expander
         return $this->expandValue($activeContext, $activeProperty, $element);
     }
 
+    /**
+     * @param array<mixed> $element
+     *
+     * @return list<mixed>
+     */
     private function handleArrayElement(
         Context $activeContext,
         array $element,
@@ -1212,6 +1279,22 @@ class Expander
         return $activeContext;
     }
 
+    /**
+     * The expansion result is built as an array and only turned into a map once
+     * every entry has been processed.
+     *
+     * @param array<string, mixed>|\stdClass $result
+     *
+     * @return array<string, mixed>
+     */
+    private static function resultAsArray(array|\stdClass $result): array
+    {
+        return \is_array($result) ? $result : get_object_vars($result);
+    }
+
+    /**
+     * @param array<string, ?string> $inputType
+     */
     private function handleTypeEntries(Context &$activeContext, \stdClass $element, Context $typeScopedContext, array &$inputType, ProcessorOptions $options): void
     {
         foreach ($element as $key => $value) {

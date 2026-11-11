@@ -19,10 +19,13 @@ namespace JoliCode\StructuredData\JsonLd\Algorithms\Services;
  */
 class DataStructureComparator
 {
+    /**
+     * @param array<mixed> $array
+     */
     public static function objectAlreadyInArray(\stdClass $object, array $array): bool
     {
         foreach ($array as $arrayObject) {
-            if (self::objectsHaveSameProperties($object, $arrayObject)) {
+            if ($arrayObject instanceof \stdClass && self::objectsHaveSameProperties($object, $arrayObject)) {
                 return true;
             }
         }

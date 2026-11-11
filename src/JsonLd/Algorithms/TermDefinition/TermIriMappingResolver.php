@@ -26,13 +26,15 @@ final class TermIriMappingResolver
 {
     /**
      * This method should interrupt the process if the term should be ignored.
+     *
+     * @param array<string, bool> $defined
      */
     public static function setReverseDefinition(
         Context $activeContext,
         TermDefinitionDraft $definition,
         \stdClass $localContext,
         string $term,
-        mixed $value,
+        \stdClass $value,
         array $defined,
     ): bool {
         // 13.1
@@ -68,15 +70,19 @@ final class TermIriMappingResolver
 
         // 13.5
         if (property_exists($value, Keyword::CONTAINER->value)) {
+            $container = $value->{Keyword::CONTAINER->value};
+
             if (
-                null !== $value->{Keyword::CONTAINER->value}
-                && $value->{Keyword::CONTAINER->value} !== Keyword::SET->value
-                && $value->{Keyword::CONTAINER->value} !== Keyword::INDEX->value
+                null !== $container
+                && Keyword::SET->value !== $container
+                && Keyword::INDEX->value !== $container
             ) {
                 throw new TermDefinitionCreationException('invalid reverse property');
             }
 
-            $definition->containerMapping = [$value->{Keyword::CONTAINER->value}];
+            if (null !== $container) {
+                $definition->containerMapping = [$container];
+            }
         }
 
         // 13.6
@@ -88,11 +94,14 @@ final class TermIriMappingResolver
         return false;
     }
 
+    /**
+     * @param array<string, bool> $defined
+     */
     public static function handleIdValue(
         Context $activeContext,
         TermDefinitionDraft $definition,
         string $term,
-        mixed $value,
+        \stdClass $value,
         \stdClass $localContext,
         array $defined,
         bool $simpleTerm,
@@ -186,6 +195,9 @@ final class TermIriMappingResolver
             && '$' !== $value[$position + 1];
     }
 
+    /**
+     * @param array<string, bool> $defined
+     */
     public static function handleTermWithColons(
         Context $activeContext,
         TermDefinitionDraft $definition,

@@ -40,6 +40,9 @@ class TermDefinitionCreator
      * July 16th, 2020.
      *
      * see https://www.w3.org/TR/json-ld-api/#create-term-definition
+     *
+     * @param array<string, bool> $defined
+     * @param list<string>        $remoteContexts
      */
     public static function create(
         Context $activeContext,
@@ -250,11 +253,14 @@ class TermDefinitionCreator
         return false;
     }
 
+    /**
+     * @param array<string, bool> $defined
+     */
     private static function setTypeMapping(
         Context $activeContext,
         TermDefinitionDraft $definition,
         \stdClass $localContext,
-        mixed $value,
+        \stdClass $value,
         array $defined,
     ): void {
         // 12.1

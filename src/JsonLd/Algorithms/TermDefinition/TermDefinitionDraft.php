@@ -20,6 +20,7 @@ final class TermDefinitionDraft
         public ?string $iriMapping = null,
         public ?string $baseUrl = null,
         public mixed $context = false,
+        /** @var list<string>|null */
         public ?array $containerMapping = null,
         public string|false|null $directionMapping = false,
         public ?string $indexMapping = null,

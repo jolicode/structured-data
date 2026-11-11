@@ -40,6 +40,7 @@ final class ContextCache
     /** @var array<string, Context> */
     private static array $processedRemoteContexts = [];
 
+    /** @var \stdClass|array<mixed>|string|null */
     private static \stdClass|array|string|null $schemaOrgContext = null;
 
     /**
@@ -82,6 +83,9 @@ final class ContextCache
         return $resolvedContext;
     }
 
+    /**
+     * @param list<string> $remoteContexts
+     */
     public function getProcessedRemoteContext(Context $context, string $resolvedContext, bool $validateScopedContext, array $remoteContexts): ?Context
     {
         if (!$this->isCacheableRemoteContextProcessing($context, $validateScopedContext, $remoteContexts)) {
@@ -112,6 +116,9 @@ final class ContextCache
         return ContextCloner::duplicate($processedContext);
     }
 
+    /**
+     * @param list<string> $remoteContexts
+     */
     public function storeProcessedRemoteContext(Context $context, string $resolvedContext, bool $validateScopedContext, array $remoteContexts, Context $processedContext): void
     {
         if (!$this->isCacheableRemoteContextProcessing($context, $validateScopedContext, $remoteContexts)) {
@@ -123,6 +130,9 @@ final class ContextCache
         self::evictLeastRecentlyUsedProcessedContexts();
     }
 
+    /**
+     * @return \stdClass|array<mixed>|string|null
+     */
     public function loadRemoteContext(string $url): \stdClass|array|string|null
     {
         if (\array_key_exists($url, $this->alreadyLoadedDocuments)) {
@@ -132,6 +142,11 @@ final class ContextCache
         if (self::SCHEMA_ORG_CANONICAL_URL === $url) {
             if (null === self::$schemaOrgContext) {
                 $document = json_decode((string) file_get_contents(self::SCHEMA_ORG_LOCAL_FILE));
+
+                if (!$document instanceof \stdClass || !property_exists($document, Keyword::CONTEXT->value)) {
+                    throw new ContextProcessingException('invalid remote context');
+                }
+
                 self::$schemaOrgContext = $document->{Keyword::CONTEXT->value};
             }
 
@@ -154,6 +169,9 @@ final class ContextCache
         return $loadedContext;
     }
 
+    /**
+     * @param list<string> $remoteContexts
+     */
     private function isCacheableRemoteContextProcessing(Context $context, bool $validateScopedContext, array $remoteContexts): bool
     {
         if (!$validateScopedContext || 1 !== \count($remoteContexts)) {

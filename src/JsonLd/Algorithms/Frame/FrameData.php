@@ -43,9 +43,13 @@ final class FrameData
                         continue;
                     }
 
+                    $mergedValues = $merged[$id][$nodeProperty] ?? [];
+                    $mergedValues = \is_array($mergedValues) ? $mergedValues : [$mergedValues];
+
                     foreach ((array) $values as $value) {
-                        if (!\in_array($value, $merged[$id][$nodeProperty] ?? [], true)) {
-                            $merged[$id][$nodeProperty][] = $value;
+                        if (!\in_array($value, $mergedValues, true)) {
+                            $mergedValues[] = $value;
+                            $merged[$id][$nodeProperty] = $mergedValues;
                         }
                     }
                 }
@@ -61,13 +65,54 @@ final class FrameData
     public static function addFrameOutput(array &$parent, ?string $property, mixed $output): void
     {
         if (null !== $property) {
-            $parent[$property] ??= [];
-            $parent[$property][] = $output;
+            $values = $parent[$property] ?? [];
+            $values = \is_array($values) ? $values : [$values];
+            $values[] = $output;
+            $parent[$property] = $values;
 
             return;
         }
 
         $parent[] = $output;
+    }
+
+    /**
+     * The first entry of a frame value, which is always a list of frame objects.
+     */
+    public static function firstEntry(mixed $value): mixed
+    {
+        return \is_array($value) ? ($value[0] ?? null) : null;
+    }
+
+    /**
+     * Normalizes a frame value into a list of frame objects: a frame entry may be
+     * written as a single map instead of an array of maps.
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public static function asFrameList(mixed $value): array
+    {
+        if (!\is_array($value)) {
+            return [[]];
+        }
+
+        $frames = [];
+
+        foreach (array_is_list($value) ? $value : [$value] as $frame) {
+            $frames[] = \is_array($frame) ? $frame : [];
+        }
+
+        return [] === $frames ? [[]] : $frames;
+    }
+
+    /**
+     * @param array<string, mixed> $node
+     *
+     * @return array<string, mixed>
+     */
+    public static function nodeToArrays(array $node): array
+    {
+        return array_map(static fn (mixed $value): mixed => self::convertToArrays($value), $node);
     }
 
     /**

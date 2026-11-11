@@ -27,6 +27,9 @@ use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
  */
 final class TermDefinitionEntryHandler
 {
+    /**
+     * @param string|array<mixed> $container
+     */
     public static function validateContainerEntry(string|array $container): bool
     {
         $keywords = [
@@ -39,28 +42,32 @@ final class TermDefinitionEntryHandler
             Keyword::TYPE->value,
         ];
 
-        if (\is_string($container) && \in_array($container, $keywords, true)) {
+        if (\is_string($container)) {
+            return \in_array($container, $keywords, true);
+        }
+
+        $entries = self::containerEntries($container);
+
+        if (null === $entries) {
+            return false;
+        }
+
+        if (1 === \count($entries) && \in_array($entries[0], $keywords, true)) {
             return true;
         }
 
-        if (\is_array($container)) {
-            if (1 === \count($container) && \in_array($container[0], $keywords, true)) {
+        if (\in_array(Keyword::GRAPH->value, $entries, true)) {
+            if (\count(array_intersect([Keyword::ID->value, Keyword::INDEX->value], $entries))) {
                 return true;
             }
+        }
 
-            if (\in_array(Keyword::GRAPH->value, $container, true)) {
-                if (\count(array_intersect([Keyword::ID->value, Keyword::INDEX->value], $container))) {
-                    return true;
-                }
-            }
-
-            if (\in_array(Keyword::SET->value, $container, true)) {
-                if (\count(array_intersect(
-                    [Keyword::INDEX->value, Keyword::GRAPH->value, Keyword::ID->value, Keyword::TYPE->value, Keyword::LANGUAGE->value],
-                    $container,
-                ))) {
-                    return true;
-                }
+        if (\in_array(Keyword::SET->value, $entries, true)) {
+            if (\count(array_intersect(
+                [Keyword::INDEX->value, Keyword::GRAPH->value, Keyword::ID->value, Keyword::TYPE->value, Keyword::LANGUAGE->value],
+                $entries,
+            ))) {
+                return true;
             }
         }
 
@@ -70,11 +77,15 @@ final class TermDefinitionEntryHandler
     public static function handleContainerValue(
         Context $activeContext,
         TermDefinitionDraft $definition,
-        mixed $value,
+        \stdClass $value,
     ): void {
         $container = $value->{Keyword::CONTAINER->value};
 
         // 19.1
+        if (!\is_string($container) && !\is_array($container)) {
+            throw new TermDefinitionCreationException('invalid container mapping');
+        }
+
         if (!self::validateContainerEntry($container)) {
             throw new TermDefinitionCreationException('invalid container mapping');
         }
@@ -96,10 +107,16 @@ final class TermDefinitionEntryHandler
         }
 
         // 19.4
-        $definition->containerMapping = (array) $container;
+        $containerMapping = self::containerEntries($container);
+
+        if (null === $containerMapping) {
+            throw new TermDefinitionCreationException('invalid container mapping');
+        }
+
+        $definition->containerMapping = $containerMapping;
 
         // 19.5
-        if (\in_array(Keyword::TYPE->value, $definition->containerMapping, true)) {
+        if (\in_array(Keyword::TYPE->value, $containerMapping, true)) {
             if (!$definition->typeMapping) {
                 $definition->typeMapping = Keyword::ID->value;
             }
@@ -113,13 +130,15 @@ final class TermDefinitionEntryHandler
     public static function handleIndexValue(
         Context $activeContext,
         TermDefinitionDraft $definition,
-        mixed $value,
+        \stdClass $value,
     ): void {
         // 20.1
+        $containerMapping = $definition->containerMapping;
+
         if (
             Context::PROCESSING_MODE_10 === $activeContext->processingMode
-            || !$definition->containerMapping
-            || !\in_array(Keyword::INDEX->value, $definition->containerMapping, true)
+            || null === $containerMapping
+            || !\in_array(Keyword::INDEX->value, $containerMapping, true)
         ) {
             throw new TermDefinitionCreationException('invalid term definition');
         }
@@ -142,11 +161,14 @@ final class TermDefinitionEntryHandler
         $definition->indexMapping = $index;
     }
 
+    /**
+     * @param list<string> $remoteContexts
+     */
     public static function handleContextValue(
         Context $activeContext,
         \stdClass $localContext,
         TermDefinitionDraft $definition,
-        mixed $value,
+        \stdClass $value,
         ?string $baseUrl,
         array &$remoteContexts,
         ?ContextCache $cache = null,
@@ -183,7 +205,7 @@ final class TermDefinitionEntryHandler
 
     public static function handleLanguageValue(
         TermDefinitionDraft $definition,
-        mixed $value,
+        \stdClass $value,
     ): void {
         // 22.1
         $language = $value->{Keyword::LANGUAGE->value};
@@ -198,7 +220,7 @@ final class TermDefinitionEntryHandler
 
     public static function handleDirectionValue(
         TermDefinitionDraft $definition,
-        mixed $value,
+        \stdClass $value,
     ): void {
         // 23.1
         $direction = $value->{Keyword::DIRECTION->value};
@@ -218,7 +240,7 @@ final class TermDefinitionEntryHandler
     public static function handleNestValue(
         Context $activeContext,
         TermDefinitionDraft $definition,
-        mixed $value,
+        \stdClass $value,
     ): void {
         // 24.1
         if (Context::PROCESSING_MODE_10 === $activeContext->processingMode) {
@@ -240,7 +262,7 @@ final class TermDefinitionEntryHandler
         Context $activeContext,
         TermDefinitionDraft $definition,
         string $term,
-        mixed $value,
+        \stdClass $value,
     ): void {
         // 25.1
         if (
@@ -263,5 +285,32 @@ final class TermDefinitionEntryHandler
         if ($definition->prefixFlag && null !== $definition->iriMapping && Keyword::tryFrom($definition->iriMapping)) {
             throw new TermDefinitionCreationException('invalid term definition');
         }
+    }
+
+    /**
+     * Normalizes a container entry into the list of its keywords, or null when
+     * one of its entries is not a string.
+     *
+     * @param string|array<mixed> $container
+     *
+     * @return list<string>|null
+     */
+    private static function containerEntries(string|array $container): ?array
+    {
+        if (\is_string($container)) {
+            return [$container];
+        }
+
+        $entries = [];
+
+        foreach ($container as $entry) {
+            if (!\is_string($entry)) {
+                return null;
+            }
+
+            $entries[] = $entry;
+        }
+
+        return $entries;
     }
 }
