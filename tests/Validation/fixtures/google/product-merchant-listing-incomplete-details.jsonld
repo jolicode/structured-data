@@ -1,0 +1,34 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Basic Tee",
+    "image": "https://example.com/basic-tee.jpg",
+    "category": {
+        "@type": "CategoryCode",
+        "inCodeSet": "https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt"
+    },
+    "hasCertification": {
+        "@type": "Certification",
+        "name": "EPREL"
+    },
+    "subjectOf": {
+        "@type": "3DModel"
+    },
+    "offers": {
+        "@type": "Offer",
+        "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": 19.99
+        },
+        "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+                "@type": "MonetaryAmount",
+                "currency": "EUR"
+            },
+            "shippingDestination": {
+                "@type": "DefinedRegion"
+            }
+        }
+    }
+}

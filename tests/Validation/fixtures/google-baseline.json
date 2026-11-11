@@ -414,6 +414,92 @@
         "warnings": [],
         "documentIssues": []
     },
+    "product-merchant-listing-complete.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[Google warning] offers.priceSpecification: Missing recommended property: \"referenceQuantity\" for the type \"UnitPriceSpecification\"",
+            "[Google warning] offers.priceSpecification: Missing recommended property: \"validFrom\" for the type \"UnitPriceSpecification\"",
+            "[Google warning] offers.priceSpecification: Missing recommended property: \"validThrough\" for the type \"UnitPriceSpecification\""
+        ],
+        "documentIssues": []
+    },
+    "product-merchant-listing-incomplete-details.jsonld": {
+        "errors": [
+            "[Google error] category: Missing required property: \"codeValue\" for the type \"CategoryCode\"",
+            "[Google error] hasCertification: Missing required property: \"issuedBy\" for the type \"Certification\"",
+            "[Google error] offers.priceSpecification: Missing required property: \"priceCurrency\" for the type \"UnitPriceSpecification\"",
+            "[Google error] offers.shippingDetails.shippingDestination: Missing required property: \"addressCountry\" for the type \"DefinedRegion\"",
+            "[Google error] offers.shippingDetails.shippingRate: Missing required property: at least one of the following properties must be present \"value, maxValue\" for the type \"MonetaryAmount\"",
+            "[Google error] offers.shippingDetails: Missing required property: \"deliveryTime\" for the type \"OfferShippingDetails\"",
+            "[Google error] subjectOf: Missing required property: \"encoding\" for the type \"3DModel\""
+        ],
+        "warnings": [
+            "[Google warning] Product: Missing recommended property: \"aggregateRating\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"audience\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"brand\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"color\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"description\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"hasAdultConsideration\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"inProductGroupWithID\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"isVariantOf\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"material\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"mpn\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"pattern\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"review\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"size\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"sku\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: at least one of the following properties should be present \"gtin, gtin8, gtin12, gtin13, gtin14, isbn\"",
+            "[Google warning] hasCertification: Missing recommended property: \"certificationIdentification\" for the type \"Certification\"",
+            "[Google warning] hasCertification: Missing recommended property: \"certificationRating\" for the type \"Certification\"",
+            "[Google warning] offers.priceSpecification: Missing recommended property: \"referenceQuantity\" for the type \"UnitPriceSpecification\"",
+            "[Google warning] offers.priceSpecification: Missing recommended property: \"validFrom\" for the type \"UnitPriceSpecification\"",
+            "[Google warning] offers.priceSpecification: Missing recommended property: \"validThrough\" for the type \"UnitPriceSpecification\"",
+            "[Google warning] offers.shippingDetails.shippingDestination: Missing recommended property: at least one of the following properties should be present \"addressRegion, postalCode\"",
+            "[Google warning] offers: Missing recommended property: \"availability\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"hasMerchantReturnPolicy\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"itemCondition\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"priceValidUntil\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"url\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"validFrom\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"validThrough\" for the type \"Offer\""
+        ],
+        "documentIssues": []
+    },
+    "product-merchant-listing-return-policy-conditions.jsonld": {
+        "errors": [
+            "[Google error] offers.hasMerchantReturnPolicy: Missing required property: \"merchantReturnDays\" for the type \"MerchantReturnPolicy\" when \"returnPolicyCategory\" is \"MerchantReturnFiniteReturnWindow\".",
+            "[Google error] offers.hasMerchantReturnPolicy: Missing required property: \"returnShippingFeesAmount\" for the type \"MerchantReturnPolicy\" when \"returnFees\" is \"ReturnShippingFees\"."
+        ],
+        "warnings": [
+            "[Google warning] Product: Missing recommended property: \"aggregateRating\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"audience\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"brand\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"category\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"color\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"description\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"hasAdultConsideration\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"hasCertification\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"inProductGroupWithID\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"isVariantOf\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"material\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"mpn\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"pattern\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"review\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"size\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"sku\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"subjectOf\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: at least one of the following properties should be present \"gtin, gtin8, gtin12, gtin13, gtin14, isbn\"",
+            "[Google warning] offers.hasMerchantReturnPolicy: Missing recommended property: \"returnMethod\" for the type \"MerchantReturnPolicy\"",
+            "[Google warning] offers: Missing recommended property: \"availability\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"itemCondition\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"priceValidUntil\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"shippingDetails\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"url\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"validFrom\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"validThrough\" for the type \"Offer\""
+        ],
+        "documentIssues": []
+    },
     "product-merchant-listing-zero-price.jsonld": {
         "errors": [
             "[Google error] offers.price: Invalid value: \"price\" must be greater than 0 for merchant listing offers."
@@ -421,7 +507,29 @@
         "warnings": [
             "[Google warning] Product: Missing recommended property: \"hasAdultConsideration\" for the type \"Product\"",
             "[Google warning] offers: Missing recommended property: \"shippingDetails\" for the type \"Offer\"",
-            "[Google warning] offers: Missing recommended property: \"hasMerchantReturnPolicy\" for the type \"Offer\""
+            "[Google warning] offers: Missing recommended property: \"hasMerchantReturnPolicy\" for the type \"Offer\"",
+            "[Google warning] Product: Missing recommended property: \"aggregateRating\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"audience\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"brand\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"category\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"color\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"description\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"hasCertification\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"inProductGroupWithID\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"isVariantOf\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"material\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"mpn\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"pattern\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"review\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"size\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"sku\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: \"subjectOf\" for the type \"Product\"",
+            "[Google warning] Product: Missing recommended property: at least one of the following properties should be present \"gtin, gtin8, gtin12, gtin13, gtin14, isbn\"",
+            "[Google warning] offers: Missing recommended property: \"itemCondition\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"priceValidUntil\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"url\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"validFrom\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"validThrough\" for the type \"Offer\""
         ],
         "documentIssues": []
     },

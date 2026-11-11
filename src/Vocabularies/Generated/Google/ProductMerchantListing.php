@@ -15,7 +15,7 @@ final class ProductMerchantListing extends Product
 {
     public const SUPPORTED_TYPES = ['Product'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing';
-    public const SPECIAL_RULE_KEYS = ['google.product.merchant_listing_price_positive'];
+    public const SPECIAL_RULE_KEYS = ['google.product.merchant_listing_price_positive', 'google.product.merchant_listing_price_currency', 'google.product.merchant_listing_return_policy'];
     public const PROPERTIES = [
         'name' => [
             'name' => 'name',
@@ -30,13 +30,6 @@ final class ProductMerchantListing extends Product
             'supportedTypes' => [
                 'URL',
                 'ImageObject',
-            ],
-        ],
-        'hasAdultConsideration' => [
-            'name' => 'hasAdultConsideration',
-            'severity' => 'recommended',
-            'supportedTypes' => [
-                'AdultOrientedEnumeration',
             ],
         ],
         'offers' => [
@@ -89,6 +82,75 @@ final class ProductMerchantListing extends Product
                                 'Text',
                             ],
                         ],
+                        'membershipPointsEarned' => [
+                            'name' => 'membershipPointsEarned',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'Number',
+                            ],
+                        ],
+                        'priceType' => [
+                            'name' => 'priceType',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'PriceTypeEnumeration',
+                            ],
+                        ],
+                        'referenceQuantity' => [
+                            'name' => 'referenceQuantity',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'QuantitativeValue',
+                            ],
+                            'properties' => [
+                                'unitCode' => [
+                                    'name' => 'unitCode',
+                                    'severity' => 'required',
+                                    'supportedTypes' => [
+                                        'Text',
+                                        'URL',
+                                    ],
+                                ],
+                                'value' => [
+                                    'name' => 'value',
+                                    'severity' => 'required',
+                                    'supportedTypes' => [
+                                        'Number',
+                                        'Text',
+                                    ],
+                                ],
+                                'valueReference' => [
+                                    'name' => 'valueReference',
+                                    'severity' => 'recommended',
+                                    'supportedTypes' => [
+                                        'QuantitativeValue',
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'validForMemberTier' => [
+                            'name' => 'validForMemberTier',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'MemberProgramTier',
+                            ],
+                        ],
+                        'validFrom' => [
+                            'name' => 'validFrom',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'DateTime',
+                                'Date',
+                            ],
+                        ],
+                        'validThrough' => [
+                            'name' => 'validThrough',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'DateTime',
+                                'Date',
+                            ],
+                        ],
                     ],
                 ],
                 'availability' => [
@@ -98,18 +160,593 @@ final class ProductMerchantListing extends Product
                         'ItemAvailability',
                     ],
                 ],
+                'hasMerchantReturnPolicy' => [
+                    'name' => 'hasMerchantReturnPolicy',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'MerchantReturnPolicy',
+                    ],
+                    'properties' => [
+                        'applicableCountry' => [
+                            'name' => 'applicableCountry',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'Text',
+                            ],
+                        ],
+                        'returnPolicyCategory' => [
+                            'name' => 'returnPolicyCategory',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'MerchantReturnEnumeration',
+                            ],
+                        ],
+                        'merchantReturnDays' => [
+                            'name' => 'merchantReturnDays',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'Integer',
+                            ],
+                        ],
+                        'returnFees' => [
+                            'name' => 'returnFees',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'ReturnFeesEnumeration',
+                            ],
+                        ],
+                        'returnMethod' => [
+                            'name' => 'returnMethod',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'ReturnMethodEnumeration',
+                            ],
+                        ],
+                        'returnShippingFeesAmount' => [
+                            'name' => 'returnShippingFeesAmount',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'MonetaryAmount',
+                            ],
+                        ],
+                    ],
+                ],
+                'itemCondition' => [
+                    'name' => 'itemCondition',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'OfferItemCondition',
+                    ],
+                ],
+                'priceValidUntil' => [
+                    'name' => 'priceValidUntil',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Date',
+                    ],
+                ],
                 'shippingDetails' => [
                     'name' => 'shippingDetails',
                     'severity' => 'recommended',
                     'supportedTypes' => [
                         'OfferShippingDetails',
                     ],
+                    'properties' => [
+                        'deliveryTime' => [
+                            'name' => 'deliveryTime',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'ShippingDeliveryTime',
+                            ],
+                            'properties' => [
+                                'handlingTime' => [
+                                    'name' => 'handlingTime',
+                                    'severity' => 'recommended',
+                                    'supportedTypes' => [
+                                        'QuantitativeValue',
+                                    ],
+                                    'properties' => [
+                                        'maxValue' => [
+                                            'name' => 'maxValue',
+                                            'severity' => 'required',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                        'minValue' => [
+                                            'name' => 'minValue',
+                                            'severity' => 'required',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                        'unitCode' => [
+                                            'name' => 'unitCode',
+                                            'severity' => 'required',
+                                            'supportedTypes' => [
+                                                'Text',
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                                'transitTime' => [
+                                    'name' => 'transitTime',
+                                    'severity' => 'recommended',
+                                    'supportedTypes' => [
+                                        'QuantitativeValue',
+                                    ],
+                                    'properties' => [
+                                        'maxValue' => [
+                                            'name' => 'maxValue',
+                                            'severity' => 'required',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                        'minValue' => [
+                                            'name' => 'minValue',
+                                            'severity' => 'required',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                        'unitCode' => [
+                                            'name' => 'unitCode',
+                                            'severity' => 'required',
+                                            'supportedTypes' => [
+                                                'Text',
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'shippingDestination' => [
+                            'name' => 'shippingDestination',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'DefinedRegion',
+                            ],
+                            'properties' => [
+                                'addressCountry' => [
+                                    'name' => 'addressCountry',
+                                    'severity' => 'required',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                                'atLeastOneOf' => [
+                                    'name' => 'atLeastOneOf',
+                                    'severity' => 'recommended',
+                                    'value' => [
+                                        'addressRegion' => true,
+                                        'postalCode' => true,
+                                    ],
+                                    'supportedTypes' => [
+                                    ],
+                                ],
+                                'addressRegion' => [
+                                    'name' => 'addressRegion',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                                'postalCode' => [
+                                    'name' => 'postalCode',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'shippingRate' => [
+                            'name' => 'shippingRate',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'MonetaryAmount',
+                            ],
+                            'properties' => [
+                                'currency' => [
+                                    'name' => 'currency',
+                                    'severity' => 'required',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                                'atLeastOneOf' => [
+                                    'name' => 'atLeastOneOf',
+                                    'severity' => 'required',
+                                    'value' => [
+                                        'value' => true,
+                                        'maxValue' => true,
+                                    ],
+                                    'supportedTypes' => [
+                                    ],
+                                ],
+                                'value' => [
+                                    'name' => 'value',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Number',
+                                    ],
+                                ],
+                                'maxValue' => [
+                                    'name' => 'maxValue',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Number',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
-                'hasMerchantReturnPolicy' => [
-                    'name' => 'hasMerchantReturnPolicy',
+                'url' => [
+                    'name' => 'url',
                     'severity' => 'recommended',
                     'supportedTypes' => [
-                        'MerchantReturnPolicy',
+                        'URL',
+                    ],
+                ],
+                'validFrom' => [
+                    'name' => 'validFrom',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'DateTime',
+                        'Date',
+                    ],
+                ],
+                'validThrough' => [
+                    'name' => 'validThrough',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'DateTime',
+                        'Date',
+                    ],
+                ],
+            ],
+        ],
+        'aggregateRating' => [
+            'name' => 'aggregateRating',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'AggregateRating',
+            ],
+        ],
+        'audience' => [
+            'name' => 'audience',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'PeopleAudience',
+            ],
+            'properties' => [
+                'suggestedGender' => [
+                    'name' => 'suggestedGender',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Text',
+                        'GenderType',
+                    ],
+                ],
+                'atLeastOneOf' => [
+                    'name' => 'atLeastOneOf',
+                    'severity' => 'recommended',
+                    'value' => [
+                        'suggestedMinAge' => true,
+                        'suggestedAge' => true,
+                    ],
+                    'supportedTypes' => [
+                    ],
+                ],
+                'suggestedMinAge' => [
+                    'name' => 'suggestedMinAge',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'Number',
+                    ],
+                ],
+                'suggestedMaxAge' => [
+                    'name' => 'suggestedMaxAge',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'Number',
+                    ],
+                ],
+                'suggestedAge' => [
+                    'name' => 'suggestedAge',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'QuantitativeValue',
+                    ],
+                    'properties' => [
+                        'minValue' => [
+                            'name' => 'minValue',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'Number',
+                            ],
+                        ],
+                        'maxValue' => [
+                            'name' => 'maxValue',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'Number',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'brand' => [
+            'name' => 'brand',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Brand',
+                'Organization',
+            ],
+            'properties' => [
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+            ],
+        ],
+        'category' => [
+            'name' => 'category',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+                'CategoryCode',
+            ],
+            'properties' => [
+                'inCodeSet' => [
+                    'name' => 'inCodeSet',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'URL',
+                        'CategoryCodeSet',
+                    ],
+                ],
+                'codeValue' => [
+                    'name' => 'codeValue',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+            ],
+        ],
+        'color' => [
+            'name' => 'color',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'description' => [
+            'name' => 'description',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'atLeastOneOf' => [
+            'name' => 'atLeastOneOf',
+            'severity' => 'recommended',
+            'value' => [
+                'gtin' => true,
+                'gtin8' => true,
+                'gtin12' => true,
+                'gtin13' => true,
+                'gtin14' => true,
+                'isbn' => true,
+            ],
+            'supportedTypes' => [
+            ],
+        ],
+        'gtin' => [
+            'name' => 'gtin',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'gtin8' => [
+            'name' => 'gtin8',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'gtin12' => [
+            'name' => 'gtin12',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'gtin13' => [
+            'name' => 'gtin13',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'gtin14' => [
+            'name' => 'gtin14',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'isbn' => [
+            'name' => 'isbn',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'hasAdultConsideration' => [
+            'name' => 'hasAdultConsideration',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'AdultOrientedEnumeration',
+            ],
+        ],
+        'hasCertification' => [
+            'name' => 'hasCertification',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Certification',
+            ],
+            'properties' => [
+                'issuedBy' => [
+                    'name' => 'issuedBy',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Organization',
+                    ],
+                    'properties' => [
+                        'name' => [
+                            'name' => 'name',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'Text',
+                            ],
+                        ],
+                    ],
+                ],
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'certificationIdentification' => [
+                    'name' => 'certificationIdentification',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'certificationRating' => [
+                    'name' => 'certificationRating',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Rating',
+                    ],
+                ],
+            ],
+        ],
+        'inProductGroupWithID' => [
+            'name' => 'inProductGroupWithID',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'isVariantOf' => [
+            'name' => 'isVariantOf',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'ProductGroup',
+            ],
+        ],
+        'material' => [
+            'name' => 'material',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'mpn' => [
+            'name' => 'mpn',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'pattern' => [
+            'name' => 'pattern',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'review' => [
+            'name' => 'review',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Review',
+            ],
+        ],
+        'size' => [
+            'name' => 'size',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+                'SizeSpecification',
+            ],
+            'properties' => [
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'sizeGroup' => [
+                    'name' => 'sizeGroup',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'WearableSizeGroupEnumeration',
+                        'Text',
+                    ],
+                ],
+                'sizeSystem' => [
+                    'name' => 'sizeSystem',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'WearableSizeSystemEnumeration',
+                        'Text',
+                    ],
+                ],
+            ],
+        ],
+        'sku' => [
+            'name' => 'sku',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'subjectOf' => [
+            'name' => 'subjectOf',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                '3DModel',
+            ],
+            'properties' => [
+                'encoding' => [
+                    'name' => 'encoding',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'MediaObject',
+                    ],
+                    'properties' => [
+                        'contentUrl' => [
+                            'name' => 'contentUrl',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'URL',
+                            ],
+                        ],
                     ],
                 ],
             ],

@@ -12,6 +12,13 @@
   `ShareAction` interaction types, following the Google documentation.
 - The FAQ rich result is marked as retired by Google. `FAQPage` is still validated, for
   backward compatibility.
+- Google validator: merchant listings now cover every property the Google documentation
+  lists. The product-level recommendations (`brand`, `category`, `gtin`, `sku`, `size`,
+  `audience`, `hasCertification`...), the offer-level ones (`itemCondition`, `priceValidUntil`,
+  `url`, `validFrom`, `validThrough`) and the nested shipping, return, unit pricing, size,
+  audience, certification and 3D model structures are checked. An offer `price` requires a
+  `priceCurrency`, a finite return window requires `merchantReturnDays`, and return shipping
+  fees require `returnShippingFeesAmount`.
 
 ### Fixed
 
