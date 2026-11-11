@@ -11,8 +11,6 @@
 
 namespace JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Objects;
 
-use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Extractor;
-
 class ClassesContainer
 {
     public function __construct(
@@ -48,11 +46,7 @@ class ClassesContainer
         }
 
         foreach ($type->equivalentClass as $equivalentClass) {
-            if (\is_array($equivalentClass)) {
-                $this->typesAliases[$equivalentClass[Extractor::KEY_ID]] = $type;
-            } else {
-                $this->typesAliases[$equivalentClass] = $type;
-            }
+            $this->typesAliases[$equivalentClass] = $type;
         }
     }
 

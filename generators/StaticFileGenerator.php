@@ -17,6 +17,7 @@ use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Filesystem;
 use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Generator as SchemaOrgGenerator;
 use PhpParser\BuilderFactory;
 use PhpParser\BuilderHelpers;
+use PhpParser\Comment\Doc;
 use PhpParser\Modifiers;
 use PhpParser\Node;
 use PhpParser\Node\Expr;
@@ -194,6 +195,7 @@ class StaticFileGenerator
                     ),
                 ],
             ],
+            ['comments' => [new Doc("/**\n     * @return list<string>\n     */")]],
         );
     }
 
@@ -219,6 +221,7 @@ class StaticFileGenerator
                     ),
                 ],
             ],
+            ['comments' => [new Doc("/**\n     * @return array<string, string>\n     */")]],
         );
     }
 
@@ -240,6 +243,10 @@ class StaticFileGenerator
         // depend on the generator classes, which are not part of the library
         // runtime.
         $namespace = \constant($generatorClass . '::' . $namespaceConst);
+
+        if (!\is_string($namespace)) {
+            throw new \LogicException(\sprintf('The %s::%s namespace constant must be a string.', $generatorClass, $namespaceConst));
+        }
 
         return new Node\MatchArm(
             [

@@ -34,6 +34,9 @@ class Property extends AbstractSchemaOrgElement
     ) {
     }
 
+    /**
+     * @param array<mixed> $rawType
+     */
     public static function fromRawData(array $rawType): self
     {
         self::sanitizeEntries($rawType);
@@ -50,22 +53,17 @@ class Property extends AbstractSchemaOrgElement
         return self::addSchemaInformation($property, $rawType);
     }
 
+    /**
+     * @param array<mixed> $rawType
+     *
+     * @return list<string>
+     */
     private static function findPossibleEntries(array $rawType, string $keyword): array
     {
-        if (\array_key_exists($keyword, $rawType)) {
-            if (\array_key_exists(Extractor::KEY_ID, $rawType[$keyword])) {
-                return [$rawType[$keyword][Extractor::KEY_ID]];
-            }
-
-            $values = [];
-
-            foreach ($rawType[$keyword] as $type) {
-                $values[] = $type[Extractor::KEY_ID];
-            }
-
-            return $values;
+        if (!\array_key_exists($keyword, $rawType)) {
+            return [];
         }
 
-        return [];
+        return self::schemaInformationAsArray($rawType[$keyword]);
     }
 }

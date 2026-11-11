@@ -16,6 +16,8 @@ use Symfony\Component\HttpClient\HttpClient;
 /**
  * Compares the live Google structured data documentation against the curated
  * manifest and the validation classes currently implemented.
+ *
+ * @phpstan-import-type ManifestEntry from ManifestStore
  */
 readonly class DocumentationCoverageAuditor
 {
@@ -29,11 +31,11 @@ readonly class DocumentationCoverageAuditor
     /**
      * @return array{
      *     discovered: array<string, array{classification: string, title: string}>,
-     *     manifest_urls: array<string, array<string, mixed>>,
+     *     manifest_urls: array<string, ManifestEntry>,
      *     implemented_urls: array<string, array<string>>,
      *     missing_from_manifest: array<string, array{classification: string, title: string}>,
      *     missing_implementations: array<string, array{classification: string, title: string}>,
-     *     stale_manifest_entries: array<string, array<string, mixed>>,
+     *     stale_manifest_entries: array<string, ManifestEntry>,
      *     fetch_failures: array<string, string>
      * }
      */
@@ -139,6 +141,8 @@ readonly class DocumentationCoverageAuditor
     }
 
     /**
+     * @param array<mixed> $content
+     *
      * @return array<int, string>
      */
     private function extractDocumentationUrls(array $content): array

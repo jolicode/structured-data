@@ -20,6 +20,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 /**
  * Crawls the Google structured data gallery and downloads the documentation
  * pages the validation classes are generated from.
+ *
+ * @phpstan-import-type ManifestEntry from ManifestStore
  */
 readonly class DocumentationCrawler
 {
@@ -187,10 +189,10 @@ readonly class DocumentationCrawler
     }
 
     /**
-     * @param array<string, array<string, mixed>> $manifestBySlug
-     * @param array<string, string>               $galleryUrls
+     * @param array<string, ManifestEntry> $manifestBySlug
+     * @param array<string, string>        $galleryUrls
      *
-     * @return array<string, array<string, mixed>>
+     * @return array<string, ManifestEntry>
      */
     private function synchronizeManifestWithGallery(array $manifestBySlug, array $galleryUrls): array
     {
@@ -210,8 +212,8 @@ readonly class DocumentationCrawler
     }
 
     /**
-     * @param array<string, array<string, mixed>> $manifestBySlug
-     * @param array<string, string>               $galleryUrls
+     * @param array<string, ManifestEntry> $manifestBySlug
+     * @param array<string, string>        $galleryUrls
      */
     private function warnAboutMissingActiveManifestEntries(array $manifestBySlug, array $galleryUrls): void
     {

@@ -19,6 +19,9 @@ class Type extends AbstractSchemaOrgElement
         public string $name,
         public string $description,
         public string $label,
+        /**
+         * @var list<string>
+         */
         public array $equivalentClass,
         public string $className,
         /**
@@ -36,6 +39,9 @@ class Type extends AbstractSchemaOrgElement
     ) {
     }
 
+    /**
+     * @param array<mixed> $rawType
+     */
     public static function fromRawData(array $rawType): self
     {
         self::sanitizeEntries($rawType);
@@ -44,19 +50,15 @@ class Type extends AbstractSchemaOrgElement
             name: trim(self::stringEntry($rawType, Extractor::KEY_ID)),
             description: trim(self::stringEntry($rawType, Extractor::RDFS_COMMENT)),
             label: trim(self::stringEntry($rawType, Extractor::RDFS_LABEL)),
-            equivalentClass: (array) ($rawType[Extractor::OWL_EQUIVALENT_CLASS] ?? []),
+            equivalentClass: isset($rawType[Extractor::OWL_EQUIVALENT_CLASS]) ? self::schemaInformationAsArray($rawType[Extractor::OWL_EQUIVALENT_CLASS]) : [],
             className: self::getClassName(self::stringEntry($rawType, Extractor::RDFS_LABEL)),
         );
 
         $parents = $rawType[Extractor::RDFS_SUB_CLASS_OF] ?? null;
 
         if (\is_array($parents) && [] !== $parents) {
-            if (\array_key_exists(Extractor::KEY_ID, $parents)) {
-                $type->addParent($type, $parents[Extractor::KEY_ID]);
-            } else {
-                foreach ($parents as $parent) {
-                    $type->addParent($type, $parent[Extractor::KEY_ID]);
-                }
+            foreach (self::schemaInformationAsArray($parents) as $parent) {
+                $type->addParent($type, $parent);
             }
         }
 

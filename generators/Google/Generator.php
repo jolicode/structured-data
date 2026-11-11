@@ -21,6 +21,21 @@ use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Stmt;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+/**
+ * The shapes below describe the hand-written JSON files of resources/google/structured-data,
+ * as documented in their README: a single type definition, or a set of sub-type
+ * definitions sharing a documentation page.
+ *
+ * @phpstan-type GoogleDefinition array{
+ *     name: string,
+ *     subtype?: string,
+ *     documentation?: string,
+ *     specialRules?: list<string>,
+ *     supportedTypes: list<string>,
+ *     properties?: array<mixed>,
+ * }
+ * @phpstan-type GoogleFile GoogleDefinition|array{subtypes: list<GoogleDefinition>}
+ */
 class Generator implements GeneratorInterface
 {
     public const NAMESPACE_BASE = 'JoliCode\StructuredData\Vocabularies\Generated\Google';
@@ -52,6 +67,9 @@ class Generator implements GeneratorInterface
         return 'google';
     }
 
+    /**
+     * @return \Generator<int, GoogleFile>
+     */
     private function decodeJson(?SymfonyStyle $io = null): \Generator
     {
         $jsonFiles = $this->googleFilesystem->getJsonFiles();
@@ -59,7 +77,7 @@ class Generator implements GeneratorInterface
         foreach ($jsonFiles as $file) {
             $content = json_decode($file->getContents(), true);
 
-            if (null === $content) {
+            if (!\is_array($content)) {
                 if ($io) {
                     $io->error(\sprintf('Failed to decode the following Google json file: %s. Error is: %s', $file->getRealPath(), json_last_error_msg()));
                 }
@@ -67,28 +85,40 @@ class Generator implements GeneratorInterface
                 continue;
             }
 
-            yield $content;
+            // The hand-written files follow the shape documented in their README,
+            // which the infrastructure tests enforce.
+            /** @var GoogleFile $googleFile */
+            $googleFile = $content;
+
+            yield $googleFile;
         }
     }
 
     /**
+     * @param GoogleFile $json
+     *
      * @return \Generator<int, array{Stmt\Namespace_, string}>
      */
     private function generateClasses(array $json): \Generator
     {
-        if ($hasMultipleDefinitions = \array_key_exists('subtypes', $json)) {
+        if (\array_key_exists('subtypes', $json)) {
             $json = $json['subtypes'];
 
             yield from $this->generateAbstractClass($json);
 
             foreach ($json as $type) {
-                yield from $this->generateClass($type, $hasMultipleDefinitions);
+                yield from $this->generateClass($type, true);
             }
         } else {
             yield from $this->generateClass($json);
         }
     }
 
+    /**
+     * @param GoogleDefinition $type
+     *
+     * @return \Generator<int, array{Stmt\Namespace_, string}>
+     */
     private function generateClass(array $type, bool $hasMultipleDefinitions = false): \Generator
     {
         $properties = BuilderHelpers::normalizeValue($type['properties'] ?? []);
@@ -97,7 +127,7 @@ class Generator implements GeneratorInterface
         foreach ($type['supportedTypes'] as $currentType) {
             $node = $this->factory->namespace(self::NAMESPACE_BASE);
 
-            $name = $hasMultipleDefinitions ? ucfirst($currentType) . ucfirst($type['subtype']) : ucfirst($currentType);
+            $name = $hasMultipleDefinitions ? ucfirst($currentType) . ucfirst($type['subtype'] ?? '') : ucfirst($currentType);
 
             $class = $this->factory
                 ->class($name)
@@ -141,6 +171,8 @@ class Generator implements GeneratorInterface
     }
 
     /**
+     * @param GoogleFile $json
+     *
      * @return array<string>
      */
     private function getExpectedClassNames(array $json): array
@@ -149,7 +181,7 @@ class Generator implements GeneratorInterface
 
         if (\array_key_exists('subtypes', $json)) {
             foreach ($json['subtypes'] as $type) {
-                foreach (($type['supportedTypes'] ?? []) as $supportedType) {
+                foreach ($type['supportedTypes'] as $supportedType) {
                     $names[] = ucfirst($supportedType) . ucfirst($type['subtype'] ?? '');
                 }
             }
@@ -157,7 +189,7 @@ class Generator implements GeneratorInterface
             return array_values(array_unique($names));
         }
 
-        foreach (($json['supportedTypes'] ?? []) as $supportedType) {
+        foreach ($json['supportedTypes'] as $supportedType) {
             $names[] = ucfirst($supportedType);
         }
 
@@ -165,6 +197,8 @@ class Generator implements GeneratorInterface
     }
 
     /**
+     * @param list<GoogleDefinition> $json
+     *
      * @return \Generator<int, array{Stmt\Namespace_, string}>
      */
     private function generateAbstractClass(array $json): \Generator
@@ -172,12 +206,9 @@ class Generator implements GeneratorInterface
         $name = ucfirst($json[0]['name']);
         $children = [];
 
-        array_walk(
-            $json,
-            static function (array $item) use (&$children) {
-                $children[] = ucfirst($item['name']) . ucfirst($item['subtype']);
-            },
-        );
+        foreach ($json as $item) {
+            $children[] = ucfirst($item['name']) . ucfirst($item['subtype'] ?? '');
+        }
 
         $node = $this->factory->namespace(self::NAMESPACE_BASE);
 

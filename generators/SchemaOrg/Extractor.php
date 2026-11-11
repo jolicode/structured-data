@@ -48,14 +48,27 @@ readonly class Extractor
             true,
         );
 
-        return $this->createContainer($schemaOrgData[self::KEY_GRAPH]);
+        $graph = \is_array($schemaOrgData) ? ($schemaOrgData[self::KEY_GRAPH] ?? null) : null;
+
+        if (!\is_array($graph)) {
+            throw new \RuntimeException('The schema.org types definition file does not hold a "@graph" entry.');
+        }
+
+        return $this->createContainer($graph);
     }
 
+    /**
+     * @param array<mixed> $graph
+     */
     private function createContainer(array $graph): ClassesContainer
     {
         $container = new ClassesContainer();
 
         foreach ($graph as $type) {
+            if (!\is_array($type)) {
+                continue;
+            }
+
             // Schema.org decided to add some references to other vocabularies, so we can't use them.
             if (!\array_key_exists(self::RDFS_COMMENT, $type) || !\array_key_exists(self::RDFS_LABEL, $type)) {
                 continue;
@@ -74,6 +87,9 @@ readonly class Extractor
         return $container;
     }
 
+    /**
+     * @param array<mixed> $type
+     */
     private function isClassType(array $type): bool
     {
         return \is_array($type[self::KEY_TYPE]) ?
@@ -81,15 +97,21 @@ readonly class Extractor
             self::RDFS_CLASS === $type[self::KEY_TYPE];
     }
 
+    /**
+     * @param array<mixed> $type
+     */
     private function isPropertyType(array $type): bool
     {
         return self::RDF_PROPERTY === $type[self::KEY_TYPE];
     }
 
+    /**
+     * @param array<mixed> $rawType
+     */
     private function isEnumerationType(array $rawType): bool
     {
         foreach ((array) $rawType[self::KEY_TYPE] as $type) {
-            if (!str_starts_with($type, 'schema:')) {
+            if (!\is_string($type) || !str_starts_with($type, 'schema:')) {
                 return false;
             }
         }
