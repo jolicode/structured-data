@@ -14,7 +14,11 @@ namespace JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules;
 use JoliCode\StructuredData\Mapper\MappedError;
 use JoliCode\StructuredData\Mapper\MappedProperty;
 use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\ValidationPropertiesNormalizer;
 
+/**
+ * @phpstan-import-type ValidationProperty from ValidationPropertiesNormalizer
+ */
 final class BreadcrumbListSpecialRule implements SpecialRuleInterface
 {
     public static function getKey(): string
@@ -22,9 +26,12 @@ final class BreadcrumbListSpecialRule implements SpecialRuleInterface
         return 'google.breadcrumb.last_item_optional';
     }
 
+    /**
+     * @param ValidationProperty $missingProperty
+     */
     public function shouldIgnoreMissingRequiredProperty(MappedType $type, array $missingProperty): bool
     {
-        if ('item' !== ($missingProperty['name'] ?? null)) {
+        if ('item' !== $missingProperty['name']) {
             return false;
         }
 
@@ -43,6 +50,9 @@ final class BreadcrumbListSpecialRule implements SpecialRuleInterface
         return $this->isLastItem($type);
     }
 
+    /**
+     * @param ValidationProperty $missingProperty
+     */
     public function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool
     {
         return false;
@@ -138,6 +148,9 @@ final class BreadcrumbListSpecialRule implements SpecialRuleInterface
         return $type;
     }
 
+    /**
+     * @param string|array<string>|null $type
+     */
     private function hasType(string|array|null $type, string $searchedType): bool
     {
         if (\is_array($type)) {

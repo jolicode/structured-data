@@ -13,6 +13,7 @@ namespace JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules;
 
 use JoliCode\StructuredData\Mapper\MappedError;
 use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\ValidationPropertiesNormalizer;
 
 /**
  * A member tier earning loyalty points should say how many points members earn
@@ -20,6 +21,8 @@ use JoliCode\StructuredData\Mapper\MappedType;
  * tier benefit is TierBenefitLoyaltyPoints.
  *
  * @see https://developers.google.com/search/docs/appearance/structured-data/loyalty-program#member-program-tier
+ *
+ * @phpstan-import-type ValidationProperty from ValidationPropertiesNormalizer
  */
 final class OrganizationMemberTierLoyaltyPointsSpecialRule implements SpecialRuleInterface
 {
@@ -34,7 +37,7 @@ final class OrganizationMemberTierLoyaltyPointsSpecialRule implements SpecialRul
     }
 
     /**
-     * @param array<string, mixed> $missingProperty
+     * @param ValidationProperty $missingProperty
      */
     public function shouldIgnoreMissingRequiredProperty(MappedType $type, array $missingProperty): bool
     {
@@ -42,7 +45,7 @@ final class OrganizationMemberTierLoyaltyPointsSpecialRule implements SpecialRul
     }
 
     /**
-     * @param array<string, mixed> $missingProperty
+     * @param ValidationProperty $missingProperty
      */
     public function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool
     {

@@ -117,6 +117,9 @@ final class TypeGuesser
         return str_replace(['-input', '-output'], '', $propertyLabel);
     }
 
+    /**
+     * @param array<MappedProperty> $typeProperties
+     */
     private static function guessFromParentProperty(string $parentProperty, array $typeProperties): ?string
     {
         $parentPropertyKey = self::stripActionSuffixes($parentProperty);

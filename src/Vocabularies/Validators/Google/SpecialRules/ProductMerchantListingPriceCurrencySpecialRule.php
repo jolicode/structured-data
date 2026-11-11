@@ -13,6 +13,7 @@ namespace JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules;
 
 use JoliCode\StructuredData\Mapper\MappedError;
 use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\ValidationPropertiesNormalizer;
 
 /**
  * A merchant listing offer may carry its price on the Offer itself or inside a
@@ -20,6 +21,8 @@ use JoliCode\StructuredData\Mapper\MappedType;
  * "price" (the priceSpecification requires its own currency).
  *
  * @see https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#offer-details
+ *
+ * @phpstan-import-type ValidationProperty from ValidationPropertiesNormalizer
  */
 final class ProductMerchantListingPriceCurrencySpecialRule implements SpecialRuleInterface
 {
@@ -29,7 +32,7 @@ final class ProductMerchantListingPriceCurrencySpecialRule implements SpecialRul
     }
 
     /**
-     * @param array<string, mixed> $missingProperty
+     * @param ValidationProperty $missingProperty
      */
     public function shouldIgnoreMissingRequiredProperty(MappedType $type, array $missingProperty): bool
     {
@@ -37,7 +40,7 @@ final class ProductMerchantListingPriceCurrencySpecialRule implements SpecialRul
     }
 
     /**
-     * @param array<string, mixed> $missingProperty
+     * @param ValidationProperty $missingProperty
      */
     public function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool
     {

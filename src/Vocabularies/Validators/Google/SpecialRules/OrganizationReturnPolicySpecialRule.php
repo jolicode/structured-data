@@ -13,6 +13,7 @@ namespace JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules;
 
 use JoliCode\StructuredData\Mapper\MappedError;
 use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\ValidationPropertiesNormalizer;
 
 /**
  * The requirements of an organization-level return policy that depend on other
@@ -24,6 +25,8 @@ use JoliCode\StructuredData\Mapper\MappedType;
  *   for a finite or an unlimited return window.
  *
  * @see https://developers.google.com/search/docs/appearance/structured-data/return-policy
+ *
+ * @phpstan-import-type ValidationProperty from ValidationPropertiesNormalizer
  */
 final class OrganizationReturnPolicySpecialRule implements SpecialRuleInterface
 {
@@ -73,7 +76,7 @@ final class OrganizationReturnPolicySpecialRule implements SpecialRuleInterface
     }
 
     /**
-     * @param array<string, mixed> $missingProperty
+     * @param ValidationProperty $missingProperty
      */
     public function shouldIgnoreMissingRequiredProperty(MappedType $type, array $missingProperty): bool
     {
@@ -81,7 +84,7 @@ final class OrganizationReturnPolicySpecialRule implements SpecialRuleInterface
     }
 
     /**
-     * @param array<string, mixed> $missingProperty
+     * @param ValidationProperty $missingProperty
      */
     public function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool
     {

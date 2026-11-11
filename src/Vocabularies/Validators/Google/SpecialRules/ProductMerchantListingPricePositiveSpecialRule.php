@@ -13,7 +13,11 @@ namespace JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules;
 
 use JoliCode\StructuredData\Mapper\MappedError;
 use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\ValidationPropertiesNormalizer;
 
+/**
+ * @phpstan-import-type ValidationProperty from ValidationPropertiesNormalizer
+ */
 final class ProductMerchantListingPricePositiveSpecialRule implements SpecialRuleInterface
 {
     public static function getKey(): string
@@ -21,11 +25,17 @@ final class ProductMerchantListingPricePositiveSpecialRule implements SpecialRul
         return 'google.product.merchant_listing_price_positive';
     }
 
+    /**
+     * @param ValidationProperty $missingProperty
+     */
     public function shouldIgnoreMissingRequiredProperty(MappedType $type, array $missingProperty): bool
     {
         return false;
     }
 
+    /**
+     * @param ValidationProperty $missingProperty
+     */
     public function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool
     {
         return false;
@@ -76,6 +86,9 @@ final class ProductMerchantListingPricePositiveSpecialRule implements SpecialRul
         return $type;
     }
 
+    /**
+     * @param string|array<string>|null $type
+     */
     private function hasType(string|array|null $type, string $searchedType): bool
     {
         if (\is_array($type)) {

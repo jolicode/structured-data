@@ -240,7 +240,7 @@ class SchemaOrgValidator extends AbstractValidator
         }
 
         if (!$propertyIsValid) {
-            if (\is_string($typeLabel) || (\is_array($typeLabel) && 1 === \count($typeLabel))) {
+            if (\is_string($typeLabel) || 1 === \count($typeLabel)) {
                 $singleTypeLabel = \is_string($typeLabel) ? $typeLabel : $typeLabel[0];
                 $message = \sprintf('The property "%s" does not exist on the type "%s"', $propertyKey, $singleTypeLabel);
             } else {

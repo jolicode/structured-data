@@ -13,7 +13,11 @@ namespace JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules;
 
 use JoliCode\StructuredData\Mapper\MappedError;
 use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Vocabularies\Validators\Google\ValidationPropertiesNormalizer;
 
+/**
+ * @phpstan-import-type ValidationProperty from ValidationPropertiesNormalizer
+ */
 final class RecipeCaloriesRequiresYieldSpecialRule implements SpecialRuleInterface
 {
     public static function getKey(): string
@@ -21,14 +25,20 @@ final class RecipeCaloriesRequiresYieldSpecialRule implements SpecialRuleInterfa
         return 'google.recipe.calories_requires_yield';
     }
 
+    /**
+     * @param ValidationProperty $missingProperty
+     */
     public function shouldIgnoreMissingRequiredProperty(MappedType $type, array $missingProperty): bool
     {
         return false;
     }
 
+    /**
+     * @param ValidationProperty $missingProperty
+     */
     public function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool
     {
-        if ('recipeYield' !== ($missingProperty['name'] ?? null)) {
+        if ('recipeYield' !== $missingProperty['name']) {
             return false;
         }
 
@@ -72,6 +82,9 @@ final class RecipeCaloriesRequiresYieldSpecialRule implements SpecialRuleInterfa
         ]];
     }
 
+    /**
+     * @param string|array<string>|null $type
+     */
     private function hasType(string|array|null $type, string $searchedType): bool
     {
         if (\is_array($type)) {
