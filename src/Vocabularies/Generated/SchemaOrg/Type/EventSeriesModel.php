@@ -32,7 +32,7 @@ it may also sometimes prove useful to describe a longer-term series as an Event.
     public const NAME = 'schema:EventSeries';
     public const PARENTS = ['EventModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EventModel', 'SeriesModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SeriesModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/447'];
     public const SUPERSEDED_BY = null;
 

@@ -18,7 +18,7 @@ final class SpeechToTextMarkupModel
     public const NAME = 'schema:speechToTextMarkup';
     public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['PronounceableText' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PronounceableTextModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2108'];
     public const SUPERSEDED_BY = null;
 }

@@ -1,0 +1,109 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Example Corporation",
+    "alternateName": "Example Co",
+    "url": "https://www.example.com",
+    "sameAs": [
+        "https://example.net/profile/example1234",
+        "https://example.org/example1234"
+    ],
+    "logo": "https://www.example.com/images/logo.png",
+    "description": "The example corporation is well-known for producing high-quality widgets",
+    "email": "contact@example.com",
+    "telephone": "+47-99-999-9999",
+    "taxID": "FR12-3456789",
+    "vatID": "FR12345678901",
+    "duns": "123456789",
+    "globalLocationNumber": "9501101530003",
+    "iso6523Code": "0199:724500PMK2A2M1SQQ228",
+    "legalName": "Example Corporation LLC",
+    "leiCode": "724500PMK2A2M1SQQ228",
+    "naics": "334220",
+    "foundingDate": "2009-08-10",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rue Improbable 99",
+        "addressLocality": "Paris",
+        "addressCountry": "FR",
+        "addressRegion": "Ile-de-France",
+        "postalCode": "75001"
+    },
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "support@example.com",
+        "telephone": "+47-99-999-9900"
+    },
+    "numberOfEmployees": {
+        "@type": "QuantitativeValue",
+        "value": 2056
+    },
+    "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "FR",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 30,
+        "returnFees": "https://schema.org/FreeReturn",
+        "returnMethod": "https://schema.org/ReturnByMail",
+        "returnLabelSource": "https://schema.org/ReturnLabelDownloadAndPrint",
+        "returnPolicyCountry": "FR",
+        "refundType": "https://schema.org/FullRefund",
+        "restockingFee": 0,
+        "itemCondition": "https://schema.org/NewCondition",
+        "customerRemorseReturnFees": "https://schema.org/FreeReturn",
+        "customerRemorseReturnLabelSource": "https://schema.org/ReturnLabelDownloadAndPrint",
+        "itemDefectReturnFees": "https://schema.org/FreeReturn",
+        "itemDefectReturnLabelSource": "https://schema.org/ReturnLabelDownloadAndPrint"
+    },
+    "hasMemberProgram": {
+        "@type": "MemberProgram",
+        "name": "Example Plus",
+        "description": "Default loyalty program for recurring customers.",
+        "hasTiers": {
+            "@type": "MemberProgramTier",
+            "name": "Silver",
+            "hasTierBenefit": "https://schema.org/TierBenefitLoyaltyPoints",
+            "url": "https://www.example.com/loyalty#silver",
+            "membershipPointsEarned": {
+                "@type": "QuantitativeValue",
+                "value": 1
+            }
+        },
+        "url": "https://www.example.com/loyalty"
+    },
+    "hasShippingService": {
+        "@type": "ShippingService",
+        "name": "Standard",
+        "shippingConditions": [
+            {
+                "@type": "ShippingConditions",
+                "shippingDestination": {
+                    "@type": "DefinedRegion",
+                    "postalCode": "75001"
+                },
+                "orderValue": {
+                    "@type": "MonetaryAmount",
+                    "currency": "EUR"
+                },
+                "shippingRate": {
+                    "@type": "MonetaryAmount",
+                    "value": 4.99
+                },
+                "transitTime": {
+                    "@type": "ServicePeriod",
+                    "duration": {
+                        "@type": "QuantitativeValue",
+                        "minValue": 1,
+                        "unitCode": "DAY"
+                    }
+                }
+            },
+            {
+                "@type": "ShippingConditions",
+                "shippingRate": {
+                    "@type": "ShippingRateSettings"
+                }
+            }
+        ]
+    }
+}

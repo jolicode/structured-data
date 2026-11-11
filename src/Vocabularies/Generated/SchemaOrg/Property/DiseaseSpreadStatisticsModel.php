@@ -20,7 +20,7 @@ final class DiseaseSpreadStatisticsModel
     public const NAME = 'schema:diseaseSpreadStatistics';
     public const VALUES = ['DatasetModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DatasetModel', 'ObservationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ObservationModel', 'URLModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\URLModel', 'WebContentModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\WebContentModel'];
     public const TYPES = ['SpecialAnnouncement' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SpecialAnnouncementModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2490'];
     public const SUPERSEDED_BY = null;
 }

@@ -18,7 +18,7 @@ final class NumberOfAccommodationUnitsModel
     public const NAME = 'schema:numberOfAccommodationUnits';
     public const VALUES = ['QuantitativeValueModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['ApartmentComplex' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ApartmentComplexModel', 'FloorPlan' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\FloorPlanModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2373'];
     public const SUPERSEDED_BY = null;
 }

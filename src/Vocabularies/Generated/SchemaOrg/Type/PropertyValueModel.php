@@ -46,6 +46,7 @@ final class PropertyValueModel
         public ?Property\UnitTextModel $unitText = null,
         public ?Property\UrlModel $url = null,
         public ?Property\ValueModel $value = null,
+        public ?Property\ValueGroupModel $valueGroup = null,
         public ?Property\ValueReferenceModel $valueReference = null,
     ) {
     }

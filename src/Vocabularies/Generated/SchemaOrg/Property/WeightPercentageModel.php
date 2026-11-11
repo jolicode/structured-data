@@ -18,7 +18,7 @@ final class WeightPercentageModel
     public const NAME = 'schema:weightPercentage';
     public const VALUES = ['NumberModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['ShippingRateSettings' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ShippingRateSettingsModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3617'];
     public const SUPERSEDED_BY = null;
 }

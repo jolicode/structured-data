@@ -55,6 +55,31 @@
         </aside>
       </td>
     </tr>
+    <tr id="creator">
+      <td><code translate="no" dir="ltr">creator</code> (or <code translate="no" dir="ltr">author</code>)</td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Person" class="external-link">Person</a></code> or
+          <code translate="no" dir="ltr"><a href="https://schema.org/Organization" class="external-link">Organization</a></code></p>
+      <p>The person or organization that created or published the video.</p>
+      <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="creator property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"creator"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Person"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"name"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"Jane Doe"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"url"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"https://www.example.com/users/janedoe"</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+      </td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">creator.name</code> (or <code translate="no" dir="ltr">author.name</code>)</td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
+      <p>The name of the creator or organization. If a person or organization
+        is specified, you must provide either <code translate="no" dir="ltr">name</code> or
+        <code translate="no" dir="ltr">alternateName</code>.</p></td>
+    </tr>
+    <tr>
+      <td><code translate="no" dir="ltr">creator.url</code> (or <code translate="no" dir="ltr">author.url</code>)</td>
+      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/URL" class="external-link">URL</a></code></p>
+      <p>A link to a web page that uniquely identifies the creator or
+        organization (such as a profile page or homepage).</p></td>
+    </tr>
     <tr>
       <td id="description-property"><code translate="no" dir="ltr">description</code></td>
       <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Text" class="external-link">Text</a></code></p>
@@ -133,22 +158,44 @@
         </aside>
       </td>
     </tr>
-    <tr>
-      <td><code translate="no" dir="ltr">interactionStatistic</code></td>
-      <td><p><code translate="no" dir="ltr"><a href="https://schema.org/InteractionCounter" class="external-link">InteractionCounter</a></code></p>
-      <p>The number of times the video has been watched. For example:</p>
-      <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="interactionStatistic property" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"interactionStatistic"</span><span class="devsite-syntax-p">:</span>
-<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">{</span>
-<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"InteractionCounter"</span><span class="devsite-syntax-p">,</span>
-<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"interactionType"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"WatchAction"</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">},</span>
-<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"userInteractionCount"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">12345</span>
-<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">}</span></pre></devsite-code>
-      <aside class="note">Starting October 2019, we changed our documentation to recommend
-        <code translate="no" dir="ltr">interactionStatistic</code> instead of <code translate="no" dir="ltr">interactionCount</code>. While we continue
-         to support <code translate="no" dir="ltr">interactionCount</code>, we recommend <code translate="no" dir="ltr">interactionStatistic</code>
-          moving forward.</aside>
-      </td>
-    </tr>
+      <tr id="interaction-statistic">
+        <td><code translate="no" dir="ltr">interactionStatistic</code></td>
+        <td>
+          <p><code translate="no" dir="ltr"><a href="https://schema.org/InteractionCounter" class="external-link">InteractionCounter</a></code></p>
+          <p>User statistics applied to the video, if applicable.</p>
+          <div></div><devsite-code><pre class="devsite-click-to-copy" data-label="JSON-LD" translate="no" dir="ltr" is-upgraded="" syntax="Carbon" syntax-guessed=""><span class="devsite-syntax-s">"interactionStatistic"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"InteractionCounter"</span><span class="devsite-syntax-p">,</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"interactionType"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-p">{</span>
+<span class="devsite-syntax-w">    </span><span class="devsite-syntax-s">"@type"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-s">"WatchAction"</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-p">},</span>
+<span class="devsite-syntax-w">  </span><span class="devsite-syntax-s">"userInteractionCount"</span><span class="devsite-syntax-p">:</span><span class="devsite-syntax-w"> </span><span class="devsite-syntax-mi">12345</span>
+<span class="devsite-syntax-p">}</span></pre></devsite-code>
+          <aside class="note">Starting October 2019, we changed our documentation to recommend
+            <code translate="no" dir="ltr">interactionStatistic</code> instead of <code translate="no" dir="ltr">interactionCount</code>. While we continue
+            to support <code translate="no" dir="ltr">interactionCount</code>, we recommend <code translate="no" dir="ltr">interactionStatistic</code>
+            moving forward.</aside>
+        </td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">interactionStatistic.interactionType</code></td>
+        <td><p>Subtype of <code translate="no" dir="ltr"><a href="https://schema.org/Action" class="external-link">Action</a></code></p>
+        <p>The type of interaction. Google supports the following <code translate="no" dir="ltr">interactionTypes</code>:</p>
+        <ul>
+          <li><a href="https://schema.org/WatchAction" class="external-link">https://schema.org/WatchAction</a>:
+            The number of times the video has been watched.</li>
+          <li><a href="https://schema.org/LikeAction" class="external-link">https://schema.org/LikeAction</a>:
+            The number of likes or upvotes.</li>
+          <li><a href="https://schema.org/CommentAction" class="external-link">https://schema.org/CommentAction</a>:
+            The number of comments.</li>
+          <li><a href="https://schema.org/ShareAction" class="external-link">https://schema.org/ShareAction</a>:
+            The number of reshares.</li>
+        </ul></td>
+      </tr>
+      <tr>
+        <td><code translate="no" dir="ltr">interactionStatistic.userInteractionCount</code></td>
+        <td><p><code translate="no" dir="ltr"><a href="https://schema.org/Integer" class="external-link">Integer</a></code></p>
+        <p>The number of times this interaction was performed.</p></td>
+      </tr>
     <tr>
       <td>
         <code translate="no" dir="ltr">publication</code>

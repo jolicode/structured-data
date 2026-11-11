@@ -22,7 +22,7 @@ Note: This type is for information about actual reservations, e.g. in confirmati
     public const NAME = 'schema:BoatReservation';
     public const PARENTS = ['ReservationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ReservationModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1755'];
     public const SUPERSEDED_BY = null;
 

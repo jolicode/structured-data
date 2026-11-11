@@ -18,7 +18,7 @@ final class GracePeriodModel
     public const NAME = 'schema:gracePeriod';
     public const VALUES = ['DurationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DurationModel'];
     public const TYPES = ['LoanOrCredit' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\LoanOrCreditModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1253'];
     public const SUPERSEDED_BY = null;
 }

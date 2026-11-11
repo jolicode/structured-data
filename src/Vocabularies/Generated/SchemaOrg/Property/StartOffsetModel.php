@@ -18,7 +18,7 @@ final class StartOffsetModel
     public const NAME = 'schema:startOffset';
     public const VALUES = ['HyperTocEntryModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\HyperTocEntryModel', 'NumberModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['Clip' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ClipModel', 'SeekToAction' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SeekToActionModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2021'];
     public const SUPERSEDED_BY = null;
 }

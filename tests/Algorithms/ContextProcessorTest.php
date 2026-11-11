@@ -105,6 +105,23 @@ class ContextProcessorTest extends AbstractJsonLdTestCase
         $this->assertSame('https://example.com/page', $processed->baseIri);
     }
 
+    public function testSchemaOrgStaticContextMatchesThePublishedContext(): void
+    {
+        $cache = new ContextCache();
+        $context = new Context(processingMode: Context::PROCESSING_MODE_11);
+
+        $remoteContexts = ['https://schema.org/'];
+        $processed = $cache->getProcessedRemoteContext($context, 'https://schema.org/', true, $remoteContexts);
+
+        $this->assertNotNull($processed);
+        // "schema:name" expands to http://schema.org/name, as with the published context,
+        // and not to the https prefix the definition file declares for its own use.
+        $this->assertSame('http://schema.org/', $processed->termDefinitions['schema']->iriMapping);
+        // "geo" is the schema.org property, not the GeoSPARQL prefix the definition file
+        // declares since 30.1.
+        $this->assertSame('http://schema.org/geo', $processed->termDefinitions['geo']->iriMapping);
+    }
+
     public static function provideContainerEntries(): iterable
     {
         yield 'correct keyword returns true' => [

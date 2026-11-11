@@ -1,0 +1,34 @@
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  "about": {
+    "@type": "MedicalCondition",
+    "name": [
+      "High Blood Pressure",
+      "hypertension"
+    ]
+  },
+  "mainContentOfPage": [
+    "Diagnosis",
+    "Treatment"
+  ],
+  "audience": "https://schema.org/Patient",
+  "mentions": {
+    "@type": "DrugClass",
+    "name": "beta-blocker",
+    "drug": [
+      {
+        "@type": "Drug",
+        "nonProprietaryName": "propanaolol",
+        "alternateName": "Innopran"
+      },
+      {
+        "@type": "Drug",
+        "nonProprietaryName": "atenolol",
+        "alternateName": "Tenormin"
+      }
+    ]
+  },
+  "lastReviewed": "2011-09-14",
+  "specialty": "https://schema.org/Cardiovascular"
+}

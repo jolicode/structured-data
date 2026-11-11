@@ -20,7 +20,7 @@ final class WorkBasedProgramModel
     public const NAME = 'schema:WorkBasedProgram';
     public const PARENTS = ['EducationalOccupationalProgramModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EducationalOccupationalProgramModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2289'];
     public const SUPERSEDED_BY = null;
 

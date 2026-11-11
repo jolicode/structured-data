@@ -20,7 +20,7 @@ final class ReviewNewsArticleModel
     public const NAME = 'schema:ReviewNewsArticle';
     public const PARENTS = ['CriticReviewModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CriticReviewModel', 'NewsArticleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NewsArticleModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1525'];
     public const SUPERSEDED_BY = null;
 

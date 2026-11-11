@@ -40,8 +40,20 @@
     },
     "hasMerchantReturnPolicy": {
         "@type": "MerchantReturnPolicy",
+        "applicableCountry": "FR",
         "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-        "merchantReturnDays": 30
+        "merchantReturnDays": 30,
+        "returnFees": "https://schema.org/FreeReturn",
+        "returnMethod": "https://schema.org/ReturnByMail",
+        "returnLabelSource": "https://schema.org/ReturnLabelDownloadAndPrint",
+        "returnPolicyCountry": "FR",
+        "refundType": "https://schema.org/FullRefund",
+        "restockingFee": 0,
+        "itemCondition": "https://schema.org/NewCondition",
+        "customerRemorseReturnFees": "https://schema.org/FreeReturn",
+        "customerRemorseReturnLabelSource": "https://schema.org/ReturnLabelDownloadAndPrint",
+        "itemDefectReturnFees": "https://schema.org/FreeReturn",
+        "itemDefectReturnLabelSource": "https://schema.org/ReturnLabelDownloadAndPrint"
     },
     "hasMemberProgram": {
         "@type": "MemberProgram",
@@ -49,8 +61,14 @@
         "hasTiers": {
             "@type": "MemberProgramTier",
             "name": "Silver",
-            "hasTierBenefit": "https://schema.org/TierBenefitLoyaltyPoints"
-        }
+            "hasTierBenefit": "https://schema.org/TierBenefitLoyaltyPoints",
+            "url": "https://www.example.com/loyalty#silver",
+            "membershipPointsEarned": {
+                "@type": "QuantitativeValue",
+                "value": 1
+            }
+        },
+        "url": "https://www.example.com/loyalty"
     },
     "hasShippingService": {
         "@type": "ShippingService",

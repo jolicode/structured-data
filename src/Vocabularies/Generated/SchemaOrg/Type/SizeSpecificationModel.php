@@ -20,7 +20,7 @@ final class SizeSpecificationModel
     public const NAME = 'schema:SizeSpecification';
     public const PARENTS = ['QualitativeValueModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\QualitativeValueModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
     public const SUPERSEDED_BY = null;
 

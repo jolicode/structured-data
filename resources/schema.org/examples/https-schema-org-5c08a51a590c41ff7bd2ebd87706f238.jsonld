@@ -1,0 +1,10 @@
+{
+  "@context": {
+    "schema": "https://schema.org/"
+  },
+  "@type": "schema:Thesis",
+  "schema:author": "Sekar, Nitin, Ph.D.",
+  "schema:inSupportOf": "Conservation Biology",
+  "schema:name": "Asian elephants are essential as seed dispersers in a disturbed tropical forest",
+  "schema:sourceOrganization": "Princeton University"
+}

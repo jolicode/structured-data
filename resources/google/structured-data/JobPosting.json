@@ -2,7 +2,8 @@
     "name": "JobPosting",
     "documentation": "https://developers.google.com/search/docs/appearance/structured-data/job-posting",
     "specialRules": [
-        "google.job_posting.remote_job_location_requirements"
+        "google.job_posting.remote_job_location_requirements",
+        "google.job_posting.experience_in_place_of_education"
     ],
     "supportedTypes": [
         "JobPosting"
@@ -194,6 +195,47 @@
                     ]
                 }
             }
+        },
+        "educationRequirements": {
+            "name": "educationRequirements",
+            "severity": "optional",
+            "supportedTypes": [
+                "EducationalOccupationalCredential",
+                "Text"
+            ],
+            "properties": {
+                "credentialCategory": {
+                    "name": "credentialCategory",
+                    "severity": "recommended",
+                    "supportedTypes": [
+                        "Text"
+                    ]
+                }
+            }
+        },
+        "experienceRequirements": {
+            "name": "experienceRequirements",
+            "severity": "recommended",
+            "supportedTypes": [
+                "OccupationalExperienceRequirements",
+                "Text"
+            ],
+            "properties": {
+                "monthsOfExperience": {
+                    "name": "monthsOfExperience",
+                    "severity": "recommended",
+                    "supportedTypes": [
+                        "Number"
+                    ]
+                }
+            }
+        },
+        "experienceInPlaceOfEducation": {
+            "name": "experienceInPlaceOfEducation",
+            "severity": "optional",
+            "supportedTypes": [
+                "Boolean"
+            ]
         }
     }
 }

@@ -18,7 +18,7 @@ final class ArchiveHeldModel
     public const NAME = 'schema:archiveHeld';
     public const VALUES = ['ArchiveComponentModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ArchiveComponentModel'];
     public const TYPES = ['ArchiveOrganization' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ArchiveOrganizationModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1758'];
     public const SUPERSEDED_BY = null;
 }

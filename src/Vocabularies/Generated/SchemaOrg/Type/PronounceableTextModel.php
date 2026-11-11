@@ -20,7 +20,7 @@ final class PronounceableTextModel
     public const NAME = 'schema:PronounceableText';
     public const PARENTS = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2108'];
     public const SUPERSEDED_BY = null;
 

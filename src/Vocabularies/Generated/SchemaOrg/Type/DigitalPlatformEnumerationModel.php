@@ -20,7 +20,7 @@ final class DigitalPlatformEnumerationModel
     public const NAME = 'schema:DigitalPlatformEnumeration';
     public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['AndroidPlatformModel' => 'EnumerationMember\AndroidPlatformModel', 'DesktopWebPlatformModel' => 'EnumerationMember\DesktopWebPlatformModel', 'GenericWebPlatformModel' => 'EnumerationMember\GenericWebPlatformModel', 'IOSPlatformModel' => 'EnumerationMember\IOSPlatformModel', 'MobileWebPlatformModel' => 'EnumerationMember\MobileWebPlatformModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3057'];
     public const SUPERSEDED_BY = null;
 

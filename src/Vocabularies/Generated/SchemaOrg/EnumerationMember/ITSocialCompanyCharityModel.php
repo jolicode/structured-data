@@ -13,10 +13,10 @@ namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\EnumerationMe
 
 final class ITSocialCompanyCharityModel
 {
-    public const DESCRIPTION = 'ITSocialCompanyCharity: Non-profit type referring to companies with charitable missions (Ital. Imprese Sociali or IS) according to Italian Law 112 of 2017.';
+    public const DESCRIPTION = 'ITSocialCompanyCharity: Non-profit type referring to Italian social enterprises (Ital. impresa sociale), a status governed by Legislative Decree No. 112 of 3 July 2017, as amended. The status may be acquired by different types of private entities and is not limited to companies.';
     public const LABEL = 'ITSocialCompanyCharity';
     public const NAME = 'schema:ITSocialCompanyCharity';
     public const IS_PART_OF = ['https://pending.schema.org'];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3629'];
-    public const SUPERSEDED_BY = null;
+    public const SUPERSEDED_BY = 'ITSocialEnterpriseCharity';
 }

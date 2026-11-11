@@ -42,30 +42,100 @@ final class VacationRental
                 ],
                 'additionalType' => [
                     'name' => 'additionalType',
-                    'severity' => 'optional',
+                    'severity' => 'recommended',
                     'supportedTypes' => [
                         'Text',
                     ],
                 ],
                 'numberOfBedrooms' => [
                     'name' => 'numberOfBedrooms',
-                    'severity' => 'optional',
+                    'severity' => 'recommended',
                     'supportedTypes' => [
                         'Integer',
                     ],
                 ],
                 'numberOfBathroomsTotal' => [
                     'name' => 'numberOfBathroomsTotal',
-                    'severity' => 'optional',
+                    'severity' => 'recommended',
                     'supportedTypes' => [
                         'Number',
                     ],
                 ],
                 'numberOfRooms' => [
                     'name' => 'numberOfRooms',
-                    'severity' => 'optional',
+                    'severity' => 'recommended',
                     'supportedTypes' => [
                         'Integer',
+                    ],
+                ],
+                'amenityFeature' => [
+                    'name' => 'amenityFeature',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'LocationFeatureSpecification',
+                    ],
+                    'properties' => [
+                        'name' => [
+                            'name' => 'name',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'Text',
+                            ],
+                        ],
+                        'value' => [
+                            'name' => 'value',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'Boolean',
+                                'Text',
+                            ],
+                        ],
+                    ],
+                ],
+                'bed' => [
+                    'name' => 'bed',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'BedDetails',
+                    ],
+                    'properties' => [
+                        'numberOfBeds' => [
+                            'name' => 'numberOfBeds',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'Integer',
+                            ],
+                        ],
+                        'typeOfBed' => [
+                            'name' => 'typeOfBed',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'Text',
+                            ],
+                        ],
+                    ],
+                ],
+                'floorSize' => [
+                    'name' => 'floorSize',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'QuantitativeValue',
+                    ],
+                    'properties' => [
+                        'value' => [
+                            'name' => 'value',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'Number',
+                            ],
+                        ],
+                        'unitCode' => [
+                            'name' => 'unitCode',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'Text',
+                            ],
+                        ],
                     ],
                 ],
             ],
@@ -84,16 +154,36 @@ final class VacationRental
                 'URL',
             ],
         ],
+        'atLeastOneOfLatitude' => [
+            'name' => 'atLeastOneOf',
+            'severity' => 'required',
+            'value' => [
+                'latitude' => true,
+                'geo' => true,
+            ],
+            'supportedTypes' => [
+            ],
+        ],
         'latitude' => [
             'name' => 'latitude',
-            'severity' => 'required',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Number',
             ],
         ],
+        'atLeastOneOfLongitude' => [
+            'name' => 'atLeastOneOf',
+            'severity' => 'required',
+            'value' => [
+                'longitude' => true,
+                'geo' => true,
+            ],
+            'supportedTypes' => [
+            ],
+        ],
         'longitude' => [
             'name' => 'longitude',
-            'severity' => 'required',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Number',
             ],
@@ -107,42 +197,42 @@ final class VacationRental
         ],
         'address' => [
             'name' => 'address',
-            'severity' => 'optional',
+            'severity' => 'recommended',
             'supportedTypes' => [
                 'PostalAddress',
             ],
             'properties' => [
                 'addressCountry' => [
                     'name' => 'addressCountry',
-                    'severity' => 'optional',
+                    'severity' => 'recommended',
                     'supportedTypes' => [
                         'Text',
                     ],
                 ],
                 'addressLocality' => [
                     'name' => 'addressLocality',
-                    'severity' => 'optional',
+                    'severity' => 'recommended',
                     'supportedTypes' => [
                         'Text',
                     ],
                 ],
                 'addressRegion' => [
                     'name' => 'addressRegion',
-                    'severity' => 'optional',
+                    'severity' => 'recommended',
                     'supportedTypes' => [
                         'Text',
                     ],
                 ],
                 'postalCode' => [
                     'name' => 'postalCode',
-                    'severity' => 'optional',
+                    'severity' => 'recommended',
                     'supportedTypes' => [
                         'Text',
                     ],
                 ],
                 'streetAddress' => [
                     'name' => 'streetAddress',
-                    'severity' => 'optional',
+                    'severity' => 'recommended',
                     'supportedTypes' => [
                         'Text',
                     ],
@@ -151,58 +241,90 @@ final class VacationRental
         ],
         'description' => [
             'name' => 'description',
-            'severity' => 'optional',
+            'severity' => 'recommended',
             'supportedTypes' => [
                 'Text',
             ],
         ],
         'aggregateRating' => [
             'name' => 'aggregateRating',
-            'severity' => 'optional',
+            'severity' => 'recommended',
             'supportedTypes' => [
                 'AggregateRating',
             ],
         ],
         'review' => [
             'name' => 'review',
-            'severity' => 'optional',
+            'severity' => 'recommended',
             'supportedTypes' => [
                 'Review',
+            ],
+            'properties' => [
+                'contentReferenceTime' => [
+                    'name' => 'contentReferenceTime',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'DateTime',
+                    ],
+                ],
             ],
         ],
         'brand' => [
             'name' => 'brand',
-            'severity' => 'optional',
+            'severity' => 'recommended',
             'supportedTypes' => [
                 'Brand',
             ],
         ],
         'additionalType' => [
             'name' => 'additionalType',
-            'severity' => 'optional',
+            'severity' => 'recommended',
             'supportedTypes' => [
                 'Text',
             ],
         ],
         'checkinTime' => [
             'name' => 'checkinTime',
-            'severity' => 'optional',
+            'severity' => 'recommended',
             'supportedTypes' => [
                 'Time',
             ],
         ],
         'checkoutTime' => [
             'name' => 'checkoutTime',
-            'severity' => 'optional',
+            'severity' => 'recommended',
             'supportedTypes' => [
                 'Time',
             ],
         ],
         'knowsLanguage' => [
             'name' => 'knowsLanguage',
-            'severity' => 'optional',
+            'severity' => 'recommended',
             'supportedTypes' => [
                 'Text',
+            ],
+        ],
+        'geo' => [
+            'name' => 'geo',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'GeoCoordinates',
+            ],
+            'properties' => [
+                'latitude' => [
+                    'name' => 'latitude',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Number',
+                    ],
+                ],
+                'longitude' => [
+                    'name' => 'longitude',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Number',
+                    ],
+                ],
             ],
         ],
     ];

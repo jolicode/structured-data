@@ -53,7 +53,9 @@
     },
     {
         "slug": "faqpage",
-        "url": "https://developers.google.com/search/docs/appearance/structured-data/faqpage"
+        "url": "https://developers.google.com/search/docs/appearance/structured-data/faqpage",
+        "status": "retired",
+        "note": "Retired by Google in 2026: the FAQ rich result is no longer shown (announced in May, documentation removed in June). Kept for backward compatibility."
     },
     {
         "slug": "image-license-metadata",

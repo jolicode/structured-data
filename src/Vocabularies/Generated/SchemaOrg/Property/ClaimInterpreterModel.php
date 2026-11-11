@@ -18,7 +18,7 @@ final class ClaimInterpreterModel
     public const NAME = 'schema:claimInterpreter';
     public const VALUES = ['OrganizationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'PersonModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PersonModel'];
     public const TYPES = ['Claim' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ClaimModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2450'];
     public const SUPERSEDED_BY = null;
 }

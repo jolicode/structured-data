@@ -20,7 +20,7 @@ final class BodyMeasurementTypeEnumerationModel
     public const NAME = 'schema:BodyMeasurementTypeEnumeration';
     public const PARENTS = ['MeasurementTypeEnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MeasurementTypeEnumerationModel'];
     public const ENUMERATION_MEMBERS = ['BodyMeasurementArmModel' => 'EnumerationMember\BodyMeasurementArmModel', 'BodyMeasurementBustModel' => 'EnumerationMember\BodyMeasurementBustModel', 'BodyMeasurementChestModel' => 'EnumerationMember\BodyMeasurementChestModel', 'BodyMeasurementFootModel' => 'EnumerationMember\BodyMeasurementFootModel', 'BodyMeasurementHandModel' => 'EnumerationMember\BodyMeasurementHandModel', 'BodyMeasurementHeadModel' => 'EnumerationMember\BodyMeasurementHeadModel', 'BodyMeasurementHeightModel' => 'EnumerationMember\BodyMeasurementHeightModel', 'BodyMeasurementHipsModel' => 'EnumerationMember\BodyMeasurementHipsModel', 'BodyMeasurementInsideLegModel' => 'EnumerationMember\BodyMeasurementInsideLegModel', 'BodyMeasurementNeckModel' => 'EnumerationMember\BodyMeasurementNeckModel', 'BodyMeasurementUnderbustModel' => 'EnumerationMember\BodyMeasurementUnderbustModel', 'BodyMeasurementWaistModel' => 'EnumerationMember\BodyMeasurementWaistModel', 'BodyMeasurementWeightModel' => 'EnumerationMember\BodyMeasurementWeightModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2811'];
     public const SUPERSEDED_BY = null;
 

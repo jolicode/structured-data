@@ -18,7 +18,7 @@ final class FulfillmentTypeModel
     public const NAME = 'schema:fulfillmentType';
     public const VALUES = ['FulfillmentTypeEnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\FulfillmentTypeEnumerationModel'];
     public const TYPES = ['ShippingService' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ShippingServiceModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3617'];
     public const SUPERSEDED_BY = null;
 }

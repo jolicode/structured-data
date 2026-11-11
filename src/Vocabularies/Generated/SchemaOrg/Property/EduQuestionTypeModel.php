@@ -18,7 +18,7 @@ final class EduQuestionTypeModel
     public const NAME = 'schema:eduQuestionType';
     public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Question' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\QuestionModel', 'SolveMathAction' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SolveMathActionModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2636'];
     public const SUPERSEDED_BY = null;
 }

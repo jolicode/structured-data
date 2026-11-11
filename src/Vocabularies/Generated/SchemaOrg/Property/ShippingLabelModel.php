@@ -19,5 +19,6 @@ final class ShippingLabelModel
     public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['OfferShippingDetails' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OfferShippingDetailsModel', 'ShippingRateSettings' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ShippingRateSettingsModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2506'];
+    public const SUPERSEDED_BY = null;
 }

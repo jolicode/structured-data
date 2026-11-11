@@ -30,7 +30,7 @@ class SchemaOrgValidator extends AbstractValidator
      * from. Bump it together with the generator's version when upgrading schema.org
      * (see resources/schema.org/UPGRADE_GUIDELINES.md).
      */
-    public const VOCABULARY_VERSION = '30.0';
+    public const VOCABULARY_VERSION = '30.1';
 
     /**
      * Terms hosted under pending.schema.org are still under development and may

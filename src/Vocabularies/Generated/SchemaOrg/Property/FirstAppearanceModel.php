@@ -18,7 +18,7 @@ final class FirstAppearanceModel
     public const NAME = 'schema:firstAppearance';
     public const VALUES = ['CreativeWorkModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel'];
     public const TYPES = ['Claim' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ClaimModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1828'];
     public const SUPERSEDED_BY = null;
 }

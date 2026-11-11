@@ -1,0 +1,31 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Basic Tee",
+    "offers": {
+        "@type": "AggregateOffer",
+        "highPrice": 59.99,
+        "offerCount": 5
+    },
+    "review": {
+        "@type": "Review",
+        "author": {
+            "@type": "Person",
+            "name": "Jane Doe"
+        },
+        "positiveNotes": {
+            "@type": "ItemList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Comfortable"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2
+                }
+            ]
+        }
+    }
+}

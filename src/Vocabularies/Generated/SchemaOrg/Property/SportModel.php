@@ -18,7 +18,7 @@ final class SportModel
     public const NAME = 'schema:sport';
     public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'URLModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
     public const TYPES = ['SportsEvent' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SportsEventModel', 'SportsOrganization' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SportsOrganizationModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1951'];
     public const SUPERSEDED_BY = null;
 }

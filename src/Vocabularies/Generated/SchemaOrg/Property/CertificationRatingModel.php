@@ -18,7 +18,7 @@ final class CertificationRatingModel
     public const NAME = 'schema:certificationRating';
     public const VALUES = ['RatingModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\RatingModel'];
     public const TYPES = ['Certification' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CertificationModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3230'];
     public const SUPERSEDED_BY = null;
 }

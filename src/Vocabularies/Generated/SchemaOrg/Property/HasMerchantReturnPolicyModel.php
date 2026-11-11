@@ -18,7 +18,7 @@ final class HasMerchantReturnPolicyModel
     public const NAME = 'schema:hasMerchantReturnPolicy';
     public const VALUES = ['MerchantReturnPolicyModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MerchantReturnPolicyModel'];
     public const TYPES = ['Offer' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OfferModel', 'Organization' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OrganizationModel', 'Product' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ProductModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2288'];
     public const SUPERSEDED_BY = null;
 }

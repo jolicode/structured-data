@@ -18,7 +18,7 @@ final class HealthcareReportingDataModel
     public const NAME = 'schema:healthcareReportingData';
     public const VALUES = ['CDCPMDRecordModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CDCPMDRecordModel', 'DatasetModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DatasetModel'];
     public const TYPES = ['Hospital' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\HospitalModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2521'];
     public const SUPERSEDED_BY = null;
 }

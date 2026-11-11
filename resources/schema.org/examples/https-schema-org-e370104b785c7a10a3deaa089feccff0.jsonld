@@ -1,0 +1,25 @@
+{
+  "@context": {
+    "schema": "https://schema.org/"
+  },
+  "@graph": [
+    {
+      "@id": "http://www.worldcat.org/oclc/751835184",
+      "@type": "schema:Book",
+      "schema:author": "Walter Isaacson",
+      "schema:isbn": "9781408703748",
+      "schema:name": "Steve Jobs"
+    },
+    {
+      "@id": "_:",
+      "@type": "schema:Chapter",
+      "schema:alternateName": "When Orbits Intersect",
+      "schema:pageEnd": "179",
+      "schema:isPartOf": {
+        "@id": "http://www.worldcat.org/oclc/751835184"
+      },
+      "schema:name": "Chapter 16: Gates AND JOBS",
+      "schema:pageStart": "171"
+    }
+  ]
+}

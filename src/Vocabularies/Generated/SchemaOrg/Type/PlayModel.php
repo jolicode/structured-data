@@ -20,7 +20,7 @@ final class PlayModel
     public const NAME = 'schema:Play';
     public const PARENTS = ['CreativeWorkModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1816'];
     public const SUPERSEDED_BY = null;
 

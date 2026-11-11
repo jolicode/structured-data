@@ -20,14 +20,13 @@ final class ShippingConditionsModel
     public const NAME = 'schema:ShippingConditions';
     public const PARENTS = ['StructuredValueModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3617'];
     public const SUPERSEDED_BY = null;
 
     public function __construct(
         public ?Property\AdditionalTypeModel $additionalType = null,
         public ?Property\AlternateNameModel $alternateName = null,
-        public ?Property\DeliveryTimeModel $deliveryTime = null,
         public ?Property\DepthModel $depth = null,
         public ?Property\DescriptionModel $description = null,
         public ?Property\DisambiguatingDescriptionModel $disambiguatingDescription = null,
@@ -35,7 +34,6 @@ final class ShippingConditionsModel
         public ?Property\HeightModel $height = null,
         public ?Property\IdentifierModel $identifier = null,
         public ?Property\ImageModel $image = null,
-        public ?Property\IsUnlabelledFallbackModel $isUnlabelledFallback = null,
         public ?Property\MainEntityOfPageModel $mainEntityOfPage = null,
         public ?Property\NameModel $name = null,
         public ?Property\NumItemsModel $numItems = null,

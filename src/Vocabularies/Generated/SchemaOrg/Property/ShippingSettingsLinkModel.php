@@ -19,5 +19,6 @@ final class ShippingSettingsLinkModel
     public const VALUES = ['URLModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
     public const TYPES = ['OfferShippingDetails' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OfferShippingDetailsModel'];
     public const IS_PART_OF = [];
-    public const SOURCE = [];
+    public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2506'];
+    public const SUPERSEDED_BY = null;
 }

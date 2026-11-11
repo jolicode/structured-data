@@ -27,14 +27,14 @@ final class ProfilePage
             'properties' => [
                 'name' => [
                     'name' => 'name',
-                    'severity' => 'recommended',
+                    'severity' => 'required',
                     'supportedTypes' => [
                         'Text',
                     ],
                 ],
                 'agentInteractionStatistic' => [
                     'name' => 'agentInteractionStatistic',
-                    'severity' => 'recommended',
+                    'severity' => 'optional',
                     'supportedTypes' => [
                         'InteractionCounter',
                     ],
@@ -57,28 +57,28 @@ final class ProfilePage
                 ],
                 'alternateName' => [
                     'name' => 'alternateName',
-                    'severity' => 'recommended',
+                    'severity' => 'optional',
                     'supportedTypes' => [
                         'Text',
                     ],
                 ],
                 'description' => [
                     'name' => 'description',
-                    'severity' => 'recommended',
+                    'severity' => 'optional',
                     'supportedTypes' => [
                         'Text',
                     ],
                 ],
                 'identifier' => [
                     'name' => 'identifier',
-                    'severity' => 'recommended',
+                    'severity' => 'optional',
                     'supportedTypes' => [
                         'Text',
                     ],
                 ],
                 'image' => [
                     'name' => 'image',
-                    'severity' => 'recommended',
+                    'severity' => 'optional',
                     'supportedTypes' => [
                         'URL',
                         'ImageObject',
@@ -86,7 +86,7 @@ final class ProfilePage
                 ],
                 'interactionStatistic' => [
                     'name' => 'interactionStatistic',
-                    'severity' => 'recommended',
+                    'severity' => 'optional',
                     'supportedTypes' => [
                         'InteractionCounter',
                     ],
@@ -109,7 +109,7 @@ final class ProfilePage
                 ],
                 'sameAs' => [
                     'name' => 'sameAs',
-                    'severity' => 'recommended',
+                    'severity' => 'optional',
                     'supportedTypes' => [
                         'URL',
                     ],
@@ -118,14 +118,14 @@ final class ProfilePage
         ],
         'dateCreated' => [
             'name' => 'dateCreated',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'DateTime',
             ],
         ],
         'dateModified' => [
             'name' => 'dateModified',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'DateTime',
             ],

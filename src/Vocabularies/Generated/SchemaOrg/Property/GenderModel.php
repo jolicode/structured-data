@@ -18,7 +18,7 @@ final class GenderModel
     public const NAME = 'schema:gender';
     public const VALUES = ['GenderTypeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\GenderTypeModel', 'TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Person' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PersonModel', 'SportsTeam' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SportsTeamModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2341'];
     public const SUPERSEDED_BY = null;
 }

@@ -20,7 +20,7 @@ final class SatiricalArticleModel
     public const NAME = 'schema:SatiricalArticle';
     public const PARENTS = ['ArticleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ArticleModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1525'];
     public const SUPERSEDED_BY = null;
 

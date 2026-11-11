@@ -68,14 +68,14 @@ final class ItemList
                             'properties' => [
                                 'description' => [
                                     'name' => 'description',
-                                    'severity' => 'recommended',
+                                    'severity' => 'required',
                                     'supportedTypes' => [
                                         'Text',
                                     ],
                                 ],
                                 'provider' => [
                                     'name' => 'provider',
-                                    'severity' => 'required',
+                                    'severity' => 'recommended',
                                     'supportedTypes' => [
                                         'Organization',
                                     ],
@@ -108,16 +108,17 @@ final class ItemList
                                 ],
                                 'recipeIngredient' => [
                                     'name' => 'recipeIngredient',
-                                    'severity' => 'required',
+                                    'severity' => 'recommended',
                                     'supportedTypes' => [
                                         'Text',
                                     ],
                                 ],
                                 'recipeInstructions' => [
                                     'name' => 'recipeInstructions',
-                                    'severity' => 'required',
+                                    'severity' => 'recommended',
                                     'supportedTypes' => [
                                         'HowToStep',
+                                        'HowToSection',
                                         'Text',
                                     ],
                                 ],
@@ -136,16 +137,268 @@ final class ItemList
                                 ],
                                 'address' => [
                                     'name' => 'address',
-                                    'severity' => 'required',
+                                    'severity' => 'recommended',
                                     'supportedTypes' => [
                                         'PostalAddress',
                                     ],
                                 ],
                                 'servesCuisine' => [
                                     'name' => 'servesCuisine',
-                                    'severity' => 'required',
+                                    'severity' => 'recommended',
                                     'supportedTypes' => [
                                         'Text',
+                                    ],
+                                ],
+                            ],
+                        ],
+                        [
+                            '@target' => 'LocalBusiness',
+                            'documentation' => 'https://developers.google.com/search/docs/appearance/structured-data/carousels-beta',
+                            'properties' => [
+                                'image' => [
+                                    'name' => 'image',
+                                    'severity' => 'required',
+                                    'supportedTypes' => [
+                                        'URL',
+                                        'ImageObject',
+                                    ],
+                                ],
+                                'aggregateRating' => [
+                                    'name' => 'aggregateRating',
+                                    'severity' => 'recommended',
+                                    'supportedTypes' => [
+                                        'AggregateRating',
+                                    ],
+                                    'properties' => [
+                                        'ratingValue' => [
+                                            'name' => 'ratingValue',
+                                            'severity' => 'recommended',
+                                            'supportedTypes' => [
+                                                'Number',
+                                                'Text',
+                                            ],
+                                        ],
+                                        'ratingCount' => [
+                                            'name' => 'ratingCount',
+                                            'severity' => 'recommended',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                        'bestRating' => [
+                                            'name' => 'bestRating',
+                                            'severity' => 'recommended',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                                'amenityFeature' => [
+                                    'name' => 'amenityFeature',
+                                    'severity' => 'recommended',
+                                    'supportedTypes' => [
+                                        'LocationFeatureSpecification',
+                                    ],
+                                ],
+                                'priceRange' => [
+                                    'name' => 'priceRange',
+                                    'severity' => 'recommended',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                                'servesCuisine' => [
+                                    'name' => 'servesCuisine',
+                                    'severity' => 'recommended',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                            ],
+                        ],
+                        [
+                            '@target' => 'Product',
+                            'documentation' => 'https://developers.google.com/search/docs/appearance/structured-data/carousels-beta',
+                            'properties' => [
+                                'image' => [
+                                    'name' => 'image',
+                                    'severity' => 'required',
+                                    'supportedTypes' => [
+                                        'URL',
+                                        'ImageObject',
+                                    ],
+                                ],
+                                'aggregateRating' => [
+                                    'name' => 'aggregateRating',
+                                    'severity' => 'recommended',
+                                    'supportedTypes' => [
+                                        'AggregateRating',
+                                    ],
+                                    'properties' => [
+                                        'ratingValue' => [
+                                            'name' => 'ratingValue',
+                                            'severity' => 'recommended',
+                                            'supportedTypes' => [
+                                                'Number',
+                                                'Text',
+                                            ],
+                                        ],
+                                        'ratingCount' => [
+                                            'name' => 'ratingCount',
+                                            'severity' => 'recommended',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                        'bestRating' => [
+                                            'name' => 'bestRating',
+                                            'severity' => 'recommended',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                                'offers' => [
+                                    'name' => 'offers',
+                                    'severity' => 'recommended',
+                                    'supportedTypes' => [
+                                        'Offer',
+                                        'AggregateOffer',
+                                    ],
+                                    'properties' => [
+                                        'atLeastOneOf' => [
+                                            'name' => 'atLeastOneOf',
+                                            'severity' => 'recommended',
+                                            'value' => [
+                                                'price' => true,
+                                                'lowPrice' => true,
+                                            ],
+                                            'supportedTypes' => [
+                                            ],
+                                        ],
+                                        'price' => [
+                                            'name' => 'price',
+                                            'severity' => 'optional',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                        'lowPrice' => [
+                                            'name' => 'lowPrice',
+                                            'severity' => 'optional',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                        'highPrice' => [
+                                            'name' => 'highPrice',
+                                            'severity' => 'optional',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                        'priceCurrency' => [
+                                            'name' => 'priceCurrency',
+                                            'severity' => 'recommended',
+                                            'supportedTypes' => [
+                                                'Text',
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                        [
+                            '@target' => 'Event',
+                            'documentation' => 'https://developers.google.com/search/docs/appearance/structured-data/carousels-beta',
+                            'properties' => [
+                                'image' => [
+                                    'name' => 'image',
+                                    'severity' => 'required',
+                                    'supportedTypes' => [
+                                        'URL',
+                                        'ImageObject',
+                                    ],
+                                ],
+                                'aggregateRating' => [
+                                    'name' => 'aggregateRating',
+                                    'severity' => 'recommended',
+                                    'supportedTypes' => [
+                                        'AggregateRating',
+                                    ],
+                                    'properties' => [
+                                        'ratingValue' => [
+                                            'name' => 'ratingValue',
+                                            'severity' => 'recommended',
+                                            'supportedTypes' => [
+                                                'Number',
+                                                'Text',
+                                            ],
+                                        ],
+                                        'ratingCount' => [
+                                            'name' => 'ratingCount',
+                                            'severity' => 'recommended',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                        'bestRating' => [
+                                            'name' => 'bestRating',
+                                            'severity' => 'recommended',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                                'offers' => [
+                                    'name' => 'offers',
+                                    'severity' => 'recommended',
+                                    'supportedTypes' => [
+                                        'Offer',
+                                        'AggregateOffer',
+                                    ],
+                                    'properties' => [
+                                        'atLeastOneOf' => [
+                                            'name' => 'atLeastOneOf',
+                                            'severity' => 'recommended',
+                                            'value' => [
+                                                'price' => true,
+                                                'lowPrice' => true,
+                                            ],
+                                            'supportedTypes' => [
+                                            ],
+                                        ],
+                                        'price' => [
+                                            'name' => 'price',
+                                            'severity' => 'optional',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                        'lowPrice' => [
+                                            'name' => 'lowPrice',
+                                            'severity' => 'optional',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                        'highPrice' => [
+                                            'name' => 'highPrice',
+                                            'severity' => 'optional',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                        'priceCurrency' => [
+                                            'name' => 'priceCurrency',
+                                            'severity' => 'recommended',
+                                            'supportedTypes' => [
+                                                'Text',
+                                            ],
+                                        ],
                                     ],
                                 ],
                             ],

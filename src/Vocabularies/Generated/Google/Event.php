@@ -100,7 +100,7 @@ final class Event
         ],
         'image' => [
             'name' => 'image',
-            'severity' => 'required',
+            'severity' => 'recommended',
             'supportedTypes' => [
                 'URL',
                 'ImageObject',
@@ -108,7 +108,7 @@ final class Event
         ],
         'description' => [
             'name' => 'description',
-            'severity' => 'required',
+            'severity' => 'recommended',
             'supportedTypes' => [
                 'Text',
             ],
@@ -152,7 +152,7 @@ final class Event
                     'name' => 'availability',
                     'severity' => 'recommended',
                     'supportedTypes' => [
-                        'OfferItemCondition',
+                        'ItemAvailability',
                     ],
                 ],
                 'validFrom' => [

@@ -395,7 +395,7 @@
         },
         "author": {
           "name": "author",
-          "severity": "recommended",
+          "severity": "optional",
           "documentation": "https://developers.google.com/search/docs/appearance/structured-data/book#person-or-organization-author",
           "supportedTypes": [
             "Person",
@@ -463,7 +463,7 @@
         },
         "name": {
           "name": "name",
-          "severity": "recommended",
+          "severity": "optional",
           "supportedTypes": [
             "Text"
           ]

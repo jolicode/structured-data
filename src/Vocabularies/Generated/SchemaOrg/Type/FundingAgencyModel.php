@@ -24,7 +24,7 @@ Examples of funding agencies include ERC, REA, NIH, Bill and Melinda Gates Found
     public const NAME = 'schema:FundingAgency';
     public const PARENTS = ['ProjectModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ProjectModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/383'];
     public const SUPERSEDED_BY = null;
 
@@ -38,6 +38,7 @@ Examples of funding agencies include ERC, REA, NIH, Bill and Melinda Gates Found
         public ?Property\AlternateNameModel $alternateName = null,
         public ?Property\AlumniModel $alumni = null,
         public ?Property\AreaServedModel $areaServed = null,
+        public ?Property\AuthorizedRepresentativeModel $authorizedRepresentative = null,
         public ?Property\AwardModel $award = null,
         public ?Property\AwardsModel $awards = null,
         public ?Property\BrandModel $brand = null,
@@ -73,6 +74,7 @@ Examples of funding agencies include ERC, REA, NIH, Bill and Melinda Gates Found
         public ?Property\HasMerchantReturnPolicyModel $hasMerchantReturnPolicy = null,
         public ?Property\HasOfferCatalogModel $hasOfferCatalog = null,
         public ?Property\HasPOSModel $hasPOS = null,
+        public ?Property\HasProductReturnPolicyModel $hasProductReturnPolicy = null,
         public ?Property\HasShippingServiceModel $hasShippingService = null,
         public ?Property\IdentifierModel $identifier = null,
         public ?Property\ImageModel $image = null,

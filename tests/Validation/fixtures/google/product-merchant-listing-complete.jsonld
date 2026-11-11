@@ -1,0 +1,163 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Nice trinket",
+    "image": [
+        "https://example.com/photos/16x9/trinket.jpg",
+        "https://example.com/photos/4x3/trinket.jpg"
+    ],
+    "description": "Trinket with clean lines",
+    "sku": "1234-5678",
+    "mpn": "925872",
+    "gtin13": "0614141999996",
+    "brand": {
+        "@type": "Brand",
+        "name": "MyBrand"
+    },
+    "category": [
+        {
+            "@type": "CategoryCode",
+            "inCodeSet": "https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt",
+            "codeValue": "2271"
+        },
+        "Dresses"
+    ],
+    "color": "Blue",
+    "material": "Cotton",
+    "pattern": "Striped",
+    "size": {
+        "@type": "SizeSpecification",
+        "name": "M",
+        "sizeGroup": "https://schema.org/WearableSizeGroupRegular",
+        "sizeSystem": "https://schema.org/WearableSizeSystemUS"
+    },
+    "audience": {
+        "@type": "PeopleAudience",
+        "suggestedGender": "unisex",
+        "suggestedMinAge": 13
+    },
+    "hasAdultConsideration": "https://schema.org/UnclassifiedAdultConsideration",
+    "hasCertification": {
+        "@type": "Certification",
+        "issuedBy": {
+            "@type": "Organization",
+            "name": "European_Commission"
+        },
+        "name": "EPREL",
+        "certificationIdentification": "123456",
+        "certificationRating": {
+            "@type": "Rating",
+            "ratingValue": "C"
+        }
+    },
+    "inProductGroupWithID": "44E01",
+    "isVariantOf": {
+        "@type": "ProductGroup",
+        "name": "Nice trinkets",
+        "productGroupID": "44E01"
+    },
+    "subjectOf": {
+        "@type": "3DModel",
+        "encoding": {
+            "@type": "MediaObject",
+            "contentUrl": "https://example.com/models/trinket.gltf"
+        }
+    },
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": 4.4,
+        "reviewCount": 89
+    },
+    "review": {
+        "@type": "Review",
+        "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 4,
+            "bestRating": 5
+        },
+        "author": {
+            "@type": "Person",
+            "name": "Fred Benson"
+        }
+    },
+    "offers": {
+        "@type": "Offer",
+        "url": "https://www.example.com/trinket_offer",
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/InStock",
+        "priceValidUntil": "2027-11-20",
+        "validFrom": "2026-11-01T00:00:00+01:00",
+        "validThrough": "2027-11-20T23:59:59+01:00",
+        "priceSpecification": [
+            {
+                "@type": "UnitPriceSpecification",
+                "price": 39.99,
+                "priceCurrency": "EUR",
+                "membershipPointsEarned": 20,
+                "validForMemberTier": {
+                    "@type": "MemberProgramTier",
+                    "@id": "https://example.com/member-plan#tier_silver"
+                },
+                "referenceQuantity": {
+                    "@type": "QuantitativeValue",
+                    "value": 1,
+                    "unitCode": "LTR",
+                    "valueReference": {
+                        "@type": "QuantitativeValue",
+                        "value": 100,
+                        "unitCode": "MLT"
+                    }
+                },
+                "validFrom": "2026-11-01",
+                "validThrough": "2027-11-20"
+            },
+            {
+                "@type": "UnitPriceSpecification",
+                "priceType": "https://schema.org/StrikethroughPrice",
+                "price": 49.99,
+                "priceCurrency": "EUR"
+            }
+        ],
+        "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": 3.49,
+                "currency": "EUR"
+            },
+            "shippingDestination": {
+                "@type": "DefinedRegion",
+                "addressCountry": "FR",
+                "postalCode": "75001"
+            },
+            "deliveryTime": {
+                "@type": "ShippingDeliveryTime",
+                "handlingTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 0,
+                    "maxValue": 1,
+                    "unitCode": "DAY"
+                },
+                "transitTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 1,
+                    "maxValue": 5,
+                    "unitCode": "DAY"
+                }
+            }
+        },
+        "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "FR",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 60,
+            "returnMethod": "https://schema.org/ReturnByMail",
+            "returnFees": "https://schema.org/ReturnShippingFees",
+            "returnShippingFeesAmount": {
+                "@type": "MonetaryAmount",
+                "value": 2.99,
+                "currency": "EUR"
+            }
+        }
+    }
+}

@@ -230,10 +230,14 @@ class GoogleValidatorInfrastructureTest extends TestCase
         yield 'book-offer-pricing-by-category' => ['google.book.offer_pricing_by_category', ['error']];
         yield 'breadcrumb-last-item-optional' => ['google.breadcrumb.last_item_optional', ['error']];
         yield 'discussion-forum-content-or-url' => ['google.discussion_forum.content_or_url', []];
+        yield 'job-posting-experience-in-place-of-education' => ['google.job_posting.experience_in_place_of_education', ['error']];
         yield 'job-posting-remote-job-location-requirements' => ['google.job_posting.remote_job_location_requirements', ['error']];
-        yield 'organization-return-policy-merchant-return-days-when-finite' => ['google.organization.return_policy_merchant_return_days_when_finite', ['error']];
+        yield 'organization-member-tier-loyalty-points' => ['google.organization.member_tier_loyalty_points', ['warning']];
+        yield 'organization-return-policy' => ['google.organization.return_policy', ['error', 'warning']];
         yield 'organization-tax-id-country-consistency' => ['google.organization.tax_id_country_consistency', ['warning']];
+        yield 'product-merchant-listing-price-currency' => ['google.product.merchant_listing_price_currency', ['error']];
         yield 'product-merchant-listing-price-positive' => ['google.product.merchant_listing_price_positive', ['error']];
+        yield 'product-merchant-listing-return-policy' => ['google.product.merchant_listing_return_policy', ['error', 'warning']];
         yield 'qapage-answer-comment-count-consistency' => ['google.qapage.answer_comment_count_consistency', ['warning']];
         yield 'recipe-calories-requires-yield' => ['google.recipe.calories_requires_yield', ['warning']];
         yield 'speakable-cssselector-or-xpath' => ['google.speakable.cssselector_or_xpath', ['error']];

@@ -27,7 +27,7 @@ Use Text for incentives that are limited based on other criteria, for example if
     public const NAME = 'schema:incomeLimit';
     public const VALUES = ['MonetaryAmountModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountModel', 'TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['FinancialIncentive' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\FinancialIncentiveModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3572'];
     public const SUPERSEDED_BY = null;
 }

@@ -18,7 +18,7 @@ final class InDefinedTermSetModel
     public const NAME = 'schema:inDefinedTermSet';
     public const VALUES = ['DefinedTermSetModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DefinedTermSetModel', 'URLModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
     public const TYPES = ['DefinedTerm' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\DefinedTermModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/894'];
     public const SUPERSEDED_BY = null;
 }

@@ -13,7 +13,7 @@ namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\EnumerationMe
 
 final class ITSocialPromotionCharityModel
 {
-    public const DESCRIPTION = 'ITSocialPromotionCharity: Non-profit type referring to associations promoting charitable causes (Ital. Associazioni di promozione sociale or APS) according to Italian Law 383 of 2000.';
+    public const DESCRIPTION = 'ITSocialPromotionCharity: Non-profit type referring to Italian social promotion associations (Ital. associazione di promozione sociale or APS), governed primarily by Articles 35 and following of Legislative Decree No. 117 of 3 July 2017, the Italian Third Sector Code, which superseded Law 383 of 2000.';
     public const LABEL = 'ITSocialPromotionCharity';
     public const NAME = 'schema:ITSocialPromotionCharity';
     public const IS_PART_OF = ['https://pending.schema.org'];

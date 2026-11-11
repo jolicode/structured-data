@@ -18,7 +18,7 @@ final class EndOffsetModel
     public const NAME = 'schema:endOffset';
     public const VALUES = ['HyperTocEntryModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\HyperTocEntryModel', 'NumberModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['Clip' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ClipModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2021'];
     public const SUPERSEDED_BY = null;
 }

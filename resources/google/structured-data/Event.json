@@ -89,7 +89,7 @@
         },
         "image": {
             "name": "image",
-            "severity": "required",
+            "severity": "recommended",
             "supportedTypes": [
                 "URL",
                 "ImageObject"
@@ -97,7 +97,7 @@
         },
         "description": {
             "name": "description",
-            "severity": "required",
+            "severity": "recommended",
             "supportedTypes": [
                 "Text"
             ]
@@ -141,7 +141,7 @@
                     "name": "availability",
                     "severity": "recommended",
                     "supportedTypes": [
-                        "OfferItemCondition"
+                        "ItemAvailability"
                     ]
                 },
                 "validFrom": {

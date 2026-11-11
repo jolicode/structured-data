@@ -20,7 +20,7 @@ final class GameAvailabilityEnumerationModel
     public const NAME = 'schema:GameAvailabilityEnumeration';
     public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['DemoGameAvailabilityModel' => 'EnumerationMember\DemoGameAvailabilityModel', 'FullGameAvailabilityModel' => 'EnumerationMember\FullGameAvailabilityModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3058'];
     public const SUPERSEDED_BY = null;
 

@@ -20,7 +20,7 @@ final class IncentiveQualifiedExpenseTypeModel
     public const NAME = 'schema:IncentiveQualifiedExpenseType';
     public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['IncentiveQualifiedExpenseTypeGoodsOnlyModel' => 'EnumerationMember\IncentiveQualifiedExpenseTypeGoodsOnlyModel', 'IncentiveQualifiedExpenseTypeGoodsOrServicesModel' => 'EnumerationMember\IncentiveQualifiedExpenseTypeGoodsOrServicesModel', 'IncentiveQualifiedExpenseTypeServicesOnlyModel' => 'EnumerationMember\IncentiveQualifiedExpenseTypeServicesOnlyModel', 'IncentiveQualifiedExpenseTypeUtilityBillModel' => 'EnumerationMember\IncentiveQualifiedExpenseTypeUtilityBillModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3572'];
     public const SUPERSEDED_BY = null;
 

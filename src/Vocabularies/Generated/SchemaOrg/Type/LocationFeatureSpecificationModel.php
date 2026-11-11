@@ -49,6 +49,7 @@ final class LocationFeatureSpecificationModel
         public ?Property\ValidFromModel $validFrom = null,
         public ?Property\ValidThroughModel $validThrough = null,
         public ?Property\ValueModel $value = null,
+        public ?Property\ValueGroupModel $valueGroup = null,
         public ?Property\ValueReferenceModel $valueReference = null,
     ) {
     }

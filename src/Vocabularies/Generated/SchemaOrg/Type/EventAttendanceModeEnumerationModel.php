@@ -20,7 +20,7 @@ final class EventAttendanceModeEnumerationModel
     public const NAME = 'schema:EventAttendanceModeEnumeration';
     public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['MixedEventAttendanceModeModel' => 'EnumerationMember\MixedEventAttendanceModeModel', 'OfflineEventAttendanceModeModel' => 'EnumerationMember\OfflineEventAttendanceModeModel', 'OnlineEventAttendanceModeModel' => 'EnumerationMember\OnlineEventAttendanceModeModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1842'];
     public const SUPERSEDED_BY = null;
 

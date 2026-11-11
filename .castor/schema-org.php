@@ -51,25 +51,31 @@ function versionedFiles(): array
     ];
 }
 
-#[AsTask(description: 'Download the schema.org types definition file')]
+#[AsTask(description: 'Download the schema.org types definition file and the schema.org JSON-LD context')]
 function download(
     bool $overwrite = false,
 ): void {
-    io()->title('Downloading the schema.org types definition file');
-    $filename = getCurrentSchemaOrgDefinitionFileName();
+    io()->title('Downloading the schema.org types definition file and JSON-LD context');
+    $skipped = false;
 
-    if (!$overwrite && file_exists($filename)) {
-        io()->warning("
-            The definition file already exists. Skipping.\n
-            Run `castor schema-org:download --overwrite` if you want to overwrite it.
-        ");
+    foreach (getCurrentReleaseFiles() as $filename => $url) {
+        if (!$overwrite && file_exists($filename)) {
+            $skipped = true;
 
-        return;
+            continue;
+        }
+
+        http_download($url, $filename);
     }
 
-    http_download(getDefinitionFileUrl(SchemaOrg::VERSION), $filename);
+    if ($skipped) {
+        io()->warning("
+            Files already downloaded were skipped.\n
+            Run `castor schema-org:download --overwrite` if you want to overwrite them.
+        ");
+    }
 
-    io()->success('Schema.org types definition file downloaded successfully');
+    io()->success('Schema.org release files downloaded successfully');
 }
 
 #[AsTask(description: 'Generate classes for JSON-LD validation based on the schema.org types definition file')]
@@ -77,9 +83,13 @@ function generate(): void
 {
     io()->title('Generating schema.org classes');
 
-    if (!file_exists(getCurrentSchemaOrgDefinitionFileName())) {
-        io()->info('The schema.org types definition file is missing, downloading it.');
-        download();
+    foreach (array_keys(getCurrentReleaseFiles()) as $filename) {
+        if (!file_exists($filename)) {
+            io()->info('A schema.org release file is missing, downloading it.');
+            download();
+
+            break;
+        }
     }
 
     $generator = new Generator();
@@ -138,18 +148,18 @@ function updateVersion(
         return 1;
     }
 
-    // A version may be announced while its definition file is not published yet: the
+    // A version may be announced while its data files are not published yet: the
     // latest usable release is the latest one we can actually download.
     $latest = null;
 
     foreach ($releases as $release) {
-        if (definitionFileIsPublished($release)) {
+        if (releaseFilesArePublished($release)) {
             $latest = $release;
 
             break;
         }
 
-        io()->warning(\sprintf('Release %s is listed but its definition file is not published yet, skipping it.', $release));
+        io()->warning(\sprintf('Release %s is listed but its data files are not published yet, skipping it.', $release));
     }
 
     if (null === $latest) {
@@ -228,13 +238,19 @@ function fetchPublishedReleases(): array
 }
 
 /**
- * Whether the definition file of a release can actually be downloaded: schema.org
- * sometimes lists a release before publishing its data files.
+ * Whether the definition file and the JSON-LD context of a release can actually be
+ * downloaded: schema.org sometimes lists a release before publishing its data files.
  */
-function definitionFileIsPublished(string $version): bool
+function releaseFilesArePublished(string $version): bool
 {
     try {
-        return 200 === http_request('HEAD', getDefinitionFileUrl($version))->getStatusCode();
+        foreach ([getDefinitionFileUrl($version), getContextFileUrl($version)] as $url) {
+            if (200 !== http_request('HEAD', $url)->getStatusCode()) {
+                return false;
+            }
+        }
+
+        return true;
     } catch (ExceptionInterface) {
         return false;
     }
@@ -292,11 +308,26 @@ function getDefinitionFileUrl(string $version): string
     );
 }
 
-function getCurrentSchemaOrgDefinitionFileName(): string
+function getContextFileUrl(string $version): string
 {
     return \sprintf(
-        '%s/schemaorg-%s-https.jsonld',
-        Filesystem::CACHE_DIR_SCHEMA_ORG,
-        SchemaOrg::VERSION,
+        'https://raw.githubusercontent.com/schemaorg/schemaorg/main/data/releases/%s/schemaorgcontext.jsonld',
+        $version,
     );
+}
+
+/**
+ * The files of the configured release: the types definition file the classes are
+ * generated from, and the JSON-LD context the static context is built from.
+ *
+ * @return array<string, string> the local file name, and the URL it is downloaded from
+ */
+function getCurrentReleaseFiles(): array
+{
+    $filesystem = new Filesystem();
+
+    return [
+        $filesystem->getSchemaOrgTypesDefinitionFilename() => getDefinitionFileUrl(SchemaOrg::VERSION),
+        $filesystem->getSchemaOrgContextFilename() => getContextFileUrl(SchemaOrg::VERSION),
+    ];
 }

@@ -13,7 +13,7 @@ namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\EnumerationMe
 
 final class ITVolunteerAssociationCharityModel
 {
-    public const DESCRIPTION = 'ITVolunteerAssociationCharity: Non-profit type referring to associations organising charitable volunteer activities (Ital. Organizzazioni di volontariato or ODV) according to Italian Law 266 of 1991.';
+    public const DESCRIPTION = 'ITVolunteerAssociationCharity: Non-profit type referring to Italian volunteer organizations (Ital. organizzazione di volontariato or ODV), governed primarily by Articles 32 and following of Legislative Decree No. 117 of 3 July 2017, the Italian Third Sector Code, which superseded Law 266 of 1991.';
     public const LABEL = 'ITVolunteerAssociationCharity';
     public const NAME = 'schema:ITVolunteerAssociationCharity';
     public const IS_PART_OF = ['https://pending.schema.org'];

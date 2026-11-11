@@ -20,7 +20,7 @@ final class ArchiveOrganizationModel
     public const NAME = 'schema:ArchiveOrganization';
     public const PARENTS = ['LocalBusinessModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\LocalBusinessModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1758'];
     public const SUPERSEDED_BY = null;
 
@@ -37,6 +37,7 @@ final class ArchiveOrganizationModel
         public ?Property\AmenityFeatureModel $amenityFeature = null,
         public ?Property\ArchiveHeldModel $archiveHeld = null,
         public ?Property\AreaServedModel $areaServed = null,
+        public ?Property\AuthorizedRepresentativeModel $authorizedRepresentative = null,
         public ?Property\AwardModel $award = null,
         public ?Property\AwardsModel $awards = null,
         public ?Property\BranchCodeModel $branchCode = null,
@@ -92,6 +93,7 @@ final class ArchiveOrganizationModel
         public ?Property\HasMerchantReturnPolicyModel $hasMerchantReturnPolicy = null,
         public ?Property\HasOfferCatalogModel $hasOfferCatalog = null,
         public ?Property\HasPOSModel $hasPOS = null,
+        public ?Property\HasProductReturnPolicyModel $hasProductReturnPolicy = null,
         public ?Property\HasShippingServiceModel $hasShippingService = null,
         public ?Property\IdentifierModel $identifier = null,
         public ?Property\ImageModel $image = null,

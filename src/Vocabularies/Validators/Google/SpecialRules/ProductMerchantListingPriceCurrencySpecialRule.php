@@ -14,23 +14,31 @@ namespace JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules;
 use JoliCode\StructuredData\Mapper\MappedError;
 use JoliCode\StructuredData\Mapper\MappedType;
 
-final class OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule implements SpecialRuleInterface
+/**
+ * A merchant listing offer may carry its price on the Offer itself or inside a
+ * priceSpecification: "priceCurrency" is only required next to an Offer-level
+ * "price" (the priceSpecification requires its own currency).
+ *
+ * @see https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#offer-details
+ */
+final class ProductMerchantListingPriceCurrencySpecialRule implements SpecialRuleInterface
 {
-    private const FINITE_RETURN_ENUM_VALUES = [
-        'MerchantReturnFiniteReturnWindow',
-        'https://schema.org/MerchantReturnFiniteReturnWindow',
-    ];
-
     public static function getKey(): string
     {
-        return 'google.organization.return_policy_merchant_return_days_when_finite';
+        return 'google.product.merchant_listing_price_currency';
     }
 
+    /**
+     * @param array<string, mixed> $missingProperty
+     */
     public function shouldIgnoreMissingRequiredProperty(MappedType $type, array $missingProperty): bool
     {
         return false;
     }
 
+    /**
+     * @param array<string, mixed> $missingProperty
+     */
     public function shouldIgnoreMissingRecommendedProperty(MappedType $type, array $missingProperty): bool
     {
         return false;
@@ -38,31 +46,30 @@ final class OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule impl
 
     public function getTypeViolations(MappedType $type): array
     {
-        if (!$this->hasType($type->getType(), 'MerchantReturnPolicy')) {
+        if (!$this->hasType($type->getType(), 'Offer')) {
             return [];
         }
 
-        if ('hasMerchantReturnPolicy' !== $type->getParentProperty()?->getKey()) {
+        if ('offers' !== $type->getParentProperty()?->getKey()) {
             return [];
         }
 
-        $returnPolicyCategory = $type->getProperty('returnPolicyCategory')?->getValue();
+        $properties = $type->getProperties();
 
-        if (!\in_array($returnPolicyCategory, self::FINITE_RETURN_ENUM_VALUES, true)) {
-            return [];
-        }
-
-        if (\array_key_exists('merchantReturnDays', $type->getProperties())) {
+        if (!\array_key_exists('price', $properties) || \array_key_exists('priceCurrency', $properties)) {
             return [];
         }
 
         return [[
             'target' => $type,
-            'message' => 'Missing required property: "merchantReturnDays" for the type "MerchantReturnPolicy" when "returnPolicyCategory" is "MerchantReturnFiniteReturnWindow".',
+            'message' => 'Missing required property: "priceCurrency" for the type "Offer" when "price" is specified.',
             'severity' => MappedError::SEVERITY_ERROR,
         ]];
     }
 
+    /**
+     * @param string|array<string>|null $type
+     */
     private function hasType(string|array|null $type, string $searchedType): bool
     {
         if (\is_array($type)) {

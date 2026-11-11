@@ -18,7 +18,7 @@ final class LoanPaymentFrequencyModel
     public const NAME = 'schema:loanPaymentFrequency';
     public const VALUES = ['NumberModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['RepaymentSpecification' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\RepaymentSpecificationModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1253'];
     public const SUPERSEDED_BY = null;
 }

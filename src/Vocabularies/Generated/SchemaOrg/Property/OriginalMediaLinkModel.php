@@ -18,7 +18,7 @@ final class OriginalMediaLinkModel
     public const NAME = 'schema:originalMediaLink';
     public const VALUES = ['MediaObjectModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MediaObjectModel', 'URLModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\URLModel', 'WebPageModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\WebPageModel'];
     public const TYPES = ['MediaReview' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MediaReviewModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2450'];
     public const SUPERSEDED_BY = null;
 }

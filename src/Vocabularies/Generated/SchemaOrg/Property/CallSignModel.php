@@ -18,7 +18,7 @@ final class CallSignModel
     public const NAME = 'schema:callSign';
     public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['BroadcastService' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BroadcastServiceModel', 'Person' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PersonModel', 'Vehicle' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\VehicleModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2109'];
     public const SUPERSEDED_BY = null;
 }

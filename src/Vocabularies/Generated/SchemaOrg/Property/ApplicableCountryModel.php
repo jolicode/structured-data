@@ -18,7 +18,7 @@ final class ApplicableCountryModel
     public const NAME = 'schema:applicableCountry';
     public const VALUES = ['CountryModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CountryModel', 'TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['MerchantReturnPolicy' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MerchantReturnPolicyModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3001'];
     public const SUPERSEDED_BY = null;
 }

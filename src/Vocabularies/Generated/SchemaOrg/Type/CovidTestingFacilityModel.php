@@ -23,7 +23,7 @@ final class CovidTestingFacilityModel
     public const NAME = 'schema:CovidTestingFacility';
     public const PARENTS = ['MedicalClinicModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalClinicModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2490'];
     public const SUPERSEDED_BY = null;
 
@@ -39,6 +39,7 @@ final class CovidTestingFacilityModel
         public ?Property\AlumniModel $alumni = null,
         public ?Property\AmenityFeatureModel $amenityFeature = null,
         public ?Property\AreaServedModel $areaServed = null,
+        public ?Property\AuthorizedRepresentativeModel $authorizedRepresentative = null,
         public ?Property\AvailableServiceModel $availableService = null,
         public ?Property\AwardModel $award = null,
         public ?Property\AwardsModel $awards = null,
@@ -95,6 +96,7 @@ final class CovidTestingFacilityModel
         public ?Property\HasMerchantReturnPolicyModel $hasMerchantReturnPolicy = null,
         public ?Property\HasOfferCatalogModel $hasOfferCatalog = null,
         public ?Property\HasPOSModel $hasPOS = null,
+        public ?Property\HasProductReturnPolicyModel $hasProductReturnPolicy = null,
         public ?Property\HasShippingServiceModel $hasShippingService = null,
         public ?Property\HealthPlanNetworkIdModel $healthPlanNetworkId = null,
         public ?Property\IdentifierModel $identifier = null,

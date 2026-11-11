@@ -92,12 +92,12 @@ class SchemaOrgValidatorTest extends AbstractValidatorTestCase
 
     public function testPendingVocabularyUsageIsIgnoredByDefault(): void
     {
-        // "jobTitle" is hosted under pending.schema.org.
+        // "pronouns" is hosted under pending.schema.org.
         $document = (string) json_encode([
             '@context' => 'https://schema.org',
             '@type' => 'Person',
             'name' => 'Jane Doe',
-            'jobTitle' => 'Professor',
+            'pronouns' => 'she/her',
         ]);
 
         $this->validator->setValidator(SchemaOrgValidator::class);
@@ -115,7 +115,7 @@ class SchemaOrgValidatorTest extends AbstractValidatorTestCase
             '@context' => 'https://schema.org',
             '@type' => 'Person',
             'name' => 'Jane Doe',
-            'jobTitle' => 'Professor',
+            'pronouns' => 'she/her',
         ]);
 
         $this->validator->setValidator(SchemaOrgValidator::class);
@@ -126,7 +126,7 @@ class SchemaOrgValidatorTest extends AbstractValidatorTestCase
             severity: AuditOptions::SEVERITY_WARNING,
         ));
 
-        $this->assertContains('[SchemaOrg warning] jobTitle: The "jobTitle" property is part of the pending.schema.org extension: it is still under development and subject to change.', $warnings);
+        $this->assertContains('[SchemaOrg warning] pronouns: The "pronouns" property is part of the pending.schema.org extension: it is still under development and subject to change.', $warnings);
         $this->assertTrue($audit->isValid(), 'Pending vocabulary usage is a warning, not an error.');
     }
 
@@ -139,7 +139,7 @@ class SchemaOrgValidatorTest extends AbstractValidatorTestCase
             '@context' => 'https://schema.org',
             '@type' => 'Person',
             'name' => 'Jane Doe',
-            'jobTitle' => 'Professor',
+            'pronouns' => 'she/her',
         ]);
 
         $this->validator->setValidator(SchemaOrgValidator::class);

@@ -20,7 +20,7 @@ final class MediaEnumerationModel
     public const NAME = 'schema:MediaEnumeration';
     public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3392'];
     public const SUPERSEDED_BY = null;
 

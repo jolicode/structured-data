@@ -58,6 +58,14 @@ readonly class DocumentationCoverageAuditor
         }
 
         [$discovered, $fetchFailures] = $this->crawler->discoverStructuredDataDocs($client, array_values(array_unique($seedUrls)));
+
+        // Other pages may still link to a retired type whose page Google removed:
+        // failing to fetch it is the expected outcome, not a gap.
+        $fetchFailures = array_filter(
+            $fetchFailures,
+            static fn (string $url): bool => 'retired' !== ($manifestUrls[$url]['status'] ?? null),
+            \ARRAY_FILTER_USE_KEY,
+        );
         $implementedUrls = $this->getImplementedDocumentationUrls();
 
         $missingFromManifest = array_diff_key($discovered, $manifestUrls);

@@ -18,7 +18,7 @@ final class ObservationAboutModel
     public const NAME = 'schema:observationAbout';
     public const VALUES = ['PlaceModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PlaceModel', 'ThingModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ThingModel'];
     public const TYPES = ['Observation' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ObservationModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2291'];
     public const SUPERSEDED_BY = null;
 }

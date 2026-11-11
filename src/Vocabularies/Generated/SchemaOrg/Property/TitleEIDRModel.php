@@ -22,7 +22,7 @@ Since schema.org types like [[Movie]], [[TVEpisode]], [[TVSeason]], and [[TVSeri
     public const NAME = 'schema:titleEIDR';
     public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'URLModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
     public const TYPES = ['Movie' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MovieModel', 'TVEpisode' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TVEpisodeModel', 'TVSeason' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TVSeasonModel', 'TVSeries' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TVSeriesModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2469'];
     public const SUPERSEDED_BY = null;
 }

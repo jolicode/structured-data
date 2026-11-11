@@ -18,7 +18,7 @@ final class CodeValueModel
     public const NAME = 'schema:codeValue';
     public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['CategoryCode' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeModel', 'MedicalCode' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MedicalCodeModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/894'];
     public const SUPERSEDED_BY = null;
 }
