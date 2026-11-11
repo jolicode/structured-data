@@ -38,6 +38,98 @@ final class VideoObject
                 'DateTime',
             ],
         ],
+        'atLeastOneOf' => [
+            'name' => 'atLeastOneOf',
+            'severity' => 'recommended',
+            'value' => [
+                'creator' => true,
+                'author' => true,
+            ],
+            'supportedTypes' => [
+            ],
+        ],
+        'creator' => [
+            'name' => 'creator',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Person',
+                'Organization',
+            ],
+            'properties' => [
+                'atLeastOneOf' => [
+                    'name' => 'atLeastOneOf',
+                    'severity' => 'required',
+                    'value' => [
+                        'name' => true,
+                        'alternateName' => true,
+                    ],
+                    'supportedTypes' => [
+                    ],
+                ],
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'alternateName' => [
+                    'name' => 'alternateName',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'url' => [
+                    'name' => 'url',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'URL',
+                    ],
+                ],
+            ],
+        ],
+        'author' => [
+            'name' => 'author',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Person',
+                'Organization',
+            ],
+            'properties' => [
+                'atLeastOneOf' => [
+                    'name' => 'atLeastOneOf',
+                    'severity' => 'required',
+                    'value' => [
+                        'name' => true,
+                        'alternateName' => true,
+                    ],
+                    'supportedTypes' => [
+                    ],
+                ],
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'alternateName' => [
+                    'name' => 'alternateName',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'url' => [
+                    'name' => 'url',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'URL',
+                    ],
+                ],
+            ],
+        ],
         'contentUrl' => [
             'name' => 'contentUrl',
             'severity' => 'recommended',
@@ -99,6 +191,9 @@ final class VideoObject
                     'severity' => 'required',
                     'supportedTypes' => [
                         'WatchAction',
+                        'LikeAction',
+                        'CommentAction',
+                        'ShareAction',
                     ],
                 ],
                 'userInteractionCount' => [

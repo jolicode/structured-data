@@ -11,6 +11,11 @@
     "expires": "2024-10-30T14:37:14+00:00",
     "regionsAllowed": "US",
     "ineligibleRegion": "CN",
+    "creator": {
+        "@type": "Person",
+        "name": "Jane Doe",
+        "url": "https://www.example.com/users/janedoe"
+    },
     "interactionStatistic": {
         "@type": "InteractionCounter",
         "interactionType": { "@type": "WatchAction" },

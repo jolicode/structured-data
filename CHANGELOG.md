@@ -7,6 +7,9 @@
 - Schema.org vocabulary upgraded from 30.0 to 30.1. This release promotes most of the
   pending.schema.org terms to the core vocabulary (`jobTitle`, `Legislation`, `DefinedTerm`,
   `MemberProgram`...): they are no longer reported as pending vocabulary usage.
+- Google validator: `VideoObject` now recommends a `creator` (or `author`), which must have a
+  `name` or an `alternateName`, and accepts the `LikeAction`, `CommentAction` and
+  `ShareAction` interaction types, following the Google documentation.
 - The FAQ rich result is marked as retired by Google. `FAQPage` is still validated, for
   backward compatibility.
 

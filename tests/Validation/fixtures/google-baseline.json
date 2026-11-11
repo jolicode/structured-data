@@ -599,18 +599,29 @@
         "warnings": [],
         "documentIssues": []
     },
+    "video-author-missing-name.jsonld": {
+        "errors": [
+            "[Google error] author: Missing required property: at least one of the following properties must be present \"name, alternateName\" for the type \"Organization\""
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
     "video-invalid-upload-date-format.jsonld": {
         "errors": [
             "[Google error] uploadDate: Date\/time format is incompatible with the ISO 8601 standard. \"not-a-date\" given"
         ],
-        "warnings": [],
+        "warnings": [
+            "[Google warning] VideoObject: Missing recommended property: at least one of the following properties should be present \"creator, author\""
+        ],
         "documentIssues": []
     },
     "video-invalid-upload-date-type.jsonld": {
         "errors": [
             "[Google error] uploadDate: Incorrect type value: value of type \"DateTime\" expected, but \"Integer\" was given (\"20240331\")."
         ],
-        "warnings": [],
+        "warnings": [
+            "[Google warning] VideoObject: Missing recommended property: at least one of the following properties should be present \"creator, author\""
+        ],
         "documentIssues": []
     },
     "video-missing-embedurl.jsonld": {
@@ -618,6 +629,7 @@
             "[Google error] VideoObject: Missing required property: \"name\" for the type \"VideoObject\""
         ],
         "warnings": [
+            "[Google warning] VideoObject: Missing recommended property: at least one of the following properties should be present \"creator, author\"",
             "[Google warning] VideoObject: Missing recommended property: \"embedUrl\" for the type \"VideoObject\""
         ],
         "documentIssues": []
