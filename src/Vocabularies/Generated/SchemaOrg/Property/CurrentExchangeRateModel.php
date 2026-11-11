@@ -18,7 +18,7 @@ final class CurrentExchangeRateModel
     public const NAME = 'schema:currentExchangeRate';
     public const VALUES = ['UnitPriceSpecificationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\UnitPriceSpecificationModel'];
     public const TYPES = ['ExchangeRateSpecification' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ExchangeRateSpecificationModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1253'];
     public const SUPERSEDED_BY = null;
 }

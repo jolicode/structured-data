@@ -18,7 +18,7 @@ final class ValidForMemberTierModel
     public const NAME = 'schema:validForMemberTier';
     public const VALUES = ['MemberProgramTierModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MemberProgramTierModel'];
     public const TYPES = ['MerchantReturnPolicy' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MerchantReturnPolicyModel', 'Offer' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OfferModel', 'OfferShippingDetails' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OfferShippingDetailsModel', 'PriceSpecification' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PriceSpecificationModel', 'ShippingService' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ShippingServiceModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3563', 'https://github.com/schemaorg/schemaorg/issues/3617'];
     public const SUPERSEDED_BY = null;
 }

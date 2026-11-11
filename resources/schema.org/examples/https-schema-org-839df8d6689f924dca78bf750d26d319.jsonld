@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "schema": "https://schema.org/"
+  },
+  "@id": "http://www.worldcat.org/oclc/41310554",
+  "@type": "schema:Atlas",
+  "schema:name": "Atlas of the World",
+  "schema:alternateName": "National Geographic atlas of the world",
+  "schema:disambiguatingDescription": "7th ed.",
+  "schema:datePublished": "1999",
+  "schema:publisher": "National Geographic Society"
+}

@@ -23,7 +23,7 @@ final class MediaReviewModel
     public const NAME = 'schema:MediaReview';
     public const PARENTS = ['ReviewModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ReviewModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2450'];
     public const SUPERSEDED_BY = null;
 

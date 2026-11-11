@@ -18,7 +18,7 @@ final class InCodeSetModel
     public const NAME = 'schema:inCodeSet';
     public const VALUES = ['CategoryCodeSetModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeSetModel', 'URLModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
     public const TYPES = ['CategoryCode' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/894'];
     public const SUPERSEDED_BY = null;
 }

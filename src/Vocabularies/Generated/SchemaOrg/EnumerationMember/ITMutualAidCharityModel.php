@@ -13,7 +13,7 @@ namespace JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\EnumerationMe
 
 final class ITMutualAidCharityModel
 {
-    public const DESCRIPTION = 'ITMutualAidCharity: Non-profit type referring to associations providing financial aid to people need (Ital. Società di mutuo soccorso or SOMS) according to Italian Law 3818 of 1886.';
+    public const DESCRIPTION = 'ITMutualAidCharity: Non-profit type referring to Italian mutual aid societies (Ital. società di mutuo soccorso or SOMS), governed by Law 3818 of 15 April 1886, in coordination with Articles 42 and following of Legislative Decree No. 117 of 3 July 2017, the Italian Third Sector Code.';
     public const LABEL = 'ITMutualAidCharity';
     public const NAME = 'schema:ITMutualAidCharity';
     public const IS_PART_OF = ['https://pending.schema.org'];

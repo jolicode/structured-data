@@ -20,7 +20,7 @@ final class MonetaryGrantModel
     public const NAME = 'schema:MonetaryGrant';
     public const PARENTS = ['GrantModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\GrantModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/383', 'https://schema.org/docs/collab/FundInfoCollab'];
     public const SUPERSEDED_BY = null;
 

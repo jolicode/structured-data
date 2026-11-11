@@ -20,7 +20,7 @@ final class StatisticalVariableModel
     public const NAME = 'schema:StatisticalVariable';
     public const PARENTS = ['ConstraintNodeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ConstraintNodeModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2564'];
     public const SUPERSEDED_BY = null;
 

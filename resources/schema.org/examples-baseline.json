@@ -6,13 +6,7 @@
     },
     "https-schema-org-027b892c149608e2b103a2c0a5b005e7.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] eventSchedule.@type: The \"Schedule\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.repeatCount: The \"repeatCount\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.repeatFrequency: The \"repeatFrequency\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.scheduleTimezone: The \"scheduleTimezone\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule: The \"eventSchedule\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-04d12f2749a3361462249daf252fbcea.jsonld": {
@@ -40,8 +34,7 @@
     "https-schema-org-086845694a1e8266c226769d014b3fe1.jsonld": {
         "errors": [],
         "warnings": [
-            "[SchemaOrg warning] gtin: The \"gtin\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasGS1DigitalLink: The \"hasGS1DigitalLink\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+            "[SchemaOrg warning] gtin: The \"gtin\" property is part of the pending.schema.org extension: it is still under development and subject to change."
         ],
         "documentIssues": []
     },
@@ -63,20 +56,12 @@
     "https-schema-org-0aee8d59f25f1386e25436a6c49ea7e1.jsonld": {
         "errors": [],
         "warnings": [
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.@type: The \"ShippingService\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.handlingTime.@type: The \"ServicePeriod\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.@type: The \"ShippingConditions\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.orderValue: The \"orderValue\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.shippingRate.weightPercentage: The \"weightPercentage\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.transitTime.@type: The \"ServicePeriod\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
             "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
             "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
             "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
             "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.transitTime.businessDays: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: OpeningHoursSpecification",
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.transitTime.duration: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: QuantitativeValue",
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions: The \"shippingConditions\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService: The \"hasShippingService\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.transitTime.duration: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: QuantitativeValue"
         ],
         "documentIssues": []
     },
@@ -97,11 +82,7 @@
     },
     "https-schema-org-0cd43851b9d4b0927f916900214cd081.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] industry.@type: The \"DefinedTerm\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] industry.inDefinedTermSet: The \"inDefinedTermSet\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] industry.termCode: The \"termCode\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-0d80f3638735a61267fe42ad57f19c5e.jsonld": {
@@ -117,21 +98,8 @@
     "https-schema-org-0e4210c7345d903d151c8662407727e1.jsonld": {
         "errors": [],
         "warnings": [
-            "[SchemaOrg warning] @type: The \"Certification\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] certificationIdentification: The \"certificationIdentification\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] certificationRating: The \"certificationRating\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] description: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: TextObject",
             "[SchemaOrg warning] description: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: TextObject",
-            "[SchemaOrg warning] offers.hasMerchantReturnPolicy.@type: The \"MerchantReturnPolicy\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.hasMerchantReturnPolicy.applicableCountry: The \"applicableCountry\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.hasMerchantReturnPolicy.returnPolicyCategory: The \"returnPolicyCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.hasMerchantReturnPolicy: The \"hasMerchantReturnPolicy\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.@type: The \"ShippingService\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.fulfillmentType: The \"fulfillmentType\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.@type: The \"ShippingConditions\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.orderValue: The \"orderValue\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions: The \"shippingConditions\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService: The \"hasShippingService\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] review.reviewBody: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Text"
         ],
         "documentIssues": []
@@ -145,15 +113,8 @@
         "errors": [],
         "warnings": [
             "[SchemaOrg warning] @type: The \"EducationalOccupationalCredential\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] competencyRequired.@type: The \"DefinedTerm\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] competencyRequired.inDefinedTermSet: The \"inDefinedTermSet\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] competencyRequired.termCode: The \"termCode\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] competencyRequired: The \"competencyRequired\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] credentialCategory.@type: The \"DefinedTerm\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] credentialCategory.termCode: The \"termCode\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] credentialCategory: The \"credentialCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] educationalLevel.@type: The \"DefinedTerm\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] educationalLevel.inDefinedTermSet: The \"inDefinedTermSet\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] educationalLevel: The \"educationalLevel\" property is part of the pending.schema.org extension: it is still under development and subject to change."
         ],
         "documentIssues": []
@@ -188,9 +149,7 @@
     },
     "https-schema-org-12c83c30122f7c4e963e9f57f6f33385.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"InvestmentFund\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-1493d17a3a9dd27f7ec7f47555500e36.jsonld": {
@@ -212,26 +171,12 @@
         "errors": [
             "[SchemaOrg error] hasPart.@type: A typed value may only have one type, 2 provided"
         ],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"Guide\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasPart.@type: The \"Recommendation\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-18970129fce5fb1ea4542f86b8071c30.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"FinancialIncentive\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentiveAmount: The \"incentiveAmount\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentiveStatus: The \"incentiveStatus\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentiveType: The \"incentiveType\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentivizedItem.@type: The \"DefinedTerm\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentivizedItem.inDefinedTermSet: The \"inDefinedTermSet\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentivizedItem.termCode: The \"termCode\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentivizedItem: The \"incentivizedItem\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] provider: The \"provider\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] purchaseType: The \"purchaseType\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-1ba47e1ff659d57bb688f03783f3d284.jsonld": {
@@ -241,19 +186,7 @@
     },
     "https-schema-org-1bb1c846d976dd2a03f97ca615eeec86.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"FinancialIncentive\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentiveAmount: The \"incentiveAmount\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentiveStatus: The \"incentiveStatus\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentiveType: The \"incentiveType\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentivizedItem.@type: The \"DefinedTerm\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentivizedItem.inDefinedTermSet: The \"inDefinedTermSet\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentivizedItem.termCode: The \"termCode\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentivizedItem: The \"incentivizedItem\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incomeLimit: The \"incomeLimit\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] provider: The \"provider\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] purchaseType: The \"purchaseType\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-1bd76101f6af00c210bf0bc5e06d1490.jsonld": {
@@ -265,7 +198,6 @@
         "errors": [],
         "warnings": [
             "[SchemaOrg warning] @type: The \"BioChemEntity\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] associatedDisease.code.codeValue: The \"codeValue\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] associatedDisease: The \"associatedDisease\" property is part of the pending.schema.org extension: it is still under development and subject to change."
         ],
         "documentIssues": []
@@ -277,12 +209,7 @@
     },
     "https-schema-org-1f9aeedda7ff414a7bf92eb2f6366ea5.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"Certification\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] certificationIdentification: The \"certificationIdentification\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] certificationRating: The \"certificationRating\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasMeasurement: The \"hasMeasurement\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-20c2efc2b2426a8758e4026f671fb8d7.jsonld": {
@@ -314,9 +241,7 @@
     },
     "https-schema-org-21a714e64869335150f8552a704fa8a3.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] hasCertification.@type: The \"Certification\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-2250f42a086cbfd9917e13d4fdd13631.jsonld": {
@@ -326,21 +251,12 @@
     },
     "https-schema-org-228645e4e552c5f330d1ef5d4bf26edf.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] eventSchedule.@type: The \"Schedule\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.byMonthDay: The \"byMonthDay\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.repeatFrequency: The \"repeatFrequency\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.scheduleTimezone: The \"scheduleTimezone\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule: The \"eventSchedule\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-228c087590e7a673298b5fedd7b67f26.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"OnlineStore\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] parentOrganization.@type: The \"OnlineBusiness\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-233510ed762fc38f085839f4204b1296.jsonld": {
@@ -353,16 +269,7 @@
     },
     "https-schema-org-234d39424659cd30d357aeae31e2fe59.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] inProductGroupWithID: The \"inProductGroupWithID\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] size.@type: The \"SizeSpecification\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] size.hasMeasurement: The \"hasMeasurement\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] size.sizeGroup: The \"sizeGroup\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] size.sizeSystem: The \"sizeSystem\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] size.suggestedAge: The \"suggestedAge\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] size.suggestedMeasurement: The \"suggestedMeasurement\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] size: The \"size\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-23accad326e234409baf84c4a15bcb22.jsonld": {
@@ -387,9 +294,7 @@
     },
     "https-schema-org-24d5a0f9fcc7ac2fa13560d16a6ab059.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] offers.checkoutPageURLTemplate: The \"checkoutPageURLTemplate\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-252d238dd342c06dbfe4d0ea1e501ad3.jsonld": {
@@ -399,10 +304,7 @@
     },
     "https-schema-org-2564e1eae5e272de2e5d5e05030b4800.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] eventAttendanceMode: The \"eventAttendanceMode\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] location.@type: The \"VirtualLocation\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-25710f71bb30c088f8a30a8cb7072eb6.jsonld": {
@@ -412,12 +314,7 @@
     },
     "https-schema-org-258841282b4379bf5477322f5d50b63c.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"WebAPI\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] documentation: The \"documentation\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] provider: The \"provider\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] termsOfService: The \"termsOfService\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-27e6538e8ec579140787b42349adb019.jsonld": {
@@ -430,14 +327,14 @@
         "warnings": [],
         "documentIssues": []
     },
+    "https-schema-org-2ad4787f5b3e411cc65c806cb8e867e8.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
     "https-schema-org-2b207134a765425dd39c507abf7f5acc.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] sensoryRequirement.@type: The \"DefinedTerm\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] sensoryRequirement.inDefinedTermSet: The \"inDefinedTermSet\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] sensoryRequirement.termCode: The \"termCode\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] sensoryRequirement: The \"sensoryRequirement\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-2b24621eb7b3918a83a6c6ddc0ea427d.jsonld": {
@@ -447,9 +344,7 @@
     },
     "https-schema-org-2c45d96d78b993bfb0ab8c240f26d56c.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"BrokerageAccount\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-2c80195f7c456d2123fb503ad43391d0.jsonld": {
@@ -477,9 +372,7 @@
     },
     "https-schema-org-2d797a14f7c71b4e910ecbf92bbb88fd.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] provider: The \"provider\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-2d9401695b34b80059c15fc4922d1e1f.jsonld": {
@@ -494,23 +387,16 @@
     "https-schema-org-2fea0f0c5de4046dadc4d24d7253e5e9.jsonld": {
         "errors": [],
         "warnings": [
-            "[SchemaOrg warning] @type: The \"EducationalOccupationalProgram\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] educationalCredentialAwarded.@type: The \"EducationalOccupationalCredential\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] educationalCredentialAwarded.credentialCategory: The \"credentialCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] programPrerequisites.@type: The \"EducationalOccupationalCredential\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] programPrerequisites.credentialCategory: The \"credentialCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] programPrerequisites: The \"programPrerequisites\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] provider: The \"provider\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] timeToComplete: The \"timeToComplete\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+            "[SchemaOrg warning] programPrerequisites.credentialCategory: The \"credentialCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change."
         ],
         "documentIssues": []
     },
     "https-schema-org-3021dc914adf87705594dc589e0e69a3.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] https:\/\/www.w3.org\/2018\/credentials#credentialSubject.hasCertification.@type: The \"Certification\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] https:\/\/www.w3.org\/2018\/credentials#credentialSubject.hasCertification.hasMeasurement: The \"hasMeasurement\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-30a603e0162c92b5946fe149eff05df0.jsonld": {
@@ -520,32 +406,22 @@
     },
     "https-schema-org-30a6467c2c2dc3166eda9c8848c31d97.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] @reverse.@type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] @reverse.@type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] @reverse.@type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] @reverse.@type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] @reverse.@type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] isBasedOn.@type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] legislationAmends.@type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] legislationAmends: The \"legislationAmends\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] legislationDate: The \"legislationDate\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] legislationIdentifier: The \"legislationIdentifier\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] legislationLegalForce: The \"legislationLegalForce\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] legislationPassedBy: The \"legislationPassedBy\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] legislationRepeals.@type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] legislationRepeals: The \"legislationRepeals\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] legislationType: The \"legislationType\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-31e5930f7d1638a4ebe05f63d62d7f45.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] hasPart.endOffset: The \"endOffset\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasPart.startOffset: The \"startOffset\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-31fe8643f5de292663529764de7d9296.jsonld": {
+        "errors": [
+            "[SchemaOrg error] adverseOutcome: The property \"adverseOutcome\" does not exist on the type \"Drug\"",
+            "[SchemaOrg error] contraindication: The property \"contraindication\" does not exist on the type \"Drug\"",
+            "[SchemaOrg error] indication: This property does not exist: indication",
+            "[SchemaOrg error] seriousAdverseOutcome: The property \"seriousAdverseOutcome\" does not exist on the type \"Drug\""
         ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-3355f084f8b3755b1469ec915814aa66.jsonld": {
@@ -559,12 +435,7 @@
     },
     "https-schema-org-33d539f88974d53153449844578bad74.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] jobTitle.@type: The \"DefinedTerm\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] jobTitle.inDefinedTermSet: The \"inDefinedTermSet\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] jobTitle.termCode: The \"termCode\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] jobTitle: The \"jobTitle\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-3536adf7a2bc5d37ac8a38e1c6e7e78a.jsonld": {
@@ -574,14 +445,15 @@
     },
     "https-schema-org-354345184e7868d98b54c80370776506.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"Guide\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasPart.@type: The \"Recommendation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasPart.@type: The \"Recommendation\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-3601ef82a47da5cd2034734b913c9269.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-36abafeef8e4c7cbc859f50ef6b19b8b.jsonld": {
         "errors": [],
         "warnings": [],
         "documentIssues": []
@@ -593,9 +465,7 @@
     },
     "https-schema-org-37d2b74f041f42e740a10f81b55b5354.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] object.provider: The \"provider\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-38136d4f1fcb3d5b78df16b8b8dfc7e5.jsonld": {
@@ -612,9 +482,7 @@
     },
     "https-schema-org-3a5e74e3f3434eabcf1bf39a2456ab7b.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] eventAttendanceMode: The \"eventAttendanceMode\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-3b57c29ff6ee5f332a74c0f0ecae57fd.jsonld": {
@@ -653,20 +521,12 @@
     },
     "https-schema-org-3e5665a75129d1f2d0e2b760857ce886.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] https:\/\/www.w3.org\/2018\/credentials#credentialSubject.hasCertification.@type: The \"Certification\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] https:\/\/www.w3.org\/2018\/credentials#credentialSubject.hasCertification.certificationIdentification: The \"certificationIdentification\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] https:\/\/www.w3.org\/2018\/credentials#credentialSubject.hasCertification.certificationRating: The \"certificationRating\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-3f3d9e221e6fb4dcda2c888667aa8abe.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"Guide\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasPart.@type: The \"Recommendation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasPart.@type: The \"Recommendation\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-3f44a3b4f7e2cd4ac05f81285be08731.jsonld": {
@@ -676,17 +536,7 @@
     },
     "https-schema-org-3f582aee6e6927c297b9fce39f7142dd.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] eventSchedule.@type: The \"Schedule\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.byDay: The \"byDay\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.repeatFrequency: The \"repeatFrequency\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.scheduleTimezone: The \"scheduleTimezone\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.@type: The \"Schedule\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.byDay: The \"byDay\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.repeatFrequency: The \"repeatFrequency\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.scheduleTimezone: The \"scheduleTimezone\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule: The \"eventSchedule\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-401150cbb04d16485728e94eec15cc85.jsonld": {
@@ -696,13 +546,15 @@
     },
     "https-schema-org-403bf89fe2eae5431be785fc64217efc.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] funding.@type: The \"Grant\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] funding: The \"funding\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-4081e7661a9025b1a665be24f1f079c3.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-40d21985b3404bf1c06c4edb77cb555a.jsonld": {
         "errors": [],
         "warnings": [],
         "documentIssues": []
@@ -714,9 +566,7 @@
     },
     "https-schema-org-4101b8bbc9174e478dad5e294607899d.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] reservationFor.provider: The \"provider\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-413903c0d50bd0727679885d17e8723e.jsonld": {
@@ -747,14 +597,9 @@
     "https-schema-org-43c9ac80b5785ffa89d9014266acd37e.jsonld": {
         "errors": [],
         "warnings": [
-            "[SchemaOrg warning] @type: The \"WorkBasedProgram\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] occupationalCategory: The \"occupationalCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] occupationalCredentialAwarded.@type: The \"EducationalOccupationalCredential\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] occupationalCredentialAwarded.credentialCategory: The \"credentialCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] occupationalCredentialAwarded: The \"occupationalCredentialAwarded\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] provider: The \"provider\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] salaryUponCompletion: The \"salaryUponCompletion\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] trainingSalary: The \"trainingSalary\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+            "[SchemaOrg warning] occupationalCredentialAwarded.credentialCategory: The \"credentialCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change."
         ],
         "documentIssues": []
     },
@@ -770,6 +615,13 @@
         ],
         "documentIssues": []
     },
+    "https-schema-org-45f0f9b343f27c85bbe4970bef0ba256.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[SchemaOrg warning] @type: The \"PerformingArtsEvent\" type is part of the pending.schema.org extension: it is still under development and subject to change."
+        ],
+        "documentIssues": []
+    },
     "https-schema-org-4668bb38a5e96e07f3dab7b4a8db662e.jsonld": {
         "errors": [],
         "warnings": [],
@@ -777,9 +629,7 @@
     },
     "https-schema-org-47bf355128ae6c71ad25e9228f7cb5f5.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] reservationFor.provider: The \"provider\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-48000e4ae3c42f85fe98f8203f997e52.jsonld": {
@@ -787,13 +637,14 @@
         "warnings": [],
         "documentIssues": []
     },
+    "https-schema-org-484a0f664229fc1b704be2b60497137f.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
     "https-schema-org-4ad45a80e636be0a4f25c8f94ee046d7.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"SpecialAnnouncement\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] announcementLocation.@type: The \"CovidTestingFacility\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] announcementLocation: The \"announcementLocation\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-4ae013a1f9ce41890b91e64e204ab16c.jsonld": {
@@ -811,31 +662,22 @@
             "[SchemaOrg error] offeredBy: The property \"offeredBy\" does not exist on the type \"WorkBasedProgram\""
         ],
         "warnings": [
-            "[SchemaOrg warning] @type: The \"WorkBasedProgram\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] occupationalCategory: The \"occupationalCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] occupationalCredentialAwarded.@type: The \"EducationalOccupationalCredential\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] occupationalCredentialAwarded.credentialCategory: The \"credentialCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] occupationalCredentialAwarded: The \"occupationalCredentialAwarded\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] salaryUponCompletion: The \"salaryUponCompletion\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] trainingSalary: The \"trainingSalary\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+            "[SchemaOrg warning] occupationalCredentialAwarded.credentialCategory: The \"credentialCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change."
         ],
         "documentIssues": []
     },
     "https-schema-org-4db4ea87abf5b0b44e49f6a83fc0bde1.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] jobTitle: The \"jobTitle\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-4e6cf2c959e98935838b1053deccda20.jsonld": {
         "errors": [
             "[SchemaOrg error] hasPart.@type: A typed value may only have one type, 2 provided"
         ],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"Guide\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasPart.@type: The \"Recommendation\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-4e91b4c43e6e048b86a37591a9f0bd53.jsonld": {
@@ -845,10 +687,7 @@
     },
     "https-schema-org-4ed69db1dee9f658225540d2b8f984f8.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"ArchiveComponent\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] materialExtent: The \"materialExtent\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-4f626a917e0d6d6c891a9737df85b7ba.jsonld": {
@@ -863,9 +702,7 @@
     },
     "https-schema-org-541033958d41d305a4cf606d65e09cc8.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] contentReferenceTime: The \"contentReferenceTime\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-57cd2f113b0311f76bdb140058578d19.jsonld": {
@@ -913,18 +750,7 @@
     },
     "https-schema-org-5a35e8189ec7989d76c5691c9488f7ef.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"MediaReview\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] itemReviewed.@type: The \"MediaReviewItem\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] itemReviewed.interpretedAsClaim.@type: The \"Claim\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] itemReviewed.interpretedAsClaim: The \"interpretedAsClaim\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] itemReviewed.mediaItemAppearance.@type: The \"VideoObjectSnapshot\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] itemReviewed.mediaItemAppearance.@type: The \"VideoObjectSnapshot\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] itemReviewed.mediaItemAppearance.archivedAt: The \"archivedAt\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] itemReviewed.mediaItemAppearance: The \"mediaItemAppearance\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] mediaAuthenticityCategory: The \"mediaAuthenticityCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] originalMediaContextDescription: The \"originalMediaContextDescription\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-5ae1b2e6b7cc52e871bf3dec64d6f02d.jsonld": {
@@ -939,16 +765,28 @@
         "warnings": [],
         "documentIssues": []
     },
+    "https-schema-org-5c08a51a590c41ff7bd2ebd87706f238.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
     "https-schema-org-5c2da6217a04da73c4d71798c7dc4a85.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] offers.checkoutPageURLTemplate: The \"checkoutPageURLTemplate\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-5cd6fd51fd1f6f173eec727db7f4ad23.jsonld": {
         "errors": [],
         "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-5d153a0a55d7a0e0138f2276290b566f.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[SchemaOrg warning] educationRequirements: The \"educationRequirements\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
+            "[SchemaOrg warning] occupationalCategory: The \"occupationalCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
+            "[SchemaOrg warning] qualifications: The \"qualifications\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+        ],
         "documentIssues": []
     },
     "https-schema-org-5d975f0014be84a4305ce4883513edbb.jsonld": {
@@ -968,18 +806,7 @@
     },
     "https-schema-org-627a92243c33307bca66aa4d2bf53980.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"FinancialIncentive\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentiveAmount: The \"incentiveAmount\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentiveStatus: The \"incentiveStatus\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentiveType: The \"incentiveType\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentivizedItem.@type: The \"DefinedTerm\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentivizedItem.inDefinedTermSet: The \"inDefinedTermSet\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentivizedItem.termCode: The \"termCode\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentivizedItem: The \"incentivizedItem\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] provider: The \"provider\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] purchaseType: The \"purchaseType\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-62bfcc1789b67854087e2e7b89b0e800.jsonld": {
@@ -989,32 +816,14 @@
     },
     "https-schema-org-635c0b6cc24a32ec3454113a1e860c6d.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] @reverse.@type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] @reverse.@type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] @reverse.@type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] @reverse.@type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] @reverse.@type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] isBasedOn.@type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] legislationChanges.@type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] legislationChanges: The \"legislationChanges\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] legislationDate: The \"legislationDate\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] legislationIdentifier: The \"legislationIdentifier\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] legislationLegalForce: The \"legislationLegalForce\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] legislationPassedBy: The \"legislationPassedBy\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] legislationType: The \"legislationType\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-63cee047cb7afc041c813c4b6056835f.jsonld": {
         "errors": [
             "[SchemaOrg error] hasPart.@type: A typed value may only have one type, 2 provided"
         ],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"Guide\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasPart.@type: The \"Recommendation\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-6443b3b4086516fe19d5415f404eed30.jsonld": {
@@ -1024,11 +833,7 @@
     },
     "https-schema-org-64d408910bd61862047a17436c6bf316.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"Guide\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasPart.@type: The \"Recommendation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasPart.@type: The \"Recommendation\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-654316002a6b72f73ad9923167f518a5.jsonld": {
@@ -1038,25 +843,17 @@
     },
     "https-schema-org-658189ce6fdc1f85e40bdfcabfc4b671.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] jobTitle: The \"jobTitle\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-6801e0b31265e0e310bf3a6f353a097b.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] funding.@type: The \"Grant\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] funding: The \"funding\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-680d1950bd680c91df137424c8014605.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"RadioBroadcastService\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] callSign: The \"callSign\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-680df10e2fd96c6155f1e70c5fd796ae.jsonld": {
@@ -1078,18 +875,7 @@
     },
     "https-schema-org-6997c55aef2cc449b081360de47007b9.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"MediaReview\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] itemReviewed.@type: The \"MediaReviewItem\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] itemReviewed.interpretedAsClaim.@type: The \"Claim\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] itemReviewed.interpretedAsClaim: The \"interpretedAsClaim\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] itemReviewed.mediaItemAppearance.@type: The \"VideoObjectSnapshot\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] itemReviewed.mediaItemAppearance.@type: The \"VideoObjectSnapshot\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] itemReviewed.mediaItemAppearance.archivedAt: The \"archivedAt\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] itemReviewed.mediaItemAppearance: The \"mediaItemAppearance\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] mediaAuthenticityCategory: The \"mediaAuthenticityCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] originalMediaContextDescription: The \"originalMediaContextDescription\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-6ae6abe5cd7f0008dc4ed8ab51410008.jsonld": {
@@ -1099,10 +885,7 @@
     },
     "https-schema-org-6bc73d0b735c1eb540b55b8e454188f0.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] negativeNotes: The \"negativeNotes\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] positiveNotes: The \"positiveNotes\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-6cf3a45ec32a8e67c983f2f6afa985fd.jsonld": {
@@ -1113,10 +896,6 @@
     "https-schema-org-6d16d5a371719552e1bf768b61bf364b.jsonld": {
         "errors": [],
         "warnings": [
-            "[SchemaOrg warning] relevantOccupation.occupationalCategory.@type: The \"CategoryCode\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] relevantOccupation.occupationalCategory.codeValue: The \"codeValue\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] relevantOccupation.occupationalCategory.inCodeSet.@type: The \"CategoryCodeSet\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] relevantOccupation.occupationalCategory.inCodeSet: The \"inCodeSet\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] relevantOccupation.occupationalCategory: The \"occupationalCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change."
         ],
         "documentIssues": []
@@ -1144,10 +923,6 @@
     "https-schema-org-7188131df4008e5ce0a94a9d5e4c3654.jsonld": {
         "errors": [],
         "warnings": [
-            "[SchemaOrg warning] occupationalCategory.@type: The \"CategoryCode\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] occupationalCategory.codeValue: The \"codeValue\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] occupationalCategory.inCodeSet.@type: The \"CategoryCodeSet\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] occupationalCategory.inCodeSet: The \"inCodeSet\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] occupationalCategory: The \"occupationalCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change."
         ],
         "documentIssues": []
@@ -1159,16 +934,7 @@
     },
     "https-schema-org-72752a033ca3000594af108d1af8b8f2.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] hasShippingService.@type: The \"ShippingService\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasShippingService.shippingConditions.@type: The \"ShippingConditions\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasShippingService.shippingConditions: The \"shippingConditions\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasShippingService.validForMemberTier: The \"validForMemberTier\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasShippingService.@type: The \"ShippingService\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasShippingService.shippingConditions.@type: The \"ShippingConditions\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasShippingService.shippingConditions: The \"shippingConditions\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasShippingService: The \"hasShippingService\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-72e2863089ebd30b4485e3b697a1f660.jsonld": {
@@ -1178,12 +944,7 @@
     },
     "https-schema-org-730d7a227385a9d39bfd69e50e12a5c7.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] eventSchedule.@type: The \"Schedule\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.byDay: The \"byDay\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.byMonthWeek: The \"byMonthWeek\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule: The \"eventSchedule\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-74845b91fc79a45298ef5772bafab430.jsonld": {
@@ -1201,16 +962,12 @@
             "[SchemaOrg error] amount.minAmount: This property does not exist: minAmount",
             "[SchemaOrg error] availableChannel.serviceMobileApp: This property does not exist: serviceMobileApp"
         ],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"BrokerageAccount\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-75f97b641bb771ca7c7fcc29bfbbb250.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] conditionsOfAccess: The \"conditionsOfAccess\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-7792d35491544353aad45da0acf733f1.jsonld": {
@@ -1246,8 +1003,7 @@
     "https-schema-org-7c43af8bba4acda555bf425ab06df213.jsonld": {
         "errors": [],
         "warnings": [
-            "[SchemaOrg warning] subEvent: Duplicate property key \"subEvent\": only the last value is used.",
-            "[SchemaOrg warning] @type: The \"EventSeries\" type is part of the pending.schema.org extension: it is still under development and subject to change."
+            "[SchemaOrg warning] subEvent: Duplicate property key \"subEvent\": only the last value is used."
         ],
         "documentIssues": []
     },
@@ -1259,9 +1015,7 @@
     "https-schema-org-7c55bf289b731d14b6d76bc1941fd33c.jsonld": {
         "errors": [],
         "warnings": [
-            "[SchemaOrg warning] url: Duplicate property key \"url\": only the last value is used.",
-            "[SchemaOrg warning] url.@type: The \"LinkRole\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] url.linkRelationship: The \"linkRelationship\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+            "[SchemaOrg warning] url: Duplicate property key \"url\": only the last value is used."
         ],
         "documentIssues": []
     },
@@ -1299,24 +1053,12 @@
     },
     "https-schema-org-7e57c9c459798772cb29479588c12634.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"EducationalOccupationalProgram\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] applicationDeadline: The \"applicationDeadline\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] applicationStartDate: The \"applicationStartDate\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] educationalProgramMode: The \"educationalProgramMode\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] maximumEnrollment: The \"maximumEnrollment\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] numberOfCredits: The \"numberOfCredits\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] termDuration: The \"termDuration\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] termsPerYear: The \"termsPerYear\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] typicalCreditsPerTerm: The \"typicalCreditsPerTerm\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-7e7b32a8eb12ce2b2b5d12ca6a71a87b.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] iso6523Code: The \"iso6523Code\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-7ee9557d48d140af5c43ab9e1e3713b5.jsonld": {
@@ -1331,12 +1073,7 @@
     },
     "https-schema-org-80227ab9f88d5b72d6fb9e318c95e9fd.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] name.@type: The \"PronounceableText\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] name.phoneticText: The \"phoneticText\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] name.speechToTextMarkup: The \"speechToTextMarkup\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] name.textValue: The \"textValue\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-825b4056757a228ff144ca03d02c8023.jsonld": {
@@ -1345,6 +1082,11 @@
         "documentIssues": []
     },
     "https-schema-org-82b10225d4b8ce8c00974930c896ee6a.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-839df8d6689f924dca78bf750d26d319.jsonld": {
         "errors": [],
         "warnings": [],
         "documentIssues": []
@@ -1358,18 +1100,13 @@
         "errors": [],
         "warnings": [
             "[SchemaOrg warning] @type: The \"EducationalOccupationalCredential\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] credentialCategory.@type: The \"DefinedTerm\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] credentialCategory.inDefinedTermSet.@type: The \"DefinedTermSet\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] credentialCategory.inDefinedTermSet: The \"inDefinedTermSet\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] credentialCategory: The \"credentialCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change."
         ],
         "documentIssues": []
     },
     "https-schema-org-859ba458f0557c3d9e435918d537dcfa.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] nonprofitStatus: The \"nonprofitStatus\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-887a3645de6ce57e351de22ccc9dfcba.jsonld": {
@@ -1379,28 +1116,17 @@
     },
     "https-schema-org-893244e2b1db6ce34898a9bd07a02908.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] applicationContact: The \"applicationContact\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-8933d84318088e826d58f7f2a9fd2bbc.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"SpecialAnnouncement\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] announcementLocation: The \"announcementLocation\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] newsUpdatesAndGuidelines: The \"newsUpdatesAndGuidelines\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-89a678f898ceb3729f79b5e2110a399b.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] mainEntity.itemListElement.@type: The \"ExchangeRateSpecification\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] mainEntity.itemListElement.currentExchangeRate: The \"currentExchangeRate\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] mainEntity.itemListElement.@type: The \"ExchangeRateSpecification\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] mainEntity.itemListElement.currentExchangeRate: The \"currentExchangeRate\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-8ab579706e4b78d3a64ce4782a8a2a0e.jsonld": {
@@ -1410,13 +1136,7 @@
     },
     "https-schema-org-8b2922c345b80fe0d940154ab27e24ec.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] eventSchedule.@type: The \"Schedule\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.byDay: The \"byDay\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.repeatFrequency: The \"repeatFrequency\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.scheduleTimezone: The \"scheduleTimezone\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule: The \"eventSchedule\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-8b89d4b1e7c5749375fbc70cfd4dd778.jsonld": {
@@ -1441,9 +1161,7 @@
             "[SchemaOrg error] amount.maxAmount: This property does not exist: maxAmount",
             "[SchemaOrg error] amount.minAmount: This property does not exist: minAmount"
         ],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"InvestmentFund\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-8e1119da638746167d0e97219960dffc.jsonld": {
@@ -1472,29 +1190,20 @@
         "warnings": [
             "[SchemaOrg warning] @type: The \"MathSolver\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] potentialAction.@type: The \"SolveMathAction\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] potentialAction.eduQuestionType: The \"eduQuestionType\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] potentialAction.mathExpression-input: The \"mathExpression\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] potentialAction.@type: The \"SolveMathAction\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] potentialAction.eduQuestionType: The \"eduQuestionType\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] potentialAction.mathExpression-input: The \"mathExpression\" property is part of the pending.schema.org extension: it is still under development and subject to change."
         ],
         "documentIssues": []
     },
     "https-schema-org-90abbb66023cd53715d18d2c2f866c47.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] employmentUnit: The \"employmentUnit\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-91f22638bcb1e27786c64aa40d37e4a6.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] skills.@type: The \"DefinedTerm\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] skills.inDefinedTermSet.@type: The \"DefinedTermSet\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] skills.inDefinedTermSet: The \"inDefinedTermSet\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] skills.termCode: The \"termCode\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-92146a4cf6205f4a0a4e98293ab13cfa.jsonld": {
@@ -1513,30 +1222,17 @@
         "errors": [
             "[SchemaOrg error] hasPart.@type: A typed value may only have one type, 2 provided"
         ],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"Guide\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasPart.@type: The \"Recommendation\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-96f23a039f869ff5de9dea83aed57ab8.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"ResearchProject\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] funding.@type: The \"MonetaryGrant\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] funding.funder.@type: The \"FundingAgency\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] funding.funder.parentOrganization.@type: The \"FundingAgency\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] funding.@type: The \"MonetaryGrant\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] funding.@type: The \"MonetaryGrant\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] funding: The \"funding\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-9817a1175e6917f2ee7907ed8a89c6fd.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"Guide\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-993ededd2f4691dff248109a1c8339f4.jsonld": {
@@ -1551,9 +1247,7 @@
     },
     "https-schema-org-9a2890fe5d8004e01fad454fa85db6a9.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] provider: The \"provider\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-9a33346bf2fee70b067f205e43442854.jsonld": {
@@ -1571,9 +1265,7 @@
     },
     "https-schema-org-9af1e3f6fb7afb1bb7a6f5a6a6418deb.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] physicalRequirement: The \"physicalRequirement\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-9cb0dccc43bf7b5e204eded8f59adac9.jsonld": {
@@ -1581,18 +1273,13 @@
         "warnings": [
             "[SchemaOrg warning] hasCredential.@type: The \"EducationalOccupationalCredential\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] hasCredential.credentialCategory: The \"credentialCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasCredential.recognizedBy: The \"recognizedBy\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasCredential: The \"hasCredential\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+            "[SchemaOrg warning] hasCredential.recognizedBy: The \"recognizedBy\" property is part of the pending.schema.org extension: it is still under development and subject to change."
         ],
         "documentIssues": []
     },
     "https-schema-org-9cb8179ef6b97401219a5822303ca548.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"ReportageNewsArticle\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] correction.@type: The \"CorrectionComment\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] correction: The \"correction\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-9ce85d10ee1f55609bfd61a01c847978.jsonld": {
@@ -1634,10 +1321,7 @@
     },
     "https-schema-org-a163d4c93a06e2acd4b898fef6adaaae.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"ArchiveComponent\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] itemLocation: The \"itemLocation\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-a16d5c5c4902be72aae6c7430a9f4d45.jsonld": {
@@ -1716,14 +1400,7 @@
     },
     "https-schema-org-aa7ae6842868b456349f750e0388c630.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] hasCertification.@type: The \"Certification\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasCertification.certificationIdentification.@type: The \"DefinedTerm\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasCertification.certificationIdentification.inDefinedTermSet: The \"inDefinedTermSet\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasCertification.certificationIdentification.termCode: The \"termCode\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasCertification.certificationIdentification: The \"certificationIdentification\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasCertification.@type: The \"Certification\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-abcb405e9505495776583b790730a1a5.jsonld": {
@@ -1736,9 +1413,21 @@
             "[SchemaOrg error] endDate: The property \"endDate\" does not exist on the type \"MonetaryGrant\"",
             "[SchemaOrg error] startDate: The property \"startDate\" does not exist on the type \"MonetaryGrant\""
         ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-ae6fbbb0c09261cad3af985acc13b788.jsonld": {
+        "errors": [],
         "warnings": [
-            "[SchemaOrg warning] @type: The \"MonetaryGrant\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] fundedItem: The \"fundedItem\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+            "[SchemaOrg warning] consumerNotice: The \"consumerNotice\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
+            "[SchemaOrg warning] isOftenBoughtWith: The \"isOftenBoughtWith\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
+            "[SchemaOrg warning] offers.itemPopularity: The \"itemPopularity\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
+            "[SchemaOrg warning] offers.shippingDetails.shippingRate.minimumOrderValue: The \"minimumOrderValue\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
+            "[SchemaOrg warning] specification.valueGroup: The \"valueGroup\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
+            "[SchemaOrg warning] specification.valueGroup: The \"valueGroup\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
+            "[SchemaOrg warning] specification.valueGroup: The \"valueGroup\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
+            "[SchemaOrg warning] specification.valueGroup: The \"valueGroup\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
+            "[SchemaOrg warning] specification: The \"specification\" property is part of the pending.schema.org extension: it is still under development and subject to change."
         ],
         "documentIssues": []
     },
@@ -1750,9 +1439,6 @@
     "https-schema-org-af36f8a1619ab2b702d58b68dde12398.jsonld": {
         "errors": [],
         "warnings": [
-            "[SchemaOrg warning] @type: The \"SpecialAnnouncement\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] announcementLocation: The \"announcementLocation\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] schoolClosuresInfo: The \"schoolClosuresInfo\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] webFeed: The \"webFeed\" property is part of the pending.schema.org extension: it is still under development and subject to change."
         ],
         "documentIssues": []
@@ -1764,10 +1450,7 @@
     },
     "https-schema-org-b0adcc96c8064b94490c628bf7239935.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] eventAttendanceMode: The \"eventAttendanceMode\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] location.@type: The \"VirtualLocation\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-b1436e6dcc9f0e2183e86166f13e2831.jsonld": {
@@ -1777,33 +1460,26 @@
     },
     "https-schema-org-b15e8543b3e4f608a91a8919bd3b554f.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] legislationIdentifier: The \"legislationIdentifier\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] workExample.@type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] workExample.encoding.@type: The \"LegislationObject\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] workExample.encoding.legislationLegalValue: The \"legislationLegalValue\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] workExample.encoding.@type: The \"LegislationObject\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] workExample.encoding.legislationLegalValue: The \"legislationLegalValue\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] workExample.@type: The \"Legislation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] workExample.encoding.@type: The \"LegislationObject\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] workExample.encoding.legislationLegalValue: The \"legislationLegalValue\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] workExample.encoding.@type: The \"LegislationObject\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] workExample.encoding.legislationLegalValue: The \"legislationLegalValue\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-b18a00607c2ec1b3666c65b59a27711a.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"ArchiveOrganization\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] archiveHeld: The \"archiveHeld\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-b4446c0d0d13153d962e13486a1377ca.jsonld": {
         "errors": [],
         "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-b459b1d7096e2ef1d0623ca50a41a0b2.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[SchemaOrg warning] description: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: TextObject",
+            "[SchemaOrg warning] description: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: TextObject",
+            "[SchemaOrg warning] review.reviewBody: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Text"
+        ],
         "documentIssues": []
     },
     "https-schema-org-b4ee5b9f2b4d70db6a79528e5a1da01b.jsonld": {
@@ -1833,17 +1509,12 @@
     },
     "https-schema-org-b88a5e4f6fcf87a530f478caefeb81aa.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] hasCertification.@type: The \"Certification\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-b9533f4419c97a0838b5df911d09fc75.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] potentialAction.target.@type: The \"LinkRole\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] potentialAction.target.linkRelationship: The \"linkRelationship\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-ba1e5dfaa149155cfc695c1f0e7546d7.jsonld": {
@@ -1853,12 +1524,7 @@
     },
     "https-schema-org-bb183691c7f88e8e87cd52b0e548897b.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] name.@type: The \"PronounceableText\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] name.phoneticText: The \"phoneticText\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] name.speechToTextMarkup: The \"speechToTextMarkup\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] name.textValue: The \"textValue\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-bc2a637b1702576a5b4dc7c4f99d7760.jsonld": {
@@ -1891,8 +1557,7 @@
         "warnings": [
             "[SchemaOrg warning] mainEntity.hasCredential.@type: The \"Credential\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] mainEntity.hasCredential.credentialCategory: The \"credentialCategory\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] mainEntity.hasCredential.recognizedBy: The \"recognizedBy\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] mainEntity.hasCredential: The \"hasCredential\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+            "[SchemaOrg warning] mainEntity.hasCredential.recognizedBy: The \"recognizedBy\" property is part of the pending.schema.org extension: it is still under development and subject to change."
         ],
         "documentIssues": []
     },
@@ -1908,16 +1573,7 @@
     },
     "https-schema-org-c0c33820cdc066e9890cde8fb066eba8.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"StatisticalVariable\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] measuredProperty: The \"measuredProperty\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] populationType: The \"populationType\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] statType: The \"statType\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] @type: The \"Observation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] observationAbout: The \"observationAbout\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] observationDate: The \"observationDate\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] variableMeasured: The \"variableMeasured\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-c1a186cf0e633422a4750ecc96590625.jsonld": {
@@ -1957,10 +1613,7 @@
     },
     "https-schema-org-c68cf42febec305af415229040fa3a48.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"ArchiveComponent\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] materialExtent: The \"materialExtent\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-c774b349e60cf5bca275f073c3639553.jsonld": {
@@ -2003,11 +1656,7 @@
     },
     "https-schema-org-c95054f2b44c756ada3d4bf918d00235.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] funding.@type: The \"MonetaryGrant\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] funding.funder.@type: The \"FundingAgency\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] funding: The \"funding\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-c9a96f4f568a0bc237d24f6b0cca9ca5.jsonld": {
@@ -2020,13 +1669,7 @@
     },
     "https-schema-org-c9f74470fd1645e686b0951802e5d7e4.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] eventSchedule.@type: The \"Schedule\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.byDay: The \"byDay\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.repeatFrequency: The \"repeatFrequency\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule.scheduleTimezone: The \"scheduleTimezone\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventSchedule: The \"eventSchedule\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-ca3ee635fd3ef7e71d9b3e39d8731fd0.jsonld": {
@@ -2180,23 +1823,12 @@
     },
     "https-schema-org-d1699b0461db616d4aedcdbc94d583a2.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] titleEIDR: The \"titleEIDR\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] workExample.editEIDR: The \"editEIDR\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] workExample.editEIDR: The \"editEIDR\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] workExample.editEIDR: The \"editEIDR\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] workExample.editEIDR: The \"editEIDR\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-d1aa824030931cd7d2f39cab33f2c9bb.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"Guide\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasPart.@type: The \"Guide\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasPart.@type: The \"Guide\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasPart.@type: The \"Guide\" type is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-d2911d39f8aa8f9ec7fb5db32cf64333.jsonld": {
@@ -2210,11 +1842,7 @@
     },
     "https-schema-org-d35eff1928d87b3219dd01c5d78c358a.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"SpecialAnnouncement\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] governmentBenefitsInfo.provider: The \"provider\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] governmentBenefitsInfo: The \"governmentBenefitsInfo\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-d363b869f91004e8482043f65f2424e2.jsonld": {
@@ -2224,9 +1852,7 @@
     },
     "https-schema-org-d420f8542b4c85f860fcc2452a5c844b.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] provider: The \"provider\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-d43c91f29c18ae49eae3c4ead6759510.jsonld": {
@@ -2287,8 +1913,7 @@
     "https-schema-org-d9d62b341cbf0aba1b050ee269434494.jsonld": {
         "errors": [],
         "warnings": [
-            "[SchemaOrg warning] @type: The \"PerformingArtsEvent\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] eventAttendanceMode: The \"eventAttendanceMode\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+            "[SchemaOrg warning] @type: The \"PerformingArtsEvent\" type is part of the pending.schema.org extension: it is still under development and subject to change."
         ],
         "documentIssues": []
     },
@@ -2309,18 +1934,13 @@
     },
     "https-schema-org-dd1a2e3b0103ab28360f009bac7ac196.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"ArchiveComponent\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] holdingArchive: The \"holdingArchive\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] itemLocation: The \"itemLocation\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-dd3cfcc688ef6bc6383e405ee83a74e5.jsonld": {
         "errors": [],
         "warnings": [
-            "[SchemaOrg warning] iso6523Code: Duplicate property key \"iso6523Code\": only the last value is used.",
-            "[SchemaOrg warning] iso6523Code: The \"iso6523Code\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+            "[SchemaOrg warning] iso6523Code: Duplicate property key \"iso6523Code\": only the last value is used."
         ],
         "documentIssues": []
     },
@@ -2348,10 +1968,7 @@
         "errors": [
             "[SchemaOrg error] fundedItem.@type: A typed value may only have one type, 2 provided"
         ],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"MonetaryGrant\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] fundedItem: The \"fundedItem\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-deed4b7873e090af77845095f549fcf5.jsonld": {
@@ -2361,10 +1978,12 @@
     },
     "https-schema-org-defe19cd441313a6b330043d26ec9637.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] potentialAction.target.@type: The \"LinkRole\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] potentialAction.target.linkRelationship: The \"linkRelationship\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e01d6b9727bd89b0818abed14b370497.jsonld": {
+        "errors": [],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-e0358efba7039a8d173d5096aa7e3355.jsonld": {
@@ -2374,15 +1993,12 @@
     },
     "https-schema-org-e2e9c2f2195832aa88d66786a08de09d.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"MortgageLoan\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] loanRepaymentForm.@type: The \"RepaymentSpecification\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] loanRepaymentForm.downPayment: The \"downPayment\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] loanRepaymentForm.loanPaymentAmount: The \"loanPaymentAmount\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] loanRepaymentForm.loanPaymentFrequency: The \"loanPaymentFrequency\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] loanRepaymentForm.numberOfLoanPayments: The \"numberOfLoanPayments\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] loanRepaymentForm: The \"loanRepaymentForm\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "https-schema-org-e370104b785c7a10a3deaa089feccff0.jsonld": {
+        "errors": [],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-e3e448b9208e7a0728d38a8d8d9a13e1.jsonld": {
@@ -2404,20 +2020,12 @@
     },
     "https-schema-org-e4e6c9b5de2a875099392874a22040d3.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"SpecialAnnouncement\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] quarantineGuidelines: The \"quarantineGuidelines\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-e4f3f2f8099375009898820c409aac80.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.@type: The \"ShippingService\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions.@type: The \"ShippingConditions\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService.shippingConditions: The \"shippingConditions\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.shippingDetails.hasShippingService: The \"hasShippingService\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-e529795a2dd120b2798326f8c40ea247.jsonld": {
@@ -2432,9 +2040,7 @@
     },
     "https-schema-org-e537c6098c4a879f6fab10548fe7e7e9.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] titleEIDR: The \"titleEIDR\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-e5638073976d3d01a974ea7231a85e52.jsonld": {
@@ -2510,36 +2116,18 @@
     "https-schema-org-ec5a2889c387efd90a515645cbb65379.jsonld": {
         "errors": [],
         "warnings": [
-            "[SchemaOrg warning] incentivizedItem: Duplicate property key \"incentivizedItem\": only the last value is used.",
-            "[SchemaOrg warning] @type: The \"FinancialIncentive\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentiveAmount: The \"incentiveAmount\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentiveStatus: The \"incentiveStatus\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentiveType: The \"incentiveType\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentivizedItem.@type: The \"DefinedTerm\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentivizedItem.inDefinedTermSet: The \"inDefinedTermSet\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentivizedItem.termCode: The \"termCode\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] incentivizedItem: The \"incentivizedItem\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] provider: The \"provider\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] purchaseType: The \"purchaseType\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+            "[SchemaOrg warning] incentivizedItem: Duplicate property key \"incentivizedItem\": only the last value is used."
         ],
         "documentIssues": []
     },
     "https-schema-org-edc4b0df3c89c799800053ce06a6c08e.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] employerOverview: The \"employerOverview\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-edef5fa26a11fb63b790c53cb4337742.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"OnlineStore\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] acceptedPaymentMethod.paymentMethodType: The \"paymentMethodType\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] acceptedPaymentMethod.paymentMethodType: The \"paymentMethodType\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] acceptedPaymentMethod.paymentMethodType: The \"paymentMethodType\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] acceptedPaymentMethod.provider: The \"provider\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-ee195c9e91ed3098b3686171fd4595d0.jsonld": {
@@ -2549,9 +2137,7 @@
     },
     "https-schema-org-ef2c310ace8444e9abaaf986640e5323.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] reservationFor.provider: The \"provider\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-ef3d4144a156143f7e6c6e468cb95f2c.jsonld": {
@@ -2577,30 +2163,13 @@
     "https-schema-org-f21ae2fe26743fed63e9c61cf8e5c3fc.jsonld": {
         "errors": [],
         "warnings": [
-            "[SchemaOrg warning] @type: The \"OnlineStore\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] contactPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ContactPoint",
-            "[SchemaOrg warning] hasMemberProgram.@type: The \"MemberProgram\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasMemberProgram.hasTiers.@type: The \"MemberProgramTier\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasMemberProgram.hasTiers.membershipPointsEarned: The \"membershipPointsEarned\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasMemberProgram.hasTiers.@type: The \"MemberProgramTier\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasMemberProgram.hasTiers.membershipPointsEarned: The \"membershipPointsEarned\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasMemberProgram.hasTiers.@type: The \"MemberProgramTier\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasMemberProgram.hasTiers.membershipPointsEarned: The \"membershipPointsEarned\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] iso6523Code: The \"iso6523Code\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.hasMerchantReturnPolicy: The \"hasMerchantReturnPolicy\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.priceSpecification.validForMemberTier: The \"validForMemberTier\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] size: The \"size\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+            "[SchemaOrg warning] contactPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ContactPoint"
         ],
         "documentIssues": []
     },
     "https-schema-org-f471fdcaae37f0a1746dd57237d19912.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] genre.@type: The \"DefinedTerm\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] genre.inDefinedTermSet.@type: The \"DefinedTermSet\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] genre.inDefinedTermSet: The \"inDefinedTermSet\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] genre.termCode: The \"termCode\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-f48278f5e1542bf198b905a53b9d47eb.jsonld": {
@@ -2610,12 +2179,7 @@
     },
     "https-schema-org-f4b74e0344a971d78c77e3e6d7a2dce4.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"ArchiveComponent\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] conditionsOfAccess: The \"conditionsOfAccess\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] holdingArchive.@type: The \"ArchiveOrganization\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] holdingArchive: The \"holdingArchive\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-f596909b155d52ea08d37b29c7f9f73c.jsonld": {
@@ -2628,28 +2192,14 @@
         "warnings": [
             "[SchemaOrg warning] @type: The \"MathSolver\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
             "[SchemaOrg warning] potentialAction.@type: The \"SolveMathAction\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] potentialAction.eduQuestionType: The \"eduQuestionType\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] potentialAction.@type: The \"SolveMathAction\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] potentialAction.eduQuestionType: The \"eduQuestionType\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+            "[SchemaOrg warning] potentialAction.@type: The \"SolveMathAction\" type is part of the pending.schema.org extension: it is still under development and subject to change."
         ],
         "documentIssues": []
     },
     "https-schema-org-f929ad89ee52fc24a8010302a47faaf7.jsonld": {
         "errors": [],
         "warnings": [
-            "[SchemaOrg warning] @type: The \"OnlineStore\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] contactPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ContactPoint",
-            "[SchemaOrg warning] hasMemberProgram.@type: The \"MemberProgram\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasMemberProgram.hasTiers.@type: The \"MemberProgramTier\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasMemberProgram.hasTiers.membershipPointsEarned: The \"membershipPointsEarned\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasMemberProgram.hasTiers.@type: The \"MemberProgramTier\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasMemberProgram.hasTiers.membershipPointsEarned: The \"membershipPointsEarned\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasMemberProgram.hasTiers.@type: The \"MemberProgramTier\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] hasMemberProgram.hasTiers.membershipPointsEarned: The \"membershipPointsEarned\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] iso6523Code: The \"iso6523Code\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.hasMerchantReturnPolicy: The \"hasMerchantReturnPolicy\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] offers.priceSpecification.validForMemberTier: The \"validForMemberTier\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] size: The \"size\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+            "[SchemaOrg warning] contactPoint: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: ContactPoint"
         ],
         "documentIssues": []
     },
@@ -2693,18 +2243,7 @@
             "[SchemaOrg error] constrainingProperty: This property does not exist: constrainingProperty",
             "[SchemaOrg error] gender: The property \"gender\" does not exist on the type \"StatisticalVariable\""
         ],
-        "warnings": [
-            "[SchemaOrg warning] @type: The \"StatisticalVariable\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] gender: The \"gender\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] measuredProperty: The \"measuredProperty\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] numConstraints: The \"numConstraints\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] populationType: The \"populationType\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] statType: The \"statType\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] @type: The \"Observation\" type is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] observationAbout: The \"observationAbout\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] observationDate: The \"observationDate\" property is part of the pending.schema.org extension: it is still under development and subject to change.",
-            "[SchemaOrg warning] variableMeasured: The \"variableMeasured\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "https-schema-org-ff4a6a0225ab9d6d5b3a801211099837.jsonld": {

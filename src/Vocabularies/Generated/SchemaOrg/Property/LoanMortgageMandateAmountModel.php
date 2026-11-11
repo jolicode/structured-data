@@ -18,7 +18,7 @@ final class LoanMortgageMandateAmountModel
     public const NAME = 'schema:loanMortgageMandateAmount';
     public const VALUES = ['MonetaryAmountModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountModel'];
     public const TYPES = ['MortgageLoan' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MortgageLoanModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1253'];
     public const SUPERSEDED_BY = null;
 }

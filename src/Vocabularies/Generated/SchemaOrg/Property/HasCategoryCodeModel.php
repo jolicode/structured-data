@@ -18,7 +18,7 @@ final class HasCategoryCodeModel
     public const NAME = 'schema:hasCategoryCode';
     public const VALUES = ['CategoryCodeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeModel'];
     public const TYPES = ['CategoryCodeSet' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CategoryCodeSetModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/894'];
     public const SUPERSEDED_BY = null;
 }

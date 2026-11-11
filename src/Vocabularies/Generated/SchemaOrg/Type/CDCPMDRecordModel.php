@@ -22,7 +22,7 @@ final class CDCPMDRecordModel
     public const NAME = 'schema:CDCPMDRecord';
     public const PARENTS = ['StructuredValueModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\StructuredValueModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2521'];
     public const SUPERSEDED_BY = null;
 

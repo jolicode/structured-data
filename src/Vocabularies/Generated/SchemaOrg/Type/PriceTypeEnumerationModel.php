@@ -19,8 +19,8 @@ final class PriceTypeEnumerationModel
     public const LABEL = 'PriceTypeEnumeration';
     public const NAME = 'schema:PriceTypeEnumeration';
     public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
-    public const ENUMERATION_MEMBERS = ['InvoicePriceModel' => 'EnumerationMember\InvoicePriceModel', 'ListPriceModel' => 'EnumerationMember\ListPriceModel', 'MSRPModel' => 'EnumerationMember\MSRPModel', 'MinimumAdvertisedPriceModel' => 'EnumerationMember\MinimumAdvertisedPriceModel', 'RegularPriceModel' => 'EnumerationMember\RegularPriceModel', 'SRPModel' => 'EnumerationMember\SRPModel', 'SalePriceModel' => 'EnumerationMember\SalePriceModel', 'StrikethroughPriceModel' => 'EnumerationMember\StrikethroughPriceModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const ENUMERATION_MEMBERS = ['InvoicePriceModel' => 'EnumerationMember\InvoicePriceModel', 'ListPriceModel' => 'EnumerationMember\ListPriceModel', 'MSRPModel' => 'EnumerationMember\MSRPModel', 'MaximumRetailPriceModel' => 'EnumerationMember\MaximumRetailPriceModel', 'MinimumAdvertisedPriceModel' => 'EnumerationMember\MinimumAdvertisedPriceModel', 'RegularPriceModel' => 'EnumerationMember\RegularPriceModel', 'SRPModel' => 'EnumerationMember\SRPModel', 'SalePriceModel' => 'EnumerationMember\SalePriceModel', 'StrikethroughPriceModel' => 'EnumerationMember\StrikethroughPriceModel'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2712'];
     public const SUPERSEDED_BY = null;
 

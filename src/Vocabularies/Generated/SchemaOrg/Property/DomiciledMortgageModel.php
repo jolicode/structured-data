@@ -18,7 +18,7 @@ final class DomiciledMortgageModel
     public const NAME = 'schema:domiciledMortgage';
     public const VALUES = ['BooleanModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['MortgageLoan' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MortgageLoanModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1253'];
     public const SUPERSEDED_BY = null;
 }

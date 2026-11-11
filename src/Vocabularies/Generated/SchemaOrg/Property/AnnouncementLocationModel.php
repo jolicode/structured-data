@@ -18,7 +18,7 @@ final class AnnouncementLocationModel
     public const NAME = 'schema:announcementLocation';
     public const VALUES = ['CivicStructureModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CivicStructureModel', 'LocalBusinessModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\LocalBusinessModel'];
     public const TYPES = ['SpecialAnnouncement' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SpecialAnnouncementModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2514'];
     public const SUPERSEDED_BY = null;
 }

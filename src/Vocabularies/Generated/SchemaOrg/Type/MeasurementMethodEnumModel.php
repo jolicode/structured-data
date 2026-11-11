@@ -20,7 +20,7 @@ final class MeasurementMethodEnumModel
     public const NAME = 'schema:MeasurementMethodEnum';
     public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['ExampleMeasurementMethodEnumModel' => 'EnumerationMember\ExampleMeasurementMethodEnumModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2564'];
     public const SUPERSEDED_BY = null;
 

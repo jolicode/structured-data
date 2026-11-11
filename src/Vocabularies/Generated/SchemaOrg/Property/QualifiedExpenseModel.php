@@ -18,7 +18,7 @@ final class QualifiedExpenseModel
     public const NAME = 'schema:qualifiedExpense';
     public const VALUES = ['IncentiveQualifiedExpenseTypeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\IncentiveQualifiedExpenseTypeModel'];
     public const TYPES = ['FinancialIncentive' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\FinancialIncentiveModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3572'];
     public const SUPERSEDED_BY = null;
 }

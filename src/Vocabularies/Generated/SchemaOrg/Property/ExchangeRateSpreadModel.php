@@ -18,7 +18,7 @@ final class ExchangeRateSpreadModel
     public const NAME = 'schema:exchangeRateSpread';
     public const VALUES = ['MonetaryAmountModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MonetaryAmountModel', 'NumberModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NumberModel'];
     public const TYPES = ['ExchangeRateSpecification' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ExchangeRateSpecificationModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1253'];
     public const SUPERSEDED_BY = null;
 }

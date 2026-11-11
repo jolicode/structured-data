@@ -20,7 +20,7 @@ final class PlayGameActionModel
     public const NAME = 'schema:PlayGameAction';
     public const PARENTS = ['ConsumeActionModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ConsumeActionModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3058'];
     public const SUPERSEDED_BY = null;
 

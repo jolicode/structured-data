@@ -18,7 +18,7 @@ final class PaymentMethodTypeModel
     public const NAME = 'schema:paymentMethodType';
     public const VALUES = ['PaymentMethodTypeModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PaymentMethodTypeModel'];
     public const TYPES = ['PaymentMethod' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PaymentMethodModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3537'];
     public const SUPERSEDED_BY = null;
 }

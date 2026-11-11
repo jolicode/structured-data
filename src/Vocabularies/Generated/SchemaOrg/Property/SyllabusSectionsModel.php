@@ -18,7 +18,7 @@ final class SyllabusSectionsModel
     public const NAME = 'schema:syllabusSections';
     public const VALUES = ['SyllabusModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\SyllabusModel'];
     public const TYPES = ['Course' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CourseModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3281'];
     public const SUPERSEDED_BY = null;
 }

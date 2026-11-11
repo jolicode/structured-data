@@ -18,7 +18,7 @@ final class CheckoutPageURLTemplateModel
     public const NAME = 'schema:checkoutPageURLTemplate';
     public const VALUES = ['TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel'];
     public const TYPES = ['Offer' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OfferModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3135'];
     public const SUPERSEDED_BY = null;
 }

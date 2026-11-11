@@ -23,7 +23,7 @@ final class EventScheduleModel
     public const NAME = 'schema:eventSchedule';
     public const VALUES = ['ScheduleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ScheduleModel'];
     public const TYPES = ['Event' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EventModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1457'];
     public const SUPERSEDED_BY = null;
 }

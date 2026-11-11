@@ -24,9 +24,7 @@
         "errors": [
             "[SchemaOrg error] imABadAttribute: This property does not exist: imABadAttribute"
         ],
-        "warnings": [
-            "[SchemaOrg warning] jobTitle: The \"jobTitle\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "compacted-with-lots-of-errors.jsonld": {
@@ -80,16 +78,12 @@
     },
     "html-classic.html": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] jobTitle: The \"jobTitle\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "html-double-tags.html": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] jobTitle: The \"jobTitle\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "html-no-tag.html": {
@@ -157,9 +151,7 @@
     },
     "multiple-types-1.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] jobTitle: The \"jobTitle\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "multiple-types-2.jsonld": {
@@ -186,45 +178,35 @@
     "no-type-nested.jsonld": {
         "errors": [],
         "warnings": [
-            "[SchemaOrg warning] birthPlace: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Place",
-            "[SchemaOrg warning] jobTitle: The \"jobTitle\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+            "[SchemaOrg warning] birthPlace: The @type entry of this type was not set. We had to guess it from its properties. The guessed type is: Place"
         ],
         "documentIssues": []
     },
     "person-duplicate-name.jsonld": {
         "errors": [],
         "warnings": [
-            "[SchemaOrg warning] name: Duplicate property key \"name\": only the last value is used.",
-            "[SchemaOrg warning] jobTitle: The \"jobTitle\" property is part of the pending.schema.org extension: it is still under development and subject to change."
+            "[SchemaOrg warning] name: Duplicate property key \"name\": only the last value is used."
         ],
         "documentIssues": []
     },
     "simple-compacted.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] jobTitle: The \"jobTitle\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "simple-expanded.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] jobTitle: The \"jobTitle\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "simple-flattened.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] jobTitle: The \"jobTitle\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "simple-framed.jsonld": {
         "errors": [],
-        "warnings": [
-            "[SchemaOrg warning] jobTitle: The \"jobTitle\" property is part of the pending.schema.org extension: it is still under development and subject to change."
-        ],
+        "warnings": [],
         "documentIssues": []
     },
     "valid-parent-attribute.jsonld": {

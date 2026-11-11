@@ -52,9 +52,12 @@ class StaticSchemaOrgContextGenerator
             'type' => '@type',
         ];
 
+        $prefixes = [];
+
         foreach ((array) $schemaOrgDefinitions->{'@context'} as $term => $mapping) {
             if (\is_string($mapping)) {
                 $localContext->{$term} = $mapping;
+                $prefixes[$term] = true;
             }
         }
 
@@ -69,7 +72,15 @@ class StaticSchemaOrgContextGenerator
 
             $term = substr($entry->{'@id'}, 7);
 
-            if ('' === $term || isset($localContext->{$term})) {
+            if ('' === $term) {
+                continue;
+            }
+
+            // A schema.org term wins over a namespace prefix of the same name, as in
+            // the official schemaorgcontext.jsonld: since 30.1, the definition file
+            // declares a "geo" prefix (GeoSPARQL) that would otherwise shadow the
+            // schema.org "geo" property.
+            if (isset($localContext->{$term}) && !isset($prefixes[$term])) {
                 continue;
             }
 

@@ -1,0 +1,14 @@
+{
+  "@context": {
+    "schema": "https://schema.org/"
+  },
+   "@type": "schema:Newspaper",
+   "schema:editor": {
+     "@id": "http://www.wikidata.org/entity/6555518"
+   },
+  "schema:name": "The Financial Times",
+  "schema:publisher": {
+    "@id": "http://www.wikidata.org/entity/Q1916402"
+  },
+  "schema:url": "http://ft.com"
+}

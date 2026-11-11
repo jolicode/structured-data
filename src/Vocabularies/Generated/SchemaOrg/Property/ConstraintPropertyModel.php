@@ -18,7 +18,7 @@ final class ConstraintPropertyModel
     public const NAME = 'schema:constraintProperty';
     public const VALUES = ['PropertyModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PropertyModel', 'URLModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
     public const TYPES = ['ConstraintNode' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ConstraintNodeModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2291'];
     public const SUPERSEDED_BY = null;
 }

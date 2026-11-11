@@ -18,7 +18,7 @@ final class CorrectionModel
     public const NAME = 'schema:correction';
     public const VALUES = ['CorrectionCommentModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CorrectionCommentModel', 'TextModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\TextModel', 'URLModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\URLModel'];
     public const TYPES = ['CreativeWork' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\CreativeWorkModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1950'];
     public const SUPERSEDED_BY = null;
 }

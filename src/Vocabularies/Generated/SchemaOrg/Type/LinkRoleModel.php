@@ -20,7 +20,7 @@ final class LinkRoleModel
     public const NAME = 'schema:LinkRole';
     public const PARENTS = ['RoleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\RoleModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1045'];
     public const SUPERSEDED_BY = null;
 

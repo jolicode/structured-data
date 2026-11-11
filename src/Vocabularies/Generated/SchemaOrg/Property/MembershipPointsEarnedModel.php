@@ -18,7 +18,7 @@ final class MembershipPointsEarnedModel
     public const NAME = 'schema:membershipPointsEarned';
     public const VALUES = ['NumberModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\NumberModel', 'QuantitativeValueModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\QuantitativeValueModel'];
     public const TYPES = ['MemberProgramTier' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\MemberProgramTierModel', 'PriceSpecification' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PriceSpecificationModel', 'ProgramMembership' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ProgramMembershipModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2085'];
     public const SUPERSEDED_BY = null;
 }

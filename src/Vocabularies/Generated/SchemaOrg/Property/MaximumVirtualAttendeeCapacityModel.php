@@ -18,7 +18,7 @@ final class MaximumVirtualAttendeeCapacityModel
     public const NAME = 'schema:maximumVirtualAttendeeCapacity';
     public const VALUES = ['IntegerModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\IntegerModel'];
     public const TYPES = ['Event' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EventModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1842'];
     public const SUPERSEDED_BY = null;
 }

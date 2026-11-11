@@ -20,7 +20,7 @@ final class RadioBroadcastServiceModel
     public const NAME = 'schema:RadioBroadcastService';
     public const PARENTS = ['BroadcastServiceModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BroadcastServiceModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2109'];
     public const SUPERSEDED_BY = null;
 

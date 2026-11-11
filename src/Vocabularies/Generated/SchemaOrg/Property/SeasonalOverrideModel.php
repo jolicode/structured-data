@@ -18,7 +18,7 @@ final class SeasonalOverrideModel
     public const NAME = 'schema:seasonalOverride';
     public const VALUES = ['OpeningHoursSpecificationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\OpeningHoursSpecificationModel'];
     public const TYPES = ['ShippingConditions' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ShippingConditionsModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3617'];
     public const SUPERSEDED_BY = null;
 }

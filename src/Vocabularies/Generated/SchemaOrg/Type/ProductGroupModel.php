@@ -22,7 +22,7 @@ While a ProductGroup itself is not directly offered for sale, the various varyin
     public const NAME = 'schema:ProductGroup';
     public const PARENTS = ['ProductModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ProductModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1797'];
     public const SUPERSEDED_BY = null;
 
@@ -33,12 +33,14 @@ While a ProductGroup itself is not directly offered for sale, the various varyin
         public ?Property\AlternateNameModel $alternateName = null,
         public ?Property\AsinModel $asin = null,
         public ?Property\AudienceModel $audience = null,
+        public ?Property\AuthorizedRepresentativeModel $authorizedRepresentative = null,
         public ?Property\AwardModel $award = null,
         public ?Property\AwardsModel $awards = null,
         public ?Property\BrandModel $brand = null,
         public ?Property\CategoryModel $category = null,
         public ?Property\ColorModel $color = null,
         public ?Property\ColorSwatchModel $colorSwatch = null,
+        public ?Property\ConsumerNoticeModel $consumerNotice = null,
         public ?Property\CountryOfAssemblyModel $countryOfAssembly = null,
         public ?Property\CountryOfLastProcessingModel $countryOfLastProcessing = null,
         public ?Property\CountryOfOriginModel $countryOfOrigin = null,
@@ -54,18 +56,22 @@ While a ProductGroup itself is not directly offered for sale, the various varyin
         public ?Property\Gtin8Model $gtin8 = null,
         public ?Property\HasAdultConsiderationModel $hasAdultConsideration = null,
         public ?Property\HasCertificationModel $hasCertification = null,
+        public ?Property\HasDigitalProductPassportModel $hasDigitalProductPassport = null,
         public ?Property\HasEnergyConsumptionDetailsModel $hasEnergyConsumptionDetails = null,
         public ?Property\HasGS1DigitalLinkModel $hasGS1DigitalLink = null,
         public ?Property\HasMeasurementModel $hasMeasurement = null,
         public ?Property\HasMerchantReturnPolicyModel $hasMerchantReturnPolicy = null,
+        public ?Property\HasProductReturnPolicyModel $hasProductReturnPolicy = null,
         public ?Property\HasVariantModel $hasVariant = null,
         public ?Property\HeightModel $height = null,
         public ?Property\IdentifierModel $identifier = null,
         public ?Property\ImageModel $image = null,
+        public ?Property\ImporterModel $importer = null,
         public ?Property\InProductGroupWithIDModel $inProductGroupWithID = null,
         public ?Property\IsAccessoryOrSparePartForModel $isAccessoryOrSparePartFor = null,
         public ?Property\IsConsumableForModel $isConsumableFor = null,
         public ?Property\IsFamilyFriendlyModel $isFamilyFriendly = null,
+        public ?Property\IsOftenBoughtWithModel $isOftenBoughtWith = null,
         public ?Property\IsRelatedToModel $isRelatedTo = null,
         public ?Property\IsSimilarToModel $isSimilarTo = null,
         public ?Property\IsVariantOfModel $isVariantOf = null,
@@ -90,6 +96,7 @@ While a ProductGroup itself is not directly offered for sale, the various varyin
         public ?Property\ProductIDModel $productID = null,
         public ?Property\ProductionDateModel $productionDate = null,
         public ?Property\PurchaseDateModel $purchaseDate = null,
+        public ?Property\RecycledContentPercentageModel $recycledContentPercentage = null,
         public ?Property\ReleaseDateModel $releaseDate = null,
         public ?Property\ReviewModel $review = null,
         public ?Property\ReviewsModel $reviews = null,
@@ -97,7 +104,9 @@ While a ProductGroup itself is not directly offered for sale, the various varyin
         public ?Property\SizeModel $size = null,
         public ?Property\SkuModel $sku = null,
         public ?Property\SloganModel $slogan = null,
+        public ?Property\SpecificationModel $specification = null,
         public ?Property\SubjectOfModel $subjectOf = null,
+        public ?Property\SubstanceOfConcernModel $substanceOfConcern = null,
         public ?Property\UrlModel $url = null,
         public ?Property\VariesByModel $variesBy = null,
         public ?Property\WeightModel $weight = null,

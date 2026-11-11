@@ -20,7 +20,7 @@ final class WebAPIModel
     public const NAME = 'schema:WebAPI';
     public const PARENTS = ['ServiceModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ServiceModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/1423'];
     public const SUPERSEDED_BY = null;
 

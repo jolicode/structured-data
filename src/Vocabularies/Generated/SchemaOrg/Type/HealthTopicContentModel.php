@@ -20,7 +20,7 @@ final class HealthTopicContentModel
     public const NAME = 'schema:HealthTopicContent';
     public const PARENTS = ['WebContentModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\WebContentModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2374'];
     public const SUPERSEDED_BY = null;
 

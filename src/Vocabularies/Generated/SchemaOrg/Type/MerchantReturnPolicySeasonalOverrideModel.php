@@ -20,7 +20,7 @@ final class MerchantReturnPolicySeasonalOverrideModel
     public const NAME = 'schema:MerchantReturnPolicySeasonalOverride';
     public const PARENTS = ['IntangibleModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\IntangibleModel'];
     public const ENUMERATION_MEMBERS = [];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2880'];
     public const SUPERSEDED_BY = null;
 

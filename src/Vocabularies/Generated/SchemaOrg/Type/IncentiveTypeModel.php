@@ -20,7 +20,7 @@ final class IncentiveTypeModel
     public const NAME = 'schema:IncentiveType';
     public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['IncentiveTypeLoanModel' => 'EnumerationMember\IncentiveTypeLoanModel', 'IncentiveTypeRebateOrSubsidyModel' => 'EnumerationMember\IncentiveTypeRebateOrSubsidyModel', 'IncentiveTypeTaxCreditModel' => 'EnumerationMember\IncentiveTypeTaxCreditModel', 'IncentiveTypeTaxDeductionModel' => 'EnumerationMember\IncentiveTypeTaxDeductionModel', 'IncentiveTypeTaxWaiverModel' => 'EnumerationMember\IncentiveTypeTaxWaiverModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/3572'];
     public const SUPERSEDED_BY = null;
 

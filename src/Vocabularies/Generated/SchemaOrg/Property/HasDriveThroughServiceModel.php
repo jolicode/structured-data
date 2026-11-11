@@ -18,7 +18,7 @@ final class HasDriveThroughServiceModel
     public const NAME = 'schema:hasDriveThroughService';
     public const VALUES = ['BooleanModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\BooleanModel'];
     public const TYPES = ['Place' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PlaceModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2490'];
     public const SUPERSEDED_BY = null;
 }

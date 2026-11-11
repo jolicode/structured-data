@@ -20,7 +20,7 @@ final class PriceComponentTypeEnumerationModel
     public const NAME = 'schema:PriceComponentTypeEnumeration';
     public const PARENTS = ['EnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\EnumerationModel'];
     public const ENUMERATION_MEMBERS = ['ActivationFeeModel' => 'EnumerationMember\ActivationFeeModel', 'CleaningFeeModel' => 'EnumerationMember\CleaningFeeModel', 'DistanceFeeModel' => 'EnumerationMember\DistanceFeeModel', 'DownpaymentModel' => 'EnumerationMember\DownpaymentModel', 'InstallmentModel' => 'EnumerationMember\InstallmentModel', 'SubscriptionModel' => 'EnumerationMember\SubscriptionModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2689'];
     public const SUPERSEDED_BY = null;
 

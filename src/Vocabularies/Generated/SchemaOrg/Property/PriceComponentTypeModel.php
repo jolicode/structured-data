@@ -18,7 +18,7 @@ final class PriceComponentTypeModel
     public const NAME = 'schema:priceComponentType';
     public const VALUES = ['PriceComponentTypeEnumerationModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\PriceComponentTypeEnumerationModel'];
     public const TYPES = ['UnitPriceSpecification' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\UnitPriceSpecificationModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2689'];
     public const SUPERSEDED_BY = null;
 }

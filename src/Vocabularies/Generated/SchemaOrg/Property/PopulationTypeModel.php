@@ -18,7 +18,7 @@ final class PopulationTypeModel
     public const NAME = 'schema:populationType';
     public const VALUES = ['ClassModel' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\ClassModel'];
     public const TYPES = ['StatisticalPopulation' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\StatisticalPopulationModel', 'StatisticalVariable' => 'JoliCode\StructuredData\Vocabularies\Generated\SchemaOrg\Type\StatisticalVariableModel'];
-    public const IS_PART_OF = ['https://pending.schema.org'];
+    public const IS_PART_OF = [];
     public const SOURCE = ['https://github.com/schemaorg/schemaorg/issues/2291'];
     public const SUPERSEDED_BY = null;
 }
