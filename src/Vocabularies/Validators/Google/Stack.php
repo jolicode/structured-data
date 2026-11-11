@@ -308,6 +308,13 @@ class Stack
     // If multiple types are found on the MappedType, all the potentially needed properties are imported.
     private function isADataType(array $testedType): bool
     {
+        // A property may accept either a data type or a structured type ("Text or
+        // CategoryCode"). The stack only reaches it through an object, so the nested
+        // properties defined for the structured type still apply.
+        if (isset($testedType['properties']) || isset($testedType['@target'])) {
+            return false;
+        }
+
         return (bool) array_intersect($testedType['supportedTypes'], DataTypeChecker::DATA_TYPES);
     }
 

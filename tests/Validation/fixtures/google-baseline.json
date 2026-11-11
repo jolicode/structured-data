@@ -11,6 +11,13 @@
         "warnings": [],
         "documentIssues": []
     },
+    "article-image-object-missing-url.jsonld": {
+        "errors": [],
+        "warnings": [
+            "[Google warning] image: Missing recommended property: \"url\" for the type \"ImageObject\""
+        ],
+        "documentIssues": []
+    },
     "article.jsonld": {
         "errors": [],
         "warnings": [],
@@ -81,6 +88,13 @@
     "breadcrumb-invalid-single-item.jsonld": {
         "errors": [
             "[Google error] itemListElement: A \"BreadcrumbList\" must contain at least 2 \"ListItem\" entries."
+        ],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "breadcrumb-item-object-missing-id.jsonld": {
+        "errors": [
+            "[Google error] itemListElement.item: Missing required property: \"@id\" for the type \"WebPage\""
         ],
         "warnings": [],
         "documentIssues": []
@@ -476,6 +490,13 @@
         "warnings": [
             "[Google warning] Recipe: Advisory: when \"nutrition.calories\" is provided, include \"recipeYield\" so calories are interpreted per serving."
         ],
+        "documentIssues": []
+    },
+    "recipe-instruction-step-missing-text.jsonld": {
+        "errors": [
+            "[Google error] recipeInstructions: Missing required property: \"text\" for the type \"HowToStep\""
+        ],
+        "warnings": [],
         "documentIssues": []
     },
     "recipe-missing-ingredients.jsonld": {

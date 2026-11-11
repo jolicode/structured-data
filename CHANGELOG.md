@@ -12,6 +12,10 @@
 
 ### Fixed
 
+- Google validator: a property accepting either a data type or a structured type (such as
+  "Text or CategoryCode") now validates the nested properties of an object value. The
+  `ImageObject` of an article image, the `HowToStep` of recipe instructions and an object
+  breadcrumb `item` were never checked so far.
 - JSON-LD script tags whose `type` attribute has no quotes (valid HTML, and what minifiers
   produce) or has whitespace around the `=` are no longer ignored.
 - A `data-type="application/ld+json"` attribute no longer makes a script tag count as JSON-LD.
