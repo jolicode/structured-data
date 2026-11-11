@@ -170,5 +170,26 @@ final class LocalBusiness
                 'URL',
             ],
         ],
+        'department' => [
+            'name' => 'department',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'LocalBusiness',
+            ],
+        ],
+        'aggregateRating' => [
+            'name' => 'aggregateRating',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'AggregateRating',
+            ],
+        ],
+        'review' => [
+            'name' => 'review',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Review',
+            ],
+        ],
     ];
 }

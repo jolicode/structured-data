@@ -26,14 +26,14 @@ final class ProductGroup
         ],
         'hasAdultConsideration' => [
             'name' => 'hasAdultConsideration',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'AdultOrientedEnumeration',
             ],
         ],
         'variesBy' => [
             'name' => 'variesBy',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'DefinedTerm',
             ],
@@ -47,23 +47,55 @@ final class ProductGroup
         ],
         'hasVariant' => [
             'name' => 'hasVariant',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Product',
             ],
         ],
         'aggregateRating' => [
             'name' => 'aggregateRating',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'AggregateRating',
             ],
         ],
         'review' => [
             'name' => 'review',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Review',
+            ],
+        ],
+        'brand' => [
+            'name' => 'brand',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Brand',
+                'Organization',
+            ],
+            'properties' => [
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+            ],
+        ],
+        'description' => [
+            'name' => 'description',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+                'TextObject',
+            ],
+        ],
+        'url' => [
+            'name' => 'url',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'URL',
             ],
         ],
     ];

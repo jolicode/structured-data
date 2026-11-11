@@ -15,11 +15,11 @@ final class Organization
 {
     public const SUPPORTED_TYPES = ['Organization', 'OnlineStore'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/organization';
-    public const SPECIAL_RULE_KEYS = ['google.organization.return_policy_merchant_return_days_when_finite', 'google.organization.tax_id_country_consistency'];
+    public const SPECIAL_RULE_KEYS = ['google.organization.return_policy', 'google.organization.tax_id_country_consistency', 'google.organization.member_tier_loyalty_points'];
     public const PROPERTIES = [
         'address' => [
             'name' => 'address',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'PostalAddress',
             ],
@@ -40,7 +40,7 @@ final class Organization
                 ],
                 'addressRegion' => [
                     'name' => 'addressRegion',
-                    'severity' => 'recommended',
+                    'severity' => 'optional',
                     'supportedTypes' => [
                         'Text',
                     ],
@@ -63,28 +63,28 @@ final class Organization
         ],
         'alternateName' => [
             'name' => 'alternateName',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],
         ],
         'contactPoint' => [
             'name' => 'contactPoint',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'ContactPoint',
             ],
             'properties' => [
                 'email' => [
                     'name' => 'email',
-                    'severity' => 'recommended',
+                    'severity' => 'optional',
                     'supportedTypes' => [
                         'Text',
                     ],
                 ],
                 'telephone' => [
                     'name' => 'telephone',
-                    'severity' => 'recommended',
+                    'severity' => 'optional',
                     'supportedTypes' => [
                         'Text',
                     ],
@@ -93,42 +93,42 @@ final class Organization
         ],
         'description' => [
             'name' => 'description',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],
         ],
         'duns' => [
             'name' => 'duns',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],
         ],
         'email' => [
             'name' => 'email',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],
         ],
         'foundingDate' => [
             'name' => 'foundingDate',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Date',
             ],
         ],
         'globalLocationNumber' => [
             'name' => 'globalLocationNumber',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],
         ],
         'hasMerchantReturnPolicy' => [
             'name' => 'hasMerchantReturnPolicy',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'documentation' => 'https://developers.google.com/search/docs/appearance/structured-data/return-policy',
             'supportedTypes' => [
                 'MerchantReturnPolicy',
@@ -149,18 +149,18 @@ final class Organization
                         'Text',
                     ],
                 ],
-                'merchantReturnLink' => [
-                    'name' => 'merchantReturnLink',
-                    'severity' => 'optional',
-                    'supportedTypes' => [
-                        'URL',
-                    ],
-                ],
                 'returnPolicyCategory' => [
                     'name' => 'returnPolicyCategory',
                     'severity' => 'optional',
                     'supportedTypes' => [
                         'MerchantReturnEnumeration',
+                    ],
+                ],
+                'merchantReturnLink' => [
+                    'name' => 'merchantReturnLink',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'URL',
                     ],
                 ],
                 'merchantReturnDays' => [
@@ -170,11 +170,151 @@ final class Organization
                         'Integer',
                     ],
                 ],
+                'returnFees' => [
+                    'name' => 'returnFees',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'ReturnFeesEnumeration',
+                    ],
+                ],
+                'returnMethod' => [
+                    'name' => 'returnMethod',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'ReturnMethodEnumeration',
+                    ],
+                ],
+                'returnShippingFeesAmount' => [
+                    'name' => 'returnShippingFeesAmount',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'MonetaryAmount',
+                    ],
+                ],
+                'customerRemorseReturnFees' => [
+                    'name' => 'customerRemorseReturnFees',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'ReturnFeesEnumeration',
+                    ],
+                ],
+                'customerRemorseReturnLabelSource' => [
+                    'name' => 'customerRemorseReturnLabelSource',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'ReturnLabelSourceEnumeration',
+                    ],
+                ],
+                'customerRemorseReturnShippingFeesAmount' => [
+                    'name' => 'customerRemorseReturnShippingFeesAmount',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'MonetaryAmount',
+                    ],
+                ],
+                'itemCondition' => [
+                    'name' => 'itemCondition',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'OfferItemCondition',
+                    ],
+                ],
+                'itemDefectReturnFees' => [
+                    'name' => 'itemDefectReturnFees',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'ReturnFeesEnumeration',
+                    ],
+                ],
+                'itemDefectReturnLabelSource' => [
+                    'name' => 'itemDefectReturnLabelSource',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'ReturnLabelSourceEnumeration',
+                    ],
+                ],
+                'itemDefectReturnShippingFeesAmount' => [
+                    'name' => 'itemDefectReturnShippingFeesAmount',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'MonetaryAmount',
+                    ],
+                ],
+                'refundType' => [
+                    'name' => 'refundType',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'RefundType',
+                    ],
+                ],
+                'restockingFee' => [
+                    'name' => 'restockingFee',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'MonetaryAmount',
+                        'Number',
+                    ],
+                ],
+                'returnLabelSource' => [
+                    'name' => 'returnLabelSource',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'ReturnLabelSourceEnumeration',
+                    ],
+                ],
+                'returnPolicyCountry' => [
+                    'name' => 'returnPolicyCountry',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'returnPolicySeasonalOverride' => [
+                    'name' => 'returnPolicySeasonalOverride',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'MerchantReturnPolicySeasonalOverride',
+                    ],
+                    'properties' => [
+                        'returnPolicyCategory' => [
+                            'name' => 'returnPolicyCategory',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'MerchantReturnEnumeration',
+                            ],
+                        ],
+                        'startDate' => [
+                            'name' => 'startDate',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'Date',
+                                'DateTime',
+                            ],
+                        ],
+                        'endDate' => [
+                            'name' => 'endDate',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'Date',
+                                'DateTime',
+                            ],
+                        ],
+                        'merchantReturnDays' => [
+                            'name' => 'merchantReturnDays',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'Integer',
+                                'Date',
+                                'DateTime',
+                            ],
+                        ],
+                    ],
+                ],
             ],
         ],
         'hasMemberProgram' => [
             'name' => 'hasMemberProgram',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'documentation' => 'https://developers.google.com/search/docs/appearance/structured-data/loyalty-program',
             'supportedTypes' => [
                 'MemberProgram',
@@ -215,13 +355,44 @@ final class Organization
                                 'TierBenefitEnumeration',
                             ],
                         ],
+                        'hasTierRequirement' => [
+                            'name' => 'hasTierRequirement',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'CreditCard',
+                                'MonetaryAmount',
+                                'UnitPriceSpecification',
+                                'Text',
+                            ],
+                        ],
+                        'membershipPointsEarned' => [
+                            'name' => 'membershipPointsEarned',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'QuantitativeValue',
+                            ],
+                        ],
+                        'url' => [
+                            'name' => 'url',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'URL',
+                            ],
+                        ],
+                    ],
+                ],
+                'url' => [
+                    'name' => 'url',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'URL',
                     ],
                 ],
             ],
         ],
         'hasShippingService' => [
             'name' => 'hasShippingService',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'documentation' => 'https://developers.google.com/search/docs/appearance/structured-data/shipping-policy',
             'supportedTypes' => [
                 'ShippingService',
@@ -233,33 +404,461 @@ final class Organization
                     'supportedTypes' => [
                         'ShippingConditions',
                     ],
+                    'properties' => [
+                        'doesNotShip' => [
+                            'name' => 'doesNotShip',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'Boolean',
+                            ],
+                        ],
+                        'numItems' => [
+                            'name' => 'numItems',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'QuantitativeValue',
+                            ],
+                            'properties' => [
+                                'maxValue' => [
+                                    'name' => 'maxValue',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Number',
+                                    ],
+                                ],
+                                'minValue' => [
+                                    'name' => 'minValue',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Number',
+                                    ],
+                                ],
+                                'unitCode' => [
+                                    'name' => 'unitCode',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'orderValue' => [
+                            'name' => 'orderValue',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'MonetaryAmount',
+                            ],
+                            'properties' => [
+                                'currency' => [
+                                    'name' => 'currency',
+                                    'severity' => 'required',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                                'atLeastOneOf' => [
+                                    'name' => 'atLeastOneOf',
+                                    'severity' => 'required',
+                                    'value' => [
+                                        'minValue' => true,
+                                        'maxValue' => true,
+                                    ],
+                                    'supportedTypes' => [
+                                    ],
+                                ],
+                                'minValue' => [
+                                    'name' => 'minValue',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Number',
+                                    ],
+                                ],
+                                'maxValue' => [
+                                    'name' => 'maxValue',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Number',
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'shippingDestination' => [
+                            'name' => 'shippingDestination',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'DefinedRegion',
+                            ],
+                            'properties' => [
+                                'addressCountry' => [
+                                    'name' => 'addressCountry',
+                                    'severity' => 'required',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                                'addressRegion' => [
+                                    'name' => 'addressRegion',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                                'postalCode' => [
+                                    'name' => 'postalCode',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'shippingOrigin' => [
+                            'name' => 'shippingOrigin',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'DefinedRegion',
+                            ],
+                            'properties' => [
+                                'addressCountry' => [
+                                    'name' => 'addressCountry',
+                                    'severity' => 'required',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                                'addressRegion' => [
+                                    'name' => 'addressRegion',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                                'postalCode' => [
+                                    'name' => 'postalCode',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'seasonalOverride' => [
+                            'name' => 'seasonalOverride',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'OpeningHoursSpecification',
+                            ],
+                            'properties' => [
+                                'validFrom' => [
+                                    'name' => 'validFrom',
+                                    'severity' => 'recommended',
+                                    'supportedTypes' => [
+                                        'Date',
+                                    ],
+                                ],
+                                'validThrough' => [
+                                    'name' => 'validThrough',
+                                    'severity' => 'recommended',
+                                    'supportedTypes' => [
+                                        'Date',
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'shippingRate' => [
+                            'name' => 'shippingRate',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'MonetaryAmount',
+                                'ShippingRateSettings',
+                            ],
+                            'properties' => [
+                                [
+                                    '@target' => 'MonetaryAmount',
+                                    'properties' => [
+                                        'currency' => [
+                                            'name' => 'currency',
+                                            'severity' => 'required',
+                                            'supportedTypes' => [
+                                                'Text',
+                                            ],
+                                        ],
+                                        'atLeastOneOf' => [
+                                            'name' => 'atLeastOneOf',
+                                            'severity' => 'required',
+                                            'value' => [
+                                                'value' => true,
+                                                'maxValue' => true,
+                                            ],
+                                            'supportedTypes' => [
+                                            ],
+                                        ],
+                                        'value' => [
+                                            'name' => 'value',
+                                            'severity' => 'optional',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                        'maxValue' => [
+                                            'name' => 'maxValue',
+                                            'severity' => 'optional',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    '@target' => 'ShippingRateSettings',
+                                    'properties' => [
+                                        'atLeastOneOf' => [
+                                            'name' => 'atLeastOneOf',
+                                            'severity' => 'recommended',
+                                            'value' => [
+                                                'orderPercentage' => true,
+                                                'weightPercentage' => true,
+                                            ],
+                                            'supportedTypes' => [
+                                            ],
+                                        ],
+                                        'orderPercentage' => [
+                                            'name' => 'orderPercentage',
+                                            'severity' => 'optional',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                        'weightPercentage' => [
+                                            'name' => 'weightPercentage',
+                                            'severity' => 'optional',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'transitTime' => [
+                            'name' => 'transitTime',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'ServicePeriod',
+                            ],
+                            'properties' => [
+                                'businessDays' => [
+                                    'name' => 'businessDays',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'DayOfWeek',
+                                    ],
+                                ],
+                                'duration' => [
+                                    'name' => 'duration',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'QuantitativeValue',
+                                    ],
+                                    'properties' => [
+                                        'atLeastOneOf' => [
+                                            'name' => 'atLeastOneOf',
+                                            'severity' => 'recommended',
+                                            'value' => [
+                                                'maxValue' => true,
+                                                'value' => true,
+                                            ],
+                                            'supportedTypes' => [
+                                            ],
+                                        ],
+                                        'maxValue' => [
+                                            'name' => 'maxValue',
+                                            'severity' => 'optional',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                        'minValue' => [
+                                            'name' => 'minValue',
+                                            'severity' => 'optional',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                        'value' => [
+                                            'name' => 'value',
+                                            'severity' => 'optional',
+                                            'supportedTypes' => [
+                                                'Number',
+                                            ],
+                                        ],
+                                        'unitCode' => [
+                                            'name' => 'unitCode',
+                                            'severity' => 'recommended',
+                                            'supportedTypes' => [
+                                                'Text',
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'weight' => [
+                            'name' => 'weight',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'QuantitativeValue',
+                            ],
+                            'properties' => [
+                                'maxValue' => [
+                                    'name' => 'maxValue',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Number',
+                                    ],
+                                ],
+                                'minValue' => [
+                                    'name' => 'minValue',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Number',
+                                    ],
+                                ],
+                                'unitCode' => [
+                                    'name' => 'unitCode',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'description' => [
+                    'name' => 'description',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'fulfillmentType' => [
+                    'name' => 'fulfillmentType',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'FulfillmentTypeEnumeration',
+                    ],
+                ],
+                'handlingTime' => [
+                    'name' => 'handlingTime',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'ServicePeriod',
+                    ],
+                    'properties' => [
+                        'businessDays' => [
+                            'name' => 'businessDays',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'DayOfWeek',
+                            ],
+                        ],
+                        'cutoffTime' => [
+                            'name' => 'cutoffTime',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'Time',
+                            ],
+                        ],
+                        'duration' => [
+                            'name' => 'duration',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'QuantitativeValue',
+                            ],
+                            'properties' => [
+                                'atLeastOneOf' => [
+                                    'name' => 'atLeastOneOf',
+                                    'severity' => 'recommended',
+                                    'value' => [
+                                        'maxValue' => true,
+                                        'value' => true,
+                                    ],
+                                    'supportedTypes' => [
+                                    ],
+                                ],
+                                'maxValue' => [
+                                    'name' => 'maxValue',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Number',
+                                    ],
+                                ],
+                                'minValue' => [
+                                    'name' => 'minValue',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Number',
+                                    ],
+                                ],
+                                'value' => [
+                                    'name' => 'value',
+                                    'severity' => 'optional',
+                                    'supportedTypes' => [
+                                        'Number',
+                                    ],
+                                ],
+                                'unitCode' => [
+                                    'name' => 'unitCode',
+                                    'severity' => 'recommended',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                'validForMemberTier' => [
+                    'name' => 'validForMemberTier',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'MemberProgramTier',
+                    ],
                 ],
             ],
         ],
         'iso6523Code' => [
             'name' => 'iso6523Code',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],
         ],
         'legalName' => [
             'name' => 'legalName',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],
         ],
         'leiCode' => [
             'name' => 'leiCode',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],
         ],
         'logo' => [
             'name' => 'logo',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'URL',
                 'ImageObject',
@@ -267,7 +866,7 @@ final class Organization
         ],
         'naics' => [
             'name' => 'naics',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],
@@ -281,7 +880,7 @@ final class Organization
         ],
         'numberOfEmployees' => [
             'name' => 'numberOfEmployees',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'QuantitativeValue',
             ],
@@ -311,35 +910,35 @@ final class Organization
         ],
         'sameAs' => [
             'name' => 'sameAs',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'URL',
             ],
         ],
         'taxID' => [
             'name' => 'taxID',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],
         ],
         'telephone' => [
             'name' => 'telephone',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],
         ],
         'url' => [
             'name' => 'url',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'URL',
             ],
         ],
         'vatID' => [
             'name' => 'vatID',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],

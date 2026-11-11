@@ -88,14 +88,14 @@ final class Question
         ],
         'commentCount' => [
             'name' => 'commentCount',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Integer',
             ],
         ],
         'dateModified' => [
             'name' => 'dateModified',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'DateTime',
             ],
@@ -109,7 +109,7 @@ final class Question
         ],
         'digitalSourceType' => [
             'name' => 'digitalSourceType',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],
@@ -120,7 +120,7 @@ final class Question
         ],
         'image' => [
             'name' => 'image',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'ImageObject',
                 'URL',
@@ -142,7 +142,7 @@ final class Question
         ],
         'video' => [
             'name' => 'video',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'VideoObject',
             ],

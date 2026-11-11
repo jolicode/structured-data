@@ -1561,24 +1561,6 @@ parameters:
 			path: src/Vocabularies/Validators/Google/SpecialRules/JobPostingRemoteJobLocationRequirementsSpecialRule.php
 
 		-
-			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Vocabularies/Validators/Google/SpecialRules/OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule.php
-
-		-
-			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule\:\:shouldIgnoreMissingRecommendedProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Vocabularies/Validators/Google/SpecialRules/OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule.php
-
-		-
-			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule\:\:shouldIgnoreMissingRequiredProperty\(\) has parameter \$missingProperty with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: src/Vocabularies/Validators/Google/SpecialRules/OrganizationReturnPolicyMerchantReturnDaysWhenFiniteSpecialRule.php
-
-		-
 			message: '#^Method JoliCode\\StructuredData\\Vocabularies\\Validators\\Google\\SpecialRules\\OrganizationTaxIdCountryConsistencySpecialRule\:\:hasType\(\) has parameter \$type with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1

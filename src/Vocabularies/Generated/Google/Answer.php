@@ -57,14 +57,14 @@ final class Answer
         ],
         'commentCount' => [
             'name' => 'commentCount',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Integer',
             ],
         ],
         'dateModified' => [
             'name' => 'dateModified',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'DateTime',
             ],
@@ -78,7 +78,7 @@ final class Answer
         ],
         'digitalSourceType' => [
             'name' => 'digitalSourceType',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],
@@ -89,7 +89,7 @@ final class Answer
         ],
         'image' => [
             'name' => 'image',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'ImageObject',
                 'URL',
@@ -97,7 +97,7 @@ final class Answer
         ],
         'upvoteCount' => [
             'name' => 'upvoteCount',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Integer',
             ],
@@ -111,7 +111,7 @@ final class Answer
         ],
         'video' => [
             'name' => 'video',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'VideoObject',
                 'URL',

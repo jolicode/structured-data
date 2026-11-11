@@ -331,7 +331,7 @@ final class BookEdition extends Book
         ],
         'author' => [
             'name' => 'author',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'documentation' => 'https://developers.google.com/search/docs/appearance/structured-data/book#person-or-organization-author',
             'supportedTypes' => [
                 'Person',
@@ -399,7 +399,7 @@ final class BookEdition extends Book
         ],
         'name' => [
             'name' => 'name',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],

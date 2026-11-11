@@ -29,7 +29,7 @@
                 },
                 "ratingValue": {
                     "name": "ratingValue",
-                    "severity": "required",
+                    "severity": "recommended",
                     "supportedTypes": [
                         "Number"
                     ]
@@ -46,6 +46,13 @@
                     "severity": "recommended",
                     "supportedTypes": [
                         "Number"
+                    ]
+                },
+                "name": {
+                    "name": "name",
+                    "severity": "recommended",
+                    "supportedTypes": [
+                        "Text"
                     ]
                 }
             }
@@ -131,7 +138,7 @@
                 },
                 "datePublished": {
                     "name": "datePublished",
-                    "severity": "optional",
+                    "severity": "recommended",
                     "supportedTypes": [
                         "Date",
                         "DateTime"

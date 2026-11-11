@@ -26,14 +26,14 @@ final class Course
         ],
         'description' => [
             'name' => 'description',
-            'severity' => 'recommended',
+            'severity' => 'required',
             'supportedTypes' => [
                 'Text',
             ],
         ],
         'provider' => [
             'name' => 'provider',
-            'severity' => 'required',
+            'severity' => 'recommended',
             'supportedTypes' => [
                 'Organization',
             ],

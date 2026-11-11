@@ -46,14 +46,14 @@
         },
         "commentCount": {
             "name": "commentCount",
-            "severity": "recommended",
+            "severity": "optional",
             "supportedTypes": [
                 "Integer"
             ]
         },
         "dateModified": {
             "name": "dateModified",
-            "severity": "recommended",
+            "severity": "optional",
             "supportedTypes": [
                 "DateTime"
             ]
@@ -67,7 +67,7 @@
         },
         "digitalSourceType": {
             "name": "digitalSourceType",
-            "severity": "recommended",
+            "severity": "optional",
             "supportedTypes": [
                 "Text"
             ],
@@ -78,7 +78,7 @@
         },
         "image": {
             "name": "image",
-            "severity": "recommended",
+            "severity": "optional",
             "supportedTypes": [
                 "ImageObject",
                 "URL"
@@ -86,7 +86,7 @@
         },
         "upvoteCount": {
             "name": "upvoteCount",
-            "severity": "recommended",
+            "severity": "optional",
             "supportedTypes": [
                 "Integer"
             ]
@@ -100,7 +100,7 @@
         },
         "video": {
             "name": "video",
-            "severity": "recommended",
+            "severity": "optional",
             "supportedTypes": [
                 "VideoObject",
                 "URL"

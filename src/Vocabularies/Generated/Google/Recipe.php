@@ -34,31 +34,80 @@ final class Recipe
         ],
         'recipeIngredient' => [
             'name' => 'recipeIngredient',
-            'severity' => 'required',
+            'severity' => 'recommended',
             'supportedTypes' => [
                 'Text',
             ],
         ],
         'recipeInstructions' => [
             'name' => 'recipeInstructions',
-            'severity' => 'required',
+            'severity' => 'recommended',
             'supportedTypes' => [
                 'HowToStep',
+                'HowToSection',
                 'Text',
             ],
             'properties' => [
-                'name' => [
-                    'name' => 'name',
-                    'severity' => 'recommended',
-                    'supportedTypes' => [
-                        'Text',
+                [
+                    '@target' => 'HowToStep',
+                    'properties' => [
+                        'text' => [
+                            'name' => 'text',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'Text',
+                            ],
+                        ],
+                        'name' => [
+                            'name' => 'name',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'Text',
+                            ],
+                        ],
+                        'image' => [
+                            'name' => 'image',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'URL',
+                                'ImageObject',
+                            ],
+                        ],
+                        'url' => [
+                            'name' => 'url',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'URL',
+                            ],
+                        ],
+                        'video' => [
+                            'name' => 'video',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'VideoObject',
+                            ],
+                        ],
                     ],
                 ],
-                'text' => [
-                    'name' => 'text',
-                    'severity' => 'required',
-                    'supportedTypes' => [
-                        'Text',
+                [
+                    '@target' => 'HowToSection',
+                    'properties' => [
+                        'name' => [
+                            'name' => 'name',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'Text',
+                            ],
+                        ],
+                        'itemListElement' => [
+                            'name' => 'itemListElement',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'HowToStep',
+                                'HowToDirection',
+                                'HowToTip',
+                            ],
+                        ],
                     ],
                 ],
             ],
@@ -82,21 +131,21 @@ final class Recipe
         ],
         'prepTime' => [
             'name' => 'prepTime',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Duration',
             ],
         ],
         'cookTime' => [
             'name' => 'cookTime',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Duration',
             ],
         ],
         'totalTime' => [
             'name' => 'totalTime',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Duration',
             ],
@@ -110,7 +159,7 @@ final class Recipe
         ],
         'datePublished' => [
             'name' => 'datePublished',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Date',
             ],
@@ -138,7 +187,7 @@ final class Recipe
         ],
         'recipeYield' => [
             'name' => 'recipeYield',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
                 'Number',
@@ -183,6 +232,13 @@ final class Recipe
                         'Integer',
                     ],
                 ],
+            ],
+        ],
+        'video' => [
+            'name' => 'video',
+            'severity' => 'recommended',
+            'supportedTypes' => [
+                'VideoObject',
             ],
         ],
     ];

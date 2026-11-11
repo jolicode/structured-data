@@ -45,6 +45,13 @@ previous commands.
 Most changes are visible in the HTML diff and are straightforward to apply: they are usually
 new or updated required and recommended properties.
 
+Read the description of every recommended property, not only the table it sits in. When
+Google makes it conditional ("if applicable", "only recommended for...", "only use this
+when..."), the validator cannot know whether it applies: declare it with the `optional`
+severity, so that its value is still checked when present but its absence is not reported.
+When the condition can be read from the document itself (for example `merchantReturnDays`
+for a finite return window), enforce it with a special rule instead.
+
 Google occasionally introduces very specific rules that cannot be expressed declaratively.
 These live under the `specialRules` key: register the rule here, and implement it in step 5.
 

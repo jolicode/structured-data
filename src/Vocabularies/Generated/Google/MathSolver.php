@@ -70,7 +70,7 @@ final class MathSolver
         ],
         'usageInfo' => [
             'name' => 'usageInfo',
-            'severity' => 'recommended',
+            'severity' => 'required',
             'supportedTypes' => [
                 'URL',
             ],
@@ -78,6 +78,13 @@ final class MathSolver
         'inLanguage' => [
             'name' => 'inLanguage',
             'severity' => 'recommended',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'assesses' => [
+            'name' => 'assesses',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],

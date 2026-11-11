@@ -64,7 +64,7 @@ final class Dataset
         ],
         'hasPart' => [
             'name' => 'hasPart',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'URL',
                 'Dataset',
@@ -72,7 +72,7 @@ final class Dataset
         ],
         'isPartOf' => [
             'name' => 'isPartOf',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'URL',
                 'Dataset',
@@ -125,7 +125,7 @@ final class Dataset
         ],
         'spatialCoverage' => [
             'name' => 'spatialCoverage',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
                 'Place',
@@ -133,7 +133,7 @@ final class Dataset
         ],
         'temporalCoverage' => [
             'name' => 'temporalCoverage',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],

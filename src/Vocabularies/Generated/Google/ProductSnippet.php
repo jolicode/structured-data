@@ -35,52 +35,199 @@ final class ProductSnippet extends Product
         ],
         'review' => [
             'name' => 'review',
-            'severity' => 'optional',
+            'severity' => 'recommended',
             'supportedTypes' => [
                 'Review',
+            ],
+            'properties' => [
+                'positiveNotes' => [
+                    'name' => 'positiveNotes',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'ItemList',
+                    ],
+                    'properties' => [
+                        'itemListElement' => [
+                            'name' => 'itemListElement',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'ListItem',
+                            ],
+                            'properties' => [
+                                'name' => [
+                                    'name' => 'name',
+                                    'severity' => 'required',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                                'position' => [
+                                    'name' => 'position',
+                                    'severity' => 'recommended',
+                                    'supportedTypes' => [
+                                        'Integer',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                'negativeNotes' => [
+                    'name' => 'negativeNotes',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'ItemList',
+                    ],
+                    'properties' => [
+                        'itemListElement' => [
+                            'name' => 'itemListElement',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'ListItem',
+                            ],
+                            'properties' => [
+                                'name' => [
+                                    'name' => 'name',
+                                    'severity' => 'required',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                                'position' => [
+                                    'name' => 'position',
+                                    'severity' => 'recommended',
+                                    'supportedTypes' => [
+                                        'Integer',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
             ],
         ],
         'aggregateRating' => [
             'name' => 'aggregateRating',
-            'severity' => 'optional',
+            'severity' => 'recommended',
             'supportedTypes' => [
                 'AggregateRating',
             ],
         ],
         'offers' => [
             'name' => 'offers',
-            'severity' => 'optional',
+            'severity' => 'recommended',
             'supportedTypes' => [
                 'Offer',
                 'AggregateOffer',
             ],
             'properties' => [
-                'price' => [
-                    'name' => 'price',
-                    'severity' => 'required',
-                    'supportedTypes' => [
-                        'Number',
+                [
+                    '@target' => 'Offer',
+                    'properties' => [
+                        'atLeastOneOf' => [
+                            'name' => 'atLeastOneOf',
+                            'severity' => 'required',
+                            'value' => [
+                                'price' => true,
+                                'priceSpecification' => true,
+                            ],
+                            'supportedTypes' => [
+                            ],
+                        ],
+                        'price' => [
+                            'name' => 'price',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'Number',
+                            ],
+                        ],
+                        'priceSpecification' => [
+                            'name' => 'priceSpecification',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'UnitPriceSpecification',
+                            ],
+                            'properties' => [
+                                'price' => [
+                                    'name' => 'price',
+                                    'severity' => 'required',
+                                    'supportedTypes' => [
+                                        'Number',
+                                    ],
+                                ],
+                                'priceCurrency' => [
+                                    'name' => 'priceCurrency',
+                                    'severity' => 'recommended',
+                                    'supportedTypes' => [
+                                        'Text',
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'atLeastOneOfPriceCurrency' => [
+                            'name' => 'atLeastOneOf',
+                            'severity' => 'recommended',
+                            'value' => [
+                                'priceCurrency' => true,
+                                'priceSpecification' => true,
+                            ],
+                            'supportedTypes' => [
+                            ],
+                        ],
+                        'priceCurrency' => [
+                            'name' => 'priceCurrency',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'Text',
+                            ],
+                        ],
+                        'availability' => [
+                            'name' => 'availability',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'ItemAvailability',
+                            ],
+                        ],
+                        'priceValidUntil' => [
+                            'name' => 'priceValidUntil',
+                            'severity' => 'optional',
+                            'supportedTypes' => [
+                                'Date',
+                            ],
+                        ],
                     ],
                 ],
-                'priceCurrency' => [
-                    'name' => 'priceCurrency',
-                    'severity' => 'recommended',
-                    'supportedTypes' => [
-                        'Text',
-                    ],
-                ],
-                'availability' => [
-                    'name' => 'availability',
-                    'severity' => 'recommended',
-                    'supportedTypes' => [
-                        'ItemAvailability',
-                    ],
-                ],
-                'priceValidUntil' => [
-                    'name' => 'priceValidUntil',
-                    'severity' => 'recommended',
-                    'supportedTypes' => [
-                        'Date',
+                [
+                    '@target' => 'AggregateOffer',
+                    'properties' => [
+                        'lowPrice' => [
+                            'name' => 'lowPrice',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'Number',
+                            ],
+                        ],
+                        'priceCurrency' => [
+                            'name' => 'priceCurrency',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'Text',
+                            ],
+                        ],
+                        'highPrice' => [
+                            'name' => 'highPrice',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'Number',
+                            ],
+                        ],
+                        'offerCount' => [
+                            'name' => 'offerCount',
+                            'severity' => 'recommended',
+                            'supportedTypes' => [
+                                'Number',
+                            ],
+                        ],
                     ],
                 ],
             ],

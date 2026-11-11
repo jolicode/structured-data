@@ -162,7 +162,7 @@ final class ProductMerchantListing extends Product
                 ],
                 'hasMerchantReturnPolicy' => [
                     'name' => 'hasMerchantReturnPolicy',
-                    'severity' => 'recommended',
+                    'severity' => 'optional',
                     'supportedTypes' => [
                         'MerchantReturnPolicy',
                     ],
@@ -197,7 +197,7 @@ final class ProductMerchantListing extends Product
                         ],
                         'returnMethod' => [
                             'name' => 'returnMethod',
-                            'severity' => 'recommended',
+                            'severity' => 'optional',
                             'supportedTypes' => [
                                 'ReturnMethodEnumeration',
                             ],
@@ -417,7 +417,7 @@ final class ProductMerchantListing extends Product
         ],
         'audience' => [
             'name' => 'audience',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'PeopleAudience',
             ],
@@ -481,7 +481,7 @@ final class ProductMerchantListing extends Product
         ],
         'brand' => [
             'name' => 'brand',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Brand',
                 'Organization',
@@ -593,7 +593,7 @@ final class ProductMerchantListing extends Product
         ],
         'hasAdultConsideration' => [
             'name' => 'hasAdultConsideration',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'AdultOrientedEnumeration',
             ],
@@ -646,14 +646,14 @@ final class ProductMerchantListing extends Product
         ],
         'inProductGroupWithID' => [
             'name' => 'inProductGroupWithID',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],
         ],
         'isVariantOf' => [
             'name' => 'isVariantOf',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'ProductGroup',
             ],
@@ -703,7 +703,7 @@ final class ProductMerchantListing extends Product
                 ],
                 'sizeGroup' => [
                     'name' => 'sizeGroup',
-                    'severity' => 'recommended',
+                    'severity' => 'optional',
                     'supportedTypes' => [
                         'WearableSizeGroupEnumeration',
                         'Text',
@@ -711,7 +711,7 @@ final class ProductMerchantListing extends Product
                 ],
                 'sizeSystem' => [
                     'name' => 'sizeSystem',
-                    'severity' => 'recommended',
+                    'severity' => 'optional',
                     'supportedTypes' => [
                         'WearableSizeSystemEnumeration',
                         'Text',
@@ -728,7 +728,7 @@ final class ProductMerchantListing extends Product
         ],
         'subjectOf' => [
             'name' => 'subjectOf',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 '3DModel',
             ],

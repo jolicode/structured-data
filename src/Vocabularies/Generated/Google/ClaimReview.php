@@ -40,7 +40,7 @@ final class ClaimReview
                 ],
                 'ratingValue' => [
                     'name' => 'ratingValue',
-                    'severity' => 'required',
+                    'severity' => 'recommended',
                     'supportedTypes' => [
                         'Number',
                     ],
@@ -57,6 +57,13 @@ final class ClaimReview
                     'severity' => 'recommended',
                     'supportedTypes' => [
                         'Number',
+                    ],
+                ],
+                'name' => [
+                    'name' => 'name',
+                    'severity' => 'recommended',
+                    'supportedTypes' => [
+                        'Text',
                     ],
                 ],
             ],
@@ -143,7 +150,7 @@ final class ClaimReview
                 ],
                 'datePublished' => [
                     'name' => 'datePublished',
-                    'severity' => 'optional',
+                    'severity' => 'recommended',
                     'supportedTypes' => [
                         'Date',
                         'DateTime',

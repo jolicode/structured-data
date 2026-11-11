@@ -15,10 +15,11 @@ use JoliCode\StructuredData\Mapper\MappedError;
 use JoliCode\StructuredData\Mapper\MappedType;
 
 /**
- * Two properties of a merchant listing return policy depend on another one:
- * "merchantReturnDays" is required for a finite return window, and
+ * Some properties of a merchant listing return policy depend on another one:
+ * "merchantReturnDays" is required for a finite return window,
  * "returnShippingFeesAmount" is required when the merchant charges the return
- * shipping (and must be left out otherwise).
+ * shipping (and must be left out otherwise), and "returnMethod" is recommended
+ * only when returns are accepted.
  *
  * @see https://developers.google.com/search/docs/appearance/structured-data/merchant-listing#returns
  */
@@ -27,6 +28,13 @@ final class ProductMerchantListingReturnPolicySpecialRule implements SpecialRule
     private const FINITE_RETURN_ENUM_VALUES = [
         'MerchantReturnFiniteReturnWindow',
         'https://schema.org/MerchantReturnFiniteReturnWindow',
+    ];
+
+    private const RETURNS_ACCEPTED_ENUM_VALUES = [
+        'MerchantReturnFiniteReturnWindow',
+        'https://schema.org/MerchantReturnFiniteReturnWindow',
+        'MerchantReturnUnlimitedWindow',
+        'https://schema.org/MerchantReturnUnlimitedWindow',
     ];
 
     private const RETURN_SHIPPING_FEES_ENUM_VALUES = [
@@ -87,6 +95,17 @@ final class ProductMerchantListingReturnPolicySpecialRule implements SpecialRule
                 'target' => $type,
                 'message' => 'Missing required property: "returnShippingFeesAmount" for the type "MerchantReturnPolicy" when "returnFees" is "ReturnShippingFees".',
                 'severity' => MappedError::SEVERITY_ERROR,
+            ];
+        }
+
+        if (
+            \in_array($type->getProperty('returnPolicyCategory')?->getValue(), self::RETURNS_ACCEPTED_ENUM_VALUES, true)
+            && !\array_key_exists('returnMethod', $properties)
+        ) {
+            $violations[] = [
+                'target' => $type,
+                'message' => 'Missing recommended property: "returnMethod" for the type "MerchantReturnPolicy" when returns are accepted.',
+                'severity' => MappedError::SEVERITY_WARNING,
             ];
         }
 

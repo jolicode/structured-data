@@ -13,12 +13,23 @@
 - The FAQ rich result is marked as retired by Google. `FAQPage` is still validated, for
   backward compatibility.
 - Google validator: merchant listings now cover every property the Google documentation
-  lists. The product-level recommendations (`brand`, `category`, `gtin`, `sku`, `size`,
-  `audience`, `hasCertification`...), the offer-level ones (`itemCondition`, `priceValidUntil`,
-  `url`, `validFrom`, `validThrough`) and the nested shipping, return, unit pricing, size,
-  audience, certification and 3D model structures are checked. An offer `price` requires a
+  lists. The product-level recommendations (`category`, `gtin`, `sku`, `size`, `color`,
+  `hasCertification`...), the offer-level ones (`itemCondition`, `priceValidUntil`, `url`,
+  `validFrom`, `validThrough`) and the nested shipping, return, unit pricing, size, audience,
+  certification and 3D model structures are checked. An offer `price` requires a
   `priceCurrency`, a finite return window requires `merchantReturnDays`, and return shipping
   fees require `returnShippingFeesAmount`.
+- Google validator: every structured data type is aligned with the current Google
+  documentation. A recommended property is reported when missing, unless Google makes it
+  conditional ("if applicable", "only recommended for..."): such a property is still checked
+  when present, and enforced by a special rule when the document tells whether it applies.
+  Notable changes: new recommendations (job posting experience, local business department,
+  member program and tier URLs, product snippet notes and aggregate offers, recipe and step
+  videos, vacation rental details), new nested structures (organization return and shipping
+  policies, video key moments and live badge, beta carousel items, recipe sections), and
+  requirements relaxed where Google relaxed them (course `provider`, event `description` and
+  `image`, recipe ingredients and instructions). Most organization, profile page, discussion
+  forum and Q&A recommendations are conditional and no longer reported when missing.
 
 ### Fixed
 

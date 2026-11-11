@@ -61,7 +61,7 @@ final class SocialMediaPosting
         ],
         'headline' => [
             'name' => 'headline',
-            'severity' => 'recommended',
+            'severity' => 'optional',
             'supportedTypes' => [
                 'Text',
             ],
@@ -168,6 +168,145 @@ final class SocialMediaPosting
                         'URL',
                     ],
                 ],
+                'commentCount' => [
+                    'name' => 'commentCount',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'Integer',
+                    ],
+                ],
+                'creativeWorkStatus' => [
+                    'name' => 'creativeWorkStatus',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                ],
+                'dateModified' => [
+                    'name' => 'dateModified',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'DateTime',
+                    ],
+                ],
+                'digitalSourceType' => [
+                    'name' => 'digitalSourceType',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'Text',
+                    ],
+                    'value' => [
+                        'TrainedAlgorithmicMediaDigitalSource',
+                        'AlgorithmicMediaDigitalSource',
+                    ],
+                ],
+                'interactionStatistic' => [
+                    'name' => 'interactionStatistic',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'InteractionCounter',
+                    ],
+                    'properties' => [
+                        'interactionType' => [
+                            'name' => 'interactionType',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'URL',
+                            ],
+                        ],
+                        'userInteractionCount' => [
+                            'name' => 'userInteractionCount',
+                            'severity' => 'required',
+                            'supportedTypes' => [
+                                'Integer',
+                            ],
+                        ],
+                    ],
+                ],
+                'sharedContent' => [
+                    'name' => 'sharedContent',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'CreativeWork',
+                    ],
+                ],
+                'url' => [
+                    'name' => 'url',
+                    'severity' => 'optional',
+                    'supportedTypes' => [
+                        'URL',
+                    ],
+                ],
+            ],
+        ],
+        'commentCount' => [
+            'name' => 'commentCount',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Integer',
+            ],
+        ],
+        'creativeWorkStatus' => [
+            'name' => 'creativeWorkStatus',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Text',
+            ],
+        ],
+        'dateModified' => [
+            'name' => 'dateModified',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'DateTime',
+            ],
+        ],
+        'digitalSourceType' => [
+            'name' => 'digitalSourceType',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'Text',
+            ],
+            'value' => [
+                'TrainedAlgorithmicMediaDigitalSource',
+                'AlgorithmicMediaDigitalSource',
+            ],
+        ],
+        'interactionStatistic' => [
+            'name' => 'interactionStatistic',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'InteractionCounter',
+            ],
+            'properties' => [
+                'interactionType' => [
+                    'name' => 'interactionType',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'URL',
+                    ],
+                ],
+                'userInteractionCount' => [
+                    'name' => 'userInteractionCount',
+                    'severity' => 'required',
+                    'supportedTypes' => [
+                        'Integer',
+                    ],
+                ],
+            ],
+        ],
+        'sharedContent' => [
+            'name' => 'sharedContent',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'CreativeWork',
+            ],
+        ],
+        'isPartOf' => [
+            'name' => 'isPartOf',
+            'severity' => 'optional',
+            'supportedTypes' => [
+                'CreativeWork',
+                'URL',
             ],
         ],
     ];
