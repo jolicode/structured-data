@@ -442,12 +442,18 @@ function updateExamplesBaselines(): void
 {
     io()->title('Updating examples baselines');
 
-    io()->confirm(
+    $confirmed = io()->confirm(
         "This command will take the results of the tests and write them in their respective baseline files.\n
         This will change the expected outputs of the tests.\n
         Are you 100% sure the current results of the tests are correct and the baseline is wrong?",
         false,
     );
+
+    if (!$confirmed) {
+        io()->note('Nothing was written.');
+
+        return;
+    }
 
     updateBaseline(
         'schema-org',
