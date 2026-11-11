@@ -171,6 +171,9 @@ class MicrodataExtractor extends AbstractHtmlExtractor
         return $itemType;
     }
 
+    /**
+     * @return string|array<string>
+     */
     private function normalizeItemTypes(string $itemTypeAttribute): string|array
     {
         if (\array_key_exists($itemTypeAttribute, $this->normalizedItemTypesCache)) {

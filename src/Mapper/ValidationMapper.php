@@ -70,6 +70,8 @@ class ValidationMapper
     }
 
     /**
+     * @param array<mixed> $expandedJsonLd the expanded JSON-LD nodes to map
+     *
      * @return array<MappedType>
      */
     public function map(array $expandedJsonLd, ObjectStructure $parsedJsonLd, string $sourceFormat): array
@@ -78,6 +80,10 @@ class ValidationMapper
         $this->sourceFormat = $sourceFormat;
 
         foreach ($expandedJsonLd as $expandedType) {
+            if (!$expandedType instanceof \stdClass) {
+                throw new \InvalidArgumentException('The expanded JSON-LD nodes must be maps.');
+            }
+
             $mappedType = $this->mapType($expandedType);
 
             if (
@@ -142,7 +148,7 @@ class ValidationMapper
                 if ('@' === ($label[0] ?? '')) {
                     $propertyKey = $label;
                 } else {
-                    $propertyKey = $this->nameNormalizer->normalizePropertyKeyCase($this->nameNormalizer->removeSchemaOrgDomain($label));
+                    $propertyKey = $this->nameNormalizer->normalizePropertyKeyCase($this->nameNormalizer->stripSchemaOrgDomain($label));
                 }
 
                 $type->setProperty($propertyKey, $this->mapProperty($value, $propertyKey, $type));
@@ -163,7 +169,7 @@ class ValidationMapper
             return $property;
         }
 
-        foreach ($value as $valueKey => $valueEntry) {
+        foreach ((array) $value as $valueKey => $valueEntry) {
             if (\is_array($valueEntry)) {
                 $valueEntry = (object) $valueEntry;
             }
@@ -191,7 +197,7 @@ class ValidationMapper
             }
 
             if ($isTypeKeywordProperty && \is_string($valueEntry)) {
-                $valueEntry = $this->nameNormalizer->removeSchemaOrgDomain($valueEntry);
+                $valueEntry = $this->nameNormalizer->stripSchemaOrgDomain($valueEntry);
             }
 
             if (\is_string($valueKey)) {
@@ -201,8 +207,7 @@ class ValidationMapper
                     continue;
                 }
 
-                $valueKey = $this->nameNormalizer->removeSchemaOrgDomain($valueKey);
-                $valueKey = $this->nameNormalizer->normalizePropertyKeyCase($valueKey);
+                $valueKey = $this->nameNormalizer->normalizePropertyKeyCase($this->nameNormalizer->stripSchemaOrgDomain($valueKey));
                 $property->appendValue($valueEntry, $valueKey);
             } else {
                 $property->appendValue($valueEntry);
@@ -214,7 +219,7 @@ class ValidationMapper
         if (\is_array($propertyValue) && 1 === \count($propertyValue)) {
             $propertyValue = $propertyValue[0];
 
-            if (ExpandedValueShape::isValueOrId($propertyValue)) {
+            if ($propertyValue instanceof \stdClass && ExpandedValueShape::isValueOrId($propertyValue)) {
                 $property->setValue(ExpandedValueShape::retrieveValueOrId($propertyValue));
             } else {
                 $property->setValue($propertyValue);
@@ -247,12 +252,27 @@ class ValidationMapper
                 }
             }
 
-            if ($this->rootParsedJsonLd instanceof ObjectStructure && ExpandedValueShape::isParsedFlattenedTypeReference($parsedJsonLd)) {
-                $identifier = $parsedJsonLd->getProperty(Keyword::ID->value)->value->content;
-                $parsedJsonLd = $this->rootParsedJsonLd->getGraphValue($identifier)->content;
+            if (!$parsedJsonLd instanceof ObjectStructure) {
+                throw new \RuntimeException('The parsed JSON-LD node of a type must be an object.');
             }
 
-            $type->addValueRange($parsedJsonLd->range);
+            if ($this->rootParsedJsonLd instanceof ObjectStructure && ExpandedValueShape::isParsedFlattenedTypeReference($parsedJsonLd)) {
+                $identifier = $parsedJsonLd->getProperty(Keyword::ID->value)->value?->content;
+
+                if (!\is_string($identifier)) {
+                    throw new \RuntimeException('The "@id" of a flattened type reference must be a string.');
+                }
+
+                $parsedJsonLd = $this->rootParsedJsonLd->getGraphValue($identifier)->content;
+
+                if (!$parsedJsonLd instanceof ObjectStructure) {
+                    throw new \RuntimeException('The parsed JSON-LD node of a type reference must be an object.');
+                }
+            }
+
+            if (null !== $parsedJsonLd->range) {
+                $type->addValueRange($parsedJsonLd->range);
+            }
             $this->setOriginalTypeFromParsedJsonLd($type, $parsedJsonLd);
             $type->setDuplicateKeys($parsedJsonLd->getDuplicateKeys());
         }
@@ -445,7 +465,13 @@ class ValidationMapper
                         break;
                     }
 
-                    $actualTypes[] = $this->getFlattenedTypeReference($propertyTypeEntry->{Keyword::ID->value});
+                    $identifier = $propertyTypeEntry instanceof \stdClass ? $propertyTypeEntry->{Keyword::ID->value} : null;
+
+                    if (!\is_string($identifier)) {
+                        throw new \RuntimeException('A property value referencing a flattened type must carry its "@id".');
+                    }
+
+                    $actualTypes[] = $this->getFlattenedTypeReference($identifier);
                 }
 
                 $property->setValue($actualTypes);

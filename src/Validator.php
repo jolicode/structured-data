@@ -50,6 +50,7 @@ class Validator
      */
     private array $extractedElementsCache = [];
 
+    /** @var array<Vocabularies\Validators\ValidatorInterface> */
     private array $currentValidators = [];
 
     private readonly Expander $expander;
@@ -243,6 +244,8 @@ class Validator
     }
 
     /**
+     * @param array<mixed> $expandedJsonLd
+     *
      * @return array<MappedType>
      */
     private function validateJsonLdElement(array $expandedJsonLd, ObjectStructure $parsedJsonLd, ExtractorFormat $sourceFormat): array
@@ -257,6 +260,8 @@ class Validator
     }
 
     /**
+     * @param array<mixed> $expandedJsonLd
+     *
      * @return array<MappedType>
      */
     private function mapJsonLdElement(array $expandedJsonLd, ObjectStructure $parsedJsonLd, ExtractorFormat $sourceFormat): array

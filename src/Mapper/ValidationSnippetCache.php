@@ -30,7 +30,7 @@ use JoliCode\StructuredData\Vocabularies\Validators\ValidatorInterface;
 class ValidationSnippetCache
 {
     /**
-     * @var array<string, array{expandedJsonLd: array, validatedTypesByElement: array<int, array<int, array<string, mixed>>>}>
+     * @var array<string, array{expandedJsonLd: array<mixed>, validatedTypesByElement: array<int, list<ValidatedTypeTemplate>>}>
      */
     private array $entries = [];
 
@@ -64,7 +64,7 @@ class ValidationSnippetCache
     }
 
     /**
-     * @return array{expandedJsonLd: array, validatedTypesByElement: array<int, array<int, array<string, mixed>>>}|null
+     * @return array{expandedJsonLd: array<mixed>, validatedTypesByElement: array<int, list<ValidatedTypeTemplate>>}|null
      */
     public function get(string $key): ?array
     {
@@ -81,7 +81,8 @@ class ValidationSnippetCache
     }
 
     /**
-     * @param array<int, array<int, array<string, mixed>>> $validatedTypesByElement
+     * @param array<mixed>                            $expandedJsonLd
+     * @param array<int, list<ValidatedTypeTemplate>> $validatedTypesByElement
      */
     public function store(string $key, array $expandedJsonLd, array $validatedTypesByElement): void
     {

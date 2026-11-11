@@ -249,7 +249,7 @@ class GoogleValidator extends AbstractValidator
         }
 
         if (!isset($typeLabels[1])) {
-            return array_values($typeLabels);
+            return $typeLabels;
         }
 
         return array_values(array_unique($typeLabels));

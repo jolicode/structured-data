@@ -80,7 +80,7 @@ class ObjectStructure extends AbstractStructure
         return $this->properties[Keyword::GRAPH->value]->value->content;
     }
 
-    public function getGraphType(int $graphKey): mixed
+    public function getGraphType(int $graphKey): AbstractStructure|string|bool|null
     {
         if (!\array_key_exists(Keyword::GRAPH->value, $this->properties)) {
             throw new \InvalidArgumentException('This type does not have a graph.');
@@ -91,9 +91,13 @@ class ObjectStructure extends AbstractStructure
 
     public function getGraphProperty(string $name, int $graphKey): Property
     {
-        return $this
-            ->getGraphType($graphKey)
-            ->getProperty($name);
+        $graphType = $this->getGraphType($graphKey);
+
+        if (!$graphType instanceof self) {
+            throw new \InvalidArgumentException('This graph entry is not an object.');
+        }
+
+        return $graphType->getProperty($name);
     }
 
     // Graphs are ArrayStructures, so they don't have a property key, they only have numeric keys.

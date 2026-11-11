@@ -18,10 +18,7 @@ parameters:
     inferPrivatePropertyTypeFromConstructor: true
     ignoreErrors:
         - '#Argument of an invalid type stdClass supplied for foreach, only iterables are supported.#'
-        # ValidationMapper type flexibility for handling both string and array keys
-        -
-            message: '#Parameter \#1 \$propertyKey of method JoliCode\\StructuredData\\Mapper\\SchemaOrgNameNormalizer::normalizePropertyKeyCase\(\) expects string, array\|string given\.#'
-            path: src/Mapper/ValidationMapper.php
+
 
         # Test infrastructure uses reflection for validator introspection
         -

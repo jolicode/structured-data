@@ -78,6 +78,16 @@ class PointerListener extends IdleListener implements PositionAwareInterface
 
     public function value($value): void
     {
+        // The streaming parser only emits scalars. Numbers are kept as strings, like
+        // the JSON source they come from, so that their position can be computed.
+        if (\is_int($value) || \is_float($value)) {
+            $value = (string) $value;
+        }
+
+        if (null !== $value && !\is_string($value) && !\is_bool($value)) {
+            return;
+        }
+
         $valueLength = \strlen((string) $value);
 
         if (\is_string($value)) {
