@@ -47,7 +47,7 @@ class HtmlValidationPipelineBench
     /** @var array<string, list<JsonLdElement>> */
     private array $elementsByScenario = [];
 
-    /** @var array<string, list<array{expanded: array, parsed: ObjectStructure, sourceFormat: string}>> */
+    /** @var array<string, list<array{expanded: array<mixed>, parsed: ObjectStructure, sourceFormat: string}>> */
     private array $validationJobsByScenario = [];
 
     /** @var list<MappedType> */
@@ -523,7 +523,7 @@ class HtmlValidationPipelineBench
     /**
      * @param list<JsonLdElement> $elements
      *
-     * @return list<array{expanded: array, parsed: ObjectStructure, sourceFormat: string}>
+     * @return list<array{expanded: array<mixed>, parsed: ObjectStructure, sourceFormat: string}>
      */
     private function buildValidationJobs(array $elements): array
     {
@@ -572,7 +572,9 @@ class HtmlValidationPipelineBench
     }
 
     /**
-     * @param list<array{expanded: array, parsed: ObjectStructure, sourceFormat: string}> $jobs
+     * @param list<array{expanded: array<mixed>, parsed: ObjectStructure, sourceFormat: string}> $jobs
+     *
+     * @return list<MappedType>
      */
     private function runMappingJobs(array $jobs): array
     {
@@ -591,7 +593,7 @@ class HtmlValidationPipelineBench
 
     private function prepareMappedTypesForValidation(string $scenario): void
     {
-        $this->mappedTypesForValidation = array_values($this->runMappingJobs($this->validationJobsByScenario[$scenario]));
+        $this->mappedTypesForValidation = $this->runMappingJobs($this->validationJobsByScenario[$scenario]);
     }
 
     /**

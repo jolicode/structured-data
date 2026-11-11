@@ -17,6 +17,9 @@ use JoliCode\StructuredData\Validator;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 
+/**
+ * @phpstan-import-type BaselineEntry from FixtureBaseline
+ */
 abstract class AbstractValidatorTestCase extends TestCase
 {
     protected Validator $validator;
@@ -48,6 +51,11 @@ abstract class AbstractValidatorTestCase extends TestCase
         return $content;
     }
 
+    /**
+     * @param list<string> $expectedErrors
+     * @param list<string> $expectedWarnings
+     * @param list<string> $expectedDocumentIssues
+     */
     protected function assertValidationResultMatchesExpectations(
         string $document,
         bool $isValid,
@@ -104,17 +112,14 @@ abstract class AbstractValidatorTestCase extends TestCase
         $this->assertSame([], $errorMessages);
     }
 
+    /**
+     * @return \Generator<string, array{string, bool, list<string>, list<string>, list<string>}>
+     */
     protected static function provideData(string $path, string $baselinePath): \Generator
     {
         $finder = new Finder();
         $finder->files()->in($path);
-        $baseline = file_get_contents($baselinePath);
-
-        if (false === $baseline) {
-            $baseline = '{}';
-        }
-
-        $baseline = json_decode($baseline, true);
+        $baseline = FixtureBaseline::load($baselinePath);
 
         foreach ($finder as $file) {
             self::assertArrayHasKey(
@@ -123,18 +128,10 @@ abstract class AbstractValidatorTestCase extends TestCase
                 \sprintf('Missing baseline entry for "%s" in "%s".', $file->getFilename(), $baselinePath),
             );
 
-            $baselineEntry = $baseline[$file->getFilename()] ?? [];
-            $expectedErrors = [];
-            $expectedWarnings = [];
-            $expectedDocumentIssues = [];
-
-            if (array_is_list($baselineEntry)) {
-                $expectedErrors = $baselineEntry;
-            } else {
-                $expectedErrors = $baselineEntry['errors'] ?? [];
-                $expectedWarnings = $baselineEntry['warnings'] ?? [];
-                $expectedDocumentIssues = $baselineEntry['documentIssues'] ?? [];
-            }
+            $baselineEntry = $baseline[$file->getFilename()] ?? ['errors' => [], 'warnings' => [], 'documentIssues' => []];
+            $expectedErrors = $baselineEntry['errors'];
+            $expectedWarnings = $baselineEntry['warnings'];
+            $expectedDocumentIssues = $baselineEntry['documentIssues'];
 
             sort($expectedErrors);
             sort($expectedWarnings);

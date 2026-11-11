@@ -25,6 +25,11 @@ use PHPUnit\Framework\Attributes\Group;
 #[Group('schema-org')]
 class SchemaOrgValidatorTest extends AbstractValidatorTestCase
 {
+    /**
+     * @param list<string> $expectedErrors
+     * @param list<string> $expectedWarnings
+     * @param list<string> $expectedDocumentIssues
+     */
     #[DataProvider('provideSchemaOrgFiles')]
     public function testSchemaOrgValidator(
         string $document,
@@ -174,6 +179,11 @@ class SchemaOrgValidatorTest extends AbstractValidatorTestCase
         $this->assertContains('[SchemaOrg error] name: Incorrect property casing: "Name" given, expected "name".', $errors);
     }
 
+    /**
+     * @param list<string> $expectedErrors
+     * @param list<string> $expectedWarnings
+     * @param list<string> $expectedDocumentIssues
+     */
     #[DataProvider('provideSchemaOrgExamples')]
     public function testSchemaOrgExamples(
         string $document,

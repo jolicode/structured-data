@@ -23,6 +23,9 @@ abstract class AbstractJsonLdTestCase extends TestCase
 {
     public const DATA_PATH = __DIR__ . '/../../var/cache/w3c-json-ld-api/tests';
 
+    /**
+     * @return iterable<string, array{json: string, expected: string|JsonLdException, filename: string}>
+     */
     public static function provideInputsAndOutputs(): iterable
     {
         foreach (static::getInputFiles() as $inputFile) {
@@ -38,6 +41,10 @@ abstract class AbstractJsonLdTestCase extends TestCase
 
             if (is_file($outputFileName)) {
                 $expected = file_get_contents($outputFileName);
+
+                if (false === $expected) {
+                    throw new \RuntimeException(\sprintf('The expected output "%s" could not be read.', $outputFileName));
+                }
             } else {
                 $expected = new JsonLdException(static::getExpectedErrorMessage($filename));
             }

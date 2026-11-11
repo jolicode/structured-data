@@ -27,6 +27,11 @@ use PHPUnit\Framework\Attributes\Group;
 #[Group('google')]
 class GoogleValidatorTest extends AbstractValidatorTestCase
 {
+    /**
+     * @param list<string> $expectedErrors
+     * @param list<string> $expectedWarnings
+     * @param list<string> $expectedDocumentIssues
+     */
     #[DataProvider('provideGoogleFiles')]
     public function testGoogleValidator(
         string $document,
@@ -226,9 +231,15 @@ class GoogleValidatorTest extends AbstractValidatorTestCase
         $decoded = json_decode($diagnosticJson, true);
         $this->assertIsArray($decoded);
         $this->assertNotSame([], $decoded);
-        $this->assertArrayHasKey('message', $decoded[0]);
-        $this->assertArrayHasKey('severity', $decoded[0]);
-        $this->assertArrayHasKey('documentationLink', $decoded[0]);
+        $firstDiagnostic = $decoded[0] ?? null;
+
+        if (!\is_array($firstDiagnostic)) {
+            self::fail('The diagnostic must be a list of entries.');
+        }
+
+        $this->assertArrayHasKey('message', $firstDiagnostic);
+        $this->assertArrayHasKey('severity', $firstDiagnostic);
+        $this->assertArrayHasKey('documentationLink', $firstDiagnostic);
     }
 
     public function testRootArrayTypeEntryPassesWhenOneCandidateFails(): void
@@ -318,6 +329,9 @@ class GoogleValidatorTest extends AbstractValidatorTestCase
         );
     }
 
+    /**
+     * @return \Generator<string, array{string, bool, list<string>, list<string>, list<string>}>
+     */
     public static function provideGoogleFiles(): \Generator
     {
         return self::provideData(

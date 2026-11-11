@@ -1,6 +1,3 @@
-includes:
-    - phpstan-baseline.neon
-
 parameters:
     level: 9
     paths:
@@ -20,13 +17,4 @@ parameters:
         - '#Argument of an invalid type stdClass supplied for foreach, only iterables are supported.#'
 
 
-        # Test infrastructure uses reflection for validator introspection
-        -
-            message: '#Parameter \#1 \$objectOrClass of class ReflectionClass constructor expects class-string<T of object>\|T of object, string given\.#'
-            path: tests/Validation/Google/GoogleValidatorInfrastructureTest.php
-        -
-            message: '#Parameter \#1 \$filename of function file_get_contents expects string, string\|false given\.#'
-            path: tests/Validation/Google/GoogleValidatorInfrastructureTest.php
-        -
-            message: '#Offset 1 on array{list<string>, list<''ERROR''|''WARNING''>} on left side of \?\? always exists and is not nullable\.#'
-            path: tests/Validation/Google/GoogleValidatorInfrastructureTest.php
+

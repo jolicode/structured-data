@@ -151,8 +151,7 @@ class GoogleValidatorInfrastructureTest extends TestCase
         );
         sort($fixtureFiles);
 
-        $baseline = json_decode((string) file_get_contents(__DIR__ . '/../fixtures/google-baseline.json'), true);
-        $baselineKeys = array_keys($baseline ?: []);
+        $baselineKeys = array_keys(FixtureBaseline::load(__DIR__ . '/../fixtures/google-baseline.json'));
         sort($baselineKeys);
 
         $missingBaselineEntries = array_values(array_diff($fixtureFiles, $baselineKeys));
@@ -170,8 +169,7 @@ class GoogleValidatorInfrastructureTest extends TestCase
             array_map(static fn (string $path): string => basename($path), glob(__DIR__ . '/../fixtures/google/*.html') ?: []),
         );
 
-        $baseline = json_decode((string) file_get_contents(__DIR__ . '/../fixtures/google-baseline.json'), true);
-        $baselineKeys = array_keys($baseline ?: []);
+        $baselineKeys = array_keys(FixtureBaseline::load(__DIR__ . '/../fixtures/google-baseline.json'));
 
         $orphanBaselineEntries = array_values(array_diff($baselineKeys, $fixtureFiles));
 
@@ -358,12 +356,14 @@ class GoogleValidatorInfrastructureTest extends TestCase
     }
 
     /**
+     * @param class-string $ruleClass
+     *
      * @return array<string>
      */
     private function extractRuleSeveritiesFromSource(string $ruleClass): array
     {
-        $reflection = new \ReflectionClass($ruleClass);
-        $source = file_get_contents($reflection->getFileName());
+        $fileName = (new \ReflectionClass($ruleClass))->getFileName();
+        $source = false === $fileName ? false : file_get_contents($fileName);
 
         if (false === $source) {
             return [];
@@ -371,7 +371,7 @@ class GoogleValidatorInfrastructureTest extends TestCase
 
         preg_match_all('/MappedError::SEVERITY_(ERROR|WARNING)/', $source, $matches);
 
-        $severities = array_map('strtolower', $matches[1] ?? []);
+        $severities = array_map('strtolower', $matches[1]);
 
         return array_values(array_unique($severities));
     }
