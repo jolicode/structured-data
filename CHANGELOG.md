@@ -13,6 +13,11 @@
 
 ### Fixed
 
+- The blocks of a document that share an identifier (a JSON-LD `@id`, a microdata
+  `itemid`) describe one node for Google, whatever their format, with the union of their
+  properties. A property one block omits is no longer reported missing when another block
+  provides it; each block keeps its own diagnostics and positions otherwise. Values the
+  blocks disagree on are reported as a document warning, since Google keeps them all.
 - Google validator: the address sub-properties of an event location (`streetAddress`,
   `addressRegion`...) are no longer reported when missing: the documentation only shows
   them in an example, and Google does not report them.

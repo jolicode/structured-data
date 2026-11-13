@@ -151,6 +151,11 @@ class MappedProperty
         $this->errors[] = $error;
     }
 
+    public function removeError(MappedError $error): void
+    {
+        $this->errors = array_values(array_filter($this->errors, static fn (MappedError $candidate): bool => $candidate !== $error));
+    }
+
     /**
      * @return array<Range>
      */

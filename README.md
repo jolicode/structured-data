@@ -143,6 +143,18 @@ The validator accepts the following data formats:
 - microdata
 - RDFa (schema.org-style RDFa only)
 
+### Blocks describing the same node
+
+Google reads a page as one graph: the blocks that share an identifier (a JSON-LD `@id`,
+a microdata `itemid`) are one node holding the union of their properties, whatever their
+format, and a property one block omits is not missing when another block provides it.
+The validator does the same. Each block is still audited on its own, with its positions
+in the document, but the "missing property" issues that another block resolves are not
+reported, and the audit is valid when the merged node is. When the blocks disagree on a
+value, Google keeps every value and reports nothing; the disagreement is reported as a
+document warning, outside the Google diagnostics. Blank node identifiers are local to
+their block and never merge.
+
 ### Using the validator
 
 #### Basic usage

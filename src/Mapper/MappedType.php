@@ -211,6 +211,12 @@ class MappedType
         }
     }
 
+    public function removeError(MappedError $error): void
+    {
+        $this->errors = array_values(array_filter($this->errors, static fn (MappedError $candidate): bool => $candidate !== $error));
+        $this->mergedErrors = null;
+    }
+
     public function addChildrenError(MappedError $error): void
     {
         $this->childrenErrors[] = $error;
@@ -218,6 +224,12 @@ class MappedType
         if (null !== $this->mergedErrors) {
             $this->mergedErrors = null;
         }
+    }
+
+    public function removeChildrenError(MappedError $error): void
+    {
+        $this->childrenErrors = array_values(array_filter($this->childrenErrors, static fn (MappedError $candidate): bool => $candidate !== $error));
+        $this->mergedErrors = null;
     }
 
     /**
