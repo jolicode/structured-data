@@ -148,12 +148,41 @@ The validator accepts the following data formats:
 Google reads a page as one graph: the blocks that share an identifier (a JSON-LD `@id`,
 a microdata `itemid`) are one node holding the union of their properties, whatever their
 format, and a property one block omits is not missing when another block provides it.
-The validator does the same. Each block is still audited on its own, with its positions
-in the document, but the "missing property" issues that another block resolves are not
-reported, and the audit is valid when the merged node is. When the blocks disagree on a
-value, Google keeps every value and reports nothing; the disagreement is reported as a
-document warning, outside the Google diagnostics. Blank node identifiers are local to
-their block and never merge.
+
+By default, the validator does the same. The audit is made of items, one per node, listed
+by `Audit::getItems()`: the blocks sharing an identifier make one item, the others one
+item each. The diagnostics of the audit (`isValid()`, `getDiagnostic()`) are the ones of
+the items, so an issue of a merged node is reported once, with the positions of every
+block it comes from.
+
+```php
+foreach ($audit->getItems() as $item) {
+    $item->getType();       // the node: merged from several blocks, or the block itself
+    $item->isMerged();      // true when the node comes from several blocks
+    $item->getIdentifier(); // its absolute "@id" or "itemid", if any
+    $item->getSources();    // the blocks it comes from
+}
+```
+
+Each source block keeps its own audit, as if it were alone in the document: a block may
+report a property another block provides, while the merged item, which makes the verdict,
+does not. `Audit::getTypes()` still lists the blocks.
+
+When the blocks disagree on a value, Google keeps every value and reports nothing; the
+validator raises a warning on the property of the merged node, with the `Merge` validator
+name (`AuditOptions::VALIDATOR_MERGE`), outside the Google diagnostics. Blank node
+identifiers are local to their block and never merge, and identifiers are compared as
+written. Only the top-level node of each block is merged: nested nodes sharing an
+identifier are not.
+
+Google is not the only consumer of structured data, though. To audit every block on its
+own, with no merge, disable the option:
+
+```php
+$audit = $validator->audit($document, mergeNodesSharingAnIdentifier: false);
+```
+
+Each block is then an item of its own.
 
 ### Using the validator
 
@@ -248,6 +277,14 @@ castor validate <file-or-url> google
 
 ```bash
 castor validate <file-or-url> schema-org
+```
+
+The blocks sharing an identifier are merged, as Google does (see
+[Blocks describing the same node](#blocks-describing-the-same-node)); pass `--no-merge`
+to audit every block on its own:
+
+```bash
+castor validate --no-merge <file-or-url>
 ```
 
 Sample result of the validate command:

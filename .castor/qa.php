@@ -25,6 +25,7 @@ use function Castor\run;
 use JoliCode\StructuredData\Audit\AuditOptions;
 use JoliCode\StructuredData\JsonLd\Algorithms;
 use JoliCode\StructuredData\Tests\Validation\Benchmark\WorkerValidationBench;
+use JoliCode\StructuredData\Tests\Validation\SnapshotDocumentLoader;
 use JoliCode\StructuredData\Validator;
 use JoliCode\StructuredData\Vocabularies\Generators\Google\Filesystem as GoogleFilesystem;
 use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Filesystem as SchemaOrgFilesystem;
@@ -500,12 +501,17 @@ function updateBaseline(
     string $baselinePath,
 ): void {
     $finder = finder()->files()->in($path)->sortByName();
-    $validator = new Validator();
+    // Resolve the remote contexts as the tests do, from the committed snapshots:
+    // the default loader refuses every host.
+    $validator = new Validator(documentLoader: new SnapshotDocumentLoader());
     $validator->setValidator($specificValidator);
     $baseline = [];
 
     foreach ($finder as $file) {
-        $audit = $validator->audit($file->getContents());
+        // Audit as the tests do: the baselines also record the usages of the
+        // pending.schema.org vocabulary (this option only affects the schema.org
+        // validator).
+        $audit = $validator->audit($file->getContents(), reportPendingVocabularyUsage: true);
         /** @var array<string> $documentIssues */
         $documentIssues = $audit->getDiagnostic(new AuditOptions(
             severity: AuditOptions::SEVERITY_DOCUMENT,
@@ -522,6 +528,12 @@ function updateBaseline(
         // A document issue is an error or a warning too, and the tests compare the
         // errors and the warnings as the audit reports them, document issues
         // included: the baseline lists it on both sides.
+        // The tests compare sorted lists: sorting here keeps the files stable, so a
+        // regeneration only shows the diagnostics that actually changed.
+        sort($errorMessages);
+        sort($warningMessages);
+        sort($documentIssues);
+
         $baseline[$file->getFilename()] = [
             'errors' => $errorMessages,
             'warnings' => $warningMessages,

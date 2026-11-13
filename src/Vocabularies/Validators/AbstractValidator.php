@@ -99,7 +99,7 @@ abstract class AbstractValidator implements ValidatorInterface
         ];
     }
 
-    protected function addMappedError(MappedType|MappedProperty $target, string $message, MappedType $typeWithError, string $severity, ?string $documentationLink = null, ?string $missingProperty = null): MappedError
+    protected function addMappedError(MappedType|MappedProperty $target, string $message, MappedType $typeWithError, string $severity, ?string $documentationLink = null): MappedError
     {
         $typeLabel = MappedErrorFormatter::formatTypeLabel($typeWithError->getType());
         $range = MappedErrorFormatter::formatRanges($target->getValueRanges());
@@ -113,7 +113,6 @@ abstract class AbstractValidator implements ValidatorInterface
             $range,
             parent: $target,
             documentationLink: $documentationLink,
-            missingProperty: $missingProperty,
         );
 
         $target->addError($error);

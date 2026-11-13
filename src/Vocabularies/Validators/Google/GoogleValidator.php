@@ -310,14 +310,13 @@ class GoogleValidator extends AbstractValidator
             $expectedProperties = $missingProperty['value'] ?? [];
 
             if (!$this->hasAnyPropertyKey($type, $expectedProperties)) {
-                $alternatives = implode(', ', array_keys($expectedProperties));
                 $message = \sprintf(
                     'Missing required property: at least one of the following properties must be present "%s" for the type "%s"',
-                    $alternatives,
+                    implode(', ', array_keys($expectedProperties)),
                     $this->getTypeLabel($type),
                 );
 
-                $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR, $this->resolveDocumentationLink($missingProperty), $alternatives);
+                $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR, $this->resolveDocumentationLink($missingProperty));
             }
 
             return;
@@ -325,7 +324,7 @@ class GoogleValidator extends AbstractValidator
 
         $message = \sprintf('Missing required property: "%s" for the type "%s"', $missingProperty['name'], $this->getTypeLabel($type));
 
-        $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR, $this->resolveDocumentationLink($missingProperty), $missingProperty['name']);
+        $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_ERROR, $this->resolveDocumentationLink($missingProperty));
     }
 
     /**
@@ -342,13 +341,12 @@ class GoogleValidator extends AbstractValidator
             $expectedProperties = $missingProperty['value'] ?? [];
 
             if (!$this->hasAnyPropertyKey($type, $expectedProperties)) {
-                $alternatives = implode(', ', array_keys($expectedProperties));
                 $message = \sprintf(
                     'Missing recommended property: at least one of the following properties should be present "%s"',
-                    $alternatives,
+                    implode(', ', array_keys($expectedProperties)),
                 );
 
-                $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_WARNING, $this->resolveDocumentationLink($missingProperty), $alternatives);
+                $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_WARNING, $this->resolveDocumentationLink($missingProperty));
             }
 
             return;
@@ -356,7 +354,7 @@ class GoogleValidator extends AbstractValidator
 
         $message = \sprintf('Missing recommended property: "%s" for the type "%s"', $missingProperty['name'], $this->getTypeLabel($type));
 
-        $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_WARNING, $this->resolveDocumentationLink($missingProperty), $missingProperty['name']);
+        $errors[] = $this->addMappedError($type, $message, $type, MappedError::SEVERITY_WARNING, $this->resolveDocumentationLink($missingProperty));
     }
 
     /**

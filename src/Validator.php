@@ -12,6 +12,7 @@
 namespace JoliCode\StructuredData;
 
 use JoliCode\StructuredData\Audit\Audit;
+use JoliCode\StructuredData\Audit\Item;
 use JoliCode\StructuredData\Extraction\Extractor;
 use JoliCode\StructuredData\Extraction\ExtractorFormat;
 use JoliCode\StructuredData\Extraction\JsonLdElement;
@@ -25,9 +26,7 @@ use JoliCode\StructuredData\JsonLd\Parser\DataStructures\ObjectStructure;
 use JoliCode\StructuredData\JsonLd\Parser\JsonLdParser;
 use JoliCode\StructuredData\Mapper\DocumentError;
 use JoliCode\StructuredData\Mapper\DocumentIssueInterface;
-use JoliCode\StructuredData\Mapper\DocumentWarning;
 use JoliCode\StructuredData\Mapper\MappedError;
-use JoliCode\StructuredData\Mapper\MappedErrorFormatter;
 use JoliCode\StructuredData\Mapper\MappedProperty;
 use JoliCode\StructuredData\Mapper\MappedType;
 use JoliCode\StructuredData\Mapper\MappedTypeMerger;
@@ -110,15 +109,26 @@ class Validator
      * Deciding what may be fetched, and under which restrictions, belongs to the
      * application - see the "Accepted inputs" section of the README.
      *
-     * @param bool $reportPendingVocabularyUsage Terms hosted under
-     *                                           pending.schema.org are still
-     *                                           under development and may change
-     *                                           or be removed. Using them is
-     *                                           accepted silently by default;
-     *                                           pass true to report each usage
-     *                                           as a warning.
+     * @param bool $reportPendingVocabularyUsage  Terms hosted under
+     *                                            pending.schema.org are still
+     *                                            under development and may change
+     *                                            or be removed. Using them is
+     *                                            accepted silently by default;
+     *                                            pass true to report each usage
+     *                                            as a warning.
+     * @param bool $mergeNodesSharingAnIdentifier The blocks sharing an
+     *                                            identifier (a JSON-LD "@id",
+     *                                            a microdata "itemid")
+     *                                            describe one node, as Google
+     *                                            reads them: by default, they
+     *                                            make one item of the audit,
+     *                                            validated as a whole. Pass
+     *                                            false to audit every block on
+     *                                            its own. See the "Blocks
+     *                                            describing the same node"
+     *                                            section of the README.
      */
-    public function audit(string $document, bool $reportPendingVocabularyUsage = false): Audit
+    public function audit(string $document, bool $reportPendingVocabularyUsage = false, bool $mergeNodesSharingAnIdentifier = true): Audit
     {
         $this->validationMapper->reset();
 
@@ -241,60 +251,61 @@ class Validator
             }
         }
 
-        $documentIssues = $this->mapDocumentIssuesToMappedErrors([
-            ...$documentIssues,
-            ...$this->reconcileTypesSharingAnIdentifier($types),
-        ]);
-
-        return new Audit($types, $documentIssues);
+        return new Audit(
+            $types,
+            $this->mapDocumentIssuesToMappedErrors($documentIssues),
+            $mergeNodesSharingAnIdentifier ? $this->buildMergedItems($types) : null,
+        );
     }
 
     /**
      * Google reads the page as one graph: the blocks sharing an identifier are one
      * node, whatever their format, and a property one block omits is not missing
-     * when another block provides it. Each block keeps its own audit and
-     * positions; the node Google sees is validated apart, and the "missing
-     * property" issues it does not have are withdrawn from the blocks.
+     * when another block provides it. Such blocks make one item, whose node is
+     * built and validated apart; each block keeps its own audit and positions.
+     * The other blocks are items of their own, in document order.
      *
      * Google keeps every value when the blocks disagree on one, and reports
-     * nothing: the disagreement is reported as a document warning, outside the
+     * nothing: the disagreement is a warning of the merged node, outside the
      * Google verdict.
+     *
+     * The merged nodes are rebuilt on each call, after the snippet cache is
+     * replayed, so the cache does not depend on this option.
      *
      * @param array<MappedType> $types
      *
-     * @return list<DocumentIssueInterface>
+     * @return list<Item>
      */
-    private function reconcileTypesSharingAnIdentifier(array $types): array
+    private function buildMergedItems(array $types): array
     {
-        $issues = [];
+        $groups = MappedTypeMerger::groupByIdentifier($types);
+        $items = [];
 
-        foreach (MappedTypeMerger::groupByIdentifier($types) as $identifier => $members) {
-            $merged = MappedTypeMerger::merge($members);
+        foreach ($types as $type) {
+            $identifier = MappedTypeMerger::identifierOf($type);
 
-            $this->validateType($merged['type']);
-            MappedTypeMerger::withdrawIssuesResolvedBy($merged['type'], $members);
+            if (null === $identifier || !isset($groups[$identifier])) {
+                $items[] = new Item($type, [$type], $identifier);
 
-            foreach ($merged['conflicts'] as $conflict) {
-                $ranges = array_map(
-                    static fn (MappedProperty $property): string => MappedErrorFormatter::formatRanges($property->getValueRanges()),
-                    $conflict['properties'],
-                );
-
-                $issues[] = new DocumentWarning(
-                    'Document',
-                    \sprintf(
-                        'The "%s" of "%s" has a different value in each of the %d blocks describing it (%s): Google merges them and keeps every value.',
-                        $conflict['key'],
-                        $identifier,
-                        \count($conflict['properties']),
-                        implode(', ', array_map(static fn (mixed $value): string => json_encode($value, \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE) ?: '', $conflict['values'])),
-                    ),
-                    implode(', ', array_filter($ranges)),
-                );
+                continue;
             }
+
+            // The group was turned into an item at its first block.
+            if ([] === $groups[$identifier]) {
+                continue;
+            }
+
+            $members = $groups[$identifier];
+            $groups[$identifier] = [];
+
+            $merged = MappedTypeMerger::merge($members);
+            $this->validateType($merged['type']);
+            MappedTypeMerger::reportConflicts($identifier, \count($members), $merged['conflicts']);
+
+            $items[] = new Item($merged['type'], $members, $identifier);
         }
 
-        return $issues;
+        return $items;
     }
 
     /**

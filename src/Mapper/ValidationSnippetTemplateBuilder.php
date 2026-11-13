@@ -94,7 +94,6 @@ final class ValidationSnippetTemplateBuilder
                 severity: $error->getSeverity(),
                 validatorName: $error->getValidatorName(),
                 documentationLink: $error->getDocumentationLink(),
-                missingProperty: $error->getMissingProperty(),
             );
         }
 

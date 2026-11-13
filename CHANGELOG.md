@@ -10,14 +10,19 @@
 - `BENCHMARKS.md` documents the benchmark figures and what each of them measures.
   `castor qa:bench:validators` now also runs the worker benchmark, which audits a stream
   of distinct documents and is the figure to quote for a crawler.
+- The blocks of a document that share an identifier (a JSON-LD `@id`, a microdata
+  `itemid`) describe one node for Google, whatever their format, with the union of their
+  properties. The audit now merges them into one item, validated as a whole: a property one
+  block omits is no longer reported missing when another block provides it, and the issues
+  of the node are reported once. `Audit::getItems()` lists the items, each with its node
+  and its source blocks, which keep their own audit; `Audit::getTypes()` still lists the
+  blocks. Values the blocks disagree on are a warning of the merged item (validator
+  `Merge`, `AuditOptions::VALIDATOR_MERGE`), since Google keeps them all. The merge is on
+  by default; pass `mergeNodesSharingAnIdentifier: false` to `Validator::audit()`, or
+  `--no-merge` to `castor validate` and `castor check`, to audit every block on its own.
 
 ### Fixed
 
-- The blocks of a document that share an identifier (a JSON-LD `@id`, a microdata
-  `itemid`) describe one node for Google, whatever their format, with the union of their
-  properties. A property one block omits is no longer reported missing when another block
-  provides it; each block keeps its own diagnostics and positions otherwise. Values the
-  blocks disagree on are reported as a document warning, since Google keeps them all.
 - Google validator: the address sub-properties of an event location (`streetAddress`,
   `addressRegion`...) are no longer reported when missing: the documentation only shows
   them in an example, and Google does not report them.
