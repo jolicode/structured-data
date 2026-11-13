@@ -519,27 +519,12 @@ function updateBaseline(
             severity: AuditOptions::SEVERITY_ERROR,
         ));
 
-        $remainingDocumentIssues = $documentIssues;
-        $warningsWithoutExtraction = [];
-
-        foreach ($warningMessages as $warningMessage) {
-            $matchingDocumentIssueKey = array_find_key(
-                $remainingDocumentIssues,
-                static fn (string $documentIssue): bool => $documentIssue === $warningMessage,
-            );
-
-            if ($matchingDocumentIssueKey) {
-                unset($remainingDocumentIssues[$matchingDocumentIssueKey]);
-
-                continue;
-            }
-
-            $warningsWithoutExtraction[] = $warningMessage;
-        }
-
+        // A document issue is an error or a warning too, and the tests compare the
+        // errors and the warnings as the audit reports them, document issues
+        // included: the baseline lists it on both sides.
         $baseline[$file->getFilename()] = [
             'errors' => $errorMessages,
-            'warnings' => $warningsWithoutExtraction,
+            'warnings' => $warningMessages,
             'documentIssues' => $documentIssues,
         ];
     }
