@@ -513,6 +513,14 @@ Command | Description
 `castor qa:all` | Runs all QA tasks
 `castor qa:earl` | Runs the W3C test suites and writes the EARL conformance report (see [Conformance](#conformance))
 
+The following commands build the [demo website](website/README.md), that runs the validator in the browser:
+
+Command | Description
+---- | -----
+`castor website:build` | Builds the demo website: its assets, and PHP as WebAssembly with the validator
+`castor website:check` | Checks, in node, that what is built boots, and audits a document
+`castor website:serve` | Serves the demo website
+
 The following commands are available to run the tests:
 
 Command | Description

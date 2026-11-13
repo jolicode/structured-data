@@ -1,0 +1,23 @@
+{% if link is iterable %}
+    {% for item in link %}
+        <a
+            href="https://schema.org/{{ item }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
+        >
+            <span class="size-3 mr-1">{{ include('@images/link.svg') }}</span>
+            {{ linkLabel|default(item) }}
+        </a>
+    {% endfor %}
+{% else %}
+    <a
+        href="https://schema.org/{{ link }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
+    >
+        <span class="size-3 mr-1">{{ include('@images/link.svg') }}</span>
+        {{ linkLabel|default(link) }}
+    </a>
+{% endif %}

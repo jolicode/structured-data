@@ -1,0 +1,32 @@
+{
+  "name": "jolicode/structured-data-website",
+  "description": "Demo website for jolicode/structured-data",
+  "type": "project",
+  "license": "MIT",
+  "repositories": [
+    {
+      "type": "path",
+      "url": "..",
+      "options": {
+        "symlink": false,
+        "versions": {
+          "jolicode/structured-data": "dev-main"
+        }
+      }
+    }
+  ],
+  "require": {
+    "php": "^8.5",
+    "jolicode/structured-data": "dev-main@dev",
+    "league/commonmark": "^2.9",
+    "twig/twig": "^3.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "JoliCode\\StructuredData\\Website\\": "src/"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  }
+}

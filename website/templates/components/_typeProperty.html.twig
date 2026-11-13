@@ -1,0 +1,64 @@
+{% set mergedErrors = type.mergedErrors|default(property.errors) %}
+{% set errorCount = mergedErrors|filter(error => error.severity != 'warning')|length %}
+{% set warningCount = mergedErrors|filter(error => error.severity == 'warning')|length %}
+{% set isValid = mergedErrors is empty %}
+
+<details class="border-t">
+    <summary
+        class="flex px-5 py-2 justify-between items-start font-medium cursor-pointer list-none hover:bg-gray-50 {% if not isValid %}{% if errorCount %}text-red-700{% else %}text-amber-800{% endif %}{% endif %}"
+    >
+        <h4
+            class="font-mono text-xs/5 font-medium text-ellipsis overflow-hidden"
+            {{ include('components/_rangeProperties.html.twig', {ranges: property.keyRanges}) }}
+            {% if not isValid %}
+                data-invalid
+            {% endif %}
+            style="margin-left: {{ level * 1.5 }}rem;"
+        >
+            {{ property.key }}
+        </h4>
+
+        <div class="flex w-[66%] justify-between flex-shrink-0">
+            <div>
+                {% if type.properties['@type'] is defined %}
+                    <span class="text-gray-600">
+                        {% if type.properties['@type'].value is iterable %}
+                            {{ type.properties['@type'].value|join(', ', ' and ') }}
+                        {% else %}
+                            {{ type.properties['@type'].value }}
+                        {% endif %}
+                    </span>
+                {% elseif type.type is not null %}
+                    <span class="text-gray-600">
+                        {% if type.type is iterable %}
+                            {{ type.type|join(', ', ' and ') }}
+                        {% else %}
+                            {{ type.type }}
+                        {% endif %}
+                    </span>
+                {% endif %}
+            </div>
+
+            <div class="flex flex-shrink-0 items-center">
+                {% if not isValid %}
+                    {{ include('components/_issueCount.html.twig', {errorCount: errorCount, warningCount: warningCount}) }}
+                    <i class="ml-2 u-ml-xxs u-txt-xs w-[1.5em]">
+                        {{ include('@images/info.svg') }}
+                    </i>
+                {% endif %}
+                <span class="transition">
+                    {{ include('@images/arrow.svg') }}
+                </span>
+            </div>
+        </div>
+    </summary>
+    <div class="detail text-neutral-600">
+        {% if type.properties is defined %}
+            {% for property in type.properties %}
+                {{ include('components/_property.html.twig', {level: level + 1, property: property}) }}
+            {% endfor %}
+        {% else %}
+            {{ type }}
+        {% endif %}
+    </div>
+</details>

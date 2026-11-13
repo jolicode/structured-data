@@ -1,0 +1,8 @@
+{%- set parts = [] -%}
+{%- if errorCount -%}
+    {%- set parts = parts|merge([errorCount ~ ' error' ~ (errorCount > 1 ? 's' : '')]) -%}
+{%- endif -%}
+{%- if warningCount -%}
+    {%- set parts = parts|merge([warningCount ~ ' warning' ~ (warningCount > 1 ? 's' : '')]) -%}
+{%- endif -%}
+{{- parts|join(', ') -}}

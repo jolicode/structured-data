@@ -1,0 +1,62 @@
+{% set errors = type.mergedErrors|filter(error => error.severity != 'warning') %}
+{% set warnings = type.mergedErrors|filter(error => error.severity == 'warning') %}
+
+<article class="flex flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-5">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <h2 class="font-display text-lg font-semibold">
+            {% if type.type is iterable %}
+                {{- type.type|join(', ') -}}
+            {% elseif not type.type %}
+                <em>Undefined type</em>
+            {% else %}
+                {{- type.type -}}
+            {% endif %}
+            {% if type.name %}
+                <span class="font-sans text-sm font-normal text-gray-600">“{{ type.name }}”</span>
+            {% endif %}
+        </h2>
+
+        {% if errors is empty and warnings is empty %}
+            <span class="rounded-full bg-green-50 px-2.5 py-0.5 text-[13px] font-medium text-green-800">Valid</span>
+        {% else %}
+            <span class="text-[13px] {{ errors is empty ? 'text-amber-800' : 'text-red-700' }}">
+                {{- include('components/_issueCount.html.twig', {errorCount: errors|length, warningCount: warnings|length}) -}}
+            </span>
+        {% endif %}
+    </div>
+
+    {% if errors is not empty %}
+        <ul class="flex flex-col gap-2">
+            {% for error in errors %}
+                {{ include('components/_issue.html.twig', {error: error}) }}
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if warnings is not empty %}
+        <details class="group/warnings" data-result-target="warnings">
+            <summary class="flex min-h-9 cursor-pointer list-none items-center gap-1.5 text-[13px] font-medium text-blue-700 hover:text-blue-900">
+                <span class="group-open/warnings:hidden">Show</span>
+                <span class="hidden group-open/warnings:inline">Hide</span>
+                {{ warnings|length }} warning{{ warnings|length > 1 ? 's' }}
+            </summary>
+            <ul class="flex flex-col gap-2 pt-1">
+                {% for error in warnings %}
+                    {{ include('components/_issue.html.twig', {error: error}) }}
+                {% endfor %}
+            </ul>
+        </details>
+    {% endif %}
+
+    <details class="group/properties -mx-5 -mb-5 border-t border-gray-200">
+        <summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-2 px-5 text-[13px] font-medium text-gray-700 hover:text-gray-950">
+            {{ type.properties|length }} propert{{ type.properties|length > 1 ? 'ies' : 'y' }}
+            <span class="text-gray-500 group-open/properties:rotate-180">{{ include('@images/arrow.svg') }}</span>
+        </summary>
+        <div class="overflow-hidden rounded-b-2xl text-[13px] text-neutral-600">
+            {% for property in type.properties %}
+                {{ include('components/_property.html.twig', {property: property, level: 0}) }}
+            {% endfor %}
+        </div>
+    </details>
+</article>

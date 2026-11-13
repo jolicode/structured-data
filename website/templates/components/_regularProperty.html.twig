@@ -1,0 +1,83 @@
+{% set hasDetail = property.value is iterable or property.key == '@type' and type.description is not null or property.description is not null %}
+
+<details class="border-t hover:bg-gray-50">
+    <summary class="flex px-5 py-2 justify-between items-start font-medium cursor-pointer list-none {% if not property.isValid %}{% if property.errorSeverity == 'warning' %}text-amber-800{% else %}text-red-700{% endif %}{% endif %}">
+        <h4
+            class="font-mono text-xs/5 font-medium text-ellipsis overflow-hidden"
+            {{ include('components/_rangeProperties.html.twig', {ranges: property.keyRanges}) }}
+            {% if not property.isValid %}
+                data-invalid
+            {% endif %}
+            style="margin-left: {{ level * 1.5 }}rem;"
+        >
+            {{ property.key }}
+        </h4>
+
+        <div class="flex w-[66%] justify-between content-center flex-shrink-0">
+            <span
+                class="text-gray-500 text-ellipsis overflow-hidden"
+                {{ include('components/_rangeProperties.html.twig', {ranges: property.valueRanges}) }}
+            >
+                {% if property.value is iterable %}
+                    {{ property.value|map(value => value|renderScalarValue)|join(', ', ' and ') }}
+                {% elseif property.value is same as(true) %}
+                    <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">true</span>
+                {% elseif property.value is same as(false) %}
+                    <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">false</span>
+                {% else %}
+                    {{ property.value|renderScalarValue }}
+                {% endif %}
+            </span>
+
+            <div class="flex flex-shrink-0 items-center">
+                {% if not property.isValid %}
+                    {% if property.errors|length > 0 %}
+                        {{ property.errors|length }} {{ property.errorSeverity }}{{ property.errors|length > 1 ? 's' }}
+                    {% endif %}
+                    <i class="ml-2 u-ml-xxs u-txt-xs w-[1.5em]">
+                        {{ include('@images/info.svg') }}
+                    </i>
+                {% endif %}
+                {% if hasDetail %}
+                    <span class="transition">
+                        {{ include('@images/arrow.svg') }}
+                    </span>
+                {% endif %}
+            </div>
+        </div>
+    </summary>
+    {% if hasDetail %}
+        <div
+            class="detail pb-2 pr-5 text-neutral-600"
+            style="padding-left: 34%;"
+        >
+            {% if property.value is iterable or property.key == '@type' and type.description is not null or property.description is not null %}
+                <div class="structured-data-reference">
+                    {% if property.value is iterable %}
+                        {% if property.key == '@type' and type.type is iterable %}
+                            <div class="inline-flex items-center flex-wrap gap-2">
+                                {% for link in type.type|sort %}
+                                    {{ include('components/reference/_link.html.twig', {link: link}) }}
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="prose text-gray-500 text-xs max-w-full">
+                                <ul>
+                                    {% for value in property.value %}
+                                        <li>{{ value|renderScalarValue }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        {% if property.key == '@type' and type.description is not null %}
+                            {{ include('components/reference/_reference.html.twig', {description: type.description, link: type.type, item: type}) }}
+                        {% elseif property.description is not null %}
+                            {{ include('components/reference/_reference.html.twig', {description: property.description, link: property.key, item: property}) }}
+                        {% endif %}
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+</details>
