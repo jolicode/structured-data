@@ -1,0 +1,32 @@
+{
+  "name": "structured-data-website",
+  "description": "What the page of the demo website is built with, see .castor/website.php",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm run build:fonts && npm run build:css && npm run build:js",
+    "build:css": "tailwindcss --input assets/styles/app.css --output public/build/app.css --minify",
+    "build:fonts": "mkdir -p public/build/files && cp node_modules/@fontsource-variable/inter/files/*-wght-normal.woff2 node_modules/@fontsource-variable/jetbrains-mono/files/*-wght-normal.woff2 node_modules/@fontsource-variable/space-grotesk/files/*-wght-normal.woff2 public/build/files/",
+    "build:js": "esbuild assets/app.js assets/php.js --bundle --splitting --format=esm --minify --outdir=public/build --external:./php-web.mjs"
+  },
+  "devDependencies": {
+    "@codemirror/autocomplete": "6.20.4",
+    "@codemirror/commands": "6.11.1",
+    "@codemirror/lang-html": "6.4.12",
+    "@codemirror/lang-json": "6.0.2",
+    "@codemirror/language": "6.13.1",
+    "@codemirror/state": "6.7.6",
+    "@codemirror/view": "6.43.15",
+    "@fontsource-variable/inter": "5.3.0",
+    "@fontsource-variable/jetbrains-mono": "5.3.0",
+    "@fontsource-variable/space-grotesk": "5.3.0",
+    "@hotwired/stimulus": "3.2.2",
+    "@lezer/html": "1.3.13",
+    "@tailwindcss/cli": "4.3.5",
+    "@tailwindcss/typography": "0.5.20",
+    "esbuild": "0.28.2",
+    "prettier": "3.9.6",
+    "shiki": "4.6.0",
+    "tailwindcss": "4.3.5"
+  }
+}

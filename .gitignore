@@ -10,3 +10,6 @@ phpunit.xml
 
 # Castor stubs
 .castor.stub.php
+
+# Demo website: the bake file of php-wasm-builder (what is built is ignored in website/)
+/build/
