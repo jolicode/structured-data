@@ -7,6 +7,9 @@
 - `castor qa:earl` runs the W3C test suites and writes the EARL conformance report
   consolidated by the W3C JSON-LD implementation report. The W3C manifests are now kept
   with the downloaded test suites.
+- `BENCHMARKS.md` documents the benchmark figures and what each of them measures.
+  `castor qa:bench:validators` now also runs the worker benchmark, which audits a stream
+  of distinct documents and is the figure to quote for a crawler.
 
 ### Fixed
 

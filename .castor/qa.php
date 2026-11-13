@@ -24,6 +24,7 @@ use function Castor\run;
 
 use JoliCode\StructuredData\Audit\AuditOptions;
 use JoliCode\StructuredData\JsonLd\Algorithms;
+use JoliCode\StructuredData\Tests\Validation\Benchmark\WorkerValidationBench;
 use JoliCode\StructuredData\Validator;
 use JoliCode\StructuredData\Vocabularies\Generators\Google\Filesystem as GoogleFilesystem;
 use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Filesystem as SchemaOrgFilesystem;
@@ -612,6 +613,7 @@ function benchValidators(
         toolsDir() . '/phpbench/vendor/bin/phpbench',
         'run',
         'tests/Validation/Benchmark/JsonLdValidatorBench.php',
+        'tests/Validation/Benchmark/WorkerValidationBench.php',
         '--no-interaction',
         '--report=readable',
         '--output=console',
@@ -632,6 +634,16 @@ function benchValidators(
         io()->success(\sprintf(
             'On average, it took %.6F seconds to validate a web page (without making HTTP calls).',
             $htmlAverage / 1_000_000,
+        ));
+
+        // The two figures above audit the same document over and over, so the
+        // content-keyed caches of the Validator serve most of the work. The worker
+        // benchmark audits a stream of distinct documents and is the figure to quote
+        // for a crawler or a queue consumer: every audit is a cache miss.
+        $workerAverage = averageValidatorBenchStat($results, 'benchDistinctDocumentsStream');
+        io()->success(\sprintf(
+            'In a long-lived worker auditing distinct documents (no cache hit), it took %.6F seconds per document.',
+            $workerAverage / 1_000_000 / WorkerValidationBench::DOCUMENTS_PER_ITERATION,
         ));
 
         $htmlReportPath = rootDir() . '/var/cache/benchmark-results-validators.html';

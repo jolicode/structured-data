@@ -426,6 +426,8 @@ Command | Description
 `castor qa:bench:validators` | Runs the validators benchmark
 `castor qa:bench:validators -d` | Runs the detailed and slow validators benchmark
 
+The latest figures, and what each of them measures, are in [BENCHMARKS.md](BENCHMARKS.md).
+
 ## Vocabulary generation commands
 
 The validation classes shipped in `src/Vocabularies/Generated` are generated from the
