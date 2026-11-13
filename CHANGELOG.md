@@ -1,15 +1,9 @@
 # Changelog
 
-## [Unreleased]
+## [0.3.0] - 2026-11-13
 
 ### Added
 
-- `castor qa:earl` runs the W3C test suites and writes the EARL conformance report
-  consolidated by the W3C JSON-LD implementation report. The W3C manifests are now kept
-  with the downloaded test suites.
-- `BENCHMARKS.md` documents the benchmark figures and what each of them measures.
-  `castor qa:bench:validators` now also runs the worker benchmark, which audits a stream
-  of distinct documents and is the figure to quote for a crawler.
 - The blocks of a document that share an identifier (a JSON-LD `@id`, a microdata
   `itemid`) describe one node for Google, whatever their format, with the union of their
   properties. The audit now merges them into one item, validated as a whole: a property one
@@ -20,9 +14,25 @@
   `Merge`, `AuditOptions::VALIDATOR_MERGE`), since Google keeps them all. The merge is on
   by default; pass `mergeNodesSharingAnIdentifier: false` to `Validator::audit()`, or
   `--no-merge` to `castor validate` and `castor check`, to audit every block on its own.
+- `castor qa:earl` runs the W3C test suites and writes the EARL conformance report
+  consolidated by the W3C JSON-LD implementation report. The W3C manifests are now kept
+  with the downloaded test suites.
+- `BENCHMARKS.md` documents the benchmark figures and what each of them measures.
+  `castor qa:bench:validators` now also runs the worker benchmark, which audits a stream
+  of distinct documents and is the figure to quote for a crawler.
 
 ### Fixed
 
+- Framing in JSON-LD 1.1 mode dropped a property whose only value was a node reduced
+  to a pruned blank node identifier (W3C test `frame#tp046`): the empty node object is
+  now kept, as `{}`.
+- Microdata: a top-level item (an `itemscope` without `itemprop`) placed inside another
+  item's element was dropped, as was the `content` attribute of any element but `<meta>`
+  (`<link itemprop="name" content="...">`, which has no `href`). Both are common on real
+  pages, and Google reads them.
+- The W3C manifest entries that reuse the input of another entry with a different
+  expected output (`compact#ta038`, `frame#tp020`, `#tp021`, `#tp046` and `#tp049`)
+  are now run. Every test that applies to a JSON-LD 1.1 processor passes.
 - Google validator: the address sub-properties of an event location (`streetAddress`,
   `addressRegion`...) are no longer reported when missing: the documentation only shows
   them in an example, and Google does not report them.
@@ -36,16 +46,6 @@
   validated as a rich result of its own, as Google reports it, when its type is one Google
   documents on its own; the types Google only documents as parts of another one
   (`Comment`, `Answer`, `AggregateRating`, `ImageObject`...) are left alone.
-- Microdata: a top-level item (an `itemscope` without `itemprop`) placed inside another
-  item's element was dropped, as was the `content` attribute of any element but `<meta>`
-  (`<link itemprop="name" content="...">`, which has no `href`). Both are common on real
-  pages, and Google reads them.
-- Framing in JSON-LD 1.1 mode dropped a property whose only value was a node reduced
-  to a pruned blank node identifier (W3C test `frame#tp046`): the empty node object is
-  now kept, as `{}`.
-- The W3C manifest entries that reuse the input of another entry with a different
-  expected output (`compact#ta038`, `frame#tp020`, `#tp021`, `#tp046` and `#tp049`)
-  are now run. Every test that applies to a JSON-LD 1.1 processor passes.
 
 ## [0.2.0] - 2026-11-12
 

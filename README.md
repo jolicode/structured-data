@@ -63,15 +63,15 @@ millions of pages a crawler visits. This library brings that check into PHP:
 
 How it compares with what you would use otherwise to *validate* structured data:
 
-| | [Rich Results Test](https://search.google.com/test/rich-results) | [humanmade/schema-org-validator](https://github.com/humanmade/schema-org-validator) | jolicode/structured-data |
+| | [Rich Results Test](https://search.google.com/test/rich-results) | [Schema Markup Validator](https://validator.schema.org/) | jolicode/structured-data |
 | --- | --- | --- | --- |
-| Runs | in a browser, no API | in PHP | in PHP |
-| Input | a public URL, or pasted code | a JSON-LD document | an HTML page (JSON-LD, microdata, RDFa) or a JSON-LD document |
-| JSON-LD | fully processed | read as written: names are resolved, contexts are not | expanded with the W3C JSON-LD 1.1 algorithms before validation |
-| Google rules | the reference | 23 profiles transcribed by hand | 36 types generated from a crawl of the documentation, drift-checked weekly |
-| Validation issues location | highlighted in the tool | a JSON pointer | a path in the document, and the position of the block in the HTML |
-| Remote `@context` | fetched by Google | not loaded | can be loaded. By default, denied unless allow-listed |
-| License | - | GPL-2.0 | MIT |
+| Runs | in a browser, no API | in a browser, no API | in PHP |
+| Input | a public URL, or pasted code | a public URL, or pasted code | an HTML page (JSON-LD, microdata, RDFa) or a JSON-LD document |
+| JSON-LD | fully processed | fully processed | expanded with the W3C JSON-LD 1.1 algorithms before validation |
+| Google rules | the reference | none: checks the schema.org vocabulary only | 36 types generated from a crawl of the documentation, drift-checked weekly |
+| Validation issues location | highlighted in the tool | highlighted in the tool | a path in the document, and the position of the block in the HTML |
+| Remote `@context` | fetched by Google | fetched by Google | can be loaded. By default, denied unless allow-listed |
+| License | - | - | MIT |
 
 The other PHP libraries in this space do a different job, and combine well with this one.
 [spatie/schema-org](https://github.com/spatie/schema-org) writes JSON-LD; this library
