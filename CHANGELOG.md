@@ -7,6 +7,9 @@
 - Framing in JSON-LD 1.1 mode dropped a property whose only value was a node reduced
   to a pruned blank node identifier (W3C test `frame#tp046`): the empty node object is
   now kept, as `{}`.
+- The W3C manifest entries that reuse the input of another entry with a different
+  expected output (`compact#ta038`, `frame#tp020`, `#tp021`, `#tp046` and `#tp049`)
+  are now run. Every test that applies to a JSON-LD 1.1 processor passes.
 
 ## [0.2.0] - 2026-11-12
 

@@ -193,6 +193,17 @@ Each algorithm is validated against the official W3C test suites ([json-ld-api](
 
 The full suites pass, covering expansion, compaction, flattening and framing. The only skipped fixtures are a handful that target JSON-LD 1.0-specific behavior (declared `specVersion: json-ld-1.0` in the upstream manifest), which this library does not implement; each skip is documented in the corresponding test. Serialization to and from RDF (`toRdf` / `fromRdf`) is out of scope and not implemented.
 
+As of the pinned upstream commits, the manifests list 781 tests, and every test that applies to a JSON-LD 1.1 processor passes:
+
+| Suite | Passed | JSON-LD 1.0 only |
+| --- | --- | --- |
+| expand | 385 | 0 |
+| compact | 244 | 2 |
+| flatten | 58 | 0 |
+| frame | 91 | 1 |
+
+`castor qa:earl` runs these suites and writes an [EARL](https://www.w3.org/TR/EARL10-Schema/) report in Turtle, one assertion per manifest entry, in the format the [W3C JSON-LD implementation report](https://w3c.github.io/json-ld-api/reports/) consolidates.
+
 To use them, create an instance of `JoliCode\StructuredData\JsonLd\Algorithms\Expand\Expander`, `JoliCode\StructuredData\JsonLd\Algorithms\Flatten\Flattener`, `JoliCode\StructuredData\JsonLd\Algorithms\Compact\Compactor` or `JoliCode\StructuredData\JsonLd\Algorithms\Frame\Framer`, and pass it the JSON-LD document you want to convert.
 
 For instance, expanding a JSON-LD document looks like this:

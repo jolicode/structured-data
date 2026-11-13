@@ -27,10 +27,10 @@ use PHPUnit\Framework\Attributes\Group;
 class ExpanderTest extends AbstractJsonLdTestCase
 {
     #[DataProvider('provideInputsAndOutputs')]
-    public function testExpand(string $json, string|JsonLdException $expected, string $filename): void
+    public function testExpand(string $json, string|JsonLdException $expected, string $filename, string $test): void
     {
         $expander = new Expander(documentLoader: static::createDocumentLoader());
-        $options = static::getOptions($filename);
+        $options = static::getOptions($filename, $test);
 
         if ($expected instanceof JsonLdException) {
             try {
@@ -191,7 +191,7 @@ class ExpanderTest extends AbstractJsonLdTestCase
         return false;
     }
 
-    protected static function getOptions(string $filename): ProcessorOptions
+    protected static function getOptions(string $filename, string $test): ProcessorOptions
     {
         $options = new ProcessorOptions(base: static::getBaseUrlForW3CTests($filename));
 
@@ -219,8 +219,8 @@ class ExpanderTest extends AbstractJsonLdTestCase
             'tn01-in.jsonld' => ['processingMode' => Context::PROCESSING_MODE_10],
         ];
 
-        if (\array_key_exists($filename, $testSpecificOptions)) {
-            foreach ($testSpecificOptions[$filename] as $property => $value) {
+        if (\array_key_exists($test, $testSpecificOptions)) {
+            foreach ($testSpecificOptions[$test] as $property => $value) {
                 $options->{$property} = $value;
             }
         }

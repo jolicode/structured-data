@@ -27,10 +27,10 @@ use PHPUnit\Framework\Attributes\Group;
 class FlattenerTest extends AbstractJsonLdTestCase
 {
     #[DataProvider('provideInputsAndOutputs')]
-    public function testFlatten(string $json, string|JsonLdException $expected, string $filename): void
+    public function testFlatten(string $json, string|JsonLdException $expected, string $filename, string $test): void
     {
         $flattener = new Flattener(documentLoader: static::createDocumentLoader());
-        $options = static::getOptions($filename);
+        $options = static::getOptions($filename, $test);
         $context = self::getContextFor($filename);
 
         if ($expected instanceof JsonLdException) {
@@ -76,15 +76,15 @@ class FlattenerTest extends AbstractJsonLdTestCase
         return false;
     }
 
-    protected static function getOptions(string $filename): ProcessorOptions
+    protected static function getOptions(string $filename, string $test): ProcessorOptions
     {
         $options = new ProcessorOptions(base: static::getBaseUrlForW3CTests($filename));
 
-        if ('0014-in.jsonld' === $filename || '0026-in.jsonld' === $filename) {
+        if ('0014-in.jsonld' === $test || '0026-in.jsonld' === $test) {
             $options->processingMode = Context::PROCESSING_MODE_10;
         }
 
-        if ('0044-in.jsonld' === $filename) {
+        if ('0044-in.jsonld' === $test) {
             $options->compactArrays = false;
         }
 

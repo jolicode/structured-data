@@ -24,37 +24,75 @@ abstract class AbstractJsonLdTestCase extends TestCase
     public const DATA_PATH = __DIR__ . '/../../var/cache/w3c-json-ld-api/tests';
 
     /**
-     * @return iterable<string, array{json: string, expected: string|JsonLdException, filename: string}>
+     * One data set per W3C manifest entry. A data set is named after the expected
+     * output file of the entry, with "-out" replaced by "-in" (which is the input
+     * file name, except for the variants of getVariantOutputFiles()), or after the
+     * input file for the negative tests. The EARL report relies on this naming to
+     * map the outcomes back to the manifest.
+     *
+     * @return iterable<string, array{json: string, expected: string|JsonLdException, filename: string, test: string}>
      */
     public static function provideInputsAndOutputs(): iterable
     {
         foreach (static::getInputFiles() as $inputFile) {
             $filename = $inputFile->getFilename();
+            $json = $inputFile->getContents();
 
-            if (static::shouldSkipThisTest($filename)) {
-                continue;
-            }
+            if (!static::shouldSkipThisTest($filename)) {
+                $outputFileName = static::getOutputFileName(
+                    str_replace('-in', '-out', $filename),
+                );
 
-            $outputFileName = static::getOutputFileName(
-                str_replace('-in', '-out', $filename),
-            );
-
-            if (is_file($outputFileName)) {
-                $expected = file_get_contents($outputFileName);
-
-                if (false === $expected) {
-                    throw new \RuntimeException(\sprintf('The expected output "%s" could not be read.', $outputFileName));
+                if (is_file($outputFileName)) {
+                    $expected = static::readExpectedOutput($outputFileName);
+                } else {
+                    $expected = new JsonLdException(static::getExpectedErrorMessage($filename));
                 }
-            } else {
-                $expected = new JsonLdException(static::getExpectedErrorMessage($filename));
+
+                yield $filename => [
+                    'json' => $json,
+                    'expected' => $expected,
+                    'filename' => $filename,
+                    'test' => $filename,
+                ];
             }
 
-            yield $filename => [
-                'json' => $inputFile->getContents(),
-                'expected' => $expected,
-                'filename' => $filename,
-            ];
+            foreach (static::getVariantOutputFiles($filename) as $variantOutputFile) {
+                $test = str_replace('-out', '-in', $variantOutputFile);
+
+                yield $test => [
+                    'json' => $json,
+                    'expected' => static::readExpectedOutput(static::getOutputFileName($variantOutputFile)),
+                    'filename' => $filename,
+                    'test' => $test,
+                ];
+            }
         }
+    }
+
+    /**
+     * Some manifest entries run an input file that another entry already uses,
+     * with other options (typically in JSON-LD 1.1 processing mode where the first
+     * entry runs in 1.0 mode), against a different expected output. The fixture
+     * layout keys the tests by input file, so these variants are declared here: the
+     * expected output files of the variants of the given input file.
+     *
+     * @return list<string>
+     */
+    protected static function getVariantOutputFiles(string $filename): array
+    {
+        return [];
+    }
+
+    protected static function readExpectedOutput(string $outputFileName): string
+    {
+        $expected = @file_get_contents($outputFileName);
+
+        if (false === $expected) {
+            throw new \RuntimeException(\sprintf('The expected output "%s" could not be read.', $outputFileName));
+        }
+
+        return $expected;
     }
 
     /**
@@ -99,8 +137,12 @@ abstract class AbstractJsonLdTestCase extends TestCase
     /**
      * Some tests require some special options to work.
      * This method must return the corresponding options for this test, available at https://w3c.github.io/json-ld-api/tests.
+     *
+     * The options are keyed by the data set name ($test), which differs from the
+     * input file name ($filename) for the variants of getVariantOutputFiles(); the
+     * base IRI is always the one of the input file.
      */
-    abstract protected static function getOptions(string $filename): ProcessorOptions;
+    abstract protected static function getOptions(string $filename, string $test): ProcessorOptions;
 
     protected static function getInputFiles(): Finder
     {
