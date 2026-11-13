@@ -96,6 +96,69 @@ HTML;
         $this->assertStringContainsString('"name":"Acme Org"', $elements[1]->content);
     }
 
+    public function testItExtractsATopLevelMicrodataItemNestedInAnotherItemsElement(): void
+    {
+        // A BreadcrumbList without itemprop, inside the VideoObject's element: it
+        // is a top-level item of its own, and the VideoObject gets none of its
+        // properties.
+        $extractor = new Extractor();
+
+        $document = <<<'HTML'
+<!doctype html>
+<html>
+  <body>
+    <div itemscope itemtype="https://schema.org/VideoObject">
+      <meta itemprop="name" content="A video">
+      <span itemscope itemtype="https://schema.org/BreadcrumbList">
+        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <meta itemprop="position" content="1">
+          <meta itemprop="name" content="A channel">
+        </span>
+      </span>
+    </div>
+  </body>
+</html>
+HTML;
+
+        $elements = $extractor->extract($document);
+
+        $this->assertCount(2, $elements);
+        $this->assertStringContainsString('"@type":"VideoObject"', $elements[0]->content);
+        $this->assertStringContainsString('"name":"A video"', $elements[0]->content);
+        $this->assertStringNotContainsString('itemListElement', $elements[0]->content);
+        $this->assertStringContainsString('"@type":"BreadcrumbList"', $elements[1]->content);
+        $this->assertStringContainsString('"name":"A channel"', $elements[1]->content);
+    }
+
+    public function testItReadsTheContentAttributeOfAnyMicrodataPropertyElement(): void
+    {
+        // The specification only defines "content" on <meta>, but Google reads it
+        // everywhere, and real pages name authors with <link itemprop content>.
+        $extractor = new Extractor();
+
+        $document = <<<'HTML'
+<!doctype html>
+<html>
+  <body>
+    <div itemscope itemtype="https://schema.org/VideoObject">
+      <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+        <link itemprop="url" href="https://example.com/@channel">
+        <link itemprop="name" content="Rick Astley">
+      </span>
+      <span itemprop="genre" content="Music">Pop</span>
+    </div>
+  </body>
+</html>
+HTML;
+
+        $elements = $extractor->extract($document);
+
+        $this->assertCount(1, $elements);
+        $this->assertStringContainsString('"url":"https://example.com/@channel"', $elements[0]->content);
+        $this->assertStringContainsString('"name":"Rick Astley"', $elements[0]->content);
+        $this->assertStringContainsString('"genre":"Music"', $elements[0]->content);
+    }
+
     public function testItFallsBackToRdfaWhenNoJsonLdOrMicrodataIsPresent(): void
     {
         $extractor = new Extractor();

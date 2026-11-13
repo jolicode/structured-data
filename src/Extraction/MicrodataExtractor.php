@@ -73,7 +73,11 @@ class MicrodataExtractor extends AbstractHtmlExtractor
                 continue;
             }
 
-            if (!$this->hasAncestorItemScope($itemScope)) {
+            // An item without itemprop is a top-level item wherever it sits, even
+            // inside another item's element, as the specification defines it. An
+            // item with itemprop but no enclosing item is kept as a top-level item
+            // too, rather than dropped.
+            if (!$itemScope->hasAttribute('itemprop') || !$this->hasAncestorItemScope($itemScope)) {
                 $topLevelItems[] = $itemScope;
             }
         }
@@ -302,6 +306,13 @@ class MicrodataExtractor extends AbstractHtmlExtractor
 
         if ('time' === $tagName && $propertyNode->hasAttribute('datetime')) {
             return trim($propertyNode->getAttribute('datetime'));
+        }
+
+        // The specification only reads "content" on <meta>, but Google reads it on
+        // any element, and pages rely on it (a <link itemprop content> without href,
+        // for instance).
+        if ($propertyNode->hasAttribute('content')) {
+            return trim($propertyNode->getAttribute('content'));
         }
 
         $text = trim($propertyNode->textContent);

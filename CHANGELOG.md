@@ -13,6 +13,10 @@
 
 ### Fixed
 
+- Microdata: a top-level item (an `itemscope` without `itemprop`) placed inside another
+  item's element was dropped, as was the `content` attribute of any element but `<meta>`
+  (`<link itemprop="name" content="...">`, which has no `href`). Both are common on real
+  pages, and Google reads them.
 - Framing in JSON-LD 1.1 mode dropped a property whose only value was a node reduced
   to a pruned blank node identifier (W3C test `frame#tp046`): the empty node object is
   now kept, as `{}`.
