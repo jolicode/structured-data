@@ -24,6 +24,7 @@ use function Castor\run;
 
 use JoliCode\StructuredData\Audit\AuditOptions;
 use JoliCode\StructuredData\JsonLd\Algorithms;
+use JoliCode\StructuredData\Tests\Validation\Benchmark\WorkerValidationBench;
 use JoliCode\StructuredData\Validator;
 use JoliCode\StructuredData\Vocabularies\Generators\Google\Filesystem as GoogleFilesystem;
 use JoliCode\StructuredData\Vocabularies\Generators\SchemaOrg\Filesystem as SchemaOrgFilesystem;
@@ -76,7 +77,9 @@ function toolsDir(): string
 function suiteFixturesAreMissing(): bool
 {
     return !fs()->exists(\sprintf('%s/tests/flatten/output', CACHE_DIR_W3C_TEST_SUITE))
-        || !fs()->exists(\sprintf('%s/tests/frame/output', CACHE_DIR_W3C_FRAMING_TEST_SUITE));
+        || !fs()->exists(\sprintf('%s/tests/frame/output', CACHE_DIR_W3C_FRAMING_TEST_SUITE))
+        || !fs()->exists(\sprintf('%s/tests/expand-manifest.jsonld', CACHE_DIR_W3C_TEST_SUITE))
+        || !fs()->exists(\sprintf('%s/tests/frame-manifest.jsonld', CACHE_DIR_W3C_FRAMING_TEST_SUITE));
 }
 
 #[AsTask(description: 'Installs qa tooling')]
@@ -201,6 +204,19 @@ function phpunitPrepare(
         $zip->close();
 
         foreach (Algorithms::algorithmNames() as $algorithm) {
+            // The manifest is what the EARL conformance report is built from (see
+            // "castor qa:earl"): it lists every test with its IRI, which the fixture
+            // file names alone cannot give.
+            $manifest = \sprintf('%s-manifest.jsonld', $algorithm);
+
+            if (fs()->exists(\sprintf('%s/json-ld-api-%s/tests/%s', CACHE_DIR_W3C_TEST_SUITE, $ref, $manifest))) {
+                fs()->copy(
+                    \sprintf('%s/json-ld-api-%s/tests/%s', CACHE_DIR_W3C_TEST_SUITE, $ref, $manifest),
+                    \sprintf('%s/tests/%s', CACHE_DIR_W3C_TEST_SUITE, $manifest),
+                    true,
+                );
+            }
+
             foreach (['-in.jsonld' => 'input', '-out.jsonld' => 'output', '-context.jsonld' => 'context'] as $suffix => $directory) {
                 $targetDirectory = \sprintf('%s/tests/%s/%s', CACHE_DIR_W3C_TEST_SUITE, $algorithm, $directory);
                 fs()->mkdir($targetDirectory);
@@ -242,6 +258,12 @@ function phpunitPrepare(
         $framingZip->open($framingZipFileName);
         $framingZip->extractTo(CACHE_DIR_W3C_FRAMING_TEST_SUITE);
         $framingZip->close();
+
+        fs()->copy(
+            \sprintf('%s/json-ld-framing-%s/tests/frame-manifest.jsonld', CACHE_DIR_W3C_FRAMING_TEST_SUITE, $framingRef),
+            \sprintf('%s/tests/frame-manifest.jsonld', CACHE_DIR_W3C_FRAMING_TEST_SUITE),
+            true,
+        );
 
         foreach (['-in.jsonld' => 'input', '-out.jsonld' => 'output', '-frame.jsonld' => 'frame'] as $suffix => $directory) {
             $targetDirectory = \sprintf('%s/tests/frame/%s', CACHE_DIR_W3C_FRAMING_TEST_SUITE, $directory);
@@ -497,27 +519,12 @@ function updateBaseline(
             severity: AuditOptions::SEVERITY_ERROR,
         ));
 
-        $remainingDocumentIssues = $documentIssues;
-        $warningsWithoutExtraction = [];
-
-        foreach ($warningMessages as $warningMessage) {
-            $matchingDocumentIssueKey = array_find_key(
-                $remainingDocumentIssues,
-                static fn (string $documentIssue): bool => $documentIssue === $warningMessage,
-            );
-
-            if ($matchingDocumentIssueKey) {
-                unset($remainingDocumentIssues[$matchingDocumentIssueKey]);
-
-                continue;
-            }
-
-            $warningsWithoutExtraction[] = $warningMessage;
-        }
-
+        // A document issue is an error or a warning too, and the tests compare the
+        // errors and the warnings as the audit reports them, document issues
+        // included: the baseline lists it on both sides.
         $baseline[$file->getFilename()] = [
             'errors' => $errorMessages,
-            'warnings' => $warningsWithoutExtraction,
+            'warnings' => $warningMessages,
             'documentIssues' => $documentIssues,
         ];
     }
@@ -591,6 +598,7 @@ function benchValidators(
         toolsDir() . '/phpbench/vendor/bin/phpbench',
         'run',
         'tests/Validation/Benchmark/JsonLdValidatorBench.php',
+        'tests/Validation/Benchmark/WorkerValidationBench.php',
         '--no-interaction',
         '--report=readable',
         '--output=console',
@@ -611,6 +619,16 @@ function benchValidators(
         io()->success(\sprintf(
             'On average, it took %.6F seconds to validate a web page (without making HTTP calls).',
             $htmlAverage / 1_000_000,
+        ));
+
+        // The two figures above audit the same document over and over, so the
+        // content-keyed caches of the Validator serve most of the work. The worker
+        // benchmark audits a stream of distinct documents and is the figure to quote
+        // for a crawler or a queue consumer: every audit is a cache miss.
+        $workerAverage = averageValidatorBenchStat($results, 'benchDistinctDocumentsStream');
+        io()->success(\sprintf(
+            'In a long-lived worker auditing distinct documents (no cache hit), it took %.6F seconds per document.',
+            $workerAverage / 1_000_000 / WorkerValidationBench::DOCUMENTS_PER_ITERATION,
         ));
 
         $htmlReportPath = rootDir() . '/var/cache/benchmark-results-validators.html';

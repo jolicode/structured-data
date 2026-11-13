@@ -1,0 +1,27 @@
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "A post with comments",
+    "image": ["https://example.com/posts/comments.png"],
+    "datePublished": "2024-05-02",
+    "dateModified": "2024-05-03",
+    "author": {
+        "@type": "Person",
+        "name": "Jane Doe",
+        "url": "https://example.com/team/jane-doe"
+    },
+    "comment": [
+        {
+            "@type": "Comment",
+            "text": "Great post!"
+        },
+        {
+            "@type": "Comment",
+            "text": "I disagree with the second part.",
+            "author": {
+                "@type": "Person",
+                "name": "John"
+            }
+        }
+    ]
+}

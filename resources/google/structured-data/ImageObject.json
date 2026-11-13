@@ -1,6 +1,7 @@
 {
     "name": "ImageObject",
     "documentation": "https://developers.google.com/search/docs/appearance/structured-data/image-license-metadata",
+    "standalone": false,
     "specialRules": [],
     "supportedTypes": [
         "ImageObject"

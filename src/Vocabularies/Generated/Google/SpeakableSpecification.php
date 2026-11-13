@@ -16,6 +16,9 @@ final class SpeakableSpecification
     public const SUPPORTED_TYPES = ['SpeakableSpecification'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/speakable';
     public const SPECIAL_RULE_KEYS = ['google.speakable.cssselector_or_xpath'];
+    public const STANDALONE = false;
+    public const ACCEPTS_SUBTYPES = true;
+    public const EXCLUDED_SUBTYPES = [];
     public const PROPERTIES = [
         'cssSelector' => [
             'name' => 'cssSelector',

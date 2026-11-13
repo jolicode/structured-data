@@ -16,6 +16,9 @@ final class DataFeed
     public const SUPPORTED_TYPES = ['DataFeed'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/book#datafeed-entity';
     public const SPECIAL_RULE_KEYS = ['google.book.offer_pricing_by_category'];
+    public const STANDALONE = true;
+    public const ACCEPTS_SUBTYPES = true;
+    public const EXCLUDED_SUBTYPES = [];
     public const PROPERTIES = [
         'dataFeedElement' => [
             'name' => 'dataFeedElement',

@@ -16,6 +16,9 @@ final class SoftwareApplication
     public const SUPPORTED_TYPES = ['SoftwareApplication'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/software-app';
     public const SPECIAL_RULE_KEYS = [];
+    public const STANDALONE = true;
+    public const ACCEPTS_SUBTYPES = true;
+    public const EXCLUDED_SUBTYPES = [];
     public const PROPERTIES = [
         'name' => [
             'name' => 'name',

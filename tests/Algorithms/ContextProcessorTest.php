@@ -31,7 +31,7 @@ class ContextProcessorTest extends AbstractJsonLdTestCase
      * The algorithm doesn't have its own proper tests : its validity is tested in the other algorithms tests.
      * */
     #[DataProvider('provideInputsAndOutputs')]
-    public function testProcessContext(string $json, string $expected, string $filename): void
+    public function testProcessContext(string $json, string $expected, string $filename, string $test): void
     {
         $processer = new ContextProcessor(new ContextCache(static::createDocumentLoader()));
         $actual = new \stdClass();
@@ -188,7 +188,7 @@ class ContextProcessorTest extends AbstractJsonLdTestCase
         return \in_array($filename, $testsToSkip, true);
     }
 
-    protected static function getOptions(string $filename): ProcessorOptions
+    protected static function getOptions(string $filename, string $test): ProcessorOptions
     {
         // contexts don't use options
         return new ProcessorOptions();

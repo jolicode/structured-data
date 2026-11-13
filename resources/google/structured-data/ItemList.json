@@ -1,6 +1,7 @@
 {
     "name": "ItemList",
     "documentation": "https://developers.google.com/search/docs/appearance/structured-data/carousel",
+    "acceptsSubtypes": false,
     "specialRules": [],
     "supportedTypes": [
         "ItemList"

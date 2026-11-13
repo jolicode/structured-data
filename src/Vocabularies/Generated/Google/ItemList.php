@@ -16,6 +16,9 @@ final class ItemList
     public const SUPPORTED_TYPES = ['ItemList'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/carousel';
     public const SPECIAL_RULE_KEYS = [];
+    public const STANDALONE = true;
+    public const ACCEPTS_SUBTYPES = false;
+    public const EXCLUDED_SUBTYPES = [];
     public const PROPERTIES = [
         'itemListElement' => [
             'name' => 'itemListElement',

@@ -41,6 +41,9 @@ For a complete update workflow, use the dedicated upgrade guidelines at `../UPGR
 - **documentation**: A URL (with anchor) pointing to the Google structured-data documentation.
 - **specialRules**: An array of special-rule keys applied for this type (e.g., `"google.breadcrumb.last_item_optional"`). These keys are resolved by the SpecialRulesRegistry at validation time.
 - **supportedTypes**: Defines what the `@type` entry must be (or must be one of, if in an array).
+- **acceptsSubtypes**: Optional, `true` by default. Google applies most of its rules to the schema.org subtypes of the documented type as well (a `BusinessEvent` is validated as an `Event`, a `Restaurant` as a `LocalBusiness`). Set it to `false` when the rules only make sense for the exact type (`ItemList`: a `HowToStep` is not a carousel).
+- **excludedSubtypes**: Optional. The schema.org subtypes (and their own subtypes) the rules do not apply to, when `acceptsSubtypes` is left to `true` (`Event`: a `CourseInstance` or a `PublicationEvent` is not an event people attend).
+- **standalone**: Optional, `true` by default. Google reports every entity of a page as a rich result candidate, wherever it is nested, so a type found under a property its parent does not document is validated on its own. Set it to `false` for the types Google only documents as parts of another one (`Comment`, `Answer`, `AggregateRating`...), which must not be reported as rich results when found elsewhere.
 - **value**: Used when a specific value is expected for a property. If set, `supportedTypes` must be a DataType (usually `Text` or `URL`, but not exclusively).
 - **@target**: Used when a property accepts multiple types with different property sets. Defines properties for a targeted type. See `Book.json` for an example.
 - **properties**: The validation properties for a given type.

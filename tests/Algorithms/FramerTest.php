@@ -29,10 +29,10 @@ class FramerTest extends AbstractJsonLdTestCase
     public const FRAMING_DATA_PATH = __DIR__ . '/../../var/cache/w3c-json-ld-framing/tests';
 
     #[DataProvider('provideInputsAndOutputs')]
-    public function testFrame(string $json, string|JsonLdException $expected, string $filename): void
+    public function testFrame(string $json, string|JsonLdException $expected, string $filename, string $test): void
     {
         $framer = new Framer(documentLoader: static::createDocumentLoader());
-        $options = static::getOptions($filename);
+        $options = static::getOptions($filename, $test);
         $frame = self::getFrameFor($filename);
 
         if ($expected instanceof JsonLdException) {
@@ -94,7 +94,21 @@ class FramerTest extends AbstractJsonLdTestCase
         return \in_array($filename, $testsToSkip, true);
     }
 
-    protected static function getOptions(string $filename): ProcessorOptions
+    protected static function getVariantOutputFiles(string $filename): array
+    {
+        // #tp020, #tp021, #tp046 and #tp049: the same input and frame as #t0020,
+        // #t0021, #t0046 and #t0049, framed in JSON-LD 1.1 processing mode (which
+        // prunes the blank node identifiers) instead of 1.0 mode.
+        return match ($filename) {
+            '0020-in.jsonld' => ['p020-out.jsonld'],
+            '0021-in.jsonld' => ['p021-out.jsonld'],
+            '0046-in.jsonld' => ['p046-out.jsonld'],
+            '0049-in.jsonld' => ['p049-out.jsonld'],
+            default => [],
+        };
+    }
+
+    protected static function getOptions(string $filename, string $test): ProcessorOptions
     {
         $options = new ProcessorOptions(base: \sprintf(
             'https://w3c.github.io/json-ld-framing/tests/frame/%s',
@@ -109,19 +123,19 @@ class FramerTest extends AbstractJsonLdTestCase
             '0049-in.jsonld', '0059-in.jsonld',
         ];
 
-        if (\in_array($filename, $processingMode10Tests, true)) {
+        if (\in_array($test, $processingMode10Tests, true)) {
             $options->processingMode = Context::PROCESSING_MODE_10;
         }
 
-        if ('0058-in.jsonld' === $filename) {
+        if ('0058-in.jsonld' === $test) {
             $options->omitGraph = false;
         }
 
-        if ('0060-in.jsonld' === $filename) {
+        if ('0060-in.jsonld' === $test) {
             $options->ordered = true;
         }
 
-        if ('g001-in.jsonld' === $filename) {
+        if ('g001-in.jsonld' === $test) {
             $options->omitGraph = true;
         }
 

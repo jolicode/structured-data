@@ -16,6 +16,9 @@ final class FAQPage
     public const SUPPORTED_TYPES = ['FAQPage'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/faqpage';
     public const SPECIAL_RULE_KEYS = [];
+    public const STANDALONE = true;
+    public const ACCEPTS_SUBTYPES = true;
+    public const EXCLUDED_SUBTYPES = [];
     public const PROPERTIES = [
         'mainEntity' => [
             'name' => 'mainEntity',

@@ -25,9 +25,12 @@ use JoliCode\StructuredData\JsonLd\Parser\DataStructures\ObjectStructure;
 use JoliCode\StructuredData\JsonLd\Parser\JsonLdParser;
 use JoliCode\StructuredData\Mapper\DocumentError;
 use JoliCode\StructuredData\Mapper\DocumentIssueInterface;
+use JoliCode\StructuredData\Mapper\DocumentWarning;
 use JoliCode\StructuredData\Mapper\MappedError;
+use JoliCode\StructuredData\Mapper\MappedErrorFormatter;
 use JoliCode\StructuredData\Mapper\MappedProperty;
 use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Mapper\MappedTypeMerger;
 use JoliCode\StructuredData\Mapper\ValidationMapper;
 use JoliCode\StructuredData\Mapper\ValidationSnippetCache;
 use JoliCode\StructuredData\Mapper\ValidationSnippetTemplateApplier;
@@ -238,9 +241,60 @@ class Validator
             }
         }
 
-        $documentIssues = $this->mapDocumentIssuesToMappedErrors($documentIssues);
+        $documentIssues = $this->mapDocumentIssuesToMappedErrors([
+            ...$documentIssues,
+            ...$this->reconcileTypesSharingAnIdentifier($types),
+        ]);
 
         return new Audit($types, $documentIssues);
+    }
+
+    /**
+     * Google reads the page as one graph: the blocks sharing an identifier are one
+     * node, whatever their format, and a property one block omits is not missing
+     * when another block provides it. Each block keeps its own audit and
+     * positions; the node Google sees is validated apart, and the "missing
+     * property" issues it does not have are withdrawn from the blocks.
+     *
+     * Google keeps every value when the blocks disagree on one, and reports
+     * nothing: the disagreement is reported as a document warning, outside the
+     * Google verdict.
+     *
+     * @param array<MappedType> $types
+     *
+     * @return list<DocumentIssueInterface>
+     */
+    private function reconcileTypesSharingAnIdentifier(array $types): array
+    {
+        $issues = [];
+
+        foreach (MappedTypeMerger::groupByIdentifier($types) as $identifier => $members) {
+            $merged = MappedTypeMerger::merge($members);
+
+            $this->validateType($merged['type']);
+            MappedTypeMerger::withdrawIssuesResolvedBy($merged['type'], $members);
+
+            foreach ($merged['conflicts'] as $conflict) {
+                $ranges = array_map(
+                    static fn (MappedProperty $property): string => MappedErrorFormatter::formatRanges($property->getValueRanges()),
+                    $conflict['properties'],
+                );
+
+                $issues[] = new DocumentWarning(
+                    'Document',
+                    \sprintf(
+                        'The "%s" of "%s" has a different value in each of the %d blocks describing it (%s): Google merges them and keeps every value.',
+                        $conflict['key'],
+                        $identifier,
+                        \count($conflict['properties']),
+                        implode(', ', array_map(static fn (mixed $value): string => json_encode($value, \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE) ?: '', $conflict['values'])),
+                    ),
+                    implode(', ', array_filter($ranges)),
+                );
+            }
+        }
+
+        return $issues;
     }
 
     /**

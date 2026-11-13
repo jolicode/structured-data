@@ -21,6 +21,7 @@ final readonly class MappedErrorTemplate
         public string $severity,
         public ?string $validatorName,
         public ?string $documentationLink,
+        public ?string $missingProperty = null,
     ) {
     }
 }

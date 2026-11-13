@@ -21,7 +21,7 @@ use JoliCode\StructuredData\Validator;
  */
 class WorkerValidationBench
 {
-    private const DOCUMENTS_PER_ITERATION = 25;
+    public const DOCUMENTS_PER_ITERATION = 25;
 
     private Validator $validator;
 

@@ -16,6 +16,9 @@ final class ProductMerchantListing extends Product
     public const SUPPORTED_TYPES = ['Product'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/merchant-listing';
     public const SPECIAL_RULE_KEYS = ['google.product.merchant_listing_price_positive', 'google.product.merchant_listing_price_currency', 'google.product.merchant_listing_return_policy'];
+    public const STANDALONE = true;
+    public const ACCEPTS_SUBTYPES = true;
+    public const EXCLUDED_SUBTYPES = [];
     public const PROPERTIES = [
         'name' => [
             'name' => 'name',

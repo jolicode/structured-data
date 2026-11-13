@@ -27,10 +27,10 @@ use PHPUnit\Framework\Attributes\Group;
 class CompactorTest extends AbstractJsonLdTestCase
 {
     #[DataProvider('provideInputsAndOutputs')]
-    public function testCompact(string $json, string|JsonLdException $expected, string $filename): void
+    public function testCompact(string $json, string|JsonLdException $expected, string $filename, string $test): void
     {
         $compactor = new Compactor(documentLoader: static::createDocumentLoader());
-        $options = static::getOptions($filename);
+        $options = static::getOptions($filename, $test);
         $context = self::getContextFor($filename);
 
         if ($expected instanceof JsonLdException) {
@@ -92,7 +92,8 @@ class CompactorTest extends AbstractJsonLdTestCase
             // These tests are declared with "specVersion": "json-ld-1.0" in the W3C
             // manifest: they only apply to JSON-LD 1.0 processors. In particular,
             // e001 expects a "compaction to list of lists" error which is valid
-            // JSON-LD in 1.1 processing mode.
+            // JSON-LD in 1.1 processing mode. The 1.1 counterpart of 0038 (#ta038)
+            // runs as a variant, see getVariantOutputFiles().
             '0038-in.jsonld',
             'e001-in.jsonld',
         ];
@@ -100,7 +101,16 @@ class CompactorTest extends AbstractJsonLdTestCase
         return \in_array($filename, $testsToSkip, true);
     }
 
-    protected static function getOptions(string $filename): ProcessorOptions
+    protected static function getVariantOutputFiles(string $filename): array
+    {
+        return match ($filename) {
+            // #ta038: the JSON-LD 1.1 version of #t0038, same input and context
+            '0038-in.jsonld' => ['0038a-out.jsonld'],
+            default => [],
+        };
+    }
+
+    protected static function getOptions(string $filename, string $test): ProcessorOptions
     {
         $options = new ProcessorOptions(base: static::getBaseUrlForW3CTests($filename));
 
@@ -110,23 +120,23 @@ class CompactorTest extends AbstractJsonLdTestCase
             'ep14-in.jsonld', 'ep15-in.jsonld', 'p001-in.jsonld',
         ];
 
-        if (\in_array($filename, $processingMode10Tests, true)) {
+        if (\in_array($test, $processingMode10Tests, true)) {
             $options->processingMode = Context::PROCESSING_MODE_10;
         }
 
-        if (\in_array($filename, ['0070-in.jsonld', '0091-in.jsonld', '0093-in.jsonld'], true)) {
+        if (\in_array($test, ['0070-in.jsonld', '0091-in.jsonld', '0093-in.jsonld'], true)) {
             $options->compactArrays = false;
         }
 
-        if (\in_array($filename, ['0075-in.jsonld', 'r001-in.jsonld'], true)) {
+        if (\in_array($test, ['0075-in.jsonld', 'r001-in.jsonld'], true)) {
             $options->base = 'http://example.org/';
         }
 
-        if ('0114-in.jsonld' === $filename) {
+        if ('0114-in.jsonld' === $test) {
             $options->base = 'https://example.org/';
         }
 
-        if ('r002-in.jsonld' === $filename) {
+        if ('r002-in.jsonld' === $test) {
             $options->compactToRelative = false;
         }
 

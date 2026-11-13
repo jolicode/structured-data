@@ -13,6 +13,7 @@ namespace JoliCode\StructuredData\Vocabularies\Validators\Google;
 
 use JoliCode\StructuredData\Mapper\MappedType;
 use JoliCode\StructuredData\Vocabularies\Generated\GeneratedClassesRegistry;
+use JoliCode\StructuredData\Vocabularies\Validators\SchemaOrgTypeHierarchy;
 
 /**
  * Normalizes the hand-written Google validation property maps: flattens the
@@ -139,17 +140,12 @@ final class ValidationPropertiesNormalizer
 
             $validationClass = self::getImportedClass($supportedType);
 
-            $matchingTypes = array_intersect(
-                (array) $mappedType->getType(),
-                $validationClass::SUPPORTED_TYPES,
-            );
-
             // A mismatch is not an authoring error of the validation spec: it happens
             // whenever the audited document nests an unexpected type where the import
             // is declared (e.g. a Person under Answer.comment, which imports @Comment).
             // In that case there simply is nothing to import, and the document must
             // keep being validated - never crash the audit.
-            if ([] !== $matchingTypes) {
+            if (self::supportsType($validationClass, $mappedType)) {
                 $validationType['properties'] = array_merge(
                     $validationType['properties'] ?? [],
                     $validationClass::PROPERTIES,
@@ -183,6 +179,26 @@ final class ValidationPropertiesNormalizer
                 );
             }
         }
+    }
+
+    /**
+     * Whether the validation class covers one of the types of the mapped type,
+     * subtypes included when the class accepts them (an @Event import applies to a
+     * BusinessEvent).
+     */
+    private static function supportsType(string $validationClass, MappedType $mappedType): bool
+    {
+        foreach ((array) $mappedType->getType() as $typeLabel) {
+            if (\in_array($typeLabel, $validationClass::SUPPORTED_TYPES, true)) {
+                return true;
+            }
+
+            if (SchemaOrgTypeHierarchy::isA($typeLabel, $validationClass::SUPPORTED_TYPES) && Stack::acceptsSubtype($validationClass, $typeLabel)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private static function getImportedClass(string $importedType): string

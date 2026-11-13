@@ -16,6 +16,9 @@ final class QAPage
     public const SUPPORTED_TYPES = ['QAPage'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/qapage';
     public const SPECIAL_RULE_KEYS = ['google.qapage.answer_comment_count_consistency'];
+    public const STANDALONE = true;
+    public const ACCEPTS_SUBTYPES = true;
+    public const EXCLUDED_SUBTYPES = [];
     public const PROPERTIES = [
         'mainEntity' => [
             'name' => 'mainEntity',

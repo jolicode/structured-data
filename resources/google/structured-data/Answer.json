@@ -1,6 +1,7 @@
 {
     "name": "Answer",
     "documentation": "https://developers.google.com/search/docs/appearance/structured-data/qapage#answer",
+    "standalone": false,
     "specialRules": [],
     "supportedTypes": [
         "Answer"

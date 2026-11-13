@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Same event, two formats, two start dates</title>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "@id": "https://example.com/events/symfonylive-2026",
+        "name": "SymfonyLive Paris 2026",
+        "description": "Two days of talks about the Symfony framework.",
+        "startDate": "2026-03-22T08:55:00+01:00",
+        "location": {
+            "@type": "Place",
+            "name": "Maison de la Mutualité",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "24 rue Saint-Victor",
+                "addressLocality": "Paris",
+                "postalCode": "75005",
+                "addressCountry": "FR"
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <div itemscope itemtype="https://schema.org/Event" itemid="https://example.com/events/symfonylive-2026">
+        <h1 itemprop="name">SymfonyLive Paris 2026</h1>
+        <p itemprop="description">Another description</p>
+        <meta itemprop="startDate" content="2026-03-26T09:00:00+01:00">
+        <meta itemprop="endDate" content="2026-03-27T18:00:00+01:00">
+        <img itemprop="image" src="https://example.com/events/symfonylive-2026.jpg" alt="">
+    </div>
+</body>
+</html>

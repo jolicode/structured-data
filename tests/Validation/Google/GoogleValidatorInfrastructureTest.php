@@ -87,6 +87,80 @@ class GoogleValidatorInfrastructureTest extends TestCase
         );
     }
 
+    public function testStackResolvesASchemaOrgSubtypeToTheClassOfTheTypeGoogleDocuments(): void
+    {
+        $type = new MappedType(sourceFormat: 'json-ld', type: 'BusinessEvent', properties: [
+            'name' => new MappedProperty('name'),
+        ]);
+
+        $stack = (new Stack())->newType($type);
+
+        $this->assertSame(Stack::BASE_NAMESPACE . '\\Event', $stack->getValidationClass());
+        $this->assertArrayHasKey('startDate', $stack->getTypeValidationProperties() ?? []);
+    }
+
+    public function testStackIgnoresTheSubtypesTheRuleFileExcludes(): void
+    {
+        // A CourseInstance is an Event for schema.org, not for Google.
+        $type = new MappedType(sourceFormat: 'json-ld', type: 'CourseInstance', properties: [
+            'courseMode' => new MappedProperty('courseMode'),
+        ]);
+
+        $stack = (new Stack())->newType($type);
+
+        $this->assertNull($stack->getValidationClass());
+        $this->assertNull($stack->getTypeValidationProperties());
+    }
+
+    public function testStackIgnoresEverySubtypeWhenTheRuleFileRefusesThem(): void
+    {
+        // A HowToStep is an ItemList for schema.org, not a carousel for Google.
+        $type = new MappedType(sourceFormat: 'json-ld', type: 'HowToStep', properties: [
+            'text' => new MappedProperty('text'),
+        ]);
+
+        $stack = (new Stack())->newType($type);
+
+        $this->assertNull($stack->getValidationClass());
+    }
+
+    public function testStackValidatesATypeNestedUnderAnUndocumentedPropertyOnItsOwn(): void
+    {
+        // Article documents nothing for "about": the event found there is a rich
+        // result of its own, and so are its documented nested properties.
+        $article = new MappedType(sourceFormat: 'json-ld', type: 'Article');
+        $about = new MappedProperty('about', $article);
+        $event = new MappedType(sourceFormat: 'json-ld', type: 'BusinessEvent', parent: $article, parentProperty: $about);
+        $location = new MappedProperty('location', $event);
+        $place = new MappedType(sourceFormat: 'json-ld', type: 'Place', parent: $event, parentProperty: $location);
+
+        $stack = (new Stack())->newType($article);
+        $this->assertSame(Stack::BASE_NAMESPACE . '\\Article', $stack->getValidationClass());
+
+        $stack->newType($event);
+        $this->assertSame(Stack::BASE_NAMESPACE . '\\Event', $stack->getValidationClass());
+        $this->assertArrayHasKey('offers', $stack->getTypeValidationProperties() ?? []);
+
+        $stack->newType($place);
+        $this->assertSame(Stack::BASE_NAMESPACE . '\\Event', $stack->getValidationClass());
+        $this->assertArrayHasKey('address', $stack->getTypeValidationProperties() ?? []);
+    }
+
+    public function testStackKeepsANestedOnlyTypeOutOfUndocumentedProperties(): void
+    {
+        // Google only documents Comment as a part of a discussion forum posting or
+        // a Q&A page: a comment under an article is not a rich result.
+        $article = new MappedType(sourceFormat: 'json-ld', type: 'Article');
+        $commentProperty = new MappedProperty('comment', $article);
+        $comment = new MappedType(sourceFormat: 'json-ld', type: 'Comment', parent: $article, parentProperty: $commentProperty);
+
+        $stack = (new Stack())->newType($article);
+        $stack->newType($comment);
+
+        $this->assertNull($stack->getValidationClass());
+        $this->assertNull($stack->getTypeValidationProperties());
+    }
+
     public function testAuditSurvivesAnUnexpectedNestedTypeWhereAnImportIsDeclared(): void
     {
         // Answer.comment declares supportedTypes ["@Comment"]: the property spec is
