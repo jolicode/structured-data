@@ -1,6 +1,7 @@
 {
     "name": "SpeakableSpecification",
     "documentation": "https://developers.google.com/search/docs/appearance/structured-data/speakable",
+    "standalone": false,
     "specialRules": [
         "google.speakable.cssselector_or_xpath"
     ],

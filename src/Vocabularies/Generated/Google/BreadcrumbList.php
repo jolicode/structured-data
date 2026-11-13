@@ -16,6 +16,9 @@ final class BreadcrumbList
     public const SUPPORTED_TYPES = ['BreadcrumbList'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/breadcrumb#json-ld';
     public const SPECIAL_RULE_KEYS = ['google.breadcrumb.last_item_optional'];
+    public const STANDALONE = true;
+    public const ACCEPTS_SUBTYPES = true;
+    public const EXCLUDED_SUBTYPES = [];
     public const PROPERTIES = [
         'itemListElement' => [
             'name' => 'itemListElement',

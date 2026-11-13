@@ -16,6 +16,9 @@ final class SocialMediaPosting
     public const SUPPORTED_TYPES = ['DiscussionForumPosting', 'SocialMediaPosting'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/discussion-forum';
     public const SPECIAL_RULE_KEYS = ['google.discussion_forum.content_or_url'];
+    public const STANDALONE = true;
+    public const ACCEPTS_SUBTYPES = true;
+    public const EXCLUDED_SUBTYPES = [];
     public const PROPERTIES = [
         'author' => [
             'name' => 'author',

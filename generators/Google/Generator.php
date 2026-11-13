@@ -32,6 +32,9 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  *     documentation?: string,
  *     specialRules?: list<string>,
  *     supportedTypes: list<string>,
+ *     standalone?: bool,
+ *     acceptsSubtypes?: bool,
+ *     excludedSubtypes?: list<string>,
  *     properties?: array<mixed>,
  * }
  * @phpstan-type GoogleFile GoogleDefinition|array{subtypes: list<GoogleDefinition>}
@@ -138,6 +141,12 @@ class Generator implements GeneratorInterface
                     $this->factory->classConst('DOCUMENTATION', $type['documentation'] ?? null)
                         ->makePublic(),
                     $this->factory->classConst('SPECIAL_RULE_KEYS', $type['specialRules'] ?? [])
+                        ->makePublic(),
+                    $this->factory->classConst('STANDALONE', $type['standalone'] ?? true)
+                        ->makePublic(),
+                    $this->factory->classConst('ACCEPTS_SUBTYPES', $type['acceptsSubtypes'] ?? true)
+                        ->makePublic(),
+                    $this->factory->classConst('EXCLUDED_SUBTYPES', $type['excludedSubtypes'] ?? [])
                         ->makePublic(),
                     $this->factory->classConst('PROPERTIES', $properties)
                         ->makePublic(),

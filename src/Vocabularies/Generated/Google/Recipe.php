@@ -16,6 +16,9 @@ final class Recipe
     public const SUPPORTED_TYPES = ['Recipe'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/recipe';
     public const SPECIAL_RULE_KEYS = ['google.recipe.calories_requires_yield'];
+    public const STANDALONE = true;
+    public const ACCEPTS_SUBTYPES = true;
+    public const EXCLUDED_SUBTYPES = [];
     public const PROPERTIES = [
         'name' => [
             'name' => 'name',

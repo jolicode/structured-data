@@ -14,20 +14,33 @@ namespace JoliCode\StructuredData\Vocabularies\Validators\Google;
 use JoliCode\StructuredData\Mapper\MappedProperty;
 use JoliCode\StructuredData\Mapper\MappedType;
 use JoliCode\StructuredData\Vocabularies\Generated\GeneratedClassesRegistry;
+use JoliCode\StructuredData\Vocabularies\Validators\SchemaOrgTypeHierarchy;
 
 /**
+ * Finds the Google validation rules that apply to the type being validated.
+ *
+ * A root type is validated by the class named after it, or after its nearest
+ * schema.org ancestor when Google documents the subtypes through their parent
+ * (a BusinessEvent is an Event, a Restaurant a LocalBusiness). A nested type is
+ * validated by the rules its parent documents for the property it sits in; when
+ * the parent documents no such property, the nested type starts over as a root
+ * if Google documents its type as a rich result of its own, as Google does with
+ * every entity of the page, wherever it is nested.
+ *
  * @phpstan-import-type ValidationProperty from ValidationPropertiesNormalizer
  * @phpstan-import-type ValidationProperties from ValidationPropertiesNormalizer
  * @phpstan-import-type TargetBlock from ValidationPropertiesNormalizer
+ *
+ * @phpstan-type Resolution array{class: ?string, standalone: bool, validationType: ValidationProperty|TargetBlock|null}
  */
 class Stack
 {
     public const BASE_NAMESPACE = 'JoliCode\\StructuredData\\Vocabularies\\Generated\\Google';
 
-    private ?string $resolvedValidationTypeCacheKey = null;
+    private ?string $resolutionCacheKey = null;
 
-    /** @var ValidationProperty|TargetBlock|null */
-    private ?array $resolvedValidationTypeCache = null;
+    /** @var Resolution|null */
+    private ?array $resolutionCache = null;
 
     public function __construct(
         private ?MappedType $currentType = null,
@@ -65,9 +78,18 @@ class Stack
         return $this;
     }
 
+    /**
+     * The validation class whose rules apply to the current type: the one of the
+     * root, or the one the current type (or one of its ancestors in the document)
+     * started over with.
+     */
     public function getValidationClass(): ?string
     {
-        return $this->validationClass;
+        if (null === $this->currentType || null === $this->currentType->getParentProperty()) {
+            return $this->validationClass;
+        }
+
+        return $this->resolve()['class'];
     }
 
     /**
@@ -80,17 +102,13 @@ class Stack
      */
     public function getTypeValidationProperties(): ?array
     {
-        $currentType = $this->getCurrentType();
+        $resolution = $this->resolve();
 
-        if (!$currentType->getParentProperty()) {
-            if (null === $this->validationClass) {
-                return null;
-            }
-
-            return $this->validationClass::PROPERTIES;
+        if ($resolution['standalone']) {
+            return null === $resolution['class'] ? null : $resolution['class']::PROPERTIES;
         }
 
-        $validationType = $this->resolveValidationType();
+        $validationType = $resolution['validationType'];
 
         // Data Types are handled when we validate properties
         if (!$validationType || $this->isADataType($validationType)) {
@@ -113,17 +131,13 @@ class Stack
      */
     public function getNextValidationProperty(string $propertyKey): ?array
     {
-        $currentType = $this->getCurrentType();
+        $resolution = $this->resolve();
 
-        if (!$currentType->getParentProperty()) {
-            if (null === $this->validationClass) {
-                return null;
-            }
-
-            return $this->validationClass::PROPERTIES[$propertyKey] ?? null;
+        if ($resolution['standalone']) {
+            return null === $resolution['class'] ? null : ($resolution['class']::PROPERTIES[$propertyKey] ?? null);
         }
 
-        $validationType = $this->resolveValidationType();
+        $validationType = $resolution['validationType'];
 
         if (!isset($validationType['properties'])) {
             return null;
@@ -132,90 +146,167 @@ class Stack
         return ValidationPropertiesNormalizer::nestedProperties($validationType)[$propertyKey] ?? null;
     }
 
+    /**
+     * Whether the rules of a validation class apply to the given subtype of the
+     * type it is named after.
+     */
+    public static function acceptsSubtype(string $validationClass, string $typeLabel): bool
+    {
+        if (\defined($validationClass . '::ACCEPTS_SUBTYPES') && !$validationClass::ACCEPTS_SUBTYPES) {
+            return false;
+        }
+
+        if (\defined($validationClass . '::EXCLUDED_SUBTYPES') && SchemaOrgTypeHierarchy::isA($typeLabel, $validationClass::EXCLUDED_SUBTYPES)) {
+            return false;
+        }
+
+        return true;
+    }
+
     private function initialize(MappedType $type): self
     {
         $this->resetResolutionCache();
-        $typeLabel = $type->getType();
-
-        if (!\is_string($typeLabel)) {
-            $this->validationClass = null;
-
-            return $this;
-        }
-
-        $validationClass = \sprintf('%s\\%s', self::BASE_NAMESPACE, $typeLabel);
-
-        if (!GeneratedClassesRegistry::has($validationClass)) {
-            $this->validationClass = null;
-
-            return $this;
-        }
-
-        if (\defined($validationClass . '::CHILDREN')) {
-            $this->validationClass = $this->resolveChildValidationClass($type, $validationClass);
-
-            return $this;
-        }
-
-        $this->validationClass = \defined($validationClass . '::PROPERTIES') ? $validationClass : null;
+        $this->validationClass = $this->resolveValidationClassFor($type);
 
         return $this;
     }
 
     /**
-     * Build the currently inspected validation type by walking up the parent chain and handling special properties.
+     * Resolves the rules of the current type by walking down from the root: at each
+     * property of the path, the definition the parent documents for it, or, when
+     * there is none, a fresh start from the class of the nested type.
      *
-     * @return ValidationProperty|TargetBlock|null
+     * @return Resolution
      */
-    private function resolveValidationType(): ?array
+    private function resolve(): array
     {
-        if (null === $this->validationClass) {
-            return null;
+        $currentType = $this->getCurrentType();
+
+        if (null === $currentType->getParentProperty()) {
+            return ['class' => $this->validationClass, 'standalone' => true, 'validationType' => null];
         }
 
         $cacheKey = $this->getResolutionCacheKey();
 
-        if ($cacheKey === $this->resolvedValidationTypeCacheKey) {
-            return $this->resolvedValidationTypeCache;
+        if ($cacheKey === $this->resolutionCacheKey && null !== $this->resolutionCache) {
+            return $this->resolutionCache;
         }
 
-        $path = $this->buildPathToCurrentType();
-
-        $validationProperties = $this->validationClass::PROPERTIES;
+        $class = $this->validationClass;
+        $definitions = null === $class ? null : $class::PROPERTIES;
+        $standalone = false;
         $validationType = null;
 
-        foreach ($path as $segment) {
-            $searchedKey = $segment['propertyKey'];
-            $type = $segment['type'];
-
-            $validationProperties = ValidationPropertiesNormalizer::normalizeProperties($validationProperties);
-
-            $validationType = $validationProperties[$searchedKey] ?? null;
+        foreach ($this->buildPathToCurrentType() as $segment) {
+            $validationType = null === $definitions
+                ? null
+                : (ValidationPropertiesNormalizer::normalizeProperties($definitions)[$segment['propertyKey']] ?? null);
 
             if (null === $validationType) {
-                $this->resolvedValidationTypeCacheKey = $cacheKey;
-                $this->resolvedValidationTypeCache = null;
+                // The parent documents nothing for this property (or is not documented
+                // itself): Google still treats the nested entity as a rich result of its
+                // own when it documents its type as one.
+                $class = $this->resolveStandaloneValidationClassFor($segment['type']);
+                $standalone = null !== $class;
+                $definitions = null === $class ? null : $class::PROPERTIES;
 
-                return null;
+                continue;
             }
+
+            $standalone = false;
 
             if ($this->isADataType($validationType)) {
-                $this->resolvedValidationTypeCacheKey = $cacheKey;
-                $this->resolvedValidationTypeCache = $validationType;
+                $definitions = null;
 
-                return $validationType;
+                continue;
             }
 
-            ValidationPropertiesNormalizer::handleSpecialProperties($type, $validationType);
+            ValidationPropertiesNormalizer::handleSpecialProperties($segment['type'], $validationType);
 
             $validationType['properties'] = ValidationPropertiesNormalizer::normalizeProperties($validationType['properties'] ?? []);
-            $validationProperties = $validationType['properties'];
+            $definitions = $validationType['properties'];
         }
 
-        $this->resolvedValidationTypeCacheKey = $cacheKey;
-        $this->resolvedValidationTypeCache = $validationType;
+        $this->resolutionCacheKey = $cacheKey;
 
-        return $validationType;
+        return $this->resolutionCache = [
+            'class' => $class,
+            'standalone' => $standalone,
+            'validationType' => $validationType,
+        ];
+    }
+
+    /**
+     * The validation class of a type taken on its own: the class named after the
+     * type or after its nearest schema.org ancestor, narrowed down to the child
+     * class matching the payload when the class has several.
+     */
+    private function resolveValidationClassFor(MappedType $type): ?string
+    {
+        // A multi-typed entry is validated once per type, through single-typed
+        // clones; the original, still multi-typed, is what the path to a nested
+        // type goes through, and the first of its types that Google documents
+        // tells which rules the nested type is reached by.
+        foreach ((array) $type->getType() as $typeLabel) {
+            $validationClass = $this->findValidationClass($typeLabel);
+
+            if (null === $validationClass) {
+                continue;
+            }
+
+            if (\defined($validationClass . '::CHILDREN')) {
+                return $this->resolveChildValidationClass($type, $validationClass);
+            }
+
+            if (\defined($validationClass . '::PROPERTIES')) {
+                return $validationClass;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Same as resolveValidationClassFor(), for a type found nested where its
+     * parent documents nothing: only the types Google reports as rich results of
+     * their own apply there, not the ones that only exist within another type.
+     */
+    private function resolveStandaloneValidationClassFor(MappedType $type): ?string
+    {
+        $validationClass = $this->resolveValidationClassFor($type);
+
+        if (null === $validationClass) {
+            return null;
+        }
+
+        if (\defined($validationClass . '::STANDALONE') && !$validationClass::STANDALONE) {
+            return null;
+        }
+
+        return $validationClass;
+    }
+
+    /**
+     * The class named after the type, or after the nearest of its schema.org
+     * ancestors whose class accepts subtypes, this one not being excluded.
+     */
+    private function findValidationClass(string $typeLabel): ?string
+    {
+        foreach (SchemaOrgTypeHierarchy::selfAndAncestors($typeLabel) as $index => $label) {
+            $validationClass = \sprintf('%s\\%s', self::BASE_NAMESPACE, $label);
+
+            if (!GeneratedClassesRegistry::has($validationClass)) {
+                continue;
+            }
+
+            if (0 === $index || self::acceptsSubtype($validationClass, $typeLabel)) {
+                return $validationClass;
+            }
+
+            return null;
+        }
+
+        return null;
     }
 
     /**
@@ -320,8 +411,6 @@ class Stack
         return $this->currentType;
     }
 
-    // These methods handle the special cases. They will update the "properties" entry by importing new ones into it.
-    // If multiple types are found on the MappedType, all the potentially needed properties are imported.
     /**
      * @param ValidationProperty|TargetBlock $testedType
      */
@@ -344,7 +433,7 @@ class Stack
 
     private function resetResolutionCache(): void
     {
-        $this->resolvedValidationTypeCacheKey = null;
-        $this->resolvedValidationTypeCache = null;
+        $this->resolutionCacheKey = null;
+        $this->resolutionCache = null;
     }
 }

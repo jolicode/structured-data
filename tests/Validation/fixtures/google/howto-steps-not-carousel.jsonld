@@ -1,0 +1,22 @@
+{
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to tie a bow tie",
+    "step": [
+        {
+            "@type": "HowToStep",
+            "name": "Drape the tie",
+            "text": "Drape the tie around your neck, one end longer than the other."
+        },
+        {
+            "@type": "HowToSection",
+            "name": "The knot",
+            "itemListElement": [
+                {
+                    "@type": "HowToStep",
+                    "text": "Cross the long end over the short one."
+                }
+            ]
+        }
+    ]
+}

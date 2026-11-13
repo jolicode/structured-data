@@ -16,6 +16,9 @@ final class JobPosting
     public const SUPPORTED_TYPES = ['JobPosting'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/job-posting';
     public const SPECIAL_RULE_KEYS = ['google.job_posting.remote_job_location_requirements', 'google.job_posting.experience_in_place_of_education'];
+    public const STANDALONE = true;
+    public const ACCEPTS_SUBTYPES = true;
+    public const EXCLUDED_SUBTYPES = [];
     public const PROPERTIES = [
         'title' => [
             'name' => 'title',

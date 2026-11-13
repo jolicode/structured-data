@@ -1,0 +1,18 @@
+{
+    "@context": "https://schema.org",
+    "@type": "BusinessEvent",
+    "name": "SymfonyLive Paris",
+    "startDate": "2023-03-23",
+    "endDate": "2023-03-24",
+    "description": "Two days of talks about the Symfony framework.",
+    "image": "https://example.com/events/symfonylive-2023.jpg",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": {
+        "@type": "Place",
+        "name": "Paris"
+    },
+    "performer": {
+        "@type": "Person",
+        "name": "Bastien Jaillot"
+    }
+}

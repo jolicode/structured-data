@@ -1,6 +1,7 @@
 {
     "name": "Comment",
     "documentation": "https://developers.google.com/search/docs/appearance/structured-data/qapage#comment",
+    "standalone": false,
     "specialRules": [],
     "supportedTypes": [
         "Comment"

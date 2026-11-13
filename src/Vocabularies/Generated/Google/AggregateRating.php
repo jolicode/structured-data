@@ -16,6 +16,9 @@ final class AggregateRating
     public const SUPPORTED_TYPES = ['AggregateRating'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/review-snippet';
     public const SPECIAL_RULE_KEYS = [];
+    public const STANDALONE = false;
+    public const ACCEPTS_SUBTYPES = true;
+    public const EXCLUDED_SUBTYPES = [];
     public const PROPERTIES = [
         'itemReviewed' => [
             'name' => 'itemReviewed',

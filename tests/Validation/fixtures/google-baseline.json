@@ -1,4 +1,14 @@
 {
+    "article-about-event.jsonld": {
+        "errors": [
+            "[Google error] about.location: Missing required property: \"address\" for the type \"Place\""
+        ],
+        "warnings": [
+            "[Google warning] about: Missing recommended property: \"offers\" for the type \"BusinessEvent\"",
+            "[Google warning] about: Missing recommended property: \"organizer\" for the type \"BusinessEvent\""
+        ],
+        "documentIssues": []
+    },
     "article-author-missing-url-and-sameas.jsonld": {
         "errors": [],
         "warnings": [
@@ -7,6 +17,11 @@
         "documentIssues": []
     },
     "article-author-sameas.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "article-comments-not-promoted.jsonld": {
         "errors": [],
         "warnings": [],
         "documentIssues": []
@@ -154,7 +169,14 @@
     },
     "course-info.jsonld": {
         "errors": [],
-        "warnings": [],
+        "warnings": [
+            "[Google warning] video: Missing recommended property: at least one of the following properties should be present \"creator, author\"",
+            "[Google warning] video: Missing recommended property: \"duration\" for the type \"VideoObject\"",
+            "[Google warning] video: Missing recommended property: \"embedUrl\" for the type \"VideoObject\"",
+            "[Google warning] video: Missing recommended property: \"expires\" for the type \"VideoObject\"",
+            "[Google warning] video: Missing recommended property: \"regionsAllowed\" for the type \"VideoObject\"",
+            "[Google warning] video: Missing recommended property: \"ineligibleRegion\" for the type \"VideoObject\""
+        ],
         "documentIssues": []
     },
     "course-missing-provider.jsonld": {
@@ -255,6 +277,16 @@
         ],
         "documentIssues": []
     },
+    "event-subtype.jsonld": {
+        "errors": [
+            "[Google error] location: Missing required property: \"address\" for the type \"Place\""
+        ],
+        "warnings": [
+            "[Google warning] BusinessEvent: Missing recommended property: \"offers\" for the type \"BusinessEvent\"",
+            "[Google warning] BusinessEvent: Missing recommended property: \"organizer\" for the type \"BusinessEvent\""
+        ],
+        "documentIssues": []
+    },
     "event.jsonld": {
         "errors": [],
         "warnings": [],
@@ -285,6 +317,11 @@
         "documentIssues": []
     },
     "faqpage.jsonld": {
+        "errors": [],
+        "warnings": [],
+        "documentIssues": []
+    },
+    "howto-steps-not-carousel.jsonld": {
         "errors": [],
         "warnings": [],
         "documentIssues": []

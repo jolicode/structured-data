@@ -16,6 +16,9 @@ final class Organization
     public const SUPPORTED_TYPES = ['Organization', 'OnlineStore'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/organization';
     public const SPECIAL_RULE_KEYS = ['google.organization.return_policy', 'google.organization.tax_id_country_consistency', 'google.organization.member_tier_loyalty_points'];
+    public const STANDALONE = true;
+    public const ACCEPTS_SUBTYPES = true;
+    public const EXCLUDED_SUBTYPES = [];
     public const PROPERTIES = [
         'address' => [
             'name' => 'address',

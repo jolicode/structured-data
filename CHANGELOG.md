@@ -13,6 +13,16 @@
 
 ### Fixed
 
+- Google validator: the schema.org subtypes of a documented type are now validated with
+  its rules, as Google does (a `BusinessEvent` is an `Event`, a `Restaurant` a
+  `LocalBusiness`, a `TechArticle` an `Article`). The rule files can refuse subtypes
+  (`ItemList`) or exclude some of them (`Event` excludes `CourseInstance`,
+  `PublicationEvent`...).
+- Google validator: an entity nested under a property its parent does not document (an
+  event in the `about` of an article, a video in a course) was never validated. It is now
+  validated as a rich result of its own, as Google reports it, when its type is one Google
+  documents on its own; the types Google only documents as parts of another one
+  (`Comment`, `Answer`, `AggregateRating`, `ImageObject`...) are left alone.
 - Microdata: a top-level item (an `itemscope` without `itemprop`) placed inside another
   item's element was dropped, as was the `content` attribute of any element but `<meta>`
   (`<link itemprop="name" content="...">`, which has no `href`). Both are common on real

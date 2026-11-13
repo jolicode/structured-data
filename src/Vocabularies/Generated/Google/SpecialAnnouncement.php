@@ -16,6 +16,9 @@ final class SpecialAnnouncement
     public const SUPPORTED_TYPES = ['SpecialAnnouncement'];
     public const DOCUMENTATION = 'https://schema.org/SpecialAnnouncement';
     public const SPECIAL_RULE_KEYS = [];
+    public const STANDALONE = true;
+    public const ACCEPTS_SUBTYPES = true;
+    public const EXCLUDED_SUBTYPES = [];
     public const PROPERTIES = [
         'name' => [
             'name' => 'name',

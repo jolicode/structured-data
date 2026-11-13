@@ -16,6 +16,9 @@ final class BlogPosting
     public const SUPPORTED_TYPES = ['Article', 'NewsArticle', 'BlogPosting'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/article#article-objects';
     public const SPECIAL_RULE_KEYS = ['google.article.author_url_or_sameas'];
+    public const STANDALONE = true;
+    public const ACCEPTS_SUBTYPES = true;
+    public const EXCLUDED_SUBTYPES = [];
     public const PROPERTIES = [
         'author' => [
             'name' => 'author',

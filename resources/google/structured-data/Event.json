@@ -1,6 +1,7 @@
 {
     "name": "Event",
     "documentation": "https://developers.google.com/search/docs/appearance/structured-data/event",
+    "excludedSubtypes": ["CourseInstance", "DeliveryEvent", "PublicationEvent", "UserInteraction"],
     "specialRules": [],
     "supportedTypes": [
         "Event"

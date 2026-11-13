@@ -16,6 +16,9 @@ final class LibrarySystem
     public const SUPPORTED_TYPES = ['LibrarySystem'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/book#librarysystem';
     public const SPECIAL_RULE_KEYS = [];
+    public const STANDALONE = true;
+    public const ACCEPTS_SUBTYPES = true;
+    public const EXCLUDED_SUBTYPES = [];
     public const PROPERTIES = [
         '@id' => [
             'name' => '@id',

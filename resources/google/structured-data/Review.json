@@ -1,6 +1,7 @@
 {
     "name": "Review",
     "documentation": "https://developers.google.com/search/docs/appearance/structured-data/review-snippet",
+    "standalone": false,
     "specialRules": [],
     "supportedTypes": [
         "Review"

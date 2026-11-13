@@ -16,6 +16,9 @@ final class Event
     public const SUPPORTED_TYPES = ['Event'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/event';
     public const SPECIAL_RULE_KEYS = [];
+    public const STANDALONE = true;
+    public const ACCEPTS_SUBTYPES = true;
+    public const EXCLUDED_SUBTYPES = ['CourseInstance', 'DeliveryEvent', 'PublicationEvent', 'UserInteraction'];
     public const PROPERTIES = [
         'name' => [
             'name' => 'name',

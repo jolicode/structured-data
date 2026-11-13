@@ -16,6 +16,9 @@ final class ImageObject
     public const SUPPORTED_TYPES = ['ImageObject'];
     public const DOCUMENTATION = 'https://developers.google.com/search/docs/appearance/structured-data/image-license-metadata';
     public const SPECIAL_RULE_KEYS = [];
+    public const STANDALONE = false;
+    public const ACCEPTS_SUBTYPES = true;
+    public const EXCLUDED_SUBTYPES = [];
     public const PROPERTIES = [
         'contentUrl' => [
             'name' => 'contentUrl',
