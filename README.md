@@ -8,8 +8,11 @@
 
 <div align="center">
 
+[![CI](https://github.com/jolicode/structured-data/actions/workflows/ci.yml/badge.svg)](https://github.com/jolicode/structured-data/actions/workflows/ci.yml)
+[![W3C JSON-LD 1.1 test suites](https://img.shields.io/badge/W3C_JSON--LD_1.1-test_suites_passing-brightgreen)](#conformance)
+[![PHPStan level 9](https://img.shields.io/badge/PHPStan-level_9-brightgreen)](phpstan.neon)
 [![PHP Version Require](http://poser.pugx.org/jolicode/structured-data/require/php)](https://packagist.org/packages/jolicode/structured-data)
-[![Monthly Downloads](http://poser.pugx.org/jolicode/structured-data/d/monthly)](https://packagist.org/packages/jolicode/structured-data)
+[![License](http://poser.pugx.org/jolicode/structured-data/license)](LICENSE)
 
 </div>
 
@@ -19,6 +22,67 @@ It includes:
 - a schema.org validator;
 - a Google validator, which tells you whether your structured data is eligible for [Google Rich Results](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data);
 - an extractor for JSON-LD, microdata and RDFa embedded in HTML documents.
+
+It is used in production by [redirection.io](https://redirection.io/), which audits the
+structured data of the pages it crawls with it.
+
+## Why this library
+
+Structured data is usually validated in a browser, with Google's
+[Rich Results Test](https://search.google.com/test/rich-results) or
+[validator.schema.org](https://validator.schema.org/), or not at all. Neither tool has an
+API, so nothing checks the template you just changed, the pages you deploy, or the
+millions of pages a crawler visits. This library brings that check into PHP:
+
+- **Google Rich Results eligibility, offline.** The Google validator reproduces the
+  required and recommended properties of every type the Google documentation describes,
+  including the rules the documentation only states in prose (a `price` needs a
+  `priceCurrency`, a finite return window needs `merchantReturnDays`...), and applies
+  them the way Google does: to the schema.org subtypes of the documented types, and to
+  every entity of the page, however deeply it is nested. No request leaves your process.
+- **Exact JSON-LD 1.1.** The four W3C algorithms pass the official test suites (see
+  [Conformance](#conformance)), so a document is validated on what it means rather than
+  on how it was written: compact IRIs, nested and scoped contexts, `@graph`, aliases and
+  `@reverse` are all resolved before validation.
+- **One pipeline for JSON-LD, microdata and RDFa.** Everything found in the HTML is
+  extracted, expanded and validated the same way, and a page mixing valid and broken
+  blocks still yields what can be used, with a warning for the rest.
+- **Safe on pages you do not control.** No network request and no file read unless you
+  opt in with an allow-list (see [Loading remote contexts](#loading-remote-contexts)).
+  Hostile nesting depths and malformed documents are refused instead of crashing the
+  process.
+- **Built for workers.** One `Validator` audits a stream of documents with bounded
+  memory and results that do not depend on what was audited before. A full audit of a
+  heavy JSON-LD document takes about 13 ms (see [BENCHMARKS.md](BENCHMARKS.md)).
+- **Diagnostics you can act on.** Every message carries its severity, its path in the
+  document, its line range, and a link to the Google documentation it comes from.
+- **Vocabularies you can audit.** The schema.org classes are generated from the official
+  release file, the Google rules from a crawled and curated copy of the documentation, and
+  CI checks that regeneration is reproducible. The W3C suites, the Google documentation
+  crawl and the mutation tests are re-run every week to catch drift.
+
+How it compares with what you would use otherwise to *validate* structured data:
+
+| | [Rich Results Test](https://search.google.com/test/rich-results) | [humanmade/schema-org-validator](https://github.com/humanmade/schema-org-validator) | jolicode/structured-data |
+| --- | --- | --- | --- |
+| Runs | in a browser, no API | in PHP | in PHP |
+| Input | a public URL, or pasted code | a JSON-LD document | an HTML page (JSON-LD, microdata, RDFa) or a JSON-LD document |
+| JSON-LD | fully processed | read as written: names are resolved, contexts are not | expanded with the W3C JSON-LD 1.1 algorithms before validation |
+| Google rules | the reference | 23 profiles transcribed by hand | 36 types generated from a crawl of the documentation, drift-checked weekly |
+| Validation issues location | highlighted in the tool | a JSON pointer | a path in the document, and the position of the block in the HTML |
+| Remote `@context` | fetched by Google | not loaded | can be loaded. By default, denied unless allow-listed |
+| License | - | GPL-2.0 | MIT |
+
+The other PHP libraries in this space do a different job, and combine well with this one.
+[spatie/schema-org](https://github.com/spatie/schema-org) writes JSON-LD; this library
+checks what it wrote. [brick/schema](https://github.com/brick/schema) and
+[crwlrsoft/schema-org](https://github.com/crwlrsoft/schema-org) read structured data from
+HTML into PHP objects and accept whatever they find; this library tells you what is wrong with
+it. [ml/json-ld](https://github.com/lanthaler/JsonLD) and
+[digitalbazaar/php-json-ld](https://github.com/digitalbazaar/php-json-ld) are JSON-LD
+processors of the 1.0 era, which load remote contexts by default; neither appears in the
+[W3C JSON-LD 1.1 implementation report](https://w3c.github.io/json-ld-api/reports/),
+which lists no PHP processor at all so far.
 
 ## Installation
 
