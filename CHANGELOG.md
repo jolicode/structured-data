@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-12
+
 ### Changed
 
 - Schema.org vocabulary upgraded from 30.0 to 30.1. This release promotes most of the
