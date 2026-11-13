@@ -53,25 +53,25 @@
     },
     "book.jsonld": {
         "errors": [
+            "[Google error] LibrarySystem: Missing required property: \"url\" for the type \"LibrarySystem\"",
             "[Google error] dataFeedElement.workExample.potentialAction.lender: Missing required property: \"additionalProperty\" for the type \"LibrarySystem\"",
-            "[Google error] dataFeedElement.workExample.potentialAction.lender: Missing required property: \"url\" for the type \"LibrarySystem\"",
+            "[Google error] dataFeedElement.workExample.potentialAction.lender: Missing required property: \"additionalProperty\" for the type \"LibrarySystem\"",
+            "[Google error] dataFeedElement.workExample.potentialAction.lender: Missing required property: \"member\" for the type \"LibrarySystem\"",
             "[Google error] dataFeedElement.workExample.potentialAction.lender: Missing required property: \"member\" for the type \"LibrarySystem\"",
             "[Google error] dataFeedElement.workExample.potentialAction.lender: Missing required property: \"name\" for the type \"LibrarySystem\"",
-            "[Google error] dataFeedElement.workExample.potentialAction.lender: Missing required property: \"additionalProperty\" for the type \"LibrarySystem\"",
-            "[Google error] dataFeedElement.workExample.potentialAction.lender: Missing required property: \"url\" for the type \"LibrarySystem\"",
-            "[Google error] dataFeedElement.workExample.potentialAction.lender: Missing required property: \"member\" for the type \"LibrarySystem\"",
             "[Google error] dataFeedElement.workExample.potentialAction.lender: Missing required property: \"name\" for the type \"LibrarySystem\"",
-            "[Google error] LibrarySystem: Missing required property: \"url\" for the type \"LibrarySystem\""
+            "[Google error] dataFeedElement.workExample.potentialAction.lender: Missing required property: \"url\" for the type \"LibrarySystem\"",
+            "[Google error] dataFeedElement.workExample.potentialAction.lender: Missing required property: \"url\" for the type \"LibrarySystem\""
         ],
         "warnings": [
             "[Google warning] dataFeedElement.author: Missing recommended property: \"sameAs\" for the type \"Person\"",
-            "[Google warning] dataFeedElement.workExample: Missing recommended property: \"sameAs\" for the type \"Book\"",
-            "[Google warning] dataFeedElement.workExample: Missing recommended property: \"identifier\" for the type \"Book\"",
-            "[Google warning] dataFeedElement.workExample: Missing recommended property: \"sameAs\" for the type \"Book\"",
-            "[Google warning] dataFeedElement.workExample.potentialAction.expectsAcceptanceOf.category: The value is correct, but is not lowercased. Google expects lowercased values.",
             "[Google warning] dataFeedElement.author: Missing recommended property: \"sameAs\" for the type \"Person\"",
-            "[Google warning] dataFeedElement.workExample: Missing recommended property: \"sameAs\" for the type \"Book\"",
+            "[Google warning] dataFeedElement.workExample.potentialAction.expectsAcceptanceOf.category: The value is correct, but is not lowercased. Google expects lowercased values.",
             "[Google warning] dataFeedElement.workExample: Missing recommended property: \"identifier\" for the type \"Book\"",
+            "[Google warning] dataFeedElement.workExample: Missing recommended property: \"identifier\" for the type \"Book\"",
+            "[Google warning] dataFeedElement.workExample: Missing recommended property: \"sameAs\" for the type \"Book\"",
+            "[Google warning] dataFeedElement.workExample: Missing recommended property: \"sameAs\" for the type \"Book\"",
+            "[Google warning] dataFeedElement.workExample: Missing recommended property: \"sameAs\" for the type \"Book\"",
             "[Google warning] dataFeedElement.workExample: Missing recommended property: \"sameAs\" for the type \"Book\""
         ],
         "documentIssues": []
@@ -170,12 +170,12 @@
     "course-info.jsonld": {
         "errors": [],
         "warnings": [
-            "[Google warning] video: Missing recommended property: at least one of the following properties should be present \"creator, author\"",
             "[Google warning] video: Missing recommended property: \"duration\" for the type \"VideoObject\"",
             "[Google warning] video: Missing recommended property: \"embedUrl\" for the type \"VideoObject\"",
             "[Google warning] video: Missing recommended property: \"expires\" for the type \"VideoObject\"",
+            "[Google warning] video: Missing recommended property: \"ineligibleRegion\" for the type \"VideoObject\"",
             "[Google warning] video: Missing recommended property: \"regionsAllowed\" for the type \"VideoObject\"",
-            "[Google warning] video: Missing recommended property: \"ineligibleRegion\" for the type \"VideoObject\""
+            "[Google warning] video: Missing recommended property: at least one of the following properties should be present \"creator, author\""
         ],
         "documentIssues": []
     },
@@ -588,14 +588,14 @@
             "[Google warning] Product: Missing recommended property: \"size\" for the type \"Product\"",
             "[Google warning] Product: Missing recommended property: \"sku\" for the type \"Product\"",
             "[Google warning] Product: Missing recommended property: at least one of the following properties should be present \"gtin, gtin8, gtin12, gtin13, gtin14, isbn\"",
+            "[Google warning] offers.hasMerchantReturnPolicy: Missing recommended property: \"returnMethod\" for the type \"MerchantReturnPolicy\" when returns are accepted.",
             "[Google warning] offers: Missing recommended property: \"availability\" for the type \"Offer\"",
             "[Google warning] offers: Missing recommended property: \"itemCondition\" for the type \"Offer\"",
             "[Google warning] offers: Missing recommended property: \"priceValidUntil\" for the type \"Offer\"",
             "[Google warning] offers: Missing recommended property: \"shippingDetails\" for the type \"Offer\"",
             "[Google warning] offers: Missing recommended property: \"url\" for the type \"Offer\"",
             "[Google warning] offers: Missing recommended property: \"validFrom\" for the type \"Offer\"",
-            "[Google warning] offers: Missing recommended property: \"validThrough\" for the type \"Offer\"",
-            "[Google warning] offers.hasMerchantReturnPolicy: Missing recommended property: \"returnMethod\" for the type \"MerchantReturnPolicy\" when returns are accepted."
+            "[Google warning] offers: Missing recommended property: \"validThrough\" for the type \"Offer\""
         ],
         "documentIssues": []
     },
@@ -604,7 +604,6 @@
             "[Google error] offers.price: Invalid value: \"price\" must be greater than 0 for merchant listing offers."
         ],
         "warnings": [
-            "[Google warning] offers: Missing recommended property: \"shippingDetails\" for the type \"Offer\"",
             "[Google warning] Product: Missing recommended property: \"aggregateRating\" for the type \"Product\"",
             "[Google warning] Product: Missing recommended property: \"category\" for the type \"Product\"",
             "[Google warning] Product: Missing recommended property: \"color\" for the type \"Product\"",
@@ -619,6 +618,7 @@
             "[Google warning] Product: Missing recommended property: at least one of the following properties should be present \"gtin, gtin8, gtin12, gtin13, gtin14, isbn\"",
             "[Google warning] offers: Missing recommended property: \"itemCondition\" for the type \"Offer\"",
             "[Google warning] offers: Missing recommended property: \"priceValidUntil\" for the type \"Offer\"",
+            "[Google warning] offers: Missing recommended property: \"shippingDetails\" for the type \"Offer\"",
             "[Google warning] offers: Missing recommended property: \"url\" for the type \"Offer\"",
             "[Google warning] offers: Missing recommended property: \"validFrom\" for the type \"Offer\"",
             "[Google warning] offers: Missing recommended property: \"validThrough\" for the type \"Offer\""
@@ -930,8 +930,8 @@
             "[Google error] VideoObject: Missing required property: \"name\" for the type \"VideoObject\""
         ],
         "warnings": [
-            "[Google warning] VideoObject: Missing recommended property: at least one of the following properties should be present \"creator, author\"",
-            "[Google warning] VideoObject: Missing recommended property: \"embedUrl\" for the type \"VideoObject\""
+            "[Google warning] VideoObject: Missing recommended property: \"embedUrl\" for the type \"VideoObject\"",
+            "[Google warning] VideoObject: Missing recommended property: at least one of the following properties should be present \"creator, author\""
         ],
         "documentIssues": []
     },
