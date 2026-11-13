@@ -15,24 +15,44 @@ use JoliCode\StructuredData\JsonLd\Algorithms\Http\IriResolver;
 use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
 
 /**
- * Reconciles the structured data blocks of a document that describe the same
- * node.
+ * Merges the structured data blocks of a document that describe the same node.
  *
  * Google reads a page as one graph: the blocks sharing an identifier (a JSON-LD
  * "@id", a microdata "itemid") are one node holding the union of their
  * properties, whatever their format, and a property one block omits is not
- * missing when another block provides it. The blocks are still audited one by
- * one, with their positions in the document; the merged node only tells which
- * of their "missing property" issues Google would not report.
+ * missing when another block provides it. The merged node is a fresh tree, to be
+ * validated apart: the blocks themselves are left untouched, with their own
+ * audit and positions.
  *
- * @phpstan-type Conflict array{key: string, properties: list<MappedProperty>, values: list<scalar>}
+ * @phpstan-type Conflict array{key: string, property: MappedProperty, values: list<scalar>}
  */
 final class MappedTypeMerger
 {
     /**
-     * Groups the types describing the same node: the ones sharing an absolute
-     * identifier. Blank node identifiers are local to their block and never
-     * merge.
+     * The validator name of the warnings raised on a merged node, when its
+     * blocks disagree on a value.
+     */
+    public const VALIDATOR_NAME = 'Merge';
+
+    /**
+     * The identifier under which a type merges with the others: its absolute
+     * "@id". Blank node identifiers are local to their block and never merge.
+     * Identifiers are compared as they are written.
+     */
+    public static function identifierOf(MappedType $type): ?string
+    {
+        $identifier = $type->getProperty(Keyword::ID->value)?->getValue();
+
+        if (!\is_string($identifier) || IriResolver::isBlankNodeIdentifier($identifier) || !IriResolver::isAbsoluteIri($identifier)) {
+            return null;
+        }
+
+        return $identifier;
+    }
+
+    /**
+     * Groups the types describing the same node: the ones sharing an identifier
+     * (see identifierOf()).
      *
      * @param array<MappedType> $types
      *
@@ -43,13 +63,9 @@ final class MappedTypeMerger
         $groups = [];
 
         foreach ($types as $type) {
-            $identifier = $type->getProperty(Keyword::ID->value)?->getValue();
-
-            if (!\is_string($identifier) || IriResolver::isBlankNodeIdentifier($identifier) || !IriResolver::isAbsoluteIri($identifier)) {
-                continue;
+            if (null !== $identifier = self::identifierOf($type)) {
+                $groups[$identifier][] = $type;
             }
-
-            $groups[$identifier][] = $type;
         }
 
         return array_filter($groups, static fn (array $group): bool => isset($group[1]));
@@ -57,16 +73,27 @@ final class MappedTypeMerger
 
     /**
      * Builds the node Google sees: a fresh type, free of any error, holding the
-     * union of the members' types and properties. Equal scalar values are kept
-     * once, nested nodes are all kept, as in a graph.
+     * union of the members' types and properties, and the positions of every
+     * member. Equal scalar values are kept once, nested nodes are all kept, as
+     * in a graph.
      *
      * @param list<MappedType> $members
      *
-     * @return array{type: MappedType, conflicts: list<Conflict>}
+     * @return array{type: MappedType, conflicts: list<Conflict>} the merged node, and its properties holding a different scalar value in several members
      */
     public static function merge(array $members): array
     {
         $merged = new MappedType(sourceFormat: $members[0]->getSourceFormat(), type: self::unionOfTypes($members));
+
+        foreach ($members as $member) {
+            foreach ($member->getKeyRanges() as $range) {
+                $merged->addKeyRange($range);
+            }
+
+            foreach ($member->getValueRanges() as $range) {
+                $merged->addValueRange($range);
+            }
+        }
 
         /** @var array<string, list<MappedProperty>> $sources */
         $sources = [];
@@ -116,7 +143,7 @@ final class MappedTypeMerger
             $merged->setProperty($key, $property);
 
             if (isset($scalars[1]) && '@' !== $key[0]) {
-                $conflicts[] = ['key' => $key, 'properties' => $properties, 'values' => $scalars];
+                $conflicts[] = ['key' => $key, 'property' => $property, 'values' => $scalars];
             }
         }
 
@@ -124,40 +151,43 @@ final class MappedTypeMerger
     }
 
     /**
-     * Withdraws, from the members, the "missing property" issues the merged node
-     * does not have: another block provides what they report missing. The
-     * members' validity and severities are recomputed afterwards.
+     * Raises a warning on each property of the merged node whose members
+     * disagree on the value. Google keeps every value and reports nothing, so
+     * the warning carries its own validator name, outside the Google verdict.
+     * It does not make the node invalid.
      *
-     * @param list<MappedType> $members
-     *
-     * @return list<MappedError> the withdrawn issues
+     * @param list<Conflict> $conflicts as returned by merge()
+     * @param int            $members   the number of blocks merged into the node
      */
-    public static function withdrawIssuesResolvedBy(MappedType $merged, array $members): array
+    public static function reportConflicts(string $identifier, int $members, array $conflicts): void
     {
-        $remaining = [];
+        foreach ($conflicts as $conflict) {
+            $property = $conflict['property'];
+            $owner = $property->getOwnerType();
 
-        foreach ($merged->getMergedErrors() as $error) {
-            if (null !== $error->getMissingProperty()) {
-                $remaining[self::issueKey($error)] = true;
+            $error = new MappedError(
+                message: \sprintf(
+                    'The %d blocks describing "%s" give it different values (%s): Google merges them and keeps every value.',
+                    $members,
+                    $identifier,
+                    implode(', ', array_map(static fn (mixed $value): string => json_encode($value, \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE) ?: '', $conflict['values'])),
+                ),
+                property: $conflict['key'],
+                type: MappedErrorFormatter::formatTypeLabel($owner?->getType()),
+                severity: MappedError::SEVERITY_WARNING,
+                validatorName: self::VALIDATOR_NAME,
+                ranges: MappedErrorFormatter::formatRanges($property->getValueRanges()),
+                parent: $property,
+            );
+
+            $property->addError($error);
+            $property->setErrorSeverity($property->getErrorSeverity() ?? MappedError::SEVERITY_WARNING);
+
+            if (null !== $owner) {
+                $owner->addChildrenError($error);
+                $owner->setErrorSeverity($owner->getErrorSeverity() ?? MappedError::SEVERITY_WARNING);
             }
         }
-
-        $withdrawn = [];
-
-        foreach ($members as $member) {
-            foreach ($member->getMergedErrors() as $error) {
-                if (null === $error->getMissingProperty() || isset($remaining[self::issueKey($error)])) {
-                    continue;
-                }
-
-                self::withdraw($member, $error);
-                $withdrawn[] = $error;
-            }
-
-            self::recompute($member);
-        }
-
-        return $withdrawn;
     }
 
     /**
@@ -261,92 +291,5 @@ final class MappedTypeMerger
         }
 
         return $value;
-    }
-
-    /**
-     * What makes two "missing property" issues the same across the members and
-     * the merged node: where in the node they are (relative to the root, whose
-     * label may differ), what is missing, and how badly.
-     */
-    private static function issueKey(MappedError $error): string
-    {
-        $target = $error->getParent();
-        $path = $target instanceof MappedType && null === $target->getParentProperty()
-            ? ''
-            : ($target?->getPath() ?? '');
-
-        return $path . '|' . $error->getMissingProperty() . '|' . $error->getSeverity();
-    }
-
-    /**
-     * Removes the error from the whole tree of the type: the error of a
-     * multi-typed entry is raised on a short-lived clone and copied onto the
-     * entry, so its own parent cannot be trusted to find where it is held.
-     */
-    private static function withdraw(MappedType $type, MappedError $error): void
-    {
-        $type->removeError($error);
-        $type->removeChildrenError($error);
-
-        foreach ($type->getProperties() as $property) {
-            $property->removeError($error);
-
-            foreach (self::valuesOf($property) as $value) {
-                if ($value instanceof MappedType) {
-                    self::withdraw($value, $error);
-                }
-            }
-        }
-    }
-
-    /**
-     * Recomputes the validity and severity of a type tree from the errors it
-     * still holds: a type is valid when it has no error of its own and its
-     * nested types are valid, and carries the highest severity found on it or
-     * below it.
-     */
-    private static function recompute(MappedType $type): bool
-    {
-        $valid = [] === $type->getErrors();
-
-        foreach ($type->getProperties() as $property) {
-            $propertyValid = [] === $property->getErrors();
-            $property->setErrorSeverity(self::highestSeverity($property->getErrors()));
-
-            foreach (self::valuesOf($property) as $value) {
-                if ($value instanceof MappedType && !self::recompute($value)) {
-                    $propertyValid = false;
-                }
-            }
-
-            $property->setIsValid($propertyValid);
-
-            if (!$propertyValid) {
-                $valid = false;
-            }
-        }
-
-        $type->setIsValid($valid);
-        $type->setErrorSeverity(self::highestSeverity($type->getMergedErrors()));
-
-        return $valid;
-    }
-
-    /**
-     * @param array<MappedError> $errors
-     */
-    private static function highestSeverity(array $errors): ?string
-    {
-        $severity = null;
-
-        foreach ($errors as $error) {
-            if (MappedError::SEVERITY_ERROR === $error->getSeverity()) {
-                return MappedError::SEVERITY_ERROR;
-            }
-
-            $severity = $error->getSeverity();
-        }
-
-        return $severity;
     }
 }

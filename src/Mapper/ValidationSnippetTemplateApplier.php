@@ -92,7 +92,6 @@ final class ValidationSnippetTemplateApplier
             ranges: MappedErrorFormatter::formatRanges($target->getValueRanges()),
             parent: $target,
             documentationLink: $errorTemplate->documentationLink,
-            missingProperty: $errorTemplate->missingProperty,
         );
 
         $target->addError($error);

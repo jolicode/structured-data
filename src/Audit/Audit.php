@@ -13,6 +13,7 @@ namespace JoliCode\StructuredData\Audit;
 
 use JoliCode\StructuredData\Mapper\MappedError;
 use JoliCode\StructuredData\Mapper\MappedType;
+use JoliCode\StructuredData\Mapper\MappedTypeMerger;
 use JoliCode\StructuredData\Vocabularies\Validators\Google\GoogleValidator;
 use JoliCode\StructuredData\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
 
@@ -46,16 +47,33 @@ final class Audit
     /**
      * @var array<MappedError>
      */
+    private array $byMerge = [];
+
+    /**
+     * @var array<MappedError>
+     */
     private array $full = [];
 
     /**
-     * @param array<MappedType>  $types
+     * @var list<Item>
+     */
+    private array $items;
+
+    /**
+     * @param array<MappedType>  $types          the blocks found in the document
      * @param array<MappedError> $documentIssues
+     * @param list<Item>|null    $items          the nodes the diagnostics are computed from; one item per block when null
      */
     public function __construct(
         private array $types = [],
         private array $documentIssues = [],
+        ?array $items = null,
     ) {
+        $this->items = $items ?? array_map(
+            static fn (MappedType $type): Item => new Item($type, [$type], MappedTypeMerger::identifierOf($type)),
+            array_values($types),
+        );
+
         $this->sort();
     }
 
@@ -70,11 +88,26 @@ final class Audit
     }
 
     /**
+     * Returns the structured data blocks found in the document, each with its own
+     * diagnostics, whether or not some of them were merged into one item.
+     *
      * @return array<MappedType>
      */
     public function getTypes(): array
     {
         return $this->types;
+    }
+
+    /**
+     * Returns the nodes of the document: one item per block, except for the
+     * blocks sharing an identifier, which make one item when they are merged.
+     * The diagnostics of the audit are the ones of its items.
+     *
+     * @return list<Item>
+     */
+    public function getItems(): array
+    {
+        return $this->items;
     }
 
     /**
@@ -171,6 +204,10 @@ final class Audit
                 return $this->byDocument;
             }
 
+            if (AuditOptions::VALIDATOR_MERGE === $validatorName) {
+                return $this->byMerge;
+            }
+
             throw new \InvalidArgumentException(\sprintf('Invalid validator query option provided: %s', $validatorName));
         }
 
@@ -219,10 +256,11 @@ final class Audit
         $this->byGoogle = [];
         $this->bySchemaOrg = [];
         $this->byDocument = [];
+        $this->byMerge = [];
         $this->full = [];
 
-        $callback = function (MappedType $type): void {
-            foreach ($type->getMergedErrors() as $error) {
+        $callback = function (Item $item): void {
+            foreach ($item->getType()->getMergedErrors() as $error) {
                 if (MappedError::SEVERITY_ERROR === $error->getSeverity()) {
                     $this->byErrors[] = $error;
                 } else {
@@ -236,13 +274,15 @@ final class Audit
                     $this->byGoogle[] = $error;
                 } elseif (SchemaOrgValidator::VALIDATOR_NAME === $error->getValidatorName()) {
                     $this->bySchemaOrg[] = $error;
+                } elseif (MappedTypeMerger::VALIDATOR_NAME === $error->getValidatorName()) {
+                    $this->byMerge[] = $error;
                 }
 
                 $this->full[] = $error;
             }
         };
 
-        array_walk($this->types, $callback);
+        array_walk($this->items, $callback);
 
         foreach ($this->documentIssues as $documentIssue) {
             if (MappedError::SEVERITY_ERROR === $documentIssue->getSeverity()) {

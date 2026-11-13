@@ -25,12 +25,6 @@ readonly class MappedError implements \JsonSerializable
         private string $ranges,
         private MappedType|MappedProperty|null $parent = null,
         private ?string $documentationLink = null,
-        /**
-         * The property (or the alternatives, comma-separated) whose absence this
-         * error reports, when it reports an absence: such an error can be
-         * resolved by another block of the document describing the same node.
-         */
-        private ?string $missingProperty = null,
     ) {
     }
 
@@ -100,11 +94,6 @@ readonly class MappedError implements \JsonSerializable
     public function getDocumentationLink(): ?string
     {
         return $this->documentationLink;
-    }
-
-    public function getMissingProperty(): ?string
-    {
-        return $this->missingProperty;
     }
 
     public function getPath(): string

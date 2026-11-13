@@ -294,25 +294,14 @@
             "[Google warning] Event: Missing recommended property: \"offers\" for the type \"Event\"",
             "[Google warning] Event: Missing recommended property: \"organizer\" for the type \"Event\"",
             "[Google warning] Event: Missing recommended property: \"performer\" for the type \"Event\"",
-            "[Google warning] Event: Missing recommended property: \"eventStatus\" for the type \"Event\"",
-            "[Google warning] Event: Missing recommended property: \"offers\" for the type \"Event\"",
-            "[Google warning] Event: Missing recommended property: \"organizer\" for the type \"Event\"",
-            "[Google warning] Event: Missing recommended property: \"performer\" for the type \"Event\"",
-            "[Document warning] The \"description\" of \"https:\/\/example.com\/events\/symfonylive-2026\" has a different value in each of the 2 blocks describing it (\"Two days of talks about the Symfony framework.\", \"Another description\"): Google merges them and keeps every value.",
-            "[Document warning] The \"startDate\" of \"https:\/\/example.com\/events\/symfonylive-2026\" has a different value in each of the 2 blocks describing it (\"2026-03-22T08:55:00+01:00\", \"2026-03-26T09:00:00+01:00\"): Google merges them and keeps every value."
+            "[Merge warning] description: The 2 blocks describing \"https:\/\/example.com\/events\/symfonylive-2026\" give it different values (\"Two days of talks about the Symfony framework.\", \"Another description\"): Google merges them and keeps every value.",
+            "[Merge warning] startDate: The 2 blocks describing \"https:\/\/example.com\/events\/symfonylive-2026\" give it different values (\"2026-03-22T08:55:00+01:00\", \"2026-03-26T09:00:00+01:00\"): Google merges them and keeps every value."
         ],
-        "documentIssues": [
-            "[Document warning] The \"description\" of \"https:\/\/example.com\/events\/symfonylive-2026\" has a different value in each of the 2 blocks describing it (\"Two days of talks about the Symfony framework.\", \"Another description\"): Google merges them and keeps every value.",
-            "[Document warning] The \"startDate\" of \"https:\/\/example.com\/events\/symfonylive-2026\" has a different value in each of the 2 blocks describing it (\"2026-03-22T08:55:00+01:00\", \"2026-03-26T09:00:00+01:00\"): Google merges them and keeps every value."
-        ]
+        "documentIssues": []
     },
     "event-two-blocks-same-id.html": {
         "errors": [],
         "warnings": [
-            "[Google warning] Event: Missing recommended property: \"eventStatus\" for the type \"Event\"",
-            "[Google warning] Event: Missing recommended property: \"offers\" for the type \"Event\"",
-            "[Google warning] Event: Missing recommended property: \"organizer\" for the type \"Event\"",
-            "[Google warning] Event: Missing recommended property: \"performer\" for the type \"Event\"",
             "[Google warning] Event: Missing recommended property: \"eventStatus\" for the type \"Event\"",
             "[Google warning] Event: Missing recommended property: \"offers\" for the type \"Event\"",
             "[Google warning] Event: Missing recommended property: \"organizer\" for the type \"Event\"",
@@ -808,7 +797,7 @@
     },
     "softwareapplication-price-with-currency-symbol.jsonld": {
         "errors": [
-            "[Google error] offers.price: Incorrect number format: \"1 800,00 €\" given. Google expects a plain number, without currency symbol, thousands separator or unit: \"1800.00\"."
+            "[Google error] offers.price: Incorrect number format: \"1 800,00 \u20ac\" given. Google expects a plain number, without currency symbol, thousands separator or unit: \"1800.00\"."
         ],
         "warnings": [],
         "documentIssues": []

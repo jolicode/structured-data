@@ -20,6 +20,7 @@ final readonly class AuditOptions
     public const VALIDATOR_GOOGLE = 'google';
     public const VALIDATOR_SCHEMA_ORG = 'schema.org';
     public const VALIDATOR_DOCUMENT = 'document';
+    public const VALIDATOR_MERGE = 'merge';
 
     public const GROUP_BY_VALIDATOR = 'validator';
     public const GROUP_BY_SEVERITY = 'severity';
@@ -41,6 +42,7 @@ final readonly class AuditOptions
      *  - `AuditOptions::VALIDATOR_GOOGLE`
      *  - `AuditOptions::VALIDATOR_SCHEMA_ORG`
      *  - `AuditOptions::VALIDATOR_DOCUMENT`: document-level issues found while parsing/extracting
+     *  - `AuditOptions::VALIDATOR_MERGE`: values the blocks merged into one item disagree on
      * @param ?string $groupBy
      *                         Group results instead of returning a flat list.
      *
