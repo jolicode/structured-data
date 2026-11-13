@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- Framing in JSON-LD 1.1 mode dropped a property whose only value was a node reduced
+  to a pruned blank node identifier (W3C test `frame#tp046`): the empty node object is
+  now kept, as `{}`.
+
 ## [0.2.0] - 2026-11-12
 
 ### Changed

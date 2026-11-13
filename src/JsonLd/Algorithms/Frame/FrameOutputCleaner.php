@@ -54,6 +54,13 @@ final class FrameOutputCleaner
 
                 $input[$key] = self::cleanupPreserve($value, $bnodesToClear);
             }
+
+            // A node object reduced to its blank node identifier is still a node
+            // object once that identifier is pruned: an empty PHP array would be
+            // encoded as an empty list, which compaction drops.
+            if ([] === $input) {
+                return new \stdClass();
+            }
         }
 
         return $input;
