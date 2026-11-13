@@ -13,6 +13,9 @@
 
 ### Fixed
 
+- Google validator: the address sub-properties of an event location (`streetAddress`,
+  `addressRegion`...) are no longer reported when missing: the documentation only shows
+  them in an example, and Google does not report them.
 - Google validator: the schema.org subtypes of a documented type are now validated with
   its rules, as Google does (a `BusinessEvent` is an `Event`, a `Restaurant` a
   `LocalBusiness`, a `TechArticle` an `Article`). The rule files can refuse subtypes

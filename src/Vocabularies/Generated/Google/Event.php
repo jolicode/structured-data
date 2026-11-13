@@ -64,35 +64,35 @@ final class Event
                     'properties' => [
                         'streetAddress' => [
                             'name' => 'streetAddress',
-                            'severity' => 'recommended',
+                            'severity' => 'optional',
                             'supportedTypes' => [
                                 'Text',
                             ],
                         ],
                         'addressLocality' => [
                             'name' => 'addressLocality',
-                            'severity' => 'recommended',
+                            'severity' => 'optional',
                             'supportedTypes' => [
                                 'Text',
                             ],
                         ],
                         'addressRegion' => [
                             'name' => 'addressRegion',
-                            'severity' => 'recommended',
+                            'severity' => 'optional',
                             'supportedTypes' => [
                                 'Text',
                             ],
                         ],
                         'postalCode' => [
                             'name' => 'postalCode',
-                            'severity' => 'recommended',
+                            'severity' => 'optional',
                             'supportedTypes' => [
                                 'Text',
                             ],
                         ],
                         'addressCountry' => [
                             'name' => 'addressCountry',
-                            'severity' => 'recommended',
+                            'severity' => 'optional',
                             'supportedTypes' => [
                                 'Text',
                             ],
