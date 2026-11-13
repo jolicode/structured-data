@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+### Added
+
+- `castor qa:earl` runs the W3C test suites and writes the EARL conformance report
+  consolidated by the W3C JSON-LD implementation report. The W3C manifests are now kept
+  with the downloaded test suites.
+
 ### Fixed
 
 - Framing in JSON-LD 1.1 mode dropped a property whose only value was a node reduced

@@ -398,6 +398,7 @@ Command | Description
 `castor qa:cs` | Fixes coding standards
 `castor qa:phpstan` | Runs PHPStan
 `castor qa:all` | Runs all QA tasks
+`castor qa:earl` | Runs the W3C test suites and writes the EARL conformance report (see [Conformance](#conformance))
 
 The following commands are available to run the tests:
 

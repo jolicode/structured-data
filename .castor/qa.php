@@ -76,7 +76,9 @@ function toolsDir(): string
 function suiteFixturesAreMissing(): bool
 {
     return !fs()->exists(\sprintf('%s/tests/flatten/output', CACHE_DIR_W3C_TEST_SUITE))
-        || !fs()->exists(\sprintf('%s/tests/frame/output', CACHE_DIR_W3C_FRAMING_TEST_SUITE));
+        || !fs()->exists(\sprintf('%s/tests/frame/output', CACHE_DIR_W3C_FRAMING_TEST_SUITE))
+        || !fs()->exists(\sprintf('%s/tests/expand-manifest.jsonld', CACHE_DIR_W3C_TEST_SUITE))
+        || !fs()->exists(\sprintf('%s/tests/frame-manifest.jsonld', CACHE_DIR_W3C_FRAMING_TEST_SUITE));
 }
 
 #[AsTask(description: 'Installs qa tooling')]
@@ -201,6 +203,19 @@ function phpunitPrepare(
         $zip->close();
 
         foreach (Algorithms::algorithmNames() as $algorithm) {
+            // The manifest is what the EARL conformance report is built from (see
+            // "castor qa:earl"): it lists every test with its IRI, which the fixture
+            // file names alone cannot give.
+            $manifest = \sprintf('%s-manifest.jsonld', $algorithm);
+
+            if (fs()->exists(\sprintf('%s/json-ld-api-%s/tests/%s', CACHE_DIR_W3C_TEST_SUITE, $ref, $manifest))) {
+                fs()->copy(
+                    \sprintf('%s/json-ld-api-%s/tests/%s', CACHE_DIR_W3C_TEST_SUITE, $ref, $manifest),
+                    \sprintf('%s/tests/%s', CACHE_DIR_W3C_TEST_SUITE, $manifest),
+                    true,
+                );
+            }
+
             foreach (['-in.jsonld' => 'input', '-out.jsonld' => 'output', '-context.jsonld' => 'context'] as $suffix => $directory) {
                 $targetDirectory = \sprintf('%s/tests/%s/%s', CACHE_DIR_W3C_TEST_SUITE, $algorithm, $directory);
                 fs()->mkdir($targetDirectory);
@@ -242,6 +257,12 @@ function phpunitPrepare(
         $framingZip->open($framingZipFileName);
         $framingZip->extractTo(CACHE_DIR_W3C_FRAMING_TEST_SUITE);
         $framingZip->close();
+
+        fs()->copy(
+            \sprintf('%s/json-ld-framing-%s/tests/frame-manifest.jsonld', CACHE_DIR_W3C_FRAMING_TEST_SUITE, $framingRef),
+            \sprintf('%s/tests/frame-manifest.jsonld', CACHE_DIR_W3C_FRAMING_TEST_SUITE),
+            true,
+        );
 
         foreach (['-in.jsonld' => 'input', '-out.jsonld' => 'output', '-frame.jsonld' => 'frame'] as $suffix => $directory) {
             $targetDirectory = \sprintf('%s/tests/frame/%s', CACHE_DIR_W3C_FRAMING_TEST_SUITE, $directory);
