@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
+import { examples } from '../assets/examples.js';
 import { audit } from '../public/build/php.js';
 
 // Runs assets/php.js, as the page does, in node, on what "castor website:build"
@@ -42,7 +43,29 @@ test('says when there is no structured data', async () => {
     const { html } = await audit({ ...settings, body: '<p>Hello</p>' });
 
     assert.match(html, /We could not extract structured data/);
+    assert.doesNotMatch(html, /data-result-target="expandButton"/);
+    assert.doesNotMatch(html, /data-result-target="showDescriptions"/);
 });
+
+test('offers to expand the tree and to hide the descriptions, when there is a result', async () => {
+    const { html } = await audit({
+        ...settings,
+        body: '{"@context": "https://schema.org", "@type": "Organization", "name": "JoliCode"}',
+    });
+
+    assert.match(html, /data-result-target="expandButton"[^>]*>\s*Expand all\s*</);
+    assert.match(html, /data-result-target="showDescriptions"/);
+    assert.match(html, /data-result-target="settingsButton"[\s\S]*?<svg/);
+});
+
+for (const [name, body] of Object.entries(examples)) {
+    test(`extracts structured data from the "${name}" example`, async () => {
+        const { html, error } = await audit({ ...settings, body });
+
+        assert.equal(error, undefined);
+        assert.doesNotMatch(html, /We could not extract structured data/);
+    });
+}
 
 test('refuses an empty document', async () => {
     assert.deepEqual(await audit({ ...settings, body: ' ' }), { error: 'Please enter some code to validate.' });

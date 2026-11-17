@@ -17,6 +17,7 @@ use Castor\Attribute\AsTask;
 use function Castor\context;
 use function Castor\finder;
 use function Castor\fs;
+use function Castor\http_request;
 use function Castor\io;
 use function Castor\run;
 use function PhpWasm\build as build_wasm;
@@ -65,6 +66,13 @@ function build(
     fs()->remove([$app, "{$website}/public/build"]);
 
     run(['npm', 'run', 'build'], context: context()->withWorkingDirectory($website));
+
+    // The JoliCode open-source footer of the homepage, see jolicode/oss-theme
+    $footer = http_request('GET', 'https://raw.githubusercontent.com/jolicode/oss-theme/refs/heads/main/snippet-joli-footer.html')->getContent();
+    fs()->dumpFile("{$website}/public/build/joli-footer.html", strtr($footer, [
+        '#GITHUB_REPO' => 'jolicode/structured-data',
+        '<!-- #SUBTITLE -->' => 'The <a href="https://github.com/jolicode/structured-data" target="_blank" rel="noreferrer noopener" class="jf-link">jolicode/structured-data</a> PHP library, compiled to WebAssembly. It is licensed under <a href="https://github.com/jolicode/structured-data/blob/main/LICENSE" target="_blank" rel="noreferrer noopener" class="jf-link">MIT license</a>.',
+    ]));
 
     // What is embedded takes some of the memory of the WebAssembly module:
     // only what bin/audit.php reads
