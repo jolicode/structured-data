@@ -67,6 +67,14 @@ for (const [name, body] of Object.entries(examples)) {
     });
 }
 
+test('merges the JSON-LD and the microdata of the "sharedIdentifier" example, as asked', async () => {
+    const merged = await audit({ ...settings, mergeSharedIdentifiers: true, body: examples.sharedIdentifier });
+    const separate = await audit({ ...settings, mergeSharedIdentifiers: false, body: examples.sharedIdentifier });
+
+    assert.match(merged.html, />1 entity</);
+    assert.match(separate.html, />2 entities</);
+});
+
 test('refuses an empty document', async () => {
     assert.deepEqual(await audit({ ...settings, body: ' ' }), { error: 'Please enter some code to validate.' });
 });

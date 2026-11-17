@@ -1,7 +1,7 @@
 // The documents behind the "Try an example" buttons of the homepage, by the
 // data-example of their button.
 //
-// The first three are made up. The others are the structured data of real pages,
+// The first four are made up. The others are the structured data of real pages,
 // as they were served on 2026-11-16, quirks included: only their longest lists
 // are shortened.
 
@@ -55,23 +55,35 @@ export const examples = {
 </body>
 </html>`,
 
-  // https://jolicode.com/
-  jolicode: `<script type="application/ld+json">
-{
+  // One organization, described half in JSON-LD and half in microdata: both
+  // share its identifier, so the "Merge entities with the same @id" setting
+  // makes a single entity of them
+  sharedIdentifier: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Example Bakery</title>
+  <script type="application/ld+json">
+  {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "url": "https://jolicode.com/",
-    "name": "JoliCode",
-    "contactPoint": {
-    "@context": "https://schema.org",
-    "@type": "ContactPoint",
-    "url": "https://jolicode.com/contact",
-    "contactType": "Service client du Poney Club"
-}
-,
-    "logo": "https://jolicode.com/images/goodies/logo.svg"
-}
-</script>`,
+    "@id": "https://example.com/#organization",
+    "name": "Example Bakery",
+    "url": "https://example.com/"
+  }
+  </script>
+</head>
+<body>
+  <footer itemscope itemtype="https://schema.org/Organization" itemid="https://example.com/#organization">
+    <img itemprop="logo" src="https://example.com/logo.png" alt="Example Bakery">
+    <a itemprop="telephone" href="tel:+33100000000">+33 1 00 00 00 00</a>
+    <div itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+      <span itemprop="streetAddress">1 rue de l'Exemple</span>,
+      <span itemprop="postalCode">75000</span>
+      <span itemprop="addressLocality">Paris</span>
+    </div>
+  </footer>
+</body>
+</html>`,
 
   // https://jolicode.com/blog/secret-santa-in-2026-exclusions-slack-connect-and-a-fresh-coat-of-paint
   // its \u escapes are decoded, for reading; String.raw keeps its escaped slashes
@@ -353,23 +365,4 @@ export const examples = {
   <h1>Formation Symfony</h1>
 </body>
 </html>`,
-
-  // https://redirection.io/
-  redirectionio: `<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "url": "https://redirection.io/",
-    "name": [
-        "Website redirections manager",
-        "Technical SEO optimization tool"
-    ],
-    "contactPoint": {
-        "@type": "ContactPoint",
-        "url": "https://redirection.io/contact",
-        "contactType": "Customer service"
-    },
-    "logo": "https://redirection.io/media/logos/logo-blue-white.svg"
-}
-</script>`,
 };
