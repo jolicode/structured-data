@@ -1,0 +1,14 @@
+<div class="structured-data-description prose prose-sm text-xs text-gray-500 mb-2 max-w-full">
+    {{ description|renderMarkdown() }}
+</div>
+<div class="inline-flex items-center flex-wrap gap-2">
+    {{ include('components/reference/_link.html.twig', {link: link}) }}
+    {{ include('components/reference/_googleLink.html.twig', {googleLink: item.documentationLink|default(null)}) }}
+    {% for isPartOf in item.isPartOf %}
+        <span
+            class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
+        >
+            {{ isPartOf }}
+        </span>
+    {% endfor %}
+</div>

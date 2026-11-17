@@ -1,0 +1,28 @@
+{# An error or a warning of an entity, with where it is: a click selects it in the editor, see result_controller.js #}
+{% set isWarning = error.severity == 'warning' %}
+{% set range = error.ranges|split(' to ') %}
+
+<li
+    class="flex items-start gap-3 rounded-xl px-3 py-2.5 text-[13px] {{ isWarning ? 'bg-amber-50' : 'bg-red-50' }}{% if range|length == 2 %} cursor-pointer{% endif %}"
+    data-result-severity="{{ error.severity }}"
+    {% if range|length == 2 %}
+        data-start="{{ range[0] }}"
+        data-end="{{ range[1] }}"
+        title="From {{ range[0] }} to {{ range[1] }}"
+    {% endif %}
+>
+    <span class="shrink-0 {{ isWarning ? 'text-amber-800' : 'text-red-700' }}">
+        {{ include(isWarning ? '@images/warning.svg' : '@images/error.svg') }}
+    </span>
+    <div class="flex min-w-0 flex-col gap-0.5">
+        <span class="font-medium {{ isWarning ? 'text-amber-900' : 'text-red-800' }}">{{ error.message }}</span>
+        <span class="flex flex-wrap items-center gap-x-1.5 text-gray-600">
+            {% if error.validatorName %}{{ error.validatorName }} ·{% endif %}
+            <span class="font-mono text-xs">{{ error.path }}</span>
+            {% if range|length == 2 %}· line {{ range[0]|split(':')|first }}{% endif %}
+            {% if error.documentationLink %}
+                · <a href="{{ error.documentationLink }}" target="_blank" rel="noopener noreferrer" class="text-blue-700 hover:underline">Documentation</a>
+            {% endif %}
+        </span>
+    </div>
+</li>

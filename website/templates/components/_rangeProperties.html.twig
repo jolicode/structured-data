@@ -1,0 +1,5 @@
+{% if ranges %}
+    data-start="{{ formatRanges(ranges, 'start') }}"
+    data-end="{{ formatRanges(ranges, 'end') }}"
+    title="{{ 'From ' ~ formatRanges(ranges, 'start') ~ ' to ' ~ formatRanges(ranges, 'end') }}"
+{% endif %}

@@ -23,10 +23,23 @@ updates:
       - "/tools/phpunit"
       - "/tools/phpbench"
       - "/tools/infection"
+      - "/website"
     schedule:
       interval: "weekly"
     groups:
       tools:
+        patterns:
+          - "*"
+    cooldown:
+      default-days: 7
+
+  # The page of the demo website is built with these.
+  - package-ecosystem: "npm"
+    directory: "/website"
+    schedule:
+      interval: "weekly"
+    groups:
+      website:
         patterns:
           - "*"
     cooldown:

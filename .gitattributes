@@ -8,6 +8,8 @@
 /.php-cs-fixer.php export-ignore
 /CHANGELOG.md export-ignore
 /CONTRIBUTING.md export-ignore
+/castor.composer.json export-ignore
+/castor.composer.lock export-ignore
 /castor.php export-ignore
 /generators export-ignore
 /infection.json5 export-ignore
@@ -18,6 +20,7 @@
 /tests export-ignore
 /tools export-ignore
 /var export-ignore
+/website export-ignore
 
 # Only the resources needed at runtime (the schema.org contexts and the
 # standards data) stay in the archive: the vocabulary definitions used for

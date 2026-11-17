@@ -1,0 +1,12 @@
+
+{% if property|isTypeProperty %}
+    {% if property.value is iterable %}
+        {% for index, type in property.value %}
+            {{ include('components/_typeProperty.html.twig', {level: level, type: type}) }}
+        {% endfor %}
+    {% else %}
+        {{ include('components/_typeProperty.html.twig', {level: level, type: property.value}) }}
+    {% endif %}
+{% else %}
+    {{ include('components/_regularProperty.html.twig', {level: level, property: property}) }}
+{% endif %}

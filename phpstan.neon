@@ -6,6 +6,10 @@ parameters:
         - tests
         - .castor
         - castor.php
+    excludePaths:
+        analyse:
+            # The packages of castor.composer.json, that the tasks of the website use
+            - .castor/vendor
     scanFiles:
         - .castor.stub.php
     scanDirectories:

@@ -1,0 +1,97 @@
+/* The fonts are served with the page, from public/build/files: see the build:fonts script of package.json */
+@import "@fontsource-variable/inter/wght.css";
+@import "@fontsource-variable/jetbrains-mono/wght.css";
+@import "@fontsource-variable/space-grotesk/wght.css";
+
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* As Tailwind 3 did, and as the templates of the property tree expect: a border is light unless it says otherwise */
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@theme {
+  --font-display: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+.cm-editor {
+  @apply h-full text-[13px];
+
+  &.cm-focused {
+    outline: none;
+  }
+
+  .cm-scroller {
+    @apply font-mono leading-6;
+  }
+
+  .cm-gutters {
+    @apply bg-white text-gray-500;
+    border-right: 0;
+  }
+
+  .cm-gutterElement.cm-violationLineGutter {
+    @apply bg-red-50 font-medium text-red-700;
+  }
+}
+
+.c-icon__svg {
+  display: inline-block;
+  height: 1.5em;
+  vertical-align: top;
+  width: auto;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 0;
+}
+
+.structured-data-reference {
+  @apply rounded-lg bg-gray-50 p-3 text-xs text-gray-600;
+
+  .structured-data-description {
+    a {
+      @apply text-blue-700;
+    }
+
+    a:hover {
+      @apply underline text-blue-900;
+    }
+
+    p {
+      @apply mt-0;
+
+      &:not(:last-child) {
+        @apply mb-2;
+      }
+    }
+  }
+}
+
+[data-result-target=nodes] {
+  [data-start]:hover {
+    @apply bg-yellow-100;
+  }
+}
+
+details[open]>.detail {
+  border-color: transparent;
+}
+
+details[open]>summary .transition {
+  @apply rotate-180;
+}
+
+summary .transition {
+  @apply opacity-0;
+}
+
+summary:hover .transition {
+  @apply opacity-100;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+        <title>Structured Data Validator, by JoliCode</title>
+        <meta name="description" content="Validate the structured data of a page against schema.org and the Google Rich Results requirements, in your browser." />
+        <meta name="author" content="JoliCode" />
+
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+
+        <!-- Both are built by "castor website:build" -->
+        <link rel="stylesheet" href="build/app.css">
+        <script type="module" src="build/app.js"></script>
+    </head>
+    <body class="bg-white font-sans text-gray-900 antialiased">
+        <main class="flex min-h-screen flex-col">
+            <header class="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-3 px-6 py-5">
+                <span class="font-display text-[15px] font-semibold">Structured Data Validator</span>
+                <nav class="flex items-center gap-6 text-sm text-gray-700">
+                    <a href="https://github.com/jolicode/structured-data#readme" class="hover:text-gray-950">Documentation</a>
+                    <a href="https://github.com/jolicode/structured-data" class="hover:text-gray-950">GitHub</a>
+                </nav>
+            </header>
+
+            <div class="mx-auto flex w-full max-w-3xl flex-1 flex-col items-center gap-7 px-6 pb-8 pt-10 sm:pt-16">
+                <div class="flex flex-col items-center gap-4 text-center">
+                    <h1 class="font-display text-4xl font-semibold tracking-tight sm:text-5xl">Validate your structured data</h1>
+                    <p class="max-w-xl text-base/7 text-gray-600">
+                        Paste a page or a JSON-LD document. It is checked against schema.org and the
+                        Google Rich Results requirements, in your browser: nothing is sent to a server.
+                    </p>
+                </div>
+
+                <form class="w-full">
+                    <div class="flex flex-col overflow-hidden rounded-2xl border border-gray-300 shadow-xl shadow-gray-900/5 focus-within:border-gray-900">
+                        <label for="body" class="sr-only">Document</label>
+                        <textarea id="body" name="body" required class="block h-56 w-full resize-y px-5 py-4 font-mono text-[13px]/6 text-gray-900 placeholder:text-gray-500 focus:outline-none" placeholder="&lt;script type=&quot;application/ld+json&quot;&gt;…"></textarea>
+                        <div class="flex flex-wrap items-center justify-between gap-3 border-t border-gray-200 bg-gray-50 px-4 py-3">
+                            <span class="text-[13px] text-gray-600">JSON-LD, Microdata and RDFa</span>
+                            <!-- Enabled by build/app.js, once it can audit -->
+                            <button type="submit" disabled class="min-h-11 rounded-lg bg-gray-900 px-5 text-sm font-semibold text-white hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 disabled:opacity-50">Validate</button>
+                        </div>
+                    </div>
+                    <p class="mt-2 text-sm text-red-700" data-validation-error></p>
+                </form>
+
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                    <span class="mr-1 text-[13px] text-gray-600">Try an example</span>
+                    <button type="button" data-example="product" class="min-h-11 rounded-full border border-gray-300 bg-white px-4 text-[13px] font-medium hover:border-gray-900">Product with errors</button>
+                    <button type="button" data-example="article" class="min-h-11 rounded-full border border-gray-300 bg-white px-4 text-[13px] font-medium hover:border-gray-900">Article</button>
+                    <button type="button" data-example="microdata" class="min-h-11 rounded-full border border-gray-300 bg-white px-4 text-[13px] font-medium hover:border-gray-900">Microdata page</button>
+                </div>
+            </div>
+
+            <footer class="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-3 border-t border-gray-200 px-6 py-5 text-[13px] text-gray-600">
+                <span>
+                    Open source, by <a href="https://jolicode.com" class="text-blue-700 hover:underline">JoliCode</a>.
+                    The <a href="https://github.com/jolicode/structured-data" class="text-blue-700 hover:underline">jolicode/structured-data</a>
+                    PHP library, compiled to WebAssembly.
+                </span>
+                <a href="https://github.com/jolicode/structured-data/blob/main/LICENSE" class="hover:underline">MIT license</a>
+            </footer>
+        </main>
+    </body>
+</html>

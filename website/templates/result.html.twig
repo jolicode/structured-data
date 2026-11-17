@@ -1,0 +1,145 @@
+{% set errorCount = 0 %}
+{% set warningCount = 0 %}
+{% for type in types %}
+    {% set errorCount = errorCount + type.mergedErrors|filter(error => error.severity != 'warning')|length %}
+    {% set warningCount = warningCount + type.mergedErrors|filter(error => error.severity == 'warning')|length %}
+{% endfor %}
+
+<main class="flex min-h-screen flex-col bg-gray-50" data-controller="result">
+    <header class="sticky top-0 z-20 flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 bg-white px-6 py-3">
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <a href="./" class="font-display text-[15px] font-semibold text-gray-900">Structured Data Validator</a>
+            {% if types|length > 0 %}
+                <span class="text-[13px] text-gray-600">{{ types|length }} {{ types|length > 1 ? 'entities' : 'entity' }}</span>
+                {% if errorCount %}
+                    <span class="rounded-full bg-red-50 px-2.5 py-0.5 text-[13px] font-medium text-red-700">{{ errorCount }} error{{ errorCount > 1 ? 's' }}</span>
+                {% endif %}
+                {% if warningCount %}
+                    <span class="rounded-full bg-amber-50 px-2.5 py-0.5 text-[13px] font-medium text-amber-800">{{ warningCount }} warning{{ warningCount > 1 ? 's' }}</span>
+                {% endif %}
+                {% if not errorCount and not warningCount %}
+                    <span class="rounded-full bg-green-50 px-2.5 py-0.5 text-[13px] font-medium text-green-800">Valid</span>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <div class="flex items-center gap-2">
+            <div
+                class="relative"
+                data-result-target="settingsWrapper"
+                data-action="click@window->result#closeSettingsOnOutsideClick"
+            >
+                <button
+                    type="button"
+                    class="min-h-9 rounded-lg border border-gray-300 bg-white px-3 text-[13px] font-medium text-gray-900 hover:border-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+                    data-result-target="settingsButton"
+                    data-action="result#toggleSettings"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                >
+                    Settings
+                </button>
+
+                <div
+                    class="absolute right-0 top-full z-10 mt-2 hidden w-80 rounded-xl border border-gray-200 bg-white p-4 text-sm shadow-xl shadow-gray-900/10"
+                    data-result-target="settingsPanel"
+                >
+                    <h2 class="font-display text-sm font-semibold text-gray-900">Validation settings</h2>
+
+                    <label class="flex cursor-pointer items-start gap-2 pt-3">
+                        <input type="checkbox" class="mt-0.5 size-4 shrink-0 accent-gray-900" data-result-target="settingMergeNodes">
+                        <span>
+                            <span class="block font-medium text-gray-900">Merge entities with the same @id</span>
+                            <span class="block text-xs text-gray-600">Treat the blocks sharing an "@id" or "itemid" as a single entity, validated as a whole. A property one block provides is not reported missing in another.</span>
+                        </span>
+                    </label>
+
+                    <label class="flex cursor-pointer items-start gap-2 pt-3">
+                        <input type="checkbox" class="mt-0.5 size-4 shrink-0 accent-gray-900" data-result-target="settingAllowPending">
+                        <span>
+                            <span class="block font-medium text-gray-900">Allow pending vocabulary</span>
+                            <span class="block text-xs text-gray-600">Do not warn when a type or property belongs to a schema.org extension still under development, like pending.schema.org.</span>
+                        </span>
+                    </label>
+
+                    <label class="flex cursor-pointer items-start gap-2 pt-3">
+                        <input type="checkbox" class="mt-0.5 size-4 shrink-0 accent-gray-900" data-result-target="settingAutoExpandWarnings">
+                        <span>
+                            <span class="block font-medium text-gray-900">Show the warnings</span>
+                            <span class="block text-xs text-gray-600">Unfold the warnings of each entity when the results load.</span>
+                        </span>
+                    </label>
+
+                    <div class="mt-4 flex justify-end border-t border-gray-200 pt-3">
+                        <button
+                            type="button"
+                            class="min-h-9 rounded-lg bg-gray-900 px-3 text-[13px] font-semibold text-white hover:bg-gray-700"
+                            data-action="result#saveSettings"
+                        >
+                            Save and validate again
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <button
+                type="button"
+                class="min-h-9 rounded-lg border border-gray-300 bg-white px-3 text-[13px] font-medium text-gray-900 hover:border-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 disabled:opacity-50"
+                title="Reformat the document, then validate it again"
+                data-result-target="formatButton"
+                data-action="result#format"
+            >
+                Format
+            </button>
+
+            <button type="submit" form="document" class="min-h-9 rounded-lg bg-gray-900 px-3.5 text-[13px] font-semibold text-white hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 disabled:opacity-50">Validate again</button>
+        </div>
+    </header>
+
+    <div class="flex flex-1 flex-wrap items-start gap-5 p-5">
+        <section class="min-w-0 flex-[1_1_480px] lg:sticky lg:top-[5.0625rem]">
+            {# A browser drops the line break that follows the <textarea> tag: with one of its own, the document keeps its first line, and the ranges of the audit their lines #}
+            <form id="document" class="flex h-[60vh] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white lg:h-[calc(100vh-6.3125rem)]">
+                <label for="body" class="sr-only">Document</label>
+                <textarea id="body" name="body" class="size-full" data-result-target="codemirror">
+{{ body }}</textarea>
+                <p class="px-4 text-sm text-red-700 not-empty:py-2" data-validation-error></p>
+            </form>
+        </section>
+
+        <section class="flex min-w-0 flex-[1_1_480px] flex-col gap-4" data-result-target="nodes">
+            {% for type in types %}
+                {{ include('components/_type.html.twig', {type: type}) }}
+            {% else %}
+                <article class="flex flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-5" data-controller="highlight">
+                    <div class="flex items-start gap-3 rounded-xl bg-red-50 px-3 py-2.5 text-[13px] font-medium text-red-800">
+                        <span class="shrink-0 text-red-700">{{ include('@images/error.svg') }}</span>
+                        We could not extract structured data from the provided code.
+                    </div>
+
+                    <div class="prose prose-sm max-w-full">
+                        <p>
+                            In order to add <code>json-ld</code> structured data to your pages, add a <code>&lt;script&gt;</code> tag:
+                        </p>
+
+                        <pre class="language-html"><code class="language-html">&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "url": "https://jolicode.com",
+  "name": [
+    "Web development agency"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "url": "https://jolicode.com/contact",
+    "contactType": "Customer service"
+  }
+}
+&lt;/script&gt;</code></pre>
+                    </div>
+                </article>
+            {% endfor %}
+        </section>
+    </div>
+</main>
