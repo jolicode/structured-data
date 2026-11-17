@@ -19,6 +19,9 @@ as its `bin/format-document.js` does in node.
 - `bin/audit.php` is what PHP runs: it audits the document, and renders `templates/result.html.twig`,
   the editor and the result, with Twig.
 - `assets/php.js` loads PHP, and runs `bin/audit.php`.
+- The footer of the homepage is the JoliCode open-source one,
+  [jolicode/oss-theme](https://github.com/jolicode/oss-theme): `castor website:build` downloads it
+  to `public/build/joli-footer.html`, and the homepage loads it.
 
 ## Build it
 

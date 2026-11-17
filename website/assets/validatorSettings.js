@@ -7,6 +7,9 @@ export const defaultSettings = {
   mergeSharedIdentifiers: true,
   autoExpandWarnings: false,
   allowPendingVocabulary: true,
+  showDescriptions: true,
+  // what "Expand all / Collapse all" of the result last did
+  expandTree: false,
 };
 
 export function loadSettings() {
@@ -17,6 +20,8 @@ export function loadSettings() {
   }
 }
 
+// merged into what is stored: the settings menu and the toolbar of the result
+// each write only their own settings
 export function persistSettings(settings) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...defaultSettings, ...settings }));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...loadSettings(), ...settings }));
 }

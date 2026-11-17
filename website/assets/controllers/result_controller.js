@@ -57,6 +57,7 @@ const lineStart = (doc, rawLine) => {
 export default class extends Controller {
   static targets = [
     "codemirror",
+    "expandButton",
     "formatButton",
     "nodes",
     "settingsWrapper",
@@ -65,6 +66,7 @@ export default class extends Controller {
     "settingMergeNodes",
     "settingAllowPending",
     "settingAutoExpandWarnings",
+    "showDescriptions",
     "warnings",
   ];
 
@@ -75,11 +77,75 @@ export default class extends Controller {
   connect() {
     // the errors are always shown, the warnings of an entity are folded
     // unless the settings say otherwise
-    const { autoExpandWarnings } = loadSettings();
+    const { autoExpandWarnings, showDescriptions, expandTree } = loadSettings();
 
     this.warningsTargets.forEach((warnings) => {
       warnings.open = autoExpandWarnings;
     });
+
+    if (this.hasShowDescriptionsTarget) {
+      this.showDescriptionsTarget.checked = showDescriptions;
+    }
+    this.nodesTarget.toggleAttribute("data-hide-descriptions", !showDescriptions);
+
+    // "toggle" does not bubble: caught on its way down, and coalesced, as
+    // expanding the whole tree fires one per branch
+    this.onBranchToggle = () => {
+      cancelAnimationFrame(this.refreshFrame);
+      this.refreshFrame = requestAnimationFrame(() => this.refreshExpandButton());
+    };
+    this.nodesTarget.addEventListener("toggle", this.onBranchToggle, true);
+
+    // the tree is rendered collapsed: expanded again, if "Expand all" was the
+    // last choice
+    if (expandTree) {
+      this.treeBranches().forEach((branch) => {
+        branch.open = true;
+      });
+    }
+    this.refreshExpandButton();
+  }
+
+  disconnect() {
+    this.nodesTarget.removeEventListener("toggle", this.onBranchToggle, true);
+    cancelAnimationFrame(this.refreshFrame);
+  }
+
+  // the branches of the property tree: the warnings list of an entity is not one
+  treeBranches() {
+    return [...this.nodesTarget.querySelectorAll('details:not([data-result-target~="warnings"])')];
+  }
+
+  // collapses the whole tree as soon as a branch is open, expands it otherwise
+  toggleAll() {
+    const branches = this.treeBranches();
+    const shouldOpen = !branches.some((branch) => branch.open);
+
+    branches.forEach((branch) => {
+      branch.open = shouldOpen;
+    });
+
+    persistSettings({ expandTree: shouldOpen });
+    this.refreshExpandButton();
+  }
+
+  refreshExpandButton() {
+    if (!this.hasExpandButtonTarget) {
+      return;
+    }
+
+    const anyOpen = this.treeBranches().some((branch) => branch.open);
+
+    this.expandButtonTarget.textContent = anyOpen ? "Collapse all" : "Expand all";
+    this.expandButtonTarget.setAttribute("aria-expanded", anyOpen ? "true" : "false");
+  }
+
+  // display only: takes effect at once, without auditing again
+  toggleDescriptions() {
+    const showDescriptions = this.showDescriptionsTarget.checked;
+
+    this.nodesTarget.toggleAttribute("data-hide-descriptions", !showDescriptions);
+    persistSettings({ showDescriptions });
   }
 
   toggleSettings() {

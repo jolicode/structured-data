@@ -17,52 +17,137 @@
     </head>
     <body class="bg-white font-sans text-gray-900 antialiased">
         <main class="flex min-h-screen flex-col">
-            <header class="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-3 px-6 py-5">
-                <span class="font-display text-[15px] font-semibold">Structured Data Validator</span>
-                <nav class="flex items-center gap-6 text-sm text-gray-700">
-                    <a href="https://github.com/jolicode/structured-data#readme" class="hover:text-gray-950">Documentation</a>
-                    <a href="https://github.com/jolicode/structured-data" class="hover:text-gray-950">GitHub</a>
-                </nav>
-            </header>
+            <div class="home-backdrop relative isolate">
+                <header class="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-3 px-6 py-5">
+                    <span class="inline-flex items-center gap-2.5 font-display text-[15px] font-semibold">
+                        <span class="grid size-8 place-items-center rounded-lg bg-joli font-mono text-sm font-bold text-gray-900 shadow-sm ring-1 ring-gray-900/10" aria-hidden="true">{ }</span>
+                        Structured Data Validator
+                    </span>
+                    <nav class="flex items-center gap-6 text-sm text-gray-700">
+                        <a href="https://github.com/jolicode/structured-data" class="inline-flex min-h-9 items-center gap-1.5 rounded-full bg-white/70 px-3 ring-1 ring-gray-900/10 backdrop-blur hover:text-gray-950 hover:ring-gray-900/30">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
+                            GitHub
+                        </a>
+                    </nav>
+                </header>
 
-            <div class="mx-auto flex w-full max-w-3xl flex-1 flex-col items-center gap-7 px-6 pb-8 pt-10 sm:pt-16">
-                <div class="flex flex-col items-center gap-4 text-center">
-                    <h1 class="font-display text-4xl font-semibold tracking-tight sm:text-5xl">Validate your structured data</h1>
-                    <p class="max-w-xl text-base/7 text-gray-600">
-                        Paste a page or a JSON-LD document. It is checked against schema.org and the
-                        Google Rich Results requirements, in your browser: nothing is sent to a server.
-                    </p>
-                </div>
+                <div class="mx-auto flex w-full max-w-5xl flex-col items-center gap-8 px-6 pb-12 pt-10 sm:pt-14">
+                    <div class="flex flex-col items-center gap-5 text-center">
+                        <span class="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-[13px] font-medium text-gray-700 ring-1 ring-gray-900/10 backdrop-blur">
+                            <span class="size-2 rounded-full bg-emerald-500" aria-hidden="true"></span>
+                            schema.org 30.1 - 2026-09-16
+                        </span>
+                        <h1 class="font-display text-4xl font-semibold tracking-tight text-balance sm:text-6xl">
+                            Validate your <span class="home-marker">structured data</span>
+                        </h1>
+                        <p class="max-w-2xl text-base/7 text-gray-600 text-pretty sm:text-lg/8">
+                            Paste a HTML page or a JSON-LD document to check it against <span class="home-marker">schema.org</span> and the
+                            <span class="home-marker">Google Rich Results</span> requirements, in your browser with webassembly.
+                        </p>
+                    </div>
 
-                <form class="w-full">
-                    <div class="flex flex-col overflow-hidden rounded-2xl border border-gray-300 shadow-xl shadow-gray-900/5 focus-within:border-gray-900">
-                        <label for="body" class="sr-only">Document</label>
-                        <textarea id="body" name="body" required class="block h-56 w-full resize-y px-5 py-4 font-mono text-[13px]/6 text-gray-900 placeholder:text-gray-500 focus:outline-none" placeholder="&lt;script type=&quot;application/ld+json&quot;&gt;…"></textarea>
-                        <div class="flex flex-wrap items-center justify-between gap-3 border-t border-gray-200 bg-gray-50 px-4 py-3">
-                            <span class="text-[13px] text-gray-600">JSON-LD, Microdata and RDFa</span>
-                            <!-- Enabled by build/app.js, once it can audit -->
-                            <button type="submit" disabled class="min-h-11 rounded-lg bg-gray-900 px-5 text-sm font-semibold text-white hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 disabled:opacity-50">Validate</button>
+                    <form class="w-full">
+                        <div class="flex flex-col overflow-hidden rounded-2xl border border-gray-300 bg-white shadow-2xl shadow-gray-900/10 ring-4 ring-white/60 transition focus-within:border-gray-900 focus-within:shadow-joli/30">
+                            <div class="flex items-center gap-1.5 border-b border-gray-200 bg-gray-50 px-4 py-2.5" aria-hidden="true">
+                                <span class="size-2.5 rounded-full bg-red-300"></span>
+                                <span class="size-2.5 rounded-full bg-joli"></span>
+                                <span class="size-2.5 rounded-full bg-emerald-300"></span>
+                                <span class="ml-2 font-mono text-xs text-gray-500">your-page.html</span>
+                            </div>
+                            <label for="body" class="sr-only">Document</label>
+                            <textarea id="body" name="body" required class="block h-56 w-full resize-y px-5 py-4 font-mono text-[13px]/6 text-gray-900 placeholder:text-gray-500 focus:outline-none" placeholder="&lt;script type=&quot;application/ld+json&quot;&gt;…"></textarea>
+                            <div class="flex flex-wrap items-center justify-between gap-3 border-t border-gray-200 bg-gray-50 px-4 py-3">
+                                <span class="flex flex-wrap gap-1.5 text-xs font-medium text-gray-700">
+                                    <span class="rounded-md bg-white px-2 py-1 ring-1 ring-gray-900/10">JSON-LD</span>
+                                    <span class="rounded-md bg-white px-2 py-1 ring-1 ring-gray-900/10">Microdata</span>
+                                    <span class="rounded-md bg-white px-2 py-1 ring-1 ring-gray-900/10">RDFa</span>
+                                </span>
+                                <!-- Enabled by build/app.js, once it can audit -->
+                                <button type="submit" disabled class="group inline-flex min-h-11 items-center gap-2 rounded-lg bg-gray-900 px-5 text-sm font-semibold text-white hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 disabled:opacity-50">
+                                    Validate
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <p class="mt-2 text-sm text-red-700" data-validation-error></p>
+                        <p class="mt-1 flex items-start gap-2 rounded-xl bg-sky-50 px-3.5 py-2.5 text-[13px]/5 text-sky-900 ring-1 ring-sky-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mt-px size-4.5 shrink-0 text-sky-700" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg>
+                            <span>
+                                Running entirely in your browser, this demo cannot load a web page from its URL.
+                                To validate the structured data of a live page, use
+                                <a href="https://redirection.io/tools/structured-data" class="font-medium underline decoration-sky-300 underline-offset-2 hover:decoration-sky-700">the structured data validator of redirection.io</a>.
+                            </span>
+                        </p>
+                    </form>
+
+                    <div class="flex w-full flex-col gap-4">
+                        <h2 class="text-center font-display text-sm font-semibold uppercase tracking-wider text-gray-500">Or try an example</h2>
+                        <div class="flex flex-wrap items-center justify-center gap-2">
+                            <span class="w-full text-center text-xs font-medium text-gray-500 sm:w-auto sm:pr-1">Samples</span>
+                            <button type="button" data-example="product" class="home-chip">
+                                <span class="size-2 rounded-full bg-red-400" aria-hidden="true"></span>
+                                Product with errors
+                            </button>
+                            <button type="button" data-example="article" class="home-chip">
+                                <span class="size-2 rounded-full bg-emerald-400" aria-hidden="true"></span>
+                                Article
+                            </button>
+                            <button type="button" data-example="microdata" class="home-chip">
+                                <span class="size-2 rounded-full bg-violet-400" aria-hidden="true"></span>
+                                Microdata page
+                            </button>
+                            <button type="button" data-example="sharedIdentifier" class="home-chip">
+                                <span class="size-2 rounded-full bg-sky-400" aria-hidden="true"></span>
+                                JSON-LD and microdata, same @id
+                            </button>
+                        </div>
+                        <div class="flex flex-wrap items-center justify-center gap-2">
+                            <span class="w-full text-center text-xs font-medium text-gray-500 sm:w-auto sm:pr-1">Real pages</span>
+                            <button type="button" data-example="jolicodeBlogPost" class="home-chip">
+                                JoliCode blog post
+                                <span class="font-normal text-gray-500">jolicode.com</span>
+                            </button>
+                            <button type="button" data-example="symfonyTraining" class="home-chip">
+                                Symfony training
+                                <span class="font-normal text-gray-500">jolicampus.com</span>
+                            </button>
                         </div>
                     </div>
-                    <p class="mt-2 text-sm text-red-700" data-validation-error></p>
-                </form>
-
-                <div class="flex flex-wrap items-center justify-center gap-2">
-                    <span class="mr-1 text-[13px] text-gray-600">Try an example</span>
-                    <button type="button" data-example="product" class="min-h-11 rounded-full border border-gray-300 bg-white px-4 text-[13px] font-medium hover:border-gray-900">Product with errors</button>
-                    <button type="button" data-example="article" class="min-h-11 rounded-full border border-gray-300 bg-white px-4 text-[13px] font-medium hover:border-gray-900">Article</button>
-                    <button type="button" data-example="microdata" class="min-h-11 rounded-full border border-gray-300 bg-white px-4 text-[13px] font-medium hover:border-gray-900">Microdata page</button>
                 </div>
             </div>
 
-            <footer class="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-3 border-t border-gray-200 px-6 py-5 text-[13px] text-gray-600">
-                <span>
-                    Open source, by <a href="https://jolicode.com" class="text-blue-700 hover:underline">JoliCode</a>.
-                    The <a href="https://github.com/jolicode/structured-data" class="text-blue-700 hover:underline">jolicode/structured-data</a>
-                    PHP library, compiled to WebAssembly.
-                </span>
-                <a href="https://github.com/jolicode/structured-data/blob/main/LICENSE" class="hover:underline">MIT license</a>
-            </footer>
+            <section class="mx-auto grid w-full max-w-5xl flex-1 content-start gap-4 px-6 pb-16 pt-4 sm:grid-cols-3" aria-label="Features">
+                <div class="rounded-2xl border border-gray-200 bg-white p-5 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gray-900/5">
+                    <span class="grid size-10 place-items-center rounded-xl bg-joli/25 text-gray-900" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg>
+                    </span>
+                    <h3 class="mt-4 font-display text-base font-semibold">Every syntax</h3>
+                    <p class="mt-1 text-sm/6 text-gray-600">JSON-LD blocks, Microdata and RDFa attributes are read from a whole page, or a lone JSON-LD document. 100% compliant with the <a href="https://www.w3.org/TR/json-ld11/" class="font-medium text-gray-900 underline decoration-gray-300 underline-offset-2 hover:decoration-gray-900">JSON-LD 1.1 specification</a>: every W3C test that applies passes.</p>
+                </div>
+                <div class="rounded-2xl border border-gray-200 bg-white p-5 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gray-900/5">
+                    <span class="grid size-10 place-items-center rounded-xl bg-sky-100 text-sky-900" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg>
+                    </span>
+                    <h3 class="mt-4 font-display text-base font-semibold">schema.org and Google</h3>
+                    <p class="mt-1 text-sm/6 text-gray-600">Types and properties are checked against <a href="https://schema.org/" class="font-medium text-gray-900 underline decoration-gray-300 underline-offset-2 hover:decoration-gray-900">schema.org</a>, and against <a href="https://developers.google.com/search/docs/appearance/structured-data/search-gallery" class="font-medium text-gray-900 underline decoration-gray-300 underline-offset-2 hover:decoration-gray-900">what the Google Rich Results require</a>.</p>
+                </div>
+                <div class="rounded-2xl border border-gray-200 bg-white p-5 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gray-900/5">
+                    <span class="grid size-10 place-items-center rounded-xl bg-emerald-100 text-emerald-900" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" /></svg>
+                    </span>
+                    <h3 class="mt-4 font-display text-base font-semibold">Private by design</h3>
+                    <p class="mt-1 text-sm/6 text-gray-600">The <a href="https://github.com/jolicode/structured-data" class="font-medium text-gray-900 underline decoration-gray-300 underline-offset-2 hover:decoration-gray-900">jolicode/structured-data</a> PHP library runs in this page, compiled to WebAssembly: your document never leaves your browser.</p>
+                </div>
+            </section>
+
+            <!-- The JoliCode open-source footer (jolicode/oss-theme), downloaded by "castor website:build" -->
+            <div class="js-joli-footer"></div>
         </main>
+        <script type="module">
+            const footer = await fetch("build/joli-footer.html");
+            if (footer.ok) {
+                document.querySelector(".js-joli-footer")?.replaceWith(document.createRange().createContextualFragment(await footer.text()));
+            }
+        </script>
     </body>
 </html>

@@ -19,6 +19,41 @@
   --font-display: "Space Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* The yellow of JoliCode, and of its open-source footer */
+  --color-joli: #f7d325;
+}
+
+/* The homepage: a dotted backdrop fading out, lit by the yellow and the blue of the footer */
+.home-backdrop {
+  &::before,
+  &::after {
+    @apply pointer-events-none absolute inset-0 -z-10;
+    content: "";
+  }
+
+  &::before {
+    background-image: radial-gradient(var(--color-gray-300) 1px, transparent 1px);
+    background-size: 22px 22px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 100%);
+  }
+
+  &::after {
+    background:
+      radial-gradient(40rem 22rem at 15% 10%, color-mix(in oklab, var(--color-joli) 28%, transparent), transparent 70%),
+      radial-gradient(36rem 22rem at 90% 35%, color-mix(in oklab, #a1e3ff 40%, transparent), transparent 70%);
+  }
+}
+
+/* A highlighter stroke under a few words */
+.home-marker {
+  background: linear-gradient(transparent 62%, color-mix(in oklab, var(--color-joli) 85%, transparent) 62%, color-mix(in oklab, var(--color-joli) 85%, transparent) 92%, transparent 92%);
+  box-decoration-break: clone;
+  padding-inline: 0.1em;
+}
+
+.home-chip {
+  @apply inline-flex min-h-10 cursor-pointer items-center gap-2 rounded-full border border-gray-300 bg-white px-4 text-[13px] font-medium shadow-sm transition hover:-translate-y-px hover:border-gray-900 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900;
 }
 
 .cm-editor {
@@ -77,6 +112,15 @@
 [data-result-target=nodes] {
   [data-start]:hover {
     @apply bg-yellow-100;
+  }
+
+  /* The "Show descriptions" switch of the result hides the reference blocks:
+     the detail of a property holding only one is then empty, so its arrow goes too */
+  &[data-hide-descriptions] {
+    .detail:has(> .structured-data-reference),
+    details:has(> .detail > .structured-data-reference) > summary .transition {
+      @apply hidden;
+    }
   }
 }
 
