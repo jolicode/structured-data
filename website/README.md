@@ -1,5 +1,8 @@
 # Demo website
 
+> [!TIP]
+> This demo website is deployed under https://structured-data-validator.jolicode.com/
+
 A static page that audits a document with the validator, in the browser: PHP is built as
 WebAssembly, with [lyrixx/php-wasm-builder](https://github.com/lyrixx/php-wasm-builder), and the
 library of this repository embedded in it. GitHub Pages serves `public/`, deployed from `main` by
