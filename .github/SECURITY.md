@@ -37,7 +37,7 @@ job of a validator is to inspect input you did not write). The following are in 
 we take them seriously:
 
 - Server-Side Request Forgery through remote `@context` resolution. Remote loading is
-  **off by default**; see the "Loading remote contexts" section of the [README](../README.md).
+  **off by default**; see [Loading remote contexts](../docs/remote-contexts.md).
 - Denial of service through hostile documents (deeply nested input, oversized responses,
   context recursion).
 - Local file or stream-wrapper access through crafted URLs.

@@ -9,591 +9,115 @@
 <div align="center">
 
 [![CI](https://github.com/jolicode/structured-data/actions/workflows/ci.yml/badge.svg)](https://github.com/jolicode/structured-data/actions/workflows/ci.yml)
-[![W3C JSON-LD 1.1 test suites](https://img.shields.io/badge/W3C_JSON--LD_1.1-test_suites_passing-brightgreen)](#conformance)
+[![W3C JSON-LD 1.1 test suites](https://img.shields.io/badge/W3C_JSON--LD_1.1-test_suites_passing-brightgreen)](docs/json-ld.md#conformance)
 [![PHPStan level 9](https://img.shields.io/badge/PHPStan-level_9-brightgreen)](phpstan.neon)
 [![PHP Version Require](http://poser.pugx.org/jolicode/structured-data/require/php)](https://packagist.org/packages/jolicode/structured-data)
 [![License](http://poser.pugx.org/jolicode/structured-data/license)](LICENSE)
 
 </div>
 
-This library provides several tools to work with [JSON-LD](https://json-ld.org/) and [schema.org](https://schema.org/) in PHP.
-It includes:
-- an implementation of the W3C JSON-LD algorithms described in the [JSON-LD 1.1 Processing Algorithms and API Recommendation](https://www.w3.org/TR/json-ld-api), published on July 16, 2020;
-- a schema.org validator;
-- a Google validator, which tells you whether your structured data is eligible for [Google Rich Results](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data);
-- an extractor for JSON-LD, microdata and RDFa embedded in HTML documents.
+Validate and process structured data in PHP: check that your [schema.org](https://schema.org/)
+markup is valid and eligible for
+[Google Rich Results](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data),
+from JSON-LD, microdata or RDFa, without leaving your process. It also ships an
+implementation of the W3C JSON-LD 1.1 algorithms that passes the official test suites.
+The [W3C implementation report](https://w3c.github.io/json-ld-api/reports/)
+lists no other PHP processor.
 
-It is used in production by [redirection.io](https://redirection.io/), which audits the
-structured data of the pages it crawls with it.
+**[Try it in your browser](https://structured-data-validator.jolicode.com/)**, or see it at
+work in [redirection.io](https://redirection.io/), which audits the structured data of
+every page it crawls with it.
 
 ## Why this library
 
-Structured data is usually validated in a browser, with Google's
-[Rich Results Test](https://search.google.com/test/rich-results) or
-[validator.schema.org](https://validator.schema.org/), or not at all. Neither tool has an
-API, so nothing checks the template you just changed, the pages you deploy, or the
-millions of pages a crawler visits. This library brings that check into PHP:
+- **Google Rich Results checks, offline**: 36 types, including the rules Google only states in prose, applied to subtypes and nested entities.
+- **Exact JSON-LD 1.1**: the W3C test suites pass, so documents are validated on what they mean, not on how they are written.
+- **One pipeline** for JSON-LD, microdata and RDFa found in an HTML page.
+- **Safe on untrusted pages**: no network request or file read unless you allow-list it, hostile input refused instead of crashing.
+- **Built for workers**: bounded memory, about 13 ms for a heavy document ([benchmarks](BENCHMARKS.md)).
+- **Actionable diagnostics**: severity, path in the document, line range, and a link to the Google documentation.
+- **Auditable rules**: generated from the official schema.org release and the Google documentation, drift-checked weekly.
 
-- **Google Rich Results eligibility, offline.** The Google validator reproduces the
-  required and recommended properties of every type the Google documentation describes,
-  including the rules the documentation only states in prose (a `price` needs a
-  `priceCurrency`, a finite return window needs `merchantReturnDays`...), and applies
-  them the way Google does: to the schema.org subtypes of the documented types, and to
-  every entity of the page, however deeply it is nested. No request leaves your process.
-- **Exact JSON-LD 1.1.** The four W3C algorithms pass the official test suites (see
-  [Conformance](#conformance)), so a document is validated on what it means rather than
-  on how it was written: compact IRIs, nested and scoped contexts, `@graph`, aliases and
-  `@reverse` are all resolved before validation.
-- **One pipeline for JSON-LD, microdata and RDFa.** Everything found in the HTML is
-  extracted, expanded and validated the same way, and a page mixing valid and broken
-  blocks still yields what can be used, with a warning for the rest.
-- **Safe on pages you do not control.** No network request and no file read unless you
-  opt in with an allow-list (see [Loading remote contexts](#loading-remote-contexts)).
-  Hostile nesting depths and malformed documents are refused instead of crashing the
-  process.
-- **Built for workers.** One `Validator` audits a stream of documents with bounded
-  memory and results that do not depend on what was audited before. A full audit of a
-  heavy JSON-LD document takes about 13 ms (see [BENCHMARKS.md](BENCHMARKS.md)).
-- **Diagnostics you can act on.** Every message carries its severity, its path in the
-  document, its line range, and a link to the Google documentation it comes from.
-- **Vocabularies you can audit.** The schema.org classes are generated from the official
-  release file, the Google rules from a crawled and curated copy of the documentation, and
-  CI checks that regeneration is reproducible. The W3C suites, the Google documentation
-  crawl and the mutation tests are re-run every week to catch drift.
+## How it compares
 
-How it compares with what you would use otherwise to *validate* structured data:
-
-| | [Rich Results Test](https://search.google.com/test/rich-results) | [Schema Markup Validator](https://validator.schema.org/) | jolicode/structured-data |
-| --- | --- | --- | --- |
-| Runs | in a browser, no API | in a browser, no API | in PHP |
-| Input | a public URL, or pasted code | a public URL, or pasted code | an HTML page (JSON-LD, microdata, RDFa) or a JSON-LD document |
-| JSON-LD | fully processed | fully processed | expanded with the W3C JSON-LD 1.1 algorithms before validation |
-| Google rules | the reference | none: checks the schema.org vocabulary only | 36 types generated from a crawl of the documentation, drift-checked weekly |
-| Validation issues location | highlighted in the tool | highlighted in the tool | a path in the document, and the position of the block in the HTML |
-| Remote `@context` | fetched by Google | fetched by Google | can be loaded. By default, denied unless allow-listed |
-| License | - | - | MIT |
-
-The other PHP libraries in this space do a different job, and combine well with this one.
-[spatie/schema-org](https://github.com/spatie/schema-org) writes JSON-LD; this library
-checks what it wrote. [brick/schema](https://github.com/brick/schema) and
-[crwlrsoft/schema-org](https://github.com/crwlrsoft/schema-org) read structured data from
-HTML into PHP objects and accept whatever they find; this library tells you what is wrong with
-it. [ml/json-ld](https://github.com/lanthaler/JsonLD) and
-[digitalbazaar/php-json-ld](https://github.com/digitalbazaar/php-json-ld) are JSON-LD
-processors of the 1.0 era, which load remote contexts by default; neither appears in the
-[W3C JSON-LD 1.1 implementation report](https://w3c.github.io/json-ld-api/reports/),
-which lists no PHP processor at all so far.
+| Tool | What it does | Difference |
+| --- | --- | --- |
+| [Rich Results Test](https://search.google.com/test/rich-results) | Google eligibility check | Browser only, no API |
+| [Schema Markup Validator](https://validator.schema.org/) | schema.org vocabulary check | Browser only, no Google rules |
+| [spatie/schema-org](https://github.com/spatie/schema-org) | Writes JSON-LD | No validation: use this library to check its output |
+| [brick/schema](https://github.com/brick/schema), [crwlrsoft/schema-org](https://github.com/crwlrsoft/schema-org) | Read structured data into PHP objects | Accept whatever they find, no validation |
+| [ml/json-ld](https://github.com/lanthaler/JsonLD), [digitalbazaar/php-json-ld](https://github.com/digitalbazaar/php-json-ld) | JSON-LD 1.0 processors | 1.0 only, load remote contexts by default |
 
 ## Installation
-
-Install the library with [Composer](https://getcomposer.org/):
 
 ```bash
 composer require jolicode/structured-data
 ```
 
-Remote `@context` resolution is **off by default**, and the default setup needs no extra
-dependency. If you opt in (see [Loading remote contexts](#loading-remote-contexts)),
-install an HTTP client as well:
+Requires PHP 8.4 or later, with the `dom`, `json` and `libxml` extensions.
 
-```bash
-composer require symfony/http-client
-```
+## Usage
 
-## Dependencies
-
-This library requires:
-
-- PHP >= 8.4, with the `dom`, `json` and `libxml` extensions
-- (optional, only for remote `@context` resolution) an implementation of `symfony/http-client-contracts`, such as [`symfony/http-client`](https://symfony.com/doc/current/http_client.html)
-- (optional) the PHP task runner [Castor](https://github.com/jolicode/castor/), used for the tooling and the CLI interface. The development tooling additionally needs the [ZipArchive PHP extension](https://www.php.net/manual/en/class.ziparchive.php) to download the W3C test suites.
-
-## Validating a JSON-LD document
-
-To validate a JSON-LD document, use the `JoliCode\StructuredData\Validator` class.
-
-### Accepted inputs
-
-`audit()` takes **the document itself**, as a string - never a URL, never a file path.
-
-This library deliberately does not guess what a string is, and never fetches anything on
-your behalf. Guessing is a security hazard: an application that forwards user input to a
-validator would silently offer an attacker a way to reach its internal network
-(`http://127.0.0.1:9200/`, cloud metadata endpoints), or to read local files through a
-path or a stream wrapper (`/var/www/.env`, `file://`, `phar://`).
-
-Whether a document may be fetched, from where, and under which restrictions is a decision
-only your application can make. So your application is the one that fetches:
-
-```php
-// From a local file - the path comes from you, not from a user
-$document = file_get_contents('/path/to/document.html');
-
-// From the network - your HTTP client, your allow-list, your timeouts
-$document = $httpClient->request('GET', $trustedUrl)->getContent();
-
-$audit = $validator->audit($document);
-```
-
-The same rule applies to the `@context` URLs found *inside* a document: see
-[Loading remote contexts](#loading-remote-contexts).
-
-The validator accepts the following data formats:
-- JSON-LD
-- microdata
-- RDFa (schema.org-style RDFa only)
-
-### Blocks describing the same node
-
-Google reads a page as one graph: the blocks that share an identifier (a JSON-LD `@id`,
-a microdata `itemid`) are one node holding the union of their properties, whatever their
-format, and a property one block omits is not missing when another block provides it.
-
-By default, the validator does the same. The audit is made of items, one per node, listed
-by `Audit::getItems()`: the blocks sharing an identifier make one item, the others one
-item each. The diagnostics of the audit (`isValid()`, `getDiagnostic()`) are the ones of
-the items, so an issue of a merged node is reported once, with the positions of every
-block it comes from.
-
-```php
-foreach ($audit->getItems() as $item) {
-    $item->getType();       // the node: merged from several blocks, or the block itself
-    $item->isMerged();      // true when the node comes from several blocks
-    $item->getIdentifier(); // its absolute "@id" or "itemid", if any
-    $item->getSources();    // the blocks it comes from
-}
-```
-
-Each source block keeps its own audit, as if it were alone in the document: a block may
-report a property another block provides, while the merged item, which makes the verdict,
-does not. `Audit::getTypes()` still lists the blocks.
-
-When the blocks disagree on a value, Google keeps every value and reports nothing; the
-validator raises a warning on the property of the merged node, with the `Merge` validator
-name (`AuditOptions::VALIDATOR_MERGE`), outside the Google diagnostics. Blank node
-identifiers are local to their block and never merge, and identifiers are compared as
-written. Only the top-level node of each block is merged: nested nodes sharing an
-identifier are not.
-
-Google is not the only consumer of structured data, though. To audit every block on its
-own, with no merge, disable the option:
-
-```php
-$audit = $validator->audit($document, mergeNodesSharingAnIdentifier: false);
-```
-
-Each block is then an item of its own.
-
-### Using the validator
-
-#### Basic usage
-
-The validator exposes a single validation method: `audit()`.
-It returns a `JoliCode\StructuredData\Audit\Audit` object holding the validation result.
-
-To quickly check the result, use `isValid()` or `isFullyValid()`:
-- `isValid()` returns true if no errors are detected
-- `isFullyValid()` returns true if no errors, no warnings, and no malformed (hence unusable) data structures were detected
-
-**Keep in mind that a schema.org type is considered valid even with warnings!**
-
-To access the messages themselves, use the `getDiagnostic()` method, which will return an array of diagnostic messages (errors and warnings).
-
-A typical usage example looks like this:
+### Validate a page or a JSON-LD document
 
 ```php
 use JoliCode\StructuredData\Validator;
 
 $validator = new Validator();
+$audit = $validator->audit($html); // the document itself, never a URL or a file path
 
-$document = file_get_contents('/path/to/a-page.html');
-$audit = $validator->audit($document);
+$audit->isValid();      // no errors
+$audit->isFullyValid(); // no errors, no warnings
 
-if ($audit->isValid()) {
-    echo 'The document contains valid structured data!';
-} else {
-    echo 'The provided document contains invalid schema.org data!';
-
-    // Returns an array of string diagnostic messages
-    $diagnostic = $audit->getDiagnostic();
-
-    foreach ($diagnostic as $message) {
-        // Messages look like this:
-        // [Google warning] DataFeed.dataFeedElement.workExample: Missing recommended property: "sameAs" for the type "Book"
-        // [Google error] DataFeed.dataFeedElement.workExample.potentialAction.expectsAcceptanceOf: Missing required property: "price" for the type "Offer" when "category" is "purchase" or "rental".
-        echo $message;
-    }
+foreach ($audit->getDiagnostic() as $message) {
+    echo $message;
+    // [Google warning] DataFeed.dataFeedElement.workExample: Missing recommended property: "sameAs" for the type "Book"
 }
 ```
 
-If you are only interested in the results of a single validator, call `setValidator()` before auditing:
+A few options:
+
 ```php
-use JoliCode\StructuredData\Validator;
 use JoliCode\StructuredData\Vocabularies\Validators\Google\GoogleValidator;
 
-$validator = new Validator();
-$validator->setValidator(GoogleValidator::class);
-
-$validator->audit($document);
+$validator->setValidator(GoogleValidator::class);               // run a single validator
+$validator->audit($html, mergeNodesSharingAnIdentifier: false); // audit blocks sharing an @id separately
+$validator->audit($html, reportPendingVocabularyUsage: true);   // warn on pending.schema.org terms
 ```
 
-Terms hosted under [pending.schema.org](https://pending.schema.org) are still under
-development and may change or be removed. Using them is legitimate, so the validator
-accepts them silently by default; opt in to `$reportPendingVocabularyUsage` to get a
-warning for each of these usages instead:
+More in [the validator documentation](docs/validator.md): filtering diagnostics, merged
+nodes, the parsed tree, and the CLI.
 
-```php
-$audit = $validator->audit($document, reportPendingVocabularyUsage: true);
-```
+### Use the JSON-LD algorithms
 
-#### Advanced usage
-
-The `getDiagnostic()` method accepts an optional parameter: a `JoliCode\StructuredData\Audit\AuditOptions` object, which lets you filter or group the results, or change the return format. See the PHPDoc on `JoliCode\StructuredData\Audit\AuditOptions` for more details.
-
-Finally, if you want to access the full parsed PHP tree, use `getTypes()` and inspect the underlying `MappedType` objects directly. These are low-level objects, but they are the most detailed information you can get, and they preserve the type hierarchy of the document.
-For an idea of what you can do with these objects, look at the output of the `castor validate` command.
-
-### Command line interface
-
-A command is available to quickly validate a JSON-LD document from the command line or in CI: `castor check`.
-Use `castor validate` to get a nicely parsed and colored full audit (it can be pretty verbose!).
-Both return a meaningful exit code, for use in scripts and CI.
-
-```bash
-castor check <file-or-url>
-castor validate <file-or-url>
-```
-
-Unlike the `Validator::audit()` API, these CLI commands **do** accept a file path or a
-URL, and will read or fetch it for you. That is safe here precisely because the argument
-comes from the operator running the command, not from a document being processed - exactly
-the distinction drawn in [Accepted inputs](#accepted-inputs).
-
-You can validate using a specific validator:
-
-```bash
-castor validate <file-or-url> google
-```
-
-```bash
-castor validate <file-or-url> schema-org
-```
-
-The blocks sharing an identifier are merged, as Google does (see
-[Blocks describing the same node](#blocks-describing-the-same-node)); pass `--no-merge`
-to audit every block on its own:
-
-```bash
-castor validate --no-merge <file-or-url>
-```
-
-Sample result of the validate command:
-<img width="822" height="749" alt="Output of the castor validate command" src="https://github.com/user-attachments/assets/97912eb8-1e11-4ba9-8cc1-ac0b6248d816" />
-
-
-## Using the JSON-LD algorithms
-
-The currently available algorithms are:
-
-- [x] [Compaction](https://www.w3.org/TR/json-ld11-api/#compaction-algorithm)
-- [x] [Expansion](https://www.w3.org/TR/json-ld11-api/#expansion-algorithm)
-- [x] [Flattening](https://www.w3.org/TR/json-ld11-api/#flattening-algorithm)
-- [x] [Framing](https://www.w3.org/TR/json-ld11-framing/#framing-algorithm)
-
-### Conformance
-
-Each algorithm is validated against the official W3C test suites ([json-ld-api](https://github.com/w3c/json-ld-api) and [json-ld-framing](https://github.com/w3c/json-ld-framing)), pinned to a known-good upstream commit and re-run weekly against `main` to surface drift.
-
-The full suites pass, covering expansion, compaction, flattening and framing. The only skipped fixtures are a handful that target JSON-LD 1.0-specific behavior (declared `specVersion: json-ld-1.0` in the upstream manifest), which this library does not implement; each skip is documented in the corresponding test. Serialization to and from RDF (`toRdf` / `fromRdf`) is out of scope and not implemented.
-
-As of the pinned upstream commits, the manifests list 781 tests, and every test that applies to a JSON-LD 1.1 processor passes:
-
-| Suite | Passed | JSON-LD 1.0 only |
-| --- | --- | --- |
-| expand | 385 | 0 |
-| compact | 244 | 2 |
-| flatten | 58 | 0 |
-| frame | 91 | 1 |
-
-`castor qa:earl` runs these suites and writes an [EARL](https://www.w3.org/TR/EARL10-Schema/) report in Turtle, one assertion per manifest entry, in the format the [W3C JSON-LD implementation report](https://w3c.github.io/json-ld-api/reports/) consolidates.
-
-To use them, create an instance of `JoliCode\StructuredData\JsonLd\Algorithms\Expand\Expander`, `JoliCode\StructuredData\JsonLd\Algorithms\Flatten\Flattener`, `JoliCode\StructuredData\JsonLd\Algorithms\Compact\Compactor` or `JoliCode\StructuredData\JsonLd\Algorithms\Frame\Framer`, and pass it the JSON-LD document you want to convert.
-
-For instance, expanding a JSON-LD document looks like this:
+Expansion, compaction, flattening and framing are available as `Expander`, `Compactor`,
+`Flattener` and `Framer`:
 
 ```php
 use JoliCode\StructuredData\JsonLd\Algorithms\Expand\Expander;
 
-$jsonString = '{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "John Doe"
-}';
-
-$expander = new Expander();
-$result = $expander->expand($jsonString);
+$expanded = (new Expander())->expand('{"@context": "https://schema.org", "@type": "Person", "name": "John Doe"}');
 ```
 
-The result will be a JSON string containing the expanded JSON-LD document:
+See [the JSON-LD documentation](docs/json-ld.md) for the options and the conformance report.
 
-```json
-[
-  {
-    "@type": [
-      "http://schema.org/Person"
-    ],
-    "http://schema.org/name": [
-      {
-        "@value": "John Doe"
-      }
-    ]
-  }
-]
-```
+### Remote contexts
 
-If you want a PHP value (an array or a `stdClass`) instead of a JSON string, set the `encodeResult` parameter to `false` when calling `expand()`.
-You can also pass a `ProcessorOptions` object holding the [JSON-LD options](https://www.w3.org/TR/json-ld-api/#the-jsonldoptions-type) if you want to modify the default behavior of the algorithms:
+`https://schema.org` contexts are resolved from bundled files. Any other remote `@context` is
+refused by default. To allow some hosts, install `symfony/http-client` and pass an
+allow-list:
 
 ```php
-use JoliCode\StructuredData\JsonLd\Algorithms\Expand\Expander;
-use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
-
-$jsonString = '{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "John Doe"
-}';
-
-$options = new ProcessorOptions(
-  ordered: true,
-  frameExpansion: true,
-);
-
-$expander = new Expander();
-$result = $expander->expand($jsonString, options: $options, encodeResult: false);
-```
-
-### Loading remote contexts
-
-#### By default, nothing goes out
-
-A JSON-LD document may point its `@context` at a URL, and the specification requires
-that URL to be resolved before the document can be expanded. This library resolves
-`https://schema.org` (and its `http` and trailing-slash variants) from the vocabulary
-files it ships with, so the most common case by far is covered without a single
-outbound request.
-
-Every other remote context is **refused**. `Validator::audit()` and the four algorithms
-issue no network request and read no file unless you say otherwise, and a refused
-context raises the error the specification mandates:
-
-```
-loading remote context failed
-```
-
-#### Why unbounded resolution is dangerous
-
-The `@context` URL comes from the document being processed. As soon as that document is
-not fully under your control, the URL is attacker-controlled, and a loader that resolves
-anything hands them:
-
-- **Request forgery.** `http://127.0.0.1:9200/`, `http://169.254.169.254/latest/meta-data/`,
-  or any host on your internal network, reachable from your server.
-- **Network mapping.** Even without seeing the responses, the difference between a
-  refusal, a timeout, and a success tells them which internal ports are open.
-- **Exfiltration.** If the response body of a failed fetch ever finds its way back into
-  an error message. This is why the message above is opaque: it discloses neither the
-  body, nor the status code, nor the URL that was tried.
-- **Denial of service.** Through a response that never ends or never arrives, or through
-  a chain of contexts that each pull more contexts (`@import`, alternate locations,
-  `Link rel="…json-ld#context"` headers).
-- **Local file reads.** If a non-http scheme is allowed to reach the PHP stream wrappers:
-  `file:///var/www/.env`, or `phar://`, which deserializes archive metadata on a mere
-  stat call.
-
-#### Widening the policy, safely
-
-If your documents legitimately reference contexts you trust, allow those hosts, and
-nothing else:
-
-```php
-use JoliCode\StructuredData\JsonLd\Algorithms\Http\HttpDocumentLoader;
-use JoliCode\StructuredData\JsonLd\Algorithms\Http\RemoteContextPolicy;
-use JoliCode\StructuredData\Validator;
-use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Component\HttpClient\NoPrivateNetworkHttpClient;
-
-// 1. Which hosts do you trust? An explicit list, over https only.
-$policy = RemoteContextPolicy::allowHosts('schema.org', 'www.w3.org', 'json-ld.org')
-    ->withTimeouts(timeout: 2.0, maxDuration: 5.0)
-    ->withMaxResponseBytes(512 * 1024)
-    ->withMaxRedirects(3);
-
-// 2. A second barrier, at the transport level: no private, loopback or link-local
-//    address, even if a hostile DNS answer points an allowed host at 169.254.169.254.
-$httpClient = new NoPrivateNetworkHttpClient(HttpClient::create());
-
-// 3. A single injection point covers the whole chain.
+$policy = RemoteContextPolicy::allowHosts('www.w3.org', 'json-ld.org');
 $validator = new Validator(documentLoader: new HttpDocumentLoader($policy, $httpClient));
-$audit = $validator->audit($document);
 ```
 
-The same constructor argument is available on `Expander`, `Compactor`, `Flattener` and `Framer`:
-
-```php
-$expander = new Expander(documentLoader: new HttpDocumentLoader($policy, $httpClient));
-```
-
-Host matching is exact, so allowing `schema.org` does not allow `evil.schema.org.example`.
-A URL carrying userinfo (`https://user:pass@schema.org/`) or a non-default port
-(`https://schema.org:8080/`) is refused. Only `http` and `https` may ever be allowed, and
-`http` requires an explicit `withSchemes('http', 'https')`. The policy is re-checked on
-every hop: the URL you asked for, **each intermediate redirect**, each alternate location,
-each `Link` header, and the URL a response was ultimately served from.
-
-The `@context` URL is not the only document-controlled value that can reach the loader:
-`Expander::expand()` (and, through it, `Validator::audit()`) also accepts a bare IRI as its
-input and will resolve it. That path is bound by the very same policy, so the default
-deny-all loader refuses it too - but keep it in mind when you widen the allow-list.
-
-#### Writing your own loader
-
-Implement `JoliCode\StructuredData\JsonLd\Algorithms\Http\DocumentLoaderInterface` to resolve contexts
-your own way, for instance from a local mirror or a PSR-6 cache:
-
-```php
-interface DocumentLoaderInterface
-{
-    public function load(string $url): \stdClass;
-
-    public function getCacheNamespace(): string;
-}
-```
-
-Processed contexts are cached for the lifetime of the process, and `getCacheNamespace()`
-partitions that cache. Return a value that identifies what your loader is willing to
-resolve, so that a context obtained under a permissive strategy can never be served to a
-restrictive one. Signal every failure with
-`new ContextProcessingException('loading remote context failed')`, and never put anything
-from the remote response in that message.
-
-#### Checklist
-
-- List the allowed hosts explicitly, and keep the list short.
-- Stay on `https` unless a context you genuinely must load is only available over `http`.
-- Wrap your client in `NoPrivateNetworkHttpClient`.
-- Set a timeout, a max duration, a response size cap and a redirect cap.
-- Never return the body of a remote response to your users.
-
-### Command line interface
-
-Commands are also available to use the algorithms from the CLI:
-
-```bash
-castor json-ld:expand <file>
-castor json-ld:flatten <file>
-castor json-ld:compact <file> <context-file>
-castor json-ld:frame <file> <frame-file>
-```
-
-Each prints its output to the console.
-
-## Testing and QA commands
-
-All the tasks are defined in the `.castor` directory, one file per namespace.
-
-The following commands are available to run the QA checks:
-
-Command | Description
----- | -----
-`castor qa:install` | Installs the QA tooling
-`castor qa:update` | Updates the QA tooling
-`castor qa:cs` | Fixes coding standards
-`castor qa:phpstan` | Runs PHPStan
-`castor qa:all` | Runs all QA tasks
-`castor qa:earl` | Runs the W3C test suites and writes the EARL conformance report (see [Conformance](#conformance))
-
-The following commands build the [demo website](website/README.md), that runs the validator in the browser:
-
-Command | Description
----- | -----
-`castor website:build` | Builds the demo website: its assets, and PHP as WebAssembly with the validator
-`castor website:check` | Checks, in node, that what is built boots, and audits a document
-`castor website:serve` | Serves the demo website
-
-The following commands are available to run the tests:
-
-Command | Description
----- | -----
-`castor qa:phpunit:prepare` | Downloads the W3C tests suite
-`castor qa:phpunit:run` | Runs PHPUnit
-`castor qa:phpunit:coverage` | Runs PHPUnit with code coverage (requires the pcov or xdebug extension)
-`castor qa:infection` | Runs Infection mutation testing on the validator and mapper layers (requires the pcov or xdebug extension)
-
-The W3C test suite is pinned to a known-good upstream commit (see `W3C_TEST_SUITE_REF` in `.castor/qa.php`).
-To re-download it, or to test against the upstream main branch:
-
-```bash
-castor qa:phpunit:prepare --force
-castor qa:phpunit:prepare --force --ref main
-```
-
-Additional commands are available to run the benchmarks:
-
-Command | Description
----- | -----
-`castor qa:bench:all` | Runs all the benchmarks
-`castor qa:bench:algorithms` | Runs the JSON-LD manipulation algorithms benchmark
-`castor qa:bench:validators` | Runs the validators benchmark
-`castor qa:bench:validators -d` | Runs the detailed and slow validators benchmark
-
-The latest figures, and what each of them measures, are in [BENCHMARKS.md](BENCHMARKS.md).
-
-## Vocabulary generation commands
-
-The validation classes shipped in `src/Vocabularies/Generated` are generated from the
-vocabulary definitions. These commands refresh them:
-
-Command | Description
----- | -----
-`castor schema-org:update-version` | Bump the schema.org version to the latest release published on GitHub
-`castor schema-org:download` | Download the schema.org types definition file and JSON-LD context
-`castor schema-org:generate` | Generate the schema.org validation classes
-`castor schema-org:download-examples` | Refresh the schema.org examples used by the tests
-`castor google:download` | Crawl the Google structured-data documentation
-`castor google:generate` | Generate the Google validation classes
-`castor google:check` | Check the Google documentation coverage against the curated manifest
-
-The full procedures are described in the
-[schema.org](resources/schema.org/UPGRADE_GUIDELINES.md) and
-[Google](resources/google/UPGRADE_GUIDELINES.md) upgrade guidelines.
+Read [Loading remote contexts](docs/remote-contexts.md) before widening the policy.
 
 ## Contributing
 
-See the [CONTRIBUTING.md](CONTRIBUTING.md) file for more information.
-
-## Working on the library
-
-Clone the repository, then install the library's dependencies and the QA tooling:
-
-```bash
-composer install   # the library's own dependencies (Composer, not Castor)
-castor qa:install  # the QA tooling: php-cs-fixer, phpstan, phpunit, phpbench, infection
-```
-
-### Upgrading schema.org
-
-Upgrades are driven by the official schema.org release definition file.
-The complete upgrade process is documented in:
-[resources/schema.org/UPGRADE_GUIDELINES.md](resources/schema.org/UPGRADE_GUIDELINES.md)
-
-When upgrading, always review the [schema.org release notes](https://schema.org/docs/releases.html) and check that the changes to the `schema-org-baseline.json` test fixture reflect real schema.org changes.
-
-### Upgrading Google
-
-The Google validator tracks the [Google structured-data documentation](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data), which evolves continuously.
-The complete upgrade process is documented in:
-[resources/google/UPGRADE_GUIDELINES.md](resources/google/UPGRADE_GUIDELINES.md)
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the setup, the QA commands and the vocabulary
+upgrade procedures.
 
 ## License
 

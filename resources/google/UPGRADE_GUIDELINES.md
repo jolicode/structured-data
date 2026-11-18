@@ -109,7 +109,7 @@ Then run the full suite with `castor qa:phpunit:run`.
 
 ## 9. Keep the docs aligned
 
-Check that the command examples in `README.md` and in
+Check that the command examples in `docs/`, `CONTRIBUTING.md` and in
 `resources/google/structured-data/README.md` still match the actual task names and behavior,
 and update the tasks in `.castor/` if needed.
 

@@ -19,7 +19,7 @@ use JoliCode\StructuredData\JsonLd\Algorithms\Exception\ContextProcessingExcepti
  *
  * Implementations decide what may be resolved. Keep in mind that these URLs come
  * from the document being processed, so on untrusted input they are attacker
- * controlled: see the "Loading remote contexts" section of the README.
+ * controlled: see docs/remote-contexts.md.
  */
 interface DocumentLoaderInterface
 {
