@@ -63,8 +63,7 @@ class Validator
      *                                                     resolved. Defaults to a loader
      *                                                     that refuses every host, so no
      *                                                     request ever leaves the process.
-     *                                                     See the "Loading remote contexts"
-     *                                                     section of the README.
+     *                                                     See docs/remote-contexts.md.
      */
     public function __construct(
         private readonly ValidationMapper $validationMapper = new ValidationMapper(),
@@ -107,7 +106,7 @@ class Validator
      * The $document argument is the document itself, not a URL nor a file path:
      * this library never guesses what an input is, and never fetches it for you.
      * Deciding what may be fetched, and under which restrictions, belongs to the
-     * application - see the "Accepted inputs" section of the README.
+     * application - see the "Accepted inputs" section of docs/validator.md.
      *
      * @param bool $reportPendingVocabularyUsage  Terms hosted under
      *                                            pending.schema.org are still
@@ -126,7 +125,7 @@ class Validator
      *                                            false to audit every block on
      *                                            its own. See the "Blocks
      *                                            describing the same node"
-     *                                            section of the README.
+     *                                            section of docs/validator.md.
      */
     public function audit(string $document, bool $reportPendingVocabularyUsage = false, bool $mergeNodesSharingAnIdentifier = true): Audit
     {

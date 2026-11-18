@@ -49,7 +49,7 @@
         "symfony/var-dumper": "^8.0"
     },
     "suggest": {
-        "symfony/http-client": "To resolve remote JSON-LD @context documents (off by default; see the \"Loading remote contexts\" section of the README)."
+        "symfony/http-client": "To resolve remote JSON-LD @context documents (off by default; see docs/remote-contexts.md)."
     },
     "autoload": {
         "psr-4": {

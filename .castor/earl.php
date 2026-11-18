@@ -258,28 +258,29 @@ function earlTurtle(array $assertions, string $release, \DateTimeImmutable $date
         '@prefix foaf: <http://xmlns.com/foaf/0.1/> .',
         '@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .',
         '',
+        // Within each node, the rdf:type ("a") comes first, then the properties in
+        // alphabetical order.
         \sprintf('<%s> a doap:Project, earl:TestSubject, earl:Software ;', EARL_SUBJECT_IRI),
-        '  doap:name "jolicode/structured-data" ;',
+        \sprintf('  dc:creator <%s> ;', EARL_ASSERTOR_IRI),
         '  dc:title "jolicode/structured-data" ;',
         '  doap:description "A PHP toolkit to validate and convert structured data: Schema.org and Google Rich Results validation, microdata/RDFa/JSON-LD extraction, and the W3C JSON-LD 1.1 algorithms."@en ;',
+        \sprintf('  doap:developer <%s> ;', EARL_ASSERTOR_IRI),
         \sprintf('  doap:homepage <%s> ;', EARL_SUBJECT_IRI),
+        '  doap:implements <https://www.w3.org/TR/json-ld11/>, <https://www.w3.org/TR/json-ld11-api/>, <https://www.w3.org/TR/json-ld11-framing/> ;',
         \sprintf('  doap:license <%s/blob/main/LICENSE> ;', EARL_SUBJECT_IRI),
+        '  doap:name "jolicode/structured-data" ;',
         '  doap:programming-language "PHP" ;',
-        \sprintf('  doap:developer <%s>, <https://github.com/HedicGuibert> ;', EARL_ASSERTOR_IRI),
-        \sprintf('  dc:creator <%s> ;', EARL_ASSERTOR_IRI),
         '  doap:release [',
+        \sprintf('    doap:created "%s"^^xsd:date ;', $date->format('Y-m-d')),
         \sprintf('    doap:name "jolicode/structured-data %s" ;', $release),
-        \sprintf('    doap:revision "%s" ;', $release),
-        \sprintf('    doap:created "%s"^^xsd:date', $date->format('Y-m-d')),
-        '  ] .',
+        \sprintf('    doap:revision "%s"', $release),
+        '  ] ;',
+        '  doap:shortdesc "JSON-LD 1.1 processor and structured data validator for PHP"@en .',
         '',
         \sprintf('<%s> a foaf:Person, earl:Assertor ;', EARL_ASSERTOR_IRI),
-        '  foaf:name "Xavier Lacot" ;',
-        \sprintf('  foaf:homepage <%s> .', EARL_ASSERTOR_IRI),
-        '',
-        '<https://github.com/HedicGuibert> a foaf:Person ;',
-        '  foaf:name "Hédic Guibert" ;',
-        '  foaf:homepage <https://github.com/HedicGuibert> .',
+        '  foaf:homepage <https://lacot.org/> ;',
+        \sprintf('  foaf:made <%s> ;', EARL_ASSERTOR_IRI),
+        '  foaf:name "Xavier Lacot" .',
         '',
     ];
 
@@ -288,10 +289,10 @@ function earlTurtle(array $assertions, string $release, \DateTimeImmutable $date
     foreach ($assertions as $assertion) {
         $lines[] = '[ a earl:Assertion ;';
         $lines[] = \sprintf('  earl:assertedBy <%s> ;', EARL_ASSERTOR_IRI);
+        $lines[] = '  earl:mode earl:automatic ;';
+        $lines[] = \sprintf('  earl:result [ a earl:TestResult ; dc:date "%s"^^xsd:dateTime ; earl:outcome earl:%s ] ;', $timestamp, $assertion['outcome']);
         $lines[] = \sprintf('  earl:subject <%s> ;', EARL_SUBJECT_IRI);
-        $lines[] = \sprintf('  earl:test <%s> ;', $assertion['test']);
-        $lines[] = \sprintf('  earl:result [ a earl:TestResult ; earl:outcome earl:%s ; dc:date "%s"^^xsd:dateTime ] ;', $assertion['outcome'], $timestamp);
-        $lines[] = '  earl:mode earl:automatic ] .';
+        $lines[] = \sprintf('  earl:test <%s> ] .', $assertion['test']);
         $lines[] = '';
     }
 

@@ -102,6 +102,6 @@ shared with the other vocabularies.
 ## 9. Keep the docs and the commands aligned
 
 Update the tasks in `.castor/` if needed, and check that the command examples and the upgrade
-notes in `README.md` are still accurate.
+notes in `docs/` and `CONTRIBUTING.md` are still accurate.
 
 ## 10. Submit a pull request!

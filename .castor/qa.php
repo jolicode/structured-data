@@ -54,7 +54,7 @@ const BENCHMARK_FIXTURE_ALLOWED_DOMAINS = ['jolicode.com', 'jolicampus.com', 'go
 // upstream change cannot break an unrelated PR. The weekly scheduled CI run is what
 // surfaces upstream drift: bump this SHA (and rerun `castor qa:phpunit:prepare --force`)
 // to pick up new W3C tests.
-const W3C_TEST_SUITE_REF = '92f07705a0c0ac27aa9bc6fe1322dcc9fad0114d';
+const W3C_TEST_SUITE_REF = '61305e9c7b7d3d79178baefdb34bc1d47464c783';
 
 // Commit of https://github.com/w3c/json-ld-framing the framing test suite is pinned to.
 const W3C_FRAMING_TEST_SUITE_REF = '3bf782ba9a40dd1b143435abe386d38df64f2b47';
