@@ -98,7 +98,7 @@ class ExpanderTest extends AbstractJsonLdTestCase
             'er31-in.jsonld' => 'invalid @index value',
             'er32-in.jsonld' => 'list of lists',
             'er33-in.jsonld' => 'invalid @reverse value',
-            'er34-in.jsonld' => 'invalid @reverse property value',
+            'er34-in.jsonld' => 'invalid reverse property value',
             'er35-in.jsonld' => 'invalid language map value',
             'er36-in.jsonld' => 'invalid reverse property value',
             'er37-in.jsonld' => 'invalid value object',

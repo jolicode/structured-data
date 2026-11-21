@@ -13,6 +13,8 @@
 
 ### Fixed
 
+- Expansion reported `invalid @reverse property value` where the specification names the
+  error `invalid reverse property value` (W3C test `expand#ter34`).
 - Flattening and framing merged a plain string into a language-tagged string holding the
   same text when both were values of the same property: only one of the two was kept.
 

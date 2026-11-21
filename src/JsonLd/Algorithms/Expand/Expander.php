@@ -811,7 +811,7 @@ class Expander
                 foreach ((array) $items as $item) {
                     // 13.4.13.4.2.1.1
                     if (ExpandedObjectShape::isValueObject($item) || ExpandedObjectShape::isListObject($item)) {
-                        throw new ExpansionException('invalid @reverse property value');
+                        throw new ExpansionException('invalid reverse property value');
                     }
 
                     // 13.4.13.4.2.1.2
