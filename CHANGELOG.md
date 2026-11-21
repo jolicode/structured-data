@@ -1,5 +1,16 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+
+- Relative IRIs are resolved as RFC 3986 section 5.2 describes it and nothing more, as
+  JSON-LD asks: non-ASCII characters are no longer percent-encoded, the host keeps its
+  case, and a reference without a path keeps the dot segments of the base (`?y` against
+  `http://a/b/./c` is `http://a/b/./c?y`). The resolution is the one of
+  `League\Uri\UriString`, so the library now requires `league/uri-interfaces ^7.10`
+  instead of `league/uri`.
+
 ## [0.3.0] - 2026-11-13
 
 ### Added

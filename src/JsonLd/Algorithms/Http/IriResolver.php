@@ -14,7 +14,8 @@ namespace JoliCode\StructuredData\JsonLd\Algorithms\Http;
 use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\Context;
 use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
 use JoliCode\StructuredData\JsonLd\Algorithms\TermDefinition\TermDefinitionCreator;
-use League\Uri\Uri;
+use League\Uri\Contracts\UriException;
+use League\Uri\UriString;
 
 class IriResolver
 {
@@ -169,7 +170,7 @@ class IriResolver
     /**
      * Permissive absolute IRI/URI shape check.
      * This is because JSON-LD uses absolute identifiers (URN scheme) that are not fetchable over HTTP.
-     * Use League\Uri when strict web URL validation is required.
+     * Use league/uri when strict web URL validation is required.
      */
     public static function isAbsoluteIri(mixed $iri): bool
     {
@@ -213,7 +214,25 @@ class IriResolver
             return $iri;
         }
 
-        return (string) Uri::parse($iri, $base);
+        // A reference without a path keeps the path of the base as it is, dot
+        // segments included (RFC 3986 section 5.2.2), where league/uri removes
+        // them: this one case is resolved here.
+        if ('' === $iri || '#' === $iri[0]) {
+            return explode('#', $base, 2)[0] . $iri;
+        }
+
+        if ('?' === $iri[0]) {
+            return explode('?', explode('#', $base, 2)[0], 2)[0] . $iri;
+        }
+
+        // The resolution of RFC 3986 section 5.2 and nothing more, as JSON-LD
+        // asks: no normalization, no percent-encoding. A reference that cannot
+        // be parsed is handed back as it is, so that it stays not well-formed.
+        try {
+            return UriString::resolve($iri, $base);
+        } catch (UriException) {
+            return $iri;
+        }
     }
 
     public static function isKeywordLikeString(string $value): bool
