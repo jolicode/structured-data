@@ -18,6 +18,8 @@ enum Algorithms: string
     case COMPACT = 'compact';
     case EXPAND = 'expand';
     case FRAME = 'frame';
+    case TO_RDF = 'toRdf';
+    case FROM_RDF = 'fromRdf';
 
     /**
      * The list of algorithms that are part of the official test suite.
@@ -32,6 +34,20 @@ enum Algorithms: string
             self::FLATTEN->value,
             self::COMPACT->value,
             self::EXPAND->value,
+        ];
+    }
+
+    /**
+     * The RDF algorithms of the official test suite. Their tests are driven by
+     * the manifests, so their fixtures keep the upstream layout.
+     *
+     * @return list<string>
+     */
+    public static function rdfAlgorithmNames(): array
+    {
+        return [
+            self::TO_RDF->value,
+            self::FROM_RDF->value,
         ];
     }
 }

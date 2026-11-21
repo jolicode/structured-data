@@ -8,7 +8,7 @@ that URL to be resolved before the document can be expanded. This library resolv
 files it ships with, so the most common case by far is covered without a single
 outbound request.
 
-Every other remote context is **refused**. `Validator::audit()` and the four algorithms
+Every other remote context is **refused**. `Validator::audit()`, the four algorithms and the deserialization to RDF
 issue no network request and read no file unless you say otherwise, and a refused
 context raises the error the specification mandates:
 

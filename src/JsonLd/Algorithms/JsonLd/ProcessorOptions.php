@@ -30,7 +30,16 @@ class ProcessorOptions
         public ?bool $omitGraph = null,
         public bool $ordered = false,
         public string $processingMode = Context::PROCESSING_MODE_11,
-        public bool $produceGeneralizedRdf = true,
+        /**
+         * Deserialization to RDF only: whether a triple whose predicate is a blank
+         * node is kept. Such a triple is not RDF, so it is dropped by default.
+         */
+        public bool $produceGeneralizedRdf = false,
+        /**
+         * RDF algorithms only: how the base direction of a string travels through
+         * RDF, which has no room for it. Null drops it, "i18n-datatype" writes it
+         * in the datatype, "compound-literal" in a blank node.
+         */
         public ?string $rdfDirection = null,
         public bool $useNativeTypes = false,
         public bool $useRdfType = false,

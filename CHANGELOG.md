@@ -2,8 +2,20 @@
 
 ## [Unreleased]
 
+### Added
+
+- The RDF serialization and deserialization algorithms of JSON-LD 1.1: `ToRdfConverter`
+  turns a JSON-LD document into an `RdfDataset`, `FromRdfConverter` turns a dataset or
+  N-Quads into an expanded document, and `NQuadsParser` / `NQuadsSerializer` read and
+  write N-Quads. Generalized RDF, both `rdfDirection` forms, native types and JSON
+  literals (canonicalized with RFC 8785) are supported. The official `toRdf` and `fromRdf`
+  test suites pass, and are part of `castor qa:earl`. From the command line:
+  `castor json-ld:to-rdf` and `castor json-ld:from-rdf`. See [docs/json-ld.md](docs/json-ld.md#rdf).
+
 ### Changed
 
+- `ProcessorOptions::$produceGeneralizedRdf` now defaults to `false`, as the specification
+  says. Nothing read the option before.
 - Relative IRIs are resolved as RFC 3986 section 5.2 describes it and nothing more, as
   JSON-LD asks: non-ASCII characters are no longer percent-encoded, the host keeps its
   case, and a reference without a path keeps the dot segments of the base (`?y` against

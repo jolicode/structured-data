@@ -8,8 +8,8 @@ The library implements the W3C
 - [Expansion](https://www.w3.org/TR/json-ld11-api/#expansion-algorithm): `JoliCode\StructuredData\JsonLd\Algorithms\Expand\Expander`
 - [Flattening](https://www.w3.org/TR/json-ld11-api/#flattening-algorithm): `JoliCode\StructuredData\JsonLd\Algorithms\Flatten\Flattener`
 - [Framing](https://www.w3.org/TR/json-ld11-framing/#framing-algorithm): `JoliCode\StructuredData\JsonLd\Algorithms\Frame\Framer`
-
-Serialization to and from RDF (`toRdf` / `fromRdf`) is out of scope and not implemented.
+- [Deserialization to RDF](https://www.w3.org/TR/json-ld11-api/#deserialize-json-ld-to-rdf-algorithm) (`toRdf`): `JoliCode\StructuredData\JsonLd\Algorithms\Rdf\ToRdfConverter`
+- [Serialization from RDF](https://www.w3.org/TR/json-ld11-api/#serialize-rdf-as-json-ld-algorithm) (`fromRdf`): `JoliCode\StructuredData\JsonLd\Algorithms\Rdf\FromRdfConverter`
 
 ## Usage
 
@@ -67,6 +67,56 @@ $result = $expander->expand($jsonString, options: $options, encodeResult: false)
 Remote `@context` URLs other than schema.org are refused by default: see
 [Loading remote contexts](remote-contexts.md).
 
+## RDF
+
+`ToRdfConverter` turns a JSON-LD document into an `RdfDataset`, a set of `Quad` objects
+whose terms are `Iri`, `BlankNode` and `Literal` values. `NQuadsSerializer` writes a dataset
+as [N-Quads](https://www.w3.org/TR/n-quads/):
+
+```php
+use JoliCode\StructuredData\JsonLd\Algorithms\Rdf\NQuadsSerializer;
+use JoliCode\StructuredData\JsonLd\Algorithms\Rdf\ToRdfConverter;
+
+$dataset = (new ToRdfConverter())->toRdf('{
+  "@context": "https://schema.org",
+  "@id": "https://example.com/john",
+  "@type": "Person",
+  "name": "John Doe"
+}');
+
+echo NQuadsSerializer::serialize($dataset);
+```
+
+```nquads
+<https://example.com/john> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Person> .
+<https://example.com/john> <http://schema.org/name> "John Doe" .
+```
+
+`FromRdfConverter` goes the other way. It takes an `RdfDataset` or an N-Quads string
+(`NQuadsParser` reads one into a dataset) and returns the expanded JSON-LD document, as a
+JSON string unless `encodeResult` is `false`:
+
+```php
+use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms\Rdf\FromRdfConverter;
+
+$document = (new FromRdfConverter())->fromRdf($nQuads, new ProcessorOptions(useNativeTypes: true));
+```
+
+Four options of `ProcessorOptions` only concern these two algorithms:
+
+| Option | Default | Effect |
+| --- | --- | --- |
+| `produceGeneralizedRdf` | `false` | `toRdf` keeps the triples whose predicate is a blank node, which RDF does not allow. |
+| `rdfDirection` | `null` | How the base direction of a string (`@direction`) travels through RDF, which has no room for it: dropped when `null`, written in the datatype with `i18n-datatype`, in a blank node with `compound-literal`. Use the same value both ways. |
+| `useNativeTypes` | `false` | `fromRdf` turns `xsd:boolean`, `xsd:integer` and `xsd:double` literals into JSON booleans and numbers. A literal JSON cannot hold (an integer larger than a PHP integer, an infinity, an invalid lexical form) keeps its string and its `@type`. |
+| `useRdfType` | `false` | `fromRdf` keeps `rdf:type` as an ordinary property instead of `@type`. |
+
+A triple that would hold an IRI or a language tag that is not well-formed is left out of
+the dataset, as the specification asks: `toRdf` does not report it. Numbers take their
+canonical `xsd:integer` or `xsd:double` lexical form, and a JSON literal (`"@type": "@json"`)
+is written with the [JSON Canonicalization Scheme](https://www.rfc-editor.org/rfc/rfc8785).
+
 ## Conformance
 
 Each algorithm is validated against the official W3C test suites
@@ -78,15 +128,22 @@ The full suites pass. The only skipped fixtures are a handful that target JSON-L
 1.0-specific behavior (declared `specVersion: json-ld-1.0` in the upstream manifest), which
 this library does not implement; each skip is documented in the corresponding test.
 
-As of the pinned upstream commits, the manifests list 781 tests, and every test that
+As of the pinned upstream commits, the manifests list 1307 tests, and every test that
 applies to a JSON-LD 1.1 processor passes:
 
 | Suite | Passed | JSON-LD 1.0 only |
 | --- | --- | --- |
-| expand | 385 | 0 |
-| compact | 244 | 2 |
+| expand | 388 | 0 |
+| compact | 245 | 2 |
 | flatten | 58 | 0 |
 | frame | 91 | 1 |
+| toRdf | 457 | 11 |
+| fromRdf | 53 | 1 |
+
+The `toRdf` and `fromRdf` figures include the optional features of the specification:
+generalized RDF, and both `rdfDirection` forms. The `html` and `remote-doc` suites are not
+run: extracting JSON-LD from HTML is the job of the [validator](validator.md), not of
+these algorithms.
 
 `castor qa:earl` runs these suites and writes an [EARL](https://www.w3.org/TR/EARL10-Schema/)
 report in Turtle, one assertion per manifest entry, in the format the
@@ -103,4 +160,6 @@ castor json-ld:expand <file>
 castor json-ld:flatten <file>
 castor json-ld:compact <file> <context-file>
 castor json-ld:frame <file> <frame-file>
+castor json-ld:to-rdf <file> [--rdf-direction=i18n-datatype|compound-literal] [--generalized]
+castor json-ld:from-rdf <n-quads-file> [--rdf-direction=...] [--native-types] [--rdf-type]
 ```
