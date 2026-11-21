@@ -11,6 +11,11 @@
   `League\Uri\UriString`, so the library now requires `league/uri-interfaces ^7.10`
   instead of `league/uri`.
 
+### Fixed
+
+- Flattening and framing merged a plain string into a language-tagged string holding the
+  same text when both were values of the same property: only one of the two was kept.
+
 ## [0.3.0] - 2026-11-13
 
 ### Added
