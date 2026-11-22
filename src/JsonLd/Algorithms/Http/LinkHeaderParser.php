@@ -57,7 +57,9 @@ final class LinkHeaderParser
                     }
 
                     foreach ($parameters as $parameter) {
-                        $keyValue = preg_split('/=(?=([^"]*"[^"]*")*$)/', $parameter);
+                        // The first "=" outside quotes: a value is a quoted string
+                        // or a bare token (rel=alternate).
+                        $keyValue = preg_split('/=(?=([^"]*"[^"]*")*[^"]*$)/', $parameter, 2);
 
                         // Skip valueless parameters (e.g. a bare "rel"); the trim
                         // char-list strips only surrounding whitespace and quotes.

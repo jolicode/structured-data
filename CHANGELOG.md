@@ -71,6 +71,8 @@
 - Expanding an array that holds a map with nothing but `@graph` flattened that graph into
   the array: it is now kept as a graph object, only the document itself being unwrapped.
 - A remote document that is a JSON array was turned into an object with numeric keys.
+- A parameter of an HTTP `Link` header written without quotes (`rel=alternate`) was
+  dropped, so the alternate document such a header names was not followed.
 - Expansion reported `invalid @reverse property value` where the specification names the
   error `invalid reverse property value` (W3C test `expand#ter34`).
 - Flattening and framing merged a plain string into a language-tagged string holding the
