@@ -12,14 +12,10 @@
 namespace JoliCode\StructuredData\Tests\Validation;
 
 use JoliCode\StructuredData\Audit\AuditOptions;
-use JoliCode\StructuredData\Validator;
 use JoliCode\StructuredData\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 
-#[CoversClass(Validator::class)]
-#[CoversClass(SchemaOrgValidator::class)]
 #[Group('validation')]
 #[Group('schemaorg')]
 #[Group('schema-org')]

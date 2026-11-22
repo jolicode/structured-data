@@ -17,13 +17,10 @@ use JoliCode\StructuredData\Validator;
 use JoliCode\StructuredData\Vocabularies\Validators\Google\GoogleValidator;
 use JoliCode\StructuredData\Vocabularies\Validators\Google\SpecialRules\SpecialRulesRegistry;
 use JoliCode\StructuredData\Vocabularies\Validators\Google\Stack;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(Stack::class)]
-#[CoversClass(SpecialRulesRegistry::class)]
 #[Group('validation')]
 #[Group('google')]
 class GoogleValidatorInfrastructureTest extends TestCase

@@ -11,7 +11,6 @@
 
 namespace JoliCode\StructuredData\Vocabularies\Validators\Google;
 
-use JoliCode\StructuredData\Mapper\MappedProperty;
 use JoliCode\StructuredData\Mapper\MappedType;
 use JoliCode\StructuredData\Vocabularies\Generated\GeneratedClassesRegistry;
 use JoliCode\StructuredData\Vocabularies\Validators\SchemaOrgTypeHierarchy;
@@ -59,20 +58,6 @@ class Stack
         }
 
         $this->currentType = $type;
-        $this->resetResolutionCache();
-
-        return $this;
-    }
-
-    public function newProperty(MappedProperty $property): self
-    {
-        $ownerType = $property->getOwnerType();
-
-        if ($this->currentType && spl_object_id($this->currentType) === spl_object_id($ownerType ?? (object) [])) {
-            return $this;
-        }
-
-        $this->currentType = $ownerType;
         $this->resetResolutionCache();
 
         return $this;

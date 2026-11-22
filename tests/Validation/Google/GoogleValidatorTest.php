@@ -13,16 +13,12 @@ namespace JoliCode\StructuredData\Tests\Validation;
 
 use JoliCode\StructuredData\Audit\AuditOptions;
 use JoliCode\StructuredData\Mapper\MappedError;
-use JoliCode\StructuredData\Validator;
 use JoliCode\StructuredData\Vocabularies\Generated\Google\BookWork;
 use JoliCode\StructuredData\Vocabularies\Generated\Google\NewsArticle;
 use JoliCode\StructuredData\Vocabularies\Validators\Google\GoogleValidator;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 
-#[CoversClass(Validator::class)]
-#[CoversClass(GoogleValidator::class)]
 #[Group('validation')]
 #[Group('google')]
 class GoogleValidatorTest extends AbstractValidatorTestCase
