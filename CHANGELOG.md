@@ -34,6 +34,8 @@
   were read as ISO-8859-1, which turned `Zoé` into `ZoÃ©`.
 - A microdata or RDFa element is located on the line its start tag opens on. It was
   located on the line the tag ends on, wrong for a tag written over several lines.
+- Expanding an array that holds a map with nothing but `@graph` flattened that graph into
+  the array: it is now kept as a graph object, only the document itself being unwrapped.
 - Expansion reported `invalid @reverse property value` where the specification names the
   error `invalid reverse property value` (W3C test `expand#ter34`).
 - Flattening and framing merged a plain string into a language-tagged string holding the

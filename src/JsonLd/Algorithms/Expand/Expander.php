@@ -116,6 +116,7 @@ class Expander
         Context $activeContext = new Context(),
         ?string $activeProperty = self::TOP_LEVEL_ACTIVE_PROPERTY,
         bool $fromMap = false,
+        bool $arrayItem = false,
     ): \stdClass|array|null {
         // 1
         if (null === $element) {
@@ -241,7 +242,9 @@ class Expander
             }
         }
 
-        if (null === $activeProperty || self::TOP_LEVEL_ACTIVE_PROPERTY === $activeProperty) {
+        // Only the document itself: among the items of an array, a map holding
+        // nothing but @graph is a graph object, and stays one.
+        if (!$arrayItem && (null === $activeProperty || self::TOP_LEVEL_ACTIVE_PROPERTY === $activeProperty)) {
             if (
                 \is_object($result)
                 && property_exists($result, Keyword::GRAPH->value)
@@ -1220,6 +1223,7 @@ class Expander
                 $activeContext,
                 $activeProperty,
                 $fromMap,
+                true,
             );
 
             // 5.2.2
