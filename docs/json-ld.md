@@ -67,6 +67,36 @@ $result = $expander->expand($jsonString, options: $options, encodeResult: false)
 Remote `@context` URLs other than schema.org are refused by default: see
 [Loading remote contexts](remote-contexts.md).
 
+## Documents given as a URL
+
+Every algorithm takes the URL of a document where it takes a document, once the document
+loader is [allowed to reach its host](remote-contexts.md):
+
+```php
+$expander = new Expander(documentLoader: new HttpDocumentLoader($policy, $httpClient));
+$result = $expander->expand('https://example.com/data.jsonld');
+```
+
+- The base IRI is the URL the document was finally served from, redirections followed. The
+  `base` option replaces it.
+- A document served as `application/json` (or any `+json` type) with a
+  `Link: <context.jsonld>; rel="http://www.w3.org/ns/json-ld#context"` header is processed
+  with that context, applied before its own.
+- A document that is not JSON and carries a
+  `Link: <doc.jsonld>; rel="alternate"; type="application/ld+json"` header is replaced by
+  the document the header points at.
+- An **HTML document** gives the JSON-LD of its `<script type="application/ld+json">`
+  elements: the first one by default, all of them with `extractAllScripts: true`, the one
+  whose `id` the fragment of the URL names (`page.html#second`) otherwise. Its
+  `<base href>` sets the base IRI. A script that does not hold a JSON document raises
+  `invalid script element`. The deserialization to RDF takes every script by default.
+- Any other content type is refused, as is a document that cannot be reached, with
+  `loading document failed`.
+
+To check the structured data of a page, markup errors included, use the
+[validator](validator.md) instead: it reads JSON-LD, microdata and RDFa, tolerates what a
+browser tolerates, and says where each problem is.
+
 ## RDF
 
 `ToRdfConverter` turns a JSON-LD document into an `RdfDataset`, a set of `Quad` objects
@@ -128,7 +158,7 @@ The full suites pass. The only skipped fixtures are a handful that target JSON-L
 1.0-specific behavior (declared `specVersion: json-ld-1.0` in the upstream manifest), which
 this library does not implement; each skip is documented in the corresponding test.
 
-As of the pinned upstream commits, the manifests list 1307 tests, and every test that
+As of the pinned upstream commits, the manifests list 1375 tests, and every test that
 applies to a JSON-LD 1.1 processor passes:
 
 | Suite | Passed | JSON-LD 1.0 only |
@@ -139,11 +169,12 @@ applies to a JSON-LD 1.1 processor passes:
 | frame | 91 | 1 |
 | toRdf | 457 | 11 |
 | fromRdf | 53 | 1 |
+| remote-doc | 18 | 0 |
+| html | 50 | 0 |
 
-The `toRdf` and `fromRdf` figures include the optional features of the specification:
-generalized RDF, and both `rdfDirection` forms. The `html` and `remote-doc` suites are not
-run: extracting JSON-LD from HTML is the job of the [validator](validator.md), not of
-these algorithms.
+These are the seven suites of the JSON-LD 1.1 API, and the framing one. The figures include
+the optional features of the specification: generalized RDF, both `rdfDirection` forms, and
+the extraction of JSON-LD from HTML documents.
 
 `castor qa:earl` runs these suites and writes an [EARL](https://www.w3.org/TR/EARL10-Schema/)
 report in Turtle, one assertion per manifest entry, in the format the

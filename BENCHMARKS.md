@@ -117,5 +117,5 @@ tools/phpbench/vendor/bin/phpbench run tests/Algorithms/Benchmark --report=reada
 tools/phpbench/vendor/bin/phpbench run tests/Validation/Benchmark/JsonLdValidatorBench.php tests/Validation/Benchmark/WorkerValidationBench.php --report=readable --time-unit=milliseconds
 ```
 
-For the record, the full PHPUnit suite (2,175 tests, 4,544 assertions, W3C suites
+For the record, the full PHPUnit suite (2,281 tests, 4,802 assertions, W3C suites
 included) runs in about 20 seconds on the same machine.

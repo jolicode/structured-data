@@ -20,6 +20,7 @@ use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\FramingKeyword;
 use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
 use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use JoliCode\StructuredData\JsonLd\Algorithms\Services\IdentifierGenerator;
+use JoliCode\StructuredData\JsonLd\Algorithms\Services\InputDocumentResolver;
 
 /**
  * Deserializes a JSON-LD document to an RDF dataset.
@@ -33,12 +34,15 @@ use JoliCode\StructuredData\JsonLd\Algorithms\Services\IdentifierGenerator;
 class ToRdfConverter
 {
     private readonly Expander $expander;
+    private readonly InputDocumentResolver $inputDocumentResolver;
 
     public function __construct(
         ?Expander $expander = null,
         ?DocumentLoaderInterface $documentLoader = null,
     ) {
-        $this->expander = $expander ?? new Expander(documentLoader: $documentLoader ?? new HttpDocumentLoader());
+        $documentLoader ??= new HttpDocumentLoader();
+        $this->expander = $expander ?? new Expander(documentLoader: $documentLoader);
+        $this->inputDocumentResolver = new InputDocumentResolver($documentLoader);
     }
 
     /**
@@ -58,7 +62,9 @@ class ToRdfConverter
             $json = $copy instanceof \stdClass ? $copy : $json;
         }
 
-        $expanded = $this->expander->expand($json, $options, false);
+        // An HTML document is deserialized whole: every one of its JSON-LD script
+        // elements, unless the "extractAllScripts" option says otherwise.
+        $expanded = $this->expander->expandResolved($this->inputDocumentResolver->resolve($json, $options, true), $options);
 
         if ($expanded instanceof \stdClass) {
             $expanded = [$expanded];

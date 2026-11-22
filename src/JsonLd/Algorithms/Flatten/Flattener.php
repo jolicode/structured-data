@@ -19,6 +19,7 @@ use JoliCode\StructuredData\JsonLd\Algorithms\Http\HttpDocumentLoader;
 use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\FramingKeyword;
 use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use JoliCode\StructuredData\JsonLd\Algorithms\Services\IdentifierGenerator;
+use JoliCode\StructuredData\JsonLd\Algorithms\Services\InputDocumentResolver;
 
 class Flattener
 {
@@ -28,6 +29,7 @@ class Flattener
     private readonly Expander $expander;
     private readonly Compactor $compactor;
     private readonly DocumentLoaderInterface $documentLoader;
+    private readonly InputDocumentResolver $inputDocumentResolver;
 
     public function __construct(
         ?Expander $expander = null,
@@ -35,6 +37,7 @@ class Flattener
         ?DocumentLoaderInterface $documentLoader = null,
     ) {
         $this->documentLoader = $documentLoader ?? new HttpDocumentLoader();
+        $this->inputDocumentResolver = new InputDocumentResolver($this->documentLoader);
         $this->expander = $expander ?? new Expander(documentLoader: $this->documentLoader);
         $this->compactor = $compactor ?? new Compactor(documentLoader: $this->documentLoader);
         $this->identifierGenerator = new IdentifierGenerator();
@@ -46,35 +49,29 @@ class Flattener
         mixed $context = null,
         ProcessorOptions $options = new ProcessorOptions(),
     ): ?string {
-        $element = json_decode($json);
-
-        $baseUrl = $options->base;
-
-        if (\is_string($element)) {
-            $baseUrl = $element;
-
-            $element = $this->documentLoader->load($baseUrl);
-        }
-
-        $activeContext = new Context(
-            baseIri: $baseUrl,
-            baseUrl: $baseUrl,
-            processingMode: $options->processingMode,
-        );
+        $input = $this->inputDocumentResolver->resolve($json, $options);
 
         // The specs say to set ordered to false but the tests expect it to be true so...
         $options->ordered = true;
 
-        $expandedInput = $this->expander->doExpand($element, $options, activeContext: $activeContext);
+        $expandedInput = $this->expander->expandResolved($input, $options, Expander::TOP_LEVEL_ACTIVE_PROPERTY);
 
         $flattened = $this->doFlatten($expandedInput, $options->ordered);
 
         // 6.1: if context is not null, the flattened output is compacted against it.
         if (null !== $context) {
+            // The flattened document is compacted relative to where the input
+            // came from, which the options alone do not say for a URL.
+            $compactionOptions = clone $options;
+            $compactionOptions->base = $input->base;
+
             return \is_string($compacted = $this->compactor->compact(
                 (string) json_encode($flattened),
                 $context,
-                $options,
+                $compactionOptions,
+                // Whatever the context and however many nodes there are, the
+                // flattened document lives in a @graph entry.
+                forceGraph: true,
             )) ? $compacted : null;
         }
 

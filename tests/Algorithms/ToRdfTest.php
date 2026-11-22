@@ -17,9 +17,9 @@ use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use JoliCode\StructuredData\JsonLd\Algorithms\Rdf\NQuadsParser;
 use JoliCode\StructuredData\JsonLd\Algorithms\Rdf\NQuadsSerializer;
 use JoliCode\StructuredData\JsonLd\Algorithms\Rdf\ToRdfConverter;
-use JoliCode\StructuredData\Tests\Algorithms\Rdf\ManifestTestProvider;
+use JoliCode\StructuredData\Tests\Algorithms\Manifest\ManifestTestProvider;
+use JoliCode\StructuredData\Tests\Algorithms\Manifest\W3cFixtureServer;
 use JoliCode\StructuredData\Tests\Algorithms\Rdf\RdfDatasetIsomorphism;
-use JoliCode\StructuredData\Tests\Algorithms\Rdf\W3cFixtureDocumentLoader;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
@@ -33,7 +33,7 @@ class ToRdfTest extends TestCase
     #[DataProvider('provideManifestEntries')]
     public function testToRdf(string $input, ?string $expect, ?string $errorCode, ProcessorOptions $options): void
     {
-        $converter = new ToRdfConverter(documentLoader: new W3cFixtureDocumentLoader());
+        $converter = new ToRdfConverter(documentLoader: W3cFixtureServer::documentLoader());
 
         if (null !== $errorCode) {
             try {

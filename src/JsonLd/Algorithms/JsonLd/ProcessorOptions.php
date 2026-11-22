@@ -20,7 +20,13 @@ class ProcessorOptions
         public bool $compactArrays = true,
         public bool $compactToRelative = true,
         public ?string $expandContext = null,
-        public bool $extractAllScripts = false,
+        /**
+         * Documents loaded from a URL that turn out to be HTML: whether every
+         * JSON-LD script element is extracted rather than the first one. Null lets
+         * the algorithm decide: the first one, except for the deserialization to
+         * RDF, which takes them all.
+         */
+        public ?bool $extractAllScripts = null,
         public bool $frameExpansion = false,
         /**
          * Framing only: whether a single top-level node object is returned without a

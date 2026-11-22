@@ -82,6 +82,8 @@ function suiteFixturesAreMissing(): bool
         || !fs()->exists(\sprintf('%s/tests/expand-manifest.jsonld', CACHE_DIR_W3C_TEST_SUITE))
         || !fs()->exists(\sprintf('%s/tests/toRdf-manifest.jsonld', CACHE_DIR_W3C_TEST_SUITE))
         || !fs()->exists(\sprintf('%s/tests/fromRdf-manifest.jsonld', CACHE_DIR_W3C_TEST_SUITE))
+        || !fs()->exists(\sprintf('%s/tests/html-manifest.jsonld', CACHE_DIR_W3C_TEST_SUITE))
+        || !fs()->exists(\sprintf('%s/tests/remote-doc-manifest.jsonld', CACHE_DIR_W3C_TEST_SUITE))
         || !fs()->exists(\sprintf('%s/tests/frame-manifest.jsonld', CACHE_DIR_W3C_FRAMING_TEST_SUITE));
 }
 
@@ -239,9 +241,9 @@ function phpunitPrepare(
             }
         }
 
-        // The RDF suites are driven by their manifest, which names every file of a
-        // test: their fixtures are copied as they are upstream, N-Quads included.
-        foreach (Algorithms::rdfAlgorithmNames() as $algorithm) {
+        // These suites are driven by their manifest, which names every file of a
+        // test: their fixtures are copied as they are upstream.
+        foreach (Algorithms::manifestDrivenSuiteNames() as $algorithm) {
             fs()->copy(
                 \sprintf('%s/json-ld-api-%s/tests/%s-manifest.jsonld', CACHE_DIR_W3C_TEST_SUITE, $ref, $algorithm),
                 \sprintf('%s/tests/%s-manifest.jsonld', CACHE_DIR_W3C_TEST_SUITE, $algorithm),

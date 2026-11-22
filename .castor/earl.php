@@ -78,6 +78,18 @@ function earlSuites(): array
             'iri' => 'https://w3c.github.io/json-ld-api/tests/fromRdf-manifest',
             'byId' => true,
         ],
+        'RemoteDocTest' => [
+            'name' => 'remote-doc',
+            'manifest' => CACHE_DIR_W3C_TEST_SUITE . '/tests/remote-doc-manifest.jsonld',
+            'iri' => 'https://w3c.github.io/json-ld-api/tests/remote-doc-manifest',
+            'byId' => true,
+        ],
+        'HtmlTest' => [
+            'name' => 'html',
+            'manifest' => CACHE_DIR_W3C_TEST_SUITE . '/tests/html-manifest.jsonld',
+            'iri' => 'https://w3c.github.io/json-ld-api/tests/html-manifest',
+            'byId' => true,
+        ],
     ];
 }
 

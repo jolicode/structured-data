@@ -11,7 +11,7 @@
 
 namespace JoliCode\StructuredData\JsonLd\Algorithms\Http;
 
-use JoliCode\StructuredData\JsonLd\Algorithms\Exception\ContextProcessingException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\DocumentLoadingException;
 
 /**
  * Parses HTTP Link headers and picks out the relations JSON-LD cares about.
@@ -32,7 +32,7 @@ final class LinkHeaderParser
                 $parts = preg_split('/,(?=\s*<.*>([^"]*"[^"]*")*[^"]*$)/', $header);
 
                 if (false === $parts) {
-                    throw new ContextProcessingException('loading remote context failed');
+                    throw DocumentLoadingException::loadingFailed();
                 }
 
                 foreach ($parts as $part) {
@@ -53,7 +53,7 @@ final class LinkHeaderParser
                     $parameters = preg_split('/;(?=([^"]*"[^"]*")*[^"]*$)/', $matches[2]);
 
                     if (false === $parameters) {
-                        throw new ContextProcessingException('loading remote context failed');
+                        throw DocumentLoadingException::loadingFailed();
                     }
 
                     foreach ($parameters as $parameter) {

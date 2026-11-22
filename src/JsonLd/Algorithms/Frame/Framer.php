@@ -25,6 +25,7 @@ use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\FramingKeyword;
 use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
 use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use JoliCode\StructuredData\JsonLd\Algorithms\Services\IdentifierGenerator;
+use JoliCode\StructuredData\JsonLd\Algorithms\Services\InputDocumentResolver;
 
 /**
  * This is a PHP implementation of the Framing algorithm based on the JSON-LD 1.1
@@ -95,6 +96,7 @@ class Framer
     private readonly Expander $expander;
     private readonly Compactor $compactor;
     private readonly DocumentLoaderInterface $documentLoader;
+    private readonly InputDocumentResolver $inputDocumentResolver;
 
     public function __construct(
         ?ContextProcessor $contextProcessor = null,
@@ -103,6 +105,7 @@ class Framer
         ?DocumentLoaderInterface $documentLoader = null,
     ) {
         $this->documentLoader = $documentLoader ?? new HttpDocumentLoader();
+        $this->inputDocumentResolver = new InputDocumentResolver($this->documentLoader);
         $this->contextProcessor = $contextProcessor ?? new ContextProcessor(new ContextCache($this->documentLoader));
         $this->expander = $expander ?? new Expander(documentLoader: $this->documentLoader);
         $this->compactor = $compactor ?? new Compactor(documentLoader: $this->documentLoader);
@@ -125,18 +128,9 @@ class Framer
         ProcessorOptions $options = new ProcessorOptions(),
         bool $encodeResult = true,
     ): \stdClass|array|string|false|null {
-        $element = \is_string($json) ? json_decode($json) : $json;
-        $baseUrl = $options->base;
-
-        if (null === $element) {
-            throw new JsonLdException('The JSON string could not be parsed.');
-        }
-
-        if (\is_string($element)) {
-            $baseUrl = $element;
-
-            $element = $this->documentLoader->load($baseUrl);
-        }
+        $input = $this->inputDocumentResolver->resolve($json, $options);
+        $element = $input->document;
+        $baseUrl = $input->base;
 
         $frameDocument = \is_string($frame) ? json_decode($frame) : $frame;
 
@@ -160,20 +154,16 @@ class Framer
         $pruneBlankNodeIdentifiers = $this->is11;
 
         // Expand the input.
-        if (\is_array($element)) {
-            $element = (string) json_encode($element);
-        }
-
-        if (!\is_string($element) && !$element instanceof \stdClass) {
+        if (!\is_array($element) && !$element instanceof \stdClass) {
             throw new JsonLdException('The JSON-LD document must be a map or an array.');
         }
 
-        $expandedInput = $this->expander->expand($element, new ProcessorOptions(
+        $expandedInput = $this->expander->expandResolved($input, new ProcessorOptions(
             base: $baseUrl,
             expandContext: $options->expandContext,
             processingMode: $options->processingMode,
             ordered: $options->ordered,
-        ), encodeResult: false);
+        ));
 
         // Expand the frame, using frame expansion rules.
         $frameToExpand = \is_array($frameDocument) ? (string) json_encode($frameDocument) : $frameDocument;

@@ -86,7 +86,7 @@ class RemoteContextPolicyIntegrationTest extends TestCase
     {
         $expander = new Expander(documentLoader: new HttpDocumentLoader(
             RemoteContextPolicy::allowHosts('evil.example'),
-            new MockHttpClient(new MockResponse('{"@context":{"name":"https://schema.org/name"}}')),
+            new MockHttpClient(new MockResponse('{"@context":{"name":"https://schema.org/name"}}', ['response_headers' => ['Content-Type' => 'application/ld+json']])),
         ));
 
         $expanded = $expander->expand(self::DOCUMENT_WITH_REMOTE_CONTEXT);
@@ -115,7 +115,7 @@ class RemoteContextPolicyIntegrationTest extends TestCase
 
         $permissive = new ContextCache(new HttpDocumentLoader(
             RemoteContextPolicy::allowHosts('cache-partitioning.example'),
-            new MockHttpClient(new MockResponse('{"@context":{"name":"https://schema.org/name"}}')),
+            new MockHttpClient(new MockResponse('{"@context":{"name":"https://schema.org/name"}}', ['response_headers' => ['Content-Type' => 'application/ld+json']])),
         ));
 
         $remoteContexts = [$url];

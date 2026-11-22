@@ -11,9 +11,43 @@
   literals (canonicalized with RFC 8785) are supported. The official `toRdf` and `fromRdf`
   test suites pass, and are part of `castor qa:earl`. From the command line:
   `castor json-ld:to-rdf` and `castor json-ld:from-rdf`. See [docs/json-ld.md](docs/json-ld.md#rdf).
+- A document given to an algorithm as a URL may be an HTML page: the JSON-LD of its
+  `<script type="application/ld+json">` elements is extracted, the first one by default,
+  all of them with the `extractAllScripts` option, or the one the fragment of the URL
+  names. `<base href>` sets the base IRI. A URL is accepted as it is, where it had to be
+  written as a JSON string.
+- The official `remote-doc` and `html` test suites pass, and are part of `castor qa:earl`:
+  the seven suites of the JSON-LD 1.1 API are now covered. See
+  [docs/json-ld.md](docs/json-ld.md#documents-given-as-a-url).
 
 ### Changed
 
+- **Breaking**: `DocumentLoaderInterface::load()` now takes a `LoadDocumentOptions` and
+  returns a `RemoteDocument` instead of a `stdClass`, as the specification describes it:
+  the document, the URL it finally comes from, its content type and the context an HTTP
+  `Link` header names. A custom loader has to be adapted, see
+  [docs/remote-contexts.md](docs/remote-contexts.md#writing-your-own-loader). It signals a
+  failure with a `DocumentLoadingException`.
+- **Breaking**: a remote response is only read when its `Content-Type` is
+  `application/ld+json`, `application/json`, a `+json` type, or HTML for a document. A
+  context served as `text/plain` or without a content type, read until now, is refused.
+- A document that cannot be loaded from the URL an algorithm was given raises
+  `loading document failed`, and several `Link` context headers raise
+  `multiple context link headers`, where both raised `loading remote context failed`. A
+  context that cannot be loaded still raises `loading remote context failed`.
+- The base IRI of a document loaded from a URL is the URL it was finally served from,
+  redirections followed, and the `base` option replaces it. It was the requested URL, which
+  the option could not replace.
+- The context an HTTP `Link` header names is applied before the context of the document,
+  which it used to replace, and is ignored for a document served as `application/ld+json`.
+- An `alternate` link to a JSON-LD document is only followed from a response that is not
+  JSON. It was followed from `application/json` too.
+- Flattening with a context always puts its result in a `@graph` entry, as the
+  specification asks, including when a single node is left. The node used to sit at the top
+  level in that case.
+- `Flattener::flatten()` applies the `expandContext` option and refuses a string that is
+  not JSON, like the other algorithms.
+- `ProcessorOptions::$extractAllScripts` is nullable: `null` lets the algorithm decide.
 - `ProcessorOptions::$produceGeneralizedRdf` now defaults to `false`, as the specification
   says. Nothing read the option before.
 - **Breaking**: microdata and RDFa are read with the HTML5 parser of PHP 8.4
@@ -36,6 +70,7 @@
   located on the line the tag ends on, wrong for a tag written over several lines.
 - Expanding an array that holds a map with nothing but `@graph` flattened that graph into
   the array: it is now kept as a graph object, only the document itself being unwrapped.
+- A remote document that is a JSON array was turned into an object with numeric keys.
 - Expansion reported `invalid @reverse property value` where the specification names the
   error `invalid reverse property value` (W3C test `expand#ter34`).
 - Flattening and framing merged a plain string into a language-tagged string holding the

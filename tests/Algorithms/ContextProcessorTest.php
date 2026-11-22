@@ -16,6 +16,8 @@ use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\Context;
 use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextCache;
 use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextProcessor;
 use JoliCode\StructuredData\JsonLd\Algorithms\Http\DocumentLoaderInterface;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\LoadDocumentOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\RemoteDocument;
 use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
 use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
 use JoliCode\StructuredData\JsonLd\Algorithms\TermDefinition\TermDefinition;
@@ -56,9 +58,9 @@ class ContextProcessorTest extends AbstractJsonLdTestCase
     public function testCachedRemoteContextReturnsIsolatedCopies(): void
     {
         $loader = new class implements DocumentLoaderInterface {
-            public function load(string $url): \stdClass
+            public function load(string $url, LoadDocumentOptions $options = new LoadDocumentOptions()): RemoteDocument
             {
-                return (object) json_decode('{"@context":{"name":"https://schema.org/name"}}');
+                return new RemoteDocument((object) ['@context' => (object) ['name' => 'https://schema.org/name']], $url);
             }
 
             public function getCacheNamespace(): string
