@@ -11,6 +11,7 @@
 
 namespace JoliCode\StructuredData\Tests\Validation;
 
+use JoliCode\StructuredData\Extraction\ExtractionException;
 use JoliCode\StructuredData\Extraction\Extractor;
 use JoliCode\StructuredData\Extraction\ExtractorsContainer;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -312,5 +313,102 @@ HTML;
         $this->expectExceptionMessage('Could not detect any supported structured data format. Supported formats are: jsonld, microdata, rdfa.');
 
         $extractor->extract('<html><body><p>Hello world</p></body></html>');
+    }
+
+    public function testItReadsMicrodataAsUtf8WhenThePageDeclaresNoEncoding(): void
+    {
+        $document = <<<'HTML'
+<html>
+  <body>
+    <div itemscope itemtype="https://schema.org/Person">
+      <span itemprop="name">Zoé Müller 日本</span>
+    </div>
+  </body>
+</html>
+HTML;
+
+        $elements = (new Extractor())->extract($document);
+
+        $this->assertCount(1, $elements);
+        $this->assertStringContainsString('"name":' . json_encode('Zoé Müller 日本'), $elements[0]->content);
+    }
+
+    public function testItReadsRdfaAsUtf8WhenThePageDeclaresNoEncoding(): void
+    {
+        $document = <<<'HTML'
+<html>
+  <body>
+    <div vocab="https://schema.org/" typeof="Person">
+      <span property="name">Zoé Müller 日本</span>
+    </div>
+  </body>
+</html>
+HTML;
+
+        $elements = (new Extractor())->extract($document);
+
+        $this->assertCount(1, $elements);
+        $this->assertStringContainsString('"name":' . json_encode('Zoé Müller 日本'), $elements[0]->content);
+    }
+
+    public function testItHonoursTheEncodingThePageDeclares(): void
+    {
+        $document = mb_convert_encoding(<<<'HTML'
+<html>
+  <head><meta charset="iso-8859-1"></head>
+  <body>
+    <div itemscope itemtype="https://schema.org/Person">
+      <span itemprop="name">Zoé Müller</span>
+    </div>
+  </body>
+</html>
+HTML, 'ISO-8859-1', 'UTF-8');
+
+        $elements = (new Extractor())->extract($document);
+
+        $this->assertCount(1, $elements);
+        $this->assertStringContainsString('"name":' . json_encode('Zoé Müller'), $elements[0]->content);
+    }
+
+    public function testAnElementIsLocatedOnTheLineItsStartTagOpensOn(): void
+    {
+        $document = <<<'HTML'
+<!doctype html>
+<html>
+  <body>
+    <div
+      class="card"
+      itemscope
+      itemtype="https://schema.org/Person">
+      <span itemprop="name">Jane Doe</span>
+    </div>
+  </body>
+</html>
+HTML;
+
+        $elements = (new Extractor())->extract($document);
+
+        $this->assertCount(1, $elements);
+        // Lines of a JsonLdElement are counted from 0: the tag opens on the fourth line.
+        $this->assertSame(3, $elements[0]->startLine);
+    }
+
+    public function testAMicrodataErrorPointsAtTheLineTheStartTagOpensOn(): void
+    {
+        $document = <<<'HTML'
+<!doctype html>
+<html>
+  <body>
+    <span
+      class="name"
+      itemprop="name">Jane Doe</span>
+  </body>
+</html>
+HTML;
+
+        $this->expectException(ExtractionException::class);
+        $this->expectExceptionMessage('no itemscope attribute at line 4.');
+
+        (new Extractor())->setExtractors(ExtractorsContainer::MICRODATA)->extract($document);
     }
 }

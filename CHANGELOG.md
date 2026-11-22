@@ -16,6 +16,11 @@
 
 - `ProcessorOptions::$produceGeneralizedRdf` now defaults to `false`, as the specification
   says. Nothing read the option before.
+- **Breaking**: microdata and RDFa are read with the HTML5 parser of PHP 8.4
+  (`Dom\HTMLDocument`) instead of libxml's HTML 4 one. `HtmlDocumentLoader::load()` returns a
+  `Dom\HTMLDocument` and no longer takes a format name, and the protected helpers of
+  `AbstractHtmlExtractor` take a `Dom\Element`: a custom HTML extractor has to follow.
+  Parsing a page is about 2.5 times faster.
 - Relative IRIs are resolved as RFC 3986 section 5.2 describes it and nothing more, as
   JSON-LD asks: non-ASCII characters are no longer percent-encoded, the host keeps its
   case, and a reference without a path keeps the dot segments of the base (`?y` against
@@ -25,6 +30,10 @@
 
 ### Fixed
 
+- Microdata and RDFa values of a page that declares no encoding are read as UTF-8. They
+  were read as ISO-8859-1, which turned `Zoé` into `ZoÃ©`.
+- A microdata or RDFa element is located on the line its start tag opens on. It was
+  located on the line the tag ends on, wrong for a tag written over several lines.
 - Expansion reported `invalid @reverse property value` where the specification names the
   error `invalid reverse property value` (W3C test `expand#ter34`).
 - Flattening and framing merged a plain string into a language-tagged string holding the

@@ -14,7 +14,7 @@ namespace JoliCode\StructuredData\Extraction;
 /**
  * Base class for extractors that parse structured data from HTML DOM trees.
  *
- * Provides shared helpers for loading an HTML document into a DOMDocument and
+ * Provides shared helpers for loading an HTML document into a Dom\HTMLDocument and
  * for building line-location hints for diagnostic messages.
  * Concrete subclasses must declare their format so that error messages remain
  * format-specific.
@@ -34,13 +34,11 @@ abstract class AbstractHtmlExtractor implements FormatExtractorInterface
     }
 
     /**
-     * Parses $body into a DOMDocument, suppressing libxml noise.
-     *
-     * @throws \RuntimeException when the HTML cannot be loaded at all
+     * Parses $body with the HTML5 parser, which never rejects a document.
      */
-    protected function loadDocument(string $body): \DOMDocument
+    protected function loadDocument(string $body): \Dom\HTMLDocument
     {
-        return $this->documentLoader->load($body, $this->getFormatName());
+        return $this->documentLoader->load($body);
     }
 
     /**
@@ -68,11 +66,21 @@ abstract class AbstractHtmlExtractor implements FormatExtractorInterface
     }
 
     /**
+     * The line an element's start tag opens on, counted from 1.
+     *
+     * Dom\HTMLDocument counts lines from 0.
+     */
+    protected static function lineOf(\Dom\Element $node): int
+    {
+        return $node->getLineNo() + 1;
+    }
+
+    /**
      * Encodes one extracted item into a JsonLdElement anchored on its DOM node.
      *
      * @throws ExtractionException when the item cannot be encoded
      */
-    protected function encodeAsJsonLdElement(\DOMElement $node, mixed $item, string $encodeFailureMessage): JsonLdElement
+    protected function encodeAsJsonLdElement(\Dom\Element $node, mixed $item, string $encodeFailureMessage): JsonLdElement
     {
         $encoded = json_encode($item, \JSON_UNESCAPED_SLASHES);
 
@@ -80,20 +88,21 @@ abstract class AbstractHtmlExtractor implements FormatExtractorInterface
             throw new ExtractionException($encodeFailureMessage);
         }
 
-        return new JsonLdElement(max(0, $node->getLineNo() - 1), 0, $encoded, $this->getFormat());
+        // JsonLdElement counts lines from 0, as the parser does.
+        return new JsonLdElement($node->getLineNo(), 0, $encoded, $this->getFormat());
     }
 
     /**
      * Reports that no element could be extracted, pointing at the candidate nodes.
      *
-     * @param array<\DOMElement> $nodes
+     * @param array<\Dom\Element> $nodes
      *
      * @throws ExtractionException
      */
     protected function throwEmptyResult(array $nodes, string $message): never
     {
         $lineNumbers = array_values(
-            array_map(static fn (\DOMElement $node): int => $node->getLineNo(), $nodes),
+            array_map(static fn (\Dom\Element $node): int => self::lineOf($node), $nodes),
         );
 
         throw new ExtractionException($message . $this->formatLineHint($lineNumbers) . '.', $this->formatRanges($lineNumbers));

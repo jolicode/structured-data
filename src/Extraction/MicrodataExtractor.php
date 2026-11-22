@@ -44,22 +44,16 @@ class MicrodataExtractor extends AbstractHtmlExtractor
 
         $document = $this->loadDocument($body);
 
-        $xpath = new \DOMXPath($document);
+        $xpath = new \Dom\XPath($document);
         $allItemScopes = $xpath->query('//*[@itemscope]');
-
-        if (false === $allItemScopes) {
-            throw new ExtractionException('Invalid microdata document: could not query the HTML document.');
-        }
 
         if (0 === $allItemScopes->count()) {
             $candidateNodes = $xpath->query('//*[@itemtype or @itemprop]');
             $candidateLines = [];
 
-            if (false !== $candidateNodes) {
-                foreach ($candidateNodes as $candidateNode) {
-                    if ($candidateNode instanceof \DOMElement) {
-                        $candidateLines[] = $candidateNode->getLineNo();
-                    }
+            foreach ($candidateNodes as $candidateNode) {
+                if ($candidateNode instanceof \Dom\Element) {
+                    $candidateLines[] = self::lineOf($candidateNode);
                 }
             }
 
@@ -69,7 +63,7 @@ class MicrodataExtractor extends AbstractHtmlExtractor
         $topLevelItems = [];
 
         foreach ($allItemScopes as $itemScope) {
-            if (!$itemScope instanceof \DOMElement) {
+            if (!$itemScope instanceof \Dom\Element) {
                 continue;
             }
 
@@ -110,11 +104,11 @@ class MicrodataExtractor extends AbstractHtmlExtractor
         $this->normalizedItemTypesCache = [];
     }
 
-    private function hasAncestorItemScope(\DOMElement $element): bool
+    private function hasAncestorItemScope(\Dom\Element $element): bool
     {
         $parent = $element->parentNode;
 
-        while ($parent instanceof \DOMElement) {
+        while ($parent instanceof \Dom\Element) {
             if ($parent->hasAttribute('itemscope')) {
                 return true;
             }
@@ -128,9 +122,9 @@ class MicrodataExtractor extends AbstractHtmlExtractor
     /**
      * @return array<string, mixed>|null
      */
-    private function extractItem(\DOMElement $itemElement, \DOMXPath $xpath): ?array
+    private function extractItem(\Dom\Element $itemElement, \Dom\XPath $xpath): ?array
     {
-        $itemTypeAttribute = trim($itemElement->getAttribute('itemtype'));
+        $itemTypeAttribute = trim($itemElement->getAttribute('itemtype') ?? '');
 
         if ('' === $itemTypeAttribute) {
             return null;
@@ -144,7 +138,7 @@ class MicrodataExtractor extends AbstractHtmlExtractor
         ];
 
         if ($itemElement->hasAttribute('itemid')) {
-            $item['@id'] = trim($itemElement->getAttribute('itemid'));
+            $item['@id'] = trim($itemElement->getAttribute('itemid') ?? '');
         }
 
         $properties = $this->extractProperties($itemElement, $xpath);
@@ -205,12 +199,12 @@ class MicrodataExtractor extends AbstractHtmlExtractor
     /**
      * @return array<string, mixed>
      */
-    private function extractProperties(\DOMElement $itemElement, \DOMXPath $xpath): array
+    private function extractProperties(\Dom\Element $itemElement, \Dom\XPath $xpath): array
     {
         $properties = [];
 
         foreach ($this->collectPropertyNodesForItem($itemElement) as $propertyNode) {
-            $propertyNames = preg_split('/\s+/', trim($propertyNode->getAttribute('itemprop')));
+            $propertyNames = preg_split('/\s+/', trim($propertyNode->getAttribute('itemprop') ?? ''));
 
             if (!\is_array($propertyNames)) {
                 continue;
@@ -245,15 +239,15 @@ class MicrodataExtractor extends AbstractHtmlExtractor
     }
 
     /**
-     * @return array<\DOMElement>
+     * @return array<\Dom\Element>
      */
-    private function collectPropertyNodesForItem(\DOMElement $itemElement): array
+    private function collectPropertyNodesForItem(\Dom\Element $itemElement): array
     {
         $propertyNodes = [];
         $stack = [];
 
         foreach ($itemElement->childNodes as $childNode) {
-            if ($childNode instanceof \DOMElement) {
+            if ($childNode instanceof \Dom\Element) {
                 $stack[] = $childNode;
             }
         }
@@ -271,7 +265,7 @@ class MicrodataExtractor extends AbstractHtmlExtractor
             }
 
             foreach ($node->childNodes as $childNode) {
-                if ($childNode instanceof \DOMElement) {
+                if ($childNode instanceof \Dom\Element) {
                     $stack[] = $childNode;
                 }
             }
@@ -280,42 +274,42 @@ class MicrodataExtractor extends AbstractHtmlExtractor
         return $propertyNodes;
     }
 
-    private function extractPropertyValue(\DOMElement $propertyNode): ?string
+    private function extractPropertyValue(\Dom\Element $propertyNode): ?string
     {
         $tagName = strtolower($propertyNode->tagName);
 
         if ('meta' === $tagName && $propertyNode->hasAttribute('content')) {
-            return trim($propertyNode->getAttribute('content'));
+            return trim($propertyNode->getAttribute('content') ?? '');
         }
 
         if (\in_array($tagName, ['audio', 'embed', 'iframe', 'img', 'source', 'track', 'video'], true) && $propertyNode->hasAttribute('src')) {
-            return trim($propertyNode->getAttribute('src'));
+            return trim($propertyNode->getAttribute('src') ?? '');
         }
 
         if (\in_array($tagName, ['a', 'area', 'link'], true) && $propertyNode->hasAttribute('href')) {
-            return trim($propertyNode->getAttribute('href'));
+            return trim($propertyNode->getAttribute('href') ?? '');
         }
 
         if ('object' === $tagName && $propertyNode->hasAttribute('data')) {
-            return trim($propertyNode->getAttribute('data'));
+            return trim($propertyNode->getAttribute('data') ?? '');
         }
 
         if (\in_array($tagName, ['data', 'meter'], true) && $propertyNode->hasAttribute('value')) {
-            return trim($propertyNode->getAttribute('value'));
+            return trim($propertyNode->getAttribute('value') ?? '');
         }
 
         if ('time' === $tagName && $propertyNode->hasAttribute('datetime')) {
-            return trim($propertyNode->getAttribute('datetime'));
+            return trim($propertyNode->getAttribute('datetime') ?? '');
         }
 
         // The specification only reads "content" on <meta>, but Google reads it on
         // any element, and pages rely on it (a <link itemprop content> without href,
         // for instance).
         if ($propertyNode->hasAttribute('content')) {
-            return trim($propertyNode->getAttribute('content'));
+            return trim($propertyNode->getAttribute('content') ?? '');
         }
 
-        $text = trim($propertyNode->textContent);
+        $text = trim($propertyNode->textContent ?? '');
 
         return '' === $text ? null : $text;
     }
