@@ -54,17 +54,13 @@ class RdfaExtractor extends AbstractHtmlExtractor
         }
 
         $document = $this->loadDocument($body);
-        $xpath = new \DOMXPath($document);
+        $xpath = new \Dom\XPath($document);
         $candidateNodes = $xpath->query(self::RDFa_CANDIDATE_XPATH);
-
-        if (false === $candidateNodes) {
-            throw new ExtractionException('Invalid RDFa document: could not query the HTML document.');
-        }
 
         $schemaOrgCandidateNodes = [];
 
         foreach ($candidateNodes as $candidateNode) {
-            if (!$candidateNode instanceof \DOMElement) {
+            if (!$candidateNode instanceof \Dom\Element) {
                 continue;
             }
 
@@ -98,7 +94,7 @@ class RdfaExtractor extends AbstractHtmlExtractor
         }
 
         if ([] === $topLevelSubjects) {
-            $candidateLines = array_map(static fn (\DOMElement $candidateNode): int => $candidateNode->getLineNo(), $schemaOrgCandidateNodes);
+            $candidateLines = array_map(static fn (\Dom\Element $candidateNode): int => self::lineOf($candidateNode), $schemaOrgCandidateNodes);
 
             throw new ExtractionException(\sprintf('Invalid RDFa document: at least one top-level schema.org subject with typeof is required%s.', $this->formatLineHint($candidateLines)), $this->formatRanges($candidateLines));
         }
@@ -140,14 +136,14 @@ class RdfaExtractor extends AbstractHtmlExtractor
      * The test matches attribute syntax rather than bare substrings: a substring
      * test hits ordinary prose and unrelated markup ("about" alone matched 58%
      * of a 100-page sample, "property" 89% because of Open Graph meta tags), and
-     * every hit costs a full libxml parse of the document.
+     * every hit costs a full parse of the document.
      */
     private function hasRdfaAttributeMarkers(string $body): bool
     {
         return 1 === preg_match('#\s(?:typeof|vocab)\s*=#i', $body);
     }
 
-    private function isSchemaOrgCandidate(\DOMElement $element): bool
+    private function isSchemaOrgCandidate(\Dom\Element $element): bool
     {
         $cacheKey = $this->termResolver->getNodeCacheKey($element);
 
@@ -159,18 +155,18 @@ class RdfaExtractor extends AbstractHtmlExtractor
             return $this->schemaOrgCandidateCache[$cacheKey] = true;
         }
 
-        $typeof = $element->getAttribute('typeof');
+        $typeof = $element->getAttribute('typeof') ?? '';
 
         if ('' !== $typeof && [] !== $this->termResolver->resolveTerms($typeof, $element)) {
             return $this->schemaOrgCandidateCache[$cacheKey] = true;
         }
 
-        $property = $element->getAttribute('property');
+        $property = $element->getAttribute('property') ?? '';
 
         return $this->schemaOrgCandidateCache[$cacheKey] = '' !== $property && [] !== $this->termResolver->resolveTerms($property, $element);
     }
 
-    private function isSchemaOrgSubject(\DOMElement $element): bool
+    private function isSchemaOrgSubject(\Dom\Element $element): bool
     {
         $cacheKey = $this->termResolver->getNodeCacheKey($element);
 
@@ -178,16 +174,16 @@ class RdfaExtractor extends AbstractHtmlExtractor
             return $this->schemaOrgSubjectCache[$cacheKey];
         }
 
-        $typeof = $element->getAttribute('typeof');
+        $typeof = $element->getAttribute('typeof') ?? '';
 
         return $this->schemaOrgSubjectCache[$cacheKey] = '' !== $typeof && [] !== $this->termResolver->resolveTerms($typeof, $element);
     }
 
-    private function hasAncestorSchemaOrgSubject(\DOMElement $element): bool
+    private function hasAncestorSchemaOrgSubject(\Dom\Element $element): bool
     {
         $parent = $element->parentNode;
 
-        while ($parent instanceof \DOMElement) {
+        while ($parent instanceof \Dom\Element) {
             if ($this->isSchemaOrgSubject($parent)) {
                 return true;
             }
@@ -201,9 +197,9 @@ class RdfaExtractor extends AbstractHtmlExtractor
     /**
      * @return array<string, mixed>|null
      */
-    private function extractSubject(\DOMElement $subjectNode): ?array
+    private function extractSubject(\Dom\Element $subjectNode): ?array
     {
-        $types = $this->termResolver->resolveTerms($subjectNode->getAttribute('typeof'), $subjectNode);
+        $types = $this->termResolver->resolveTerms($subjectNode->getAttribute('typeof') ?? '', $subjectNode);
 
         if ([] === $types) {
             return null;
@@ -230,12 +226,12 @@ class RdfaExtractor extends AbstractHtmlExtractor
     /**
      * @return array<string, mixed>
      */
-    private function extractProperties(\DOMElement $subjectNode): array
+    private function extractProperties(\Dom\Element $subjectNode): array
     {
         $properties = [];
 
         foreach ($this->collectPropertyNodesForSubject($subjectNode) as $propertyNode) {
-            $propertyNames = $this->termResolver->resolveTerms($propertyNode->getAttribute('property'), $propertyNode);
+            $propertyNames = $this->termResolver->resolveTerms($propertyNode->getAttribute('property') ?? '', $propertyNode);
 
             if ([] === $propertyNames) {
                 continue;
@@ -266,15 +262,15 @@ class RdfaExtractor extends AbstractHtmlExtractor
     }
 
     /**
-     * @return array<\DOMElement>
+     * @return array<\Dom\Element>
      */
-    private function collectPropertyNodesForSubject(\DOMElement $subjectNode): array
+    private function collectPropertyNodesForSubject(\Dom\Element $subjectNode): array
     {
         $propertyNodes = [];
         $stack = [];
 
         foreach ($subjectNode->childNodes as $childNode) {
-            if ($childNode instanceof \DOMElement) {
+            if ($childNode instanceof \Dom\Element) {
                 $stack[] = $childNode;
             }
         }
@@ -293,7 +289,7 @@ class RdfaExtractor extends AbstractHtmlExtractor
             }
 
             foreach ($node->childNodes as $childNode) {
-                if ($childNode instanceof \DOMElement) {
+                if ($childNode instanceof \Dom\Element) {
                     $stack[] = $childNode;
                 }
             }
@@ -302,11 +298,11 @@ class RdfaExtractor extends AbstractHtmlExtractor
         return $propertyNodes;
     }
 
-    private function extractSubjectIdentifier(\DOMElement $subjectNode): ?string
+    private function extractSubjectIdentifier(\Dom\Element $subjectNode): ?string
     {
         foreach (['about', 'resource', 'href', 'src'] as $attribute) {
             if ($subjectNode->hasAttribute($attribute)) {
-                $value = trim($subjectNode->getAttribute($attribute));
+                $value = trim($subjectNode->getAttribute($attribute) ?? '');
 
                 if ('' !== $value) {
                     return $value;
@@ -317,11 +313,11 @@ class RdfaExtractor extends AbstractHtmlExtractor
         return null;
     }
 
-    private function extractPropertyValue(\DOMElement $propertyNode): ?string
+    private function extractPropertyValue(\Dom\Element $propertyNode): ?string
     {
         foreach (['content', 'resource', 'href', 'src', 'datetime', 'value'] as $attribute) {
             if ($propertyNode->hasAttribute($attribute)) {
-                $value = trim($propertyNode->getAttribute($attribute));
+                $value = trim($propertyNode->getAttribute($attribute) ?? '');
 
                 if ('' !== $value) {
                     return $value;
@@ -329,7 +325,7 @@ class RdfaExtractor extends AbstractHtmlExtractor
             }
         }
 
-        $normalizedText = preg_replace('/\s+/u', ' ', $propertyNode->textContent);
+        $normalizedText = preg_replace('/\s+/u', ' ', $propertyNode->textContent ?? '');
 
         if (!\is_string($normalizedText)) {
             return null;

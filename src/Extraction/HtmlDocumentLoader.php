@@ -12,7 +12,7 @@
 namespace JoliCode\StructuredData\Extraction;
 
 /**
- * Parses an HTML body into a DOMDocument, memoizing the last parsed document.
+ * Parses an HTML body with PHP's HTML5 parser, memoizing the last parsed document.
  *
  * A single loader instance is shared by all the HTML-based extractors of an
  * ExtractorsContainer, so that when several extractors (microdata, RDFa) process
@@ -26,34 +26,21 @@ class HtmlDocumentLoader
 {
     private ?string $lastBody = null;
 
-    private ?\DOMDocument $lastDocument = null;
+    private ?\Dom\HTMLDocument $lastDocument = null;
 
     /**
-     * Parses $body into a DOMDocument, suppressing libxml noise.
+     * Parses $body as HTML5: malformed markup is recovered from, never refused.
      *
-     * @param string $formatName a human-readable format name, used in error messages
-     *
-     * @throws ExtractionException when the HTML cannot be loaded at all
+     * The encoding is the one the page declares (BOM, then meta charset), and
+     * UTF-8 when it declares none.
      */
-    public function load(string $body, string $formatName): \DOMDocument
+    public function load(string $body): \Dom\HTMLDocument
     {
         if ($this->lastBody === $body && null !== $this->lastDocument) {
             return $this->lastDocument;
         }
 
-        $document = new \DOMDocument();
-
-        set_error_handler(static fn (): bool => true);
-
-        try {
-            $loaded = $document->loadHTML($body, \LIBXML_NOERROR | \LIBXML_NOWARNING | \LIBXML_NONET);
-        } finally {
-            restore_error_handler();
-        }
-
-        if (false === $loaded) {
-            throw new ExtractionException(\sprintf('Invalid %s document: malformed HTML content.', $formatName));
-        }
+        $document = \Dom\HTMLDocument::createFromString($body, \LIBXML_NOERROR);
 
         $this->lastBody = $body;
         $this->lastDocument = $document;

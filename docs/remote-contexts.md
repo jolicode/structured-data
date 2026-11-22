@@ -8,13 +8,32 @@ that URL to be resolved before the document can be expanded. This library resolv
 files it ships with, so the most common case by far is covered without a single
 outbound request.
 
-Every other remote context is **refused**. `Validator::audit()` and the four algorithms
+Every other remote context is **refused**. `Validator::audit()`, the four algorithms and the deserialization to RDF
 issue no network request and read no file unless you say otherwise, and a refused
 context raises the error the specification mandates:
 
 ```
 loading remote context failed
 ```
+
+A document handed to an algorithm as a URL goes through the same loader, and the same
+policy. When it is the document itself that cannot be loaded, the error is the one the
+specification names for that case:
+
+```
+loading document failed
+```
+
+Both are opaque on purpose, see below.
+
+## What a response must look like
+
+A response is only read when its `Content-Type` says it may hold JSON-LD:
+`application/ld+json`, `application/json`, any type ending in `+json`, and, for a document,
+`text/html` and `application/xhtml+xml`, whose `<script type="application/ld+json">`
+elements are extracted. Anything else is refused, even when the body is valid JSON: a
+context served as `text/plain`, as raw.githubusercontent.com does, has to be mirrored on a
+host that serves it properly, or handed out by [your own loader](#writing-your-own-loader).
 
 ## Why unbounded resolution is dangerous
 
@@ -63,7 +82,7 @@ $validator = new Validator(documentLoader: new HttpDocumentLoader($policy, $http
 $audit = $validator->audit($document);
 ```
 
-The same constructor argument is available on `Expander`, `Compactor`, `Flattener` and `Framer`:
+The same constructor argument is available on `Expander`, `Compactor`, `Flattener`, `Framer` and `ToRdfConverter`:
 
 ```php
 $expander = new Expander(documentLoader: new HttpDocumentLoader($policy, $httpClient));
@@ -77,30 +96,54 @@ every hop: the URL you asked for, **each intermediate redirect**, each alternate
 each `Link` header, and the URL a response was ultimately served from.
 
 The `@context` URL is not the only document-controlled value that can reach the loader:
-`Expander::expand()` (and, through it, `Validator::audit()`) also accepts a bare IRI as its
-input and will resolve it. That path is bound by the very same policy, so the default
+every algorithm (and, through `Expander::expand()`, `Validator::audit()`) also accepts a bare
+IRI as its input and will resolve it, an HTML page included. That path is bound by the very same policy, so the default
 deny-all loader refuses it too - but keep it in mind when you widen the allow-list.
 
 ## Writing your own loader
 
 Implement `JoliCode\StructuredData\JsonLd\Algorithms\Http\DocumentLoaderInterface` to resolve contexts
-your own way, for instance from a local mirror or a PSR-6 cache:
+and documents your own way, for instance from a local mirror or a PSR-6 cache:
 
 ```php
 interface DocumentLoaderInterface
 {
-    public function load(string $url): \stdClass;
+    public function load(string $url, LoadDocumentOptions $options = new LoadDocumentOptions()): RemoteDocument;
 
     public function getCacheNamespace(): string;
 }
 ```
 
+A `RemoteDocument` holds the decoded document (a `stdClass` or an array, as `json_decode()`
+gives it) and the URL it finally comes from, which is the base its relative IRIs are
+resolved against:
+
+```php
+public function load(string $url, LoadDocumentOptions $options = new LoadDocumentOptions()): RemoteDocument
+{
+    $document = json_decode($this->mirror->read($url)); // your own storage
+
+    if (!$document instanceof \stdClass && !\is_array($document)) {
+        throw new DocumentLoadingException('loading document failed');
+    }
+
+    return new RemoteDocument($document, $url);
+}
+```
+
+Its other fields are what an HTTP response may add: the content type, the context a
+`Link` header names (`contextUrl`), the `profile` parameter, and the `<base href>` of an
+HTML document. The options say what the caller asks for: every JSON-LD script of an HTML
+document rather than the first (`extractAllScripts`), and the profile a context is
+requested with.
+
 Processed contexts are cached for the lifetime of the process, and `getCacheNamespace()`
 partitions that cache. Return a value that identifies what your loader is willing to
 resolve, so that a context obtained under a permissive strategy can never be served to a
 restrictive one. Signal every failure with
-`new ContextProcessingException('loading remote context failed')`, and never put anything
-from the remote response in that message.
+`new DocumentLoadingException('loading document failed')`, and never put anything
+from the remote response in that message. When it is a context that was being loaded, the
+library reports it as `loading remote context failed`.
 
 ## Checklist
 

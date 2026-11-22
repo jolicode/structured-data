@@ -34,10 +34,6 @@ class ValidationMapper
          */
         private array $mappedTypes = [],
         /**
-         * @var array<MappedError>
-         */
-        private array $mappedErrors = [],
-        /**
          * @var array<string,MappedProperty>
          */
         private array $propertiesWithReferences = [],
@@ -53,20 +49,11 @@ class ValidationMapper
     public function reset(): void
     {
         $this->mappedTypes = [];
-        $this->mappedErrors = [];
         $this->flattenedTypeReferences = [];
         $this->propertiesWithReferences = [];
         $this->propertyReferenceByObjectId = [];
         $this->rootParsedJsonLd = null;
         $this->nameNormalizer->reset();
-    }
-
-    /**
-     * @return array<MappedError>
-     */
-    public function getMappedErrors(): array
-    {
-        return $this->mappedErrors;
     }
 
     /**

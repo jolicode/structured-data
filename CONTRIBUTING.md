@@ -127,6 +127,12 @@ Command | Description
 `castor qa:phpunit:coverage` | Runs PHPUnit with code coverage (requires the pcov or xdebug extension)
 `castor qa:infection` | Runs Infection mutation testing on the validator and mapper layers (requires the pcov or xdebug extension)
 
+The W3C suites each have their PHPUnit group: `expand`, `compact`, `flatten`, `frame`, `toRdf`, `fromRdf`,
+`remote-doc` and `html` (`castor qa:phpunit:run --group toRdf`). The first four list their fixture files and
+set the options of each test in PHP; the others are driven by their manifest
+(`tests/Algorithms/Manifest/ManifestTestProvider.php`) and run offline: `W3cFixtureServer` stands for
+w3c.github.io and serves the downloaded copy, with the headers the manifest asks for.
+
 The W3C test suite is pinned to a known-good upstream commit (see `W3C_TEST_SUITE_REF` in `.castor/qa.php`).
 To re-download it, or to test against the upstream main branch:
 

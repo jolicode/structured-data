@@ -15,13 +15,14 @@ use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\Context;
 use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextCache;
 use JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing\ContextProcessor;
 use JoliCode\StructuredData\JsonLd\Algorithms\Exception\ExpansionException;
-use JoliCode\StructuredData\JsonLd\Algorithms\Exception\JsonLdException;
 use JoliCode\StructuredData\JsonLd\Algorithms\Http\DocumentLoaderInterface;
 use JoliCode\StructuredData\JsonLd\Algorithms\Http\HttpDocumentLoader;
 use JoliCode\StructuredData\JsonLd\Algorithms\Http\IriResolver;
 use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\FramingKeyword;
 use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
 use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\ProcessorOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms\Services\InputDocumentResolver;
+use JoliCode\StructuredData\JsonLd\Algorithms\Services\ResolvedInput;
 use JoliCode\StructuredData\JsonLd\Algorithms\Services\ValueAdder;
 use JoliCode\StructuredData\JsonLd\Algorithms\TermDefinition\TermDefinition;
 
@@ -37,12 +38,14 @@ class Expander
 
     private ContextProcessor $contextProcessor;
     private DocumentLoaderInterface $documentLoader;
+    private InputDocumentResolver $inputDocumentResolver;
 
     public function __construct(
         ?ContextProcessor $contextProcessor = null,
         ?DocumentLoaderInterface $documentLoader = null,
     ) {
         $this->documentLoader = $documentLoader ?? new HttpDocumentLoader();
+        $this->inputDocumentResolver = new InputDocumentResolver($this->documentLoader);
         $this->contextProcessor = $contextProcessor ?? new ContextProcessor(new ContextCache($this->documentLoader));
     }
 
@@ -60,21 +63,33 @@ class Expander
         ProcessorOptions $options = new ProcessorOptions(),
         bool $encodeResult = true,
     ): \stdClass|array|string|false|null {
-        $element = \is_string($json) ? json_decode($json) : $json;
-        $baseUrl = $options->base;
+        $element = $this->expandResolved($this->inputDocumentResolver->resolve($json, $options), $options);
 
-        if (null === $element) {
-            throw new JsonLdException('The JSON string could not be parsed.');
+        if ($encodeResult) {
+            return json_encode($element, \JSON_PRETTY_PRINT);
         }
 
-        if (\is_string($element)) {
-            $baseUrl = $element;
+        return $element;
+    }
 
-            $element = $this->documentLoader->load($baseUrl);
-        }
+    /**
+     * Expands a document whose input has been resolved already. This is where
+     * the other algorithms start their expansion from, so that a document
+     * loaded from a URL keeps what its location says of it.
+     *
+     * @param string|null $activeProperty null to expand a whole document; the algorithms
+     *                                    that never expand a frame pass TOP_LEVEL_ACTIVE_PROPERTY
+     *
+     * @return \stdClass|list<mixed>|null
+     */
+    public function expandResolved(ResolvedInput $input, ProcessorOptions $options, ?string $activeProperty = null): \stdClass|array|null
+    {
+        // Relative context URLs are resolved against the location of the document,
+        // relative IRIs against the base, which the "base" option may have set.
+        $baseUrl = $input->documentUrl ?? $input->base;
 
         $activeContext = new Context(
-            baseIri: $baseUrl,
+            baseIri: $input->base,
             baseUrl: $baseUrl,
             processingMode: $options->processingMode,
         );
@@ -83,19 +98,18 @@ class Expander
             $activeContext = $this->contextProcessor->processContext($activeContext, $options->expandContext, $activeContext->baseUrl);
         }
 
-        $element = $this->doExpand(
-            $element,
-            $options,
-            activeContext: $activeContext,
-            activeProperty: null,
-            baseUrl: $baseUrl,
-        );
-
-        if ($encodeResult) {
-            return json_encode($element, \JSON_PRETTY_PRINT);
+        // The context a JSON document was served with comes before its own.
+        if (null !== $input->contextUrl) {
+            $activeContext = $this->contextProcessor->processContext($activeContext, $input->contextUrl, $baseUrl);
         }
 
-        return $element;
+        return $this->doExpand(
+            $input->document,
+            $options,
+            activeContext: $activeContext,
+            activeProperty: $activeProperty,
+            baseUrl: $baseUrl,
+        );
     }
 
     /**
@@ -116,6 +130,7 @@ class Expander
         Context $activeContext = new Context(),
         ?string $activeProperty = self::TOP_LEVEL_ACTIVE_PROPERTY,
         bool $fromMap = false,
+        bool $arrayItem = false,
     ): \stdClass|array|null {
         // 1
         if (null === $element) {
@@ -241,7 +256,9 @@ class Expander
             }
         }
 
-        if (null === $activeProperty || self::TOP_LEVEL_ACTIVE_PROPERTY === $activeProperty) {
+        // Only the document itself: among the items of an array, a map holding
+        // nothing but @graph is a graph object, and stays one.
+        if (!$arrayItem && (null === $activeProperty || self::TOP_LEVEL_ACTIVE_PROPERTY === $activeProperty)) {
             if (
                 \is_object($result)
                 && property_exists($result, Keyword::GRAPH->value)
@@ -811,7 +828,7 @@ class Expander
                 foreach ((array) $items as $item) {
                     // 13.4.13.4.2.1.1
                     if (ExpandedObjectShape::isValueObject($item) || ExpandedObjectShape::isListObject($item)) {
-                        throw new ExpansionException('invalid @reverse property value');
+                        throw new ExpansionException('invalid reverse property value');
                     }
 
                     // 13.4.13.4.2.1.2
@@ -1220,6 +1237,7 @@ class Expander
                 $activeContext,
                 $activeProperty,
                 $fromMap,
+                true,
             );
 
             // 5.2.2

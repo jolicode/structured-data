@@ -11,7 +11,7 @@
 
 namespace JoliCode\StructuredData\Tests\Algorithms\Http;
 
-use JoliCode\StructuredData\JsonLd\Algorithms\Exception\ContextProcessingException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\DocumentLoadingException;
 use JoliCode\StructuredData\JsonLd\Algorithms\Http\HttpDocumentLoader;
 use JoliCode\StructuredData\JsonLd\Algorithms\Http\RemoteContextPolicy;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -23,12 +23,14 @@ use Symfony\Component\HttpClient\Response\MockResponse;
 #[Group('security')]
 class HttpDocumentLoaderTest extends TestCase
 {
+    private const JSON_LD = ['response_headers' => ['Content-Type' => 'application/ld+json']];
+
     public function testTheDefaultPolicyRefusesEveryHostWithoutIssuingARequest(): void
     {
         $loader = new HttpDocumentLoader(httpClient: $this->clientThatMustNotBeCalled());
 
-        $this->expectException(ContextProcessingException::class);
-        $this->expectExceptionMessage('loading remote context failed');
+        $this->expectException(DocumentLoadingException::class);
+        $this->expectExceptionMessage('loading document failed');
 
         $loader->load('https://example.com/context.jsonld');
     }
@@ -37,12 +39,12 @@ class HttpDocumentLoaderTest extends TestCase
     {
         $loader = new HttpDocumentLoader(
             RemoteContextPolicy::allowHosts('example.com'),
-            new MockHttpClient(new MockResponse('{"@context":{"name":"https://schema.org/name"}}')),
+            new MockHttpClient(new MockResponse('{"@context":{"name":"https://schema.org/name"}}', self::JSON_LD)),
         );
 
         $document = $loader->load('https://example.com/context.jsonld');
 
-        $this->assertSame('https://schema.org/name', $document->{'@context'}->name);
+        $this->assertEquals((object) ['@context' => (object) ['name' => 'https://schema.org/name']], $document->document);
     }
 
     public function testAHostOutsideTheAllowListIsRefused(): void
@@ -52,7 +54,7 @@ class HttpDocumentLoaderTest extends TestCase
             $this->clientThatMustNotBeCalled(),
         );
 
-        $this->expectException(ContextProcessingException::class);
+        $this->expectException(DocumentLoadingException::class);
 
         $loader->load('https://other.example/context.jsonld');
     }
@@ -68,7 +70,7 @@ class HttpDocumentLoaderTest extends TestCase
             $this->clientThatMustNotBeCalled(),
         );
 
-        $this->expectException(ContextProcessingException::class);
+        $this->expectException(DocumentLoadingException::class);
 
         $loader->load('https://evil.schema.org.example/context.jsonld');
     }
@@ -85,8 +87,8 @@ class HttpDocumentLoaderTest extends TestCase
             $this->clientThatMustNotBeCalled(),
         );
 
-        $this->expectException(ContextProcessingException::class);
-        $this->expectExceptionMessage('loading remote context failed');
+        $this->expectException(DocumentLoadingException::class);
+        $this->expectExceptionMessage('loading document failed');
 
         $loader->load($url);
     }
@@ -111,7 +113,7 @@ class HttpDocumentLoaderTest extends TestCase
             $this->clientThatMustNotBeCalled(),
         );
 
-        $this->expectException(ContextProcessingException::class);
+        $this->expectException(DocumentLoadingException::class);
 
         $loader->load('http://example.com/context.jsonld');
     }
@@ -130,8 +132,8 @@ class HttpDocumentLoaderTest extends TestCase
         try {
             $loader->load('https://example.com/internal-service');
             $this->fail('The loader should have refused the response.');
-        } catch (ContextProcessingException $exception) {
-            $this->assertSame('loading remote context failed', $exception->getMessage());
+        } catch (DocumentLoadingException $exception) {
+            $this->assertSame('loading document failed', $exception->getMessage());
             $this->assertStringNotContainsString('SECRET', $exception->getMessage());
             $this->assertStringNotContainsString('404', $exception->getMessage());
             $this->assertStringNotContainsString('example.com', $exception->getMessage());
@@ -142,10 +144,10 @@ class HttpDocumentLoaderTest extends TestCase
     {
         $loader = new HttpDocumentLoader(
             RemoteContextPolicy::allowHosts('example.com')->withMaxResponseBytes(1024),
-            new MockHttpClient(new MockResponse(str_repeat('a', 4096))),
+            new MockHttpClient(new MockResponse(str_repeat('a', 4096), self::JSON_LD)),
         );
 
-        $this->expectException(ContextProcessingException::class);
+        $this->expectException(DocumentLoadingException::class);
 
         $loader->load('https://example.com/huge.jsonld');
     }
@@ -158,12 +160,12 @@ class HttpDocumentLoaderTest extends TestCase
     {
         $loader = new HttpDocumentLoader(
             RemoteContextPolicy::allowHosts('example.com'),
-            new MockHttpClient(new MockResponse('{"@context":{}}', [
+            new MockHttpClient(new MockResponse('{"@context":{}}', self::JSON_LD + [
                 'url' => 'https://evil.example/context.jsonld',
             ])),
         );
 
-        $this->expectException(ContextProcessingException::class);
+        $this->expectException(DocumentLoadingException::class);
 
         $loader->load('https://example.com/context.jsonld');
     }
@@ -178,11 +180,11 @@ class HttpDocumentLoaderTest extends TestCase
             RemoteContextPolicy::allowHosts('example.com'),
             new MockHttpClient([
                 new MockResponse('', ['http_code' => 302, 'response_headers' => ['Location' => 'https://evil.example/context.jsonld']]),
-                new MockResponse('{"@context":{}}'),
+                new MockResponse('{"@context":{}}', self::JSON_LD),
             ]),
         );
 
-        $this->expectException(ContextProcessingException::class);
+        $this->expectException(DocumentLoadingException::class);
 
         $loader->load('https://example.com/context.jsonld');
     }
@@ -196,13 +198,13 @@ class HttpDocumentLoaderTest extends TestCase
             RemoteContextPolicy::allowHosts('example.com'),
             new MockHttpClient([
                 new MockResponse('', ['http_code' => 302, 'response_headers' => ['Location' => 'https://example.com/real.jsonld']]),
-                new MockResponse('{"@context":{"name":"https://schema.org/name"}}'),
+                new MockResponse('{"@context":{"name":"https://schema.org/name"}}', self::JSON_LD),
             ]),
         );
 
         $document = $loader->load('https://example.com/context.jsonld');
 
-        $this->assertSame('https://schema.org/name', $document->{'@context'}->name);
+        $this->assertEquals((object) ['@context' => (object) ['name' => 'https://schema.org/name']], $document->document);
     }
 
     #[DataProvider('provideUrlsRefusedByPolicyRefinements')]
@@ -213,7 +215,7 @@ class HttpDocumentLoaderTest extends TestCase
             $this->clientThatMustNotBeCalled(),
         );
 
-        $this->expectException(ContextProcessingException::class);
+        $this->expectException(DocumentLoadingException::class);
 
         $loader->load($url);
     }
@@ -240,8 +242,8 @@ class HttpDocumentLoaderTest extends TestCase
         try {
             $loader->load('https://example.com/context.jsonld');
             $this->fail('The loader should have refused the response.');
-        } catch (ContextProcessingException $exception) {
-            $this->assertSame('loading remote context failed', $exception->getMessage());
+        } catch (DocumentLoadingException $exception) {
+            $this->assertSame('loading document failed', $exception->getMessage());
         }
     }
 

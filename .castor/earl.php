@@ -38,7 +38,10 @@ const EARL_ASSERTOR_IRI = 'https://github.com/xavierlacot';
  * order, so the cache directory constants of qa.php are not defined yet when this
  * file is parsed.
  *
- * @return array<string, array{name: string, manifest: string, iri: string}>
+ * The RDF suites are driven by their manifest: their data sets are named after
+ * the fragment of the test IRI rather than after a fixture file ("byId").
+ *
+ * @return array<string, array{name: string, manifest: string, iri: string, byId?: bool}>
  */
 function earlSuites(): array
 {
@@ -62,6 +65,30 @@ function earlSuites(): array
             'name' => 'frame',
             'manifest' => CACHE_DIR_W3C_FRAMING_TEST_SUITE . '/tests/frame-manifest.jsonld',
             'iri' => 'https://w3c.github.io/json-ld-framing/tests/frame-manifest',
+        ],
+        'ToRdfTest' => [
+            'name' => 'toRdf',
+            'manifest' => CACHE_DIR_W3C_TEST_SUITE . '/tests/toRdf-manifest.jsonld',
+            'iri' => 'https://w3c.github.io/json-ld-api/tests/toRdf-manifest',
+            'byId' => true,
+        ],
+        'FromRdfTest' => [
+            'name' => 'fromRdf',
+            'manifest' => CACHE_DIR_W3C_TEST_SUITE . '/tests/fromRdf-manifest.jsonld',
+            'iri' => 'https://w3c.github.io/json-ld-api/tests/fromRdf-manifest',
+            'byId' => true,
+        ],
+        'RemoteDocTest' => [
+            'name' => 'remote-doc',
+            'manifest' => CACHE_DIR_W3C_TEST_SUITE . '/tests/remote-doc-manifest.jsonld',
+            'iri' => 'https://w3c.github.io/json-ld-api/tests/remote-doc-manifest',
+            'byId' => true,
+        ],
+        'HtmlTest' => [
+            'name' => 'html',
+            'manifest' => CACHE_DIR_W3C_TEST_SUITE . '/tests/html-manifest.jsonld',
+            'iri' => 'https://w3c.github.io/json-ld-api/tests/html-manifest',
+            'byId' => true,
         ],
     ];
 }
@@ -126,7 +153,7 @@ function earl(
         $results = $outcomes[$testClass] ?? [];
         $summary[$suite['name']] = ['passed' => 0, 'failed' => 0, 'inapplicable' => 0, 'untested' => 0];
 
-        foreach (earlManifestEntries($suite['manifest']) as $entry) {
+        foreach (earlManifestEntries($suite['manifest'], $suite['byId'] ?? false) as $entry) {
             // A test that was not run is either out of scope (it only applies to
             // JSON-LD 1.0 processors) or genuinely untested: the distinction matters
             // in the consolidated report.
@@ -201,10 +228,11 @@ function earlOutcomesFromJunit(string $junitFile): array
  * The data set name follows the convention of AbstractJsonLdTestCase: the expected
  * output file with "-out" replaced by "-in" (several manifest entries share an
  * input file but not an expected output), or the input file for a negative test.
+ * The suites driven by their manifest name it after the test fragment instead.
  *
  * @return list<array{id: string, test: string, jsonLd10Only: bool}>
  */
-function earlManifestEntries(string $manifestFile): array
+function earlManifestEntries(string $manifestFile, bool $byId = false): array
 {
     $content = file_get_contents($manifestFile);
 
@@ -229,9 +257,11 @@ function earlManifestEntries(string $manifestFile): array
 
         $entries[] = [
             'id' => $test['@id'],
-            'test' => \is_string($test['expect'] ?? null)
-                ? str_replace('-out', '-in', basename($test['expect']))
-                : basename($test['input']),
+            'test' => match (true) {
+                $byId => $test['@id'],
+                \is_string($test['expect'] ?? null) => str_replace('-out', '-in', basename($test['expect'])),
+                default => basename($test['input']),
+            },
             'jsonLd10Only' => 'json-ld-1.0' === ($option['specVersion'] ?? null),
         ];
     }

@@ -89,17 +89,6 @@ class ObjectStructure extends AbstractStructure
         return $this->getGraph()->getValue($graphKey)->content;
     }
 
-    public function getGraphProperty(string $name, int $graphKey): Property
-    {
-        $graphType = $this->getGraphType($graphKey);
-
-        if (!$graphType instanceof self) {
-            throw new \InvalidArgumentException('This graph entry is not an object.');
-        }
-
-        return $graphType->getProperty($name);
-    }
-
     // Graphs are ArrayStructures, so they don't have a property key, they only have numeric keys.
     // We cannot retrieve a Property, so we instead return a Value, which also holds a Range.
     public function getGraphValue(string $reference): Value

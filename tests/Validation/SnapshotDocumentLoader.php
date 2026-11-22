@@ -12,6 +12,8 @@
 namespace JoliCode\StructuredData\Tests\Validation;
 
 use JoliCode\StructuredData\JsonLd\Algorithms\Http\DocumentLoaderInterface;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\LoadDocumentOptions;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\RemoteDocument;
 
 /**
  * Serves the remote contexts the validation fixtures reference from snapshots
@@ -64,7 +66,7 @@ final class SnapshotDocumentLoader implements DocumentLoaderInterface
      */
     private array $documents = [];
 
-    public function load(string $url): \stdClass
+    public function load(string $url, LoadDocumentOptions $options = new LoadDocumentOptions()): RemoteDocument
     {
         if (!\array_key_exists($url, self::SNAPSHOTS)) {
             // Not a ContextProcessingException, and not a RuntimeException either:
@@ -74,7 +76,7 @@ final class SnapshotDocumentLoader implements DocumentLoaderInterface
             throw new \LogicException(\sprintf('The validation suite runs offline, and no snapshot is registered for the remote context "%s". Download it into "%s" and register it in %s::SNAPSHOTS.', $url, self::SNAPSHOTS_DIRECTORY, self::class));
         }
 
-        return $this->documents[$url] ??= $this->decode(self::SNAPSHOTS[$url]);
+        return new RemoteDocument($this->documents[$url] ??= $this->decode(self::SNAPSHOTS[$url]), $url);
     }
 
     public function getCacheNamespace(): string

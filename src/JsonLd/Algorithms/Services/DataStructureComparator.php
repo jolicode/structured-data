@@ -25,7 +25,9 @@ class DataStructureComparator
     public static function objectAlreadyInArray(\stdClass $object, array $array): bool
     {
         foreach ($array as $arrayObject) {
-            if ($arrayObject instanceof \stdClass && self::objectsHaveSameProperties($object, $arrayObject)) {
+            // Both ways: a value object is not the language-tagged one that
+            // merely holds the same "@value".
+            if ($arrayObject instanceof \stdClass && self::objectsHaveSameProperties($object, $arrayObject) && self::objectsHaveSameProperties($arrayObject, $object)) {
                 return true;
             }
         }
@@ -49,7 +51,7 @@ class DataStructureComparator
             }
 
             if (\is_object($value)) {
-                if (!self::objectsHaveSameProperties($value, $object2->$property)) {
+                if (!\is_object($object2->$property) || !self::objectsHaveSameProperties($value, $object2->$property)) {
                     return false;
                 }
 

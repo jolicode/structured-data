@@ -10,10 +10,11 @@
     },
     "timeout": 30,
     // Floor for the covered-code mutation score, kept a little below the current
-    // value (52% in November 2026) so the weekly run flags regressions without
-    // flapping. The score slipped from ~60% as the validators grew faster than
-    // their tests: raise this floor again as escaped mutants get killed.
-    "minCoveredMsi": 50,
+    // value (72% in November 2026) so the weekly run flags regressions without
+    // flapping: raise this floor again as escaped mutants get killed. The score
+    // read 52% while the fixture-driven tests carried #[CoversClass] attributes,
+    // which kept Infection from running them against most of the mutants.
+    "minCoveredMsi": 70,
     "logs": {
         "text": "var/cache/infection/infection.log",
         "summary": "var/cache/infection/summary.log"

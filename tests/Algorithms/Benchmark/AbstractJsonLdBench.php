@@ -19,12 +19,16 @@ abstract class AbstractJsonLdBench
 
     protected function loadJson(string $filename): string
     {
-        $filePath = \sprintf(
-            '%s/%s/input/%s',
-            static::DATA_PATH,
-            $this->getAlgorithmName(),
-            $filename,
-        );
+        return $this->loadFixture(\sprintf('%s/input/%s', $this->getAlgorithmName(), $filename));
+    }
+
+    /**
+     * Loads a fixture by its path in the test suite. The RDF suites keep the
+     * upstream layout, where the files of a suite are not filed by kind.
+     */
+    protected function loadFixture(string $path): string
+    {
+        $filePath = \sprintf('%s/%s', static::DATA_PATH, $path);
         $content = file_get_contents($filePath);
 
         if (false === $content) {

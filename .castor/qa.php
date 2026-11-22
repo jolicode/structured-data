@@ -80,6 +80,10 @@ function suiteFixturesAreMissing(): bool
     return !fs()->exists(\sprintf('%s/tests/flatten/output', CACHE_DIR_W3C_TEST_SUITE))
         || !fs()->exists(\sprintf('%s/tests/frame/output', CACHE_DIR_W3C_FRAMING_TEST_SUITE))
         || !fs()->exists(\sprintf('%s/tests/expand-manifest.jsonld', CACHE_DIR_W3C_TEST_SUITE))
+        || !fs()->exists(\sprintf('%s/tests/toRdf-manifest.jsonld', CACHE_DIR_W3C_TEST_SUITE))
+        || !fs()->exists(\sprintf('%s/tests/fromRdf-manifest.jsonld', CACHE_DIR_W3C_TEST_SUITE))
+        || !fs()->exists(\sprintf('%s/tests/html-manifest.jsonld', CACHE_DIR_W3C_TEST_SUITE))
+        || !fs()->exists(\sprintf('%s/tests/remote-doc-manifest.jsonld', CACHE_DIR_W3C_TEST_SUITE))
         || !fs()->exists(\sprintf('%s/tests/frame-manifest.jsonld', CACHE_DIR_W3C_FRAMING_TEST_SUITE));
 }
 
@@ -235,6 +239,20 @@ function phpunitPrepare(
                     );
                 }
             }
+        }
+
+        // These suites are driven by their manifest, which names every file of a
+        // test: their fixtures are copied as they are upstream.
+        foreach (Algorithms::manifestDrivenSuiteNames() as $algorithm) {
+            fs()->copy(
+                \sprintf('%s/json-ld-api-%s/tests/%s-manifest.jsonld', CACHE_DIR_W3C_TEST_SUITE, $ref, $algorithm),
+                \sprintf('%s/tests/%s-manifest.jsonld', CACHE_DIR_W3C_TEST_SUITE, $algorithm),
+                true,
+            );
+            fs()->mirror(
+                \sprintf('%s/json-ld-api-%s/tests/%s', CACHE_DIR_W3C_TEST_SUITE, $ref, $algorithm),
+                \sprintf('%s/tests/%s', CACHE_DIR_W3C_TEST_SUITE, $algorithm),
+            );
         }
 
         // remove the zip archive and all the files

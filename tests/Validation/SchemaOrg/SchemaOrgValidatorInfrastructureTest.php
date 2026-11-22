@@ -15,11 +15,9 @@ use JoliCode\StructuredData\Mapper\MappedProperty;
 use JoliCode\StructuredData\Validator;
 use JoliCode\StructuredData\Vocabularies\Validators\SchemaOrg\SchemaOrgValidator;
 use JoliCode\StructuredData\Vocabularies\Validators\SchemaOrg\TypeGuesser;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(SchemaOrgValidator::class)]
 #[Group('validation')]
 #[Group('schemaorg')]
 #[Group('schema-org')]

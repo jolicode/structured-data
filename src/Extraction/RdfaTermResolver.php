@@ -45,7 +45,7 @@ final class RdfaTermResolver
     /**
      * @return array<string>
      */
-    public function resolveTerms(string $attributeValue, \DOMElement $contextElement): array
+    public function resolveTerms(string $attributeValue, \Dom\Element $contextElement): array
     {
         if ('' === $attributeValue) {
             return [];
@@ -79,7 +79,7 @@ final class RdfaTermResolver
         return $this->resolvedTermsCache[$cacheKey] = array_values($resolvedTerms);
     }
 
-    public function resolveVocab(\DOMElement $contextElement): ?string
+    public function resolveVocab(\Dom\Element $contextElement): ?string
     {
         $cacheKey = $this->getNodeCacheKey($contextElement);
 
@@ -89,19 +89,19 @@ final class RdfaTermResolver
 
         $element = $contextElement;
 
-        while ($element instanceof \DOMElement) {
+        while ($element instanceof \Dom\Element) {
             if ($element->hasAttribute('vocab')) {
-                return $this->resolvedVocabCache[$cacheKey] = trim($element->getAttribute('vocab'));
+                return $this->resolvedVocabCache[$cacheKey] = trim($element->getAttribute('vocab') ?? '');
             }
 
             $parent = $element->parentNode;
-            $element = $parent instanceof \DOMElement ? $parent : null;
+            $element = $parent instanceof \Dom\Element ? $parent : null;
         }
 
         return $this->resolvedVocabCache[$cacheKey] = null;
     }
 
-    public function getNodeCacheKey(\DOMElement $element): int
+    public function getNodeCacheKey(\Dom\Element $element): int
     {
         return spl_object_id($element);
     }
@@ -111,7 +111,7 @@ final class RdfaTermResolver
         return \in_array($vocab, ['http://schema.org/', 'https://schema.org/'], true);
     }
 
-    private function resolveTerm(string $token, \DOMElement $contextElement): ?string
+    private function resolveTerm(string $token, \Dom\Element $contextElement): ?string
     {
         $token = trim($token);
 
@@ -160,7 +160,7 @@ final class RdfaTermResolver
     /**
      * @return array<string, string>
      */
-    private function resolvePrefixMappings(\DOMElement $contextElement): array
+    private function resolvePrefixMappings(\Dom\Element $contextElement): array
     {
         $cacheKey = $this->getNodeCacheKey($contextElement);
 
@@ -171,11 +171,11 @@ final class RdfaTermResolver
         $ancestors = [];
         $element = $contextElement;
 
-        while ($element instanceof \DOMElement) {
+        while ($element instanceof \Dom\Element) {
             $ancestors[] = $element;
 
             $parent = $element->parentNode;
-            $element = $parent instanceof \DOMElement ? $parent : null;
+            $element = $parent instanceof \Dom\Element ? $parent : null;
         }
 
         $ancestors = array_reverse($ancestors);
@@ -186,7 +186,7 @@ final class RdfaTermResolver
                 continue;
             }
 
-            preg_match_all('/([A-Za-z][\w-]*):\s*(\S+)/', $ancestor->getAttribute('prefix'), $matches, \PREG_SET_ORDER);
+            preg_match_all('/([A-Za-z][\w-]*):\s*(\S+)/', $ancestor->getAttribute('prefix') ?? '', $matches, \PREG_SET_ORDER);
 
             foreach ($matches as $match) {
                 $prefixes[$match[1]] = $match[2];

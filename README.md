@@ -91,7 +91,8 @@ nodes, the parsed tree, and the CLI.
 ### Use the JSON-LD algorithms
 
 Expansion, compaction, flattening and framing are available as `Expander`, `Compactor`,
-`Flattener` and `Framer`:
+`Flattener` and `Framer`, and the conversion to and from RDF as `ToRdfConverter` and
+`FromRdfConverter`:
 
 ```php
 use JoliCode\StructuredData\JsonLd\Algorithms\Expand\Expander;

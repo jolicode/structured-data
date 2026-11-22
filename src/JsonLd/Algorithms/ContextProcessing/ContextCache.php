@@ -12,8 +12,10 @@
 namespace JoliCode\StructuredData\JsonLd\Algorithms\ContextProcessing;
 
 use JoliCode\StructuredData\JsonLd\Algorithms\Exception\ContextProcessingException;
+use JoliCode\StructuredData\JsonLd\Algorithms\Exception\DocumentLoadingException;
 use JoliCode\StructuredData\JsonLd\Algorithms\Http\DocumentLoaderInterface;
 use JoliCode\StructuredData\JsonLd\Algorithms\Http\HttpDocumentLoader;
+use JoliCode\StructuredData\JsonLd\Algorithms\Http\LoadDocumentOptions;
 use JoliCode\StructuredData\JsonLd\Algorithms\JsonLd\Keyword;
 use JoliCode\StructuredData\JsonLd\Algorithms\TermDefinition\TermDefinition;
 
@@ -153,9 +155,14 @@ final class ContextCache
             return self::$schemaOrgContext;
         }
 
-        $document = $this->documentLoader->load($url);
+        try {
+            $document = $this->documentLoader->load($url, LoadDocumentOptions::forContext())->document;
+        } catch (DocumentLoadingException) {
+            // Whatever went wrong, a context that cannot be loaded has one name.
+            throw new ContextProcessingException('loading remote context failed');
+        }
 
-        if (!property_exists($document, Keyword::CONTEXT->value)) {
+        if (!$document instanceof \stdClass || !property_exists($document, Keyword::CONTEXT->value)) {
             throw new ContextProcessingException('invalid remote context');
         }
 
