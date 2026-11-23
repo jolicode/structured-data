@@ -11,6 +11,8 @@
 
 namespace JoliCode\StructuredData\Extraction;
 
+use JoliCode\StructuredData\JsonLd\Parser\Utf16;
+
 class JsonLdNodeExtractor extends AbstractHtmlExtractor
 {
     // The quotes are optional in HTML, and minifiers remove them. Whitespace may surround
@@ -86,13 +88,14 @@ class JsonLdNodeExtractor extends AbstractHtmlExtractor
 
                 $startLine = substr_count($bodyPrefix, "\n");
 
+                // Columns count UTF-16 code units, as the editors displaying them do.
                 if (0 === $startLine) {
-                    $startColumn = mb_strlen($bodyPrefix);
+                    $startColumn = Utf16::length($bodyPrefix);
                 } else {
                     $lastLineReturnPosition = strrpos($bodyPrefix, "\n");
                     $startColumn = false === $lastLineReturnPosition
-                        ? mb_strlen($bodyPrefix)
-                        : mb_strlen(substr($bodyPrefix, $lastLineReturnPosition + 1));
+                        ? Utf16::length($bodyPrefix)
+                        : Utf16::length(substr($bodyPrefix, $lastLineReturnPosition + 1));
                 }
 
                 $jsonLdElement = new JsonLdElement($startLine, $startColumn, $match[0], $this->getFormat());

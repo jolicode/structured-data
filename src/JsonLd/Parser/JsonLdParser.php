@@ -49,7 +49,7 @@ class JsonLdParser
      */
     public function parse(JsonLdElement $jsonLdElement): ?AbstractStructure
     {
-        $cacheKey = md5($jsonLdElement->content . "\0" . $jsonLdElement->startLine . "\0" . $jsonLdElement->startColumn);
+        $cacheKey = md5($jsonLdElement->content . "\0" . $jsonLdElement->startLine . "\0" . $jsonLdElement->startColumn . "\0" . $jsonLdElement->sourceMap?->fingerprint());
 
         if (\array_key_exists($cacheKey, $this->parseCache)) {
             return $this->parseCache[$cacheKey];
@@ -95,6 +95,11 @@ class JsonLdParser
             (new Parser($stream, $listener))->parse();
 
             $result = $listener->getResult();
+        }
+
+        // A document generated from HTML markup is anchored on that markup.
+        if (null !== $result && null !== $jsonLdElement->sourceMap) {
+            SourceMapApplier::apply($result, $jsonLdElement->sourceMap);
         }
 
         $this->parseCache[$cacheKey] = $result;

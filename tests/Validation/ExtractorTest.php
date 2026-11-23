@@ -411,4 +411,46 @@ HTML;
 
         (new Extractor())->setExtractors(ExtractorsContainer::MICRODATA)->extract($document);
     }
+
+    public function testMicrodataPropertiesAreReadInDocumentOrder(): void
+    {
+        $document = <<<'HTML'
+<div itemscope itemtype="https://schema.org/Recipe">
+  <img itemprop="image" src="1.jpg"><img itemprop="image" src="2.jpg"><img itemprop="image" src="3.jpg">
+  <ol>
+    <li itemprop="recipeInstructions">Step 1<b itemprop="keywords">k1</b></li>
+    <li itemprop="recipeInstructions">Step 2</li>
+  </ol>
+  <span itemprop="keywords">k2</span>
+</div>
+HTML;
+
+        $elements = (new Extractor())->setExtractors(ExtractorsContainer::MICRODATA)->extract($document);
+        $item = json_decode($elements[0]->content, true);
+
+        $this->assertIsArray($item);
+        $this->assertSame(['@context', '@type', 'image', 'recipeInstructions', 'keywords'], array_keys($item));
+        $this->assertSame(['1.jpg', '2.jpg', '3.jpg'], $item['image']);
+        $this->assertSame(['Step 1k1', 'Step 2'], $item['recipeInstructions']);
+        $this->assertSame(['k1', 'k2'], $item['keywords']);
+    }
+
+    public function testRdfaPropertiesAreReadInDocumentOrder(): void
+    {
+        $document = <<<'HTML'
+<div vocab="https://schema.org/" typeof="Recipe">
+  <span property="name">Cake</span>
+  <span property="recipeInstructions">Step 1</span>
+  <span property="recipeInstructions">Step 2</span>
+  <span property="recipeInstructions">Step 3</span>
+</div>
+HTML;
+
+        $elements = (new Extractor())->setExtractors(ExtractorsContainer::RDFA)->extract($document);
+        $item = json_decode($elements[0]->content, true);
+
+        $this->assertIsArray($item);
+        $this->assertSame(['@context', '@type', 'name', 'recipeInstructions'], array_keys($item));
+        $this->assertSame(['Step 1', 'Step 2', 'Step 3'], $item['recipeInstructions']);
+    }
 }

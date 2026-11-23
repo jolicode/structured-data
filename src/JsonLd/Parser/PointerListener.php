@@ -104,11 +104,12 @@ class PointerListener extends IdleListener implements PositionAwareInterface
     private function adjustFilePosition(string $string): int
     {
         $byteLength = \strlen($string);
-        $characterLength = mb_strlen($string);
+        // Columns count UTF-16 code units, as the editors displaying them do.
+        $width = Utf16::length($string);
 
-        $this->currentColumnAdjustment += $characterLength - $byteLength;
+        $this->currentColumnAdjustment += $width - $byteLength;
 
-        return $characterLength;
+        return $width;
     }
 
     private function startStructure(string $structureClass): void

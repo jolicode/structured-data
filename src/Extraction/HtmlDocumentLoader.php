@@ -28,6 +28,8 @@ class HtmlDocumentLoader
 
     private ?\Dom\HTMLDocument $lastDocument = null;
 
+    private ?HtmlSourceLocator $lastLocator = null;
+
     /**
      * Parses $body as HTML5: malformed markup is recovered from, never refused.
      *
@@ -44,13 +46,26 @@ class HtmlDocumentLoader
 
         $this->lastBody = $body;
         $this->lastDocument = $document;
+        $this->lastLocator = null;
 
         return $document;
+    }
+
+    /**
+     * Locates the elements of the document parsed from $body in that body,
+     * sharing the memoized document and its source scan between extractors.
+     */
+    public function locator(string $body): HtmlSourceLocator
+    {
+        $document = $this->load($body);
+
+        return $this->lastLocator ??= new HtmlSourceLocator($body, $document);
     }
 
     public function reset(): void
     {
         $this->lastBody = null;
         $this->lastDocument = null;
+        $this->lastLocator = null;
     }
 }
