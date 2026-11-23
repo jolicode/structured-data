@@ -243,35 +243,14 @@ class MicrodataExtractor extends AbstractHtmlExtractor
      */
     private function collectPropertyNodesForItem(\Dom\Element $itemElement): array
     {
-        $propertyNodes = [];
-        $stack = [];
-
-        foreach ($itemElement->childNodes as $childNode) {
-            if ($childNode instanceof \Dom\Element) {
-                $stack[] = $childNode;
-            }
-        }
-
-        while ($stack) {
-            $node = array_pop($stack);
-
-            if ($node->hasAttribute('itemprop')) {
-                $propertyNodes[] = $node;
-            }
-
-            // Skip descending into nested itemscopes (they will be extracted as nested items)
-            if ($node->hasAttribute('itemscope')) {
-                continue;
-            }
-
-            foreach ($node->childNodes as $childNode) {
-                if ($childNode instanceof \Dom\Element) {
-                    $stack[] = $childNode;
-                }
-            }
-        }
-
-        return $propertyNodes;
+        // Properties are read in document order, as the specification orders
+        // the values of a repeated property. A nested item is not descended
+        // into: its properties are its own.
+        return self::collectInDocumentOrder(
+            $itemElement,
+            static fn (\Dom\Element $node): bool => $node->hasAttribute('itemprop'),
+            static fn (\Dom\Element $node): bool => $node->hasAttribute('itemscope'),
+        );
     }
 
     private function extractPropertyValue(\Dom\Element $propertyNode): ?string

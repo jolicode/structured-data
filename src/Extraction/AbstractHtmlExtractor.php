@@ -42,6 +42,42 @@ abstract class AbstractHtmlExtractor implements FormatExtractorInterface
     }
 
     /**
+     * Collects the descendants of $root matching $isProperty, in document order,
+     * as both the microdata and RDFa specifications order property values. The
+     * descendants of an element for which $stopsAt is true are not visited.
+     *
+     * @param callable(\Dom\Element): bool $isProperty
+     * @param callable(\Dom\Element): bool $stopsAt
+     *
+     * @return list<\Dom\Element>
+     */
+    protected static function collectInDocumentOrder(\Dom\Element $root, callable $isProperty, callable $stopsAt): array
+    {
+        $propertyNodes = [];
+        // A stack rather than recursion, for deeply nested pages; children are
+        // pushed last first, so that the first one is visited first.
+        $stack = array_reverse(self::childElements($root));
+
+        while ($stack) {
+            $node = array_pop($stack);
+
+            if ($isProperty($node)) {
+                $propertyNodes[] = $node;
+            }
+
+            if ($stopsAt($node)) {
+                continue;
+            }
+
+            foreach (array_reverse(self::childElements($node)) as $child) {
+                $stack[] = $child;
+            }
+        }
+
+        return $propertyNodes;
+    }
+
+    /**
      * Builds a human-readable location suffix like " at line 42" or
      * " at lines 12, 34" from a list of DOM node line numbers.
      * Returns an empty string when $lineNumbers is empty or all-zero.
@@ -125,5 +161,21 @@ abstract class AbstractHtmlExtractor implements FormatExtractorInterface
                 $lineNumbers,
             ),
         );
+    }
+
+    /**
+     * @return list<\Dom\Element>
+     */
+    private static function childElements(\Dom\Element $node): array
+    {
+        $children = [];
+
+        foreach ($node->childNodes as $childNode) {
+            if ($childNode instanceof \Dom\Element) {
+                $children[] = $childNode;
+            }
+        }
+
+        return $children;
     }
 }

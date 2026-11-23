@@ -266,36 +266,14 @@ class RdfaExtractor extends AbstractHtmlExtractor
      */
     private function collectPropertyNodesForSubject(\Dom\Element $subjectNode): array
     {
-        $propertyNodes = [];
-        $stack = [];
-
-        foreach ($subjectNode->childNodes as $childNode) {
-            if ($childNode instanceof \Dom\Element) {
-                $stack[] = $childNode;
-            }
-        }
-
-        while ($stack) {
-            $node = array_pop($stack);
-
-            if ($node->hasAttribute('property')) {
-                $propertyNodes[] = $node;
-            }
-
-            // Skip descending into schema.org subjects that don't have property attributes
-            // (property+typeof nodes are handled above and their nested subjects are extracted in extractProperties)
-            if ($this->isSchemaOrgSubject($node) && !$node->hasAttribute('property')) {
-                continue;
-            }
-
-            foreach ($node->childNodes as $childNode) {
-                if ($childNode instanceof \Dom\Element) {
-                    $stack[] = $childNode;
-                }
-            }
-        }
-
-        return $propertyNodes;
+        // Properties are read in document order. Schema.org subjects that don't
+        // have a property attribute are not descended into (property+typeof
+        // nodes are, their nested subjects being extracted in extractProperties).
+        return self::collectInDocumentOrder(
+            $subjectNode,
+            static fn (\Dom\Element $node): bool => $node->hasAttribute('property'),
+            fn (\Dom\Element $node): bool => $this->isSchemaOrgSubject($node) && !$node->hasAttribute('property'),
+        );
     }
 
     private function extractSubjectIdentifier(\Dom\Element $subjectNode): ?string
