@@ -42,8 +42,8 @@ final class PositionAwareJsonParser
     private int $lineStart = 0;
 
     /**
-     * Cumulated difference between character and byte lengths of the string
-     * tokens processed on the current line, so that columns count characters.
+     * Cumulated difference between UTF-16 and byte lengths of the string tokens
+     * processed on the current line, so that columns count UTF-16 code units.
      */
     private int $columnAdjustment = 0;
 
@@ -261,13 +261,14 @@ final class PositionAwareJsonParser
             $decoded = \is_string($decodedRaw) ? $decodedRaw : '';
         }
 
-        // Columns count characters, not bytes: the difference for this token
-        // applies to it and to everything that follows on the same line.
-        $this->columnAdjustment += mb_strlen($decoded) - \strlen($decoded);
+        // Columns count UTF-16 code units, not bytes: the difference for this
+        // token applies to it and to everything that follows on the same line.
+        $width = Utf16::length($decoded);
+        $this->columnAdjustment += $width - \strlen($decoded);
 
         $end = $this->position($closingQuote);
         $start = clone $end;
-        $start->column -= mb_strlen($decoded);
+        $start->column -= $width;
 
         return [$closingQuote + 1, $decoded, new Range($start, $end)];
     }

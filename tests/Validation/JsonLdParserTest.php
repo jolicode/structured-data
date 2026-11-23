@@ -65,6 +65,19 @@ class JsonLdParserTest extends TestCase
         $this->assertSame($this->range($wellFormed->getProperty('c')->value?->content), $this->range($list));
     }
 
+    public function testColumnsCountUtf16CodeUnits(): void
+    {
+        // The emoji takes two columns, as in a browser editor; both parsers agree.
+        foreach (['{"a":"🙂","b":"x"}', '{"a":"🙂","b":"x",}'] as $content) {
+            $structure = $this->parse($content);
+            $this->assertInstanceOf(ObjectStructure::class, $structure);
+
+            $property = $structure->getProperty('b');
+            $this->assertSame('11:16 to 11:17', $property->key->range->start . ' to ' . $property->key->range->end, $content);
+            $this->assertSame('11:20 to 11:21', $property->value?->range->start . ' to ' . $property->value?->range->end, $content);
+        }
+    }
+
     private function range(mixed $structure): string
     {
         $this->assertInstanceOf(AbstractStructure::class, $structure);
