@@ -154,12 +154,13 @@ The latest figures, and what each of them measures, are in [BENCHMARKS.md](BENCH
 
 ### Demo website
 
-These commands build the [demo website](website/README.md), that runs the validator in the browser:
+These commands build the [demo website](website/README.md), that runs the validator and the JSON-LD
+algorithms in the browser:
 
 Command | Description
 ---- | -----
-`castor website:build` | Builds the demo website: its assets, and PHP as WebAssembly with the validator
-`castor website:check` | Checks, in node, that what is built boots, and audits a document
+`castor website:build` | Builds the demo website: its assets, and PHP as WebAssembly with the library
+`castor website:check` | Checks, in node, that what is built boots, audits a document, and runs the JSON-LD algorithms
 `castor website:serve` | Serves the demo website
 
 ### Vocabulary generation

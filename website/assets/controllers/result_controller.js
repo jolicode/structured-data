@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
+import { editorExtensions } from "../editor.js";
+import { encodeState } from "../permalink.js";
 import { loadSettings, persistSettings } from "../validatorSettings.js";
-import * as autocomplete from "@codemirror/autocomplete";
-import * as commands from "@codemirror/commands";
 import { htmlLanguage } from "@codemirror/lang-html";
 import { json, jsonLanguage } from "@codemirror/lang-json";
 import * as language from "@codemirror/language";
@@ -104,11 +104,20 @@ export default class extends Controller {
       });
     }
     this.refreshExpandButton();
+
+    // the header wraps on a narrow window: the editor sticks under it, however
+    // tall it is, see the --result-header of the template
+    const header = this.element.querySelector("header");
+    this.headerObserver = new ResizeObserver(() => {
+      this.element.style.setProperty("--result-header", `${header.offsetHeight}px`);
+    });
+    this.headerObserver.observe(header);
   }
 
   disconnect() {
     this.nodesTarget.removeEventListener("toggle", this.onBranchToggle, true);
     cancelAnimationFrame(this.refreshFrame);
+    this.headerObserver.disconnect();
   }
 
   // the branches of the property tree: the warnings list of an entity is not one
@@ -212,6 +221,13 @@ export default class extends Controller {
     }
   }
 
+  async openInPlayground() {
+    // The playground reads its state in the fragment of its URL
+    const fragment = await encodeState({ document: this.editorView.state.doc.toString() });
+
+    location.assign(`playground/#${fragment}`);
+  }
+
   setupCodemirror() {
     let compartmentInitialized = false;
     const compartmentEffects = [];
@@ -307,40 +323,8 @@ export default class extends Controller {
       }
     );
 
-    const customSelectionStyle = view.EditorView.baseTheme({
-      ".cm-selectionBackground": {
-          backgroundColor: "rgb(255 255 100)",
-      },
-    });
-
-    const extensions = (() => [
-      view.highlightActiveLineGutter(),
-      view.highlightSpecialChars(),
-      commands.history(),
-      view.drawSelection(),
-      view.dropCursor(),
-      state.EditorState.allowMultipleSelections.of(true),
-      language.indentOnInput(),
-      language.syntaxHighlighting(language.defaultHighlightStyle, {
-        fallback: true,
-      }),
-      language.bracketMatching(),
-      compartment.of([]),
-      compartmentExtension,
-      autocomplete.closeBrackets(),
-      autocomplete.autocompletion(),
-      view.rectangularSelection(),
-      view.crosshairCursor(),
-      view.highlightActiveLine(),
-      view.keymap.of([
-        ...autocomplete.closeBracketsKeymap,
-        ...commands.defaultKeymap,
-        ...commands.historyKeymap,
-        commands.indentWithTab,
-        ...autocomplete.completionKeymap,
-      ]),
-      customSelectionStyle,
-    ])();
+    // the editor of every page, with the language and the gutters of this one
+    const extensions = editorExtensions([compartment.of([]), compartmentExtension]);
 
     // create the editor
     const editorView = new view.EditorView({

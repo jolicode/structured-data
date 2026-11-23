@@ -11,6 +11,9 @@ The library implements the W3C
 - [Deserialization to RDF](https://www.w3.org/TR/json-ld11-api/#deserialize-json-ld-to-rdf-algorithm) (`toRdf`): `JoliCode\StructuredData\JsonLd\Algorithms\Rdf\ToRdfConverter`
 - [Serialization from RDF](https://www.w3.org/TR/json-ld11-api/#serialize-rdf-as-json-ld-algorithm) (`fromRdf`): `JoliCode\StructuredData\JsonLd\Algorithms\Rdf\FromRdfConverter`
 
+> [!TIP]
+> Try them in your browser, in the [JSON-LD playground](https://structured-data-validator.jolicode.com/playground/).
+
 ## Usage
 
 Create an instance of the algorithm and pass it the JSON-LD document you want to convert.

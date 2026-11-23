@@ -13,6 +13,10 @@
                 <span class="grid size-8 place-items-center rounded-lg bg-joli font-mono text-sm font-bold text-gray-900 shadow-sm ring-1 ring-gray-900/10" aria-hidden="true">{ }</span>
                 Structured Data Validator
             </a>
+            <nav class="flex items-center gap-x-4 text-[13px]" aria-label="Main">
+                <a href="./" class="site-nav-link" aria-current="page">Validator</a>
+                <a href="playground/" class="site-nav-link">JSON-LD Playground</a>
+            </nav>
             {% if types|length > 0 %}
                 <span class="text-[13px] text-gray-600">{{ types|length }} {{ types|length > 1 ? 'entities' : 'entity' }}</span>
                 {% if errorCount %}
@@ -123,14 +127,27 @@
                 Format
             </button>
 
+            {# The playground reads a JSON-LD document, not a page #}
+            {% if body|trim|first in ['{', '['] %}
+                <button
+                    type="button"
+                    class="min-h-9 rounded-lg border border-gray-300 bg-white px-3 text-[13px] font-medium text-gray-900 hover:border-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+                    title="Expand, compact, flatten or frame this document in the JSON-LD playground"
+                    data-action="result#openInPlayground"
+                >
+                    Open in playground
+                </button>
+            {% endif %}
+
             <button type="submit" form="document" class="min-h-9 rounded-lg bg-gray-900 px-3.5 text-[13px] font-semibold text-white hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 disabled:opacity-50">Validate again</button>
         </div>
     </header>
 
     <div class="flex flex-1 flex-wrap items-start gap-5 p-5">
-        <section class="min-w-0 flex-[1_1_480px] lg:sticky lg:top-[5.0625rem]">
+        {# Under the header, whose height the result controller measures: it is the one of a single line until then, and two when the window is narrow #}
+        <section class="min-w-0 flex-[1_1_480px] lg:sticky lg:top-[calc(var(--result-header,3.8125rem)_+_1.25rem)]">
             {# A browser drops the line break that follows the <textarea> tag: with one of its own, the document keeps its first line, and the ranges of the audit their lines #}
-            <form id="document" class="flex h-[60vh] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white lg:h-[calc(100vh-6.3125rem)]">
+            <form id="document" class="flex h-[60vh] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white lg:h-[calc(100vh_-_var(--result-header,3.8125rem)_-_2.5rem)]">
                 <label for="body" class="sr-only">Document</label>
                 <textarea id="body" name="body" class="size-full" data-result-target="codemirror">
 {{ body }}</textarea>
