@@ -100,15 +100,17 @@ class RdfaExtractor extends AbstractHtmlExtractor
         }
 
         $elements = [];
+        $locator = $this->loadLocator($body);
 
         foreach ($topLevelSubjects as $subjectNode) {
-            $item = $this->extractSubject($subjectNode);
+            $extracted = $this->extractSubject($subjectNode, $locator);
 
-            if (null === $item) {
+            if (null === $extracted) {
                 continue;
             }
 
-            $elements[] = $this->encodeAsJsonLdElement($subjectNode, $item, 'Invalid RDFa document: failed to convert to JSON-LD.');
+            [$item, $sourceMap] = $extracted;
+            $elements[] = $this->encodeAsJsonLdElement($subjectNode, $item, 'Invalid RDFa document: failed to convert to JSON-LD.', $sourceMap);
         }
 
         if ([] === $elements) {
@@ -195,9 +197,12 @@ class RdfaExtractor extends AbstractHtmlExtractor
     }
 
     /**
-     * @return array<string, mixed>|null
+     * Extracts a subject, with the source map of its keys and values from its
+     * own root.
+     *
+     * @return array{array<string, mixed>, SourceMap}|null
      */
-    private function extractSubject(\Dom\Element $subjectNode): ?array
+    private function extractSubject(\Dom\Element $subjectNode, HtmlSourceLocator $locator): ?array
     {
         $types = $this->termResolver->resolveTerms($subjectNode->getAttribute('typeof') ?? '', $subjectNode);
 
@@ -210,80 +215,133 @@ class RdfaExtractor extends AbstractHtmlExtractor
             '@type' => 1 === \count($types) ? $types[0] : $types,
         ];
 
+        $anchor = self::anchorOf($locator, $subjectNode);
+        $sourceMap = new SourceMap();
+        $sourceMap->setValue('', $anchor);
+        // The context is implied by the markup, written nowhere.
+        $sourceMap->setKey('/@context', $anchor);
+        $sourceMap->setValue('/@context', $anchor);
+        $sourceMap->setKey('/@type', $locator->attributeName($subjectNode, 'typeof'));
+        $sourceMap->setValue('/@type', $locator->attributeValue($subjectNode, 'typeof'));
+
+        if (\count($types) > 1) {
+            $typeTokens = $this->termTokenIndexes($subjectNode, 'typeof');
+
+            foreach ($types as $index => $type) {
+                $sourceMap->setValue('/@type' . SourceMap::pointerSegment($index), $locator->attributeToken($subjectNode, 'typeof', $typeTokens[$type] ?? -1));
+            }
+        }
+
         $subjectIdentifier = $this->extractSubjectIdentifier($subjectNode);
 
         if (null !== $subjectIdentifier) {
-            $item['@id'] = $subjectIdentifier;
+            [$identifier, $identifierAttribute] = $subjectIdentifier;
+            $item['@id'] = $identifier;
+            $sourceMap->setKey('/@id', $locator->attributeName($subjectNode, $identifierAttribute));
+            $sourceMap->setValue('/@id', $locator->attributeValue($subjectNode, $identifierAttribute));
         }
 
-        foreach ($this->extractProperties($subjectNode) as $propertyName => $value) {
+        [$properties, $propertiesSourceMap] = $this->extractProperties($subjectNode, $locator);
+
+        foreach ($properties as $propertyName => $value) {
             $item[$propertyName] = $value;
         }
 
-        return $item;
+        $sourceMap->merge($propertiesSourceMap, '');
+
+        return [$item, $sourceMap];
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array{array<string, mixed>, SourceMap}
      */
-    private function extractProperties(\Dom\Element $subjectNode): array
+    private function extractProperties(\Dom\Element $subjectNode, HtmlSourceLocator $locator): array
     {
-        $properties = [];
+        $occurrences = [];
 
-        foreach ($this->collectPropertyNodesForSubject($subjectNode) as $propertyNode) {
+        // Properties are read in document order. Schema.org subjects that don't
+        // have a property attribute are not descended into (property+typeof
+        // nodes are, their nested subjects being extracted below).
+        $propertyNodes = self::collectInDocumentOrder(
+            $subjectNode,
+            static fn (\Dom\Element $node): bool => $node->hasAttribute('property'),
+            fn (\Dom\Element $node): bool => $this->isSchemaOrgSubject($node) && !$node->hasAttribute('property'),
+        );
+
+        foreach ($propertyNodes as $propertyNode) {
             $propertyNames = $this->termResolver->resolveTerms($propertyNode->getAttribute('property') ?? '', $propertyNode);
 
             if ([] === $propertyNames) {
                 continue;
             }
 
-            $value = $propertyNode->hasAttribute('typeof')
-                ? $this->extractSubject($propertyNode)
-                : $this->extractPropertyValue($propertyNode);
+            if ($propertyNode->hasAttribute('typeof')) {
+                $extracted = $this->extractSubject($propertyNode, $locator);
 
-            if (null === $value) {
-                continue;
+                if (null === $extracted) {
+                    continue;
+                }
+
+                [$value, $valueSourceMap] = $extracted;
+            } else {
+                $extracted = $this->extractPropertyValue($propertyNode);
+
+                if (null === $extracted) {
+                    continue;
+                }
+
+                [$value, $sourceAttribute] = $extracted;
+                $valueSourceMap = new SourceMap();
+                $valueSourceMap->setValue('', (null === $sourceAttribute
+                    ? $locator->text($propertyNode)
+                    : $locator->attributeValue($propertyNode, $sourceAttribute)) ?? self::anchorOf($locator, $propertyNode));
             }
 
-            foreach ($propertyNames as $propertyName) {
-                if (\array_key_exists($propertyName, $properties)) {
-                    if (!\is_array($properties[$propertyName]) || !array_is_list($properties[$propertyName])) {
-                        $properties[$propertyName] = [$properties[$propertyName]];
-                    }
+            $nameTokens = $this->termTokenIndexes($propertyNode, 'property');
 
-                    $properties[$propertyName][] = $value;
-                } else {
-                    $properties[$propertyName] = $value;
-                }
+            foreach ($propertyNames as $propertyName) {
+                $occurrences[$propertyName][] = [
+                    'value' => $value,
+                    'map' => $valueSourceMap,
+                    'key' => $locator->attributeToken($propertyNode, 'property', $nameTokens[$propertyName] ?? -1) ?? self::anchorOf($locator, $propertyNode),
+                ];
             }
         }
 
-        return $properties;
+        return self::buildProperties($occurrences);
     }
 
     /**
-     * @return array<\Dom\Element>
+     * Tells which token of an attribute each schema.org term it resolves to is
+     * written as: "name" is the second token of property="og:title schema:name".
+     *
+     * @return array<string, int> the index of the first token resolving to each term
      */
-    private function collectPropertyNodesForSubject(\Dom\Element $subjectNode): array
+    private function termTokenIndexes(\Dom\Element $element, string $attribute): array
     {
-        // Properties are read in document order. Schema.org subjects that don't
-        // have a property attribute are not descended into (property+typeof
-        // nodes are, their nested subjects being extracted in extractProperties).
-        return self::collectInDocumentOrder(
-            $subjectNode,
-            static fn (\Dom\Element $node): bool => $node->hasAttribute('property'),
-            fn (\Dom\Element $node): bool => $this->isSchemaOrgSubject($node) && !$node->hasAttribute('property'),
-        );
+        $indexes = [];
+        $tokens = preg_split('/\s+/', trim($element->getAttribute($attribute) ?? '')) ?: [];
+
+        foreach ($tokens as $index => $token) {
+            foreach ($this->termResolver->resolveTerms($token, $element) as $term) {
+                $indexes[$term] ??= $index;
+            }
+        }
+
+        return $indexes;
     }
 
-    private function extractSubjectIdentifier(\Dom\Element $subjectNode): ?string
+    /**
+     * @return array{string, string}|null the identifier, and the attribute it was read from
+     */
+    private function extractSubjectIdentifier(\Dom\Element $subjectNode): ?array
     {
         foreach (['about', 'resource', 'href', 'src'] as $attribute) {
             if ($subjectNode->hasAttribute($attribute)) {
                 $value = trim($subjectNode->getAttribute($attribute) ?? '');
 
                 if ('' !== $value) {
-                    return $value;
+                    return [$value, $attribute];
                 }
             }
         }
@@ -291,14 +349,20 @@ class RdfaExtractor extends AbstractHtmlExtractor
         return null;
     }
 
-    private function extractPropertyValue(\Dom\Element $propertyNode): ?string
+    /**
+     * Reads the value of a property element, and names the attribute it was read
+     * from (null when it is the text of the element).
+     *
+     * @return array{string, ?string}|null
+     */
+    private function extractPropertyValue(\Dom\Element $propertyNode): ?array
     {
         foreach (['content', 'resource', 'href', 'src', 'datetime', 'value'] as $attribute) {
             if ($propertyNode->hasAttribute($attribute)) {
                 $value = trim($propertyNode->getAttribute($attribute) ?? '');
 
                 if ('' !== $value) {
-                    return $value;
+                    return [$value, $attribute];
                 }
             }
         }
@@ -311,7 +375,7 @@ class RdfaExtractor extends AbstractHtmlExtractor
 
         $text = trim($normalizedText);
 
-        return '' === $text ? null : $text;
+        return '' === $text ? null : [$text, null];
     }
 
     private function resetMemoization(): void

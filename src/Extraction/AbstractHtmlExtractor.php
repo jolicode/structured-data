@@ -11,6 +11,8 @@
 
 namespace JoliCode\StructuredData\Extraction;
 
+use JoliCode\StructuredData\JsonLd\Parser\Range;
+
 /**
  * Base class for extractors that parse structured data from HTML DOM trees.
  *
@@ -39,6 +41,24 @@ abstract class AbstractHtmlExtractor implements FormatExtractorInterface
     protected function loadDocument(string $body): \Dom\HTMLDocument
     {
         return $this->documentLoader->load($body);
+    }
+
+    /**
+     * Locates, in $body, the elements of the document loadDocument() parsed
+     * from it.
+     */
+    protected function loadLocator(string $body): HtmlSourceLocator
+    {
+        return $this->documentLoader->locator($body);
+    }
+
+    /**
+     * The start tag of the element, or its whole line when the start tag
+     * cannot be located.
+     */
+    protected static function anchorOf(HtmlSourceLocator $locator, \Dom\Element $element): Range
+    {
+        return $locator->startTag($element) ?? $locator->line($element);
     }
 
     /**
@@ -78,6 +98,45 @@ abstract class AbstractHtmlExtractor implements FormatExtractorInterface
     }
 
     /**
+     * Groups the values found for each property name into the properties of an
+     * item, and the source map of those properties.
+     *
+     * A name found once holds its value; a name found several times holds the
+     * list of its values, in document order.
+     *
+     * @param array<string, non-empty-list<array{value: mixed, map: SourceMap, key: Range}>> $occurrences the values of each name, in document order
+     *
+     * @return array{array<string, mixed>, SourceMap}
+     */
+    protected static function buildProperties(array $occurrences): array
+    {
+        $properties = [];
+        $sourceMap = new SourceMap();
+
+        foreach ($occurrences as $name => $values) {
+            $pointer = SourceMap::pointerSegment($name);
+            $sourceMap->setKey($pointer, $values[0]['key']);
+
+            if (1 === \count($values)) {
+                $properties[$name] = $values[0]['value'];
+                $sourceMap->merge($values[0]['map'], $pointer);
+
+                continue;
+            }
+
+            $properties[$name] = array_column($values, 'value');
+            // The list as a whole is anchored on its first value.
+            $sourceMap->setValue($pointer, $values[0]['map']->getValue(''));
+
+            foreach ($values as $index => $value) {
+                $sourceMap->merge($value['map'], $pointer . SourceMap::pointerSegment($index));
+            }
+        }
+
+        return [$properties, $sourceMap];
+    }
+
+    /**
      * Builds a human-readable location suffix like " at line 42" or
      * " at lines 12, 34" from a list of DOM node line numbers.
      * Returns an empty string when $lineNumbers is empty or all-zero.
@@ -112,11 +171,12 @@ abstract class AbstractHtmlExtractor implements FormatExtractorInterface
     }
 
     /**
-     * Encodes one extracted item into a JsonLdElement anchored on its DOM node.
+     * Encodes one extracted item into a JsonLdElement anchored on its DOM node,
+     * whose $sourceMap tells where each of its keys and values comes from.
      *
      * @throws ExtractionException when the item cannot be encoded
      */
-    protected function encodeAsJsonLdElement(\Dom\Element $node, mixed $item, string $encodeFailureMessage): JsonLdElement
+    protected function encodeAsJsonLdElement(\Dom\Element $node, mixed $item, string $encodeFailureMessage, ?SourceMap $sourceMap = null): JsonLdElement
     {
         $encoded = json_encode($item, \JSON_UNESCAPED_SLASHES);
 
@@ -125,7 +185,7 @@ abstract class AbstractHtmlExtractor implements FormatExtractorInterface
         }
 
         // JsonLdElement counts lines from 0, as the parser does.
-        return new JsonLdElement($node->getLineNo(), 0, $encoded, $this->getFormat());
+        return new JsonLdElement($node->getLineNo(), 0, $encoded, $this->getFormat(), $sourceMap);
     }
 
     /**

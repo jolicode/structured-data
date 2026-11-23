@@ -18,6 +18,12 @@ class JsonLdElement
         public int $startColumn,
         public string $content,
         public ExtractorFormat $sourceFormat,
+        /**
+         * For a document generated from HTML markup (microdata, RDFa), where its
+         * keys and values come from in that markup. The positions computed in
+         * the generated JSON are replaced by these ones once it is parsed.
+         */
+        public ?SourceMap $sourceMap = null,
     ) {
     }
 }

@@ -81,15 +81,17 @@ class MicrodataExtractor extends AbstractHtmlExtractor
         }
 
         $elements = [];
+        $locator = $this->loadLocator($body);
 
         foreach ($topLevelItems as $itemElement) {
-            $item = $this->extractItem($itemElement, $xpath);
+            $extracted = $this->extractItem($itemElement, $locator);
 
-            if (null === $item) {
+            if (null === $extracted) {
                 continue;
             }
 
-            $elements[] = $this->encodeAsJsonLdElement($itemElement, $item, 'Invalid microdata document: failed to convert to JSON-LD.');
+            [$item, $sourceMap] = $extracted;
+            $elements[] = $this->encodeAsJsonLdElement($itemElement, $item, 'Invalid microdata document: failed to convert to JSON-LD.', $sourceMap);
         }
 
         if ([] === $elements) {
@@ -120,9 +122,12 @@ class MicrodataExtractor extends AbstractHtmlExtractor
     }
 
     /**
-     * @return array<string, mixed>|null
+     * Extracts an item, with the source map of its keys and values from its own
+     * root.
+     *
+     * @return array{array<string, mixed>, SourceMap}|null
      */
-    private function extractItem(\Dom\Element $itemElement, \Dom\XPath $xpath): ?array
+    private function extractItem(\Dom\Element $itemElement, HtmlSourceLocator $locator): ?array
     {
         $itemTypeAttribute = trim($itemElement->getAttribute('itemtype') ?? '');
 
@@ -137,17 +142,36 @@ class MicrodataExtractor extends AbstractHtmlExtractor
             '@type' => $typeName,
         ];
 
-        if ($itemElement->hasAttribute('itemid')) {
-            $item['@id'] = trim($itemElement->getAttribute('itemid') ?? '');
+        $anchor = self::anchorOf($locator, $itemElement);
+        $sourceMap = new SourceMap();
+        $sourceMap->setValue('', $anchor);
+        // The context is implied by the markup, written nowhere.
+        $sourceMap->setKey('/@context', $anchor);
+        $sourceMap->setValue('/@context', $anchor);
+        $sourceMap->setKey('/@type', $locator->attributeName($itemElement, 'itemtype'));
+        $sourceMap->setValue('/@type', $locator->attributeValue($itemElement, 'itemtype'));
+
+        if (\is_array($typeName)) {
+            foreach (array_keys($typeName) as $index) {
+                $sourceMap->setValue('/@type' . SourceMap::pointerSegment($index), $locator->attributeToken($itemElement, 'itemtype', $index));
+            }
         }
 
-        $properties = $this->extractProperties($itemElement, $xpath);
+        if ($itemElement->hasAttribute('itemid')) {
+            $item['@id'] = trim($itemElement->getAttribute('itemid') ?? '');
+            $sourceMap->setKey('/@id', $locator->attributeName($itemElement, 'itemid'));
+            $sourceMap->setValue('/@id', $locator->attributeValue($itemElement, 'itemid'));
+        }
+
+        [$properties, $propertiesSourceMap] = $this->extractProperties($itemElement, $locator);
 
         foreach ($properties as $propertyKey => $value) {
             $item[$propertyKey] = $value;
         }
 
-        return $item;
+        $sourceMap->merge($propertiesSourceMap, '');
+
+        return [$item, $sourceMap];
     }
 
     private function normalizeItemType(string $itemType): string
@@ -197,99 +221,96 @@ class MicrodataExtractor extends AbstractHtmlExtractor
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array{array<string, mixed>, SourceMap}
      */
-    private function extractProperties(\Dom\Element $itemElement, \Dom\XPath $xpath): array
+    private function extractProperties(\Dom\Element $itemElement, HtmlSourceLocator $locator): array
     {
-        $properties = [];
+        $occurrences = [];
 
-        foreach ($this->collectPropertyNodesForItem($itemElement) as $propertyNode) {
+        // Properties are read in document order, as the specification orders
+        // the values of a repeated property. A nested item is not descended
+        // into: its properties are its own.
+        $propertyNodes = self::collectInDocumentOrder(
+            $itemElement,
+            static fn (\Dom\Element $node): bool => $node->hasAttribute('itemprop'),
+            static fn (\Dom\Element $node): bool => $node->hasAttribute('itemscope'),
+        );
+
+        foreach ($propertyNodes as $propertyNode) {
             $propertyNames = preg_split('/\s+/', trim($propertyNode->getAttribute('itemprop') ?? ''));
 
             if (!\is_array($propertyNames)) {
                 continue;
             }
 
-            $value = $propertyNode->hasAttribute('itemscope')
-                ? $this->extractItem($propertyNode, $xpath)
-                : $this->extractPropertyValue($propertyNode);
+            if ($propertyNode->hasAttribute('itemscope')) {
+                $extracted = $this->extractItem($propertyNode, $locator);
 
-            if (null === $value) {
-                continue;
+                if (null === $extracted) {
+                    continue;
+                }
+
+                [$value, $valueSourceMap] = $extracted;
+            } else {
+                $extracted = $this->extractPropertyValue($propertyNode);
+
+                if (null === $extracted) {
+                    continue;
+                }
+
+                [$value, $sourceAttribute] = $extracted;
+                $valueSourceMap = new SourceMap();
+                $valueSourceMap->setValue('', (null === $sourceAttribute
+                    ? $locator->text($propertyNode)
+                    : $locator->attributeValue($propertyNode, $sourceAttribute)) ?? self::anchorOf($locator, $propertyNode));
             }
 
-            foreach ($propertyNames as $propertyName) {
+            foreach ($propertyNames as $tokenIndex => $propertyName) {
                 if ('' === $propertyName) {
                     continue;
                 }
 
-                if (\array_key_exists($propertyName, $properties)) {
-                    if (!\is_array($properties[$propertyName]) || !array_is_list($properties[$propertyName])) {
-                        $properties[$propertyName] = [$properties[$propertyName]];
-                    }
-
-                    $properties[$propertyName][] = $value;
-                } else {
-                    $properties[$propertyName] = $value;
-                }
+                $occurrences[$propertyName][] = [
+                    'value' => $value,
+                    'map' => $valueSourceMap,
+                    'key' => $locator->attributeToken($propertyNode, 'itemprop', $tokenIndex) ?? self::anchorOf($locator, $propertyNode),
+                ];
             }
         }
 
-        return $properties;
+        return self::buildProperties($occurrences);
     }
 
     /**
-     * @return array<\Dom\Element>
+     * Reads the value of a property element, and names the attribute it was read
+     * from (null when it is the text of the element).
+     *
+     * @return array{string, ?string}|null
      */
-    private function collectPropertyNodesForItem(\Dom\Element $itemElement): array
-    {
-        // Properties are read in document order, as the specification orders
-        // the values of a repeated property. A nested item is not descended
-        // into: its properties are its own.
-        return self::collectInDocumentOrder(
-            $itemElement,
-            static fn (\Dom\Element $node): bool => $node->hasAttribute('itemprop'),
-            static fn (\Dom\Element $node): bool => $node->hasAttribute('itemscope'),
-        );
-    }
-
-    private function extractPropertyValue(\Dom\Element $propertyNode): ?string
+    private function extractPropertyValue(\Dom\Element $propertyNode): ?array
     {
         $tagName = strtolower($propertyNode->tagName);
 
-        if ('meta' === $tagName && $propertyNode->hasAttribute('content')) {
-            return trim($propertyNode->getAttribute('content') ?? '');
-        }
+        $sourceAttribute = match (true) {
+            'meta' === $tagName && $propertyNode->hasAttribute('content') => 'content',
+            \in_array($tagName, ['audio', 'embed', 'iframe', 'img', 'source', 'track', 'video'], true) && $propertyNode->hasAttribute('src') => 'src',
+            \in_array($tagName, ['a', 'area', 'link'], true) && $propertyNode->hasAttribute('href') => 'href',
+            'object' === $tagName && $propertyNode->hasAttribute('data') => 'data',
+            \in_array($tagName, ['data', 'meter'], true) && $propertyNode->hasAttribute('value') => 'value',
+            'time' === $tagName && $propertyNode->hasAttribute('datetime') => 'datetime',
+            // The specification only reads "content" on <meta>, but Google reads it
+            // on any element, and pages rely on it (a <link itemprop content>
+            // without href, for instance).
+            $propertyNode->hasAttribute('content') => 'content',
+            default => null,
+        };
 
-        if (\in_array($tagName, ['audio', 'embed', 'iframe', 'img', 'source', 'track', 'video'], true) && $propertyNode->hasAttribute('src')) {
-            return trim($propertyNode->getAttribute('src') ?? '');
-        }
-
-        if (\in_array($tagName, ['a', 'area', 'link'], true) && $propertyNode->hasAttribute('href')) {
-            return trim($propertyNode->getAttribute('href') ?? '');
-        }
-
-        if ('object' === $tagName && $propertyNode->hasAttribute('data')) {
-            return trim($propertyNode->getAttribute('data') ?? '');
-        }
-
-        if (\in_array($tagName, ['data', 'meter'], true) && $propertyNode->hasAttribute('value')) {
-            return trim($propertyNode->getAttribute('value') ?? '');
-        }
-
-        if ('time' === $tagName && $propertyNode->hasAttribute('datetime')) {
-            return trim($propertyNode->getAttribute('datetime') ?? '');
-        }
-
-        // The specification only reads "content" on <meta>, but Google reads it on
-        // any element, and pages rely on it (a <link itemprop content> without href,
-        // for instance).
-        if ($propertyNode->hasAttribute('content')) {
-            return trim($propertyNode->getAttribute('content') ?? '');
+        if (null !== $sourceAttribute) {
+            return [trim($propertyNode->getAttribute($sourceAttribute) ?? ''), $sourceAttribute];
         }
 
         $text = trim($propertyNode->textContent ?? '');
 
-        return '' === $text ? null : $text;
+        return '' === $text ? null : [$text, null];
     }
 }
