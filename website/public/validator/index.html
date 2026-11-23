@@ -35,8 +35,9 @@
 
             <!-- The frame of the result is here, to show as the page opens: the editor has the document before PHP has started. PHP renders what it finds: the counts, and the entities. See assets/controllers/result_controller.js -->
             <div class="flex flex-1 flex-wrap items-start gap-5 p-5" data-controller="result">
+                <!-- The editor is as high as what the window leaves under the header, less the margins: a short result does not make the page scroll -->
                 <section class="min-w-0 flex-[1_1_480px] lg:sticky lg:top-5" aria-label="Document">
-                    <div class="h-[60vh] overflow-hidden rounded-2xl border border-gray-200 bg-white lg:h-[calc(100vh-2.5rem)]" data-result-target="editor"></div>
+                    <div class="h-[60vh] overflow-hidden rounded-2xl border border-gray-200 bg-white lg:h-[calc(100vh-6.5rem)]" data-result-target="editor"></div>
                 </section>
 
                 <div class="flex min-w-0 flex-[1_1_480px] flex-col gap-4">
