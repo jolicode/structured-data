@@ -2,11 +2,11 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
 import { defaultOptions } from '../assets/jsonLd.js';
-import { decodeState, encodeState, normalizeState } from '../assets/permalink.js';
+import { MAX_FRAGMENT_LENGTH, decodeState, encodeState, normalizeState, shareableFragment } from '../assets/permalink.js';
 import { examples } from '../assets/playgroundExamples.js';
 
-// Runs assets/permalink.js, what writes the state of the playground in the
-// fragment of its URL, in node.
+// Runs assets/permalink.js, what writes the state of the validator and of the
+// playground in the fragment of their URL, in node.
 
 const state = normalizeState({
     ...examples.person,
@@ -37,8 +37,14 @@ test('keeps what is not ASCII', async () => {
     assert.equal((await decodeState(await encodeState({ document }))).document, document);
 });
 
-test('completes the state of the validator, that is a lone document', async () => {
-    assert.deepEqual(await decodeState(await encodeState({ document: '{}' })), {
+test('reads the state of the validator, that is a lone document, as it is', async () => {
+    const page = '<script type="application/ld+json">{"@type": "Thing"}</script>';
+
+    assert.deepEqual(await decodeState(await encodeState({ document: page })), { document: page });
+});
+
+test('completes the state of the validator, for the playground', async () => {
+    assert.deepEqual(normalizeState(await decodeState(await encodeState({ document: '{}' }))), {
         algorithm: 'expand',
         document: '{}',
         nquads: '',
@@ -48,15 +54,23 @@ test('completes the state of the validator, that is a lone document', async () =
     });
 });
 
-test('takes nothing it does not know from a state', async () => {
+test('takes nothing it does not know from a state, for the playground', async () => {
     const fragment = await encodeState({
         algorithm: 'canonize',
         document: ['not', 'a', 'string'],
-        options: { base: 1, ordered: 'yes', omitGraph: 'no', processingMode: '2.0', unknown: true },
+        options: { base: 1, ordered: 'yes', omitGraph: 'no', processingMode: '1.0', unknown: true },
         unknown: true,
     });
 
-    assert.deepEqual(await decodeState(fragment), normalizeState({}));
+    assert.deepEqual(normalizeState(await decodeState(fragment)), normalizeState({}));
+});
+
+test('gives no fragment to a state that is too long for a link', async () => {
+    // Random bytes do not compress
+    const document = Buffer.from(crypto.getRandomValues(new Uint8Array(MAX_FRAGMENT_LENGTH))).toString('base64');
+
+    assert.equal(await shareableFragment({ document }), null);
+    assert.equal(await shareableFragment(state), await encodeState(state));
 });
 
 for (const fragment of ['', '#', '#section', '1not-deflate', '0not-json', '1', '#0bnVsbA', '#0WzFd']) {

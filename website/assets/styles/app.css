@@ -66,6 +66,17 @@
   }
 }
 
+/* The counts and the actions of the result of the validator: they stay above the entities, that scroll under them */
+.result-toolbar {
+  @apply relative z-10 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 rounded-2xl border border-gray-200 bg-white px-4 py-2.5 lg:sticky lg:top-5;
+
+  /* What scrolls is not seen between the top of the window and the toolbar: the gap above its border */
+  &::before {
+    @apply pointer-events-none absolute -inset-x-px -top-5.25 hidden h-5 bg-gray-50 lg:block;
+    content: "";
+  }
+}
+
 /* The algorithms of the playground */
 .playground-tab {
   @apply min-h-9 cursor-pointer rounded-lg px-3 text-[13px] font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900;

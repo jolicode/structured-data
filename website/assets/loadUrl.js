@@ -1,4 +1,4 @@
-// Loads the document of a URL, without the DOM: app.js wires it to the page,
+// Loads the document of a URL, without the DOM: home.js wires it to the page,
 // the playground loads the remote contexts of a document with it, see
 // jsonLd.js, and tests/loadUrl.test.mjs tests it in node.
 //

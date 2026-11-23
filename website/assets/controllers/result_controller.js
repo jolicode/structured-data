@@ -1,27 +1,34 @@
 import { Controller } from "@hotwired/stimulus";
+import { copyWithFeedback } from "../clipboard.js";
 import { editorExtensions } from "../editor.js";
-import { encodeState } from "../permalink.js";
+import { readState, writeState } from "../pageState.js";
+import { audit } from "../php.js";
 import { loadSettings, persistSettings } from "../validatorSettings.js";
 import { htmlLanguage } from "@codemirror/lang-html";
 import { json, jsonLanguage } from "@codemirror/lang-json";
-import * as language from "@codemirror/language";
 import * as state from "@codemirror/state";
 import * as view from "@codemirror/view";
 import { configureNesting } from "@lezer/html";
 
-const defaultValue = `{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "url": "https://jolicode.com",
-  "name": [
-    "Web development agency"
-  ],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "url": "https://jolicode.com/contact",
-    "contactType": "Customer service"
-  }
-}`;
+// The page of the validator, public/validator/index.html. Its frame is in the
+// page, and shows as it opens: the editor, with the document the page is opened
+// with, and the toolbar. PHP takes longer: it has to start, then to audit the
+// document. What it answers, the counts and the entities of bin/audit.php, is
+// shown in this frame, and again as the document is typed.
+
+// Typing validates the document again, once the visitor pauses. PHP runs in the
+// thread of the page, that is frozen meanwhile: a document that takes long to
+// audit waits for a longer pause, twice the time of its last audit.
+const RUN_DELAY = 300;
+const MAX_RUN_DELAY = 2000;
+
+// Lets the page paint what says that PHP runs, before PHP freezes it. A hidden
+// tab has no frame to wait for.
+const painted = () =>
+  new Promise((resolve) => {
+    requestAnimationFrame(() => setTimeout(resolve));
+    setTimeout(resolve, 100);
+  });
 
 // override the html language configuration to support the nested json-ld blocks
 const html = htmlLanguage.configure({
@@ -36,12 +43,19 @@ const html = htmlLanguage.configure({
   ]),
 });
 
+// A page, or a JSON document: told from where the document starts
+const START_LENGTH = 100;
+const isPage = (start) => /^\s*</.test(start);
+const languageOf = (page) => (page ? html : json());
+
+const violationMarker = new (class extends view.GutterMarker {
+  elementClass = "cm-violationLineGutter";
+})();
+
 // data-start / data-end carry "line:column" pairs computed by PHP, valid only
 // against the exact document it audited. Should the two ever drift
 // apart, that must degrade to "no marker" rather than throw: doc.line() raises
-// a RangeError, and one raised inside the transactionExtender below would
-// abort the whole controller boot, leaving the visitor with a bare textarea
-// and no editor at all.
+// a RangeError.
 const lineStart = (doc, rawLine) => {
   const line = parseInt(rawLine, 10);
 
@@ -56,10 +70,15 @@ const lineStart = (doc, rawLine) => {
 
 export default class extends Controller {
   static targets = [
-    "codemirror",
+    "copyLink",
+    "counts",
+    "editor",
+    "entity",
+    "error",
     "expandButton",
     "formatButton",
     "nodes",
+    "pending",
     "settingsWrapper",
     "settingsButton",
     "settingsPanel",
@@ -67,25 +86,14 @@ export default class extends Controller {
     "settingAllowPending",
     "settingAutoExpandWarnings",
     "showDescriptions",
+    "status",
     "warnings",
   ];
 
-  initialize() {
-    this.setupCodemirror();
-  }
-
   connect() {
-    // the errors are always shown, the warnings of an entity are folded
-    // unless the settings say otherwise
-    const { autoExpandWarnings, showDescriptions, expandTree } = loadSettings();
+    const { showDescriptions } = loadSettings();
 
-    this.warningsTargets.forEach((warnings) => {
-      warnings.open = autoExpandWarnings;
-    });
-
-    if (this.hasShowDescriptionsTarget) {
-      this.showDescriptionsTarget.checked = showDescriptions;
-    }
+    this.showDescriptionsTarget.checked = showDescriptions;
     this.nodesTarget.toggleAttribute("data-hide-descriptions", !showDescriptions);
 
     // "toggle" does not bubble: caught on its way down, and coalesced, as
@@ -96,28 +104,190 @@ export default class extends Controller {
     };
     this.nodesTarget.addEventListener("toggle", this.onBranchToggle, true);
 
-    // the tree is rendered collapsed: expanded again, if "Expand all" was the
-    // last choice
-    if (expandTree) {
-      this.treeBranches().forEach((branch) => {
-        branch.open = true;
-      });
-    }
-    this.refreshExpandButton();
-
-    // the header wraps on a narrow window: the editor sticks under it, however
-    // tall it is, see the --result-header of the template
-    const header = this.element.querySelector("header");
-    this.headerObserver = new ResizeObserver(() => {
-      this.element.style.setProperty("--result-header", `${header.offsetHeight}px`);
-    });
-    this.headerObserver.observe(header);
+    this.open();
   }
 
   disconnect() {
     this.nodesTarget.removeEventListener("toggle", this.onBranchToggle, true);
     cancelAnimationFrame(this.refreshFrame);
-    this.headerObserver.disconnect();
+    clearTimeout(this.runTimeout);
+    this.editorView?.destroy();
+  }
+
+  /**
+   * The document the page is opened with: the one of the homepage, of a link,
+   * or of the playground, see pageState.js. The editor shows it at once, then
+   * it is validated.
+   */
+  async open() {
+    // what the playground added to the state stays: it opens as it was left
+    this.shared = (await readState()) ?? {};
+
+    const body = typeof this.shared.document === "string" ? this.shared.document : "";
+
+    if (body.trim() === "") {
+      // nothing to validate: the homepage has the form
+      location.replace("../");
+
+      return;
+    }
+
+    this.setupEditor(body);
+    // the menu opens the playground with the document, validated or not
+    this.share(body);
+    this.run();
+  }
+
+  // What is typed is validated once the visitor pauses, the rest at once
+  changed({ now = false } = {}) {
+    clearTimeout(this.runTimeout);
+    this.runTimeout = setTimeout(() => this.run(), now ? 0 : this.runDelay ?? RUN_DELAY);
+  }
+
+  /**
+   * Audits what the editor holds, one audit at a time: what changes meanwhile
+   * is audited next, and only the last answer is shown.
+   */
+  async run() {
+    // the settings are saved before the page has read its document
+    if (!this.editorView) {
+      return;
+    }
+
+    if (this.running) {
+      this.outdated = true;
+
+      return;
+    }
+
+    this.running = true;
+    // the first validation of the page is said where its result comes
+    this.statusTarget.textContent = this.hasPendingTarget ? "" : "Validating…";
+
+    try {
+      let answer;
+      let body;
+
+      do {
+        this.outdated = false;
+        await painted();
+
+        body = this.editorView.state.doc.toString();
+
+        const { mergeSharedIdentifiers, allowPendingVocabulary } = loadSettings();
+        const start = performance.now();
+
+        try {
+          answer = await audit({ body, mergeSharedIdentifiers, allowPendingVocabulary });
+        } catch (error) {
+          console.error(error);
+          answer = { error: "The validator crashed on this document, see the console for details." };
+        }
+
+        this.runDelay = Math.min(MAX_RUN_DELAY, Math.max(RUN_DELAY, 2 * (performance.now() - start)));
+      } while (this.outdated);
+
+      this.show(answer, body);
+    } finally {
+      this.running = false;
+      this.statusTarget.textContent = "";
+    }
+  }
+
+  // "counts" and "html" are rendered by PHP, see bin/audit.php
+  show({ counts, html, error }, body) {
+    this.errorTarget.textContent = error ?? "";
+    // the result of the last document that was validated stays, dimmed: it
+    // does not blink while the document is being typed
+    this.countsTarget.classList.toggle("opacity-40", Boolean(error));
+    this.nodesTarget.classList.toggle("opacity-40", Boolean(error));
+
+    if (error) {
+      // the first validation of the page: nothing is being validated any more
+      if (this.hasPendingTarget) {
+        this.pendingTarget.remove();
+      }
+
+      return;
+    }
+
+    this.countsTarget.innerHTML = counts;
+
+    // what the visitor unfolded stays so, as long as the result keeps its shape
+    const unfolded = this.foldable().map((branch) => branch.open);
+
+    // the same result is not rendered again: nothing blinks while typing what
+    // does not change it
+    if (html !== this.shown) {
+      this.nodesTarget.innerHTML = html;
+      this.shown = html;
+    }
+
+    const foldable = this.foldable();
+
+    if (!this.settingsSaved && unfolded.length > 0 && unfolded.length === foldable.length) {
+      foldable.forEach((branch, index) => {
+        branch.open = unfolded[index];
+      });
+    } else {
+      this.fold();
+    }
+    this.settingsSaved = false;
+
+    // nothing to describe, and nothing to expand, when no structured data is found
+    this.showDescriptionsTarget.disabled = !this.hasEntityTarget;
+    this.expandButtonTarget.disabled = !this.hasEntityTarget;
+    this.refreshExpandButton();
+
+    this.markViolations();
+    this.share(body);
+  }
+
+  /**
+   * Writes the document the page is opened with, then each one it audits, in
+   * the URL, and in the link of the menu to the playground, that opens with it:
+   * see pageState.js. A link to the page audits the document again, with the
+   * settings of who opens it.
+   */
+  async share(document) {
+    const shareable = await writeState({ ...this.shared, document });
+
+    // another document took the place of this one meanwhile, and writes its own
+    if (shareable === null) {
+      return;
+    }
+
+    this.copyLinkTarget.disabled = !shareable;
+    this.copyLinkTarget.title = shareable
+      ? "Copy a link to this result: opening it validates this document again"
+      : "This document is too long to be shared in a link";
+  }
+
+  copyLink() {
+    copyWithFeedback(location.href, this.copyLinkTarget);
+  }
+
+  // what folds in the result: the warnings of each entity, and the branches of
+  // its property tree
+  foldable() {
+    return [...this.nodesTarget.querySelectorAll("details")];
+  }
+
+  // a result as it first shows, by the settings
+  fold() {
+    // the errors are always shown, the warnings of an entity are folded
+    // unless the settings say otherwise
+    const { autoExpandWarnings, expandTree } = loadSettings();
+
+    this.warningsTargets.forEach((warnings) => {
+      warnings.open = autoExpandWarnings;
+    });
+
+    // the tree is rendered collapsed: expanded again, if "Expand all" was the
+    // last choice
+    this.treeBranches().forEach((branch) => {
+      branch.open = expandTree;
+    });
   }
 
   // the branches of the property tree: the warnings list of an entity is not one
@@ -139,10 +309,6 @@ export default class extends Controller {
   }
 
   refreshExpandButton() {
-    if (!this.hasExpandButtonTarget) {
-      return;
-    }
-
     const anyOpen = this.treeBranches().some((branch) => branch.open);
 
     this.expandButtonTarget.textContent = anyOpen ? "Collapse all" : "Expand all";
@@ -158,26 +324,30 @@ export default class extends Controller {
   }
 
   toggleSettings() {
-    const shouldOpen = this.settingsPanelTarget.classList.contains("hidden");
+    if (!this.settingsPanelTarget.classList.contains("hidden")) {
+      this.closeSettings();
 
-    if (shouldOpen) {
-      const settings = loadSettings();
-      this.settingMergeNodesTarget.checked = settings.mergeSharedIdentifiers;
-      this.settingAllowPendingTarget.checked = settings.allowPendingVocabulary;
-      this.settingAutoExpandWarningsTarget.checked = settings.autoExpandWarnings;
-    }
-
-    this.settingsPanelTarget.classList.toggle("hidden", !shouldOpen);
-    this.settingsButtonTarget.setAttribute("aria-expanded", shouldOpen ? "true" : "false");
-  }
-
-  closeSettingsOnOutsideClick(event) {
-    if (this.settingsPanelTarget.classList.contains("hidden") || this.settingsWrapperTarget.contains(event.target)) {
       return;
     }
 
+    const settings = loadSettings();
+    this.settingMergeNodesTarget.checked = settings.mergeSharedIdentifiers;
+    this.settingAllowPendingTarget.checked = settings.allowPendingVocabulary;
+    this.settingAutoExpandWarningsTarget.checked = settings.autoExpandWarnings;
+
+    this.settingsPanelTarget.classList.remove("hidden");
+    this.settingsButtonTarget.setAttribute("aria-expanded", "true");
+  }
+
+  closeSettings() {
     this.settingsPanelTarget.classList.add("hidden");
     this.settingsButtonTarget.setAttribute("aria-expanded", "false");
+  }
+
+  closeSettingsOnOutsideClick(event) {
+    if (!this.settingsWrapperTarget.contains(event.target)) {
+      this.closeSettings();
+    }
   }
 
   // audit again so that the settings applied by PHP - merging and pending
@@ -189,16 +359,19 @@ export default class extends Controller {
       autoExpandWarnings: this.settingAutoExpandWarningsTarget.checked,
     });
 
-    this.codemirrorTarget.form.requestSubmit();
+    this.closeSettings();
+    // the result shows again as these settings say
+    this.settingsSaved = true;
+    this.changed({ now: true });
   }
 
   // the audit reports lines and columns: once the document is reformatted,
   // it is audited again
   async format() {
-    const form = this.codemirrorTarget.form;
-    const errorElement = form.querySelector("[data-validation-error]");
+    if (!this.editorView) {
+      return;
+    }
 
-    errorElement.textContent = "";
     this.formatButtonTarget.disabled = true;
 
     try {
@@ -207,7 +380,7 @@ export default class extends Controller {
       const { content, error } = await formatDocument(this.editorView.state.doc.toString());
 
       if (error) {
-        errorElement.textContent = error;
+        this.errorTarget.textContent = error;
 
         return;
       }
@@ -215,182 +388,115 @@ export default class extends Controller {
       this.editorView.dispatch({
         changes: { from: 0, to: this.editorView.state.doc.length, insert: content },
       });
-      form.requestSubmit();
+      this.changed({ now: true });
     } finally {
       this.formatButtonTarget.disabled = false;
     }
   }
 
-  async openInPlayground() {
-    // The playground reads its state in the fragment of its URL
-    const fragment = await encodeState({ document: this.editorView.state.doc.toString() });
+  // the editor of every page, with the language and the gutters of this one
+  setupEditor(doc) {
+    const languageCompartment = new state.Compartment();
 
-    location.assign(`playground/#${fragment}`);
+    // the language follows the document: a page can be pasted over a JSON
+    // document
+    const followDocument = state.EditorState.transactionExtender.of((tr) => {
+      const page = isPage(tr.newDoc.sliceString(0, START_LENGTH));
+
+      if (!tr.docChanged || page === isPage(tr.startState.doc.sliceString(0, START_LENGTH))) {
+        return null;
+      }
+
+      return { effects: languageCompartment.reconfigure(languageOf(page)) };
+    });
+
+    // filled by markViolations(), for each result
+    this.violations = new state.Compartment();
+
+    this.editorView = new view.EditorView({
+      doc,
+      parent: this.editorTarget,
+      extensions: editorExtensions([
+        view.lineNumbers(),
+        this.violations.of([]),
+        languageCompartment.of(languageOf(isPage(doc.slice(0, START_LENGTH)))),
+        followDocument,
+        view.EditorView.contentAttributes.of({ "aria-label": "Document" }),
+        view.EditorView.updateListener.of((update) => {
+          if (update.docChanged) {
+            this.changed();
+          }
+        }),
+      ]),
+    });
   }
 
-  setupCodemirror() {
-    let compartmentInitialized = false;
-    const compartmentEffects = [];
+  // marks, in the gutter, the lines of the document that the result reports
+  markViolations() {
+    const doc = this.editorView.state.doc;
+    const positions = new Set();
 
-    // compute if a language change is required
-    const computeCurrentLanguage = (tr) => {
-      if (compartmentInitialized && !tr.docChanged) {
-        return null;
-      }
+    this.nodesTarget.querySelectorAll("[data-start][data-invalid]").forEach((node) => {
+      // a single range splits to a one-element list, so the pipe-joined and
+      // the lone case are the same code
+      node.dataset.start.split("|").forEach((start) => {
+        const from = lineStart(doc, start.split(":")[0]);
 
-      const docIsHTML = /^\s*</.test(tr.newDoc.sliceString(0, 100));
-      const stateIsHTML = tr.startState.facet(language.language) === html;
-
-      if (compartmentInitialized && docIsHTML === stateIsHTML) {
-        return null;
-      }
-
-      return docIsHTML ? html : json();
-    };
-
-    // listen to the editor state to set the language and the gutters
-    // codemirror would not let us use two compartments
-    const compartment = new state.Compartment();
-    const compartmentExtension = state.EditorState.transactionExtender.of(
-      (tr) => {
-        const currentLanguage = computeCurrentLanguage(tr);
-
-        if (compartmentInitialized) {
-          return currentLanguage === null
-            ? null
-            : {
-                effects: compartment.reconfigure([
-                  currentLanguage,
-                  ...compartmentEffects,
-                ]),
-              };
+        if (from !== null) {
+          positions.add(from);
         }
-
-        compartmentInitialized = true;
-
-        const violationGutterMarker = new (class extends view.GutterMarker {
-          constructor() {
-            super();
-            this.elementClass = "cm-violationLineGutter";
-          }
-        })();
-
-        const ranges = [];
-        const positions = [];
-
-        this.nodesTarget.querySelectorAll("[data-start]").forEach((node) => {
-          if (typeof node.dataset.invalid === "undefined") {
-            return;
-          }
-
-          // a single range splits to a one-element list, so the pipe-joined and
-          // the lone case are the same code
-          node.dataset.start.split("|").forEach((start) => {
-            const from = lineStart(tr.startState.doc, start.split(":")[0]);
-
-            if (from !== null) {
-              positions.push(from);
-            }
-          });
-        });
-
-        positions.forEach((value, index) => {
-          if (positions.indexOf(value) === index) {
-            ranges.push(violationGutterMarker.range(value));
-          }
-        });
-
-        if (ranges.length) {
-          compartmentEffects.push(
-            view.lineNumberMarkers.of(state.RangeSet.of(ranges, true))
-          );
-        }
-
-        compartmentEffects.push(view.lineNumbers());
-
-        if (currentLanguage === null) {
-          return {
-            effects: compartment.reconfigure(compartmentEffects),
-          };
-        }
-
-        return {
-          effects: compartment.reconfigure([
-            currentLanguage,
-            ...compartmentEffects,
-          ]),
-        };
-      }
-    );
-
-    // the editor of every page, with the language and the gutters of this one
-    const extensions = editorExtensions([compartment.of([]), compartmentExtension]);
-
-    // create the editor
-    const editorView = new view.EditorView({
-      doc: this.codemirrorTarget.value || defaultValue,
-      extensions,
-    });
-    this.editorView = editorView;
-    this.codemirrorTarget.parentNode.insertBefore(editorView.dom, this.codemirrorTarget);
-    this.codemirrorTarget.style.display = "none";
-
-    // app.js audits what the textarea holds, once the event reaches the document
-    this.codemirrorTarget.form.addEventListener("submit", () => {
-      this.codemirrorTarget.value = editorView.state.doc.toString();
+      });
     });
 
-    // force an initial configuration of our comprtment
-    editorView.dispatch({
-      effects: compartment.reconfigure(html),
+    const ranges = [...positions].map((from) => violationMarker.range(from));
+
+    this.editorView.dispatch({
+      effects: this.violations.reconfigure(view.lineNumberMarkers.of(state.RangeSet.of(ranges, true))),
     });
+  }
 
+  // a click on what the result locates selects it in the document
+  showInDocument(event) {
+    // a link of an issue is followed, not taken for its issue
+    const node = event.target.closest("a, [data-start]");
 
-    // handle the clicks on the nodes
-    this.nodesTarget.addEventListener("click", (e) => {
-      // a link of an issue is followed, not taken for its issue
-      const node = e.target.closest("a, [data-start]");
+    if (!node || !node.dataset.start || !node.dataset.end) {
+      return;
+    }
 
-      if (node && node.dataset.start && node.dataset.end) {
-        e.preventDefault();
-        // several ranges are joined with a pipe: the first one is selected
-        const start = node.dataset.start.split("|")[0].split(":");
-        const end = node.dataset.end.split("|")[0].split(":");
+    event.preventDefault();
+    // several ranges are joined with a pipe: the first one is selected
+    const start = node.dataset.start.split("|")[0].split(":");
+    const end = node.dataset.end.split("|")[0].split(":");
 
-        // tested before computing anything, so an approximate range cannot
-        // throw on its way to being ignored
-        if (start.length > 2 && start[2] === "approx") {
-          return;
-        }
+    // tested before computing anything, so an approximate range cannot
+    // throw on its way to being ignored
+    if (start.length > 2 && start[2] === "approx") {
+      return;
+    }
 
-        const startFrom = lineStart(editorView.state.doc, start[0]);
-        const endFrom = lineStart(editorView.state.doc, end[0]);
+    const doc = this.editorView.state.doc;
+    const startFrom = lineStart(doc, start[0]);
+    const endFrom = lineStart(doc, end[0]);
 
-        if (startFrom === null || endFrom === null) {
-          return;
-        }
+    if (startFrom === null || endFrom === null) {
+      return;
+    }
 
-        // a column can overrun its line even when the line number is sound,
-        // and EditorSelection rejects an out-of-document position
-        const docLength = editorView.state.doc.length;
-        const bookmarkStart = Math.max(0, Math.min(startFrom + parseInt(start[1], 10) - 1, docLength));
-        const bookmarkEnd = Math.max(0, Math.min(endFrom + parseInt(end[1], 10) - 1, docLength));
+    // a column can overrun its line even when the line number is sound,
+    // and EditorSelection rejects an out-of-document position
+    const bookmarkStart = Math.max(0, Math.min(startFrom + parseInt(start[1], 10) - 1, doc.length));
+    const bookmarkEnd = Math.max(0, Math.min(endFrom + parseInt(end[1], 10) - 1, doc.length));
 
-        editorView.dispatch({
-          selection: {
-            anchor: bookmarkEnd,
-            head: bookmarkStart,
-          },
-        });
-        editorView.dispatch(
-          editorView.state.update({
-            effects: view.EditorView.scrollIntoView(bookmarkEnd, {
-              y: 'center',
-              x: 'center',
-            }),
-          })
-        );
-      }
+    this.editorView.dispatch({
+      selection: {
+        anchor: bookmarkEnd,
+        head: bookmarkStart,
+      },
+      effects: view.EditorView.scrollIntoView(bookmarkEnd, {
+        y: "center",
+        x: "center",
+      }),
     });
   }
 }

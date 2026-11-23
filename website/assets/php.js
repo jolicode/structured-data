@@ -1,6 +1,6 @@
-// The library in PHP WebAssembly, without the DOM: app.js and playground.js
-// wire it to their page, tests/page.test.mjs and tests/playground.test.mjs
-// test it in node.
+// The library in PHP WebAssembly, without the DOM: the controllers of the
+// validator and of the playground wire it to their page, tests/page.test.mjs
+// and tests/playground.test.mjs test it in node.
 
 // Built next to this module, in public/build: see .castor/website.php
 import createPhp from "./php-web.mjs";
@@ -28,8 +28,8 @@ async function run(script, request) {
 }
 
 /**
- * Resolves with what bin/audit.php answers: the { html } of the result, or the
- * { error } that says why the document is not audited.
+ * Resolves with what bin/audit.php answers: the { counts, html } of the result,
+ * or the { error } that says why the document is not audited.
  */
 export function audit({ body, mergeSharedIdentifiers, allowPendingVocabulary }) {
   return run(AUDIT_SCRIPT, { allowPendingVocabulary, body, mergeSharedIdentifiers });

@@ -7,7 +7,7 @@
     "build": "npm run build:fonts && npm run build:css && npm run build:js",
     "build:css": "tailwindcss --input assets/styles/app.css --output public/build/app.css --minify",
     "build:fonts": "mkdir -p public/build/files && cp node_modules/@fontsource-variable/inter/files/*-wght-normal.woff2 node_modules/@fontsource-variable/jetbrains-mono/files/*-wght-normal.woff2 node_modules/@fontsource-variable/space-grotesk/files/*-wght-normal.woff2 public/build/files/",
-    "build:js": "esbuild assets/app.js assets/playground.js assets/php.js --bundle --splitting --format=esm --minify --outdir=public/build --external:./php-web.mjs"
+    "build:js": "esbuild assets/home.js assets/validator.js assets/playground.js assets/php.js --bundle --splitting --format=esm --minify --outdir=public/build --external:./php-web.mjs"
   },
   "devDependencies": {
     "@codemirror/autocomplete": "6.20.4",

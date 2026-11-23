@@ -30,7 +30,7 @@ use function PhpWasm\test_page;
 
 use Symfony\Component\Console\Input\InputOption;
 
-// The demo website: two static pages, in website/public, that audit a document
+// The demo website: static pages, in website/public, that audit a document
 // with the validator, and run the JSON-LD algorithms on one, with PHP built as
 // WebAssembly. See website/README.md.
 

@@ -1,17 +1,15 @@
 import { Controller } from "@hotwired/stimulus";
+import { copyWithFeedback } from "../clipboard.js";
 import { createEditor } from "../editor.js";
 import { OPTIONS, createJsonLdProcessor } from "../jsonLd.js";
 import { UNREADABLE, loadUrl } from "../loadUrl.js";
-import { decodeState, encodeState, normalizeState } from "../permalink.js";
+import { readState, writeState } from "../pageState.js";
+import { normalizeState } from "../permalink.js";
 import { runPlayground } from "../php.js";
 import { DEFAULT_EXAMPLE, examples } from "../playgroundExamples.js";
 
 // Typing runs the algorithm again, once the visitor pauses
 const RUN_DELAY = 300;
-
-// A longer state is not written in the URL: a browser, or what the link is
-// pasted in, cuts it
-const MAX_FRAGMENT_LENGTH = 32_000;
 
 const OUTPUT_LABELS = {
   expand: "Expanded document",
@@ -76,12 +74,14 @@ export default class extends Controller {
       output: createEditor({ parent: this.outputEditorTarget, label: "Output", readOnly: true }),
     };
 
-    // A permalink, or what the result of the validator opens the playground with
-    const shared = await decodeState(location.hash);
+    // A permalink, or what the menu of the validator opens the playground with
+    const shared = await readState();
 
     if (shared) {
+      const state = normalizeState(shared);
+
       // The N-Quads of the examples, when the link has none: its tab shows something
-      this.state = { ...shared, nquads: shared.nquads || examples.nquads.nquads };
+      this.state = { ...state, nquads: state.nquads || examples.nquads.nquads };
     } else {
       this.state.nquads = examples.nquads.nquads;
     }
@@ -144,11 +144,11 @@ export default class extends Controller {
   }
 
   copyLink() {
-    this.copy(location.href, this.copyLinkTarget);
+    copyWithFeedback(location.href, this.copyLinkTarget);
   }
 
   copyOutput() {
-    this.copy(this.editors.output.getValue(), this.copyOutputTarget);
+    copyWithFeedback(this.editors.output.getValue(), this.copyOutputTarget);
   }
 
   // What they do
@@ -274,32 +274,18 @@ export default class extends Controller {
   }
 
   async writePermalink() {
-    // The one of this change, when another one comes before it is encoded
-    const change = (this.permalinkChange = Symbol());
-    const fragment = await encodeState(this.state);
+    // In the URL, and in the link of the menu to the validator, that validates
+    // the document: see pageState.js
+    const shareable = await writeState(this.state);
 
-    if (change !== this.permalinkChange) {
+    // Another change came meanwhile, and writes its own
+    if (shareable === null) {
       return;
     }
 
-    history.replaceState(null, "", fragment.length > MAX_FRAGMENT_LENGTH ? location.pathname + location.search : `#${fragment}`);
-  }
-
-  async copy(text, button) {
-    // Kept on the button: a second click comes while it still says "Copied"
-    button.dataset.label ??= button.textContent;
-
-    try {
-      await navigator.clipboard.writeText(text);
-      button.textContent = "Copied";
-    } catch {
-      button.textContent = "Not copied";
-    }
-
-    clearTimeout(this.copyTimeouts?.get(button));
-    (this.copyTimeouts ??= new Map()).set(
-      button,
-      setTimeout(() => (button.textContent = button.dataset.label), 1500),
-    );
+    this.copyLinkTarget.disabled = !shareable;
+    this.copyLinkTarget.title = shareable
+      ? "Copy a link to this page, with its documents and its options"
+      : "These documents are too long to be shared in a link";
   }
 }
