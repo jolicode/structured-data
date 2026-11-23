@@ -30,8 +30,9 @@ use function PhpWasm\test_page;
 
 use Symfony\Component\Console\Input\InputOption;
 
-// The demo website: a static page, in website/public, that audits a document
-// with the validator, run by PHP built as WebAssembly. See website/README.md.
+// The demo website: static pages, in website/public, that audit a document
+// with the validator, and run the JSON-LD algorithms on one, with PHP built as
+// WebAssembly. See website/README.md.
 
 #[AsTask(description: 'Installs the dependencies of the demo website')]
 function install(): void
@@ -75,7 +76,7 @@ function build(
     ]));
 
     // What is embedded takes some of the memory of the WebAssembly module:
-    // only what bin/audit.php reads
+    // only what bin/audit.php and bin/playground.php read
     fs()->mirror($website, $app, finder()
         ->in(["{$website}/assets/images", "{$website}/bin", "{$website}/src", "{$website}/templates", "{$website}/vendor"])
         // Composer copies the directories of the repository that Git ignores too
@@ -94,7 +95,13 @@ function check(): void
     io()->title('Checking the website');
 
     check_stack(wasmStack());
-    test_page('website/tests/page.test.mjs', 'website/tests/format.test.mjs');
+    test_page(
+        'website/tests/page.test.mjs',
+        'website/tests/format.test.mjs',
+        'website/tests/loadUrl.test.mjs',
+        'website/tests/permalink.test.mjs',
+        'website/tests/playground.test.mjs',
+    );
 }
 
 #[AsTask(description: 'Serves the demo website')]
@@ -131,7 +138,8 @@ function wasmStack(): Stack
         ->php('8.5.12')
         // What the library, Twig and league/commonmark require
         ->extensions('ctype', 'dom', 'filter', 'libxml', 'mbstring')
-        // Filled by build(), assets/php.js runs /app/bin/audit.php
+        // Filled by build(), assets/php.js runs /app/bin/audit.php and
+        // /app/bin/playground.php
         ->embed('website/build/app', at: '/app')
         ->targets(Target::Web)
         ->outputDir('website/public/build')

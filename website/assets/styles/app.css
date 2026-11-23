@@ -56,6 +56,36 @@
   @apply inline-flex min-h-10 cursor-pointer items-center gap-2 rounded-full border border-gray-300 bg-white px-4 text-[13px] font-medium shadow-sm transition hover:-translate-y-px hover:border-gray-900 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900;
 }
 
+/* The menu of the pages: the highlighter underlines the current one */
+.site-nav-link {
+  @apply inline-flex min-h-9 items-center font-medium text-gray-700 hover:text-gray-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900;
+
+  &[aria-current="page"] {
+    @apply text-gray-950;
+    box-shadow: inset 0 -3px 0 var(--color-joli);
+  }
+}
+
+/* The counts and the actions of the result of the validator: they stay above the entities, that scroll under them */
+.result-toolbar {
+  @apply relative z-10 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 rounded-2xl border border-gray-200 bg-white px-4 py-2.5 lg:sticky lg:top-5;
+
+  /* What scrolls is not seen between the top of the window and the toolbar: the gap above its border */
+  &::before {
+    @apply pointer-events-none absolute -inset-x-px -top-5.25 hidden h-5 bg-gray-50 lg:block;
+    content: "";
+  }
+}
+
+/* The algorithms of the playground */
+.playground-tab {
+  @apply min-h-9 cursor-pointer rounded-lg px-3 text-[13px] font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900;
+
+  &[aria-selected="true"] {
+    @apply bg-gray-900 text-white;
+  }
+}
+
 .cm-editor {
   @apply h-full text-[13px];
 

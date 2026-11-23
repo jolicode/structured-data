@@ -10,8 +10,9 @@
  */
 
 // Run in the browser by PHP WebAssembly, see assets/php.js: the request is on
-// stdin, and the answer on stdout, as JSON: the "html" of the result, or the
-// "error" that says why the document is not audited.
+// stdin, and the answer on stdout, as JSON: the "html" of the entities of the
+// result and the one of their "counts", or the "error" that says why the
+// document is not audited. The page holds the rest: its editor, its toolbar.
 
 use JoliCode\StructuredData\Audit\Item;
 use JoliCode\StructuredData\Mapper\MappedType;
@@ -60,11 +61,11 @@ $twig = new Environment($loader, ['strict_variables' => true]);
 $twig->addExtension(new JsonLdExtension());
 $twig->addExtension(new MarkdownExtension());
 
+// The items, not the blocks: with the merge on, the blocks sharing an
+// identifier make one item, whose node carries the verdict.
+$types = array_map(static fn (Item $item): MappedType => $item->getType(), $audit->getItems());
+
 echo json_encode([
-    'html' => $twig->render('result.html.twig', [
-        'body' => $body,
-        // The items, not the blocks: with the merge on, the blocks sharing an
-        // identifier make one item, whose node carries the verdict.
-        'types' => array_map(static fn (Item $item): MappedType => $item->getType(), $audit->getItems()),
-    ]),
+    'counts' => $twig->render('counts.html.twig', ['types' => $types]),
+    'html' => $twig->render('result.html.twig', ['types' => $types]),
 ], \JSON_THROW_ON_ERROR);

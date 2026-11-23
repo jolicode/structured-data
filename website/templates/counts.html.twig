@@ -1,0 +1,20 @@
+{# What the toolbar of the page of the validator says of the result: nothing, when no structured data is found #}
+{% set errorCount = 0 %}
+{% set warningCount = 0 %}
+{% for type in types %}
+    {% set errorCount = errorCount + type.mergedErrors|filter(error => error.severity != 'warning')|length %}
+    {% set warningCount = warningCount + type.mergedErrors|filter(error => error.severity == 'warning')|length %}
+{% endfor %}
+
+{% if types|length > 0 %}
+    <span class="text-[13px] text-gray-600">{{ types|length }} {{ types|length > 1 ? 'entities' : 'entity' }}</span>
+    {% if errorCount %}
+        <span class="rounded-full bg-red-50 px-2.5 py-0.5 text-[13px] font-medium text-red-700">{{ errorCount }} error{{ errorCount > 1 ? 's' }}</span>
+    {% endif %}
+    {% if warningCount %}
+        <span class="rounded-full bg-amber-50 px-2.5 py-0.5 text-[13px] font-medium text-amber-800">{{ warningCount }} warning{{ warningCount > 1 ? 's' }}</span>
+    {% endif %}
+    {% if not errorCount and not warningCount %}
+        <span class="rounded-full bg-green-50 px-2.5 py-0.5 text-[13px] font-medium text-green-800">Valid</span>
+    {% endif %}
+{% endif %}

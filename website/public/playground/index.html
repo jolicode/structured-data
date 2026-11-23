@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+        <title>JSON-LD Playground, by JoliCode</title>
+        <meta name="description" content="Expand, compact, flatten and frame a JSON-LD document, or convert it to and from RDF, with the JSON-LD 1.1 algorithms of the W3C, in your browser." />
+        <meta name="author" content="JoliCode" />
+
+        <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+
+        <!-- Both are built by "castor website:build" -->
+        <link rel="stylesheet" href="../build/app.css">
+        <script type="module" src="../build/playground.js"></script>
+    </head>
+    <body class="bg-white font-sans text-gray-900 antialiased">
+        <main class="flex min-h-screen flex-col bg-gray-50" data-controller="playground">
+            <!-- The same backdrop, logo and menu as the homepage, see ../index.html. The links of the menu carry the document, see build/playground.js -->
+            <header class="home-backdrop relative isolate flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 bg-white px-6 py-3">
+                <a href="../" class="inline-flex items-center gap-2.5 font-display text-[15px] font-semibold text-gray-900">
+                    <span class="grid size-8 place-items-center rounded-lg bg-joli font-mono text-sm font-bold text-gray-900 shadow-sm ring-1 ring-gray-900/10" aria-hidden="true">{ }</span>
+                    Structured Data Validator
+                </a>
+                <nav class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-700" aria-label="Main">
+                    <a href="../validator/" class="site-nav-link" data-state-link>Validator</a>
+                    <a href="./" class="site-nav-link" aria-current="page" data-state-link>JSON-LD Playground</a>
+                    <a href="https://github.com/jolicode/structured-data" class="inline-flex min-h-9 items-center gap-1.5 rounded-full bg-white/70 px-3 ring-1 ring-gray-900/10 backdrop-blur hover:text-gray-950 hover:ring-gray-900/30">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="size-4" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
+                        GitHub
+                    </a>
+                </nav>
+            </header>
+
+            <div class="flex flex-1 flex-col gap-4 p-5">
+                <div class="flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
+                    <div>
+                        <h1 class="font-display text-2xl font-semibold tracking-tight sm:text-3xl">JSON-LD <span class="home-marker">Playground</span></h1>
+                        <p class="mt-2 max-w-3xl text-sm/6 text-gray-600 text-pretty">
+                            Run the <a href="https://www.w3.org/TR/json-ld11-api/" class="font-medium text-gray-900 underline decoration-gray-300 underline-offset-2 hover:decoration-gray-900">JSON-LD 1.1 algorithms</a> of the W3C on a document, as you type.
+                            The <a href="https://github.com/jolicode/structured-data" class="font-medium text-gray-900 underline decoration-gray-300 underline-offset-2 hover:decoration-gray-900">jolicode/structured-data</a> PHP library runs them in this page, compiled to WebAssembly: your document never leaves your browser.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="pr-1 text-xs font-medium text-gray-500">Examples</span>
+                        <button type="button" class="home-chip" data-example="person" data-action="playground#loadExample">Person</button>
+                        <button type="button" class="home-chip" data-example="event" data-action="playground#loadExample">Event</button>
+                        <button type="button" class="home-chip" data-example="product" data-action="playground#loadExample">Product</button>
+                        <button type="button" class="home-chip" data-example="articleGraph" data-action="playground#loadExample">Article graph, framed</button>
+                        <button type="button" class="home-chip" data-example="activity" data-action="playground#loadExample">Activity, with a remote context</button>
+                        <button type="button" class="home-chip" data-example="nquads" data-action="playground#loadExample">N-Quads</button>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex flex-wrap gap-1 rounded-xl border border-gray-200 bg-white p-1" role="tablist" aria-label="Algorithm">
+                        <button type="button" role="tab" id="tab-expand" aria-controls="output" aria-selected="true" class="playground-tab" data-algorithm="expand" data-playground-target="tab" data-action="playground#selectTab keydown->playground#moveTab">Expanded</button>
+                        <button type="button" role="tab" id="tab-compact" aria-controls="output" aria-selected="false" tabindex="-1" class="playground-tab" data-algorithm="compact" data-playground-target="tab" data-action="playground#selectTab keydown->playground#moveTab">Compacted</button>
+                        <button type="button" role="tab" id="tab-flatten" aria-controls="output" aria-selected="false" tabindex="-1" class="playground-tab" data-algorithm="flatten" data-playground-target="tab" data-action="playground#selectTab keydown->playground#moveTab">Flattened</button>
+                        <button type="button" role="tab" id="tab-frame" aria-controls="output" aria-selected="false" tabindex="-1" class="playground-tab" data-algorithm="frame" data-playground-target="tab" data-action="playground#selectTab keydown->playground#moveTab">Framed</button>
+                        <button type="button" role="tab" id="tab-toRdf" aria-controls="output" aria-selected="false" tabindex="-1" class="playground-tab" data-algorithm="toRdf" data-playground-target="tab" data-action="playground#selectTab keydown->playground#moveTab">N-Quads</button>
+                        <button type="button" role="tab" id="tab-fromRdf" aria-controls="output" aria-selected="false" tabindex="-1" class="playground-tab" data-algorithm="fromRdf" data-playground-target="tab" data-action="playground#selectTab keydown->playground#moveTab">From RDF</button>
+                    </div>
+                    <button type="button" class="min-h-9 rounded-lg border border-gray-300 bg-white px-3 text-[13px] font-medium text-gray-900 hover:border-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 disabled:opacity-50" title="Copy a link to this page, with its documents and its options" data-playground-target="copyLink" data-action="playground#copyLink">Copy link</button>
+                </div>
+
+                <!-- The options of bin/playground.php: the controller shows the ones the algorithm reads -->
+                <div class="flex flex-wrap items-center gap-x-5 gap-y-2 rounded-xl border border-gray-200 bg-white px-4 py-2 text-[13px] text-gray-900" role="group" aria-label="Options" data-playground-target="options">
+                    <span class="font-display text-xs font-semibold uppercase tracking-wider text-gray-500" aria-hidden="true">Options</span>
+                    <label class="flex min-h-9 items-center gap-2" title="What the relative IRIs of the document are resolved against" data-playground-target="option">
+                        Base IRI
+                        <input type="text" name="base" inputmode="url" autocomplete="off" spellcheck="false" placeholder="https://example.com/" class="h-8 w-56 rounded-md border border-gray-300 px-2 font-mono text-xs placeholder:text-gray-500 focus:border-gray-900 focus:outline-none" data-action="input->playground#changeOption">
+                    </label>
+                    <label class="flex min-h-9 cursor-pointer items-center gap-2" title="Sort the properties and the nodes" data-playground-target="option">
+                        <input type="checkbox" name="ordered" class="size-4 accent-gray-900" data-action="playground#changeOption">
+                        Ordered
+                    </label>
+                    <label class="flex min-h-9 cursor-pointer items-center gap-2" title="Write an array of one value as this value" data-playground-target="option">
+                        <input type="checkbox" name="compactArrays" class="size-4 accent-gray-900" data-action="playground#changeOption">
+                        Compact arrays
+                    </label>
+                    <label class="flex min-h-9 cursor-pointer items-center gap-2" title="Write the IRIs relative to the base IRI" data-playground-target="option">
+                        <input type="checkbox" name="compactToRelative" class="size-4 accent-gray-900" data-action="playground#changeOption">
+                        Compact to relative IRIs
+                    </label>
+                    <label class="flex min-h-9 items-center gap-2" title="Whether a lone node is written without a @graph around it" data-playground-target="option">
+                        Omit @graph
+                        <select name="omitGraph" class="h-8 rounded-md border border-gray-300 bg-white px-1.5 text-xs focus:border-gray-900 focus:outline-none" data-action="playground#changeOption">
+                            <option value="">By default</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </label>
+                    <label class="flex min-h-9 cursor-pointer items-center gap-2" title="Keep the triples whose predicate is a blank node" data-playground-target="option">
+                        <input type="checkbox" name="produceGeneralizedRdf" class="size-4 accent-gray-900" data-action="playground#changeOption">
+                        Generalized RDF
+                    </label>
+                    <label class="flex min-h-9 items-center gap-2" title="How the base direction of a string travels through RDF" data-playground-target="option">
+                        Base direction
+                        <select name="rdfDirection" class="h-8 rounded-md border border-gray-300 bg-white px-1.5 text-xs focus:border-gray-900 focus:outline-none" data-action="playground#changeOption">
+                            <option value="">Dropped</option>
+                            <option value="i18n-datatype">i18n-datatype</option>
+                            <option value="compound-literal">compound-literal</option>
+                        </select>
+                    </label>
+                    <label class="flex min-h-9 cursor-pointer items-center gap-2" title="Turn the xsd:boolean, xsd:integer and xsd:double literals into JSON booleans and numbers" data-playground-target="option">
+                        <input type="checkbox" name="useNativeTypes" class="size-4 accent-gray-900" data-action="playground#changeOption">
+                        Native types
+                    </label>
+                    <label class="flex min-h-9 cursor-pointer items-center gap-2" title="Keep rdf:type as an ordinary property, instead of @type" data-playground-target="option">
+                        <input type="checkbox" name="useRdfType" class="size-4 accent-gray-900" data-action="playground#changeOption">
+                        Keep rdf:type
+                    </label>
+                </div>
+
+                <div class="grid flex-1 gap-4 lg:grid-cols-2">
+                    <div class="flex min-w-0 flex-col gap-4">
+                        <section class="flex h-[26rem] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white focus-within:border-gray-900" aria-labelledby="document-label">
+                            <h2 id="document-label" class="border-b border-gray-200 bg-gray-50 px-4 py-2.5 font-mono text-xs text-gray-600" data-playground-target="documentLabel">JSON-LD document</h2>
+                            <div class="min-h-0 flex-1" data-playground-target="documentEditor"></div>
+                        </section>
+
+                        <section class="flex h-64 flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white focus-within:border-gray-900" aria-labelledby="context-label" data-playground-target="contextPanel" hidden>
+                            <h2 id="context-label" class="border-b border-gray-200 bg-gray-50 px-4 py-2.5 font-mono text-xs text-gray-600" data-playground-target="contextLabel">Context</h2>
+                            <div class="min-h-0 flex-1" data-playground-target="contextEditor"></div>
+                        </section>
+
+                        <section class="flex h-64 flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white focus-within:border-gray-900" aria-labelledby="frame-label" data-playground-target="framePanel" hidden>
+                            <h2 id="frame-label" class="border-b border-gray-200 bg-gray-50 px-4 py-2.5 font-mono text-xs text-gray-600">Frame</h2>
+                            <div class="min-h-0 flex-1" data-playground-target="frameEditor"></div>
+                        </section>
+                    </div>
+
+                    <!-- As tall as the editors next to it, whatever it shows -->
+                    <div class="relative min-h-[26rem] min-w-0">
+                        <section id="output" role="tabpanel" aria-labelledby="tab-expand" class="absolute inset-0 flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white" data-playground-target="outputPanel">
+                            <div class="flex min-h-10 flex-wrap items-center justify-between gap-x-3 border-b border-gray-200 bg-gray-50 px-4 py-1">
+                                <h2 class="font-mono text-xs text-gray-600" data-playground-target="outputLabel">Expanded document</h2>
+                                <span class="flex items-center gap-3">
+                                    <span class="text-xs text-gray-600" role="status" data-playground-target="status">Loading PHP…</span>
+                                    <button type="button" class="min-h-7 rounded-md border border-gray-300 bg-white px-2 text-xs font-medium text-gray-900 hover:border-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900" data-playground-target="copyOutput" data-action="playground#copyOutput">Copy</button>
+                                </span>
+                            </div>
+                            <p class="border-b border-red-200 bg-red-50 px-4 py-2.5 text-[13px] font-medium text-red-800" role="status" data-playground-target="error" hidden></p>
+                            <div class="min-h-0 flex-1 transition-opacity" data-playground-target="outputEditor"></div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The JoliCode open-source footer (jolicode/oss-theme), downloaded by "castor website:build" -->
+            <div class="js-joli-footer"></div>
+        </main>
+        <script type="module">
+            const footer = await fetch("../build/joli-footer.html");
+            if (footer.ok) {
+                document.querySelector(".js-joli-footer")?.replaceWith(document.createRange().createContextualFragment(await footer.text()));
+            }
+        </script>
+    </body>
+</html>
