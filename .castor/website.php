@@ -135,7 +135,7 @@ function buildIfNeeded(): void
 function wasmStack(): Stack
 {
     return Stack::named('website')
-        ->php('8.5.12')
+        ->php('8.6.0')
         // What the library, Twig and league/commonmark require
         ->extensions('ctype', 'dom', 'filter', 'libxml', 'mbstring')
         // Filled by build(), assets/php.js runs /app/bin/audit.php and

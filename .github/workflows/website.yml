@@ -23,7 +23,7 @@ jobs:
         uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           # The version PHP is built with as WebAssembly, see .castor/website.php
-          php-version: "8.5"
+          php-version: "8.6"
           # Dependabot does not track tools installed by setup-php: bump these
           # versions and their SHA-256 checksums by hand, in every job.
           tools: >-
